@@ -8,50 +8,50 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'accueil_intro' => 'Benvingut a la p&agrave;gina de presentaci&oacute; del connector "annuaire".',
-	'accueil_option' => 'Alguns connectors s&oacute;n opcionals:',
-	'accueil_option_contact' => 'El connector "contact" permet o no visualitzar la p&agrave;gina de contacte i el seu reglatge a dins del connector.',
-	'accueil_option_couteau_suisse' => 'El connector "ganivet su&iuml;s" us proporciona ara una pantalla per amagar les adreces de correu electr&ograve;nic que es troben a les etiquetes #LESAUTEURS i #DESCRIPTIF a la p&agrave;gina lloc.',
-	'accueil_option_pub' => 'Si voleu integrar al vostre lloc publicitat de google, us caldr&agrave; crear les paraules clau "pub-entete" i "pub-nav" a dins del grup "Affichage" i situar la breu en una secci&oacute; anomenada "squelette".',
-	'accueil_option_slogan' => 'El connector "slogan" permet afegir un esl&ograve;gan al vostre lloc.',
-	'accueil_option_spiplistes' => 'El connector "spip liste" o "clevermail" permeten o no visualitzar la p&agrave;gina abonament i el seu reglatge a dins del connector.',
-	'accueil_option_visiteurs' => 'El connector "visiteur connect&eacute;s" o la pantalla del ganivet su&iuml;s permeten visualitzar a la columna de navegaci&oacute; (dreta) el n&uacute;mero de visitants connectats.',
-	'accueil_presentation' => 'Presentaci&oacute;',
+	'accueil_intro' => 'Benvingut a la pàgina de presentació del connector "annuaire".',
+	'accueil_option' => 'Alguns connectors són opcionals:',
+	'accueil_option_contact' => 'El connector "contact" permet o no visualitzar la pàgina de contacte i el seu reglatge a dins del connector.',
+	'accueil_option_couteau_suisse' => 'El connector "ganivet suïs" us proporciona ara una pantalla per amagar les adreces de correu electrònic que es troben a les etiquetes #LESAUTEURS i #DESCRIPTIF a la pàgina lloc.',
+	'accueil_option_pub' => 'Si voleu integrar al vostre lloc publicitat de google, us caldrà crear les paraules clau "pub-entete" i "pub-nav" a dins del grup "Affichage" i situar la breu en una secció anomenada "squelette".',
+	'accueil_option_slogan' => 'El connector "slogan" permet afegir un eslògan al vostre lloc.',
+	'accueil_option_spiplistes' => 'El connector "spip liste" o "clevermail" permeten o no visualitzar la pàgina abonament i el seu reglatge a dins del connector.',
+	'accueil_option_visiteurs' => 'El connector "visiteur connectés" o la pantalla del ganivet suïs permeten visualitzar a la columna de navegació (dreta) el número de visitants connectats.',
+	'accueil_presentation' => 'Presentació',
 	'accueil_requis' => 'Els requisits per un bon funcionament del lloc',
 	'accueil_requis_1' => 'Per un bon referenciament del vostre lloc, us fa falta crear:
      <br />un grup de paraula clau "_META"
-     <br />les paraules clau keywords, descripci&oacute; i omplir el camp text per tal que el vostre lloc sigui referenciat
+     <br />les paraules clau keywords, descripció i omplir el camp text per tal que el vostre lloc sigui referenciat
      <br />i, a la inversa, creant robots i el text noindex, nofollow per no referenciar-lo ',
-	'accueil_requis_2' => 'Per visualitzar socis a la p&agrave;gina "Partenaire", heu de crear el grup "Affichage" amb la paraula clau "partenaire" i atribuir-li a cadascun els llocs desitjats.',
+	'accueil_requis_2' => 'Per visualitzar socis a la pàgina "Partenaire", heu de crear el grup "Affichage" amb la paraula clau "partenaire" i atribuir-li a cadascun els llocs desitjats.',
 	'actuellement' => 'Actualment hi ha',
 	'aff_date' => 'Mostrar la data',
 	'aff_date_expli' => 'Voleu mostrar la data del dia al lloc web?',
-	'affichage' => 'La visualitzaci&oacute;',
-	'afficher_colonne_nav' => 'Heu triat de visualitzar-lo a la navegaci&oacute;.',
+	'affichage' => 'La visualització',
+	'afficher_colonne_nav' => 'Heu triat de visualitzar-lo a la navegació.',
 	'ajouter_commentaire' => 'Afegir un comentari',
 	'ajouter_google' => 'afegir a google',
-	'align_pied3_page_expli' => 'Alineaci&oacute; del text a la part dreta del peu',
+	'align_pied3_page_expli' => 'Alineació del text a la part dreta del peu',
 	'annuaire' => 'anuari',
-	'annuaire_abonnement' => 'P&agrave;gina abonament',
+	'annuaire_abonnement' => 'Pàgina abonament',
 	'annuaire_accueil' => 'Inici',
 	'annuaire_bandeau' => 'Cibertira ',
 	'annuaire_colonne' => 'Columna i peu',
-	'annuaire_contact' => 'P&agrave;gina contacte',
-	'annuaire_erreur' => 'P&agrave;gina d\'error',
-	'annuaire_forum' => 'P&agrave;gina f&ograve;rum',
+	'annuaire_contact' => 'Pàgina contacte',
+	'annuaire_erreur' => 'Pàgina d\'error',
+	'annuaire_forum' => 'Pàgina fòrum',
 	'annuaire_general' => 'Generalitats',
-	'annuaire_gratuit' => 'Anuari gratu&iuml;t d\'enlla&ccedil;os en dur',
-	'annuaire_herbier' => 'P&agrave;gina herbari',
-	'annuaire_login_public' => 'P&agrave;gina login p&uacute;blic',
-	'annuaire_menu' => 'Men&uacute; del lloc',
-	'annuaire_mot' => 'P&agrave;gina mot',
-	'annuaire_partenaire' => 'P&agrave;gina soci',
-	'annuaire_plan' => 'P&agrave;gina pla',
-	'annuaire_plan_complet' => 'P&agrave;gina pla complet',
-	'annuaire_recherche' => 'P&agrave;gina cerca',
-	'annuaire_rubrique' => 'P&agrave;gina secci&oacute;',
-	'annuaire_site' => 'P&agrave;gina lloc',
-	'annuaire_sommaire' => 'P&agrave;gina sumari',
+	'annuaire_gratuit' => 'Anuari gratuït d\'enllaços en dur',
+	'annuaire_herbier' => 'Pàgina herbari',
+	'annuaire_login_public' => 'Pàgina login públic',
+	'annuaire_menu' => 'Menú del lloc',
+	'annuaire_mot' => 'Pàgina mot',
+	'annuaire_partenaire' => 'Pàgina soci',
+	'annuaire_plan' => 'Pàgina pla',
+	'annuaire_plan_complet' => 'Pàgina pla complet',
+	'annuaire_recherche' => 'Pàgina cerca',
+	'annuaire_rubrique' => 'Pàgina secció',
+	'annuaire_site' => 'Pàgina lloc',
+	'annuaire_sommaire' => 'Pàgina sumari',
 	'annuaire_taille' => 'Mides',
 	'article_syndic' => '1 article sindicat',
 	'articles' => '@nb@ articles',
@@ -62,144 +62,144 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_configurer' => 'Configurar l\'anuari',
 
 	// C
-	'cache_titre' => 'Amagar el t&iacute;tol',
+	'cache_titre' => 'Amagar el títol',
 	'cache_titre_news' => 'del bucle "novetat"',
-	'cache_titre_plus_votes_defaut' => 'del bucle "m&eacute;s votats"',
-	'cache_titre_plus_votes_vertical' => 'del bucle "m&eacute;s votats" (requadres verticals)',
+	'cache_titre_plus_votes_defaut' => 'del bucle "més votats"',
+	'cache_titre_plus_votes_vertical' => 'del bucle "més votats" (requadres verticals)',
 	'cache_titre_zard' => 'del bucle "atzar"',
-	'col_navigation' => 'Columna navegaci&oacute;',
+	'col_navigation' => 'Columna navegació',
 	'commentaire' => '1 comentari',
-	'commun' => 'Com&uacute; als bucles',
-	'conception' => 'concepci&oacute; de l\'anuari',
-	'config_boucle_vertical' => 'Visualitzaci&oacute; dels resultats en vertical (taula)',
-	'config_boucle_zard' => 'Visualitzaci&oacute; del bucle atzar',
-	'config_boucle_zard_expli' => 'El podeu mostrar o b&eacute; a la p&agrave;gina sumari o b&eacute; a la navegaci&oacute; i en aquest cas no es mostren els petits fragments ("les noisettes").',
+	'commun' => 'Comú als bucles',
+	'conception' => 'concepció de l\'anuari',
+	'config_boucle_vertical' => 'Visualització dels resultats en vertical (taula)',
+	'config_boucle_zard' => 'Visualització del bucle atzar',
+	'config_boucle_zard_expli' => 'El podeu mostrar o bé a la pàgina sumari o bé a la navegació i en aquest cas no es mostren els petits fragments ("les noisettes").',
 	'config_cache_boucle' => 'No mostrar el bucle',
-	'config_defaut_boucle' => 'Visualitzaci&oacute;, per defecte, del bucle.',
-	'config_defaut_menu_lien' => 'Mostrar l\'enlla&ccedil;.',
-	'config_defaut_noisettes' => 'Visualitzaci&oacute; de les "noisettes".',
-	'config_entete' => 'Visualitzaci&oacute; a l\'encap&ccedil;alament.',
-	'config_non_menu_lien' => 'No mostrar l\'enlla&ccedil;.',
-	'config_pied' => 'Visualitzaci&oacute; al peu de p&agrave;gina (a la dreta).',
-	'configuration_abonnement' => 'configuraci&oacute; de la p&agrave;gina "abonaments"',
-	'configuration_bandeau' => 'configuraci&oacute; de la "cibertira"',
-	'configuration_colonne_pied' => 'configuraci&oacute; de la "columna i del peu"',
-	'configuration_contact' => 'configuraci&oacute; de la p&agrave;gina "contacte"',
-	'configuration_erreur' => 'configuraci&oacute; de les p&agrave;gines "error"',
-	'configuration_forum' => 'configuraci&oacute; dels f&ograve;rums del lloc',
-	'configuration_general' => 'configuraci&oacute; de les generalitats del lloc',
-	'configuration_herbier' => 'configuraci&oacute; de la p&agrave;gina "herbari"',
-	'configuration_login_public' => 'configuraci&oacute; de la p&agrave;gina "login p&uacute;blic"',
-	'configuration_menu' => 'configuraci&oacute; dels enlla&ccedil;os del men&uacute;',
-	'configuration_mot' => 'configuraci&oacute; de la p&agrave;gina "mot"',
-	'configuration_partenaire' => 'configuraci&oacute; de la p&agrave;gina "soci"',
-	'configuration_plan' => 'configuraci&oacute; de la p&agrave;gina "pla"',
-	'configuration_plan_complet' => 'configuraci&oacute; de la p&agrave;gina "pla complet"',
-	'configuration_recherche' => 'configuraci&oacute; de la p&agrave;gina "cerca"',
-	'configuration_rubrique' => 'configuraci&oacute; de la p&agrave;gina "secci&oacute;"',
-	'configuration_site' => 'configuraci&oacute; de la p&agrave;gina "lloc"',
-	'configuration_sommaire' => 'configuraci&oacute; de la p&agrave;gina "sumari"',
-	'configuration_taille' => 'configuraci&oacute; de totes les mides del lloc',
+	'config_defaut_boucle' => 'Visualització, per defecte, del bucle.',
+	'config_defaut_menu_lien' => 'Mostrar l\'enllaç.',
+	'config_defaut_noisettes' => 'Visualització de les "noisettes".',
+	'config_entete' => 'Visualització a l\'encapçalament.',
+	'config_non_menu_lien' => 'No mostrar l\'enllaç.',
+	'config_pied' => 'Visualització al peu de pàgina (a la dreta).',
+	'configuration_abonnement' => 'configuració de la pàgina "abonaments"',
+	'configuration_bandeau' => 'configuració de la "cibertira"',
+	'configuration_colonne_pied' => 'configuració de la "columna i del peu"',
+	'configuration_contact' => 'configuració de la pàgina "contacte"',
+	'configuration_erreur' => 'configuració de les pàgines "error"',
+	'configuration_forum' => 'configuració dels fòrums del lloc',
+	'configuration_general' => 'configuració de les generalitats del lloc',
+	'configuration_herbier' => 'configuració de la pàgina "herbari"',
+	'configuration_login_public' => 'configuració de la pàgina "login públic"',
+	'configuration_menu' => 'configuració dels enllaços del menú',
+	'configuration_mot' => 'configuració de la pàgina "mot"',
+	'configuration_partenaire' => 'configuració de la pàgina "soci"',
+	'configuration_plan' => 'configuració de la pàgina "pla"',
+	'configuration_plan_complet' => 'configuració de la pàgina "pla complet"',
+	'configuration_recherche' => 'configuració de la pàgina "cerca"',
+	'configuration_rubrique' => 'configuració de la pàgina "secció"',
+	'configuration_site' => 'configuració de la pàgina "lloc"',
+	'configuration_sommaire' => 'configuració de la pàgina "sumari"',
+	'configuration_taille' => 'configuració de totes les mides del lloc',
 	'css' => 'Els css',
 	'css_bg' => 'Color de fons',
 	'css_bs' => 'Color de la vora',
-	'css_couleurs' => 'Aix&ograve; equival a triar el color de fons, el color de primer pla utilitzat pel text i els enlla&ccedil;os i el color quan es sobrevolen els enlla&ccedil;os.',
+	'css_couleurs' => 'Això equival a triar el color de fons, el color de primer pla utilitzat pel text i els enllaços i el color quan es sobrevolen els enllaços.',
 	'css_couleurs_bandeau' => 'Escolliu els colors de fons de la "cibertira"',
-	'css_couleurs_fieldset' => 'Canviar el color pels contorns per&ograve; a tot el lloc.',
-	'css_couleurs_fond_expli' => 'Aix&ograve; equival a escollir el color de fons d\'una p&agrave;gina.',
-	'css_couleurs_fond_nav_bas' => 'Escolliu el color de fons de la "columna de navegaci&oacute; baixa"',
-	'css_couleurs_fond_nav_haut' => 'Escolliu el color de fons de la "columna de navegaci&oacute; alta"',
-	'css_couleurs_fond_page_abonnement' => 'Escolliu el color de fons de la p&agrave;gina "abonament"',
-	'css_couleurs_fond_page_contact' => 'Escolliu el color de fons de la p&agrave;gina "contacte"',
-	'css_couleurs_fond_page_erreur' => 'Escolliu el color de fons de la p&agrave;gina "error"',
-	'css_couleurs_fond_page_forum' => 'Escolliu el color del fons de la p&agrave;gina "f&ograve;rum"',
-	'css_couleurs_fond_page_herbier' => 'Escolliu el color de fons de la p&agrave;gina "herbari"',
-	'css_couleurs_fond_page_login_public' => 'Escolliu el color de fons de la p&agrave;gina "login p&uacute;blic"',
-	'css_couleurs_fond_page_mot' => 'Escolliu el color de fons de la p&agrave;gina "mot"',
-	'css_couleurs_fond_page_partenaire1' => 'Escolliu el color de fons de la p&agrave;gina "soci"',
-	'css_couleurs_fond_page_plan' => 'Escolliu el color de fons de la p&agrave;gina "pla"',
-	'css_couleurs_fond_page_plan_complet' => 'Escolliu el color de fons de la p&agrave;gina "pla complet"',
-	'css_couleurs_fond_page_recherche' => 'Escolliu el color de fons de la p&agrave;gina "cerca"',
-	'css_couleurs_fond_page_rubrique' => 'Escolliu el color de fons de la p&agrave;gina "secci&oacute;"',
-	'css_couleurs_fond_page_site1' => 'Escolliu el color de fons de la p&agrave;gina "lloc"',
-	'css_couleurs_fond_page_sommaire' => 'Escolliu el color de fons de la p&agrave;gina "sumari"',
-	'css_couleurs_herbier' => 'Escolliu els colors de la p&agrave;gina "herbari"',
+	'css_couleurs_fieldset' => 'Canviar el color pels contorns però a tot el lloc.',
+	'css_couleurs_fond_expli' => 'Això equival a escollir el color de fons d\'una pàgina.',
+	'css_couleurs_fond_nav_bas' => 'Escolliu el color de fons de la "columna de navegació baixa"',
+	'css_couleurs_fond_nav_haut' => 'Escolliu el color de fons de la "columna de navegació alta"',
+	'css_couleurs_fond_page_abonnement' => 'Escolliu el color de fons de la pàgina "abonament"',
+	'css_couleurs_fond_page_contact' => 'Escolliu el color de fons de la pàgina "contacte"',
+	'css_couleurs_fond_page_erreur' => 'Escolliu el color de fons de la pàgina "error"',
+	'css_couleurs_fond_page_forum' => 'Escolliu el color del fons de la pàgina "fòrum"',
+	'css_couleurs_fond_page_herbier' => 'Escolliu el color de fons de la pàgina "herbari"',
+	'css_couleurs_fond_page_login_public' => 'Escolliu el color de fons de la pàgina "login públic"',
+	'css_couleurs_fond_page_mot' => 'Escolliu el color de fons de la pàgina "mot"',
+	'css_couleurs_fond_page_partenaire1' => 'Escolliu el color de fons de la pàgina "soci"',
+	'css_couleurs_fond_page_plan' => 'Escolliu el color de fons de la pàgina "pla"',
+	'css_couleurs_fond_page_plan_complet' => 'Escolliu el color de fons de la pàgina "pla complet"',
+	'css_couleurs_fond_page_recherche' => 'Escolliu el color de fons de la pàgina "cerca"',
+	'css_couleurs_fond_page_rubrique' => 'Escolliu el color de fons de la pàgina "secció"',
+	'css_couleurs_fond_page_site1' => 'Escolliu el color de fons de la pàgina "lloc"',
+	'css_couleurs_fond_page_sommaire' => 'Escolliu el color de fons de la pàgina "sumari"',
+	'css_couleurs_herbier' => 'Escolliu els colors de la pàgina "herbari"',
 	'css_couleurs_hierarchie' => 'Escolliu els colors de fons de la "jerarquia"',
-	'css_couleurs_menu_site' => 'Escolliu els colors de fons del "men&uacute; del lloc"',
-	'css_couleurs_mot' => 'Escolliu els colors de la p&agrave;gina "mot"',
-	'css_couleurs_nav_connect' => 'Escolliu els colors del fragment "connexi&oacute;"',
+	'css_couleurs_menu_site' => 'Escolliu els colors de fons del "menú del lloc"',
+	'css_couleurs_mot' => 'Escolliu els colors de la pàgina "mot"',
+	'css_couleurs_nav_connect' => 'Escolliu els colors del fragment "connexió"',
 	'css_couleurs_nav_copy' => 'Escolliu els colors del fragment "copyright"',
-	'css_couleurs_nav_lien' => 'Escolliu els colors del fragment "enlla&ccedil;"',
+	'css_couleurs_nav_lien' => 'Escolliu els colors del fragment "enllaç"',
 	'css_couleurs_nav_mot' => 'Escolliu els colors del fragment "mot"',
 	'css_couleurs_nav_option' => 'Escolliu els colors del fragment "opcions"',
 	'css_couleurs_nav_pied' => 'Escolliu els colors del fragment "peu"',
 	'css_couleurs_nav_secteur' => 'Escolliu els colors del fragment "sector"',
 	'css_couleurs_nav_sites' => 'Escolliu els colors del fragment "llocs"',
 	'css_couleurs_new' => 'Escolliu els colors del bucle "novetat"',
-	'css_couleurs_partenaire1' => 'Escolliu els colors de la p&agrave;gina "soci"',
-	'css_couleurs_plan' => 'Escolliu els colors de la p&agrave;gina "pla"',
-	'css_couleurs_plan_complet' => 'Escolliu els colors de la p&agrave;gina "pla complet"',
-	'css_couleurs_plus_vote' => 'Escolliu els colors del bucle "m&eacute;s votats"',
-	'css_couleurs_plus_vote_vertical' => 'Escolliu els colors del bucle "m&eacute;s votats" (quadres verticals)',
-	'css_couleurs_recherche' => 'Escolliu els colors de la p&agrave;gina "cerca"',
-	'css_couleurs_rubrique' => 'Escolliu els colors de la p&agrave;gina "secci&oacute;"',
-	'css_couleurs_site1' => 'Escolliu els colors de la p&agrave;gina "lloc"',
+	'css_couleurs_partenaire1' => 'Escolliu els colors de la pàgina "soci"',
+	'css_couleurs_plan' => 'Escolliu els colors de la pàgina "pla"',
+	'css_couleurs_plan_complet' => 'Escolliu els colors de la pàgina "pla complet"',
+	'css_couleurs_plus_vote' => 'Escolliu els colors del bucle "més votats"',
+	'css_couleurs_plus_vote_vertical' => 'Escolliu els colors del bucle "més votats" (quadres verticals)',
+	'css_couleurs_recherche' => 'Escolliu els colors de la pàgina "cerca"',
+	'css_couleurs_rubrique' => 'Escolliu els colors de la pàgina "secció"',
+	'css_couleurs_site1' => 'Escolliu els colors de la pàgina "lloc"',
 	'css_couleurs_zard' => 'Escolliu els colors del bucle "atzar"',
-	'css_fg' => 'Color de primer pla (text i enlla&ccedil;os)',
+	'css_fg' => 'Color de primer pla (text i enllaços)',
 	'css_fieldset' => 'Color dels marcs',
-	'css_fond' => 'Fons de la p&agrave;gina',
+	'css_fond' => 'Fons de la pàgina',
 	'css_ho' => 'Color del sobrevol',
 
 	// D
-	'descriptif_abonnement' => '<h4>Reglatge de la p&agrave;gina d\'abonament</h4>
-    <br />Regleu els vostres estils a la p&agrave;gina d\'abonament.',
-	'descriptif_accueil' => 'Presentaci&oacute; del connector "annuaire" i les seves funcions.',
+	'descriptif_abonnement' => '<h4>Reglatge de la pàgina d\'abonament</h4>
+    <br />Regleu els vostres estils a la pàgina d\'abonament.',
+	'descriptif_accueil' => 'Presentació del connector "annuaire" i les seves funcions.',
 	'descriptif_bandeau' => '<h4>Reglatge de la cibertira</h4>
     <br />Regleu els vostres estils a la cibertira.',
 	'descriptif_colonne' => '<h4>Reglatge de l\'estil</h4>
-    <br />Escolliu els vostres colors per les columnes i el peu de p&agrave;gina.',
-	'descriptif_contact' => '<h4>Reglatge de la p&agrave;gina contacte</h4>
-    <br />Regleu els vostres estils a la p&agrave;gina contacte.',
-	'descriptif_erreur' => '<h4>Reglatge de les p&agrave;gines d\'error</h4>
-    <br />Regleu els vostres estils a les p&agrave;gines d\'error.',
-	'descriptif_forum' => '<h4>Reglatge del f&ograve;rum</h4>
-    <br />Regleu els vostres colors de la p&agrave;gina f&ograve;rum.',
+    <br />Escolliu els vostres colors per les columnes i el peu de pàgina.',
+	'descriptif_contact' => '<h4>Reglatge de la pàgina contacte</h4>
+    <br />Regleu els vostres estils a la pàgina contacte.',
+	'descriptif_erreur' => '<h4>Reglatge de les pàgines d\'error</h4>
+    <br />Regleu els vostres estils a les pàgines d\'error.',
+	'descriptif_forum' => '<h4>Reglatge del fòrum</h4>
+    <br />Regleu els vostres colors de la pàgina fòrum.',
 	'descriptif_general' => '<h4>Reglatges generals</h4>
-    <br />Una p&agrave;gina que reagrupa tots els reglatges generals del lloc.',
+    <br />Una pàgina que reagrupa tots els reglatges generals del lloc.',
 	'descriptif_herbier' => '<h4>Reglatge de l\'herbari</h4>
     <br />Regleu els vostres bucles i estils a l\'herbari.
-    <p />&Eacute;s la p&agrave;gina on es mostra l\'actualitat dels llocs sindicats ',
-	'descriptif_login_public' => '<h4>Reglatge de la p&agrave;gina login p&uacute;blic</h4>
-    <br />Regleu els vostres estils a la p&agrave;gina login p&uacute;blic.',
-	'descriptif_menu' => '<h4>Reglatge del men&uacute;</h4>
-    <br />Mostrar o no els enlla&ccedil;os cap a la p&agrave;gina del lloc. Aquesta configuraci&oacute; afecta el men&uacute; de l\'encap&ccedil;alament i el peu de p&agrave;gina.',
-	'descriptif_mot' => '<h4>Reglatge de la p&agrave;gina mot</h4>
-    <br />Ajusteu els vostres bucles i estils a la p&agrave;gina mot.',
-	'descriptif_partenaire' => '<h4>Reglatge de la p&agrave;gina associats</h4>
-    <br />Ajusteu el vostre bucle i els estils a la p&agrave;gina associats.',
-	'descriptif_plan' => '<h4>Reglatge de la p&agrave;gina pla/h4>
+    <p />És la pàgina on es mostra l\'actualitat dels llocs sindicats ',
+	'descriptif_login_public' => '<h4>Reglatge de la pàgina login públic</h4>
+    <br />Regleu els vostres estils a la pàgina login públic.',
+	'descriptif_menu' => '<h4>Reglatge del menú</h4>
+    <br />Mostrar o no els enllaços cap a la pàgina del lloc. Aquesta configuració afecta el menú de l\'encapçalament i el peu de pàgina.',
+	'descriptif_mot' => '<h4>Reglatge de la pàgina mot</h4>
+    <br />Ajusteu els vostres bucles i estils a la pàgina mot.',
+	'descriptif_partenaire' => '<h4>Reglatge de la pàgina associats</h4>
+    <br />Ajusteu el vostre bucle i els estils a la pàgina associats.',
+	'descriptif_plan' => '<h4>Reglatge de la pàgina pla/h4>
     <br />Ajusteu els estils del pla.',
-	'descriptif_plan_complet' => '<h4>Reglatge de la p&agrave;gina pla complet</h4>
-    <br />Ajusteu els estils a la p&agrave;gina pla complet.
-    <p />Aquesta p&agrave;gina &eacute;s, de fet, un pla complet que mostra les seccions per les que encara no teniu llocs. Aquesta p&agrave;gina facilitar&agrave; la proposta de lloc als visitants.',
-	'descriptif_recherche' => '<h4>Reglatge de la p&agrave;gina cerca</h4>
-    <br />Ajusteu els bucles i estils a la p&agrave;gina cerca.',
-	'descriptif_rubrique' => '<h4>Reglatge de la p&agrave;gina secci&oacute;</h4>
-    <br />Ajusteu els bucles i estils a la p&agrave;gina secci&oacute;.',
-	'descriptif_site' => '<h4>Reglatge de la p&agrave;gina lloc</h4>
-    <br />Ajusteu els bucles i estils a la p&agrave;gina lloc.',
+	'descriptif_plan_complet' => '<h4>Reglatge de la pàgina pla complet</h4>
+    <br />Ajusteu els estils a la pàgina pla complet.
+    <p />Aquesta pàgina és, de fet, un pla complet que mostra les seccions per les que encara no teniu llocs. Aquesta pàgina facilitarà la proposta de lloc als visitants.',
+	'descriptif_recherche' => '<h4>Reglatge de la pàgina cerca</h4>
+    <br />Ajusteu els bucles i estils a la pàgina cerca.',
+	'descriptif_rubrique' => '<h4>Reglatge de la pàgina secció</h4>
+    <br />Ajusteu els bucles i estils a la pàgina secció.',
+	'descriptif_site' => '<h4>Reglatge de la pàgina lloc</h4>
+    <br />Ajusteu els bucles i estils a la pàgina lloc.',
 	'descriptif_sommaire' => '<h4>Reglatge al sumari</h4>
     <br />Ajusteu els bucles i estils del sumari.',
 	'descriptif_taille' => '<h4>Reglatge de les mides</h4>
-    <br />Escolliu les mides en p&iacute;xels (px) o en percentatge (%).
+    <br />Escolliu les mides en píxels (px) o en percentatge (%).
     <br />Exemple: 130px o 100%',
 
 	// E
 	'editer_site' => 'Editar el lloc',
-	'email_lesauteurs:description' => 'A les etiquetes #LESAUTEURS i #DESCRIPTIF de la p&agrave;gina "lloc" tallem les adreces de correu electr&ograve;nic si n\'hi ha per tal d\'evitar que l\'administrador ens digui que hi ha "spam".',
-	'email_lesauteurs:nom' => 'Correu electr&ograve;nic en els fluxos rss',
+	'email_lesauteurs:description' => 'A les etiquetes #LESAUTEURS i #DESCRIPTIF de la pàgina "lloc" tallem les adreces de correu electrònic si n\'hi ha per tal d\'evitar que l\'administrador ens digui que hi ha "spam".',
+	'email_lesauteurs:nom' => 'Correu electrònic en els fluxos rss',
 	'epingle_site' => 'penjat a ',
-	'espace_membre_gestion_sites' => 'Espai Membres Gesti&oacute; dels llocs',
+	'espace_membre_gestion_sites' => 'Espai Membres Gestió dels llocs',
 	'est_rattache' => 'relacionat amb',
 
 	// F
@@ -210,32 +210,32 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// G
 	'groupe_mots' => 'Grups de paraules',
-	'groupe_mots_expli' => 'Omplir amb el t&iacute;tol dels grups de paraules clau, separat per comes, aquells que no desitgeu mostrar a la columna de la dreta.',
+	'groupe_mots_expli' => 'Omplir amb el títol dels grups de paraules clau, separat per comes, aquells que no desitgeu mostrar a la columna de la dreta.',
 
 	// H
 	'hasard' => 'Llocs a l\'atzar',
-	'hebergement' => 'Indicar la societat o la persona que us allotja: (mostrar-ho a baix de la columna de la dreta nom&eacute;s si est&agrave; omplert), possibilitat de posar-hi codi Spip o html.',
+	'hebergement' => 'Indicar la societat o la persona que us allotja: (mostrar-ho a baix de la columna de la dreta només si està omplert), possibilitat de posar-hi codi Spip o html.',
 	'hebergeur' => 'Allotjador del lloc Web:',
-	'height_bandeau_expli' => 'Al&ccedil;ada del b&agrave;ner del lloc',
-	'height_fieldset' => 'Al&ccedil;ada del requadre',
-	'height_fieldset_prems' => 'Al&ccedil;ada del primer requadre',
-	'height_fieldset_rubrique' => 'Al&ccedil;ada del requadre amb les informacions de la secci&oacute;',
-	'height_fieldset_site' => 'Al&ccedil;ada del requadre amb les informacions del lloc',
-	'height_fieldset_suivants' => 'Al&ccedil;ada dels requadres seg&uuml;ents',
-	'height_menu_site_expli' => 'Al&ccedil;ada del men&uacute; del lloc',
-	'height_pied_page_expli' => 'Al&ccedil;ada del peu de p&agrave;gina',
+	'height_bandeau_expli' => 'Alçada del bàner del lloc',
+	'height_fieldset' => 'Alçada del requadre',
+	'height_fieldset_prems' => 'Alçada del primer requadre',
+	'height_fieldset_rubrique' => 'Alçada del requadre amb les informacions de la secció',
+	'height_fieldset_site' => 'Alçada del requadre amb les informacions del lloc',
+	'height_fieldset_suivants' => 'Alçada dels requadres següents',
+	'height_menu_site_expli' => 'Alçada del menú del lloc',
+	'height_pied_page_expli' => 'Alçada del peu de pàgina',
 
 	// I
-	'info_abo' => 'Trobareu en aquesta p&agrave;gina les llistes de difusi&oacute;, &eacute;s a dir les llistes de novetats',
-	'infos' => 'Mostrar una informaci&oacute; en totes les seccions (si les voleu diferents utilitzeu la descripci&oacute;).',
+	'info_abo' => 'Trobareu en aquesta pàgina les llistes de difusió, és a dir les llistes de novetats',
+	'infos' => 'Mostrar una informació en totes les seccions (si les voleu diferents utilitzeu la descripció).',
 
 	// L
 	'le_mot' => 'El mot',
 	'le_site' => 'El lloc compta',
-	'lire_suite' => 'Llegir la continuaci&oacute;',
-	'longueur_descriptif' => 'Llargada de la descripci&oacute;',
-	'longueur_descriptif_prems' => 'Llargada de la descripci&oacute; del primer lloc',
-	'longueur_descriptif_suivants' => 'Llargada de la descripci&oacute; dels llocs seg&uuml;ents',
+	'lire_suite' => 'Llegir la continuació',
+	'longueur_descriptif' => 'Llargada de la descripció',
+	'longueur_descriptif_prems' => 'Llargada de la descripció del primer lloc',
+	'longueur_descriptif_suivants' => 'Llargada de la descripció dels llocs següents',
 
 	// M
 	'margin_left_fieldset' => 'Marge a l\'esquerre del requadre',
@@ -249,29 +249,29 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'margin_top' => 'Marge a sobre dels bucles',
 	'margin_top_img' => 'Marge a dalt de les imatges',
 	'margin_top_plus_vote_verti' => 'Marge a sobre dels requadres del bucle',
-	'menu_lien_abonnement' => 'Enlla&ccedil; a la p&agrave;gina de subscripci&oacute;',
-	'menu_lien_afficher' => 'Enlla&ccedil; a les p&agrave;gines del men&uacute;',
-	'menu_lien_contact' => 'Enlla&ccedil; a la p&agrave;gina de contacte',
-	'menu_lien_partenaire' => 'Enlla&ccedil; a la p&agrave;gina d\'associats',
-	'menu_lien_plan' => 'Enlla&ccedil; a la p&agrave;gina mapa del lloc',
-	'menu_lien_plan_complet' => 'Enlla&ccedil; a totes les seccions',
-	'menu_lien_sommaire' => 'Enlla&ccedil; a la p&agrave;gina d\'inici (sumari)',
-	'menu_site' => 'el men&uacute; del lloc',
+	'menu_lien_abonnement' => 'Enllaç a la pàgina de subscripció',
+	'menu_lien_afficher' => 'Enllaç a les pàgines del menú',
+	'menu_lien_contact' => 'Enllaç a la pàgina de contacte',
+	'menu_lien_partenaire' => 'Enllaç a la pàgina d\'associats',
+	'menu_lien_plan' => 'Enllaç a la pàgina mapa del lloc',
+	'menu_lien_plan_complet' => 'Enllaç a totes les seccions',
+	'menu_lien_sommaire' => 'Enllaç a la pàgina d\'inici (sumari)',
+	'menu_site' => 'el menú del lloc',
 	'miniatures_par' => 'Miniatures per',
 
 	// N
-	'nav_connect' => 'el bloc "connexi&oacute;"',
+	'nav_connect' => 'el bloc "connexió"',
 	'nav_copy' => 'el bloc "copyright"',
 	'nav_copy_expli' => 'On voleu mostrar aquesta part del copyright?',
 	'nav_herbier' => 'el bloc "herbari"',
-	'nav_lien' => 'el bloc "enlla&ccedil;os"',
+	'nav_lien' => 'el bloc "enllaços"',
 	'nav_mot' => 'el bloc "paraules clau"',
-	'nav_option' => 'el bloc "opci&oacute;"',
-	'nav_pied' => 'el "peu de p&agrave;gina"',
+	'nav_option' => 'el bloc "opció"',
+	'nav_pied' => 'el "peu de pàgina"',
 	'nav_secteur' => 'el bloc "sectors"',
-	'nav_sites' => 'el bloc amb el n&uacute;mero de "llocs referenciats"',
-	'nbr_articles' => 'N&uacute;mero d\'articles:',
-	'nbr_sites' => 'N&uacute;mero de llocs:',
+	'nav_sites' => 'el bloc amb el número de "llocs referenciats"',
+	'nbr_articles' => 'Número d\'articles:',
+	'nbr_sites' => 'Número de llocs:',
 	'new' => 'el bucle "novetats"',
 	'non' => 'No',
 	'nous_avons' => 'Tenim',
@@ -282,27 +282,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'oui' => 'Si',
 
 	// P
-	'padding_top_rubrique' => 'Marge a sobre del fielset de la secci&oacute;',
+	'padding_top_rubrique' => 'Marge a sobre del fielset de la secció',
 	'padding_top_site' => 'Marge a sobre del fielset del lloc',
 	'partenaire' => 'associat',
 	'partenaires' => '@nb@ associats',
 	'pas_commentaire' => 'Cap comentari encara',
-	'pas_descriptif' => 'No tenim cap descripci&oacute; per aquest lloc. si sou l\'administrador podeu contactar amb nosaltres per tal de proposar una descripci&oacute; al lloc.',
-	'pas_le_droit_ecrire' => 'No teniu perm&iacute;s per escriure',
-	'pas_pagination' => 'N&uacute;mero d\'elements per bucle',
+	'pas_descriptif' => 'No tenim cap descripció per aquest lloc. si sou l\'administrador podeu contactar amb nosaltres per tal de proposar una descripció al lloc.',
+	'pas_le_droit_ecrire' => 'No teniu permís per escriure',
+	'pas_pagination' => 'Número d\'elements per bucle',
 	'pas_partenaire' => 'En aquests moments no tenim associat(s). Si ho desitgeu, contacteu-nos...',
 	'pas_votes' => 'De moment cap vot',
 	'pas_zard' => 'Cap lloc(s) a l\'atzar, registreu-vos ...',
-	'pied_page' => 'Peu de p&agrave;gina',
-	'plus_vote' => 'el bucle "m&eacute;s vots"',
-	'plus_vote_vertical' => 'el bucle "m&eacute;s vots" (requadres verticals)',
-	'plus_votes' => 'Llocs m&eacute;s votats',
-	'popu_site' => 'La popularitat del lloc &eacute;s de ',
+	'pied_page' => 'Peu de pàgina',
+	'plus_vote' => 'el bucle "més vots"',
+	'plus_vote_vertical' => 'el bucle "més vots" (requadres verticals)',
+	'plus_votes' => 'Llocs més votats',
+	'popu_site' => 'La popularitat del lloc és de ',
 
 	// R
 	'recherche_site' => 'Cerca d\'un lloc',
-	'resultats' => 'R&eacute;sultats dans les boucles', # NEW
-	'rss' => 'Nombres d\'articles syndiqu&eacute; par page.', # NEW
+	'resultats' => 'Résultats dans les boucles', # NEW
+	'rss' => 'Nombres d\'articles syndiqué par page.', # NEW
 	'rss_contient' => 'Le flux RSS contient ', # NEW
 	'rubrique_contient' => 'La rubrique contient', # NEW
 
@@ -311,8 +311,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'site1' => 'de "site"', # NEW
 	'sites' => '@nb@ sites', # NEW
 	'style' => 'Style :', # NEW
-	'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.', # NEW
-	'synthese_flux' => 'Synth&egrave;se des flux', # NEW
+	'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilitée de mettre du code spip ou html.', # NEW
+	'synthese_flux' => 'Synthèse des flux', # NEW
 
 	// T
 	'taille' => 'Tailles du site', # NEW
@@ -321,9 +321,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'utilisation' => 'Utilisation', # NEW
 	'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "contact".', # NEW
-	'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activ&eacute;.', # NEW
+	'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activé.', # NEW
 	'utilisation_expli_spiplistes_clevermail_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes" ou "clevermail".', # NEW
-	'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activ&eacute;s.', # NEW
+	'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activés.', # NEW
 
 	// V
 	'vote' => '1 vote', # NEW
