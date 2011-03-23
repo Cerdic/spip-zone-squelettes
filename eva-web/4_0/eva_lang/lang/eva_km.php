@@ -8,209 +8,209 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'acces_restreint' => 'Acc&egrave;s restreint', # NEW
-	'accueil' => '&#6033;&#6086;&#6038;&#6096;&#6042;&#6026;&#6078;&#6040;',
+	'acces_restreint' => 'Accès restreint', # NEW
+	'accueil' => 'ទំព័រដើម',
 	'agenda' => 'Agenda', # NEW
-	'aide' => '&#6023;&#6086;&#6035;&#6077;&#6041;',
+	'aide' => 'ជំនួយ',
 	'article_complet' => 'Article complet', # NEW
-	'article_precedent' => '&#6040;&#6075;&#6035;',
-	'article_precedent_premier' => '&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;&#6026;&#6086;&#6036;&#6076;&#6020;',
-	'article_suivant' => '&#6036;&#6035;&#6098;&#6033;&#6070;&#6036;&#6091;',
-	'article_suivant_dernier' => '&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;&#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
-	'articles' => '&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;',
-	'aucun_evenement' => 'Il n\'y a aucun &eacute;v&egrave;nement &agrave; venir pour ce mois dans l\'agenda', # NEW
-	'aucun_resultat_pour' => '&#6018;&#6098;&#6040;&#6070;&#6035;&#6043;&#6033;&#6098;&#6034;&#6037;&#6043; &#6047;&#6086;&#6042;&#6070;&#6036;&#6091;',
+	'article_precedent' => 'មុន',
+	'article_precedent_premier' => 'អត្ថបទដំបូង',
+	'article_suivant' => 'បន្ទាប់',
+	'article_suivant_dernier' => 'អត្ថបទថ្មីបំផុត',
+	'articles' => 'អត្ថបទ',
+	'aucun_evenement' => 'Il n\'y a aucun évènement à venir pour ce mois dans l\'agenda', # NEW
+	'aucun_resultat_pour' => 'គ្មានលទ្ធផល សំរាប់',
 
 	// B
-	'breves' => '&#6026;&#6086;&#6030;&#6073;&#6020;',
-	'breves_rubrique' => '&#6026;&#6086;&#6030;&#6073;&#6020; &#6047;&#6086;&#6042;&#6070;&#6036;&#6091;&#6037;&#6098;&#6035;&#6082;&#6016;&#6035;&#6081;&#6087;',
+	'breves' => 'ដំណឹង',
+	'breves_rubrique' => 'ដំណឹង សំរាប់ផ្នែកនេះ',
 
 	// C
-	'contact' => '&#6033;&#6070;&#6016;&#6091;&#6033;&#6020;',
-	'copyright_eva' => '&#6035;&#6071;&#6020; &#6036;&#6098;&#6042;&#6078;&#6036;&#6098;&#6042;&#6070;&#6047;&#6091;&#6018;&#6086;&#6042;&#6076;&#6017;&#6098;&#6035;&#6070;&#6031;',
-	'copyright_spip' => '&#6047;&#6083;&#6032;&#6093;&#6035;&#6081;&#6087; &#6031;&#6098;&#6042;&#6076;&#6044;&#6036;&#6070;&#6035;&#6018;&#6098;&#6042;&#6036;&#6091;&#6018;&#6098;&#6042;&#6020; &#6026;&#6084;&#6041;',
+	'contact' => 'ទាក់ទង',
+	'copyright_eva' => 'និង ប្រើប្រាស់គំរូខ្នាត',
+	'copyright_spip' => 'សៃថ៍នេះ ត្រូវបានគ្រប់គ្រង ដោយ',
 
 	// D
-	'de_cet_auteur' => '&#6026;&#6084;&#6041; &#6050;&#6098;&#6035;&#6016;&#6035;&#6071;&#6038;&#6035;&#6098;&#6034;&#6035;&#6081;&#6087;',
-	'deconnecter' => '&#6038;&#6071;&#6035;&#6071;&#6031;&#6098;&#6041;&#6021;&#6081;&#6025;',
-	'derniere_mise_a_jour' => '&#6016;&#6070;&#6042;&#6036;&#6035;&#6098;&#6033;&#6070;&#6035;&#6091;&#6047;&#6040;&#6096;&#6041; &#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
-	'dernieres_breves' => '&#6026;&#6086;&#6030;&#6073;&#6020;&#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
-	'derniers_articles' => '&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;&#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
-	'derniers_commentaires' => '&#6044;&#6071;&#6021;&#6070;&#6042;&#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
+	'de_cet_auteur' => 'ដោយ អ្នកនិពន្ធនេះ',
+	'deconnecter' => 'ពិនិត្យចេញ',
+	'derniere_mise_a_jour' => 'ការបន្ទាន់សម័យ ថ្មីបំផុត',
+	'dernieres_breves' => 'ដំណឹងថ្មីបំផុត',
+	'derniers_articles' => 'អត្ថបទថ្មីបំផុត',
+	'derniers_commentaires' => 'វិចារថ្មីបំផុត',
 	'derniers_podcasts' => 'Derniers podcasts', # NEW
-	'derniers_sites' => '&#6047;&#6083;&#6032;&#6093;&#6032;&#6098;&#6040;&#6072;&#6036;&#6086;&#6037;&#6075;&#6031;',
-	'diaporama' => '&#6016;&#6070;&#6042;&#6036;&#6020;&#6098;&#6048;&#6070;&#6025;&#6042;&#6086;&#6016;&#6071;&#6043;&#6042;&#6076;&#6036;&#6039;&#6070;&#6038;',
-	'dix_meilleurs_articles' => '&#6026;&#6036;&#6091;&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;&#6016;&#6086;&#6038;&#6076;&#6043;',
-	'dix_meilleurs_breves' => '&#6026;&#6036;&#6091;&#6026;&#6086;&#6030;&#6073;&#6020;&#6016;&#6086;&#6038;&#6076;&#6043;',
-	'dix_meilleurs_commentaires' => '&#6026;&#6036;&#6091;&#6044;&#6071;&#6021;&#6070;&#6042;&#6016;&#6086;&#6038;&#6076;&#6043;',
-	'doc_redacteurs' => 'Documentation en ligne pour les r&eacute;dacteurs pour EVA-Web', # NEW
-	'document' => '&#6063;&#6016;&#6047;&#6070;&#6042;',
-	'documents_joints' => '&#6063;&#6016;&#6047;&#6070;&#6042;&#6039;&#6098;&#6023;&#6070;&#6036;&#6091;',
+	'derniers_sites' => 'សៃថ៍ថ្មីបំផុត',
+	'diaporama' => 'ការបង្ហាញរំកិលរូបភាព',
+	'dix_meilleurs_articles' => 'ដប់អត្ថបទកំពូល',
+	'dix_meilleurs_breves' => 'ដប់ដំណឹងកំពូល',
+	'dix_meilleurs_commentaires' => 'ដប់វិចារកំពូល',
+	'doc_redacteurs' => 'Documentation en ligne pour les rédacteurs pour EVA-Web', # NEW
+	'document' => 'ឯកសារ',
+	'documents_joints' => 'ឯកសារភ្ជាប់',
 
 	// E
-	'erreur_404' => '&#6016;&#6086;&#6048;&#6075;&#6047; &#6116;&#6112;&#6116;',
-	'evenement_aucun' => 'Il n\'y a aucun &eacute;v&egrave;nement &agrave; venir dans cet agenda.', # NEW
-	'evenements_a_venir' => '&#6038;&#6098;&#6042;&#6073;&#6031;&#6098;&#6031;&#6071;&#6016;&#6070;&#6042;&#6040;&#6016;&#6026;&#6043;&#6091;',
-	'evenements_du' => '&#6038;&#6098;&#6042;&#6073;&#6031;&#6098;&#6031;&#6071;&#6016;&#6070;&#6042; &#6047;&#6086;&#6042;&#6070;&#6036;&#6091;',
-	'evenements_passes' => '&#6038;&#6098;&#6042;&#6073;&#6031;&#6098;&#6031;&#6071;&#6016;&#6070;&#6042;&#6016;&#6035;&#6098;&#6043;&#6020;',
-	'evenements_passes_aucun' => 'Il n\'y a aucun &eacute;v&egrave;nement pass&eacute; dans cet agenda.', # NEW
+	'erreur_404' => 'កំហុស ៤០៤',
+	'evenement_aucun' => 'Il n\'y a aucun évènement à venir dans cet agenda.', # NEW
+	'evenements_a_venir' => 'ព្រឹត្តិការមកដល់',
+	'evenements_du' => 'ព្រឹត្តិការ សំរាប់',
+	'evenements_passes' => 'ព្រឹត្តិការកន្លង',
+	'evenements_passes_aucun' => 'Il n\'y a aucun évènement passé dans cet agenda.', # NEW
 
 	// F
-	'fermer_fenetre' => '&#6036;&#6071;&#6033;&#6036;&#6020;&#6098;&#6050;&#6077;&#6021;',
+	'fermer_fenetre' => 'បិទបង្អួច',
 	'feuilleter_livre' => 'Feuilleter le livre', # NEW
-	'form_pet_message_commentaire' => '&#6040;&#6077;&#6041;&#6044;&#6071;&#6021;&#6070;&#6042; &#6060;?',
+	'form_pet_message_commentaire' => 'មួយវិចារ ឬ?',
 
 	// G
 	'galaxie_spip' => 'La galaxie SPIP', # NEW
-	'go' => '&#6033;&#6085;',
+	'go' => 'ទៅ',
 
 	// I
 	'icone_eva' => 'Icone EVA-web 4', # NEW
-	'identifier' => '&#6050;&#6098;&#6035;&#6016;&#6016;&#6086;&#6038;&#6075;&#6020;&#6043;&#6078;&#6036;&#6030;&#6098;&#6031;&#6070;&#6025;',
-	'il_y_a' => '&#6040;&#6070;&#6035;',
-	'il_y_a1' => '&#6048;&#6031;&#6098;&#6032;&#6043;&#6081;&#6017;&#6070; &#6047;&#6086;&#6042;&#6070;&#6036;&#6091;&#6036;&#6030;&#6098;&#6031;&#6073;&#6020;&#6035;&#6081;&#6087;',
-	'il_y_a2' => '&#6040;&#6070;&#6035;&#6047;&#6042;&#6075;&#6036;',
+	'identifier' => 'អ្នកកំពុងលើបណ្តាញ',
+	'il_y_a' => 'មាន',
+	'il_y_a1' => 'ហត្ថលេខា សំរាប់បណ្តឹងនេះ',
+	'il_y_a2' => 'មានសរុប',
 	'il_y_a3' => 'article(s).<br /> Ce bloc en affiche', # NEW
 	'il_y_a4' => 'auteur(s).<br /> Ce bloc en affiche', # NEW
-	'il_y_a5' => 'br&egrave;ve(s).<br /> Ce bloc en affiche', # NEW
+	'il_y_a5' => 'brève(s).<br /> Ce bloc en affiche', # NEW
 	'inscription' => 'Inscription', # NEW
 
 	// J
-	'j1' => '&#6021;.',
-	'j2' => '&#6050;.',
-	'j3' => '&#6038;.',
-	'j4' => '&#6038;&#6098;&#6042;.',
-	'j5' => '&#6047;.',
-	'j6' => '&#6047;&#6085;.',
-	'j7' => '&#6050;&#6070;&#6033;&#6071;.',
-	'jo1' => '&#6032;&#6098;&#6020;&#6083; &#6021;&#6035;&#6098;&#6033;',
-	'jo2' => '&#6032;&#6098;&#6020;&#6083; &#6050;&#6020;&#6098;&#6018;&#6070;&#6042;',
-	'jo3' => '&#6032;&#6098;&#6020;&#6083; &#6038;&#6075;&#6034;',
-	'jo4' => '&#6032;&#6098;&#6020;&#6083; &#6038;&#6098;&#6042;&#6048;&#6047;&#6098;&#6036;&#6093;',
-	'jo5' => '&#6032;&#6098;&#6020;&#6083; &#6047;&#6075;&#6016;&#6098;&#6042;',
-	'jo6' => '&#6032;&#6098;&#6020;&#6083; &#6047;&#6085;&#6042;&#6093;',
-	'jo7' => '&#6032;&#6098;&#6020;&#6083; &#6050;&#6070;&#6033;&#6071;&#6031;&#6098;&#6041;',
+	'j1' => 'ច.',
+	'j2' => 'អ.',
+	'j3' => 'ព.',
+	'j4' => 'ព្រ.',
+	'j5' => 'ស.',
+	'j6' => 'សៅ.',
+	'j7' => 'អាទិ.',
+	'jo1' => 'ថ្ងៃ ចន្ទ',
+	'jo2' => 'ថ្ងៃ អង្គារ',
+	'jo3' => 'ថ្ងៃ ពុធ',
+	'jo4' => 'ថ្ងៃ ព្រហស្ប៍',
+	'jo5' => 'ថ្ងៃ សុក្រ',
+	'jo6' => 'ថ្ងៃ សៅរ៍',
+	'jo7' => 'ថ្ងៃ អាទិត្យ',
 
 	// L
-	'lancer_diaporama' => '&#6036;&#6078;&#6016; &#6016;&#6070;&#6042;&#6036;&#6020;&#6098;&#6048;&#6070;&#6025;&#6042;&#6086;&#6016;&#6071;&#6043;&#6042;&#6076;&#6036;&#6039;&#6070;&#6038;',
-	'lien_externe' => '&#6031;&#6086;&#6030;&#6039;&#6098;&#6023;&#6070;&#6036;&#6091;&#6017;&#6070;&#6020;&#6016;&#6098;&#6042;&#6085;, &#6036;&#6078;&#6016;&#6023;&#6070;&#6036;&#6020;&#6098;&#6050;&#6077;&#6021;&#6032;&#6098;&#6040;&#6072;',
-	'lire_suite' => '&#6050;&#6070;&#6035;&#6036;&#6035;&#6098;&#6031;',
+	'lancer_diaporama' => 'បើក ការបង្ហាញរំកិលរូបភាព',
+	'lien_externe' => 'តំណភ្ជាប់ខាងក្រៅ, បើកជាបង្អួចថ្មី',
+	'lire_suite' => 'អានបន្ត',
 
 	// M
-	'm1' => '&#6017;&#6082; &#6040;&#6016;&#6042;&#6070;',
-	'm10' => '&#6017;&#6082; &#6031;&#6075;&#6043;&#6070;',
-	'm11' => '&#6017;&#6082; &#6044;&#6071;&#6021;&#6098;&#6022;&#6071;&#6016;&#6070;',
-	'm12' => '&#6017;&#6082; &#6034;&#6098;&#6035;&#6076;',
-	'm2' => '&#6017;&#6082; &#6016;&#6075;&#6040;&#6098;&#6039;&#6088;',
-	'm3' => '&#6017;&#6082; &#6040;&#6071;&#6035;&#6070;',
-	'm4' => '&#6017;&#6082; &#6040;&#6081;&#6047;&#6070;',
-	'm5' => '&#6017;&#6082; &#6055;&#6047;&#6039;&#6070;',
-	'm6' => '&#6017;&#6082; &#6040;&#6071;&#6032;&#6075;&#6035;&#6070;',
-	'm7' => '&#6017;&#6082; &#6016;&#6016;&#6098;&#6016;&#6026;&#6070;',
-	'm8' => '&#6017;&#6082; &#6047;&#6072;&#6048;&#6070;',
-	'm9' => '&#6017;&#6082; &#6016;&#6025;&#6098;&#6025;&#6070;',
-	'meme_rubrique' => '&#6016;&#6098;&#6035;&#6075;&#6020;&#6037;&#6098;&#6035;&#6082;&#6016;&#6035;&#6081;&#6087;',
-	'mentions' => '&#6016;&#6086;&#6030;&#6031;&#6091;&#6031;&#6098;&#6042;&#6070;',
+	'm1' => 'ខែ មករា',
+	'm10' => 'ខែ តុលា',
+	'm11' => 'ខែ វិច្ឆិកា',
+	'm12' => 'ខែ ធ្នូ',
+	'm2' => 'ខែ កុម្ភៈ',
+	'm3' => 'ខែ មិនា',
+	'm4' => 'ខែ មេសា',
+	'm5' => 'ខែ ឧសភា',
+	'm6' => 'ខែ មិថុនា',
+	'm7' => 'ខែ កក្កដា',
+	'm8' => 'ខែ សីហា',
+	'm9' => 'ខែ កញ្ញា',
+	'meme_rubrique' => 'ក្នុងផ្នែកនេះ',
+	'mentions' => 'កំណត់ត្រា',
 	'mentions_adresse' => 'Adresse :', # NEW
 	'mentions_directeur_publication' => 'Directeur de la publication :', # NEW
-	'mentions_droit_auteur_texte' => '<p>Ce site rel&egrave;ve de la l&eacute;gislation fran&ccedil;aise et internationale sur le droit d\'auteur et la propri&eacute;t&eacute; intellectuelle.</p>
-	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>', # NEW
+	'mentions_droit_auteur_texte' => '<p>Ce site relève de la législation française et internationale sur le droit d\'auteur et la propriété intellectuelle.</p>
+	<p>Tous les droits de reproduction sont réservés.</p>', # NEW
 	'mentions_droit_auteur_titre' => 'Droits d\'auteurs :', # NEW
-	'mentions_legales' => '&#6016;&#6086;&#6030;&#6031;&#6091;&#6031;&#6098;&#6042;&#6070;&#6037;&#6098;&#6043;&#6076;&#6044;&#6016;&#6070;&#6042;',
-	'mentions_liens_hypertexte_texte' => '<p>Ce site contient des liens hypertextes permettant l\'acc&egrave;s &agrave; des sites qui ne sont pas &eacute;dit&eacute;s par le responsable de ce site.</p>
-	<p>En cons&eacute;quence le directeur de publication ne saurait &ecirc;tre tenu pour responsable du contenu des sites auxquels l\'internaute aurait ainsi acc&egrave;s.</p>
-	<p>Il est formellement interdit de collecter et d\'utiliser les informations disponibles sur le site &agrave; des fins commerciales.</p>
-	<p>Cette interdiction s\'&eacute;tend notamment, sans que cette liste ne soit limitative, &agrave; tout &eacute;l&eacute;ment r&eacute;dactionnel figurant sur le site, &agrave; la pr&eacute;sentation des &eacute;crans, aux logiciels n&eacute;cessaires &agrave; l\'exploitation, aux logos, images, photos, graphiques, de quelque nature qu\'ils soient.</p>', # NEW
+	'mentions_legales' => 'កំណត់ត្រាផ្លូវការ',
+	'mentions_liens_hypertexte_texte' => '<p>Ce site contient des liens hypertextes permettant l\'accès à des sites qui ne sont pas édités par le responsable de ce site.</p>
+	<p>En conséquence le directeur de publication ne saurait être tenu pour responsable du contenu des sites auxquels l\'internaute aurait ainsi accès.</p>
+	<p>Il est formellement interdit de collecter et d\'utiliser les informations disponibles sur le site à des fins commerciales.</p>
+	<p>Cette interdiction s\'étend notamment, sans que cette liste ne soit limitative, à tout élément rédactionnel figurant sur le site, à la présentation des écrans, aux logiciels nécessaires à l\'exploitation, aux logos, images, photos, graphiques, de quelque nature qu\'ils soient.</p>', # NEW
 	'mentions_liens_hypertexte_titre' => 'Liens hypertextes :', # NEW
-	'mentions_liens_texte' => '<p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
-	<p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
-	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
-	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>', # NEW
+	'mentions_liens_texte' => '<p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caractère illégal et/ou à caractère politique, religieux, pornographique, xénophobe, vous pouvez créer un lien hypertexte vers notre Site sur votre site.</p>
+	<p>La mise en place de lien hypertexte n\'autorise en aucune façon la reproduction d\'éléments du Site ou la présentation sur des sites tiers d\'éléments du Site sous forme de Frame ou système apparenté.</p>
+	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune façon de proposer l\'envoi d\'un message pré-rédigé à une adresse mail liée au Site ou la mise en place d\'un système permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
+	<p>Tous les droits de reproduction sont réservés.</p>', # NEW
 	'mentions_liens_titre' => 'Liens hypertextes vers ce site :', # NEW
 	'mentions_logo_cddp74' => 'Site officiel du CDDP74', # NEW
 	'mentions_logo_citic' => 'Centre de l\'Informatique et des TIC de Haute-Savoie (ex CRI74)', # NEW
-	'mentions_logo_edres' => '&Eacute;ducation R&eacute;seau Haute-Savoie, projet d&eacute;partemental', # NEW
+	'mentions_logo_edres' => 'Éducation Réseau Haute-Savoie, projet départemental', # NEW
 	'mentions_logo_eva' => 'Site officiel du projet eva-web', # NEW
 	'mentions_logo_spip' => 'Site officiel de SPIP', # NEW
-	'mentions_logo_spipedu' => 'Spip-edu, site de la communaut&eacute; &eacute;ducative', # NEW
-	'mentions_lois' => 'En vertu de la loi pour la confiance dans l\'&eacute;conomie num&eacute;rique (LCEN) du 21 juin 2004, voici les coordonn&eacute;es de l\'&eacute;diteur et du prestataire qui accueille le site :', # NEW
+	'mentions_logo_spipedu' => 'Spip-edu, site de la communauté éducative', # NEW
+	'mentions_lois' => 'En vertu de la loi pour la confiance dans l\'économie numérique (LCEN) du 21 juin 2004, voici les coordonnées de l\'éditeur et du prestataire qui accueille le site :', # NEW
 	'mentions_prestataire' => 'Prestataire assurant le stockage direct et permanent :', # NEW
-	'mentions_qualite' => 'Qualit&eacute; :', # NEW
+	'mentions_qualite' => 'Qualité :', # NEW
 	'mentions_qui_texte' => '<p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
-	correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
+	correspond à un projet de portail d\'Intranet d\'Établissement, installé sur 
 	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
-	<p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
-	en place un site web collaboratif, en proposant diff&eacute;rents mod&egrave;les de publication 
+	<p>Cette version, légèrement adaptée, permet à une école ou à un établissement de mettre 
+	en place un site web collaboratif, en proposant différents modèles de publication 
 	(article, album photo, diaporama ...) </p>
 	<p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
   	<a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
-	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
+	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribué sous Licence Publique Générale 
 	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
-	con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
+	conçu pour fonctionner à partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
 	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>', # NEW
 	'mentions_qui_titre' => 'EVA, par qui, pour qui ?', # NEW
-	'mentions_responsable_edition' => 'Responsable d\'&eacute;dition :', # NEW
+	'mentions_responsable_edition' => 'Responsable d\'édition :', # NEW
 	'mentions_site' => 'Site Internet de : ', # NEW
 	'mentions_webmestre' => 'Webmestre :', # NEW
-	'meteo' => '&#6050;&#6070;&#6016;&#6070;&#6047;&#6034;&#6070;&#6031;&#6075;',
-	'meteo_info' => '&#6038;&#6031;&#6092;&#6040;&#6070;&#6035;&#6039;&#6076;&#6040;&#6071;&#6047;&#6070;&#6047;&#6098;&#6031;&#6098;&#6042;',
-	'meteo_previsions' => '&#6038;&#6098;&#6041;&#6070;&#6016;&#6042; &#6034;&#6070;&#6031;&#6075;&#6050;&#6070;&#6016;&#6070;&#6047;',
-	'mis_a_jour' => '&#6036;&#6070;&#6035;&#6036;&#6035;&#6098;&#6033;&#6070;&#6035;&#6091;&#6047;&#6040;&#6096;&#6041;&#6102;',
-	'mot_cle' => '&#6038;&#6070;&#6016;&#6098;&#6041;&#6018;&#6035;&#6098;&#6043;&#6073;&#6087;',
-	'multilinguisme' => '&#6036;&#6020;&#6098;&#6048;&#6070;&#6025; &#6040;&#6082;&#6035;&#6025;&#6070;&#6044; &#6035;&#6083;&#6039;&#6070;&#6047;&#6070; &#6042;&#6036;&#6047;&#6091; EVA-Web &#6016;&#6098;&#6035;&#6075;&#6020;&#6033;&#6086;&#6038;&#6096;&#6042;&#6047;&#6070;&#6034;&#6070;&#6042;&#6030;&#6087; &#6060;?',
-	'multilinguisme_article' => '&#6050;&#6031;&#6098;&#6032;&#6036;&#6033;&#6035;&#6081;&#6087; &#6016;&#6098;&#6035;&#6075;&#6020;&#6102;',
+	'meteo' => 'អាកាសធាតុ',
+	'meteo_info' => 'ពត៌មានភូមិសាស្ត្រ',
+	'meteo_previsions' => 'ព្យាករ ធាតុអាកាស',
+	'mis_a_jour' => 'បានបន្ទាន់សម័យ៖',
+	'mot_cle' => 'ពាក្យគន្លឹះ',
+	'multilinguisme' => 'បង្ហាញ មែនញាវ នៃភាសា របស់ EVA-Web ក្នុងទំព័រសាធារណះ ឬ?',
+	'multilinguisme_article' => 'អត្ថបទនេះ ក្នុង៖',
 
 	// N
-	'notes' => '&#6016;&#6086;&#6030;&#6031;&#6091;&#6031;&#6098;&#6042;&#6070;',
+	'notes' => 'កំណត់ត្រា',
 
 	// P
 	'page_bas' => 'Bas de page', # NEW
 	'page_haut' => 'Haut de page', # NEW
-	'pages' => '&#6033;&#6086;&#6038;&#6096;&#6042;',
-	'par' => '&#6026;&#6084;&#6041;&#6102;',
-	'partenaires' => '&#6026;&#6083;&#6018;&#6076;',
-	'plan_du_site' => '&#6037;&#6082;&#6035;&#6033;&#6072;&#6047;&#6083;&#6032;&#6093;',
+	'pages' => 'ទំព័រ',
+	'par' => 'ដោយ៖',
+	'partenaires' => 'ដៃគូ',
+	'plan_du_site' => 'ផែនទីសៃថ៍',
 	'podcasts' => 'Podcasts', # NEW
 	'podcasts_rss' => 'Podcast et RSS', # NEW
 	'post_scriptum' => 'Post-scriptum', # NEW
-	'pour' => '&#6047;&#6086;&#6042;&#6070;&#6036;&#6091;',
-	'publie' => '&#6036;&#6070;&#6035;&#6036;&#6084;&#6087;&#6037;&#6098;&#6047;&#6070;&#6041;',
+	'pour' => 'សំរាប់',
+	'publie' => 'បានបោះផ្សាយ',
 
 	// R
-	'rechercher' => '&#6042;&#6016;&#6040;&#6078;&#6043;',
-	'redaction' => 'R&eacute;daction', # NEW
-	'replier' => '&#6036;&#6071;&#6033;',
-	'resultats' => '&#6043;&#6033;&#6098;&#6034;&#6037;&#6043;',
+	'rechercher' => 'រកមើល',
+	'redaction' => 'Rédaction', # NEW
+	'replier' => 'បិទ',
+	'resultats' => 'លទ្ធផល',
 
 	// S
 	'site' => 'site', # NEW
-	'sites' => '&#6047;&#6083;&#6032;&#6093;&#6026;&#6033;&#6083;&#6102;',
-	'sites_references' => '&#6047;&#6083;&#6032;&#6093;&#6041;&#6084;&#6020;',
-	'sites_rubrique' => '&#6047;&#6083;&#6032;&#6093; &#6047;&#6086;&#6042;&#6070;&#6036;&#6091;&#6037;&#6098;&#6035;&#6082;&#6016;&#6035;&#6081;&#6087;',
-	'sites_syndic' => 'Sites syndiqu&eacute;s de la rubrique', # NEW
+	'sites' => 'សៃថ៍ដទៃ៖',
+	'sites_references' => 'សៃថ៍យោង',
+	'sites_rubrique' => 'សៃថ៍ សំរាប់ផ្នែកនេះ',
+	'sites_syndic' => 'Sites syndiqués de la rubrique', # NEW
 	'sous_rubrique' => 'Sous-rubrique', # NEW
-	'statut_admin' => '&#6047;&#6098;&#6032;&#6070;&#6035;&#6039;&#6070;&#6038;&#6102; &#6050;&#6098;&#6035;&#6016;&#6018;&#6098;&#6042;&#6036;&#6091;&#6018;&#6098;&#6042;&#6020;',
-	'statut_redac' => '&#6047;&#6098;&#6032;&#6070;&#6035;&#6039;&#6070;&#6038;&#6102; &#6050;&#6098;&#6035;&#6016;&#6047;&#6042;&#6047;&#6081;&#6042;',
-	'statut_visit' => '&#6047;&#6098;&#6032;&#6070;&#6035;&#6039;&#6070;&#6038;&#6102; &#6033;&#6047;&#6098;&#6047;&#6035;&#6070;&#6016;&#6042;',
-	'sur_le_web' => '&#6043;&#6078;&#6050;&#6071;&#6035;&#6042;&#6078;&#6030;&#6082;&#6031;',
-	'sur_un_total_de' => '&#6038;&#6072;&#6047;&#6042;&#6075;&#6036; &#6035;&#6083;',
-	'syndic_breves' => 'Syndiquer les br&egrave;ves du site', # NEW
+	'statut_admin' => 'ស្ថានភាព៖ អ្នកគ្រប់គ្រង',
+	'statut_redac' => 'ស្ថានភាព៖ អ្នកសរសេរ',
+	'statut_visit' => 'ស្ថានភាព៖ ទស្សនាករ',
+	'sur_le_web' => 'លើអិនរើណែត',
+	'sur_un_total_de' => 'ពីសរុប នៃ',
+	'syndic_breves' => 'Syndiquer les brèves du site', # NEW
 	'syndic_site' => 'Syndiquer tout le site', # NEW
 
 	// T
-	'texte_page_404' => '<em>D&eacute;sol&eacute; !</em><br />La page que vous demandez n\'existe pas ou plus.', # NEW
-	'tous_droits' => '&#6042;&#6016;&#6098;&#6047;&#6070;&#6018;&#6098;&#6042;&#6036;&#6091;&#6047;&#6071;&#6033;&#6098;&#6034;&#6071;',
-	'tous_les_auteurs' => '&#6018;&#6098;&#6042;&#6036;&#6091;&#6050;&#6098;&#6035;&#6016;&#6047;&#6042;&#6047;&#6081;&#6042;',
+	'texte_page_404' => '<em>Désolé !</em><br />La page que vous demandez n\'existe pas ou plus.', # NEW
+	'tous_droits' => 'រក្សាគ្រប់សិទ្ធិ',
+	'tous_les_auteurs' => 'គ្រប់អ្នកសរសេរ',
 
 	// V
 	'version_eva' => 'EVA-Web 4.1',
-	'visites' => '&#6021;&#6086;&#6030;&#6076;&#6043;&#6040;&#6078;&#6043;',
-	'voir_en_ligne' => '&#6040;&#6078;&#6043; &#6043;&#6078;&#6050;&#6071;&#6035;&#6042;&#6078;&#6030;&#6082;&#6031;',
-	'voir_image' => '&#6040;&#6078;&#6043;&#6042;&#6076;&#6036;&#6039;&#6070;&#6038; &#6023;&#6070;&#6033;&#6086;&#6048;&#6086;&#6026;&#6078;&#6040;',
-	'vous_etes_ici' => '&#6050;&#6098;&#6035;&#6016;&#6035;&#6085;&#6033;&#6072;&#6035;&#6081;&#6087;',
+	'visites' => 'ចំណូលមើល',
+	'voir_en_ligne' => 'មើល លើអិនរើណែត',
+	'voir_image' => 'មើលរូបភាព ជាទំហំដើម',
+	'vous_etes_ici' => 'អ្នកនៅទីនេះ',
 
 	// Z
-	'zone' => '&#6031;&#6086;&#6036;&#6035;&#6091;&#6036;&#6070;&#6035;&#6016;&#6070;&#6042;&#6038;&#6070;&#6042;'
+	'zone' => 'តំបន់បានការពារ'
 );
 
 ?>

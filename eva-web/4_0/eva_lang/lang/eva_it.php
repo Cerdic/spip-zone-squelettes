@@ -113,13 +113,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Menzioni',
 	'mentions_adresse' => 'Indirizzo:',
 	'mentions_directeur_publication' => 'Direttore della pubblicazione:',
-	'mentions_droit_auteur_texte' => '<p>Questo sito &egrave; protetto dalla legge italiana ed internazionale sul diritto d\'autore e la propriet&agrave; intellettuale.</p>
+	'mentions_droit_auteur_texte' => '<p>Questo sito è protetto dalla legge italiana ed internazionale sul diritto d\'autore e la proprietà intellettuale.</p>
  <p>Tutti i diritti di riproduzione sono riservati.</p>',
 	'mentions_droit_auteur_titre' => 'Diritti degli autori:',
 	'mentions_legales' => 'Menzioni legali',
 	'mentions_liens_hypertexte_texte' => '<p>Questo sito contiene dei link ipertestuali che consentono l\'accesso a siti non gestiti la responsabile di questo sito.</p>
- <p>Di conseguenza il direttore della pubblicazione non potr&agrave; essere ritenuto responsabile del contenuto dei siti ai quali il navigatore avr&agrave; accesso.</p>
- <p>&amp;Egrave; formalmente vietato raccogliere e utilizzare le informazioni disponibili sul sito a scopi commerciali.</p>
+ <p>Di conseguenza il direttore della pubblicazione non potrà essere ritenuto responsabile del contenuto dei siti ai quali il navigatore avrà accesso.</p>
+ <p>&Egrave; formalmente vietato raccogliere e utilizzare le informazioni disponibili sul sito a scopi commerciali.</p>
  <p>Questo divieto si estendo in particolare, senza che questa lista sia esaustiva, a tutti gli elementi redazionali esistenti sul sito, alla veste grafica delle schermate, ai software necessari alla pubblicazione, ai logo, immagini, foto, grafiche, di qualsiasi natura esse siano.</p>',
 	'mentions_liens_hypertexte_titre' => 'Link ipertestuali:',
 	'mentions_liens_texte' => '<p>Ad eccezione dei siti che diffondono informazioni e/o contenuti aventi un carattere illegale e/o politico, religioso, pornografico, xenofobo, puoi creare un link ipertestuale verso il nostro sito sul tuo sito.</p>
@@ -132,10 +132,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_logo_edres' => 'Rete scolastica dell\'Alta Savia, progetto dipartimentale',
 	'mentions_logo_eva' => 'Sito ufficiale del progetto eva-web',
 	'mentions_logo_spip' => 'Sito ufficiale di SPIP',
-	'mentions_logo_spipedu' => 'Spip-edu, sito della comunit&agrave; educativa',
+	'mentions_logo_spipedu' => 'Spip-edu, sito della comunità educativa',
 	'mentions_lois' => 'Ai sensi della legge sulla fiducia nell\'economia digitale (LCEN) del 21 giugno 2004, ecco le coordinate dell\'editore e del fornitore del servizio che ospita il sito:',
 	'mentions_prestataire' => 'Fornitore del servizio che assicura la memorizzazione diretta e permanente:',
-	'mentions_qualite' => 'Qualit&agrave;:',
+	'mentions_qualite' => 'Qualità:',
 	'mentions_qui_texte' => '<p>In origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
 corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui 
  server <a href="http://www.pingoo.org/">PingOO</a>.</p>
@@ -144,7 +144,7 @@ corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui
  (articolo, album fotografico, slideshow ...) </p>
  <p>Per maggiori informazioni sul progetto <a href="http://eva-web.edres74.net">EVA-web</a>, consulta il sito 
    <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
- <p><a href="http://eva-web.edres74.net">EVA-web</a> &egrave; un software libero distribuito sotto licenza pubblica generale 
+ <p><a href="http://eva-web.edres74.net">EVA-web</a> è un software libero distribuito sotto licenza pubblica generale 
  <a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html">GNU (GNU General Public License o GPL)</a>
  concepito per funzionare grazie all\'applicazione <a href="http://www.spip.net/">SPIP</a>.</p>
  <div style="text-align:center;"><a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
