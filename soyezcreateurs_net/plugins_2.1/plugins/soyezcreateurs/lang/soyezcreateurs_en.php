@@ -14,7 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
 	'accueil_menu' => 'Home',
-	'accueil_site' => 'Revenir &agrave; l\'Accueil du site', # NEW
+	'accueil_site' => 'Revenir à l\'Accueil du site', # NEW
 	'agenda' => 'Calendar',
 	'agenda_a' => ' at ',
 	'agenda_an' => ' year, ',
@@ -39,7 +39,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agenda_summary' => 'Calendar of events (from Monday to Sunday)',
 	'agendamoisde' => 'Calendar for',
-	'aidesc' => 'Help about SoyezCr&eacute;ateurs',
+	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
 	'archives' => 'Archives',
 	'archives_title' => 'View the archived articles',
@@ -95,7 +95,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_annuel' => 'yearly',
 	'cfg_anonymatglobal' => 'Global anonymity',
 	'cfg_anonymatglobal_ex' => 'Used to obscure the names of the article authors',
-	'cfg_anonymatglobal_label' => 'Global anonymity (can be enabled article by article with the "D&eacute;voilerIdentite" keyword)',
+	'cfg_anonymatglobal_label' => 'Global anonymity (can be enabled article by article with the "DévoilerIdentite" keyword)',
 	'cfg_apparence_header' => 'Likeness of the header',
 	'cfg_bandeau_annonce' => 'Display the announcement banner',
 	'cfg_bandeau_contact' => 'Display the contact banner',
@@ -149,7 +149,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => 'Only in the future',
 	'cfg_geolocalisation_label' => 'Display the geolocalisation below the search',
 	'cfg_globale' => 'Global for all the site',
-	'cfg_goodies_label' => 'Nombre de goodies affich&eacute;es par rubrique (mode portail communiquant)', # NEW
+	'cfg_goodies_label' => 'Nombre de goodies affichées par rubrique (mode portail communiquant)', # NEW
 	'cfg_haut_footer' => 'Display at the top of the footer',
 	'cfg_hauteur' => 'Height',
 	'cfg_hauteur_videoaccueil' => 'Height of the intro video (0 for automatic height)',
@@ -159,7 +159,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Site indexing by search engines',
 	'cfg_indexation_non' => 'Don\'t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
-	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com &reg; site</a> .',
+	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
 	'cfg_info' => 'Configuration of SoyezCreateurs',
 	'cfg_largeur' => 'Width',
 	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
@@ -194,7 +194,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_menu_actif' => 'Active menu',
 	'cfg_menu_clic' => 'Menu click',
 	'cfg_menu_footer_liens' => 'In the page footer',
-	'cfg_menu_haut' => 'Top &amp; bottom menus',
+	'cfg_menu_haut' => 'Top & bottom menus',
 	'cfg_menu_inactif' => 'Inactive menu ',
 	'cfg_menu_survol' => 'Menu overview',
 	'cfg_menuderoulant' => 'Dropdown menu',
@@ -295,10 +295,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
-	'configurersc' => 'Set SoyezCr&eacute;ateurs',
+	'configurersc' => 'Set SoyezCréateurs',
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
-	'copyright_cnil' => 'CNIL declaration n&ordm;',
+	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_droits' => 'All rights reserved',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
@@ -333,7 +333,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_connexion' => '<h2>Password error</h2><p>Please begin again.</p>',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
 	'erreur_excuses_404' => 'Sorry...',
-	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because&nbsp;:</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
+	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
 	'fil_rss' => 'RSS feed',
@@ -357,14 +357,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout_autres' => 'Other pages',
 	'layout_autres_title' => 'Arrangement for specific pages (plan...)',
 	'layout_defaut_title' => 'Default layout for the site (articles and sections) ',
-	'liresuitede' => 'More to read about&nbsp;:',
+	'liresuitede' => 'More to read about :',
 	'liresuiteeditorial' => 'Read the end of the editorial',
 	'liresuitesyndic' => 'Read more on the original site ...',
 	'listezones' => 'Hot spot\'s list',
 
 	// M
 	'memerubrique' => 'In the same section...',
-	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Libert&eacute;->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'&eacute;conomie Num&eacute;rique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
@@ -378,7 +378,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// N
 	'newsletter' => 'Site newsletter',
 	'newsletter_action' => 'Action',
-	'newsletter_cnil' => 'In accordance with the law n&ordm;78-17 of 6 January 1978, you have the right of access to and removal of data about you.',
+	'newsletter_cnil' => 'In accordance with the law nº78-17 of 6 January 1978, you have the right of access to and removal of data about you.',
 	'newsletter_desabonnement' => 'To unsubscribe : {LINKS} (N.B. clicking on this link will cause your subscription to be cancelled immediately.)',
 	'newsletter_desinscription' => 'Unsubscribe',
 	'newsletter_email' => 'Email address',
@@ -417,7 +417,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourgalerie' => 'Back to the gallery',
 	'retoursommaire' => 'Back to Overview',
 	'retourtop' => 'Back to top',
-	'rubrique_securisee' => 'Acc&eacute;s r&eacute;serv&eacute; ouvert', # NEW
+	'rubrique_securisee' => 'Accés réservé ouvert', # NEW
 
 	// S
 	'savoirplus' => 'More...',
@@ -446,7 +446,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirsitespar' => 'See the sites with',
 
 	// W
-	'wdcalendar_all_day' => 'Toute la journ&eacute;e', # NEW
+	'wdcalendar_all_day' => 'Toute la journée', # NEW
 	'wdcalendar_apr' => 'Avr', # NEW
 	'wdcalendar_aug' => 'Aou', # NEW
 	'wdcalendar_cancel' => 'Annuler', # NEW
@@ -456,13 +456,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_day_plural' => 'jours', # NEW
 	'wdcalendar_dec' => 'Dec', # NEW
 	'wdcalendar_event' => 'Evenement', # NEW
-	'wdcalendar_feb' => 'F&eacute;v', # NEW
+	'wdcalendar_feb' => 'Fév', # NEW
 	'wdcalendar_fri' => 'Ven', # NEW
 	'wdcalendar_jan' => 'Jan', # NEW
 	'wdcalendar_jul' => 'Juil', # NEW
 	'wdcalendar_jun' => 'Juin', # NEW
-	'wdcalendar_loading_data' => 'Chargement des donn&eacute;e...', # NEW
-	'wdcalendar_loading_fail' => 'D&eacute;soler, nous ne pouvons charger vos donn&eacute;es, merci d\'essayer plus tard', # NEW
+	'wdcalendar_loading_data' => 'Chargement des donnée...', # NEW
+	'wdcalendar_loading_fail' => 'Désoler, nous ne pouvons charger vos données, merci d\'essayer plus tard', # NEW
 	'wdcalendar_location' => 'Lieu', # NEW
 	'wdcalendar_mar' => 'Mar', # NEW
 	'wdcalendar_may' => 'Mai', # NEW
@@ -476,14 +476,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_prev_month' => 'Mois Prec', # NEW
 	'wdcalendar_refresh' => 'Actualiser', # NEW
 	'wdcalendar_sat' => 'Sam', # NEW
-	'wdcalendar_see_detail' => 'Voir d&eacute;tails', # NEW
+	'wdcalendar_see_detail' => 'Voir détails', # NEW
 	'wdcalendar_sep' => 'Sep', # NEW
 	'wdcalendar_sun' => 'Dim', # NEW
 	'wdcalendar_thu' => 'Jeu', # NEW
 	'wdcalendar_time' => 'Heure', # NEW
 	'wdcalendar_today' => 'Aujourd\'hui', # NEW
 	'wdcalendar_tue' => 'Mar', # NEW
-	'wdcalendar_undefined' => 'Ind&eacute;finie', # NEW
+	'wdcalendar_undefined' => 'Indéfinie', # NEW
 	'wdcalendar_wed' => 'Mer', # NEW
 	'wdcalendar_week' => 'Semaine', # NEW
 	'wdcalendar_what' => 'Sujet' # NEW
