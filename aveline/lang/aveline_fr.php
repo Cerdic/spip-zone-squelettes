@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 // S&eacute;curit&eacute;
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -20,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description-config-aveline-zpip-groupe-mots' => 'Cette configuration reproduit Zpip-dist en ajoutant une page pour les groupes de mots.',
 	'description-config-aveline-zpip-groupe-mots-menus' => 'Cette configuration reproduit Zpip-dist en ajoutant une page pour les groupes de mots et en ajoutant deux menus (pour la barre horizontale et pour la navigation).',
 	'description-config-aveline-zpip-secteurs-langue' => 'Cette configuration est adapt&eacute;e aux sites multilingues organis&eacute;s en secteurs de langue.',
-	'description-config-aveline-zpip-secteurs-langue-menus' => 'Cette configuration est adapt&eacute;e aux sites multilingues organis&eacute;s en secteurs de langue. Elle ajoute également deux menus (pour la barre horizontale et pour la navigation).',
+	'description-config-aveline-zpip-secteurs-langue-menus' => 'Cette configuration est adapt&eacute;e aux sites multilingues organis&eacute;s en secteurs de langue. Elle ajoute &eacute;galement deux menus (pour la barre horizontale et pour la navigation).',
 	'description_agenda-contenuprincipal' => 'Affiche date, titre, descriptif, lieu, adresse, logo et nombre de participants.',
 	'description_article-contenuprincipal' => 'Affiche logo, surtitre, titre, sous-titre, date, auteur, traduction, chapeau, texte, lien hypertexte, post-scriptum et notes.',
 	'description_article-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; l\'article.',

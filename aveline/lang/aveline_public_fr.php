@@ -1,11 +1,11 @@
-<?php
+ï»¿<?php
 
-// Sécurité
+// SÃ©curitÃ©
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	// Chaines affichées sur la partie publique
+	// Chaines affichÃ©es sur la partie publique
 	'a_venir' => '&Agrave; venir',
 	'adresse_deux_points' => 'Adresse&nbsp;:',
 	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
