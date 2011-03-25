@@ -119,7 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_legales' => 'Menzioni legali',
 	'mentions_liens_hypertexte_texte' => '<p>Questo sito contiene dei link ipertestuali che consentono l\'accesso a siti non gestiti la responsabile di questo sito.</p>
  <p>Di conseguenza il direttore della pubblicazione non potrà essere ritenuto responsabile del contenuto dei siti ai quali il navigatore avrà accesso.</p>
- <p>&Egrave; formalmente vietato raccogliere e utilizzare le informazioni disponibili sul sito a scopi commerciali.</p>
+ <p>&amp;Egrave; formalmente vietato raccogliere e utilizzare le informazioni disponibili sul sito a scopi commerciali.</p>
  <p>Questo divieto si estendo in particolare, senza che questa lista sia esaustiva, a tutti gli elementi redazionali esistenti sul sito, alla veste grafica delle schermate, ai software necessari alla pubblicazione, ai logo, immagini, foto, grafiche, di qualsiasi natura esse siano.</p>',
 	'mentions_liens_hypertexte_titre' => 'Link ipertestuali:',
 	'mentions_liens_texte' => '<p>Ad eccezione dei siti che diffondono informazioni e/o contenuti aventi un carattere illegale e/o politico, religioso, pornografico, xenofobo, puoi creare un link ipertestuale verso il nostro sito sul tuo sito.</p>
