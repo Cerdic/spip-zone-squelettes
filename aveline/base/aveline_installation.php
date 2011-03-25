@@ -53,7 +53,7 @@ function aveline_vider_tables($nom_meta_version_base){
 function aveline_maj_noisettes($noisettes, $version_actuelle) {
 	if (version_compare($current_version,'0.1','>') && version_compare($current_version,'0.3.0','<')){
 		foreach ($noisettes as $cle => $noisette)
-			$noisettes[$cle]['parametres'] = str_replace('gn_public:','aveline_public:',$noisettes[$cle]['parametres']);
+			$noisettes[$cle]['parametres'] = str_replace('gn_public:','avelinepublic:',$noisettes[$cle]['parametres']);
 	}
 	if (version_compare($current_version,'0.3.2','<')){
 		foreach ($noisettes as $cle => $noisette) {
