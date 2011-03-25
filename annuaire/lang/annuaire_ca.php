@@ -168,7 +168,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     <br />Una pàgina que reagrupa tots els reglatges generals del lloc.',
 	'descriptif_herbier' => '<h4>Reglatge de l\'herbari</h4>
     <br />Regleu els vostres bucles i estils a l\'herbari.
-    <p />És la pàgina on es mostra l\'actualitat dels llocs sindicats ',
+    <p />És la pàgina on es mostra l\'actualitat dels llocs sindicats ', # MODIF
 	'descriptif_login_public' => '<h4>Reglatge de la pàgina login públic</h4>
     <br />Regleu els vostres estils a la pàgina login públic.',
 	'descriptif_menu' => '<h4>Reglatge del menú</h4>
