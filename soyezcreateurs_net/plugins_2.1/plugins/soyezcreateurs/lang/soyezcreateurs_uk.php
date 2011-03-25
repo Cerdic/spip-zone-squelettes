@@ -9,35 +9,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Перейти до меню',
-	'accessibilite_politique' => 'Політика доступності',
 	'accessibilite_recherche' => 'Перейти до пошуку',
 	'accessibilite_texte' => 'Перейти до тексту',
 	'accueil' => 'головна',
 	'accueil_menu' => 'Головна сторінка',
 	'accueil_site' => 'Revenir à l\'Accueil du site', # NEW
 	'agenda' => 'Події',
-	'agenda_a' => 'до, в',
-	'agenda_an' => 'рік',
-	'agenda_ans' => 'роки, років',
-	'agenda_au' => 'в',
-	'agenda_dans' => 'в',
-	'agenda_de' => 'з',
-	'agenda_du' => 'з',
-	'agenda_en_ce_moment' => 'в цей момент',
 	'agenda_exporter_ical' => 'Експорт в ICAL',
 	'agenda_fsd' => 'З @dдня_l@ @dдня@ @місяця_l@ @року@ о @годині@:@хвилин@ au @fдня_l@ @fдня@ @fмісяця_l@ @fроку@ à @fгодин@:@fхвилин@',
 	'agenda_fsd_notime' => 'З @dдня_l@ @dдня@ @dмісяця_l@ @dроку@ до @fдня_l@ @fдня@ @fмісяця_l@ @fроку@',
-	'agenda_jour' => 'календарний день',
-	'agenda_jours' => 'дні',
-	'agenda_jours_seul' => 'календарні дні',
-	'agenda_le' => 'дата... ',
-	'agenda_mois' => 'календарних місяців',
-	'agenda_mois_pluriel' => 'місяці ',
 	'agenda_sd' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@:@dminutes@ à @fheure@:@fminutes@', # NEW
 	'agenda_sd_h' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ à @dheure@:@dminutes@', # NEW
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@', # NEW
 	'agenda_sinscrire' => 'Зареєструватись на подію',
-	'agenda_summary' => 'Календар подій (понеділок-неділя)',
 	'agendamoisde' => 'Події місяця',
 	'aidesc' => 'Довідка SoyezCréateurs',
 	'alaune' => 'На першій сторінці',
@@ -45,17 +29,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_title' => 'Переглянути архів статей',
 	'articlesconnexes' => 'Відповідні статті ( за темою) ',
 	'articlesordreantichrono' => 'Статті у зворотному хронологічному порядку',
-	'aujourdhui' => 'Сьогодні',
 	'auteur' => 'Автор',
 	'auteurs_liste' => 'Список авторів',
 	'auteurs_site' => 'Автори сайту',
-
-	// B
-	'barre_typo_generalisee' => 'Узагальнений друкарський бар',
-	'boutique' => 'Бутік (в Dev)',
-	'boutonstexte' => 'Кнопки текст',
-	'bte' => 'Друкарська помилка тлумачення',
-	'btv2' => 'Друкарський бар',
 
 	// C
 	'carte_monde' => 'Карта світу',
@@ -100,7 +76,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bandeau_annonce' => 'Афішування ( показ) банеру оголошення',
 	'cfg_bandeau_contact' => 'Афішування ( показ) банеру контакту',
 	'cfg_bandeau_page' => 'У банер заголовку сторінки',
-	'cfg_banniere' => 'Банер',
 	'cfg_banniere_degrade' => 'Фон втрачає чіткість',
 	'cfg_banniere_lentilles' => 'Ефект лінзи',
 	'cfg_banniere_metal' => 'Матовий метал',
@@ -111,8 +86,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadrestexte' => 'Рамки змісту',
 	'cfg_cartouche' => 'Рамки "Що нового "," Зміст "..',
 	'cfg_choix_banniere_label' => 'Вибір банера (якщо немає логотипу огляду  для сайту )',
-	'cfg_choix_banniere_tableau' => 'Список банерів',
-	'cfg_citations' => 'Цитати відомих людей',
 	'cfg_code_pub_google' => 'Код Google  для банерів',
 	'cfg_code_recherche_google' => 'Код Google  для  пошуку та кнопки  спонсорного програмного  забезпечення ',
 	'cfg_code_stats_google' => 'Код Google  для статистики з Google Analytics (формат: UA-XXXXX-X)',
@@ -223,7 +196,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => 'Вторинна навігація',
 	'cfg_navigationtransversale_label' => 'Навігація поперечна',
 	'cfg_navigationtransversalelocale' => 'Навігація місцева поперечна',
-	'cfg_nom_banniere' => 'Назва банера',
 	'cfg_nombres_quoideneuf' => 'Кількість " Що нового?"',
 	'cfg_non_secondaire' => 'Ні, афішувати ( показати) його ( її) внизу  вторинної навігації',
 	'cfg_numero_cnil' => 'Афішування ( дисплей) номера CNIL',
@@ -254,7 +226,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_quoideneuf_label' => 'Кількість "Що нового?"',
 	'cfg_rainette_ville' => 'Код міста (погоди)',
 	'cfg_realisation' => 'Реалізація',
-	'cfg_recherche_mot_label' => 'Увімкнути пошук за ключовим словом',
 	'cfg_redirection_ancien_site' => 'Перенаправлення старого сайту',
 	'cfg_rss_label' => 'Кількість RSS',
 	'cfg_rss_label_ex' => 'Кількість  синдикацій відображених потоком RSS у вторинній навігації',
@@ -291,7 +262,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chapitre_complet' => 'Ціла глава для друку',
 	'chapitre_complet_title' => 'Переглянути весь вміст рубрики :',
 	'chercheravecgoogle' => 'З Alt <a href=\'http://www.google.com/\'> <IMG SRC "http://www.google.com/logos/Logo_25wht.gif \'= = Назва" Google "= стилі" Google "= \'вертикального вирівнювання: середній, "ширина = \'75\' висота = \'32 \'/> </ A> пошук в Інтернеті!',
-	'citations' => 'Цитати',
 	'clever_uns' => 'Відмова від підписки здійснена',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Для початку',
@@ -299,19 +269,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => 'Підключення',
 	'connexiontitle' => 'Доступ до зарезервованого простору',
 	'copyright_cnil' => ' Декларація CNIL N º',
-	'copyright_droits' => 'Всі права захищені.',
 	'copyright_icra' => 'Мічені завдяки  <a href="http://www.icra.org/sitelabel"> ICRA </ A>',
 	'copyright_realisation' => 'Реалізація:',
 	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'> SoyezCreateurs </ A> на харчування від <HREF = \'http://www.spip. чистої "назва = \'/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </ A>',
 
 	// D
-	'date_j_1' => 'D',
-	'date_j_2' => 'L',
-	'date_j_3' => 'M',
-	'date_j_4' => 'M',
-	'date_j_5' => 'J',
-	'date_j_6' => 'V',
-	'date_j_7' => 'S',
 	'deconnexion' => 'Роз\'єднання',
 	'deconnexiontitle' => 'Ви виходите ( роз\'єднуєтесь)',
 	'deposer_intention' => 'Надіслати наміри прохання ',
@@ -323,39 +285,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'ecoute' => 'Прослуховування : ',
-	'edito' => 'Передова стаття',
 	'editos' => 'Передові статті',
-	'entravaux' => 'В розробці',
-	'entravaux_info' => 'Поточне обслуговування. Дякуємо за ваше розуміння.',
-	'entravaux_int_serv' => 'Переривання обслуговування',
-	'entravaux_rev_plus_tard' => 'Просимо повернутися пізніше і дякуємо ...',
 	'erreur' => 'Помилка!',
-	'erreur_connexion' => 'Помилка <h2> пароль </ h2> Будь ласка, спробуйте ще раз. </ P>',
 	'erreur_documentexistepas' => 'Помилка: цей документ не існує!',
 	'erreur_excuses_404' => 'Nous sommes désolés...', # NEW
 	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu être trouvée parce que :</p><ol><li>elle n\'était plus d\'actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
-	'fil_rss' => 'Провід RSS',
-	'fil_rss_title' => 'Використайте це посилання у вашому агрегаторі  RSS',
 	'forum' => 'Форум',
 	'forum_enreponse' => 'У відповідь на статтю:',
 	'forum_enreponse_breve' => 'У відповідь на коротку новину:',
 	'forum_enreponse_message' => 'У відповідь на  повідомлення:',
-	'forum_graversonnom' => 'Ваш намір',
 	'forum_prenom' => 'Хто ви?',
 	'forum_repondre' => 'Додати ваше свідчення',
 	'forum_vosreponses' => 'Ваші свідчення',
 	'forum_votre_prenom' => 'Ваше ім\'я :',
 
-	// G
-	'gpm_fontion' => 'Характеристики',
-	'gpm_ouinon' => 'Значення',
-
 	// L
 	'layout_accueil_title' => 'Специфічне розташування на головній сторінці',
-	'layout_autres' => 'Інші сторінки',
-	'layout_autres_title' => 'Розташування для специфічних сторінок ( план ... )',
 	'layout_defaut_title' => 'Розташування за замовчуванням  для сайту (статті та рубрики)',
 	'liresuitede' => 'Читати наступне:',
 	'liresuiteeditorial' => 'Читати продовження передової статті',
@@ -377,14 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => 'Новини сайту',
-	'newsletter_action' => 'Дія',
-	'newsletter_cnil' => 'Відповідно до Закону № 78-17 від 6 січня 1978 року, у вас є право на доступ, виправлення та видалення даних про вас.',
-	'newsletter_desabonnement' => 'Скасувати: {LINK} (Увага: натиск ( клік) на це посилання може спричинити негайне припинення підписки!)',
-	'newsletter_desinscription' => 'Відмова від підписки',
-	'newsletter_email' => 'Адреса електронної пошти',
-	'newsletter_inscription' => 'Запис',
 	'newsletter_recevoir' => 'Отримувати новини сайту',
-	'newsletter_valider' => 'Затвердити ( признати дійсним)',
 
 	// O
 	'ordreantichronologique' => 'зворотний хронологічний порядок',
@@ -392,8 +332,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par' => 'по',
-	'parametres_google' => 'Параметри ( Установки ) для Google',
-	'parametres_xiti' => 'Параметри ( Установки)  Xiti',
 	'participez' => 'Візьміть участь у житті сайту!',
 	'plan_menu' => 'План сайту Web',
 	'plus_loin' => 'Див.також',
@@ -407,14 +345,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_infructueuse' => 'Невдалий пошук.',
 	'recherche_label' => 'Пошук по сайту.',
-	'recherche_motclef' => 'Виберіть ключові слова',
-	'recherche_motclef_label' => 'Пошук за ключовими словами.',
 	'recherche_title' => 'Будь ласка, введіть ваш пошук',
 	'recherche_title_ok' => 'Почати пошук',
 	'recherche_total' => 'Загальна кількість знайдених елементів',
 	'recherche_value' => 'Пошук?',
 	'retouraccueil' => 'Повернутися на головну сторінку',
-	'retourgalerie' => 'Повернення до галереї',
 	'retoursommaire' => 'Назад Головна',
 	'retourtop' => 'Повернутися до початку',
 	'rubrique_securisee' => 'Accés réservé ouvert', # NEW
@@ -431,7 +366,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndiquer_agenda' => 'Об\'єднати щоденник ',
 
 	// T
-	'textesiplanvide' => 'Текст, якщо план порожній',
 	'themes' => 'Теми',
 	'tousarticlesantichrono' => 'Всі статты в зворотному хронологічному порядку',
 	'tout' => 'Все',

@@ -9,35 +9,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Anar al menú',
-	'accessibilite_politique' => 'Política d\'accessibilitat',
 	'accessibilite_recherche' => 'Anar a la cerca',
 	'accessibilite_texte' => 'Anar al text',
 	'accueil' => 'Inici',
 	'accueil_menu' => 'Inici',
 	'accueil_site' => 'Revenir à l\'Accueil du site', # NEW
 	'agenda' => 'Agenda',
-	'agenda_a' => ' a ',
-	'agenda_an' => ' any, ',
-	'agenda_ans' => ' anys, ',
-	'agenda_au' => ' al ',
-	'agenda_dans' => 'a',
-	'agenda_de' => ' de ',
-	'agenda_du' => 'Del ',
-	'agenda_en_ce_moment' => '<em>(en aquest moment)</em>',
 	'agenda_exporter_ical' => 'Exportar en format iCal',
 	'agenda_fsd' => 'Del @djour_l@ @djour@ @dmois_l@ @dannee@ a @dheure@:@dminutes@ al @fjour_l@ @fjour@ @fmois_l@ @fannee@ a @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'Del @djour_l@ @djour@ @dmois_l@ @dannee@ al @fjour_l@ @fjour@ @fmois_l@ @fannee@',
-	'agenda_jour' => ' dia, ',
-	'agenda_jours' => ' dies, ',
-	'agenda_jours_seul' => ' dies',
-	'agenda_le' => 'El ',
-	'agenda_mois' => ' mes, ',
-	'agenda_mois_pluriel' => ' mesos, ',
 	'agenda_sd' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@:@dminutes@ a @fheure@:@fminutes@',
 	'agenda_sd_h' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@ a @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Inscriure\'s a l\'esdeveniment',
-	'agenda_summary' => 'Agenda dels esdeveniments (de dilluns a diumenge)',
 	'agendamoisde' => 'Agenda del mes de',
 	'aidesc' => 'Ajuda a SigueuCreatius',
 	'alaune' => 'A la portada ',
@@ -45,17 +29,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_title' => 'Consultar els articles arxivats',
 	'articlesconnexes' => 'Articles connexes',
 	'articlesordreantichrono' => 'Articles per ordre anticronològic',
-	'aujourdhui' => 'Avui',
 	'auteur' => 'Autor',
 	'auteurs_liste' => 'Llista d\'autors',
 	'auteurs_site' => 'Autors del lloc',
-
-	// B
-	'barre_typo_generalisee' => 'Barra Tipogràfica Generalitzada',
-	'boutique' => 'Boutique (en dev)',
-	'boutonstexte' => 'Botons text',
-	'bte' => 'Il·luminacions Typo',
-	'btv2' => 'Barra tipogràfica',
 
 	// C
 	'carte_monde' => 'Mapa del món',
@@ -100,7 +76,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bandeau_annonce' => 'Visualització de la banda d\'anuncis',
 	'cfg_bandeau_contact' => 'Publicació de la banda de contacte',
 	'cfg_bandeau_page' => 'A la banda d\'encapçalament de la pàgina',
-	'cfg_banniere' => 'Banner',
 	'cfg_banniere_degrade' => 'Fons degradat',
 	'cfg_banniere_lentilles' => 'Efecte de lentilles',
 	'cfg_banniere_metal' => 'En metall',
@@ -111,8 +86,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadrestexte' => 'Requadres de contingut',
 	'cfg_cartouche' => 'Requadre "Què hi ha de nou", "Contingut"...',
 	'cfg_choix_banniere_label' => 'Tria del banner (si no hi ha logotip de canvi d\'imatge pel lloc)',
-	'cfg_choix_banniere_tableau' => 'Llista de banners',
-	'cfg_citations' => 'Cites',
 	'cfg_code_pub_google' => 'Codi Google per la banda de publicitat',
 	'cfg_code_recherche_google' => 'Codi Google per la cerca i els botons del programari patrocinat',
 	'cfg_code_stats_google' => 'Codi Google pels estats amb Google Analytics (format: UA-xxxxx-x)',
@@ -223,7 +196,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => 'Navegació secundària',
 	'cfg_navigationtransversale_label' => 'Navegació transversal',
 	'cfg_navigationtransversalelocale' => 'Navegació transversal local',
-	'cfg_nom_banniere' => 'Nom del banner',
 	'cfg_nombres_quoideneuf' => 'Els números que hi ha de nou',
 	'cfg_non_secondaire' => 'No, la publicació a sota de la navegació secundària',
 	'cfg_numero_cnil' => 'Publicació del número CNIL',
@@ -254,7 +226,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_quoideneuf_label' => 'Número de "Què hi ha de nou"',
 	'cfg_rainette_ville' => 'Codi Ciutat (Météo)',
 	'cfg_realisation' => 'Realització',
-	'cfg_recherche_mot_label' => 'Activar la cerca per paraula clau',
 	'cfg_redirection_ancien_site' => 'Redirecció cap al lloc antic',
 	'cfg_rss_label' => 'Número RSS',
 	'cfg_rss_label_ex' => 'Número de sindicacions visualitzades pel flux RSS a la navegació secundària',
@@ -291,7 +262,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chapitre_complet' => 'Capítol complet per imprimir',
 	'chapitre_complet_title' => 'Mostrar completament el contingut de la secció: ',
 	'chercheravecgoogle' => 'Amb <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cercar a la Web!',
-	'citations' => 'Cites',
 	'clever_uns' => 'Anul·lació de la inscripció realitzada ',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Per començar bé',
@@ -299,19 +269,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => 'Connexió',
 	'connexiontitle' => 'Accedir a l\'espai reservat',
 	'copyright_cnil' => 'Declaració CNIL nº ',
-	'copyright_droits' => 'Tots els drets reservats.',
 	'copyright_icra' => 'Etiquetat gràcies a <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Realització: ',
 	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d\'aquest esquelet\'>SigueuCreatiuss</a>  llançat per <a href=\'http://www.spip.net/\' title=\'Visitar el lloc d\'SPIP, programari de gestió de continguts web amb llicència GPL\'>SPIP</a>',
 
 	// D
-	'date_j_1' => 'Dg',
-	'date_j_2' => 'Dl',
-	'date_j_3' => 'Dt',
-	'date_j_4' => 'Dc',
-	'date_j_5' => 'Dj',
-	'date_j_6' => 'Dv',
-	'date_j_7' => 'Ds',
 	'deconnexion' => 'desconnexió',
 	'deconnexiontitle' => 'Desconnectar-vos',
 	'deposer_intention' => 'Enviar una intenció de súplica',
@@ -323,39 +285,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'ecoute' => 'Escoltar:',
-	'edito' => 'Editorial',
 	'editos' => 'Editorials',
-	'entravaux' => 'En construcció',
-	'entravaux_info' => 'Operació de manteniment en curs. Gràcies per la vostra comprensió.',
-	'entravaux_int_serv' => 'Interrupció del servei',
-	'entravaux_rev_plus_tard' => 'Gràcies per tornar una mica més tard ... ',
 	'erreur' => 'Error!',
-	'erreur_connexion' => '<h2>Error de la contrasenya</h2><p>Torneu-hi altre cop.</p>',
 	'erreur_documentexistepas' => 'Error: aquest document no existeix!',
 	'erreur_excuses_404' => 'Nous sommes désolés...', # NEW
 	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu être trouvée parce que :</p><ol><li>elle n\'était plus d\'actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
-	'fil_rss' => 'Fil RSS',
-	'fil_rss_title' => 'Utilitzeu aquest enllaç al vostre lector d\'RSS ',
 	'forum' => 'Fòrum',
 	'forum_enreponse' => 'En resposta a l\'article:',
 	'forum_enreponse_breve' => 'En resposta a la breu:',
 	'forum_enreponse_message' => 'En resposta al missatge:',
-	'forum_graversonnom' => 'La vostra intenció',
 	'forum_prenom' => 'Qui sou? ',
 	'forum_repondre' => 'Afegir el vostre testimoni',
 	'forum_vosreponses' => 'Els vostres testimonis',
 	'forum_votre_prenom' => 'El vostre nom:',
 
-	// G
-	'gpm_fontion' => 'Característiques',
-	'gpm_ouinon' => 'Valors',
-
 	// L
 	'layout_accueil_title' => 'Format d\'acord a la pàgina d\'inici',
-	'layout_autres' => 'Altres pàgines',
-	'layout_autres_title' => 'Format per les pàgines específiques  (pla...)',
 	'layout_defaut_title' => 'Format, per defecte, pel lloc (articles i seccions)',
 	'liresuitede' => 'Llegir la continuació de:',
 	'liresuiteeditorial' => 'Llegir la continuació de l\'editorial',
@@ -377,14 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => 'Butlletí de notícies del lloc',
-	'newsletter_action' => 'Acció',
-	'newsletter_cnil' => 'Conforme a la llei nº78-17 del 6 de gener del 1978, disposeu d\'un dret d\'accés, de rectificació i de supressió de les vostres dades.',
-	'newsletter_desabonnement' => 'Donar-vos de baixa: {LINKS} (atenció, clicant aquest enllaç la baixa del lloc és immediata!)',
-	'newsletter_desinscription' => 'Donar-se de baixa',
-	'newsletter_email' => 'Adreça de correu electrònic',
-	'newsletter_inscription' => 'Registre',
 	'newsletter_recevoir' => 'Rebre el butlletí de notícies del lloc ',
-	'newsletter_valider' => 'Validar',
 
 	// O
 	'ordreantichronologique' => 'ordre anti-cronològic',
@@ -392,8 +332,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par' => 'per',
-	'parametres_google' => 'Configuració pel Google',
-	'parametres_xiti' => 'Configuració per Xiti',
 	'participez' => 'Participeu en la vida del lloc!',
 	'plan_menu' => 'Mapa del lloc',
 	'plus_loin' => 'Vegeu també',
@@ -407,14 +345,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_infructueuse' => 'Recerca infructuosa. ',
 	'recherche_label' => 'Cerca al lloc ',
-	'recherche_motclef' => 'Trieu una paraula clau ',
-	'recherche_motclef_label' => 'Buscar per paraules clau ',
 	'recherche_title' => 'Introduïu la cerca ',
 	'recherche_title_ok' => 'Iniciar la cerca ',
 	'recherche_total' => 'Nombre total d\'articles trobats ',
 	'recherche_value' => 'Cerca?',
 	'retouraccueil' => 'Tornar a la pàgina principal ',
-	'retourgalerie' => 'Torna a la galeria ',
 	'retoursommaire' => 'Tornar a l\'Inici',
 	'retourtop' => 'Tornar amunt ',
 	'rubrique_securisee' => 'Accés réservé ouvert', # NEW
@@ -431,7 +366,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndiquer_agenda' => 'Sindicar l\'agenda',
 
 	// T
-	'textesiplanvide' => 'Text si el mapa del lloc està buit',
 	'themes' => 'Temes',
 	'tousarticlesantichrono' => 'Tots els articles per ordre anti-cronològic',
 	'tout' => 'Tot',

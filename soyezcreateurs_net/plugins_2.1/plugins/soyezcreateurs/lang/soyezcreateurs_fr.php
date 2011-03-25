@@ -31,8 +31,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'auteurs_liste' => 'Liste des auteurs',
 	'auteurs_site' => 'Auteurs du site',
 
-	// B
-
 	// C
 	'carte_monde' => 'Carte du monde',
 	'cfg_affichage_affiche' => 'Afficher',
@@ -300,8 +298,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_repondre' => 'Rajouter votre témoignage',
 	'forum_vosreponses' => 'Vos témoignages',
 	'forum_votre_prenom' => 'Votre prénom :',
-
-	// G
 
 	// L
 	'layout_accueil_title' => 'Agencement spécifique à la page d\'accueil',

@@ -9,35 +9,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => '<NEW>Prejsť na menu',
-	'accessibilite_politique' => 'Accessibility policy',
 	'accessibilite_recherche' => '<NEW>Prejsť na vyhľadávanie',
 	'accessibilite_texte' => '<NEW>Prejsť na text',
 	'accueil' => 'Home', # MODIF
 	'accueil_menu' => '<NEW>Domov',
 	'accueil_site' => 'Revenir à l\'Accueil du site', # NEW
 	'agenda' => '<NEW>Kalendár',
-	'agenda_a' => 'o ',
-	'agenda_an' => 'rok, ', # MODIF
-	'agenda_ans' => 'rokov, ', # MODIF
-	'agenda_au' => 'do ', # MODIF
-	'agenda_dans' => '<NEW>za',
-	'agenda_de' => 'od', # MODIF
-	'agenda_du' => '<NEW>Od',
-	'agenda_en_ce_moment' => '<NEW><em>(teraz)</em>',
 	'agenda_exporter_ical' => 'Exporter au format iCal', # NEW
 	'agenda_fsd' => '<NEW>Od @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@ do  @fjour_l@ @fjour@ @fmois_l@ @fannee@ o @fheure@:@fminutes@',
 	'agenda_fsd_notime' => '<NEW>Od @djour_l@ @djour@ @dmois_l@ @dannee@ do @fjour_l@ @fjour@ @fmois_l@ @fannee@',
-	'agenda_jour' => 'deň, ', # MODIF
-	'agenda_jours' => 'dní, ', # MODIF
-	'agenda_jours_seul' => 'dní', # MODIF
-	'agenda_le' => ' ', # MODIF
-	'agenda_mois' => 'mesiac, ', # MODIF
-	'agenda_mois_pluriel' => 'mesiacov, ', # MODIF
 	'agenda_sd' => '<NEW>@djour_l@ @djour@ @dmois_l@ @dannee@ od @dheure@:@dminutes@ do @fheure@:@fminutes@',
 	'agenda_sd_h' => '<NEW>@djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@',
 	'agenda_sd_notime' => '<NEW>@djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'S\'inscrire à l\'événement', # NEW
-	'agenda_summary' => '<NEW>Kalendár udalostí (od pondelka do nedele)',
 	'agendamoisde' => '<NEW>Kalendár na',
 	'aidesc' => '<NEW>Aide sur SoyezCréateurs',
 	'alaune' => 'Featured',
@@ -45,17 +29,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_title' => 'Consulter les articles archivés', # NEW
 	'articlesconnexes' => '<NEW>Súvisiace články',
 	'articlesordreantichrono' => '<NEW>Články v chronologickom poradí',
-	'aujourdhui' => '<NEW>Dnes',
 	'auteur' => '<NEW>Autor',
 	'auteurs_liste' => '<NEW>Zoznam autorov',
 	'auteurs_site' => '<NEW>Autori stránky',
-
-	// B
-	'barre_typo_generalisee' => 'Typographical bar generalized',
-	'boutique' => 'Shop (dev)', # MODIF
-	'boutonstexte' => '<NEW>Textové tlačidlo',
-	'bte' => 'Typographical Enluminures', # MODIF
-	'btv2' => 'Typographical bar', # MODIF
 
 	// C
 	'carte_monde' => '<NEW>Mapa sveta',
@@ -100,7 +76,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bandeau_annonce' => '<NEW>Zobrazenie bannera s oznamami',
 	'cfg_bandeau_contact' => '<NEW>Zobraziť spájací banner',
 	'cfg_bandeau_page' => 'In the header banner of the page',
-	'cfg_banniere' => 'Banner',
 	'cfg_banniere_degrade' => '<NEW>Sklon pozadia',
 	'cfg_banniere_lentilles' => '<NEW>Efekt šošovky',
 	'cfg_banniere_metal' => 'Brushed metal',
@@ -111,8 +86,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadrestexte' => '<NEW>Cadres du contenu', # MODIF
 	'cfg_cartouche' => 'Block for "New and Updated", "Contents"...', # MODIF
 	'cfg_choix_banniere_label' => '<NEW>Výber bannera (ak na stránke nie je žiadne logo ankety)',
-	'cfg_choix_banniere_tableau' => '<NEW>Zoznam bannerov',
-	'cfg_citations' => '<NEW>Citations', # MODIF
 	'cfg_code_pub_google' => '<NEW>Google kód inzerátov v banneri',
 	'cfg_code_recherche_google' => '<NEW>Google kód vyhľadávania a spoplatnené softvérové tlačidlá',
 	'cfg_code_stats_google' => '<NEW>Kód pre štatistiky z Google Analytics (napr. UA-xxxxx-x)',
@@ -223,7 +196,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => '<NEW>Druhá navigácia',
 	'cfg_navigationtransversale_label' => '<NEW>Priebežná navigácia',
 	'cfg_navigationtransversalelocale' => 'Transverse local navigation', # MODIF
-	'cfg_nom_banniere' => '<NEW>Názov bannera',
 	'cfg_nombres_quoideneuf' => 'The what\'s new numbers', # MODIF
 	'cfg_non_secondaire' => '<NEW>Nie, zobraziť v spodnej časti druhej navigácie',
 	'cfg_numero_cnil' => '<NEW>Zobrazenie čísla CNIL',
@@ -254,7 +226,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_quoideneuf_label' => '<MODIF>What\'s new numbers', # MODIF
 	'cfg_rainette_ville' => '<NEW>Code Ville (Météo)',
 	'cfg_realisation' => '<NEW>Vyhotovenie',
-	'cfg_recherche_mot_label' => '<NEW>Umožniť vyhľadávať kľúčové slová',
 	'cfg_redirection_ancien_site' => '<NEW>Presmerovať na starú stránku',
 	'cfg_rss_label' => '<NEW>Nombre RSS', # MODIF
 	'cfg_rss_label_ex' => '<NEW>Nombre de syndications affichées par flux RSS dans la navigation secondaire',
@@ -291,7 +262,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chapitre_complet' => '<NEW>Zobraziť celú kapitolu na tlač',
 	'chapitre_complet_title' => '<NEW>Zobraziť obsah celej kapitoly: ',
 	'chercheravecgoogle' => '<NEW>Prehľadať web s <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Googlom\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
-	'citations' => '<NEW>Citáty',
 	'clever_uns' => 'Unsubscription done', # MODIF
 	'clevermail' => 'CleverMail', # MODIF
 	'commencer' => 'To start', # MODIF
@@ -299,19 +269,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => '<NEW>Pripojenie',
 	'connexiontitle' => '<NEW>Prístup do rozhrania správcu',
 	'copyright_cnil' => '<NEW>deklarácia CNIL č.',
-	'copyright_droits' => '<NEW>Všetky práva vyhradené',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => '<NEW>Výrobca: ',
 	'copyright_spip' => '<NEW>Táto stránka využíva <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora šablóny\'>Pyrat.net</a> šablónu od <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, redakčného systému na základe licencie GPL\'>SPIP</a>',
 
 	// D
-	'date_j_1' => '<NEW>N',
-	'date_j_2' => '<NEW>P',
-	'date_j_3' => '<NEW>U',
-	'date_j_4' => '<NEW>S',
-	'date_j_5' => '<NEW>Š',
-	'date_j_6' => '<NEW>P',
-	'date_j_7' => '<NEW>S',
 	'deconnexion' => '<NEW>Odhlásenie',
 	'deconnexiontitle' => '<NEW>Odhlásiť sa',
 	'deposer_intention' => 'Send a prayer intention',
@@ -323,39 +285,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'ecoute' => '<NEW>Vypočujte si :',
-	'edito' => '<NEW>Úvodník',
 	'editos' => '<NEW>Úvodníky',
-	'entravaux' => '<NEW>V rekonštrukcii',
-	'entravaux_info' => '<NEW>Prebieha údržba. Ďakujeme za porozumenie.',
-	'entravaux_int_serv' => 'Service interrupted',
-	'entravaux_rev_plus_tard' => 'Please come back later...', # MODIF
 	'erreur' => '<NEW>Chyba !',
-	'erreur_connexion' => '<NEW><h2>Chyba hesla</h2><p>Prosím, začnite odznova.</p>',
 	'erreur_documentexistepas' => '<NEW>Chyba : tento dokument neexistuje!',
 	'erreur_excuses_404' => 'Nous sommes désolés...', # NEW
 	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu être trouvée parce que :</p><ol><li>elle n\'était plus d\'actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
-	'fil_rss' => 'RSS feed', # MODIF
-	'fil_rss_title' => 'Use this link in your RSS reader',
 	'forum' => '<NEW>Fórum',
 	'forum_enreponse' => '<NEW>V odpovedi na:',
 	'forum_enreponse_breve' => '<NEW>V odpovedi na položku:',
 	'forum_enreponse_message' => '<NEW>V odpovedi na správu:',
-	'forum_graversonnom' => '<NEW>Váš zámer',
 	'forum_prenom' => '<NEW>Kto ste?',
 	'forum_repondre' => '<NEW>Pridať vaše odporúčanie',
 	'forum_vosreponses' => '<NEW>Vaše odporúčania',
 	'forum_votre_prenom' => '<NEW>Krstné meno:',
 
-	// G
-	'gpm_fontion' => '<NEW>Vlastnosti',
-	'gpm_ouinon' => '<NEW>Hodnoty',
-
 	// L
 	'layout_accueil_title' => '<NEW>Špeciálne usporiadanie domovskej stránky',
-	'layout_autres' => '<NEW>Iné stránky',
-	'layout_autres_title' => '<NEW>Usporiadanie špecifických stránok  (plán...)',
 	'layout_defaut_title' => '<NEW>Predvolený vzhľad stránky (články a rubriky) ',
 	'liresuitede' => '<NEW>Viac o :',
 	'liresuiteeditorial' => '<NEW>Prečítajte si koniec úvodníka',
@@ -377,14 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => '<NEW>Newsletter stránky',
-	'newsletter_action' => '<NEW>Akcia',
-	'newsletter_cnil' => '<NEW>V súlade zo zákonom č. 78-17 zo 6 januára 1978 máte právo prístupu k svojim údajom a na ich odstránenie.',
-	'newsletter_desabonnement' => '<NEW>Odpísanie : {LINKS} (Pozn. kliknutie na tento odkaz spôsobí, že vaše prihlásenie bude okamžite zrušené.)',
-	'newsletter_desinscription' => '<NEW>Odhlásiť sa',
-	'newsletter_email' => '<NEW>E-mailová adresa',
-	'newsletter_inscription' => '<NEW>Zapísať sa',
 	'newsletter_recevoir' => 'Receive the site newsletter', # MODIF
-	'newsletter_valider' => '<NEW>Poslať',
 
 	// O
 	'ordreantichronologique' => '<NEW>obrátiť chronologické poradie',
@@ -392,8 +332,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par' => 'by', # MODIF
-	'parametres_google' => '<NEW>Nastavenia Google',
-	'parametres_xiti' => '<NEW>Nastavenia Xiti',
 	'participez' => '<NEW>Zúčastňujte sa na živote stránky!',
 	'plan_menu' => '<NEW>Mapa stránky',
 	'plus_loin' => '<NEW>Pozri tiež',
@@ -407,14 +345,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_infructueuse' => '<NEW>Nič sa nenašlo.',
 	'recherche_label' => '<NEW>Prehľadať túto stránku',
-	'recherche_motclef' => '<NEW>Vybrať kľúčové slovo',
-	'recherche_motclef_label' => '<NEW>Vyhľadávanie podľa kľúčových slov',
 	'recherche_title' => '<NEW>Prosím, zadajte svoje vyhľadávanie',
 	'recherche_title_ok' => '<NEW>Spustiť vyhľadávanie',
 	'recherche_total' => '<NEW>Celkom nájdených položiek',
 	'recherche_value' => '<NEW>Vyhľadať ?',
 	'retouraccueil' => '<NEW>Späť na domovskú stránku',
-	'retourgalerie' => '<NEW>Späť do galérie',
 	'retoursommaire' => '<NEW>Späť na zoznam',
 	'retourtop' => '<NEW>Späť nahor',
 	'rubrique_securisee' => 'Accés réservé ouvert', # NEW
@@ -431,7 +366,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndiquer_agenda' => 'Syndicate the agenda',
 
 	// T
-	'textesiplanvide' => '<NEW>Text, ak je plán prázdny',
 	'themes' => '<NEW>Témy',
 	'tousarticlesantichrono' => '<NEW>Všetky články podľa dátumu',
 	'tout' => '<NEW>Všetko',

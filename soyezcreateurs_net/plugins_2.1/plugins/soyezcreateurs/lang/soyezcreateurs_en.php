@@ -9,35 +9,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Go to menu',
-	'accessibilite_politique' => 'Accessibility policy',
 	'accessibilite_recherche' => 'Go to Search box',
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
 	'accueil_menu' => 'Home',
 	'accueil_site' => 'Revenir à l\'Accueil du site', # NEW
 	'agenda' => 'Calendar',
-	'agenda_a' => ' at ',
-	'agenda_an' => ' year, ',
-	'agenda_ans' => ' years, ',
-	'agenda_au' => ' to ',
-	'agenda_dans' => 'in ',
-	'agenda_de' => ' from ',
-	'agenda_du' => 'From ',
-	'agenda_en_ce_moment' => '<em>(now)</em>',
 	'agenda_exporter_ical' => 'Export in iCal format',
 	'agenda_fsd' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
-	'agenda_jour' => ' day, ',
-	'agenda_jours' => ' days, ',
-	'agenda_jours_seul' => ' days',
-	'agenda_le' => ' ',
-	'agenda_mois' => ' month, ',
-	'agenda_mois_pluriel' => ' months, ',
 	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
 	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
-	'agenda_summary' => 'Calendar of events (from Monday to Sunday)',
 	'agendamoisde' => 'Calendar for',
 	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
@@ -45,17 +29,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_title' => 'View the archived articles',
 	'articlesconnexes' => 'Related articles',
 	'articlesordreantichrono' => 'Articles in chronological order',
-	'aujourdhui' => 'Today',
 	'auteur' => 'Author',
 	'auteurs_liste' => 'List of authors',
 	'auteurs_site' => 'Site authors',
-
-	// B
-	'barre_typo_generalisee' => 'Typographical bar generalized',
-	'boutique' => 'Shop (dev)',
-	'boutonstexte' => 'Text button',
-	'bte' => 'Typographical miniatures',
-	'btv2' => 'Typographical toolbar',
 
 	// C
 	'carte_monde' => 'World map',
@@ -100,7 +76,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bandeau_annonce' => 'Display the announcement banner',
 	'cfg_bandeau_contact' => 'Display the contact banner',
 	'cfg_bandeau_page' => 'In the header banner of the page',
-	'cfg_banniere' => 'Banner',
 	'cfg_banniere_degrade' => 'Background gradient',
 	'cfg_banniere_lentilles' => 'Lens effect',
 	'cfg_banniere_metal' => 'Brushed metal',
@@ -111,8 +86,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadrestexte' => 'Content panels',
 	'cfg_cartouche' => 'Block for "New and Updated", "Contents"...',
 	'cfg_choix_banniere_label' => 'Choice of the banner (if no survey logo for the site)',
-	'cfg_choix_banniere_tableau' => 'Banners list',
-	'cfg_citations' => 'Quotations',
 	'cfg_code_pub_google' => 'Google code for banner ads',
 	'cfg_code_recherche_google' => 'Google code for the search and sponsored software buttons',
 	'cfg_code_stats_google' => 'Code for Google stats with Google Analytics (example : UA-xxxxx-x)',
@@ -223,7 +196,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => 'Secondary Navigation',
 	'cfg_navigationtransversale_label' => 'Transversale Navigation',
 	'cfg_navigationtransversalelocale' => 'Transverse local navigation',
-	'cfg_nom_banniere' => 'Banner name',
 	'cfg_nombres_quoideneuf' => 'The what\'s new numbers',
 	'cfg_non_secondaire' => 'No, display on the bottom of the secondary navigation',
 	'cfg_numero_cnil' => 'Display of the CNIL number',
@@ -254,7 +226,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_quoideneuf_label' => 'Number of "What\'s new" items',
 	'cfg_rainette_ville' => 'Town Code (for the weather)',
 	'cfg_realisation' => 'Making',
-	'cfg_recherche_mot_label' => 'Enable keyword search',
 	'cfg_redirection_ancien_site' => 'Redirect to the old site',
 	'cfg_rss_label' => 'Number of RSS items',
 	'cfg_rss_label_ex' => 'Number of syndication links displayed per RSS feed in the secondary navigation section',
@@ -291,7 +262,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chapitre_complet' => 'Display complete chapter for printing',
 	'chapitre_complet_title' => 'Display the entire section contents: ',
 	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
-	'citations' => 'Quotes',
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
@@ -299,19 +269,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',
-	'copyright_droits' => 'All rights reserved',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this template\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
-	'date_j_1' => 'S',
-	'date_j_2' => 'M',
-	'date_j_3' => 'T',
-	'date_j_4' => 'W',
-	'date_j_5' => 'T',
-	'date_j_6' => 'F',
-	'date_j_7' => 'S',
 	'deconnexion' => 'Logout',
 	'deconnexiontitle' => 'Logout',
 	'deposer_intention' => 'Send a prayer intention',
@@ -323,39 +285,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'ecoute' => 'Listen to :',
-	'edito' => 'Editorial',
 	'editos' => 'Editorials',
-	'entravaux' => 'Under construction',
-	'entravaux_info' => 'Maintenance operations in progress. Thank you for your understanding.',
-	'entravaux_int_serv' => 'Service interrupted',
-	'entravaux_rev_plus_tard' => 'Please come back later...',
 	'erreur' => 'Error !',
-	'erreur_connexion' => '<h2>Password error</h2><p>Please begin again.</p>',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
 	'erreur_excuses_404' => 'Sorry...',
 	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
-	'fil_rss' => 'RSS feed',
-	'fil_rss_title' => 'Use this link in your RSS reader',
 	'forum' => 'Forum',
 	'forum_enreponse' => 'In reply to:',
 	'forum_enreponse_breve' => 'In reply to the item:',
 	'forum_enreponse_message' => 'In reply to the message:',
-	'forum_graversonnom' => 'Your intention',
 	'forum_prenom' => 'Who are you?',
 	'forum_repondre' => 'Add your testimony',
 	'forum_vosreponses' => 'Your testimonies',
 	'forum_votre_prenom' => 'Your firstname:',
 
-	// G
-	'gpm_fontion' => 'Characteristics',
-	'gpm_ouinon' => 'Values',
-
 	// L
 	'layout_accueil_title' => 'Specific arrangement to home page',
-	'layout_autres' => 'Other pages',
-	'layout_autres_title' => 'Arrangement for specific pages (plan...)',
 	'layout_defaut_title' => 'Default layout for the site (articles and sections) ',
 	'liresuitede' => 'More to read about :',
 	'liresuiteeditorial' => 'Read the end of the editorial',
@@ -377,14 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => 'Site newsletter',
-	'newsletter_action' => 'Action',
-	'newsletter_cnil' => 'In accordance with the law nº78-17 of 6 January 1978, you have the right of access to and removal of data about you.',
-	'newsletter_desabonnement' => 'To unsubscribe : {LINKS} (N.B. clicking on this link will cause your subscription to be cancelled immediately.)',
-	'newsletter_desinscription' => 'Unsubscribe',
-	'newsletter_email' => 'Email address',
-	'newsletter_inscription' => 'Subscribe',
 	'newsletter_recevoir' => 'Receive the site newsletter',
-	'newsletter_valider' => 'Submit',
 
 	// O
 	'ordreantichronologique' => 'reverse chronological order',
@@ -392,8 +332,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par' => 'by',
-	'parametres_google' => 'Google settings',
-	'parametres_xiti' => 'Xiti Settings',
 	'participez' => 'Take part in the life of the site!',
 	'plan_menu' => 'Sitemap',
 	'plus_loin' => 'See also',
@@ -407,14 +345,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_infructueuse' => 'Nothing found.',
 	'recherche_label' => 'Search this site',
-	'recherche_motclef' => 'Choose a keyword',
-	'recherche_motclef_label' => 'Searching by keywords',
 	'recherche_title' => 'Please enter your search',
 	'recherche_title_ok' => 'Begin search',
 	'recherche_total' => 'Total items found',
 	'recherche_value' => 'Search ?',
 	'retouraccueil' => 'Back to home page',
-	'retourgalerie' => 'Back to the gallery',
 	'retoursommaire' => 'Back to Overview',
 	'retourtop' => 'Back to top',
 	'rubrique_securisee' => 'Accés réservé ouvert', # NEW
@@ -431,7 +366,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndiquer_agenda' => 'Syndiquer l\'agenda',
 
 	// T
-	'textesiplanvide' => 'Text if the plan is empty',
 	'themes' => 'Themes',
 	'tousarticlesantichrono' => 'All articles by date',
 	'tout' => 'All',
