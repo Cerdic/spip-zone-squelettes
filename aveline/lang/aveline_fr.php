@@ -1,9 +1,10 @@
 <?php
-
-// Sécurité
-if (!defined("_ECRIRE_INC_VERSION")) return;
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/aveline/lang/
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
 	// C
 	'config-aveline-agenda' => 'Aveline - Extension Agenda',
 	'config-aveline-type-blog' => 'Aveline - Configuration de type blog',
@@ -12,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip avec groupes de mots et menus',
 	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip avec secteurs de langue',
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip avec secteurs de langue et menus',
-	
+
 	// D
 	'description-config-aveline-agenda' => 'Ajoute des noisettes pour afficher les évènements du plugin Agenda dans vos page. Utilisez l\'option <i>Fusionner avec la configuration actuelle</i>.',
 	'description-config-aveline-type-blog' => 'Présentation de type blog (les brèves sont désactivées).',
@@ -66,7 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_site-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'au site.',
 	'description_site-mots_cles' => 'Liste les mots-clés associés au site.',
 	'description_site-syndic_articles' => 'Liste l\'ensemble des articles syndiqués de ce site.',
-	
+
 	// E
 	'explication_afficher_selecteur_archives' => 'à la faÇon d\'un blog, ajoute en début et/ou en fin de liste un sélecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donnée.',
 	'explication_afficher_tri_alphabetique_nom' => 'Quand la liste triée par nom, affiche un index alphabétique permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée.',
@@ -82,7 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_tri_recherche' => 'Par défaut, les résultats sont triés par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajoutée.',
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pour que les évènements puissent avoir leur propre logo, vous devez installer le plugin \'Documents et Logo pour Agenda\'.',
 	'explication_vignette_ajout_css' => 'Une majorité de thèmes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour améliorer l\'affichage. à ne pas activer si le thème prend en charge les vignettes.',
-	
+
 	// I
 	'item_annee' => 'par année',
 	'item_article_specifique' => 'dans un ou plusieurs articles spécifiques',
@@ -155,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_tout' => 'tous les éléments sans pagination',
 	'item_vignettes' => 'vignettes',
 	'item_visites' => 'nombre de visites',
-	
+
 	// L
 	'label_afficher' => 'Afficher :',
 	'label_afficher_adresse' => 'Afficher l\'adresse du lieu ?',
@@ -311,7 +312,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_utiliser_logo_breve_rubrique' => 'Afficher le logo de la rubrique parente si la brève n\'a pas de logo ?',
 	'label_utiliser_logo_evenement_article_rubrique' => 'Afficher le logo de l\'article parent si l\'évènement n\'a pas de logo ?',
 	'label_vignette_ajout_css' => 'Ajout en dur de CSS spécifiques ?',
-	
+
 	// N
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_article-documents' => 'Documents de l\'article',
@@ -400,7 +401,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Forum du site',
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
-	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
+	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
 );
 
 ?>
