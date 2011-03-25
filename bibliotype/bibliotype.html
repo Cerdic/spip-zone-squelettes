@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP</title>
+
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" sizes="72x72" href="images/ipad_icon.png" />
+  <link rel="apple-touch-startup-image" href="images/startup.png" />
+
+  <!-- This doesn't work in landscape but wouldn't it be nice if it did? /me nudges Apple -->
+  <link rel="apple-touch-startup-image" media="screen and (orientation: landscape)" href="images/startup-land.png" />
+
+
+  <link href="#CHEMIN{css/master.css}" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="#CHEMIN{js/jquery.js}"></script> 
+  <script type="text/javascript" src="#CHEMIN{js/jquery.doubletap.js}"></script> 
+  <script type="text/javascript" src="#CHEMIN{js/Hyphenator.js}"></script> 
+  <script type="text/javascript" src="#CHEMIN{js/bibliotype.js}"></script>
+
+<style>
+.chapo {
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+.chapo p {
+	text-indent: 0px !important;
+}
+</style>
+
+</head>
+
+<body class="high georgia justified">
+
+  <div id="menu_tab">Menu</div>
+  <div id="menu_wrap">
+    <menu>
+      <h1>Bibliotype</h1>
+      <ul class="sizes">
+        <li class="desc">Size</li>
+        <li class="size1">bed</li>
+        <li class="size2">knee</li>
+        <li class="size3">breakfast</li>
+      </ul>
+
+      <ul class="text_type">
+        <li class="desc">Justification</li>
+        <li class="rag">Ragged</li>
+        <li class="just">Justified</li>
+      </ul>
+
+      <ul class="family">
+        <li class="desc">Family</li>
+        <li class="geo">Georgia</li>
+        <li class="hel">Helvetica</li>
+      </ul>
+      
+      <ul class="contrast">
+        <li class="desc">Contrast</li>
+        <li class="lowc">Low</li>
+        <li class="highc">High</li>
+      </ul>
+      
+      <ul class="grid">
+        <li class="desc">Grid</li>
+        <li class="bg_off">Grid Off</li>
+        <li class="bg_on">Grid On</li>
+      </ul>
+      
+      <ul class="hyphenation">
+        <li class="desc">Hyphenation</li>
+        <li id="hyphenToggle">Toggle</li>
+      </ul>
+      <div id="menu_footer">
+        <p>More information at: <a href="http://bibliotype.org/">http://bibliotype.org/</a></p>
+      </div>
+    </menu>
+  
+  </div>
+
+  <div id="content_container" class="knee">
+
+    <div class="not_tablet">
+      <!--h1 class="bibliotype">Bibliotype — HTML5 templates for longform reading</h1-->
+      <div class="instructions">
+        <p class="alert">These templates are optimized for viewing on an iPad</span></p>
+      </div>
+    </div>
+    <header>#NOM_SITE_SPIP</header>
+
+
+<BOUCLE_a(ARTICLES)
+	{recherche?}
+	{id_mot?}
+	{id_auteur?}
+	{id_rubrique?}
+	{!par date}
+	{pagination 5}
+>
+
+
+    <div class="body_text">
+      <div id="title_block">
+        <h3>#SURTITRE</h3>
+        <h2 class="#EDIT{titre}">#TITRE</h2>
+        <h3>#SOUSTITRE</h3>
+        [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{400}|image_sepia)]
+      </div>
+		<div class="chapo #EDIT{chapo}">[(#CHAPO|paragrapher)]</div>
+      
+		<div class="texte #EDIT{texte}">[(#TEXTE|lettrine_first_para)]</div>
+
+      <p class="closing">*</p> 
+
+      <div class="footnotes">
+	#NOTES
+      </div>
+    
+    </div>
+
+</BOUCLE_a>
+    
+    <footer>#URL_SITE_SPIP</footer>
+      
+  </div>
+
+</body>
+
+</html>
