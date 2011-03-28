@@ -11,18 +11,7 @@
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
 	<BOUCLE_liste_auteurs(AUTEURS) {compteur articles}{tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{aveline_exclure_objet_encours}{articles.statut = publie}>
-	[(#ENV{afficher_tri_alphabetique}|et{#ENV{tri_liste_auteurs}|sinon{#ENV{tri}}|=={'nom'}}|et{#ENV{selection}|=={'tout'}})
-		[(#SET{initiale,[(#NOM**|aveline_initiale|unique{liste_auteurs})]})]
-	]
-	[(#ENV{style_liste}|=={liste}|oui)
-		#INCLURE{fond=inclure/auteur-liste,id_auteur=#ID_AUTEUR,id_auteur_expose=#ENV{id_auteur},initiale=#GET{initiale},env}
-	]
-	[(#ENV{style_liste}|=={resume}|oui)
 		#INCLURE{fond=inclure/auteur-resume,id_auteur=#ID_AUTEUR,id_auteur_expose=#ENV{id_auteur},initiale=#GET{initiale},env}
-	]
-	[(#ENV{style_liste}|=={vignettes}|oui)
-		#INCLURE{fond=inclure/auteur-vignette,id_auteur=#ID_AUTEUR,id_auteur_expose=#ENV{id_auteur},initiale=#GET{initiale},env}
-	]
 	</BOUCLE_liste_auteurs>
 	</ul>
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]

@@ -17,12 +17,7 @@
 	[(#ENV{afficher_tri_alphabetique}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}}|et{#ENV{selection}|=={'tout'}})
 		[(#SET{initiale,[(#TITRE**|aveline_initiale|unique{liste_articles})]})]
 	]
-	[(#ENV{style_liste}|=={resume}|non)
-		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},initiale=#GET{initiale},env}
-	]
-	[(#ENV{style_liste}|=={resume}|oui)
-		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},initiale=#GET{initiale},env}
-	]
+	#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},initiale=#GET{initiale},env}
 	</BOUCLE_liste_articles>
 	</ul>
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
