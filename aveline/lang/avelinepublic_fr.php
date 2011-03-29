@@ -6,7 +6,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'a_venir' => 'à venir',
+	'a_venir' => 'À venir',
 	'adresse_deux_points' => 'Adresse :',
 	'annee_deux_points' => 'Année :',
 	'annees' => 'Années',
