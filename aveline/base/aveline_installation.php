@@ -194,6 +194,10 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
+	if (version_compare($current_version,'0.3.6','<')){
+		foreach ($noisettes as $cle => $noisette)
+			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','avelinepublic:',$noisettes[$cle]['parametres']);
+	}
 	return $noisettes;
 }
 
