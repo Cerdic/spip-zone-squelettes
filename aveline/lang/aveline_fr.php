@@ -169,6 +169,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_categorie' => 'Afficher la catégorie ?',
 	'label_afficher_date' => 'Afficher la date ?',
 	'label_afficher_date_dernier_ajout' => 'Afficher la date de dernier ajout ?',
+	'label_afficher_date_en_surtitre' => 'Afficher la date comme un sur-titre ?',
 	'label_afficher_date_modif' => 'Afficher la date de dernière modification ?',
 	'label_afficher_date_publication' => 'Afficher la date de publication ?',
 	'label_afficher_derniers_articles_syndiques' => 'Afficher les derniers articles syndiqués ?',

@@ -3,10 +3,11 @@
 [(#ENV{style_liste}|=={liste}|oui)
 	<li class="item">
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
+		[(#ENV{liste_afficher_date_en_surtitre}|et{#ENV{liste_afficher_date}})[(#DATE|affdate_jourcourt)]]
 		[(#ENV{liste_afficher_surtitre}|oui)#SURTITRE ]<a href="#URL_ARTICLE"[(#ENV{id_article_expose}|=={#ID_ARTICLE}|oui) class="on"]>#TITRE</a>[(#ENV{liste_afficher_soustitre}|oui) #SOUSTITRE]
 		[(#ENV{liste_afficher_note}|et{#PLUGIN{notation}})#NOTATION_ETOILE{#NOTE}<br />]
-		[(#ENV{liste_afficher_date}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_traductions}})<div class="info-publi">]
-			[(#ENV{liste_afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
+		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_traductions}})<div class="info-publi">]
+			[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non})[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
 			[(#ENV{liste_afficher_auteurs}|oui)[<:par_auteur:> (#LESAUTEURS).]]
 			[(#ENV{liste_afficher_date_modif}|oui)<:avelinepublic:mis_a_jour_le:> [(#DATE_MODIF|affdate)].]
 			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{liste_texte_devant_rubrique},[(#ENV{liste_texte_devant_rubrique}|_T)]}) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
@@ -17,13 +18,14 @@
 			[(#ENV{liste_afficher_popularite}|oui)#POPULARITE_ABSOLUE <:avelinepublic:visiteurs_quotidiens:>.]
 			[(#ENV{liste_afficher_visites}|oui)<:spip:lien_visites{visites=#VISITES}:>.]
 			[(#ENV{liste_afficher_traductions}|oui)#MODELE{article_traductions}]
-		[(#ENV{liste_afficher_date}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_visites}}|ou{#ENV{liste_afficher_traductions}})</div>]
+		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_visites}}|ou{#ENV{liste_afficher_traductions}})</div>]
 	</li>
 ]
 [(#ENV{style_liste}|=={resume}|oui)
 	<li class="item hentry">
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
 		<[(#GET{niveau_titre_article}) ]class="[(#GET{niveau_titre_article}) ]entry-title">
+			[(#ENV{afficher_date_en_surtitre}|et{#ENV{afficher_date}})[(#DATE|affdate_jourcourt)]]
 			[(#ENV{afficher_surtitre}|oui)#SURTITRE ]
 			<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 				[(#ENV{afficher_logo}|oui)
@@ -34,12 +36,12 @@
 			</a>
 			[(#ENV{afficher_soustitre}|oui) #SOUSTITRE]
 		</#GET{niveau_titre_article}>
-		[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})<div class="info-publi">]
+		[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})<div class="info-publi">]
 			[(#ENV{afficher_note}|et{#PLUGIN{notation}})#NOTATION_ETOILE{#NOTE}<br />]
-			[(#ENV{afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]][(#ENV{afficher_date}|et{#ENV{afficher_auteurs}|et{#LESAUTEURS}}?{'<span class="sep">,</span>'})]
+			[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non})[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]][(#ENV{afficher_date}|et{#ENV{afficher_auteurs}|et{#LESAUTEURS}}?{'<span class="sep">,</span>'})]
 			[(#ENV{afficher_auteurs}|oui)[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
 			[(#ENV{afficher_date_modif}|oui)[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}})<br />]<:avelinepublic:mis_a_jour_le:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
-		[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})</div>]
+		[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})</div>]
 		[(#ENV{afficher_texte_article}|=={introduction}|oui)
 			[<div class="[(#EDIT{intro}) ]introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]
 		]
