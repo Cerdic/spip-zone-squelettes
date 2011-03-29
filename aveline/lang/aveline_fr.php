@@ -163,6 +163,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher' => 'Afficher :',
 	'label_afficher_adresse' => 'Afficher l\'adresse du lieu ?',
 	'label_afficher_article' => 'Afficher l\'article ?',
+	'label_afficher_articles' => 'Afficher les articles ?',
 	'label_afficher_auteurs' => 'Afficher les auteurs ?',
 	'label_afficher_bio' => 'Afficher la biographie de l\'auteur ?',
 	'label_afficher_categorie' => 'Afficher la catégorie ?',
