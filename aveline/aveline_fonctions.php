@@ -356,6 +356,7 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	
 	$id_article = calculer_argument_precedent($idb, 'id_article', $boucles);
+	$id_syndic = calculer_argument_precedent($idb, 'id_syndic', $boucles);
 	$id_rubrique = calculer_argument_precedent($idb, 'id_rubrique', $boucles);
 	$id_secteur = calculer_argument_precedent($idb, 'id_secteur', $boucles);
 
@@ -368,11 +369,11 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	
 	$table = $boucle->id_table;
 	
-	$boucle->where[] = "aveline_calcul_branche($id_article,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
+	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['site_specifique'])";
 	
 }
 
-function aveline_calcul_branche($id_article,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique, $site_specifique) {
 	switch ($table) {
 		case 'articles':
 			$cle_secteur = $table;
@@ -388,6 +389,12 @@ function aveline_calcul_branche($id_article,$id_rubrique,$id_secteur,$cle_rubriq
 			break;
 		case 'article_specifique':
 			return $article_specifique ? sql_in("$table.id_article",picker_selected($article_specifique,'article')) : array();
+			break;
+		case 'meme_site':
+			return $id_syndic ? array('=',"$table.id_syndic",$id_syndic) : array ();
+			break;
+		case 'site_specifique':
+			return $site_specifique ? sql_in("$table.id_syndic",$site_specifique) : array();
 			break;
 		case 'meme_rubrique':
 			return $id_rubrique ? array('=',"$cle_rubrique.id_rubrique",$id_rubrique) : array ();

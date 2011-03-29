@@ -167,6 +167,33 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
+	if (version_compare($current_version,'0.3.5','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array(
+				'liste_sites',
+				'mot-sites',
+				'page-recherche-sites',
+				'liste_syndic_articles',
+				'site-syndic_articles',
+				'page-recherche-syndic_articles'
+			))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'liste_sites') {
+						$noisettes[$cle]['parametres']['branche'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+					if ($param == 'exclure_site_en_cours') {
+						$noisettes[$cle]['parametres']['exclure_objet_en_cours'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+					if ($param == 'liste_syndic_articles') {
+						$noisettes[$cle]['parametres']['branche'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+				}
+			}
+		}
+	}
 	return $noisettes;
 }
 

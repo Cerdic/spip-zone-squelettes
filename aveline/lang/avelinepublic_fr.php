@@ -24,6 +24,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aucun_forum_trouve' => 'Aucun message de forum ne correspond à cette recherche.',
 	'aucun_mot_trouve' => 'Aucun mot-clé ne correspond à cette recherche.',
 	'aucun_site_trouve' => 'Aucun site web référencé ne correspond à cette recherche.',
+	'aucun_syndic_article_trouve' => 'Aucun article sur le web ne correspond à cette recherche.',
 	'aucune_breve_trouvee' => 'Aucune brève ne correspond à cette recherche.',
 	'aucune_rubrique_trouvee' => 'Aucune rubrique ne correspond à cette recherche.',
 	'autres_auteurs' => 'Autres auteurs',
