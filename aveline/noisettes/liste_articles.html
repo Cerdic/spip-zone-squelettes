@@ -4,6 +4,9 @@
 <div class="liste articles">
 	#ANCRE_PAGINATION
 	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
+	[(#ENV{filtrer_sous_rubriques}|et{#ENV{position_filtrer_sous_rubriques}|!={fin}})
+		#INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}
+	]
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
 		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]
@@ -27,6 +30,9 @@
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'article','fin'})</p>]
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
 		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
+	[(#ENV{filtrer_sous_rubriques}|et{#ENV{position_filtrer_sous_rubriques}|!={debut}})
+		#INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}
 	]
 </div>
 </B_liste_articles>

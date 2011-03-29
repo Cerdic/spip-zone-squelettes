@@ -369,11 +369,15 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	
 	$table = $boucle->id_table;
 	
-	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['site_specifique'])";
+	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['site_specifique'], \$Pile[0]['filtre_rub'])";
 	
 }
 
-function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique, $site_specifique) {
+function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique, $site_specifique, $filtre_rub) {
+	if ($filtre_rub) {
+		$branche = 'branche_specifique';
+		$branche_specifique = 'rubrique|'.$filtre_rub;
+	}
 	switch ($table) {
 		case 'articles':
 			$cle_secteur = $table;
