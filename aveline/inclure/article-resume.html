@@ -78,13 +78,13 @@
 	</li>
 ]
 [(#ENV{style_liste}|=={vignettes}|oui)
-	<li class="item hentry" [(#ENV{vignette_ajout_css}|oui) style="float: left; width: 85px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"]>
+	<li class="item hentry" [(#ENV{vignette_ajout_css}|oui) style="float: left; clear:none; width: [(#ENV{vignette_taille_max_logo,50}|plus{30})]px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; height:[(#ENV{vignette_hauteur_vignette,150})]px"]>
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
-		<dl class="article" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px;"]>
-			<dt><a href="#URL_ARTICLE" [(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
-				[(#ENV{vignette_utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{150})]})]]
-				[(#ENV{vignette_utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{150})]})]]
-			#TITRE
+		<dl class="article" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]>
+			<dt [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]><a href="#URL_ARTICLE" [(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
+				[(#ENV{vignette_utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
+				[(#ENV{vignette_utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
+			[(#TITRE|couper{#ENV{vignette_longueur_max_titres,30}})]
 			</a></dt>
 		</dl>
 	</li>

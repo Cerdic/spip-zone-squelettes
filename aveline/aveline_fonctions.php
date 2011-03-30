@@ -346,7 +346,7 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sen
 			$retour[] = lien_ou_expose($lien,$c['libelle'],$c['tri']==$tri_actuel && $c['sens']==$sens_actuel);
 		}
 	}
-	return implode(' | ',$retour);
+	return implode(' <span class="sep separateur">|</span> ',$retour);
 }
 
 // Critère aveline_branche

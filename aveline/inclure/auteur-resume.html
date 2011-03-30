@@ -28,12 +28,12 @@
 	</li>
 ]
 [(#ENV{style_liste}|=={vignettes}|oui)
-	<li class="item hentry" [(#ENV{vignette_ajout_css}|oui) style="float: left; width: 85px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"]>
+	<li class="item hentry" [(#ENV{vignette_ajout_css}|oui) style="float: left; clear:none; width: [(#ENV{vignette_taille_max_logo,50}|plus{30})]px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; height:[(#ENV{vignette_hauteur_vignette,150})]px"]>
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
-		<dl class="auteur" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px;"]>
-			<dt><a href="#URL_AUTEUR" [(#ENV{id_auteur_expose}|=={#ID_AUTEUR}) class="on"]>
-				[(#LOGO_AUTEUR||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]})<br />]
-				#NOM
+		<dl class="auteur" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]>
+			<dt [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]><a href="#URL_AUTEUR" [(#ENV{id_auteur_expose}|=={#ID_AUTEUR}) class="on"]>
+				[(#LOGO_AUTEUR||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]
+				[(#NOM|couper{#ENV{vignette_longueur_max_noms,30}})]
 			</a></dt>
 			[(#ENV{vignette_afficher_nb_articles}|oui)[<dd[(#ENV{vignette_ajout_css}|oui) style="margin:0; padding:0;"]>(#AVELINE_COMPTEUR_ARTICLES)&nbsp;[(#AVELINE_COMPTEUR_ARTICLES|<{2}|?{<:ecrire:info_article:>,<:ecrire:info_article_2:>})]</dd>]]
 		</dl>
