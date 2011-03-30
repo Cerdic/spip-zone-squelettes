@@ -12,6 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annees' => 'Années',
 	'archives' => 'Archives',
 	'archives_deux_points' => 'Archives :',
+	'article_deux_points' => 'Article :',
 	'articles_les_mieux_notes' => 'Articles les mieux notés',
 	'articles_les_plus_anciens' => 'Articles les plus anciens',
 	'articles_les_plus_commentes' => 'Articles les plus commentés',
