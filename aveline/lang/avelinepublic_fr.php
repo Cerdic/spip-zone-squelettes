@@ -110,6 +110,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'source' => 'Source',
 	'source_deux_points' => 'Source :',
+	'start' => 'Lecture',
+	'stop' => 'Arrêt',
 	'sujet_deux_points' => 'Sujet :',
 	'sujets' => 'Sujets',
 	'sujets_deux_points' => 'Sujets :',
