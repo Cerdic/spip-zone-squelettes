@@ -53,13 +53,13 @@ function Z_styliser($flux){
 
 	// Ajax Parallel loading : ne pas calculer le bloc, mais renvoyer un js qui le loadera an ajax
 	if (defined('_Z_AJAX_PARALLEL_LOAD_OK')
-		AND $dir = explode('/',$fond)
-		AND count($dir)==2 // pas un sous repertoire
-		AND $dir = reset($dir)
-		AND in_array($dir,$z_blocs) // verifier deja qu'on est dans un bloc Z
-		AND in_array($dir,explode(',',_Z_AJAX_PARALLEL_LOAD)) // et dans un demande en APL
-		AND $pipe = find_in_path("$dir/z_apl.$ext") // et qui contient le squelette APL
-		){
+	  AND $dir = explode('/',$fond)
+	  AND count($dir)==2 // pas un sous repertoire
+	  AND $dir = reset($dir)
+	  AND in_array($dir,$z_blocs) // verifier deja qu'on est dans un bloc Z
+	  AND in_array($dir,explode(',',_Z_AJAX_PARALLEL_LOAD)) // et dans un demande en APL
+	  AND $pipe = find_in_path("$dir/z_apl.$ext") // et qui contient le squelette APL
+	  ){
 		$flux['data'] = substr($pipe, 0, - strlen(".$ext"));
 		return $flux;
 	}
@@ -69,8 +69,17 @@ function Z_styliser($flux){
 	// ou scaffolding ou page automatique les contenus
 	if (!$squelette){
 
+		// Cas de figure où on a déclaré type-composition.html dans un bloc, mais où type.html n'existe pas
+		if (isset($flux['args']['contexte']['composition'])
+		  AND $dir = explode('/',$fond)
+		  AND $dir = reset($dir)
+		  AND in_array($dir,$z_blocs)
+		  AND $f=find_in_path($fond."-".$flux['args']['contexte']['composition'].".$ext")){
+			$flux['data'] = substr($f,0,-strlen(".$ext"));
+		}
+
 		// si on est sur un ?page=XX non trouve
-	  if ($flux['args']['contexte'][_SPIP_PAGE] == $fond OR $flux['args']['contexte']['type'] == $fond) {
+		elseif ($flux['args']['contexte'][_SPIP_PAGE] == $fond OR $flux['args']['contexte']['type'] == $fond) {
 			// si c'est un objet spip, associe a une table, utiliser le fond homonyme
 			if (z_scaffoldable($fond)){
 				$flux['data'] = substr(find_in_path("objet.$ext"), 0, - strlen(".$ext"));
@@ -89,22 +98,22 @@ function Z_styliser($flux){
 		// si c'est un fond de contenu d'un objet en base
 		// generer un fond automatique a la volee pour les webmestres
 		elseif (strncmp($fond, "$z_contenu/", strlen($z_contenu)+1)==0
-			AND include_spip('inc/autoriser')
-			AND isset($GLOBALS['visiteur_session']['id_auteur']) // performance
-			AND autoriser('webmestre')){
-			$type = substr($fond,strlen($z_contenu)+1);
+		  AND include_spip('inc/autoriser')
+		  AND isset($GLOBALS['visiteur_session']['id_auteur']) // performance
+		  AND autoriser('webmestre')){
+		  $type = substr($fond,strlen($z_contenu)+1);
 			if ($is = z_scaffoldable($type))
 				$flux['data'] = z_scaffolding($type,$is[0],$is[1],$is[2],$ext);
 		}
-
+		
 		// sinon, si on demande un fond non trouve dans un des autres blocs
 		// et si il y a bien un contenu correspondant ou scaffoldable
 		// se rabbatre sur le dist.html du bloc concerne
 		else{
 			if ( $dir = explode('/',$fond)
-				AND $dir = reset($dir)
-				AND $dir !== $z_contenu
-				AND in_array($dir,$z_blocs)){
+			  AND $dir = reset($dir)
+			  AND $dir !== $z_contenu
+			  AND in_array($dir,$z_blocs)){
 				$type = substr($fond,strlen("$dir/"));
 				if (find_in_path("$z_contenu/$type.$ext") OR z_scaffoldable($type))
 					$flux['data'] = substr(find_in_path("$dir/dist.$ext"), 0, - strlen(".$ext"));
@@ -115,11 +124,11 @@ function Z_styliser($flux){
 	if ($fond=='body' AND substr($squelette,-strlen($fond))==$fond){
 		if (isset($flux['args']['contexte']['type'])
 		  AND (
-				(isset($flux['args']['contexte']['composition'])
-				AND file_exists(($f=$squelette."-".$flux['args']['contexte']['type']."-".$flux['args']['contexte']['composition']).".$ext"))
-				OR
-				file_exists(($f=$squelette."-".$flux['args']['contexte']['type']).".$ext")
-				))
+			(isset($flux['args']['contexte']['composition'])
+			AND file_exists(($f=$squelette."-".$flux['args']['contexte']['type']."-".$flux['args']['contexte']['composition']).".$ext"))
+			OR
+			file_exists(($f=$squelette."-".$flux['args']['contexte']['type']).".$ext")
+		  ))
 			$flux['data'] = $f;
 	}
 	// chercher le fond correspondant a la composition
@@ -127,7 +136,7 @@ function Z_styliser($flux){
 	  AND substr($squelette,-strlen($fond))==$fond
 	  AND $dir = explode('/',$fond)
 	  AND $dir = reset($dir)
-		AND in_array($dir,$z_blocs)
+	  AND in_array($dir,$z_blocs)
 	  AND $f=find_in_path($fond."-".$flux['args']['contexte']['composition'].".$ext")){
 		$flux['data'] = substr($f,0,-strlen(".$ext"));
 	}
