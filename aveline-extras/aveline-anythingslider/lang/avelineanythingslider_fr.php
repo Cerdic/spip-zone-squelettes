@@ -6,6 +6,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	'description_anythingslider_liste_articles' => 'Affiche une liste d\'articles sous la forme de résumés déroulants.',
+	'description_anythingslider_liste_evenements' => 'Affiche une liste d\'évènements sous la forme de résumés déroulants.',
+	'description_anythingslider_liste_syndic_articles' => 'Affiche une liste d\'articles syndiqués sous la forme de résumés déroulants.',
 	'label_build_arrows' => 'Afficher les flèches de navigation ?',
 	'label_build_navigation' => 'Afficher les onglets de navigation ?',
 	'label_delay' => 'Durée (en milisecondes) entre deux transistions :',
@@ -18,6 +20,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_toggle_controls' => 'Afficher les contrôles de navigation seulement au survol ?',
 	'label_width' => 'Largeur de la fenêtre (en pixels) :',
 	'nom_anythingslider_liste_articles' => 'AnythingSlider avec une liste d\'articles',
+	'nom_anythingslider_liste_evenements' => 'AnythingSlider avec une liste d\'évènements',
+	'nom_anythingslider_liste_syndic_articles' => 'AnythingSlider avec une liste d\'articles syndiqués',
 	
 );
 
