@@ -108,7 +108,7 @@
 
 
 jQuery(document).ready(function() {
-	jQuery.noConflict();
+	//jQuery.noConflict();
 
 	if (jQuery('div#s3slider').length > 0) {
 		jQuery('div#s3slider').s3Slider({
