@@ -7,7 +7,8 @@
 <head>
 <title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
-<INCLURE{fond=inc-head}>
+[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+<INCLURE{fond=inc-head} />
 [(#REM) Lien vers le flux RSS des articles la rubrique ]
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
 </head>
@@ -16,7 +17,7 @@
 <div id="page">
 
 	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=inc-entete}>
+	<INCLURE{fond=inc-entete} />
 
 	[(#REM) Contenu principal : contenu de la rubrique ]
     <div id="conteneur">
@@ -144,7 +145,7 @@
     <div id="navigation">
 
         [(#REM) Menu de navigation par rubriques ]
-        <INCLURE{fond=inc-rubriques}{id_rubrique}>
+        <INCLURE{fond=inc-rubriques, id_rubrique} />
 		
 		#FORMULAIRE_RECHERCHE
 
@@ -168,9 +169,10 @@
     </div><!--#extra-->
 
 	[(#REM) Pied de page ]
-	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	<INCLURE{fond=inc-pied, skel=#SQUELETTE} />
 
 </div><!--#page-->
 </body>
 </html>
-</BOUCLE_principale>
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucune_rubrique:>})]
+<//B_principale>
