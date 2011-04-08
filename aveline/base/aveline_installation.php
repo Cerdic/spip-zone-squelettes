@@ -206,7 +206,7 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 					  'liste_texte_devant_mots_cles',
 					  'texte_devant_rubrique',
 					  'liste_texte_devant_rubrique',
-					  'texte_devant_article'
+					  'texte_devant_article',
 					  'liste_texte_devant_article'
 					))) {
 						if ($valeur=='::')
