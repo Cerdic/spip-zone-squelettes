@@ -198,6 +198,29 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 		foreach ($noisettes as $cle => $noisette)
 			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','avelinepublic:',$noisettes[$cle]['parametres']);
 	}
+	if (version_compare($current_version,'0.3.7','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			foreach($noisette['parametres'] as $param => $valeur) {
+					if (in_array($param,array(
+					  'texte_devant_mots_cles',
+					  'liste_texte_devant_mots_cles',
+					  'texte_devant_rubrique',
+					  'liste_texte_devant_rubrique',
+					  'texte_devant_article'
+					  'liste_texte_devant_article'
+					))) {
+						if ($valeur=='::')
+							$noisettes[$cle]['parametres'][$param] = 'avelinepublic:colon2';
+						if ($valeur=='>')
+							$noisettes[$cle]['parametres'][$param] = 'avelinepublic:gt';
+					}
+				}
+		
+		
+			$noisettes[$cle]['parametres'] = str_replace('::','avelinepublic:colon2',$noisettes[$cle]['parametres']);
+			$noisettes[$cle]['parametres'] = str_replace('>','avelinepublic:gt',$noisettes[$cle]['parametres']);
+		}
+	}
 	return $noisettes;
 }
 

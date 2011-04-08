@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Catégorie :',
 	'categories' => 'Catégories',
 	'categories_deux_points' => 'Catégories :',
+	'colon2' => '::',
 	'commentaires' => 'Commentaires',
 	'contact' => 'Contact',
 	'contributeurs' => 'Contributeurs',
@@ -61,6 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// G
 	'groupes_mots' => 'Groupes de mots-clés',
+	'gt' => '>',
 
 	// I
 	'inscriptions_deux_points' => 'Inscriptions :',

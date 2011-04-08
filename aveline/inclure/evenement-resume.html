@@ -7,7 +7,7 @@
 			[(#ENV{liste_afficher_lieu}|oui)[<b><:avelinepublic:lieu_deux_points:></b> <span class="location">(#LIEU**|typo)</span>.]]
 			[(#ENV{liste_afficher_adresse}|oui)[<b><:avelinepublic:adresse_deux_points:></b> (#ADRESSE**|typo).]]
 			[(#ENV{liste_afficher_nb_participants}|et{#INSCRIPTION})#NB_INSCRITS[/(#PLACES) ]<:agenda:inscrits:>.]
-			[(#ENV{liste_afficher_article}oui)[(#ENV{liste_texte_devant_article}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{liste_texte_devant_article},[(#ENV{liste_texte_devant_article}|_T)]}) ]<a href="#INFO_URL{article,#ID_ARTICLE}">#INFO_TITRE{article,#ID_ARTICLE}</a>.]
+			[(#ENV{liste_afficher_article}oui)[(#ENV{liste_texte_devant_article}|_T) ]<a href="#INFO_URL{article,#ID_ARTICLE}">#INFO_TITRE{article,#ID_ARTICLE}</a>.]
 			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/evenement-mots_cles,id_evenement,texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
 		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non}|ou{#ENV{liste_afficher_lieu}}|ou{#ENV{liste_afficher_adresse}}|ou{#ENV{liste_afficher_nb_participants}}|ou{#ENV{liste_afficher_article}}|ou{#ENV{liste_afficher_mots_cles}})</div>]
 	</li>
@@ -43,8 +43,7 @@
 				[(#ENV{afficher_lire_la_suite}|oui)<span class="sep">|</span> ]<a class="lire-la-suite" href="#URL_EVENEMENT"><:avelinepublic:lien_permanent:></a>
 			]
 			[(#ENV{afficher_article}oui)
-				[(#ENV{texte_devant_article}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{texte_devant_article},[[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}})<span class="sep">|</span> ](#ENV{texte_devant_article}|_T)]})][(#ENV{texte_devant_article}|non)[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}})<span class="sep">|</span> ]]
-			<a href="#INFO_URL{article,#ID_ARTICLE}">#INFO_TITRE{article,#ID_ARTICLE}</a>]
+				[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|et{#ENV{texte_devant_article}|!={avelinepublic:gt}}|et{#ENV{texte_devant_article}|!={avelinepublic:colon2}})<span class="sep">|</span> ][(#ENV{texte_devant_article}|_T)]<a href="#INFO_URL{article,#ID_ARTICLE}">#INFO_TITRE{article,#ID_ARTICLE}</a>]
 			[(#ENV{afficher_mots_cles}oui)[(#INCLURE{fond=inclure/evenement-mots_cles,id_evenement,texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|?{'on',''})]})]]
 		[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}})</div>]
 	</li>

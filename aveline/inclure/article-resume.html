@@ -10,7 +10,7 @@
 			[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non})[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
 			[(#ENV{liste_afficher_auteurs}|oui)[<:par_auteur:> (#LESAUTEURS).]]
 			[(#ENV{liste_afficher_date_modif}|oui)<:avelinepublic:mis_a_jour_le:> [(#DATE_MODIF|affdate)].]
-			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{liste_texte_devant_rubrique},[(#ENV{liste_texte_devant_rubrique}|_T)]}) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
+			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|_T) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
 			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/objet-mots_cles,id_article,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
 			[(#ENV{liste_afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
 				[<a href="[(#URL_ARTICLE|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>.]
@@ -64,7 +64,7 @@
 				[(#ENV{afficher_lire_la_suite}|oui)<span class="sep">|</span> ]<a class="lire-la-suite" href="#URL_ARTICLE"><:avelinepublic:lien_permanent:></a>
 			]
 			[(#ENV{afficher_rubrique}oui)
-				[(#ENV{texte_devant_rubrique}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{texte_devant_rubrique},[[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}})<span class="sep">|</span> ](#ENV{texte_devant_rubrique}|_T)]})][(#ENV{texte_devant_rubrique}|non)[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}})<span class="sep">|</span> ]]
+				[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|et{#ENV{texte_devant_rubrique}|!={avelinepublic:gt}}|et{#ENV{texte_devant_rubrique}|!={avelinepublic:colon2}})<span class="sep">|</span> ][(#ENV{texte_devant_rubrique}|_T)]
 			<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>]
 			[(#ENV{afficher_mots_cles}oui)[(#INCLURE{fond=inclure/objet-mots_cles,id_article,id_rubrique='',texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|?{'on',''})]})]]
 			[(#ENV{afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
