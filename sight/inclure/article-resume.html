@@ -1,0 +1,20 @@
+[(#REM)
+
+  Squelette Presentation d'un article dans une liste
+  (c) 2009 Zpip
+  Distribue sous licence GPL
+
+]
+<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+<li class="item hentry">
+	<a href="#URL_ARTICLE" rel="bookmark" class="thumb">[(#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{290,290}|image_recadre{290,290,center})]</a>
+	<BOUCLE_category(RUBRIQUES) {id_rubrique}><div class="post-category"><a rel="category" href="[(#URL_RUBRIQUE)]">[(#TITRE)]</a></div></BOUCLE_category>
+	<h3 class="h3 entry-title"><a href="#URL_ARTICLE">#TITRE</a></h3>
+	<div class="info-publi">[<:par_auteur:> (#LESAUTEURS)][ &bull; <span class="post-date">(#DATE|affdate_jourcourt)</span> ]<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
+		<em>&bull; </em>
+		<a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="comments_popup_link">[(#TOTAL_BOUCLE)][(#TOTAL_BOUCLE|<={1}|oui)<:zpip:commentaire:>][(#TOTAL_BOUCLE|>{1}|oui)<:zpip:commentaires:>]</a>
+	<//B_nb_commentaires></div>
+	[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION)</div>]
+	<div class="clear"></div>
+</li>
+</BOUCLE_articles>
