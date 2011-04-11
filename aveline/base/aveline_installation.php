@@ -198,7 +198,7 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 		foreach ($noisettes as $cle => $noisette)
 			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','avelinepublic:',$noisettes[$cle]['parametres']);
 	}
-	if (version_compare($current_version,'0.3.7','==')){
+	if (version_compare($current_version,'0.3.7')==0){
 		// Réparation d'une boulette qui ne concerne que la version 0.3.7
 		foreach ($noisettes as $cle => $noisette) {
 			$noisettes[$cle]['parametres'] = str_replace('avelinepublic:colon2','::',$noisettes[$cle]['parametres']);
