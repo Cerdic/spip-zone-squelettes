@@ -9,13 +9,13 @@
 </head>
 
 <body class="page_article">
-<div id="page">
+<div class="page">
 
 	<INCLURE{fond=inclure/header} />
 
 	[(#REM) Contenu principal : contenu de l'article ]
-    <div class="hfeed" id="conteneur">
-    <div class="hentry" id="content">
+    <div class="container hfeed">
+    <div class="content hentry" id="content">
     
         [(#REM) Fil d'Ariane ]
         <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
@@ -58,29 +58,29 @@
 		et pourquoi pas ajax
 		][(#PETITION|?{' '})<INCLURE{fond=inclure/petition, id_article, env, ajax} />]
 
-        [<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+        [<div class="notes surlignable" id="notes"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
 
 		[(#REM) Forum de l'article ]
 		<a href="#forum" name="forum" id="forum"></a>
 		<INCLURE{fond=inclure/forum, id_article} />
 		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
 
-	</div><!--#content-->
-	</div><!--#conteneur-->
+	</div><!--.content-->
+	</div><!--.container-->
 
 
     [(#REM) Menu de navigation laterale ]
-    <div id="navigation">
+    <div class="nav" id="nav">
 
         [(#REM) Menu de navigation par rubriques ]
         <INCLURE{fond=inclure/rubriques, id_rubrique} />
 	
 		#FORMULAIRE_RECHERCHE
 
-    </div><!--#navigation-->
+    </div><!--.nav-->
     
     [(#REM) Menu de navigation laterale ]
-    <div id="extra">
+    <div class="extra">
 
         [(#REM) Articles dans la meme rubrique ]
         <B_articles_rubrique>
@@ -97,11 +97,11 @@
         [(#REM) Menu de navigation mots-cles ]
         #MODELE{article_mots}
         
-    </div><!--#extra-->
+    </div><!--.extra-->
 
 	<INCLURE{fond=inclure/footer, skel=#SQUELETTE} />
 
-</div><!--#page-->
+</div><!--.page-->
 </body>
 </html>
 </BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucun_article:>})]
