@@ -4,7 +4,7 @@
 	<li class="item">
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
 		[(#ENV{liste_afficher_date_en_surtitre}|et{#ENV{liste_afficher_date}})[(#DATE|affdate_jourcourt)]]
-		[(#ENV{liste_afficher_surtitre}|oui)#SURTITRE ]<a href="#URL_ARTICLE"[(#ENV{id_article_expose}|=={#ID_ARTICLE}|oui) class="on"]>#TITRE</a>[(#ENV{liste_afficher_soustitre}|oui) #SOUSTITRE]
+		[(#ENV{liste_afficher_surtitre}|oui)<span class="#EDIT{surtitre}">#SURTITRE</span> ]<a href="#URL_ARTICLE"[(#ENV{id_article_expose}|=={#ID_ARTICLE}|oui) class="on"]><span class="#EDIT{titre}">#TITRE</span></a>[(#ENV{liste_afficher_soustitre}|oui) <span class="#EDIT{soustitre}">#SOUSTITRE</span>]
 		[(#ENV{liste_afficher_note}|et{#PLUGIN{notation}})#NOTATION_ETOILE{#NOTE}<br />]
 		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_traductions}})<div class="info-publi">]
 			[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non})[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
@@ -26,15 +26,15 @@
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
 		<[(#GET{niveau_titre_article}) ]class="[(#GET{niveau_titre_article}) ]entry-title">
 			[(#ENV{afficher_date_en_surtitre}|et{#ENV{afficher_date}})[(#DATE|affdate_jourcourt)]]
-			[(#ENV{afficher_surtitre}|oui)#SURTITRE ]
+			[(#ENV{afficher_surtitre}|oui)<span class="#EDIT{surtitre}">#SURTITRE</span> ]
 			<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 				[(#ENV{afficher_logo}|oui)
 					[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
 					[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
 				]
-				#TITRE
+				<span class="#EDIT{titre}">#TITRE</span>
 			</a>
-			[(#ENV{afficher_soustitre}|oui) #SOUSTITRE]
+			[(#ENV{afficher_soustitre}|oui) <span class="#EDIT{soustitre}">#SOUSTITRE</span>]
 		</#GET{niveau_titre_article}>
 		[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})<div class="info-publi">]
 			[(#ENV{afficher_note}|et{#PLUGIN{notation}})#NOTATION_ETOILE{#NOTE}<br />]
@@ -84,7 +84,7 @@
 			<dt [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]><a href="#URL_ARTICLE" [(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 				[(#ENV{vignette_utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
 				[(#ENV{vignette_utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
-			[(#TITRE|couper{#ENV{vignette_longueur_max_titres,30}})]
+			[<span class="#EDIT{titre}">(#TITRE|couper{#ENV{vignette_longueur_max_titres,30}})</span>]
 			</a></dt>
 		</dl>
 	</li>
