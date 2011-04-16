@@ -1,7 +1,7 @@
 <BOUCLE_evenement(EVENEMENTS) {id_evenement}>
 [(#ENV{style_liste}|=={liste}|oui)
 	<li class="item vevent id_#ID_EVENEMENT">
-		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}})[<span class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span> ]]<span class="summary"><a href="#URL_EVENEMENT"[(#ENV{id_evenement_expose}|=={#ID_BREVE}) class="on"]>#TITRE</a></span>
+		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}})[<span class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span> ]]<span class="summary"><a href="#URL_EVENEMENT"[(#ENV{id_evenement_expose}|=={#ID_EVENEMENT}|oui)class="on"]>#TITRE</a></span>
 		[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non}|ou{#ENV{liste_afficher_lieu}}|ou{#ENV{liste_afficher_adresse}}|ou{#ENV{liste_afficher_nb_participants}}|ou{#ENV{liste_afficher_article}}|ou{#ENV{liste_afficher_mots_cles}})<div class="info-publi">]
 			[(#ENV{liste_afficher_date}|et{#ENV{liste_afficher_date_en_surtitre}|non})[<span class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span>.]]
 			[(#ENV{liste_afficher_lieu}|oui)[<b><:avelinepublic:lieu_deux_points:></b> <span class="location">(#LIEU**|typo)</span>.]]
@@ -16,7 +16,7 @@
 	<li class="item">
 		<h3 class="h3 vevent id_#ID_EVENEMENT">
 			[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}})[<span class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span> ]]
-			<a href="#URL_EVENEMENT" rel="bookmark"[(#ENV{id_evenement_expose}|=={#ID_EVENEMENT}) class="on"]>
+			<a href="#URL_EVENEMENT" rel="bookmark"[(#ENV{id_evenement_expose}|=={#ID_EVENEMENT}|oui)class="on"]>
 				[(#ENV{afficher_logo}|oui)
 					[(#LOGO_EVENEMENT||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]
 					[(#LOGO_EVENEMENT|non|et{#ENV{utiliser_logo_evenement_article_rubrique}})
