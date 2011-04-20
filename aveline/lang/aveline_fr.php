@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'explication_afficher_selecteur_archives' => 'À la façon d\'un blog, ajoute en début et/ou en fin de liste un sélecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donnée.',
+	'explication_afficher_source_rss' => 'Pour les articles importés avec le plugin Flux RSS en article, doit-on afficher la source, à savoir le site d\'où l\'article a été copié ?',
 	'explication_afficher_tri_alphabetique_nom' => 'Quand la liste triée par nom, affiche un index alphabétique permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée.',
 	'explication_afficher_tri_alphabetique_titre' => 'Quand la liste triée par titre, affiche un index alphabétique permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée. <strong>ATTENTION :</strong> ne fonctionnera pas correctement si vous utilisez des titres numérotés.',
 	'explication_choix_periode' => 'Ajoute des liens permettant au visiteur de modifier la période (évènements passés, en cours ou à venir). Les liens ne seront affichés que s\'il y a des évènements sur la période considérée.',
@@ -210,6 +211,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_site_web' => 'Afficher le site web ?',
 	'label_afficher_slogan_site' => 'Afficher le slogan du site ?',
 	'label_afficher_source' => 'Afficher la source ?',
+	'label_afficher_source_rss' => 'Afficher la source (RSS) ?',
+	'label_afficher_source_rss_soustitre' => 'Afficher la source comme un sous-titre ?',
 	'label_afficher_soustitre' => 'Afficher le sous-titre ?',
 	'label_afficher_statistiques_mot' => 'Afficher les statistiques du mot-clé ?',
 	'label_afficher_surtitre' => 'Afficher le sur-titre ?',

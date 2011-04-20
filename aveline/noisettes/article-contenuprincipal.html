@@ -16,6 +16,7 @@
 		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+		[(#ENV{afficher_source_rss}|et{#ENV{afficher_source_rss_soustitre}}|et{#PLUGIN{rssarticle}}|oui)[<p class="soustitre source_rss">(#INCLURE{fond=inclure/source_rss,id_article=#ID_ARTICLE})</p>]]
 
 		[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}})<p class="info-publi">]
 			[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|oui)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>][(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|et{#ENV{afficher_auteurs}|et{#LESAUTEURS}}?{'<span class="sep">,</span>'})]
@@ -28,6 +29,7 @@
 			]
 		[(#ENV{afficher_date}|et{#ENV{afficher_date_en_surtitre}|non}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}})</p>]
 		[(#ENV{afficher_traductions}|oui)#MODELE{article_traductions}]
+		[(#ENV{afficher_source_rss}|et{#ENV{afficher_source_rss_soustitre}|non}|et{#PLUGIN{rssarticle}}|oui)[<p class="source_rss"><strong><:avelinepublic:source_deux_points:></strong> (#INCLURE{fond=inclure/source_rss,id_article=#ID_ARTICLE})</p>]]
 	</div>
 
 	<div class="surlignable">
