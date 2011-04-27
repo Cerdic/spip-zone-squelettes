@@ -23,20 +23,22 @@ function aveline_upgrade($nom_meta_version_base, $version_cible){
 			// On calcule le tableau des noisettes
 			include_spip('base/abstract_sql');
 			$noisettes = sql_allfetsel('*','spip_noisettes','1');
-			
-			// On remet au propre les parametres
-			foreach ($noisettes as $cle => $noisette)
-				$noisettes[$cle]['parametres'] = unserialize($noisette['parametres']);
-			
-			// On applique les mises à jour
-			$noisettes = aveline_maj_noisettes($noisettes,$version_actuelle);
-			
-			// Il faut serializer les paramètres avant mise en base
-			foreach ($noisettes as $cle => $noisette)
-				$noisettes[$cle]['parametres'] = serialize($noisette['parametres']);
-			
-			// On update la base
-			sql_replace_multi('spip_noisettes',$noisettes);
+
+			if( sizeof($noisettes)>0) {
+				// On remet au propre les parametres
+				foreach ($noisettes as $cle => $noisette)
+					$noisettes[$cle]['parametres'] = unserialize($noisette['parametres']);
+				
+				// On applique les mises à jour
+				$noisettes = aveline_maj_noisettes($noisettes,$version_actuelle);
+				
+				// Il faut serializer les paramètres avant mise en base
+				foreach ($noisettes as $cle => $noisette)
+					$noisettes[$cle]['parametres'] = serialize($noisette['parametres']);
+		
+				// On update la base
+				sql_replace_multi('spip_noisettes',$noisettes);
+			}
 		}
 		ecrire_meta($nom_meta_version_base, $version_actuelle=$version_cible, 'non');
 	}
