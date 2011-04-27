@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['toujours_paragrapher'] = true;
+// Correctifs
 $GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
 $GLOBALS['fin_intertitre'] = "</h2>\n";
 $GLOBALS['puce'] = '- ';
