@@ -542,9 +542,9 @@ function create_document($chemin, $objet, $mode, $champs='non', $id_document='no
 		return false;
 }
 
-function create_logo($chemin, $type='art', $id, $ext) {
+function create_logo($chemin, $type='art', $id, $ext, $onoff='on') {
 	include_spip('inc/getdocument');
-	$file = deplacer_fichier_upload(find_in_path($chemin), _DIR_LOGOS . $type . 'on' . $id . '.' .$ext);
+	$file = deplacer_fichier_upload(find_in_path($chemin), _DIR_LOGOS . $type . $onoff . $id . '.' .$ext);
 	return $file;
 }
 
