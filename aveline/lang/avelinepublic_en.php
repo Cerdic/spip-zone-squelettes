@@ -8,13 +8,13 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'a_venir' => 'upcoming', # MODIF
+	'a_venir' => 'Upcoming',
 	'adresse_deux_points' => 'Adress:',
 	'annee_deux_points' => 'Year:',
 	'annees' => 'Years',
 	'archives' => 'Archives',
 	'archives_deux_points' => 'Archives:',
-	'article_deux_points' => 'Article :', # NEW
+	'article_deux_points' => 'Article:',
 	'articles_les_mieux_notes' => 'Best rated articles',
 	'articles_les_plus_anciens' => 'Oldest articles',
 	'articles_les_plus_commentes' => 'Most commented articles',
@@ -27,7 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aucun_forum_trouve' => 'No comment found.',
 	'aucun_mot_trouve' => 'No keyword found.',
 	'aucun_site_trouve' => 'No website found.',
-	'aucun_syndic_article_trouve' => 'Aucun article sur le web ne correspond à cette recherche.', # NEW
+	'aucun_syndic_article_trouve' => 'No syndicated article found.',
 	'aucune_breve_trouvee' => 'No news found.',
 	'aucune_rubrique_trouvee' => 'No section found.',
 	'autres_auteurs' => 'Other authors',
@@ -47,6 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Category',
 	'categories' => 'Categories',
 	'categories_deux_points' => 'Categories:',
+	'colon2' => '::', # NEW
 	'commentaires' => 'Comments',
 	'contact' => 'Contact',
 	'contributeurs' => 'Contributors',
@@ -63,6 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// G
 	'groupes_mots' => 'Keywords groups',
+	'gt' => '>', # NEW
 
 	// I
 	'inscriptions_deux_points' => 'Registration:',
@@ -112,8 +114,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'source' => 'Source',
 	'source_deux_points' => 'Source',
-	'start' => 'Lecture', # NEW
-	'stop' => 'Arrêt', # NEW
+	'start' => 'Start',
+	'stop' => 'Stop',
 	'sujet_deux_points' => 'Subject:',
 	'sujets' => 'Subjects',
 	'sujets_deux_points' => 'Subjects:',
