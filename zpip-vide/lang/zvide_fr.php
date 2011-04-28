@@ -7,9 +7,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	
 	'configurer_zvide' => 'Configurer ZPIP-vide',
-	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages aprè le bloc <i>Contenu</i>.',
-	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages aprè le bloc <i>Extra</i>.',
-	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages aprè le bloc <i>Navigation</i>.',
+	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Contenu</i>.',
+	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Extra</i>.',
+	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Navigation</i>.',
 	'description_bloc_pre_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Contenu</i>.',
 	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Extra</i>.',
 	'description_bloc_pre_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Navigation</i>.',
