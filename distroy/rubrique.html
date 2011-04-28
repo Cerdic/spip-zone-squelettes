@@ -39,13 +39,11 @@
         <B_articles>
         <div class="menu articles">
             #ANCRE_PAGINATION
-            <h2><:articles_rubrique:></h2>
             <ul>
                 <BOUCLE_articles(ARTICLES) {id_rubrique} {!par date} {pagination}>
                 <li>
-                    [(#LOGO_ARTICLE{#URL_ARTICLE}|image_reduire{40,*})]
-                    <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-                    <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+                    <strong><a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{40,*}) ]#TITRE</a></strong>
+                    <br /><small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
                 </li>
                 </BOUCLE_articles>
             </ul>
@@ -123,14 +121,12 @@
         [(#REM) Breves du secteur ]
         <B_breves>
         <div class="menu">
-            #ANCRE_PAGINATION
             <h2><:breves:></h2>
             <ul>
-                <BOUCLE_breves(BREVES) {id_rubrique} {!par date} {pagination 5}>
+                <BOUCLE_breves(BREVES) {id_rubrique} {!par date} {0,5}>
                 <li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
                 </BOUCLE_breves>
             </ul>
-            [<p class="pagination">(#PAGINATION)</p>]
         </div>
         </B_breves>
 
