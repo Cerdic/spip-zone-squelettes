@@ -1,0 +1,85 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<!-- Bones Dotspip 1.9 -->
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+<INCLURE{fond=inclusions/inc_head}>
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <INCLURE{fond=inclusions/inc_menu-haut}>
+  <div id="main">
+    <div id="content"> [(#REM) Les deux derniers articles ]
+      <B_articles_recents>
+      <BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {0,2} {doublons}>
+        <div class="post">
+          <p class="day-date">[(#DATE|affdate_jourcourt)]</p>
+          [
+          <p class="surtitre">(#SURTITRE)</p>
+          ]
+          <h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
+          [
+          <p class="soustitre">(#SOUSTITRE)</p>
+          ]
+          [<p class="post-info">
+            <:par_auteur:>
+            (#LESAUTEURS)</p>]
+          <div class="post-content">
+            [<div   class="images">(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})</div>]
+            [<div class="#EDIT{intro} texte ">(#INTRODUCTION)</div>]
+             </div>
+          </BOUCLE_articles_recents>
+        </div>
+      </B_articles_recents>
+      [(#REM) Articles suivants ]
+      <B_articles>
+        <div class="post">
+          <div class="liste-articles"> [(#ANCRE_PAGINATION)]
+            
+            [(#ENV{debut_articles}|?{'',' '})
+            <p class="day-date">
+              <:articles_recents:>
+            </p>
+            ]
+            <ul>
+              <BOUCLE_articles(ARTICLES) {par date}{inverse} {doublons} {pagination}>
+              <li>
+                <h2 class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
+                <small>[(#DATE|affdate_jourcourt)][,
+                <:par_auteur:>
+                (#LESAUTEURS)]</small> </li>
+              </BOUCLE_articles>
+            </ul>
+            [
+            <p class="pagination">(#PAGINATION)</p>
+            ] </div>
+        </div>
+        <!-- fin contre-encart -->
+      </B_articles>
+    </div>
+  </div>
+  </div>
+
+<div id="sidebar"> 
+<INCLURE{fond=inclusions/inc_recherche}>
+<INCLURE{fond=inclusions/inc_dernieres_breves}>
+<INCLURE{fond=inclusions/inc_rubriques}>
+<INCLURE{fond=inclusions/inc_derniers_commentaires}>
+<INCLURE{fond=inclusions/inc_sites}>
+<INCLURE{fond=inclusions/inc_logo}> 
+[(#REM) Inscription au site ]
+  #FORMULAIRE_INSCRIPTION 
+</div>
+[(#REM) Pied de page ] <INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
+</div>
+
+</body>
+</html>
