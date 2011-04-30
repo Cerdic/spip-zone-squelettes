@@ -240,6 +240,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_visites' => 'Afficher le nombre de visites ?',
 	'label_ariane_separateur' => 'Séparateur :',
 	'label_article_specifique' => 'Si article(s) spécifique(s), quels articles ?',
+	'label_articles_un_niveau' => 'Afficher seulement les articles du premier niveau ?',
 	'label_branche_specifique' => 'Si branche(s) spécifique(s), quelles branches ?',
 	'label_build_arrows' => 'Afficher les flèches de navigation ?',
 	'label_build_navigation' => 'Afficher les onglets de navigation ?',
