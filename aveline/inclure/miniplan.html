@@ -11,24 +11,29 @@
 
 				[(#REM) Une boucle recursive pour le mini plan]
 				<B_miniplan>
-				<ul class="menu-liste">#SET{ul_ouvert,on}
+				<ul class="menu-liste">
 					<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
 					<li class="menu-entree">
 						<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
 						<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+						<B_articles_sous>
+						<ul class="menu-liste">
+							<BOUCLE_articles_sous(ARTICLES){id_rubrique}{par num titre, titre}>
+								[(#ENV{afficher_articles}|et{#ENV{articles_un_niveau}|non})<li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]	</a></li>]
+							</BOUCLE_articles_sous>
+						</ul>
+						</B_articles_sous>
 					</li>
-					<BOUCLE_articles_sous(ARTICLES){id_rubrique}>
-						[(#ENV{afficher_articles}|et{#ENV{articles_un_niveau}|non})<li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]</a></li>]
-					</BOUCLE_articles_sous>
 					</BOUCLE_miniplan>
+				</ul>
 				</B_miniplan>
 				<B_articles>
-				<ul class="menu-liste">#SET{ul_ouvert,on}
-					<BOUCLE_articles(ARTICLES){id_rubrique}>
+				<ul class="menu-liste">
+					<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}>
 						[(#ENV{afficher_articles}|oui)<li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]</a></li>]
 					</BOUCLE_articles>
+				</ul>
 				</B_articles>
-				[(#GET{ul_ouvert}|oui)</ul>]
 			</li>
 			</BOUCLE_sous_rubriques>
 		</ul>
