@@ -1,0 +1,2 @@
+﻿<a href="https://docs.google.com/a/balado.ac-creteil.fr" target='blank'>Google doc</href></br>
+<a href="http://www.aviary.com/loginopenid?op=https://www.google.com/accounts/o8/id&opn=Google&redirectto=" target='blank'>Aviary</href>
