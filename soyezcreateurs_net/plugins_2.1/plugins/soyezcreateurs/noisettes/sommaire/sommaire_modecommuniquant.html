@@ -17,7 +17,7 @@
 	<BOUCLE_articles_recentsAlaUne(ARTICLES) {par num titre}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang}>
 		<li id="hSFItem#COMPTEUR_BOUCLE" class="hSFItem">
 		<div class="postListItem">	
-			<h2 class="postListItemTitle"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></h2>
+			<h2 class="postListItemTitle #EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></h2>
 			<span class="hSFDecoSpan"></span>
 		</div><!-- .postListItem -->	
 		[<img src="(#LOGO_ARTICLE_NORMAL|image_masque{images/hsf.png}|image_reduire{[(#GET{Largeurcontent_central})],0}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
@@ -34,11 +34,11 @@
 <BOUCLE_DessousBreves(RUBRIQUES){titre_mot = DessousBreves }{par num titre}{lang}>
 <B_articles_recents>
 <div class="dessousbreves[(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
-	<h2>[(#TITRE)]</h2>
+	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h2>
 	[(#DESCRIPTIF)]
 	<ul class="listeafficherimages">
 <BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}>
-		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 </BOUCLE_articles_recents>
 	</ul>
 </div><!-- dessousbreves -->
@@ -52,14 +52,13 @@
 <BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{lang} />
 <B_articles_QuoideNeuf>
 <div id="homequoideneuf">
-<h2><:soyezcreateurs:quoideneuf:></h2>
+<h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:quoideneuf:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
 <div class="fond">
 <ul>
 <BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{lang}>
-	<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 </BOUCLE_articles_QuoideNeuf>
 </ul>
-[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a>.</p>]
 </div><!-- fond -->
 </div><!-- homequoideneuf -->
 </B_articles_QuoideNeuf>
@@ -69,7 +68,7 @@
 <div id="homecadre_outils">
 <ul>
 <BOUCLE_Outils(ARTICLES){titre_mot=Outils}{par num titre} {lang}>
-	<li>[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#LOGO_ARTICLE_SURVOL|extraire_attribut{src})" class="logo_outil" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_SURVOL|largeur)]" height="[(#LOGO_ARTICLE_SURVOL|hauteur)]" /></a><br />]<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></li>
+	<li class="#EDIT{titre}">[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#LOGO_ARTICLE_SURVOL|extraire_attribut{src})" class="logo_outil" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_SURVOL|largeur)]" height="[(#LOGO_ARTICLE_SURVOL|hauteur)]" /></a><br />]<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></li>
 </BOUCLE_Outils>
 </ul>
 </div><!-- homecadre_outils -->
@@ -81,10 +80,10 @@
 <BOUCLE_RubGoodies(RUBRIQUES){titre_mot=Goodies}{par num titre}>
 <B_Goodies>
 <div class="goodies">
-<h2 class="#EDIT{titre}"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</h2>
+<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></h2>
 <BOUCLE_Goodies(ARTICLES) {branche}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_goodies,3})}>
 <div class="goody">
-	[<div onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" style="cursor:pointer">[<img class="logo_goody" src="(#LOGO_ARTICLE_SURVOL|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,48,center}|image_aplatir{png,ffffff}|extraire_attribut{src})" width="48" height="48" alt="" />](#TITRE)[<br /> 
+	[<div onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" style="cursor:pointer" class="#EDIT{titre}">[<img class="logo_goody" src="(#LOGO_ARTICLE_SURVOL|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,48,center}|image_aplatir{png,ffffff}|extraire_attribut{src})" width="48" height="48" alt="" />](#TITRE)[<br /> 
 	(#DATE|affdate)]
 	</div>]
 </div><!-- goody -->
