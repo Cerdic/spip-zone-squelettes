@@ -218,6 +218,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_flux_rss_label' => 'Position de l\'icone de flux RSS',
 	'cfg_position_liens_nav' => 'Liens de navigation génériques (position et affichage)',
 	'cfg_position_liens_nav_label' => 'Position',
+	'cfg_position_nuage' => 'Position du nuage de tags',
 	'cfg_position_panier' => 'Position du panier d\'achats',
 	'cfg_position_panier_label' => 'Affichage en haut de la colonne:',
 	'cfg_px' => 'en <b>px</b>',
