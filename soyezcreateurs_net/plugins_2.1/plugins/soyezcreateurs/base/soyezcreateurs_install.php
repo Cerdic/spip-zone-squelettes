@@ -18,7 +18,7 @@ include_spip('inc/meta');
 function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	include_spip('base/soyezcreateurs');
 	$current_version = 0.0;
-		if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
+	if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		if (
 			(version_compare($current_version,'2.1','<'))
 			&& // Verification que le plugin n'a pas ete deja installe par l'ancienne methode
