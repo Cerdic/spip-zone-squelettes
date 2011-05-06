@@ -220,6 +220,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_flux_rss_label' => 'Позиція іконки потоку RSS',
 	'cfg_position_liens_nav' => 'Загальні навігаційні посилання (положення і дисплей)',
 	'cfg_position_liens_nav_label' => 'Позиція',
+	'cfg_position_nuage' => 'Position du nuage de tags', # NEW
 	'cfg_position_panier' => 'Позиція кошика',
 	'cfg_position_panier_label' => 'Афішування (Дисплей ) у верхній частині колонки:',
 	'cfg_px' => 'пікселів </ B>', # b

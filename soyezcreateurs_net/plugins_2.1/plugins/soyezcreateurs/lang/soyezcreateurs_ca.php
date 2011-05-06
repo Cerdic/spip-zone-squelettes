@@ -220,6 +220,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_flux_rss_label' => 'Posició de la icona de flux RSS',
 	'cfg_position_liens_nav' => 'Enllaços de navegació genèrics (posició i visualització)',
 	'cfg_position_liens_nav_label' => 'Posició',
+	'cfg_position_nuage' => 'Position du nuage de tags', # NEW
 	'cfg_position_panier' => 'Posició de la cistella de compres ',
 	'cfg_position_panier_label' => 'Publicació a dalt de la columna:',
 	'cfg_px' => 'en <b>px</b>',

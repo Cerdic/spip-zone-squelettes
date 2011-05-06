@@ -220,6 +220,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_flux_rss_label' => '<NEW>Umiestnenie ikony kanála RSS',
 	'cfg_position_liens_nav' => '<NEW>Liens de navigation génériques (position et affichage)',
 	'cfg_position_liens_nav_label' => '<NEW>Position', # MODIF
+	'cfg_position_nuage' => 'Position du nuage de tags', # NEW
 	'cfg_position_panier' => '<NEW>Umiestnenie nákupného košíka',
 	'cfg_position_panier_label' => '<NEW>Zobraziť v hornej časti stĺpca:',
 	'cfg_px' => '<NEW>v <b>px</b>',
