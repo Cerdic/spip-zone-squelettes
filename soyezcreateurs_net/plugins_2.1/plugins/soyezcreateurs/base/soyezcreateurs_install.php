@@ -394,6 +394,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.18','non');
 		}
+		if (version_compare($current_version,'3.0.19','<')) {
+			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
+				create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
+			#ecrire_meta($nom_meta_base_version,$current_version='3.0.19','non');
+		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
