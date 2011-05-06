@@ -397,7 +397,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.0.19','<')) {
 			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
 				create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
-			#ecrire_meta($nom_meta_base_version,$current_version='3.0.19','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.19','non');
 		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
