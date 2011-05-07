@@ -30,35 +30,35 @@ function jp_expinit(){
 		if(jp_parentID && document.getElementById(jp_parentID)){
 			jp_alluls=document.getElementById(jp_parentID).getElementsByTagName('UL');
 			jp_alllis=document.getElementById(jp_parentID).getElementsByTagName('LI');
-		}
-		for(i=0;i<jp_alluls.length;i++){
-			jp_subul=jp_alluls[i];
-			if(jp_subul.parentNode.tagName=='LI'){
-				jp_supli=jp_subul.parentNode
-				jp_islink=jp_supli.getElementsByTagName('a')[0];
-				if(jp_islink){
-					jp_addimg = document.createElement('img');
-					jp_addimg.src=jp_blankpic;
-					jp_addimg.className='node';
-					jp_addimg.alt='';
-					jp_addimg.onclick=function() {jp_ex(this,null);return false;};
-					jp_supli.getElementsByTagName('A')[0].onkeypress=inputKeyHandler;
-					jp_supli.getElementsByTagName('A')[0].onfocus=function() {jp_ex(this,0);};
-					jp_supli.insertBefore(jp_addimg,jp_supli.firstChild);
-				}
-				// Do not collapse when there is a strong element in the list.
-				jp_highlight=jp_subul.parentNode.getElementsByTagName('strong').length==0?true:false;
-				jp_disp=jp_highlight?'none':'block';
-				var jp_picaltonoff=jp_highlight?jp_picalt+jp_strDeplier:jp_picalt+jp_strReplier;
-				jp_pic_class=jp_highlight?jp_onclass:jp_offclass;
-				// End  highlight change
-				jp_childs=jp_subul.getElementsByTagName('li').length
-				jp_momimg=jp_subul.parentNode.getElementsByTagName('img')[0]
-				if(jp_momimg){
-					jp_momimg.setAttribute('title',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
-					jp_momimg.setAttribute('alt',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
-					jp_momimg.className=jp_pic_class;
-					jp_subul.style.display=jp_disp;
+			for(i=0;i<jp_alluls.length;i++){
+				jp_subul=jp_alluls[i];
+				if(jp_subul.parentNode.tagName=='LI'){
+					jp_supli=jp_subul.parentNode
+					jp_islink=jp_supli.getElementsByTagName('a')[0];
+					if(jp_islink){
+						jp_addimg = document.createElement('img');
+						jp_addimg.src=jp_blankpic;
+						jp_addimg.className='node';
+						jp_addimg.alt='';
+						jp_addimg.onclick=function() {jp_ex(this,null);return false;};
+						jp_supli.getElementsByTagName('A')[0].onkeypress=inputKeyHandler;
+						jp_supli.getElementsByTagName('A')[0].onfocus=function() {jp_ex(this,0);};
+						jp_supli.insertBefore(jp_addimg,jp_supli.firstChild);
+					}
+					// Do not collapse when there is a strong element in the list.
+					jp_highlight=jp_subul.parentNode.getElementsByTagName('strong').length==0?true:false;
+					jp_disp=jp_highlight?'none':'block';
+					var jp_picaltonoff=jp_highlight?jp_picalt+jp_strDeplier:jp_picalt+jp_strReplier;
+					jp_pic_class=jp_highlight?jp_onclass:jp_offclass;
+					// End  highlight change
+					jp_childs=jp_subul.getElementsByTagName('li').length
+					jp_momimg=jp_subul.parentNode.getElementsByTagName('img')[0]
+					if(jp_momimg){
+						jp_momimg.setAttribute('title',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
+						jp_momimg.setAttribute('alt',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
+						jp_momimg.className=jp_pic_class;
+						jp_subul.style.display=jp_disp;
+					}
 				}
 			}
 		}
