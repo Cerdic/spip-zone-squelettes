@@ -154,7 +154,7 @@ function ImageFlow ()
 						version = '3';
 					}
 					var src = node.getAttribute('src',2);
-					src =  'squelettes-test/iensp_vPP-MH_ImageFlow/javascript/ImageFlow/reflect'+version+'.php?img=../../../../'+src+thisObject.reflectionGET+'&bgc=000000';
+					src =  'squelettes/javascript/ImageFlow/reflect'+version+'.php?img=../../../'+src+thisObject.reflectionGET+'&bgc=000000';
 					node.setAttribute('src',src);
 				}
 
