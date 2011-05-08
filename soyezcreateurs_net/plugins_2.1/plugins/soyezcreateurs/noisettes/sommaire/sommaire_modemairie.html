@@ -61,22 +61,33 @@
 </div><!-- homeFirstblock -->
 
 <div id="homeSecondblock">
+<div id="homequoideneuf">
+<B_articles_recentsAlaUne>
+<h2><:soyezcreateurs:alaune:></h2>
+<div class="alaune">
+<ul>
+<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{doublons}{titre_mot=AlaUne}>
+	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}">[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#LOGO_ARTICLE_NORMAL|image_passe_partout{48,48}||image_reduire{48,0}
+		|image_recadre{48,48,center}|extraire_attribut{src}|sinon{#CHEMIN{images/actualites.png}})" class="logo_actualite" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="48" height="48" /></a>]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}))]</a>[<br />(#CHAPO*|ptobr|substr{0,1}|=={=}|?{[(#DESCRIPTIFimage_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400}|div{2},0})],[(#CHAPO|sinon{#DESCRIPTIF}image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400}|div{2},0})]})]</li>
+</BOUCLE_articles_recentsAlaUne>
+</ul>
+</div><!-- alaune -->
+</B_articles_recentsAlaUne>
 <BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}{lang}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{lang} /></BOUCLE_Secteurs_Exclus>
 <BOUCLE_Articles_Exclus(ARTICLES mots_rubriques mots){mots.titre=PasDansQuoiDeNeuf}{doublons}{lang} />
 <BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{lang} />
 <B_articles_QuoideNeuf>
-<div id="homequoideneuf">
-<h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:actualite:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
+<h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:derniereactualites:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
 <div class="actualite">
 <ul>
 <BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{lang}>
 	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}">[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#LOGO_ARTICLE_NORMAL|image_passe_partout{48,48}||image_reduire{48,0}
-		|image_recadre{48,48,center}|extraire_attribut{src}|sinon{#CHEMIN{images/actualites.png}})" class="logo_actualite" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="48" height="48" /></a>]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}))]</a>[<br />(#CHAPO*|ptobr|substr{0,1}|=={=}|?{[(#DESCRIPTIF)],[(#CHAPO|sinon{#DESCRIPTIF})]})]</li>
+		|image_recadre{48,48,center}|extraire_attribut{src}|sinon{#CHEMIN{images/actualites.png}})" class="logo_actualite" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="48" height="48" /></a>]<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}))]</a>[<br />(#CHAPO*|ptobr|substr{0,1}|=={=}|?{[(#DESCRIPTIFimage_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400}|div{2},0})],[(#CHAPO|sinon{#DESCRIPTIF}image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400}|div{2},0})]})]</li>
 </BOUCLE_articles_QuoideNeuf>
 </ul>
 </div><!-- actualite -->
-</div><!-- homequoideneuf -->
 </B_articles_QuoideNeuf>
+</div><!-- homequoideneuf -->
 
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
 <B_DessousBreves>
