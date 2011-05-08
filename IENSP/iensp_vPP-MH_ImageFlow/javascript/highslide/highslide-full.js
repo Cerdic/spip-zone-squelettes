@@ -53,7 +53,7 @@ lang : {
 	restoreTitle : 'Cliquer pour fermer, cliquer et glisser pour la deplacer.'
 },
 // See http://highslide.com/ref for examples of settings  
-graphicsDir : 'squelettes-test/iensp_vPP-MH_ImageFlow/javascript/highslide/graphics/',
+graphicsDir : 'squelettes/javascript/highslide/graphics/',
 expandCursor : 'zoomin.cur', // null disables
 restoreCursor : 'zoomout.cur', // null disables
 expandDuration : 250, // milliseconds
