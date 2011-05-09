@@ -1,0 +1,9 @@
+[(#REM) Retourne la première image de l'article ]
+<BOUCLE_test(CONDITION){si #ENV{utiliser_image_article}|oui}>
+<BOUCLE_une_image(DOCUMENTS){id_article}{mode=image}{extension IN png,jpg,gif}{0,1}>
+[(#FICHIER
+   |image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}
+   |inserer_attribut{class,spip_logos}
+   |inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]
+</BOUCLE_une_image>
+</BOUCLE_test>

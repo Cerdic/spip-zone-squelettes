@@ -340,6 +340,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_titre_noisette_perso' => 'Si titre personnalisé :',
 	'label_toggle_controls' => 'Afficher les contrôles de navigation seulement au survol ?',
 	'label_tri' => 'Critère de tri :',
+	'label_utiliser_image_article' => 'Utiliser une image de l\'article comme logo si ni l\'article ni la rubrique parente n\'a de logo ?' ,
 	'label_utiliser_logo_article_rubrique' => 'Afficher le logo de la rubrique parente si l\'article n\'a pas de logo ?',
 	'label_utiliser_logo_breve_rubrique' => 'Afficher le logo de la rubrique parente si la brève n\'a pas de logo ?',
 	'label_utiliser_logo_evenement_article_rubrique' => 'Afficher le logo de l\'article parent si l\'évènement n\'a pas de logo ?',
