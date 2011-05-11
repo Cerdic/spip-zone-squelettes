@@ -188,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_edito' => 'Афішування ( показ) передової',
 	'cfg_mode_evenementiel' => 'Афішування ( показ) порталу головної сторінки типу подій',
 	'cfg_mode_international' => 'Афіщування ( показ) порталу головної сторінки міжнародного типу',
+	'cfg_mode_mairie' => 'Affichage d\'un portail d\'accueil de type mairie', # NEW
 	'cfg_mode_nouveautes' => 'Афішування ( показ) у формі виписки    із останніх новин',
 	'cfg_mode_portail' => 'Афішування ( показ) порталу головної сторінки',
 	'cfg_mode_portail_actu' => 'Афішування ( показ) порталу головної сторінки орієнтованих Новини',

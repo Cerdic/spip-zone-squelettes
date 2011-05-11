@@ -188,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_edito' => 'Publicació de l\'Editorial',
 	'cfg_mode_evenementiel' => 'Visualització d\'un portal d\'inici de tipus cronològic',
 	'cfg_mode_international' => 'Visualització d\'un portal de benvinguda de tipus internacional',
+	'cfg_mode_mairie' => 'Affichage d\'un portail d\'accueil de type mairie', # NEW
 	'cfg_mode_nouveautes' => 'Publicació, en forma d\'extracte, de les darreres novetats',
 	'cfg_mode_portail' => 'Publicació d\'un portal d\'inici',
 	'cfg_mode_portail_actu' => 'Visualització d\'\'un portal d\'inici orientat a les actualitats',

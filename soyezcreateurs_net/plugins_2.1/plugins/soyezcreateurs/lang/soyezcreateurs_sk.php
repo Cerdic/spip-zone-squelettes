@@ -188,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_edito' => '<NEW>Zobrazenie úvodníka',
 	'cfg_mode_evenementiel' => 'Viewing home portal event-type',
 	'cfg_mode_international' => 'Affichage d\'un portail d\'accueil de type international', # NEW
+	'cfg_mode_mairie' => 'Affichage d\'un portail d\'accueil de type mairie', # NEW
 	'cfg_mode_nouveautes' => '<NEW>Zobraziť ako výťah z najnovších noviniek',
 	'cfg_mode_portail' => 'Viewing Portal Home', # MODIF
 	'cfg_mode_portail_actu' => 'Viewing a portal oriented News Home',
