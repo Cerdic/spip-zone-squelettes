@@ -39,7 +39,7 @@
 //
 // on construit le formulaire
 //
-function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
+function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$motif="",$Message="") {
                 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">  <li>
@@ -74,7 +74,9 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                   </ul>
 <?php
 //
-// on recupere les donnees et on prepare le contenu du mail
+// on recupere les donnees 
+// on vérifie si tout est bien rempli, sinon on envoie un message d'alerte
+// si oui, on prepare le contenu du mail
 //
 }
   include_spip('inc/filtres');
@@ -96,14 +98,35 @@ else {
 	$message.="Adresse IP : " . $_SERVER['REMOTE_ADDR'] . "\n";
 	$message.="Navigateur : " . $_SERVER['HTTP_USER_AGENT'] . "\n\n";
 	$message.="Nom : $vNom\n";
+		if (empty($vNom)) {
+		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre nom.</p>";
+		  $erreur=1;
+	  }
 	$message.="Prenom : $vPrenom\n\n";
+		if (empty($vPrenom)) {
+		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre pr&eacute;nom.</p>";
+		  $erreur=1;
+	  }
 	$message.="E-mail : $vEmail\n\n";
+		if (empty($vEmail)) {
+		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre adresse &eacute;lectronique ... comment pourrais-je vous r&eacute;pondre ?</p>";
+		  $erreur=1;
+	  }
+	  if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
+		  echo "<p class='alerte'>L'adresse e-mail n'est pas correcte&nbsp;:</p>";
+		  $erreur=1;
+	  }
 	$message.="Motif : $vSujet\n\n";
-  if (empty($niveau)) {
-    echo "<p class='alerte'>Vous n'avez pas précisé votre niveau.</p>";
-    $erreur=1;
-  }
-  else {
+	 if (empty($vSujet)) {
+		echo "<p class='alerte'>Vous n'avez pas choisi le motif de votre message.</p>";
+		$erreur=1;
+	 }
+  	
+    if (empty($_POST['Niveau'])) {
+      echo "<p class='alerte'>Vous n'avez pas précisé votre niveau.</p>";
+      $erreur=1;
+    }
+    else {
     $message.= "Niveau : ";
     foreach ($_POST['Niveau'] as $niveau) {
         $message.= " - ".$niveau; 
@@ -111,33 +134,15 @@ else {
   }
 
   $message.=" \n\n Message : \n $vMessage\n";
+  	if (empty($vMessage)) {
+		  echo "<p class='alerte'>Vous n'avez pas compos&eacute; de message ! Distrait(e) ?</p>";
+		  $erreur=1;
+	  }
+	
 //	
-// on vérifie si tout est bien rempli, sinon on envoie un message d'alerte
+// s'il y a des erreurs, on renvoie le formulaire
 //
-	if (empty($vNom)) {
-		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre nom.</p>";
-		$erreur=1;
-	}
-	if (empty($vPrenom)) {
-		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre pr&eacute;nom.</p>";
-		$erreur=1;
-	}
-	if (empty($vEmail)) {
-		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre adresse &eacute;lectronique ... comment pourrais-je vous r&eacute;pondre ?</p>";
-		$erreur=1;
-	}
-	if (empty($vSujet)) {
-		echo "<p class='alerte'>Vous n'avez pas choisi le motif de votre message.</p>";
-		$erreur=1;
-	}
-	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
-		echo "<p class='alerte'>L'adresse e-mail n'est pas correcte&nbsp;:</p>";
-		$erreur=1;
-	}
-	if (empty($vMessage)) {
-		echo "<p class='alerte'>Vous n'avez pas compos&eacute; de message ! Distrait(e) ?</p>";
-		$erreur=1;
-	}
+
 	if ($erreur==1) {
 		formulaire($Nom,$Prenom,$Email,$Sujet,$Message);
 	}
