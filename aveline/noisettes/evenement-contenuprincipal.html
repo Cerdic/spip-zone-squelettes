@@ -14,7 +14,9 @@
 		<h1 class="h1 #EDIT{titre} summary">#TITRE</h1>
 		[(#ENV{afficher_date_en_surtitre}|non)[<p class="info-publi">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</p>]]
 	</div>
-	
+	<BOUCLE_article_parent(ARTICLES){id_article}>
+	[(#ENV{afficher_introduction_article_chapo}|oui) [<div class="#EDIT{intro} chapo">(#INTRODUCTION|image_reduire{#GET{taille_max_images_texte},0})</div>]]
+	</BOUCLE_article_parent>
 	[<div class="#EDIT{descriptif} texte surlignable description">(#DESCRIPTIF|image_reduire{#GET{taille_max_images_texte},0})</div>]
 	[(#ENV{afficher_lieu}|oui)
 		[<p class="lieu"><strong><:avelinepublic:lieu_deux_points:></strong> <span class="location #EDIT{lieu}">(#LIEU**|typo)</span></p>]
