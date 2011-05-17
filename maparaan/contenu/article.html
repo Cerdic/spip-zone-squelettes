@@ -6,9 +6,17 @@
 
 <div class="padd-post-item padd-post-item-single" id="post-#ID_ARTICLE">
 	<div class="padd-post-item-title cartouche">
+		#SET{largeur,(#LOGO_ARTICLE|largeur)}
+		#SET{hauteur,(#LOGO_ARTICLE|hauteur)}
+		#SET{taille, 80}
+		#SET{ratio_x,#GET{largeur}|div{#GET{taille}}}
+		#SET{ratio_y,#GET{hauteur}|div{#GET{taille}}}
+		#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
+		<a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#LOGO_ARTICLE||image_reduire_par{#GET{ratio}}|image_recadre{#GET{taille},#GET{taille}})]</a>	
+		
 		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-		[<div class="info-publi info-publi-article" title="[(#DATE|affdate_heure)]">(#DATE|affdate)<br />#LESAUTEURS</div>]	
-		<h2><a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#LOGO_ARTICLE||image_reduire{32, 19})]#TITRE</a></h2>
+		[<div class="info-publi info-publi-article" title="[(#DATE|affdate_heure)]">(#DATE|affdate)<br />#LESAUTEURS</div>]
+		<h2><a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">#TITRE</a></h2>
 		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 	</div>
 	[<div class='padd-traductions'>
