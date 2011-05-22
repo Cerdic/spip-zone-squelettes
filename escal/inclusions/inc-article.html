@@ -2,10 +2,10 @@
 
 	<div class="cadre-chemin">
 	 <!-- affichage du chemin de l'article -->
-	 <a href="#URL_SITE_SPIP" title="Accueil"><img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" /> Accueil</a>
+	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
 	 <BOUCLE_chemin_article(HIERARCHIE){id_rubrique}{tout}>
-	   <img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" />
-	   <a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE)]</a>
+	   <img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" />
+	   <a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE)]</a>
 	 </BOUCLE_chemin_article>
 	</div>
 
@@ -21,12 +21,12 @@
 		<!-- affichage du titre de l'article, de son descriptif, de sa date de publication et de son auteur-->
 		<div id="titre-article" class="#EDIT{titre}">[(#TITRE)]</div>
 		<div id="descriptif-article">[(#DESCRIPTIF)]</div>
-		<div id="auteur-article">  [Article mis en ligne le (#DATE|affdate)]
+		<div id="auteur-article">  [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
 		<BOUCLE_test(AUTEURS){id_article}>
 		</BOUCLE_test>
-	   par
+	   <:par_auteur:>
 			<BOUCLE_auteurs_art(AUTEURS) {id_article} {"et"}>
-			<a href="spip.php?auteur#ID_AUTEUR" title="page de l&#39;auteur"> #NOM</a>
+			<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:page_auteur:>"> #NOM</a>
 			</BOUCLE_auteurs_art>
 	  </B_test>
     </div>
@@ -37,30 +37,31 @@
   				<!-- affichage des images pour diminuer ou augmenter la taille des caractères -->
 
 			<div id="diminuer">
-				<a href="javascript:changestyle(-1)" title="Diminuer la taille des caract&egrave;res">
+				<a href="javascript:changestyle(-1)" title="<:escal:taille_diminuer:>">
      			<img src="#CHEMIN{images/fontsizedown.png}"
-					alt="Diminuer la taille des caract&egrave;res"
+					alt="<:escal:taille_diminuer:>"
 					 />
 				</a>
 			</div>
 
 			<div id="augmenter">
-				<a href="javascript:changestyle(1)" title="Augmenter la taille des caract&egrave;res">
+				<a href="javascript:changestyle(1)" title="<:escal:taille_augmenter:>">
      			<img src="#CHEMIN{images/fontsizeup.png}"
-					alt="Augmenter la taille des caract&egrave;res"
+					alt="<:escal:taille_augmenter:>"
 					 />
 				</a>
 			</div>
 
   				<!-- affichage du bouton pour imprimer l'article -->
   <div id="imprime-article">
-		<a href="#" onclick="javascript:window.print()" title="Imprimer cette page">
-		Imprimer l'article
+		<a href="#" onclick="javascript:window.print()" title="<:escal:article_imprimer:>">
+		<:escal:article_imprimer:>
 		<img src="#CHEMIN{images/imprimer.gif}" alt="logo imprimer" />
 		</a>
 	</div>
 
 <!-- balise de surlignage pour la fonction "rechercher" -->
+#DEBUT_SURLIGNE
 
   <div id="texte-article" >
 
@@ -81,13 +82,14 @@
 			<!--Affichage du post-sciptum  -->
       	[<div id="ps" class="#EDIT{ps}"><strong>P.S. : </strong>(#PS|image_reduire{400})</div>]
 
+#FIN_SURLIGNE
 
 	  	<!-- Ajout du site web associé s'il existe -->
 		   	[<div id="site" class="#EDIT{nom_site}"><br />
         <div class="#EDIT{url_site}">
-				<img src="#CHEMIN{images/fleche_droite.gif}"  alt="fleche" />
+				<img src="#CHEMIN{images/fleche_droite.gif}"  alt="<:escal:fleche:>" />
 				
-				Sur le WEB :
+				<:escal:sur_web:> :
 				<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]> (#NOM_SITE) </a>
 				</div>
         </div>]
@@ -98,8 +100,9 @@
 <!-- documents à telécharger -->
 	<B_doc_joints>
 		<div id="cadre-telechargement">
-			<img src="#CHEMIN{images/download.gif}" width="18" height="18" alt="téléchargements" /> Fichier(s) à télécharger :
-
+			<img src="#CHEMIN{images/download.gif}" width="18" height="18" alt="<:escal:alt_telechargements:>" /> 
+      [(#TOTAL_BOUCLE|>{01}|oui) <:escal:telechargements:>]
+      [(#TOTAL_BOUCLE|>{01}|non) <:escal:telechargement:>]
 			<div class="texte-doc" >
 			<table>
 				<BOUCLE_doc_joints(DOCUMENTS){id_article}{mode=document}{vu=non}>
@@ -107,7 +110,7 @@
 				<td>
 	    		<ul> 
 						<li>
-            <a href="#URL_DOCUMENT" title="Cliquer pour voir ou telecharger">#LOGO_DOCUMENT</a>
+            <a href="#URL_DOCUMENT" title="<:escal:clic_telechargement:>">#LOGO_DOCUMENT</a>
             </li>
 						<!--  pour spip 2.1 et suivants
             <li>#LOGO_DOCUMENT{#URL_DOCUMENT}</li>
@@ -117,9 +120,9 @@
 
 						<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER})]</div></li>
 
-						<li>[Taille du fichier : (#TAILLE|taille_en_octets)]</li>
+						<li>[<:escal:taille_fichier:> (#TAILLE|taille_en_octets)]</li>
 
-						<li>[Format : (#TYPE_DOCUMENT)]</li>
+						<li>[<:escal:format:> (#TYPE_DOCUMENT)]</li>
 
 					</ul>
 	    	</td>
@@ -140,10 +143,10 @@
 <!-- balise de fin de surlignage pour la fonction "rechercher" -->
 
   <!-- affichage du retour vers le haut de la page -->
-	<div id="haut"><a href="#top" title="remonter en haut de la page">haut de page</a></div>
+	<div id="haut"><a href="#top" title="<:escal:title_haut_page:>"><:escal:haut_page:></a></div>
 
 
 	<!-- Affichage des messages du forum associé à l'article -->
-	<INCLURE {fond=inclusions/inc-forum_article}{id_article}>
+	<INCLURE {fond=inclusions/inc-forum_article}{id_article}{lang}>
 
   </BOUCLE_contexte>

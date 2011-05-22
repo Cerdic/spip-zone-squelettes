@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
   <head>
-    <title>Auteurs - [[(#NOM_SITE_SPIP|textebrut)]]
+    <title><:escal:auteurs:> - [[(#NOM_SITE_SPIP|textebrut)]]
     </title>
     <INCLURE {fond=inclusions/inc-head}>
   </head>
@@ -13,9 +13,9 @@
         <div id="conteneur">
 
           <div id="entete">
-            <INCLURE {fond=inclusions/inc-titre_page}>
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
             <INCLURE {fond=inclusions/inc-bandeau}>
-            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}>
+            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{lang}>
           </div>
 
           <div id="espace">
@@ -27,13 +27,13 @@
 
                 <div id="cadre-titre-article">
                   <BOUCLE_auteur_principal(AUTEURS){id_auteur}>
-                    <div id="titre-article">Envoyer un message &agrave; <strong>#NOM</strong>
+                    <div id="titre-article"><:escal:envoyer_message:><strong>#NOM</strong>
                     </div>
                     <!-- Affichage de la bio si elle existe -->
                     <div id="descriptif-article">			[(#BIO)] 			<br />
                       <!-- si l'auteur n'a pas donne d'adresse, on le signale
                       		s'il l'a donne,  le formumaire s'affiche -->
-                      [(#EMAIL|?{'',"Cet auteur n'a pas fourni son adresse e-mail"})]
+                      [(#EMAIL|non) <:escal:adresse_non:>]
                     </div>
                 </div><!-- fin cadre-titre-article -->
                 
@@ -51,7 +51,7 @@
                     </BOUCLE_exclure_ssrub>
                   </BOUCLE_exclure_rub>
 
-                  <strong>Cet auteur a &eacute;crit :</strong><br />
+                  <strong><:escal:articles_auteur:></strong><br />
                   <!-- les articles de l'auteur avec leur date de mise en ligne-->
                   <B_articles_auteurs>
                   #PAGINATION
@@ -59,7 +59,7 @@
 
                   <div class="cadre-articles-rubrique">
                     <div class="titre-articles-rubrique">
-                      <a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
                     </div>
 
                     <div class="introduction-articles-rubrique">
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="auteur-articles-rubrique">
-                    [Article mis en ligne le (#DATE|affdate)]
+                    [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
                     </div>
                   </div>
                   </BOUCLE_articles_auteurs>
@@ -80,12 +80,12 @@
 
           <div id="navigation">
             <div class="cadre-bleu">
-              <INCLURE {fond=inclusions/inc-acces_direct}>
+              <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
             </div>
           </div>
 
           <div id="pied">
-            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
           </div>
 
         </div><!-- fin conteneur -->

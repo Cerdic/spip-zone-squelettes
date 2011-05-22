@@ -1,13 +1,12 @@
 #CACHE{24*3600}
 
 
-
 	<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
-	<a href="#URL_SITE_SPIP" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" /> Accueil</a>
+	<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
 	<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
-	<img src="#CHEMIN{images/fleche_droite.gif}"  alt="fleche" />
-	<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+	<img src="#CHEMIN{images/fleche_droite.gif}"  alt="<:escal:fleche:>" />
+	<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 	</BOUCLE_chemin_rubriques>
 	</div>
 
@@ -26,7 +25,7 @@
 <B_articles_rubs>
 <!-- affichage des articles de la rubrique -->
 <div class="texte-insert">
-Les articles de cette rubrique
+<:escal:rubrique_articles:>
 </div>
 
 <!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
@@ -38,16 +37,16 @@ Les articles de cette rubrique
 			<div class="introduction-articles-rubrique">
       [(#INTRODUCTION|supprimer_tags|couper{150})]
       <br/>
-      <a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>Lire l'article ...</strong></a>
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
       <br/>
       </div>
 			<div class="auteur-articles-rubrique">
-        [Article mis en ligne le (#DATE|affdate)]
+        [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
 		    <BOUCLE_test(AUTEURS){id_article}>
 		    </BOUCLE_test>
-	       par
-			   <BOUCLE_auteurs_art(AUTEURS) {id_article} {"et"}>
-			   <a href="spip.php?auteur#ID_AUTEUR" title="page de l&#39;auteur"> #NOM</a>
+	       <:par_auteur:>
+			   <BOUCLE_auteurs_art(AUTEURS) {id_article} {"<:escal:et:>"}>
+			   <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>"> #NOM</a>
 			   </BOUCLE_auteurs_art>
 	       </B_test>
       </div>
@@ -62,11 +61,11 @@ Les articles de cette rubrique
 <B_SsRubriques>
 <!-- Afficher les sous-rubriques associées à cette rubrique -->
 <div class="texte-insert">
-Les sous-rubriques de cette rubrique
+<:escal:rubrique_sous_rubriques:>
 </div>
 		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{par num titre, titre}>
 			<div class="cadre-sous-rubrique">
-				<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+				<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
         [(#LOGO_RUBRIQUE||image_reduire{36})]
 				<span class="titre-sous-rubrique">
 					[(#TITRE|Supprimer_numero)]
@@ -80,7 +79,10 @@ Les sous-rubriques de cette rubrique
 					<BOUCLE_ss_rub_art(ARTICLES){id_rubrique}>
 					</BOUCLE_ss_rub_art>
 						<div class="nombre-articles-rubrique">
-						Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'articles','article'})]]
+						<:escal:rubrique_contenu:> #TOTAL_BOUCLE 
+                  [(#TOTAL_BOUCLE|>{1}|oui) <:escal:articles:>]
+                  [(#TOTAL_BOUCLE|>{1}|non) <:escal:article:>]
+
 						</div>
 					</B_ss_rub_art>
 
@@ -89,7 +91,9 @@ Les sous-rubriques de cette rubrique
 					<BOUCLE_ss_rub_rub(RUBRIQUES){id_parent}>
 					</BOUCLE_ss_rub_rub>
 						<div class="nombre-articles-rubrique">
-						Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'sous-rubriques','sous-rubrique'})]]
+						<:escal:rubrique_contenu:> #TOTAL_BOUCLE
+                  [(#TOTAL_BOUCLE|>{1}|oui) <:escal:sous_rubriques:>]
+                  [(#TOTAL_BOUCLE|>{1}|non) <:escal:sous_rubrique:>]
 						</div>
 					</B_ss_rub_rub>
 					
@@ -97,7 +101,9 @@ Les sous-rubriques de cette rubrique
 					<BOUCLE_sites_ref(SITES){id_rubrique}>
 					</BOUCLE_sites_ref>
 							<div class="nombre-articles-rubrique">
-							Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'sites référencés','site référencé'})]]
+							<:escal:rubrique_contenu:> #TOTAL_BOUCLE
+                    [(#TOTAL_BOUCLE|>{1}|oui) <:escal:sites_references:>]
+                    [(#TOTAL_BOUCLE|>{1}|non) <:escal:site_reference:>]
 							</div>
 					</B_sites_ref>
 
@@ -107,7 +113,7 @@ Les sous-rubriques de cette rubrique
 <B_derniers_sites>
 		<hr />
   <div class="texte-insert">
-  Les sites r&eacute;f&eacute;renc&eacute;s dans cette rubrique
+  <:escal:rubrique_sites_references:>
   </div>
       <BOUCLE_derniers_sites(SITES){id_rubrique} >
       	<div class="cadre-sous-rubrique">

@@ -6,12 +6,12 @@
 		<B_thread>
 
 
-			<img id="forum" src="#CHEMIN{images/forum.png}" alt='Le forum' />
+			<img id="forum" src="#CHEMIN{images/forum.png}" alt='<:forum:>' />
 
 			<div id="repondre-article">
-  			[<a href="spip.php?page=forum&amp;(#PARAMETRES_FORUM)" title="R&eacute;agir &agrave; cet article">
-  			R&eacute;agir &agrave; cet article
-  			</a>]
+  			<a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>">
+  			<:repondre_article:>
+  			</a>
 			</div>
 
 			<BOUCLE_thread(FORUMS){id_article}{par date}{inverse}>
@@ -19,14 +19,14 @@
 				<div class="forum-thread" >
 				  <div class="titre-message">
 						#TITRE
-					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - le (#DATE|affdate)]</div>
+					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
           </div>
 
 					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
            
 					<div class="reponse">
-					<a href="spip.php?page=message&amp;id_forum=#ID_FORUM" title="R&eacute;pondre &agrave; ce message">
-					R&eacute;pondre &agrave; ce message
+					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>">
+					<:repondre_message:>
 					</a>
 					</div>
 
@@ -39,14 +39,14 @@
 						<div class="forum_reponse" >
     				  <div class="titre-message">
     						#TITRE
-    					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - le (#DATE|affdate)]</div>
+    					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
               </div>
 
     					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
 
     					<div class="reponse">
-    					<a href="spip.php?page=message&amp;id_forum=#ID_FORUM" title="R&eacute;pondre &agrave; ce message">
-    					R&eacute;pondre &agrave; ce message
+    					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>">
+    					<:repondre_message:>
     					</a>
     					</div>
 						</div>
@@ -60,13 +60,14 @@
 			</BOUCLE_thread>
 			</B_thread>
 			
-			[<div id="repondre-article">
+			<div id="repondre-article">
 			<img src="#CHEMIN{images/forum.png}" alt='Le forum' />
-      <a href="spip.php?page=forum&amp;(#PARAMETRES_FORUM)" title="R&eacute;agir &agrave; cet article">
-			R&eacute;agir &agrave; cet article
+      <a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>">
+
+			<:repondre_article:>
 			</a>
-			(pas de message pour le moment)
-			</div>]
+			<:escal:message_non:>
+			</div>
 
       <//B_thread>
     </BOUCLE_forums>

@@ -1,0 +1,150 @@
+<?php
+// fichier de langue pour le squelette Escal
+
+if (!defined('_ECRIRE_INC_VERSION')) return;
+
+$GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// A
+'acces_direct' => 'Accesso diretto',
+'accueil' => 'Accoglienza',
+'actus' => 'Actu',
+'adresse_non' => 'Questo autore non ha fornito il suo indirizzo email',
+'agenda' => 'Agenda',
+'annuaire' => 'Elenco',
+'annuaire_invitation' => 'Voi anche, utilizzate ESCAL-V2?<br />Aggiungete allora il vostro sito in questa pagina.',
+'alt_telechargements' => 'Teletrasmissioni',
+'article' => 'articolo',
+'articles' => 'articoli',
+'article_forum' => 'Foro dell\'articolo',
+'articles_associes' => 'Vedere gli articoli associati a questa parola ',
+'articles_associes_mot' => 'Artículos asociados con la palabra',
+'articles_auteur' => 'Questo autore ha scritto:',
+'articles_autres' => 'e gli altri',
+'article_dernier' => 'Ultimo articolo sembrato : ',
+'articles_derniers' => 'Gli ultimi articoli',
+'article_imprimer' => 'Stampare questo articolo',
+'article_mise_en_ligne' => 'Articolo mise in fila il' ,
+'article_trouve' => 'articolo trovato',
+'articles_trouves' => 'articoli trovati',
+'article_une' => 'Mettere in prima pagina questo articolo',
+'aujourdhui'  => 'Oggi : ',
+'auteurs' => 'Autori',
+'avec_le_squelette' => 'con lo scheletro',
+// B
+'bandeau' => 'Benda',
+'bienvenue' => 'Benvenuto',
+// C
+'calendrier' => 'Calendario',
+'clic_telechargement' => 'Cliccare per vedere o teletrasmettere',
+'collegues' => 'Tutti i colleghi',
+'contact' => 'Contatto',
+'contact_bienvenue' => 'Per contattare il responsabile tecnico,
+                          <br />volete riempire tutti i campi di questo formulario.',
+'contact_nom' => 'Il vostro nome:',
+'contact_prenom' => 'Il vostro nome:',
+'contact_mail' => 'Il vostro e-mail :',
+'contact_motif' => 'Argomento del vostro messaggio:',
+'contact_motif1' => 'Informazione',
+'contact_motif2' => 'Iscrizione',
+'contact_motif3' => 'Problema tecnico',
+'contact_motif4' => 'Il vostro parere sul sito',
+'contact_motif5' => 'Altro',
+'contact_checkbox' => 'Il vostro livello di webmestre (parecchie scelte possibili): ',
+'contact_checkbox1' => 'Buono',
+'contact_checkbox2' => 'Corretto',
+'contact_checkbox3' => 'Mezzo',
+'contact_checkbox4' => 'Passabile',
+'contact_checkbox5' => 'Cattivi',
+'contact_message' => 'Il vostro messaggio:',
+'contact_envoyer' => 'Mandare',
+'contact_alerte_nom' => 'Non avete dato il vostro nome.',
+'contact_alerte_prenom' => 'Non avete dato il vostro nome.',
+'contact_alerte_mail1' => 'Non avete dato il vostro email ...<br />Come potrei rispondervi?',
+'contact_alerte_mail2' => 'Il vostro indirizzo e-mail non è corretto.',
+'contact_alerte_motif' => 'Non avete scelto l\'argomento del vostro messaggio.',
+'contact_alerte_checkbox' => 'Non avete precisato il vostro livello.',
+'contact_alerte_message' => 'Non avete composto di messaggio! Distratto?',
+'contact_retour_bonjour' => 'Buongiorno, ',
+'contact_retour_commentaire' => 'Il vostro messaggio è stato mandato bene al webmestre del sito 
+                                che vi risponderà appena possibile a questo indirizzo:',
+'contact_retour_checkbox' => 'Il vostro livello:',
+'contenu_site' => 'Questo sito contiene : ',
+// D
+'dans_site' => 'in questo sito',
+// E
+'en_ligne' => 'Attualmente in fila: ',
+'envoyer_message' => 'Mandare un messaggio a ',
+'espace_redacteurs' => 'Spazio redattori',
+'et' => 'e',
+'evenements' => 'evento a venire',
+'evenements_ajouter' => 'Aggiungere un evento<br />(Accesso riservato)',
+'evenements_non' => 'Non di evento a venire',
+// F
+'fleche' => 'freccia',
+'format' => 'Formato :',
+//H
+'haut_page' => 'Alto di pagina',
+// I
+'identification' => 'Identificazione',
+// L
+'le' => 'il',
+'lire_article' => 'Leggere l\'articolo ...',
+'lire_suite' => 'Leggere il seguito ...',
+// M
+'menu' => 'Al men&ugrave;',
+'message_non' => '(non di messaggio per il momento)',
+'mots_clefs' => 'Le parole chiavi',
+'mots_clefs_associes' => 'Parole chiave soci',
+// P
+'pages' => 'pagine',
+'page_auteur' => 'pagina dell\'autore' ,
+'pages_vues' => 'Numero di pagine visitate: ', 
+'photos_hasard' => 'Alcune foto<br />al caso',
+'poster_message' => 'Imbucare un nuovo messaggio',
+'premier_visiteur' => 'Siete il primi!',
+'publie' => 'Pubblicato il',
+'puce' => 'pulce',
+// R
+'rappel_discussion' => 'Richiamo della discussione',
+'recherche' => 'Ricerca',
+'rechercher' => 'Ricercare ...',
+'recherche_articles_non' => 'Nessuno articolo trovato per questa ricerca',
+'recherche_resultat' => 'Risultato della ricerca per. ',
+'recherche_sites_non' => 'Nessuno sito trovato per questa ricerca',
+'rubrique_articles' => 'Gli articoli di questa rubrica',
+'rubrique_contenu' => 'Questa rubrica contiene',
+'rubrique_sites_references' => 'I siti inseriti in campionario in questa rubrica',
+'rubrique_sous_rubriques' => 'Le sotto-rubriche di questa rubrica',
+
+// S
+'site_realise_avec' => 'Sito realizzato con',
+'site_reference' => 'sito inserito in campionario',
+'sites_references' => 'siti inseriti in campionario',
+'sous_rubrique' => 'sotto-rubrica',
+'sous_rubriques' => 'sotto-rubriche',
+'statistiques' => 'Statistici del sito',
+// T
+'taille_augmenter' => 'Aumentare la taglia dei caratteri',
+'taille_diminuer' => 'Diminuire la taglia dei caratteri',
+'taille_fichier' => 'Taglia dello schedario:',
+'telechargement' => 'Schedario a teletrasmettere:',
+'telechargements' => 'Schedari a teletrasmettere:',
+'title_articles_derniers' => 'Ultimi articoli',
+'title_contact' => 'Contattare il responsabile tecnico',
+'title_espace_redacteurs' => 'Lo spazio privato degli autori ed amministratori',
+'title_haut_page' => 'Risalire in cima alla pagina',
+'title_escal' => 'Legame verso il sito ufficiale di Escal',
+'title_spip' => 'Legame verso spip.net',
+'title_w3c' => 'Sito convalida XHTML 1.0 Strict',
+'top_articles' => 'Articoli i visti più',
+'total_visites' => 'Numero totale di visite: ',
+// V
+'visiteur' => 'visitatore',
+'visiteurs' => 'visitatori',
+// W
+'webmestre' => 'Webmestre',
+
+
+);
+?>

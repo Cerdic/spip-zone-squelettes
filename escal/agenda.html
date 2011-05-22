@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
   <head>
-    <title>Agenda - [[(#NOM_SITE_SPIP|textebrut)]]
+    <title><:escal:agenda:> - [[(#NOM_SITE_SPIP|textebrut)]]
     </title>
     <INCLURE {fond=inclusions/inc-head}>
       <link href="#CHEMIN{styles/agenda.css}"  rel="stylesheet" type="text/css" />
@@ -16,23 +16,24 @@
         <div id="conteneur">
 
           <div id="entete">
-            <INCLURE {fond=inclusions/inc-titre_page}>
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
             <INCLURE {fond=inclusions/inc-bandeau}>
-            <INCLURE {fond=inclusions/inc-menu}>
+            <INCLURE {fond=inclusions/inc-menu}{lang}>
           </div>
 
           <div id="espace">
+          
           </div>
 
           <div id="page">
             <div id="contenu" style="margin:0; padding:0; width:100%">
               
-                <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
-                  <BOUCLE_selection_articles1(ARTICLES){branche} {agenda date_redac, mois, #ENV{annee}, #ENV{mois}} {par date}>[(#DATE_REDAC|agenda_memo{#INTRODUCTION, #TITRE, #URL_ARTICLE})]
+                <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}{lang}>
+                  <BOUCLE_selection_articles1(ARTICLES){branche}{lang} {agenda date_redac, mois, #ENV{annee}, #ENV{mois}} {par date}>[(#DATE_REDAC|agenda_memo{#INTRODUCTION, #TITRE, #URL_ARTICLE})]
                   </BOUCLE_selection_articles1>
                 </BOUCLE_selection_rubrique>
 
-                <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda} {agenda date_redac, mois, #ENV{annee}, #ENV{mois}} {par date}>[(#DATE_REDAC|agenda_memo{#INTRODUCTION, #TITRE, #URL_ARTICLE})]
+                <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{lang} {agenda date_redac, mois, #ENV{annee}, #ENV{mois}} {par date}>[(#DATE_REDAC|agenda_memo{#INTRODUCTION, #TITRE, #URL_ARTICLE})]
                 </BOUCLE_selection_articles>
                 [(#NOM_SITE_SPIP|agenda_affiche{<:aucun_article:>, 'mois'})]
               
@@ -40,7 +41,7 @@
           </div><!-- fin page -->
 
           <div id="pied">
-            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
           </div>
 
         </div><!-- fin conteneur -->

@@ -1,7 +1,7 @@
 #CACHE{60}
 
 	<h1 class="cadre">
-  Statistiques du site
+  <:escal:statistiques:>
   </h1>
   
   
@@ -9,39 +9,42 @@
 
 <ul>
 <li>
-nombre total de visites : 
-<div class="detail">#TOTAL_VISITES visiteurs</div>
+<:escal:total_visites:>
+<div class="detail">#TOTAL_VISITES <:escal:visiteurs:></div>
 </li>
 <li>
-aujourd'hui :
+<:escal:aujourdhui:>
 <div class="detail">
 <BOUCLE_visites_jour(visites){date==^(#DATE|affdate{Y-m-d})}>
-[(#VISITES) visiteurs]
+[(#VISITES) <:escal:visiteurs:>]
 </BOUCLE_visites_jour>
- vous êtes le premier !
+<:escal:premier_visiteur:>
 <//B_visites_jour>
 </div>
 </li>
 <li>
-nombre de pages visitées : 
-<div class="detail">#NBPAGES_VISITEES pages</div>
+<:escal:pages_vues:> 
+<div class="detail">#NBPAGES_VISITEES <:escal:pages:></div>
 </li>
 <li>
-Actuellement en ligne :
-<div class="detail">[(#VAL{}|visiteurs_connectes_compter)  visiteur(s)] </div>
+<:escal:en_ligne:>
+<div class="detail">[(#VAL{}|visiteurs_connectes_compter)]
+                    [(#VAL{}|visiteurs_connectes_compter|>{01}|oui)  <:escal:visiteurs:>]
+                    [(#VAL{}|visiteurs_connectes_compter|>{01}|non)  <:escal:visiteur:>]
+</div>
 </li>
 <li>
 <BOUCLE_total(ARTICLES){tout}>
 </BOUCLE_total>
-Ce site contient :
-<div class="detail">#TOTAL_BOUCLE articles</div>
+<:escal:contenu_site:>
+<div class="detail">#TOTAL_BOUCLE <:escal:articles:></div>
 </B_total>
 </li>
 <li>
 <BOUCLE_dernier(ARTICLES){tout}{par date}{inverse}{0,1}>
-Dernier article paru : 
+<:escal:article_dernier:>
 <div class="detail">"#TITRE"</div>
-<div class="detail">le [(#DATE|affdate)]</div>
+<div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
 </BOUCLE_dernier>
 </li>
 </ul>

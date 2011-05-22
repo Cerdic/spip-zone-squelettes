@@ -19,42 +19,34 @@
 	</BOUCLE_exclure_art>
 
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
-<BOUCLE_selection(ARTICLES){par date}{inverse}{0,11}{doublons}{doublons selection1}{doublons selection2}>
+<BOUCLE_selection(ARTICLES){lang}{par date}{inverse}{0,11}{doublons}{doublons selection1}{doublons selection2}>
 </BOUCLE_selection>
 
 <!--  On affiche au hasard les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par date}{inverse}>
+  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par hasard}>
     <div id="section-#ID_ARTICLE" class="fragment"> 
     
 <!-- affichage logo -->
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50})]
 <!-- affichage titre -->
 			<div class="titre">
-      <a href="#URL_ARTICLE" title="<BOUCLE_auteurs(AUTEURS){id_article}{"et "}>par [(#NOM)]</BOUCLE_auteurs> le [(#DATE|affdate)]">
+      <a href="#URL_ARTICLE" title="<BOUCLE_auteurs(AUTEURS){id_article}{"<:escal:et:> "}><:par_auteur:> [(#NOM)]</BOUCLE_auteurs> <:escal:le:> [(#DATE|affdate)]">
 			#TITRE
 			</a>
       </div>
 <!-- affichage rubrique -->
 			<BOUCLE_Rub(RUBRIQUES){id_rubrique}>
 			<div class="rubrique">
-			Rubrique : [(#TITRE)]
+			<:rubrique:> : [(#TITRE)]
 			</div>
-			</BOUCLE_Rub>
-<!-- affichage image -->
-      <div class="image-une">
-      <BOUCLE_image(DOCUMENTS){id_article}{extension==jpg|png|gif}{0,1}>
-      <img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]"
-								 alt='[(#TITRE)]'
-								 title="[(#TITRE)]" />
-      </BOUCLE_image>
-      </div>			
+			</BOUCLE_Rub>			
 <!-- affichage texte -->
 			[<div class="texte">
 			(#INTRODUCTION|couper{300}|propre)
 			<br />
-  		<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>Lire la suite ...</strong></a>
+  		<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
 			</div>]	
 
     </div>
@@ -66,9 +58,9 @@
       sauf au premier affichage de la page -->  
   <B_autres_articles_une>
     <ul class="anchors">
-	<BOUCLE_autres_articles_une (ARTICLES){par date}{inverse}{!doublons selection2}>
+	<BOUCLE_autres_articles_une (ARTICLES){par hasard}{!doublons selection2}>
     <li>
-      <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="Mettre cet article &agrave; la une">
+      <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>">
 
 <!-- affichage logo -->
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{40,40})]
@@ -77,7 +69,7 @@
 <!-- affichage rubrique -->
 			<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}>
 			 <span class="rubrique-autres">
-			 Rubrique : [(#TITRE)]
+			 <:rubrique:> : [(#TITRE)]
 			 </span>
 			</BOUCLE_Rub_suite>	
 

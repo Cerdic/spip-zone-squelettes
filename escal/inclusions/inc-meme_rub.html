@@ -4,7 +4,7 @@
 <B_meme_rubrique>
 
 <h1 class="cadre a-droite" >
-	Dans la m&ecirc;me rubrique :
+	<:meme_rubrique:> :
 	[(#LOGO_RUBRIQUE||image_reduire{36})]
 </h1>
 
@@ -16,19 +16,19 @@
 					de la date de publication
 					et de l'auteur(s) avec un lien pour lui envoyer un message -->
 		<div class="titre-article-cadre">
-			<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 			[(#TITRE)]
 			</a>
 		</div>
 
 		<div class="date-auteur-cadre">
-			[le (#DATE|affdate) ]
+			[<:escal:le:> (#DATE|affdate) ]
 			<br />
 			<BOUCLE_test(AUTEURS){id_article}>
 		  </BOUCLE_test>
-		  par
-			<BOUCLE_auteurs(AUTEURS) {id_article} {"et<br />"}>
-			[<a href="spip.php?auteur#ID_AUTEUR" title="page de l&#39;auteur"> (#NOM) </a>]
+		  <:par_auteur:>
+			<BOUCLE_auteurs(AUTEURS) {id_article} {"<:escal:et:><br />"}>
+			[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>"> (#NOM) </a>]
 			</BOUCLE_auteurs>
 			</B_test>
 		</div>

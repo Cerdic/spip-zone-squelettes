@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
   <head>
-    <title>Contact - [[(#NOM_SITE_SPIP|textebrut)]]
+    <title><:escal:contact:> - [[(#NOM_SITE_SPIP|textebrut)]]
     </title>
     [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
     <INCLURE {fond=inclusions/inc-head}>
@@ -14,9 +14,9 @@
         <div id="conteneur">
 
           <div id="entete">
-            <INCLURE {fond=inclusions/inc-titre_page}>
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
             <INCLURE {fond=inclusions/inc-bandeau}>
-            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}>
+            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{lang}>
           </div>
 
           <div id="espace">
@@ -30,8 +30,7 @@
               </div>
               <div id="formulaire-contact">
                 <div id="descriptif-article">
-                  Pour contacter le r&eacute;f&eacute;rent technique,
-                  <br />veuillez remplir tous les champs de ce formulaire.
+                  <:escal:contact_bienvenue:>
                 </div>
 <?php
 //
@@ -39,44 +38,43 @@
 //
 // on construit le formulaire
 //
-function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$motif="",$Message="") {
+function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">  <li>
-                    <div class="liste">Votre nom : </div>
+                    <div class="liste"><:escal:contact_nom:></div>
                     <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>  <li>
-                    <div class="liste">Votre prénom : </div>
+                    <div class="liste"><:escal:contact_prenom:></div>
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>  <li>
-                    <div class="liste">Votre e-mail : </div>
+                    <div class="liste"><:escal:contact_mail:></div>
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>
-                    Motif de votre message : 
+                    <:escal:contact_motif:> 
                     <ul>      <li>
-                      <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> />Renseignement</li>      <li>
-                      <input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> />Inscription</li>      <li>
-                      <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> />Probl&egrave;me technique</li>      <li>
-                      <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> />Votre avis sur le site</li>      <li>
-                      <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> />Autre</li>
+                      <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> /><:escal:contact_motif1:></li>      <li>
+                      <input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> /><:escal:contact_motif2:></li>      <li>
+                      <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> /><:escal:contact_motif3:></li>      <li>
+                      <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> /><:escal:contact_motif4:></li>      <li>
+                      <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> /><:escal:contact_motif5:></li>
                     </ul>  </li>   <li>
-                    Votre niveau de webmestre (plusieurs choix possibles) : <br /><br />
-                   
-                      <input type="checkbox" name="Niveau[]" value="Bon"  size="30" <?php if ($_POST['Niveau']=='Bon') { echo 'checked="checked"'; } ?> />Bon
-                      <input type="checkbox" name="Niveau[]" value="Correct"  size="30" <?php if ($_POST['Niveau']=='Correct') { echo 'checked="checked"';  } ?> />Correct
-                      <input type="checkbox" name="Niveau[]" value="Moyen"  size="30" <?php if ($_POST['Niveau']=='Moyen') { echo 'checked="checked"';  } ?> />Moyen
-                      <input type="checkbox" name="Niveau[]" value="Passable"  size="30" <?php if ($_POST['Niveau']=='Passable') { echo 'checked="checked"';  } ?> />Passable
-                      <input type="checkbox" name="Niveau[]" value="Mauvais"  size="30" <?php if ($_POST['Niveau']=='Mauvais') { echo 'checked="checked"';  } ?> />Mauvais
+                    <:escal:contact_checkbox:><br /><br /> 
+                      <input type="checkbox" name="Niveau[]" value="Bon"  size="30" <?php if ($_POST['Niveau']=='Bon') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox1:>
+                      <input type="checkbox" name="Niveau[]" value="Correct"  size="30" <?php if ($_POST['Niveau']=='Correct') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox2:>
+                      <input type="checkbox" name="Niveau[]" value="Moyen"  size="30" <?php if ($_POST['Niveau']=='Moyen') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox3:>
+                      <input type="checkbox" name="Niveau[]" value="Passable"  size="30" <?php if ($_POST['Niveau']=='Passable') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox4:>
+                      <input type="checkbox" name="Niveau[]" value="Mauvais"  size="30" <?php if ($_POST['Niveau']=='Mauvais') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox5:>
                     </li>   
-                  <br /><li>Votre message : </li> <br />
+                  <br /><li><:escal:contact_message:></li> <br />
                   <li>
                     <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
                     $erreur=1; }
                     else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
-                    <input id="envoi" type="submit" name="Submit" value="Envoyer" alt="Envoi"  title="Envoi de votre message" />  </li>
+                    <input id="envoi" type="submit" name="Submit" value="<:escal:contact_envoyer:>" alt="Envoi"  title="Envoi de votre message" />  </li>
                   </ul>
 <?php
 //
 // on recupere les donnees 
-// on vérifie si tout est bien rempli, sinon on envoie un message d'alerte
-// si oui, on prepare le contenu du mail
+// on verifie si tout est bien rempli, sinon on envoie un message d'alerte
+// si oui on prepare le contenu du mail
 //
 }
   include_spip('inc/filtres');
@@ -98,50 +96,44 @@ else {
 	$message.="Adresse IP : " . $_SERVER['REMOTE_ADDR'] . "\n";
 	$message.="Navigateur : " . $_SERVER['HTTP_USER_AGENT'] . "\n\n";
 	$message.="Nom : $vNom\n";
-		if (empty($vNom)) {
-		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre nom.</p>";
-		  $erreur=1;
-	  }
-	$message.="Prenom : $vPrenom\n\n";
-		if (empty($vPrenom)) {
-		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre pr&eacute;nom.</p>";
-		  $erreur=1;
-	  }
-	$message.="E-mail : $vEmail\n\n";
-		if (empty($vEmail)) {
-		  echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre adresse &eacute;lectronique ... comment pourrais-je vous r&eacute;pondre ?</p>";
-		  $erreur=1;
-	  }
-	  if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
-		  echo "<p class='alerte'>L'adresse e-mail n'est pas correcte&nbsp;:</p>";
-		  $erreur=1;
-	  }
-	$message.="Motif : $vSujet\n\n";
-	 if (empty($vSujet)) {
-		echo "<p class='alerte'>Vous n'avez pas choisi le motif de votre message.</p>";
+	if (empty($vNom)) {
+		echo "<p class='alerte'><:escal:contact_alerte_nom:></p>";
 		$erreur=1;
-	 }
-  	
-    if (empty($_POST['Niveau'])) {
-      echo "<p class='alerte'>Vous n'avez pas précisé votre niveau.</p>";
-      $erreur=1;
-    }
-    else {
+	}	
+	$message.="Prenom : $vPrenom\n\n";
+	if (empty($vPrenom)) {
+		echo "<p class='alerte'><:escal:contact_alerte_prenom:></p>";
+		$erreur=1;
+	}	
+	$message.="E-mail : $vEmail\n\n";
+	if (empty($vEmail)) {
+		echo "<p class='alerte'><:escal:contact_alerte_mail1:></p>";
+		$erreur=1;
+	}
+	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
+		echo "<p class='alerte'><:escal:contact_alerte_mail2:></p>";
+		$erreur=1;
+	}	
+	$message.="Motif : $vSujet\n\n";
+	if (empty($vSujet)) {
+		echo "<p class='alerte'><:escal:contact_alerte_motif:></p>";
+		$erreur=1;
+	}
+  if (empty($niveau)) {
+    echo "<p class='alerte'><:escal:contact_alerte_checkbox:></p>";
+    $erreur=1;
+  }
+  else {
     $message.= "Niveau : ";
     foreach ($_POST['Niveau'] as $niveau) {
         $message.= " - ".$niveau; 
     }
   }
-
   $message.=" \n\n Message : \n $vMessage\n";
-  	if (empty($vMessage)) {
-		  echo "<p class='alerte'>Vous n'avez pas compos&eacute; de message ! Distrait(e) ?</p>";
-		  $erreur=1;
-	  }
-	
-//	
-// s'il y a des erreurs, on renvoie le formulaire
-//
+  if (empty($vMessage)) {
+		echo "<p class='alerte'><:escal:contact_alerte_message:></p>";
+		$erreur=1;
+	}
 
 	if ($erreur==1) {
 		formulaire($Nom,$Prenom,$Email,$Sujet,$Message);
@@ -158,17 +150,16 @@ else {
 // on renvoie un message de confirmation
 //
 		echo '<p class="texte-retour1">
-		Bonjour, <span class="valeur1">  '. $vPrenom.' '. $vNom.'</span>.<br />
-		Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site
-		qui vous r&eacute;pondra d&egrave;s que possible &agrave; cette adresse :
+		<:escal:contact_retour_bonjour:> <span class="valeur1">  '. $vPrenom.' '. $vNom.'</span>.<br />
+		<:escal:contact_retour_commentaire:>
 		<span class="valeur1"> '. $vEmail.'</span>
 		 </p>';
-		echo '<p class="texte-retour2">Motif de votre message :</p>';
+		echo '<p class="texte-retour2"><:escal:contact_motif:></p>';
 		echo '<p class="valeur2">'. $vSujet.'</p>';
-		echo '<p class="texte-retour2">Votre niveau :</p>';
+		echo '<p class="texte-retour2"><:escal:contact_retour_checkbox:></p>';
 		for ($i=0; $i<count($_POST["Niveau"]); $i++)
 		echo '<p class="valeur2">'. $_POST["Niveau"][$i].'</p>';
-		echo '<p class="texte-retour2">Votre message :</p>';
+		echo '<p class="texte-retour2"><:escal:contact_message:></p>';
 
 		echo '<p class="valeur3">'. $vMessage=utf8_encode(nl2br($vMessage)) .'</p>';
 	}
@@ -181,12 +172,12 @@ else {
 
           <div id="navigation">
             <div class="cadre-bleu">
-              <INCLURE {fond=inclusions/inc-acces_direct}>
+              <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
             </div>
           </div>
 
           <div id="pied">
-            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
           </div>
 
         </div><!-- fin conteneur -->

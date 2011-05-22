@@ -24,7 +24,7 @@
 
 
 	<h1 class="cadre">
-		Calendrier
+		<:escal:calendrier:>
 	</h1>
 
 
@@ -47,7 +47,7 @@
 	
 <!-- affichage du calendrier -->
 
-		<table width="90%" cellpadding="1" cellspacing="0" style="align:center" class="small_mini" summary="calendrier">
+		<table width="90%" cellpadding="1" cellspacing="0" style="align:center" class="small_mini">
 		<!-- Remplit le tableau "$event" avec les dates des événements du mois -->
 		<BOUCLE_evenements(ARTICLES){!doublons evenements}>
 			<?php
@@ -111,23 +111,23 @@
 <!-- affichage de la liste des évènements -->
 		
 		<div id="entete-evenement">
-		Evènements à venir
+		<:escal:evenements:>
 		</div>
 
 		<BOUCLE_agenda_global (ARTICLES){!doublons evenements}{par date_redac}>
 			<div class="liste-evenements">
 			[(#DATE_REDAC|jour)-][(#DATE_REDAC|mois):]
-			<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
 			</div>
 		</BOUCLE_agenda_global>
 			<div class="liste-evenements">
-			Pas d'événement à venir
+			<:escal:evenements_non:>Pas d'événement à venir
 			</div>
 		<//B_agenda_global>
 		
 	<div id="nouvel-evenement">
 	 <a href="ecrire/?exec=articles_edit&amp;id_rubrique=9&amp;new=oui" title="R&eacute;serv&eacute; aux r&eacute;dacteurs">
-	 Ajouter un évenement <br />(Accès réservé)</a>	 </div>
+	 <:escal:evenements_ajouter:></a>	 </div>
 
 		
 </div><!-- fin texte -->

@@ -1,16 +1,15 @@
 #CACHE{24*3600}
-
 	<h1 class="cadre">
-  Articles les plus vus
+  <:escal:top_articles:>
   </h1>
 
   <div class="texte" id="top5">
 
     <B_affichage_articles>
     <ul>
-    <BOUCLE_affichage_articles(ARTICLES){par visites}{inverse}{0,5}>
+    <BOUCLE_affichage_articles(ARTICLES){par visites}{inverse}{0,5}{lang}>
     <li>
-    <a href="#URL_ARTICLE"  title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
+    <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]"  title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
     <div class="popularite"> (vu <strong>[(#VISITES)]</strong> fois)</div>
     </li>
     </BOUCLE_affichage_articles>
@@ -18,5 +17,3 @@
     </B_affichage_articles>
 
   </div>
-
-

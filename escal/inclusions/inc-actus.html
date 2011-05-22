@@ -1,19 +1,19 @@
 #CACHE{24*3600}
 
 <!-- on teste s'il y a un article avec le mot-cle actus -->   
-<BOUCLE_test(ARTICLES){titre_mot=actus}>
+<BOUCLE_test(ARTICLES){titre_mot=actus}{lang}>
 </BOUCLE_test>
 <!-- si la boucle ne renvoie rien, rien ne s'affiche
   et si elle renvoie quelque chose, on affiche le cadre avec les articles concernés -->
 
 	<h1 class="cadre">
-  Actus
+  <:escal:actus:>
   </h1>
 <div class="texte" id="actus" >  
  <div id="scrollup">
   <BOUCLE_actus(ARTICLES){titre_mot=actus}>
   <div class="headline" >
-  <a href="#URL_ARTICLE">#TITRE</a>
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">#TITRE</a>
   <div class="intro">
   [(#INTRODUCTION|couper{80}|propre)]
   </div>
