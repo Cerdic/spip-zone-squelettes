@@ -433,7 +433,7 @@ En mettant à jour gratuitement la version de votre navigateur, vous vous assure
 -* [Apple Safari->http://www.apple.com/fr/safari/]
 -* [Opera->http://www.opera.com/browser/]
 -* [Google Chrome->http://www.google.com/chrome]
--* [Microsoft Internet Explorer->http://www.microsoft.com/france/windows/products/winfamily/ie]
+-* [Microsoft Internet Explorer->http://windows.microsoft.com/fr-FR/internet-explorer/products/ie/home]
 
 Nous vous invitons en particulier à ne plus utiliser les versions 6 et inférieures d’Internet Explorer, considérées aujourd’hui comme obsolètes en terme de sécurité et de conformité aux standards.
 
