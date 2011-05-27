@@ -1,0 +1,31 @@
+<BOUCLE_commande(COMMANDES){id_commande}>
+<div class="liste_commande">
+	<h1>Votre commande</h1>
+	<table class="spip">
+		<tr class="row_first">
+		<th>Ref</th>
+		<th>Descriptif</th>
+		<th>Total</th>
+		</tr>
+			<tr class="row_odd">
+			<td>#REFERENCE</td>
+			<td>#DESCRIPTIF</td>
+			<td>#PRIX</td>
+			</tr>
+		</table>
+	
+	[(#ID_AUTEUR|=={0}|oui) <:identifiez_vous:>]
+	[(#ID_AUTEUR|>{0}|oui)
+	<h1>Formulaire paypal : </h1>
+		[(#FORMULAIRE_PAYPAL{#ARRAY{
+			prix,#PRIX*,
+			custom,"payer_commande",
+			invoice,#ID_COMMANDE,
+			libelle,"vente test",
+			identifiant,[paiement-1-(#SESSION{id_auteur})],
+			redirect_ok,[(#URL_PAGE{paiement_ok})],
+		}})]
+	]
+</div>
+</BOUCLE_commande>
+</B_commande><:aucune_commande:><//B_commande>
