@@ -19,6 +19,12 @@ define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
 define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
 define("_CLEVERMAIL_DISTANT", false);
 
+/*
+	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
+	Merci à ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
+*/
+$_GET['marker_icon_name'] = '_Marker_icon';
+
 $couleurs = charger_fonction('couleurs', 'inc');
 $couleurs( array(
 // Vert
