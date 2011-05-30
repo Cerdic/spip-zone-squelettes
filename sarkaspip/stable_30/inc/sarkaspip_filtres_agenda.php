@@ -612,7 +612,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 			// Il y a un ou plusieurs evenements, on construit le lien et la bulle d'info
 			$index_evt1 = $mini_evenements[date('d-m-Y', $date)][0];
 			$lien = 'spip.php?page=evenement&amp;id_article='.$evenements[$index_evt1]['id'];
-			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;'.$evenements[$index_evt1]['titre'];
+			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;' . attribut_html($evenements[$index_evt1]['titre']);
 			if (count($mini_evenements[date('d-m-Y', $date)]) > 1)
 				$bulle .= '...('.strval(count($mini_evenements[date('d-m-Y', $date)])).'&nbsp;'._T('sarkaspip:plusieurs_evenements_jour').')';
 			$cellule .= '<a rel="nofollow" href="'.$lien.'" title="'.$bulle.'">'.strval(date('j', $date)).'</a>';		
