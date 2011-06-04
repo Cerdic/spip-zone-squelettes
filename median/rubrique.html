@@ -160,11 +160,45 @@ art_unique: #GET{art_unique}<br>
                         [(#REM) sinon afficher le descriptif et/ou le texte explicatif de la rubrique ]
         			  </div><!-- fin cartouche -->
         			    [<div class="#EDIT{descriptif} texte">(#DESCRIPTIF)</div>]
+
+
+					[(#REM) Portfolio : album d'images à droite si pas mot clé port_folio_dessous ]
+					   #SET{nb_img, #SURTITRE|sinon{3}}
+						<BOUCLE_portfolio_dessous(MOTS){id_rubrique}{titre=port_folio_dessous}{0,1}>
+						</BOUCLE_portfolio_dessous>
+						  <B_documents_portfolio_droite>
+						  [(#REM) si mot clé port_folio_left faire flotter à gauche ]
+						  <BOUCLE_flotte_gauche(MOTS){id_rubrique}{titre=port_folio_left}{0,1}>
+							<div id="documents_portfolio_gauche">
+						  </BOUCLE_flotte_gauche>
+							<div id="documents_portfolio_droite">
+						  <//B_flotte_gauche>
+								<!--<h2><:info_portfolio:></h2>-->
+								<BOUCLE_documents_portfolio_droite(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons} {0, #GET{nb_img}}>
+								[(#MODELE{doc_pf_droite}{id_document}{align}{nb_img=#GET{nb_img}})]
+							</BOUCLE_documents_portfolio_droite>
+							</div>
+							</B_documents_portfolio_droite>
+						<//B_portfolio_dessous>
+
+
                         [<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{360,500})</div>]
                     <//B_art_rub>
                     
         		</div><!-- fin contenu -->
         	</div><!-- fin conteneur -->
+
+			[(#REM) Portfolio : album d'images en position bas de page pour toutes les images après celles à droite ]
+            <B_documents_portfolio>
+                <div id="documents_portfolio">
+            <!--<h2><:info_portfolio:></h2>-->
+            <BOUCLE_documents_portfolio(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+            [(#MODELE{doc_pf}{id_document}{align})]
+            </BOUCLE_documents_portfolio>
+            </div>
+            </B_documents_portfolio>
+            <br class="nettoyeur" />
+
           
     [(#SET{larg_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
     [(#SET{ht_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]    
@@ -189,6 +223,7 @@ art_unique: #GET{art_unique}<br>
         	</ul>
         </div>
         </B_documents_joints>
+
         
         [(#REM) Articles de la rubrique ]
         <B_articles>
@@ -278,8 +313,7 @@ art_unique: #GET{art_unique}<br>
         	</div>
         		</BOUCLE_sous_rubriques>
         </B_sous_rubriques>
-            
-        
+                    
     </div><!-- fin contre-encart -->
 
 
