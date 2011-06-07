@@ -13,18 +13,9 @@
 	[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
 </div>
 
-<B_articles>
-<div class="liste resume articles">
-	#ANCRE_PAGINATION
-	<h2 class="h2"><:articles_rubrique:></h2>
-	<ul class="liste-items">
-		<BOUCLE_articles(ARTICLES){id_rubrique} {!par date} {pagination 5}>
-		#INCLURE{fond=inclure/article-resume,id_article}
-		</BOUCLE_articles>
-	</ul>
-	[<p class="pagination">(#PAGINATION)</p>]
-</div>
-</B_articles>
+	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+		<INCLURE{fond=liste/articles-resume,env,ajax,titre=<:articles_rubrique:>} />
+	</BOUCLE_articles>
 
 	[(#REM) Si aucun article, affiche un plan de la rubrique ]
 	<B_sous_rubriques>
