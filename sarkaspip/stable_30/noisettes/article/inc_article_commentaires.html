@@ -30,13 +30,14 @@
 		[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
 	]
 ]
-<BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}{pagination #ENV{pas_pagination}}>
+<BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse #ENV{sens_tri}}{pagination #ENV{pas_pagination}}>
 	<div class="message"[ id="co_n(#COMPTEUR_BOUCLE)"]>
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 		<div class="gravatar">
 	<BOUCLE_auteur_pere(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
 			#SET{nom_auteur, #NOM}
 			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
+			#SET{url_auteur, #URL_AUTEUR}
 	</BOUCLE_auteur_pere>
 			#SET{nom_auteur, #_commentaires:NOM}
 			[(#PLUGIN{GRAVATAR}|oui)
@@ -54,7 +55,11 @@
 			]
 		]
 			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
-			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})][, <:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]
+			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
+			[(#ENV{presentation_auteur}|=={1}|et{#GET{url_auteur}|oui}|?{
+				[- <:sarkaspip:par_auteur:>&nbsp;<a href="#GET{url_auteur}">(#GET{nom_auteur})</a>],
+				[- <:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]}
+			)]
 		</div>
 		<div class="#EDIT{texte} texte">#TEXTE</div>
 		[<div class="texte #EDIT{hyperlien}"><:sarkaspip:site_web:>&nbsp;:&nbsp;<span class="lien_site"><a href="[(#URL_SITE)]">(#NOM_SITE)</a></span></div>]
