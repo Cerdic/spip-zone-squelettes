@@ -31,18 +31,16 @@
 			[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
 		]
 	]
-	<BOUCLE_commentaires(FORUMS){id_article}{id_thread ?}{id_parent=0}{!par date}{pagination #ENV{pas_pagination}}>
+	<BOUCLE_commentaires(FORUMS){id_article}{id_parent=0}{!par date}{pagination #ENV{pas_pagination}}>
 		<div class="message"[ id="co_n(#COMPTEUR_BOUCLE)"]>
 			<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 			<div class="gravatar">
 				<BOUCLE_auteur_pere(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
 					#SET{nom_auteur, #NOM}
-					#SET{id_thread, #_commentaires:ID_THREAD}
 					#SET{url_auteur, #URL_AUTEUR}
 					[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
 				</BOUCLE_auteur_pere>
 					#SET{nom_auteur, #_commentaires:NOM}
-					#SET{id_thread, #_commentaires:ID_THREAD}
 					[(#PLUGIN{GRAVATAR}|oui)
 						[(#GRAVATAR{#_commentaires:EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
 					]
@@ -55,7 +53,7 @@
 				<div class="#EDIT{titre} titre">#TITRE</div>
 				[(#ENV{id_forum}|?{'', ' '})
 					[(#ENV{statut}|=={ferme}|non)
-					[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post, id_article=#ENV{id_article}&id_forum=#ID_FORUM&id_thread=#ID_THREAD})" rel="noindex nofollow" title="<:sarkaspip:repondre_commentaire:>"></a>]
+					[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post, id_article=#ENV{id_article}&id_forum=#ID_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commentaire:>"></a>]
 					]
 				]
 				[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
@@ -71,7 +69,7 @@
 			<div class="nettoyeur"></div>
 		</div>
 		<B_fils>
-		<BOUCLE_fils(FORUMS){id_thread}{id_parent>0}{par id_parent}{par date} {inverse #ENV{sens_tri}}>
+		<BOUCLE_fils(FORUMS){id_thread}{id_parent>0}{par date}{inverse #ENV{sens_tri}}>
 			<div class="message fil">
 				#SET{nb_reponses,#COMPTEUR_BOUCLE}
             	<div class="gravatar">
