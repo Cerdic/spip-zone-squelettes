@@ -119,15 +119,15 @@ else {
 		echo "<p class='alerte'><:escal:contact_alerte_motif:></p>";
 		$erreur=1;
 	}
-	$message.= "Niveau : ";
-    foreach ($_POST['Niveau'] as $niveau) {
-        $message.= $niveau; 
-    }
-  if (empty($niveau)) {
+  if (empty($_POST['Niveau'] )) {
     echo "<p class='alerte'><:escal:contact_alerte_checkbox:></p>";
     $erreur=1;
-  }
-
+  } else {
+  $message.= "Niveau : ";
+  $message.= implode('-',$_POST['Niveau']);
+    }
+    
+    
 
   $message.=" \n\n Message : \n $vMessage\n";
   if (empty($vMessage)) {
