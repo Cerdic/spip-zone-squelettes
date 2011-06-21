@@ -30,8 +30,8 @@ if (defined('_Z_AJAX_PARALLEL_LOAD')) {
 /**
  * Inutilise mais permet le chargement de ce fichier avant le decodage des urls
  * et l'utilisation de _DEFINIR_CONTEXTE_TYPE
- * @param <type> $flux
- * @return <type>
+ * @param array $flux
+ * @return array
  */
 function Z_declarer_url_objets($flux){
 	return $flux;
@@ -301,14 +301,15 @@ function filtre_introduction($descriptif, $texte, $longueur, $connect) {
 
 /**
  * Tester la presence sur une page
- * @param <type> $p
- * @return <type>
+ * @param object $p
+ * @return object
  */
+if (!function_exists('balise_SI_PAGE_dist')){
 function balise_SI_PAGE_dist($p) {
 	$_page = interprete_argument_balise(1,$p);
 	$p->code = "(((\$Pile[0][_SPIP_PAGE]==(\$zp=$_page)) OR (\$Pile[0]['composition']==\$zp AND \$Pile[0]['type']=='page'))?' ':'')";
 	$p->interdire_scripts = false;
 	return $p;
 }
-
+}
 ?>
