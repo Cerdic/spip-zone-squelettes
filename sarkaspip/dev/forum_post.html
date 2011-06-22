@@ -15,12 +15,27 @@
 
 <div id="wrapper">
 	<div id="content">
-		<div class="titre"><h1><:sarkaspip:nouveau_fil:></h1></div>
-		[(#REM) <!-- Formulaire de reponse --> ]
-		[(#REM) <!--<div class="formulaire">#FORMULAIRE_FORUM</div>--> ]
-
+		[(#ENV{id_forum}|non|?{<div class="titre"><h1><:sarkaspip:poster_sujet:></h1></div>, <div class="titre"><h1><:sarkaspip:ecrire_reponse:></h1></div>})]		
+		[(#REM) <!-- Présentation soit de l'article soit de la réponse à commenter --> ]
+		[(#ENV{id_forum}|non)
+			<div id="forum" class="forum">
+				[(#REM) <!-- Titre, logo, texte de la page du forum --> ]
+				<INCLURE{fond=noisettes/article/inc_article_description}
+					{id_article}
+					{page=forum}
+					{afficher_commentaires=non}
+					{avec_popularite=non}
+					{avec_notation=non}
+					{avec_socialtags=non}
+					{logo_rubrique=oui}
+					{taille_logo=100}>
+			</div>
+		]
+		[(#ENV{id_forum}|oui)
+			<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}{id_article}{page=forum_sujet}{id_forum}>
+		]		
+		[(#REM) <!-- Présentation soit de l'article soit de la réponse à commenter --> ]
 		<div class="formulaire">#FORMULAIRE_FORUM{(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#ID_FORUM})}</div>
-
 	</div> <!--content-->
 </div> <!--wrapper-->
 
