@@ -83,6 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // F
 'fleche' => 'flèche',
 'format' => 'Format :',
+
 //H
 'haut_page' => 'Haut de page',
 // I
