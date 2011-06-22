@@ -776,7 +776,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docu_commentaire' => 'Document joint',
 
 // E
-	'ecrire_reponse' => 'Faire une r&eacute;ponse',
+	'ecrire_reponse' => 'Poster une r&eacute;ponse',
 	'erreur' => 'erreur',
 	'espace_prive' => 'Espace&nbsp;priv&eacute;',
 	'evenements_meme_journee' => 'dans la journ&eacute;e...',
