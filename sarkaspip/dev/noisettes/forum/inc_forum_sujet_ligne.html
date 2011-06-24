@@ -8,8 +8,10 @@
 		- sujet: type de discussion (annonce, epingle ou discussion)
 -->
 ]
+#SET{ferme, [ferme]}
+[(#ENV{titre}|strstr{#GET{ferme}}|oui) #SET{verrou, lock}]
 <tr>
-	<td class="etat"><img[ src="(#CHEMIN{[images/forum_(#ENV{sujet}).gif]})"][ alt="(#ENV{sujet})"] width="16" height="16" /></td>
+	<td class="etat"><img[ src="(#CHEMIN{[images/forum_(#ENV{sujet})[_(#GET{verrou})].gif]})"][ alt="(#ENV{sujet})"] width="20" height="20" /></td>
 	<td class="description" id="forum#ENV{id_forum}">
 		[<h3 class="titre"><a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ENV{id_article}}|parametre_url{id_forum,#ENV{id_forum}})]">(#ENV{titre}|nettoyer_titre_sujet)</a></h3>]
 	</td>

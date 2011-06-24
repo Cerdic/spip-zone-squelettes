@@ -396,7 +396,7 @@ function restaurer_fonds($fichiers) {
 // =======================================================================================================================================
 //
 function nettoyer_titre_sujet($titre) {
-	$titre_nettoye = trim(preg_replace(',^\[(annonce|epingle)\](&nbsp;)*,UimsS', '', $titre));
+	$titre_nettoye = trim(preg_replace(',^\[(annonce|epingle|ferme)\](&nbsp;)*,UimsS', '', $titre));
 	return $titre_nettoye;
 }
 // FIN du Filtre : nettoyer_titre_sujet
