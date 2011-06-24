@@ -1,0 +1,19 @@
+[(#SESSION{id_auteur}|oui)
+			
+<h1><:zcommerce:modifiez_vos_coordonnees:></h1>
+#FORMULAIRE_EDITER_CLIENT{#SESSION{id_auteur}}	
+
+<a href="[(#SELF|parametre_url{appel,ma_commande})]" class="continuer">
+		<:zcommerce:continuer:> >>
+</a>
+
+]
+
+[(#SESSION{id_auteur}|non)
+	<h3><:zcommerce:deja_inscrit:></h3>
+	[(#FORMULAIRE_LOGIN{[(#SELF|parametre_url{appel,ma_commande}|parametre_url{id_auteur,#SESSION{id_auteur}})]})]
+				
+	
+	<h3><:zcommerce:vous_inscrire:></h3>
+	<div class="ajax">#FORMULAIRE_INSCRIPTION_CLIENT</div>
+]

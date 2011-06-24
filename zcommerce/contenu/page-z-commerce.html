@@ -3,31 +3,51 @@ ul.menu-zcommerce{margin:0;padding:0;list-style-type:none;text-transform:lowerca
 .menu-zcommerce li{display: inline; margin-right:1.2em;}
 #contenu_zcommerce{margin-top:2em;}
 #navigation{font-size:0.7em}
+.liste_commande .row_even{font-weight:bold;}
+.continuer{border:1px solid #999; background:#F7F7F7; padding:1em; float:right; width:90px; text-align:center}
+.submit:hover{background:#B9ED9A}
+.commande thead tr th{background:#ccc; border:1px solid #fff; border-width:0 1px 0 1px;}
 </style>
 
 <INCLURE{fond=inclure/menuzcommerce}{env}>
 
 <div id="contenu_zcommerce">
-
-	[(#ENV{appel}|=={"sinscrire"}|oui)
-		<h1><:vos_coordonnees:></h1>
-		<div class="ajax">#FORMULAIRE_INSCRIPTION_CLIENT</div>
+	[(#REM) 1 -la boutique ]
+	[(#ENV{appel}|=={""}|oui)
+		[(#PLUGIN{produits}|oui)
+			<INCLURE{fond=inclure/les_produits}{env}>
+			]
+		[(#PLUGIN{abonnement}|oui)	
+			<INCLURE{fond=inclure/les_abonnements}{env}>
+			]
+		[(#PLUGIN{zaboarticle}|oui)
+			<INCLURE{fond=inclure/les_articles}{env}>
+			]
+		<a href="[(#SELF|parametre_url{appel,mon_panier})]" class="continuer">
+		<:zcommerce:continuer:> >>
+		</a>
 	]
 	
-	[(#ENV{appel}|=={"monpanier"}|oui)
+	[(#REM) 2 - mon_panier ]
+	[(#ENV{appel}|=={"mon_panier"}|oui)
 		<INCLURE{fond=inclure/mon_panier}{env}>
 	]
 	
-	[(#ENV{appel}|=={"commande_encours"}|oui)
-		<INCLURE{fond=inclure/la_commande}{id_commande=#SESSION{id_commande}}>
+	[(#REM) 3 - mes_coordonnees ]
+	[(#ENV{appel}|=={"mes_coordonnees"}|oui)
+		<INCLURE{fond=inclure/mes_coordonnees}{env}>
+		<!-- todo pipeline mes_coordonnees > ma_commande enregistre -->
 	]
 	
-	[(#ENV{appel}|=={"moncompte"}|oui)
-		<INCLURE{fond=inclure/editer_client}{env}>
+	[(#REM) 4 - ma_commande ]
+	[(#ENV{appel}|=={"ma_commande"}|oui)
+		<INCLURE{fond=inclure/ma_commande}{env}>
 	]
 	
-	[(#ENV{appel}|=={""}|oui)
-		<INCLURE{fond=inclure/les_produits}{env}>
+	[(#REM) 5 - paiement et retour banque ]
+	[(#ENV{appel}|=={"paiement"}|oui)
+		<INCLURE{fond=inclure/paiement}{env}>
 	]
+	
 
 </div>
