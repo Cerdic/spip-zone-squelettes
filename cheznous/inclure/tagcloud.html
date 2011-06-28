@@ -1,0 +1,35 @@
+<BOUCLE_tagcloud(MOTS){type==tagcloud}{19,1}> </BOUCLE_tagcloud>
+<div class="menu" id="tagcloud">
+<h2 class="invisible"><:mots_clefs:></h2>
+<?php
+
+<BOUCLE_mot(MOTS){type==tagcloud}>
+$titre[#ID_MOT]='[(#TITRE|texte_script)]';
+$url[#ID_MOT]='#URL_MOT';
+$desc[#ID_MOT]='[(#DESCRIPTIF|attribut_html|texte_script)]';
+<BOUCLE_art(ARTICLES){id_mot}> </BOUCLE_art>
+$pop[#ID_MOT]=#TOTAL_BOUCLE; # Nombre d'articles pour ce mot
+</B_art>
+</BOUCLE_mot>
+
+$maxpop = max($pop); # Plus grand nombre d'article pour un mot
+arsort($pop);
+echo "<ol>";
+foreach (array_keys($pop) as $id) {
+		$t = $titre[$id];
+		$score = $pop[$id]/$maxpop; # entre 0 et 1
+//        $score = pow($score,1.5); # lissage
+		if($score > 0.2){
+		$s = ceil(15*$score);
+		$s = 7 + $s;
+		$t = str_replace(' ', '&nbsp;', $t);
+		$l = "<span style='font-size: ".$s."px;'>$t</span>";
+		$l = "<li><a rel='tag' href='".$url[$id]."' title='".$desc[$id]."'".">$l</a></li>";
+		echo "$l\n";
+		}
+}
+echo "</ol>";
+?>
+<p class="plus"><a href="#URL_PAGE{page_tagcloud}" rel="nofollow"><:mots_tout:></a></p>
+</div><!--#tagcloud-->
+</B_tagcloud>

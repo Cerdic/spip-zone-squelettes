@@ -1,0 +1,20 @@
+[(#REM) Liste des articles syndiques de la rubrique ]
+<BOUCLE_sites_oui(SITES){branche ?}>
+<BOUCLE_syndic_trois(SYNDIC_ARTICLES){id_syndic} {age<150}{!par date} {0,3} {doublons}> </BOUCLE_syndic_trois>
+</BOUCLE_sites_oui>
+
+<B_ailleurs>
+<div class="menu" id="ailleurs">
+	<h2><:nouveautes_web:></h2>
+	<ul>
+		<BOUCLE_ailleurs(SYNDIC_ARTICLES) {age<150}{!par date} {0,7} {!doublons}>
+		[<li>
+			<strong><a href="(#URL_ARTICLE|unique)" class="spip_out">[(#TITRE|supprimer_tags|typo)]</a></strong><br />
+			<small>[(#DATE|affdate{'d|m'})][, <:par_auteur:> (#LESAUTEURS)][&nbsp;&mdash; (#NOM_SITE)]</small>
+		</li>]
+		</BOUCLE_ailleurs>
+	</ul>
+	<p class="plus"><a href="#URL_PAGE{page_ailleurs}" rel="nofollow"><:ailleurs_tout:></a></p>
+	<p class="plus"><a href="#URL_PAGE{page_liens}" rel="nofollow"><:liens_tout:></a></p>
+</div>
+</B_ailleurs>
