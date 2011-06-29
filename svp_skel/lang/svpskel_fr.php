@@ -9,6 +9,11 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // B
+	'bouton_demontrer' => 'La démo',
+	'bouton_developper' => 'La zone de dev',
+	'bouton_documenter' => 'La documentation',
+	'bouton_sourcer' => 'Les sources',
+	'bouton_telecharger' => 'L\'archive',
 	'bulle_aller_categorie' => 'Se rendre sur la page des plugins de cette catégorie',
 	'bulle_aller_demonstration' => 'Se rendre sur la page de démonstration',
 	'bulle_aller_depots' => 'Se rendre sur la page d\'accueil des dépôts',
@@ -44,6 +49,22 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_stats_categories' => '@nb_categories@ catégorie(s) disponible(s) sur 13 possibles.',
 
 // L
+	'label_archive' => 'Archive',
+	'label_auteur' => 'Auteur(s)',
+	'label_copyright' => 'Copyright',
+	'label_credit' => 'Crédits',
+	'label_hebergement' => 'Hébergée par',
+	'label_etat' => 'État',
+	'label_gestionnaire' => 'Gestionnaire',
+	'label_langue_reference' => 'Langue référence',
+	'label_licence' => 'Licence',
+	'label_maj' => 'Générée le',
+	'label_module' => 'Module de langue',
+	'label_necessite_librairies' => 'Nécessite les librairies',
+	'label_necessite_plugins' => 'Nécessite les plugins',
+	'label_taille' => 'Taille',
+	'label_traductions' => 'Traductions',
+	'label_utilise_plugins' => 'Fonctions supplémentaires avec les plugins',
 
 
 // M
@@ -56,6 +77,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 // T
+	'titre_filtre_categorie' => 'Filtrer par catégorie',
+	'titre_filtre_depot' => 'Filtrer par dépôt',
+	'titre_filtre_spip' => 'Filtrer par branche',
+	'titre_navigation_depot' => 'Dépôts',
+	'titre_navigation_plugin' => 'Dans la catégorie',
+	'titre_page_depots' => 'Dépôts',
+	'titre_page_plugins' => 'Plugins',
+	'titre_page_prefixes' => 'Préfixes',
+	'titre_page_statistiques' => 'Statistiques',
+	'titre_page_telechargements' => 'Téléchargements',
 
 
 );
