@@ -32,12 +32,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 // I
+	'info_actualisation_depot_cron' => 'Les plugins des dépôts sont actualisés automatiquement toutes les @periode@ heure(s).',
 	'info_aucun_depot_disponible' => 'Aucun dépôt disponible.',
 	'info_aucun_module_utilise' => 'Aucun module de langue utilisé',
 	'info_aucun_paquet_disponible' => 'Aucun paquet disponible.',
 	'info_aucun_plugin_disponible' => 'Aucun plugin disponible.',
 	'info_aucune_compatibilite_spip' => 'Non communiquée',
 	'info_aucune_contribution_disponible' => 'Aucune autre contribution disponible en dehors des plugins',
+	'info_stats_categories' => '@nb_categories@ catégorie(s) disponible(s) sur 13 possibles.',
 	'info_stats_plugins' => 'Le tableau ci-dessous affiche le nombre de plugins hébergés pour chacune des catégories disponibles.',
 	'intertitre_depot_autres_contributions' => 'Liste des autres contributions',
 	'intertitre_depot_plugins' => 'Liste des plugins hébergés',
@@ -45,17 +47,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'intertitre_paquets_plugin' => 'Les plugins',
 	'intertitre_stats_categories' => 'Compteurs par catégorie',
 	'intertitre_stats_globales' => 'Compteurs globaux',
-	'info_actualisation_depot_cron' => 'Les plugins des dépôts sont actualisés automatiquement toutes les @periode@ heure(s).',
-	'info_stats_categories' => '@nb_categories@ catégorie(s) disponible(s) sur 13 possibles.',
 
 // L
 	'label_archive' => 'Archive',
 	'label_auteur' => 'Auteur(s)',
 	'label_copyright' => 'Copyright',
 	'label_credit' => 'Crédits',
-	'label_hebergement' => 'Hébergée par',
 	'label_etat' => 'État',
 	'label_gestionnaire' => 'Gestionnaire',
+	'label_hebergement' => 'Hébergée par',
 	'label_langue_reference' => 'Langue référence',
 	'label_licence' => 'Licence',
 	'label_maj' => 'Générée le',
