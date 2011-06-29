@@ -33,7 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // I
 	'info_aucun_depot_disponible' => 'Aucun dépôt disponible.',
-	'info_aucun_module_utilise' => 'aucun module de langue utilisé',
+	'info_aucun_module_utilise' => 'Aucun module de langue utilisé',
 	'info_aucun_paquet_disponible' => 'Aucun paquet disponible.',
 	'info_aucun_plugin_disponible' => 'Aucun plugin disponible.',
 	'info_aucune_compatibilite_spip' => 'Non communiquée',
