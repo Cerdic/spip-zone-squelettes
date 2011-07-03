@@ -123,6 +123,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_geolocalisation_label' => 'Pod vyhľadávaním zobraziť geolokalizáciu',
 	'cfg_globale' => 'Glebálne pre celú stránku',
 	'cfg_goodies_label' => 'Nombre de goodies affichées par rubrique (mode portail communiquant)', # NEW
+	'cfg_googleplusun_explication' => '<a href="http://www.google.com/webmasters/+1/button/index.html">Google +1</a> : service de Google pour indiquer aux autres son intérêt pour une page.', # NEW
+	'cfg_googleplusun_info' => 'Google +1', # NEW
+	'cfg_googleplusun_non' => 'Ne pas afficher le badge Google +1', # NEW
+	'cfg_googleplusun_oui' => 'Afficher le badge Google +1', # NEW
 	'cfg_haut_footer' => 'Zobraziť v hornej časti päty',
 	'cfg_hauteur' => 'Výška',
 	'cfg_hauteur_videoaccueil' => 'Výška úvodného videa (0 pre automatickú výšku)',

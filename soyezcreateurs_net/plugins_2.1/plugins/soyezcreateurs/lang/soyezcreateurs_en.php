@@ -123,6 +123,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_geolocalisation_label' => 'Display the geolocalisation below the search',
 	'cfg_globale' => 'Global for all the site',
 	'cfg_goodies_label' => 'Nombre de goodies affichées par rubrique (mode portail communiquant)', # NEW
+	'cfg_googleplusun_explication' => '<a href="http://www.google.com/webmasters/+1/button/index.html">Google +1</a> : service de Google pour indiquer aux autres son intérêt pour une page.', # NEW
+	'cfg_googleplusun_info' => 'Google +1', # NEW
+	'cfg_googleplusun_non' => 'Ne pas afficher le badge Google +1', # NEW
+	'cfg_googleplusun_oui' => 'Afficher le badge Google +1', # NEW
 	'cfg_haut_footer' => 'Display at the top of the footer',
 	'cfg_hauteur' => 'Height',
 	'cfg_hauteur_videoaccueil' => 'Height of the intro video (0 for automatic height)',

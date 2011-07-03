@@ -123,6 +123,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_geolocalisation_label' => 'Афішувати ( показати ) геолокаціі нижче пошуку',
 	'cfg_globale' => 'Глобальна для всього сайту',
 	'cfg_goodies_label' => 'Nombre de goodies affichées par rubrique (mode portail communiquant)', # NEW
+	'cfg_googleplusun_explication' => '<a href="http://www.google.com/webmasters/+1/button/index.html">Google +1</a> : service de Google pour indiquer aux autres son intérêt pour une page.', # NEW
+	'cfg_googleplusun_info' => 'Google +1', # NEW
+	'cfg_googleplusun_non' => 'Ne pas afficher le badge Google +1', # NEW
+	'cfg_googleplusun_oui' => 'Afficher le badge Google +1', # NEW
 	'cfg_haut_footer' => 'Афішування ( показ, дисплей )  у верхній частині нижнього колонтитула',
 	'cfg_hauteur' => 'Висота',
 	'cfg_hauteur_videoaccueil' => 'Висота відео головної сторінки (0 для автоматичної висоти)',
