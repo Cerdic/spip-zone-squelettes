@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head><title> [#NOM_SITE_SPIP] - <B_titre><BOUCLE_titre(ARTICLES){id_article}>[(#TITRE|supprimer_numero)]</BOUCLE_titre></B_titre><//B_titre></title>
+        <meta http-equiv="Content-Language" content="fr" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="#CHEMIN{css/screen.css}" />
+        <script type="text/javascript" src="#CHEMIN{scripts.js}"></script>
+        <script type="text/javascript" src="#CHEMIN{ypSlideOutMenus.js}"></script>
+        <?php 
+        if (ereg("MSIE 6", $_SERVER["HTTP_USER_AGENT"])  || ereg("MSIE 7", $_SERVER["HTTP_USER_AGENT"])) {
+            echo('<link rel="stylesheet" type="text/css" href="squelettes/css/ms-idea-of-css.css" />');
+            echo('<script src="#CHEMIN{ie7-standard.js}" type="text/javascript"></script>');
+        } ?>
+
+        #INSERT_HEAD
+</head>
+
+<body>
+<div id="page">
+
+<div id="header">
+    <div id="titre-site">#NOM_SITE_SPIP</div>
+    <div id="titre-url">#URL_SITE_SPIP</div>
+    <div id="rollupmenu">
+        <ul class="pulldownmenu">
+        <?php 
+            $i=0;
+            $j=1;
+            $k=500;
+            $l=540;
+        ?>
+        
+        <BOUCLE_rubSite(RUBRIQUES){racine}{par num titre}{inverse}>
+        <li>
+            <a onmouseover="ypSlideOutMenu.showMenu('<?php echo menu.$j ?>')" onmouseout="ypSlideOutMenu.hideMenu('<?php echo menu.$j ?>')" href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+            <div id="<?php echo menu.$j.Container ?>">
+            <div class="submenu" id="<?php echo menu.$j.Content ?>">
+                <?php
+                if (ereg("MSIE", $_SERVER["HTTP_USER_AGENT"])) {
+                    echo('<script type="text/javascript"> new ypSlideOutMenu("menu' .$j. '","down",' .$k. ',33,175,275)</script>');
+                } else {
+                    echo('<script type="text/javascript"> new ypSlideOutMenu("menu' .$j. '","down",' .$l. ',33,175,275)</script>');
+                } 
+                ?>
+                
+                <B_rubNiv2>
+                    <ul class="forie-pulldownmenu">
+                    <BOUCLE_rubNiv2(RUBRIQUES){id_parent}{par num titre}>
+                        <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+                    </BOUCLE_rubNiv2>
+                    </ul>
+                </B_rubNiv2>
+                               
+                <B_artRub>
+                    <ul class="forie-pulldownmenu">
+                    <BOUCLE_artRub(ARTICLES){id_rubrique}{0,10}{par date}>
+                        <li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{35})]</a></li>
+                    </BOUCLE_artRub>
+                    </ul>
+                </B_artRub>
+                <//B_rubNiv2>
+                </div>
+            </div>
+        </li>
+        <?php $i=$i+1; $j=$i+1 ; $k=500-$i*120; $l=540-$i*120 ;?> 
+       </BOUCLE_rubSite>
+        
+        </ul>
+    </div>
+</div>

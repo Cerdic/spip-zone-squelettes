@@ -1,0 +1,41 @@
+#CACHE{6*3600}
+
+<B_rubrique>
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<INCLURE{fond=header.inc}{id_rubrique}>
+
+<div id="content">
+    <div id="position"><a href="#URL_SITE_SPIP/">Accueil</a><BOUCLE_hierarchie(HIERARCHIE){id_rubrique}{" > "}> &nbsp;&gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_hierarchie> &nbsp;&gt; [(#TITRE|supprimer_numero)]</div>
+    <h2 class="titre-texte">[(#LOGO_RUBRIQUE)] [(#TITRE|supprimer_numero)]</h2>
+    <div class="chapo">[(#CHAPO)]</div>
+    <div class="texte">
+	<ul>
+        <B_rubNiv1>
+        <BOUCLE_rubNiv1(RUBRIQUES){id_parent}{par num titre}>
+            <li class="plan-rubriques"><a href="[(#URL_RUBRIQUE)]"><img src="#CHEMIN{images/minifolder.gif}" width="10" height="10" border="0" align="absmiddle" alt="" /> [(#TITRE|supprimer_numero)] </a> </li>
+            <li class="plan-rubriques"><a class="chapo" href="#URL_RUBRIQUE" >[(#CHAPO|textebrut)]</a></li>		
+	</BOUCLE_rubNiv1>
+        </B_rubNiv1>
+        
+	<BOUCLE_artRub(ARTICLES){id_rubrique}{par num titre}>
+            <li class="plan-rubriques"><a href="[(#URL_ARTICLE)]"><img src="#CHEMIN{images/minifolder.gif}" width="10" height="10" border="0" align="absmiddle" alt="" /> [(#TITRE|supprimer_numero)] </a> </li>
+            <li class="plan-rubriques"><a class="chapo" href="#URL_ARTICLE" >[(#CHAPO|textebrut)]</a></li>	
+	</BOUCLE_artRub>
+        <//B_rubNiv1>
+	</ul>
+    </div>
+</div>	
+
+<INCLURE{fond=footer.inc}>		  		  
+</BOUCLE_rubrique>
+
+</B_rubrique>
+<INCLURE{fond=header.inc}{id_rubrique}>
+<div id="content">
+	<div id="position"><a href="#URL_SITE_SPIP">Accueil</a>&nbsp;&gt; Erreur 404 </div>
+	<h2 class="titre-texte">Rubrique non publi&eacute;</h2>
+	<div class="texte">La rubrique que vous tentez de visualiser n'existe pas.</div>
+</div>	
+
+<INCLURE{fond=footer.inc}>	
+<//B_rubrique>
