@@ -28,9 +28,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bulle_filtrer_par_spip' => 'Filtrer sur la branche SPIP',
 	'bulle_supprimer_filtre' => 'Supprimer le filtre',
 
-// C
-
-
 // I
 	'info_actualisation_depot_cron' => 'Les plugins des dépôts sont actualisés automatiquement toutes les @periode@ heure(s).',
 	'info_aucun_depot_disponible' => 'Aucun dépôt disponible.',
@@ -66,16 +63,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_traductions' => 'Traductions',
 	'label_utilise_plugins' => 'Fonctions supplémentaires avec les plugins',
 
-
-// M
-
-
-// O
-
-
-// R
-
-
 // T
 	'titre_filtre_categorie' => 'Filtrer par catégorie',
 	'titre_filtre_depot' => 'Filtrer par dépôt',
@@ -87,7 +74,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_page_prefixes' => 'Préfixes',
 	'titre_page_statistiques' => 'Statistiques',
 	'titre_page_telechargements' => 'Téléchargements',
-
-
 );
+
 ?>
