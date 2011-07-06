@@ -5,7 +5,7 @@
 -->
 ]
 <BOUCLE_sujet(FORUMS){id_forum}>
-[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)[ (#ENV{verrou}|oui)<:sarkaspip:forum_ferme:>]</h1></div>]
+[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)[(#ENV{verrou}|oui)<:sarkaspip:forum_ferme:>][(#ENV{resolu}|oui)<:sarkaspip:forum_resolu:>]</h1></div>]
 <div class="description">
 	<div class="cartouche">
 		[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
@@ -24,5 +24,17 @@
 	</div>
 	[<div class="#EDIT{texte} premier_message">(#TEXTE|typo_couleur)</div>]
 	<br class="nettoyeur" />
+	
 </div>
+[(#SESSION{nom}|=={#AUTEUR}|oui)
+	[(#ENV{id_forum_fil}|non)
+		<a class="fonction" id="resolu" href="[(#SELF|parametre_url{'forum_action','forum_resolu'})]"><img src="#CHEMIN{images/forum_resolu.gif}" title="<:sarkaspip:forum_bouton_resolu:>" width="22" height="22" rel="noindex nofollow" /></a>
+		<a class="fonction" id="fermer" href="[(#SELF|parametre_url{'forum_action','forum_ferme'})]"><img src="#CHEMIN{images/forum_discussion_lock.gif}" title="<:sarkaspip:forum_bouton_fermer:>" width="20" height="20" /></a>
+		[(#ENV{verrou}|non)
+			<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]" title="<:sarkaspip:ecrire_reponse:>"></a>
+		]
+	<br class="nettoyeur" />
+	]
+]
+
 </BOUCLE_sujet>

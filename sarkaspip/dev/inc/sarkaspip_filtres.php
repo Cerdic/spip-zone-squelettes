@@ -391,16 +391,51 @@ function restaurer_fonds($fichiers) {
 // =======================================================================================================================================
 // Filtre : nettoyer_titre_sujet
 // =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Restaure le titre exact du sujet en supprimant le préfixe éventuel 
+// Auteur: Smellup 
+// Fonction : Restaure le titre exact du sujet en supprimant le préfixe éventuel
 // =======================================================================================================================================
 //
 function nettoyer_titre_sujet($titre) {
 	$titre_nettoye = trim(preg_replace(',^\[(annonce|epingle)\](&nbsp;)*,UimsS', '', $titre));
 	$titre_nettoye = trim(preg_replace(',\[ferme\],UimsS', '', $titre_nettoye));
+	$titre_nettoye = trim(preg_replace(',\[resolu\],UimsS', '', $titre_nettoye));
 	return $titre_nettoye;
 }
 // FIN du Filtre : nettoyer_titre_sujet
+
+// =======================================================================================================================================
+// Filtre : action_titre_sujet
+// =======================================================================================================================================
+// Auteur: Philippe 
+// Fonction : Modifie le titre en base de donn�es
+// =======================================================================================================================================
+//
+function action_titre_sujet($id_forum=null, $action=null) {
+	if (isset ($id_forum) and isset ($action)) {
+    	// selection
+		if ($resultats = sql_select("titre", "spip_forum", "id_forum=" . sql_quote($id_forum))) {
+        	// boucler sur les resultats
+        	while ($res = sql_fetch($resultats)) {
+            // utiliser les resultats
+            $titre = $res['titre'];
+        	}
+    	}
+		switch ($action) {
+			case 'forum_ferme':
+				$action="[ferme]";
+				break;
+			case 'forum_resolu':
+				$action="[resolu]";
+				break;
+			default:
+				break;
+		}
+		$titre_modifie = $titre . " " . $action;		
+		sql_updateq('spip_forum', array('titre' => $titre_modifie), 'id_forum =' . intval($id_forum));
+	}
+	return;
+}
+// FIN du Filtre : action_titre_sujet
 
 // =======================================================================================================================================
 // Filtres : module AGENDA
@@ -410,4 +445,6 @@ function nettoyer_titre_sujet($titre) {
 // =======================================================================================================================================
 //
 include_spip('inc/sarkaspip_filtres_agenda');
+
+
 ?>

@@ -32,7 +32,11 @@
 			</div>
 		]
 		[(#ENV{id_forum}|oui)
-			<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}{id_article}{page=forum_sujet}{id_forum}>
+			[(#ENV{id_forum_fil}|oui)#SET{id_forum_fil,#ENV{id_forum_fil}}]
+			<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}{id_article}{id_forum_fil=#GET{id_forum_fil}}{page=forum_sujet}{id_forum}>
+		]		
+		[(#ENV{id_forum_fil}|oui)
+			<INCLURE{fond=noisettes/forum/inc_forum_sujet_reponses}{id_forum_fil=#ENV{id_forum_fil}}>
 		]		
 		[(#REM) <!-- Présentation soit de l'article soit de la réponse à commenter --> ]
 		<div class="formulaire">#FORMULAIRE_FORUM{(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#ID_FORUM})}</div>

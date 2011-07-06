@@ -835,7 +835,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'Tous les articles syndiqu&eacute;s',
 	'filtre_titre' => 'Filtre',
 	'forum' => 'Forum',
+	'forum_bouton_fermer' => 'Fermer le Forum',
+	'forum_bouton_resolu' => 'Marquer le fil comme r&eacute;solu',
+	'forum_completer_reponse' => 'Compl&eacute;ter la r&eacute;ponse ci-contre',
+	'forum_completer_reponse_dessous' => 'Compl&eacute;ter la r&eacute;ponse ci-dessous',
 	'forum_ferme' => '(ferm&eacute;)',
+	'forum_resolu' => '(r&eacute;solu)',
 	'fourni_par_weather_com' => 'par weather.com&reg;',
 
 // G
