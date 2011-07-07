@@ -26,15 +26,16 @@
 	<br class="nettoyeur" />
 	
 </div>
-[(#SESSION{nom}|=={#AUTEUR}|oui|ou{#SESSION{statut}|=={0minirezo}}|oui)
-	[(#ENV{id_forum_fil}|non)
-		<a class="fonction" id="resolu" href="[(#SELF|parametre_url{'forum_action','forum_resolu'})]"><img src="#CHEMIN{images/forum_resolu.gif}" title="<:sarkaspip:forum_bouton_resolu:>" width="22" height="22" rel="noindex nofollow" /></a>
-		<a class="fonction" id="fermer" href="[(#SELF|parametre_url{'forum_action','forum_ferme'})]"><img src="#CHEMIN{images/forum_discussion_lock.gif}" title="<:sarkaspip:forum_bouton_fermer:>" width="20" height="20" /></a>
-		[(#ENV{verrou}|non)
-			<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]" title="<:sarkaspip:ecrire_reponse:>"></a>
-		]
-	<br class="nettoyeur" />
+[(#ENV{id_forum_fil}|non)
+	[(#ENV{verrou}|non)
+		<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]" title="<:sarkaspip:ecrire_reponse:>"></a>
 	]
+	[(#SESSION{statut}|!={''}|oui|et{#SESSION{nom}|=={#AUTEUR}}|oui|ou{#SESSION{statut}|=={0minirezo}}|oui)
+		<a class="fonction" id="resolu" href="[(#SELF|parametre_url{'forum_action','forum_resolu'})]"><img src="#CHEMIN{images/forum_resolu.gif}" title="<:sarkaspip:forum_bouton_resolu:>" width="22" height="22" rel="noindex nofollow" /></a>
+	]
+	[(#SESSION{statut}|=={0minirezo}|oui)
+		<a class="fonction" id="fermer" href="[(#SELF|parametre_url{'forum_action','forum_ferme'})]"><img src="#CHEMIN{images/forum_discussion_lock.gif}" title="<:sarkaspip:forum_bouton_fermer:>" width="20" height="20" /></a>
+	]
+	<br class="nettoyeur" />
 ]
-
 </BOUCLE_sujet>
