@@ -87,6 +87,28 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //N
 'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation',
+'noisette_desc_bestof' => 'Affiche une liste cliquable des billets s&eacute;lectionn&eacute;s',
+'noisette_desc_calendrier' => 'Affiche un calendrier mensuel',
+'noisette_desc_categories' => 'Liste des cat&eacute;gories',
+'noisette_desc_contact' => 'Affiche un lien vers la page contact (plugin Contact)',
+'noisette_desc_langs' => 'Permet de changer la langue d\'affichage du blog',
+'noisette_desc_lastcomments' => 'Liste des n derniers commentaires',
+'noisette_desc_lastposts' => 'Liste des n derniers billets sous forme de r&eacute;sum&eacute;',
+'noisette_desc_links' => 'Affiche la liste de l\'ensemble des sites',
+'noisette_desc_navigation' => 'Affiche les liens de navigation (accueil, archives)',
+'noisette_desc_subscribe' => 'Affiche les boutons rss et atom pour les billets et les comentaires',
+'noisette_titre_bestof' => 'Billets s&eacute;lectionn&eacute;s',
+'noisette_titre_calendrier' => 'Calendrier',
+'noisette_titre_categories' => 'Cat&eacute;gories',
+'noisette_titre_contact' => 'Contacts',
+'noisette_titre_langs' => 'Langues du blog',
+'noisette_titre_lastcomments' => 'Derniers commentaires',
+'noisette_titre_lastposts' => 'Derniers billets',
+'noisette_titre_links' => 'Liste de sites',
+'noisette_titre_navigation' => 'Liens de navigation',
+'noisette_titre_search' => 'Moteur de recherche',
+'noisette_titre_subscribe' => 'Liens d\'abonnement',
+
 
 //O
 'oksearch' => 'ok',
