@@ -4,7 +4,7 @@
 		- id_article: id de l'article concernee
 		- id_forum: id du commentaire concerne
 -->
-]
+] 
 <div id="commentaires_article" class="commentaires">
 	[(#ENV{id_forum}|?{'', ' '})
 		<a id="commentaires" name="commentaires" href="#commentaires"></a>
@@ -52,7 +52,7 @@
 				<div class="#EDIT{titre} titre">#TITRE</div>
 				[(#ENV{id_forum}|?{'', ' '})
 					[(#ENV{statut}|=={ferme}|non)
-					[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post, id_article=#ENV{id_article}&id_forum=#ID_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commentaire:>"></a>]
+						[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post}|parametre_url{'id_article',#ENV{id_article}}|parametre_url{'id_forum',#ID_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commentaire:>"></a>]
 					]
 				]
 				[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
@@ -71,6 +71,7 @@
 		<BOUCLE_fils(FORUMS){id_thread}{id_parent>0}{par date}{inverse #ENV{sens_tri}}>
 			<div class="message fil">
 				#SET{nb_reponses,#COMPTEUR_BOUCLE}
+				<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
             	<div class="gravatar">
 					<BOUCLE_auteur_pere2(AUTEURS) {tout}{id_auteur=#_fils:ID_AUTEUR}>
 						[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
