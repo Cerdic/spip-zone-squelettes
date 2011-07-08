@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commentaires' => 'commentaires',
 'commentaires_pour' => 'commentaires pour',
 'commentaires_fermes' => 'Les commentaires pour ce billet sont ferm&eacute;s',
+'contacts' => 'Contacts',
 'credits' => '<a href="http://www.spip.net/fr">motoris&eacute; par SPIP</a>,
 <a href="http://www.spip-contrib.net/SpipClear">propuls&eacute; par Spip.Clear</a>',
 
@@ -69,9 +70,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'info_choix_theme' => 'Choisissez le th&egrave;me que vous souhaitez utiliser pour votre blog', // CFG
 
 //L
+'label_limite' => '',
+'label_nom_theme' => 'Saisissez le nom du th&egrave;me perso (correspond &agrave xxxx du sous-r&eacute;pertoire squelettes/themes/xxxx/)', // CFG
 'label_theme_defaut' => 'Th&egrave;me par d&eacute;faut (type DotClear)', // CFG
 'label_theme_perso' => 'Th&egrave;me perso (&agrave; d&eacute;finir ci-dessous)', // CFG
-'label_nom_theme' => 'Saisissez le nom du th&egrave;me perso (correspond &agrave xxxx du sous-r&eacute;pertoire squelettes/themes/xxxx/)', // CFG
 'langue' => 'Langue', // Non utilise
 'langues' => 'Langues',
 'legend_layout' => 'Pr&eacute;sentation', // CFG
