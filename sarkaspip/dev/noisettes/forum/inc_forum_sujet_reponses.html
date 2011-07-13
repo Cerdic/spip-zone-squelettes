@@ -37,8 +37,8 @@
 				</td>
 				<td>
 					<div>
-						[(#ENV{verrou}|non)
-							[<a class="fonction repondre_commentaire" href="(#URL_PAGE{forum_post}|parametre_url{'id_article',#ENV{id_article}}|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'id_forum_fil',#ID_FORUM})" rel="noindex nofollow" title="<:sarkaspip:forum_completer_reponse:>"></a>]
+						[(#ENV{verrou}|!={'lock'}|oui|et{#ENV{verrou}|!={'ferme'}})
+							<a class="fonction" id="forum_commenter_reponse" href="[(#URL_PAGE{forum_post}|parametre_url{'id_article',#ENV{id_article}}|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'id_forum_fil',#ID_FORUM})]" title="<:sarkaspip:forum_completer_reponse:>"><img src="#CHEMIN{images/commentaire_repondre.gif}" style="display: [(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'commenter_reponse',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}})]" /></a>
 						]
 					</div>
 					<div class="#EDIT{texte} forum-texte">

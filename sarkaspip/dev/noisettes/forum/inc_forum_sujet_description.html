@@ -5,12 +5,13 @@
 -->
 ]
 <BOUCLE_sujet(FORUMS){id_forum}>
-[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)[(#ENV{verrou}|oui)<:sarkaspip:forum_ferme:>][(#ENV{resolu}|oui)<:sarkaspip:forum_resolu:>]</h1></div>]
+[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)[(#ENV{verrou}|=={'lock'}|oui|ou{#ENV{verrou}|=={'verrouille'}|oui})<:sarkaspip:forum_verrouille:>][(#ENV{resolu}|=={'oui'}|oui)<:sarkaspip:forum_resolu:>]</h1></div>]
 <div class="description">
 	<div class="cartouche">
 		[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
 		[<br />
 		<:sarkaspip:par:> <a href="#URL_AUTEUR">(#AUTEUR)</a>]
+		#SET{auteur, #AUTEUR}
 	</div>
 	<br class="nettoyeur" />
 	<div class="gravatar_pere">
@@ -26,16 +27,12 @@
 	<br class="nettoyeur" />
 	
 </div>
-[(#ENV{id_forum_fil}|non)
-	[(#ENV{verrou}|non)
-		<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]" title="<:sarkaspip:ecrire_reponse:>"></a>
-	]
-	[(#SESSION{statut}|!={''}|oui|et{#SESSION{nom}|=={#AUTEUR}}|oui|ou{#SESSION{statut}|=={0minirezo}}|oui)
-		<a class="fonction" id="resolu" href="[(#SELF|parametre_url{'forum_action','forum_resolu'})]"><img src="#CHEMIN{images/forum_resolu.gif}" title="<:sarkaspip:forum_bouton_resolu:>" width="22" height="22" rel="noindex nofollow" /></a>
-	]
-	[(#SESSION{statut}|=={0minirezo}|oui)
-		<a class="fonction" id="fermer" href="[(#SELF|parametre_url{'forum_action','forum_ferme'})]"><img src="#CHEMIN{images/forum_discussion_lock.gif}" title="<:sarkaspip:forum_bouton_fermer:>" width="20" height="20" /></a>
-	]
+[(#ENV{id_forum_fil}|?{"" ,
+	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_commenter',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui) <a class="fonction" id="commenter"  href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]"title="<:sarkaspip:ecrire_reponse:>"> </a>]
+	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_resolu',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)    <a class="fonction" id="resolu"     href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_resolu'    })]" title="<:sarkaspip:forum_bouton_resolu:>">    </a>]
+	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_non_resolu',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)<a class="fonction" id="non_resolu" href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_non_resolu'})]" title="<:sarkaspip:forum_bouton_non_resolu:>"></a>]
+	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_verrouiller',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)    <a class="fonction" id="fermer"     href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_verrouiller'     })]" title="<:sarkaspip:forum_bouton_verrouiller:>">    </a>]
+	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_reouvrir',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)  <a class="fonction" id="reouvrir"   href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_reouvrir'  })]" title="<:sarkaspip:forum_bouton_reouvrir:>">  </a>]
 	<br class="nettoyeur" />
-]
+})]
 </BOUCLE_sujet>

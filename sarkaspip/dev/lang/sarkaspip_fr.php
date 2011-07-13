@@ -1,4 +1,4 @@
-<?php
+(<?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 // Produit automatiquement par le plugin langcheck
 // Date: 29-08-2009 00:42:04
@@ -750,6 +750,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'colonne_forum' => 'Forum',
 	'colonne_nombre_reponses' => 'R&eacute;ponses',
 	'colonne_nombre_sujets' => 'Sujets',
+	'colonne_resolu' => 'R&eacute;solu',
 	'colonne_sujet' => 'Sujet',
 	'commentaire_suite_article' => '&agrave; la suite de l\'article...',
 	'commentaires' => 'commentaires',
@@ -835,12 +836,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'Tous les articles syndiqu&eacute;s',
 	'filtre_titre' => 'Filtre',
 	'forum' => 'Forum',
-	'forum_bouton_fermer' => 'Fermer le Forum',
-	'forum_bouton_resolu' => 'Marquer le fil comme r&eacute;solu',
-	'forum_completer_reponse' => 'Compl&eacute;ter la r&eacute;ponse ci-contre',
+	'forum_bouton_resolu' => 'Marquer le fil comme &laquo;r&eacute;solu&raquo;',
+	'forum_bouton_non_resolu' => 'Enlever la marque &laquo;r&eacute;solu&raquo;',
+	'forum_bouton_reouvrir' => 'Enlever le verrou du Forum',
+	'forum_bouton_verrouiller' => 'Poser un verrou sur le Forum',
+	'forum_completer_reponse' => 'Apporter un compl&eacute;ment de r&eacute;ponse',
 	'forum_completer_reponse_dessous' => 'Compl&eacute;ter la r&eacute;ponse ci-dessous',
-	'forum_ferme' => '(ferm&eacute;)',
-	'forum_resolu' => '(r&eacute;solu)',
+	'forum_resolu' => '(Item r&eacute;solu)',
+	'forum_verrouille' => '(Forum verrouill&eacute;)',
 	'fourni_par_weather_com' => 'par weather.com&reg;',
 
 // G

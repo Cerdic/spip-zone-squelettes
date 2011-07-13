@@ -8,12 +8,16 @@
 		- sujet: type de discussion (annonce, epingle ou discussion)
 -->
 ]
-#SET{ferme, [ferme]}
-[(#ENV{titre}|strstr{#GET{ferme}}|oui) #SET{verrou, lock}]
-<tr>
-	<td class="etat"><img[ src="(#CHEMIN{[images/forum_(#ENV{sujet})[_(#GET{verrou})].gif]})"][ alt="(#ENV{sujet})"] width="20" height="20" /></td>
+[(#ENV{verrou}|=={'lock'} |oui) #SET{verrou, lock}]
+#SET{resolu, [resolu]}
+[(#ENV{titre}|strstr{#GET{resolu}}|oui) #SET{forum_resolu, oui}]
+#SET{verrouille, [verrouille]}
+[(#ENV{titre}|strstr{#GET{verrouille}}|oui) #SET{verrou, lock}]
+<tr> 
+	<td class="etat"><img src="[(#CHEMIN{[images/forum_(#ENV{sujet})[_(#GET{verrou})].gif]})"][ alt="(#ENV{sujet})"] width="20" height="20" /></td>
+	<td class="etat">[(#GET{forum_resolu}|=={oui}|oui)<img src="#CHEMIN{images/forum_case_cochee.gif}" alt="<:sarkaspip:forum_resolu:>" width="15 height="15" />]&nbsp;</td>
 	<td class="description" id="forum#ENV{id_forum}">
-		[<h3 class="titre"><a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ENV{id_article}}|parametre_url{id_forum,#ENV{id_forum}})]">(#ENV{titre}|nettoyer_titre_sujet)</a></h3>]
+		<h3 class="titre"><a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ENV{id_article}}|parametre_url{id_forum,#ENV{id_forum}})]" [(#GET{verrou}|=={lock}|oui)title="<:sarkaspip:forum_verrouille:>"]>[(#ENV{titre}|nettoyer_titre_sujet)]</a></h3>
 	</td>
 
 	<BOUCLE_compteur_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_compteur_reponses>

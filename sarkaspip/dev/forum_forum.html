@@ -12,36 +12,38 @@
 		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}{lang}{id_rubrique}>
 	</div>
-	
-	<div id="wrapper">
-		<div id="content">
-			<div id="forum" class="forum">
-				[(#REM) <!-- Titre, logo, texte de la page du forum --> ]
-				<INCLURE{fond=noisettes/article/inc_article_description}
-					{id_article}
-					{page=forum}
-					{afficher_commentaires=non}
-					{avec_popularite=non}
-					{avec_notation=non}
-					{avec_socialtags=non}
-					{logo_rubrique=oui}
-					{taille_logo=100}>
-			
-				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM{#SELF})]" title="<:sarkaspip:poster_sujet:>"></a>
-				<br class="nettoyeur" />
-				<br />
-				
-				[(#REM) <!-- On traite d'abord les annonces --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_annonces}{id_article}>
+		[(#SET{statut_forum, [(#ENV{id_article}|statut_forum)]})]
+		<div id="wrapper">
+			<div id="content">
+				<div id="forum" class="forum">
+					[(#REM) <!-- Titre, logo, texte de la page du forum --> ]
+					<INCLURE{fond=noisettes/article/inc_article_description}
+						{id_article}
+						{page=forum}
+						{afficher_commentaires=non}
+						{avec_popularite=non}
+						{avec_notation=non}
+						{avec_socialtags=non}
+						{logo_rubrique=oui}
+						{taille_logo=100}>
+						
+					[(#GET{statut_forum}|!={'ferme'}|oui)
+						<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM{#SELF})]" title="<:sarkaspip:poster_sujet:>"></a>
+						<br class="nettoyeur" />
+						<br />
+					]
+		
+					[(#REM) <!-- On traite d'abord les annonces --> ]
+					<INCLURE{fond=noisettes/forum/inc_forum_annonces}{id_article}{statut_forum=#GET{statut_forum}}>
 
-				[(#REM) <!-- On traite ensuite les sujets epingles --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_epingles}{id_article}>
+					[(#REM) <!-- On traite ensuite les sujets epingles --> ]
+					<INCLURE{fond=noisettes/forum/inc_forum_epingles}{id_article}{statut_forum=#GET{statut_forum}}>
 
-				[(#REM) <!-- On traite enfin les sujets non epingles --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_discussions}{id_article}{ajax}>
+					[(#REM) <!-- On traite enfin les sujets non epingles --> ]
+					<INCLURE{fond=noisettes/forum/inc_forum_discussions}{id_article}{statut_forum=#GET{statut_forum}}{ajax}>
+				</div>
 			</div>
 		</div>
-	</div>
 	
 	<div id="navigation">
 		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
