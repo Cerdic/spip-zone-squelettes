@@ -56,4 +56,22 @@ function spipclear_get_config_noizetier($fichier){
 	return false;
 }
 
+
+/**
+ * Déclare le champ extra de sélection d'un article
+ *
+ * @param array $champs
+ * @return array le tableau des champs à déclarer
+ */
+function spipclear_declarer_champs_extras($champs = array()){
+	$champs[] = new ChampExtra(array(
+		'table' => 'article',
+		'champ' => 'bestof',
+		'label' => 'spipclear:ce_bestof_label',
+		'type' => 'oui-non',
+		'sql' => "varchar(30) NOT NULL DEFAULT ''"
+	));
+	spip_log("spipclear_declarer_champs_extras ".print_r($champs,true),"bug");
+	return $champs;
+}
 ?>

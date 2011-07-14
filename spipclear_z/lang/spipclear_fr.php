@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'calendrier' => 'Calendrier', // Non utilise
 'categorie' => 'Cat&eacute;gorie', // Non utilise
 'categories' => 'Cat&eacute;gories',
+'ce_bestof_label' => "Billet s&eacute;lectionn&eacute;",
 'commentaire' => 'commentaire',
 'commentaires' => 'commentaires',
 'commentaires_pour' => 'commentaires pour',
@@ -90,6 +91,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'look_sommaire' => 'Personnalisation de la page d\'accueil',
 'look_navigation' => 'Personnalisation du bloc de navigation',
 
+//M
+'msg_erreur_v00' => 'Echec à l\'importation de la configuration du noiZetier',
+'msg_erreur_v02' => 'Echec &agrave; la cr&eacute;ation du champ extra &laquo;&nbsp;Billet S&eacute;lectionn&eacute;&nbsp;&raquo;',
+
 //N
 'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation',
 'noisette_desc_bestof' => 'Affiche une liste cliquable des billets s&eacute;lectionn&eacute;s',
@@ -139,7 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sabonner' => 'S\'abonner',
 'secteurs_spipclear' => 'Secteurs SpipClear',
 'secteur_spipclear_aucun' => 'Aucun',
-'selection' => '&agrave; retenir',
+'selection' => '&Agrave; retenir',
 'site_comment' => 'site',
 'syndication' => 'Syndication',
 'selectionner_theme' => 'Cliquez pour s&eacute;lectionner ce th&ecirc;me',
