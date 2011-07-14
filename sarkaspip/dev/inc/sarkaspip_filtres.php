@@ -407,7 +407,7 @@ function nettoyer_titre_sujet($titre) {
 // Filtre : action_titre_sujet
 // =======================================================================================================================================
 // Auteur: Philippe 
-// Fonction : Modifie le titre en base de données
+// Fonction : Modifie le titre en base de donnees
 // =======================================================================================================================================
 //
 function action_titre_sujet($id_forum=null, $action=null) {
@@ -467,15 +467,15 @@ function action_titre_sujet($id_forum=null, $action=null) {
 // Filtre : affiche_bouton_forum
 // =======================================================================================================================================
 // Auteur: Philippe 
-// Fonction : Gère l'affichage des boutons action sur la noisette inc_forum_sujet_desctiption
+// Fonction : Gere l'affichage des boutons action sur la noisette inc_forum_sujet_desctiption
 // =======================================================================================================================================
 //
 function affiche_bouton_forum($id_forum, $id_article , $bouton, $verrou='non', $session_nom=null,$session_statut=null,$auteur=null) {
 
 	$id = intval($id_clef);
 
-	// Forum actif ou pas  et récupère le titre 
-	// si le forum est sur abonnement, on teste session{nom} pour vérifier si le visiteur est autorisé à poster.
+	// Forum actif ou pas  et recupere le titre 
+	// si le forum est sur abonnement, on teste session{nom} pour verifier si le visiteur est autorise a poster.
 	// on masque les boutons si $peut_poster = non
 
 	$where = array('t1.id_article='.sql_quote($id_article));

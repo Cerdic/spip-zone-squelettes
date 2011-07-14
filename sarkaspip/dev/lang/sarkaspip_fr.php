@@ -91,6 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
 	'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
 	'bulle_bouton_valider' => 'Valider les saisies',
+	'bulle_forum_ferme' => 'Ce forum est ferm&eacute; : vous pouvez cependant consulter les discussions',
 	'bulle_lien_dernier_message' => 'Voir le dernier message de ce forum',
 
 // C
@@ -843,7 +844,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_completer_reponse' => 'Apporter un compl&eacute;ment de r&eacute;ponse',
 	'forum_completer_reponse_dessous' => 'Compl&eacute;ter la r&eacute;ponse ci-dessous',
 	'forum_resolu' => '(Item r&eacute;solu)',
-	'forum_verrouille' => '(Forum verrouill&eacute;)',
 	'fourni_par_weather_com' => 'par weather.com&reg;',
 
 // G

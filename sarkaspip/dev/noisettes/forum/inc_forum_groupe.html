@@ -4,7 +4,6 @@
 		- id_rubrique: id de rubrique correspondant au groupe de forums
 -->
 ]
-#SET{regexp, ^(annonce:|epingle:)}
 <BOUCLE_groupe_forum(RUBRIQUES){id_rubrique}>
 <div class="groupe">
 	<h2[ class="titre (#EDIT{titre})"]>[(#TITRE)]</h2>
@@ -12,7 +11,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th colspan="2"><:sarkaspip:colonne_forum:></th>
+				<th><:sarkaspip:colonne_forum:></th>
 				<th class="centre"><:sarkaspip:colonne_nombre_sujets:></th>
 				<th class="centre"><:sarkaspip:colonne_nombre_reponses:></th>
 				<th><:sarkaspip:colonne_dernier_message:></th>	
@@ -27,9 +26,12 @@
 			<BOUCLE_ligne(ARTICLES){id_article}>
 				[(#REM) <!-- Etat et description du forum --> ]
 				[(#SET{statut_forum, [(#ID_ARTICLE|statut_forum)]})]
-				<td class="etat forumouvert"><span>&nbsp;</span></td>
-				<td class="description">
-					[<h3 class="[(#EDIT{titre}) ]titre"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]">(#TITRE)[(#GET{statut_forum}|=={'non_autorise'}|oui|ou{#GET{statut_forum}|=={'verrouille'}|oui})<:sarkaspip:forumverrouille:>]</a></h3>]
+				<td class="description[ (#GET{statut_forum}|!={ouvert}|oui)forumferme]">
+					[<h3 class="[(#EDIT{titre}) ]titre">
+						<a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]"[ title="(#GET{statut_forum}|!={ouvert}|oui)<:sarkaspip:bulle_forum_ferme:>"]>
+							(#TITRE)
+						</a>
+					</h3>]
 					[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|typo_couleur)</div>]
 				</td>
 
