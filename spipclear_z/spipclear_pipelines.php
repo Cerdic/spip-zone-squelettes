@@ -71,7 +71,6 @@ function spipclear_declarer_champs_extras($champs = array()){
 		'type' => 'oui-non',
 		'sql' => "varchar(30) NOT NULL DEFAULT ''"
 	));
-	spip_log("spipclear_declarer_champs_extras ".print_r($champs,true),"bug");
 	return $champs;
 }
 ?>
