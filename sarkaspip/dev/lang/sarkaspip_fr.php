@@ -1,4 +1,4 @@
-(<?php
+<?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 // Produit automatiquement par le plugin langcheck
 // Date: 29-08-2009 00:42:04
