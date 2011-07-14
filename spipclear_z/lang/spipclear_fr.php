@@ -47,6 +47,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'derniers_billets' => 'Derniers billets',
 'derniers_commentaires' => 'Derniers commentaires',
 'derniere_maj' => 'Derni&egrave;re mise &agrave; jour', // Non utilise
+'description_page-archive' => 'Page destin&eacute;e &agrave; pr&eacute;senter les archives des billets.',
+'description_page-recherche' => 'Cette page est affich&eacute;e lorsqu\'une recherche est effectu&eacute;e sur le site.',
+'description_page_article' => 'Page par d&eacute;faut pour les articles.',
+'description_page_mot' => 'Page par d&eacute;faut pour les mot-cl&eacute;s.',
+'description_page_rubrique' => 'Page par d&eacute;faut pour les cat&eacute;gories.',
 'document_non_trouve' => 'Document non trouv&eacute;',
 'document_non_trouve_explication' => 'Le document que vous cherchez n\'existe pas.',
 
@@ -108,6 +113,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisette_titre_navigation' => 'Liens de navigation',
 'noisette_titre_search' => 'Moteur de recherche',
 'noisette_titre_subscribe' => 'Liens d\'abonnement',
+'nom_page-archive' => 'Archives',
+'nom_page-recherche' => 'Recherche sur le site',
+'nom_page-sommaire' => 'Page d\'accueil du site',
+'nom_page_article' => 'Article',
+'nom_page_mot' => 'Mot-Cl&eacute;',
+'nom_page_rubrique' => 'Cat&eacute;gories',
 
 
 //O
