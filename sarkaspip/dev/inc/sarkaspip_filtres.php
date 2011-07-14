@@ -397,8 +397,7 @@ function restaurer_fonds($fichiers) {
 //
 function nettoyer_titre_sujet($titre) {
 	$titre_nettoye = trim(preg_replace(',^\[(annonce|epingle)\](&nbsp;)*,UimsS', '', $titre));
-	$titre_nettoye = trim(preg_replace(',\[verrouille\],UimsS', '', $titre_nettoye));
-	$titre_nettoye = trim(preg_replace(',\[resolu\],UimsS', '', $titre_nettoye));
+	$titre_nettoye = trim(preg_replace(',\[(ferme|resolu)\],UimsS', '', $titre_nettoye));
 	return $titre_nettoye;
 }
 // FIN du Filtre : nettoyer_titre_sujet
@@ -407,7 +406,7 @@ function nettoyer_titre_sujet($titre) {
 // Filtre : action_titre_sujet
 // =======================================================================================================================================
 // Auteur: Philippe 
-// Fonction : Modifie le titre en base de donnees
+// Fonction : Modifie le titre en base de données
 // =======================================================================================================================================
 //
 function action_titre_sujet($id_forum=null, $action=null) {
@@ -420,38 +419,12 @@ function action_titre_sujet($id_forum=null, $action=null) {
             $titre = $res['titre'];
         	}
     	}
-		$resolu = '[resolu]';
-		$forum_est_resolu = false;
-		$pos_resolu = stripos($titre, $resolu);
-		if ($pos_resolu !== false) {
-			$forum_est_resolu = true;
-		}
-		$ferme = '[verrouille]';
-		$forum_est_ferme = false;
-		$pos_ferme = stripos($titre, $ferme);
-		if ($pos_ferme !== false) {
-			$forum_est_ferme = true;
-		}
 		switch ($action) {
-			case 'forum_verrouiller':
-				if ($forum_est_ferme == false) {
-					$action="[verrouille]";
-				}
-				break;
-			case 'forum_reouvrir':
-				$titre_modifie = trim(preg_replace(',\[verrouille\],UimsS', '', $titre));
-				$titre = $titre_modifie;
-				$action="";
+			case 'forum_ferme':
+				$action="[ferme]";
 				break;
 			case 'forum_resolu':
-				if ($forum_est_resolu == false) {
-					$action="[resolu]";
-				}
-				break;
-			case 'forum_non_resolu':
-				$titre_modifie = trim(preg_replace(',\[resolu\],UimsS', '', $titre));
-				$titre = $titre_modifie;
-				$action="";
+				$action="[resolu]";
 				break;
 			default:
 				break;
@@ -464,113 +437,6 @@ function action_titre_sujet($id_forum=null, $action=null) {
 // FIN du Filtre : action_titre_sujet
 
 // =======================================================================================================================================
-// Filtre : affiche_bouton_forum
-// =======================================================================================================================================
-// Auteur: Philippe 
-// Fonction : Gere l'affichage des boutons action sur la noisette inc_forum_sujet_desctiption
-// =======================================================================================================================================
-//
-function affiche_bouton_forum($id_forum, $id_article , $bouton, $verrou='non', $session_nom=null,$session_statut=null,$auteur=null) {
-
-	$id = intval($id_clef);
-
-	// Forum actif ou pas  et recupere le titre 
-	// si le forum est sur abonnement, on teste session{nom} pour verifier si le visiteur est autorise a poster.
-	// on masque les boutons si $peut_poster = non
-
-	$where = array('t1.id_article='.sql_quote($id_article));
-	$select = array('t1.accepter_forum, t1.titre');
-	$from = array('spip_articles AS t1');
-	$result = sql_select($select, $from, $where);
-	if ($row = sql_fetch($result)) {
-		$accepter = $row['accepter_forum'];
-		$titre = $row['titre'];
-	}
-	$peut_poster = 'oui';
-	if ($accepter == 'abo' && $session_nom == '') {
-		$verrou = 'verrouille';
-		$peut_poster = 'non';
-	}
-	$where = array('t1.id_forum='.sql_quote($id_forum));
-	$select = array('t1.titre');
-	$from = array('spip_forum AS t1');
-	$result = sql_select($select, $from, $where);
-	if ($row = sql_fetch($result)) {
-		$titre = $row['titre'];
-	}
-
-	$resolu = '[resolu]';
-	$pos_resolu = stripos($titre, $resolu);
-	if ($pos_resolu === false) {
-		$forum_est_resolu = false;
-	}else{
-		$forum_est_resolu = true;
-	}
-	switch ($bouton) {
-		case 'forum_commenter':            // bouton de la noisette inc_forum_sujet_description
-			$display = '';
-			if ($peut_poster == 'oui') {
-				if ($verrou != 'lock' && $verrou != 'verrouille') {
-					$display = 'oui';
-				}
-			}
-			break;
-		case 'forum_commenter_reponse':   // bouton de la noisette inc_forum_sujet_reponses
-			$display = '';
-			if ($peut_poster == 'oui') {
-				$display = 'oui;';
-			}
-			break;
-		case 'forum_resolu':              // bouton de la noisette inc_forum_sujet_description
-			$display = '';
-			if ($session_statut == '0minirezo' && $peut_poster == 'oui'){
-				if ($forum_est_resolu == false) {
-					$display = 'oui';
-				}
-			}elseif ($session_nom == $auteur && $peut_poster == 'oui'){
-				if ($forum_est_resolu == false) {
-					$display = 'oui';
-				}
-			}
-			break;
-		case 'forum_non_resolu':       	// bouton de la noisette inc_forum_sujet_description
-			$display = '';
-			if ($session_statut == '0minirezo' && $peut_poster == 'oui'){
-				if ($forum_est_resolu == true) {
-					$display = 'oui';
-				}
-			}elseif ($session_nom == $auteur && $peut_poster == 'oui'){
-				if ($forum_est_resolu == true) {
-					$display = 'oui';
-				}
-			}
-			break;
-		case 'forum_verrouiller':				// bouton de la noisette inc_forum_sujet_description
-			$display = '';
-			if ($session_statut == '0minirezo'){
-				if ($verrou != 'lock' && $verrou != 'verrouille') {
-					$display = 'oui';
-				}
-			}
-			break;
-			
-		case 'forum_reouvrir':			// bouton de la noisette inc_forum_sujet_description
-			$display = '';
-			if ($session_statut == '0minirezo'){
-				if ($verrou == 'lock') {
-					$display = 'oui';
-				}
-			}
-			break;
-		default:
-			$display = '';
-	
-	}
-	return $display;
-}
-// FIN du Filtre : affiche_bouton_forum
-
-// =======================================================================================================================================
 // Filtres : module AGENDA
 // =======================================================================================================================================
 // Auteur: Smellup
@@ -581,5 +447,3 @@ include_spip('inc/sarkaspip_filtres_agenda');
 
 
 ?>
-
-
