@@ -47,6 +47,8 @@ function spipclear_vider_tables($nom_meta_base_version) {
 	$champs = spipclear_declarer_champs_extras();
 	// C'est le plugin Champs Extras qui supprime le meta
 	desinstaller_champs_extras($champs, $nom_meta_base_version);
+	
+	// TODO : "desimporter" la config du noizetier
 }
 
 
