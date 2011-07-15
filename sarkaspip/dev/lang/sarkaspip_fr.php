@@ -844,7 +844,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_bouton_verrouiller' => 'Poser un verrou sur le Forum',
 	'forum_completer_reponse' => 'Apporter un compl&eacute;ment de r&eacute;ponse',
 	'forum_completer_reponse_dessous' => 'Compl&eacute;ter la r&eacute;ponse ci-dessous',
-	'forum_sujet_resolu' => '(Item r&eacute;solu)',
+	'forum_sujet_reponses' => 'R&eacute;ponses',
 	'fourni_par_weather_com' => 'par weather.com&reg;',
 
 // G

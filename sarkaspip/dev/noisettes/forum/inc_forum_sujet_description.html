@@ -2,7 +2,6 @@
 <!-- Affichage d'une sujet et de ses reponses
 	Recoit en argument :
 		- id_forum: id du sujet concerne
-		- id_article: id de l'article representant le forum du sujet
 		- verrou: indique si le sujet est verrouille ou pas
 		- resolu: indique si le sujet est resolu ou pas
 -->
@@ -30,12 +29,4 @@
 	<br class="nettoyeur" />
 	[(#ENV{verrou}|oui)<div class="avertissement"><:sarkaspip:msg_sujet_verrouille:></div>]
 </div>
-[(#ENV{id_forum_fil}|?{"" ,
-	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_commenter',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui) <a class="fonction" id="commenter"  href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]"title="<:sarkaspip:ecrire_reponse:>"> </a>]
-	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_resolu',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)    <a class="fonction" id="resolu"     href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_resolu'    })]" title="<:sarkaspip:forum_bouton_resolu:>">    </a>]
-	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_non_resolu',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)<a class="fonction" id="non_resolu" href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_non_resolu'})]" title="<:sarkaspip:forum_bouton_non_resolu:>"></a>]
-	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_verrouiller',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)    <a class="fonction" id="fermer"     href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_verrouiller'     })]" title="<:sarkaspip:forum_bouton_verrouiller:>">    </a>]
-	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_reouvrir',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui)  <a class="fonction" id="reouvrir"   href="[(#SELF|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'forum_action','forum_reouvrir'  })]" title="<:sarkaspip:forum_bouton_reouvrir:>">  </a>]
-	<br class="nettoyeur" />
-})]
 </BOUCLE_sujet>
