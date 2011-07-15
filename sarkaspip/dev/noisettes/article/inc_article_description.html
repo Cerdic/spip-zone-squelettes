@@ -11,6 +11,7 @@
 		- taille_logo: taille max du logo si affiche
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 		- id_rubrique: rubrique de l'article (utilise uniquement dans la une)
+		- statut_forum: utilise uniquement dans la page forum pour presenter un message d'avertissement si ferme
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
@@ -109,6 +110,7 @@
 			{avec_socialtags}
 			{page})]
 		<br class="nettoyeur" />
+
 		[<div class="logo gauche">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
 		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
@@ -136,5 +138,10 @@
 
 		[(#GET{plugin_en_cours}|=={oui}|oui)</div>]
 		<br class="nettoyeur" />
+
+	[(#ENV{page}|=={forum}|et{#ENV{statut_forum}|!={ouvert}}|oui)
+		<div class="avertissement"><:sarkaspip:bulle_forum_ferme:></div>
+	]
+
 	</div>
 </BOUCLE_description>

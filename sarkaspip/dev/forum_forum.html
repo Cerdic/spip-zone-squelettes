@@ -12,10 +12,11 @@
 		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}{lang}{id_rubrique}>
 	</div>
-		[(#SET{statut_forum, [(#ENV{id_article}|statut_forum)]})]
 		<div id="wrapper">
 			<div id="content">
 				<div id="forum" class="forum">
+					[(#SET{statut_forum, [(#ENV{id_article}|statut_forum)]})]
+
 					[(#REM) <!-- Titre, logo, texte de la page du forum --> ]
 					<INCLURE{fond=noisettes/article/inc_article_description}
 						{id_article}
@@ -25,22 +26,31 @@
 						{avec_notation=non}
 						{avec_socialtags=non}
 						{logo_rubrique=oui}
-						{taille_logo=100}>
+						{taille_logo=100}
+						{statut_forum=#GET{statut_forum}}>
 						
-					[(#GET{statut_forum}|!={'ferme'}|oui)
+					[(#GET{statut_forum}|=={ouvert}|oui)
+					<div class="outils">
 						<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM{#SELF})]" title="<:sarkaspip:poster_sujet:>"></a>
-						<br class="nettoyeur" />
-						<br />
+						<br class="nettoyeur">
+					</div>
 					]
 		
 					[(#REM) <!-- On traite d'abord les annonces --> ]
-					<INCLURE{fond=noisettes/forum/inc_forum_annonces}{id_article}{statut_forum=#GET{statut_forum}}>
+					<INCLURE{fond=noisettes/forum/inc_forum_annonces}
+						{id_article}
+						{statut_forum=#GET{statut_forum}}>
 
 					[(#REM) <!-- On traite ensuite les sujets epingles --> ]
-					<INCLURE{fond=noisettes/forum/inc_forum_epingles}{id_article}{statut_forum=#GET{statut_forum}}>
+					<INCLURE{fond=noisettes/forum/inc_forum_epingles}
+						{id_article}
+						{statut_forum=#GET{statut_forum}}>
 
 					[(#REM) <!-- On traite enfin les sujets non epingles --> ]
-					<INCLURE{fond=noisettes/forum/inc_forum_discussions}{id_article}{statut_forum=#GET{statut_forum}}{ajax}>
+					<INCLURE{fond=noisettes/forum/inc_forum_discussions}
+						{id_article}
+						{statut_forum=#GET{statut_forum}}
+						{ajax}>
 				</div>
 			</div>
 		</div>

@@ -2,12 +2,10 @@
 <!-- Affichage des sujets non epingles d'un forum
 	Recoit en argument :
 		- id_article: id de l'article concerne
+		- statut_forum: si ferme, permet de verrouiller tous les fils 
 -->
 ]
 #SET{regexp, ^\[(annonce|epingle)\]}
-#SET{verrou, #ENV{verrou}}
-[(#ENV{statut_forum}|=={'verrouille'} |oui) #SET{verrou, lock}]
-
 <B_forum_sujets>
 #ANCRE_PAGINATION
 [(#CONFIG{sarkaspip_forum/position_pagination_1, 3}|match{^(1|3)$}|?{' '})
@@ -19,8 +17,8 @@
 		<table summary="<:sarkaspip:resume_epingles_forum:>">
 			<thead>
 				<tr>
-					<th class="centre"><:sarkaspip:colonne_sujet:></th>
-					<th colspan="2"><:sarkaspip:colonne_resolu:></th>
+					<th colspan="2"><:sarkaspip:colonne_sujet:></th>
+					<th class="centre"><:sarkaspip:colonne_resolu:></th>
 					<th class="centre"><:sarkaspip:colonne_nombre_reponses:></th>
 					<th><:sarkaspip:colonne_dernier_message:></th>
 				</tr>
@@ -32,7 +30,7 @@
 			{id_forum}
 			{id_thread}
 			{titre}
-			{verrou=#GET{verrou}}
+			{statut_forum=#ENV{statut_forum}}
 			{sujet=discussion}>
 </BOUCLE_forum_sujets>
 			</tbody>
