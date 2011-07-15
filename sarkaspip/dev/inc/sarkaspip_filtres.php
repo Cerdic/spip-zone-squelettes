@@ -395,9 +395,10 @@ function restaurer_fonds($fichiers) {
 // Fonction : Restaure le titre exact du sujet en supprimant le préfixe éventuel
 // =======================================================================================================================================
 //
-function nettoyer_titre_sujet($titre) {
+function nettoyer_titre_sujet($titre, $resolu='') {
 	$titre_nettoye = trim(preg_replace(',^\[(annonce|epingle)\](&nbsp;)*,UimsS', '', $titre));
 	$titre_nettoye = trim(preg_replace(',_(verrouille|resolu)_,UimsS', '', $titre_nettoye));
+	if ($resolu) $titre_nettoye = _T('sarkaspip:titre_sujet_resolu', array('titre' => $titre_nettoye)); 
 	return $titre_nettoye;
 }
 // FIN du Filtre : nettoyer_titre_sujet

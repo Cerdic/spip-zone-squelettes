@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{0}
-[(#ENV{forum_action}|!={''}|oui)[(#ENV{id_forum}|action_titre_sujet{#ENV{forum_action}})]]
 <BOUCLE_forum(FORUMS){id_forum}{doublons}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
@@ -16,38 +15,33 @@
 	</BOUCLE_article_forum>
 	</div>
 
-				[(#SET{statut_forum, [(#ENV{id_article}|statut_forum)]})]
-				#SET{verrouille, [verrouille]}
-				#SET{resolu, [resolu]}
-				[(#TITRE|strstr{#GET{resolu}}|oui) #SET{forum_resolu, oui}]
-				[(#TITRE|strstr{#GET{verrouille}}|oui) #SET{verrou, lock}]
-				[(#GET{statut_forum}|=={'verrouille'}|oui)#SET{verrou, verrouille}]
-				[(#ENV{id_forum_fil}|oui)#SET{id_forum_fil,#ENV{id_forum_fil}}]
-	
-				<div id="wrapper">
-					<div id="content">
-						<div id="sujet" class="forum">
-							[(#REM) <!-- Titre, logo, texte du sujet --> ]
-							<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}
-								{statut_forum=#GET{statut_forum}}
-								{id_article}
-								{id_forum}
-								{id_forum_fil=#GET{id_forum_fil}}
-								{statut_forum=#GET{statut_forum}}
-								{verrou=#GET{verrou}}
-								{resolu=#GET{forum_resolu}}>
-						</div>
+	[(#ID_ARTICLE|statut_forum|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
+	[(#TITRE|strstr{_resolu_}|oui) #SET{resolu, oui}]
+	[(#ENV{id_forum_fil}|oui)#SET{id_forum_fil,#ENV{id_forum_fil}}]
 
-						[(#REM) <!-- Les reponses au sujet --> ]
-						<INCLURE{fond=noisettes/forum/inc_forum_sujet_reponses}
-							{statut_forum=#GET{statut_forum}}
-							{id_thread}
-							{id_article}
-							{id_forum}
-							{verrou=#GET{verrou}}
-							{resolu=#GET{forum_resolu}}>
-					</div>
-				</div>
+	<div id="wrapper">
+		<div id="content">
+			<div id="sujet" class="forum">
+				[(#REM) <!-- Titre, logo, texte du sujet --> ]
+				<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}
+					{statut_forum=#GET{statut_forum}}
+					{id_article}
+					{id_forum}
+					{id_forum_fil=#GET{id_forum_fil}}
+					{verrou=#GET{verrou}}
+					{resolu=#GET{resolu}}>
+			</div>
+
+			[(#REM) <!-- Les reponses au sujet --> ]
+			<INCLURE{fond=noisettes/forum/inc_forum_sujet_reponses}
+				{statut_forum=#GET{statut_forum}}
+				{id_thread}
+				{id_article}
+				{id_forum}
+				{verrou=#GET{verrou}}
+				{resolu=#GET{forum_resolu}}>
+		</div>
+	</div>
 	
 	<div id="navigation">
 		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]

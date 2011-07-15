@@ -927,6 +927,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'msg_fichier_introuvable' => 'Fichier <strong>@fichier@</strong> introuvable. V&eacute;rifier la configuration du pipeline',
 	'msg_page_vide' => 'Ne souhaitez vous pas afficher quelque information sur la page d\'accueil ?',
 	'msg_site_sans_descriptif' => 'Ce site ne comporte pas de descriptif...',
+	'msg_forum_ferme' => 'Ce forum est ferm&eacute; : vous pouvez encore consulter les discussions mais vous ne pouvez plus ni ouvrir un sujet ni r&eacute;pondre &agrave un sujet.',
+	'msg_sujet_verrouille' => 'Ce sujet est verrouill&eacute; : vous pouvez consulter son fil de discussion mais vous ne pouvez plus y r&eacute;pondre.',
 
 // N
 	'n_albums' => 'Albums photo',
@@ -1037,6 +1039,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_discussions_forum' => 'Discussions',
 	'titre_epingles_forum' => 'Discussions &agrave; la une',
 	'titre_rubriques_filles' => 'Suivez aussi les sous-rubriques ci-dessous',
+	'titre_sujet_resolu' => '@titre@ [r&eacute;solu]',
 	'top_articles' => 'Les plus populaires',
 	'tri_par_auteur' => 'Par auteur',
 	'tri_par_date' => 'Par date',

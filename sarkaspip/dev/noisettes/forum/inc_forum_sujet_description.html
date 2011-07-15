@@ -2,10 +2,13 @@
 <!-- Affichage d'une sujet et de ses reponses
 	Recoit en argument :
 		- id_forum: id du sujet concerne
+		- id_article: id de l'article representant le forum du sujet
+		- verrou: indique si le sujet est verrouille ou pas
+		- resolu: indique si le sujet est resolu ou pas
 -->
 ]
 <BOUCLE_sujet(FORUMS){id_forum}>
-[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)[(#ENV{verrou}|=={'lock'}|oui|ou{#ENV{verrou}|=={'verrouille'}|oui})<:sarkaspip:forum_verrouille:>][(#ENV{resolu}|=={'oui'}|oui)<:sarkaspip:forum_resolu:>]</h1></div>]
+[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet{#ENV{resolu}})</h1></div>]
 <div class="description">
 	<div class="cartouche">
 		[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
@@ -25,7 +28,7 @@
 	</div>
 	[<div class="#EDIT{texte} premier_message">(#TEXTE|typo_couleur)</div>]
 	<br class="nettoyeur" />
-	
+	[(#ENV{verrou}|oui)<div class="avertissement"><:sarkaspip:msg_sujet_verrouille:></div>]
 </div>
 [(#ENV{id_forum_fil}|?{"" ,
 	[(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'forum_commenter',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}}|=={oui}|oui) <a class="fonction" id="commenter"  href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]"title="<:sarkaspip:ecrire_reponse:>"> </a>]
