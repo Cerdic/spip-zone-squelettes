@@ -1,5 +1,5 @@
 [(#REM) 
-<!-- Commentaires de l'article ou le commentaire precise depuis la page forum
+<!-- Sujet et ses reponses. Affichage en fin de page du formulaire d'ajout d'une reponse
 	Recoit en argument :
 		- id_forum: id du sujet concerne
 		- id_thread: id du fil concerne
@@ -10,7 +10,7 @@
 <div id="reponses" class="forum">
 	<a id="reponses" name="reponses" href="#reponses"></a>
 	[(#ENV{verrou}|non)
-		<a class="fonction" id="commenter"[ href="(#URL_PAGE{forum_post}|parametre_url{id_forum, #ENV{id_forum}})"] title="<:sarkaspip:ecrire_reponse:>"></a>
+		<a class="fonction" id="commenter" href="#formulaire_reponse" title="<:sarkaspip:ecrire_reponse:>"></a>
 	]
 	<h2><:sarkaspip:forum_sujet_reponses:></h2>
 
@@ -40,11 +40,6 @@
 				</div>
 			</td>
 			<td>
-				<div>
-					[(#ENV{verrou}|non)
-						<a class="fonction" id="forum_commenter_reponse" href="[(#URL_PAGE{forum_post}|parametre_url{'id_article',#ENV{id_article}}|parametre_url{'id_forum',#ID_THREAD}|parametre_url{'id_forum_fil',#ID_FORUM})]" title="<:sarkaspip:forum_completer_reponse:>"><img src="#CHEMIN{images/commentaire_repondre.gif}" style="display: [(#ID_THREAD|affiche_bouton_forum{#ENV{id_article},'commenter_reponse',#ENV{verrou},#SESSION{nom},#SESSION{statut},#GET{auteur}})]" /></a>
-					]
-				</div>
 				<div class="#EDIT{texte} texte">
 					[(#TEXTE|lignes_longues)]
 				<BOUCLE_doc(DOCUMENTS){id_forum}>
@@ -65,5 +60,10 @@
 ]				
 </B_reponses>	
 <br class="nettoyeur" />
-
 </div>
+
+
+[(#REM) <!-- Forumlaire de reponse --> ]
+[(#ENV{verrou}|non)
+<div class="formulaire" id="formulaire_reponse">#FORMULAIRE_FORUM{#URL_PAGE{forum_sujet, #PARAMETRES_FORUM{#SELF}}}</div>
+]

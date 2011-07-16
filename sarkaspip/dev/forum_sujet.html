@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{0}
-<BOUCLE_forum(FORUMS){id_forum}{doublons}>
+<BOUCLE_forum(FORUMS){id_forum}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
 		{meta_titre=#TITRE}
@@ -17,7 +17,6 @@
 
 	[(#ID_ARTICLE|statut_forum|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
 	[(#TITRE|strstr{_resolu_}|oui) #SET{resolu, oui}]
-	[(#ENV{id_forum_fil}|oui)#SET{id_forum_fil,#ENV{id_forum_fil}}]
 
 	<div id="wrapper">
 		<div id="content">
@@ -35,7 +34,8 @@
 				{id_thread}
 				{id_forum}
 				{verrou=#GET{verrou}}
-				{resolu=#GET{forum_resolu}}
+				{resolu=#GET{resolu}}
+				{self}
 				{ajax}>
 		</div>
 	</div>
