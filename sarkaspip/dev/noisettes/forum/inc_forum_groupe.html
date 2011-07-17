@@ -23,7 +23,6 @@
 		<tbody>
 		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
 			<tr>
-			<BOUCLE_ligne(ARTICLES){id_article}>
 				[(#REM) <!-- Etat et description du forum --> ]
 				[(#SET{statut_forum, [(#ID_ARTICLE|statut_forum)]})]
 				<td class="etat[ (#GET{statut_forum}|!={ouvert}|oui)forumferme]">
@@ -38,12 +37,12 @@
 				</td>
 
 				[(#REM) <!-- Nombre de sujets du forum --> ]
-				<BOUCLE_discussions(FORUMS){id_article}{doublons sujets}></BOUCLE_discussions>
+				<BOUCLE_discussions(FORUMS){id_article}></BOUCLE_discussions>
 				<td class="sujets">#TOTAL_BOUCLE</td>
 				<//B_discussions>
 
 				[(#REM) <!-- Nombre de réponses du forum --> ]
-				<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
+				<BOUCLE_messages(FORUMS){id_article}{plat}{id_parent!=0}></BOUCLE_messages>
 				<td class="messages">#TOTAL_BOUCLE</td>
 				<//B_messages>
 
@@ -66,7 +65,6 @@
 						- 
 				<//B_dernier_message>		
 				</td>
-			</BOUCLE_ligne>
 			</tr>
 		</BOUCLE_forums>
 		</tbody>
