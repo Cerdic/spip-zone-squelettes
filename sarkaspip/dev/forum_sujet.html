@@ -15,7 +15,8 @@
 	</BOUCLE_article_forum>
 	</div>
 
-	[(#ID_ARTICLE|statut_forum|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
+	[(#SET{statut_forum, [(#ID_ARTICLE|statut_forum)]})]
+	[(#GET{statut_forum}|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
 	[(#TITRE|strstr{_resolu_}|oui) #SET{resolu, oui}]
 
 	<div id="wrapper">
@@ -24,6 +25,7 @@
 				[(#REM) <!-- Titre, logo, texte du sujet --> ]
 				<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}
 					{id_forum}
+					{statut_forum=#GET{statut_forum}}
 					{verrou=#GET{verrou}}
 					{resolu=#GET{resolu}}>
 			</div>
