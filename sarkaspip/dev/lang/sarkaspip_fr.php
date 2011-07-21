@@ -181,7 +181,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_accueil_intro_24' => '<em>Album</em> : configuration de la pr&eacute;sentation des albums',
 	'cfg_inf_accueil_intro_25' => '<em>Flux rss</em> : configuration de la composition des flux rss du site',
 	'cfg_inf_accueil_intro_26' => '<em>Coins arrondis</em> : configuration des bordures de certains blocs du squelette',
-	'cfg_inf_accueil_intro_27' => '<em>Forum</em> : configuration des pages du forum type phpBB',
 	'cfg_inf_accueil_intro_3' => '<em>Bandeau</em> : configuration du bandeau',
 	'cfg_inf_accueil_intro_4' => '<em>Pied de page</em> : configuration du pied de page',
 	'cfg_inf_accueil_intro_5' => '<em>Colonnes</em> : affichage, positionnement et contenu des noisettes des colonnes',
@@ -980,7 +979,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'requete' => 'Saisir le(s) mot(s)',
 	'resultats_recherche' => 'R&eacute;sultats de la recherche',
 	'resultats_recherche_dans' => 'L\'expression &#171; @recherche@ &#187; est pr&eacute;sente dans :',
-	'resume_annonces_forum' => 'Annonces du forum',
 	'resume_exif_photo' => 'Donn&eacute;es EXIF de la photo',
 	'resume_mini_agenda_body' => 'Mini agenda mensuel',
 	'resume_mini_agenda_footer' => 'Liste des &eacute;v&egrave;nements &agrave; venir',
@@ -1055,6 +1053,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // W
 	'web_france' => 'Web francophone',
 	'web_monde' => 'Web Mondial',
+	'cfg_inf_accueil_forum' => 'Forum',
+	'cfg_inf_css_couleurs_tableaux_forum' => 'Choisissez vos couleurs pour les tableaux des pages Forum.',
+	'cfg_inf_css_forum' => 'Vous pouvez modifier les attributs graphiques des pages du Forum phpBB-lite.',
+	'cfg_lgd_css_forum' => 'Forums phpBB-lite',
+	'cfg_lbl_css_tb_head_forum' => 'des titres',
+	'cfg_lbl_css_tb_head2_forum' => 'des sous-titres',
+	'resume_annonces_forum' => 'Annonces du forum',
+	'resume_epingles_forum' => 'Discussions &agrave; la Une du forum',
+	'resume_discussions_forum' => 'Discussions normales du forum',
 
 );
 ?>
