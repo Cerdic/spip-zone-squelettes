@@ -3,18 +3,18 @@
 ]<BOUCLE_SecteursAvecSite(SITES){fusion id_secteur}><BOUCLE_MemoriseSecteurs(RUBRIQUES){id_rubrique=#ID_SECTEUR}{doublons SecteursAvecSite} /></BOUCLE_SecteursAvecSite><BOUCLE_BrancheContientSite(RUBRIQUES){par num titre}{!doublons SecteursAvecSite}{!titre_mot=PasDansPlan}>
 	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
 	<B_sites>
-	<ul class="alaune">
-		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}">[<img class="menu_right_logo" src="(#LOGO_SITE_NORMAL|image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_SITE_NORMAL|image_reduire{120,50}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]#NOM_SITE</a><BOUCLE_EstSyndique(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="<:ecrire:info_site_syndique:>"><img src="#CHEMIN{images/rss-icon.gif}" alt="RSS" width="46" height="15" style="vertical-align:middle;" /></a></BOUCLE_EstSyndique></li></BOUCLE_sites>
+	<ul class="listesites">
+		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<img src="#CHEMIN{images/rss-icon.gif}" class="rss_site" alt="RSS" title="<:ecrire:info_site_syndique:>" width="46" height="15" /></BOUCLE_EstSyndique>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites>
 	</ul>
 	</B_sites>
 
 	<B_Autres_Details>
-	<ul>
+	<ul class="listesitesssrub">
 	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansPlan}><B_sites2>
-		<li style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
 		<BOUCLE_Recursion(BOUCLE_Autres_Details) />
-			<ul class="alaune">
-				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}">[<img class="menu_right_logo" src="(#LOGO_SITE_NORMAL|image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_SITE_NORMAL|image_reduire{120,50}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]#NOM_SITE</a><BOUCLE_EstSyndique2(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="<:ecrire:info_site_syndique:>"><img src="#CHEMIN{images/rss-icon.gif}" alt="RSS" width="46" height="15" style="vertical-align:middle;" /></a></BOUCLE_EstSyndique2></li></BOUCLE_sites2>
+			<ul class="listesites">
+				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique2(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="<:ecrire:info_site_syndique:>"><img src="#CHEMIN{images/rss-icon.gif}" alt="RSS" [width="(#CHEMIN{images/rss-icon.gif}|largeur)" ][height="(#CHEMIN{images/rss-icon.gif}|hauteur)" ]/></a></BOUCLE_EstSyndique2>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites2>
 			</ul>
 		</li>
 		</B_sites2><BOUCLE_SitesBranche(SITES) {branche} {0,1}><BOUCLE_RetrouverContexteRubrique(RUBRIQUES){id_rubrique=#_Autres_Details:ID_RUBRIQUE}>
