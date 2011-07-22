@@ -112,13 +112,13 @@ function formulaires_signature_verifier_dist($id_article, $petition, $texte, $si
 	return $erreurs;
 }
 
-function formulaires_signature_traiter($id_article, $petition, $texte, $site_obli, $message) {
+function formulaires_signature_traiter_dist($id_article, $petition, $texte, $site_obli, $message) {
 	$reponse = _T('form_pet_probleme_technique');
 	include_spip('base/abstract_sql');
 	if (spip_connect()) {
 		$controler_signature = charger_fonction('controler_signature', 'inc');
 		$reponse = $controler_signature($id_article,
-		_request('session_nom'), $GLOBALS['meta']["email_webmaster"],
+		_request('session_nom'), _request('session_email'),
 		_request('message'), _request('signature_nom_site'),
 		_request('signature_url_site'), _request('url_page'));
 	}
@@ -333,7 +333,7 @@ function signature_a_confirmer($id_article, $url_page, $nom, $mail, $site, $url,
 
 	$titre = _T('form_pet_confirmation')." ". $titre;
 	$envoyer_mail = charger_fonction('envoyer_mail','inc');
-	if ($envoyer_mail($mail,$titre, $r))
+	if ($envoyer_mail('jean-christophe.villeneuve@ac-lyon.fr',$titre, $r))
 		return _T('form_pet_envoi_mail_confirmation',array('email'=>$mail));
 
 	return false; # erreur d'envoi de l'email
