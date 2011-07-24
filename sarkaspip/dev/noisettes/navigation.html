@@ -33,6 +33,13 @@
 	]
 ]
 
+[(#REM) <!-- affichage du mini-agenda -->]
+<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{agenda}}>
+[(#CONFIG{sarkaspip_noisettes/position_miniagenda, 2}|=={1}|oui)
+	<INCLURE{fond=noisettes/agenda/inc_mini_agenda_#CONFIG{sarkaspip_agenda/plugin, 1}}{ajax}{id_rubrique=#ID_RUBRIQUE}{self=#SELF}>
+]
+</BOUCLE_acces_agenda>
+
 [(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={1}|?{' '})
 	[(#ENV{page}|match{article|album}|?{'',' '})
