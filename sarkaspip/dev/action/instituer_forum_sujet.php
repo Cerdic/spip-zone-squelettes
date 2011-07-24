@@ -36,6 +36,11 @@ function action_instituer_forum_sujet_dist() {
 		}
 
 		sql_updateq('spip_forum', array('titre' => $titre_modifie), 'id_forum =' . sql_quote($id_forum));
+
+		// Invalider les pages comportant ce forum
+		include_spip('inc/invalideur');
+		include_spip('inc/forum');
+		suivre_invalideur("id='id_forum/$id_forum'");
 	}
 }
 
