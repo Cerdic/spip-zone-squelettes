@@ -39,7 +39,6 @@ function action_instituer_forum_sujet_dist() {
 
 		// Invalider les pages comportant ce forum
 		include_spip('inc/invalideur');
-		include_spip('inc/forum');
 		suivre_invalideur("id='id_forum/$id_forum'");
 	}
 }
