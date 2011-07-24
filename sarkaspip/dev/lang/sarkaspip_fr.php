@@ -1041,6 +1041,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_discussions_forum' => 'Discussions',
 	'titre_epingles_forum' => 'Discussions &agrave; la une',
 	'titre_rubriques_filles' => 'Suivez aussi les sous-rubriques ci-dessous',
+	'titre_forum_nouveau_sujet' => 'Nouveau sujet - donnez un titre explicite !',
 	'titre_sujet_resolu' => '@titre@ [r&eacute;solu]',
 	'top_articles' => 'Les plus populaires',
 	'tri_par_auteur' => 'Par auteur',
