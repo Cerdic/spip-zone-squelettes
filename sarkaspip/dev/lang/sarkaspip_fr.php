@@ -181,6 +181,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_accueil_intro_24' => '<em>Album</em> : configuration de la pr&eacute;sentation des albums',
 	'cfg_inf_accueil_intro_25' => '<em>Flux rss</em> : configuration de la composition des flux rss du site',
 	'cfg_inf_accueil_intro_26' => '<em>Coins arrondis</em> : configuration des bordures de certains blocs du squelette',
+	'cfg_inf_accueil_intro_27' => '<em>Forum</em> : configuration des pages du forum',
 	'cfg_inf_accueil_intro_3' => '<em>Bandeau</em> : configuration du bandeau',
 	'cfg_inf_accueil_intro_4' => '<em>Pied de page</em> : configuration du pied de page',
 	'cfg_inf_accueil_intro_5' => '<em>Colonnes</em> : affichage, positionnement et contenu des noisettes des colonnes',
@@ -312,7 +313,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
 	'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
 	'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
-	'cfg_inf_inc_breves' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
+	'cfg_inf_inc_breves_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des br&eacute;ves',
+	'cfg_inf_inc_breves_type' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 	'cfg_inf_inc_commentaires' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les derniers commentaires sur les articles ou les albums.',
 	'cfg_inf_inc_filtre' => 'Les noisettes de filtre des pages sp&eacute;ciales comme agenda, sites favoris et galerie et des articles syndiqu&eacute;s sont pagin&eacute;es.',
 	'cfg_inf_inc_herbier_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des sites favoris',
@@ -1053,15 +1055,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // W
 	'web_france' => 'Web francophone',
 	'web_monde' => 'Web Mondial',
-	'cfg_inf_accueil_forum' => 'Forum',
 	'cfg_inf_css_couleurs_tableaux_forum' => 'Choisissez vos couleurs pour les tableaux des pages Forum.',
-	'cfg_inf_css_forum' => 'Vous pouvez modifier les attributs graphiques des pages du Forum phpBB-lite.',
-	'cfg_lgd_css_forum' => 'Forums phpBB-lite',
+	'cfg_inf_css_forum' => 'Vous pouvez modifier les attributs graphiques des pages du forum : tableaux des pages groupes de forums et forums, réponses de la page sujet...',
 	'cfg_lbl_css_tb_head_forum' => 'des titres',
 	'cfg_lbl_css_tb_head2_forum' => 'des sous-titres',
+	'cfg_lgd_css_forum' => 'Forum',
 	'resume_annonces_forum' => 'Annonces du forum',
-	'resume_epingles_forum' => 'Discussions &agrave; la Une du forum',
-	'resume_discussions_forum' => 'Discussions normales du forum',
+	'resume_discussions_forum' => 'Sujets du forum',
+	'resume_epingles_forum' => 'Sujets &agrave; la Une du forum',
 
 );
 ?>

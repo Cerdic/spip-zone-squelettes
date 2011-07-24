@@ -48,7 +48,7 @@
 ]
 [(#REM) <!-- affichage du bloc des mots-cles et de la navigation d'une breve --> ]
 [(#ENV{page}|=={breve}|?{' '})
-	<INCLURE{fond=noisettes/breve/inc_breve_navigation}{id_breve}{id_secteur}>
+		<INCLURE{fond=noisettes/breve/inc_breve_navigation}{id_breve}{id_secteur}>
 ]
 
 [(#REM) <!-- affichage de la noisette Nuage --> ]
@@ -102,7 +102,9 @@
 		<INCLURE{fond=noisettes/herbier/inc_herbier_recents_#CONFIG{sarkaspip_noisettes/liste_herbier, 2}}{id_secteur}>
 	]
 ]
-[(#ENV{page}|!={breve}|?{' '})<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>]
+[(#ENV{page}|!={breve}|et{#CONFIG{sarkaspip_noisettes/position_breves, 2}|=={2}}|oui)
+	<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>
+]
 [(#ENV{page}|!={site}|?{' '})<INCLURE{fond=noisettes/site/inc_sites_recents_#CONFIG{sarkaspip_noisettes/liste_sites, 2}}{id_secteur}>]
 
 [(#REM) <!-- Blocs de statistiques --> ]
