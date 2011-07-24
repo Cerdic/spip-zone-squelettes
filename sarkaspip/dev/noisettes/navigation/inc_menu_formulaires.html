@@ -41,10 +41,12 @@
 			[(#PLUGIN{SHOUTBOX}|?{' '})
 				<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{dialogue})]"><:sarkaspip:dialogue:></a></li>
 			]
+			[(#ENV{id_rubrique}|appliquer_filtre{accesrestreint_rubrique_restreinte,0}|oui) #SET{retour_logout, #URL_PAGE{sommaire}}]
 			<li class="[(#GET{classe_li})]">
-				[<a href="(#PLUGIN{accesrestreint}|oui)#URL_LOGOUT{#URL_PAGE{sommaire}}">]
-				[<a href="(#PLUGIN{accesrestreint}|non)#URL_LOGOUT{#URL_PAGE}">]
-					<:sarkaspip:logout_membre:></a></li>
+				<a href="#URL_LOGOUT{#GET{retour_logout}}">
+					<:sarkaspip:logout_membre:>
+				</a>
+			</li>
 			[(#AUTORISER{ecrire})
 				<li class="[(#GET{classe_li})]"><a href="#URL_ECRIRE"><:sarkaspip:espace_prive:></a></li>
 			]
