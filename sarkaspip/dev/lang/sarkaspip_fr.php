@@ -266,7 +266,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_css_couleurs_portfolio' => 'Choisissez vos couleurs pour la bordure de chaque image du portfolio.',
 	'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte, des liens et des intertitres.',
 	'cfg_inf_css_couleurs_tableaux' => 'Choisissez les couleurs de fond des tableaux.',
-	'cfg_inf_css_couleurs_tableaux_forum' => 'Choisissez vos couleurs pour les tableaux des pages Forum.',
+	'cfg_inf_css_couleurs_tableaux_forum' => 'Choisissez vos couleurs pour les tableaux des pages groupe de forums et forum.',
+	'cfg_inf_css_couleurs_reponses_forum' => 'Choisissez vos couleurs pour le tableau des réponses à un sujet.',
 	'cfg_inf_css_couleurs_une' => 'Choisissez vos couleurs particulières pour l\'article en une.',
 	'cfg_inf_css_couleurs_vignette' => 'Choisissez vos couleurs pour la bordure de chaque vignette.',
 	'cfg_inf_css_description' => 'Vous pouvez modifier les attributs graphiques de la description, du portfolio et des documents joints de la page article ainsi que de l\'édito et de toutes les pages du même type comme Rubrique, Album, Auteur, Evenement, Bréve, Site.',
@@ -485,6 +486,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_css_tb_odd' => 'des lignes impaires',
 	'cfg_lbl_css_tb_bordext' => 'extérieure',
 	'cfg_lbl_css_td' => 'Décoration au survol @lbl_ho_complement@',
+	'cfg_lbl_css_rptitre_forum' => 'du titre du bloc des réponses',
+	'cfg_lbl_css_rpauteur_forum' => 'des détails de l\'auteur',
+	'cfg_lbl_css_rpsouligne_forum' => 'haute du bloc des réponses',
 	'cfg_lbl_effet_aucun' => 'Aucun effet',
 	'cfg_lbl_effet_fancybox' => 'Effet Fancybox image par image (nécessite le plugin Fancybox)',
 	'cfg_lbl_effet_fancybox_diapo' => 'Effet Fancybox en diaporama (nécessite le plugin Fancybox)',
@@ -1045,5 +1049,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // W
 	'web_france' => 'Web francophone',
 	'web_monde' => 'Web Mondial',
+
 );
 ?>
