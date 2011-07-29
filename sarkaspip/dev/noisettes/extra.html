@@ -39,9 +39,13 @@
 [(#ENV{page}|=={album}|?{' '})
 	<INCLURE{fond=noisettes/album/inc_album_navigation}{id_article}>
 ]
+[(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
+[(#ENV{page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
+	<INCLURE{fond=noisettes/forum/inc_groupe_navigation}{id_secteur}{id_rubrique}>
+]
 [(#REM) <!-- affichage du bloc de navigation d'une page forum --> ]
 [(#ENV{page}|=={forum_forum}|?{' '})
-	<INCLURE{fond=noisettes/forum/inc_forum_navigation}{id_article}>
+	<INCLURE{fond=noisettes/forum/inc_forum_navigation}{id_article}{id_rubrique}>
 ]
 [(#ENV{page}|=={site}|?{' '})
 	<INCLURE{fond=noisettes/site/inc_site_filtre}{id_syndic}{id_rubrique}>
