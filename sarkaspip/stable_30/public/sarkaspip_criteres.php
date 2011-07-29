@@ -7,7 +7,7 @@
 // =======================================================================================================================================
 //
 if (!defined('_DIR_PLUGIN_ACCESRESTREINT')) {
-	function critere_tout_voir_dist($idb, &$boucles, $crit) {
+	function critere_tout_voir($idb, &$boucles, $crit) {
 		return NULL;
 	}
 }
