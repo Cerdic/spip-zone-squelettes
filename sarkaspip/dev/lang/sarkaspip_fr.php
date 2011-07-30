@@ -300,6 +300,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_form_login1' => 'Le formulaire de login public permet aux membres du site de se connecter sans entrer dans l\'espace privé.',
 	'cfg_inf_form_login2' => 'Le formulaire de login privé permet aux membres du site de se connecter et d\'entrer dans l\'espace privé dans la foulée.',
 	'cfg_inf_form_referencement' => 'Le formulaire de référencement permet aux visiteurs de proposer un site de leur choix.',
+	'cfg_inf_forum_reponses_sens_tri' => 'Vous pouvez présenter le fil des réponses d\'un sujet de discussion soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
 	'cfg_inf_forum_forum' => 'La page de présentation d\'un forum affiche un tableau paginé des discussions en cours classé par ordre chronologique inverse.',
 	'cfg_inf_forum_id' => 'Le forum type phpBB simplfié est matérialisé par un secteur (rubrique de plus haut niveau); Les sous-rubriques de ce secteur sont alors considérées comme des groupes de forums et les articles attachés comme des forums. Les forums SPIP des articles formeront ainsi donc les fils de discussion des forums. Choisissez donc le secteur qui deviendra votre forum.',
 	'cfg_inf_forum_sujet' => 'La page de présentation d\'un fil de discussion affiche la liste paginée des réponses au sujet initial classée par ordre chronologique.',
