@@ -6,41 +6,50 @@ necessite:
 contexte:
 parametres:
   -
-    saisie: 'oui_non'
-    options:
-      nom: 'meme_rubrique'
-      label: '<:aveline:label_precedent_suivant_meme_rubrique:>'
-      defaut: 'on'
-  -
     saisie: 'selection'
     options:
       nom: 'branche'
-      label: '<:aveline:label_precedent_suivant_afficher:>'
+      label: '<:aveline:label_precedent_suivant_trouver:>'
+      explication: '<:aveline:explication_precedent_suivant_trouver:>'
       defaut: 'tous'
       cacher_option_intro: 'oui'
       datas:
         tous: '<:aveline:item_articles_tous:>'
-        rubrique_specifique: '<:aveline:item_rubrique_specifique:>'
-        branche_specifique: '<:aveline:item_branche_specifique:>'
-        secteur_specifique: '<:aveline:item_secteur_specifique:>'
+        meme_rubrique: '<:aveline:item_articles_meme_rubrique:>'
+        meme_secteur: '<:aveline:item_articles_meme_secteur:>'
   -
-    saisie: 'selecteur_rubrique'
+    saisie: 'selection'
     options:
-      nom: 'rubrique_specifique'
-      label: '<:aveline:label_rubrique_specifique:>'
-      multiple: 'oui'
-      afficher_si: '@branche@ == "rubrique_specifique"'
+      nom: 'precedent_suivant_type_lien'
+      label: '<:aveline:label_precedent_suivant_type_lien:>'
+      explication: '<:aveline:explication_precedent_suivant_type_lien:>'
+      defaut: 'lien_fleche'
+      cacher_option_intro: 'oui'
+      datas:
+        lien_fleche: '<:aveline:item_precedent_suivant_lien_fleche:>'
+        lien_texte: '<:aveline:item_precedent_suivant_lien_texte:>'
+        lien_titre: '<:aveline:item_precedent_suivant_lien_titre:>'
   -
-    saisie: 'selecteur_rubrique'
+    saisie: 'input'
     options:
-      nom: 'branche_specifique'
-      label: '<:aveline:label_branche_specifique:>'
-      multiple: 'oui'
-      afficher_si: '@branche@ == "branche_specifique"'
+      nom: 'precedent_suivant_longueur_max_titres'
+      label: '<:aveline:label_longueur_max_titres:>'
+      defaut: 20
+      afficher_si: '@type_lien@ == "lien_titre"'
+    verifier:
+      type: 'entier'
+      min: 10
   -
-    saisie: 'secteur'
+    saisie: 'selection'
     options:
-      nom: 'secteur_specifique'
-      label: '<:aveline:label_secteur_specifique:>'
-      multiple: 'oui'
-      afficher_si: '@branche@ == "secteur_specifique"'
+      nom: 'precedent_suivant_align'
+      label: '<:aveline:label_precedent_suivant_align:>'
+      explication: '<:aveline:explication_precedent_suivant_align:>'
+      defaut: 'left'
+      cacher_option_intro: 'oui'
+      datas:
+        left: '<:aveline:item_precedent_suivant_align_left:>'
+        center: '<:aveline:item_precedent_suivant_align_center:>'
+        right: '<:aveline:item_precedent_suivant_align_right:>'
+  - 'inclure:inc-yaml/tri-article.yaml'
+  - 'inclure:inc-yaml/restreindre_langue.yaml'

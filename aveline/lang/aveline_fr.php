@@ -81,6 +81,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le critère de tri de la liste.',
 	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib : lorsque le visiteur clique sur répondre à ce message, le formulaire de réponse vient se placer sous le message.',
 	'explication_lien_page_auteurs' => 'Rajoute un lien vers une page \'auteurs\' où vous pourrez lister l\'ensemble des auteurs du site. Vous devrez créer cette page (composition du type \'page\' avec l\'identifiant \'auteurs\'.',
+	'explication_precedent_suivant_align' => 'Choisir l\'alignement du bloc de navigation par rapport au contenu de l\'article',
+	'explication_precedent_suivant_trouver' => 'Trouver les liens vers les articles précédent et suivant parmi...',
+	'explication_precedent_suivant_type_lien' => 'Choisissez le type de lien à afficher',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la même langue.',
 	'explication_tri_recherche' => 'Par défaut, les résultats sont triés par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajoutée.',
@@ -91,6 +94,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_annee' => 'par année',
 	'item_article_specifique' => 'dans un ou plusieurs articles spécifiques',
 	'item_articles_tous' => 'tous les articles du site',
+	'item_articles_meme_rubrique' => 'les articles de la même rubrique',
+	'item_articles_meme_secteur' => 'les articles du même secteur',
 	'item_ascendant' => 'tri ascendant / croissant',
 	'item_aucun' => 'aucun',
 	'item_branche_actuelle' => 'dans la branche',
@@ -140,6 +145,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_pagination_simple' => '« 1 /10 »',
 	'item_points' => 'pertinence (points)',
 	'item_popularite' => 'popularité',
+	'item_precedent_suivant_align_center' => 'centré' ,
+	'item_precedent_suivant_align_left' => 'à gauche' ,
+	'item_precedent_suivant_align_right' => 'à droite' ,
+	'item_precedent_suivant_lien_fleche' => 'Flèches' ,
+	'item_precedent_suivant_lien_texte' => 'Textes Article précédent / Article suivant' ,
+	'item_precedent_suivant_lien_titre' => 'Titre des articles' ,
 	'item_racine' => 'à la racine du site',
 	'item_resume' => 'résumés',
 	'item_rien' => 'rien',
@@ -301,8 +312,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_position_pagination' => 'Position de la pagination :',
 	'label_position_selecteur_archives' => 'Position du sélecteur :',
 	'label_position_tri_alphabetique' => 'Position du tri alphabétique :',
-	'label_precedent_suivant_afficher' => 'Afficher les liens de navigation',
-	'label_precedent_suivant_meme_rubrique' => 'Afficher les liens uniquement vers les articles de la même rubrique',
+	'label_precedent_suivant_align' => 'Alignement',
+	'label_precedent_suivant_trouver' => 'Localisation',
+	'label_precedent_suivant_type_lien' => 'Type des liens' ,
 	'label_rappeler_nom' => 'Rappeler le nom de l\'auteur ?',
 	'label_rappeler_titre' => 'Rappeler le titre ?',
 	'label_resize_contents' => 'Redimensionner les contenus à la fenêtre ?',
@@ -445,7 +457,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Forum du site',
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
-	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
+	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
+	
+	// P
+	'precedent_suivant_lien_prev' => 'Article précédent',
+	'precedent_suivant_lien_next' => 'Article suivant',
 );
 
 ?>
