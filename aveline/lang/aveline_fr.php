@@ -91,6 +91,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_vignette_ajout_css' => 'Une majorité de thèmes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour améliorer l\'affichage. à ne pas activer si le thème prend en charge les vignettes.',
 
 	// I
+	'item_align_center' => 'centré' ,
+	'item_align_left' => 'à gauche' ,
+	'item_align_right' => 'à droite' ,
 	'item_annee' => 'par année',
 	'item_article_specifique' => 'dans un ou plusieurs articles spécifiques',
 	'item_articles_tous' => 'tous les articles du site',
@@ -145,9 +148,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_pagination_simple' => '« 1 /10 »',
 	'item_points' => 'pertinence (points)',
 	'item_popularite' => 'popularité',
-	'item_precedent_suivant_align_center' => 'centré' ,
-	'item_precedent_suivant_align_left' => 'à gauche' ,
-	'item_precedent_suivant_align_right' => 'à droite' ,
 	'item_precedent_suivant_lien_fleche' => 'Flèches' ,
 	'item_precedent_suivant_lien_texte' => 'Textes Article précédent / Article suivant' ,
 	'item_precedent_suivant_lien_titre' => 'Titre des articles' ,
@@ -457,11 +457,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Forum du site',
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
-	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
-	
-	// P
-	'precedent_suivant_lien_prev' => 'Article précédent',
-	'precedent_suivant_lien_next' => 'Article suivant',
+	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
+
 );
 
 ?>
