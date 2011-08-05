@@ -92,14 +92,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_vignette_ajout_css' => 'Une majorité de thèmes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour améliorer l\'affichage. à ne pas activer si le thème prend en charge les vignettes.',
 
 	// I
-	'item_align_center' => 'centré' ,
-	'item_align_left' => 'à gauche' ,
-	'item_align_right' => 'à droite' ,
+	'item_align_center' => 'centré',
+	'item_align_left' => 'à gauche',
+	'item_align_right' => 'à droite',
 	'item_annee' => 'par année',
 	'item_article_specifique' => 'dans un ou plusieurs articles spécifiques',
-	'item_articles_tous' => 'tous les articles du site',
 	'item_articles_meme_rubrique' => 'les articles de la même rubrique',
 	'item_articles_meme_secteur' => 'les articles du même secteur',
+	'item_articles_tous' => 'tous les articles du site',
 	'item_ascendant' => 'tri ascendant / croissant',
 	'item_aucun' => 'aucun',
 	'item_branche_actuelle' => 'dans la branche',
@@ -149,9 +149,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_pagination_simple' => '« 1 /10 »',
 	'item_points' => 'pertinence (points)',
 	'item_popularite' => 'popularité',
-	'item_precedent_suivant_lien_fleche' => 'Flèches' ,
-	'item_precedent_suivant_lien_texte' => 'Textes Article précédent / Article suivant' ,
-	'item_precedent_suivant_lien_titre' => 'Titre des articles' ,
+	'item_precedent_suivant_lien_fleche' => 'Flèches',
+	'item_precedent_suivant_lien_texte' => 'Textes Article précédent / Article suivant',
+	'item_precedent_suivant_lien_titre' => 'Titre des articles',
 	'item_racine' => 'à la racine du site',
 	'item_resume' => 'résumés',
 	'item_rien' => 'rien',
@@ -316,7 +316,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_position_tri_alphabetique' => 'Position du tri alphabétique :',
 	'label_precedent_suivant_align' => 'Alignement',
 	'label_precedent_suivant_trouver' => 'Localisation',
-	'label_precedent_suivant_type_lien' => 'Type des liens' ,
+	'label_precedent_suivant_type_lien' => 'Type des liens',
 	'label_rappeler_nom' => 'Rappeler le nom de l\'auteur ?',
 	'label_rappeler_titre' => 'Rappeler le titre ?',
 	'label_restreindre_langue' => 'Restreindre à la langue en cours ?',
@@ -459,7 +459,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
 	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
-
 );
 
 ?>
