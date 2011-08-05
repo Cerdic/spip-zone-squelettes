@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Category',
 	'categories' => 'Categories',
 	'categories_deux_points' => 'Categories:',
-	'colon2' => '::', # NEW
+	'colon2' => '::',
 	'commentaires' => 'Comments',
 	'contact' => 'Contact',
 	'contributeurs' => 'Contributors',
@@ -64,7 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// G
 	'groupes_mots' => 'Keywords groups',
-	'gt' => '>', # NEW
+	'gt' => '>',
 
 	// I
 	'inscriptions_deux_points' => 'Registration:',
@@ -105,6 +105,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'passe' => 'Past',
 	'passe_en_cours' => 'Past and ongoing',
 	'permalink_to' => 'Permanent link to the comment',
+	'precedent_suivant_lien_next' => 'Article suivant', # NEW
+	'precedent_suivant_lien_prev' => 'Article précédent', # NEW
 	'principaux_auteurs' => 'Main authors',
 	'principaux_contributeurs' => 'Main contributors',
 

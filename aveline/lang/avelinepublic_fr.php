@@ -103,8 +103,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'passe' => 'Passé',
 	'passe_en_cours' => 'Passé et en cours',
 	'permalink_to' => 'Lien permanent vers le commentaire',
-	'precedent_suivant_lien_prev' => 'Article précédent',
 	'precedent_suivant_lien_next' => 'Article suivant',
+	'precedent_suivant_lien_prev' => 'Article précédent',
 	'principaux_auteurs' => 'Principaux auteurs',
 	'principaux_contributeurs' => 'Principaux contributeurs',
 

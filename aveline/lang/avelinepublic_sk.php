@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Kategória',
 	'categories' => 'Kategórie',
 	'categories_deux_points' => 'Kategórie:',
-	'colon2' => '::', # NEW
+	'colon2' => '::',
 	'commentaires' => 'Komentáre',
 	'contact' => 'Kontakt',
 	'contributeurs' => 'Prispievatelia',
@@ -64,7 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// G
 	'groupes_mots' => 'Skupiny kľúčových slov',
-	'gt' => '>', # NEW
+	'gt' => '>',
 
 	// I
 	'inscriptions_deux_points' => 'Registrácia:',
@@ -105,6 +105,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'passe' => 'Ukončené',
 	'passe_en_cours' => 'Ukončené a prebiehajúce',
 	'permalink_to' => 'Trvalý odkaz na komentár',
+	'precedent_suivant_lien_next' => 'Article suivant', # NEW
+	'precedent_suivant_lien_prev' => 'Article précédent', # NEW
 	'principaux_auteurs' => 'Hlavní autori',
 	'principaux_contributeurs' => 'Hlavní prispievatelia',
 
