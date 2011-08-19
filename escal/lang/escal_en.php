@@ -123,6 +123,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'sub-section',
 'sous_rubriques' => 'sub-sections',
 'statistiques' => 'Statistics of the site',
+'sur_web' => 'On web',
 // T
 'taille_augmenter' => 'Increase the size of the characters',
 'taille_diminuer' => 'Decrease the size of the characters',
