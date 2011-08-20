@@ -82,6 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements_non' => 'No events to come',
 // F
 'fleche' => 'arrow',
+'fois' => 'times',
 'format' => 'File type :',
 //H
 'haut_page' => 'Top of the page',
@@ -142,6 +143,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // V
 'visiteur' => 'visitor',
 'visiteurs' => 'visitors',
+'vu' => 'seen',
 // W
 'webmestre' => 'Webmaster',
 

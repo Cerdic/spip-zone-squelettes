@@ -82,6 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements_non' => 'Non di evento a venire',
 // F
 'fleche' => 'freccia',
+'fois' => 'volte',
 'format' => 'Formato :',
 //H
 'haut_page' => 'Torna su',
@@ -143,6 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // V
 'visiteur' => 'visitatore',
 'visiteurs' => 'visitatori',
+'vu' => 'visto',
 // W
 'webmestre' => 'Webmaster',
 
