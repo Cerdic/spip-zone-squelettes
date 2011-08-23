@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'actus' => 'Actus',
 'adresse_non' => 'Cet auteur n\'a pas fourni son adresse e-mail',
 'agenda' => 'Agenda',
+'alerte_javascript' => 'Cette page ne peut pas fonctionner correctement sans JavaScript. Veuillez le r&eacute;activer',
 'annuaire' => 'Annuaire',
 'annuaire_invitation' => 'Vous aussi, vous utilisez ESCAL-V2 ?<br />Alors ajoutez votre site dans cette page.',
 'alt_telechargements' => 'T&eacute;l&eacute;chargements',
@@ -75,6 +76,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // E
 'en_ligne' => 'Actuellement en ligne : ',
 'envoyer_message' => 'Envoyer un message &agrave; ',
+'erreur404' => 'Erreur 404',
+'erreur404_message' => '<p>La page que vous demandez n\'existe pas ou plus sur le site.
+                    </p>
+                    <p>Si vous pensez qu\'il s\'agit d\'une erreur dans le site,
+                      <br />vous pouvez signaler le probl&egrave;me au responsable du site
+                      <br />en utilisant la page
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
+                      de ce site.
+                    </p>',
 'espace_redacteurs' => 'Espace r&eacute;dacteurs',
 'et' => 'et',
 'evenements' => '&Eacute;v&egrave;nements &agrave; venir',
@@ -105,7 +115,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'photos_hasard' => 'Quelques photos<br />au hasard',
 'poster_message' => 'Poster un nouveau message',
 'premier_visiteur' => 'Vous &ecirc;tes le premier !',
-'publie' => 'Publié le',
+'publie' => 'Publi&eacute; le',
 'puce' => 'puce',
 // R
 'rappel_discussion' => 'Rappel de la discussion',
@@ -121,8 +131,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'site_realise_avec' => 'Site r&eacute;alis&eacute; sous',
-'site_reference' => 'site réf&eacute;renc&eacute;',
-'sites_references' => 'sites r&eacute;férenc&eacute;s',
+'site_reference' => 'site r&eacute;f&eacute;renc&eacute;',
+'sites_references' => 'sites r&eacute;f&eacute;renc&eacute;s',
 'sous_rubrique' => 'sous_rubrique',
 'sous_rubriques' => 'sous_rubriques',
 'statistiques' => 'Statistiques du site',

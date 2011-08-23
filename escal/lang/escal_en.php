@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'actus' => 'News',
 'adresse_non' => 'This author did not supply his e-mail address',
 'agenda' => 'Agenda',
+'alerte_javascript' => 'This page cannot work correctly without JavaScript. Please reactivate it.',
 'annuaire' => 'Directory',
 'annuaire_invitation' => 'Do you also use ESCAL-V2? <br /> So add your site on this page.',
 'alt_telechargements' => 'Downloads',
@@ -75,6 +76,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // E
 'en_ligne' => 'Currently on-line:',
 'envoyer_message' => 'Send a message to ',
+'erreur404' => 'Error 404',
+'erreur404_message' => '<p>The page for which you ask does not exist on the site.
+                    </p>
+                    <p>If you think that it is about an error in the site,
+                      <br />you can indicate the problem to the person in charge of the site
+                      <br />by using the 
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
+                      page of this site.
+                    </p>',
 'espace_redacteurs' => 'Editors area',
 'et' => 'and',
 'evenements' => 'Events to come',
