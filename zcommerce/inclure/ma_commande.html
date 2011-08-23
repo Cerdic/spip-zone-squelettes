@@ -5,13 +5,13 @@
 						
 		[(#BOUTON_ACTION{<:zcommerce:vider_le_panier:>,#URL_ACTION_AUTEUR{supprimer_panier_encours,'',#SELF},ajax})] 
 		
-		[(#SESSION{id_auteur}|<={0}|oui)
+		[(#SESSION{id_auteur}|non)
 		<a href="[(#SELF|parametre_url{appel,mes_coordonnees})]" class="continuer">
 			<:zcommerce:continuer:> >>
 		</a>
 		]
 			
-		[(#SESSION{id_auteur}|>{0}|oui)
+		[(#SESSION{id_auteur}|oui)
 		[(#BOUTON_ACTION{<:paniers:panier_valider:>,[(#URL_ACTION_AUTEUR{panier2commande,panier-#SESSION{id_panier},[(#SELF|parametre_url{"appel","paiement"})]})],ajax})] 
 		]
 	]

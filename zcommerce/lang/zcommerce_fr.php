@@ -25,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'paiement_fictif'=>'Paiement fictif',
 'passer_la_commande'=>'Passer la commande',
 'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
-	
+'statut_encours'=>'en cours',	
+
 );
 ?>

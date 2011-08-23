@@ -2,16 +2,18 @@
 
 <BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}>
 <div class="liste_commande">
-	<h1><:zcommerce:votre_commande:> #REFERENCE (#STATUT)</h1>
-	<INCLURE{fond=inclure/commande,id_commande=#ID_COMMANDE,statut=#STATUT}>
+	<h1><:zcommerce:votre_commande:> #REFERENCE ([(#VAL{zcommerce:statut_#STATUT}|_T)])</h1>
+	
+	<INCLURE{fond=inclure/commande,id_commande,statut}>
 
 	[(#ID_AUTEUR|>{0}|oui)
 	<h1>Formulaire paypal : </h1>
 		[(#FORMULAIRE_PAYPAL{#ARRAY{
+			type,details,
 			prix,#PRIX*,
 			custom,"payer_commande",
-			invoice,#ID_COMMANDE,
-			libelle,"Ref " #REFERENCE,
+			invoice,#REFERENCE,
+			libelle,#ID_COMMANDE,
 			identifiant,[paiement-1-(#SESSION{id_auteur})],
 			redirect_ok,[(#URL_PAGE{paiement_ok})],
 		}})]
