@@ -20,7 +20,7 @@
 	<BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie>
 	</p>
 
-	<INCLURE{fond=inclure/post-tags}{id_article}>
+	[(#INCLURE{fond=inclure/post-tags,id_article})]
 
 	[(#LOGO_ARTICLE|#URL_ARTICLE|liens_absolus|image_reduire{150}|inserer_attribut{class,logo})]
 </div>
@@ -28,12 +28,13 @@
 [<div class="post-content #EDIT{intro}" lang="#LANG">
 	(#INTRODUCTION)
 </div>]
-<p class="read-it lire-la-suite"><a href="#URL_ARTICLE" title="[Lire la suite (#TITRE|texte_script)]"><:spipclear:lire_la_suite:></a>...</p>
+
+<p class="read-it lire-la-suite"><a href="#URL_ARTICLE" title="[<:spipclear:lire_la_suite|attribut_html:> (#TITRE|attribut_html|couper{60})]"><:spipclear:lire_la_suite:></a>...</p>
 	
 [<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
 
 <p class="post-info-co nb_commentaires"> 
-<a href="#URL_ARTICLE#co" class="comment_count" title="<:spipclear:commentaires_pour:> : [(#TITRE|textebrut|entites_html)]">
+<a href="#URL_ARTICLE#co" class="comment_count">
 	[(#INCLURE{fond=inclure/nb_commentaires,id_article})]
 </a>
 </p>
