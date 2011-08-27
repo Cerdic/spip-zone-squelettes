@@ -77,10 +77,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'en_ligne' => 'Currently on-line:',
 'envoyer_message' => 'Send a message to ',
 'erreur404' => 'Error 404',
-'erreur404_message' => '<p>The page for which you ask does not exist on the site.
+'erreur404_message' => '<p>The page you want does not exist, is no longer online or has moved.
                     </p>
-                    <p>If you think that it is about an error in the site,
-                      <br />you can indicate the problem to the person in charge of the site
+                    <p>If you think this is wrong,
+                      <br />you can inform the webmaster using the 
                       <br />by using the 
                       <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
                       page of this site.
@@ -138,7 +138,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // T
 'taille_augmenter' => 'Increase the size of the characters',
 'taille_diminuer' => 'Decrease the size of the characters',
-'taille_fichier' => 'Size of the file:',
+'taille_fichier' => 'File size',
 'telechargement' => 'File to download:',
 'telechargements' => 'Files to download:',
 'title_articles_derniers' => 'Last articles',

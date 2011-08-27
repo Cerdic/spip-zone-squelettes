@@ -37,7 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bienvenue' => 'Bienvenida',
 // C
 'calendrier' => 'Calendario',
-'clic_telechargement' => 'Hacer clic para ver o cargar',
+'clic_telechargement' => 'Clicar para ver o descargar',
 'collegues' => 'Todos los colegas',
 'contact' => 'Contacto',
 'contact_bienvenue' => 'Para ponerse en contacto con el referente t&eacute;cnico, 
@@ -77,10 +77,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'en_ligne' => 'Actualmente en l&iacute;nea: ',
 'envoyer_message' => 'Enviar un mensaje a',
 'erreur404' => 'Error 404',
-'erreur404_message' => '<p>La p&aacute;gina que usted pide no existe o m&aacute;s sobre el sitio.
+'erreur404_message' => '<p>La p&aacute;gina que pide no existe m&aacute;s en el sitio o est&aacute; en otra parte.
                     </p>
-                    <p>Si usted piensa que se trata de un error en el sitio,
-                      <br />usted puede se&ntilde;alarle el problema al responsable del sitio
+                    <p>Si usted piensa que es un error en el sitio,
+                      <br />puede escribir al responsable del sitio
                       <br />utilizando la p&aacute;gina
                       <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contacto</a>
                       de este sitio.
@@ -95,13 +95,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fois' => 'veces',
 'format' => 'Formato :',
 //H
-'haut_page' => 'Altura de p&aacute;gina',
+'haut_page' => 'Arriba',
 // I
 'identification' => 'Identificaci&oacute;n',
 // L
 'le' => 'el',
 'lire_article' => 'Leer el art&iacute;culo ...',
-'lire_suite' => 'Leer la continuaci&oacute;n ...',
+'lire_suite' => 'Sigue ...',
 // M
 'menu' => 'Al men&uacute;',
 'message_non' => '(ning&uacute;n mensaje por el momento)',
@@ -140,8 +140,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'taille_augmenter' => 'Aumentar la talla car&aacute;cteres',
 'taille_diminuer' => 'Disminuir la talla car&aacute;cteres',
 'taille_fichier' => 'Tama&ntilde;o del archivo:',
-'telechargement' => 'Archivo por cargar:',
-'telechargements' => 'Archivos que hay que cargar:',
+'telechargement' => 'Archivo por descargar:',
+'telechargements' => 'Archivos por descargar:',
 'title_articles_derniers' => '&uacute;ltimos art&iacute;culos',
 'title_contact' => 'Ponerse en contacto con el referente t&eacute;cnico',
 'title_espace_redacteurs' => 'El espacio privado de los autores y administradores',
