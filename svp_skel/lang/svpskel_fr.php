@@ -63,6 +63,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_traductions' => 'Traductions',
 	'label_utilise_plugins' => 'Fonctions supplémentaires avec les plugins',
 
+// R
+	'resume_table_autres_contributions' => 'Liste des autres contributions',
 // T
 	'titre_filtre_categorie' => 'Filtrer par catégorie',
 	'titre_filtre_depot' => 'Filtrer par dépôt',
