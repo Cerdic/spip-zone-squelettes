@@ -288,6 +288,7 @@ function Z_insert_head($flux){
 // mais retourne toujours dans un <p> comme propre
 //
 // http://doc.spip.org/@filtre_introduction_dist
+if (!function_exists('filtre_introduction')){ // securite
 function filtre_introduction($descriptif, $texte, $longueur, $connect) {
 	include_spip('public/composer');
 	$texte = filtre_introduction_dist($descriptif, $texte, $longueur, $connect);
@@ -297,6 +298,7 @@ function filtre_introduction($descriptif, $texte, $longueur, $connect) {
 		$texte = paragrapher($texte, $GLOBALS['toujours_paragrapher']);
 
 	return $texte;
+}
 }
 
 /**
