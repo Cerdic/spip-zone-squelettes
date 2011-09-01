@@ -147,7 +147,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_espace_redacteurs' => 'El espacio privado de los autores y administradores',
 'title_haut_page' => 'Subir a lo alto de la p&aacute;gina',
 'title_escal' => 'Lazo hacia el sitio oficial de Escal',
-'title_spip' => 'Lazo hacia spip.net',
 'title_w3c' => 'Sitio v&aacute;lido XHTML 1.0 Strict',
 'top_articles' => 'Art&iacute;culos m&aacute;s le&iacute;dos',
 'total_visites' => 'N&uacute;mero total de visitas: ',
