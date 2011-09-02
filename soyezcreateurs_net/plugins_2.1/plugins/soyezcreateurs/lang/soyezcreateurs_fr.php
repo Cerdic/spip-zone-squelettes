@@ -207,6 +207,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_navigationtransversale_label' => 'Navigation transversale',
 	'cfg_navigationtransversalelocale' => 'Navigation transversale locale',
 	'cfg_nombres_quoideneuf' => 'Les nombres quoi de neuf',
+	'cfg_nombres_quoideneuf_lettres' => 'Les nombres quoi de neuf pour la NewsLetter',
 	'cfg_non_secondaire' => 'Non, l\'afficher en bas de la navigation secondaire',
 	'cfg_numero_cnil' => 'Affichage du numéro CNIL',
 	'cfg_numero_cnil_label' => 'Nº d\'enregistrement CNIL',
