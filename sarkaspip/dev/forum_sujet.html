@@ -16,8 +16,7 @@
 
 	[(#SET{statut_forum, [(#ID_ARTICLE|statut_forum)]})]
 	[(#GET{statut_forum}|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
-	[(#TITRE|strstr{_resolu_}|oui) #SET{resolu, oui}]
-
+	
 	<div id="wrapper">
 		<div id="content">
 			<div id="sujet" class="forum">
@@ -25,8 +24,7 @@
 				<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}
 					{id_forum}
 					{statut_forum=#GET{statut_forum}}
-					{verrou=#GET{verrou}}
-					{resolu=#GET{resolu}}>
+					{verrou=#GET{verrou}}>
 			</div>
 
 			[(#REM) <!-- Les reponses au sujet --> ]
@@ -35,7 +33,6 @@
 				{id_thread}
 				{id_forum}
 				{verrou=#GET{verrou}}
-				{resolu=#GET{resolu}}
 				{sens_tri=#CONFIG{sarkaspip_forum/sens_tri_reponses, 0}}
 				{self}
 				{ajax}>
