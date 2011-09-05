@@ -376,6 +376,12 @@ EOF;
 		$contenu['descriptif'] = 'Pascal';
 		$contenu['texte'] = "« Je n'ai pas eu le temps de faire court... »";
 	}
+	/* Force */
+	if ($article == 'Force') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Victor Hugo';
+		$contenu['texte'] = "« Rien n'est plus puissant qu'une idée dont l'heure est venue. »";
+	}
 	/* Contact */
 	if ($article == 'Contact') {
 		$email_contact = find_auteur_email(1);

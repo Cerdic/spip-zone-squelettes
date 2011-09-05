@@ -743,6 +743,8 @@ function soyezcreateurs_config_motsclefs() {
 		create_article($article4, '999. Citations');
 	$article5 = trouve_article_sc('Concision');
 		create_article($article5, '999. Citations');
+	$article5b = trouve_article_sc('Force');
+		create_article($article5b, '999. Citations');
 	$id_doc = create_document('documents/contact.jpg', 
 		null, 
 		'image',
