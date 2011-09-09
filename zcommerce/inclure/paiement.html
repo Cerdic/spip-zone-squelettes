@@ -8,16 +8,39 @@
 
 	[(#ID_AUTEUR|>{0}|oui)
 	<h1>Formulaire paypal : </h1>
+	#SET{details, #ARRAY}
+	<BOUCLE_details(COMMANDES_DETAILS){id_commande}{par id_commandes_detail}>
+	
+	[(#SET{detail#COMPTEUR_BOUCLE, [(#ARRAY{
+		descriptif,  [(#DESCRIPTIF*|supprimer_numero)],
+		quantite, #QUANTITE,
+		prix, #PRIX*,
+	})]})]
+	
+	[(#SET{details,
+	#GET{details}|push{
+		#GET{detail#COMPTEUR_BOUCLE}
+		}
+        }
+        )]
+	
+	</BOUCLE_details> 
+	
+	[(#ID_AUTEUR|>{0}|oui)
 		[(#FORMULAIRE_PAYPAL{#ARRAY{
-			type,details,
-			prix,#PRIX*,
-			custom,"payer_commande",
-			invoice,#REFERENCE,
-			libelle,#ID_COMMANDE,
-			identifiant,[paiement-1-(#SESSION{id_auteur})],
-			redirect_ok,[(#URL_PAGE{paiement_ok})],
+			custom,payer_commande,
+			libelle,Commande numéro #ID_COMMANDE,
+			identifiant,#REFERENCE,
+			redirect_ok, #URL_ACTION_AUTEUR{supprimer_panier_encours, "", #URL_PAGE{z-commerce, appel=paiement, reference=#REFERENCE}}},
+			first_name, #PRENOM,
+			last_name, #NOM,
+			email, #INFO_EMAIL{auteur, #SESSION{id_auteur}},
+			address1, #VOIE,
+			zip, #CODE_POSTAL,
+			city, #VILLE,
+			country, #PAYS,
+			details,#GET{details},
 		}})]
-	]
 	
 	[(#BOUTON_ACTION{<:zcommerce:paiement_fictif:>,
 	[(#URL_ACTION_AUTEUR{valider_paiement_fictif,
