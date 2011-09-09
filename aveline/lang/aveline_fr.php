@@ -279,6 +279,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_hauteur_max_images' => 'Hauteur maximum des images :',
 	'label_hauteur_vignette' => 'Hauteur des vignettes (en pixels) :',
 	'label_height' => 'Hauteur de la fenêtre (en pixels) :',
+	'label_ignorer_si_objet_unique' => 'Ne pas afficher la liste si elle contient un seul élément',
 	'label_inclure_documents_vus' => 'Afficher les documents déjà inclus dans la page ?',
 	'label_inclure_photos_vues' => 'Afficher les photos déjà inclues dans la page ?',
 	'label_largeur_logo' => 'Largeur maximum du logo (facultatif) :',
