@@ -1,13 +1,11 @@
 [(#REM) si commande en cours -le panier a ete valide-]
 
 <BOUCLE_commande(COMMANDES){id_commande=#SESSION{id_commande}}{statut=encours}>
-<div class="liste_commande">
+<div class="liste_commande" style="border:1px solid red;">
 	<h1><:zcommerce:votre_commande:> #REFERENCE ([(#VAL{zcommerce:statut_#STATUT}|_T)])</h1>
 	
 	<INCLURE{fond=inclure/commande,id_commande,statut}>
 
-	[(#ID_AUTEUR|>{0}|oui)
-	<h1>Formulaire paypal : </h1>
 	#SET{details, #ARRAY}
 	<BOUCLE_details(COMMANDES_DETAILS){id_commande}{par id_commandes_detail}>
 	
@@ -21,26 +19,20 @@
 	#GET{details}|push{
 		#GET{detail#COMPTEUR_BOUCLE}
 		}
-        }
-        )]
+        })]
 	
-	</BOUCLE_details> 
+	</BOUCLE_details>
 	
-	[(#ID_AUTEUR|>{0}|oui)
+	<h1>Formulaire paypal : </h1>
+	
 		[(#FORMULAIRE_PAYPAL{#ARRAY{
 			custom,payer_commande,
 			libelle,Commande #ID_COMMANDE,
 			identifiant,#REFERENCE,
-			redirect_ok, #URL_ACTION_AUTEUR{supprimer_panier_encours, "", #URL_PAGE{z-commerce, appel=paiement, reference=#REFERENCE}}},
-			first_name, #PRENOM,
-			last_name, #NOM,
-			email, #INFO_EMAIL{auteur, #SESSION{id_auteur}},
-			address1, #VOIE,
-			zip, #CODE_POSTAL,
-			city, #VILLE,
-			country, #PAYS,
+			redirect_ok, #URL_ACTION_AUTEUR{supprimer_panier_encours, "", #URL_PAGE{z-commerce, appel=paiement, reference=#REFERENCE}},
 			details,#GET{details},
 		}})]
+	
 	
 	[(#BOUTON_ACTION{<:zcommerce:paiement_fictif:>,
 	[(#URL_ACTION_AUTEUR{valider_paiement_fictif,
