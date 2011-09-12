@@ -4,12 +4,16 @@
 		- id_forum: id du sujet concerne
 		- id_thread: id du fil concerne
 		- verrou: indique si le sujet est verrouille ou pas
+		- le verrou sera posé si besoin en analysant le titre du post (recherche de "_verrouillé_")
 		- sens_tri : sens de tri par date des réponses
 -->
 ]
-<div id="reponses" class="forum">
+[(#ENV{verrou}|=={lock}|oui)#SET{verrou, lock}]
+<BOUCLE_titre(FORUMS){id_forum=#ENV{id_thread}}>
+		[(#TITRE|strstr{_verrouille_}|oui) #SET{verrou, lock}]
+</BOUCLE_titre><div id="reponses" class="forum">
 	<a id="reponses" name="reponses" href="#reponses"></a>
-	[(#ENV{verrou}|non)
+	[(#GET{verrou}|non)
 		<a class="fonction" id="commenter" href="#formulaire_reponse" title="<:sarkaspip:ecrire_reponse:>"></a>
 	]
 	<h2><:sarkaspip:forum_sujet_reponses:></h2>
@@ -20,6 +24,8 @@
 [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_forum/modele_pagination_2}})</div>]
 ]	
 	<table>
+
+
 <BOUCLE_reponses(FORUMS){id_thread}{id_forum!=#ENV{id_forum}}{plat}{par date}{inverse #ENV{sens_tri}}{pagination #CONFIG{sarkaspip_forum/pas_pagination_2, 30}}>
 		<tr class="message">
 			<td class="detail_auteur[ rp_n(#COMPTEUR_BOUCLE)]">
@@ -64,7 +70,7 @@
 
 
 [(#REM) <!-- Forumlaire de reponse --> ]
-[(#ENV{verrou}|non)
+[(#GET{verrou}|non)
 <div class="formulaire" id="formulaire_reponse">#FORMULAIRE_FORUM{#URL_PAGE{forum_sujet, #PARAMETRES_FORUM{#SELF}}}</div>
 ]
 

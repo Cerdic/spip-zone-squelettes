@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{7200}
+#SET{verrou, ''}
 <BOUCLE_forum(FORUMS){id_forum}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
@@ -15,8 +16,8 @@
 	</div>
 
 	[(#SET{statut_forum, [(#ID_ARTICLE|statut_forum)]})]
-	[(#GET{statut_forum}|!={ouvert}|ou{#TITRE|strstr{_verrouille_}}|oui) #SET{verrou, lock}]
-	
+	[(#GET{statut_forum}|=={ouvert}|non)#SET{verrou, lock}]
+
 	<div id="wrapper">
 		<div id="content">
 			<div id="sujet" class="forum">

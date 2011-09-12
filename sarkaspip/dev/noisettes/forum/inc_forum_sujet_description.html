@@ -9,6 +9,10 @@
 ]
 <BOUCLE_sujet(FORUMS){id_forum}>
 [(#TITRE|strstr{_resolu_}|oui) #SET{resolu, oui}]
+[(#TITRE|strstr{_verrouille_}|oui) #SET{verrou, lock}]
+
+[(#ENV{verrou}|=={lock}|oui)#SET{verrou, lock}]
+
 [(#ENV{statut_forum}|=={ouvert}|oui)
 	[(#AUTORISER{webmestre}|ou{#ID_AUTEUR|=={#SESSION{id_auteur}}}|oui)
 		[(#GET{resolu}|?{
@@ -17,7 +21,7 @@
 		})]
 	]
 	[(#AUTORISER{webmestre}|oui)
-		[(#ENV{verrou}|?{
+		[(#GET{verrou}|?{
 			<a class="fonction" id="deverrouiller"[ href="(#URL_ACTION_AUTEUR{instituer_forum_sujet,forum/#ID_FORUM/verrou_off,#SELF})"] title="<:sarkaspip:bulle_bouton_forum_deverrouiller:>"></a>,
 			<a class="fonction" id="verrouiller"[ href="(#URL_ACTION_AUTEUR{instituer_forum_sujet,forum/#ID_FORUM/verrou_on,#SELF})"] title="<:sarkaspip:bulle_bouton_forum_verrouiller:>"></a>
 		})]
@@ -44,6 +48,8 @@
 	</div>
 	[<div class="#EDIT{texte} premier_message">(#TEXTE|typo_couleur)</div>]
 	<br class="nettoyeur" />
-	[(#ENV{verrou}|oui)<div class="avertissement"><:sarkaspip:msg_sujet_verrouille:></div>]
+	[(#GET{verrou}|oui)<div class="avertissement"><:sarkaspip:msg_sujet_verrouille:></div>]
 </div>
 </BOUCLE_sujet>
+
+
