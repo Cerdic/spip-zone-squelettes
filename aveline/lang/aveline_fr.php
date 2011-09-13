@@ -184,6 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_auteurs' => 'Afficher les auteurs ?',
 	'label_afficher_bio' => 'Afficher la biographie de l\'auteur ?',
 	'label_afficher_categorie' => 'Afficher la catégorie ?',
+	'label_afficher_credits' => 'Afficher les crédits ?',
 	'label_afficher_date' => 'Afficher la date ?',
 	'label_afficher_date_dernier_ajout' => 'Afficher la date de dernier ajout ?',
 	'label_afficher_date_en_surtitre' => 'Afficher la date comme un sur-titre ?',
