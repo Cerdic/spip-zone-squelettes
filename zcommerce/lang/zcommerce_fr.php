@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'votre_commande_sur'=>'Votre commande sur @nom@',
 'une_commande_sur'=>'Une commande sur @nom@',
 'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
+'commande_ref'=>'Commande @ref@',
 'vos_commandes_payees'=>'Vos commandes pay&eacute;es',
 'total'=>'Total',
 'acces_facture'=>'Facture',
