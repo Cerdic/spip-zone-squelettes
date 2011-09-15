@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire_forum' => 'Pàgina fòrum',
 	'annuaire_general' => 'Generalitats',
 	'annuaire_gratuit' => 'Anuari gratuït d\'enllaços en dur',
-	'annuaire_herbier' => 'Pàgina herbari',
+	'annuaire_herbier' => 'Pàgina herbari', # MODIF
 	'annuaire_login_public' => 'Pàgina login públic',
 	'annuaire_menu' => 'Menú del lloc',
 	'annuaire_mot' => 'Pàgina mot',
@@ -168,7 +168,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     <br />Una pàgina que reagrupa tots els reglatges generals del lloc.',
 	'descriptif_herbier' => '<h4>Reglatge de l\'herbari</h4>
     <br />Regleu els vostres bucles i estils a l\'herbari.
-    <p />És la pàgina on es mostra l\'actualitat dels llocs sindicats ', # MODIF
+    <p />És la pàgina on es mostra l\'actualitat dels llocs sindicats ',
 	'descriptif_login_public' => '<h4>Reglatge de la pàgina login públic</h4>
     <br />Regleu els vostres estils a la pàgina login públic.',
 	'descriptif_menu' => '<h4>Reglatge del menú</h4>
@@ -301,46 +301,46 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// R
 	'recherche_site' => 'Cerca d\'un lloc',
-	'resultats' => 'Résultats dans les boucles', # NEW
-	'rss' => 'Nombres d\'articles syndiqué par page.', # NEW
-	'rss_contient' => 'Le flux RSS contient ', # NEW
-	'rubrique_contient' => 'La rubrique contient', # NEW
+	'resultats' => 'Resultats en els bucles',
+	'rss' => 'Número d\'articles sindicats per pàgina.',
+	'rss_contient' => 'El flux RSS conté ',
+	'rubrique_contient' => 'La secció conté',
 
 	// S
-	'site' => '1 site', # NEW
-	'site1' => 'de "site"', # NEW
-	'sites' => '@nb@ sites', # NEW
-	'style' => 'Style :', # NEW
-	'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilitée de mettre du code spip ou html.', # NEW
-	'synthese_flux' => 'Synthèse des flux', # NEW
+	'site' => '1 lloc Web',
+	'site1' => 'de "lloc Web"',
+	'sites' => '@nb@ llocs Web',
+	'style' => 'Estil:',
+	'styliste' => 'Indicar la persona responsable del grafisme: (si s\'omple, mostrar a baix, a la columna de la dreta), possibilitat de posar-hi codi spip o html.',
+	'synthese_flux' => 'Síntesi dels fluxos',
 
 	// T
-	'taille' => 'Tailles du site', # NEW
-	'toutes_rubriques' => 'Toutes les rubriques', # NEW
+	'taille' => 'Mides del lloc Web',
+	'toutes_rubriques' => 'Totes les seccions',
 
 	// U
-	'utilisation' => 'Utilisation', # NEW
-	'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "contact".', # NEW
-	'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activé.', # NEW
-	'utilisation_expli_spiplistes_clevermail_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes" ou "clevermail".', # NEW
-	'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activés.', # NEW
+	'utilisation' => 'Utilització',
+	'utilisation_expli_contact_1' => 'Per configurar aquesta pàgina necessiteu el connector "contacte".',
+	'utilisation_expli_contact_2' => 'Podeu configurar aquesta pàgina perquè el connector "contacte" està activat.',
+	'utilisation_expli_spiplistes_clevermail_1' => 'Per poder configurar aquesta pàgina necessiteu el connector "spip llistes" o "clevermail".',
+	'utilisation_expli_spiplistes_clevermail_2' => 'Podeu configurar aquesta pàgina perquè el connector "spip llistes" o "clevermail" estan activats.',
 
 	// V
-	'vote' => '1 vote', # NEW
-	'votes' => '@nb@ votes', # NEW
+	'vote' => '1 vot',
+	'votes' => '@nb@ vots',
 
 	// W
-	'width_content_explication' => 'Taille de la colonne contenu', # NEW
-	'width_nav_explication' => 'Taille de la colonne navigation', # NEW
-	'width_page' => 'Format de la page', # NEW
-	'width_page_explication' => 'Taille de la page', # NEW
-	'width_pied_page_content' => 'Taille de partie contenu du pied', # NEW
-	'width_pied_page_nav' => 'Taille de partie navigation du pied', # NEW
-	'width_pied_page_total' => 'Taille du pied complet', # NEW
-	'width_recherche' => 'Taille du formulaire de recherche', # NEW
+	'width_content_explication' => 'Mida de la columna contingut',
+	'width_nav_explication' => 'Mida de la columna navegació',
+	'width_page' => 'Format de la pàgina',
+	'width_page_explication' => 'Mida de la pàgina',
+	'width_pied_page_content' => 'Mida de la part del contingut del peu',
+	'width_pied_page_nav' => 'Mida de la part de navegació del peu',
+	'width_pied_page_total' => 'Mida del peu sencer',
+	'width_recherche' => 'Mida del formulari de cerca',
 
 	// Z
-	'zard' => 'la boucle "hasard"' # NEW
+	'zard' => 'el bucle "atzar"'
 );
 
 ?>
