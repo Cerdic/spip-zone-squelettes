@@ -105,8 +105,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'passe' => 'Ukončené',
 	'passe_en_cours' => 'Ukončené a prebiehajúce',
 	'permalink_to' => 'Trvalý odkaz na komentár',
-	'precedent_suivant_lien_next' => 'Article suivant', # NEW
-	'precedent_suivant_lien_prev' => 'Article précédent', # NEW
+	'precedent_suivant_lien_next' => 'Ďalší článok',
+	'precedent_suivant_lien_prev' => 'Predchádzajúci článok',
 	'principaux_auteurs' => 'Hlavní autori',
 	'principaux_contributeurs' => 'Hlavní prispievatelia',
 
