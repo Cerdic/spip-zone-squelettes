@@ -28,6 +28,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agendamoisde' => 'Kalendár na',
 	'aidesc' => 'Pomocník pre SoyezCréateurs',
 	'alaune' => 'Featured',
+	'annuaire' => 'Annuaire', # NEW
+	'annuaire_consulter' => 'Consulter l\'annuaire', # NEW
+	'annuaire_local' => 'Annuaire local', # NEW
+	'annuaire_vide' => 'L\'annuaire est vide.', # NEW
 	'archives' => 'Archívy',
 	'archives_title' => 'Zobraziť archivované články',
 	'articlesconnexes' => 'Súvisiace články',
@@ -191,7 +195,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Režim zobrazenia domovskej stránky',
 	'cfg_mode_affichage_logo_label' => 'Režim zobrazenia loga (ak existuje)',
 	'cfg_mode_bandeau_contact_label' => 'Režim zobrazenia pútača s kontaktom',
-	'cfg_mode_communiquant' => 'Display a communicative welcome portal ', # NEW
+	'cfg_mode_communiquant' => 'Zobraziť uvítaciu stránku ',
 	'cfg_mode_edito' => 'Zobraziť Úvodník',
 	'cfg_mode_evenementiel' => 'Viewing home portal event-type',
 	'cfg_mode_international' => 'Zobraziť uvítaciu stránku v medzinárodnom režime',
@@ -204,7 +208,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => 'Druhá navigácia',
 	'cfg_navigationtransversale_label' => 'Priebežná navigácia',
 	'cfg_navigationtransversalelocale' => 'Priebežná lokálna navigácia',
-	'cfg_nombres_quoideneuf' => 'The what\'s new numbers', # MODIF
+	'cfg_nombres_quoideneuf' => 'Počty pre stránku Čo je nové',
+	'cfg_nombres_quoideneuf_lettres' => 'Les nombres quoi de neuf pour la NewsLetter', # NEW
 	'cfg_non_secondaire' => 'Nie zobraziť v spodnej časti druhej navigácie',
 	'cfg_numero_cnil' => 'Zobrazenie čísla CNIL',
 	'cfg_numero_cnil_label' => 'CNIL číslo',
@@ -232,7 +237,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_panier' => 'Umiestnenie nákupného vozíka',
 	'cfg_position_panier_label' => 'Zobraziť v hornej časti stĺpca:',
 	'cfg_px' => 'v <b>px</b>',
-	'cfg_quoideneuf_label' => '<MODIF>What\'s new numbers', # MODIF
+	'cfg_quoideneuf_label' => 'Počet položiek stránky Čo je nové',
 	'cfg_rainette_ville' => 'Kód mesta (pre počasie)',
 	'cfg_realisation' => 'Realizácia',
 	'cfg_redirection_ancien_site' => 'Presmerovať na starú stránku',
@@ -253,17 +258,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_textesiplanvide' => 'Text, ak je mapa prázdna',
 	'cfg_textesiplanvide_label' => 'Text v mape webu, ak mapa nemá žiaden obsah',
 	'cfg_titraille' => 'Názov',
-	'cfg_titraille_ssniveaux' => '<NEW>Titraille', # MODIF
+	'cfg_titraille_ssniveaux' => 'Sekcia hlavičky',
 	'cfg_tous_evenements' => 'Všetky udalosti',
 	'cfg_type_agenda_label' => 'Typ kalendára',
 	'cfg_url_feedflare' => 'Internetová adresa FeedFlare',
 	'cfg_url_redirection' => 'Internetová adresa starej stránky (na presmerovanie cez 301, ak článok neexistuje)',
 	'cfg_url_xiti' => 'Internetová adresa vášho označovača Xiti',
-	'cfg_vignettes' => '<MODIF>Portail mode thumbnails :', # MODIF
+	'cfg_vignettes' => 'Režim miniatúr:',
 	'cfg_vignettes_choix_auto' => 'Thumbnails automatically calculated',
 	'cfg_vignettes_choix_graphiste' => 'Thumbnails free (by a graphic designer)',
 	'cfg_vignettesauto' => 'Miniatúry:',
-	'cfg_zone_forum' => '<NEW>Configuration textes des forum', # MODIF
+	'cfg_zone_forum' => 'Nastavenia textu diskusného fóra',
 	'cfg_zone_forum_invite' => 'Pozvanie na účasť v diskusných fórach',
 	'cfg_zone_forum_laisser_vide' => 'Nevypĺňajte, ak chcete použiť predvolený text.',
 	'cfg_zone_forum_titre' => 'Názov diskusného fóra',
@@ -298,7 +303,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Chyba!',
 	'erreur_documentexistepas' => 'Chyba: tento dokument neexistuje!',
 	'erreur_excuses_404' => 'Prepáčte...',
-	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>', # NEW
+	'erreur_excuses_404_explications' => '<p>Stránku, ktorú hľadáte, sa nepodarilo nájsť, lebo:</p><ol><li>už nie je aktuálna,</li><li>odkaz na stránku je zastaralý,</li><li>alebo sa presunula referenčná stránka.</li></ol><p>Prosím, skúste nájsť informácie prostredníctvom <a href="@urlsite@">úvodnej stránky: @nomsite@</a> alebo tak, že vo formulári nižšie vyhľadáte podľa kľúčového slova.</p>',
 
 	// F
 	'forum' => 'Diskusné fórum',
@@ -311,16 +316,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Vaše krstné meno:',
 
 	// L
-	'layout_accueil_title' => 'Specific arrangement to home page', # NEW
+	'layout_accueil_title' => 'Špeciálny vzhľad úvodnej stránky',
 	'layout_defaut_title' => 'Predvolený vzhľad stránky (články a rubriky) ',
-	'liresuitede' => 'More to read about :', # NEW
+	'liresuitede' => 'Prečítať si viac o:',
 	'liresuiteeditorial' => 'Prečítať si koniec úvodníka',
 	'liresuitesyndic' => 'Čítať ďalej na pôvodnej stránke...',
 	'listezones' => 'Zoznam hotspotov',
 
 	// M
 	'memerubrique' => 'V rovnakej rubrike...',
-	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # NEW
+	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l\'économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded]',
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
 	'menu_replier' => 'Poskladať: ',
@@ -340,7 +345,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ou_sommes_nous' => 'Nájdite nás na mape!',
 
 	// P
-	'par' => 'by', # MODIF
+	'par' => 'od',
 	'participez' => 'Zúčastnite sa na živote stránky!',
 	'plan_menu' => 'Mapa stránky',
 	'plus_loin' => 'Pozri tiež',
@@ -354,10 +359,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_infructueuse' => 'Nič sa nenašlo.',
 	'recherche_label' => 'Prehľadať túto stránku',
-	'recherche_title' => 'Please enter your search', # NEW
-	'recherche_title_ok' => 'Begin search', # NEW
-	'recherche_total' => 'Total items found', # NEW
-	'recherche_value' => 'Search ?', # NEW
+	'recherche_title' => 'Prosím, zadajte požiadavku',
+	'recherche_title_ok' => 'Začať vyhľadávanie',
+	'recherche_total' => 'Celkový počet nájdených položiek',
+	'recherche_value' => 'Vyhľadať?',
 	'retouraccueil' => 'Späť na domovskú stránku',
 	'retoursommaire' => 'Späť na prehľad',
 	'retourtop' => 'Hore',
@@ -368,25 +373,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Dozvedieť sa viac o kritériu',
 	'sedna' => 'Sedna (agregátor RSS)',
 	'sommaire' => 'Zhrnutie',
-	'soyezcreateurs' => 'Be Creative', # NEW
-	'soyezcreateurs_couleurs' => 'Colors', # NEW
-	'soyezcreateurs_google' => 'Referencing', # NEW
-	'soyezcreateurs_layout' => 'Localization', # NEW
+	'soyezcreateurs' => 'Buďte tvoriví',
+	'soyezcreateurs_couleurs' => 'Farby',
+	'soyezcreateurs_google' => 'Odkazovanie',
+	'soyezcreateurs_layout' => 'Umiestnenie',
 	'syndiquer_agenda' => 'Syndicate the agenda',
 
 	// T
 	'themes' => 'Témy',
-	'tousarticlesantichrono' => 'All articles by date', # NEW
+	'tousarticlesantichrono' => 'Všetky články podľa dátumu',
 	'tout' => 'Všetko',
-	'toutleplan' => 'The entire site on one page', # NEW
+	'toutleplan' => 'Celý web na jednej stránke',
 
 	// V
-	'voirarticlespar' => 'See the articles by', # NEW
-	'voirdetailannee' => 'See the year\'s details', # NEW
-	'voirdetailmois' => 'See the details for the month of', # NEW
-	'voirimage' => 'See the image on its own', # NEW
-	'voirle' => 'See the', # NEW
-	'voirsitespar' => 'See the sites with', # NEW
+	'voirarticlespar' => 'Zobraziť články, ktoré napísal(a)',
+	'voirdetailannee' => 'Zobraziť podrobnosti za rok',
+	'voirdetailmois' => 'Zobraziť podrobnosti za mesiac',
+	'voirimage' => 'Zobraziť obrázok samostatne',
+	'voirle' => 'Zobraziť',
+	'voirsitespar' => 'Zobraziť stránky s',
 
 	// W
 	'wdcalendar_all_day' => 'Toute la journée', # NEW
