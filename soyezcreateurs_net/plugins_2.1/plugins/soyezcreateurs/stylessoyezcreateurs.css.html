@@ -203,7 +203,7 @@ a:active { color: #GET{c_active}; }
 ]
 [(#REM) Si titre visible OU pas de logo de survol du site ]
 [(#CONFIG{soyezcreateurs/afficher_titre,invisible}|=={visible}|oui|?{' ',[(#LOGO_SITE_SPIP_SURVOL|non)]})
-#header h1 { float:left; margin:0; padding:0 1em; }
+#header h1 { float:left; margin:0; padding:0 1em; text-shadow: 4px 4px 4px #GET{c_header_bk};}
 #header h1, #header h1 a, #header h1 a:link, #header h1 a:visited, #header h1 a:hover, #header h1 a:focus, #header h1 a:active { color: #GET{c_header}; }
 ]
 #header h1 sup, #header h1 sub {line-height:normal;}
@@ -271,7 +271,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 /*************** STRUCTURE - EXTRA SIDEBAR */
 #extra { background-color: #GET{c_extra_bk}; color: #GET{c_extra}; font-size: #CONFIG{soyezcreateurs_couleurs/fontsizenavigation,1.2}em; }
 #extra ul ul li { padding: 0; padding-right:0; padding-left:10px; margin: 0; }
-#extra ul ul li a { overflow: hidden; width: [(#GET{LargeurMenuDroit}|moins{35})]px; padding: 0; padding-right:0; padding-left:15px; margin: 1px 0 0; }
+#extra ul ul li a { overflow: hidden; padding: 0; padding-right:0; padding-left:15px; margin: 1px 0 0; }
 .rightmenu li a { display: block; padding: 5px 0; padding-right:0; padding-left:15px; margin: 3px 0; background: #GET{c_menu_a_bk}; color: #GET{c_menu_a}; font-weight: bold; text-decoration: none; }
 .rightmenu li a:link { }
 .rightmenu li a:visited { }
@@ -678,7 +678,7 @@ strong.agendastatut { padding: .1em 1em; margin-right: 1em; border: 1px solid #F
 /* derniers ajouts dans agenda */
 .agendaderniersajouts { text-align: left; }
 /* bloc citations */
-#citations { position: relative; overflow: hidden; padding: 0; margin-top:2em; margin-right: 10px; margin-bottom: .5em; margin-left: 10px; width: [(#GET{LargeurMenuDroit}|moins{20})]px; }
+#citations { position: relative; overflow: hidden; padding: 0; margin-top:2em; margin-right: 10px; margin-bottom: .5em; margin-left: 10px; }
 #citations dt { overflow: hidden; padding: .25em .5em; margin: 0; background-color: #GET{c_menu_a_bk}; border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_foncerluminosite)]; -moz-border-radius-topright: .5em; -webkit-border-top-right-radius: .5em; -moz-border-radius-topleft: .5em; -webkit-border-top-left-radius: .5em; color: #GET{c_menu_a}; font-family: #GET{f_content}; font-size: 1.1em; font-weight: bold; }
 #citations dd { background-color:[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})];
 	[(#GET{c_menu_a_bk}|!={transparent}|oui|et{[(#GET{d_citations_degrade}|non)]})
@@ -1052,5 +1052,73 @@ div [lang], span [lang] { font-style: italic; }
 [(#INCLURE{#CHEMIN{images/stylessoyezcreateurs_perso.css}|url_absolue_css}|compacte{css})]
 ]
 
+/* Pour les mobiles, inspiré de http://www.alsacreations.com/astuce/lire/1177 */
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
 
 
+@media (max-width: [(#GET{LargeurContaineur})]px) {
+
+ /* passer tous les éléments de largeur fixe en largeur automatique */
+ body, #container, #content {
+   width: auto !important;
+   margin: auto !important;
+   padding: auto !important;
+ }
+ #menu {
+   width: auto !important;
+ }
+
+ /* fixer une largeur maximale  de 100 % aux éléments potentiellement problématiques */
+ img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
+   max-width: 100% !important;
+ }
+
+ /* gestion des mots longs */
+ textarea, table, td, th, code, pre, samp {
+   word-wrap: break-word; /* césure forcée */
+ }
+ code, pre, samp {
+   white-space: pre-line; /* passage à la ligne spécifique pour les éléments à châsse fixe */
+ }
+
+ #navigation, #extra, #content {
+   height: auto !important;
+ }
+
+ #navigation, #extra {
+   width: 50% !important;
+   margin: auto !important;
+   padding: auto !important;
+ }
+
+ /* masquer les éléments superflus */
+ .hide_mobile {
+   display: none !important;
+ }
+}
+
+@media (max-width: 640px) {
+
+ /* passer tous les éléments de largeur fixe en largeur automatique */
+ #artrecents {
+   width: auto !important;
+   margin: auto !important;
+   padding: auto !important;
+   display: block;
+   max-height: auto;
+ }
+
+ /* Passer à une seule colonne (à appliquer aux éléments multi-colonnes) */
+ #wrapper, #navigation, #extra, #artrecents {
+   float: none !important;
+   width: auto !important
+ }
+}
+
+@media screen and (max-width:640px) and (orientation: landscape) {
+  body {
+   -webkit-text-size-adjust: 70%;
+  }
+}
