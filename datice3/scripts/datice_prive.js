@@ -225,6 +225,8 @@ $(function(){
 			bordagenda=$("input:text[name=bordagenda]").val();
 			lienagenda=$("input:text[name=lienagenda]").val();
 			lienagendasurvol=$("input:text[name=lienagendasurvol]").val();
+			
+
 
 			$(".content").css("background-color",fondtexte);
 			$(".content").css("color",texte);
@@ -354,6 +356,8 @@ $(".menleg a").css("color",lienagenda);
 $(".web .site a").css("color",lienagenda);
 $(".breves a").css("color",lienagenda);
 
+
+
 			
 
 			$(".bandeau").css("background-color",bandeau);
@@ -372,7 +376,17 @@ $(".breves a").css("color",lienagenda);
 			$("body").css("color",textg);
 
 
-		}
-	)
+		})
+		
+$("#rechavancee input:submit").click(
+		function(){
+			
+			couleur_rech_bord=$("input:text[name=couleur_bord]").val();
+			couleur_rech_fond=$("input:text[name=couleur_fond]").val();
+			$(".formulaire_recherche_avancee").css("border-color",couleur_rech_bord);
+			$("#bloc_avancee").css("background-color",couleur_rech_fond);
+			$(".formulaire_recherche_avancee").css("background-color",couleur_rech_fond);
+
+}); 
 
 }); 
