@@ -27,8 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'passer_la_commande'=>'Passer la commande',
 'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
 'statut_encours'=>'en cours',
-'commande_ref_statut'=>'Votre commande @ref@ est @statut@</h1>
-',
+'commande_ref_statut'=>'Votre commande @ref@ est @statut@</h1>',
 
 );
 ?>
