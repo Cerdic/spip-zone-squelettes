@@ -151,6 +151,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_w3c' => 'Site valide XHTML 1.0 Strict',
 'top_articles' => 'Articles les plus vus',
 'total_visites' => 'Nombre total de visites : ',
+'traductions_article' => 'traductions de cet article :',
 // V
 'visiteur' => 'visiteur',
 'visiteurs' => 'visiteurs',
