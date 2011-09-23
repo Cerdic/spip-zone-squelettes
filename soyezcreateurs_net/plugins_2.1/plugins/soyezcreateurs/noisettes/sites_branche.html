@@ -1,22 +1,13 @@
 <BOUCLE_Autres(RUBRIQUES){id_rubrique}{par num titre}>
 <BOUCLE_BrancheContientSite(SITES){branche}{0,1}>
 <BOUCLE_RacineBranche(RUBRIQUES){id_rubrique=#_Autres:ID_RUBRIQUE}>
-	<B_sites>
-	<ul class="listesites">
-		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<img src="#CHEMIN{images/rss-icon.gif}" class="rss_site" alt="RSS" title="<:ecrire:info_site_syndique:>" width="46" height="15" /></BOUCLE_EstSyndique>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites>
-	</ul>
-	</B_sites>
-
+	[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
 	<B_Autres_Details>
 	<ul class="listesitesssrub">
 	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}>
 		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
 		<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
-			<B_sites2>
-			<ul class="listesites">
-				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique2(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<img src="#CHEMIN{images/rss-icon.gif}" class="rss_site" alt="RSS" title="<:ecrire:info_site_syndique:>" [width="(#CHEMIN{images/rss-icon.gif}|largeur)" ][height="(#CHEMIN{images/rss-icon.gif}|hauteur)" ]/></BOUCLE_EstSyndique2>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites2>
-			</ul>
-			</B_sites2>
+			[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
 		</li>
 	</BOUCLE_Autres_Details>
 	</ul>

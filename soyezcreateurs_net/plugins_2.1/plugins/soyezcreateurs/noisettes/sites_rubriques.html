@@ -1,26 +1,17 @@
 [
 (#PLUGIN{SEDNA}|oui)<p><:soyezcreateurs:voirsitespar:> <a href="#URL_PAGE{sedna}"><:soyezcreateurs:sedna:></a>.</p>
-]<BOUCLE_SecteursAvecSite(SITES){fusion id_secteur}><BOUCLE_MemoriseSecteurs(RUBRIQUES){id_rubrique=#ID_SECTEUR}{doublons SecteursAvecSite} /></BOUCLE_SecteursAvecSite><BOUCLE_BrancheContientSite(RUBRIQUES){par num titre}{!doublons SecteursAvecSite}{!titre_mot=PasDansPlan}>
+]<BOUCLE_SecteursAvecSite(SITES){fusion id_secteur}><BOUCLE_MemoriseSecteurs(RUBRIQUES){id_rubrique=#_SecteursAvecSite:ID_SECTEUR}{doublons SecteursAvecSite}{!titre_mot=PasDansPlan} /></BOUCLE_SecteursAvecSite><BOUCLE_BrancheContientSite(RUBRIQUES){par num titre}{!doublons SecteursAvecSite}>
 	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
-	<B_sites>
-	<ul class="listesites">
-		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<img src="#CHEMIN{images/rss-icon.gif}" class="rss_site" alt="RSS" title="<:ecrire:info_site_syndique:>" width="46" height="15" /></BOUCLE_EstSyndique>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites>
-	</ul>
-	</B_sites>
-
+	[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
 	<B_Autres_Details>
 	<ul class="listesitesssrub">
-	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansPlan}><B_sites2>
+	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansPlan}><BOUCLE_SousBrancheContientSite(SITES){branche}{0,1}>
 		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
 		<BOUCLE_Recursion(BOUCLE_Autres_Details) />
-			<ul class="listesites">
-				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}">[<img class="logo_site" src="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#CHEMIN{images/sites_default.png}}|image_passe_partout{48,48}|image_reduire{48,48}|image_recadre{48,0,top}|hauteur)"] alt="" />]#NOM_SITE</a><BOUCLE_EstSyndique2(SYNDIC_ARTICLES){id_syndic}{0,1}>&nbsp;<a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="<:ecrire:info_site_syndique:>"><img src="#CHEMIN{images/rss-icon.gif}" alt="RSS" [width="(#CHEMIN{images/rss-icon.gif}|largeur)" ][height="(#CHEMIN{images/rss-icon.gif}|hauteur)" ]/></a></BOUCLE_EstSyndique2>[<br />(#DESCRIPTIF)]</li></BOUCLE_sites2>
-			</ul>
+			[(#INCLURE{fond=noisettes/sites_branche_detail,id_rubrique})]
 		</li>
-		</B_sites2><BOUCLE_SitesBranche(SITES) {branche} {0,1}><BOUCLE_RetrouverContexteRubrique(RUBRIQUES){id_rubrique=#_Autres_Details:ID_RUBRIQUE}>
-		<li style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
-		</li>
-		</BOUCLE_RetrouverContexteRubrique></BOUCLE_SitesBranche><//B_sites2></BOUCLE_Autres_Details>
+		</BOUCLE_SousBrancheContientSite></BOUCLE_Autres_Details>
 	</ul>
 	</B_Autres_Details>
+	
 </BOUCLE_BrancheContientSite>
