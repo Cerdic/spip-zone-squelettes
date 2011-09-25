@@ -433,7 +433,14 @@ function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,
 // N'appliquer qu'à des tables ayant un champ 'lang'
 function critere_aveline_lang_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
-	$id_table = $boucle->id_table;
+	
+	//Trouver une jointure (pour les évènements par exemple)
+	$desc = $boucle->show;
+	//Seulement si necessaire
+	if (!array_key_exists('lang', $desc['field'])) {
+		$id_table = trouver_jointure_champ('lang', $boucle);
+	} else $id_table = $boucle->id_table;
+	
 	$boucle->where[] = "aveline_calcul_lang($id_table,\$Pile[0]['restreindre_langue'],\$Pile[0]['lang'])";
 }
 
