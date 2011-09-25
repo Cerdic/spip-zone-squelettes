@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" >
+ 
+  <head>
+    <title>Forum du site - [(#NOM_SITE_SPIP|textebrut)]</title>
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+<body onload="setHover('menu')" id="top">
+
+<noscript>
+<p class="alerte"><:escal:alerte_javascript:></p>
+</noscript>
+
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu}{env}>  
+          </div>
+            
+          <div id="espace">
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+
+              <BOUCLE_forum(FORUMS){id_forum}>
+
+                <div id=forum-site>
+
+	               <BOUCLE_article(ARTICLES){id_article}>
+                	<div id="ariane-forum">
+                		<:escal:accueil:>
+                    <BOUCLE_ariane(HIERARCHIE){id_article}>
+                    <img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" />
+                    [(#TITRE|couper{80})]
+                    </BOUCLE_ariane>
+                    <img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" />
+                    <a href="#URL_ARTICLE">
+                    #TITRE
+                    </a>
+                	</div>
+	               </BOUCLE_article>
+
+	<table class="forum">
+			<tr>
+				<th colSpan=2>
+        <div class="titre">#TITRE</div>
+        </th>
+			</tr>
+			
+      <tr class="art-forum" style="background-color:#4b8fb1">
+				
+        <td class="logo1">
+					[(#LOGO_AUTEUR||image_reduire{60,0})]<br />
+					[<strong>(#NOM|couper{80})</strong>]<br />
+          le [(#DATE|affdate_jourcourt)]<br />
+          [&agrave; (#DATE|heures)][:(#DATE|minutes)]
+        </td>
+        
+				<td class="sujet1">
+				Rappel du sujet :
+						<div class="#EDIT{texte}">[(#TEXTE)]</div>
+        </td>
+        
+			</tr>			
+
+			<BOUCLE_forums_fils(FORUMS){id_parent}{plat}{par date}>
+			<tr class="art-forum" [(#COMPTEUR_BOUCLE|alterner{style="background-color:#E0E0E0",style="background-color:#fff"})]>
+        <td class="logo">
+        <a name="ancre#ID_FORUM"></a>
+					[(#LOGO_AUTEUR||image_reduire{60,0})]<br />
+					[<strong>(#NOM|couper{80})</strong>]<br />
+          le [(#DATE|affdate_jourcourt)]<br />
+          [&agrave; (#DATE|heures)][:(#DATE|minutes)]
+        </td>
+          <td class="sujet">
+						<div class="titre #EDIT{titre}">#TITRE</div>
+            <div class="#EDIT{texte}">[(#TEXTE)]</div>
+			 </td>
+
+			</tr>
+			</BOUCLE_forums_fils>
+		
+		</table>
+		
+		<div id="boutonG">
+    <img src="#CHEMIN{images/forum_bouton_reagirAuSujet.jpg}">
+    </a>
+    </div>
+    
+    [(#FORMULAIRE_FORUM_SITE2{#SELF})]
+
+
+
+                </div><!-- fin forum-site -->
+</BOUCLE_forum>
+
+        </div><!-- fin contenu -->
+        </div><!-- fin page -->
+
+
+          <div id="navigation"> 
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
+            </div>
+          </div>
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

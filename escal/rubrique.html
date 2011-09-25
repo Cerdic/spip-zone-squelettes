@@ -21,7 +21,11 @@
               <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{env}>
             </div>
             [(#REM) mise en place du formulaire recherche]
-            <div id="espace">#FORMULAIRE_RECHERCHE
+            <div id="espace">
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]"></a>
+            </BOUCLE_forum>
+            #FORMULAIRE_RECHERCHE
             <INCLURE {fond=inclusions/inc-menu_langues}>
             </div>
 
@@ -36,7 +40,7 @@
                   #SET{inclusion, (#CHEMIN{inclusions/inc-rubrique_(#GET{type}|concat{.html})})}
                   <!-- s'il y a une noisette associee, on l'affiche -->
                   [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_#GET{type}}{env})]]
-                  <!-- s'il n'y a en a pas, on affiche le noisette normale -->
+                  <!-- s'il n'y a en a pas, on affiche la noisette normale -->
                   [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
               </div>
             </div>
@@ -51,7 +55,7 @@
             </div>
 
             <div id="extra">
-              <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot="trombino"}>
+              <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot==^["trombino""forum"]}>
               </BOUCLE_test>
               </B_test>   
                 <div class="cadre-bleu">

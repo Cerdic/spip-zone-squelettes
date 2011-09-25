@@ -24,6 +24,9 @@
 
           [(#REM) mise en place du formulaire recherche]
           <div id="espace">
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]"></a>
+            </BOUCLE_forum>
             #FORMULAIRE_RECHERCHE
             <INCLURE {fond=inclusions/inc-menu_langues}>
           </div>
@@ -33,7 +36,20 @@
 
             <div id="page">
               <div id="contenu">
-                <INCLURE {fond=inclusions/inc-article}{id_article}{id_rubrique}{env}>
+              <BOUCLE_rubrique_principal(RUBRIQUES){id_secteur}>
+                <!-- on cherches si la rubrique est rattachee a un mot clef du groupe type_rubrique-->
+                <!-- si oui, on stocke le mot-cle dans la variable "type" -->
+                <BOUCLE_type_rubrique(MOTS){id_rubrique}{type=type_rubrique}{0,1}>
+                  #SET{type, #TITRE}
+                </BOUCLE_type_rubrique>
+              </BOUCLE_rubrique_principal>
+                  <!-- on recupere le chemin de la noisette associee -->
+                  #SET{inclusion, (#CHEMIN{inclusions/inc-article_(#GET{type}|concat{.html})})}
+                  <!-- s'il y a une noisette associee, on l'affiche -->
+                  [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-article_#GET{type}}{env})]]
+                  <!-- s'il n'y a en a pas, on affiche la noisette normale -->
+                  [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-article}{env})]]
+
               </div>
             </div>
 
@@ -47,12 +63,17 @@
             </div>
 
             <div id="extra">
+              <BOUCLE_test(RUBRIQUES){id_secteur}{titre_mot==forum}>
+              </BOUCLE_test>
+              </B_test>
               <div class="cadre-bleu">
                 <INCLURE {fond=inclusions/inc-nav_mots}{id_article}{lang}>
               </div>
               <div class="cadre-bleu">
                 <INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}{lang}>
               </div>
+              <//B_test>
+
             </div>
 
           </BOUCLE_article_principal>

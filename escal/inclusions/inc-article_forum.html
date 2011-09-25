@@ -1,0 +1,71 @@
+<BOUCLE_contexte(ARTICLES){id_article}>
+
+<div id=forum-site>
+	
+	<div id="ariane-forum">
+		<:escal:accueil:>
+    <BOUCLE_ariane(HIERARCHIE){id_article}>
+    <img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" />
+    [(#TITRE|couper{80})]
+    </BOUCLE_ariane>
+    <img src="#CHEMIN{images/fleche_droite.gif}" alt="<:escal:fleche:>" />
+    #TITRE
+	</div>
+
+	[<div class=descriptif>(#DESCRIPTIF)</div>]
+
+				[(#REM) Forum de l'article ]
+				<div id="boutonG">
+					<a href="[(#URL_PAGE{forumProposer,#PARAMETRES_FORUM{#SELF}})]">
+						<img src="#CHEMIN{images/forum_bouton_proposerUnSujet.jpg}" />
+					</a>
+        </div>
+
+
+
+	<B_forums>
+	<table class="forum">
+    <tr>
+			<th colSpan=2>Sujets</th>
+			<th>Réponses</th>
+			<th>Derniers  Messages</th>
+		</tr>
+		  
+	<BOUCLE_forums(FORUMS){id_article}{!par date}>
+		<tr class="art-forum" [(#COMPTEUR_BOUCLE|alterner{style="background-color:#e0e0e0",style="background-color:#d6d6d6"})]>
+			<td class="logo">
+        [(#LOGO_AUTEUR||image_reduire{60,0})]
+      </td>
+			
+      <td class="titre-rub">
+        <a href="[(#URL_PAGE{forumSite}|parametre_url{id_forum,#ID_FORUM})]" id="forum#ID_FORUM" title="[(#TEXTE|couper{100})]">
+        #TITRE
+        </a>
+        <p>Propos&eacute; <:par_auteur:> #NOM </p>
+      </td>
+			
+			<td>
+				<!--nombre de message-->
+				<B_nb_forumtotal>
+				<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}></BOUCLE_nb_forumtotal>
+				<? $total=#TOTAL_BOUCLE-1;echo $total ; ?>
+				<//B_nb_forumtotal>
+      </td>
+	
+			<td style="font-size:11px">
+				<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
+					<a href="[(#URL_PAGE{forumSite}|parametre_url{id_forum,#_forums:ID_FORUM})]#ancre[(#ID_FORUM)]">
+					[(#NOM)]<br />
+					[(#DATE|affdate{'d/m/Y'})] [(#DATE|affdate{'H:i:s'})]
+          </a>
+				</BOUCLE_dernier_message>
+      </td>
+      
+		</tr>
+	</BOUCLE_forums>
+	</B_forums>
+	</table>
+
+
+</div>
+</BOUCLE_contexte>

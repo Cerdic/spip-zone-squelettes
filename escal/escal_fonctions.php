@@ -1,8 +1,8 @@
 <?php
 
 
-   // pour gérer les classes des différents liens dans les articles
-   // Un grand merci à l'auteur : bobof
+   // pour g‚rer les classes des diff‚rents liens dans les articles
+   // Un grand merci … l'auteur : bobof
    
 function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $connect='')
 {
@@ -67,7 +67,5 @@ function balise_NBPAGES_VISITEES($p) {
 function visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));
      }
-
-
 
 ?>
