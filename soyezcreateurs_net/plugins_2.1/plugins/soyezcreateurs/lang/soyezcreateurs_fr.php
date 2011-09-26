@@ -252,6 +252,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_systematiquement' => 'Systématiquement',
 	'cfg_taille_logos_max' => 'Taille maximum des logos du menu haut',
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux',
+	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central',
 	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil',
 	'cfg_texte_bandeau_annonce' => 'Texte du bandeau d\'annonce en haut du site',
 	'cfg_texte_bandeau_label' => 'Texte du bandeau de contact du site',
