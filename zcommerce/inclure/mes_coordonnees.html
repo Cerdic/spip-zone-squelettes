@@ -1,19 +1,21 @@
-[(#SESSION{id_auteur}|oui)
-			
-<h1><:zcommerce:modifiez_vos_coordonnees:></h1>
-#FORMULAIRE_EDITER_CLIENT{#SESSION{id_auteur}}	
+<BOUCLE_contact(CONTACTS){id_auteur=#SESSION{id_auteur}}{id_auteur>0}>
+	[<div id="abonne_coord">	
+		<h1><:zcommerce:modifiez_vos_coordonnees:></h1>
+		(#FORMULAIRE_EDITER_CLIENT{#SESSION{id_auteur}})
+		<a href="[(#SELF|parametre_url{appel,ma_commande})]" class="continuer"><:continuer:></a>
+	</div>]
+</BOUCLE_contact>
 
-<a href="[(#SELF|parametre_url{appel,ma_commande})]" class="continuer">
-		<:zcommerce:continuer:> >>
-</a>
+	[<div id="abonne_coord" [class="(#ENV{mail}|=={oui}|oui)mailhide"]>	
+		<h1><:zcommerce:vos_coordonnees:></h1>
+		<div class="ajax">(#FORMULAIRE_INSCRIPTION_CLIENT)</div>
+	</div>]
 
-]
+<//B_contact>
 
 [(#SESSION{id_auteur}|non)
-	<h3><:zcommerce:deja_inscrit:></h3>
-	[(#FORMULAIRE_LOGIN{[(#SELF|parametre_url{appel,ma_commande}|parametre_url{id_auteur,#SESSION{id_auteur}})]})]
-				
-	
-	<h3><:zcommerce:vous_inscrire:></h3>
-	<div class="ajax">#FORMULAIRE_INSCRIPTION_CLIENT</div>
+	[<div id="abonne_login" [class="(#ENV{mail}|=={oui}|oui)mailshow"]>
+		<h1><:lien_connecter:></h1>
+		(#FORMULAIRE_LOGIN{[(#SELF|parametre_url{appel,ma_commande}|parametre_url{id_auteur,#SESSION{id_auteur}})]})
+	</div>]
 ]

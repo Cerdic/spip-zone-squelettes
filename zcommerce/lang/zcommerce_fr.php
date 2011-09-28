@@ -13,6 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
 'deja_inscrit'=>'Déja inscrit',
 'vous_inscrire'=>'Vous inscrire',
+'vos_coordonnees'=>'Vos coordonnées',
 'vider_le_panier'=>'Vider le panier',
 'votre_commande'=>'Votre commande',
 'votre_commande_sur'=>'Votre commande sur @nom@',
