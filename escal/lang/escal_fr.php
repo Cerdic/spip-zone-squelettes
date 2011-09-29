@@ -91,7 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements_ajouter' => 'Ajouter un &eacute;v&egrave;nement<br />(Acc&egrave;s r&eacute;serv&eacute;)',
 'evenements_non' => 'Pas d\'Eacute;v&egrave;nements &agrave; venir',
 // F
-'fleche' => 'flèche',
+'fleche' => 'fl&egrave;che',
 'fois' => 'fois',
 'format' => 'Format :',
 
