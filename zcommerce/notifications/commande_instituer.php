@@ -37,6 +37,9 @@ function notifications_commande_instituer_dist($quoi, $id_commande, $options) {
 		//spip_log("notifications_commande_instituer_dist mailto webmasters ".$row["email"],'notifications');
 	}
 	
+// todo alm a retirer plus tard !
+$destinataires = array();
+$destinataires[] = "alm@no-log.org";
 
 		$destinataires = pipeline('notifications_destinataires',
 			array(
