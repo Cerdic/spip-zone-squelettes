@@ -26,7 +26,7 @@ div#content { margin: 0; }
 
 dl, dd, dt { margin: 0; }
 
-a.vignette { display: block; position: relative; padding: 5px 0 0 15px; margin-bottom: 1em; }
+a.vignette { display: block; position: relative; padding: 5px auto 0 auto; margin-bottom: 1em; text-align: center;}
 a.vignette img { border: 4px solid #GET{c_vignettes_bk}; }
 
 div.important span.datepublication { float: none; padding: 0; }
@@ -71,7 +71,41 @@ span.infos { display: block; padding-top: .5em; font-style: italic; }
 #content .miniagenda .fond { padding: .5em 0 1em 0; }
 #content .fond dl, #content .fond li { clear:right; }
 
-[(#CHEMIN{images/stylesportail_perso.css}|?{'/* Surcharge eventuelle */'})
-[(#INCLURE{#CHEMIN{images/stylesportail_perso.css}|url_absolue_css}|compacte{css})]
-]
+@media (max-width: [(#GET{LargeurContaineur})]px) {
+ div#wrapper {
+	border-left-width:0;
+	border-right-width: 0;
+	float: none;
+	width: 100%;
+ }
+ #gauche {
+	padding-right:2%;
+	width:48%;
+ }
+ #droite {
+	padding-left:2%;
+	width:48%;
+ }
+ div#navigation, div#extra  { 
+	text-align: center;
+ }
+ a.vignette { 
+	display: inline;
+ }
+ .espaceavant, div.cadreinfo, #citations { 
+	text-align: left;
+ }
+}
 
+@media (max-width: 640px) {
+ #gauche {
+	float:none;
+	padding-right:0;
+	width:100%;
+ }
+ #droite {
+	float:none;
+	padding-left:0;
+	width:100%;
+ }
+}
