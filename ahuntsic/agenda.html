@@ -4,7 +4,7 @@
 <head>
 	<title>[[(#NOM_SITE_SPIP|textebrut)]] : <:icone_agenda:></title>
 	<INCLURE{fond=inc/inc-meta}{lang}>
-	<INCLURE{fond=page}{fond=styles}>
+	<INCLURE{fond=styles}>
 </head>
 <body dir="#LANG_DIR" class="#LANG plan">
 <div id="page">
@@ -41,7 +41,7 @@
     <B_article_langue>
     <BOUCLE_article_langue(ARTICLES) {lang} {pagination} {par date_redac}{age_redac < 1}{doublons archives}>
     <hr />
-        <h3>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)][ &#8212; (#DATE_REDAC|heures|!={0}|?{[(#DATE_REDAC|heures):][(#DATE_REDAC|minutes) <:heures:>],''})]</h3>
+        <h4>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)][ &#8212; (#DATE_REDAC|heures|!={0}|?{[(#DATE_REDAC|heures):][(#DATE_REDAC|minutes) <:heures:>],''})]</h4>
     <hr />
       [<span style="float:right;">(#LOGO_ARTICLE||image_reduire{150,0})</span>]
 			[<div class="surtitre">(#SURTITRE)</div>]
@@ -50,9 +50,18 @@
       <div class="detail">
       </div><!-- detail -->
       [<div class="texte">
-      	<div class="extrait">
-      	 (#DESCRIPTIF|sinon{[(#CHAPO|sinon{#TEXTE}|couper{300})]})&nbsp;<b class="separateur">&gt;</b>&nbsp;<a  class="suite" href="#URL_SITE_SPIP/#URL_ARTICLE" title="...<:suite:>" ><:suite:></a>
-      	</div>
+	<div class="extrait">(#DESCRIPTIF|?{
+		[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>
+		<div class="suite"><a href="#URL_ARTICLE" title="...<:suite:> : [(#TITRE|supprimer_numero|attribut_html)]" ><:suite:></a></div>]
+		,
+      	[(#CHAPO|?{
+      	[<div class="#EDIT{chapo}">(#CHAPO)</div>
+      	<div class="suite"><a href="#URL_ARTICLE" title="...<:suite:> : [(#TITRE|supprimer_numero|attribut_html)]" ><:suite:></a></div>]
+      		,
+      	[<div class="#EDIT{texte}">(#TEXTE|couper{300})</div>
+      	<div class="suite"><a href="#URL_ARTICLE" title="...<:suite:> : [(#TITRE|supprimer_numero|attribut_html)]" ><:suite:></a></div>]
+		})]
+	})</div><!-- fin extrait -->
       </div>]
       <br />
     </BOUCLE_article_langue>

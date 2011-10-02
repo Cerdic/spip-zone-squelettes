@@ -5,11 +5,12 @@
 <div id="bas">
 	<a href="#URL_SITE_SPIP{env}" title="<:accueil_site:>"><:accueil_site:></a> | 
 	<a href="#URL_AUTEUR{1}" title="<:info_contact:>"><:info_contact:></a> | 
-	<a href="#URL_PAGE{plan}" title="<:plan_site:>"><:plan_site:></a> | 
-	[(#SESSION{id_auteur}|?{' '}) <a href="#URL_LOGOUT"><:icone_deconnecter:></a>
-	][(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" class='login_modal'><:lien_connecter:></a>] | 
+	<a href="#URL_PAGE{plan}" title="<:plan_site:>"><:plan_site:></a>
+		[(#SESSION{id_auteur}|non) | <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][(#AUTORISER{ecrire})| <a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>][(#SESSION{id_auteur}|oui) | <a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>] | 
 	<a href="#URL_PAGE{statistiques}" title="<:titre_statistiques:>"><:icone_statistiques_visites:></a> | 
-	<span style="white-space: nowrap;"><:info_visites:> <INCLURE{fond=inc/inc-affvisit}></span>
+	<span style="white-space: nowrap;"><:info_visites:> 
+	<BOUCLE_art_visites(ARTICLES) {id_article}><strong>#VISITES /</strong></BOUCLE_art_visites>
+	<INCLURE{fond=inc/inc-affvisit}></span>
 
 	<p>
 		<a href="#URL_PAGE{backend}" rel="nofollow" title="<:bouton_radio_syndication:> [(#LANG|traduire_nom_langue)]"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" style="position:relative;bottom:-0.3em;" width="16" height="16" class="format_png" /><span style="text-transform: uppercase;">&nbsp;#LANG&nbsp;</span></a>
@@ -43,9 +44,11 @@
 <INCLURE{fond=inc/inc-bas_cc}{lang}>
 
 [(#REM) Pour afficher en temps reel le nombre de visiteurs connectes, si et seulement si,
-		le plugin 'visiteurs connectes' ou la lame correspondante du Couteau Suisse est active.]
+		le plugin 'visiteurs connectes' ou la lame correspondante du Couteau Suisse est active.
+]
 [(#PLUGIN{visiteurs_connectes}|oui)<INCLURE{fond=inc-visiteurs}>]
 [(#PLUGIN{couteau_suisse}|oui)<INCLURE{fond=fonds/visiteurs_connectes}>] 
+
 
 </div><!-- fin bas -->
 
@@ -55,4 +58,3 @@
 	La balise SPIP_CRON permet de deporter les calculs lourds (indexation, etc)
 	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
 ]	#SPIP_CRON
-
