@@ -1,0 +1,151 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{800}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG"> <!-- sommaire.html -->
+	<head>
+		<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>		<!-- Bloc principal englobant tous les autres -->		<div id="mgs_page">
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<:accueil_site:>				</div>			</div> <!-- /mgs_tete -->			
+							<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+								<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc/inc-menu}{date}{lang}>
+					
+					<!-- Bloc d'inscription au site si option active -->					[<div class="mgs_menu">						<div class="formulaire">							(#FORMULAIRE_INSCRIPTION)						</div>					</div>]				</div> <!-- /mgs_navigation -->
+					
+									<!-- Bloc du contenu principal -->				<div id="mgs_principal" class="contenu">
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_rbrq_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_bienvenue"><:mgs_bienvenue:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_edito"><:mgs_edito:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_articles_une"><:mgs_articles_une:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_articles_recents"><:mgs_articles_recents:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_breves_dernieres"><:mgs_breves_dernieres:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+										<!-- Bloc d'inclusion d'un petit message de bienvenue -->
+					<INCLURE{fond=inc/inc-bienvenue}{lang}>
+					
+					<!-- Bloc affichant ler dernier article en date debutant par le mot-cle "edito" -->
+					<div id="mgs_edito"></div>
+					<B_articles_edito>					<div class="mgs_bloc">						<div class="mgs_picto mgs_picto_edi"></div>
+						<ul class="general">							<li class="mgs_menu_titre"><:mgs_edito:></li>						</ul>
+						<BOUCLE_articles_edito(ARTICLES) {titre_mot==^edito} {doublons} {par date} {inverse} {0,1}>						<div class="mgs_article">
+							[<p class="mgs_surtitre">(#SURTITRE)</p>]
+							[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{60})</div>]
+							<h2 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h2>
+							<div class="mgs_texte_int">
+								[<p class="mgs_soustitre">(#SOUSTITRE)</p>]
+								<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+								[<div class="mgs_intro">(#CHAPO)</div>]
+								[<div class="mgs_texte">(#TEXTE*|somm_table|filets_sep|propre|reduire_image{470,0})</div>]
+								[<div class="mgs_ps">(#PS)</div>]
+								[<div class="mgs_ps"><:voir_en_ligne:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>.</div>]
+								[<div class="mgs_notes"><p class="mgs_notes_titre"><:mgs_notes:></p>(#NOTES)</div>]
+							</div>
+							<div class="mgs_chemin">								<BOUCLE_chemin_edito(HIERARCHIE) {id_rubrique} {tout}>								&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>								</BOUCLE_chemin_edito>							</div>						</div> <!-- /mgs_article -->
+						</BOUCLE_articles_edito>						<ul class="general">							<li class="mgs_menu_titre">
+								<small><a href="#mgs_page"><:mgs_haut:></a></small>
+							</li>
+						</ul>
+					</div>
+					</B_articles_edito>
+						 <!-- Si aucun edito, alors on affiche un message d'information -->
+						<div class="mgs_bloc">
+							<div class="mgs_picto mgs_picto_edi"></div>
+							<ul class="general">
+								<li class="mgs_menu_titre"><:mgs_aucun_edito:></li>
+							</ul>
+						</div>
+					<//B_articles_edito>
+					<!-- /Fin du bloc edito -->
+
+					<!-- Bloc liste des 2 derniers articles en date -->					<div id="mgs_articles_une"></div>
+					<B_articles_derniers>
+					<div class="mgs_bloc">						<div class="mgs_picto mgs_picto_une"></div>
+						<ul class="general">							<li class="mgs_menu_titre"><:mgs_articles_une:></li>							<BOUCLE_articles_derniers(ARTICLES) {par date} {inverse} {doublons} {0,2}>							<li class="mgs_menu_item_article">								[<p class="mgs_surtitre">(#SURTITRE)</p>]								[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{60})</div>]								<h2 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h2>								<div class="mgs_texte_int">									[<p class="mgs_soustitre">(#SOUSTITRE)</p>]									<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>									[<div class="mgs_intro">(#CHAPO)</div>]
+								</div>								<div class="mgs_chemin">									<BOUCLE_chemin_une(HIERARCHIE) {id_rubrique} {tout}>									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>									</BOUCLE_chemin_une>								</div>							</li>							</BOUCLE_articles_derniers>							<li class="mgs_menu_titre">
+								<small><a href="#mgs_page"><:mgs_haut:></a></small>
+							</li>
+						</ul>
+					</div>
+					</B_articles_derniers>
+						 <!-- Si aucun article a la une, alors on affiche un message d'information -->
+						<div class="mgs_bloc">
+							<div class="mgs_picto mgs_picto_une"></div>
+							<ul class="general">
+								<li class="mgs_menu_titre"><:mgs_aucun_une:></li>
+							</ul>
+						</div>
+					<//B_articles_derniers>
+					<!-- Bloc liste des 5 articles le plus recents -->					<div id="mgs_articles_recents"></div>
+					<B_articles_recents>
+					<div class="mgs_bloc">						<div class="mgs_picto mgs_picto_art"></div>
+						<ul class="general">							<li class="mgs_menu_titre"><:mgs_articles_recents:></li>							<BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {doublons} {0,5}>							<li class="mgs_menu_item_article">								[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]								<h3 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h3>								<div class="mgs_texte_int">									<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>									[<div class="mgs_intro">(#INTRODUCTION|couper{160})</div>]								</div>								<div class="mgs_chemin">									<BOUCLE_chemin_recents(HIERARCHIE) {id_rubrique} {tout}>									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>									</BOUCLE_chemin_recents>								</div>							</li>							</BOUCLE_articles_recents>							<li class="mgs_menu_titre">
+								<small><a href="#mgs_page"><:mgs_haut:></a></small>
+							</li>
+						</ul>
+					</div>
+					</B_articles_recents>
+						 <!-- Si aucun article recent, alors on affiche un message d'information -->
+						<div class="mgs_bloc">
+							<div class="mgs_picto mgs_picto_art"></div>
+							<ul class="general">
+								<li class="mgs_menu_titre"><:mgs_aucun_recent:></li>
+							</ul>
+						</div>
+					<//B_articles_recents>
+					
+					 <!-- Boucle des 5 dernieres breves publies -->
+					<div id="mgs_breves_dernieres"></div>
+					<B_breves_dernieres>
+					<div class="mgs_bloc" id="">
+						<div class="mgs_picto mgs_picto_brv"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><:mgs_breves_dernieres:></li>
+							<BOUCLE_breves_dernieres(BREVES) {tout} {par date} {inverse} {0,5}>
+							<li class="mgs_menu_item_article">
+								[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
+								<h3 class="mgs_titre"><a href="#URL_BREVE">#TITRE</a></h3>
+								<div class="mgs_texte_int">									<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+									[<div class="mgs_intro">(#INTRODUCTION|couper{160})</div>]
+								</div>
+								<div class="mgs_chemin">
+									<BOUCLE_brv_chemin(HIERARCHIE) {id_rubrique} {tout}>
+									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+									</BOUCLE_brv_chemin>
+								</div>
+							</li>
+							</BOUCLE_breves_dernieres>
+							<li class="mgs_menu_titre">
+								<small><a href="#mgs_page"><:mgs_haut:></a></small>
+							</li>
+						</ul>
+					</div>
+					</B_breves_dernieres>
+					 <!-- Si aucune breve, alors on affiche un message d'information -->
+					<div class="mgs_bloc">
+						<div class="mgs_picto mgs_picto_brv"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><:mgs_aucune_breve:></li>
+						</ul>
+					</div>
+					<//B_breves_dernieres>
+					
+				</div> <!-- /contenu -->				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->	</body></html> <!-- /sommaire.html -->
