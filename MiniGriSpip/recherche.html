@@ -1,109 +1,0 @@
-
-[(#REM)<!-- MiniGriSpip 1.4.2 - 2006 (c) FredoMkb -->]
-#CACHE{0}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="#LANG"> <!-- recherche.html -->
-	<head>
-		<title><:mgs_recherche:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-		<meta name="generator" content="SPIP" />
-		<!-- Feuilles de style -->		<link rel="stylesheet" href="[(#CHEMIN{style.css}|direction_css)]" type="text/css" />		[<link rel="stylesheet" href="(#CHEMIN{styleperso.css}|direction_css)" type="text/css" />]	</head>
-	<body dir="#LANG_DIR">
-		<!-- Bloc principal englobant tous les autres -->
-		<div id="mgs_page">
-
-			<!-- Bloc d'en tete -->			<div id="mgs_tete">
-				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc-bandeau}{lang}>
-								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <b>(#RECHERCHE)</b>]
-				</div> <!-- /hierarchie -->			</div> <!-- /tete -->			
-				
-			<!-- Bloc central avec les menus et le contenu -->
-			<div id="mgs_corps">
-
-				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc-menu}{lang}>
-					
-					<!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->					<INCLURE{fond=inc-pied}{lang}>				</div> <!-- /mgs_navigation -->
-
-
-				<!-- Bloc du contenu principal -->
-				<div id="mgs_principal" class="contenu">
-					<!-- Bloc texte recherche -->
-					<div class="mgs_bloc">
-						<ul class="general">
-							<li class="mgs_menu_titre"><:resultats_recherche:> : &#171;&nbsp;#RECHERCHE&nbsp;&#187;</li>
-						</ul>
-					</div> <!-- /mgs_bloc -->
-
-					<!-- Bloc liste des articles trouves -->
-					<B_articles_rech>
-					<div class="mgs_bloc">
-						<ul class="general">
-							<li class="mgs_menu_titre"><:mgs_articles_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs_articles_tri_point:></small>
-							[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
-							<BOUCLE_articles_rech(ARTICLES) {recherche} {par points} {inverse} {pagination}>
-							<li class="mgs_menu_item_article">
-								[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
-								<h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_ARTICLE">#TITRE</a></h3>
-								<p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
-								<div class="mgs_chemin">
-									<BOUCLE_chemin_art(HIERARCHIE) {id_rubrique} {tout}>
-									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
-									</BOUCLE_chemin_art>
-								</div>
-							</li>
-							</BOUCLE_articles_rech>
-							[<li class="mgs_menu_titre"><:mgs_articles_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs_articles_tri_point:></small>
-							&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
-						</ul>
-					</div> <!-- /mgs_bloc -->
-					</B_articles_rech>
-
-					<!-- Bloc liste des breves trouves -->
-					<B_breves_rech>
-					<div class="mgs_bloc">
-						<ul class="general">
-							<li class="mgs_menu_titre"><:mgs_breves_trouvees:>#GRAND_TOTAL&nbsp;<small><:mgs_breves_tri_point:></small>
-							[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
-							<BOUCLE_breves_rech(BREVES) {recherche} {par points} {inverse} {pagination 5}>
-							<li class="mgs_menu_item_article">
-								[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
-								<h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_BREVE">#TITRE</a></h3>
-								<p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-								<div class="mgs_chemin"></div>
-							</li>
-							</BOUCLE_breves_rech>
-							[<li class="mgs_menu_titre"><:mgs_breves_trouvees:>#GRAND_TOTAL&nbsp;<small><:mgs_breves_tri_point:></small>
-							&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
-						</ul>
-					</div> <!-- /mgs_bloc -->
-					</B_breves_rech>
-
-					<!-- Bloc liste des forums trouves -->
-					<B_forums_rech>
-					<div class="mgs_bloc">
-						<ul class="general">
-							<li class="mgs_menu_titre"><:mgs_forums_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs_forums_tri_point:></small>
-							[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
-							<BOUCLE_forums_rech(FORUMS) {recherche} {par points} {inverse} {pagination 5}>
-							<li class="mgs_menu_item_forum">
-								<h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_FORUM">#TITRE</a></h3>
-								<p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-								<div class="mgs_chemin">
-									<BOUCLE_chemin_for(HIERARCHIE) {id_rubrique} {tout}>
-									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
-									</BOUCLE_chemin_for>
-								</div>
-							</li>
-							</BOUCLE_forums_rech>
-							[<li class="mgs_menu_titre"><:mgs_forums_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs_forums_tri_point:></small>
-							&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
-						</ul>
-					</div> <!-- /mgs_bloc -->
-					</B_forums_rech>
-					
-				</div> <!-- /contenu -->
-			</div> <!-- /corps -->
-		</div> <!-- /page -->
-	</body>
-</html>
-<!-- /recherche.html -->

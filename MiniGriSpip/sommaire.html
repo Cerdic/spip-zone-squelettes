@@ -1,23 +1,0 @@
-
-[(#REM)<!-- MiniGriSpip 1.4.2 - 2006 (c) FredoMkb -->]
-#CACHE{7200}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="#LANG"> <!-- sommaire.html -->	<head>		<title>[(#NOM_SITE_SPIP|textebrut)]</title>		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">		<meta name="generator" content="SPIP" />		<!-- Lien vers le backend pour navigateurs eclaires -->
-		<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
-		<!-- Feuilles de style -->		<link rel="stylesheet" href="[(#CHEMIN{style.css}|direction_css)]" type="text/css" />		[<link rel="stylesheet" href="(#CHEMIN{styleperso.css}|direction_css)" type="text/css" />]	</head>	<body dir="#LANG_DIR">		<!-- Bloc principal englobant tous les autres -->		<div id="mgs_page">
-			<!-- Bloc d'en tete -->			<div id="mgs_tete">
-				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc-bandeau}{lang}>
-								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<:accueil_site:>				</div>			</div> <!-- /mgs_tete -->			
-							<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps">
-								<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc-menu}{lang}>
-					
-					<!-- Bloc d'inscription au site si option active -->					[<div class="mgs_menu">						<div class="formulaire">							(#FORMULAIRE_INSCRIPTION)						</div>					</div>]					<!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->					<INCLURE{fond=inc-pied}{lang}>				</div> <!-- /mgs_navigation -->
-					
-									<!-- Bloc du contenu principal -->				<div id="mgs_principal" class="contenu">
-										<!-- Bloc d'inclusion d'un petit message de bienvenue -->
-					<!-- Commentez cette inclusion si vous ne la desirez pas -->
-					<INCLURE{fond=inc-bienvenue}{lang}>
-					
-					<!-- Bloc avec le deux derniers articles mises en exergue -->					<BOUCLE_articles_derniers(ARTICLES) {par date} {inverse} {0,2}>					<div class="mgs_bloc">						<div class="mgs_article">							[<p class="mgs_surtitre">(#SURTITRE)</p>]							[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{60})</div>]							<h2 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_ARTICLE">#TITRE</a></h2>							[<p class="mgs_soustitre">(#SOUSTITRE)</p>]							<p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>							[<div class="mgs_intro">(#CHAPO)</div>]							<h4 class="mgs_repondre"><a href="#URL_ARTICLE"><:mgs_lire_suite:></a></h4>						</div>					</div>					</BOUCLE_articles_derniers>					<!-- Bloc liste des 8 derniers articles publies -->					<div class="mgs_bloc">						<ul class="general">							<li class="mgs_menu_titre"><:articles_recents:></li>							<BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {2,10}>							<li class="mgs_menu_item_article">								[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]								<h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_ARTICLE">#TITRE</a></h3>								<p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>								[<div class="mgs_intro">(#INTRODUCTION|couper{160})</div>]								<div class="mgs_chemin">									<BOUCLE_chemin(HIERARCHIE) {id_rubrique} {tout}>									&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>									</BOUCLE_chemin>								</div>							</li>							</BOUCLE_articles_recents>						</ul>
-					</div>
-					
-				</div> <!-- /contenu -->			</div> <!-- /corps -->		</div> <!-- /page -->	</body></html> <!-- /sommaire.html -->
