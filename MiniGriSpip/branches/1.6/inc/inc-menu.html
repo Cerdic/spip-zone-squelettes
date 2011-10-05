@@ -1,130 +1,0 @@
-
-<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
-#CACHE{0}
-<!-- inc-menu.html -->
-
-<!-- Champ de recherche -->
-<div class="mgs_menu">
-	<div class="mgs_picto mgs_picto_rch"></div>
-	<div class="mgs_form_rech">#FORMULAIRE_RECHERCHE</div>
-</div>
-
-<!-- Bloc liste hierarchique retractable de toutes les rubirques existantes -->
-<div class="mgs_menu">
-	<div class="mgs_picto mgs_picto_rub"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:rubriques:></li>
-		<li class="mgs_vide"></li>
-		<BOUCLE_rbrq(RUBRIQUES) {racine} {par num titre, titre}>
-			<li class="mgs_menu_item_<BOUCLE_rbrq_arbo(HIERARCHIE)></BOUCLE_rbrq_arbo>#TOTAL_BOUCLE<//B_rbrq_arbo>[(#EXPOSE{' mgs_menu_selected',''})]">
-			-&nbsp;<a href="#URL_RUBRIQUE" title="#TITRE - #DESCRIPTIF">[(#TITRE|couper{30})]</a><BOUCLE_rbrq_nb(RUBRIQUES){id_parent}><!-- --></BOUCLE_rbrq_nb><small>&nbsp;[+]</small></B_rbrq_nb>
-            <BOUCLE_ssrbrq(RUBRIQUES) {id_parent} {par num titre, titre}>
-			<li class="mgs_menu_item_<BOUCLE_ssrbrq_arbo(HIERARCHIE)></BOUCLE_ssrbrq_arbo>#TOTAL_BOUCLE<//B_ssrbrq_arbo>[(#EXPOSE{' mgs_menu_selected"','"'})][(#_rbrq:EXPOSE{'',' style="display: none;"'})]>
-			-&nbsp;<a href="#URL_RUBRIQUE" title="#TITRE - #DESCRIPTIF">[(#TITRE|couper{30})]</a><B_ssrbrq_nb><BOUCLE_ssrbrq_nb(RUBRIQUES){id_parent}><!-- --></BOUCLE_ssrbrq_nb><small>&nbsp;[+]</small></B_ssrbrq_nb>
-                <BOUCLE_ssrbrq_auto(BOUCLE_ssrbrq)></BOUCLE_ssrbrq_auto>
-			</li></BOUCLE_ssrbrq>
-		</li></BOUCLE_rbrq>
-	</ul>
-</div>
-
-<!-- Bloc calendrier -->
-<div class="mgs_menu">
-	<div class="mgs_picto mgs_picto_cal"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_calendrier:></li>
-	</ul>
-	<div class="mgs_menu_cal">
-		[(#DATE|cal_site)]
-	</div>
-</div>
-
-<!-- Bloc liste des 10 dernieres articles de la meme rubrique -->
-<BOUCLE_menu_articles(ARTICLES) {id_article} {exclus}>
-<B_menu_articles_rubrique>
-<div class="mgs_menu">
-	<div class="mgs_picto mgs_picto_art"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:meme_rubrique:></li>
-		<li class="mgs_vide"></li>
-		<BOUCLE_menu_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse} {0,10}>
-		<li class="mgs_menu_item_breve">
-			- <a href="#URL_ARTICLE" title="#TITRE - #DESCRIPTIF"[ class="(#EXPOSE)"]>[(#TITRE|textebrut|couper{24})]</a>
-			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
-		</li>
-		</BOUCLE_menu_articles_rubrique>
-	</ul>
-</div> 
-</B_menu_articles_rubrique>
-</BOUCLE_menu_articles>
-
-<!-- Bloc affichant une image tiree au hasard -->
-<B_menu_images>
-<div class="mgs_menu" id="mgs_menu_artrub">
-	<div class="mgs_picto mgs_picto_img"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_zoom:></li>
-		<BOUCLE_menu_images(DOCUMENTS) {extension==jpg|png|gif|bmp|psd|tif} {mode=document} {par hasard} {0,1}>
-		<li class="mgs_menu_item_breve" style="text-align: center;">
-			<div class="mgs_pictos_zoom" style="margin: 5px auto;">
-				<a href="#URL_DOCUMENT" target="_blank" title="[(#TITRE)][ - (#DESCRIPTIF)][ - (#DATE|affdate)][ - (#FICHIER|fileofurl)][ - (#LARGEUR) x][ (#HAUTEUR) px][ - (#TYPE_DOCUMENT)][ - (#TAILLE|taille_en_octets)]"onClick="window.open('#URL_DOCUMENT', '#TITRE', 'height='+(#HAUTEUR+25)+',width='+(#LARGEUR+25)+',toolbar=no,scrollbars=yes,menubar=no,resizable=yes,status=no,location=no'); return false;">[(#LOGO_DOCUMENT||image_reduire{210,0})]</a>
-			</div>
-			<div>
-			<BOUCLE_rbrq_image(RUBRIQUES documents_rubriques) {id_document}>
-				<a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{40})]</a>
-			</BOUCLE_rbrq_image>
-			<BOUCLE_art_image(ARTICLES documents_articles) {id_document}>
-				<a href="#URL_ARTICLE">[(#TITRE|couper{40})]</a>
-			</BOUCLE_art_image>
-			<BOUCLE_brv_image(BREVES documents_breves) {id_document}>
-				<a href="#URL_BREVE">[(#TITRE|couper{40})]</a>
-			</BOUCLE_brv_image>
-			</BOUCLE_menu_images>
-			</div>
-		</li>
-	</ul>
-</div>
-</B_menu_images>
-
-<!-- Bloc liste des 10 dernieres message des forums -->
-<B_menu_forums>
-<div class="mgs_menu" id="mgs_menu_artrub">
-	<div class="mgs_picto mgs_picto_for"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_commentaires:></li>
-		<li class="mgs_vide"></li>
-		<BOUCLE_menu_forums(FORUMS) {plat} {par date}{inverse} {0,10}>
-		<li class="mgs_menu_item_breve">
-			- <a href="#URL_FORUM" title="#TITRE - [(#TEXTE|textebrut|couper{100})]">[(#TITRE|textebrut|couper{24})]</a>
-			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
-		</li>
-		</BOUCLE_menu_forums>
-	</ul>
-</div>
-</B_menu_forums>
-
-
-<!-- Bloc liste des 10 dernieres sites references --><B_menu_sites><div class="mgs_menu">	<div class="mgs_picto mgs_picto_sit"></div>
-	<ul class="general">		<li class="mgs_menu_titre"><:mgs_sites:></li>		<li class="mgs_vide"></li>
-		<BOUCLE_menu_sites(SITES) {tout} {par date}{inverse} {0,10}>		<li class="mgs_menu_item_breve">			- <a href="#URL_SITE" title="#NOM_SITE - #DESCRIPTIF">[(#NOM_SITE|textebrut|couper{28})]</a>		</li>		</BOUCLE_menu_sites>	</ul></div></B_menu_sites><!-- Bloc liste des 10 dernieres syndications --><B_menu_syndic><div class="mgs_menu">	<div class="mgs_picto mgs_picto_syn"></div>
-	<ul class="general">		<li class="mgs_menu_titre"><:mgs_articles_syndic:></li>		<li class="mgs_vide"></li>
-		<BOUCLE_menu_syndic(SYNDIC_ARTICLES) {par date}{inverse} {doublons} {0,10}>		<li class="mgs_menu_item_breve">			- <a href="#URL_ARTICLE" title="#NOM_SITE - #DESCRIPTIF">[(#TITRE*|textebrut|couper{24})]</a>			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
-		</li>		</BOUCLE_menu_syndic>	</ul></div> <!-- /menu --></B_menu_syndic>
-
-
-<!-- Bloc d'infos et statistiques du site -->
-<!-- Code librement inspire du squeltte Sarka-Spip <http://sarka-spip.com/> -->
-<div class="mgs_menu">	<div class="mgs_picto mgs_picto_inf"></div>
-	<ul class="general">		<li class="mgs_menu_titre"><:mgs_infos:></li>		<li class="mgs_vide"></li>
-		<BOUCLE_der_modif(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
-		<li class="mgs_menu_infos"><em><:mgs_der_modif:></em><br />
-		<strong><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)]</strong></li>
-		</BOUCLE_der_modif>
-		<li class="mgs_menu_infos_sep"></li>
-		<li class="mgs_menu_infos"><em><:mgs_stats_contenus:></em><br />
-		<B_articles_tout> <BOUCLE_articles_tout(ARTICLES){tout}> </BOUCLE_articles_tout>			<:mgs_articles_nbr:><strong>#TOTAL_BOUCLE</strong>&nbsp;-&nbsp;		</B_articles_tout>		<B_breves_tout> <BOUCLE_breves_tout(BREVES){tout}> </BOUCLE_breves_tout>			<:mgs_breves_nbr:><strong>#TOTAL_BOUCLE</strong><br />		</B_breves_tout>		<B_commentaires_tout> <BOUCLE_commentaires_tout(FORUMS){tout}> </BOUCLE_commentaires_tout>			<:mgs_commentaires_nbr:><strong>#TOTAL_BOUCLE</strong><br />		</B_commentaires_tout>		<B_sites_tout> <BOUCLE_sites_tout(SITES){tout}> </BOUCLE_sites_tout>			<:mgs_sites_nbr:><strong>#TOTAL_BOUCLE</strong>&nbsp;-&nbsp;		</B_sites_tout>		<B_auteurs_tout> <BOUCLE_auteurs_tout(AUTEURS){tout}> </BOUCLE_auteurs_tout>			<:mgs_auteurs_nbr:><strong>#TOTAL_BOUCLE</strong>		</B_auteurs_tout>
-		</li>
-		<li class="mgs_menu_infos_sep"></li>
-		<li class="mgs_menu_infos"><em><:mgs_stats_visites:></em><br />
-			<:mgs_visites_aujourdhui:><strong><:mgs_visit_today|visites_site:></strong>&nbsp;-&nbsp;			<:mgs_visites_total:><strong><:mgs_visit_all|visites_site:></strong>
-		</li>
-	</ul></div> <!-- /menu -->

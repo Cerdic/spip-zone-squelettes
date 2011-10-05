@@ -1,120 +1,0 @@
-
-<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
-#CACHE{0}
-<!-- Bloc liste des articles trouves -->
-<div id="mgs_articles"></div>
-<B_cal_articles>
-<div class="mgs_bloc" id="">
-	<div class="mgs_picto mgs_picto_art"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre">
-			<:mgs_articles_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_tries_date:></small>
-			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
-		</li>
-		<BOUCLE_cal_articles(ARTICLES) {tout} {jour_relatif=0} {mois_relatif=0} {annee_relatif=0} {par date, titre} {pagination 20}>
-		<li class="mgs_menu_item_article">
-			[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
-			<h3 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
-			</div>
-			<div class="mgs_chemin">
-				<BOUCLE_chemin(HIERARCHIE) {id_rubrique} {tout}>
-				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
-				</BOUCLE_chemin>
-			</div>
-		</li>
-		</BOUCLE_cal_articles>
-		<li class="mgs_menu_titre">
-			[<:mgs_articles_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_tries_date:></small>
-			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
-			<small><a href="#mgs_page"><:mgs_haut:></a></small>
-		</li>
-	</ul>
-</div> <!-- /mgs_bloc -->
-</B_cal_articles>
- <!-- Si aucun article, alors on affiche un message d'information -->
-<div class="mgs_bloc">
-	<div class="mgs_picto mgs_picto_art"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_aucun_article:></li>
-	</ul>
-</div>
-<//B_cal_articles>
-
-<!-- Bloc liste des breves trouvees -->
-<div id="mgs_breves"></div>
-<B_cal_breves>
-<div class="mgs_bloc" id="">
-	<div class="mgs_picto mgs_picto_brv"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre">
-			<:mgs_breves_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_triees_date:></small>
-			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
-		</li>
-		<BOUCLE_cal_breves(BREVES) {tout} {jour_relatif=0} {mois_relatif=0} {annee_relatif=0} {par date, titre} {pagination 20}>
-		<li class="mgs_menu_item_article">
-			[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
-			<h3 class="mgs_titre"><a href="#URL_BREVE">#TITRE</a></h3>
-			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-			</div>
-			<div class="mgs_chemin">
-				<BOUCLE_brv_chemin(HIERARCHIE) {id_rubrique} {tout}>
-				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
-				</BOUCLE_brv_chemin>
-			</div>
-		</li>
-		</BOUCLE_cal_breves>
-		<li class="mgs_menu_titre">
-			[<:mgs_breves_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_triees_date:></small>
-			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
-			<small><a href="#mgs_page"><:mgs_haut:></a></small>
-		</li>
-	</ul>
-</div> <!-- /mgs_bloc -->
-</B_cal_breves>
- <!-- Si aucune breve, alors on affiche un message d'information -->
-<div class="mgs_bloc">
-	<div class="mgs_picto mgs_picto_brv"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_aucune_breve:></li>
-	</ul>
-</div>
-<//B_cal_breves>
-
-<!-- Bloc liste des commentaires trouvees -->
-<div id="mgs_commentaires"></div>
-<B_cal_commentaires>
-<div class="mgs_bloc" id="">
-	<div class="mgs_picto mgs_picto_for"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre">
-			<:mgs_commentaires_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_tries_date:></small>
-			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
-		</li>
-		<BOUCLE_cal_commentaires(FORUMS) {tout} {jour_relatif=0} {mois_relatif=0} {annee_relatif=0} {par date, titre} {pagination 20}>
-		<li class="mgs_menu_item_article">
-			<h3 class="mgs_titre"><a href="#URL_FORUM">#TITRE</a></h3>
-			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#NOM|couper{80})]</p>
-			</div>
-			<div class="mgs_chemin">
-			<BOUCLE_article_chemin(ARTICLES) {id_article=#ID_ARTICLE}>				<BOUCLE_chemin_forum_art(HIERARCHIE) {id_rubrique} {tout}>				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>				</BOUCLE_chemin_forum_art>
-				&gt; <a href="#URL_ARTICLE">[(#TITRE|textebrut|couper{80})]</a>			</BOUCLE_article_chemin>			<BOUCLE_breve_chemin(BREVES) {id_breve=#ID_BREVE}>				<BOUCLE_chemin_forum_brv(HIERARCHIE) {id_rubrique} {tout}>				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>				</BOUCLE_chemin_forum_brv>
-				&gt; <a href="#URL_BREVE">[(#TITRE|textebrut|couper{80})]</a>			</BOUCLE_breve_chemin>			</div>
-		</li>
-		</BOUCLE_cal_commentaires>
-		<li class="mgs_menu_titre">
-			[<:mgs_commentaires_nbr:>#GRAND_TOTAL&nbsp;<small><:mgs_tries_date:></small>
-			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
-			<small><a href="#mgs_page"><:mgs_haut:></a></small>
-		</li>
-	</ul>
-</div> <!-- /mgs_bloc -->
-</B_cal_commentaires>
- <!-- Si aucune breve, alors on affiche un message d'information -->
-<div class="mgs_bloc">
-	<div class="mgs_picto mgs_picto_for"></div>
-	<ul class="general">
-		<li class="mgs_menu_titre"><:mgs_aucun_commentaire:></li>
-	</ul>
-</div>
-<//B_cal_commentaires>
