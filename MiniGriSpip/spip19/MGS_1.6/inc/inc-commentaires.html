@@ -1,0 +1,50 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{0}
+<!-- inc-commentaires.html -->
+<!-- Bloc liste des commentaires publies -->
+<div id="mgs_commentaires"></div>
+<B_liste_commentaires>
+<div class="mgs_bloc" id="">
+	<div class="mgs_picto mgs_picto_for"></div>
+	<ul class="general">
+		<!-- Titre du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			<:mgs_commentaires_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={points}|?{<:mgs_tries_point:>,<:mgs_tries_date:>})]</small>
+			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
+		</li>
+		<!-- Liste des commentaires publies -->
+		<BOUCLE_liste_commentaires(FORUMS) {recherche ?} {tout} {par #ENV{tri}} {inverse #ENV{ordre}} {par titre} {pagination 50}>
+		<li class="mgs_menu_item_article">
+			<h3 class="mgs_titre"><a href="#URL_FORUM">#TITRE</a></h3>
+			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#NOM|couper{80})][(#ENV{tri}|=={points}|?{&nbsp;-&nbsp;<:mgs_pertinence:><strong>#POINTS</strong>,''})]</p>
+			</div>
+			<!-- Chemin d'acces (ariane) -->
+			<div class="mgs_chemin">
+			<BOUCLE_article_chemin(ARTICLES) {id_article=#ID_ARTICLE}>				<BOUCLE_chemin_forum_art(HIERARCHIE) {id_rubrique} {tout}>				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>				</BOUCLE_chemin_forum_art>
+				&gt; <a href="#URL_ARTICLE">[(#TITRE|textebrut|couper{80})]</a>
+			</BOUCLE_article_chemin>			<BOUCLE_breve_chemin(BREVES) {id_breve=#ID_BREVE}>				<BOUCLE_chemin_forum_brv(HIERARCHIE) {id_rubrique} {tout}>				&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>				</BOUCLE_chemin_forum_brv>
+				&gt; <a href="#URL_BREVE">[(#TITRE|textebrut|couper{80})]</a>
+			</BOUCLE_breve_chemin>			</div>
+		</li>
+		</BOUCLE_liste_commentaires>
+		<!-- Pied du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			[<:mgs_commentaires_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={points}|?{<:mgs_tries_point:>,<:mgs_tries_date:>})]</small>
+			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
+			<small><a href="#mgs_page"><:mgs_haut:></a></small>
+		</li>
+	</ul>
+</div> <!-- /mgs_bloc -->
+</B_liste_commentaires>
+ <!-- Si aucun commentaire, alors on affiche un message d'information -->
+<div class="mgs_bloc">
+	<div class="mgs_picto mgs_picto_for"></div>
+	<ul class="general">
+		<li class="mgs_menu_titre"><:mgs_aucun_commentaire:></li>
+	</ul>
+</div>
+<//B_liste_commentaires>
+<!-- /inc-commentaires.html -->

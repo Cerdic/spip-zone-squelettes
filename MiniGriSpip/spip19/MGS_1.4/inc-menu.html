@@ -1,0 +1,42 @@
+
+[(#REM)<!-- MiniGriSpip 1.4.2 - 2006 (c) FredoMkb -->]
+<!-- inc-menu.html -->
+<!-- Bloc liste hierarchique de toutes les rubirques existantes -->
+<div class="mgs_menu">
+	<ul class="general">
+		<li class="mgs_menu_titre"><:rubriques:></li>
+		[(#ID_RUBRIQUE|menu)]
+	</ul>
+</div>
+
+<!-- Bloc liste des 10 dernieres breves -->
+<B_menu_breves>
+<div class="mgs_menu">
+	<ul class="general">
+		<li class="mgs_menu_titre"><:breves:></li>
+		<BOUCLE_menu_breves(BREVES) {par date}{inverse} {0,10}>
+		<li class="mgs_menu_item_breve">
+			- <a href="#URL_BREVE" title="#TITRE">[(#TITRE|textebrut|couper{24})]</a>
+			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
+		</li>
+		</BOUCLE_menu_breves>
+	</ul>
+</div></B_menu_breves>
+<!-- Bloc liste des 10 dernieres message des forums -->
+<B_menu_forums>
+<div class="mgs_menu" id="mgs_menu_artrub">
+	<ul class="general">
+		<li class="mgs_menu_titre"><:mgs_forums:></li>
+		<BOUCLE_menu_forums(FORUMS) {plat} {par date}{inverse} {0,10}>
+		<li class="mgs_menu_item_breve">
+			- <a href="#URL_FORUM" title="#TITRE">[(#TITRE|textebrut|couper{24})]</a>
+			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
+		</li>
+		</BOUCLE_menu_forums>
+	</ul>
+</div>
+</B_menu_forums>
+
+
+<!-- Bloc liste des 10 dernieres sites references --><B_menu_sites><div class="mgs_menu">	<ul class="general">		<li class="mgs_menu_titre"><:mgs_sites:></li>		<BOUCLE_menu_sites(SITES) {tout} {par date}{inverse} {0,10}>		<li class="mgs_menu_item_breve">			- <a href="#URL_SITE">[(#NOM_SITE|textebrut|couper{28})]</a>		</li>		</BOUCLE_menu_sites>	</ul></div></B_menu_sites><!-- Bloc liste des 10 dernieres syndications --><B_menu_syndic><div class="mgs_menu">	<ul class="general">		<li class="mgs_menu_titre"><:mgs_articles_syndic:></li>		<BOUCLE_menu_syndic(SYNDIC_ARTICLES) {par date}{inverse} {0,10}>		<li class="mgs_menu_item_breve">			- <a href="#URL_ARTICLE">[(#TITRE*|textebrut|couper{24})]</a>			[ <small><em>((#DATE|affdate{'d/m'}))</em></small>]
+		</li>		</BOUCLE_menu_syndic>	</ul></div> <!-- /menu --></B_menu_syndic><!-- /inc-menu.html -->

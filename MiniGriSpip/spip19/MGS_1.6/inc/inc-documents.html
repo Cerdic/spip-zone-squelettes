@@ -1,0 +1,62 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{0}
+<!-- inc-documents.html -->
+<!-- Boucle pour eviter l'affichage des images dans la boucle documents -->
+<BOUCLE_liste_images_tout(DOCUMENTS) {id_rubrique ?} {id_article ?} {extension==jpg|png|gif|bmp|psd|tif} {mode=document} {doublons images}>
+</BOUCLE_liste_images_tout>
+
+<!-- Boucle pour eviter l'affichage des documents embed dans la boucle documents -->
+<BOUCLE_liste_embed_tout(DOCUMENTS) {id_rubrique ?} {id_article ?} {extension==aiff|asf|avi|flv|mid|mng|mov|mp3|mpg|ogg|qt|ra|ram|rm|swf|waw|wmv|svg} {mode=document} {doublons embed}>
+</BOUCLE_liste_embed_tout>
+
+<!-- Bloc liste des documents joints -->
+<div id="mgs_documents"></div>
+<B_liste_documents>
+<div class="mgs_bloc" id="">
+	<div class="mgs_picto mgs_picto_doc"></div>
+	<ul class="general">
+		<!-- Titre du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			<:mgs_documents_nbr:>#GRAND_TOTAL&nbsp;
+			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
+		</li>
+		<!-- Liste des documents joints -->
+		<BOUCLE_liste_documents(DOCUMENTS) {id_rubrique ?} {id_article ?} {mode=document} {doublons images} {doublons embed} {pagination 20}>
+		<li class="mgs_menu_item_article">
+			<div class="mgs_pictos">
+				<a href="#URL_DOCUMENT">
+					[(#LOGO_DOCUMENT||image_reduire{60})]
+					[<strong>(#TITRE)</strong><br />][<em>(#DESCRIPTIF)</em><br />]
+					<small>[(#FICHIER|fileofurl)][ - (#TYPE_DOCUMENT)][ - (#TAILLE|taille_en_octets)][<em> - ((#DATE|affdate{'d/m'}))</em>]</small>
+				</a>
+			</div>
+			<!-- Chemin d'acces (ariane) -->
+			<div class="mgs_chemin">
+			<BOUCLE_rbrq_document(RUBRIQUES documents_rubriques) {id_document}>
+				[(#ENV{cntxt}|!=={rbrq}|?{&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{120})]</a>,''})]
+			</BOUCLE_rbrq_document>
+			<BOUCLE_art_document(ARTICLES documents_articles) {id_document}>
+				[(#ENV{cntxt}|!=={art}|?{&gt; <a href="#URL_ARTICLE">[(#TITRE|couper{120})]</a>,''})]
+			</BOUCLE_art_document>
+			</div>
+		</li>
+		</BOUCLE_liste_documents>
+		<!-- Pied du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			[<:mgs_documents_nbr:>#GRAND_TOTAL&nbsp;
+			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
+			<small><a href="#mgs_page"><:mgs_haut:></a></small>
+		</li>
+	</ul>
+</div> <!-- /mgs_bloc -->
+</B_liste_documents>
+ <!-- Si aucun document, alors on affiche un message d'information -->
+<div class="mgs_bloc">
+	<div class="mgs_picto mgs_picto_doc"></div>
+	<ul class="general">
+		<li class="mgs_menu_titre"><:mgs_aucun_document:></li>
+	</ul>
+</div>
+<//B_liste_documents>
+<!-- /inc-documents.html -->

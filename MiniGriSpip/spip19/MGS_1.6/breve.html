@@ -1,0 +1,85 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{800}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<html dir="#LANG_DIR" lang="#LANG"> <!-- breve.html -->
+	<head>
+		<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+		<!-- Lien vers le backend pour navigateurs eclaires -->
+		<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend-breves}" />
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>
+		<!-- Bloc principal englobant tous les autres -->
+		<div id="mgs_page">
+		
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+					<BOUCLE_ariane(HIERARCHIE) {id_rubrique} {tout}>
+						&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+					</BOUCLE_ariane>
+					[ &gt; <b>(#TITRE|textebrut|supprimer_numero|couper{80})</b>]
+				</div>			</div> <!-- /mgs_tete -->					
+
+			<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+
+				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc/inc-menu}{date}{id_rubrique}{lang}>
+				</div> <!-- /mgs_navigation -->
+
+
+				<!-- Bloc du contenu principal -->
+				<div class="contenu" id="mgs_principal">
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_breve"><:mgs_breve:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_mots"><:mgs_mots:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_commentaires"><:mgs_commentaires:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+				
+					<!-- Bloc du contenu -->
+					<div id="mgs_breve"></div>
+					<div class="mgs_bloc">
+						<div class="mgs_picto mgs_picto_brv"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><:mgs_breve:></li>
+						</ul>
+						<div class="mgs_article">
+							[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{60})</div>]
+							<h2 class="mgs_titre">#TITRE</h2>
+							<div class="mgs_texte_int">
+								<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+								[<div class="mgs_texte">(#TEXTE*|filets_sep|propre|reduire_image{470,0})</div>]
+								[<div class="mgs_ps"><:voir_en_ligne:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>.</div>]
+								[<div class="mgs_notes"><p><strong><:mgs_notes:></strong></p>(#NOTES)</div>]
+							</div>
+							[<h4 class="mgs_repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:mgs_repondre_breve:></a></h4>]
+						</div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><small><a href="#mgs_page"><:mgs_haut:></a></small></li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+					
+					<!-- Inclusion des Mots-cles associes-->
+					<INCLURE{fond=inc/inc-motscles}{id_breve}{lang}>
+					
+					<!-- Inclusion des Commentaires -->
+					<INCLURE{fond=inc/inc-forum}{id_breve}{lang}{self=#SELF}>
+					
+				</div> <!-- /contenu -->
+				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->
+	</body>
+</html> <!-- /breve.html -->
+</BOUCLE_breve_principal>
+

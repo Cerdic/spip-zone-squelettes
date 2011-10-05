@@ -1,0 +1,132 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{800}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG"> <!-- forum.html -->
+	<head>
+		<title>[(#TITRE|textebrut)] <:poster_message:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>
+		<!-- Bloc principal englobant tous les autres -->
+		<div id="mgs_page">
+		
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->
+				<div id="mgs_hierarchie">
+					<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+					<BOUCLE_contexte_article(ARTICLES) {id_article}>
+						<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+							&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+						</BOUCLE_ariane_article>
+						&gt; <a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+					</BOUCLE_contexte_article>
+					</B_contexte_article>
+					
+					<BOUCLE_contexte_breve(BREVES) {id_breve}>
+						<BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+							&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+						</BOUCLE_ariane_breve>
+						&gt; <a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+					</BOUCLE_contexte_breve>
+					<//B_contexte_breve>
+				</div> <!-- /hierarchie -->
+			</div> <!-- /tete -->
+			
+						
+			<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+
+				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->
+					<BOUCLE_contexte_article_rbrq(ARTICLES) {id_article}>					<INCLURE{fond=inc/inc-menu}{date}{id_rubrique}{lang}>
+					</BOUCLE_contexte_article_rbrq>
+					
+					<BOUCLE_contexte_breve_rbrq(BREVES) {id_breve}>					<INCLURE{fond=inc/inc-menu}{date}{id_rubrique}{lang}>
+					</BOUCLE_contexte_breve_rbrq>
+				</div> <!-- /mgs_navigation -->
+
+
+				<!-- Bloc du contenu principal -->
+				<div id="mgs_principal" class="contenu">
+				
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_message"><:mgs_message:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_reponse"><:mgs_reponse:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+
+					<!-- Bloc contenant le message original -->
+					<div id="mgs_message"></div>
+					<div class="mgs_bloc">
+						<ul class="general">
+							<li class="mgs_menu_titre"><:en_reponse:></li>
+							<B_article>
+							<li class="mgs_menu_item_article">
+								<!-- Extrait de l'article a repondre -->
+								<BOUCLE_article(ARTICLES) {id_article}>
+								[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
+								<h3 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+								<div class="mgs_texte_int">									<p class="mgs_infos">[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+									[<div class="mgs_texte">(#INTRODUCTION)</div>]
+								</div>
+								<h4 class="mgs_repondre"></h4>
+								</BOUCLE_article>
+							</li>
+							</B_article>
+								
+							<B_breve>
+							<li class="mgs_menu_item_article">
+								<!-- Extrait de la breve a repondre -->
+								<BOUCLE_breve(BREVES) {id_breve}>
+								[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
+								<h3 class="mgs_titre"><a href="#URL_BREVE">#TITRE</a></h3>
+								<div class="mgs_texte_int">									<p class="mgs_infos">[(#DATE|affdate)]</p>
+									[<div class="mgs_texte">(#INTRODUCTION)</div>]
+								</div>
+								<h4 class="mgs_repondre"></h4>
+								</BOUCLE_breve>
+							</li>
+							</B_breve>
+								
+							<B_forum_parent>
+							<li class="mgs_menu_item_forum">
+								<!-- Contenu du precedent message de forum a repondre -->
+								<BOUCLE_forum_parent(FORUMS) {id_forum}>
+								<div class="mgs_forum_message">
+									<div class="mgs_forum_chapo">
+										<h3 class="mgs_titre">
+											[<small>(#ID_ARTICLE|numero_message_forum_article{#ID_FORUM}) - </small>]<a href="#URL_FORUM">#TITRE</a>
+										</h3>
+									</div>
+									<div class="mgs_forum_texte">
+										<p class="mgs_infos">[(#DATE|affdate)][(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</p>
+										[<div class="mgs_texte">(#TEXTE)</div>]
+									</div>
+									<h4 class="mgs_repondre"></h4>
+								</div>
+								</BOUCLE_forum_parent>
+							</li>
+							</B_forum_parent>
+							
+							<li class="mgs_menu_titre"><:poster_message:> :</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+					
+					<!-- Formulaire pour un nouveau message -->
+					<div id="mgs_reponse"></div>
+					#FORMULAIRE_FORUM
+					
+				</div> <!-- /contenu -->
+				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->
+	</body>
+</html> <!-- /forum.html -->

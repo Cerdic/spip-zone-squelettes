@@ -1,0 +1,112 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{800}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG"> <!-- rubrique.html -->
+	<head>
+		<B_entete>
+			<BOUCLE_entete(RUBRIQUES) {id_rubrique}>
+				<title>[(#TITRE|textebrut|supprimer_numero)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+				<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+			</BOUCLE_entete>
+		</B_entete>
+			<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+			<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+		<//B_entete>
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>
+		<!-- Bloc principal englobant tous les autres -->
+		<div id="mgs_page">
+
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+					<BOUCLE_ariane(HIERARCHIE) {id_rubrique} {tout}>
+						&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+					</BOUCLE_ariane>
+				</div>			</div> <!-- /mgs_tete -->			
+										<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+
+				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc/inc-menu}{date}{id_rubrique}{lang}>
+				</div> <!-- /mgs_navigation -->
+
+
+				<!-- Bloc du contenu principal -->
+				<div class="contenu" id="mgs_principal">
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_infos"><:mgs_infos:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_articles"><:mgs_articles:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_breves"><:mgs_breves:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_images"><:mgs_images:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_documents"><:mgs_documents:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_sites"><:mgs_sites:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_mots"><:mgs_mots:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+					<!-- Boucle principale -->
+					<B_rubrique_principal>
+					<BOUCLE_rubrique_principal(RUBRIQUES) {tout} {id_rubrique}>
+						<!-- Bloc d'infos de la rubrique selectionnee -->
+						<div id="mgs_infos"></div>
+						<div class="mgs_bloc">
+							<div class="mgs_picto mgs_picto_rub"></div>
+							<ul class="general">
+								<li class="mgs_menu_titre"><:mgs_info_rubrique:></li>
+								<li class="mgs_menu_item_article">
+									[<div class="mgs_logo">(#LOGO_RUBRIQUE|right||image_reduire{60})</div>]
+									<h2 class="mgs_titre">[(#TITRE|textebrut|supprimer_numero)]</h2>
+									<div class="mgs_texte_int">
+										<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][ - <:mgs_rbrq_id:><strong>(#ID_RUBRIQUE)</strong>]</p>										[<div class="mgs_texte">(#TEXTE)</div>]
+									</div>
+								</li>
+							</ul>
+						</div>
+					
+						<!-- Inclusion des Articles publies -->
+						<INCLURE{fond=inc/inc-articles}{id_rubrique}{lang}{tri=date}{ordre=1}{cntxt=rbrq}>
+						
+						<!-- Inclusion des Breves publiees-->
+						<INCLURE{fond=inc/inc-breves}{id_rubrique}{lang}{tri=date}{ordre=1}{cntxt=rbrq}>
+						
+						<!-- Inclusion des Images utilisees -->
+						<INCLURE{fond=inc/inc-images}{id_rubrique}{lang}{cntxt=rbrq}>
+						
+						<!-- Inclusion des Documents joints -->
+						<INCLURE{fond=inc/inc-documents}{id_rubrique}{lang}{cntxt=rbrq}>
+						
+						<!-- Inclusion des Sites publies-->
+						<INCLURE{fond=inc/inc-sites}{id_rubrique}{lang}{cntxt=rbrq}>
+						
+						<!-- Inclusion des Mots-cles associes-->
+						<INCLURE{fond=inc/inc-motscles}{id_rubrique}{lang}>
+						
+					</BOUCLE_rubrique_principal>
+					</B_rubrique_principal>
+					 <!-- Si aucune rubrique, alors on affiche un message d'information -->
+					<div class="mgs_bloc">
+						<div class="mgs_picto mgs_picto_rub"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><:mgs_aucune_rubrique:></li>
+						</ul>
+					</div>
+					<//B_rubrique_principal>
+				</div> <!-- /contenu -->
+				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->
+	</body>
+</html> <!-- /rubrique.html -->
