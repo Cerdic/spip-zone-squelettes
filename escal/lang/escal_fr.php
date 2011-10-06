@@ -89,7 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'et' => 'et',
 'evenements' => '&Eacute;v&egrave;nements &agrave; venir',
 'evenements_ajouter' => 'Ajouter un &eacute;v&egrave;nement<br />(Acc&egrave;s r&eacute;serv&eacute;)',
-'evenements_non' => 'Pas d\'Eacute;v&egrave;nements &agrave; venir',
+'evenements_non' => 'Pas d\'&eacute;v&egrave;nements &agrave; venir',
 // F
 'fleche' => 'fl&egrave;che',
 'fois' => 'fois',
