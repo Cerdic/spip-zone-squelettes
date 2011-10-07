@@ -5,51 +5,56 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
-'mgs_accueil' => 'Accueil',
-'mgs_aucun_article' => 'La rubrique s&eacute;lectionn&eacute;e ne contient aucun article...',
-'mgs_aucun_article_auteur' => 'Aucun article publi&eacute; pour l\'instant...',
-'mgs_article' => 'Article',
-'mgs_articles_trouves' => 'Articles trouv&eacute;s : ',
-'mgs_articles_tri_titre' => '(tri&eacute;s par titre)',
-'mgs_articles_tri_date' => '(tri&eacute;s par date)',
-'mgs_articles_tri_point' => '(tri&eacute;s par pertinence)',
-'mgs_articles_tri_popu' => '(tri&eacute;s par popularit&eacute;)',
-'mgs_articles_publies' => 'Articles publi&eacute;s : ',
-'mgs_auteur' => 'Auteur',
-'mgs_auteurs' => 'Auteurs : ',
-'mgs_auteurs_tri_nom' => '(tri&eacute;s par nom)',
+'accueil' => 'Accueil',
+'aucun_article' => 'La rubrique s&eacute;lectionn&eacute;e ne contient aucun article...',
+'aucun_article_auteur' => 'Aucun article publi&eacute; pour l\'instant...',
+'article' => 'Article',
+'articles_trouves' => 'Articles trouv&eacute;s : ',
+'articles_tri_titre' => '(tri&eacute;s par titre)',
+'articles_tri_date' => '(tri&eacute;s par date)',
+'articles_tri_point' => '(tri&eacute;s par pertinence)',
+'articles_tri_popu' => '(tri&eacute;s par popularit&eacute;)',
+'articles_publies' => 'Articles publi&eacute;s : ',
+'auteur' => 'Auteur',
+'auteurs' => 'Auteurs : ',
+'auteurs_tri_nom' => '(tri&eacute;s par nom)',
 
 // B
-'mgs_breves_trouvees' => 'Br&egrave;ves trouv&eacute;es : ',
-'mgs_breves_tri_date' => '(tri&eacute;es par date)',
-'mgs_breves_tri_point' => '(tri&eacute;es par pertinence)',
-'mgs_breves_publiees' => 'Br&egrave;ves publi&eacute;es : ',
-'mgs_breve' => 'Br&egrave;ve',
-'mgs_breves' => 'Br&egrave;ves',
+'breves_trouvees' => 'Br&egrave;ves trouv&eacute;es : ',
+'breves_tri_date' => '(tri&eacute;es par date)',
+'breves_tri_point' => '(tri&eacute;es par pertinence)',
+'breves_publiees' => 'Br&egrave;ves publi&eacute;es : ',
+'breve' => 'Br&egrave;ve',
+'breves' => 'Br&egrave;ves',
 
 // C
-'mgs_contact' => 'Contact',
+'contact' => 'Contact',
 
 // F
-'mgs_forums_trouves' => 'Forums trouv&eacute;s : ',
-'mgs_forums_tri_point' => '(tri&eacute;s par pertinence)',
+'forums_trouves' => 'Forums trouv&eacute;s : ',
+'forums_tri_point' => '(tri&eacute;s par pertinence)',
 
 // L
-'mgs_lire_suite' => 'Lire la suite...',
+'lire_suite' => 'Lire la suite...',
 
 // M
-'mgs_messages_trouves' => 'Messages trouv&eacute;s : ',
-'mgs_messages_tri_point' => '(tri&eacute;s par pertinence)',
-'mgs_messages_publies' => 'Messages publi&eacute;s : ',
-'mgs_messages_tri_date' => '(tri&eacute;s par date)',
-'mgs_mot_cle' => 'Mot-cl&eacute;',
+'messages_trouves' => 'Messages trouv&eacute;s : ',
+'messages_tri_point' => '(tri&eacute;s par pertinence)',
+'messages_publies' => 'Messages publi&eacute;s : ',
+'messages_tri_date' => '(tri&eacute;s par date)',
+'mot_cle' => 'Mot-cl&eacute;',
 
 // P
-'mgs_plan' => 'Plan',
+'plan' => 'Plan',
 
 // R
-'mgs_redaction' => 'R&eacute;daction',
-'mgs_recherche' => 'Recherche',
+'redaction' => 'R&eacute;daction',
+'recherche' => 'Recherche',
+'reponse_message' => 'Poster un message',
+
+//S
+'site' => 'Site',
+'site_publies' => 'Tous les sites r&eacute;f&eacute;renc&eacute;s'
 
 );
 
