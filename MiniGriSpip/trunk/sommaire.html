@@ -34,13 +34,22 @@
             <!-- Bloc liste des 10 dernieres syndications -->
             #INCLURE{fond=inc/articles_syndiques,env}
 
-          <!-- Bloc d'inscription au site si option active -->
-         [<div class="mgs_menu">(#FORMULAIRE_INSCRIPTION)</div><!-- menu -->]
+            <!-- Formulaire inscription -->
+          [(#REM) Bloc d'inscription au site si visiteur non logé et option active]
+          [(#SESSION|?{'',[(#CONFIG{accepter_inscriptions}|oui)
+          <div class="mgs_menu">]})]
 
-          <!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->
-          <div class="mgs_menu">
-            <div><INCLURE{fond=inc/pied}{lang}></div>
-          </div> <!-- /menu -->
+            [(#REM)Ne pas afficher le form si on est logé en SPIP2]
+            [(#SESSION|non)#FORMULAIRE_INSCRIPTION]
+            
+            [(#REM) Fermer le bloc si il a été ouvert]
+            [(#SESSION|?{'',[(#CONFIG{accepter_inscriptions}|oui)
+          </div>]})]
+
+
+          <!-- Bloc d'inclusion du "pied" de page (logos Rss et Spip) -->
+            #INCLURE{fond=inc/pied,lang}
+
         </div> <!-- /navigation -->
 
         <!-- Bloc du contenu principal -->
