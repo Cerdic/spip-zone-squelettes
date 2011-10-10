@@ -138,8 +138,6 @@ function config_site() {
 }
 
 function exec_agenda_upgrade() {
-	if (!defined('_ECRIRE_INC_VERSION')) return;
-
 	include_spip("inc/presentation");
 	include_spip("inc/lang");
 	include_spip("inc/charsets");
