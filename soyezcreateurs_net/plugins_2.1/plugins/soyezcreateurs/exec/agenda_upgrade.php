@@ -4,7 +4,7 @@
 // Configurateur Squelette Epona - 2004 Nov 10 - Marc Lebas.
 // Realisation : RealET : real3t@gmail.com
 //
-
+if (!defined('_ECRIRE_INC_VERSION')) return;
 function refus($msg) {
   echo "<b><font color=red>$msg</font></b><br>";
   echo "Action non commencée; rectifier les conditions initiales avant de reprendre<br>";
@@ -138,7 +138,7 @@ function config_site() {
 }
 
 function exec_agenda_upgrade() {
-	if (!defined("_ECRIRE_INC_VERSION")) return;
+	if (!defined('_ECRIRE_INC_VERSION')) return;
 
 	include_spip("inc/presentation");
 	include_spip("inc/lang");

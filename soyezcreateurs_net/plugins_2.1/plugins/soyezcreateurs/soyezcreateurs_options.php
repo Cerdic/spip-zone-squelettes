@@ -1,5 +1,5 @@
 <?php
-if (!defined("_ECRIRE_INC_VERSION")) return; 
+if (!defined('_ECRIRE_INC_VERSION')) return; 
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
 define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480

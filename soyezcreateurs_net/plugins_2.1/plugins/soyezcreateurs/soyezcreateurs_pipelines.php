@@ -1,5 +1,5 @@
 <?php
-if (!defined("_ECRIRE_INC_VERSION")) return; 
+if (!defined('_ECRIRE_INC_VERSION')) return; 
 
 function soyezcreateurs_declarer_tables_interfaces($interface){
 	// Documentation et inspiration :

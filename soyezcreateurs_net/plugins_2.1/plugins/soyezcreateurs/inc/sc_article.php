@@ -6,7 +6,7 @@
 * Attention, fichier en UTF-8 sans BOM
 */
 
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 include_spip("inc/lang");
 include_spip("inc/charsets");	

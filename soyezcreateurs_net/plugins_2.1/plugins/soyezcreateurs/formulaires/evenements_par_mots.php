@@ -1,5 +1,5 @@
 <?php
-
+if (!defined('_ECRIRE_INC_VERSION')) return;
 function formulaires_evenements_par_mots_charger_dist($filtre_groupes = null, $url_resultat = null){
 	return 
 		array(
