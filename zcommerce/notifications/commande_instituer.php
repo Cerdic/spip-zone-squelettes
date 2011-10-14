@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return;
 /*
  * Plugin Notifications
  * (c) 2009 SPIP
