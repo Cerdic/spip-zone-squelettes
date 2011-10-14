@@ -4,6 +4,7 @@
  * Licence GPL (c) 2006-2009 Fil
  *
  */
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip('inc/autoriser');
 

@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return;
 /**
  * Affiche le diff d'un objet 
  * (uniquement pour les articles en 2.0.X)
