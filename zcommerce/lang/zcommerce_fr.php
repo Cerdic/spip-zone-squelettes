@@ -1,34 +1,57 @@
 <?php
 $GLOBALS[$GLOBALS['idx_lang']] = array(
-	
-'continuer'=>'Continuer',
-'aucun_produit'=>'Aucun produit',
-'les_produits'=>'Les produits',
-'ajouter_au_panier'=>'Ajouter au panier',
-'boutique'=>'Boutique',
-'panier'=>'Panier',
-'coordonnees'=>'Coordonnées',
-'commande'=>'Commande',
-'paiement'=>'Paiement',
-'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
-'deja_inscrit'=>'Déja inscrit',
-'vous_inscrire'=>'Vous inscrire',
-'vos_coordonnees'=>'Vos coordonnées',
-'vider_le_panier'=>'Vider le panier',
-'votre_commande'=>'Votre commande',
-'votre_commande_sur'=>'Votre commande sur @nom@',
-'une_commande_sur'=>'Une commande sur @nom@',
-'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
-'commande_ref'=>'Commande @ref@',
-'vos_commandes_payees'=>'Vos commandes payées',
-'total'=>'Total',
+
+//A
 'acces_facture'=>'Facture',
+'aucun_produit'=>'Aucun produit',
+'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
+'ajouter_au_panier'=>'Ajouter au panier',
+
+//B
+'boutique'=>'Boutique',
+
+//C
+'commande'=>'Commande',
+'commande_ref'=>'Commande @ref@',
+'commande_ref_statut'=>'Votre commande @ref@ est @statut@',
+'confirmation_commande'=>'Confirmation de votre commande',
+'confirmation_la_commande'=>'Confirmation de la commande',
+'continuer'=>'Continuer',
+'coordonnees'=>'Coordonnées',
+
+
+//D
+'deja_inscrit'=>'Déja inscrit',
+
+
+//L
+'les_produits'=>'Les produits',
+
+//M
+'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
+
+'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
+
+
+//P
+'panier'=>'Panier',
 'paiement'=>'Paiement',
 'paiement_fictif'=>'Paiement fictif',
 'passer_la_commande'=>'Passer la commande',
-'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
-'statut_encours'=>'en cours',
-'commande_ref_statut'=>'Votre commande @ref@ est @statut@</h1>',
+
+//S
+'total'=>'Total',
+
+//U
+'une_commande_sur'=>'Une commande sur @nom@',
+
+//V
+'vider_le_panier'=>'Vider le panier',
+'vos_commandes_payees'=>'Vos commandes payées',
+'vos_coordonnees'=>'Vos coordonnées',
+'votre_commande'=>'Votre commande',
+'votre_commande_sur'=>'Votre commande sur @nom@',
+'vous_inscrire'=>'Vous inscrire',
 
 );
 ?>
