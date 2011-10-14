@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /**
  * pipeline zengarden_activer_theme pour charger une config_noizetier associée à un thème

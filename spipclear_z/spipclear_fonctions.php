@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 function affdate_long($date) {
 	return affdate_base($date, 'nom_jour').' '.affdate_base($date, 'entier');
