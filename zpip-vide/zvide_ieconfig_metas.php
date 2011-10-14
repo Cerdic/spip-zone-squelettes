@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 function zvide_ieconfig_metas($table){
 	$table['zvide']['titre'] = _T('zvide:zvide');
