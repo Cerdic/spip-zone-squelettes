@@ -5,6 +5,7 @@
  * Distribue sous licence GPL
  *
  */
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 if ($z = _request('var_zajax')) {
 	if ($z_blocs = isset($GLOBALS['z_blocs'])?$GLOBALS['z_blocs']:array('contenu','navigation','extra','head')
