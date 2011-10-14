@@ -1,3 +1,18 @@
-		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre,titre} {0,10}>
-		<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+[(#REM) on cherche a ne pas afficher le premier article dans la liste des articles, et a paginer cette liste, 
+	mais le critere {pagination} ne fonctionne pas avec en meme temps que le critere {1, n} : 
+	donc une boucle pour stocker les articles {1, n} dans un tableau, et une boucle paginee qui reprend le tableau 
+	]
+#SET{listesarticles,#ARRAY}
+<BOUCLE_tableau(ARTICLES){id_rubrique}{par num titre, titre}{1, n}>
+	[(#SET_PUSH{listearticles, #ID_ARTICLE})]
+</BOUCLE_tableau>
+
+
+	<B_articles_rubrique>
+	<ul>#ANCRE_PAGINATION
+		<BOUCLE_articles_rubrique(ARTICLES) {par num titre, titre} {id_article IN #GET{listearticles}} {pagination}>
+		<li><a[ href="(#URL_ARTICLE|parametre_url{debut_articles_rubrique,@#ID_ARTICLE}|parametre_url{debut_rubriques_rubrique,@#ID_RUBRIQUE})"][ class="(#EXPOSE)"]>#TITRE</a></li>
 		</BOUCLE_articles_rubrique>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	</B_articles_rubrique>
