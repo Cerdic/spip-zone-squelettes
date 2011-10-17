@@ -119,6 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_extension' => 'extension',
 	'item_fin' => 'en fin de liste',
 	'item_groupes_specifiques' => 'uniquement les mots-clés appartenant à certains groupes',
+	'item_hasard' => 'hasard (ordre aléatoire)',
 	'item_introduction' => 'introduction',
 	'item_jaime' => 'formulaire J\'aime',
 	'item_jaime_jaimepas' => 'formulaire J\'aime / Je n\'aime pas',
