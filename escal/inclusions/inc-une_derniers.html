@@ -39,9 +39,15 @@
 			<div class="rubrique">
 			<:rubrique:> : [(#TITRE)]
 			</div>
-			</BOUCLE_Rub>			
-<!-- affichage texte -->
-			[<div class="texte">
+			</BOUCLE_Rub>
+<!-- affichage premiere image + texte -->
+      <div class="image-une" >
+      <BOUCLE_image(DOCUMENTS){id_article}{0,1}{mode=image}>
+      <img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
+      </BOUCLE_image>
+      </div>
+
+      [<div class="texte">
 			(#INTRODUCTION|couper{300}|propre)
 			<br />
   		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]"><strong><:escal:lire_suite:></strong></a>
