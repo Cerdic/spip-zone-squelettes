@@ -8,7 +8,7 @@
 [(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives}{id_article}{id_rubrique}{lang})#SET{div_artrecents,1}]]
 <BOUCLE_PlusieursArticles(ARTICLES) {id_rubrique} {lang} {1,1}{!archive}>
 <BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
-[(#GET{div_artrecents}|non)<div id="artrecents">#SET{div_artrecents,1}]
+[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>#SET{div_artrecents,1}]
 		<B_articles_rubrique>
 		<h2 title="<:soyezcreateurs:memerubrique|replace{\.\.\.,''}:>: [(#INFO_TITRE{rubrique,#ID_RUBRIQUE}|supprimer_tags|attribut_html)]"><:soyezcreateurs:memerubrique:></h2>
 		<ul>
@@ -21,14 +21,14 @@
 </BOUCLE_PlusieursArticles>
 
 [(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
-[[(#GET{div_artrecents}|non)<div id="artrecents">[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints}{id_article}{cartouche=_cartouche})]
+[[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints}{id_article}{cartouche=_cartouche})]
 ]
 
 <BOUCLE_GpAdmin1(GROUPES_MOTS){titre==^_}>
 	<BOUCLE_MotsExclus1(MOTS){id_groupe}{doublons 1}> </BOUCLE_MotsExclus1>
 </BOUCLE_GpAdmin1>
 <B_MotsClefsArticle>
-[(#GET{div_artrecents}|non)<div id="artrecents">[(#SET{div_artrecents,1})]]
+[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]]
 <h2><:mots_clefs:></h2>
 <ul>
 <BOUCLE_MotsClefsArticle(MOTS){id_article}{doublons 1}>
