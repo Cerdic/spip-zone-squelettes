@@ -193,6 +193,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_date_publication' => 'Afficher la date de publication ?',
 	'label_afficher_derniers_articles_syndiques' => 'Afficher les derniers articles syndiqués ?',
 	'label_afficher_descriptif' => 'Afficher le descriptif ?',
+	'label_afficher_descriptif_complet' => 'Afficher le descriptif en entier ?',
 	'label_afficher_descriptif_site' => 'Afficher le descriptif du site ?',
 	'label_afficher_docs_joints' => 'Afficher les documents joints ?',
 	'label_afficher_formulaire_note' => 'Afficher le formulaire de notation ?',
