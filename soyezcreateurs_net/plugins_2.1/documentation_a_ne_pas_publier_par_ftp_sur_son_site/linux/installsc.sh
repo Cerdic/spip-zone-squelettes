@@ -54,6 +54,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/comments/commen
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact/branches/v0_7 ./contact/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/eva_freemind/eva_freemind_2_0
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/formidable
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gis/branches/v2 ./gis/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gravatar
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/insertion_modele
@@ -71,6 +72,8 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/socialtags
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip2pdf
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/splickrbox
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/twidget
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/yaml
 #sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
 cd ..
 
