@@ -52,7 +52,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/branches/2.0.0 ./clevermail/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/comments/comments-200/ ./comments/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact/branches/v0_7 ./contact/
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots/branches/1.2.3 ./critere_mots
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/eva_freemind/eva_freemind_2_0
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/formidable
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gis/branches/v2 ./gis/
