@@ -63,7 +63,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multime
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/memoization
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/microblog
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation/branches/v_0_9 ./notation
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk ./nuage/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
