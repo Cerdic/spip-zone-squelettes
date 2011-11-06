@@ -123,6 +123,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_articles_non' => 'No article found for this entry',
 'recherche_resultat' => 'Result of the search for ',
 'recherche_sites_non' => 'No site found for this search',
+'repondre_message' => 'Reply to this message',
 'rubrique_articles' => 'Articles of this section',
 'rubrique_contenu' => 'This section contains',
 'rubrique_sites_references' => 'Referenced sites in this section',
