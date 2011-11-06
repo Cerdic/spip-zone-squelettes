@@ -94,6 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fleche' => 'flecha',
 'fois' => 'veces',
 'format' => 'Formato :',
+'forum' => 'Foro',
 //H
 'haut_page' => 'Arriba',
 // I
