@@ -28,13 +28,14 @@
 		<[(#GET{niveau_titre_article}) ]class="[(#GET{niveau_titre_article}) ]entry-title">
 			[(#ENV{afficher_date_en_surtitre}|et{#ENV{afficher_date}})[(#DATE|affdate_jourcourt)]]
 			[(#ENV{afficher_surtitre}|oui)[<span class="#EDIT{surtitre}">(#SURTITRE)</span>] ]
-			<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
+      	[(#ENV{lien_sur_titre}|oui)
+				<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>]
 				[(#ENV{afficher_logo}|oui)
 					[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}})]]
 					[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}})]]
 				]
 				<span class="#EDIT{titre}">#TITRE</span>
-			</a>
+      	[(#ENV{lien_sur_titre}|oui)</a>]
 			[(#ENV{afficher_soustitre}|oui) [<span class="#EDIT{soustitre}">(#SOUSTITRE)</span>]]
 			[(#ENV{afficher_source_rss}|et{#ENV{afficher_source_rss_soustitre}}|et{#PLUGIN{rssarticle}}|oui)[<span class="source_rss">((#INCLURE{fond=inclure/source_rss,id_article=#ID_ARTICLE}))</span>]]
 		</#GET{niveau_titre_article}>
