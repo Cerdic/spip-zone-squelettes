@@ -36,13 +36,15 @@
 
             <div id="page">
               <div id="contenu">
-              <BOUCLE_rubrique_principal(HIERARCHIE){id_rubrique}{0,1}>
+              <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
+              <BOUCLE_rubrique_principal(RUBRIQUES){id_secteur}{racine}>
                 <!-- on cherches si la rubrique est rattachee a un mot clef du groupe type_rubrique-->
                 <!-- si oui, on stocke le mot-cle dans la variable "type" -->
                 <BOUCLE_type_rubrique(MOTS){id_rubrique}{type=type_rubrique}{0,1}>
                   #SET{type, #TITRE}
                 </BOUCLE_type_rubrique>
               </BOUCLE_rubrique_principal>
+              </BOUCLE_contexte>
                   <!-- on recupere le chemin de la noisette associee -->
                   #SET{inclusion, (#CHEMIN{inclusions/inc-article_(#GET{type}|concat{.html})})}
                   <!-- s'il y a une noisette associee, on l'affiche -->
