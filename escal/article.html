@@ -28,7 +28,25 @@
             <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
             #FORMULAIRE_RECHERCHE
-            <INCLURE {fond=inclusions/inc-menu_langues}>
+
+            <!-- menu langue pour la page article -->
+            <BOUCLE_contexte2(ARTICLES){id_article}>
+            <B_langues>
+              <div id="drapeau">
+                <div id="langue">
+                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
+                </div>
+            <BOUCLE_langues(ARTICLES){traduction}{par lang}{exclus} >
+              <span lang="#LANG" xml:lang="#LANG">
+                <a href="[(#URL_ARTICLE|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
+                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]" />
+                </a>
+              </span>
+            </BOUCLE_langues>
+              </div>
+            </B_langues>
+            </BOUCLE_contexte2>
+
           </div>
 
           <!-- on se met dans le contexte de l'article appelé -->
