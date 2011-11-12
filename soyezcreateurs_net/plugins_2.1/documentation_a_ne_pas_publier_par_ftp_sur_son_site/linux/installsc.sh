@@ -19,7 +19,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/cfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/changement_langue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/crayons
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur/branches/v1 ./facteur/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forum
