@@ -96,8 +96,8 @@
 		// there can be only one tooltip helper
 		if( helper.parent )
 			return;
-		// create the helper, h3 for title, div for url
-		helper.parent = $('<div role="tooltip" id="' + settings.id + '"><h3></h3><div class="body"></div><div class="url"></div></div>')
+		// create the helper, strong for title, div for url
+		helper.parent = $('<div role="tooltip" id="' + settings.id + '"><p><strong></strong></p><div class="body"></div><div class="url"></div></div>')
 			// add to document
 			.appendTo(document.body)
 			// hide it at first
@@ -108,7 +108,7 @@
 			helper.parent.bgiframe();
 		
 		// save references to title and url elements
-		helper.title = $('h3', helper.parent);
+		helper.title = $('strong', helper.parent);
 		helper.body = $('div.body', helper.parent);
 		helper.url = $('div.url', helper.parent);
 	}
