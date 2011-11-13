@@ -694,7 +694,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 			$annee = $evenements[$i]['annee'];
 			$mois = $evenements[$i]['mois'];
 			$jour = $evenements[$i]['jour'];
-			$date = mktime(0,0,0,$mois, $jour, $annee);
+			$date = mktime(0,0,0,intval($mois), intval($jour), intval($annee));
 			if ((date('Y-m-d',$date) >= $date_base) && ($count_liste < $taille)) {
 				if ($count_liste == 0) $cellule .= '<table id="footer_evenements" summary="'._T('sarkaspip:resume_mini_agenda_footer').'">';
 				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], $format).':&nbsp;</td>';
