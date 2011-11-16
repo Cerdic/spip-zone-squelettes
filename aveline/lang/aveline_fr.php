@@ -75,7 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_afficher_selecteur_archives' => 'À la façon d\'un blog, ajoute en début et/ou en fin de liste un sélecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donnée.',
 	'explication_afficher_source_rss' => 'Pour les articles importés avec le plugin Flux RSS en article, doit-on afficher la source, à savoir le site d\'où l\'article a été copié ?',
-	'explication_afficher_tri_alphabetique_nom' => 'Quand la liste triée par nom, affiche un index alphabétique permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée.',
+	'explication_afficher_tri_alphabetique_nom' => 'Quand la liste est triée par nom, affiche un index alphabétique qui permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée.',
 	'explication_afficher_tri_alphabetique_titre' => 'Quand la liste triée par titre, affiche un index alphabétique permet d\'accéder directement aux éléments dont le titre commence par la lettre demandée. <strong>ATTENTION :</strong> ne fonctionnera pas correctement si vous utilisez des titres numérotés.',
 	'explication_choix_periode' => 'Ajoute des liens permettant au visiteur de modifier la période (évènements passés, en cours ou à venir). Les liens ne seront affichés que s\'il y a des évènements sur la période considérée.',
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le critère de tri de la liste.',
