@@ -10,10 +10,10 @@
 	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_documents(DOCUMENTS) {tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{id_article?}{id_rubrique?}{recherche?}{vu?}{doublons portfolio}>
+	<BOUCLE_liste_documents(DOCUMENTS) {tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{id_article?}{id_rubrique?}{recherche?}{extension !IN #ENV{exclure_extensions}|explode{','}}{vu?}{doublons portfolio}>
 	[(#ENV{style_liste}|=={liste}|oui)
 		<li class="item">
-			<strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
+			<strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> #EXTENSION</strong>
 			[(#ENV{liste_afficher_type}|ou{#ENV{liste_afficher_taille}})<span class="small">(<span>][(#ENV{liste_afficher_type}|?{#TYPE_DOCUMENT})][(#ENV{liste_afficher_type}|et{#ENV{liste_afficher_taille}})&ndash; ][(#ENV{liste_afficher_taille}?{[(#TAILLE|taille_en_octets)]})][(#ENV{liste_afficher_type}|ou{#ENV{liste_afficher_taille}}|?{</span>)</span>})]
 			[(#ENV{liste_afficher_date}|ou{#ENV{liste_afficher_date_modif}})<div class="info-publi">]
 			[(#ENV{liste_afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt).</abbr>]]

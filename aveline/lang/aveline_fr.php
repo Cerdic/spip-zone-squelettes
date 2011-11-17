@@ -271,6 +271,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_exclure_auteur_en_cours' => 'Exclure l\'auteur en cours de la liste ?',
 	'label_exclure_breve_en_cours' => 'Exclure la brève en cours de la liste ?',
 	'label_exclure_evenement_en_cours' => 'Exclure l\'évènement en cours de la liste ?',
+	'label_exclure_extensions' => 'Exclure les extensions (saisir jpg,gif,png par exemple) :',
 	'label_exclure_photos' => 'Exclure les photos du portfolio ?',
 	'label_exclure_site_en_cours' => 'Exclure le site en cours de la liste ?',
 	'label_filtrer_articles' => 'Ajouter des liens pour filtrer les éléments par articles ?',
