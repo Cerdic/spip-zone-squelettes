@@ -305,7 +305,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_config('crayons/barretypo','on');
 			ecrire_config('crayons/reduire_logo',400);
 			ecrire_config('crayons/espaceprive','on');
-			ecrire_config('crayons/exec_autorise','articles,articles_edit,naviguer,rubriques_edit,sites,portfolio,controle_forum');
+			ecrire_config('crayons/exec_autorise','*');
 			// Permettre aux webmestres d'éditer les forums (dans le privé et le public, avec les crayons).
 			ecrire_config('autorite/editer_forums',1);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.5','non');
