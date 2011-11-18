@@ -14,7 +14,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acronymes
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/bandeau
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/boutonstexte
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/branches/v1 ./boutonstexte/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/cfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/changement_langue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse
