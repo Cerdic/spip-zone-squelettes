@@ -111,6 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // P
 'pages' => 'P&aacute;ginas',
 'page_auteur' => 'p&aacute;gina del autor' ,
+'page_contact' => 'P&aacute;gina contacto' ,
 'pages_vues' => 'N&uacute;mero de p&aacute;ginas visitadas: ', 
 'photos_hasard' => 'Algunas fotos<br />al azar',
 'poster_message' => 'Enviar un nuevo mensaje',

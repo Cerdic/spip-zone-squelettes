@@ -18,7 +18,13 @@
             <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{lang}>
           </div>
 
+          [(#REM) mise en place du lien vers le forum, du formulaire recherche et du menu de langues ]
           <div id="espace">
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]" alt="lien vers le forum" /></a>
+            </BOUCLE_forum>
+            #FORMULAIRE_RECHERCHE
+            <INCLURE {fond=inclusions/inc-menu_langues_self}>
           </div>
 
           <div id="page">
@@ -40,30 +46,30 @@
 function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
-                  <ul id="item">  <li>
-                    <div class="liste"><:escal:contact_nom:></div>
-                    <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>  <li>
-                    <div class="liste"><:escal:contact_prenom:></div>
-                    <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>  <li>
-                    <div class="liste"><:escal:contact_mail:></div>
-                    <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>
-                    <:escal:contact_motif:> 
-                    <ul>      <li>
-                      <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> /><:escal:contact_motif1:></li>      <li>
-                      <input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> /><:escal:contact_motif2:></li>      <li>
-                      <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> /><:escal:contact_motif3:></li>      <li>
-                      <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> /><:escal:contact_motif4:></li>      <li>
-                      <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> /><:escal:contact_motif5:></li>
-                    </ul>  </li>   <li>
-                    <:escal:contact_checkbox:><br /><br /> 
+                  <ul id="item">
+                    <li><div class="liste"><:escal:contact_nom:></div>
+                    <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>
+                    <li><div class="liste"><:escal:contact_prenom:></div>
+                    <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>
+                    <li><div class="liste"><:escal:contact_mail:></div>
+                    <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>
+                    <li><:escal:contact_motif:></li>
+                      <ul>
+                        <li><input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> /><:escal:contact_motif1:></li>
+                        <li><input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> /><:escal:contact_motif2:></li>
+                        <li><input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> /><:escal:contact_motif3:></li>
+                        <li><input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> /><:escal:contact_motif4:></li>
+                        <li><input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> /><:escal:contact_motif5:></li>
+                      </ul>
+                    <li><:escal:contact_checkbox:><br /><br />
                       <input type="checkbox" name="Niveau[]" value="Bon"  size="30" <?php if ($_POST['Niveau']=='Bon') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox1:>
                       <input type="checkbox" name="Niveau[]" value="Correct"  size="30" <?php if ($_POST['Niveau']=='Correct') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox2:>
                       <input type="checkbox" name="Niveau[]" value="Moyen"  size="30" <?php if ($_POST['Niveau']=='Moyen') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox3:>
                       <input type="checkbox" name="Niveau[]" value="Passable"  size="30" <?php if ($_POST['Niveau']=='Passable') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox4:>
                       <input type="checkbox" name="Niveau[]" value="Mauvais"  size="30" <?php if ($_POST['Niveau']=='Mauvais') { echo 'checked="checked"';  } ?> /><:escal:contact_checkbox5:>
-                    </li>   
-                  <br /><li><:escal:contact_message:></li> <br />
-                  <li>
+                    </li><br />
+                    <li><:escal:contact_message:></li> <br />
+                    <li>
                     <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
                     $erreur=1; }
                     else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
