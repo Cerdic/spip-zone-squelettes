@@ -16,24 +16,28 @@
 					<li class="menu-entree">
 						<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
 						<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-						<B_articles_sous>
-						<ul class="menu-liste">
-							<BOUCLE_articles_sous(ARTICLES){id_rubrique}{par num titre, titre}>
-								[(#ENV{afficher_articles}|et{#ENV{articles_un_niveau}|non})<li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]	</a></li>]
-							</BOUCLE_articles_sous>
-						</ul>
-						</B_articles_sous>
+                  <BOUCLE_test_articles_1(CONDITION){si #ENV{afficher_articles}|et{#ENV{articles_un_niveau}|non}}>
+                     <B_articles_sous>
+                     <ul class="menu-liste">
+                        <BOUCLE_articles_sous(ARTICLES){id_rubrique}{par num titre, titre}>
+                           <li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]</a></li>
+                        </BOUCLE_articles_sous>
+                     </ul>
+                     </B_articles_sous>
+                  </BOUCLE_test_articles_1>
 					</li>
 					</BOUCLE_miniplan>
 				</ul>
 				</B_miniplan>
-				<B_articles>
-				<ul class="menu-liste">
-					<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}>
-						[(#ENV{afficher_articles}|oui)<li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]</a></li>]
-					</BOUCLE_articles>
-				</ul>
-				</B_articles>
+            <BOUCLE_test_articles_2(CONDITION){si #ENV{afficher_articles}|oui}>
+               <B_articles>
+               <ul class="menu-liste">
+                  <BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}>
+                     <li class="menu-entree"><a href="#URL_ARTICLE">[(#TITRE)]</a></li>
+                  </BOUCLE_articles>
+               </ul>
+               </B_articles>
+            </BOUCLE_test_articles_2>
 			</li>
 			</BOUCLE_sous_rubriques>
 		</ul>
