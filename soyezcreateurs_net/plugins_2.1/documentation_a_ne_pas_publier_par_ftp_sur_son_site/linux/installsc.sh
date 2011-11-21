@@ -59,7 +59,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gis/branches/v2
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gravatar
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/insertion_modele
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/jquery_ui
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
+sleep 15 && svn checkout _plugins_/player/branches/lm_v1 ./lecteur_multimedia/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/memoization
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/microblog
