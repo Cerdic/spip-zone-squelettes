@@ -1,0 +1,29 @@
+#CACHE{12*3600}
+[(#REM) Breves de cette rubrique]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_breve_pag_breve,#EVANBREBREVEPAGBREVE}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_breve_pag_breve,5}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMINILARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,30}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMINIHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,30}]
+
+<?php if (#GET{nbre_breve_pag_breve}!=0) { ?>
+
+<B_breves>
+	<div class="bloc">
+	#ANCRE_PAGINATION
+	<h3 class="titre"><:breves_rubrique:></h3>
+	<ul>
+		<BOUCLE_breves(BREVES){id_rubrique}{par date}{inverse}{pagination #GET{nbre_breve_pag_breve}}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		        [<a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
+		    </li>
+		</BOUCLE_breves>
+		[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+	</ul>
+	</div>
+</B_breves>
+			
+ <?php } ?>
