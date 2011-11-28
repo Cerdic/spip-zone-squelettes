@@ -13,11 +13,11 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function notifications_commande_instituer_dist($quoi, $id_commande, $options) {
 	
 	// ne devrait jamais se produire
-	if ($options['statut'] == $options['ancien_statut']) {
+	if ($options['statut'] == $options['statut_ancien']) {
 		spip_log("statut inchange",'notifications');
 		return;
 	}
-	
+	// envoie une notification si la commande est en statut paye
 	if($options['statut']!='paye') return;
 		
 	include_spip('inc/texte');
