@@ -1,24 +1,28 @@
 <div id="depots">
 <B_depots>
-	<table class="spip" summary="<:svp:resume_table_depots:>">
-		<tbody>
-<BOUCLE_depots(DEPOTS){par titre}>
-			<tr class="[row_(#COMPTEUR_BOUCLE|alterner{odd,even})]">
-				<td>
-					<a[ href="(#URL_DEPOT)"] title="<:svp:bulle_aller_depot:>">
-						[(#TITRE)]
-					</a>
-				</td>
-				<td>[(#LOGO_DEPOT|sinon{#CHEMIN_IMAGE{depot-24}|image_nb}|image_passe_partout{24,24}|image_recadre{24,24,center,transparent}|inserer_attribut{class,logo})]</td>
-				<td>
-					[(#NBR_PLUGINS|singulier_ou_pluriel{svp:info_1_plugin, svp:info_nb_plugins}), ]
-					[(#NBR_PAQUETS|singulier_ou_pluriel{svp:info_1_paquet, svp:info_nb_paquets})]
-				</td>
-				<td>[<:svp:label_actualise_le:> (#MAJ|affdate{d-m H:i})]</td>
-			</tr>
+    <div class="liste">
+   		<ul class="liste-items">
+<BOUCLE_depots(DEPOTS){!par nbr_plugins}{par titre}>
+           <li id="depot-#ID_DEPOT" class="item">
+                <div class="item-depot">
+                    <div class="unit size1of3">
+                        <a[ href="(#URL_DEPOT)"] title="<:svpskel:bulle_aller_depot:>">
+                            [(#LOGO_DEPOT|sinon{#CHEMIN_IMAGE{depot-24}|image_nb}|image_passe_partout{24,24}|image_recadre{24,24,center,transparent}|inserer_attribut{class,logo})]
+                            [(#TITRE)]
+                        </a>
+                    </div>
+                    <div class="unit size1of3">
+                        [(#NBR_PLUGINS|singulier_ou_pluriel{svp:info_1_plugin, svp:info_nb_plugins}), ]
+                        [(#NBR_PAQUETS|singulier_ou_pluriel{svp:info_1_paquet, svp:info_nb_paquets})]
+                    </div>
+                    <div class="unit size1of3 lastUnit">
+                        [<:svp:label_actualise_le:> (#MAJ|affdate{d-m H:i})]
+                    </div>
+                </div>
+            </li>
 </BOUCLE_depots>
-		</tbody>
-	</table>
+        </ul>
+    </div>
 	[(#EVAL{_SVP_CRON_ACTUALISATION_DEPOTS}|oui)
 	<p><:svpskel:info_actualisation_depot_cron{periode=#EVAL{_SVP_PERIODE_ACTUALISATION_DEPOTS}}:></p>
 	]
