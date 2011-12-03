@@ -33,6 +33,7 @@
 </BOUCLE_initiales>
     </span>
  </div>
+</B_initiales>
 
 [(#REM) Liste des prefixes de plugin ]
 <div id="prefixes">
@@ -40,23 +41,23 @@
 <BOUCLE_prefixes(PLUGINS){id_depot?}{par prefixe}>
 [(#SET{initiale,[(#PREFIXE|translitteration|strtoupper|couper{1})]})]
 [(#GET{initiale}|unique{lettrine}|oui)
-    [(#COMPTEUR_BOUCLE|>{1}|oui)</div></ul>]
+    [(#COMPTEUR_BOUCLE|>{1}|oui)</ul></div>]
     [<h2 class="lettrine"[ id="lettre_(#GET{initiale}|strtolower)"]>(#GET{initiale}|unique)</h2>]
     <div class="liste">
         <ul class="liste-items">
  ]
             [<li id="prefixe-#PREFIXE" class="item">
-                <div class="item-prefixe">
                     <div class="unit size2of5">(#PREFIXE|strtolower)</div>
                     <div class="unit size3of5 lastunit">
                         <a[ href="(#URL_PLUGIN)"] title="<:svp:bulle_aller_plugin:>" >
                             [(#NOM)]
                         </a>
                     </div>
-                </div>
             </li>]
 </BOUCLE_prefixes>
 		</ul>
 	</div>
 </B_prefixes>
+    <p><:svpskel:info_aucun_prefixe_disponible:></p>
+<//B_prefixes>
 </div>
