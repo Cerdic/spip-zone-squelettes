@@ -1,8 +1,7 @@
-		
 [(#REM) Fil d'Ariane ]
 <p id="hierarchie">
 	<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
-	<span class="sep"> &gt; </span><span><:info_rechercher:></span>
+	<span class="sep"> &gt; </span><span><:svpskel:titre_page_recherche:></span>
 	[<span class="sep"> &gt; </span>
 	<strong class="on">(#RECHERCHE)</strong>]
 </p>
@@ -12,18 +11,24 @@
 		<h1 class="h1"><:resultats_recherche:></h1>
 		<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
 	</div>]
+</div>
 
+<div id="recherche">
 	[(#REM) plugins trouves ]
-	<B_plugins>
-	<div class="liste resultats plugins">
+    <div class="liste">
+	<B_recherche>
 		#ANCRE_PAGINATION
 		<h2 class="h2"><:svp:titre_plugins:> (#GRAND_TOTAL)</h2>
 		<ul class="liste-items">
-			<BOUCLE_plugins(PLUGINS) {recherche} {par points}{inverse} {pagination 10}>
-			<li class="item"><a[ href="(#URL_PLUGIN)"] title="<:svp:bulle_aller_plugin:>">#NOM</a></li>
-			</BOUCLE_plugins>
+	<BOUCLE_recherche(PLUGINS) {id_depot?}{categorie?}{compatible_spip?}{recherche} {!par points} {pagination 20}>
+			<li id="plugin-#PREFIXE" class="item">
+                <INCLURE{fond=inclure/resume-plugin, env, id_plugin=#ID_PLUGIN} />
+            </li>
+	</BOUCLE_recherche>
 		</ul>
 		[<p class="pagination">(#PAGINATION)</p>]
-	</div>
-	</B_plugins>
+    </B_recherche>
+        <p><:svpskel:info_aucun_plugin_recherche:></p>
+    <//B_recherche>
+    </div>
 </div>

@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'info_aucun_prefixe_disponible' => 'Aucun préfixe utilisé.',
 	'info_aucune_compatibilite_spip' => 'Non communiquée',
 	'info_aucune_contribution_disponible' => 'Aucune autre contribution disponible en dehors des plugins',
+    'info_aucun_plugin_recherche' => 'Aucun plugin correspondant à la recherche',
 	'info_stats_categories' => '@nb_categories@ catégorie(s) disponible(s) sur 13 possibles.',
 	'info_stats_plugins' => 'Le tableau ci-dessous affiche le nombre de plugins hébergés pour chacune des catégories disponibles.',
 	'intertitre_depot_autres_contributions' => 'Liste des autres contributions',
@@ -74,7 +75,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_navigation_plugin' => 'Dans la catégorie',
 	'titre_page_depots' => 'Dépôts',
 	'titre_page_plugins' => 'Plugins',
-	'titre_page_prefixes' => 'Préfixes',
+    'titre_page_prefixes' => 'Préfixes',
+    'titre_page_recherche' => 'Recherche',
 	'titre_page_statistiques' => 'Statistiques',
 	'titre_page_telechargements' => 'Téléchargements',
 );
