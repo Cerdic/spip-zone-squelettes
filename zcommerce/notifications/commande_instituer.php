@@ -21,9 +21,7 @@ function notifications_commande_instituer_dist($quoi, $id_commande, $options) {
 	if($options['statut']!='paye') return;
 		
 	include_spip('inc/texte');
-
 	$modele = "notifications/commande_vendeur";
-
 	$destinataires = array();
 	
 	$query = sql_select("email","spip_auteurs","statut = '0minirezo'");
@@ -38,13 +36,11 @@ function notifications_commande_instituer_dist($quoi, $id_commande, $options) {
 		//spip_log("notifications_commande_instituer_dist mailto webmasters ".$row["email"],'notifications');
 	}
 	
-
-		$destinataires = pipeline('notifications_destinataires',
-			array(
-				'args'=>array('quoi'=>$quoi,'id'=>$id_commande,'options'=>$options)
-			,
-				'data'=>$destinataires)
-		);
+	$destinataires = pipeline('notifications_destinataires',
+		array(
+			'args'=>array('quoi'=>$quoi,'id'=>$id_commande,'options'=>$options),
+			'data'=>$destinataires)
+	);
 		
 	//
 	// Envoyer les emails
@@ -54,14 +50,13 @@ function notifications_commande_instituer_dist($quoi, $id_commande, $options) {
 		notifications_envoyer_mails($email, $texte);
 		//spip_log("notifications_commande_instituer_dist mailto vendeur ".$email,'notifications');
 	}
-		
-		
-// puis on recherche l'auteur de la commande
 
-$id_auteur=$options['id_auteur'];
-if(!$id_auteur) $id_auteur=sql_getfetsel("id_auteur","spip_commandes","id_commande=".$id_commande);
-
-//envoyer un mail different pour le client		
+	// puis on recherche l'auteur de la commande
+	$id_auteur=$options['id_auteur'];
+	if(!$id_auteur)
+		$id_auteur=sql_getfetsel("id_auteur","spip_commandes","id_commande=".$id_commande);
+	
+	//envoyer un mail different pour le client		
 	$mailclient = sql_getfetsel("email","spip_auteurs","id_auteur=".$id_auteur);
 
 	if ($mailclient!=''){
@@ -69,8 +64,7 @@ if(!$id_auteur) $id_auteur=sql_getfetsel("id_auteur","spip_commandes","id_comman
 
 		$destinataires = pipeline('notifications_destinataires',
 			array(
-				'args'=>array('quoi'=>$quoi,'id'=>$id_commande,'options'=>$options)
-			,
+				'args'=>array('quoi'=>$quoi,'id'=>$id_commande,'options'=>$options),
 				'data'=>$mailclient)
 		);
 		//spip_log("notifications_commande_instituer_dist mailto client ".$mailclient,'notifications');
@@ -78,8 +72,6 @@ if(!$id_auteur) $id_auteur=sql_getfetsel("id_auteur","spip_commandes","id_comman
 		$texte = email_notification_objet($id_commande, "commande", $modele);
 		notifications_envoyer_mails($destinataires, $texte);
 	}
-
-	
 }
 
 ?>
