@@ -30,7 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //M
 'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
-'modifiez_vos_coordonnees'=>'Vérifiez vos coordonnées',
+'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
 
 
 //P
@@ -47,6 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'une_commande_sur'=>'Une commande sur @nom@',
 
 //V
+'verifiez_vos_coordonnees'=>'Vérifiez vos coordonnées',
 'vider_le_panier'=>'Vider le panier',
 'vos_commandes_payees'=>'Vos commandes payées',
 'vos_coordonnees'=>'Si vous n\'avez pas de compte client, saisissez vos coordonnées',
