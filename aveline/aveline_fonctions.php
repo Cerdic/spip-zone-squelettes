@@ -199,11 +199,11 @@ function critere_aveline_pagination_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	// definition de la taille de la page
 	$pas = "((\$Pile[0]['selection']=='pagination') ? \$Pile[0]['pas_pagination'] : ((\$Pile[0]['selection']=='limite') ? \$Pile[0]['limite'] : 1000000))";
-	
-	$type = !isset($crit->param[0][1]) ? "'$idb'" : calculer_liste(array($crit->param[0][1]), array(), $boucles, $boucle->id_parent);
+	// On ajoute id_noisette à la variable de pagination
+	$type = !isset($crit->param[0][1]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']" : calculer_liste(array($crit->param[0][1]), array(), $boucles, $boucle->id_parent);
 	$debut = ($type[0]!=="'") ? "'debut'.$type" 
 	  : ("'debut" .substr($type,1));
-
+	
 	$boucle->modificateur['debut_nom'] = $type;
 	$partie =
 		 // tester si le numero de page demande est de la forme '@yyy'
@@ -349,6 +349,56 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sen
 	}
 	return implode(' <span class="sep separateur">|</span> ',$retour);
 }
+
+// Surcharge du critère tri pour ajouter id_noisette aux variables de personnalisation du tri
+/**
+ * {tri [champ_par_defaut][,sens_par_defaut][,nom_variable]}
+ * champ_par_defaut : un champ de la table sql
+ * sens_par_defaut : -1 ou inverse pour decroissant, 1 ou direct pour croissant
+ * nom_variable : nom de la variable utilisee (par defaut tri_nomboucle)
+ * 
+ * {tri titre}
+ * {tri titre,inverse}
+ * {tri titre,-1}
+ * {tri titre,-1,truc}
+ * 
+ * @param unknown_type $idb
+ * @param unknown_type $boucles
+ * @param unknown_type $crit
+ */
+function critere_tri($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+
+	// definition du champ par defaut
+	$_champ_defaut = !isset($crit->param[0][0]) ? "''" : calculer_liste(array($crit->param[0][0]), array(), $boucles, $boucle->id_parent);
+	$_sens_defaut = !isset($crit->param[1][0]) ? "1" : calculer_liste(array($crit->param[1][0]), array(), $boucles, $boucle->id_parent);
+	// On ajoute _id_noisette à la variable de tri
+	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']" : calculer_liste(array($crit->param[2][0]), array(), $boucles, $boucle->id_parent);
+
+	$_tri = "((\$t=(isset(\$Pile[0]['tri'.$_variable]))?\$Pile[0]['tri'.$_variable]:$_champ_defaut)?tri_protege_champ(\$t):'')";
+	
+	$_sens_defaut = "(is_array(\$s=$_sens_defaut)?(isset(\$s[\$st=$_tri])?\$s[\$st]:reset(\$s)):\$s)";
+	$_sens ="((intval(\$t=(isset(\$Pile[0]['sens'.$_variable]))?\$Pile[0]['sens'.$_variable]:$_sens_defaut)==-1 OR \$t=='inverse')?-1:1)";
+
+	$boucle->modificateur['tri_champ'] = $_tri;
+	$boucle->modificateur['tri_sens'] = $_sens;
+	$boucle->modificateur['tri_nom'] = $_variable;
+	// faut il inserer un test sur l'existence de $tri parmi les champs de la table ?
+	// evite des erreurs sql, mais peut empecher des tri sur jointure ...
+	$boucle->hash .= "
+	\$senstri = '';
+	\$tri = $_tri;
+	if (\$tri){
+		\$senstri = $_sens;
+		\$senstri = (\$senstri<0)?' DESC':'';
+	};
+	";
+	$field = serialize(array_keys($boucle->show['field']));
+	$boucle->select[] = "\".tri_champ_select(\$tri).\"";
+	$boucle->order[] = "tri_champ_order(\$tri,'$id_table','$field').\$senstri";
+}
+
 
 // Critère aveline_branche
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/branche-objet.yaml'
