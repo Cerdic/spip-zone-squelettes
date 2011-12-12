@@ -51,10 +51,6 @@ function zcommerce_formulaire_traiter($flux){
 								'objet' => 'commande',
 								'id_objet' => $id_commande,
 								'type' => 'livraison' ) );
-		
-		$redirect = generer_url_public('z-commerce','appel=paiement',true);
-		include_spip('inc/headers');
-		redirige_par_entete($redirect);
 	}
 	return($flux);
 }
