@@ -48,6 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //V
 'verifiez_vos_coordonnees'=>'Vérifiez vos coordonnées',
+'veuillez_vous_connecter'=>'Veuillez d\'abord vous connecter',
 'vider_le_panier'=>'Vider le panier',
 'vos_commandes_payees'=>'Vos commandes payées',
 'vos_coordonnees'=>'Si vous n\'avez pas de compte client, saisissez vos coordonnées',
