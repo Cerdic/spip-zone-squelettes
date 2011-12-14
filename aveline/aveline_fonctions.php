@@ -1,9 +1,9 @@
 <?php
 
-// Filtre pour afficher les statistiques d'un mot-clé
-// Code inspiré de la fonction presenter_groupe_mots_boucle dans ecrire/inc/grouper_mots.php
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
+// Filtre pour afficher les statistiques d'un mot-clé
+// Code inspiré de la fonction presenter_groupe_mots_boucle dans ecrire/inc/grouper_mots.php
 function filtre_statistiques_mot_dist($id_mot){
 	include_spip('base/abstract_sql');
 	$texte_lie = array();
