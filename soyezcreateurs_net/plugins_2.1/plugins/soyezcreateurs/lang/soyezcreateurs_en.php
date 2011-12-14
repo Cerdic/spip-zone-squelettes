@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://www.spip.net/trad-lang/
+// extrait automatiquement de http://trad.spip.org
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -178,7 +178,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_menu_actif' => 'Active menu',
 	'cfg_menu_clic' => 'Menu click',
 	'cfg_menu_footer_liens' => 'In the page footer',
-	'cfg_menu_haut' => 'Top &amp; bottom menus',
+	'cfg_menu_haut' => 'Top & bottom menus',
 	'cfg_menu_haut_affichagelogo_label' => 'Logos du Menu Haut', # NEW
 	'cfg_menu_haut_affichagelogo_logoonly' => 'Affichage du logo seul', # NEW
 	'cfg_menu_haut_affichagelogo_logoplustexte' => 'Affichage du logo et du titre de la rubrique', # NEW
