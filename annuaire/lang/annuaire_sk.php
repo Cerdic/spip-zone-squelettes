@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://www.spip.net/trad-lang/
+// extrait automatiquement de http://trad.spip.org
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -172,7 +172,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'descriptif_login_public' => '<h4>Nastavenia verejnej prihlasovacej stránky</h4>
     <br />Nastavte možnosti štýlu pre verejnú prihlasovaciu stránku.',
 	'descriptif_menu' => '<h4>Nastavenia menu</h4>
-    <br />Zobrazte alebo skryte odkazy na stránky &ndash; toto nastavenie ovplyvní menu v hlavičke a päte.',
+    <br />Zobrazte alebo skryte odkazy na stránky – toto nastavenie ovplyvní menu v hlavičke a päte.',
 	'descriptif_mot' => '<h4>Nastavenie stránky s kľúčovými slovami</h4>
     <br />Nastavte možnosti štýlu pre stránku s kľúčovými slovami.',
 	'descriptif_partenaire' => '<h4>Nastavenia stránky "Partneri"</h4>
@@ -287,10 +287,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'partenaire' => 'partner',
 	'partenaires' => '@nb@ partnerov',
 	'pas_commentaire' => 'Ešte žiadne komentáre',
-	'pas_descriptif' => 'Pre túto stránku ešte nemáme popis &ndash; ak ste jej webmater, môžete nás kontaktovať a navrhnúť vhodný popis pre svoju stránku.',
+	'pas_descriptif' => 'Pre túto stránku ešte nemáme popis – ak ste jej webmater, môžete nás kontaktovať a navrhnúť vhodný popis pre svoju stránku.',
 	'pas_le_droit_ecrire' => 'Nemáte oprávnenie sem písať',
 	'pas_pagination' => 'Počet záznamov na slučku',
-	'pas_partenaire' => 'Ešte nemáme žiadnych partnerov &ndash; ak by ste chceli byť jedným z nich, prosím, kontaktujte nás.',
+	'pas_partenaire' => 'Ešte nemáme žiadnych partnerov – ak by ste chceli byť jedným z nich, prosím, kontaktujte nás.',
 	'pas_votes' => 'Ešte žiadne hlasy',
 	'pas_zard' => 'Žiadne náhodné stránky, zaregistrujte, prosím, nejaké.',
 	'pied_page' => 'Päta stránky',

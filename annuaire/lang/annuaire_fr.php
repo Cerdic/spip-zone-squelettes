@@ -164,9 +164,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />Réglé vos couleurs de la page forum.',
 	'descriptif_general' => '<h4>Réglages généraux</h4>
 				<br />Une page qui regroupe tous les réglages généraux du site.',
-	'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
-				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
-				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqu&eacute;',
+	'descriptif_herbier' => '<h4>Réglage de l\'herbier</h4>
+				<br />Réglé vos boucles et styles sur l\'herbier.
+				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqué',
 	'descriptif_login_public' => '<h4>Réglage de la page login public</h4>
 				<br />Réglé vos styles sur la page login public.',
 	'descriptif_menu' => '<h4>Réglage du menu</h4>
