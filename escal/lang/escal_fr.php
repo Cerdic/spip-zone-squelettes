@@ -6,6 +6,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
+'test' => '&agrave;&aacute;&acirc;&#269;&eacute;&euml;&iacute;&icirc;&oacute;&ocirc;&uacute;&ntilde;',
 'acces_direct' => 'Acc&egrave;s direct',
 'accueil' => 'Accueil',
 'actus' => 'Actus',
@@ -75,6 +76,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'dans_site' => 'dans ce site',
 // E
 'en_ligne' => 'Actuellement en ligne : ',
+'envoi_mail_provenance' => 'Provenance : ',
+'envoi_mail_ip' => 'Adresse IP : ',
+'envoi_mail_navigateur' => 'Navigateur : ',
+'envoi_mail_nom' => 'Nom : ',
+'envoi_mail_prenom' => 'Prénom : ',
+'envoi_mail_e_mail' => 'e-mail : ',
+'envoi_mail_motif' => 'Motif : ',
+'envoi_mail_niveau' => 'Niveau : ',
+'envoi_mail_message' => 'Message : ',
 'envoyer_message' => 'Envoyer un message &agrave; ',
 'erreur404' => 'Erreur 404',
 'erreur404_message' => '<p>La page que vous demandez n\'existe pas ou plus sur le site.
@@ -112,6 +122,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pages' => 'pages',
 'page_auteur' => 'page de l\'auteur' ,
 'page_contact' => 'Page contact' ,
+'page_contact2' => 'Page contact de' ,
 'pages_vues' => 'Nombre de pages visit&eacute;es : ', 
 'photos_hasard' => 'Quelques photos<br />au hasard',
 'poster_message' => 'Poster un nouveau message',
