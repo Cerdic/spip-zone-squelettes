@@ -65,6 +65,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_li
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/microblog
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation/branches/v_0_9 ./notation
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk ./nuage/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/odt2spip/version_0.1_stable ./odt2spip/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/skeleditor/skeleditor-2 ./skeleditor/
