@@ -433,6 +433,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_mot-sites' => 'Sites liés au mot-clé',
 	'nom_navigation_rubriques' => 'Navigation par rubriques',
 	'nom_navigation_secteurs_langue' => 'Navigation par rubriques du secteur de langue',
+	'nom_page-401' => 'Erreur 401',
 	'nom_page-forum-contenuprincipal' => 'Contenu principal de la page forum',
 	'nom_page-login-formulaire_login' => 'Formulaire d\'identification',
 	'nom_page-plan-contenuprincipal' => 'Contenu principal de la page plan',
