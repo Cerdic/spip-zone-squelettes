@@ -10,7 +10,7 @@
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete, lang?}>
 	<INCLURE{fond=inc/inc-menu, class=entete, lang?}>
-
+[<link rel='stylesheet' media='all' href='(#URL_PAGE{style_prive_bonux.css,ltr=#LANG_LEFT})' type='text/css' />]
 <div id="site_edit">
     <div id="content">
 	[(#REM) Fil d'Ariane ]
@@ -27,9 +27,7 @@
 		</div><!--#text-->
 	</div><!--#hierarchie-->
 
-		[(#SESSION{id_auteur}|oui)
-		#FORMULAIRE_EDITER_SITE{#ID_SYNDIC, #ID_RUBRIQUE, #ENV{retour}}
-		]
+		[(#AUTORISER{modifier, site, #ID_SYNDIC})#FORMULAIRE_EDITER_SITE{#ID_SYNDIC, #ID_RUBRIQUE, #ENV{retour}}]
 		[(#SESSION{id_auteur}|non)<:annuaire:pas_le_droit_ecrire:>]
 
 	</div><!--#content-->
