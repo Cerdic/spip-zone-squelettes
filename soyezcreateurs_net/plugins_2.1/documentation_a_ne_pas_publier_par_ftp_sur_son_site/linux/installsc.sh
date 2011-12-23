@@ -57,7 +57,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/eva_freemind/ev
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/formidable
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gis/branches/v2 ./gis/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gravatar
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/insertion_modele
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/inserer_modeles/branches/v_0 ./insertion_modele
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/jquery_ui
 sleep 15 && svn checkout _plugins_/player/branches/lm_v1 ./lecteur_multimedia/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/memoization
