@@ -13,22 +13,7 @@
 		<li>[(#TITRE)]</li>
 	</ul>
 	</div>
-
-<BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
-<!-- Autres mots-clefs du meme groupe -->
-<div id="artrecents"[ class="(#ENV{classe})"]>
-<h2 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h2>
-<B_MotsduGroupe>
-<ul>
-<BOUCLE_MotsduGroupe(MOTS) {id_groupe}{par num titre}>
-	<li>[(#ID_MOT|!={#_mot_principal:ID_MOT}|?{<a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]</li>
-</BOUCLE_MotsduGroupe>
-</ul>
-</B_MotsduGroupe>
-</div>
-
-</BOUCLE_groupe>
-
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,haut}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/mots}{id_groupe}{id_mot})]]
 <div class="texte">
 <!-- Contenu : Le mot choisi -->
 <div class="cartouche">
@@ -88,7 +73,7 @@
 
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
-
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,haut}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/mots}{id_groupe}{id_mot}{classe=artrecent_bas})]]
 
 </BOUCLE_mot_principal>
 <BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
