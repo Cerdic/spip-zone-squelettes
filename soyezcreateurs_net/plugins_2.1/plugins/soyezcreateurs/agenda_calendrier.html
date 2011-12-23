@@ -38,24 +38,7 @@
 			[(#TITRE)] - [(#GET{date}|affdate_mois_annee)]
 		</h1></div>
 	</div>
-	<B_themes>
-	<div id="artrecents"[ class="(#ENV{classe})"]>
-		<h2><:soyezcreateurs:themes:></h2>
-		<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}><B_sous_rubriques1>
-		<!-- Les themes avec recursivite -->
-		<ul>
-		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
-		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-		<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date_th}}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
-			[(#TITRE)]
-		</a>
-		<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
-		</li>
-		</BOUCLE_sous_rubriques1>
-		</ul>
-		</B_sous_rubriques1></BOUCLE_themes>
-	</div>
-	</B_themes>
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,haut}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel}{id_rubrique=#ID_SECTEUR}{date_th=#GET{date_th}}{id_mot}{mots})]]
 	<div id="letexte">
 		[<div class="descriptif">(#DESCRIPTIF)</div>]
 		[(#TEXTE)]
@@ -148,6 +131,7 @@
 		[<div class="notes">(#NOTES)</div>]
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,haut}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/themes_agenda_mensuel}{id_rubrique=#ID_SECTEUR}{date_th=#GET{date_th}}{id_mot}{mots}{classe=artrecent_bas})]]
 </BOUCLE_rubrique_principal>
 [(#FORMULAIRE_ADMIN)]
 <INCLURE{fond=noisettes/footer/footer}
