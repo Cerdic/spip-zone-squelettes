@@ -19,27 +19,32 @@
 	<div class="unit size4of5">
 		[(#REM) Nom, categorie, tags, slogan, prefixe ]
 		<div class="cartouche">
-			<h1 class="h1">#NOM</h1>
-			[<p class="info-publi">
-				<abbr class="published"><small>
-					[<a[ href="(#URL_PAGE{plugins}|parametre_url{categorie,#CATEGORIE})"] title="<:svpskel:bulle_aller_categorie:>">
-						(#CATEGORIE|svp_traduire_categorie)
-					</a>]
-					[ - (#TAGS)]
-					<br /><em>(#PREFIXE|strtolower)</em>
-				</small></abbr>
-			</p>]
-		</div>
-		[<div class="meta-publi">(#SLOGAN)</div>]
+			[<h1 class="h1">(#NOM|extraire_multi)</h1>]
+            [<div class="resume-slogan">(#SLOGAN|extraire_multi|PtoBR)</div>]
+        </div>
+            <ul class="liste-items"><li class="item">
+            <div class="resume-prefixe">[(#PREFIXE|strtolower)]</div>
+            <div class="resume-categorie">
+                [<a[ href="(#URL_PAGE{plugins}|parametre_url{categorie,#CATEGORIE})"] title="<:svpskel:bulle_aller_categorie:>">
+                    (#CATEGORIE|svp_traduire_categorie)
+                </a>]
+            </div>
+			<div class="info-tags">[(#TAGS)]</div>
+            </li>
 
-		[(#REM) Si le plugin SVP Statistiques est active on peut afficher les stats du plugin ]
-		[(#PLUGIN{SVPSTATS}|oui)
-		<div class="meta-publi">
-			[(#NBR_SITES|?{
-				[(#NBR_SITES|singulier_ou_pluriel{svpstats:info_nbr_sites_1, svpstats:info_nbr_sites_n})],
-				<:svpstats:info_nbr_sites_0:> 
-			})]
-		</div>]
+            <li class="item">
+            [<div class="info-vmax"><:svpskel:derniere_version:> (#VMAX)</div>]
+        	[<div class="info-modif"><:svpskel:derniere_maj:> (#DATE_MODIF|affdate)</div>]
+
+            [(#REM) Si le plugin SVP Statistiques est active on peut afficher les stats du plugin ]
+            [(#PLUGIN{SVPSTATS}|oui)
+            <div class="info-nbr">
+                [(#NBR_SITES|?{
+                    [(#NBR_SITES|singulier_ou_pluriel{svpstats:info_nbr_sites_1, svpstats:info_nbr_sites_n})],
+                    <:svpstats:info_nbr_sites_0:>
+                })]
+            </div>]
+            </li></ul>
 	</div>
 	
 	[(#REM) Les branches SPIP compatibles ]
@@ -58,7 +63,7 @@
 
 [(#REM) Details des paquets du plugin ]
 <BOUCLE_paquets(PAQUETS){id_plugin}{!par version}>
-	<INCLURE{fond=inclure/paquet-plugin}{env}{id_paquet}{nom_plugin=#NOM} />
+	<INCLURE{fond=inclure/paquet-plugin}{env}{id_paquet}{nom_plugin=#NOM|extraire_multi} />
 </BOUCLE_paquets>
 
 </BOUCLE_plugin>

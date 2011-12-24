@@ -28,6 +28,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bulle_filtrer_par_spip' => 'Filtrer sur la branche SPIP',
 	'bulle_supprimer_filtre' => 'Supprimer le filtre',
 
+// D
+	'derniere_maj' => 'Mis à jour le',
+	'derniere_version' => 'Dernière version',
+
 // I
 	'info_actualisation_depot_cron' => 'Les plugins des dépôts sont actualisés automatiquement toutes les @periode@ heure(s).',
 	'info_aucun_depot_disponible' => 'Aucun dépôt disponible.',
