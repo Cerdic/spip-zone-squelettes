@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_documenter' => 'La documentation',
 	'bouton_sourcer' => 'Les sources',
 	'bouton_telecharger' => 'L\'archive',
+	'bouton_xmler' => 'Le fichier XML',
 	'bulle_aller_categorie' => 'Se rendre sur la page des plugins de cette catégorie',
 	'bulle_aller_demonstration' => 'Se rendre sur la page de démonstration',
 	'bulle_aller_depots' => 'Se rendre sur la page d\'accueil des dépôts',
