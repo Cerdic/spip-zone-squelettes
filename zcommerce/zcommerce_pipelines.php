@@ -3,6 +3,18 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /*
+ * Insérer la feuille de style
+ *
+ * @return $flux 
+ */
+function zcommerce_insert_head_css($flux){
+	$flux .= "\n".'<link rel="stylesheet" href="'.url_absolue(find_in_path('css/zcommerce.css')).'" type="text/css" media="all" />';
+
+	return $flux;
+}
+
+
+/*
  * S'inscruster apres le traitement classique du formulaire d'edition des coordonnees (etape 3) pour
  * - créer la commande à partir du panier en cours (s'il n'est pas vide)
  * - y associer les adresses de facturation et de livraison (copies de l'adresse principale du client)

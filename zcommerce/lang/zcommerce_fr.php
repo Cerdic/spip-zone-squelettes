@@ -4,6 +4,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'acces_facture'=>'Facture',
+'adresse'=>'Adresse',
 'aucun_produit'=>'Aucun produit',
 'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
 'ajouter_au_panier'=>'Ajouter au panier',
@@ -13,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //C
 'commande'=>'Commande',
+'commande_invalide'=>'Référence de commande invalide',
 'commande_ref'=>'Commande @ref@',
 'commande_ref_statut'=>'Votre commande @ref@ est @statut@',
 'confirmation_commande'=>'Confirmation de votre commande',
@@ -23,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //D
 'deja_inscrit'=>'Déja inscrit',
+'detail_commande'=>'Détails',
 
 
 //L
@@ -30,7 +33,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //M
 'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
+'mes_commandes'=>'Mes commandes',
 'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
+'mon_compte' => 'Mon compte',
 
 
 //P
@@ -39,6 +44,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'paiement_fictif'=>'Paiement fictif',
 'passer_la_commande'=>'Passer la commande',
 
+// Q
+'quantite'=>'Quantité',
 //S
 'total'=>'Total',
 'deja_client'=>'Si vous avez déjà un compte client, identifiez-vous',
@@ -53,6 +60,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'vos_commandes_payees'=>'Vos commandes payées',
 'vos_coordonnees'=>'Si vous n\'avez pas de compte client, saisissez vos coordonnées',
 'votre_commande'=>'Votre commande',
+'votre_commande_du'=>'Votre commande du ',
 'votre_commande_sur'=>'Votre commande sur @nom@',
 'vous_inscrire'=>'Vous inscrire',
 
