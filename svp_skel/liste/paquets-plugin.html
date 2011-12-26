@@ -1,7 +1,21 @@
 <B_paquets>
-<div class="liste paquets">
+<div class="paquets">
 	<h3 class="h3"><:svpskel:intertitre_paquets_plugin:></h3>
-	<ul class="liste-items">
+
+	[(#REM) Index des initiales de prefixe ]
+	<B_initiales>
+	<div class="index" id="index_archives_plugin">
+		<span class="lettres">
+	<BOUCLE_initiales(PAQUETS plugins){compatible_spip}{categorie?}{id_depot?}{id_depot>0}{par nom_archive}>
+		[(#SET{initiale,[(#NOM_ARCHIVE|translitteration|strtoupper|couper{1})]})]
+		[(#GET{initiale}|unique{index}|?{
+			<a class="lien_index" href="#lettre_[(#GET{initiale}|strtolower)]">[(#GET{initiale})]</a>
+		})]
+	</BOUCLE_initiales>
+		</span>
+	</div>
+	</B_initiales>
+
 <BOUCLE_paquets(PAQUETS plugins){compatible_spip}{categorie?}{id_depot?}{id_depot>0}{par nom_archive}>
 	[(#REM) <!-- Determination de l'url du depot (minimiser les calculs) -->]
 	<BOUCLE_nouveau_depot(CONDITION){si #ID_DEPOT|!={#GET{depot}}}>
@@ -11,17 +25,25 @@
 		</BOUCLE_url_depot>
 	</BOUCLE_nouveau_depot>
 
-		<li id="paquet-#ID_PAQUET" class="item">
-			<div class="unit size2of5">
-				<a[ id="#PREFIXE-#ID_DEPOT-(#NOM_ARCHIVE|basename{.zip})"][ href="(#GET{url_depot}|concat{#NOM_ARCHIVE})"] title="<:svp:bulle_telecharger_archive:>[ -	(#NBO_ARCHIVE|taille_en_octets)]" >
-					[(#NOM_ARCHIVE|basename{.zip})]
-				</a>
-			</div>
-			<div class="unit size1of5">[(#MAJ_ARCHIVE|affdate{d-m H:i})]</div>
-			<div class="unit size1of10">#VERSION</div>
-			<div class="unit size3of10 lastunit">[(#COMPATIBILITE_SPIP|svp_afficher_intervalle{SPIP}|sinon{&nbsp;})]</div>
-		</li>
+[(#SET{initiale,[(#NOM_ARCHIVE|translitteration|strtoupper|couper{1})]})]
+[(#GET{initiale}|unique{lettrine}|oui)
+	[(#COMPTEUR_BOUCLE|>{1}|oui)</ul></div>]
+	[<h2 class="lettrine"[ id="lettre_(#GET{initiale}|strtolower)"]>(#GET{initiale}|unique)</h2>]
+	<div class="liste">
+		<ul class="liste-items">
+]
+			<li id="paquet-#ID_PAQUET" class="item">
+				<div class="unit size2of5">
+					<a[ id="#PREFIXE-#ID_DEPOT-(#NOM_ARCHIVE|basename{.zip})"][ href="(#GET{url_depot}|concat{#NOM_ARCHIVE})"] title="<:svp:bulle_telecharger_archive:>[ -	(#NBO_ARCHIVE|taille_en_octets)]" >
+						[(#NOM_ARCHIVE|basename{.zip})]
+					</a>
+				</div>
+				<div class="unit size1of5">[(#MAJ_ARCHIVE|affdate{d-m H:i})]</div>
+				<div class="unit size1of10">#VERSION</div>
+				<div class="unit size3of10 lastunit">[(#COMPATIBILITE_SPIP|svp_afficher_intervalle{SPIP}|sinon{&nbsp;})]</div>
+			</li>
 </BOUCLE_paquets>
-	</ul>
+		</ul>
+	</div>
 </div>
 </B_paquets>
