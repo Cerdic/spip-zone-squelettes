@@ -34,6 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //M
 'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
 'mes_commandes'=>'Mes commandes',
+'modifier_adresse'=>'Modifier',
 'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
 'mon_compte' => 'Mon compte',
 

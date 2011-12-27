@@ -12,36 +12,32 @@
 		[(#PLUGIN{zaboarticle}|oui)
 			<INCLURE{fond=inclure/les_articles}{env}>
 			]
-		<a href="[(#SELF|parametre_url{appel,mon_panier})]" class="continuer">
+		<a href="[(#URL_PAGE{z-commerce}|parametre_url{appel,mon_panier})]" class="continuer">
 		<:zcommerce:continuer:> >>
 		</a>
+      #SET{stop,oui}
 	]
 	
 	[(#REM) 2 - mon_panier ]
 	[(#ENV{appel}|=={"mon_panier"}|oui)
 		<INCLURE{fond=inclure/mon_panier}{env}>
+      #SET{stop,oui}
 	]
 	
 	[(#REM) 3 - mes_coordonnees ]
 	[(#ENV{appel}|=={"mes_coordonnees"}|oui)
 		<INCLURE{fond=inclure/mes_coordonnees}{env}>
 		<!-- todo pipeline mes_coordonnees > ma_commande enregistre -->
+      #SET{stop,oui}
 	]
-	
-	[(#REM) 4 - paiement et retour banque ]
-	[(#ENV{appel}|=={"paiement"}|oui)
-		<INCLURE{fond=inclure/paiement}{env}>
+   [(#ENV{appel}|=={""}|non|et{#ENV{appel}|=={"mon_panier"}|non}|et{#ENV{appel}|=={"mes_coordonnees"}|non}|et{#SESSION{id_auteur}|non})
+      <h4><a href="[(#URL_PAGE{z-commerce}|parametre_url{appel,mes_coordonnees})]">
+         <:zcommerce:veuillez_vous_connecter:>
+      </a></h4>
+      #SET{stop,oui}
+   ]
+	[(#GET{stop}|=={oui}|non)
+      <INCLURE{fond=inclure/#ENV{appel}}{env}>
 	]
-	
-	[(#REM) Mon Compte - Mes commandes ]
-	[(#ENV{appel}|=={"mes_commandes"}|oui)
-		<INCLURE{fond=inclure/mes_commandes}{env}>
-	]
-	
-	[(#REM) Mon Compte - Detail de commande ]
-	[(#ENV{appel}|=={"mes_commandes_details"}|oui)
-		<INCLURE{fond=inclure/mes_commandes_details}{env}>
-	]
-	
 
 </div>

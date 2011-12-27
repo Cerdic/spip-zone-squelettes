@@ -1,44 +1,14 @@
-[(#SESSION{id_auteur}|non)
-	<h4><a href="[(#SELF|parametre_url{appel,mes_coordonnees})]">
-		<:zcommerce:veuillez_vous_connecter:>
-	</a></h4>
-]
-
 <BOUCLE_commande(COMMANDES){id_auteur=#SESSION{id_auteur}}{id_commande}>
 	<h1><:zcommerce:votre_commande_du:>[(#DATE|affdate_jourcourt)][ (#DATE|affdate{H:i})]</h1>
-	<p><:commandes:reference:> #REFERENCE</p>
-	<p><:commandes:montant:> #PRIX</p>
-   
-   <B_adresses_auteur>
-      <div class="adresses">
-         <BOUCLE_adresses_auteur(ADRESSES adresses_liens auteurs){id_auteur}>
-         	<div class="adresse #TYPE">
-               <h3 class="h3"><:zcommerce:adresse:> #TYPE</h3>
-               [<div class="titre">(#TITRE)</div>]
-               [<div class="voie">(#VOIE)</div>]
-               [<div class="complement">(#COMPLEMENT)</div>]
-               [<div class="boite_postale">(#BOITE_POSTALE)</div>]
-               [<div class="ville">[(#CODE_POSTAL) ](#VILLE)</div>]
-               <div class="pays"><BOUCLE_pays(PAYS){code=#PAYS}>#NOM</BOUCLE_pays></div>
-            </div>
-         </BOUCLE_adresses_auteur>
-         <BOUCLE_adresses_commande(ADRESSES adresses_liens commandes){id_commande}>
-         	<div class="adresse #TYPE">
-               <h3 class="h3"><:zcommerce:adresse:> #TYPE</h3>
-               [<div class="titre">(#TITRE)</div>]
-               [<div class="voie">(#VOIE)</div>]
-               [<div class="complement">(#COMPLEMENT)</div>]
-               [<div class="boite_postale">(#BOITE_POSTALE)</div>]
-               [<div class="ville">[(#CODE_POSTAL) ](#VILLE)</div>]
-               <div class="pays"><BOUCLE_pays_commande(PAYS){code=#PAYS}>#NOM</BOUCLE_pays_commande></div>
-            </div>
-         </BOUCLE_adresses_commande>
-      </div>
-   </B_adresses_auteur>
-
-	<br class="nettoyeur" />
+	<p><:commandes:reference:> : #REFERENCE</p>
+	<p><:commandes:montant:> : #PRIX</p>
+	<p><:commandes:etat:> : [(#STATUT|commandes_lister_statuts)]</p>
+   <INCLURE{fond=inclure/mes_adresses,id_auteur,id_commande}>
 	<h2><:zcommerce:detail_commande:></h2>
    <INCLURE{fond=inclure/commande,id_commande}>
+   [(#STATUT|=={paye}|oui)
+   	<p>[(#URL_PAGE{facture}|parametre_url{id_commande,#ID_COMMANDE}|lien_ou_expose{<:zcommerce:acces_facture:>})]</p>]
+
 </BOUCLE_commande>
    <:zcommerce:commande_invalide:>
 <//B_commande>
