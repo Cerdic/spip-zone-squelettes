@@ -26,12 +26,11 @@
 </BOUCLE_depots>
         </ul>
     </div>
-	[(#EVAL{_SVP_CRON_ACTUALISATION_DEPOTS}|oui)
-	<p><:svpskel:info_actualisation_depot_cron{periode=#EVAL{_SVP_PERIODE_ACTUALISATION_DEPOTS}}:></p>
-	]
-	[(#PLUGIN{SVPSTATS}|et{#EVAL{_SVP_CRON_ACTUALISATION_STATS}}|oui)
-	<p><:svpstats:info_actualisation_stats_cron{periode=#EVAL{_SVP_PERIODE_ACTUALISATION_STATS}}:></p>
-	]
+	#SET{periode, #VAL|svp_periode_actualisation_depots}
+	[(#GET{periode}|oui)<p><:svpskel:info_actualisation_depot_cron{periode=#GET{periode}}:></p>]
+
+	#SET{periode, #VAL|appliquer_filtre{svpstats_periode_actualisation_stats}|sinon{0}}
+	[(#GET{periode}|oui)<p><:svpstats:info_actualisation_stats_cron{periode=#GET{periode}}:></p>]
 </B_depots>
 	<p><:svpskel:info_aucun_depot_disponible:></p>
 <//B_depots>
