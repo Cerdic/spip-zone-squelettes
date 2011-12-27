@@ -82,6 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_page_plugins' => 'Plugins',
     'titre_page_prefixes' => 'Préfixes',
     'titre_page_recherche' => 'Recherche',
+	'titre_page_sommaire' => 'Plugins mis à jour récemment',
 	'titre_page_statistiques' => 'Statistiques',
 	'titre_page_telechargements' => 'Téléchargements',
 );
