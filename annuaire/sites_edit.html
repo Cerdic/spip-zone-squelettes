@@ -4,13 +4,13 @@
 <head>
 <title><B_titre><BOUCLE_titre(SITES) {id_syndic}>#NOM_SITE</BOUCLE_titre></B_titre><:annuaire:nouveau_site:><//B_titre> - [(#NOM_SITE_SPIP|textebrut)]</title>
 <INCLURE{fond=inc/inc-head, id_syndic, lang?}>
+[<link rel='stylesheet' media='all' href='(#URL_PAGE{style_prive_bonux.css,ltr=#LANG_LEFT})' type='text/css' />]
 </head>
 <body>
 
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete, lang?}>
 	<INCLURE{fond=inc/inc-menu, class=entete, lang?}>
-[<link rel='stylesheet' media='all' href='(#URL_PAGE{style_prive_bonux.css,ltr=#LANG_LEFT})' type='text/css' />]
 <div id="site_edit">
     <div id="content">
 	[(#REM) Fil d'Ariane ]
@@ -27,7 +27,7 @@
 		</div><!--#text-->
 	</div><!--#hierarchie-->
 
-		[(#AUTORISER{modifier, site, #ID_SYNDIC})#FORMULAIRE_EDITER_SITE{#ID_SYNDIC, #ID_RUBRIQUE, #ENV{retour}}]
+		[(#SESSION{id_auteur}|oui)#FORMULAIRE_EDITER_SITE{#ID_SYNDIC, #ID_RUBRIQUE, #ENV{retour}}]
 		[(#SESSION{id_auteur}|non)<:annuaire:pas_le_droit_ecrire:>]
 
 	</div><!--#content-->
