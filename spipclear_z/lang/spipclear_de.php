@@ -12,7 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_commentaire' => 'Kommentar hinzugügen',
 	'archive' => 'Archiv',
 	'archives' => 'Archive',
-	'archives_precedents' => 'Précédents', # NEW
+	'archives_precedents' => 'Précédents', # MODIF
 	'archives_suivants' => 'Suivants', # NEW
 	'attime' => 'à',
 	'aucun_commentaire' => 'Kein Kommentar',
@@ -30,7 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'calendrier' => 'Kalender',
 	'categorie' => 'Kategorie',
 	'categories' => 'Kategorien',
-	'ce_bestof_label' => 'Billet sélectionné', # NEW
+	'ce_bestof_label' => 'Billet sélectionné', # MODIF
 	'commentaire' => 'Kommentar',
 	'commentaires' => 'Kommentare',
 	'commentaires_fermes' => 'Die Kommetare zu diesem Eintrag sind beendet',
@@ -48,11 +48,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_jour_abbr_6' => 'Fr',
 	'date_jour_abbr_7' => 'Sa',
 	'de' => 'de',
-	'derniere_maj' => 'Dernière mise à jour', # NEW
+	'derniere_maj' => 'Dernière mise à jour', # MODIF
 	'derniers_billets' => 'Derniers billets', # NEW
 	'derniers_commentaires' => 'Derniers commentaires', # NEW
-	'description_page-sommaire' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.', # NEW
-	'document_non_trouve' => 'Document non trouvé', # NEW
+	'description_page-sommaire' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.', # MODIF
+	'document_non_trouve' => 'Document non trouvé', # MODIF
 	'document_non_trouve_explication' => 'Le document que vous cherchez n\'existe pas.', # NEW
 
 	// F
@@ -89,24 +89,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Personnalisation de la page d\'accueil', # NEW
 
 	// M
-	'msg_erreur_v00' => 'Echec ', # NEW
-	'msg_erreur_v02' => 'Echec à la création du champ extra « Billet Sélectionné »', # NEW
+	'msg_erreur_v00' => 'Echec ', # MODIF
+	'msg_erreur_v02' => 'Echec à la création du champ extra « Billet Sélectionné »', # MODIF
 
 	// N
 	'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation', # NEW
-	'noisette_desc_bestof' => 'Affiche une liste cliquable des billets sélectionnés', # NEW
+	'noisette_desc_bestof' => 'Affiche une liste cliquable des billets sélectionnés', # MODIF
 	'noisette_desc_calendrier' => 'Affiche un calendrier mensuel', # NEW
-	'noisette_desc_categories' => 'Liste des catégories', # NEW
+	'noisette_desc_categories' => 'Liste des catégories', # MODIF
 	'noisette_desc_contact' => 'Affiche un lien vers la page contact (plugin Contact)', # NEW
 	'noisette_desc_langs' => 'Permet de changer la langue d\'affichage du blog', # NEW
 	'noisette_desc_lastcomments' => 'Liste des n derniers commentaires', # NEW
-	'noisette_desc_lastposts' => 'Liste des n derniers billets sous forme de résumé', # NEW
+	'noisette_desc_lastposts' => 'Liste des n derniers billets sous forme de résumé', # MODIF
 	'noisette_desc_links' => 'Affiche la liste de l\'ensemble des sites', # NEW
 	'noisette_desc_navigation' => 'Affiche les liens de navigation (accueil, archives)', # NEW
 	'noisette_desc_subscribe' => 'Affiche les boutons rss et atom pour les billets et les comentaires', # NEW
-	'noisette_titre_bestof' => 'Billets sélectionnés', # NEW
+	'noisette_titre_bestof' => 'Billets sélectionnés', # MODIF
 	'noisette_titre_calendrier' => 'Calendrier', # NEW
-	'noisette_titre_categories' => 'Catégories', # NEW
+	'noisette_titre_categories' => 'Catégories', # MODIF
 	'noisette_titre_contact' => 'Contacts', # NEW
 	'noisette_titre_langs' => 'Langues du blog', # NEW
 	'noisette_titre_lastcomments' => 'Derniers commentaires', # NEW
@@ -115,7 +115,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisette_titre_navigation' => 'Liens de navigation', # NEW
 	'noisette_titre_search' => 'Moteur de recherche', # NEW
 	'noisette_titre_subscribe' => 'Liens d\'abonnement', # NEW
-	'nom_page-sommaire' => 'Page par défaut de spipclear', # NEW
+	'nom_page-sommaire' => 'Page par défaut de spipclear', # MODIF
 
 	// O
 	'oksearch' => 'OK',
@@ -123,7 +123,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	'par' => 'par', # NEW
 	'permalink_pour' => 'Permalink zu',
-	'publie_le' => 'Publié le', # NEW
+	'publie_le' => 'Publié le', # MODIF
 
 	// R
 	'recherche' => 'Recherche', # NEW
@@ -136,10 +136,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'secteur_spipclear_aucun' => 'Aucun', # NEW
 	'secteurs_spipclear' => 'Secteurs SpipClear', # NEW
 	'selection' => 'merken',
-	'selectionner_theme' => 'Cliquez pour sélectionner ce thême', # NEW
+	'selectionner_theme' => 'Cliquez pour sélectionner ce thême', # MODIF
 	'site_comment' => 'Site',
-	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).', # NEW
-	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)', # NEW
+	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).', # MODIF
+	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)', # MODIF
 	'sommaire_spipclear' => 'Appliquer SpipClear sur la page d\'accueil du site (ne fonctionne que pour un secteur).', # NEW
 	'syndication' => 'Syndikation',
 
@@ -148,7 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tags' => 'Tags', # NEW
 	'texte_erreur1' => 'Suche nach',
 	'texte_erreur2' => 'hat kein Ergebnis.',
-	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # NEW
+	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # MODIF
 	'titre_erreur' => 'Fehler:',
 	'trackback' => 'Trackback',
 	'trackbacks' => 'Trackbacks',
@@ -159,7 +159,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'un_seul_mot' => 'ein einziges Wort',
 
 	// V
-	'voir_capture' => 'Afficher la capture d\'écran', # NEW
+	'voir_capture' => 'Afficher la capture d\'écran', # MODIF
 	'votre_commentaire' => 'Votre commentaire' # NEW
 );
 
