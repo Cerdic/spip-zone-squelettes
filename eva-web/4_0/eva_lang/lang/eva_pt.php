@@ -198,7 +198,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndic_site' => 'Syndiquer tout le site', # NEW
 
 	// T
-	'texte_page_404' => 'Desculpe!</em><br />A página que procura n&atilde;o foi encontrada. ', # em
+	'texte_page_404' => 'Desculpe!</em><br />A página que procura n&atilde;o foi encontrada. ', # MODIF
 	'tous_droits' => 'Todos os direitos reservados',
 	'tous_les_auteurs' => 'Todos os autores',
 
