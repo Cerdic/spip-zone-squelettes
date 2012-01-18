@@ -4,10 +4,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'acces_facture'=>'Facture',
-'adresse'=>'Adresse',
+'adresse_de'=>'Adresse de',
 'aucun_produit'=>'Aucun produit',
 'aucune_commande_valide'=>'Il n\'y a (actuellement) aucune commande.',
 'ajouter_au_panier'=>'Ajouter au panier',
+'annuler'=>'<< Annuler',
 
 //B
 'boutique'=>'Boutique',
@@ -19,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commande_ref_statut'=>'Votre commande @ref@ est @statut@',
 'confirmation_commande'=>'Confirmation de votre commande',
 'confirmation_la_commande'=>'Confirmation de la commande',
-'continuer'=>'Continuer',
+'continuer'=>'Continuer >>',
 'coordonnees'=>'Coordonnées',
 
 
@@ -38,6 +39,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'modifiez_vos_coordonnees'=>'Modifiez vos coordonnées',
 'mon_compte' => 'Mon compte',
 
+//N
+'nouvelle_adresse_de' => 'Nouvelle adresse de',
 
 //P
 'panier'=>'Panier',
