@@ -31,8 +31,7 @@
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
 <B_DessousBreves>
 <div id="homeDessousBreves">
-<BOUCLE_DessousBreves(RUBRIQUES){titre_mot = DessousBreves }{par num titre}{lang}>
-<B_articles_recents>
+<BOUCLE_DessousBreves(RUBRIQUES){titre_mot = DessousBreves }{par num titre}{lang}><B_articles_recents>
 <div class="dessousbreves[(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
 	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h2>
 	[(#DESCRIPTIF)]
@@ -42,8 +41,7 @@
 </BOUCLE_articles_recents>
 	</ul>
 </div><!-- dessousbreves -->
-</B_articles_recents>
-</BOUCLE_DessousBreves>
+</B_articles_recents></BOUCLE_DessousBreves>
 </div><!-- homeDessousBreves -->
 </B_DessousBreves>
 
@@ -60,14 +58,18 @@
 </BOUCLE_articles_QuoideNeuf>
 </ul>
 </div><!-- fond -->
-<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}>
-[[<h2 class="#EDIT{titre}"[ title="(#DESCRIPTIF|attribut_html)"]><a href="[(#URL_RUBRIQUE|parametre_url{calendrier,1})]">(#TITRE)</a></h2>]
-<div class="fond">
-(#INCLURE{fond=noisettes/agenda/miniagenda_liste_prochains})
-</div><!-- fond -->]
-</BOUCLE_agenda>
 </div><!-- homequoideneuf -->
 </B_articles_QuoideNeuf>
+<B_agenda>
+<div id="homeagenda">
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}>[
+[<h2 class="#EDIT{titre}"[ title="(#DESCRIPTIF|attribut_html)"]><a href="[(#URL_RUBRIQUE|parametre_url{calendrier,1})]">(#TITRE)</a></h2>]
+<div class="fond">
+(#INCLURE{fond=noisettes/agenda/miniagenda_liste_prochains})
+</div><!-- fond -->
+]</BOUCLE_agenda>
+</div><!-- homeagenda -->
+</B_agenda>
 </div><!-- homeSecondblock -->
 
 <B_Outils>
