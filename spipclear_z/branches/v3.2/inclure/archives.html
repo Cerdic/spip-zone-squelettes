@@ -1,0 +1,19 @@
+<div id="content-info">
+	<h2><:spipclear:archives:></h2>
+</div>
+
+<div class="content-inner">
+<BOUCLE_annees(ARTICLES){lang_select=non}{fusion YEAR(date)}{!par date}>
+	[<h3>(#DATE|annee)</h3>]
+	<B_mois>
+	<ul class="liste-items">
+	<BOUCLE_mois(ARTICLES){annee_relatif}{!par date}{lang_select=non}{fusion MONTH(date)}>
+		<li class="item">
+			<a href="[(#SELF|parametre_url{archives,[(#DATE|affdate{Y-m})]})]">[(#DATE|nom_mois)]</a>
+			<BOUCLE_articles(ARTICLES){mois_relatif}{lang_select=non}> </BOUCLE_articles>[((#GRAND_TOTAL))]</B_articles>
+		</li>
+	</BOUCLE_mois>
+	</ul>
+	</B_mois>
+</BOUCLE_annees>
+</div>

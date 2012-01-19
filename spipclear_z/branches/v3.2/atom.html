@@ -1,0 +1,46 @@
+[(#HTTP_HEADER{Content-type: application/atom+xml})]<?xml 
+version="1.0"[ encoding="(#CHARSET)"]?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xml:lang="#LANG">
+
+[<link rel="self" href="(#SELF|url_absolue)" />]
+<id>#URL_SITE_SPIP/</id>
+
+<title>[(#NOM_SITE_SPIP|texte_backend)][(#ENV{comments}|oui) : commentaires]</title>
+	<link rel="alternate" type="text/html" href="#URL_SITE_SPIP"></link>
+	
+
+	<BOUCLE_date_du_dernier_article_de_la_rubrique(ARTICLES){id_rubrique?}{!par date}{0,1}>
+		<updated>[(#DATE|date_iso)]</updated>
+	</BOUCLE_date_du_dernier_article_de_la_rubrique>
+
+<BOUCLE_feinte(ARTICLES){0,1}>[(#ENV{comments}|non)]</BOUCLE_feinte>	
+	<BOUCLE_rub(RUBRIQUES){id_rubrique?}>
+		<BOUCLE3(ARTICLES){branche}{!par date}{0,10}>
+			<entry>
+				<title>[(#TITRE|texte_backend)]</title>
+				<link rel="alternate" type="text/html" href="[(#URL_ARTICLE|url_absolue)]"></link>
+				<updated>[(#DATE|date_iso)]</updated>
+				<id>[(#URL_ARTICLE|url_absolue)]</id>
+				<summary type="html">[(#INTRODUCTION|textebrut|entites_html|entites_unicode)]</summary>
+				<author><name><BOUCLE23(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE23>Inconnu<//B23></name></author>
+			</entry>
+		</BOUCLE3>
+	</BOUCLE_rub>
+	<//B_rub>
+</B_feinte>
+	<BOUCLE_1(FORUMS spip_articles){id_article?}{plat}{!par date}{0,25}>
+		<entry>
+			<title>[(#TITRE|texte_backend)]</title>
+			<link rel="alternate" type="text/html" href="[(#URL_FORUM|url_absolue)]"></link>
+			<updated>[(#DATE|date_iso)]</updated>
+			<id>[(#URL_FORUM|url_absolue)]</id>
+			<modified>[(#DATE|date_iso)]</modified>
+			<summary type="html">[(#TEXTE|textebrut|entites_html|entites_unicode)]</summary>
+		</entry>
+	</BOUCLE_1>
+<//B_feinte>
+
+</feed>
