@@ -74,4 +74,17 @@ function spipclear_declarer_champs_extras($champs = array()){
 	));
 	return $champs;
 }
+
+function spipclear_declarer_champs_extras_3($champs = array()){
+	$champs['spip_articles']['bestof'] = array(
+		'saisie' => 'input',//Type du champs (voir plugin Saisies)
+		'options' => array(
+			'nom' => 'bestof', 
+			'label' => _T('spipclear:ce_bestof_label'), 
+			'sql' => "varchar(30) NOT NULL DEFAULT ''",
+			'defaut' => '',// Valeur par défaut
+		),
+		'verifier' => array());
+	return $champs;
+}
 ?>
