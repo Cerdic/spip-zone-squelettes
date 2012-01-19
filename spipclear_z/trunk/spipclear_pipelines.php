@@ -65,22 +65,12 @@ function spipclear_get_config_noizetier($fichier){
  * @return array le tableau des champs à déclarer
  */
 function spipclear_declarer_champs_extras($champs = array()){
-	$champs[] = new ChampExtra(array(
-		'table' => 'article',
-		'champ' => 'bestof',
-		'label' => 'spipclear:ce_bestof_label',
-		'type' => 'oui-non',
-		'sql' => "varchar(30) NOT NULL DEFAULT ''"
-	));
-	return $champs;
-}
-
-function spipclear_declarer_champs_extras_3($champs = array()){
 	$champs['spip_articles']['bestof'] = array(
 		'saisie' => 'input',//Type du champs (voir plugin Saisies)
 		'options' => array(
-			'nom' => 'bestof', 
-			'label' => _T('spipclear:ce_bestof_label'), 
+			'nom' => 'bestof',
+			'label' => _T('spipclear:ce_bestof_label'),
+			'type' => 'oui-non',
 			'sql' => "varchar(30) NOT NULL DEFAULT ''",
 			'defaut' => '',// Valeur par défaut
 		),
