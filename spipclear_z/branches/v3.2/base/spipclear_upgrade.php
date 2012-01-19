@@ -7,7 +7,7 @@ include_spip('spipclear_pipelines');
 
 /**
  * Fonction d'upgrade/maj
- * On cr�e une configuration par d�faut
+ * On cree une configuration par defaut
  *
  * @param string $nom_meta_base_version
  * @param string $version_cible
@@ -17,7 +17,7 @@ function spipclear_upgrade($nom_meta_base_version,$version_cible){
 	if (	(!isset($GLOBALS['meta'][$nom_meta_base_version]))
 			|| (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		include_spip('spipclear_pipelines');
-		include_spip('inc/noizetier');
+		include_spip('noizetier_fonctions');
 
 		if (version_compare($current_version,'0.0','=')){
 			$config_defaut = _DIR_PLUGIN_SPIPCLEAR . 'config_noizetier/spipclear.yaml';
