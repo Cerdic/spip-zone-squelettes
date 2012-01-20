@@ -25,7 +25,6 @@ function spipclear_upgrade($nom_meta_base_version,$version_cible){
 }
 
 function spipclear_install_noizetier(){
-	spip_log('un passage','test');
 	include_spip('noizetier_fonctions');
 	$config_defaut = _DIR_PLUGIN_SPIPCLEAR . 'config_noizetier/spipclear.yaml';
 	$yaml = spipclear_get_config_noizetier($config_defaut);
