@@ -95,6 +95,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                       de este sitio.
                     </p>',
 'espace_redacteurs' => 'Espacio de redactores',
+'escal' => 'Escal',
 'et' => 'y',
 'evenements' => 'Acontecimientos por ocurrir',
 'evenements_ajouter' => 'A&ntilde;adir un acontecimiento<br />(Acceso reservado)',

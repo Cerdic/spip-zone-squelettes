@@ -1,9 +1,38 @@
 <?php
+// =======================================================================================================================================
+// Balise : #VERSION_SQUELETTE
+// =======================================================================================================================================
+// Auteur: SpipFactory
+// Fonction : affiche la version utilisee du squelette Escal variable globale $version_squelette
+// =======================================================================================================================================
+//
+function balise_VERSION_SQUELETTE($p) {
+	$p->code = 'calcul_version_squelette()';
+	$p->interdire_scripts = false;
+	return $p;
+}
 
+function calcul_version_squelette() {
 
-   // pour g‚rer les classes des diff‚rents liens dans les articles
-   // Un grand merci … l'auteur : bobof
-   
+	$version = NULL;
+
+	if (lire_fichier(_DIR_PLUGIN_ESCAL.'/plugin.xml', $contenu)
+	&& preg_match('/<version>(.*?)<\/version>/', $contenu, $match))
+		$version .= trim($match[1]);
+
+	$revision = version_svn_courante(_DIR_PLUGIN_ESCAL);
+	if ($revision > 0)
+		$version .= ' ['.strval($revision).']';
+	else if ($revision < 0)
+		$version .= ' ['.strval(abs($revision)).'&nbsp;<strong>svn</strong>]';
+
+	return $version;
+}
+
+// =======================================================================================================================================
+   // pour gerer les classes des differents liens dans les articles
+   // Un grand merci a l'auteur : bobof
+
 function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $connect='')
 {
 	$mode = ($texte AND $class) ? 'url' : 'tout';
@@ -30,8 +59,8 @@ function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $c
 return inc_lien_dist($lien, $texte, $class, $titre, $hlang, $rel, $connect);
 }
 
-// balises issues da la contrib  "Balises de comptage" de FranckA
-// http://www.spip-contrib.net/Balises-de-comptage 
+// balises issues da la contrib  "Balises de comptage" de Franck
+// http://www.spip-contrib.net/Balises-de-comptage
 
 // balise #TOTAL_VISITES
 function vst_total_visites() {
@@ -60,8 +89,8 @@ function balise_NBPAGES_VISITEES($p) {
 	return $p;
 }
 
-// fonction pour l'affichage du nombre de visiteurs connectés
-// issue du plugin "Nombre de visiteurs connectés" 
+// fonction pour l'affichage du nombre de visiteurs connectes
+// issue du plugin "Nombre de visiteurs connectées"
 // http://www.spip-contrib.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
 function visiteurs_connectes_compter(){
