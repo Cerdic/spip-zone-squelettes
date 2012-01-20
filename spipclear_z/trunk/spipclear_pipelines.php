@@ -2,7 +2,8 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /**
- * pipeline zengarden_activer_theme pour charger une config_noizetier associée à un thème
+ * Insertion dans le pipeline zengarden_activer_theme (plugin zen-garden)
+ * Charger une config_noizetier associée à un thème
  *
  * @param array $flux
  * @return array
@@ -38,7 +39,8 @@ function spipclear_zengarden_activer_theme($flux){
 }
 
 /**
- * lire un fichier de configuration yaml exportée par le noizetier
+ * Insertion dans le pipeline get_config_noizetier (Plugin NoiZetier)
+ * Lire un fichier de configuration yaml exportée par le noizetier
  *
  * @param string $fichier
  * @return array ou false
@@ -59,6 +61,7 @@ function spipclear_get_config_noizetier($fichier){
 
 
 /**
+ * Insertion dans le pipeline declarer_champs_extras (Plugin champs extras 3.0)
  * Déclare le champ extra de sélection d'un article
  *
  * @param array $champs
