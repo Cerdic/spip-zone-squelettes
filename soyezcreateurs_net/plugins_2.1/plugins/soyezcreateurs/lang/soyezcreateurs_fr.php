@@ -138,6 +138,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_hauteur' => 'Hauteur',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vidéo d\'accueil (0 pour hauteur automatique)',
 	'cfg_header' => 'Header',
+	'cfg_homeagenda_ex' => 'Concerne les événements affichés en mode portail au centre de la page',
+	'cfg_homeagenda_label' => 'Affichage des événements sur la page d\'accueil',
 	'cfg_identifiant_addthis' => 'Identifiant <a href="http://www.addthis.com/">AddThis</a>',
 	'cfg_indexation' => 'Indexation',
 	'cfg_indexation_info' => 'Indexation du site par les moteurs de recherche',
