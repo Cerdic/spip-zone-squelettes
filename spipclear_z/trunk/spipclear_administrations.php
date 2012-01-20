@@ -13,11 +13,9 @@ include_spip('spipclear_pipelines');
  * @param string $version_cible
  */
 function spipclear_upgrade($nom_meta_base_version,$version_cible){
-		include_spip('noisetier_fonctions');
-		$config_defaut = _DIR_PLUGIN_SPIPCLEAR . 'config_noizetier/spipclear.yaml';
 
 		$maj['create'] = array(
-			array('spipclear_get_config_noizetier',$config_defaut),
+			array('spipclear_install_noizetier')
 		);
 				
 		cextras_api_upgrade(spipclear_declarer_champs_extras(), $maj['create']);
@@ -26,6 +24,17 @@ function spipclear_upgrade($nom_meta_base_version,$version_cible){
 		maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
 
+function spipclear_install_noizetier(){
+	spip_log('un passage','test');
+	include_spip('noizetier_fonctions');
+	$config_defaut = _DIR_PLUGIN_SPIPCLEAR . 'config_noizetier/spipclear.yaml';
+	$yaml = spipclear_get_config_noizetier($config_defaut);
+	if(!noizetier_importer_configuration('remplacer', 'non', $yaml)) {
+		return _T('spipclear:msg_erreur_v00')."<br/>";
+	} else {
+		return true;
+	}
+}
 /**
  * Fonction de desinstallation
  *
