@@ -899,4 +899,32 @@ function masquer_articles_where($primary, $_publique=''){
 	return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
 }
 
+/** Plugin Dictionnaires **/
+/*
+ * Fonction de remplacement par défaut pour les termes trouvés dans les textes
+ */
+function dictionnaires_remplacer_defaut($mot, $definition){
+	return $mot
+		.'<sup><a href="'
+		.($definition['url']?$definition['url']:generer_url_public('sigles', 'id_dictionnaire='.$definition['id_dictionnaire'].'#sigle'.$definition['id_definition']))
+		.'" title="'._T('definition:titre_definition').': '.couper(trim(attribut_html(supprimer_tags(typo($definition['texte'])))),80).'">'
+		.'?'
+		.'</a></sup>';
+}
+
+/*
+ * Fonction de remplacement par défaut pour les abbréviations trouvées dans les textes
+ * Ceci est un EXEMPLE montrant qu'on peut mettre un truc différent pour un type de définition précis
+ * Mais ce code est une MAUVAISE PRATIQUE en accessibilité
+ * (car seuls les gens avec des yeux valides et un pointeur de souris ont accès à l'information)
+ */
+function dictionnaires_remplacer_abbr($mot, $definition){
+	return '<abbr title="'.couper(trim(attribut_html(supprimer_tags(typo($definition['texte'])))),80).'">'.$mot.'</abbr>'
+		.'<sup><a href="'
+		.($definition['url']?$definition['url']:generer_url_public('sigles', 'id_dictionnaire='.$definition['id_dictionnaire'].'&type=abbr#sigle'.$definition['id_definition']))
+		.'" title="'._T('definition:titre_definition').': '.couper(trim(attribut_html(supprimer_tags(typo($definition['texte'])))),80).'">'
+		.'?'
+		.'</a></sup>';
+}
+
 ?>
