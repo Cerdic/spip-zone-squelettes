@@ -6,7 +6,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
-'test' => '&agrave;&aacute;&acirc;&#269;&eacute;&euml;&iacute;&icirc;&oacute;&ocirc;&uacute;&ntilde;',
 'acces_direct' => 'Acc&egrave;s direct',
 'accueil' => 'Accueil',
 'actus' => 'Actus',
