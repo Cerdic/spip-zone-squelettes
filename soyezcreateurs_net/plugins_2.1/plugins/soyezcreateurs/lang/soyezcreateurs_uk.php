@@ -140,6 +140,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_hauteur' => 'Висота',
 	'cfg_hauteur_videoaccueil' => 'Висота відео головної сторінки (0 для автоматичної висоти)',
 	'cfg_header' => 'Тема ',
+	'cfg_homeagenda_ex' => 'Concerne les événements affichés en mode portail au centre de la page', # NEW
+	'cfg_homeagenda_label' => 'Affichage des événements sur la page d\'accueil', # NEW
 	'cfg_identifiant_addthis' => 'Id <a href="http://www.addthis.com/"> AddThis </ A>',
 	'cfg_indexation' => 'Індексування',
 	'cfg_indexation_info' => 'Індексація сайту пошуковими системами',
