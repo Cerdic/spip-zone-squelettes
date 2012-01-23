@@ -7,20 +7,12 @@
       <INCLURE{fond=inclure/commande,id_commande,statut}>
    
       #SET{details, #ARRAY}
-      <BOUCLE_details(COMMANDES_DETAILS){id_commande}{par id_commandes_detail}>
-      	<BOUCLE_test_objet(CONDITION){si objet|={produit}}>
-            <BOUCLE_produits(PRODUITS){id_produit=#ID_OBJET}>
-               #SET{prix_unitaire,#PRIX*}
-            </BOUCLE_produits>
-         </BOUCLE_test_objet>
-         	#SET{prix_unitaire,#PRIX*}
-         <//B_test_objet>
-         
+      <BOUCLE_details(COMMANDES_DETAILS){id_commande}{par id_commandes_detail}>   
          [(#SET{ detail#COMPTEUR_BOUCLE,
          		  [(#ARRAY{
                      descriptif, [(#DESCRIPTIF*|supprimer_numero)],
                      quantite, #QUANTITE,
-                     prix, #GET{prix_unitaire},
+                     prix, #PRIX_UNITAIRE_HT*,
          })]})]
          
          [(#SET{ details,
