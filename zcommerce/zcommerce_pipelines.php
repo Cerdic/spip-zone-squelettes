@@ -3,7 +3,7 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /*
- * Insérer la feuille de style
+ * Inserer la feuille de style
  *
  * @return $flux 
  */
@@ -16,7 +16,7 @@ function zcommerce_insert_head_css($flux){
 
 /*
  * S'inscruster apres le traitement classique du formulaire d'edition des coordonnees (etape 3) pour
- * - créer la commande à partir du panier en cours (s'il n'est pas vide)
+ * - creer la commande e partir du panier en cours (s'il n'est pas vide)
  * - y associer les adresses de facturation et de livraison (copies de l'adresse principale du client)
  * - rediriger vers la page d'affichage de la commande et de paiement
  *
@@ -31,20 +31,20 @@ function zcommerce_formulaire_traiter($flux){
 		 and paniers_id_panier_encours()
 
 	   ){
-		// On récupère d'abord toutes les informations dont on va avoir besoin
-		// Déjà le visiteur connecté
+		// On recupere d'abord toutes les informations dont on va avoir besoin
+		// Deje le visiteur connecte
 		$id_auteur = session_get('id_auteur');
 	
-		// On crée la commande ici
+		// On cree la commande ici
 		include_spip('inc/commandes');
 		$id_commande = creer_commande_encours();
 		
 		// On cherche l'adresse principale du visiteur
-		$id_adresse = sql_getfetsel( 'id_adresse',
-											 'spip_adresses_liens',
-											 array( 'objet = '.sql_quote('auteur'),
-													 'id_objet = '.intval($id_auteur),
-													 'type = '.sql_quote('principale') ) );
+		$id_adresse = sql_getfetsel( 'id_adresse',  'spip_adresses_liens',
+						 array( 'objet = '.sql_quote('auteur'),
+						'id_objet = '.intval($id_auteur),
+						'type = '.sql_quote('principale') ) );
+		
 		$adresse = sql_fetsel('*', 'spip_adresses', 'id_adresse = '.$id_adresse);
 		unset($adresse['id_adresse']);
 		
