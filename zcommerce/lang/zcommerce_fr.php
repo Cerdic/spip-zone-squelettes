@@ -32,6 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //L
 'les_produits'=>'Les produits',
 'les_articles_precieux'=>'Articles en vente',
+'les_documents_precieux' => 'Documents',
 
 //M
 'merci_de_votre_commande'=>'Nous vous remercions de votre commande @ref@',
