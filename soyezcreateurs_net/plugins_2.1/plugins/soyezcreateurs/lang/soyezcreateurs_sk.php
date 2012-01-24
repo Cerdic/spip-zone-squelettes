@@ -140,8 +140,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_hauteur' => 'Výška',
 	'cfg_hauteur_videoaccueil' => 'Výška úvodného videa (0 pre automatickú výšku)',
 	'cfg_header' => 'Hlavička',
-	'cfg_homeagenda_ex' => 'Concerne les événements affichés en mode portail au centre de la page', # NEW
-	'cfg_homeagenda_label' => 'Affichage des événements sur la page d\'accueil', # NEW
+	'cfg_homeagenda_ex' => 'Týka sa udalostí zobrazených v režime portál v strede stránky',
+	'cfg_homeagenda_label' => 'Zobrazenie udalostí na úvodnej stránke',
 	'cfg_identifiant_addthis' => 'Používateľské meno na <a href="http://www.addthis.com/">AddThis</a>',
 	'cfg_indexation' => 'Indexuje sa',
 	'cfg_indexation_info' => 'Zaindexovanie stránky vyhľadávačmi',
