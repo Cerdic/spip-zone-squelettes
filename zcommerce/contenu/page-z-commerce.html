@@ -2,7 +2,7 @@
 
 <div id="contenu_zcommerce">
 	[(#REM) 1 -la boutique ]
-	[(#ENV{appel}|=={""}|oui)
+   <BOUCLE_test(CONDITION){si #ENV{appel}|=={""}|oui}>
 		[(#PLUGIN{produits}|oui)
 			<INCLURE{fond=inclure/les_produits}{env}>
 			]
@@ -12,15 +12,22 @@
 		[(#PLUGIN{zaboarticle}|oui)
 			<INCLURE{fond=inclure/les_articles}{env}>
 			]
-		[(#REM) articles avec un champ prix non vide]
-			<INCLURE{fond=inclure/les_articles_precieux}{env}>
-		[(#REM) documents avec un champ prix non vide]
-			<INCLURE{fond=inclure/les_documents_precieux}{env}>
-			
+
+      [(#REM) articles avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
+      <BOUCLE_articles(ARTICLES){0,1}>
+         [(#CHAMP_SQL{prix}|oui)
+            <INCLURE{fond=inclure/les_articles_precieux}{env}>]
+      </BOUCLE_articles>
+
+      [(#REM) documents avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
+      <BOUCLE_documents(DOCUMENTS){0,1}>
+         [(#CHAMP_SQL{prix}|oui)
+            <INCLURE{fond=inclure/les_documents_precieux}{env}>]
+      </BOUCLE_documents>			
 			
    	[(#URL_PAGE{z-commerce}|parametre_url{appel,mon_panier}|lien_ou_expose{<:zcommerce:continuer:>,'',continuer})]	
       #SET{stop,oui}
-	]
+	</BOUCLE_test>
 	
 	[(#REM) 2 - mon_panier ]
 	[(#ENV{appel}|=={"mon_panier"}|oui)
