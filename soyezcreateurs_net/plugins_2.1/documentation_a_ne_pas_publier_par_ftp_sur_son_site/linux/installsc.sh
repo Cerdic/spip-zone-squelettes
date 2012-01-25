@@ -11,7 +11,7 @@ mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 sleep 15 && svn checkout http://svn.github.com/Cerdic/video_accessible.git ./video_accessible/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acronymes
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/dictionnaires/trunk ./dictionnaires/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/bandeau
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/branches/v1 ./boutonstexte/
