@@ -13,17 +13,17 @@
 			<INCLURE{fond=inclure/les_articles}{env}>
 			]
 
-      [(#REM) articles avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
-      <BOUCLE_articles(ARTICLES){0,1}>
-         [(#CHAMP_SQL{prix}|oui)
-            <INCLURE{fond=inclure/les_articles_precieux}{env}>]
-      </BOUCLE_articles>
+        [(#REM) articles avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
+	<BOUCLE_articles(ARTICLES)>[(#PRIX|>{0}|oui) #SET{champ_prix,#PRIX}]</BOUCLE_articles>
+	[(#GET{champ_prix}|oui)
+		<INCLURE{fond=inclure/les_articles_precieux}{env}>]
+	</B_articles>	
 
-      [(#REM) documents avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
-      <BOUCLE_documents(DOCUMENTS){0,1}>
-         [(#CHAMP_SQL{prix}|oui)
-            <INCLURE{fond=inclure/les_documents_precieux}{env}>]
-      </BOUCLE_documents>			
+        [(#REM) documents avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
+	<BOUCLE_documents(DOCUMENTS)>[(#PRIX|>{0}|oui) #SET{champ_prix,#PRIX}]</BOUCLE_documents>
+	[(#GET{champ_prix}|oui)
+		<INCLURE{fond=inclure/les_documents_precieux}{env}>]
+	</B_documents>			
 			
    	[(#URL_PAGE{z-commerce}|parametre_url{appel,mon_panier}|lien_ou_expose{<:zcommerce:continuer:>,'',continuer})]	
       #SET{stop,oui}
