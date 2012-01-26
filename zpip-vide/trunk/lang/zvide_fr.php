@@ -6,7 +6,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	
-	'configurer_zvide' => 'Configurer ZPIP-vide',
+	'configurer_zvide' => 'En-tête et pied de page',
 	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Contenu</i>.',
 	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Extra</i>.',
 	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Navigation</i>.',
@@ -76,7 +76,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page_rubrique' => 'Rubrique',
 	'nom_page_site' => 'Site référencé',
 	'nom_pagedefaut' => 'Page par défaut',
-	'zvide' => 'ZPIP-vide',
+	'zvide' => 'Zpip-vide',
 	
 );
 
