@@ -7,6 +7,33 @@
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <label> Choisir le layout</label>
+            
+    <ul>
+            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PMP"
+                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="MPP"
+                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PPM"
+                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="MP"
+                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PM"
+                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+                    </span></div>
+             </li>
+
+    </ul>
 
 
             <label> Choisir la présence ou l'absence d'un élément</label>
