@@ -7,29 +7,29 @@
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
-    
+
             <label> Choisir le layout</label>
-            
+
     <ul>
             #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
                     <div class="explication">
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PMP"
-                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
+                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] /><label  for="#GET{name}_PMP"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="MPP"
-                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPP" value="MPP"
+                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_MPP"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PPM"
-                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
-                            
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="MP"
-                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PPM" value="PPM"
+                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_PPM"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="PM"
-                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_non"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MP" value="MP"
+                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_MP"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
+                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
                     </span></div>
              </li>
 
@@ -51,7 +51,7 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
              </li>
-             
+
             #SET{name,titrepage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
                     <div class="explication">Nom du site dans le bandeau
@@ -66,6 +66,31 @@
              </li>
 
     </ul>
+    
+
+            <label> Choisir la(les) zone(s) d'identification dans la page d'accueil</label>
+
+    <ul>
+            #SET{name,identification}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
+                            [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_haut">Version simplifi&eacute;e en haut &agrave; gauche</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_droite" value="droite"
+                            [(#ENV{#GET{name}}|=={droite}|oui)checked="checked"] /><label for="#GET{name}_droite">Version &eacute;labor&eacute;e dans un bloc &agrave; droite</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_aucun" value="aucun"
+                            [(#ENV{#GET{name}}|=={aucun}|oui)checked="checked"] /><label for="#GET{name}_aucun">Aucune</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_deux" value="deux"
+                            [(#ENV{#GET{name}}|=={deux}|oui)checked="checked"] /><label for="#GET{name}_deux">Les deux</label>
+                    </span></div>
+             </li>
+
+    </ul>
 
     <input type="hidden" name="_meta_casier" value="escal/config" />
     <br /><br />
@@ -75,5 +100,3 @@
   </div>
     </form>
     </div>
-
-
