@@ -6,7 +6,7 @@
 
 <div id="contenu_zcommerce">
 	[(#REM) 1 -la boutique ]
-   <BOUCLE_test(CONDITION){si #ENV{appel}|=={""}|oui}>
+	<BOUCLE_test(CONDITION){si #ENV{appel}|=={""}|oui}>
 		[(#PLUGIN{produits}|oui)
 			<INCLURE{fond=inclure/les_produits}{env}>
 			]
@@ -17,21 +17,21 @@
 			<INCLURE{fond=inclure/les_articles}{env}>
 			]
 
-        [(#REM) articles avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
-	<BOUCLE_articles(ARTICLES)>[(#PRIX*|>{0}|oui) #SET{article_prix,#PRIX}]</BOUCLE_articles>
-	[(#GET{article_prix}|oui)
-		<INCLURE{fond=inclure/les_articles_precieux}{env}>]
-	</B_articles>	
-
-        [(#REM) documents avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table documents]
-	<BOUCLE_documents(DOCUMENTS)>[(#PRIX*|>{0}|oui) #SET{document_prix,#PRIX}]</BOUCLE_documents>
-	[(#GET{document_prix}|oui)
-		<INCLURE{fond=inclure/les_documents_precieux}{env}>]
-	</B_documents>			
-			
-   	[(#URL_PAGE{z-commerce}|parametre_url{appel,mon_panier}|lien_ou_expose{<:zcommerce:continuer:>,'',continuer})]	
-      #SET{stop,oui}
-	</BOUCLE_test>
+		[(#REM) articles avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table articles]
+		<BOUCLE_articles(ARTICLES)>[(#PRIX*|>{0}|oui) #SET{article_prix,#PRIX}]</BOUCLE_articles>
+		[(#GET{article_prix}|oui)
+			<INCLURE{fond=inclure/les_articles_precieux}{env}>]
+		</B_articles>
+	
+		[(#REM) documents avec un champ prix non vide. Tester d'abord l'existence du champ prix dans la table documents]
+		<BOUCLE_documents(DOCUMENTS)>[(#PRIX*|>{0}|oui) #SET{document_prix,#PRIX}]</BOUCLE_documents>
+		[(#GET{document_prix}|oui)
+			<INCLURE{fond=inclure/les_documents_precieux}{env}>]
+		</B_documents>			
+				
+		[(#URL_PAGE{z-commerce}|parametre_url{appel,mon_panier}|lien_ou_expose{<:zcommerce:continuer:>,'',continuer})]	
+	      #SET{stop,oui}
+      </BOUCLE_test>
 	
 	[(#REM) 2 - mon_panier ]
 	[(#ENV{appel}|=={"mon_panier"}|oui)
@@ -42,7 +42,6 @@
 	[(#REM) 3 - mes_coordonnees ]
 	[(#ENV{appel}|=={"mes_coordonnees"}|oui)
 		<INCLURE{fond=inclure/mes_coordonnees}{env}>
-		<!-- todo pipeline mes_coordonnees > ma_commande enregistre -->
       #SET{stop,oui}
 	]
    [(#ENV{appel}|=={""}|non|et{#ENV{appel}|=={"mon_panier"}|non}|et{#ENV{appel}|=={"mes_coordonnees"}|non}|et{#SESSION{id_auteur}|non})
