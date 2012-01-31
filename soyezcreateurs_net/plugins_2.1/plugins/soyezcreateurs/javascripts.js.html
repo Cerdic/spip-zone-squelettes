@@ -333,14 +333,14 @@ function homeCarousel(elt) {
 	/* faux carousel principal */
 	var whatToShow = '';
 	jQuery('.mainCarousel:first').addClass('active');
-	jQuery('.mainCarousel').live('mouseenter focus', function() {
+	jQuery(document).delegate('.mainCarousel','mouseenter focus', function() {
 		jQuery('.mainCarousel').removeClass('hover active');
 		jQuery(this).addClass('hover active');
 		whatToShow = jQuery(this).children('h2').children('a').attr('id');
 		jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle('stop');
 		// jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter2}).cycle('resume'); // avec transition latÃ©rale
 		jQuery('#'+whatToShow+'b').stop(true,true).fadeIn().children('ul').cycle({fx: 'fade',speed: 1500,timeout: 4000,pause: true,startingSlide: 0,after: onAfter2});
-	}).live('mouseleave blur', function() {
+	}).delegate('.mainCarousel','mouseleave blur', function() {
 		whatToShow = jQuery(this).children('h2').children('a').attr('id');
 		jQuery(this).removeClass('hover');
 		// jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter}).cycle('pause'); // avec transition latÃ©rale
