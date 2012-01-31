@@ -146,8 +146,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'tag' => 'Tag',
 	'tags' => 'Tagy',
-	'texte_erreur1' => 'La recherche de', # NEW
-	'texte_erreur2' => 'ne donne aucun résultat.', # NEW
+	'texte_erreur1' => 'Vyhľadávanie',
+	'texte_erreur2' => 'neprinieslo žiaden výsledok.',
 	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # NEW
 	'titre_erreur' => 'Chyba:',
 	'trackback' => 'trackback', # NEW
@@ -156,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'trackbacks_pour_faire' => 'Pour faire un trackback sur ce billet', # NEW
 
 	// U
-	'un_seul_mot' => 'un seul mot', # NEW
+	'un_seul_mot' => 'jediné kľúčové slovo',
 
 	// V
 	'voir_capture' => 'Afficher la capture d\'écran', # NEW
