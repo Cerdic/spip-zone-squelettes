@@ -1,0 +1,50 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{0}
+<!-- inc-articles.html -->
+<!-- Bloc liste des articles publies -->
+<div id="mgs_articles"></div>
+<B_liste_articles>
+<div class="mgs_bloc" id="mgs_articles_id">
+	<div class="mgs_picto mgs_picto_art"></div>
+	<ul class="general">
+		<!-- Titre du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			<:mgs_articles_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={date}|?{<:mgs_tries_date:>,[(#ENV{tri}|=={points}|?{<:mgs_tries_point:>,<:mgs_tries_titre:>})]})]</small>
+			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
+		</li>
+		<!-- Liste des articles publies -->
+		<BOUCLE_liste_articles(ARTICLES) {id_rubrique ?} {id_mot ?} {id_auteur ?} {recherche ?} {par #ENV{tri}} {inverse #ENV{ordre}} {par titre} {pagination 20}>
+		<li class="mgs_menu_item_article">
+			[<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
+			<h3 class="mgs_titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)][(#ENV{tri}|=={points}|?{&nbsp;-&nbsp;<:mgs_pertinence:><strong>#POINTS</strong>,''})]</p>
+			</div>
+			<!-- Chemin d'acces (ariane) -->
+			<div class="mgs_chemin">
+				<BOUCLE_art_chemin(HIERARCHIE) {id_rubrique} {tout}>
+				[(#ENV{cntxt}|!=={rbrq}|?{&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>,''})]
+				</BOUCLE_art_chemin>
+			</div>
+		</li>
+		</BOUCLE_liste_articles>
+		<!-- Pied du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			[<:mgs_articles_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={date}|?{<:mgs_tries_date:>,[(#ENV{tri}|=={points}|?{<:mgs_tries_point:>,<:mgs_tries_titre:>})]})]</small>
+			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
+			<small><a href="#mgs_page"><:mgs_haut:></a></small>
+		</li>
+	</ul>
+</div> <!-- /mgs_bloc -->
+</B_liste_articles>
+ <!-- Si aucun article, alors on affiche un message d'information -->
+<div class="mgs_bloc">
+	<div class="mgs_picto mgs_picto_art"></div>
+	<ul class="general">
+		<li class="mgs_menu_titre"><:mgs_aucun_article:></li>
+	</ul>
+</div>
+<//B_liste_articles>
+<!-- /inc-articles.html -->

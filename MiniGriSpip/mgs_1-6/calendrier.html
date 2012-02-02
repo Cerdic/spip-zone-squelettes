@@ -1,0 +1,60 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG"> <!-- calendrier.html -->
+	<head>
+		<title><:mgs_calendrier:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>
+		<!-- Bloc principal englobant tous les autres -->
+		<div id="mgs_page">
+
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mgs_calendrier:>
+				</div> <!-- /hierarchie -->			</div> <!-- /tete -->						
+
+			<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+
+				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc/inc-menu}{date}{lang}>
+				</div> <!-- /mgs_navigation -->
+
+				<!-- Bloc du contenu principal -->
+				<div id="mgs_principal" class="contenu">
+				
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_articles"><:mgs_articles:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_breves"><:mgs_breves:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_commentaires"><:mgs_commentaires:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+					<!-- Bloc d'information -->
+					<div class="mgs_bloc" id="mgs_plan_nav">
+						<div class="mgs_picto mgs_picto_inf"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+								<:mgs_cal_publies:>[(#ENV{cal}|=={inc/inc-cal-jour}|?{<:mgs_cal_le:>[(#DATE|nom_jour)] [(#DATE|affdate)],<:mgs_cal_en:>[(#DATE|affdate_mois_annee)]})]
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+					<!-- Inclusion des contenus selon le type de date demande -->
+					<INCLURE{fond=(#ENV{cal,inc/inc-cal-jour})}{cal}{date}{lang}> 
+
+				</div> <!-- /contenu -->
+				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->
+	</body>
+</html> <!-- /calendrier.html -->

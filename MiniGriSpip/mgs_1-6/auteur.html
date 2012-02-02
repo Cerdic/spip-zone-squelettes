@@ -1,0 +1,74 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{800}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_auteur_principal(AUTEURS) {tout} {id_auteur} {doublons}>
+<html dir="#LANG_DIR" lang="#LANG"> <!-- auteur.html -->
+	<head>
+		<title>[(#NOM|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+		<INCLURE{fond=inc/inc-head}{lang}>
+	</head>
+	<body>
+		<!-- Bloc principal englobant tous les autres -->
+		<div id="mgs_page">
+		
+			<!-- Bloc d'en tete -->			<div id="mgs_tete">
+				<!-- Bloc d'inclusion du bandeau d'en tete -->				<INCLURE{fond=inc/inc-bandeau}{lang}>
+								<!-- Bloc hierarchie de navigation -->				<div id="mgs_hierarchie">					<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; <b>(#NOM|couper{80})</b>]
+				</div>			</div> <!-- /mgs_tete -->
+				
+									
+			<!-- Bloc central avec les menus et le contenu -->			<div id="mgs_corps" class="mgs_cadre01">
+				<div class="mgs_cadre02"><div class="mgs_cadre03"><div class="mgs_cadre04"> <!-- Cadres -->
+
+				<!-- Bloc menus de navigation -->				<div id="mgs_navigation">					<!-- Bloc d'inclusion du menu de navigation -->					<INCLURE{fond=inc/inc-menu}{date}{lang}>
+				</div> <!-- /mgs_navigation -->
+
+
+				<!-- Bloc du contenu principal -->
+				<div class="contenu" id="mgs_principal">
+					<!-- Bloc de navigation -->
+					<div class="mgs_bloc" id="mgs_nav">
+						<div class="mgs_picto mgs_picto_nav"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre">
+							<a href="#mgs_infos"><:mgs_infos:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_articles"><:mgs_articles:></a>
+							&nbsp;-&nbsp;
+							<a href="#mgs_courrier"><:mgs_courrier:></a>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+
+					<!-- Bloc infos auteur -->
+					<div id="mgs_infos"></div>
+					<div class="mgs_bloc">
+						<div class="mgs_picto mgs_picto_aut"></div>
+						<ul class="general">
+							<li class="mgs_menu_titre"><:mgs_info_auteur:></li>
+							<li class="mgs_menu_item_article">
+								[<div class="mgs_logo">(#LOGO_AUTEUR|right||image_reduire{60})</div>]
+								<h2 class="mgs_titre">#NOM</h2>
+								<div class="mgs_texte_int">									[<div class="mgs_texte">(#BIO)</div>]
+									[<p class="mgs_intro"><:voir_en_ligne:> : <a href="(#URL_SITE)"><b>(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})</b></a></p>]
+								</div>
+							</li>
+						</ul>
+					</div>
+						
+					<!-- Inclusion de la liste des articles du auteur -->
+					<INCLURE{fond=inc/inc-articles}{id_auteur}{lang}{tri=titre}{ordre=0}{cntxt=autr}>
+
+					<!-- Bloc formulaire pour envoyer un message a l'auteur -->
+					<div id="mgs_courrier"></div>
+					[<div class="encart">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
+					
+				</div> <!-- /contenu -->
+				</div></div></div> <!-- /cadres -->
+			</div> <!-- /corps -->
+			<!-- Bloc d'inclusion du pied de page (logos Rss, Spip et Mgs) -->			<INCLURE{fond=inc/inc-pied}{lang}>		</div> <!-- /page -->
+	</body>
+</html> <!-- /auteur.html -->
+</BOUCLE_auteur_principal>
+

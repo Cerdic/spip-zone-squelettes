@@ -1,0 +1,50 @@
+
+<!-- MiniGriSpip 1.6.0 - 2007 (c) FredoMkb -->
+#CACHE{0}
+<!-- inc-breves.html -->
+<!-- Bloc liste des breves publiees -->
+<div id="mgs_breves"></div>
+<B_liste_breves>
+<div class="mgs_bloc" id="">
+	<div class="mgs_picto mgs_picto_brv"></div>
+	<ul class="general">
+		<!-- Titre du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			<:mgs_breves_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={date}|?{<:mgs_triees_date:>,[(#ENV{tri}|=={points}|?{<:mgs_triees_point:>,<:mgs_triees_titre:>})]})]</small>
+			[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
+		</li>
+		<!-- Liste des breves publiees -->
+		<BOUCLE_liste_breves(BREVES) {id_rubrique ?} {id_mot ?} {recherche ?} {par #ENV{tri}} {inverse #ENV{ordre}} {par titre} {pagination 20}>
+		<li class="mgs_menu_item_article">
+			[<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
+			<h3 class="mgs_titre"><a href="#URL_BREVE">#TITRE</a></h3>
+			<div class="mgs_texte_int">				<p class="mgs_infos"><:mgs_le:>[(#DATE|nom_jour)] [(#DATE|affdate)][(#ENV{tri}|=={points}|?{&nbsp;-&nbsp;<:mgs_pertinence:><strong>#POINTS</strong>,''})]</p>
+			</div>
+			<!-- Chemin d'acces (ariane) -->
+			<div class="mgs_chemin">
+				<BOUCLE_brv_chemin(HIERARCHIE) {id_rubrique} {tout}>
+				[(#ENV{cntxt}|!=={rbrq}|?{&gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>,''})]
+				</BOUCLE_brv_chemin>
+			</div>
+		</li>
+		</BOUCLE_liste_breves>
+		<!-- Pied du bloc + pagination -->
+		<li class="mgs_menu_titre">
+			[<:mgs_breves_nbr:>#GRAND_TOTAL&nbsp;
+			<small>[(#ENV{tri}|=={date}|?{<:mgs_triees_date:>,[(#ENV{tri}|=={points}|?{<:mgs_triees_point:>,<:mgs_triees_titre:>})]})]</small>
+			&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
+			<small><a href="#mgs_page"><:mgs_haut:></a></small>
+		</li>
+	</ul>
+</div>
+</B_liste_breves>
+ <!-- Si aucune breve, alors on affiche un message d'information -->
+<div class="mgs_bloc">
+	<div class="mgs_picto mgs_picto_brv"></div>
+	<ul class="general">
+		<li class="mgs_menu_titre"><:mgs_aucune_breve:></li>
+	</ul>
+</div>
+<//B_liste_breves>
+<!-- /inc-breves.html -->
