@@ -2,6 +2,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return; 
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
+define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
 define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461
 define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
