@@ -2,6 +2,8 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurimagearticle,#EVALARGEURIMAGEARTICLE}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurimagearticle,0}]
 
 <BOUCLE_principale(BREVES){id_breve}>
 <div class="bloc" id="breve_contenu">
@@ -27,7 +29,7 @@
 </div>
 
 [(#REM) chapeau, texte, post-scriptum de l'article ]
-[<div class="#EDIT{texte} texte">(#TEXTE)</div>]			
+[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{largeurimagearticle},0})</div>]			
 [<div class="lien"><strong><:voir_en_ligne:> </strong><a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
 [(#REM)  Notes de bas de page ]
