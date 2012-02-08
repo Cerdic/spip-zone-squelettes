@@ -17,7 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'attime' => 'o',
 	'aucun_commentaire' => 'Žiaden komentár',
 	'aucun_lien' => 'Žiaden odkaz',
-	'aucun_trackback' => 'Aucun trackback', # NEW
+	'aucun_trackback' => 'Žiaden spätný odkaz',
 	'aucune_archive' => 'Žiaden archív',
 	'aucune_categorie' => 'Žiadna kategória',
 	'aucune_langue' => 'Žiaden jazyk',
@@ -36,8 +36,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'commentaires_fermes' => 'Komentáre pre tento lístok sú uzavreté',
 	'commentaires_pour' => 'komentáre na',
 	'contacts' => 'Kontakty',
-	'credits' => '<a href="http://www.spip.net/fr">motorisé par SPIP</a>,
-<a href="http://www.spip-contrib.net/SpipClear">propulsé par Spip.Clear</a>', # NEW
+	'credits' => '<a href="http://www.spip.net/en">vytvorené v SPIPe,</a>
+ <a href="http://www.spip-contrib.net/SpipClear">využíva Spip.Clear</a>',
 
 	// D
 	'date_jour_abbr_1' => 'ned',
@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_jour_abbr_5' => 'štv',
 	'date_jour_abbr_6' => 'pia',
 	'date_jour_abbr_7' => 'sob',
-	'de' => 'de', # NEW
+	'de' => 'z(o)',
 	'derniere_maj' => 'Posledná aktualizácia',
 	'derniers_billets' => 'Posledné lístky',
 	'derniers_commentaires' => 'Najnovšie komentáre',
@@ -56,27 +56,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'document_non_trouve_explication' => 'Dokument, ktorý hľadáte, neexistuje.',
 
 	// F
-	'fil_atom' => 'Fil Atom des billets', # NEW
-	'fil_atom_commentaires' => 'Fil Atom des commentaires', # NEW
-	'fil_rss' => 'Fil RSS des billets', # NEW
-	'fil_rss_commentaires' => 'Fil RSS des commentaires', # NEW
+	'fil_atom' => 'Kanál Atom pre lístky',
+	'fil_atom_commentaires' => 'Kanál Atom pre komentáre',
+	'fil_rss' => 'Kanál RSS pre lístky',
+	'fil_rss_commentaires' => 'Kanál RSS pre komentáre',
 
 	// G
-	'go_main' => 'Aller au contenu', # NEW
-	'go_search' => 'Aller à la recherche', # NEW
-	'go_sidebar' => 'Aller au menu', # NEW
+	'go_main' => 'Prejsť na hlavný text',
+	'go_search' => 'Prejsť na vyhľadávanie',
+	'go_sidebar' => 'Prejsť na menu',
 
 	// H
-	'hebergement' => 'hébergement par', # NEW
+	'hebergement' => 'webhosting poskytuje',
 
 	// I
-	'info_choix_theme' => 'Choisissez le thème que vous souhaitez utiliser pour votre blog', # NEW
+	'info_choix_theme' => 'Vyberte si farebný motív, ktorý chcete použiť pre svoj blog',
 
 	// L
-	'label_limite' => '', # NEW
-	'label_nom_theme' => 'Saisissez le nom du thème perso (correspond &agrave xxxx du sous-répertoire squelettes/themes/xxxx/)', # NEW
+	'label_limite' => '',
+	'label_nom_theme' => 'Zadajte názov vlastného farebného motívu (xxxx je podpriečinok squelettes/themes/xxxx/)',
 	'label_theme_defaut' => 'Predvolený farebný motív (typ DotClear – bez bodiek)',
-	'label_theme_perso' => 'Thème perso (à définir ci-dessous)', # NEW
+	'label_theme_perso' => 'Vlastný farebný motív (treba definovať nižššie)',
 	'langue' => 'Jazyk',
 	'langues' => 'Jazyky',
 	'legend_layout' => 'Vzhľad',
@@ -89,21 +89,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Prispôsobenie úvodnej stránky',
 
 	// M
-	'msg_erreur_v00' => 'Echec ', # NEW
-	'msg_erreur_v02' => 'Echec à la création du champ extra « Billet Sélectionné »', # NEW
+	'msg_erreur_v00' => 'Chyba ',
+	'msg_erreur_v02' => 'Nepodarilo sa vytvoriť špeciálne pole "Vybraný lístok"',
 
 	// N
-	'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation', # NEW
-	'noisette_desc_bestof' => 'Affiche une liste cliquable des billets sélectionnés', # NEW
-	'noisette_desc_calendrier' => 'Affiche un calendrier mensuel', # NEW
+	'navigation_desactiver_calendrier' => 'Nezobrazovať kalendár v navigácii',
+	'noisette_desc_bestof' => 'Zobrazí klikateľný zoznam vybraných lístkov',
+	'noisette_desc_calendrier' => 'Zobrazí kalendár na daný mesiac',
 	'noisette_desc_categories' => 'Zoznam kategórií',
-	'noisette_desc_contact' => 'Affiche un lien vers la page contact (plugin Contact)', # NEW
+	'noisette_desc_contact' => 'Zobrazí odkaz na stránku s kontaktom (zásuvný modul Contact)',
 	'noisette_desc_langs' => 'Umožní zmeniť jazyk blogu',
 	'noisette_desc_lastcomments' => 'Zoznam n najnovších komentárov',
 	'noisette_desc_lastposts' => 'Zoznam posledných n lístkov vo forme zhrnutia',
-	'noisette_desc_links' => 'Affiche la liste de l\'ensemble des sites', # NEW
+	'noisette_desc_links' => 'Zobrazí zoznam všetkých stránok',
 	'noisette_desc_navigation' => 'Zobrazí odkazy navigácie (úvodná stránka, archívy)',
-	'noisette_desc_subscribe' => 'Affiche les boutons rss et atom pour les billets et les comentaires', # NEW
+	'noisette_desc_subscribe' => 'Zobrazí tlačidlá rss a atom pour pre lístky a komentáre',
 	'noisette_titre_bestof' => 'Vybrané lístky',
 	'noisette_titre_calendrier' => 'Kalendár',
 	'noisette_titre_categories' => 'Kategórie',
@@ -114,8 +114,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisette_titre_links' => 'Zoznam stránok',
 	'noisette_titre_navigation' => 'Odkazy navigácie',
 	'noisette_titre_search' => 'Vyhľadávač',
-	'noisette_titre_subscribe' => 'Liens d\'abonnement', # NEW
-	'nom_page-sommaire' => 'Page par défaut de spipclear', # NEW
+	'noisette_titre_subscribe' => 'Odkazy na odber',
+	'nom_page-sommaire' => 'Predvolená stránka modulu spipclear',
 
 	// O
 	'oksearch' => 'ok',
@@ -127,20 +127,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// R
 	'recherche' => 'Vyhľadávanie',
-	'resultat_recherche' => 'Résultats pour votre recherche de', # NEW
-	'rss_commentaire_article' => 'Fil des commentaires de ce billet', # NEW
-	'rss_pour' => 'fil RSS des commentaires de', # NEW
+	'resultat_recherche' => 'Výsledky vášho vyhľadávania',
+	'rss_commentaire_article' => 'Kanál pre komentáre k tomuto lístku',
+	'rss_pour' => 'kanál RSS pre komentáre z(o)',
 
 	// S
-	'sabonner' => 'S\'abonner', # NEW
-	'secteur_spipclear_aucun' => 'Aucun', # NEW
-	'secteurs_spipclear' => 'Secteurs SpipClear', # NEW
-	'selection' => 'À retenir', # NEW
-	'selectionner_theme' => 'Cliquez pour sélectionner ce thême', # NEW
+	'sabonner' => 'Prihlásiť sa na odber',
+	'secteur_spipclear_aucun' => 'Žiaden',
+	'secteurs_spipclear' => 'Sektory SpipClear',
+	'selection' => 'Na zapamätanie',
+	'selectionner_theme' => 'Ak si chcete vybrať tento farebný motív, kliknite naň',
 	'site_comment' => 'stránka',
-	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).', # NEW
-	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)', # NEW
-	'sommaire_spipclear' => 'Appliquer SpipClear sur la page d\'accueil du site (ne fonctionne que pour un secteur).', # NEW
+	'sommaire_afficher_tags' => 'V zozname článkov nezobrazovať tagy (úvodná stránka, výsledky vyhľadávania, atď).',
+	'sommaire_articles_entiers' => 'Zobraziť celé články (predvolené, zobrazí sa iba jeden úvod)',
+	'sommaire_spipclear' => 'Používať SpipClear na úvodnej stránke (funguje iba pre jeden sektor).',
 	'syndication' => 'Syndikácia',
 
 	// T
@@ -148,19 +148,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tags' => 'Tagy',
 	'texte_erreur1' => 'Vyhľadávanie',
 	'texte_erreur2' => 'neprinieslo žiaden výsledok.',
-	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # NEW
+	'themes_installes' => '<strong>Farebné motívy nainštalované v tomto spipe</strong> (ak si chcete vybrať nejaký farebný motív, kliknite na jeho ikonu)',
 	'titre_erreur' => 'Chyba:',
-	'trackback' => 'trackback', # NEW
-	'trackbacks' => 'trackbacks', # NEW
-	'trackbacks_fermes' => 'Les trackbacks pour ce billet sont fermés.', # NEW
-	'trackbacks_pour_faire' => 'Pour faire un trackback sur ce billet', # NEW
+	'trackback' => 'spätný odkaz',
+	'trackbacks' => 'spätné odkazy',
+	'trackbacks_fermes' => 'Pridávanie spätných odkazov k tomuto lístku je zamknuté.',
+	'trackbacks_pour_faire' => 'Na spätný odkaz k tomuto lístku',
 
 	// U
 	'un_seul_mot' => 'jediné kľúčové slovo',
 
 	// V
-	'voir_capture' => 'Afficher la capture d\'écran', # NEW
-	'votre_commentaire' => 'Votre commentaire' # NEW
+	'voir_capture' => 'Zobraziť snímku obrazovky',
+	'votre_commentaire' => 'Váš komentár'
 );
 
 ?>
