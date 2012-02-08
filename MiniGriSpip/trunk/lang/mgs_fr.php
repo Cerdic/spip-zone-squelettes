@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // R
 'redaction' => 'R&eacute;daction',
 'recherche' => 'Recherche',
-'reponse_message' => 'Poster un message',
+'reponse_message' => 'Poster un messagea',
 
 //S
 'site' => 'Site',
