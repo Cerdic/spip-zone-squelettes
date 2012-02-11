@@ -1,0 +1,100 @@
+<BOUCLE_principale(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	<script type="text/javascript"> 
+		$(document).ready(function() {
+
+		$(".formulaire_ecrire_auteur").hide();
+		
+		$(".email_auteur").click(function() {	
+		$("[id^='formulaire_ecrire_auteur_']").slideToggle();
+		$(".email_auteur").toggleClass("on");
+		});
+		});
+	</script>
+ 
+
+</head>
+	
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <INCLURE{fond=inc-entete}>
+
+ 
+		<div id="topbanner" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:auteur:>      
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="arch_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-3 first">    
+ 
+				<div class="vcard">[(#REM) microformat vcard]
+				<h2 class="archive_name #EDIT{qui} fn">#NOM</h2>        
+            		[(#LOGO_AUTEUR||image_reduire{190,0}|inserer_attribut{class,photo})]
+            	<div class="archive_meta">
+            			
+            		<div class="archive_number">
+						#NOM <:auteur_count:> <BOUCLE_count(ARTICLES){id_auteur} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>}) <:for:> #NOM_SITE_SPIP]<//B_count>
+ 
+					</div>
+
+            		[<div class="archive_lien #EDIT{hyperlien}">
+					<:voir_en_ligne:> <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+					</div>]
+
+ 
+					<div class="archive_email">
+						<a class="email_auteur"><:email_auteur:></a>
+						[(#FORMULAIRE_ECRIRE_AUTEUR{id_auteur})]
+					</div>
+
+					[(#PGP|?{
+					<div class="archive_pgp">
+						<a href="[(#URL_PAGE{pgp, id_auteur=#ID_AUTEUR})]" class="pgp_auteur"><:cryptographic_key:></a>	
+					</div>
+					})]
+            	</div>
+				</div>[(#REM) / vcard]
+ 
+			</div>
+ 
+			<div class="column span-8">
+
+			[<div class="#EDIT{bio} chapo">(#BIO|image_reduire{500,0})</div>]
+
+			<B_posts>
+			#ANCRE_PAGINATION
+				<BOUCLE_posts(ARTICLES){id_auteur}{! par date}{pagination 10}>
+					<div class="archive_post_block">
+						<h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+						<div class="archive_post_meta">
+							[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+							<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
+						</div>
+						<p>#INTRODUCTION{360, [...]}</p>
+					</div>
+				</BOUCLE_posts>
+				[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
+			</B_posts>
+			<p><a href="#URL_SITE_SPIP"><:retour_accueil:></a>.</p>
+			<//B_posts>
+
+			</div>
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+</BOUCLE_principale>
