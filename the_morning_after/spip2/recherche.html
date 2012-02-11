@@ -1,0 +1,133 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <INCLURE{fond=inc-entete}>
+
+		<div id="topbanner" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:resultats_recherche:>     
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="arch_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-3 first">    
+
+				<h2 class="archive_name #EDIT{qui}">#RECHERCHE</h2>        
+            	
+            	<div class="archive_meta">
+            <!--		
+            		<div class="archive_number">
+
+					Nombre de r�sultats (Todo)
+
+					</div>
+			-->
+            	</div>
+
+			</div>
+
+			<div class="column span-8">
+
+				[(#REM) Articles trouves ]
+				<B_articles>
+				<div class="menu articles">
+					#ANCRE_PAGINATION
+					<h2><:articles:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination}>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_articles>
+				
+				[(#REM) Rubriques trouvees ]
+				<B_rubriques>
+				<div class="menu rubriques">
+					#ANCRE_PAGINATION
+					<h2><:rubriques:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+						</BOUCLE_rubriques>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_rubriques>
+				
+				[(#REM) Mots-cles trouves ]
+				<B_mots>
+				<div class="menu">
+					#ANCRE_PAGINATION
+					<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_MOT">#TITRE</a></li>
+						</BOUCLE_mots>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_mots>
+				
+				[(#REM) Breves trouvees ]
+				<B_breves>
+				<div class="menu">
+					#ANCRE_PAGINATION
+					<h2><:breves:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_breves>
+				
+				[(#REM) Messages trouves ]
+				<B_messages>
+				<div class="menu">
+					#ANCRE_PAGINATION
+					<h2><:messages_forum:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
+						</BOUCLE_messages>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_messages>
+				
+				[(#REM) Sites web trouves ]
+				<B_sites>
+				<div class="menu">
+					#ANCRE_PAGINATION
+					<h2><:sites_web:> (#GRAND_TOTAL)</h2>
+					<ul>
+						<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+					[<p class="navigation">(#PAGINATION)</p>]
+				</div>
+				</B_sites>
+			</div>
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
