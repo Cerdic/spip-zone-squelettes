@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+
+  <head>
+    <title><:escal:annuaire:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+    [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+    <script type="text/javascript" src="http://www.websnapr.com/js/websnapr.js"></script>
+  </head>
+
+<body id="top" onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
+            <INCLURE {fond=inclusions/inc-bandeau}>
+              <INCLURE {fond=inclusions/inc-menu}{lang}>
+          </div>
+
+          [(#REM) mise en place du lien vers le forum, du formulaire recherche et du menu de langues ]
+          <div id="espace">
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]" alt="lien vers le forum" /></a>
+            </BOUCLE_forum>
+            #FORMULAIRE_RECHERCHE
+            <INCLURE {fond=inclusions/inc-menu_langues_self}>
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+            <BOUCLE_signe(ARTICLES){titre_mot="annuaire"}>
+            
+<div id="cadre-titre-article">
+		<div id="titre-article">[(#TITRE)]</div>
+		<div id="descriptif-article">[(#DESCRIPTIF)]</div>
+</div> <!-- fin cadre-titre-article -->
+<div id="cadre-article">
+  <div id="texte-article" >
+				[<div class="#EDIT{texte}">(#TEXTE)</div>]
+
+            
+              [(#REM) Signatures de la petition : on n'affiche un site que s'il est unique ]
+              <B_signatures>
+              <div id="signatures">
+
+              	[<h3><:resultats_recherche:> (#RECHERCHE_SIGNATURES)</h3>]
+
+              	#ANCRE_PAGINATION
+
+              	[<p class="pagination">(#PAGINATION) | #GRAND_TOTAL <:sites_web:></p>]
+              	<ul>
+              		<BOUCLE_signatures(SIGNATURES) {recherche ?#ENV{recherche_signatures}} {id_article} {!par date} {pagination 5}>
+              		[<li>
+
+              		<a href="#URL_SITE"[ title="(#NOM_SITE|couper{80}|attribut_html)"]>
+              		<script type="text/javascript">wsr_snapshot('#URL_SITE', 'EQ0L03rFD73p', 's');</script>
+
+                  </a>
+
+              		<h3 class="#EDIT{nom_site}">#NOM_SITE</h3>
+              		<p class="url">URL : <a class="spip_out" href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"] >(#URL_SITE|unique{signatures}|couper{80})</a></p>
+              		<p class="nom"><small>[<:escal:webmestre:> : <a class="spip_mail" href="mailto:#AD_EMAIL" title="#AD_EMAIL">(#NOM)</a>]
+                  </small></p>
+              		[<p class="#EDIT{message} message">(#MESSAGE|PtoBR|supprimer_tags|couper{500})</p>]
+              		</li>]
+
+              		</BOUCLE_signatures>
+
+              	</ul>
+              	[<p class="pagination">(#PAGINATION) | #GRAND_TOTAL <:sites_web:></p>]
+
+              	[(#REM) Si plus de 50 signatures, on affiche un moteur de recherche ]
+              	[(#GRAND_TOTAL|>{50}|oui)
+              	<div>
+              	<form method='get' action='#SELF'>
+              	[(#SELF|form_hidden)]
+              	<div class="formulaire_spip formulaire_recherche" id="formulaire_recherche_signatures">
+              	<:chercher_parmi_les_signataires:>&nbsp;: <input type="text" class="text" size="15" name="recherche_signatures" id="recherche_signatures" />
+
+              	<input type="submit" class="submit" value="<:info_rechercher:>" />
+              	</div>
+              	</form>
+              	</div>
+              	]
+
+              </div>
+              </B_signatures>
+
+              [(#REM) Signer la petition ]
+              <a name="signature" id="signature"></a>
+              [<div class="form-signature">
+
+              <h3 class="spip"><:escal:annuaire_invitation:></h3>
+              (#FORMULAIRE_SIGNATURE)
+              </div>]
+	</div><!-- Fin texte-article -->
+	</div><!-- Fin cadre-article-->
+            </BOUCLE_signe>
+
+            </div>
+          </div>
+
+          <div id="navigation">
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
+            </div>
+          </div>
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

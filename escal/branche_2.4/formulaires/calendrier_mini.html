@@ -1,0 +1,32 @@
+<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
+<BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
+</BOUCLE_selection_articles1>
+</BOUCLE_selection_rubrique>
+
+<BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons evenements}>
+</BOUCLE_selection_articles>
+
+
+
+<div id="calendar" class="divers">
+	<table summary="<:icone_calendrier:>">
+		<caption><BOUCLE_mois_precedent(ARTICLES){!doublons evenements}{mois_relatif>=1}{!par date}{0,1}>[
+			<a
+				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m'})]})"
+				title="[(#DATE|affdate_mois_annee)]">&#171;</a>]</BOUCLE_mois_precedent>[
+			(#ENV{date}|affdate_mois_annee)]<BOUCLE_mois_suivant(ARTICLES){!doublons evenements}{mois_relatif<=-1}{par date}{0,1}>[
+			<a
+				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m'})]})"
+				title="[(#DATE|affdate_mois_annee)]">&#187;</a>]</BOUCLE_mois_suivant>
+		</caption>
+    <tbody><BOUCLE_calendrier(ARTICLES) {!doublons evenements}
+			{agenda date, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[
+			(#DATE|agenda_memo{'',
+				[(#DATE|affdate{'j'})],
+				[(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m-d'})]})]})
+			]</BOUCLE_calendrier>[
+			(#ENV{date}|agenda_mini)
+			]</tbody>
+	</table>
+	<span>&nbsp;</span>
+</div>

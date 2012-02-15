@@ -1,0 +1,74 @@
+	<div id="forum-article">
+
+	<BOUCLE_forums(ARTICLES){id_article}>
+		<B_thread>
+
+
+			<img id="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
+
+			<div id="repondre-article">
+  			<a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>">
+  			<:repondre_article:>
+  			</a>
+			</div>
+
+			[<p class="pagination">(#PAGINATION)</p>]
+			<BOUCLE_thread(FORUMS){id_article}{par date}{inverse}{pagination 5}>
+
+				<div class="forum-thread" >
+				  <div class="titre-message">
+						#TITRE
+					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
+          </div>
+
+					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
+           
+					<div class="reponse">
+					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>">
+					<:escal:repondre_message:>
+					</a>
+					</div>
+
+        </div>
+
+					<B_reponses>
+      <div class="decal-reponse">
+						<img width="10" height="13" alt="" src="#CHEMIN{prive/images/forum-droite.gif}"/>
+					<BOUCLE_reponses(FORUMS){id_parent}{par date}>
+						<div class="forum_reponse" >
+    				  <div class="titre-message">
+    						#TITRE
+    					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
+              </div>
+
+    					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
+
+    					<div class="reponse">
+    					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>">
+    					<:escal:repondre_message:>
+    					</a>
+    					</div>
+						</div>
+
+							<BOUCLE_rep_messages(boucle_reponses)>
+							</BOUCLE_rep_messages>
+					</BOUCLE_reponses>
+          	</div>
+        </B_reponses>
+
+			</BOUCLE_thread>
+			#PAGINATION
+			</B_thread>
+			
+			<div id="repondre-article">
+			<img src="#CHEMIN{images/forum.png}" alt='Le forum' />
+      <a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>">
+
+			<:repondre_article:>
+			</a>
+			<:escal:message_non:>
+			</div>
+
+      <//B_thread>
+    </BOUCLE_forums>
+	</div><!-- fin forum-article -->

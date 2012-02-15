@@ -1,0 +1,34 @@
+<!-- on selectionne les articles des rubriques avec le mot-cle agenda et on stocke dans doublons evenements -->
+    <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
+    <BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
+    </BOUCLE_selection_articles1>
+    </BOUCLE_selection_rubrique>
+<!-- on selectionne les articles avec le mot-cle agenda et on stocke dans doublons evenements -->
+    <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons evenements}>
+    </BOUCLE_selection_articles>
+
+<!-- on teste si doublons evenements contient au moins un article -->
+<BOUCLE_test(ARTICLES){!doublons evenements}>
+</BOUCLE_test>
+<!-- si la boucle ne renvoie rien, rien ne s'affiche
+  et si elle renvoie quelque chose, on affiche le cadre avec les articles stockés --> 
+	<h1 class="cadre">
+  <:escal:evenements:>
+  </h1>
+
+  <div class="texte" id="evenements">
+
+    <B_affichage_articles>
+      <ul>
+    <BOUCLE_affichage_articles(ARTICLES){!doublons evenements}{par date_redac}>
+      <li>
+        [<:escal:le:> (#DATE_REDAC|affdate) :]
+        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|PtoBR|textebrut)"]>#TITRE</a>
+      </li>
+    </BOUCLE_affichage_articles>
+      </ul>
+    </B_affichage_articles>
+
+  </div>
+
+</B_test>

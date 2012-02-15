@@ -1,0 +1,31 @@
+<!-- on teste s'il y a des sites syndiqués -->   
+<BOUCLE_test(SITES){syndication=oui}>
+</BOUCLE_test>
+<!-- si la boucle ne renvoie rien, rien ne s'affiche
+  et si elle renvoie quelque chose, on affiche le cadre avec les sites syndiqués -->
+
+	<h1 class="cadre" >
+	<:sur_web:>
+	</h1>
+
+  <div class="texte" id="sites">
+
+    <B_derniers_sites>
+
+          <BOUCLE_derniers_sites(SITES){syndication=oui}{par date}{inverse}{0,5}{doublons} > 
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites>
+    		      <ul>
+    				   <BOUCLE_articles_sites(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,5}>
+    				   <li><a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites>
+    				   </ul>
+    				   </B_articles_sites>
+          </BOUCLE_derniers_sites>
+
+    </B_derniers_sites>
+
+  </div>
+
+  </B_test>

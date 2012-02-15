@@ -1,0 +1,120 @@
+<BOUCLE_mot_principal(MOTS) {id_mot}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title>#TITRE - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>	[
+    <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body id="top" onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-titre_page}{lang}>
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{lang}>
+          </div>[(#REM) mise en place du formulaire recherche]
+
+          <div id="espace">
+          <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]" alt="lien vers le forum" /></a>
+          </BOUCLE_forum>
+          #FORMULAIRE_RECHERCHE
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+            
+
+              <div id="cadre-article">
+                <div id="cadre-titre-article">
+                  <div id="titre-article">
+                    <:escal:articles_associes_mot:> "<strong>[(#TITRE)]</strong>"
+                  </div>
+                </div>
+                <div id="texte-article" >
+  
+				
+				          <B_articles>
+                    <!-- si au moins un article trouvé, on affiche le nombre trouvé -->
+                    <div class="cadre-resultat">
+                      #TOTAL_BOUCLE 
+                      [(#TOTAL_BOUCLE|>{01}|oui) <:escal:articles_trouves:>]
+                      [(#TOTAL_BOUCLE|>{01}|non) <:escal:article_trouve:>] 
+                      <:escal:dans_site:>
+
+                    </div>
+                  <BOUCLE_articles(ARTICLES){lang} {id_mot} {par date} {inverse}>
+                    <!-- on affiche le ou les article(s) -->
+                    <div class="cadre-articles-rubrique">
+                      <div class="titre-articles-rubrique">
+                        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero)]</a>
+                      </div>
+                      <div class="introduction-articles-rubrique">
+                        [(#INTRODUCTION|supprimer_tags|couper{150})]
+                      </div>
+                      <div class="auteur-articles-rubrique">
+                        [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
+                        <BOUCLE_test(AUTEURS){id_article}>
+		                    </BOUCLE_test>
+                        <:par_auteur:>
+                        <BOUCLE_auteurs(AUTEURS) {id_article} {"et"}>					
+                          [<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="page de l&#39;auteur"> (#NOM)</a>]
+                        </BOUCLE_auteurs>
+                        </B_test>
+                      </div>
+                    </div>
+                  </BOUCLE_articles>
+                  </B_articles>
+
+
+                </div><!-- fin texte-article -->
+              </div><!-- fin cadre-article -->
+
+            </div>
+          </div>
+
+          <div id="navigation">
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
+            </div>
+          </div>
+          <div id="extra">
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-menu_mots}{lang}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>
+</BOUCLE_mot_principal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
+
+
+
+
