@@ -8,22 +8,16 @@
     </BOUCLE_selection_articles2>
 
 
-<!-- on teste s'il y a au moins un article avec le mot-cle photo-une -->   
-<BOUCLE_test(ARTICLES){!doublons photos}>
-</BOUCLE_test>
-<!-- si la boucle ne renvoie rien, rien ne s'affiche
-  et si elle renvoie quelque chose, on affiche les photos -->      
-
-
 	<h1 class="cadre">
-	 <:escal:photos_hasard:>
+    [(#CONFIG{escal/config/titrephotos,<:escal:photos_hasard:>})]
   </h1>      
 
 	<div class="texte">
+#SET{nombrephotos,#CONFIG{escal/config/nombrephotos,10}}
   <div id="scrollup2">
   <BOUCLE_direct(ARTICLES){!doublons photos}>
 
-      <BOUCLE_photo_une(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{par hasard}>
+      <BOUCLE_photo_une(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,#GET{nombrephotos}}{par hasard}>
       <div class="headline2">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
@@ -36,5 +30,3 @@
   </BOUCLE_direct>
 	</div>
   </div>
-
-</B_test>

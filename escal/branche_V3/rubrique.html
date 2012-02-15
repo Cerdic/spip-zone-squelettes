@@ -18,9 +18,10 @@
             <div id="entete">
               <INCLURE {fond=inclusions/inc-titre_page}{lang}>
               <INCLURE {fond=inclusions/inc-bandeau}>
-              <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{env}>
+            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{id_rubrique}{env}>]
+            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{id_rubrique}{env}>]
             </div>
-            [(#REM) mise en place du formulaire recherche]
+
             <div id="espace">
             <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
             <a href="#URL_RUBRIQUE"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.jpg})]" alt="lien vers le forum" /></a>
@@ -46,21 +47,35 @@
             </div>
 
             <div id="navigation">
-              <div class="cadre-bleu">
-                <INCLURE  {fond=inclusions/inc-acces_direct}{lang}>
-              </div>
-              <div class="cadre-bleu">
-                <INCLURE {fond=inclusions/inc-menu_vertical}{id_rubrique}{lang}>
-              </div>
+            <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
+            [(#CONFIG{escal/config/menuV1}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+            [(#CONFIG{escal/config/menuV1}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+
+            [(#CONFIG{escal/config/menuV2}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{lang}></div>]
+            [(#CONFIG{escal/config/menuV2}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{lang}></div>]
+
+          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/rubaccesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>]
+            [(#CONFIG{escal/config/rubaccesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>]
+
+          <!-- affichage du bloc inc-derniers_articles si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/derniersart}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{lang}></div>]
+            
             </div>
 
             <div id="extra">
-              <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot==^["trombino""forum"]}>
+
+              <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot==^(trombino|forum)$}>
               </BOUCLE_test>
-              </B_test>   
-                <div class="cadre-bleu">
-                  <INCLURE {fond=inclusions/inc-derniers_articles}{id_rubrique}{lang}>
-                </div>
+              </B_test>
+
+          <!-- affichage du bloc inc-acces_direct si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/rubaccesdirect}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>]
+
+          <!-- affichage du bloc inc-derniers_articles par defaut ou si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/derniersart}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{lang}></div>]
+            [(#CONFIG{escal/config/derniersart}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{lang}></div>]
+
               <//B_test>
             </div>
 

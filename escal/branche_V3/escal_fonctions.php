@@ -32,7 +32,7 @@ function calcul_version_squelette() {
 // =======================================================================================================================================
    // pour gerer les classes des differents liens dans les articles
    // Un grand merci a l'auteur : bobof
-
+   
 function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $connect='')
 {
 	$mode = ($texte AND $class) ? 'url' : 'tout';
@@ -60,7 +60,7 @@ return inc_lien_dist($lien, $texte, $class, $titre, $hlang, $rel, $connect);
 }
 
 // balises issues da la contrib  "Balises de comptage" de Franck
-// http://www.spip-contrib.net/Balises-de-comptage
+// http://www.spip-contrib.net/Balises-de-comptage 
 
 // balise #TOTAL_VISITES
 function vst_total_visites() {
@@ -96,22 +96,23 @@ function balise_NBPAGES_VISITEES($p) {
 function visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));
      }
-     
+
+
 // paramètres pour le plugin diapo
 
 //nombre de vignettes par page
 $GLOBALS['diapo_vignettes']=15;
 
-//largeur de la grande image :
-$GLOBALS['diapo_grand']=400;
-
-//largeur maxi de la photo :
-$GLOBALS['diapo_petit']=300;
-//hauteur maxi de la photo :
-$GLOBALS['diapo_petit_h']=300;
-
 //largeur et hauteur maxi des vignettes :
 $GLOBALS['diapo_vignette']=60;
+
+//largeur maxi de la grande image avec vignettes en haut :
+$GLOBALS['diapo_grand']=400;
+
+//largeur maxi de la grande image avec vignettes sur les côtés:
+$GLOBALS['diapo_petit']=300;
+//hauteur maxi de la grande image avec vignettes sur les côtés :
+$GLOBALS['diapo_petit_h']=300;
 
 //diaporama : temps de pause en millisecondes :
 $GLOBALS['diapo_temps']=3000;

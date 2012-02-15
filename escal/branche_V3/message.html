@@ -15,7 +15,8 @@
             <div id="entete">
               <INCLURE {fond=inclusions/inc-titre_page}{lang}>
               <INCLURE {fond=inclusions/inc-bandeau}>
-              <INCLURE {fond=inclusions/inc-menu}{id_rubrique}{lang}>
+            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{env}>]
             </div>
 
             <div id="espace">
@@ -73,9 +74,15 @@
             </div><!-- fin page -->
 
             <div id="navigation">
-              <div class="cadre-bleu">
-                <INCLURE {fond=inclusions/inc-acces_direct}{lang}>
-              </div>
+          <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
+            [(#CONFIG{escal/config/menuV1}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+            [(#CONFIG{escal/config/menuV1}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+
+            [(#CONFIG{escal/config/menuV2}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{lang}></div>]
+            [(#CONFIG{escal/config/menuV2}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{lang}></div>]
+            
+          <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>
+
             </div>
 
             <div id="pied">

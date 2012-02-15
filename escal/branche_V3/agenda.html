@@ -17,7 +17,8 @@
           <div id="entete">
             <INCLURE {fond=inclusions/inc-titre_page}{lang}>
             <INCLURE {fond=inclusions/inc-bandeau}>
-            <INCLURE {fond=inclusions/inc-menu}{lang}>
+            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{env}>]
           </div>
 
           <div id="espace">
@@ -27,13 +28,12 @@
           <div id="page">
             <div id="contenu" style="margin:0 10px; padding:0; width:auto">
 
-      [(#SPIP_VERSION|version_compare{3}|=={-1}|oui)
+      [(#SPIP_VERSION|version_compare{3, >=}|non)
         <INCLURE {fond=inclusions/inc-agenda}>
       ]
-      [(#SPIP_VERSION|version_compare{3}|=={-1}|non)
+      [(#SPIP_VERSION|version_compare{3, >=}|oui)
         <INCLURE{fond=contenu/calendrier,env} />
       ]
-
 
               
             </div><!-- fin contenu -->
