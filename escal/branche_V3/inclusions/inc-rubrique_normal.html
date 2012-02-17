@@ -7,7 +7,7 @@
 	</BOUCLE_chemin_rubriques>
 	</div>
 
-	<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
+<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
     <div id="cadre-rubrique">
 	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{50})] </div>
@@ -17,7 +17,7 @@
 			  			<div id="texte-rubrique" >[(#TEXTE)]</div>
 	  				</div>
 		</div>
-	</BOUCLE_contexte>		
+
 		
 <B_articles_rubs>
 <!-- affichage des articles de la rubrique -->
@@ -42,7 +42,7 @@
 		    <BOUCLE_test(AUTEURS){id_article}>
 		    </BOUCLE_test>
 	       <:par_auteur:>
-			   <BOUCLE_auteurs_art(AUTEURS) {id_article} {"<:escal:et:>"}>
+			   <BOUCLE_auteurs_art(AUTEURS){id_article}{"<:escal:et:>"}>
 			   <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>"> #NOM</a>
 			   </BOUCLE_auteurs_art>
 	       </B_test>
@@ -60,12 +60,12 @@
 <div class="texte-insert">
 <:escal:rubrique_sous_rubriques:>
 </div>
-		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{par num titre, titre}>
+		<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par date}{par num titre, titre}>
 			<div class="cadre-sous-rubrique">
 				<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">
         [(#LOGO_RUBRIQUE||image_reduire{36})]
 				<span class="titre-sous-rubrique">
-					[(#TITRE|Supprimer_numero)]
+					[(#TITRE)]
           </span>
 					</a>
 				
@@ -120,3 +120,5 @@
       </BOUCLE_derniers_sites>
 
 </B_derniers_sites>
+
+</BOUCLE_contexte>
