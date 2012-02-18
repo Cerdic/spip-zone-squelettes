@@ -13,7 +13,8 @@
             - au format hexad&eacute;cimal -> exemple : #FFFF00 <br />
             - au format RGB -> exemple : RGB(255,255,0) <br />
             - avec une couleur nomm&eacute;e -> exemple : yellow <br /> <br />
-            Vous pouvez aussi choisir une couleur dans le sélecteur de couleur qui s'affichera dès que vous cliquerez dans une case<br /><br />
+            Je vous conseille vivement d'utiliser le plugin "Palette 1.4.x" qui vous permettra de choisir une couleur
+            dans le sélecteur qui s'affichera dès que vous cliquerez dans une case.<br /><br />
             Attention &agrave; ce que le texte ressorte bien sur vos fonds et veillez &agrave; bien accorder vos couleurs.<br /><br />
             Si vous r&eacute;initalisez une valeur ou tout, pensez à valider apr&egrave;s !
 
@@ -29,7 +30,7 @@
 	</p>
 
 <!-------------------------------------------------------------------------------->
-<!-- Les fonds de page  ---------------------------------------------------------->
+<!-- Les fonds ------------------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
       <h4>Les fonds</h4>
 
@@ -213,25 +214,30 @@
 
 <hr />
 <!-------------------------------------------------------------------------------->
-<!-- Les textes des page  -------------------------------------------------------->
+<!-- Les textes  ----------------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
 
             <h4>Les textes <span style="font-size:12px; font-weight:normal">(non fonctionnel pour l'instant)</span></h4>
+            
+            Dans la plupart des cas, la couleur des caract&egrave;res s'adaptera automatiquement &agrave; la couleur du fond : <br />
+            - si le fond est clair, le texte sera en noir <br />
+            - si le fond est fonc&eacute;, le texte sera blanc <br />
+            Il vous reste &agrave; choisir vos couleurs pour ...
 
      <ul>
             #SET{name,texte1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <?php
-            $texte1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
-            if(isset($_POST["reinit10"])) { $texte1="#000000"; }
-            if(isset($_POST["reinit"])) { $texte1="#000000"; }
+            $texte1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000099})]";
+            if(isset($_POST["reinit21"])) { $texte1="#000099"; }
+            if(isset($_POST["reinit"])) { $texte1="#000099"; }
             ?>
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Texte 1</strong> (par défaut : noir)<br /> Pour la plupart des zones avec fond clair
+                    <div class="explication"><strong>Texte 1</strong>: Les liens
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix">
                              <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$texte1"; ?>"  />
-                             <input type="submit" name="reinit10" class="submit" value="R&eacute;initialiser" />
+                             <input type="submit" name="reinit21" class="submit" value="R&eacute;initialiser" />
                              <span style="background-color: white; color:<?php echo "$texte1"; ?>">Un texte</span>
                              <span style="background-color: grey; color:<?php echo "$texte1"; ?>">Un texte</span>
                              <span style="background-color: black; color:<?php echo "$texte1"; ?>">Un texte</span>
@@ -240,23 +246,79 @@
 
             #SET{name,texte2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <?php
-            $texte2="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FFFFFF})]";
-            if(isset($_POST["reinit11"])) { $texte1="#FFFFFF"; }
-            if(isset($_POST["reinit"])) { $texte1="#FFFFFF"; }
+            $texte2="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000099})]";
+            if(isset($_POST["reinit22"])) { $texte2="#000099"; }
+            if(isset($_POST["reinit"])) { $texte2="#000099"; }
             ?>
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Texte 2</strong> (par défaut : blanc)<br /> Pour la plupart des zones avec un fond foncé
+                    <div class="explication"><strong>Texte 2</strong>: Les liens visités
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix">
                              <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$texte2"; ?>"  />
-                             <input type="submit" name="reinit11" class="submit" value="R&eacute;initialiser" />
+                             <input type="submit" name="reinit22" class="submit" value="R&eacute;initialiser" />
                              <span style="background-color: white; color:<?php echo "$texte2"; ?>">Un texte</span>
                              <span style="background-color: grey; color:<?php echo "$texte2"; ?>">Un texte</span>
                              <span style="background-color: black; color:<?php echo "$texte2"; ?>">Un texte</span>
                     </div>
             </li>
 
+            #SET{name,texte3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $texte3="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FF8000})]";
+            if(isset($_POST["reinit23"])) { $texte3="#FF8000"; }
+            if(isset($_POST["reinit"])) { $texte3="#FF8000"; }
+            ?>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Texte 3</strong>: Les liens survolés
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                             <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$texte3"; ?>"  />
+                             <input type="submit" name="reinit23" class="submit" value="R&eacute;initialiser" />
+                             <span style="background-color: white; color:<?php echo "$texte3"; ?>">Un texte</span>
+                             <span style="background-color: grey; color:<?php echo "$texte3"; ?>">Un texte</span>
+                             <span style="background-color: black; color:<?php echo "$texte3"; ?>">Un texte</span>
+                    </div>
+            </li>
+            
+            #SET{name,texte4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $texte4="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+            if(isset($_POST["reinit24"])) { $texte4="#336699"; }
+            if(isset($_POST["reinit"])) { $texte4="#336699"; }
+            ?>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Texte 4</strong>: Le forum du site
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                             <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$texte4"; ?>"  />
+                             <input type="submit" name="reinit24" class="submit" value="R&eacute;initialiser" />
+                             <span style="background-color: white; color:<?php echo "$texte4"; ?>">Un texte</span>
+                             <span style="background-color: grey; color:<?php echo "$texte4"; ?>">Un texte</span>
+                             <span style="background-color: black; color:<?php echo "$texte4"; ?>">Un texte</span>
+                    </div>
+            </li>
+            
+            #SET{name,texte5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $texte5="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FF0000})]";
+            if(isset($_POST["reinit25"])) { $texte5="#FF0000"; }
+            if(isset($_POST["reinit"])) { $texte5="#FF0000"; }
+            ?>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Texte 5</strong>: Les alertes de la page contact
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                             <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$texte5"; ?>"  />
+                             <input type="submit" name="reinit25" class="submit" value="R&eacute;initialiser" />
+                             <span style="background-color: white; color:<?php echo "$texte5"; ?>">Un texte</span>
+                             <span style="background-color: grey; color:<?php echo "$texte5"; ?>">Un texte</span>
+                             <span style="background-color: black; color:<?php echo "$texte5"; ?>">Un texte</span>
+                    </div>
+            </li>
     </ul>
 
 
