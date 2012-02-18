@@ -217,7 +217,7 @@
 <!-- Les textes  ----------------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
 
-            <h4>Les textes <span style="font-size:12px; font-weight:normal">(non fonctionnel pour l'instant)</span></h4>
+            <h4>Les textes</h4>
             
             Dans la plupart des cas, la couleur des caract&egrave;res s'adaptera automatiquement &agrave; la couleur du fond : <br />
             - si le fond est clair, le texte sera en noir <br />
@@ -320,8 +320,31 @@
                     </div>
             </li>
     </ul>
+<!-------------------------------------------------------------------------------->
+<!-- Les bords  ------------------------------------------------------------------>
+<!-------------------------------------------------------------------------------->
+            <h4>Les bords <span style="font-size:12px; font-weight:normal">(non fonctionnel pour l'instant)</span></h4>
+            
+            
+    <ul>
+            #SET{name,bord1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $bord1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#CCCCCC})]";
+            if(isset($_POST["reinit31"])) { $bord1="#CCCCCC"; }
+            if(isset($_POST["reinit"])) { $bord1="#CCCCCC"; }
+            ?>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Bord 1</strong>:
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                             <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$bord1"; ?>"  />
+                             <input type="submit" name="reinit25" class="submit" value="R&eacute;initialiser" />
+                             <span style="font-size: 20px; color:<?php echo "$bord1"; ?>">_____------</span>
 
-
+                    </div>
+            </li>
+    </ul>
 <!-------------------------------------------------------------------------------->
 <!-- Stockage des donnees  ------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
