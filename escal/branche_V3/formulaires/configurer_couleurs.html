@@ -1,7 +1,7 @@
 <!-- Couleurs -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{escal24.png}|balise_img{'',cadre-icone})]Couleurs</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{escal24.png}|balise_img{'',cadre-icone})]Couleurs et arrondis</h3>
 
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -19,13 +19,11 @@
             Si vous r&eacute;initalisez une valeur ou tout, pensez à valider apr&egrave;s !
 
 <!-------------------------------------------------------------------------------->
-<!-- Stockage des donnees  ------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
 <!-------------------------------------------------------------------------------->
 
-  <input type="hidden" name="_meta_casier" value="escal/config" />
-    <br /><br />
 	<p class="boutons"><span class='image_loading'>&nbsp;</span>
-	<input type="submit" name="reinit" class="submit" value="Tout r&eacute;initialiser" />
+	<input type="submit" name="reinit" class="submit" value="R&eacute;initialiser toutes les couleurs" />
   <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
 	</p>
 
@@ -320,10 +318,11 @@
                     </div>
             </li>
     </ul>
+<hr />
 <!-------------------------------------------------------------------------------->
 <!-- Les bords  ------------------------------------------------------------------>
 <!-------------------------------------------------------------------------------->
-            <h4>Les bords <span style="font-size:12px; font-weight:normal">(non fonctionnel pour l'instant)</span></h4>
+            <h4>Les bords</h4>
             
             
     <ul>
@@ -430,13 +429,113 @@
             </li>
     </ul>
 <!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+	<input type="submit" name="reinit" class="submit" value="R&eacute;initialiser toutes les couleurs" />
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+	
+<!-------------------------------------------------------------------------------->
+<!-- Les arrondis  --------------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+            <h4>Les arrondis</h4>
+            
+    <ul>
+            #SET{name,arrondi1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Menu horizontal</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Menu vertical d&eacute;roulant</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Onglets et articles en une</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Blocs lat&eacute;raux</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Identification et recherche</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Annonce</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Calendrier</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+    </ul>
+
+<!-------------------------------------------------------------------------------->
 <!-- Stockage des donnees  ------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
 
   <input type="hidden" name="_meta_casier" value="escal/config" />
     <br /><br />
 	<p class="boutons">
-	<input type="submit" name="reinit" class="submit" value="Tout r&eacute;initialiser" />
   <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
 	</p>
   </div>
