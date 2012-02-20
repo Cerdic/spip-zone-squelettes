@@ -20,53 +20,7 @@
 	
 	
 	
-<!-------------------------------------------------------------------------------->
-<!-- Choisir le layout ----------------------------------------------------------->
-<!-------------------------------------------------------------------------------->
-            <h4>Choisir le layout</h4>
 
-    <ul>
-            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication">
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
-                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label  for="#GET{name}_PMP"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_MPP" value="MPP"
-                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_MPP"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_PPM" value="PPM"
-                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_PPM"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_MP" value="MP"
-                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_MP"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
-                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
-                    </span></div>
-             </li>
-             
-            [(#CONFIG{escal/config/layout}|=={PMP}|oui)
-            #SET{name,margesPMP}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication">Blocs latéraux collés aux bords
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
-             ]
-
-
-    </ul>
-
-<hr />
 <!-------------------------------------------------------------------------------->
 <!-- Choisir la présence ou l'absence d'un élément sur toutes les pages du site -->
 <!-------------------------------------------------------------------------------->
@@ -102,445 +56,100 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
              </li>
-<!-- menu horizontal -->
-            #SET{name,menuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Menu Horizontal</strong><br />
-                                             (noisette inc-menu)
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
-<!-- menu vertical depliant -->
-            #SET{name,menuV1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Menu vertical d&eacute;pliant</strong><br />
-                                                     (noisette inc-menu_vertical)
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
-<!-- menu vertical deroulant vers la droite-->
-            #SET{name,menuV2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Menu vertical d&eacute;roulant vers la droite</strong><br />
-                                                     (noisette inc-menu_vertical2)
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
 
     </ul>
 <hr />
 <!-------------------------------------------------------------------------------->
-<!-- La page sommaire  ----------------------------------------------------------->
+<!-- Les arrondis  --------------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
-            <h4> La page sommaire <span style="font-size:12px; font-weight:normal">(par défaut, tous les cadres sont affichés)</span></h4>
 
-     <ul>
-<!-- inc-alaune -->
-             #SET{name,nombrealaune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <h4>Les arrondis</h4>
+
+    <ul>
+            #SET{name,arrondi1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-             <?php $nombrealaune="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},11})]"; ?>
-                    <div class="explication"><strong>Nombre d'articles &agrave; la une</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrealaune"; ?>"  />
-                    </span>
-                    </div>
-             </li>
-<!-- identification light -->
-             #SET{name,idlight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Identification simplifi&eacute;e en haut &agrave; gauche</strong> <br />
-                                             (noisette inc-identification_light)
+                    <div class="explication"><strong>Menu horizontal</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
              </li>
-<!-- identification bloc -->
-             #SET{name,idbloc}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+
+            #SET{name,arrondi2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Identification plus &eacute;labor&eacute;e dans un bloc &agrave; droite</strong><br />
-                                             (noisette inc-identification)
+                    <div class="explication"><strong>Menu vertical d&eacute;roulant</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
              </li>
-<!-- inc-edito -->
-            #SET{name,edito}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-edito</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "Edito"
-                    </div>
-            </li>
-<!-- inc-acces_direct -->
-            #SET{name,accesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
-                    </div>
-            </li>
-<!-- inc-top -->
-            #SET{name,top}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-top</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    </div>
-             #SET{name,titretop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titretop="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Articles les plus vus})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titretop"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombretop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombretop="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
-                    <div class="explication">Nombre d'articles
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombretop"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-actus -->
-            #SET{name,actus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-actus</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titreactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titreactus="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Actus})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titreactus"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-photos -->
-            #SET{name,photos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-photos</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titrephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrephotos="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Quelques photos au hasard})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrephotos"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombrephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombrephotos="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
-                    <div class="explication">Nombre de photos
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrephotos"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-evenements -->
-            #SET{name,evenements}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-evenements</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titreevenements}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titreevenements="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},&Eacute;v&egrave;nements &agrave; venir})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titreevenements"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-calendrier -->
-            #SET{name,calendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-calendrier</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titrecalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrecalendrier="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Calendrier})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrecalendrier"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-sites -->
-            #SET{name,sites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-sites</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titresites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Sur le web})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titresites"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombresites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
-                    <div class="explication">Nombre de sites
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombresites"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombreartsites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombreartsites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
-                    <div class="explication">Nombre d'articles par sites
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombreartsites"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-stats -->
-            #SET{name,stats}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-stats</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-            #SET{name,titrestats}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrestats="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Statistiques du site})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrestats"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-     </ul>
 
-<hr />
-<!-------------------------------------------------------------------------------->
-<!-- La page rubrique  ----------------------------------------------------------->
-<!-------------------------------------------------------------------------------->
-            <h4> La page rubrique <span style="font-size:12px; font-weight:normal">(par défaut, tous les cadres sont affichés)</span></h4>
-     <ul>
-<!-- inc-acces_direct -->
-            #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            #SET{name,arrondi3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
+                    <div class="explication"><strong>Onglets et articles en une</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
-                    </div>
-            </li>
-<!-- inc-derniers_articles -->
-            #SET{name,derniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-derniers_articles</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
-            #SET{name,titrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrederniersart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Derniers articles})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrederniersart"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombrederniersart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
-                    <div class="explication">Nombre d'articles
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrederniersart"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-     </ul>
-<hr />
-<!-------------------------------------------------------------------------------->
-<!-- La page article  ------------------------------------------------------------>
-<!-------------------------------------------------------------------------------->
-            <h4> La page article <span style="font-size:12px; font-weight:normal">(par défaut, tous les cadres sont affichés)</span></h4>
-     <ul>
-<!-- inc-acces_direct -->
-            #SET{name,artaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             </li>
+
+            #SET{name,arrondi4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
+                    <div class="explication"><strong>Blocs lat&eacute;raux</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
-                    </div>
-            </li>
-<!-- inc-nav_mot -->
-            #SET{name,navmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-nav_mots</strong>
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
-            #SET{name,titrenavmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrenavmot="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Mots-cl&eacute;s associ&eacute;s})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrenavmot"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-<!-- inc-meme_rub -->
-            #SET{name,memerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             </li>
+
+            #SET{name,arrondi5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Noisette inc-meme_rub</strong>
+                    <div class="explication"><strong>Identification et recherche</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
-            #SET{name,titrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Dans la m&ecirc;me rubrique})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
+             </li>
+
+            #SET{name,arrondi6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Annonce</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrememerub"; ?>"  />
-                    </span>
-                    </div>
-             #SET{name,nombrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
-                    <div class="explication">Nombre d'articles
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+            #SET{name,arrondi7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Calendrier</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrememerub"; ?>"  />
-                    </span>
-                    </div>
-            </li>
-     </ul>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+    </ul>
 
 
 
