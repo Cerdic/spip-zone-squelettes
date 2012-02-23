@@ -96,7 +96,7 @@
             ?>
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
                     <div class="explication"><strong>Couleur 3</strong> (par défaut : #336699)<br />
-                    menu horizontal, bloc &agrave; la une et onglet actif, encart des entetes pour les rubriques et les articles, plan, forum
+                    bandeau et menu horizontal, liens survol&eacute;s du menu vertical d&eacute;roulant &agrave; droite, bloc &agrave; la une et onglet actif, encart des entetes pour les rubriques et les articles, plan, forum
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul3"; ?>">
@@ -223,6 +223,27 @@
             Il vous reste &agrave; choisir vos couleurs pour ...
 
      <ul>
+            #SET{name,texte01}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $texte01="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FFFFFF})]";
+            if(isset($_POST["reinit201"])) { $texte01="#FFFFFF"; }
+            if(isset($_POST["reinit"])) { $texte01="#FFFFFF"; }
+            $texte02 = substr($texte01,1);
+            ?>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">Inscriptions du bandeau
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                             <input type="texte" class="palette" style="width: 130px" name="#GET{name}" id="#GET{name}_oui" value="#<?php echo "$texte02"; ?>"  />
+                             <input type="submit" name="reinit21" class="submit" value="R&eacute;initialiser" />
+                             <span style="background-color: white; color:<?php echo "$texte01"; ?>">Un texte</span>
+                             <span style="background-color: grey; color:<?php echo "$texte01"; ?>">Un texte</span>
+                             <span style="background-color: black; color:<?php echo "$texte01"; ?>">Un texte</span>
+                    </div>
+            </li>
+
+
             #SET{name,texte1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <?php
             $texte1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000099})]";
