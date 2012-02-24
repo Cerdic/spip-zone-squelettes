@@ -1,0 +1,96 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{escal24.png}|balise_img{'',cadre-icone})]La page article</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+            Par défaut, tous les cadres sont affichés
+     <ul>
+<!-- inc-acces_direct -->
+            #SET{name,artaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
+                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
+                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
+                    </div>
+            </li>
+<!-- inc-nav_mot -->
+            #SET{name,navmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Noisette inc-nav_mots</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
+                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
+                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+            #SET{name,titrenavmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             <?php $titrenavmot="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Mots-cl&eacute;s associ&eacute;s})]"; ?>
+                    <div class="explication"><br /> Titre du cadre
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrenavmot"; ?>"  />
+                    </span>
+                    </div>
+            </li>
+<!-- inc-meme_rub -->
+            #SET{name,memerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Noisette inc-meme_rub</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
+                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
+                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+            #SET{name,titrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             <?php $titrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Dans la m&ecirc;me rubrique})]"; ?>
+                    <div class="explication"><br /> Titre du cadre
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrememerub"; ?>"  />
+                    </span>
+                    </div>
+             #SET{name,nombrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             <?php $nombrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
+                    <div class="explication">Nombre d'articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrememerub"; ?>"  />
+                    </span>
+                    </div>
+            </li>
+     </ul>
+
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

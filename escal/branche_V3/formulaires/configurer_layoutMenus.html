@@ -1,0 +1,126 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{escal24.png}|balise_img{'',cadre-icone})]Layout et Menus</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+	
+	
+<!-------------------------------------------------------------------------------->
+<!-- Choisir le layout ----------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+            <h4>Choisir le layout</h4>
+
+    <ul>
+            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
+                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label  for="#GET{name}_PMP"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPP" value="MPP"
+                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_MPP"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PPM" value="PPM"
+                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_PPM"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MP" value="MP"
+                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_MP"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
+                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+                    </span></div>
+             </li>
+
+            [(#CONFIG{escal/config/layout}|=={PMP}|oui)
+            #SET{name,margesPMP}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">Blocs latéraux collés aux bords
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+             ]
+
+
+    </ul>
+
+<hr />
+
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la présence ou l'absence d'un menu sur toutes les pages du site ----->
+<!-------------------------------------------------------------------------------->
+            <h4>Choisir la présence ou l'absence d'un menu sur toutes les pages du site</h4>
+
+     <ul>
+<!-- menu horizontal -->
+            #SET{name,menuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Menu Horizontal</strong><br />
+                                             (noisette inc-menu)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+<!-- menu vertical depliant -->
+            #SET{name,menuV1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Menu vertical d&eacute;pliant</strong><br />
+                                                     (noisette inc-menu_vertical)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+<!-- menu vertical deroulant vers la droite-->
+            #SET{name,menuV2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Menu vertical d&eacute;roulant vers la droite</strong><br />
+                                                     (noisette inc-menu_vertical2)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+
+    </ul>
+
+
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
