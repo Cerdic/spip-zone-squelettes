@@ -93,7 +93,7 @@ function balise_NBPAGES_VISITEES($p) {
 // issue du plugin "Nombre de visiteurs connectées"
 // http://www.spip-contrib.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
-function visiteurs_connectes_compter(){
+function escal_visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));
      }
      
