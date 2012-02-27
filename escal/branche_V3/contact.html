@@ -38,22 +38,26 @@
                 <div id="descriptif-article">
                   <:escal:contact_bienvenue:>
                 </div>
+
+
+<!-- Merci a Alain Sichel pour cette page contact -->
+
 <?php
-//
-// Merci &agrave; Alain Sichel pour cette page contact
-//
-// on construit le formulaire
-//
 function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
-                ?>
+?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">
                     <li><div class="liste"><:escal:contact_nom:></div>
                     <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>
                     <li><div class="liste"><:escal:contact_prenom:></div>
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>
+                    
+[(#CONFIG{escal/config/contactmail}|=={non}|oui) <!-- ]
                     <li><div class="liste"><:escal:contact_mail:></div>
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>
+[(#CONFIG{escal/config/contactmail}|=={non}|oui) --> ]
+
+[(#CONFIG{escal/config/radio}|=={non}|oui) <!-- ]
                     <li><:escal:contact_motif:></li>
                       <ul>
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif1:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif1:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif1:></li>
@@ -62,13 +66,20 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif4:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif4:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif4:></li>
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif5:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif5:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif5:></li>
                       </ul>
+[(#CONFIG{escal/config/radio}|=={non}|oui) --> ]
+
+[(#CONFIG{escal/config/checkbox}|=={non}|oui) <!-- ]
+                    <br /><br />
                     <li><:escal:contact_checkbox:><br /><br />
                       <input type="checkbox" name="Niveau[]" value="<:escal:contact_checkbox1:>"  size="30" <?php if ($_POST['Niveau']=='<:escal:contact_checkbox1:>') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox1:>
                       <input type="checkbox" name="Niveau[]" value="<:escal:contact_checkbox2:>"  size="30" <?php if ($_POST['Niveau']=='<:escal:contact_checkbox2:>') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox2:>
                       <input type="checkbox" name="Niveau[]" value="<:escal:contact_checkbox3:>"  size="30" <?php if ($_POST['Niveau']=='<:escal:contact_checkbox3:>') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox3:>
                       <input type="checkbox" name="Niveau[]" value="<:escal:contact_checkbox4:>"  size="30" <?php if ($_POST['Niveau']=='<:escal:contact_checkbox4:>') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox4:>
                       <input type="checkbox" name="Niveau[]" value="<:escal:contact_checkbox5:>"  size="30" <?php if ($_POST['Niveau']=='<:escal:contact_checkbox5:>') { echo 'checked="checked"'; } ?> /><:escal:contact_checkbox5:>
-                    </li><br />
+                    </li>
+[(#CONFIG{escal/config/checkbox}|=={non}|oui) --> ]
+
+                    <br />
                     <li><:escal:contact_message:></li> <br />
                     <li>
                     <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
