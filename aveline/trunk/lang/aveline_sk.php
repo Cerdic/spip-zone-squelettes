@@ -17,7 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline – Zpip s výberom jazyka a ponukami menu',
 
 	// D
-	'description-config-aveline-agenda' => 'Ajoute des noisettes pour afficher les évènements du plugin Agenda dans vos page. Utilisez l\'option <i>Fusionner avec la configuration actuelle</i>.', # NEW
+	'description-config-aveline-agenda' => 'Pridá oriešky na zobrazenie udalostí zásuvného modulu "Program" na vašu stránku. Označte možnosť <i>Zlúčiť s aktuálnymi nastaveniami.</i>',
 	'description-config-aveline-type-blog' => 'Ukážka typu blog (novinky sú deaktivované).',
 	'description-config-aveline-zpip-dist' => 'Toto nastavenie kopíruje Zpip-dist (vhodné pre stránku napísanú v jednom jazyku).',
 	'description-config-aveline-zpip-groupe-mots' => 'Toto nastavenie kopíruje Zpip-dist pridaním stránky pre skupiny slov.',
@@ -266,7 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_ariane_texte_perso' => 'Ak je vlastný názov:',
 	'label_article_specifique' => 'Ak určitý (-é) článok (-ky), ktorý (-é)?',
 	'label_articles_un_niveau' => 'Zobraziť len články prvej úrovne?',
-	'label_branche_specifique' => 'Si branche(s) spécifique(s), quelles branches ?', # NEW
+	'label_branche_specifique' => 'Ak konkrétne vetvy, ktoré?',
 	'label_build_arrows' => 'Zobraziť navigačné šípky?',
 	'label_build_navigation' => 'Afficher les onglets de navigation ?', # NEW
 	'label_build_startstop' => 'Zobraziť tlačidlo <i>Prehrať/Zastaviť</i>?',
@@ -328,7 +328,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_position_selecteur_archives' => 'Umiestnenie oddeľovača:',
 	'label_position_tri_alphabetique' => 'Umiestnenie abecedného zoznamu:',
 	'label_precedent_suivant_align' => 'Zarovnanie',
-	'label_precedent_suivant_trouver' => 'Localisation', # NEW
+	'label_precedent_suivant_trouver' => 'Umiestnenie',
 	'label_precedent_suivant_type_lien' => 'Typ odkazov',
 	'label_rappeler_nom' => 'Zapamätať si meno autora?',
 	'label_rappeler_titre' => 'Zapamätať si názov?',
