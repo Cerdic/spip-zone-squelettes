@@ -138,7 +138,7 @@ define('_SUIVI_FORUM_THREAD', true);
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
-define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr');
+define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr');
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
@@ -148,7 +148,6 @@ function cs_SoyezCreateurs() { return array(
 	// Installation des outils par défaut
 	'outils' =>
 		'boites_privees,
-		auteurs,
 		citations_bb,
 		typo_exposants,
 		guillemets,
@@ -163,15 +162,7 @@ function cs_SoyezCreateurs() { return array(
 		'expo_bofbof' => 1,
 		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
 span.surgris = background-color:#EAEAEC; padding:0px 2px;
-fluo = surfluo
-span.en.lang = en
-span.de.lang = de
-span.it.lang = it
-span.es.lang = es
-div.bloc-en.lang = en
-div.bloc-de.lang = de
-div.bloc-it.lang = it
-div.bloc-es.lang = es',
+fluo = surfluo',
 		'pp_edition_decoration' => 1,
 		'pp_forum_decoration' => 1,
 		'spip_ecran' => 'large',
