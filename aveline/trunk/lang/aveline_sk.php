@@ -81,16 +81,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_afficher_source_rss' => 'Má sa pri článkoch nahratých zásuvným modulom RSS v článku zobraziť zdroj, teda stránka, z ktorej bol článok skopírovaný?',
 	'explication_afficher_tri_alphabetique_nom' => 'Ak je zoznam zotriedený podľa názvu, zobrazenie abecedného registra umožňuje priamy prístup k prvkom, ktorých názov sa začína na požadované písmeno.',
 	'explication_afficher_tri_alphabetique_titre' => 'Ak zoznam zotriedite podľa nadpisu, zobrazí sa abecedný register, ktorý umožňuje priamy prístup k prvkom, ktorých nadpis sa začína na určité písmeno. <strong>POZOR:</strong> ak používate číslované nadpisy, nebude to fungovať správne.',
-	'explication_choix_periode' => 'Ajoute des liens permettant au visiteur de modifier la période (évènements passés, en cours ou à venir). Les liens ne seront affichés que s\'il y a des évènements sur la période considérée.', # NEW
+	'explication_choix_periode' => 'Pridá odkazy, ktoré umožnia návštevníkom zmeniť obdobie (minulé udalosti, aktuálne alebo nadchádzajúce udalosti). Odkazy sa zobrazia iba vtedy, ak je v danom období nejaká udalosť.',
 	'explication_choix_tri' => 'Ako na SPIP-Contrib, pridáva trvalé odkazy návštevníkom, aby mohli zmeniť zotriedenie zoznamu.',
-	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib : lorsque le visiteur clique sur répondre à ce message, le formulaire de réponse vient se placer sous le message.', # NEW
-	'explication_lien_page_auteurs' => 'Rajoute un lien vers une page \'auteurs\' où vous pourrez lister l\'ensemble des auteurs du site. Vous devrez créer cette page (composition du type \'page\' avec l\'identifiant \'auteurs\'.', # NEW
+	'explication_formulaire_reponse_volant' => 'Reprodukuje funkciu SPIP-Contribu: keď návštevník klikne na tlačidlo "Odpovedať na správu", k správe sa zobrazí formulár na napísanie odpovede.',
+	'explication_lien_page_auteurs' => 'Pridá odkaz na stránku "Autori", kde môžete nájsť zoznam všetkých autorov stránky. Túto stránku budete musieť vytvoriť (kompozície typu "page" s identifikátorom "auteurs".',
 	'explication_precedent_suivant_align' => 'Vyberte zarovnanie bloku s navigáciou vzhľadom k textu článku',
 	'explication_precedent_suivant_trouver' => 'Nájsť odkazy k predchádzajúcemu a ďalšiemu článku...',
 	'explication_precedent_suivant_type_lien' => 'Vyberte si, aký typ odkazov sa má zobraziť',
 	'explication_raccourcis_typo' => 'Môžete používať klávesové skratky SPIPu.',
 	'explication_restreindre_langue' => 'V prípade viacjazyčnej stránky môžete chcieť obmedziť zobrazenie na objekty v rovnakom jazyku.',
-	'explication_themes_anythingslider' => 'Vous pouvez disposer de plus de thèmes en les activant sur la <a href="./?exec=configurer_anythingslider">page de configuration d\'AnythingSlider</a>.', # NEW
+	'explication_themes_anythingslider' => 'Môžete mať viac farebných motívov po aktivovaní <a href="./?exec=configurer_anythingslider">stránky s nastaveniami AnythingSlider.</a>',
 	'explication_tri_recherche' => 'Podľa predvolených nastavení budú výsledky zotriedené podľa relevantnosti. Ak aktivujete triedenie podľa úprav, možnosť "podľa relevantnosti" bude pridaná automaticky.',
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pre udalosti, ktoré môžu mať svoje vlastné logo musíte nainštalovať zásuvný modul "Dokumenty a logo pre kalendár udalostí".',
 	'explication_vignette_ajout_css' => 'Väčšina farebných motívov pre Zpip neberie do úvahy miniatúry autorov. Táto možnosť vám umožňuje znova pridať pevnú šablónu do niektorých štýlov CSS na vylepšenie zobrazenia. Neaktivujte túto možnosť, ak farebný motív podporuje miniatúry.',
