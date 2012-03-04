@@ -1,0 +1,59 @@
+#CACHE{15*24*3600}
+<div class="outside" id="skiplinks">
+	<div><!-- inside -->
+		<a href="#content" class=""><:v5_skiptocontent:></a>
+		<!-- a href="#"><:v5_readingcomfort:></a -->
+
+<multi>
+	[fr]
+		<a href="/?lang=en" lang="en" title="See this site in english">English</a>
+	[en]
+		<a href="/?lang=fr" lang="fr" title="Voir ce site en français">Français</a>
+</multi>
+		<a href="recherche.html"><:v5_recherche:></a>
+	</div><!-- /inside -->
+</div><!-- /a11y -->
+
+<?php
+// info si le visiteur n'est pas avant tout francophone
+$firstlang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+// ou si la page est demandee en anglais
+$contextlang = '[(#ENV{lang}|texte_script)]';
+
+if( $firstlang!="fr" || $contextlang!="fr" ) {
+?>
+[(#ENV{contexte}|=={sommaire}|?{
+<div class="outside alert">
+	<div lang="en"><!-- inside -->
+	<p><strong>Please note:</strong> This site used to be in English and in French but I have decided that I will try to focus more on French
+	for the moment. Thus you won't see english navigation etc. on this home page.</p>
+	<p>The content is still where it used to be
+	because <a href="http://www.w3.org/Provider/Style/URI">Cool URIs don't change</a>.</p>
+	</div><!-- /inside -->
+</div><!-- /alert -->
+,
+" "
+})]
+<?php
+} // end if alert
+?>
+<!--[if lte IE 6]>
+<div class="outside alert">
+	<div>
+	<p><:v5_iewarning:></p>
+	</div>
+</div>
+<![endif]-->
+
+
+<div class="outside" id="header">
+	<div><!-- inside -->
+		<h1>
+			[(#ENV{contexte}|=={sommaire}|?{
+			<span><img src="/v5/img/logo.png" width="300" height="105" alt="nota-bene.org" /></span>
+			,
+			<a href="/" title="nota-bene.org - <:v5_retouraccueil:>"><img src="/v5/img/logo.png" width="300" height="105" alt="nota-bene.org - <:v5_retouraccueil:>" /></a>
+			})]
+		</h1>
+	</div><!-- /inside -->
+</div><!-- /header -->

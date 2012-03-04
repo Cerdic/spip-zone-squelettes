@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>image_typo : tests</title>
+		
+		<style type="text/css">
+			body { margin:20px; font-family:Arial, Helvetica, sans-serif; font-size:100%;color:#000; background:#aaa;}
+			div.noisettes { padding:20px; border:2px solid #777; font-size:75%; }
+		</style>
+	</head>
+	<body>
+		
+		<h1>image_typo : tests</h1>
+
+[(#SET{chaine,'Une chaine de test et un blabla et tout le bazar'})]
+
+<p>PNG : 
+[(#GET{chaine}|html_entity_decode|strip_tags|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=[(#ENV{taille}|?{#ENV{taille},18})],couleur=[(#ENV{couleur}|?{#ENV{couleur},000000})],largeur=450,align=left}
+)]
+</p>
+
+<p>PNG + fond : 
+[(#GET{chaine}|html_entity_decode|strip_tags|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=[(#ENV{taille}|?{#ENV{taille},18})],couleur=[(#ENV{couleur}|?{#ENV{couleur},000000})],largeur=450,align=left}
+|image_aplatir{png,ffffff}
+)]
+</p>
+
+<p>GIF : 
+[(#GET{chaine}|html_entity_decode|strip_tags|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=[(#ENV{taille}|?{#ENV{taille},18})],couleur=[(#ENV{couleur}|?{#ENV{couleur},000000})],largeur=450,align=left}
+|image_aplatir{gif,ffffff}
+)]
+</p>
+
+<BOUCLE_test(ARTICLES){id_article=304}>
+<p>1 : [(#TITRE|html_entity_decode|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=36,couleur=000000,largeur=510,align=left}
+|image_aplatir{gif,[(#ENV{background}|?{#ENV{background},ffffff})]}
+)]</p>
+<p>2 : [(#TITRE|html_entity_decode|strip_tags|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=36,couleur=000000,largeur=510,align=left}
+|image_aplatir{gif,[(#ENV{background}|?{#ENV{background},ffffff})]}
+)]</p>
+
+<p>3 : [(#TITRE|attribut_html
+|image_typo{police=fertigo_pro.otf,taille=36,couleur=000000,largeur=510,align=left}
+|image_aplatir{gif,[(#ENV{background}|?{#ENV{background},ffffff})]}
+)]</p>
+
+</BOUCLE_test>
+	</body>
+</html>

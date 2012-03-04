@@ -1,0 +1,74 @@
+#CACHE{2}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+
+<head>
+
+<title><:v5_laisser_commentaire:> | #NOM_SITE_SPIP</title>
+
+<INCLURE{fond=noisettes/inc-head}{contexte=forum}>
+
+<meta name="robots" content="none" />
+
+</head>
+
+<body id="www-nota-bene-org" class="forum">
+
+<INCLURE{fond=noisettes/header}>
+
+<div class="outside" id="content-out">
+	<div><!-- inside -->
+		
+<!-- INCLURE{fond=noisettes/nav} -->
+		
+		<div id="content">
+
+			<h1><INCLURE{fond=noisettes/titre_gros}{chaine=<:v5_laisser_commentaire:>}></h1>
+
+				<p class="info"><:v5_infogravatar:></p>
+
+				<p class="surtitre"><:en_reponse:></p>
+				<ul><li>
+
+					<BOUCLE_forum_parent(FORUMS) {id_forum}>
+					<h2 class="titre"><a href="#URL_FORUM">#TITRE</a></h2>
+					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+					[<div class="texte">(#INTRODUCTION|lignes_longues)</div>]
+					</BOUCLE_forum_parent>
+
+					<BOUCLE_article(ARTICLES) {id_article}>
+					<h2 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h2>
+					<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+					</BOUCLE_article>
+
+					<BOUCLE_breve(BREVES) {id_breve}>
+					<h2 class="titre"><a href="#URL_BREVE">#TITRE</a></h2>
+					<small>[(#DATE|affdate_jourcourt)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+					</BOUCLE_breve>
+
+					<BOUCLE_syndic(SITES) {id_syndic}>
+					<h2 class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></h2>
+					[<div class="texte">(#DESCRIPTIF)</div>]
+					</BOUCLE_syndic>
+
+					<//B_forum_parent>
+
+				</li></ul>
+				
+
+				#FORMULAIRE_FORUM
+				
+		</div><!-- /content -->
+		<hr />
+	</div><!-- /inside -->
+</div><!-- /content-out -->
+
+
+<INCLURE{fond=noisettes/footer}>
+
+</body>
+
+</html>
+</BOUCLE_principale>

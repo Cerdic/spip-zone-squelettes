@@ -1,0 +1,29 @@
+#CACHE{3600}
+<div class="outside" id="additional">
+	<div><!-- inside -->
+
+		<div class="col1">
+			<h2><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_lastcomments:>}{background=F8F5F3}></h2>
+			<B_last_comments>
+			<dl>
+				<BOUCLE_last_comments(FORUMS) {plat}{id_article!=0} {par date}{inverse} {0,6}>
+					<BOUCLE_langue(ARTICLES){id_article}>[(#REM) obligé pour récupérer le LANG de l'article ]
+					<BOUCLE_enfant_forum(FORUMS){id_forum=#_last_comments:ID_FORUM}>
+					[(#SET{#ENV{lang},#_langue:LANG})]
+					<dt lang="#LANG"><a href="#URL_FORUM">[(#NOM|?{#NOM,"Anonyme"})]</a> <:v5_sur:> 
+						<BOUCLE_article_parent_commentaire(ARTICLES){id_article}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_article_parent_commentaire></dt>
+						<dd lang="#LANG">[(#TEXTE|couper{200})] <span>([(#DATE|nb_FuzzyDate)])</span></dd>
+					</BOUCLE_enfant_forum>
+					</BOUCLE_langue>
+				</BOUCLE_last_comments>
+			</dl>
+			</B_last_comments>
+		</div><!-- /class col1 -->
+
+		<div class="col2">
+			<INCLURE{fond=noisettes/etpuislarien}>
+		</div><!-- /class col2 -->
+
+	<hr />
+	</div><!-- /inside -->
+</div><!-- /additional -->

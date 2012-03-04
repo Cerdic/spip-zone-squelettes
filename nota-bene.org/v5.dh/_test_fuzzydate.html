@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Test Fuzzy Date</title>
+<style>
+	body { color:#000; background:#fff; font:75% Arial, Helvetica, sans-serif; }
+	table, th, td { border:1px solid silver; border-collapse:collapse;}
+	th, td { padding:5px; }
+	code { font-size:120%; }
+</style>
+	</head>
+	<body>
+
+<?php
+$langs = array("fr","en");
+for($i=0 ; $i < 9; $i++) {
+	$dates[] = date( "Y/m/d",mktime( 0,0,0,date("m",time()) , date("d",time())-$i , date("Y",time()) ) );
+}
+
+echo "<table>";
+	echo "<tr>";
+	for($i=0 ; $i < count($langs) ; $i++ ) {
+		echo "<th>" . $langs[$i] . "</th>";
+	}
+	echo "</tr>";
+	
+	for($i=0 ; $i < count($dates) ; $i++ ) {
+		echo "<tr>";
+		for($j=0 ; $j < count($langs) ; $j++ ) {
+			echo "<td><a href='/?page=_test_fuzzydate&lang=" . $langs[$j] . "&date=" . $dates[$i] . "'>" . $dates[$i] . "</a></td>";
+		}
+		echo "</tr>";
+	}
+echo "</table>";
+?>
+
+<table>
+	<tr>
+		<th>Titre</th>
+		<th><code>#</code><code>LANG</code></th>
+		<th><code>#</code><code>DATE</code> brute</th>
+		<th><code>#</code><code>DATE|nom_jour</code> et <code>#</code><code>DATE|affdate</code></th>
+		<th><code>#</code><code>DATE|nbFuzzyDate</code></th>
+	</tr>
+
+	<tr style="background:#fdd;">
+		<td>Un test selon la query string</td>
+		<td>#LANG</td>
+		<td>#DATE</td>
+		<td>[(#DATE|nom_jour)] [(#DATE|affdate)]</td>
+		<td>[(#DATE|nb_FuzzyDate)]</td>
+	</tr>
+		
+	<BOUCLE_last_comments(FORUMS) {plat}{id_article!=0} {par date}{inverse} {0,15}>
+		<BOUCLE_langue(ARTICLES){id_article}>[(#REM) obligé pour récupérer le LANG de l'article ]
+		<BOUCLE_enfant_forum(FORUMS){id_forum=#_last_comments:ID_FORUM}>
+	<tr>
+		<td>[(#NOM|?{#NOM,"Anonyme"})] <:v5_sur:> 
+			<BOUCLE_article_parent_commentaire(ARTICLES){id_article}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_article_parent_commentaire></td>
+		<td>#LANG</td>
+		<td>#DATE</td>
+		<td>[(#DATE|nom_jour)] [(#DATE|affdate)]</td>
+		<td>[(#DATE|nb_FuzzyDate)]</td>
+	</tr>
+		</BOUCLE_enfant_forum>
+		</BOUCLE_langue>
+	</BOUCLE_last_comments>
+
+</table>
+
+	</body>
+</html>

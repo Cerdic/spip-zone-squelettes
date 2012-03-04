@@ -1,0 +1,58 @@
+#CACHE{3600}
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+
+<head>
+
+<title>[(#TITRE|textebrut)] | #NOM_SITE_SPIP</title>
+
+<INCLURE{fond=noisettes/inc-head}{contexte=rubrique}>
+
+</head>
+
+<body id="www-nota-bene-org" class="rubrique">
+
+<INCLURE{fond=noisettes/header}>
+
+<div class="outside" id="content-out">
+	<div><!-- inside -->
+		
+<INCLURE{fond=noisettes/nav}{contexte=rubrique}{rubriquecourante=#ID_RUBRIQUE}>
+		
+		<div id="content">
+			<div class="breadcrumbs">
+				<p><:v5_youarehere:>
+					<a href="/"><:v5_home:></a>&nbsp;&gt;
+					<BOUCLE_hier(HIERARCHIE){id_rubrique}{"&nbsp;&gt;"}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_hier>
+					<strong>#TITRE</strong>
+				</p>
+			</div><!-- /class breadcrumbs -->
+
+			<h1>[(#SET{chaine,[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_gros}{chaine=#GET{chaine}}></h1>
+
+[<div id="descriptif">
+	(#DESCRIPTIF|paragrapher)
+</div><!-- /descriptif -->]
+
+<B_page>
+    <p class="pagine">#PAGINATION</p>
+    <ul class="pagine">
+<BOUCLE_page(ARTICLES){id_rubrique}{par date}{inverse}{pagination}>
+	<INCLURE{fond=noisettes/article_vueliste}{id_article}>
+</BOUCLE_page>
+    </ul>
+    <p class="pagine">#PAGINATION</p>
+</B_page>
+		</div><!-- /content -->
+		<hr />
+	</div><!-- /inside -->
+</div><!-- /content-out -->
+
+<INCLURE{fond=noisettes/additional_big}>
+<INCLURE{fond=noisettes/footer}>
+
+</body>
+
+</html>
+</BOUCLE_principale>

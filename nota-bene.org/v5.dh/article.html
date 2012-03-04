@@ -1,0 +1,100 @@
+#CACHE{3600}
+<BOUCLE_principale(ARTICLES){id_article}>
+<BOUCLE_gone(MOTS){id_breve}{titre=410gone}><?php
+header("HTTP/1.1 410 Gone");
+?><INCLURE{fond=410}></BOUCLE_gone>
+</B_gone>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+
+<head>
+
+<title>[(#TITRE|textebrut)] | #NOM_SITE_SPIP</title>
+
+<INCLURE{fond=noisettes/inc-head}{contexte=article}{id_article}>
+
+</head>
+
+<body id="www-nota-bene-org" class="article">
+
+<INCLURE{fond=noisettes/header}>
+
+<div class="outside" id="content-out">
+	<div><!-- inside -->
+		
+<INCLURE{fond=noisettes/nav}{rubriquecourante=#ID_RUBRIQUE}>
+		
+		<div id="content">
+			<div class="breadcrumbs">
+				<p><:v5_youarehere:>
+					<a href="/"><:v5_home:></a>&nbsp;&gt;
+					<BOUCLE_hier(HIERARCHIE){id_article}{id_secteur!=19}><a href="#URL_RUBRIQUE">#TITRE</a>&nbsp;&gt;</BOUCLE_hier>
+					<strong>#TITRE</strong>
+				</p>
+			</div><!-- /class breadcrumbs -->
+
+			<h1>[(#SET{chaine,[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_gros}{chaine=#GET{chaine}}>[<span class="faraway">, </span><span class="soustitre">(#SOUSTITRE)</span>]</h1>
+
+<div id="about">
+	<h2 class="faraway"><:v5_aproposdecetarticle:></h2>
+	<BOUCLE_auteurs(AUTEURS){id_article}{", "}>
+	<p[ (#LOGO_AUTEUR||?{style="padding-top:[(#LOGO_AUTEUR||image_reduire{170}|hauteur)]px",""})]><:v5_an_article_by:>
+	<a href="#URL_AUTEUR">[(#LOGO_AUTEUR||image_reduire{170})] #NOM</a>
+	</p>
+	</BOUCLE_auteurs>
+	<p><:v5_publishedon:> <span>[(#DATE|affdate)]</span></p>
+<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+<p lang="#LANG" ><:v5_traduction:> <a rel="alternate" href="#URL_ARTICLE">#TITRE</a></p>
+</BOUCLE_traductions>
+	<p><BOUCLE_compterforums(FORUMS){plat}{id_article}></BOUCLE_compterforums>
+	<a href="#comments">#_compterforums:TOTAL_BOUCLE <:v5_commentaire_min:>[(#_compterforums:TOTAL_BOUCLE|>{1}|?{s,""})]</a>
+	<//BOUCLE_compterforums></p>
+<B_tags>
+	<h3><:v5_tags:></h3>
+	<ul>
+<BOUCLE_tags(MOTS){id_article}{id_groupe!=2}{id_groupe!=5}>
+<li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+</BOUCLE_tags>
+</ul>
+</B_tags>
+</div>
+
+[<div id="descriptif">
+	(#DESCRIPTIF|nb_abbr|paragrapher)
+</div><!-- /descriptif -->]
+
+[<div id="texte">
+(#TEXTE|nb_abbr|image_reduire{510})
+</div>]
+
+[<div id="ps">
+	<h2><INCLURE{fond=noisettes/surtitre}{chaine=Post-scriptum}></h2>
+	(#PS|paragrapher)
+</div><!-- /ps -->]
+
+[<div id="notes">
+	<h2><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_notes:>}></h2>
+(#NOTES)
+</div>]
+
+		</div><!-- /content -->
+		<hr />
+	</div><!-- /inside -->
+</div><!-- /content-out -->
+
+<div class="outside" id="additional">
+	<div><!-- inside -->
+
+<INCLURE{fond=noisettes/comments}{id_article=#ID_ARTICLE}>
+
+	<hr />
+	</div><!-- /inside -->
+</div><!-- /additional -->
+
+<INCLURE{fond=noisettes/footer}>
+
+</body>
+
+</html>
+<//B_gone>
+</BOUCLE_principale>

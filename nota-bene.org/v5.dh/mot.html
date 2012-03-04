@@ -1,0 +1,66 @@
+#CACHE{3600}
+<BOUCLE_principale(MOTS){id_mot}{id_groupe!=2}{id_groupe!=5}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+
+<head>
+
+<title>[(#TITRE|textebrut)] | #NOM_SITE_SPIP</title>
+
+<INCLURE{fond=noisettes/inc-head}{contexte=mot}>
+
+
+</head>
+
+<body id="www-nota-bene-org" class="recherche">
+
+<INCLURE{fond=noisettes/header}>
+
+<div class="outside" id="content-out">
+	<div><!-- inside -->
+		
+<INCLURE{fond=noisettes/nav}>
+		
+		<div id="content">
+
+			<h1><INCLURE{fond=noisettes/titre_gros}{chaine=#TITRE}></h1>
+
+<BOUCLE_comptearticles(ARTICLES){id_secteur!=19}{id_mot}></BOUCLE_comptearticles>
+<BOUCLE_compteliens(SYNDIC_ARTICLES){id_syndic=109}{descriptif==#TITRE}></BOUCLE_compteliens>
+[<div id="descriptif"><p><strong>(#RECHERCHE)</strong> :
+ #_comptearticles:TOTAL_BOUCLE <:v5_article:>[(#_comptearticles:TOTAL_BOUCLE|>{1}|?{"s",""})]
+ <:v5_onthissite:> <:v5_and:> #_compteliens:TOTAL_BOUCLE <:v5_link:>[(#_compteliens:TOTAL_BOUCLE|>{1}|?{"s",""})].</p></div>]
+<B_page>
+    [<p class="pagine">(#PAGINATION)</p>]
+    <ul class="pagine">
+<BOUCLE_page(ARTICLES){id_secteur!=19}{id_mot}{par date}{inverse}{pagination}>
+	<INCLURE{fond=noisettes/article_vueliste}{id_article}>
+</BOUCLE_page>
+    </ul>
+    [<p class="pagine">(#PAGINATION)</p>]
+</B_page>
+
+<B_liens>
+	<h2><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_links:>}></h2>
+    [<p class="pagine">(#PAGINATION)</p>]
+    <dl class="pagine">
+<BOUCLE_liens(SYNDIC_ARTICLES){id_syndic=109}{descriptif==#TITRE}{par date}{inverse}{pagination}>
+		<dt><a href="#URL_ARTICLE"[ hreflang="(#DESCRIPTIF|nb_netvibes_hreflang)"][ lang="(#DESCRIPTIF|nb_netvibes_hreflang)"]>[(#TITRE|nb_netvibes_titre)]</a></dt>
+		<dd[ lang="(#DESCRIPTIF|nb_netvibes_lang)"]>[(#DESCRIPTIF|nb_netvibes_descriptif)] ([(#DATE|affdate)])</dd>
+</BOUCLE_liens>
+    </dl>
+    [<p class="pagine">(#PAGINATION)</p>]
+</B_liens>
+
+		</div><!-- /content -->
+		<hr />
+	</div><!-- /inside -->
+</div><!-- /content-out -->
+
+
+<INCLURE{fond=noisettes/footer}{passer_recherche=#TITRE}>
+
+</body>
+
+</html>
+</BOUCLE_principale>

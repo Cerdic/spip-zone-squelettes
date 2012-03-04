@@ -1,0 +1,26 @@
+#CACHE{15*24*3600}
+		<div id="nav">
+			<h2 class="faraway"><:v5_navigation:></h2>
+			<ul>
+				<li>
+					[(#ENV{contexte}|=={sommaire}|?{
+					<strong><:v5_home:></strong>
+					,
+					<a href='/'><:v5_home:></a>
+					})]
+				</li>
+				<BOUCLE_nav(RUBRIQUES){racine}{par titre}{lang?}{id_secteur!=19}>
+				<li>
+					[(#ID_RUBRIQUE|=={#ENV{rubriquecourante}}|?{
+						[(#ENV{contexte}|=={rubrique}|?{
+						<strong lang="#LANG">#TITRE</strong>
+						,
+						<a href="#URL_RUBRIQUE" class="activerubrique" lang="#LANG">#TITRE</a>
+						})]
+					,
+					<a href="#URL_RUBRIQUE" lang="#LANG">#TITRE</a>
+					})]
+				</li>
+				</BOUCLE_nav>
+			</ul>
+		</div><!-- /nav -->

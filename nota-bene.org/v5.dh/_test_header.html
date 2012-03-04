@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>TEST header</title>
+
+<?php
+$jsupdate = "20090329-2155";
+$cssupdate = "20090329-2155";
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta http-equiv="imagetoolbar" content="no" />
+
+<!-- fond header : 890 x 355 -->
+<?php
+$logo_img = '';
+$header_bg = '';
+$logo_url = '';
+$logo_legend = '';
+
+<BOUCLE_logophp(ARTICLES){titre_mot=haslogo}{par hasard}{0,1}>
+[$logo_img = '/IMG/(#LOGO_ARTICLE|fichier)';]
+[$header_bg = '/v5/header_bg/(#LOGO_ARTICLE|fichier)';]
+$logo_url = '[(#URL_ARTICLE|url_absolue)]';
+$logo_legend = 'Photo : [(#TITRE|texte_script)]';
+</BOUCLE_logophp>
+
+if(date("dm",time())=="0104") {
+	$logo_img = '/v5/poissondavril.jpg';
+	$logo_url = 'http://www.flickr.com/photos/farruska/2716549076/';
+	$logo_legend = 'Photo : Lucky Fish, Farrushka (Flickr)';
+}
+
+if($logo_url && $logo_img) {
+	echo "<script type=\"text/javascript\">
+	document.logo_url = '$logo_url';
+	document.logo_legend = '$logo_legend';
+</script>";
+}
+
+echo '
+<!-- header background: inspired by Patrick Lauke\'s ambilight http://www.splintered.co.uk/experiments/100/ -->
+<style type="text/css" media="screen,projection">
+@import url("/v5/css/screen.css?' . $cssupdate . '") screen,projection;
+';
+if($header_bg != '') {
+	echo 'div#header { background:url(' . $header_bg . ') left center #4A4A4A repeat; }
+';
+}
+if($logo_img != '') {
+	echo 'div#header span, div#header a:link, div#header a:visited { background:url(' . $logo_img . ') left center transparent no-repeat; }';
+}
+echo '
+</style>';
+
+?>
+
+	</head>
+	<body>
+		
+		<div id="header" class="outside">
+	<div><!-- inside -->
+		<h1>
+			<span><img width="300" height="105" alt="nota-bene.org" src="/v5/img/logo.png"/></span>
+			
+		</h1>
+	</div><!-- /inside -->
+</div>
+
+	</body>
+</html>

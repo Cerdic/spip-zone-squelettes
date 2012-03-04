@@ -1,0 +1,119 @@
+#CACHE{24*3600}
+<INCLURE{fond=noisettes/version}{contexte=#ENV{contexte}}{cesquelette=#ENV{cesquelette}}>
+<?php
+$jsupdate = "20091019-2222";
+$cssupdate = "20090329-2155";
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta http-equiv="imagetoolbar" content="no" />
+
+<!-- fond header : 890 x 355 -->
+<?php
+$logo_img = '';
+$header_bg = '';
+$logo_url = '';
+$logo_legend = '';
+
+<BOUCLE_logophp(ARTICLES){titre_mot=haslogo}{par hasard}{0,1}>
+[$logo_img = '/sites/notabene/IMG/(#LOGO_ARTICLE|fichier)';]
+[$header_bg = '/v5/header_bg/(#LOGO_ARTICLE|fichier)';]
+$logo_url = '[(#URL_ARTICLE|url_absolue)]';
+$logo_legend = 'Photo : [(#TITRE|texte_script)]';
+</BOUCLE_logophp>
+
+if(date("dm",time())=="0104") {
+	$logo_img = '/v5/poissondavril.jpg';
+	$logo_url = 'http://www.flickr.com/photos/farruska/2716549076/';
+	$logo_legend = 'Photo : Lucky Fish, Farrushka (Flickr)';
+}
+
+if($logo_url && $logo_img) {
+	echo "<script type=\"text/javascript\">
+	document.logo_url = '$logo_url';
+	document.logo_legend = '$logo_legend';
+</script>";
+}
+
+echo '
+<!-- header background: inspired by Patrick Lauke\'s ambilight http://www.splintered.co.uk/experiments/100/ -->
+<style type="text/css" media="screen,projection">
+@import url("/v5/css/screen.css?' . $cssupdate . '") screen,projection;
+';
+if($header_bg != '') {
+	echo 'div#header { background:url(' . $header_bg . ') left center #4A4A4A repeat; }
+';
+}
+if($logo_img != '') {
+	echo 'div#header span, div#header a:link, div#header a:visited { background:url(' . $logo_img . ') left center transparent no-repeat; }';
+}
+echo '
+</style>';
+
+?>
+
+<script type="text/javascript" src="/v5/js/jquery.pack.js"></script>
+<script type="text/javascript" src="/v5/js/j.js?<?php echo $jsupdate; ?>"></script>
+
+<style type="text/css" media="print">
+@import url("/v5/css/print.css?<?php echo $cssupdate; ?>");
+</style>
+<style type="text/css" media="handheld">
+@import url("/v5/css/handheld.css?<?php echo $cssupdate; ?>");
+</style>
+
+<!--[if gte IE 7]>
+<style type="text/css" media="screen,projection">
+@import url("/v5/css/screen.css?<?php echo $cssupdate; ?>");
+@import url("/v5/css/screen_ie7.css?<?php echo $cssupdate; ?>");
+</style>
+<![endif]-->
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/v5/css/screen_ie6.css?<?php echo $cssupdate; ?>" media="screen" />
+<![endif]-->
+
+
+<link rel="alternate" type="application/rss+xml" title="RSS 2" href="/spip.php?page=rss2" />
+<link rel="search" href="recherche.html" title="Rechercher dans ce site" />
+
+<BOUCLE_siarticle(ARTICLES){id_article}{id_secteur!=19}>
+<link rel="canonical" href="#URL_SITE_SPIP/#URL_ARTICLE" />
+<link rev="canonical" href="http://nota-bene.org/#ID_ARTICLE" />
+	<BOUCLE_hier(HIERARCHIE){id_article}>
+	<link rel="up" href="#URL_RUBRIQUE" title="[(#TITRE|attribut_html)]" />
+	</BOUCLE_hier>
+	<BOUCLE_precedent(ARTICLES){id_secteur!=19}{age_relatif>=0}{par date}{inverse}{1,1}>
+	<link rel="prev" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)] ([(#DATE|affdate|attribut_html)])" />
+	</BOUCLE_precedent>
+	<BOUCLE_suivant(ARTICLES){id_secteur!=19}{age_relatif<0}{par date}{0,1}>
+	<link rel="next" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)] ([(#DATE|affdate|attribut_html)])" />
+	</BOUCLE_suivant>
+	<BOUCLE_premier(ARTICLES){id_secteur!=19}{par date}{0,1}>
+	<link rel="first" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)] ([(#DATE|affdate|attribut_html)])" />
+	</BOUCLE_premier>
+	<BOUCLE_dernier(ARTICLES){id_secteur!=19}{par date}{inverse}{0,1}>
+	<link rel="last" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)] ([(#DATE|affdate|attribut_html)])" />
+	</BOUCLE_dernier>
+	<BOUCLE_auteurs(AUTEURS){id_article}{0,1}>
+	<link rel="author" href="#URL_AUTEUR" title="Par [(#NOM|attribut_html)]" />
+	</BOUCLE_auteurs>
+</BOUCLE_siarticle>
+[(#ENV{contexte}!={sommaire}|?{
+<link rel="home" title="<:v5_home:>" />
+,' '}
+)]
+
+<link rel="icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<?php
+if(
+	(isset($_COOKIE) && isset($_COOKIE["expe_toolbar"]))
+	||
+	(isset($_GET) && isset($_GET["expe_toolbar"]))
+	) {
+?>
+<script type="text/javascript" src="/experiments/toolbar/js/toolbar.js"></script>
+<?php
+}
+?>

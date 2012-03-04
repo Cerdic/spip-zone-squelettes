@@ -1,0 +1,102 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+
+<INCLURE{fond=noisettes/inc-head-sommaire}>
+<INCLURE{fond=noisettes/inc-head}{contexte=sommaire}>
+
+</head>
+
+<body id="www-nota-bene-org" class="sommaire">
+
+<INCLURE{fond=noisettes/header}{contexte=sommaire}>
+
+<div class="outside" id="content-out">
+	<div><!-- inside -->
+		
+<INCLURE{fond=noisettes/nav}{contexte=sommaire}>
+<INCLURE{fond=noisettes/about_sommaire}>
+		
+		<div id="content">
+			<B_anoter>
+			<!-- of note -->
+			<div >
+			<h1 class="faraway">[(#SET{chaine,'À noter'})]<INCLURE{fond=noisettes/surtitre}{chaine=#GET{chaine}}></h1>
+			<BOUCLE_anoter(ARTICLES){par date}{inverse}{0,1}{id_mot=39}{doublons une}>
+				<div lang="#LANG" style="background:#FFFFC0; padding:3px; ">
+				<h2><a href="#URL_ARTICLE">[(#SET{chaine,'À noter : '[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_gros}{chaine=#GET{chaine}}{background=FFFFC0}></a></h2>
+				<p class="date_une" style="width:249px; overflow:hidden; ">
+
+					[(#SET{date,[(#DATE|affdate)]})]
+					<a href="#URL_ARTICLE"><INCLURE{fond=noisettes/soustitre}{chaine=#GET{date}}{background=FFFFC0}></a>
+				</p>
+				<p class="rubrique_une">
+					<BOUCLE_unerubanoter(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE"><INCLURE{fond=noisettes/soustitre}{chaine=#TITRE}{background=FFFFC0}></a></BOUCLE_unerubanoter>
+				</p>
+				<div class="introduction">
+					<INCLURE{fond=noisettes/introduction}{id_article}>
+				</div><!-- /introduction -->
+
+				</div><!-- /une -->
+			</BOUCLE_anoter>
+			</div>
+			<!-- / of note -->
+			</B_anoter>
+
+			<h1><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_lastarticles:>}></h1>
+			<BOUCLE_une(ARTICLES){par date}{inverse}{0,1}{id_secteur!=19}{doublons une}>
+				<div lang="#LANG">
+				<h2><a href="#URL_ARTICLE">[(#SET{chaine,[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_gros}{chaine=#GET{chaine}}></a></h2>
+				<p class="date_une">
+					[(#SET{date,[(#DATE|affdate)]})]
+					<a href="#URL_ARTICLE"><INCLURE{fond=noisettes/soustitre}{chaine=#GET{date}}></a>
+				</p>
+				<p class="rubrique_une">
+					<BOUCLE_unerub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE"><INCLURE{fond=noisettes/soustitre}{chaine=#TITRE}></a></BOUCLE_unerub>
+				</p>
+				<div class="introduction">
+					<INCLURE{fond=noisettes/introduction}{id_article}>
+				</div><!-- /introduction -->
+				</div><!-- /une -->
+			</BOUCLE_une>
+
+			<h2 class="surtitre"><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_previousarticles:>}></h2>
+			
+			<?php $cpt = 0; ?>
+			<BOUCLE_previousarticles(ARTICLES){par date}{inverse}{0,2}{id_secteur!=19}{doublons une}>
+			<div class="col<?php echo ++$cpt; ?>" lang="#LANG">
+				<h3><a href="#URL_ARTICLE">[(#SET{chaine,[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_petit}{chaine=#GET{chaine}}></a></h3>
+				<p class="date">[(#DATE|affdate)]</p>
+				<div class="introduction">
+					<INCLURE{fond=noisettes/introduction}{id_article}>
+				</div><!-- /introduction -->
+			</div>
+			</BOUCLE_previousarticles>
+			
+			<hr />
+			<div id="older">
+				<h2 class="surtitre"><INCLURE{fond=noisettes/surtitre}{couleur=5C3509}{chaine=<:v5_olderstuff:>}></h2>
+				<p>Ce site existe depuis plus de dix ans. Si vous n'avez pas déjà tout lu, voici deux articles tirés au hasard des archives&nbsp;:</p>
+				<?php $cpt = 0; ?>
+				<BOUCLE_older(ARTICLES){par hasard}{age>720}{0,2}{id_secteur!=19}>
+				<div class="col<?php echo ++$cpt; ?>" lang="#LANG">
+					<h3><a href="#URL_ARTICLE">[(#SET{chaine,[(#TITRE|strip_tags)]})]<INCLURE{fond=noisettes/titre_petit}{chaine=#GET{chaine}}{couleur=5C3509}></a></h3>
+					<p class="date">[(#DATE|affdate)]</p>
+					<div class="introduction">
+					<INCLURE{fond=noisettes/introduction}{id_article}>
+					</div><!-- /introduction -->
+				</div>
+				</BOUCLE_older>
+			</div><!-- /older -->
+		</div><!-- /content -->
+		<hr />
+	</div><!-- /inside -->
+</div><!-- /content-out -->
+
+<INCLURE{fond=noisettes/additional_big}>
+<INCLURE{fond=noisettes/footer}>
+
+</body>
+
+</html>

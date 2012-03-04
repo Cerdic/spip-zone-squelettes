@@ -1,0 +1,67 @@
+#CACHE{24*3600}
+<BOUCLE_principale(ARTICLES){id_article}>
+<!-- *************** forums ************************* -->
+<h2 id="comments"><INCLURE{fond=noisettes/surtitre}{chaine=<:v5_commentaires:>}{background=F8F5F3}></h2>
+
+<B_forums>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){plat}{id_article}{par date}>
+
+<li class="forum forum#ID_AUTEUR">
+
+<div class="forum-titre">
+<h3[ class="(#EMAIL|nb_gravatar)"]><a name="forum#ID_FORUM" title="<:v5_permalien_commentaire:>" href="#forum#ID_FORUM" class="forum-lien">[(#NOM|?{#NOM,<:v5_anonyme:>})]</a></h3>
+</div>
+
+<ul class="forum-meta">
+	<li>[(#DATE|nb_FuzzyDate)]</li>
+	<?php
+	$id_parent = #ID_PARENT;
+	if($id_parent!=0) {
+	    echo "<li><:v5_en_reponse_a:> ";
+	    <BOUCLE_forumparent(FORUMS){id_enfant}>
+	    echo '<a href="#forum#ID_FORUM" class="forum-lien">';
+	    if('[(#NOM|texte_script)]' != '') {
+	        echo '[(#NOM|texte_script)]';
+	    } else {
+	        echo '<:v5_anonyme:>';
+	    }
+	    echo '</a></li>';
+	    </BOUCLE_forumparent>
+	}
+?>
+</ul>
+
+<div class="forum-texte">
+<p class="titre-comment">[(#TITRE)]</p>
+[(#TEXTE|paragrapher|nb_abbr|nb_commentaires_nofollow)]
+[<p><a href="(#URL_SITE)" class="spip_out" rel="nofollow">#NOM_SITE</a></p>]
+</div>
+[<p class="forum-repondre"><a href="forum.html?(#PARAMETRES_FORUM)" class="forum-lien"><:repondre_message:></a></p>]
+
+</li><!-- /class forum forum#ID_AUTEUR -->
+</BOUCLE_forums>
+</ul>
+
+</B_forums>
+
+<?php
+$nb_isCommentable = '[(#PARAMETRES_FORUM|texte_script)]';
+if($nb_isCommentable != '') { // si l'article est commentable
+?>
+<p class="forum-ajouter">
+<a href="forum.html?#PARAMETRES_FORUM"><:v5_commentaire_ajouter:></a>
+<a href="/spip.php?page=rss2_comments&amp;id_article=#ID_ARTICLE" title="<:v5_rss_commentaires_article:>" class="rss">RSS</a>
+</p>
+<?php
+} else { // si l'article n'est pas commentable
+?>
+<p class="forum-ajouter"><:v5_commentaire_desactive:></p>
+<?
+}
+?>
+[<!-- fin forum (#PARAMETRES_FORUM) -->]
+
+
+
+</BOUCLE_principale>

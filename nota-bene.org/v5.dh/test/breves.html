@@ -1,0 +1,48 @@
+<style>
+
+td { border:1px solid silver; padding:5px; margin:5px; }
+tr { vertical-align: top; }
+.ok { background:#bfb; }
+.nok { background:#faa; }
+</style>
+#INSERT_HEAD
+<script>
+$(document).ready(function(){
+	
+	$("td>code").each(function(){
+		$(this).closest("tr").addClass("nok");
+	});
+
+	$("td.texte a").each(function(){
+		$href = $(this).attr("href");
+		$(this).closest("td").append( "<p><code>" + $href + "</code></p>" );
+		if($(this).closest("tr").find("td>code").text() == $href) {
+			$(this).closest("tr").removeClass("nok").addClass("ok");
+		}
+	});
+	
+
+});
+</script>
+<B_br>
+total : #GRAND_TOTAL
+<table>
+<thead>
+<tr>
+<th>Titre</th>
+<th>Contenu</th>
+<th>Lien</th>
+<th>Modifier</th>
+</tr>
+</thead>
+<BOUCLE_br(BREVES){tout}{!par date}{pagination 20}>
+<tr>
+<td><BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE :</BOUCLE_rub> <strong>#TITRE</strong> #DATE</td>
+<td class="texte">#TEXTE</td>
+<td>[<code>(#URL_SITE)</code>]</td>
+<td><a href="/ecrire/?exec=breves_voir&id_breve=#ID_BREVE">modifier</a></td>
+</tr>
+</BOUCLE_br>
+</table>
+<p class="pagine">#PAGINATION</p>
+</B_br>

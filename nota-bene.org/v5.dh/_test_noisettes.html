@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Noisettes : tests</title>
+		
+		<style type="text/css">
+			body { margin:20px; font-family:Arial, Helvetica, sans-serif; font-size:100%;color:#000; background:#fff;}
+			div.noisettes { padding:20px; border:2px solid #777; font-size:75%; }
+		</style>
+	</head>
+	<body>
+		
+		<h1>Noisettes : tests</h1>
+		
+		<h2>Netvibes</h2>
+		<div class="noisettes" tabindex="-1">
+			<INCLURE{fond=noisettes_test/netvibes}>
+		</div>
+
+		<h2>Derniers commentaires</h2>
+		<div class="noisettes" tabindex="-1">
+			<INCLURE{fond=noisettes_test/last_comments}>
+		</div>
+		
+		<h2>Gros titre</h2>
+		<div class="noisettes">
+			<BOUCLE_grostitre(ARTICLES){0,1}{par date}{inverse}>
+			<INCLURE{fond=noisettes_test/gros_titre}{chaine=#TITRE}>
+			</BOUCLE_grostitre>
+		</div>
+
+		<h2>Petit titre</h2>
+		<div class="noisettes">
+			<BOUCLE_petittitre(ARTICLES){1,2}{par date}{inverse}>
+			<INCLURE{fond=noisettes_test/petit_titre}{chaine=#TITRE}>
+			</BOUCLE_petittitre>
+		</div>
+		<h2>titre petit : <code>|html_entity_decode|strip_tags|attribut_html</code></h2>
+		<div class="noisettes">
+			<BOUCLE_titre_petit(ARTICLES){0,200}{par date}{inverse}>
+			<INCLURE{fond=noisettes/titre_petit}{chaine=#TITRE}><br>
+			</BOUCLE_titre_petit>
+		</div>
+	</body>
+</html>
