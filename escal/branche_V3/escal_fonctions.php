@@ -16,7 +16,7 @@ function calcul_version_squelette() {
 
 	$version = NULL;
 
-	if (lire_fichier(_DIR_PLUGIN_ESCAL.'/plugin.xml', $contenu)
+	if (lire_fichier(_DIR_PLUGIN_ESCAL.'/paquet.xml', $contenu)
 	&& preg_match('/<version>(.*?)<\/version>/', $contenu, $match))
 		$version .= trim($match[1]);
 
