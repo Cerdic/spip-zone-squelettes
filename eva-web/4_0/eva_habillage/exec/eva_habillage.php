@@ -87,7 +87,7 @@ window.onerror = null;
     echo '<div style="text-align:center;"><p>'. _T('evahabillage:EVA_actif');
     if ($mon_habillage=='0'){echo _T('evahabillage:EVA_style_defaut');} else {echo "<strong>".$mon_habillage."</strong>";}
     echo '</p><br />';    
-    $image_habillage = ereg_replace(".css",".png",$mon_habillage);
+    $image_habillage = preg_replace('/.css/','.png',$mon_habillage);
     if ($image_habillage=='0') {$image_habillage='eva_style.png';}
 	 if (file_exists($path.$image_habillage)) {
 	 echo '<img  name = "vignetteaff" src="'.$path.$image_habillage.'"  style="border:#AAA solid 5px;" alt=""/><br />';
