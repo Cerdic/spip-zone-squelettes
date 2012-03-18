@@ -58,24 +58,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_syndic' => '@nb@ syndikovaných článkov',
 
 	// B
-	'boucles' => 'Parametre slučky',
+	'boucles' => 'Parametre cyklu',
 	'bouton_configurer' => 'Nastaviť priečinok',
 
 	// C
 	'cache_titre' => 'Schovať názov',
-	'cache_titre_news' => 'pre slučku "čo je nové"',
-	'cache_titre_plus_votes_defaut' => 'pre slučku "najviac hlasov"',
-	'cache_titre_plus_votes_vertical' => 'pre slučku "najviac hlasov" (zvislé panely)',
+	'cache_titre_news' => 'pre cyklus "čo je nové"',
+	'cache_titre_plus_votes_defaut' => 'pre cyklus "najviac hlasov"',
+	'cache_titre_plus_votes_vertical' => 'pre cyklus "najviac hlasov" (zvislé panely)',
 	'cache_titre_zard' => 'pre "náhodnú" slučku',
 	'col_navigation' => 'Stĺpec navigácie',
 	'commentaire' => '1 komentár',
-	'commun' => 'Spoločný pre slučky',
+	'commun' => 'Spoločný pre cykly',
 	'conception' => 'vzhľad priečinka',
 	'config_boucle_vertical' => 'Výsledky zobraziť zvislo (v tabuľke)',
-	'config_boucle_zard' => 'Zobrazenie náhodnej slučky',
+	'config_boucle_zard' => 'Zobrazenie náhodného cyklu',
 	'config_boucle_zard_expli' => 'Môžete to zobraziť buď na úvodnej stránke alebo v navigačnej zóne, pričom sa časti kódu nezobrazia.',
-	'config_cache_boucle' => 'Nezobraziť slučku',
-	'config_defaut_boucle' => 'Predvolené zobrazenie slučky.',
+	'config_cache_boucle' => 'Nezobraziť cyklus',
+	'config_defaut_boucle' => 'Predvolené zobrazenie cyklu.',
 	'config_defaut_menu_lien' => 'Zobraziť odkaz.',
 	'config_defaut_noisettes' => 'Zobraziť časti kódu.',
 	'config_entete' => 'Zobraziť v hlavičke.',
@@ -135,16 +135,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'css_couleurs_nav_pied' => 'Vyberte farby pre modul "päta"',
 	'css_couleurs_nav_secteur' => 'Vyberte farby pre modul "sektor"',
 	'css_couleurs_nav_sites' => 'Vyberte farby pre modul "odkazované stránky"',
-	'css_couleurs_new' => 'Vyberte farby pre slučku "novinky"',
+	'css_couleurs_new' => 'Vyberte farby pre cyklus "novinky"',
 	'css_couleurs_partenaire1' => 'Vyberte farby pre stránku "Partneri"',
 	'css_couleurs_plan' => 'Vyberte farby pre mapu webu',
 	'css_couleurs_plan_complet' => 'Vyberte farby pre mapu celého webu',
-	'css_couleurs_plus_vote' => 'Vyberte farby pre slučku "najviac hlasov"',
-	'css_couleurs_plus_vote_vertical' => 'Vyberte farby pre slučku "najviac hlasov" (zvislé rámy)',
+	'css_couleurs_plus_vote' => 'Vyberte farby pre cyklus "najviac hlasov"',
+	'css_couleurs_plus_vote_vertical' => 'Vyberte farby pre cyklus "najviac hlasov" (zvislé rámy)',
 	'css_couleurs_recherche' => 'Vyberte farby pre vyhľadávaciu stránku',
 	'css_couleurs_rubrique' => 'Vyberte farby pre stránku rubriky',
 	'css_couleurs_site1' => 'Vyberte farby pre stránku s odkazovanou stránkou',
-	'css_couleurs_zard' => 'Vyberte farby pre náhodnú slučku',
+	'css_couleurs_zard' => 'Vyberte farby pre náhodný cyklus',
 	'css_fg' => 'Farba popredia (text a odkazy)',
 	'css_fieldset' => 'Farba rámov',
 	'css_fond' => 'Pozadie stránky',
@@ -246,9 +246,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'margin_right_prems_fieldset' => 'Pravý okraj prvého rámu',
 	'margin_right_second_fieldset' => 'Pravý okraj druhého rámu',
 	'margin_right_tiers_fieldset' => 'Pravý okraj tretieho rámu',
-	'margin_top' => 'Horný okraj slučiek',
+	'margin_top' => 'Horný okraj cyklov',
 	'margin_top_img' => 'Horný okraj obrázkov',
-	'margin_top_plus_vote_verti' => 'Horný okraj rámov slučiek',
+	'margin_top_plus_vote_verti' => 'Horný okraj rámov cyklu',
 	'menu_lien_abonnement' => 'Odkaz na "odberateľskú" stránku',
 	'menu_lien_afficher' => 'Odkaz na stránky menu',
 	'menu_lien_contact' => 'Odkaz na kontaktnú stránku',
@@ -272,7 +272,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nav_sites' => 'panel s počtom "odkazovaných stránok"',
 	'nbr_articles' => 'Počet článkov:',
 	'nbr_sites' => 'Počet stránok:',
-	'new' => 'nová slučka',
+	'new' => 'cyklus "novinky"',
 	'non' => 'Nie',
 	'nous_avons' => 'Máme',
 	'nouveau_site' => 'Nová stránka',
@@ -340,7 +340,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'width_recherche' => 'Šírka vyhľadávacieho formulára',
 
 	// Z
-	'zard' => '"náhodná" slučka'
+	'zard' => '"náhodný" cyklus'
 );
 
 ?>
