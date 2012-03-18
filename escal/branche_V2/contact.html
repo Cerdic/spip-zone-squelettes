@@ -97,20 +97,23 @@ else {
 	$vSujet=trim(utf8_decode($_POST["Sujet"]));
 	$destinataire=$email_webmaster;
 	$titre="<:escal:page_contact2|html2unicode|unicode2charset:> $nom_site";
+	
 	$message="<:escal:envoi_mail_provenance:> " . $_SERVER['HTTP_REFERER'] . "\n";
 	$message.="<:escal:envoi_mail_ip:> " . $_SERVER['REMOTE_ADDR'] . "\n";
 	$message.="<:escal:envoi_mail_navigateur:>" . $_SERVER['HTTP_USER_AGENT'] . "\n\n";
-	$message.="<:escal:envoi_mail_nom:> $vNom\n";
+
+  $date = date("d/m/Y");
+  $heure = date("H:i");
+	$message.="<:escal:le:> $date $heure, <:escal:de:> $vPrenom $vNom < $vEmail > \n";
+
 	if (empty($vNom)) {
 		echo "<p class='alerte'><:escal:contact_alerte_nom:></p>";
 		$erreur=1;
 	}	
-	$message.="<:escal:envoi_mail_prenom:> $vPrenom\n\n";
 	if (empty($vPrenom)) {
 		echo "<p class='alerte'><:escal:contact_alerte_prenom:></p>";
 		$erreur=1;
 	}	
-	$message.="<:escal:envoi_mail_e_mail:> $vEmail\n\n";
 	if (empty($vEmail)) {
 		echo "<p class='alerte'><:escal:contact_alerte_mail1:></p>";
 		$erreur=1;
@@ -148,7 +151,7 @@ else {
          $headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
          $headers .='Content-Transfer-Encoding: 8bit';
 
-   mail($destinataire,$titre,$message,$headers) ;
+   mail($destinataire, $titre, $message, $headers) ;
 
 //
 // on renvoie un message de confirmation

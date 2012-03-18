@@ -72,6 +72,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_retour_checkbox' => 'Votre niveau :',
 'contenu_site' => 'Ce site contient : ',
 // D
+'de' => 'de',
 'dans_site' => 'dans ce site',
 // E
 'en_ligne' => 'Actuellement en ligne : ',
