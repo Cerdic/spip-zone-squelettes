@@ -51,11 +51,15 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                     <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>
                     <li><div class="liste"><:escal:contact_prenom:></div>
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>
+
+
                     
 [(#CONFIG{escal/config/contactmail}|=={non}|oui) <!-- ]
                     <li><div class="liste"><:escal:contact_mail:></div>
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>
 [(#CONFIG{escal/config/contactmail}|=={non}|oui) --> ]
+
+
 
 [(#CONFIG{escal/config/radio}|=={non}|oui) <!-- ]
                     <li><:escal:contact_motif:></li>
@@ -68,35 +72,51 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                       </ul>
 [(#CONFIG{escal/config/radio}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/checkbox}|=={non}|oui) <!-- ]
-                    <li>[(#CONFIG{escal/config/titrecheckbox}|oui)<br /><br />[(#CONFIG{escal/config/titrecheckbox})]<br /><br />]
+
+
+
+<div id="checkbox">
+  <li>[(#CONFIG{escal/config/titrecheckbox}|oui)<br />[(#CONFIG{escal/config/titrecheckbox})]<br /><br /> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)<ul><li>]
+
         [(#CONFIG{escal/config/checkbox1}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox1,<:escal:contact_checkbox1:>})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox1,<:escal:contact_checkbox1:>})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox1,<:escal:contact_checkbox1:>})]
-        [(#CONFIG{escal/config/checkbox1}non) --> ]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox1})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox1})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox1})]
+        [(#CONFIG{escal/config/checkbox1}|non) 1 --> ]
+
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
+
         [(#CONFIG{escal/config/checkbox2}|non) <!-- ]
-                       <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox2,<:escal:contact_checkbox2:>})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox2,<:escal:contact_checkbox2:>})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox2,<:escal:contact_checkbox2:>})]
-        [(#CONFIG{escal/config/checkbox2}non) --> ]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox2})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox2})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox2})]
+        [(#CONFIG{escal/config/checkbox2}|non) 2 --> ]
+
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
+
         [(#CONFIG{escal/config/checkbox3}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox3,<:escal:contact_checkbox3:>})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox3,<:escal:contact_checkbox3:>})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox3,<:escal:contact_checkbox3:>})]
-        [(#CONFIG{escal/config/checkbox3}non) --> ]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox3})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox3})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox3})]
+        [(#CONFIG{escal/config/checkbox3}|non) 3 --> ]
+
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
+
         [(#CONFIG{escal/config/checkbox4}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox4,<:escal:contact_checkbox4:>})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox4,<:escal:contact_checkbox4:>})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox4,<:escal:contact_checkbox4:>})]
-        [(#CONFIG{escal/config/checkbox4}non) --> ]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox4})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox4})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox4})]
+        [(#CONFIG{escal/config/checkbox4}|non) 4 --> ]
+
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
+
         [(#CONFIG{escal/config/checkbox5}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox5,<:escal:contact_checkbox5:>})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox5,<:escal:contact_checkbox5:>})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox5,<:escal:contact_checkbox5:>})]
-        [(#CONFIG{escal/config/checkbox5}non) --> ]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox5})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox5})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox5})]
+        [(#CONFIG{escal/config/checkbox5}|non) 5 --> ]
+
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li></ul>]
 
-                    </li>
-[(#CONFIG{escal/config/checkbox}|=={non}|oui) --> ]
+  </li>
+</div>
 
-                    <br />
+
+
+
+                    <br /><br />
                     <li><:escal:contact_message:></li> <br />
                     <li>
                     <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
