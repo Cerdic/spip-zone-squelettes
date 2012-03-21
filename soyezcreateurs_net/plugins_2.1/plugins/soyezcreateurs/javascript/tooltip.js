@@ -49,13 +49,15 @@
 			settings = $.extend({}, $.tooltip.defaults, settings);
 			createHelper(settings);
 			return this.each(function() {
-					$.data(this, "tooltip", settings);
-					this.tOpacity = helper.parent.css("opacity");
-					// copy tooltip into its own expando and remove the title
-					this.tooltipText = this.title;
-					$(this).removeAttr("title");
-					// also remove alt attribute to prevent default tooltip in IE
-					this.alt = "";
+					if (this.title) {
+						$.data(this, "tooltip", settings);
+						this.tOpacity = helper.parent.css("opacity");
+						// copy tooltip into its own expando and remove the title
+						this.tooltipText = this.title;
+						$(this).removeAttr("title");
+						// also remove alt attribute to prevent default tooltip in IE
+						this.alt = "";
+					}
 				})
 				.mouseover(save)
 				.mouseout(hide)
