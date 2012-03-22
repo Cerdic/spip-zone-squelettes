@@ -81,31 +81,31 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)<ul><li>]
 
         [(#CONFIG{escal/config/checkbox1}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox1})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox1})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox1})]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox1}|typo)]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox1})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox1}|typo)]
         [(#CONFIG{escal/config/checkbox1}|non) 1 --> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
 
         [(#CONFIG{escal/config/checkbox2}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox2})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox2})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox2})]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox2}|typo)]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox2})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox2}|typo)]
         [(#CONFIG{escal/config/checkbox2}|non) 2 --> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
 
         [(#CONFIG{escal/config/checkbox3}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox3})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox3})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox3})]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox3}|typo)]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox3})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox3}|typo)]
         [(#CONFIG{escal/config/checkbox3}|non) 3 --> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
 
         [(#CONFIG{escal/config/checkbox4}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox4})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox4})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox4})]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox4}|typo)]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox4})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox4}|typo)]
         [(#CONFIG{escal/config/checkbox4}|non) 4 --> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
 
         [(#CONFIG{escal/config/checkbox5}|non) <!-- ]
-                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox5})]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox5})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox5})]
+                      <input type="checkbox" name="Niveau[]" value="[(#CONFIG{escal/config/checkbox5}|typo)]"  <?php if ($_POST['Niveau']=='[(#CONFIG{escal/config/checkbox5})]') { echo 'checked="checked"'; } ?> />[(#CONFIG{escal/config/checkbox5}|typo)]
         [(#CONFIG{escal/config/checkbox5}|non) 5 --> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li></ul>]
@@ -173,13 +173,10 @@ else {
 		echo "<p class='alerte'><:escal:contact_alerte_motif:></p>";
 		$erreur=1;
 	}
-  if (empty($_POST['Niveau'] )) {
-    echo "<p class='alerte'><:escal:contact_alerte_checkbox:></p>";
-    $erreur=1;
-  } else {
-  $message.= "<:escal:envoi_mail_niveau:> ";
+
+  $message.= "[(#CONFIG{escal/config/titrecheckbox})]";
   $message.= implode(" - ",$_POST['Niveau']);
-    }
+
   $message.=" \n\n <:escal:envoi_mail_message:> \n $vMessage\n";
   if (empty($vMessage)) {
 		echo "<p class='alerte'><:escal:contact_alerte_message:></p>";
