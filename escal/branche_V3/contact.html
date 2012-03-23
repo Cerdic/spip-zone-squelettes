@@ -43,7 +43,7 @@
 <!-- Merci a Alain Sichel pour cette page contact -->
 
 <?php
-function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
+function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Niveau="",$Message="",$Antispam="") {
 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">
@@ -114,6 +114,10 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
 </div>
 
 
+                  <li style="display:none;">
+                    N'entrez rien dans ce champ *
+                    <input type="text" name="Antispam" value="<?php echo trim(htmlentities($_POST['Antispam'])) ?>" size="30" />
+                  </li>
 
 
                     <br /><br />
@@ -144,6 +148,7 @@ else {
 	$vMessage=trim(utf8_decode($_POST["Message"]));
 	$vEmail=trim(utf8_decode($_POST["Email"]));
 	$vSujet=trim(utf8_decode($_POST["Sujet"]));
+	$vAntispam=trim(htmlentities($_POST["Antispam"]));
 	$destinataire=$email_webmaster;
 	$titre="<:escal:page_contact2|html2unicode|unicode2charset:> $nom_site";
 	$message="<:escal:envoi_mail_provenance:> " . $_SERVER['HTTP_REFERER'] . "\n";
@@ -182,9 +187,12 @@ else {
 		echo "<p class='alerte'><:escal:contact_alerte_message:></p>";
 		$erreur=1;
 	}
+		if (!empty($vAntispam2)) {
+		$erreur=1;
+	}
 
 	if ($erreur==1) {
-		formulaire($Nom,$Prenom,$Email,$Sujet,$Message);
+		formulaire($Nom,$Prenom,$Email,$Sujet,$Niveau,$Message,$Antispam);
 	}
 	else {
 //
