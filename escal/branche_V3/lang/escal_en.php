@@ -142,6 +142,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sites_references' => 'Referenced sites in this section',
 'rubrique_sous_rubriques' => 'Sub-sections of this section',
 // S
+'sites' => 'Sites',
 'site_realise_avec' => 'Site created with',
 'site_reference' => 'referenced site',
 'sites_references' => 'referenced sites',
