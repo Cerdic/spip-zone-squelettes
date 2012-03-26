@@ -1,0 +1,18 @@
+[(#REM)
+  Squelette
+  (c) 2009 xxx
+  Distribue sous licence GPL
+]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><a href="#URL_PAGE{agenda}"><strong class="on"><:agenda:agenda:></strong></a>[<span class="sep"> &gt; </span>(#ENV{date}|nom_mois)]</p>
+<B_ev>
+	[<h1>(#TOTAL_BOUCLE|singulier_ou_pluriel{agenda:info_un_evenement,agenda:info_nombre_evenements})[ à partir de (#ENV{date}|nom_mois)]</h1>]
+	<ul class="liste-items evenements">
+	<BOUCLE_ev(EVENEMENTS){!evenement_passe #ENV{date_debut,#ENV{date}}}{par date_debut}{id_article?}{id_rubrique?}{id_mot?}{id_evenement_source?}>
+		<li class="item">
+			#MODELE{evenement_vevent}
+		</li>
+	</BOUCLE_ev>
+	</ul>
+</B_ev>
+<h1><:agenda:info_aucun_evenement:>[ à partir de (#ENV{date}|nom_mois)]</h1>
+<//B_ev>

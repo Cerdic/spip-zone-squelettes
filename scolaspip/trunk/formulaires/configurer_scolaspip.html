@@ -1,0 +1,176 @@
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	<fieldset>
+		<legend><:scolaspip:descriptifdusite_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:descriptifdusite_texte:></label>
+				<div class="choix">
+					<input type="radio" id="descriptifdusiteoui" name="descriptifdusite" value="oui" [(#ENV{descriptifdusite, oui}|=={oui}|oui) checked="checked"] />
+					<label for="descriptifdusiteoui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="descriptifdusitenon" name="descriptifdusite" value="non" [(#ENV{descriptifdusite, non}|=={non}|oui) checked="checked"] />
+					<label for="descriptifdusitenon"><:item_non:></label>
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend><:scolaspip:calendrier_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:calendrier_texte:></label>
+				<div class="choix">
+					<input type="radio" id="calendrieroui" name="calendrier" value="oui" [(#ENV{calendrier, oui}|=={oui}|oui) checked="checked"] />
+					<label for="calendrieroui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="calendriernon" name="calendrier" value="non" [(#ENV{calendrier, non}|=={non}|oui) checked="checked"] />
+					<label for="calendriernon"><:item_non:></label>
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:evens_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:evens_texte:></label>
+				<div class="choix">
+					<input type="radio" id="evenementsoui" name="evenements" value="oui" [(#ENV{evenements, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').show('fast');"/>
+					<label for="evenementsoui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="evenementsnon" name="evenements" value="non" [(#ENV{evenements, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').hide('fast');"/>
+					<label for="evenementsnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="evenements_complements" [(#ENV{evenements}|=={non}|oui)style='display:none;']>
+					<label class="gauche" for="nb_evenements"><:scolaspip:nb_evens_texte:></label>
+					<div class="choix">
+						<input type="text" id="nb_evenements" name="nb_evenements" size="2" value="#ENV{nb_evenements,10}" />
+					</div>
+					<br class="clear"/>
+					<label class="gauche" for="pagination_evenements"><:scolaspip:pagination_evens_texte:></label>
+					<div class="choix">
+						<input type="text" id="pagination_evenements" name="pagination_evenements" size="2" value="#ENV{pagination_evenements,5}" />
+					</div>
+				</div>
+			</li>
+		</ul>
+		
+	</fieldset>
+	
+	
+	<fieldset>
+		<legend><:scolaspip:breves_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:breves_texte:></label>
+				<div class="choix">
+					<input type="radio" id="brevesoui" name="breves" value="oui" [(#ENV{breves, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').show('fast');"/>
+					<label for="brevesoui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="brevesnon" name="breves" value="non" [(#ENV{breves, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').hide('fast');"/>
+					<label for="brevesnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="breves_complements" [(#ENV{breves}|=={non}|oui)style='display:none;']>
+					<label class="gauche" for="nb_breves"><:scolaspip:nb_breves_texte:></label>
+					<div class="choix">
+						<input type="text" id="nb_breves" name="nb_breves" size="2" value="#ENV{nb_breves,10}" />
+					</div>
+					<br class="clear"/>
+					<label class="gauche" for="pagination_breves"><:scolaspip:pagination_breves_texte:></label>
+					<div class="choix">
+						<input type="text" id="pagination_breves" name="pagination_breves" size="2" value="#ENV{pagination_breves,5}" />
+					</div>
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:articles_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:articles_texte:></label>
+				<div class="choix">
+					<input type="radio" id="articlesoui" name="articles" value="oui" [(#ENV{articles, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#articles_complements').show('fast');"/>
+					<label for="articlesoui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="articlesnon" name="articles" value="non" [(#ENV{articles, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#articles_complements').hide('fast');"/>
+					<label for="articlesnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="articles_complements" [(#ENV{articles}|=={non}|oui)style='display:none;']>
+					<label class="gauche" for="nb_articles"><:scolaspip:nb_articles_texte:></label>
+					<div class="choix">
+						<input type="text" id="nb_articles" name="nb_articles" size="2" value="#ENV{nb_articles,10}" />
+					</div>
+					<br class="clear"/>
+					<label class="gauche" for="pagination_articles"><:scolaspip:pagination_articles_texte:></label>
+					<div class="choix">
+						<input type="text" id="pagination_articles" name="pagination_articles" size="2" value="#ENV{pagination_articles,5}" />
+					</div>
+				</div>
+			</li>
+		</ul>
+
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:forums_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:forums_texte:></label>
+				<div class="choix">
+					<input type="radio" id="forumsoui" name="forums" value="oui" [(#ENV{forums, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#forums_complements').show('fast');"/>
+					<label for="forumsoui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="forumsnon" name="forums" value="non" [(#ENV{forums, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#forums_complements').hide('fast');"/>
+					<label for="forumsnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="forums_complements" [(#ENV{forums}|=={non}|oui)style='display:none;']>
+					<label class="gauche" for="nb_forums"><:scolaspip:nb_forums_texte:></label>
+					<div class="choix">
+						<input type="text" id="nb_forums" name="nb_forums" size="2" value="#ENV{nb_forums,10}" />
+					</div>
+					<br class="clear"/>
+					<label class="gauche" for="pagination_forums"><:scolaspip:pagination_forums_texte:></label>
+					<div class="choix">
+						<input type="text" id="pagination_forums" name="pagination_forums" size="2" value="#ENV{pagination_forums,5}" />
+					</div>
+				</div>
+			</li>
+		</ul>
+		
+	</fieldset>
+
+	<p class="boutons">
+		<input style="display:none;" type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+		<input type="submit" name="reinit" class="submit" value="<:scolaspip:reset:>" />
+		<input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+</div></form>
+
+</div>
+<style type="text/css">
+	fieldset p{margin-bottom:0;}
+	.formulaire_spip li label.gauche{width: 300px;}
+	.formulaire_spip li .choix{display:inline;}
+	
+</style>

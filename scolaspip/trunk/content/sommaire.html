@@ -1,0 +1,73 @@
+<div class="content-principal">
+    <div class="cartouche invisible"><h1 class="h1 invisible">#NOM_SITE_SPIP</h1></div>
+</div>
+
+<div class="gauche">
+
+    [(#CONFIG{scolaspip_accueil/descriptifdusite}|!={oui}|?{'',[<div id="descriptif_site_spip">(#DESCRIPTIF_SITE_SPIP)</div>]})]
+    
+    <B_articles_edito>
+    <div id="edito">
+	<BOUCLE_articles_edito(ARTICLES){mots.titre=edito}{!par date}{0,1}>
+	<h2 class="#EDIT{titre} h2">[(#LOGO_ARTICLE|right||image_reduire{200,150})][(#TITRE)]</h2>
+	[<div class="#EDIT{texte} texte" >(#TEXTE||image_reduire{200,200})</div>]
+	</BOUCLE_articles_edito>
+    </div>
+    </B_articles_edito>
+    
+    [(#REM) Articles Sélectionnés du site ]
+    <B_selection>
+    <div class="menu articles">
+	<h2 class="h2"><:scolaspip:articles_selection:></h2>
+	<ul class="liste-items">
+	    <BOUCLE_selection(ARTICLES){!par date}{mots.titre=Sélection}>
+	    <li class="item">
+		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE|right||image_reduire{100,50})]#TITRE</a></h3>
+		<div class="#EDIT{intro} introduction entry-content[(#CONFIG{scolaspip_plus/afficheintroduction}|=={non}|?{'',' invisible'})]">[(#INTRODUCTION|couper{200})]</div>
+	    </li>
+	    </BOUCLE_selection>
+	</ul>
+    </div>
+    </B_selection>
+    
+    [(#REM) Affichage des dernières brèves si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/breves}|=={non}|?{' ',#INCLURE{fond=inclure/breves}{ajax}{env}})]
+    
+    [(#REM) Affichage des derniers article si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/articles}|=={non}|?{' ',#INCLURE{fond=inclure/articles}{ajax}{env}})]
+    
+</div>
+
+<div class="droite">
+    [(#REM) Affichage du calendrier si la configuration du plugin dit oui ]
+    <div[(#CONFIG{scolaspip_accueil/calendrier}|=={oui}|?{'',' class="invisible"'})]>#CALENDRIER_MINI{#ENV{date},'date',#SELF}</div>
+    
+    [(#REM) Affichage prochains événements si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/evenements}|=={non}|?{' ',#INCLURE{fond=inclure/prochainement}{ajax}{env}})]
+    
+    <B_images>
+    <div id="mozaique">
+	<BOUCLE_images(ARTICLES){mots.titre=mozaique_page_accueil}{!par date}{0,2}>
+	[<h2 class="h2"><a href="#URL_ARTICLE" title="<:article_selectionne:>">(#TITRE)</a></h2>]
+	[(#MODELE{splickrbox}{taille=200}{colonnes=4}{id_article})]
+	</BOUCLE_images>
+    </div>
+    </B_images>
+    
+</div>
+
+[(#REM) Sites avec flux RSS ]
+<B_sites>
+<h2 class="h2 syndics"><:nouveautes_web:></h2>
+<BOUCLE_sites(SITES) {tout}{syndication=oui}{mots.titre=fluxrss_accueil}{par num nom_site,nom_site}>
+<div class="liste syndics">
+    <a href="#URL_SITE"  class="spip_out"  title="<:scolaspip:lien_externe:> &mdash; [(#NOM_SITE|attribut_html)]">[(#LOGO_SITE|right||image_reduire{100,50})]#NOM_SITE</a>
+    <ul class="liste-items">
+	<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{age<180}{!par date}{0,3}>
+	<li class="item"><a href="#URL_ARTICLE" class="spip_out" title="<:scolaspip:lien_externe:>">#TITRE</a><small> - [(#DATE|affdate_jourcourt)]</small></li>
+	</BOUCLE_articles>
+    </ul>
+</div>
+</BOUCLE_sites>
+</B_sites>
+

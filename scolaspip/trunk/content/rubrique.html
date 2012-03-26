@@ -1,0 +1,45 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</p>
+
+[(#REM) Si aucun article, affiche un plan de la rubrique ]
+<div class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[<p class="info-publi"><span class="published"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</span></p>]
+</div>
+
+[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+<div class="gauche">
+		
+		[(#INCLURE{fond=inclure/articles}{ajax}{id_rubrique}{titre=<:articles_rubrique:>})]
+		
+        <B_sous_rubriques>
+        <div class="menu articles">
+				 <h2><:sous_rubriques:></h2>
+				 <ul>
+						<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+						 <li>
+								<a href="#URL_RUBRIQUE" [title="(#TEXTE|attribut_html|couper{80})"]>[(#TITRE)]</a>
+								[(#INCLURE{fond=inclure/articles}{ajax}{id_rubrique}{titre= })]
+						</li>
+						</BOUCLE_sous_rubriques>
+				</ul>
+		</div>
+        </B_sous_rubriques>
+		
+</div>
+
+<div class="droite">
+		
+		[(#INCLURE{fond=inclure/breves}{ajax}{env})]
+		
+</div>
+
+<br class="nettoyeur"/>
+
+[(#REM) Documents joints a la rubrique ]
+[(#INCLURE{fond=inclure/documents,id_rubrique})]
+
+</BOUCLE_content>

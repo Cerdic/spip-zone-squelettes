@@ -1,0 +1,77 @@
+[(#REM)
+
+ Ce squelette definit les styles du plugin ScolaSPIP
+
+ ATTENTION : il faut absolument le charset sinon Firefox croit que
+ c'est du text/html !
+ 
+ Cache à 0 pendant le dev, #CACHE{604800} ensuite (7 jours)
+]
+#CACHE{0}
+#HTTP_HEADER{Content-Type:text/css;charset=utf-8}
+#HTTP_HEADER{Vary:Accept-Encoding}
+
+[(#REM) Police du texte et des titres]
+body h1,body .h1,body h2,body .h2,body h3,body .h3,body h4,body .h4,body .header .accueil #nom_site_spip{
+[(#CONFIG{scolaspip_colorer/police_titres}|=={Verdana}|?{'font-family:Verdana,Geneva,Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Lucida}|?{'font-family:"Luxi sans","Lucida Grande","Lucida Sans Unicode",sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Arial}|?{'font-family:Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Trebuchet}|?{'font-family:"Trebuchet MS",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Impact}|?{'font-family:Impact,Charcoal,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Times}|?{'font-family:Times,"Times New Roman",serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Georgia}|?{'font-family:Georgia,serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Baskerville}|?{'font-family:Baskerville,"Palatino Linotype",serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Andale}|?{'font-family:"Andale Mono","Courier New",monospace'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Courier}|?{'font-family:"Courier New",Courier,mono,monospace'})];}
+body .page,.liste h3.h3{
+[(#CONFIG{scolaspip_colorer/police_contenu}|=={Verdana}|?{'font-family:Verdana,Geneva,Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Lucida}|?{'font-family:"Luxi sans","Lucida Grande","Lucida Sans Unicode",sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Arial}|?{'font-family:Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Trebuchet}|?{'font-family:"Trebuchet MS",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Impact}|?{'font-family:Impact,Charcoal,sans-serif'})];}
+
+[(#REM) Mise en page - bandeau elargi - menu à droite]
+body .page{width :[(#CONFIG{scolaspip_colorer/bandeau_large})];min-width:980px;}
+[(#CONFIG{scolaspip_colorer/position_menu}|=={gauche}|?{'','.content {float:left;} .extra1 {clear :right ;float:right;} .extra2 {clear :right ;float:right;} ' })]
+[(#CONFIG{scolaspip_colorer/bandeau_large}|=={980px}|?{'','.page {-webkit-box-shadow:none;} body{margin :0px;}' })]
+
+[(#REM) Changement des couleurs]
+body {background-color:[(#CONFIG{scolaspip_colorer/bodyfond})];}
+#header {background-color:[(#CONFIG{scolaspip_colorer/bandeau})];}
+#nav,.hornav .menuder,.menuder li,#footer,table.spip thead th{background-color:[(#CONFIG{scolaspip_colorer/barre})];}
+#extra1 .menu,#site_menu {background-color:[(#CONFIG{scolaspip_colorer/menufond})];}
+#header{border-bottom:3px solid [(#CONFIG{scolaspip_colorer/couleurbordure})];}
+#footer {border-top:3px solid [(#CONFIG{scolaspip_colorer/couleurbordure})];}
+body a {color :[(#CONFIG{scolaspip_colorer/liens})];}
+body #extra1 a {color :[(#CONFIG{scolaspip_colorer/liensmenugauche})];}
+body a:focus,body a:hover,body a:active  {color :[(#CONFIG{scolaspip_colorer/liensover})];}
+body #extra1 a:focus,body #extra1 a:hover,body #extra1 a:active  {color :[(#CONFIG{scolaspip_colorer/liensover})];}
+body .hornav .item a {color:[(#CONFIG{scolaspip_colorer/liensmenuhorizontal})];}
+body .hornav .item a:hover {background-color:[(#CONFIG{scolaspip_colorer/menurollover})];}
+#calendar,.evenements{background-color:[(#CONFIG{scolaspip_colorer/calfond})];}
+
+[(#REM) Dégradés]
+[(#CONFIG{scolaspip_colorer/degrades}|=={oui}|?{'
+#header,#nav,#footer,.hornav .menuder,.menuder li,body .hornav .item a:hover,body .hornav .item:hover {background-image:url('#CHEMIN{img/trans.png}');background-size :100% 100%;}
+html body .hornav .item a.daddy:hover{background-image:url('#CHEMIN{img/menuder.gif}');background-position:14.5em center;background-repeat:no-repeat;background-size:auto;}
+','' })]
+[(#CONFIG{scolaspip_colorer/fondcadre}|=={degrade}|?{'
+#site_menu,#extra1 .menu {background-image:url('#CHEMIN{img/trans2.png}');background-size :100% 100%;}
+','' })]
+[(#CONFIG{scolaspip_colorer/fondcadre}|=={hachure}|?{'
+#calendar,.evenements,#site_menu,#extra1 .menu{background-image:url('#CHEMIN{img/trans3.png}');}
+','' })]
+
+[(#REM) Arrondis]
+[(#CONFIG{scolaspip_colorer/arrondi}|=={non}|?{'','
+#extra1 .menu,#site_menu,#calendar,.evenements,body .page{border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;}
+#header{border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;}
+#footer{border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;}
+'})]
+
+[(#REM) Cartouche des forums]
+ul .comment-meta {background-color:[(#CONFIG{scolaspip_colorer/btcom1})];}
+ul .comment-item .comment-meta {background-color:[(#CONFIG{scolaspip_colorer/btcom2})];}
+ul .comment-item.comment-item .comment-meta {background-color:[(#CONFIG{scolaspip_colorer/btcom3})];}
+ul .comment-item.comment-item.comment-item .comment-meta {background-color:[(#CONFIG{scolaspip_colorer/btcom4})];}
+ul .comment-item.comment-item.comment-item .comment-meta {background-color:[(#CONFIG{scolaspip_colorer/btcom5})];}
