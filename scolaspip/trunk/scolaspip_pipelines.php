@@ -58,6 +58,7 @@ function scolaspip_couleurs_config($public=null){
 		'btcom5'=>'#ffff88',
 		'police_contenu'=>'Lucida',
 		'police_titres'=>'Lucida',
+		'persocss'=>'',
 	), $config);
 		
 	return $config;	

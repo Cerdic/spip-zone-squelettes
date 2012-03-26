@@ -39,7 +39,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'breve_publie_le'=>'Actualité publiée le',
 
 // c
-    'cache_couleur' => 'Après avoir enregistrer les couleurs, <a href="?exec=admin_vider">vider le cache</a> de SPIP pour que les couleurs soient prises en compte.',
+    'cache_couleur' => 'Après avoir enregistrer ces valeurs, <a href="?exec=admin_vider">vider le cache</a> de SPIP pour que les couleurs et réglages soient pris en compte.',
     'calendrier_legend' => 'Affichage du mini-calendrier sur la page d\'accueil',
     'calendrier_texte' => 'Souhaitez-vous afficher le mini calendrier en page d\'accueil ?',
     'choix_disposition' => 'Mise en page',
@@ -48,7 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleurs' =>'Couleurs du squelette scolaSPIP',
     'couleur_aide' => 'Cliquez sur les champs que vous souhaitez modifier pour faire apparaître la palette de couleurs.',
     'couleur_barre_legend' => 'Couleur de la barre de liens et pied de page&nbsp;:',
-    'couleur_barre_texte' => 'Couleur de la barre de liens et pied de page&nbsp;:',
+    'couleur_barre_texte' => 'Couleur de la barre horizontale et du pied de page',
     'couleur_bordure_legend' => 'Couleur des bordures&nbsp;:',
     'couleur_bordure_texte' => 'Sélectionnez la couleur des bordures haut et bas, par défaut #f5a32e.',
     'couleur_fond_bandeau_legend' => 'Couleur de fond du bandeau&nbsp;: ',
@@ -80,6 +80,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'edito_texte' => 'La fonctionnalité édito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot clé <em>edito</em>',
     'evens_legend'  => 'Les évènements de la page d\'accueil',
     'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains évènements ?',
+    'export_config_scolaspip'=>'Export',
+    'export_import_config'=>'Export/import des couleurs de ScolaSpip',
 
 // f
     'forums_legend' => 'Les derniers commentaires de forums de la page d\'accueil',
@@ -133,7 +135,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'police_titres'=>'Police des titres',
     'position_menu' => 'Position du menu de rubriques',
     'prochains_evenements'=>'Prochains évènements',
-
+    'perso_css'=>'Règles css',
+    'perso_css_legend'=>'Ajouter des règles css (utilisateurs avertis)',
 // o
     'ok' => 'Enregistrer',
 
