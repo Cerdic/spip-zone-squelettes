@@ -1,33 +1,32 @@
 [(#REM)
 
- Ce squelette definit le javascript du plugin ScolaSPIP
+ Ce squelette definit le javascript du plugin ScolaSPIP (page publique)
  
- Cache à 0 pendant le dev, #CACHE{604800} ensuite (7 jours)
 ]
-#CACHE{0}
+#CACHE{604800}
 #HTTP_HEADER{Content-Type:text/javascript;charset=utf-8}
 #HTTP_HEADER{Vary:Accept-Encoding}
 var tout_masque=true;
 
 function masque(identifiant,num) { // masque les premiers sous niveaux
     $(".niveau1>li>.ss-rubrique").each(function(){ $(this).hide('slow');});
-    $("img.imageplus").each(function(){$(this).attr({ src: "[(#CHEMIN{img/plus.png})]", alt : " - " , title : "Voir les sous-rubriques"});});
+    $("img.imageplus").each(function(){$(this).attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " - " , title : "Voir les sous-rubriques"});});
 }
 function changeTousPlusMoins(){
     if (tout_masque){
-        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/moins.png})]", alt : " - " , title : "Masquer les sous-rubriques"});});
+        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "Masquer les sous-rubriques"});});
 	tout_masque=false;
     }
     else{
-        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/plus.png})]", alt : " + " , title : "Voir les sous-rubriques"});});
+        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " + " , title : "Voir les sous-rubriques"});});
 	tout_masque=true;
     }
 }
 function changePlusMoins(niveau){
     if (niveau.parent().children("ul").css("display")=="block")
-        niveau.attr({ src: "[(#CHEMIN{img/plus.png})]", alt : " + " , title : "Voir les sous-rubriques" });
+        niveau.attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " + " , title : "Voir les sous-rubriques" });
     else
-        niveau.attr({ src: "[(#CHEMIN{img/moins.png})]", alt : " - " , title : "Masquer les sous-rubriques" });
+        niveau.attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "Masquer les sous-rubriques" });
 }
 
 jQuery(document).ready(function(){

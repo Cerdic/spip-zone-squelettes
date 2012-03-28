@@ -39,7 +39,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'breve_publie_le'=>'Actualité publiée le',
 
 // c
-    'cache_couleur' => 'Après avoir enregistré ces valeurs, <a href="?exec=admin_vider">vider le cache</a> de SPIP pour que les couleurs et réglages soient pris en compte.',
+    'cache_couleur' => 'Après avoir enregistré ces valeurs, pour que les couleurs et réglages soient pris en compte un « recalcul » de la page s\'impose (ou <a href="?exec=admin_vider">vider le cache</a> de SPIP).',
     'calendrier_legend' => 'Affichage du mini-calendrier sur la page d\'accueil',
     'calendrier_texte' => 'Souhaitez-vous afficher le mini calendrier en page d\'accueil ?',
     'choix_disposition' => 'Mise en page',
