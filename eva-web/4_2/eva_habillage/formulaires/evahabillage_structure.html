@@ -22,7 +22,7 @@ window.onerror = null;
 <h3 class='titrem'><img src="#CHEMIN_IMAGE{image_pinceaux.png}" class="cadre-icone" /><:evahabillage:eva_etape1:></h3>
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
-[(#ENV{editable})
+
 <form method='post' action='#ENV{action}' name ="formvignette">
 <p><:evahabillage:eva_a_penser:></p>
 	<div style="text-align:center;">
@@ -42,16 +42,21 @@ window.onerror = null;
 		<select name="changement_habillage" onChange = "affvign()">
 		<?php
 		$dir = opendir('#ENV{#GET{chemin_style}}');
+		$fichiers=array();
 		while ($nom_fichier = readdir($dir)) {
 			if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ($nom_fichier!='.png') AND (strpos($nom_fichier,'.css'))) {
-				echo '<option value="'.$nom_fichier.'"';
-				if ($nom_fichier=='#ENV{#GET{habillage}}') {echo ' selected ';}
-				echo '>'.$nom_fichier.'</option>';
+				$fichiers[]=$nom_fichier;
 			}
         }
+		usort($fichiers, "strcasecmp");
+		foreach ($fichiers as $nom) {
+			echo '<option value="'.$nom.'"';
+			if ($nom=='#ENV{#GET{habillage}}') {echo ' selected ';}
+			echo '>'.$nom.'</option>';
+		}
 		?>
 		</select>
 		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:evahabillage:eva_choisir:>' /></p>
 	</div>
-</form>]
+</form>
 </div>
