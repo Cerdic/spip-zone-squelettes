@@ -93,8 +93,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'edito_texte' => 'La fonctionnalité édito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot clé <em>edito</em>',
     'evens_legend'  => 'Les évènements de la page d\'accueil',
     'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains évènements ?',
-    'export_config_scolaspip'=>'Export',
-    'export_import_config'=>'Export/import des couleurs de ScolaSpip',
+    'export_import'=>'Export et Import des réglages',
+    'export_import_config'=>'L\'export et l\'import des réglages de couleurs et présentation de ScolaSpip peut être effectué à l\'aide du plugin « Importeur / Exporteur de configurations ».',
     'explication_titre_slogan'=>'Le titre du site et son slogan sont à compléter dans « Configuration », « Identité du site »',
 
 // f
@@ -161,6 +161,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'scolaspip_plus' => 'Les petits plus de scolaSPIP',
     'scolaspip_plus_texte' => 'Personnalisez quelques éléments des squelettes scolaSPIP.',
     'sites'=>'Sites',
+    'styles_predefinis'=>'Styles prédéfinis (choix de palettes de couleurs)',
 
 // t
     'texte_lien_couleur_scolaspip' => 'Utilisez également pour personnaliser les couleurs&nbsp;:',
@@ -170,12 +171,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'type_bandeau' => 'Type de bandeau',
     'title_logo_institution'=>'Titre au survol du lien sur le logo',
     'titre_mentions'=>'Informations sur le site',
+    'titre_ie_scolaspip_couleurs'=>'Couleurs et réglages du thème de ScolaSpip',
 
 // u
     'utilise_theme' => 'Scolaspip propose un habillage type par défaut (si vous utilisez «&nbsp;la feuille de style de ScolaSpip&nbsp;»).
 			Avec ScolaSpip, vous pouvez utiliser les thèmes pour choisir votre habillage.
 			Dans ce cas, ne pas utiliser la feuille de style de spip (ni du coup la personnalisation de ses couleurs ???)',
-    'utilise_css' => 'Utiliser Utiliser le thème Scolaspip',
+    'utilise_css' => 'Utiliser le thème Scolaspip',
     'uni' => 'Uni',
 
 // r

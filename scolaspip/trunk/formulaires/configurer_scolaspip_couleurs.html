@@ -153,7 +153,17 @@
 		</ul>
 		
 		<legend><:scolaspip:choix_couleur:></legend>
-	
+		
+		<p><:scolaspip:styles_predefinis:></p>
+		<select id="style_scolaspip">
+			<option></option>
+			<option value="1">Scolaspip 2012</option>
+			<option value="2">ScolaSpip 2008</option>
+			<option value="3">Rouge</option>
+			<option value="4">Vert</option>
+			<option value="5">Bleu</option>
+		</select>
+		
 		<p><:scolaspip:couleur_aide:></p>
 	
 		<ul>
@@ -174,8 +184,8 @@
 				<p><:scolaspip:couleur_barre_texte:></p>
 			</li>
 			<li>
-				<label for="barre" ><:scolaspip:couleur_barre_hover_legend:></label>
-				<input type="text" name="barreover" id="barre" value="#ENV{barreover, #dddddd}" size="7" class="palette"  />
+				<label for="barreover" ><:scolaspip:couleur_barre_hover_legend:></label>
+				<input type="text" name="barreover" id="barreover" value="#ENV{barreover, #dddddd}" size="7" class="palette"  />
 				<p><:scolaspip:couleur_barre_hover_texte:></p>
 			</li>
 			<li>
@@ -188,13 +198,13 @@
 				<input type="text" name="calfond" id="calfond" value="#ENV{calfond, #edd6b5}" size="7" class="palette"  />
 				<p><:scolaspip:couleur_cal_texte:></p>
 				</li>
-<!-- Bordures -->			
+<!-- Bordures -->
 			<li style="border-bottom: 1px solid #ddd;">
 				<label for="couleurbordure"><:scolaspip:couleur_bordure_legend:></label>
 				<input type="text" name="couleurbordure"  id="couleurbordure" value="#ENV{couleurbordure, #ffcc00;}" size="7" class="palette"  />
 				<p><:scolaspip:couleur_bordure_texte:></p>
 			</li>
-<!-- Liens 3 types avec survol, soit 6 -->			
+<!-- Liens 3 types avec survol, soit 6 -->
 			<li>
 				<label for="liens"><:scolaspip:couleur_liens_legend:></label>
 				<input type="text" name="liens" id="liens" value="#ENV{liens, #cc6600}" size="7" class="palette"  />
@@ -280,24 +290,17 @@
 		</ul>
 	</fieldset>
 	<p><:scolaspip:cache_couleur:></p>
-
 	<p class="boutons">
 		<input style="display:none;" type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
 		<input type="submit" name="reinit" class="submit" value="<:scolaspip:reset:>" />
 		<input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
 	</p>
-	
+	[(#BOITE_OUVRIR{[<:scolaspip:export_import:>(#CHEMIN_IMAGE{ieconfig-24.png}|balise_img{'',cadre-icone})],simple})]
+		<p><:scolaspip:export_import_config:></p>
+	#BOITE_FERMER	
 </div></form>
-<fieldset>
-	<legend><:scolaspip:export_import_config:></legend>
-	<label for="export_configuration"><:scolaspip:export_config_scolaspip:></label>
-	[<textarea id="export_configuration" name="export_configuration" onclick="jQuery(this).select();">(#CONFIG{scolaspip_colorer})</textarea>]
-	
-	[(#REM) Proposer aussi un import...? Ou cela suffira avec des styles proposés ?]
-	
-</fieldset>
 
-</div>
+
 <style type="text/css">
 	fieldset li p{font-size:0.9em;}
 	.formulaire_spip li label.gauche{width: 300px;}
@@ -306,3 +309,43 @@
 	.formulaire_spip li.sur2lignes label.gauche{width: 200px;}
 	#export_configuration{height: 8em;}
 </style>
+
+<script type="text/javascript">
+//ScolaSpip Origine
+
+jQuery(function() {
+	var couleurs = new Array();
+	couleurs[1] = {
+		'bodyfond':'#dddddd',
+		'bandeau':'#4b4b4b',
+		'barre':'#c4c4c4',
+		'barreover':'#dddddd',
+		'menufond':'#F2E19D',
+		'calfond':'#edd6b5',
+		'menurollover':'#000000',
+		'couleurbordure':'#ffcc00',
+		'liens':'#cc6600',
+		'liensover':'#A85503',
+		'liensmenugauche':'#A85503',
+		'liensmenugauchehover':'#666666',
+		'liensmenuhorizontal':'#333333',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#ffffff',
+		'couleurs_intertitres':'#333333'
+	};
+
+	jQuery("#style_scolaspip").change(function(){
+		jeu_de_couleurs = couleurs[jQuery(this).val()];
+		jQuery.each(jeu_de_couleurs, function(index, value) {
+			// a debugguer
+			//jQuery("#".index).attr("value",value);
+		});
+	});
+});
+</script>
+
