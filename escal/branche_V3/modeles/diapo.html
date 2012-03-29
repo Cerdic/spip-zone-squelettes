@@ -26,17 +26,30 @@
 - meme nom de boucle + 6 caracteres(_diapo)
 => il faudrait sans doute surcharger pagination...]
 <BOUCLE_docs_diapo(DOCUMENTS){id_article}{extension IN png,jpg,gif}{par num titre, titre, id_document}{0,1}>
+
 <img class="diapo_loading" alt="<:diapo:loading:>" style="display:none" src="[(#CHEMIN{'img_pack/loading.gif'})]"/>
 <div class="diapo[ (#ENV{align}|match{right|left}|?{'diapo_petit','diapo_grand'})]">
+
 <a href="#FICHIER"[ title="(#TITRE|supprimer_numero|texte_backend)"] type="#MIME_TYPE">
-<img class="diapo_petit"[ style="(#ENV{align}|match{right|left}|?{'','display:none'})"] src='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|extraire_attribut{src})]' height='[(#FICHIER|image_reduire{#DIAPO_PETIT,#DIAPO_PETIT_H}|hauteur)]' width='[(#FICHIER|image_reduire{#DIAPO_PETIT,#DIAPO_PETIT_H}|largeur)]' alt='[(#TITRE|supprimer_numero|texte_backend)]' />
-<img class="diapo_[(#_art:ID_ARTICLE)]_[(#COMPTEUR_BOUCLE)] diapo_grand"[ style="(#ENV{align}|match{right|left}|?{'display:none',''})"] src='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|extraire_attribut{src})]' height='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|hauteur)]' width='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|largeur)]' alt='[(#TITRE|supprimer_numero|sinon{[(#FICHIER|)]})]' />
+
+<img class="diapo_petit"[ style="(#ENV{align}|match{right|left}|?{'','display:none'})"]
+src='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|extraire_attribut{src})]'
+height='[(#FICHIER|image_reduire{#DIAPO_PETIT,#DIAPO_PETIT_H}|hauteur)]'
+width='[(#FICHIER|image_reduire{#DIAPO_PETIT,#DIAPO_PETIT_H}|largeur)]'
+alt='[(#TITRE|supprimer_numero|texte_backend)]' />
+
+<img class="diapo_[(#_art:ID_ARTICLE)]_[(#COMPTEUR_BOUCLE)] diapo_grand"[ style="(#ENV{align}|match{right|left}|?{'display:none',''})"]
+src='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|extraire_attribut{src})]'
+height='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|hauteur)]'
+width='[(#FICHIER|image_reduire{#DIAPO_GRAND,#DIAPO_GRAND_H}|largeur)]'
+alt='[(#TITRE|supprimer_numero|sinon{[(#FICHIER|)]})]' />
+
 </a>
 [<h3>(#TITRE|supprimer_numero)</h3>]
 [<p>(#DESCRIPTIF)</p>]
 </div>
 </BOUCLE_docs_diapo>
-<!-- fin diapo#ID_ARTICLE -->
-</div>
+
+</div><!-- fin diapo#ID_ARTICLE -->
 <br style="clear:both;"/>
 </BOUCLE_art>
