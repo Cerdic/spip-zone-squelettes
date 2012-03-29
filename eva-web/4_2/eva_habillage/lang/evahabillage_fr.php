@@ -310,7 +310,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'titrebloc_go' => "C'est parti !",
 'titrebloc_tab1' => "<center><strong><span style='text-decoration:underline;'>D&eacute;finition initiale</span></strong></center>",
 'titrebloc_tab2' => "<center><strong><span style='text-decoration:underline;'>Nouvelle d&eacute;finition</span></strong></center>",
-'titrebloc_detail' => "<center>On remplacera</center><br />&nbsp;<br /><table align='center' class='spip'>
+'titrebloc_detail' => "<center>On remplacera</center><br /><table align='center' class='spip'>
 	<tr align='center' class='row_even'><td><strong>'</strong> (apostrophe) par <strong>".htmlentities('&#39;')."</strong></td>
 	<td align='center'><strong>&eacute;</strong> par <strong>".htmlentities('&eacute;')."</strong></td>
 	<td align='center'><strong>&Eacute;</strong> par <strong>".htmlentities('&Eacute;')."</strong></td></tr>
@@ -325,7 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<td align='center'><strong>&Acirc;</strong> par <strong>".htmlentities('&Acirc;')."</strong></td></tr>
 	</table>
 	",
-'titrebloc_entites_html' => "Exemples d'entit&eacute;s html",
+'titrebloc_entites_html' => "<strong>Exemples d'entit&eacute;s html</strong>",
 'titrebloc_debut' => "<strong>Mise en garde :</strong> il faut remplacer certains caract&egrave;res par des entit&eacute;s html (<em>imp&eacute;ratif pour les ' apostrophes et les \" guillemets</em> notamment) dans les formulaires ci-dessous.
 <br />Pour en savoir plus sur les entit&eacute;s html, voir ci-dessous pour quelques exemples, sur <a href='http://fr.wikibooks.org/wiki/Programmation_HTML_Entit%C3%A9s'>WikiBook pour d'autres r&eacute;f&eacute;rences</a> ou directement sur <a href='http://people.w3.org/rishida/scripts/uniview.fr/conversion.html'>le site du W3C pour obtenir un convertisseur en entit&eacute;s unicode</a>.",
 'eva_choix_entete_pied' => "<div style='text-align:center;'>Choix des &eacute;l&eacute;ments de l'ent&ecirc;te, du pied de page et des headers</div>",
@@ -365,6 +365,7 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide o
 'eva_menu_langue_bordure_couleur'=>'Couleur de la bordure',
 'eva_menu_langue_graphisme' => '<div style="text-align:center;">Menu de langue et de traduction</div>',
 'eva_menu_langue_graphisme_explication' => 'Choisissez ici vos pr&eacute;f&eacute;rences concernant l\'aspect graphique de votre menu de langue. Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond situ&eacute; ci-dessous.',
+'eva_langue' => '<div style="text-align:center;">Red&eacute;finir le fichier de langue d\'EVA-web</div>',
 'eva_langue_absente1' => 'La langue ',
 'eva_langue_absente2' => ' n\'a pas encore &eacute;t&eacute; traduite, il est donc impossible de red&eacute;finir les entr&eacute;es du fichier de langue correspondant.',
 );

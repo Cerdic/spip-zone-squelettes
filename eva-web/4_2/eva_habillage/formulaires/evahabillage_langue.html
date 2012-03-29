@@ -1,0 +1,48 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{plume.png}" class="cadre-icone" /><:evahabillage:eva_langue:></h3>
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+		[(#REM) On recupere les variables necessaires au traitement du bloc]
+		#SET{langue,langue_courante}
+		#SET{habillage,changement_habillage}
+		#SET{vignette,nom_vignette}
+		#SET{chemin_vignette,chemin_vignettes}
+		#SET{chemin_style,chemin_styles}
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<input type="hidden" name="langue" value="#ENV{#GET{langue}}">
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<p><:evahabillage:titrebloc_debut:></p>
+<p><h4><:evahabillage:titrebloc_entites_html:></h4><:evahabillage:titrebloc_detail:></p>
+<p><h4><:evahabillage:titrebloc_go:></h4>
+<?php include(_DIR_PLUGIN_EVASQUELETTES.'lang/local_#ENV{#GET{langue}}.php');
+$couleur_table = 0;?>
+<table align="center" class="spip">
+<tr align="center" class="row_even"><td align="center"><:evahabillage:titrebloc_tab1:></td>
+<td align="center"><:evahabillage:titrebloc_tab2:></td></tr>
+<?php $couleur_table++;
+    foreach ($langue_fichier_initial as $cle => $val) {
+	$test_langue=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND attach='#ENV{#GET{langue}}' AND nom_div = '$cle'");
+	$result_langue=sql_fetch($test_langue);
+	$resultat=$result_langue['nom_image'];
+	echo '<tr align="center" ';
+	if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
+	$couleur_table++;
+	echo '><td align="center">'.$val.'</td>';
+	echo '<td align="center"><input type="text" name="'.$cle.'" value="'.htmlentities($resultat).'" size="25" /></td>';
+	echo '</tr>';
+    }
+?>
+</table>
+</p>
+	<div style="text-align:center;">
+		
+		
+		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:evahabillage:eva_choisir:>' /></p>
+	</div>
+</form>
+</div>
