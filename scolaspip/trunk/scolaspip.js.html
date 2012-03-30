@@ -28,23 +28,23 @@ function changePlusMoins(niveau){
     else
         niveau.attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "Masquer les sous-rubriques" });
 }
-
-jQuery(document).ready(function(){
-    // on masque les premiers sous-niveaux sauf le courant
-    jQuery(".niveau1>li>.ss-rubrique").css({display:'none'});
-    jQuery(".niveau1>li>.ss-rubrique.ddon").css({display:'block'});
-    
-    // on masque les contenus des breves et on mets les boutons +
+function activeToggleBreves() {    // on masque les contenus des breves, on mets les boutons + et on active l'action
     jQuery(".liste.breves li.item div.contenu_breve").css({display:'none'});
     jQuery(".liste.breves li.item h3.h3 a").removeClass("ouvert");
     jQuery(".liste.breves li.item h3.h3 a").addClass("ouvrable");
-		
     jQuery(".liste.breves li.item h3").click(function(){ // Affichage des breves
 	jQuery(this).next().slideToggle();
 	jQuery(this).children().toggleClass("ouvrable");
 	jQuery(this).children().toggleClass("ouvert");
 	return false;
     });
+}
+
+jQuery(document).ready(function(){
+    // on masque les premiers sous-niveaux sauf le courant
+    jQuery(".niveau1>li>.ss-rubrique").css({display:'none'});
+    jQuery(".niveau1>li>.ss-rubrique.ddon").css({display:'block'});
+    activeToggleBreves();
     jQuery("#montre_ou_masque_tout").click(function(){ // ouverture/fermeture de tout le sommaire
 	if (tout_masque) {
 	    jQuery(".niveau1>li>.ss-rubrique").slideDown('slow',changeTousPlusMoins());
@@ -55,6 +55,6 @@ jQuery(document).ready(function(){
     });
     jQuery(".bouton_niveau1").click(function(){ // ouverture/fermeture d'une branche du sommaire
 	jQuery(this).parent().children("ul").slideToggle("slow",changePlusMoins(jQuery(this)));
-	
     });
+    if (typeof onAjaxLoad == 'function') onAjaxLoad(activeToggleBreves); // callback pour les breves lors de pagination ajax (merci astuces spip)
 });

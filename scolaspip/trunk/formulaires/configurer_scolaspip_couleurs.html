@@ -147,26 +147,21 @@
 						<option value="Courier" [(#ENV{police_titres, Courier}|=={Courier}|?{selected="selected"})]>Courier</option>
 					</select>
 				</div>
-				
 			</li>
-			
 		</ul>
 		
 		<legend><:scolaspip:choix_couleur:></legend>
-		
-		<p><:scolaspip:styles_predefinis:></p>
-		<select id="style_scolaspip">
-			<option></option>
-			<option value="1">Scolaspip 2012</option>
-			<option value="2">ScolaSpip 2008</option>
-			<option value="3">Rouge</option>
-			<option value="4">Vert</option>
-			<option value="5">Bleu</option>
-		</select>
-		
 		<p><:scolaspip:couleur_aide:></p>
-	
 		<ul>
+			<li>
+				<label for="style_scolaspip"><:scolaspip:styles_predefinis:></label>
+				<select id="style_scolaspip">
+					<option value="0"></option>
+					<option value="1">Scolaspip par défaut</option>
+					<option value="2">Gris et rouge</option>
+					<option value="3">Rouge</option>
+				</select>
+			</li>
 <!-- Backgrounds 5 possible + 1 survol -->			
 			<li>
 				<label for="bodyfond"><:scolaspip:background_legend:></label>
@@ -295,11 +290,12 @@
 		<input type="submit" name="reinit" class="submit" value="<:scolaspip:reset:>" />
 		<input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
 	</p>
-	[(#BOITE_OUVRIR{[<:scolaspip:export_import:>(#CHEMIN_IMAGE{ieconfig-24.png}|balise_img{'',cadre-icone})],simple})]
+	[(#BOITE_OUVRIR{<:scolaspip:export_import:>,info})]
 		<p><:scolaspip:export_import_config:></p>
 	#BOITE_FERMER	
 </div></form>
 
+</div>
 
 <style type="text/css">
 	fieldset li p{font-size:0.9em;}
@@ -313,9 +309,9 @@
 <script type="text/javascript">
 //ScolaSpip Origine
 
-jQuery(function() {
+$(document).ready(function() {
 	var couleurs = new Array();
-	couleurs[1] = {
+	couleurs[1] = { // Par défaut
 		'bodyfond':'#dddddd',
 		'bandeau':'#4b4b4b',
 		'barre':'#c4c4c4',
@@ -338,12 +334,61 @@ jQuery(function() {
 		'couleurs_bandeau':'#ffffff',
 		'couleurs_intertitres':'#333333'
 	};
-
+	couleurs[2] = { // Gris et Rouge
+		'bodyfond':'#ffffff',
+		'bandeau':'#333333',
+		'barre':'#c4c4c4',
+		'barreover':'#dddddd',
+		'menufond':'#ffffff',
+		'calfond':'#ffffff',
+		'menurollover':'#000000',
+		'couleurbordure':'#aa0000',
+		'liens':'#aa0000',
+		'liensover':'#ff5d00',
+		'liensmenugauche':'#aa0000',
+		'liensmenugauchehover':'#ff5d00',
+		'liensmenuhorizontal':'#333333',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#dddddd',
+		'couleurs_intertitres':'#780808'
+	};
+	couleurs[3] = { // Rouge et gris
+		'bodyfond':'#eeeeee',
+		'bandeau':'#eeeeee',
+		'barre':'#cc0000',
+		'barreover':'#000000',
+		'menufond':'#ffffff',
+		'calfond':'#ffffff',
+		'menurollover':'#dddddd',
+		'couleurbordure':'#aa0000',
+		'liens':'#aa0000',
+		'liensover':'#ff5d00',
+		'liensmenugauche':'#aa0000',
+		'liensmenugauchehover':'#ff5d00',
+		'liensmenuhorizontal':'#ffffff',
+		'liover':'#eeeeee',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#dd0000',
+		'couleurs_intertitres':'#666666'
+	};
 	jQuery("#style_scolaspip").change(function(){
+		if (jQuery(this).val()==0) return;
 		jeu_de_couleurs = couleurs[jQuery(this).val()];
 		jQuery.each(jeu_de_couleurs, function(index, value) {
-			// a debugguer
-			//jQuery("#".index).attr("value",value);
+			element = jQuery("#"+index);
+			if (element.hasClass("palette")) {
+				element.attr("value",value);
+				element.css({'background':value});
+			}
 		});
 	});
 });
