@@ -152,7 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_fixe' => "Fixe",
 'eva_restauration_externe' => "Int&eacute;grer un th&egrave;me d'habillage externe",
 'eva_restauration_externe_aucun' => "il n'y a aucun th&egrave;me externe disponible.",
-'eva_restauration_externe_choix' => "Choisissez un des th&egrave;mes propos&eacute; ci-dessous.<br /><strong>Attention :</strong> tous les r&eacute;glages effectu&eacute;s dans les autres modules du plugin d'habillage d'EVA-web seront effac&eacute;s.",
+'eva_restauration_externe_choix' => "<p>Choisissez un des th&egrave;mes propos&eacute; ci-dessous.</p><div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'><b>Attention :</b> tous les r&eacute;glages effectu&eacute;s dans les autres modules du plugin d'habillage d'EVA-web seront effac&eacute;s lors de l'int&eacute;gration d'un habillage externe.</div></div></div>",
 'eva_aucune_image_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de fond pour les secteurs de ce site.",
 'eva_aucune_liste_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de puce pour les listes de ce site.",
 'eva_etape4_restaurer' => "Restaurer vos param&egrave;tres d'habillage pr&eacute;c&eacute;demment sauvegard&eacute;es :",
