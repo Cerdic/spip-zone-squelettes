@@ -5,7 +5,7 @@ global $eva_themes;
 $eva_themes = array(
 'Vide' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')",
     "images" => array()
     ),
@@ -368,7 +368,7 @@ $eva_themes = array(
     ), ),
 'Plage' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#f9ebb9', '#f9ebb9', '', '#a27c4b', 'transparent', '#f9ebb9', '#f9ebb9', '#f9ebb9', '#f9ebb9', 'transparent', 'transparent', '#f9ebb9', '#a27c4b', '', '#FFF', '#f9ebb9', '#fbf1ce', '#f9ebb9', '#FFF', 'georgia', '#111', '#a27c4b', '#111', '#444', '#a27c4b', '#111', '#a27c4b', '#111', '#111', '#a27c4b', '#111', '#a27c4b', '#FFF', '#111', '#a27c4b', '#111', '#111', '#111', '#ff8448', '#a27c4b', '#a27c4b', '#111', '#111', '#a27c4b', '#f9ebb9', '', '', '#444', '', '', '#f9ebb9', '', '', '', '', 'none', '#444', '', '', '#444', '', '', '#f9ebb9', '', '', '#444', '', '', '#444', '', '', '', '', '', '', '', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_edito', 'Plage/fond_edito.jpg', 'left', 'top', 'repeat-x', 'scroll')",
@@ -434,7 +434,7 @@ $eva_themes = array(
     ), ),
 'Nature' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#ffbf99', '#FFF', '#FFF', '#FFF', 'transparent', '#388c00', '#275300', '#4fa600', '#0012c1', '#0012c1', '#FFF', '#275300', '#FFF', '#ffd2b7', '#fff0e8', '#ffbf99', '#8c3800', '#ffdeca', '#ffd2b7', '', '#444', '#444', '#444', '#FFF', '#388c00', '#275300', '#388c00', '#8c3800', '#ffbf99', '#388c00', '#275300', '#388c00', '#444', '#275300', '#388c00', '#fff', '#fff', '#fff', '#0012c1', '#a24fa4', '#0012c1', '#a24fa4', '#a24fa4', '#0012c1', '#275300', '2px', '', '#388c00', '', '', '#388c00', '', '', 'transparent', '', '', '#000e8c', '', '', '#000e8c', '6px', 'ridge', '#4fc400', '', '', '#ffbf99', '2px', 'double', '#8c3800', '', '', '', '', '', '', '', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Nature/menu_off.png', 'right', 'top', 'repeat-y', 'scroll')",
@@ -575,7 +575,7 @@ $eva_themes = array(
     ), ),
 'Eclipse' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#a94c72', 'transparent', 'transparent', 'transparent', '#932041', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#932041', 'transparent', '#932041', '#932041', 'transparent', 'transparent', '', '#f1fbc5', '#f1fbc5', '#f1fbc5', '#ffffff', '#f1fbc5', '#e5ff6d', '#f1fbc5', '#e5ff6d', '#e5ff6d', '#e5ff6d; text-decoration:underline', '#e5ff6d', '#e5ff6d', '#f1fbc5', '#e5ff6d', '#e5ff6d', '#f1fbc5', '#f1fbc5', '#f1fbc5', '#efea39', '#efea39; text-decoration:underline', '#efea39', '#efea39; text-decoration:underline', '#efea39', '#efea39; text-decoration:underline', 'transparent', '', '', '#932041', '', '', 'transparent', '', '', '#932041', '', '', '#932041', '', '', '#932041', '', '', '#932041', '', '', '#932041', '', '', '#932041', '', '', '', '', '', '', '', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_ecran', 'Eclipse/eclipse.png', 'left', 'top', 'no-repeat', 'scroll')"
@@ -602,13 +602,13 @@ $eva_themes = array(
     ), ),
 'EVA 2 Style Plage' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#f2faff', '#f2faff', '#f2faff', '#fffef2', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#ffe095', '#cde3ff', '#fff', '#f2faff', '#fffbd7', '', '#000', '#000', '#000', '#ff7200', '#000', '#000', '#000', '#000', '#cc3300', '#cc3300', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#2593d8', '#cc3300', '#2593d8', '#cc3300', '#2593d8', '#cc3300', '#ff7200', '3px', '', '#ff7200', '', '', '#ff7200', '2px', '', '#ff7200', '2px', '', '#ff7200', '', '', '#ff7200', '', '', '#ff7200', '', '', '#ff7200', '2px', '', '#ff7200', '', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
 'EVA 2 Style Plage degrade' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#f2faff', '#f2faff', '#f2faff', '#fffef2', '#fff7c0', '#ff7200', 'transparent', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#fff7c0', '#ffe095', '#cde3ff', '#fff', '#f2faff', '#fffbd7', '', '#000', '#000', '#000', '#ff7200', '#000', '#000', '#000', '#000', '#cc3300', '#cc3300', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#2593d8', '#cc3300', '#2593d8', '#cc3300', '#2593d8', '#cc3300', '#ff7200', '2px', '', '#ff7200', '', '', '#ff7200', '1px', '', '#ff7200', '2px', '', '#ff7200', '', '', '#ff7200', '', '', '#ff7200', '', '', '#ff7200', '2px', '', '#ff7200', '', '', '', '', '', '', '', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_pied', 'Eva/EVAplage_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
@@ -627,25 +627,25 @@ $eva_themes = array(
     ), ),
 'EVA 2 Style DarkSide' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#323232', '#000000', '#666666', '#000000', '#323232', '#666666', '#666666', '#000000', '#323232', '#000000', '#666666', '#444444', '#000000', '#323232', '#4c4c4c', '#666666', '#323232', '#666666', '', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#ffc232', '#ff0000', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#ff0000', '#ffc232', '#ff0000', '#ffc232', '#ff0000', '#ffc232', '#999', '2px', '', '#999', '', '', '#999', '', '', '#999', '2px', '', '#999', '', '', '#999', '2px', '', '#999', '2px', '', '#999', '2px', '', '#999', '2px', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
 'EVA 2 Night' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#0f0f51', '#0f0f51', '#0f0f51', '#333380', '#000', '#000', '#333380', '#333380', '#333380', '#0f0f51', '#000', '#000', '#333380', '#000', '#000', '#141466', '#333380', '#141466', '#0f0f51', '', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#ffffb1', '#ffc233', '#ffc233', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#ffffb1; text-decoration:underline', '#ffc233; text-decoration:underline', '#ffffb1; text-decoration:underline', '#ffc233; text-decoration:underline', '#ffffb1; text-decoration:underline', '#ffc233; text-decoration:underline', '#5959b3', '2px', '', '#5959b3', '', '', '#5959b3', '2px', '', '#5959b3', '', '', '#5959b3', '', '', '#5959b3', '', '', '#5959b3', '2px', '', '#5959b3', '2px', '', '#5959b3', '1px', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
 'EVA 2 Plume' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#fff', '#f7f7f7', '#f7f7f7', '#f7f7f7', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#e6ecf2', '#f7f7f7', '#fff', '#f7f7f7', '#e6ecf2', '', '#5c6166', '#5c6166', '#5c6166', '#2164a6', '#5c6166', '#5c6166', '#5c6166', '#5c6166', '#d37324', '#d37324', '#5c6166', '#5c6166', '#5c6166', '#5c6166', '#5c6166', '#2164a6', '#5c6166', '#2164a6', '#2164a6; text-decoration:underline', '#d37324; text-decoration:underline', '#2164a6; text-decoration:underline', '#d37324; text-decoration:underline', '#2164a6; text-decoration:underline', '#d37324; text-decoration:underline', '#adc4d9', '2px', '', '#adc4d9', '', '', '#adc4d9', '', '', '#adc4d9', '', '', '#adc4d9', '', '', '#adc4d9', '', '', '#adc4d9', '2px', '', '#adc4d9', '2px', '', '#adc4d9', '', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
 'EVA 2 RMLL' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#FFF', '#faedf4', '#faedf4', '#f7dfeb', '#bf6994', '#bf6994', '#f7dfeb', '#f7dfeb', '#bf6994', '#bf6994', '#bf6994', '#bf6994', '#f7dfeb', '#bf6994', '#993d6b', '#f2c2da', '#FFF', '#faedf4', '#f7dfeb', '', '#000', '#000', '#000', '#fff', '#000', '#000', '#000', '#000', '#b30059', '#b30059', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#005fb2', '#b30059', '#005fb2', '#b30059', '#005fb2', '#b30059', '#711141', '2px', '', '#711141', '', '', '#711141', '', '', '#711141', '', '', '#711141', '', '', '#711141', '2px', '', '#711141', '', '', '#711141', '2px', '', '#711141', '', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
@@ -668,7 +668,7 @@ $eva_themes = array(
     ), ),
 'EVA 2 Toys' => array(
     /* Thème adapté par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#fff', '#eff7ff', '#eff7ff', '#d4ffbf', '#79c0f2', '#79c0f2', '#d4ffbf', '#d4ffbf', '#d4ffbf', '#79c0f2', '#d4ffbf', '#79c0f2', '#d4ffbf', '#79c0f2', '#aedef5', '#ff7c4c', '#ffea80', '#eff7ff', '#aedef5', '', '#000', '#000', '#000', '#fff2b2', '#000', '#000', '#000', '#000', '#0058e6', '#0058e6', '#000', '#000', '#000', '#000', '#000', '#ff0000', '#000', '#ff0000', '#ff0000', '#0058e6', '#ff0000', '#0058e6', '#ff0000', '#0058e6', '#177dc2', '2px', '', '#177dc2', '', '', '#177dc2', '', '', '#177dc2', '', '', '#177dc2', '', '', '#177dc2', '2px', '', '#177dc2', '', '', '#177dc2', '2px', '', '#177dc2', '', '', '', '', '', '', '', '', '')",
     "images" => array(),
     ),
@@ -694,7 +694,7 @@ $eva_themes = array(
     ), ),
 'Etoile' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#E8E8E8', '#6F0000', '#fff', '#fff', '#555', '#111', '#111', '#111', '#fff', 'transparent', 'transparent', '#111', '#111', '#A0A0A0', '#F9FFCC', 'transparent', 'transparent', '#fff', '#FFFFEE', '', '#333333', '#333333', '#333333', '#FFFFFF', '#DDD', '#FFFFE6', '#DDD', '#1919B3', '#1919B3', '#900; text-decoration:underline', '#FFFFE6', '#FFFFE6', '#333333', '#FFFFE6', '#FFFFE6', '#FFF', '#333333', '#fff', '#BF0000', '#BF0000; text-decoration:underline', '#BF0000', '#BF0000; text-decoration:underline', '#BF0000', '#BF0000; text-decoration:underline', '#A0A0A0', '5px', 'solid', '#3F0000', '', '', '', '', 'none', '', '', 'none', '', '', 'none', '#555', '3px', '', '', '', 'none', '#777', '2px', 'dotted', '', '', 'none', '', '', '', '', '', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_ecran', 'etoile/etoile.png', 'left', 'top', 'repeat', 'scroll')"
@@ -703,7 +703,7 @@ $eva_themes = array(
     
 'Orchidee' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#843608', 'transparent', 'transparent', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#843608', '#666', '#843608', '#666', '#FFF', '#FFF', '#9A7D9F', '#843608; border-bottom : 1px solid #843608; letter-spacing:0.2em; font-variant:small-caps', '#843608', '#777', '#843608; letter-spacing:0.2em; font-variant:small-caps', '#843608', '#CCC', '#777', '#CCC', '#444', '#9A7D9F', '#444', '#9A7D9F', '#444', '#9A7D9F', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
     "('', 'perso', 'Defaut', '.edito .titre {color : #843608; border-bottom : 1px solid #843608; font-variant:small-caps;}', '', '', '', '', '')",
@@ -744,7 +744,7 @@ $eva_themes = array(
 
 'Tournesol' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
-    "habillage" => "0",
+    "habillage" => "eva4_menu_gauche.css",
     "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#D94600', 'transparent', 'transparent', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#E17100', '#666', '#E17100', '#666', '#FFF', '#FFF', '#E17100', '#E17100; border-bottom : 1px solid #E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100', '#777', '#E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100', '#CCC', '#777', '#CCC', '#444', '#E17100', '#444', '#E17100', '#444', '#E17100', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",

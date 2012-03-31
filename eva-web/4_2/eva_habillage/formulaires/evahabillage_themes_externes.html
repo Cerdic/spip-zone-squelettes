@@ -1,0 +1,66 @@
+<script type="text/javascript">
+<!--
+if(document.images){
+newvign = new Array()
+for(i=1;i<<?php echo count($tab_externe);?>;i++)
+      {
+      newvign[i] = new Image()
+      newvign[i].src = i + ".png"
+      }
+}
+
+function affvign(){
+	chemin = "<?php echo _DIR_PLUGIN_EVA_HABILLAGE.'img_pack/vignettes/'; ?>"
+if(document.images){
+validevign=document.formvignette.integrer_theme_externe.options[document.formvignette.integrer_theme_externe.selectedIndex].value
+      document.vignetteaff.src = chemin+validevign+".png"
+      }
+}
+window.onerror = null;
+//-->
+</script>
+</script>
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{img_bloc_24.png}" class="cadre-icone" /><div style="text-align:center;"><:evahabillage:eva_restauration_externe:></div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+
+<p><:evahabillage:eva_restauration_externe_choix:></p>
+
+	<div style="text-align:center;">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+		
+		[(#REM) On recupere les variables necessaires au traitement du bloc]
+		#SET{habillage,habillage_actuel}
+		#SET{chemin,chemin_vignettes}
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+		<?php $chemin_themes = _DIR_PLUGIN_EVA_HABILLAGE."inc/eva_habillage_themes_externes.php";
+		if (file_exists($chemin_themes)) {
+			include_spip('inc/eva_habillage_themes_externes');
+			$tab_externe = eva_charger_themes();
+		}
+		?>
+		<table><tbody><tr><th style="vertical-align:middle;">
+		<select name="integrer_theme_externe" onChange = "affvign()">
+		<?php
+		$i=1;
+        foreach ($tab_externe as $cle => $inutile) {
+			echo '<option value="'.$i.'" ';
+			if ('#ENV{#GET{habillage}}'==$i) {echo 'selected';}
+			echo '>'.$cle.'</option>'; $i++;
+		}
+		?>
+	}
+		</select>
+		</th><th>
+		<img name = "vignetteaff" src= "#ENV{#GET{chemin}}#ENV{#GET{habillage}}.png" style="border:#AAA solid 5px;">
+		</th></tr></tbody></table>
+		<hr /><p><:evahabillage:eva_habillage_cc:></p>
+		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:evahabillage:eva_choisir:>' /></p>
+	</div>
+</form>
+</div>

@@ -152,7 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_fixe' => "Fixe",
 'eva_restauration_externe' => "Int&eacute;grer un th&egrave;me d'habillage externe",
 'eva_restauration_externe_aucun' => "il n'y a aucun th&egrave;me externe disponible.",
-'eva_restauration_externe_choix' => "Choisissez un des th&egrave;mes propos&eacute; ci-dessous.<br /><strong>Attention :</strong> tous les r&eacute;glages effectu&eacute;s dans les modules Structure, Graphisme et CSS seront effac&eacute;s.",
+'eva_restauration_externe_choix' => "Choisissez un des th&egrave;mes propos&eacute; ci-dessous.<br /><strong>Attention :</strong> tous les r&eacute;glages effectu&eacute;s dans les autres modules du plugin d'habillage d'EVA-web seront effac&eacute;s.",
 'eva_aucune_image_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de fond pour les secteurs de ce site.",
 'eva_aucune_liste_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de puce pour les listes de ce site.",
 'eva_etape4_restaurer' => "Restaurer vos param&egrave;tres d'habillage pr&eacute;c&eacute;demment sauvegard&eacute;es :",
@@ -352,7 +352,7 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, &eacute;crire 0.",
 'logos_taille_image_article' => "<p><div style='text-align:center; text-decoration:underline;'>R&eacute;duction de la largeur des images dans les articles et l'&eacute;ditorial</div></p>
 <p><strong>Entrez une taille en pixels en &eacute;crivant uniquement un nombre (ne pas &eacute;crire \"px\").</strong></p>
 Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide ou &eacute;crire 0.",
-'eva_habillage_CC' => "<p>Certains des habillages propos&eacute;s ci-dessus (ceux suivis de -CC) sont issus du site <a href='http://www.freelayouts.com/'>FreeLayout</a> et sont distribu&eacute;s sous <a href='http://creativecommons.org/licenses/by/2.5/'>licence Creative Commons Attribution 2.5</a></p>
+'eva_habillage_cc' => "<p>Certains des habillages propos&eacute;s ci-dessus (ceux suivis de -CC) sont issus du site <a href='http://www.freelayouts.com/'>FreeLayout</a> et sont distribu&eacute;s sous <a href='http://creativecommons.org/licenses/by/2.5/'>licence Creative Commons Attribution 2.5</a></p>
 <p>Pour les utiliser, vous devez sp&eacute;cifier imp&eacute;rativement la nature de cette licence sur votre site. C'est pourquoi une mention est automatiquement ajout&eacute;e dans le pied de page lors de l'utilisation de ces habillages.</p>",
 'image_fond_menu_horizontal_base'=>'Menu horizontal d&eacute;pliable',
 'image_fond_menu_horizontal_survol'=>'Rubriques du menu horizontal d&eacute;pliable lors du survol',
