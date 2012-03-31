@@ -1,0 +1,49 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{blocs.png}" class="cadre-icone" /><:evahabillage:eva_choix_bloc:></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name="formvignette">
+<?php
+$resultat1 = sql_select('habillage','spip_eva_habillage',"sauvegarde = 'Defaut'");
+$resultat1_tableau = sql_fetch($resultat1);
+$mon_habillage = $resultat1_tableau['habillage'];
+
+$test_3cols=sql_select('habillage','spip_eva_habillage',"sauvegarde='Defaut'");
+$tab_3cols=sql_fetch($test_3cols);
+if (strpos($tab_3cols['habillage'],'3colonnes')) {
+	$test_3_colonnes=true;
+	$eva_gauche=120;
+	$eva_centre=249;
+	$eva_droite=120;
+}
+else {
+	$test_3_colonnes=false;
+	if (strpos($mon_habillage,'droite')) {
+		$test_droite=true;
+		$eva_gauche=false;
+		$eva_centre=309;
+		$eva_droite=180;
+	}
+	else {
+		$eva_centre=309;
+		$eva_gauche=180;
+		$eva_droite=false;
+	}
+}
+include_spip("inc/eva_habillage_definition_themes");
+$les_blocs_array = EVA_les_blocs();
+
+?>
+
+
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+		
+		[(#REM) On recupere les variables necessaires au traitement du bloc]
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:evahabillage:eva_choisir:>' /></p>
+
+		</form>
+</div>
