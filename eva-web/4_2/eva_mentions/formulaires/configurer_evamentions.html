@@ -1,0 +1,71 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+<h3 class='titrem'><:evamentions:editer_mentions:></h3>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<fieldset>
+		<legend><:evamentions:structure:></legend>
+		<ul>
+			<li class="editer">
+				<label for="structure" ><:evamentions:etab:></label>
+				<input type="text" name="structure" id="structure" value="#ENV{structure}" />
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend><:evamentions:responsables:></legend>
+		<ul>
+			<li class="editer">
+				<label for="directeur"><:evamentions:directeur:></label>
+				<input type="text" name="directeur" id="directeur" value="#ENV{directeur}" />
+			</li>
+			<li class="editer">
+				<label for="responsable"><:evamentions:responsable:></label>
+				<input type="text" name="responsable" id="responsable" value="#ENV{responsable}" />
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend><:evamentions:hebergeur:></legend>
+		<ul>
+			<li class="editer">
+				<label for="hebergeur"><:evamentions:hebergeur_nom:></label>
+				<input type="text" name="hebergeur" id="hebergeur" value="#ENV{hebergeur}" />
+			</li>
+			<li class="editer">
+				<label for="adresse"><:evamentions:adresse:></label>
+				<input type="text" name="adresse" id="adresse" value="#ENV{adresse}" />
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend>Webmaster</legend>
+		<ul>
+			<li class="editer">
+				<label for="webmaster"><:evamentions:webmaster:></label>
+				<input type="text" name="webmaster" id="webmaster" value="#ENV{webmaster}" />
+			</li>
+			<li class="editer">
+				<label for="fonction"><:evamentions:fonction:></label>
+				<input type="text" name="fonction" id="fonction" value="#ENV{fonction}" />
+			</li>
+			<li class="editer">
+				<label for="idwebmaster"><:evamentions:id_webmaster:></label>
+				<select name="idwebmaster" id="idwebmaster">
+					<BOUCLE_webmaster-auteur(AUTEURS){tout}>
+					<option value="#ID_AUTEUR" [(#CONFIG{eva_mentions/idwebmaster}|=={#ID_AUTEUR}|?{selected="selected",''}) ]>#NOM (<:evamentions:compte_num:> #ID_AUTEUR)</option>
+					</BOUCLE_webmaster-auteur>
+				</select>
+			</li>
+		</ul>
+	</fieldset>
+	<p class="boutons"><input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" /></p>
+</div></form>
+</div>
+<style type="text/css">
+	.formulaire_spip li label{width: 60%;}
+	.formulaire_spip li select{width: 60%;}
+</style>
