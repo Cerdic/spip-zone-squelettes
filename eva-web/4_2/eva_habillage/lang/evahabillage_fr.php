@@ -89,7 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_suppr_table_confirm_explic' => "Confirmez-vous la suppression des tables de la base de donn&eacute;es ?",
 'eva_suppr_table' => "Suppression des Tables",
 'eva_suppr_table2' => "Les tables eva_habillage, eva_habillage_themes et eva_habillage_images ont &eacute;t&eacute; supprim&eacute;es.",
-'eva_nom' => "Habillages d'EVA-web : structure de base",
+'eva_nom' => "EVA-web : structure de base des squelettes",
 'eva_nom_court' => "Habillages d'EVA-web",
 'eva_style_defaut' => "Style par d&eacute;faut",
 'eva_choisir' => "Choisir",
@@ -152,7 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_fixe' => "Fixe",
 'eva_restauration_externe' => "Int&eacute;grer un th&egrave;me d'habillage externe",
 'eva_restauration_externe_aucun' => "il n'y a aucun th&egrave;me externe disponible.",
-'eva_restauration_externe_choix' => "<p>Choisissez un des th&egrave;mes propos&eacute; ci-dessous.</p><div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'><b>Attention :</b> tous les r&eacute;glages effectu&eacute;s dans les autres modules du plugin d'habillage d'EVA-web seront effac&eacute;s lors de l'int&eacute;gration d'un habillage externe.</div></div></div>",
+'eva_restauration_externe_choix' => "<div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'><b>Attention :</b> tous les r&eacute;glages effectu&eacute;s dans les autres modules du plugin d'habillage d'EVA-web seront effac&eacute;s lors de l'int&eacute;gration d'un habillage externe.</div></div></div><p style='text-align:center; text-decoration:underline;'><strong>Choisissez un des th&egrave;mes propos&eacute;s ci-dessous :</strong></p>",
 'eva_aucune_image_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de fond pour les secteurs de ce site.",
 'eva_aucune_liste_fond' => "Vous n'avez cr&eacute;&eacute; aucune image de puce pour les listes de ce site.",
 'eva_etape4_restaurer' => "Restaurer vos param&egrave;tres d'habillage pr&eacute;c&eacute;demment sauvegard&eacute;es :",
@@ -306,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'favicon_choisir3' => "S&eacute;lectionnez le favicon (au format png, gif ou ico) apr&egrave;s l'avoir charg&eacute; par FTP dans le r&eacute;pertoire ",
 'favicon_a_choisir3' => "Vous avez d&eacute;j&agrave; choisi le favicon suivant : ",
 'favicon_a_supprimer' => "Vous pouvez le supprimer et utiliser le favicon de la distribution EVA-Web ou le remplacer en en s&eacute;lectionnant un autre dans le formulaire suivant : ",
-'titrebloc_titre' => "Red&eacute;finir le fichier de langue d'EVA-Web",
+'titrebloc_titre' => "EVA-Web : red&eacute;finir le fichier de langue",
 'titrebloc_go' => "C'est parti !",
 'titrebloc_tab1' => "<center><strong><span style='text-decoration:underline;'>D&eacute;finition initiale</span></strong></center>",
 'titrebloc_tab2' => "<center><strong><span style='text-decoration:underline;'>Nouvelle d&eacute;finition</span></strong></center>",
@@ -326,8 +326,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	</table>
 	",
 'titrebloc_entites_html' => "<strong>Exemples d'entit&eacute;s html</strong>",
-'titrebloc_debut' => "<strong>Mise en garde :</strong> il faut remplacer certains caract&egrave;res par des entit&eacute;s html (<em>imp&eacute;ratif pour les ' apostrophes et les \" guillemets</em> notamment) dans les formulaires ci-dessous.
-<br />Pour en savoir plus sur les entit&eacute;s html, voir ci-dessous pour quelques exemples, sur <a href='http://fr.wikibooks.org/wiki/Programmation_HTML_Entit%C3%A9s'>WikiBook pour d'autres r&eacute;f&eacute;rences</a> ou directement sur <a href='http://people.w3.org/rishida/scripts/uniview.fr/conversion.html'>le site du W3C pour obtenir un convertisseur en entit&eacute;s unicode</a>.",
+'titrebloc_debut' => "<div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'><b>Mise en garde :</b> il faut remplacer certains caract&egrave;res par des entit&eacute;s html (<em>imp&eacute;ratif pour les ' apostrophes et les \" guillemets</em> notamment) dans les formulaires ci-dessous.
+<br />Pour en savoir plus sur les entit&eacute;s html, voir ci-dessous pour quelques exemples, sur <a href='http://fr.wikibooks.org/wiki/Programmation_HTML_Entit%C3%A9s'>WikiBook pour d'autres r&eacute;f&eacute;rences</a> ou directement sur <a href='http://people.w3.org/rishida/scripts/uniview.fr/conversion.html'>le site du W3C pour obtenir un convertisseur en entit&eacute;s unicode</a>.</div></div></div>",
 'eva_choix_entete_pied' => "<div style='text-align:center;'>Choix des &eacute;l&eacute;ments de l'ent&ecirc;te, du pied de page et des headers</div>",
 'eva_choix_entete' => "Choix des &eacute;l&eacute;ments de l'ent&ecirc;te :",
 'eva_choix_pied' => "Choix des &eacute;l&eacute;ments du pied de page :",
@@ -365,7 +365,7 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide o
 'eva_menu_langue_bordure_couleur'=>'Couleur de la bordure',
 'eva_menu_langue_graphisme' => '<div style="text-align:center;">Menu de langue et de traduction</div>',
 'eva_menu_langue_graphisme_explication' => 'Choisissez ici vos pr&eacute;f&eacute;rences concernant l\'aspect graphique de votre menu de langue. Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond situ&eacute; ci-dessous.',
-'eva_langue' => '<div style="text-align:center;">Red&eacute;finir le fichier de langue d\'EVA-web</div>',
+'eva_langue' => '<div style="text-align:center;">EVA-Web : red&eacute;finir le fichier de langue</div>',
 'eva_langue_absente1' => 'La langue ',
 'eva_langue_absente2' => ' n\'a pas encore &eacute;t&eacute; traduite, il est donc impossible de red&eacute;finir les entr&eacute;es du fichier de langue correspondant.',
 );
