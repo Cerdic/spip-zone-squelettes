@@ -8,16 +8,15 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-include_spip('scolaspip_pipelines');
+include_spip('scolaspip_fonction');
 
-
-function formulaires_configurer_scolaspip_charger_dist(){
+function formulaires_configurer_scolaspip_accueil_charger_dist(){
 	$valeurs = scolaspip_accueil_config(true);
 	
 	return $valeurs;
 }
 
-function formulaires_configurer_scolaspip_traiter_dist(){
+function formulaires_configurer_scolaspip_accueil_traiter_dist(){
 	$config = scolaspip_accueil_config(true);
 
 	include_spip('inc/meta');
@@ -28,8 +27,6 @@ function formulaires_configurer_scolaspip_traiter_dist(){
 		effacer_meta('scolaspip_accueil');
 	}
 	else {
-		if (!_request('active'))
-			set_request('active','non');
 		foreach ($config as $k=>$v){
 			if (!is_null(_request($k)))
 				$config[$k] = _request($k);

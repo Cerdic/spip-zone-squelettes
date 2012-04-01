@@ -8,8 +8,7 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-include_spip('scolaspip_pipelines');
-
+include_spip('scolaspip_fonction');
 
 function formulaires_configurer_scolaspip_plus_charger_dist(){
 	$valeurs = scolaspip_plus_config(true);
@@ -28,8 +27,6 @@ function formulaires_configurer_scolaspip_plus_traiter_dist(){
 		effacer_meta('scolaspip_plus');
 	}
 	else {
-		if (!_request('active'))
-			set_request('active','non');
 		foreach ($config as $k=>$v){
 			if (!is_null(_request($k)))
 				$config[$k] = _request($k);
