@@ -67,32 +67,31 @@
 [(#COMPLEMENT)<br />]
 #CODE_POSTAL #VILLE</p>
 </BOUCLE_AdressesOrganisation>
-		<B_ListeOrganisationFillesDetail>
-		<B_ListeContacts>
+	<B_ListeContacts>
+	<ol>
+	<BOUCLE_ListeContacts(CONTACTS){id_organisation}{par nom}>
+	<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#CIVILITE #PRENOM #NOM</a>
+	<INCLURE{fond=noisettes/annuaire/contact,id_contact}></li>
+	</BOUCLE_ListeContacts>
+	</ol>
+	</B_ListeContacts>
+	<B_ListeOrganisationFillesDetail>
+	<ul>
+	<BOUCLE_ListeOrganisationFillesDetail(ORGANISATIONS){id_parent=#ID_ORGANISATION}{par nom}>
+	<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a>
+		<B_ListeContactsOrganisationFillesDetail>
 		<ol>
-		<BOUCLE_ListeContacts(CONTACTS){id_organisation}{par nom}>
+		<BOUCLE_ListeContactsOrganisationFillesDetail(CONTACTS){id_organisation}{par nom}>
 		<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#PRENOM #NOM</a></li>
-		</BOUCLE_ListeContacts>
+		</BOUCLE_ListeContactsOrganisationFillesDetail>
 		</ol>
-		</B_ListeContacts>
-		<ul>
-		<BOUCLE_ListeOrganisationFillesDetail(ORGANISATIONS){id_parent=#ID_ORGANISATION}{par nom}>
-		<li><a href="#URL_PAGE{annuaire,id_organisation=#ID_ORGANISATION}">#NOM</a>
-		<BOUCLE_OrganisationsRecursionDetail(BOUCLE_ListeOrganisationFillesDetail)/>
-		</li>
-		</BOUCLE_ListeOrganisationFillesDetail>
-		</ul>
-		</B_ListeOrganisationFillesDetail>
-			<B_ListeContactsOrganisationFillesDetail>
-			<ol>
-			<BOUCLE_ListeContactsOrganisationFillesDetail(CONTACTS){id_organisation}{par nom}>
-			<li><a href="#URL_PAGE{annuaire,id_contact=#ID_CONTACT}">#CIVILITE #PRENOM #NOM</a>
-			<INCLURE{fond=noisettes/annuaire/contact,id_contact}></li>
-			</BOUCLE_ListeContactsOrganisationFillesDetail>
-			</ol>
-			</B_ListeContactsOrganisationFillesDetail>
-
-		<//B_ListeOrganisationFillesDetail>
+		</B_ListeContactsOrganisationFillesDetail>
+	<BOUCLE_OrganisationsRecursionDetail(BOUCLE_ListeOrganisationFillesDetail)/>
+	</li>
+	</BOUCLE_ListeOrganisationFillesDetail>
+	</ul>
+	</B_ListeOrganisationFillesDetail>
+	<//B_ListeOrganisationFillesDetail>
 
 
 </BOUCLE_Organisation>
