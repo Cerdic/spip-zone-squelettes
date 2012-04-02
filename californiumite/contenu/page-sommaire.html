@@ -14,7 +14,7 @@
 		<BOUCLE_items(ARTICLES){titre_mot=icone}{0,4}>
 		<li class="entry-icone entry-icone-#COMPTEUR_BOUCLE">
 			<div>
-				#LOGO_ARTICLE
+				[(#LOGO_ARTICLE|image_reduire{150,65})]
 				<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
 				<p>#INTRODUCTION{120}</p>
 			</div>
@@ -26,10 +26,10 @@
 <div class="clear"></div>
 </B_items>
 
-[(#REM) Liste les 10 derniers articles ayant pour mot-clé slider2 et ayant une image,
+[(#REM) Liste les 10 derniers articles ayant pour mot-clé slider2 et ayant un logo,
 	Si aucun article est dans ce cas, alors
-	Liste les 10 derniers articles ayant une image 
-	Si aucun article n'a d'image alors rien ]
+	Liste les 10 derniers articles ayant un logo 
+	Si aucun article n'a de logo alors rien ]
 <B_articles1>
 <div id="main-wrap">
 <div id="main">
@@ -40,13 +40,11 @@
 	<div id="carousel-wrap">
 		<div id="carousel">
 			<ul class="box-category">
-				<BOUCLE_articles1(ARTICLES documents_liens documents){titre_mot=slider2}{par date}{0,10}{extension IN png,jpg,jpeg,gif}>
+				<BOUCLE_articles1(ARTICLES){titre_mot=slider2}{par date}{0,10}{logo}>
 				<li class="entry">
 					<div class="entry-thumbnail">					
 						<a href="#URL_ARTICLE" title="#TITRE>">
-							<BOUCLE_image(DOCUMENTS){id_article=#ID_ARTICLE}{mode=image}>
-							[(#FICHIER|image_recadre{225,245,center})]
-							</BOUCLE_image>
+						[(#LOGO_ARTICLE|image_recadre{225,245,center})]
 						</a>		
 					</div>
 				</li>
@@ -69,13 +67,11 @@
 	<div id="carousel-wrap">
 		<div id="carousel">
 			<ul class="box-category">	
-				<BOUCLE_articles2(ARTICLES documents_liens documents){par date}{0,10}{extension IN png,jpg,jpeg,gif}>
+				<BOUCLE_articles2(ARTICLES){par date}{0,10}{logo}>
 				<li class="entry">
 					<div class="entry-thumbnail">					
 						<a href="#URL_ARTICLE" title="#TITRE>">
-							<BOUCLE_image2(DOCUMENTS){id_article=#ID_ARTICLE}{mode=image}>
-							[(#FICHIER|image_recadre{225,245,center})]
-							</BOUCLE_image2>
+						[(#LOGO_ARTICLE|image_recadre{225,245,center})]
 						</a>		
 					</div>
 				</li>
