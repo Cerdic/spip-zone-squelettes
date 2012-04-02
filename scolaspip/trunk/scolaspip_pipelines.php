@@ -2,12 +2,6 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-function scolaspip_timestamp($fichier){
-	if ($m = filemtime($fichier))
-		return "$fichier?$m";
-	return $fichier;
-}
-
 function scolaspip_insert_head($flux){
 	$js_start = parametre_url(generer_url_public('scolaspip.js'), 'lang', $lang);
 	if (_VAR_MODE=="recalcul")
@@ -26,6 +20,9 @@ function scolaspip_insert_head_css($flux){
 				$css_start = parametre_url($css_start, 'var_mode', 'recalcul');
 			$flux .= "<link rel='stylesheet' href='$css_start' type='text/css' media='all' />";
 		}
+	}
+	else{
+		$flux .= '<link rel="stylesheet" href="'.direction_css(find_in_path('sans_scolaspip.css')).'" type="text/css" media="all" />';
 	}
 	return $flux;
 }

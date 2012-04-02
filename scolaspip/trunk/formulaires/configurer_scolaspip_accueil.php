@@ -8,8 +8,6 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-include_spip('scolaspip_fonction');
-
 function formulaires_configurer_scolaspip_accueil_charger_dist(){
 	$valeurs = scolaspip_accueil_config(true);
 	

@@ -21,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // b
     'background_legend' => 'Couleur de fond du site',
-    'background_texte' => 'Correspond à l\'arrière plan du site. Par défaut #efefef (gris très clair). <strong>Paramètre sans effet en mode « Bandeau élargi ».</strong>',
+    'background_texte' => 'Correspond à l\'arrière plan du site. Par défaut #efefef (gris très clair). <strong>Paramètre sans effet en mode «&nbsp;Bandeau élargi&nbsp;».</strong>',
     'bandeau_elargi' => 'Bandeau élargi',
     
     'boite_forum1' => 'Boite forum premier niveau',
@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'breve_publie_le'=>'Actualité publiée le',
 
 // c
-    'cache_couleur' => 'Après avoir enregistré ces valeurs, pour que les couleurs et réglages soient pris en compte un « recalcul » de la page s\'impose (ou <a href="?exec=admin_vider">vider le cache</a> de SPIP).',
+    'cache_couleur' => 'Après avoir enregistré ces valeurs, pour que les couleurs et réglages soient pris en compte un «&nbsp;recalcul&nbsp;» de la page s\'impose (ou <a href="?exec=admin_vider">vider le cache</a> de SPIP).',
     'calendrier_legend' => 'Affichage du mini-calendrier sur la page d\'accueil',
     'calendrier_texte' => 'Souhaitez-vous afficher le mini calendrier en page d\'accueil ?',
     'choix_disposition' => 'Mise en page',
@@ -62,8 +62,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleur_cal_legend' => 'Couleur de fond des zones calendrier',
     'couleur_liens_menu_legend' => 'Couleur des liens du menu',
     'couleur_liens_menu_texte' => 'Sélectionnez la couleur des liens du menu, par défaut #A85503.',
-    'couleur_liens_menu_hover_legend' => 'Couleur des liens survolés du menu',
-    'couleur_liens_menu_hover_texte' => 'Sélectionnez la couleur des liens survolés du menu vertical, par défaut #666666',
+    'couleur_liens_menu_over_legend' => 'Couleur des liens survolés du menu',
+    'couleur_liens_menu_over_texte' => 'Sélectionnez la couleur des liens survolés du menu vertical, par défaut #666666',
     'couleur_liens_legend' => 'Couleur des liens des contenus',
     'couleur_liens_texte' => 'Sélectionnez la couleur des liens actifs, par défaut #cc6600.',
     'couleur_liens_over_legend' => 'Couleur des liens survolés dans les contenus',
@@ -76,17 +76,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleur_liens_over_menu_haut_texte' => 'Sélectionnez la couleur des liens survolés, par défaut #333333',
     'couleur_cal_texte' => 'Couleur des rectangles du calendrier et des évènements',
     'couleurs_legend' => 'Personnalisation des couleurs du site',
-    'couleurs_texte' => 'Configurer le thème Scolaspip (bandeau, disposition et couleurs)',
+    'couleurs_texte' => 'Configurer le thème ScolaSPIP (bandeau, disposition et couleurs)',
     'couleurs_bandeau_legend'=>'Couleur dans le bandeau',
-    'couleurs_bandeau_texte'=>'Par défaut #ffffff (blanc). <strong>Paramètre actif si le mode « Bandeau élargi » est utilisé.</strong>',
+    'couleurs_bandeau_texte'=>'Par défaut #ffffff (blanc). <strong>Paramètre actif si le mode «&nbsp;Bandeau élargi&nbsp;» est utilisé.</strong>',
     'couleurs_intertitres_legend'=>'Couleur des intertitres',
-    'couleurs_intertitres_texte'=>'',
-    
+    'couleurs_intertitres_texte'=>'',    
 
 // d
     'dans'=>'Dans',
     'descriptifdusite_legend' => 'Descriptif du site sur la page d\'accueil',
-    'descriptifdusite_texte' => 'Souhaitez-vous afficher le descriptif du site en page d\'accueil ? <small>(Vous pouvez remplir ce champs dans « Configuration », « Identité du site »)</small>',
+    'descriptifdusite_texte' => 'Souhaitez-vous afficher le descriptif du site en page d\'accueil ? <small>(Vous pouvez remplir ce champs dans «&nbsp;Configuration&nbsp;», «&nbsp;Identité du site&nbsp;»)</small>',
     'degrade' => 'Dégradé',
     'droite' => 'Droite',
     'documentation'=>'Documentation ScolaSPIP sur SPIP-Contrib',
@@ -104,8 +103,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'evens_legend'  => 'Les évènements de la page d\'accueil',
     'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains évènements ?',
     'export_import'=>'Export et Import des réglages',
-    'export_import_config'=>'L\'export et l\'import des réglages de couleurs et présentation de ScolaSpip peut être effectué à l\'aide du plugin « Importeur / Exporteur de configurations ».',
-    'explication_titre_slogan'=>'Le titre du site et son slogan sont à compléter dans « Configuration », « Identité du site »',
+    'export_import_config'=>'L\'export et l\'import des réglages de couleurs et présentation de ScolaSPIP peut être effectué à l\'aide du plugin «&nbsp;Importeur / Exporteur de configurations&nbsp;».',
+    'explication_titre_slogan'=>'Le titre du site et son slogan sont à compléter dans «&nbsp;Configuration&nbsp;», «&nbsp;Identité du site&nbsp;»',
 
 // f
     'forums_legend' => 'Les derniers commentaires de forums de la page d\'accueil',
@@ -165,32 +164,32 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'ok' => 'Enregistrer',
 
 // s
+    'scolaspip' => 'ScolaSPIP',
     'scolaspip_accueil' =>'Configuration de la page d\'accueil',
-    'scolaspip_accueil_texte' =>'Cette page vous permet de configurer les éléments que vous souhaitez afficher sur votre site (en particulier sur la page d\'accueil).',
-    'scolaspip_couleurs_texte' =>'Cette page vous permet de configurer les différentes couleurs de base de votre site.',
-    'scolaspip_plus' => 'Les petits plus de scolaSPIP',
-    'scolaspip_plus_texte' => 'Personnalisez quelques éléments des squelettes scolaSPIP.',
+    'scolaspip_accueil_texte' =>'Cette page vous permet de configurer les éléments que vous souhaitez afficher sur la page d\'accueil de votre site.',
+    'scolaspip_plus_texte' => 'Personnalisez ici quelques affichages dans vos pages.',
     'sites'=>'Sites',
     'styles_predefinis'=>'Styles prédéfinis (choix de palettes de couleurs)',
     'sur'=>'sur',
 
 // t
-    'titre_page_configurer_scolaspip' => 'ScolaSpip',
+    'titre_page_configurer_scolaspip' => 'Réglages ScolaSPIP',
     'type_bandeau' => 'Type de bandeau',
     'title_logo_institution'=>'Titre au survol du lien sur le logo',
     'titre_mentions'=>'Informations sur le site',
-    'titre_ie_scolaspip_couleurs'=>'Couleurs et réglages du thème de ScolaSpip',
+    'titre_ie_scolaspip_couleurs'=>'Couleurs et réglages du thème de ScolaSPIP',
     'titre_aide'=>'Aide ScolaSPIP',
 
 // u
-    'utilise_theme' => 'Scolaspip propose un habillage type par défaut (si vous utilisez «&nbsp;la feuille de style de ScolaSpip&nbsp;»).
-			Avec ScolaSpip, vous pouvez utiliser les thèmes pour choisir votre habillage.
-			Dans ce cas, ne pas utiliser la feuille de style de spip (ni du coup la personnalisation de ses couleurs ???)',
-    'utilise_css' => 'Utiliser le thème Scolaspip',
+    'utilise_theme' => 'ScolaSPIP propose un habillage type par défaut (si vous utilisez «&nbsp;la feuille de style de ScolaSPIP&nbsp;») : le thème ScolaSPIP.',
+    'utilise_theme2' => 'Avec ScolaSPIP, vous pouvez également utiliser d\'autres thèmes pour habiller votre site.
+			Dans ce cas, ne pas utiliser la feuille de style de SPIP (ni la personnalisation de ses couleurs).',
+    'utilise_css' => 'Utiliser le thème ScolaSPIP',
     'uni' => 'Uni',
 
 // r
     'reset' => 'Réinitialiser',
+    'reinitialisation'=>'Voulez-vous réinitialiser les paramètres de cette page ? Si oui, pensez ensuite à enregistrer les nouveaux paramètres.',
 // v
 
 );
