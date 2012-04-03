@@ -38,7 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'boite_forum5_texte' => 'Couleur de fond pour les messages de cinquième niveau ?',
     
     'breves_legend'  => 'Les brèves de la page d\'accueil',
-    'breves_texte'  => 'Souhaitez-vous y afficher les liens vers les dernières breves ?',
+    'breves_texte'  => 'Souhaitez-vous y afficher les liens vers les dernières brèves ?',
     'breve_publie_le'=>'Actualité publiée le',
 
 // c
@@ -75,7 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleur_liens_menu_haut_texte' => 'Sélectionnez la couleur des liens du menu horizontal (haut), par défaut #666666.',
     'couleur_liens_over_menu_haut_legend' => 'Couleur des liens survolé de ce menu horizontal',
     'couleur_liens_over_menu_haut_texte' => 'Sélectionnez la couleur des liens survolés, par défaut #333333',
-    'couleur_cal_texte' => 'Couleur des rectangles du calendrier et des évènements',
+    'couleur_cal_texte' => 'Couleur des rectangles du calendrier et des événements',
     'couleurs_legend' => 'Personnalisation des couleurs du site',
     'couleurs_texte' => 'Configurer le thème ScolaSPIP (bandeau, disposition et couleurs)',
     'couleurs_bandeau_legend'=>'Couleur dans le bandeau',
@@ -101,8 +101,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'evenement_aucun_inscrit'=>'Aucun inscrit',
     'evenement_places_disponibles'=>'place(s) disponible(s)',
     'edito_texte' => 'La fonctionnalité édito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot clé <em>edito</em>',
-    'evens_legend'  => 'Les évènements de la page d\'accueil',
-    'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains évènements ?',
+    'evens_legend'  => 'Les événements de la page d\'accueil',
+    'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains événements ?',
     'export_import'=>'Export et Import des réglages',
     'export_import_config'=>'L\'export et l\'import des réglages de couleurs et présentation de ScolaSPIP peut être effectué à l\'aide du plugin «&nbsp;Importeur / Exporteur de configurations&nbsp;».',
     'explication_titre_slogan'=>'Le titre du site et son slogan sont à compléter dans «&nbsp;Configuration&nbsp;», «&nbsp;Identité du site&nbsp;»',
@@ -141,16 +141,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // n
     'nb_articles_texte' => 'Nombre maximum d\'articles accessibles',
-    'nb_breves_texte' => 'Nombre maximum de breves accessibles',
-    'nb_evens_texte' => 'Nombre maximum d\'évènements accessibles',
+    'nb_breves_texte' => 'Nombre maximum de brèves accessibles',
+    'nb_evens_texte' => 'Nombre maximum d\'événements accessibles',
     'nb_forums_texte' => 'Nombre maximum de commentaires accessibles',
     'nb_maxi_lignes_mosaique'=>'Nombre maximum de ligne',
 
 // p
-    'pagination_evens_texte' => 'Nombre de évènements par page',
-    'pagination_evens_legend' => 'Pagination des évènements',
-    'pagination_breves_texte' => 'Nombre de breves par page',
-    'pagination_breves_legend' => 'Pagination des breves',
+    'pagination_evens_texte' => 'Nombre de événements par page',
+    'pagination_evens_legend' => 'Pagination des événements',
+    'pagination_breves_texte' => 'Nombre de brèves par page',
+    'pagination_breves_legend' => 'Pagination des brèves',
     'pagination_articles_texte' => 'Nombre d\'articles par page',
     'pagination_articles_legend' => 'Pagination des articles',
     'pagination_forums_texte' => 'Nombre de commentaires par page',
@@ -161,7 +161,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'police_contenu'=>'Police de la page',
     'police_titres'=>'Police des titres',
     'position_menu' => 'Position du menu de rubriques',
-    'prochains_evenements'=>'Prochains évènements',
+    'prochains_evenements'=>'Prochains événements',
     'perso_css'=>'Règles css',
     'perso_css_legend'=>'Ajouter des règles css (utilisateurs avertis)',
     'parametres_mosaique'=>'Paramètres de la mosaïque',
