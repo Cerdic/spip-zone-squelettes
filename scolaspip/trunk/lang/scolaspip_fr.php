@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'articles_selection'=>'À la une',
     'aide'=>'La configuration de ScolaSPIP vous permet de configurer les blocs de la page d\'accueil, de choisir les couleurs et des options de présentation du site, ainsi que d\'autres petites options.',
     'aide2'=>'D\'autres affichages dépendent de mots-clés (voir la liste sur la page sur SPIP-Contrib).',
+    'aide_mosaique'=>'La mosaïque a une largeur de 4 colonnes. L\'article associé devra avoir un nombre suffisant d\'images (supérieur ou égal à 4 fois le «&nbsp;nombre de ligne&nbsp;»).',
 
 // b
     'background_legend' => 'Couleur de fond du site',
@@ -119,6 +120,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // i
     'image_logo_institution'=>'Le logo peut être modifié en plaçant votre logo nommé logo_academie.png dans le dossier squelettes/img',
+    'institution_legend'=>'Académie ou institution : informations et lien',
+    'institution_nom'=>'Nom de l\'académie ou l\'institution',
+    
 
 // l
     'lien_accueil_scolaspip' => 'Page d\'accueil',
@@ -129,7 +133,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'liens_rollover_texte' => 'Donne un effet visuel sur le menu au passage de la souris. Par défaut #000000 (noir)',
     'logo_1' => 'Image (logo du site)',
     'logo_2' => 'Image (logo du site) + Titre + Slogan',
-    'logo_institution_legend'=>'Logo vers l\'académie ou l\'institution',
     'lien_externe'=>'Lien externe',
     'liens_utiles'=>'Liens utiles',
 
@@ -137,19 +140,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'mentions'=>'Mentions légales',
 
 // n
-    'nb_articles_texte' => 'Le nombre maximum d\'articles accessibles',
-    'nb_breves_texte' => 'Le nombre maximum de breves accessibles',
-    'nb_evens_texte' => 'Le nombre maximum d\'évènements accessibles',
-    'nb_forums_texte' => 'Le nombre maximum de commentaires accessibles',
+    'nb_articles_texte' => 'Nombre maximum d\'articles accessibles',
+    'nb_breves_texte' => 'Nombre maximum de breves accessibles',
+    'nb_evens_texte' => 'Nombre maximum d\'évènements accessibles',
+    'nb_forums_texte' => 'Nombre maximum de commentaires accessibles',
+    'nb_maxi_lignes_mosaique'=>'Nombre maximum de ligne',
 
 // p
-    'pagination_evens_texte' => 'Le nombre de évènements par page',
+    'pagination_evens_texte' => 'Nombre de évènements par page',
     'pagination_evens_legend' => 'Pagination des évènements',
-    'pagination_breves_texte' => 'Le nombre de breves par page',
+    'pagination_breves_texte' => 'Nombre de breves par page',
     'pagination_breves_legend' => 'Pagination des breves',
-    'pagination_articles_texte' => 'Le nombre d\'articles par page',
+    'pagination_articles_texte' => 'Nombre d\'articles par page',
     'pagination_articles_legend' => 'Pagination des articles',
-    'pagination_forums_texte' => 'Le nombre de commentaires par page',
+    'pagination_forums_texte' => 'Nombre de commentaires par page',
     'pagination_forums_legend' => 'Pagination des commentaires',
     'plus_lien_legend' => 'Personnaliser la barre de liens',
     'plus_lien_agenda' => 'Masquer le lien vers l\'agenda',
@@ -160,6 +164,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'prochains_evenements'=>'Prochains évènements',
     'perso_css'=>'Règles css',
     'perso_css_legend'=>'Ajouter des règles css (utilisateurs avertis)',
+    'parametres_mosaique'=>'Paramètres de la mosaïque',
 // o
     'ok' => 'Enregistrer',
 
