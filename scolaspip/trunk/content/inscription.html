@@ -1,28 +1,29 @@
-<B_evenement>
 <BOUCLE_evenement(EVENEMENTS) {id_evenement}{age_debut<=0}>
-    <ul class="liste-items evenements">
-	<li class="item">
-	    #MODELE{evenement_vevent}
-	</li>
-    </ul>
-    <div class="inscription [(#INSCRIPTION|?{' ','invisible'})]">
-	<B_personnes_inscrites>
-	<BOUCLE_personnes_inscrites(spip_auteurs spip_evenements_participants){id_evenement}{par nom}{reponse='oui'}>
-	[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<p class="success">#NOM : <:scolaspip:evenement_bien_inscrit:></p>]
-	</BOUCLE_personnes_inscrites>
-	[(#SESSION{statut}|=={0minirezo}|oui)<p><a href="ecrire/?exec=agenda_inscriptions&id_evenement=#ID_EVENEMENT" title="<:scolaspip:evenement_liste_inscrits:>"><:agenda:liste_inscrits:></a><p>]
-	<p>#TOTAL_BOUCLE inscrit(s). <strong>[(#PLACES|moins{#TOTAL_BOUCLE})]</strong> <:scolaspip:evenement_places_restantes:> <:scolaspip:sur:> #PLACES <:scolaspip:evenement_places_disponibles:>.</p>
-	</B_personnes_inscrites>
-	<p><:scolaspip:evenement_aucun_inscrit:>. <strong>#PLACES</strong> <:scolaspip:evenement_places_restantes:>.</p>
-	<//B_personnes_inscrites>
-	[(#SESSION{id_auteur}|oui)<div class="inscription">#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}</div>]
-	[(#SESSION{id_auteur}|non)
-	<p class="notice"><strong><:scolaspip:evenement_etre_identifie:></strong></p>
-	#LOGIN_PUBLIC
-	]
-    </div>
-    <a href="#URL_ARTICLE"><:scolaspip:evenement_voir_article:></a>
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]"><:agenda:agenda:></a><span class="sep"> &gt; </span><:agenda:label_inscription:><span class="sep"> &gt; </span><strong class="on">#TITRE</strong></p>
+<ul class="liste-items evenements">
+    <li class="item">
+	#MODELE{evenement_vevent}
+    </li>
+</ul>
+<div class="inscription [(#INSCRIPTION|?{' ','invisible'})]">
+    <B_personnes_inscrites>
+    <BOUCLE_personnes_inscrites(spip_auteurs spip_evenements_participants){id_evenement}{par nom}{reponse='oui'}>
+    [(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<p class="success">#NOM : <:scolaspip:evenement_bien_inscrit:></p>]
+    </BOUCLE_personnes_inscrites>
+    [(#SESSION{statut}|=={0minirezo}|oui)<p><a href="ecrire/?exec=agenda_inscriptions&id_evenement=#ID_EVENEMENT" title="<:scolaspip:evenement_liste_inscrits:>"><:agenda:liste_inscrits:></a><p>]
+    <p>#TOTAL_BOUCLE inscrit(s). <strong>[(#PLACES|moins{#TOTAL_BOUCLE})]</strong> <:scolaspip:evenement_places_restantes:> <:scolaspip:sur:> #PLACES <:scolaspip:evenement_places_disponibles:>.</p>
+    </B_personnes_inscrites>
+    <p><:scolaspip:evenement_aucun_inscrit:>. <strong>#PLACES</strong> <:scolaspip:evenement_places_restantes:>.</p>
+    <//B_personnes_inscrites>
+    [(#SESSION{id_auteur}|oui)<div class="inscription">#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}</div>]
+    [(#SESSION{id_auteur}|non)
+    <p class="notice"><strong><:scolaspip:evenement_etre_identifie:></strong></p>
+    #LOGIN_PUBLIC
+    ]
+</div>
+<a href="#URL_ARTICLE"><:scolaspip:evenement_voir_article:></a>
 </BOUCLE_evenement>
 </B_evenement>
-<:scolaspip:pas_d_evenement:>
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]"><:agenda:agenda:></a></p>
+<p><:agenda:info_aucun_evenement_ou_inscription_terminee:>[ à partir du (#ENV{date_debut}|affdate)]</p>
 <//B_evenement>
