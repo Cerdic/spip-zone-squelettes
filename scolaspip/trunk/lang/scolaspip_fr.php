@@ -93,13 +93,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // e
     'evenements_associes'=>'Évènements associés',
-    'evenement_voir_article'=>'Voir l\'article associé',
     'evenement_bien_inscrit'=>'Vous êtes bien inscrit !',
     'evenement_etre_identifie'=>'Il faut être identifié sur le site pour accéder au formulaire d\'inscription.',
     'evenement_liste_inscrits'=>'NB : Seuls les administrateurs voient ce lien vers la liste détaillée des inscrits',
-    'evenement_places_restantes'=>'place(s) restante(s)',
+    'evenement_n_places_restantes'=>'@nb@ places restantes',
+    'evenement_1_place_restante'=>'une seule place restante',
+    'evenement_n_inscrits'=>'@nb@ inscrits',
+    'evenement_un_inscrit'=>'Un inscrit',
+    'info_1_place'=>'(il y a une seule place disponible)',
+    'info_nb_places'=>'(il y a @nb@ places disponibles)',
     'evenement_aucun_inscrit'=>'Aucun inscrit',
-    'evenement_places_disponibles'=>'place(s) disponible(s)',
+    'evenement_inscription_terminee'=>'La date pour s\'inscrire est dépassée',
     'edito_texte' => 'La fonctionnalité édito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot clé <em>edito</em>',
     'evens_legend'  => 'Les événements de la page d\'accueil',
     'evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains événements ?',
@@ -196,7 +200,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'reset' => 'Réinitialiser',
     'reinitialisation'=>'Voulez-vous réinitialiser les paramètres de cette page ? Si oui, pensez ensuite à enregistrer les nouveaux paramètres.',
 // v
-
+    'voir_la_page'=>'Voir la page associée',
+    'voir_video'=>'Vidéo',
+    'video'=>'à cette vidéo',
+    'video_associee'=>'à cette vidéo',
 );
 
 ?>
