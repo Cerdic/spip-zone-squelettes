@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'aide'=>'La configuration de ScolaSPIP vous permet de configurer les blocs de la page d\'accueil, de choisir les couleurs et des options de présentation du site, ainsi que d\'autres petites options.',
     'aide2'=>'D\'autres affichages dépendent de mots-clés (voir la liste sur la page sur SPIP-Contrib).',
     'aide_mosaique'=>'La mosaïque a une largeur de 4 colonnes. L\'article associé devra avoir un nombre suffisant d\'images (supérieur ou égal à 4 fois le «&nbsp;nombre de ligne&nbsp;»).',
+    'a_partir_du'=>'à partir du',
 
 // b
     'background_legend' => 'Couleur de fond du site',
@@ -42,7 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'breve_publie_le'=>'Actualité publiée le',
 
 // c
-    'cache_couleur' => 'Après avoir enregistré ces valeurs, pour que les couleurs et réglages soient pris en compte un «&nbsp;recalcul&nbsp;» de la page s\'impose (ou <a href="?exec=admin_vider">vider le cache</a> de SPIP).',
+    'cache_couleur' => 'Après avoir enregistré ces valeurs, pour que les couleurs et réglages soient pris en compte sur le site un «&nbsp;recalcul&nbsp;» de la page s\'impose (ou <a href="?exec=admin_vider">vider le cache</a> de SPIP).',
     'calendrier_legend' => 'Affichage du mini-calendrier sur la page d\'accueil',
     'calendrier_texte' => 'Souhaitez-vous afficher le mini calendrier en page d\'accueil ?',
     'choix_disposition' => 'Mise en page',
@@ -100,6 +101,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'evenement_1_place_restante'=>'une seule place restante',
     'evenement_n_inscrits'=>'@nb@ inscrits',
     'evenement_un_inscrit'=>'Un inscrit',
+    'en_mois'=>'en',
     'info_1_place'=>'(il y a une seule place disponible)',
     'info_nb_places'=>'(il y a @nb@ places disponibles)',
     'evenement_aucun_inscrit'=>'Aucun inscrit',
@@ -121,18 +123,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // h
     'hachure' => 'Hachuré',
+    'haut_page'=>'Haut de page',
 
 // i
     'image_logo_institution'=>'Le logo peut être modifié en plaçant votre logo nommé logo_academie.png dans le dossier squelettes/img',
     'institution_legend'=>'Académie ou institution : informations et lien',
     'institution_nom'=>'Nom de l\'académie ou l\'institution',
-    
+    'institution_lien'=>'Lien',
+    'institution_lien_titre'=>'Titre au survol du lien sur le logo',    
 
 // l
     'lien_accueil_scolaspip' => 'Page d\'accueil',
     'lien_couleur_scolaspip'=>'Thème et couleurs',
     'lien_plus_scolaspip'=>'Petits plus',
-    'lien_logo_institution'=>'Lien',
     'liens_rollover_legend' => 'Couleur des liens survolés du menu horizontal',
     'liens_rollover_texte' => 'Donne un effet visuel sur le menu au passage de la souris. Par défaut #000000 (noir)',
     'logo_1' => 'Image (logo du site)',
@@ -174,20 +177,31 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // s
     'scolaspip' => 'ScolaSPIP',
+    'site_realise_avec_scolaspip'=>'Squelette ScolaSPIP',
     'scolaspip_accueil' =>'Configuration de la page d\'accueil',
     'scolaspip_accueil_texte' =>'Cette page vous permet de configurer les éléments que vous souhaitez afficher sur la page d\'accueil de votre site.',
     'scolaspip_plus_texte' => 'Personnalisez ici quelques affichages dans vos pages.',
     'sites'=>'Sites',
+    'sites_selectionnes'=>'Les sites sélectionnés',
     'styles_predefinis'=>'Styles prédéfinis (choix de palettes de couleurs)',
     'sur'=>'sur',
 
 // t
     'titre_page_configurer_scolaspip' => 'Réglages ScolaSPIP',
     'type_bandeau' => 'Type de bandeau',
-    'title_logo_institution'=>'Titre au survol du lien sur le logo',
     'titre_mentions'=>'Informations sur le site',
     'titre_ie_scolaspip_couleurs'=>'Couleurs et réglages du thème de ScolaSPIP',
     'titre_aide'=>'Aide ScolaSPIP',
+    'theme1'=>'Thème 1 : Scolaspip par défaut',
+    'theme2'=>'Thème 2 : Gris et rouge',
+    'theme3'=>'Thème 3 : Rouge',
+    'theme4'=>'',
+    'theme5'=>'',
+    'theme6'=>'',
+    'theme7'=>'',
+    'theme8'=>'',
+    'theme9'=>'',
+    'theme10'=>'',
 
 // u
     'utilise_theme' => 'ScolaSPIP propose un habillage type par défaut (si vous utilisez «&nbsp;la feuille de style de ScolaSPIP&nbsp;») : le thème ScolaSPIP.',
@@ -199,10 +213,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // r
     'reset' => 'Réinitialiser',
     'reinitialisation'=>'Voulez-vous réinitialiser les paramètres de cette page ? Si oui, pensez ensuite à enregistrer les nouveaux paramètres.',
+
 // v
     'voir_la_page'=>'Voir la page associée',
-    'voir_video'=>'Vidéo',
-    'video'=>'à cette vidéo',
+    'video'=>'Vidéo',
     'video_associee'=>'à cette vidéo',
 );
 
