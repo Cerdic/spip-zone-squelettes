@@ -94,7 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // e
     'evenements_associes'=>'Évènements associés',
-    'evenement_bien_inscrit'=>'Vous êtes bien inscrit !',
+    'evenement_bien_inscrit'=>'Inscription prise en compte !',
     'evenement_etre_identifie'=>'Il faut être identifié sur le site pour accéder au formulaire d\'inscription.',
     'evenement_liste_inscrits'=>'NB : Seuls les administrateurs voient ce lien vers la liste détaillée des inscrits',
     'evenement_n_places_restantes'=>'@nb@ places restantes',
