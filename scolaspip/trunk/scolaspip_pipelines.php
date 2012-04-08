@@ -7,8 +7,11 @@ function scolaspip_insert_head($flux){
 	if (_VAR_MODE=="recalcul")
 		$js_start = parametre_url($js_start, 'var_mode', 'recalcul');
 	$flux .= "<script type='text/javascript' src='$js_start'></script>\n";
-
 	return $flux;
+}
+function scolaspip_jqueryui_plugins($array){
+	$array[] ='jquery.ui.core';
+	return $array;
 }
 function scolaspip_insert_head_css($flux){
 	$config = scolaspip_couleurs_config();
