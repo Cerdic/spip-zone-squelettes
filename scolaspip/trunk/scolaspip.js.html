@@ -7,7 +7,6 @@
 #HTTP_HEADER{Content-Type:text/javascript;charset=utf-8}
 #HTTP_HEADER{Vary:Accept-Encoding}
 var tout_masque=true;
-var breves_masquees=false;
 
 function masque(identifiant,num) { // masque les premiers sous niveaux
     $(".niveau1>li>.ss-rubrique").each(function(){ $(this).hide('slow');});
@@ -30,17 +29,16 @@ function changePlusMoins(niveau){
         niveau.attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "Masquer les sous-rubriques" });
 }
 function activeToggleBreves() {    // on masque les contenus des breves, on mets les boutons + et on active l'action
-    jQuery(".liste.breves li.item div.contenu_breve").css({display:'none'});
-    jQuery(".liste.breves li.item h3.h3 a").removeClass("ouvert");
-    jQuery(".liste.breves li.item h3.h3 a").addClass("ouvrable");
-    if (!breves_masquees){
-	jQuery(".liste.breves li.item h3").click(function(){ // Affichage des breves
+    if (jQuery(".liste.breves li.item div.contenu_breve").css("display")!="none"){
+	jQuery(".liste.breves li.item div.contenu_breve").css({display:'none'});
+	jQuery(".liste.breves li.item h3.h3 a").removeClass("ouvert");
+	jQuery(".liste.breves li.item h3.h3 a").addClass("ouvrable");
+	jQuery(".liste.breves li.item h3.h3").click(function(){ // Affichage des breves
 	    jQuery(this).next().slideToggle();
 	    jQuery(this).children().toggleClass("ouvrable");
 	    jQuery(this).children().toggleClass("ouvert");
 	    return false;
 	});
-	breves_masquees=true;
     }
 }
 
