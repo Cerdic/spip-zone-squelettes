@@ -1,0 +1,35 @@
+[(#AUTORISER{configurer,scolaspip}|sinon_interdire_acces)]
+#SET{self,#SELF}
+#SET{quoi,couleurs}
+<h1 class="grostitre"><:scolaspip:titre_page_configurer_scolaspip:></h1>
+#SET{quoi,#ENV{quoi,couleurs}}
+<div class='onglets_simple clearfix'>
+		<ul>
+				<li class="accueil">[(#GET{self}|parametre_url{quoi,accueil}|lien_ou_expose{<:scolaspip:lien_accueil_scolaspip:>,#GET{quoi}|=={accueil},ajax})]</li>
+				<li class="couleurs">[(#GET{self}|parametre_url{quoi,couleurs}|lien_ou_expose{<:scolaspip:lien_couleur_scolaspip:>,#GET{quoi}|=={couleurs},ajax})]</li>
+				<li class="plus">[(#GET{self}|parametre_url{quoi,plus}|lien_ou_expose{<:scolaspip:lien_plus_scolaspip:>,#GET{quoi}|=={plus},ajax})]</li>
+		</ul>
+</div>
+[(#GET{quoi}|=={accueil}|oui)
+<h1 class="none"><:scolaspip:lien_accueil_scolaspip:></h1>
+<div class="ajax">
+	#FORMULAIRE_CONFIGURER_SCOLASPIP_ACCUEIL
+</div>]
+
+[(#GET{quoi}|=={couleurs}|oui)
+<h1 class="none"><:scolaspip:lien_couleur_scolaspip:></h1>
+<div class="ajax">
+	#FORMULAIRE_CONFIGURER_SCOLASPIP_COULEURS
+</div>]
+
+[(#GET{quoi}|=={plus}|oui)
+<h1 class="none"><:scolaspip:lien_plus_scolaspip:></h1>
+<div class="ajax">
+	#FORMULAIRE_CONFIGURER_SCOLASPIP_PLUS
+</div>]
+
+<style type="text/css">
+.onglets_simple .accueil a,.onglets_simple .accueil strong {padding-left:36px;background: url(#CHEMIN_IMAGE{accueil-22.png}) no-repeat 5px center;}
+.onglets_simple .couleurs a,.onglets_simple .couleurs strong {padding-left:36px;background: url(#CHEMIN_IMAGE{couleurs-22.png}) no-repeat 5px center;}
+.onglets_simple .plus a,.onglets_simple .plus strong {padding-left:36px;background: url(#CHEMIN_IMAGE{plus-22.png}) no-repeat 5px center;}
+</style>

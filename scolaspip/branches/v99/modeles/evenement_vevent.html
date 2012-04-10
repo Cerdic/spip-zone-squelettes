@@ -1,0 +1,10 @@
+<BOUCLE_vevent(EVENEMENTS){id_evenement=#ENV{id,#ENV{id_evenement}}}{tout}>
+<div class="vevent id_#ID_EVENEMENT">
+<h3 class="summary #EDIT{titre}">#TITRE</h3>
+[<p class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</p>]
+[<div class="description  #EDIT{descriptif}">(#DESCRIPTIF)</div>]
+[<p class="lieu"><strong><:agenda:evenement_lieu:></strong> : <span class="location #EDIT{lieu}">(#LIEU)</span>[<br /><strong><:agenda:evenement_adresse:></strong> : <span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]</p>]
+[(#INSCRIPTION|?{' ',''})<p class="inscrits">#NB_INSCRITS [(#NB_INSCRITS|=={0}|oui)<:scolaspip:inscrit:>][(#NB_INSCRITS|singulier_ou_pluriel{scolaspip:inscrit, scolaspip:inscrits})][ ((#PLACES|singulier_ou_pluriel{agenda:info_1_place,agenda:info_nb_places}))]. <a href="#URL_PAGE{inscription,id_evenement=#ID_EVENEMENT}"><:agenda:label_inscription:></a>.</p>]
+<B_mots><p class='category'><BOUCLE_mots(MOTS){id_evenement}{par num titre,titre}{', '}>#TITRE</BOUCLE_mots></p></B_mots>
+</div>
+</BOUCLE_vevent>

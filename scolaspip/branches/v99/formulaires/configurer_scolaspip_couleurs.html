@@ -1,0 +1,462 @@
+<p><:scolaspip:utilise_theme:></p>
+<p><:scolaspip:utilise_theme2:></p>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	<fieldset>
+		<legend><:scolaspip:couleurs_legend:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:utilise_css:></label>
+				<div class="choix">
+					<label for="css_scolaspip1"><:item_oui:></label>
+					<input type="radio" name="css_scolaspip" id="css_scolaspip1" value="oui"  [(#ENV{css_scolaspip, oui}|=={oui}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="css_scolaspip2"><:item_non:></label>
+					<input type="radio" name="css_scolaspip" id="css_scolaspip2" value="non"  [(#ENV{css_scolaspip, non}|=={non}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li id="personnalisation_des_couleurs">
+				<label class="gauche"><:scolaspip:couleurs_texte:></label>
+				<div class="choix">
+					<label for="couleurs1"><:item_oui:></label>
+					<input type="radio" name="couleurs" id="couleurs1" value="oui" onclick="$('#choix_des_couleurs').show('fast');if($('#css_scolaspip2').attr('checked')=='checked'){$('#css_scolaspip1').attr('checked','checked')}" [(#ENV{couleurs, oui}|=={oui}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="couleurs2"><:item_non:></label>
+					<input type="radio" name="couleurs" id="couleurs2" value="non" onclick="$('#choix_des_couleurs').hide('fast');" [(#ENV{couleurs, non}|=={non}|?{checked="checked"})] />
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	<div  id="choix_des_couleurs" style="[(#ENV{couleurs, non}|=={non}|?{"display:none"})];">
+	<fieldset>
+		<legend><:scolaspip:choix_disposition:></legend>
+		<ul>
+			<li class="sur2lignes">
+				<label class="gauche"><:scolaspip:type_bandeau:></label>
+				<div class="choix">
+					<label for="image_bandeaunon"><:scolaspip:logo_2:></label>
+					<input type="radio" id="image_bandeaunon" name="image_bandeau" value="non" [(#ENV{image_bandeau, non}|=={non}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="image_bandeauoui" ><:scolaspip:logo_1:></label>
+					<input type="radio" id="image_bandeauoui" name="image_bandeau" value="oui" [(#ENV{image_bandeau, oui}|=={oui}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li class="aide"><:scolaspip:explication_titre_slogan:></li>
+			<li>
+				<label class="gauche"><:scolaspip:bandeau_elargi:></label>
+				<div class="choix">
+					<label for="bandeau_largeoui"><:item_oui:></label>
+					<input type="radio" name="bandeau_large" id="bandeau_largeoui" value="100%"  [(#ENV{bandeau_large, oui}|=={100%}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="bandeau_largenon"><:item_non:></label>
+					<input type="radio" name="bandeau_large" id="bandeau_largenon" value="960px"  [(#ENV{bandeau_large, non}|=={960px}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li>
+				<label class="gauche"><:scolaspip:arrondi_legend:></label>
+				<div class="choix">
+					<label for="arrondioui"><:item_oui:></label>
+					<input type="radio" name="arrondi" id="arrondioui" value="oui"  [(#ENV{arrondi, oui}|=={oui}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="arrondinon"><:item_non:></label>
+					<input type="radio" name="arrondi" id="arrondinon" value="non"  [(#ENV{arrondi, non}|=={non}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li>
+				<label class="gauche"><:scolaspip:activ_degrad:></label>
+				<div class="choix">
+					<label for="degradesoui"><:item_oui:></label>
+					<input type="radio" name="degrades" id="degradesoui" value="oui"  [(#ENV{degrades, oui}|=={oui}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="degradesnon"><:item_non:></label>
+					<input type="radio" name="degrades" id="degradesnon" value="non"  [(#ENV{degrades, non}|=={non}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li>
+				<label class="gauche"><:scolaspip:fondcadre_legend:></label>
+				<div class="choix">
+					<label for="fondcadreuni"><:scolaspip:uni:></label>
+					<input type="radio" name="fondcadre" id="fondcadreuni" value="uni"  [(#ENV{fondcadre, uni}|=={uni}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="fondcadredegrade"><:scolaspip:degrade:></label>
+					<input type="radio" name="fondcadre" id="fondcadredegrade" value="degrade"  [(#ENV{fondcadre, degrade}|=={degrade}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="fondcadrehachure"><:scolaspip:hachure:></label>
+					<input type="radio" name="fondcadre" id="fondcadrehachure" value="hachure"  [(#ENV{fondcadre, hachure}|=={hachure}|?{checked="checked"})] />
+				</div>
+			</li>
+			<li>
+				<label class="gauche"><:scolaspip:position_menu:></label>
+				<div class="choix">
+					<label for="position_menugauche"><:scolaspip:gauche:></label>
+					<input type="radio" id="position_menugauche" name="position_menu" value="gauche" [(#ENV{position_menu, oui}|=={gauche}|?{checked="checked"})] />
+				</div>
+				<div class="choix">
+					<label for="position_menudroite"><:scolaspip:droite:></label>
+					<input type="radio" id="position_menudroite" name="position_menu" value="droite" [(#ENV{position_menu, droite}|=={droite}|?{checked="checked"})] />
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	
+	<fieldset>	
+		<legend><:scolaspip:choix_police:></legend>
+		<ul>
+			<li>
+				<label class="gauche" for="police_contenu"><:scolaspip:police_contenu:></label>
+				<div class="choix">
+					<select name="police_contenu" >
+						<option value="Verdana" [(#ENV{police_contenu, Verdana}|=={Verdana}|?{selected="selected"})]>Verdana</option>
+						<option value="Lucida" [(#ENV{police_contenu, Lucida}|=={Lucida}|?{selected="selected"})]>Lucida</option>
+						<option value="Arial" [(#ENV{police_contenu, Arial}|=={Arial}|?{selected="selected"})]>Arial</option>
+						<option value="Trebuchet" [(#ENV{police_contenu, Trebuchet}|=={Trebuchet}|?{selected="selected"})]>Trebuchet</option>
+						<option value="Impact" [(#ENV{police_contenu, Impact}|=={Impact}|?{selected="selected"})]>Impact</option>
+					</select>
+				</div>
+				<label class="gauche" for="police_titres"><:scolaspip:police_titres:></label>
+				<div class="choix">
+					<select name="police_titres" >
+						<option value="Verdana" [(#ENV{police_titres, Verdana}|=={Verdana}|?{selected="selected"})]>Verdana</option>
+						<option value="Lucida" [(#ENV{police_titres, Lucida}|=={Lucida}|?{selected="selected"})]>Lucida</option>
+						<option value="Arial" [(#ENV{police_titres, Arial}|=={Arial}|?{selected="selected"})]>Arial</option>
+						<option value="Trebuchet" [(#ENV{police_titres, Trebuchet}|=={Trebuchet}|?{selected="selected"})]>Trebuchet</option>
+						<option value="Impact" [(#ENV{police_titres, Impact}|=={Impact}|?{selected="selected"})]>Impact</option>
+						<option value="Times" [(#ENV{police_titres, Times}|=={Times}|?{selected="selected"})]>Times</option>
+						<option value="Georgia" [(#ENV{police_titres, Georgia}|=={Georgia}|?{selected="selected"})]>Georgia</option>
+						<option value="Baskerville" [(#ENV{police_titres, Baskerville}|=={Baskerville}|?{selected="selected"})]>Baskerville</option>
+						<option value="Andale" [(#ENV{police_titres, Andale}|=={Andale}|?{selected="selected"})]>Andale</option>
+						<option value="Courier" [(#ENV{police_titres, Courier}|=={Courier}|?{selected="selected"})]>Courier</option>
+					</select>
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+	
+	<fieldset>	
+		<legend><:scolaspip:choix_couleur:></legend>
+		<p><:scolaspip:couleur_aide:></p>
+		<ul>
+			<li>
+				<label for="style_scolaspip"><:scolaspip:styles_predefinis:></label>
+				<select id="style_scolaspip">
+					<option value="0"> </option>
+					<option value="1"><:scolaspip:theme1:></option>
+					<option value="2"><:scolaspip:theme2:></option>
+					<option value="3"><:scolaspip:theme3:></option>
+					<option value="4"><:scolaspip:theme4:></option>
+					<option value="5"><:scolaspip:theme5:></option>
+					<option value="6"><:scolaspip:theme6:></option>
+				</select>
+			</li>
+<!-- Backgrounds 5 possible + 2 survol -->			
+			<li>
+				<label for="bodyfond"><:scolaspip:background_legend:></label>
+				<input type="text" name="bodyfond" id="bodyfond" value="#ENV{bodyfond, #dddddd}" size="7" class="palette" />
+				<p><:scolaspip:background_texte:></p>
+			</li>
+			<li>
+				<label for="bandeau" ><:scolaspip:couleur_fond_bandeau_legend:></label>
+				<input type="text" name="bandeau" id="bandeau" value="#ENV{bandeau, #4b4b4b}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_fond_bandeau_texte:></p>
+			</li>
+			<li>
+				<label for="barre" ><:scolaspip:couleur_barre_legend:></label>
+				<input type="text" name="barre" id="barre" value="#ENV{barre, #c4c4c4}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_barre_texte:></p>
+			</li>
+			<li>
+				<label for="barreover" ><:scolaspip:couleur_barre_over_legend:></label>
+				<input type="text" name="barreover" id="barreover" value="#ENV{barreover, #dddddd}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_barre_over_texte:></p>
+			</li>
+			<li>
+				<label for="menufond"><:scolaspip:couleur_fond_menu_legend:></label>
+				<input type="text" name="menufond" id="menufond" value="#ENV{menufond, #F2E19D}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_fond_menu_texte:></p>
+			</li>
+			<li>
+				<label for="calfond"><:scolaspip:couleur_cal_legend:></label>
+				<input type="text" name="calfond" id="calfond" value="#ENV{calfond, #edd6b5}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_cal_texte:></p>
+			</li>
+<!-- Survol sur li  -->			
+			<li style="border-bottom: 1px solid #ddd;">
+				<label for="liover"><:scolaspip:couleur_li_over_legend:></label>
+				<input type="text" name="liover" id="liover" value="#ENV{liover, #efefef}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_li_over_texte:></p>
+			</li>
+<!-- Bordures -->
+			<li style="border-bottom: 1px solid #ddd;">
+				<label for="couleurbordure"><:scolaspip:couleur_bordure_legend:></label>
+				<input type="text" name="couleurbordure"  id="couleurbordure" value="#ENV{couleurbordure, #ffcc00;}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_bordure_texte:></p>
+			</li>
+<!-- Liens 3 types avec survol, soit 6 -->
+			<li>
+				<label for="liens"><:scolaspip:couleur_liens_legend:></label>
+				<input type="text" name="liens" id="liens" value="#ENV{liens, #cc6600}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_liens_texte:></p>
+			</li>
+			<li>
+				<label for="liensover" ><:scolaspip:couleur_liens_over_legend:></label>
+				<input type="text" name="liensover" id="liensover" value="#ENV{liensover, #A85503}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_liens_over_texte:></p>
+			</li>
+			<li>
+				<label for="liensmenuhorizontal"><:scolaspip:couleur_liens_menu_haut_legend:></label>
+				<input type="text" name="liensmenuhorizontal" id="liensmenuhorizontal" value="#ENV{liensmenuhorizontal, #333333}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_liens_menu_haut_texte:></p>
+			</li>
+			<li>				
+				<label for="menurollover"><:scolaspip:liens_rollover_legend:></label>
+				<input type="text" name="menurollover" id="menurollover" value="#ENV{menurollover, #000000}" size="7" class="palette"  />
+				<p><:scolaspip:liens_rollover_texte:></p>
+			</li>
+			<li>
+				<label for="liensmenugauche"><:scolaspip:couleur_liens_menu_legend:></label>
+				<input type="text" name="liensmenugauche" id="liensmenugauche" value="#ENV{liensmenugauche, #A85503}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_liens_menu_texte:></p>
+			</li>
+			<li style="border-bottom: 1px solid #ddd;">
+				<label for="liensmenugauchehover"><:scolaspip:couleur_liens_menu_over_legend:></label>
+				<input type="text" name="liensmenugauchehover" id="liensmenugauchehover" value="#ENV{liensmenugauchehover, #666666}" size="7" class="palette"  />
+				<p><:scolaspip:couleur_liens_menu_over_texte:></p>
+			</li>
+<!-- couleurs polices  -->			
+			<li>
+				<label for="couleurs_bandeau"><:scolaspip:couleurs_bandeau_legend:></label>
+				<input type="text" name="couleurs_bandeau" id="couleurs_bandeau" value="#ENV{couleurs_bandeau, #ffffff}" size="7" class="palette"  />
+				<p><:scolaspip:couleurs_bandeau_texte:></p>
+			</li>
+			<li style="border-bottom: 1px solid #ddd;">
+				<label for="couleurs_intertitres"><:scolaspip:couleurs_intertitres_legend:></label>
+				<input type="text" name="couleurs_intertitres" id="couleurs_intertitres" value="#ENV{couleurs_intertitres, #333333}" size="7" class="palette"  />
+				<p><:scolaspip:couleurs_intertitres_texte:></p>
+			</li>
+<!-- fonds des cartouches des forums -->			
+			<li>
+				<label for="btcom1"><:scolaspip:boite_forum1:></label>
+				<input type="text" name="btcom1" id="btcom1" value="#ENV{btcom1, #DDDDDD}" size="7" class="palette"  />
+				<p><:scolaspip:boite_forum1_texte:></p>
+			</li>
+			<li>
+				<label for="btcom2"><:scolaspip:boite_forum2:></label>
+				<input type="text" name="btcom2" id="btcom2" value="#ENV{btcom2, #EEEEEE}" size="7" class="palette"  />
+				<p><:scolaspip:boite_forum2_texte:></p>
+			</li>
+			<li>
+				<label for="btcom3"><:scolaspip:boite_forum3:></label>
+				<input type="text" name="btcom3" id="btcom3" value="#ENV{btcom3, #F4F4F4}" size="7" class="palette"  />
+				<p><:scolaspip:boite_forum3_texte:></p>
+			</li>
+			<li>
+				<label for="btcom4"><:scolaspip:boite_forum4:></label>
+				<input type="text" name="btcom4" id="btcom4" value="#ENV{btcom4, #DDDDDD}" size="7" class="palette"  />
+				<p><:scolaspip:boite_forum4_texte:></p>
+			</li>
+			<li style="border-bottom: 1px solid #ddd;">
+				<label for="btcom5"><:scolaspip:boite_forum5:></label>
+				<input type="text" name="btcom5" id="btcom5" value="#ENV{btcom5, #EEEEEE}" size="7" class="palette"  />
+				<p><:scolaspip:boite_forum5_texte:></p>
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend><:scolaspip:perso_css_legend:></legend>
+		<label for="persocss"><:scolaspip:perso_css:></label>
+		<textarea name="persocss" id="persocss">#ENV{persocss, ''}</textarea>
+	</fieldset>
+	<p><:scolaspip:cache_couleur:></p>
+	</div>
+	<p class="boutons">
+		<input style="display:none;" type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+		<input type="submit" name="reinit" class="submit" value="<:scolaspip:reset:>" onclick='return confirm("<:scolaspip:reinitialisation:>");'/>
+		<input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+	[(#BOITE_OUVRIR{<:scolaspip:export_import:>,info})]
+		<p><:scolaspip:export_import_config:></p>
+	#BOITE_FERMER	
+</div></form>
+
+</div>
+
+<style type="text/css">
+	fieldset li.aide{font-size:0.9em;padding-top:0;padding-left:1em;}
+	.formulaire_spip li label.gauche{width: 300px;}
+	.formulaire_spip li .choix{display:inline;}
+	.formulaire_spip li.sur2lignes .choix{display:block;text-align:right;padding-right:5em;}
+	.formulaire_spip li.sur2lignes label.gauche{width: 200px;}
+	#export_configuration{height: 8em;}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var couleurs = new Array();
+	couleurs[1] = { // Par defaut
+		'bodyfond':'#dddddd',
+		'bandeau':'#4b4b4b',
+		'barre':'#c4c4c4',
+		'barreover':'#dddddd',
+		'menufond':'#F2E19D',
+		'calfond':'#edd6b5',
+		'menurollover':'#000000',
+		'couleurbordure':'#ffcc00',
+		'liens':'#cc6600',
+		'liensover':'#A85503',
+		'liensmenugauche':'#A85503',
+		'liensmenugauchehover':'#666666',
+		'liensmenuhorizontal':'#333333',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#ffffff',
+		'couleurs_intertitres':'#333333'
+	};
+	couleurs[2] = { // Gris et Rouge
+		'bodyfond':'#ffffff',
+		'bandeau':'#333333',
+		'barre':'#c4c4c4',
+		'barreover':'#dddddd',
+		'menufond':'#ffffff',
+		'calfond':'#ffffff',
+		'menurollover':'#000000',
+		'couleurbordure':'#aa0000',
+		'liens':'#aa0000',
+		'liensover':'#ff5d00',
+		'liensmenugauche':'#aa0000',
+		'liensmenugauchehover':'#ff5d00',
+		'liensmenuhorizontal':'#333333',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#dddddd',
+		'couleurs_intertitres':'#780808'
+	};
+	couleurs[3] = { // Rouge et gris
+		'bodyfond':'#eeeeee',
+		'bandeau':'#eeeeee',
+		'barre':'#cc0000',
+		'barreover':'#000000',
+		'menufond':'#ffffff',
+		'calfond':'#ffffff',
+		'menurollover':'#dddddd',
+		'couleurbordure':'#cccccc',
+		'liens':'#aa0000',
+		'liensover':'#ff5d00',
+		'liensmenugauche':'#aa0000',
+		'liensmenugauchehover':'#ff5d00',
+		'liensmenuhorizontal':'#ffffff',
+		'liover':'#eeeeee',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#dd0000',
+		'couleurs_intertitres':'#666666'
+	};
+	couleurs[4] = { // Vert
+		'bodyfond': '#eeeeee',
+		'bandeau': '#83d507',
+		'barre': '#143013',
+		'barreover': '#275b25',
+		'menufond': '#143013',
+		'calfond': '#badfaa',
+		'menurollover': '#badfaa',
+		'couleurbordure': '#badfaa',
+		'liens': '#143013',
+		'liensover': '#1e5e1c',
+		'liensmenugauche': '#badfaa',
+		'liensmenugauchehover': '#ffffff',
+		'liensmenuhorizontal': '#badfaa',
+		'liover': '#efefef',
+		'btcom1': '#DDDDDD',
+		'btcom2': '#EEEEEE',
+		'btcom3': '#F4F4F4',
+		'btcom4': '#DDDDDD',
+		'btcom5': '#EEEEEE',
+		'couleurs_bandeau': '#333333',
+		'couleurs_intertitres': '#315d1d'
+	};
+	couleurs[5] = { // Bleu/Noir jquery
+		'bodyfond':'#39424b',
+		'bandeau':'#0f1923',
+		'barre':'#0d5995',
+		'barreover':'#192839',
+		'menufond':'#0d5995',
+		'calfond':'#b7ccdc',
+		'menurollover':'#ffffff',
+		'couleurbordure':'#000000',
+		'liens':'#0f67a1',
+		'liensover':'#133753',
+		'liensmenugauche':'#eeeeee',
+		'liensmenugauchehover':'#ffffff',
+		'liensmenuhorizontal':'#eeeeee',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#cccccc',
+		'couleurs_intertitres':'#222222'
+	};
+	couleurs[6] = { // spip contrib
+		'bodyfond':'#eeeeee',
+		'bandeau':'#83d3dc',
+		'barre':'#1d4448',
+		'barreover':'#eeeeee',
+		'menufond':'#e1f0f1',
+		'calfond':'#e1f0f1',
+		'menurollover':'#2a6167',
+		'couleurbordure':'#dddddd',
+		'liens':'#005a9c',
+		'liensover':'#f57900',
+		'liensmenugauche':'#005a9c',
+		'liensmenugauchehover':'#f57900',
+		'liensmenuhorizontal':'#eeeeee',
+		'liover':'#efefef',
+		'btcom1':'#DDDDDD',
+		'btcom2':'#EEEEEE',
+		'btcom3':'#F4F4F4',
+		'btcom4':'#DDDDDD',
+		'btcom5':'#EEEEEE',
+		'couleurs_bandeau':'#ffffff',
+		'couleurs_intertitres':'#ae0345'
+	};
+
+	jQuery("#style_scolaspip").change(function(){
+		if (jQuery(this).val()==0) return;
+		jeu_de_couleurs = couleurs[jQuery(this).val()];
+		jQuery.each(jeu_de_couleurs, function(index, value) {
+			element = jQuery("#"+index);
+			if (element.hasClass("palette")) {
+				element.attr("value",value);
+				element.css({'background':value});
+			}
+		});
+	});
+});
+</script>
+

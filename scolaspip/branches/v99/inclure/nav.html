@@ -1,0 +1,33 @@
+<div class="menu menu-container" id="menuhorizontal">
+    <div class="recherche">#FORMULAIRE_RECHERCHE</div>
+    <ul class="menu-items menu-liste menuder">
+	<li class="item menu-entree home"><a href="#URL_SITE_SPIP" class="intitule" title="<:accueil_site:>"><img src="#CHEMIN{img/picto-home.png}" alt="Accueil" /></a></li>
+	<li class="item menu-entree[(#PLUGIN{agenda}|?{' '})[(#CONFIG{scolaspip_plus/boutonagenda}|=={oui}|?{' invisible',''})]]"><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]" title="Agenda complet">Agenda</a></li>
+	<BOUCLE_articles_selectionnes(ARTICLES){mots.titre=article_bandeau}>
+	<li class="item menu-entree"><a href="#URL_ARTICLE" [title="(#INTRODUCTION|couper{60})"]>[(#TITRE|couper{30})]</a></li>
+	</BOUCLE_articles_selectionnes>
+	<BOUCLE_rubriques_selectionnes(RUBRIQUES){mots.titre=rubrique_bandeau}>
+	<li class="item menu-entree">
+	    <a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"][ title="(#INTRODUCTION|couper{60})"]>[(#TITRE|couper{30})]</a>
+	    <B_sous_rubriques>
+	    <ul>
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+		<li><a href="#URL_RUBRIQUE" <BOUCLE_test_sousrub(RUBRIQUES){id_parent}{0,1}>class="daddy"</BOUCLE_test_sousrub>>[(#TITRE|couper{80})]</a><BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques></li>
+		</BOUCLE_sous_rubriques>
+	    </ul>
+	    </B_sous_rubriques>
+	</li>
+	</BOUCLE_rubriques_selectionnes>
+	<li class="item menu-entree[(#CONFIG{scolaspip_plus/boutonliens}|=={oui}|?{' invisible',''})]">
+	    <a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>">Liens</a>
+	    <B_sites_selectionnes>
+	    <ul>
+		<BOUCLE_sites_selectionnes(SITES){mots.titre=site_bandeau}>
+		<li><a href="#URL_SITE" title="<:scolaspip:lien_externe:>[ - (#DESCRIPTIF|couper{60})]" class="spip_out">[(#NOM_SITE|couper{30})]</a></li>
+		</BOUCLE_sites_selectionnes>
+	    </ul>
+	    </B_sites_selectionnes>
+	</li>
+    </ul>
+</div>
+
