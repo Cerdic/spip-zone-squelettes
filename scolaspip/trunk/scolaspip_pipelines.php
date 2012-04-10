@@ -9,10 +9,7 @@ function scolaspip_insert_head($flux){
 	$flux .= "<script type='text/javascript' src='$js_start'></script>\n";
 	return $flux;
 }
-function scolaspip_jqueryui_plugins($array){
-	$array[] ='jquery.ui.core';
-	return $array;
-}
+
 function scolaspip_insert_head_css($flux){
 	$config = scolaspip_couleurs_config();
 	if ($config['css_scolaspip']=='oui') {
