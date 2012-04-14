@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'articles_selection'=>'À la une',
     'aide'=>'La configuration de ScolaSPIP vous permet de configurer les blocs de la page d\'accueil, de choisir les couleurs et des options de présentation du site, ainsi que d\'autres petites options.',
     'aide2'=>'D\'autres affichages dépendent de mots-clés (voir la liste sur la page sur SPIP-Contrib).',
-    'aide_mosaique'=>'La mosaïque a une largeur de 4 colonnes. L\'article associé devra avoir un nombre suffisant d\'images (supérieur ou égal à 4 fois le «&nbsp;nombre de ligne&nbsp;»).',
+    'aide_mosaique'=>'Exemple : si la mosaïque SplickrBox a une largeur de 4 colonnes. L\'article associé devra avoir un nombre suffisant d\'images (supérieur ou égal à 4 fois le «&nbsp;nombre de ligne&nbsp;»).',
     'a_partir_du'=>'à partir du',
 
 // b
@@ -171,7 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'prochains_evenements'=>'Prochains événements',
     'perso_css'=>'Règles css',
     'perso_css_legend'=>'Ajouter des règles css (utilisateurs avertis)',
-    'parametres_mosaique'=>'Paramètres de la mosaïque',
+    'parametres_mosaique'=>'Paramètres de la mosaïque SplickrBox',
     'partager'=>'Partager cette page',
 // o
     'ok' => 'Enregistrer',
@@ -183,7 +183,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'scolaspip_accueil_texte' =>'Cette page vous permet de configurer les éléments que vous souhaitez afficher sur la page d\'accueil de votre site.',
     'scolaspip_plus_texte' => 'Personnalisez ici quelques affichages dans vos pages.',
     'sites'=>'Sites',
-    'sites_selectionnes'=>'Les sites sélectionnés',
+    'sites_selectionnes'=>'Tous les sites sélectionnés',
     'styles_predefinis'=>'Styles prédéfinis (choix de palettes de couleurs)',
     'sur'=>'sur',
 
