@@ -20,6 +20,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'aide2'=>'D\'autres affichages dépendent de mots-clés (voir la liste sur la page sur SPIP-Contrib).',
     'aide_mosaique'=>'Exemple : si la mosaïque SplickrBox a une largeur de 4 colonnes. L\'article associé devra avoir un nombre suffisant d\'images (supérieur ou égal à 4 fois le «&nbsp;nombre de ligne&nbsp;»).',
     'a_partir_du'=>'à partir du',
+    'activer_agenda'=>'Pour utiliser ces options, le plugin agenda est nécessaire.',
+    'activer_breves'=>'Pour utiliser ces options, l\'activation des brèves est nécessaire.',
+    'activer_splickrbox'=>'Pour utiliser ces options, le plugin SplickrBox est nécessaire.',
 
 // b
     'background_legend' => 'Couleur de fond du site',
@@ -91,6 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'degrade' => 'Dégradé',
     'droite' => 'Droite',
     'documentation'=>'Documentation ScolaSPIP sur SPIP-Contrib',
+    'descriptif_site_vide'=>'Le descriptif de votre site est actuellement vide.',
 
 // e
     'evenements_associes'=>'Évènements associés',
@@ -194,12 +198,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'titre_ie_scolaspip_couleurs'=>'Couleurs et réglages du thème de ScolaSPIP',
     'titre_aide'=>'Aide ScolaSPIP',
     'theme1'=>'Thème 1 : Scolaspip par défaut',
-    'theme2'=>'Thème 2 : Gris et rouge',
-    'theme3'=>'Thème 3 : Rouge',
-    'theme4'=>'Thème 4 : Vert',
+    'theme2'=>'Thème 2 : Gris/rouge',
+    'theme3'=>'Thème 3 : Rouge/noir',
+    'theme4'=>'Thème 4 : Verts',
     'theme5'=>'Thème 5 : Bleu/noir (thème jquery)',
     'theme6'=>'Thème 4 : Bleu clair (thème SPIP-Contrib)',
-    'theme7'=>'',
+    'theme7'=>'Thème 7 : Bleus/gris foncé/orange',
     'theme8'=>'',
     'theme9'=>'',
     'theme10'=>'',

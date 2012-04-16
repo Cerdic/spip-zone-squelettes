@@ -23,39 +23,41 @@
 				</div>
 			</li>
 		</ul>
+		[(#DESCRIPTIF_SITE_SPIP*|strlen|?{'',<span class="notice"><:scolaspip:descriptif_site_vide:></span>})]
 	</fieldset>
 	<fieldset>
 		<legend><:scolaspip:calendrier_legend:></legend>
-		<ul>
+		<ul[(#PLUGIN{agenda}|non) style="background:#ddd;"]>
 			<li>
 				<label class="gauche"><:scolaspip:calendrier_texte:></label>
 				<div class="choix">
-					<input type="radio" id="calendrieroui" name="calendrier" value="oui" [(#ENV{calendrier, oui}|=={oui}|oui) checked="checked"] />
+					<input type="radio" id="calendrieroui" name="calendrier" value="oui" [(#ENV{calendrier, oui}|=={oui}|oui) checked="checked"][(#PLUGIN{agenda}|non) disabled="disabled"]/>
 					<label for="calendrieroui"><:item_oui:></label>
 				</div>
 				<div class="choix">
-					<input type="radio" id="calendriernon" name="calendrier" value="non" [(#ENV{calendrier, non}|=={non}|oui) checked="checked"] />
+					<input type="radio" id="calendriernon" name="calendrier" value="non" [(#ENV{calendrier, non}|=={non}|oui) checked="checked"][(#PLUGIN{agenda}|non) disabled="disabled"]/>
 					<label for="calendriernon"><:item_non:></label>
 				</div>
 			</li>
 		</ul>
+		[(#PLUGIN{agenda}|non) <span class="notice"><:scolaspip:activer_agenda:></span>]
 	</fieldset>
 	
 	<fieldset>
 		<legend><:scolaspip:evens_legend:></legend>
-		<ul>
+		<ul[(#PLUGIN{agenda}|non) style="background:#ddd;"]>
 			<li>
 				<label class="gauche"><:scolaspip:evens_texte:></label>
 				<div class="choix">
-					<input type="radio" id="evenementsoui" name="evenements" value="oui" [(#ENV{evenements, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').show('fast');"/>
+					<input type="radio" id="evenementsoui" name="evenements" value="oui" [(#ENV{evenements, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').show('fast');"[(#PLUGIN{agenda}|non) disabled="disabled"]/>
 					<label for="evenementsoui"><:item_oui:></label>
 				</div>
 				<div class="choix">
-					<input type="radio" id="evenementsnon" name="evenements" value="non" [(#ENV{evenements, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').hide('fast');"/>
+					<input type="radio" id="evenementsnon" name="evenements" value="non" [(#ENV{evenements, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#evenements_complements').hide('fast');"[(#PLUGIN{agenda}|non) disabled="disabled"]/>
 					<label for="evenementsnon"><:item_non:></label>
 				</div>
 				<br class="clear"/>
-				<div id="evenements_complements" [(#ENV{evenements}|=={non}|oui)style='display:none;']>
+				<div id="evenements_complements" [(#PLUGIN{agenda}|non) style="display:none"] [(#ENV{evenements}|=={non}|oui)style='display:none;']>
 					<label class="gauche" for="nb_evenements"><:scolaspip:nb_evens_texte:></label>
 					<div class="choix">
 						<input type="text" id="nb_evenements" name="nb_evenements" size="2" value="#ENV{nb_evenements,10}" />
@@ -68,25 +70,24 @@
 				</div>
 			</li>
 		</ul>
-		
+		[(#PLUGIN{agenda}|non) <span class="notice"><:scolaspip:activer_agenda:></span>]
 	</fieldset>
-	
 	
 	<fieldset>
 		<legend><:scolaspip:breves_legend:></legend>
-		<ul>
+		<ul[(#CONFIG{activer_breves}|=={non}|oui) style="background:#ddd;"]>
 			<li>
 				<label class="gauche"><:scolaspip:breves_texte:></label>
 				<div class="choix">
-					<input type="radio" id="brevesoui" name="breves" value="oui" [(#ENV{breves, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').show('fast');"/>
+					<input type="radio" id="brevesoui" name="breves" value="oui" [(#ENV{breves, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').show('fast');"[(#CONFIG{activer_breves}|=={non}|oui) disabled="disabled"]/>
 					<label for="brevesoui"><:item_oui:></label>
 				</div>
 				<div class="choix">
-					<input type="radio" id="brevesnon" name="breves" value="non" [(#ENV{breves, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').hide('fast');"/>
+					<input type="radio" id="brevesnon" name="breves" value="non" [(#ENV{breves, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#breves_complements').hide('fast');"[(#CONFIG{activer_breves}|=={non}|oui) disabled="disabled"]/>
 					<label for="brevesnon"><:item_non:></label>
 				</div>
 				<br class="clear"/>
-				<div id="breves_complements" [(#ENV{breves}|=={non}|oui)style='display:none;']>
+				<div id="breves_complements" [(#CONFIG{activer_breves}|=={non}|oui) style="display:none"] [(#ENV{breves}|=={non}|oui)style='display:none;']>
 					<label class="gauche" for="nb_breves"><:scolaspip:nb_breves_texte:></label>
 					<div class="choix">
 						<input type="text" id="nb_breves" name="nb_breves" size="2" value="#ENV{nb_breves,10}" />
@@ -99,6 +100,7 @@
 				</div>
 			</li>
 		</ul>
+		[(#CONFIG{activer_breves}|=={non}|oui) <span class="notice"><:scolaspip:activer_breves:></span>]
 	</fieldset>
 	
 	<fieldset>
