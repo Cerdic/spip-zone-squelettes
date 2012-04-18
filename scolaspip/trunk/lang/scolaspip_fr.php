@@ -23,6 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'activer_agenda'=>'Pour utiliser ces options, le plugin agenda est nécessaire.',
     'activer_breves'=>'Pour utiliser ces options, l\'activation des brèves est nécessaire.',
     'activer_splickrbox'=>'Pour utiliser ces options, le plugin SplickrBox est nécessaire.',
+    'avertissement_css'=>'NB. Certaines options (arrondis, ombres) ne fonctionneront pour vos visiteurs que s\'ils sont équipés d\'un navigateur récent respectueux des standards du Web.',
 
 // b
     'background_legend' => 'Couleur de fond du site',
@@ -179,6 +180,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'partager'=>'Partager cette page',
 // o
     'ok' => 'Enregistrer',
+    'ombres_blocs'=>'Ombrer les blocs',
+    'ombres_polices_intertitres'=>'Ombrer les polices des intertitres',
 
 // s
     'scolaspip' => 'ScolaSPIP',
