@@ -3,10 +3,10 @@
     <ul class="menu-items menu-liste menuder">
 	<li class="item menu-entree home"><a href="#URL_SITE_SPIP" class="intitule" title="<:accueil_site:>"><img src="#CHEMIN{img/picto-home.png}" alt="Accueil" /></a></li>
 	[(#PLUGIN{agenda}|?{' '})<li class="item menu-entree[(#CONFIG{scolaspip_plus/boutonagenda}|=={oui}|?{' invisible',''})]"><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]" title="Agenda complet">Agenda</a></li>]
-	<BOUCLE_articles_selectionnes(ARTICLES){mots.titre=article_bandeau}>
+	<BOUCLE_articles_selectionnes(ARTICLES){mots.titre IN Dans le menu horizontal,article_bandeau}>
 	<li class="item menu-entree"><a href="#URL_ARTICLE" [title="(#INTRODUCTION|couper{60})"]>[(#TITRE|couper{30})]</a></li>
 	</BOUCLE_articles_selectionnes>
-	<BOUCLE_rubriques_selectionnes(RUBRIQUES){mots.titre=rubrique_bandeau}>
+	<BOUCLE_rubriques_selectionnes(RUBRIQUES){mots.titre IN Dans le menu horizontal}>
 	<li class="item menu-entree[ (#EXPOSE)]">
 	    <a href="#URL_RUBRIQUE"[ title="(#INTRODUCTION|couper{60})"]>[(#TITRE|couper{30})]</a>
 	    <B_sous_rubriques>
@@ -22,7 +22,7 @@
 	    <a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>">Liens</a>
 	    <B_sites_selectionnes>
 	    <ul>
-		<BOUCLE_sites_selectionnes(SITES){mots.titre=site_bandeau}>
+		<BOUCLE_sites_selectionnes(SITES){mots.titre IN Dans le menu horizontal,site_bandeau}>
 		<li><a href="#URL_SITE" title="<:scolaspip:lien_externe:>[ - (#DESCRIPTIF|couper{60})]" class="spip_out">[(#NOM_SITE|couper{30})]</a></li>
 		</BOUCLE_sites_selectionnes>
 	    </ul>
