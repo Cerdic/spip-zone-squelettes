@@ -86,7 +86,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleurs_bandeau_legend'=>'Couleur du texte dans le bandeau',
     'couleurs_bandeau_texte'=>'<strong>Paramètre actif seulement si le mode «&nbsp;Bandeau avec image, titre et slogan&nbsp;» est utilisé.</strong>',
     'couleurs_intertitres_legend'=>'Couleur des intertitres',
-    'couleurs_intertitres_texte'=>'',    
+    'couleurs_intertitres_texte'=>'',
 
 // d
     'dans'=>'Dans',
@@ -106,6 +106,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'evenement_1_place_restante'=>'une seule place restante',
     'evenement_n_inscrits'=>'@nb@ inscrits',
     'evenement_un_inscrit'=>'Un inscrit',
+    'evenement_passe'=>'Un événement à retrouver dans l\'agenda',
+    'evenements_passes'=>'@nb@ événements à retrouver dans l\'agenda',
+    'evenements_termines'=>'Événement(s) terminé(s)',
+    'evenement_abonnement_ics'=>'S\'abonner à l\'agenda de',
+    'evenement_ics_plus'=>'Ajouter cet événement dans mon agenda',
     'en_mois'=>'en',
     'info_1_place'=>'(il y a une seule place disponible)',
     'info_nb_places'=>'(il y a @nb@ places disponibles)',
@@ -135,7 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'institution_legend'=>'Académie ou institution : informations et lien',
     'institution_nom'=>'Nom de l\'académie ou l\'institution',
     'institution_lien'=>'Lien',
-    'institution_lien_titre'=>'Titre au survol du lien sur le logo',    
+    'institution_lien_titre'=>'Titre au survol du lien sur le logo',
 
 // l
     'lien_accueil_scolaspip' => 'Page d\'accueil',
