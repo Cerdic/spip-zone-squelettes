@@ -5,14 +5,14 @@
 $(document).ready(function() {
 
 // choose text for the show/hide link - can contain HTML (e.g. an image)
-var showText='+';
-var hideText='-';
+var showText='<span class="toggleimage1"></span>';
+var hideText='<span class="toggleimage1"></span>';
 
 // initialise the visibility check
 var is_visible = false;
 
 // append show/hide links to the element directly preceding the element with a class of "toggle"
-$('.toggle').prev().append(' (<a href="#" class="toggleLink">'+showText+'</a>)');
+$('.toggle').prev().append(' <a href="#" class="toggleLink">'+showText+'</a>');
 
 // hide all of the elements with a class of 'toggle'
 $('.toggle').hide();
