@@ -5,8 +5,8 @@
 $(document).ready(function() {
 
 // choose text for the show/hide link - can contain HTML (e.g. an image)
-var showText='Voir ou masquer les réponses';
-var hideText='Voir ou masquer les réponses';
+var showText='Voir les réponses';
+var hideText='Masquer les réponses';
 
 // initialise the visibility check
 var is_visible = false;
@@ -24,7 +24,7 @@ $('a.toggleLink2').click(function() {
 is_visible = !is_visible;
 
 // change the link depending on whether the element is shown or hidden
-$(this).html( (!is_visible) ? showText : hideText);
+$(this).html( ($(this).html() == hideText) ? showText : hideText);
 
 // toggle the display - uncomment the next line for a basic "accordion" style
 //$('.toggle').hide();$('a.toggleLink').html(showText);
