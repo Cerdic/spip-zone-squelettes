@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+       <INCLURE{fond=inc-entete}>
+
+		<div id="topbanner_arch" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:article:>      
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="arch_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-3 first">
+        	 
+            	  <h2 class="archive_name"><:agenda:></h2>
+				  
+				  <div class="archive_meta">
+            	
+            		<!--<div class="archive_feed">
+            			<a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><:rss_section:></a>           			
+            		</div> -->
+
+            		<!-- <div class="archive_number">
+            			<:category_count:> <BOUCLE_count(ARTICLES){id_rubrique} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>})]<//B_count>
+            		</div> -->
+
+			   		
+            	
+            	</div>
+
+            </div> <!-- end first -->
+
+			<div class="column span-8">
+
+				
+			    
+			<B_posts>
+			#ANCRE_PAGINATION
+				<BOUCLE_posts(EVENEMENTS) {id_article ?}{par date}{age_fin<0}{pagination 10}>
+					<div class="archive_post_block">
+						<p class="day-date"><a name="even#ID_EVENEMENT" href="#even#ID_EVENEMENT"><span class="day">[(#DATE_DEBUT|jour)]</span><span class="month">[(#DATE_DEBUT|nom_mois|couper{3})].</span></a></p>	
+						
+						<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+					  
+					[(#HORAIRE|=={oui}|?{
+					   [(#REM) memes heures ?]
+					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
+					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]
+					   [(#REM) pas memes heures ?]
+					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small>
+					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
+					,''})]
+					,
+					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
+					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
+					[(#DATE_FIN|nom_jour)]
+					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
+					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]</abbr>						
+						<h3 class="archive_title" id="post-#ID_EVENEMENT">[(#TITRE|supprimer_numero)]</h3>
+						
+						[(#LIEU)][<p style="text-align:right"><a href="#URL_PAGE{inc-even,id_evenement=#ID_EVENEMENT}" title="importer dans mon calendrier">importer</a> / <a href="http://animations.crdp.ac-versailles.fr/inscription.aspx?IdAnim=(#ADRESSE)" title="inscription">inscription en ligne</a></p>]
+						[<div class="descrip">(#DESCRIPTIF)</div>]
+					</div>
+				</BOUCLE_posts>
+				[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
+			</B_posts>
+			<div class="archive_post_block">
+				<p>Aucun &eacute;v&eacute;nement</p>
+				
+				</div>
+			<//B_posts>
+			</div>
+
+            
+			<div class="column span-3 last">
+					<B_rubriques>					              
+                	<div id="side_categories">
+						<h2 class="mast"><:rubriques:></h2>
+						<ul class="cat">
+						<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+							<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+								<B_children>
+								<ul class="children">
+									<BOUCLE_children(RUBRIQUES){id_parent} {par num titre, titre}{titre!==^[0]}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+										<li class="cat-item cat-item-#ID_RUBRIQUE"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_children)></BOUCLE_re></li>
+									</BOUCLE_children>
+								</ul>
+								</B_children>
+							</li>
+						</BOUCLE_rubriques>
+						</ul>
+            		</div>
+					</B_rubriques>
+
+			
+			</div>
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+

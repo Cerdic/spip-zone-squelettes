@@ -1,0 +1,43 @@
+					[(#REM) Lien les événements ]
+					<B_evens>
+					<div id="side_recent_evens">
+            				#ANCRE_PAGINATION
+						<h2 class="mast"><:derniers_evens:></h2>
+						
+						<ul class="reven" style="background-color:#F7FCC2;margin:1px">	
+						<BOUCLE_evens(EVENEMENTS) {id_article ?}{par date}{age<0}{pagination 2}>
+							<li><strong>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+					  [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{
+					   [(#REM) memes heures ?]
+					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
+					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]</strong> 
+					   [(#REM) pas memes heures ?]
+					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small><br>
+					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
+					,''})]
+					,
+					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
+					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
+					[(#DATE_FIN|nom_jour)]
+					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
+					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]<br/>
+					
+					<a href="#URL_PAGE{evenements,#even#ID_EVENEMENT}">[(#TITRE|supprimer_numero|couper{80})]</a>, [<em>(#LIEU)</em>]
+					
+							</li>
+						</BOUCLE_evens>
+						
+						</ul>
+						
+            		
+            				</div>
+					[<p class="pagination">(#PAGINATION{page})</p>]
+					</B_evens>
+
+					
+
+
+			

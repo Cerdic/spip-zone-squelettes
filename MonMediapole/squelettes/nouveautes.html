@@ -1,0 +1,73 @@
+<B_test_contenu>[[(#NOM_SITE_SPIP|textebrut)]] <:nouveautes:>
+
+<:bonjour:>
+
+<:texte_lettre_information:> "[(#NOM_SITE_SPIP|textebrut)]" (#URL_SITE_SPIP).
+<:texte_lettre_information_2:> [(#ENV{jours_neuf})] <:jours:>.
+<BOUCLE_test_contenu(AUTEURS){0,1}{tous}><B_nv1>
+
+          Sur le site du médiapôle
+          --------------------------
+
+<BOUCLE_nv1(ARTICLES){age_relatif<=0}{par date}{inverse}{0,30}>
+[** (#TITRE|textebrut) **]
+
+[ - (#DATE|affdate)]
+[
+(#INTRODUCTION|textebrut)
+]
+-> [(#URL_ARTICLE|url_absolue)]
+
+</BOUCLE_nv1><B_nv2>
+
+          Vu sur internet
+          --------------------------
+
+<BOUCLE_nv2(BREVES){age_relatif<=0}{par date}{inverse}{0,30}>
+[* (#TITRE|textebrut) *]
+[ - (#DATE|affdate)]
+[
+(#INTRODUCTION|textebrut)
+]
+-> [(#URL_BREVE|url_absolue)]
+
+</BOUCLE_nv2></BOUCLE_test_contenu>
+
+<B_nv3>
+	  	  Prochainement
+          --------------------------
+
+<BOUCLE_nv3(EVENEMENTS){par date}{age_fin<0}{0,4}>
+[* (#TITRE|textebrut) *][ (#DATE_DEBUT|jour|=={[ (#DATE_FIN|jour)]}|?{[(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)][(#HORAIRE|=={oui}|?{[(#REM) mêmes heures ?][(#DATE_DEBUT|=={#DATE_FIN}|?{à [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})][(#REM) pas mêmes heures ?][(#DATE_DEBUT|!={#DATE_FIN}|?{[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] à [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})],''})], du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)][(#HORAIRE|=={oui}|?{à partir de [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au [(#DATE_FIN|nom_jour)] [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'à [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })] [Lieu : (#LIEU|textebrut)]
+
+[Inscription
+-> http://animations.crdp.ac-versailles.fr/inscription.aspx?IdAnim=(#ADRESSE)]
+
+</BOUCLE_nv3>
+
+<B_articles_syndiques>
+
+		  Relayé sur les réseaux sociaux
+  		  --------------------------
+
+<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic=57}{age_relatif<=0}{par date}{inverse}{0,25}>
+
+[ - (#DATE|affdate)] - [(#DESCRIPTIF|textebrut)]
+-> [(#URL_ARTICLE|url_absolue)]			
+
+</BOUCLE_articles_syndiques>
+
+Le site web 		
+http://www.mp-boulogne.ac-versailles.fr
+
+L'agenda en ligne 	
+http://www.mp-boulogne.ac-versailles.fr/agenda
+
+Le CDDP92		
+http://www.cddp92.ac-versailles.fr
+
+Sur twitter		
+http://twitter.com/#!/MpBoulogne
+
+Sur facebook
+http://www.facebook.com/pages/M%C3%A9diap%C3%B4le-de-Boulogne-Billancourt/145308805892

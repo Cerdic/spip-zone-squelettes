@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    <INCLURE{fond=inc-entete}>
+	    
+		<div id="topbanner_arch" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:archives:>      
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="arch_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-3 first">
+        	 
+            	  <h2 class="archive_name">#NOM_SITE_SPIP</h2>
+				  
+				  <div class="archive_meta">
+            	
+            		<div class="archive_feed">
+            			<a href="#URL_PAGE{backend}" title="RSS"><:subscribe:></a>           			
+            		</div>
+
+            		<div class="archive_number">
+            			<BOUCLE_count(ARTICLES) />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>})]<//B_count>
+            		</div>           		
+            	
+            	</div>
+
+            </div> <!-- end first -->
+
+			<div class="column span-8">
+			<B_posts>
+			#ANCRE_PAGINATION
+				<BOUCLE_posts(ARTICLES){! par date}{pagination 10}>
+					<div class="archive_post_block">
+						<h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+						<div class="archive_post_meta">
+							[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+							<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
+						</div>
+						<p>#INTRODUCTION{360, [...]}</p>
+					</div>
+				</BOUCLE_posts>
+				[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
+			</B_posts>
+			<p><a href="#URL_SITE_SPIP"><:retour_accueil:></a>.</p>
+			<//B_posts>
+			</div>
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>

@@ -1,0 +1,125 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<BOUCLE_principale(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+</head>
+
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <INCLURE{fond=inc-entete}>
+	
+		
+	<div id="topbanner_single" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:article:>
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="post_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-11 first">
+        		 
+				<BOUCLE_parent(RUBRIQUES){id_rubrique}><h2 class="post_cat #EDIT{titre}">#TITRE</h2></BOUCLE_parent>
+				
+				
+
+				<h2 class="post_name #EDIT{titre}" id="post-#ID_SITE">#NOM_SITE</h2>
+
+				
+				<B_tags>
+				<div class="post_meta">
+            				<img src="#CHEMIN{images/bg/tag_green.png}" class="posttag" alt="<:tags:>" style="border: 0px;" />
+					<BOUCLE_tags(MOTS){id_syndic}{", "}>
+						<a href="#URL_MOT" rel="tag">#TITRE</a>
+					</BOUCLE_tags>
+					
+            			</div>
+				</B_tags>
+
+				<div class="post_meta">
+
+					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+					Index&eacute; le <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>
+					
+
+					[(#REM) Inclure le modele des liens de traductions ]
+					#MODELE{article_traductions}
+
+				</div>
+				
+				<div class="surlignable">
+					
+					[<div class="#EDIT{texte} texte entry-content">[<div class="captionright">(#LOGO_SITE||image_reduire{200,200})</div>](#DESCRIPTIF|image_reduire{500,0})</div>]
+				</div>
+
+
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+				
+			[(#REM) Articles issus de la syndication ]
+			<B_articles>
+			<div class="menu articles">
+			    #ANCRE_PAGINATION
+			    <h2 class="mast"><:articles:></h2>
+
+				
+								   
+				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 5}>
+				<div class="archive_post_block">
+				    <h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">[(#TITRE|supprimer_numero)]</a></h3>
+					<div class="archive_post_meta">
+						[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+						<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>
+
+						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+						<small>[ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+					</div>
+				    	[<p>(#DESCRIPTIF|image_reduire{300})</p>]
+				</div>
+				</BOUCLE_articles>
+			    
+			    [<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
+
+
+				           	
+            </div> <!-- end first -->
+
+			<div class="column span-12">
+<h2 class="mast">Sites les plus lus</h2>
+				<BOUCLE_sites_recents(SITES){syndication=oui} {par date}{inverse}{0,10}{exclus}>
+					
+					<div class="home_recent_post">
+					
+						
+						<div class="home_recent_title" id="post-#ID_ARTICLE">
+							<a href="#URL_SITE" rel="bookmark">[(#NOM_SITE|supprimer_numero)]</a>
+						</div>
+						
+						
+						
+						
+
+					</div>
+
+					</BOUCLE_sites_recents>
+					</B_sites_recents>
+			</div>
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+</BOUCLE_principale>

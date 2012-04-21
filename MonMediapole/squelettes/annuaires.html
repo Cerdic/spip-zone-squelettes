@@ -1,0 +1,111 @@
+[(#REM) Un cache plus court, pour la boucle syndic_articles]
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>Annuaires flux RSS - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta name="description" content="Annuaires des flux recens&eactue;s par le m&eacute;diap&ocirc;le" />
+	<INCLURE{fond=inc-head}>
+	<link rel="alternate" type="application/rss+xml" title="actualit&eacute;s TICE acad&eacute;mique" href="[(#URL_PAGE{fluxparrubriques}|parametre_url{id_rubrique,1})]" />
+	<link rel="alternate" type="application/rss+xml" title="actualit&eacute;s des &eacute;tablissements des bassins" href="[(#URL_PAGE{fluxparrubriques}|parametre_url{id_rubrique,11})]" />
+
+</head>
+
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <INCLURE{fond=inc-entete}>
+	
+		
+	<div id="topbanner_single" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:article:>
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="post_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-15 first">
+        		 
+				<h2 class="post_cat">Les annuaires RSS</h2>
+				
+				
+				
+
+				<div class="column_rss">
+					<h2 class="mast">Les sites web des établissements du bassin</h2>		
+					
+					<B_articles_syndiques>
+						<ul>
+						<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_rubrique=11}{par date}{inverse}{0,15}>
+				
+							<li  style="background-color:[(#COMPTEUR_BOUCLE|alterner{'#EFFFFF','#FFFFFF'})]"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" class="site">[(#DATE|affdate{'d-m'})] - [(#NOM_SITE|supprimer_numero)]</a><br/>
+							<a href="#URL_ARTICLE"><strong>#TITRE</strong> - #DESCRIPTIF</a>
+							</li>
+				
+						</BOUCLE_articles_syndiques>
+						<li>
+					<a href="[(#URL_PAGE{fluxparrubriques}|parametre_url{id_rubrique,11})]" title="<:syndiquer_site:>"><img src="#CHEMIN{images/bg/feedicon12.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /> flux RSS des sites d'établissement</a></li></ul>
+					</B_articles_syndiques>
+					
+				</div>
+				
+				<div class="column_rss" style="background-color:#F2FFDF">
+					<h2 class="mast">Les TICE dans l'académie</h2>	
+					
+					<B_articles_syndiques2>
+					<ul>
+					<BOUCLE_articles_syndiques2(SYNDIC_ARTICLES){id_rubrique=1}{par date}{inverse}{0,10}>
+				
+						<li style="background-color:[(#COMPTEUR_BOUCLE|alterner{'#F2FFDF','#CBFF7F'})]"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" class="site">[(#DATE|affdate{'d-m'})] - [(#NOM_SITE|supprimer_numero)]</a> : <strong>#TITRE</strong><br/>
+						<a href="#URL_ARTICLE">#DESCRIPTIF</a></li>
+					
+				
+					</BOUCLE_articles_syndiques2>
+					<li>
+					<a href="[(#URL_PAGE{fluxparrubriques}|parametre_url{id_rubrique,1})]" title="<:syndiquer_site:>"><img src="#CHEMIN{images/bg/feedicon12.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /> flux RSS des TICE académique</a></li></ul>
+					</B_articles_syndiques2>
+					
+				</div>
+
+				<div class="column_rss">
+					<h2 class="mast">Actualité sur Twitter</h2>
+					<B_articles_syndiques3>
+				<ul>
+				<BOUCLE_articles_syndiques3(SYNDIC_ARTICLES){id_syndic=57}{par date}{inverse}{0,25}>
+				
+					<li style="background-color:[(#COMPTEUR_BOUCLE|alterner{'#FFEFFF','#FFFFFF'})]"><strong>[(#DATE|affdate{'d-m'})] - [(#NOM_SITE)]</strong> : <br/><a href="#URL_ARTICLE">#DESCRIPTIF</a></li>
+					
+				
+				</BOUCLE_articles_syndiques3>
+				<li><a href="http://twitter.com/statuses/user_timeline/72867717.rss" title="<:syndiquer_site:>"><img src="#CHEMIN{images/bg/feedicon12.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /> flux RSS du Twitter</a></li></ul>
+				</B_articles_syndiques3>
+
+				</div>
+
+				
+
+				
+				
+
+				
+
+				
+				
+
+
+				
+				
+				
+				
+				
+            		</div> <!-- end first -->
+
+         
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>

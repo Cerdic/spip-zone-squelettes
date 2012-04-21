@@ -1,0 +1,107 @@
+<BOUCLE_principale(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+       <INCLURE{fond=inc-entete}>
+
+		<div id="topbanner_arch" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:mots_clefs:>     
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="arch_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-3 first">    
+
+				<h2 class="archive_name #EDIT{qui}">#TITRE</h2>        
+            	
+            	<div class="archive_meta">	
+            		<div class="archive_number">
+					<BOUCLE_count(ARTICLES){id_mot} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>})]<//B_count>
+					</div>
+            	</div>
+
+			</div>
+
+			<div class="column span-8">
+
+        [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+        [(#REM) Articles lies au mot-cle ]
+        <B_articles>
+            #ANCRE_PAGINATION
+            <h2><:articles:></h2>
+                <BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10}>
+				<div class="archive_post_block">
+					<h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+						<div class="archive_post_meta">
+							[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+							<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
+						</div>
+						<p>#INTRODUCTION{360, [...]}</p>
+				</div>
+                </BOUCLE_articles>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </B_articles>
+
+        [(#REM) Rubriques liees au mot-cle ]
+        <B_rubriques>
+            <h2><:rubriques:></h2>
+                <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
+                <div class="archive_post_block">
+				<h3 class="archive_title"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+				</div>
+                </BOUCLE_rubriques>
+        </B_rubriques>
+
+        [(#REM) Breves liees au mot-cle ]
+        <B_breves>
+            <h2><:breves:></h2>
+                <BOUCLE_breves(BREVES) {id_mot} {par titre}>
+                <div class="archive_post_block">
+				<h3 class="archive_title"><a href="#URL_BREVE">#TITRE</a></h3>
+				</div>
+                </BOUCLE_breves>
+        </B_breves>
+
+        [(#REM) Liens des forums ]
+        <B_forums_liens>
+            <h2><:messages_forum:></h2>
+                <BOUCLE_forums_liens(FORUMS) {id_mot} {plat} {par date}{inverse}>
+                <div class="archive_post_block">
+				<h3 class="archive_title">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM">[(#TEXTE|couper{80})]</a></h3>
+				</div>
+                </BOUCLE_forums_liens>
+        </B_forums_liens>
+
+        [(#REM) Sites web lies au mot-cle ]
+        <B_sites>
+            <h2><:sites_web:></h2>
+                <BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+				<div class="archive_post_block">
+				<h3 class="archive_title"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></h3>
+				</div>
+				</BOUCLE_sites>
+        </B_sites>
+
+        [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+		</div>
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+</BOUCLE_principale>
