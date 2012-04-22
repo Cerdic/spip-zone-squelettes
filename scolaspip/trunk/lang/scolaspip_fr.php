@@ -99,7 +99,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'descriptif_site_vide'=>'Le descriptif de votre site est actuellement vide.',
 
 // e
-    'evenements_associes'=>'Évènements associés',
+    'evenement_associe'=>'Un événement associé',
+    'evenements_associes'=>'@nb@ événements associés',
     'evenement_bien_inscrit'=>'Inscription prise en compte !',
     'evenement_etre_identifie'=>'Il faut être identifié sur le site pour accéder au formulaire d\'inscription.',
     'evenement_liste_inscrits'=>'NB : Seuls les administrateurs voient ce lien vers la liste détaillée des inscrits',
@@ -107,8 +108,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'evenement_1_place_restante'=>'une seule place restante',
     'evenement_n_inscrits'=>'@nb@ inscrits',
     'evenement_un_inscrit'=>'Un inscrit',
-    'evenement_passe'=>'Un événement à retrouver dans l\'agenda',
-    'evenements_passes'=>'@nb@ événements à retrouver dans l\'agenda',
+    'evenement_passe'=>'Un événement terminé',
+    'evenements_passes'=>'@nb@ événements terminés',
+    'evenements_a_retrouver'=>'À retrouver dans l\'agenda',
     'evenements_termines'=>'Événement(s) terminé(s)',
     'evenement_abonnement_ics'=>'S\'abonner à l\'agenda de',
     'evenement_ics_plus'=>'Ajouter cet événement dans mon agenda',
@@ -128,6 +130,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'forums_legend' => 'Les derniers commentaires de forums de la page d\'accueil',
     'forums_texte' => 'Souhaitez-vous afficher les liens vers les derniers messages de forum ?',
     'fondcadre_legend' => 'Fond des cadres menu et agenda',
+    'flux_des_flux'=>'Flux RSS des sites',
 
 // g
     'gauche' => 'Gauche',
