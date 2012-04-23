@@ -1,0 +1,138 @@
+<B_testsommaire>
+	<BOUCLE_testsommaire(CONDITION){si (#ENV{composition}|=={sommaire}|oui)}>
+		<div id="slideshow-wrap">
+			<div id="slideshow">
+				<h2 class="title">Slideshow</h2>
+				<div id="slideshow-box">
+					<div class="list">
+						<BOUCLE_articles(ARTICLES){titre_mot=slider}{logo}{0,3}>
+						<div class="item">
+							<div class="image">
+								<a href="#URL_ARTICLE" title="#TITRE">
+								[(#LOGO_ARTICLE|image_reduire{940,312})]
+								</a>	
+							</div>
+							<div class="clear"></div>
+						</div>
+						</BOUCLE_articles>
+						<BOUCLE_articlesall(ARTICLES){logo}{0,3}>
+						<div class="item">
+							<div class="image">
+								<a href="#URL_ARTICLE" title="#TITRE">
+								[(#LOGO_ARTICLE|image_reduire{940,312})]
+								</a>	
+							</div>
+							<div class="clear"></div>
+						</div>
+						</BOUCLE_articlesall>
+						<//B_articles>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div id="hometop-wrap">
+			<div id="hometop">
+				<h2>Nos Services</h2>
+				<BOUCLE_services(ARTICLES){titre_mot=services}{0,4}>
+					<div class="bar bar-#COMPTEUR_BOUCLE">
+						<div class="widget widget_special widget_special_#COMPTEUR_BOUCLE-page">
+							[(#LOGO_ARTICLE|image_reduire{32,34})]
+							<h3 class="title">
+								<a href="#URL_ARTICLE">#TITRE</a>
+							</h3>
+							[(#TEXTE|couper{150})]
+							<p class="read-more">
+								<a href="#URL_ARTICLE">Lire la suite</a>
+							</p>
+						</div>	
+					</div>	
+				</BOUCLE_services>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div id="mid-wrap">
+			<div class="content-title">
+				<h2>Actualites</h2>
+			</div>
+			
+			<div id="featured-projects-wrap">
+				<div class="jcarousel-container jcarousel-container-horizontal">
+					<div class="jcarousel-clip jcarousel-clip-horizontal">
+						
+						<ul id="featured-projects" class="jcarousel-list jcarousel-list-horizontal">
+							<BOUCLE_featured(ARTICLES){!titre_mot=services}{logo}{0,10}>
+								<li id="id_#COMPTEUR_BOUCLE" class="jcarousel-item jcarousel-item-horizontal jcarousel-item-#COMPTEUR_BOUCLE jcarousel-item-1-horizontal">
+									<a title="#TITRE_ARTICLE" rel="bookmark" href="#URL_ARTICLE">
+										[(#LOGO_ARTICLE|image_recadre{302,302,center}|image_reduire{151,151})]									
+									</a>
+								</li>
+							</BOUCLE_featured>
+						</ul>
+							
+					</div>
+					<div class="jcarousel-prev jcarousel-prev-horizontal"></div>
+					<div class="jcarousel-next jcarousel-next-horizontal"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<div id="footbar_wrap">
+			<div id="footbar">
+				<div class="bar bar-1">
+					<div class="widget widget_latest">
+						<h3 class="title">Derniers articles</h3>
+						<ul>
+							<BOUCLE_latest(ARTICLES){!titre_mot=services}{logo}{par date}{inverse}{0,3}>
+								<li>
+									<a class="thumbnail" title="#TITRE_ARTICLE" href="#URL_ARTICLE">
+										[(#LOGO_ARTICLE|image_recadre{302,302,center}|image_reduire{73,72})]
+									</a>
+									
+									<a class="post-title" title="#TITRE_ARTICLE" href="#URL_ARTICLE">#TITRE_ARTICLE</a>
+									
+									<span class="content">[(#TEXTE|couper{180})]</span>
+									<span class="read-more">
+										<a class="read-more" title="#TITRE_ARTICLE" href="#URL_ARTICLE">Lire la suite</a>
+									</span>
+									<div class="clear"></div>
+								</li>
+							</BOUCLE_latest>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="bar bar-2">
+					<div class="widget widget_latest">
+						<h3 class="title">Articles populaires</h3>
+						<ul>
+							<BOUCLE_populaires(ARTICLES){!titre_mot=services}{logo}{par popularite}{0,3}>
+								<li>
+									<a class="thumbnail" title="#TITRE_ARTICLE" href="#URL_ARTICLE">
+										[(#LOGO_ARTICLE|image_recadre{302,302,center}|image_reduire{73,72})]
+									</a>
+									
+									<a class="post-title" title="#TITRE_ARTICLE" href="#URL_ARTICLE">#TITRE_ARTICLE</a>
+									
+									<span class="content">[(#TEXTE|couper{180})]</span>
+									<span class="read-more">
+										<a class="read-more" title="#TITRE_ARTICLE" href="#URL_ARTICLE">Lire la suite</a>
+									</span>
+									<div class="clear"></div>
+								</li>
+							</BOUCLE_populaires>
+						</ul>
+					</div>
+				</div>	
+				<div class="bar bar-3">
+					#FORMULAIRE_INSCRIPTION
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</BOUCLE_testsommaire>
+</B_testsommaire>
+	<INCLURE{fond=contenu/#ENV{type},env}>
+<//B_testsommaire>
