@@ -14,12 +14,6 @@ define('_DOMAINE_SITE', $domaine); // extrait dans l'url du site le nom du domai
 
  
 
-
-// Suppression globale des nombres devant les titres du type :
-//   1. Mon titre
-
-	$table_des_traitements['TITRE'][]= 'supprimer_numero(typo(%s))';
-
 // multilinguisme
 
 $forcer_lang = true;
