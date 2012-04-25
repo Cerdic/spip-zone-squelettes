@@ -26,6 +26,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'avertissement_css'=>'NB. Certaines options (arrondis, ombres) ne fonctionneront pour vos visiteurs que s\'ils sont équipés d\'un navigateur récent respectueux des standards du Web.',
     'agenda_complet'=>'Agenda complet',
     'affiche_breve'=>'Afficher cette actualité',
+    'afficher_compte_twitter'=>'Afficher les actualités Twitter',
+    'aucun_tweet'=>'Aucun Tweet ou pas de réponse du service',
 // b
     'background_legend' => 'Couleur de fond du site',
     'background_texte' => 'Correspond à l\'arrière plan du site. <strong>Paramètre sans effet en mode «&nbsp;Bandeau élargi&nbsp;».</strong>',
@@ -88,6 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleurs_bandeau_texte'=>'<strong>Paramètre actif seulement si le mode «&nbsp;Bandeau avec image, titre et slogan&nbsp;» est utilisé.</strong>',
     'couleurs_intertitres_legend'=>'Couleur des intertitres',
     'couleurs_intertitres_texte'=>'',
+    'compte_twitter'=>'Identifiant du compte Twitter',
 
 // d
     'dans'=>'Dans',

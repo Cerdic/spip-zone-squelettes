@@ -162,6 +162,27 @@
 		</ul>
 		
 	</fieldset>
+	<fieldset>
+		<legend><:scolaspip:compte_twitter:></legend>
+		<ul>
+			<li>
+				<label class="gauche"><:scolaspip:afficher_compte_twitter:></label>
+				<div class="choix">
+					<input type="radio" id="afficher_compte_twitteroui" name="afficher_compte_twitter" value="oui" [(#ENV{afficher_compte_twitter, oui}|=={oui}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#li_compte_twitter').show('fast');"/>
+					<label for="afficher_compte_twitteroui"><:item_oui:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="afficher_compte_twitternon" name="afficher_compte_twitter" value="non" [(#ENV{afficher_compte_twitter, non}|=={non}|oui) checked="checked"] onchange="if ($(this).prop('checked')) $('#li_compte_twitter').hide('fast');"/>
+					<label for="afficher_compte_twitternon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+			</li>
+			<li id="li_compte_twitter" [(#ENV{afficher_compte_twitter}|=={non}|oui)style='display:none;'] [(#ENV{afficher_compte_twitter}|=={''}|oui)style='display:none;']>
+				<label class="gauche" for="compte_twitter"><:scolaspip:compte_twitter:></label>
+				<input type="text" id="compte_twitter" name="compte_twitter" size="30" value="#ENV{compte_twitter,crdp_versailles}" />
+			</li>
+		</ul>
+	</fieldset>
 
 	<p class="boutons">
 		<input style="display:none;" type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />

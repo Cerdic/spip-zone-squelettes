@@ -22,6 +22,8 @@ function scolaspip_accueil_config($public=null){
 		'forums'=>'non',
 		'nb_forums' => '10',
 		'pagination_forums' => '5',
+		'afficher_compte_twitter' => 'non',
+		'compte_twitter' => 'crdp_versailles',
 	), $config);
 		
 	return $config;	
@@ -84,7 +86,16 @@ function scolaspip_plus_config($public=null){
 		
 	return $config;	
 }
-
+function scolaspip_regex_twitter($twitt){ // d'apres http://www.openstudio.fr/Un-flux-twitter-en-boucles-SPIP.html
+      $twitt = preg_replace('#((http(s?):\/\/|ftp:\/\/{1})([0-9a-zA-Z.\-]*\/?)*)#i',
+            '<a href="$0" class="spip_out">$0</a>', $twitt);
+      $twitt = preg_replace('#@([a-zA-Z0-9_-]+)#i',
+            '<a href="http://twitter.com/$1" class="spip_out">@$1</a>', $twitt);
+      $twitt = preg_replace('#\#([a-z0-9_-]+)#i',
+            '<a href="http://search.twitter.com/search?q=%23$1" class="spip_out">#$1</a>',
+            $twitt);      
+      return $twitt;
+}
 function critere_scolaspip_nb_articles_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	if(is_null(lire_config('scolaspip_accueil/nb_articles'))) $var=10;
