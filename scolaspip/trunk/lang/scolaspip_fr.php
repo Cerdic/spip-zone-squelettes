@@ -91,6 +91,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'couleurs_intertitres_legend'=>'Couleur des intertitres',
     'couleurs_intertitres_texte'=>'',
     'compte_twitter'=>'Identifiant du compte Twitter',
+    'c_scolaspip_info'=>'Bien démarrer avec ScolaSPIP',
+    'c_scolaspip_info_texte'=>'Trois onglets sont proposés ici et vous permettent de personnaliser votre site :
+                            <ul class="spip">
+                            <li>Les blocs affichés sur votre page d\'accueil. Sachez également que d\'autres contenus et liens s\'affichent à partir de mots-clés;</li>
+                            <li>Les couleurs et options de présentation;</li>
+                            <li>Diverses options (petits plus).</li>
+                            </ul>
+                            <p>Pensez également à bien configurer toutes les options de SPIP (identité du site, gestions des mots-clés, forums — il est conseillé de les modérer à priori si vous les utilisez — génération des vignettes, etc.).</p>',
 
 // d
     'dans'=>'Dans',
