@@ -404,6 +404,46 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif)./n/nLe site prendra le dernier article ayant ce mot clef", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
+		if (version_compare($current_version,'3.0.21','<')) {
+			spip_log("SoyezCreateurs maj 3.0.21", "soyezcreateurs_install");
+			if (_DIR_PLUGIN_DICTIONNAIRES) {
+				if (sql_countsel('spip_dictionnaires', "(titre = '"._T('dictionnaire:importer_acronymes_titre')."')") == 0) {
+					include_spip('action/editer_dictionnaire');
+					if ($id_dictionnaire = insert_dictionnaire()){
+						// On lui met des champs par défaut
+						dictionnaire_set($id_dictionnaire, array(
+							'titre' => _T('dictionnaire:importer_acronymes_titre'),
+							'actif' => 1,
+							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
+							'type_defaut' => 'abbr',
+						));
+					}
+				} else {
+					$dico = sql_fetsel("id_dictionnaire", "spip_dictionnaires", "titre='"._T('dictionnaire:importer_acronymes_titre')."'");
+					$id_dictionnaire = $dico['id_dictionnaire'];
+				}
+				if (sql_countsel('spip_definitions', array("id_dictionnaire=$id_dictionnaire", "titre = 'SPIP'")) == 0) {
+					$definition = array(
+						'id_dictionnaire' => $id_dictionnaire,
+						'titre' => 'SPIP',
+						'texte' => 'Système de Publication pour Internet Participatif',
+						'type' => 'abbr',
+						'date' => date('Y-m-d H:i:s'),
+						'statut' => 'publie',
+						'lang' => 'fr'
+					);
+					
+					// On crée la définition dans la base SANS calculer le cache
+					include_spip('action/editer_definition');
+					if ($id_definition = insert_definition()){
+						definition_set($id_definition, $definition, false);
+					}
+					include_spip('inc/dictionnaires');
+					dictionnaires_lister_definitions(true);
+				}
+			}
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.21','non');
+		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
