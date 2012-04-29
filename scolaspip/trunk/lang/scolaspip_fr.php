@@ -176,6 +176,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'nb_breves_texte' => 'Nombre maximum de brèves accessibles',
     'nb_evens_texte' => 'Nombre maximum d\'événements accessibles',
     'nb_forums_texte' => 'Nombre maximum de commentaires accessibles',
+    'nb_tweets_texte' => 'Nombre maximum de tweets accessibles',
     'nb_maxi_lignes_mosaique'=>'Nombre maximum de ligne',
 
 // p
@@ -187,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'pagination_articles_legend' => 'Pagination des articles',
     'pagination_forums_texte' => 'Nombre de commentaires par page',
     'pagination_forums_legend' => 'Pagination des commentaires',
+    'pagination_tweets_texte' => 'Nombre de tweets par page',
     'plus_lien_legend' => 'Personnaliser la barre de liens',
     'plus_lien_agenda' => 'Masquer le lien vers l\'agenda',
     'plus_lien_liens' => 'Masquer le lien vers les liens',

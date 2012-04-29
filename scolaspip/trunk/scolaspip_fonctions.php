@@ -24,6 +24,8 @@ function scolaspip_accueil_config($public=null){
 		'pagination_forums' => '5',
 		'afficher_compte_twitter' => 'non',
 		'compte_twitter' => 'crdp_versailles',
+		'nb_tweets' => '12',
+		'pagination_tweets' => '3',
 	), $config);
 		
 	return $config;	
@@ -87,11 +89,11 @@ function scolaspip_plus_config($public=null){
 	return $config;	
 }
 function scolaspip_regex_twitter($twitt){ // d'apres http://www.openstudio.fr/Un-flux-twitter-en-boucles-SPIP.html
-      $twitt = preg_replace('#((http(s?):\/\/|ftp:\/\/{1})([0-9a-zA-Z.\-]*\/?)*)#i',
+      $twitt = preg_replace('#((http(s?):\/\/|ftp:\/\/{1})([0-9a-zA-ZéèàîïùôçÉÈ.\-]*\/?)*)#i',
             '<a href="$0" class="spip_out">$0</a>', $twitt);
-      $twitt = preg_replace('#@([a-zA-Z0-9_-]+)#i',
+      $twitt = preg_replace('#@([0-9a-zA-ZéèàîïùôçÉÈ_-]+)#i',
             '<a href="http://twitter.com/$1" class="spip_out">@$1</a>', $twitt);
-      $twitt = preg_replace('#\#([a-z0-9_-]+)#i',
+      $twitt = preg_replace('#\#([0-9a-zA-ZéèàîïùôçÉÈ_-]+)#i',
             '<a href="http://search.twitter.com/search?q=%23$1" class="spip_out">#$1</a>',
             $twitt);      
       return $twitt;
@@ -114,11 +116,16 @@ function critere_scolaspip_nb_forums_dist($idb, &$boucles, $crit) {
 	else $var=lire_config('scolaspip_accueil/nb_forums');
 	$boucle->limit = '0, ' .$var ;
 }
-
 function critere_scolaspip_nb_evenements_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	if(is_null(lire_config('scolaspip_accueil/nb_evenements'))) $var=10;
 	else $var=lire_config('scolaspip_accueil/nb_evenements');
+	$boucle->limit = '0, ' .$var ;
+}
+function critere_scolaspip_nb_tweets_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	if(is_null(lire_config('scolaspip_accueil/nb_tweets'))) $var=10;
+	else $var=lire_config('scolaspip_accueil/nb_tweets');
 	$boucle->limit = '0, ' .$var ;
 }
 ?>
