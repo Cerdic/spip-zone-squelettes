@@ -18,9 +18,9 @@ define('_TRI_GROUPES_MOTS', '0+titre,titre');  // cf http://trac.rezo.net/trac/s
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
 define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
-define("_CLEVERMAIL_NOUVEAUTES_HTML", $GLOBALS['meta']['adresse_site'].'/spip.php?page=lettre_libre');
-define("_CLEVERMAIL_NOUVEAUTES_TEXT", $GLOBALS['meta']['adresse_site'].'/spip.php?page=lettre_libre_txt');
-define("_CLEVERMAIL_DISTANT", false);
+define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
+define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
+define("_CLEVERMAIL_DISTANT", true); // Pour que CM calcule l'URL publique du squelette
 
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
