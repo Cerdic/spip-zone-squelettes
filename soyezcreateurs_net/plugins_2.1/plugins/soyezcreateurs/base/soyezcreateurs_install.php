@@ -406,7 +406,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.21','<')) {
 			spip_log("SoyezCreateurs maj 3.0.21", "soyezcreateurs_install");
-			if (_DIR_PLUGIN_DICTIONNAIRES) {
+			if (defined(_DIR_PLUGIN_DICTIONNAIRES)) {
 				if (sql_countsel('spip_dictionnaires', "(titre = '"._T('dictionnaire:importer_acronymes_titre')."')") == 0) {
 					include_spip('action/editer_dictionnaire');
 					if ($id_dictionnaire = insert_dictionnaire()){
