@@ -156,6 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_largeur_menu_p' => 'Amplada del menú principal',
 	'cfg_largeur_menu_sec' => 'Amplada del menú secundari (si està separat del primer)',
 	'cfg_largeur_ombre' => 'Amplada de l\'ombra al costat (simètric!)',
+	'cfg_largeur_splickrbox' => 'Largeur de la colonne contenant le Splickrbox', # NEW
 	'cfg_largeur_videoaccueil' => 'Amplada del vídeo d\'inici (0 per una amplada automàtica)',
 	'cfg_largeurs_colonnes' => 'Amplada de les columnes',
 	'cfg_layout_accueil' => 'Inici',

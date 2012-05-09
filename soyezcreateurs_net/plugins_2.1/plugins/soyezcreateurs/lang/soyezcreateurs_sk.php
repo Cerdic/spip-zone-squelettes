@@ -156,6 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_largeur_menu_p' => 'Šírka hlavného menu',
 	'cfg_largeur_menu_sec' => 'Šírka druhého menu (ak nie je oddelené od prvého)',
 	'cfg_largeur_ombre' => 'Šírka tieňa strany (symetrického!)',
+	'cfg_largeur_splickrbox' => 'Largeur de la colonne contenant le Splickrbox', # NEW
 	'cfg_largeur_videoaccueil' => 'Šírka úvodnej obrazovky videa (0 pre automatické nastavenie veľkosti)',
 	'cfg_largeurs_colonnes' => 'Šírky stĺpcov',
 	'cfg_layout_accueil' => 'Úvodná stránka',

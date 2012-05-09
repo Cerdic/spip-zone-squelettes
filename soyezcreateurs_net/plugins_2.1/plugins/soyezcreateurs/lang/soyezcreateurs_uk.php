@@ -156,6 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_largeur_menu_p' => 'Ширина головного меню',
 	'cfg_largeur_menu_sec' => 'Ширина підменю (якщо відділити від основного меню',
 	'cfg_largeur_ombre' => 'Ширина тіні на стороні (симетричній!)',
+	'cfg_largeur_splickrbox' => 'Largeur de la colonne contenant le Splickrbox', # NEW
 	'cfg_largeur_videoaccueil' => 'Ширина відео головної сторінки  (0 для автоматичної ширини)',
 	'cfg_largeurs_colonnes' => 'Ширина стовпців',
 	'cfg_layout_accueil' => 'Головна сторінка',

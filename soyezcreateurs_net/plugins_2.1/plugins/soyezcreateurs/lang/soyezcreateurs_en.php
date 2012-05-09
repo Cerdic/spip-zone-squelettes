@@ -156,6 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_largeur_menu_p' => 'Width of main menu',
 	'cfg_largeur_menu_sec' => 'Width of the secondary menu (if not separated of the first)',
 	'cfg_largeur_ombre' => 'Width of the shadow on the side (symmetrical!)',
+	'cfg_largeur_splickrbox' => 'Largeur de la colonne contenant le Splickrbox', # NEW
 	'cfg_largeur_videoaccueil' => 'With of the video home screen (0 for automatic sizing)',
 	'cfg_largeurs_colonnes' => 'Column Widths',
 	'cfg_layout_accueil' => 'Home',
