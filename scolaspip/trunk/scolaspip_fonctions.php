@@ -77,6 +77,7 @@ function scolaspip_plus_config($public=null){
 	$config = array_merge(array(
 		'boutonagenda' => 'non',
 		'boutonliens' => 'non',
+		'liens_deroulants'=>'oui',
 		'afficheauteurs' => 'non',
 		'afficheintroduction' => 'non',
 		'affichedate' => 'non',

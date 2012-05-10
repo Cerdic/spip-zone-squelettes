@@ -20,14 +20,16 @@
 	</BOUCLE_rubriques_selectionnes>
 	<li class="item menu-entree[(#CONFIG{scolaspip_plus/boutonliens}|=={oui}|?{' invisible',''})]">
 	    <a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>">Liens</a>
-	    <B_sites_selectionnes>
+	    <B_sites_selectionnes_deroulants>
 	    <ul>
-		<BOUCLE_sites_selectionnes(SITES){mots.titre IN Dans le menu horizontal,site_bandeau}{par num nom_site, nom_site}>
-		<li><a href="#URL_SITE" title="<:scolaspip:lien_externe:>" class="spip_out">[(#NOM_SITE|couper{30})]</a></li>
-		</BOUCLE_sites_selectionnes>
+		<BOUCLE_sites_selectionnes_deroulants(SITES){si #CONFIG{scolaspip_plus/liens_deroulants}|!={non}}{mots.titre IN Dans le menu horizontal,site_bandeau}{par num nom_site, nom_site}>
+		<li><a href="#URL_SITE" title="<:scolaspip:lien_externe:>" class="spip_out">[(#LOGO_SITE|image_reduire{30,20})&nbsp;][(#NOM_SITE|couper{20})]</a></li>
+		</BOUCLE_sites_selectionnes_deroulants>
 	    </ul>
-	    </B_sites_selectionnes>
+	    </B_sites_selectionnes_deroulants>
 	</li>
+	<BOUCLE_sites_selectionnes(SITES){si #CONFIG{scolaspip_plus/liens_deroulants}|=={non}}{mots.titre IN Dans le menu horizontal,site_bandeau}{par num nom_site, nom_site}>
+	<li class="item menu-entree"><a href="#URL_SITE" title="<:scolaspip:lien_externe:>" class="spip_out">[(#LOGO_SITE|image_reduire{30,20})&nbsp;][(#NOM_SITE|couper{20})]</a></li>
+	</BOUCLE_sites_selectionnes>
     </ul>
 </div>
-

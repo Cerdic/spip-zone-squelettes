@@ -168,6 +168,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'logo_2' => 'Image (logo du site) + Titre + Slogan',
     'lien_externe'=>'Lien externe',
     'liens_utiles'=>'Liens utiles',
+    'liens_deroulants'=>'Afficher les liens vers les sites dans un menu déroulant ?',
 
 // m
     'mentions'=>'Mentions légales',
