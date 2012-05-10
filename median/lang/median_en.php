@@ -26,6 +26,7 @@ $GLOBALS['i18n_median_en'] = array(
 'couleur_boite_motscles' => '"keywords"\'s boxes color',
 'couleur_boite_autresarticles' => '"other pages"\'s boxes color',
 'couleur_boite_sousrubriques' => '"sub-sections"\'s boxes color',
+'couleur_boite_articles_rubrique' => '"In this section"\'s boxes color',
 'couleur_boite_forum' => '"Forum"\'s boxes color',
 'couleur_titre_principale' => 'First title\'s color',
 'couleur_titre_secondaire' => 'Secondary title\'s color',

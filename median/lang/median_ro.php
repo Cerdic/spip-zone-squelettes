@@ -21,6 +21,7 @@ $GLOBALS['i18n_median_ro'] = array(
 'couleur_boite_motscles' => 'Culoarea căsuţelor "cuvinte-cheie"',
 'couleur_boite_autresarticles' => 'Culoarea căsuţelor "alte articole"',
 'couleur_boite_sousrubriques' => 'Culoarea căsuţelor "sub-rubrici"',
+'couleur_boite_articles_rubrique' => 'Culoarea căsuţelor "Dans cette rubrique"',
 'couleur_boite_forum' => 'Culoarea căsuţelor "forum"',
 'couleur_titre_principale' => 'Culoarea titlurilor principale',
 'couleur_titre_secondaire' => 'Culoarea titlurilor secundare',
