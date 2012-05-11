@@ -105,10 +105,10 @@ acronym, abbr { border-bottom: .1em dotted; cursor: help; }
 .forml { width: 96%; }
 .searchfield { width: 70%; }
 input, textarea, select { padding: 1px; border: 1px solid [ #(#GET{c_cadrestexte_bk}|couleur_foncerluminosite)]; border-bottom-color: [ #(#GET{c_cadrestexte_bk}|couleur_eclaircirluminosite)]; border-right-color: [ #(#GET{c_cadrestexte_bk}|couleur_eclaircirluminosite)]; font-family: #GET{f_content}; vertical-align: middle; }
-fieldset { padding-left: .25em; padding-right: .25em; padding-bottom: 3px; margin-top: 3px; margin-bottom: 5px; }
-label { vertical-align: top; text-align: left; }
-textarea.spip_cadre { display: block; width: 100%; height: auto; max-height: 10em; padding: 1px; margin: 0; background-color: [ (#GET{c_cadrestexte_bk})]; border: 1px solid [ #(#GET{c_cadrestexte_bk}|couleur_inverserluminosite{30})]; color: [ (#GET{c_cadrestexte})]; }
-input:focus, textarea:focus, select:focus {
+.formulaire_spip fieldset { padding-left: .25em; padding-right: .25em; padding-bottom: 3px; margin-top: 3px; margin-bottom: 5px; }
+.formulaire_spip label { vertical-align: top; text-align: left; }
+.formulaire_spip textarea.spip_cadre { display: block; width: 100%; height: auto; max-height: 10em; padding: 1px; margin: 0; background-color: [ (#GET{c_cadrestexte_bk})]; border: 1px solid [ #(#GET{c_cadrestexte_bk}|couleur_inverserluminosite{30})]; color: [ (#GET{c_cadrestexte})]; }
+.formulaire_spip input:focus, textarea:focus, select:focus {
 	background-color:[ #(#GET{c_cadrestexte_bk}|=={transparent}|?{#ddddff,#GET{c_cadrestexte_bk}}|couleur_inverserluminosite{80,true})];
 	color:[ #(#GET{c_cadrestexte_bk}|=={transparent}|?{#ddddff,#GET{c_cadrestexte_bk}}|couleur_inverserluminosite{80,true}|couleur_inverser|couleur_extreme)];
 }
@@ -116,16 +116,27 @@ input:focus, textarea:focus, select:focus {
 input.submit, input.form_submit, input[type="submit"] { cursor:pointer; }
 /* spip forms */
 .spip_forms { padding: 0; border-left: none; color: inherit; font-family: inherit; }
-#content .spip_forms ul.choix_mots, #content .spip_forms ul.spip_form_choix_multiple, #content .spip_forms ul.spip_form_choix_unique { float: left; width: 45%; padding-left: 5px; list-style: none none outside; }
-.spip_forms fieldset { border: 1px solid #GET{c_titraille_bk}; }
-.spip_forms legend { border: 1px solid #GET{c_titraille_bk}; }
+#content .spip_forms ul.choix_mots, #content .spip_forms ul.spip_form_choix_multiple, #content .spip_forms ul.spip_form_choix_unique {  color: #GET{c_container}; float: left; width: 45%; padding-left: 5px; list-style: none none outside; }
+.spip_forms fieldset, #content .formulaire_spip fieldset { border: 1px solid #GET{c_titraille_bk}; }
+.spip_forms legend, #content .formulaire_spip legend { border: 1px solid #GET{c_titraille_bk}; }
 #content .formulaire_spip ul { padding-left:5px; list-style: none none outside; }
 .formulaire_spip ul { list-style-type:none; } 
-#content .formulaire_spip label { float: left; width: 23%; margin-right: 2%; text-align: right; }
-#content .formulaire_spip input.text, #content .formulaire_spip textarea { margin-left:25%; width: 49%; }
-#content div.choix { margin-left:25%; width: 49%; }
-#content div.choix input.radio { float: none; width: auto; }
-#content div.choix label { float: none; width: auto; }
+#content .formulaire_spip label {  color: #GET{c_container}; float: left; width: 23%; margin: 0.5em 2% 0.5em 0; text-align: right; }
+#content .formulaire_spip input.text, 
+	#content .formulaire_spip textarea, 
+	#content .formulaire_spip select, 
+	#content .formulaire_spip div.choix, 
+	#content .formulaire_spip p.explication, 
+	#content .formulaire_spip em.attention,
+	#content .formulaire_spip li p {  color: #GET{c_container}; margin-left:25%; width: 70%; }
+#content .formulaire_spip li.selecteur_item { background: transparent; }
+#content .formulaire_spip div.choix input.radio {  color: #GET{c_container}; float: none; width: auto; }
+#content .formulaire_spip div.choix label { float: none; width: auto; }
+#content .formulaire_spip input.datePicker { display: inline-block; width: 140px; }
+#content .formulaire_spip img.ui-datepicker-trigger { padding:0; }
+#content .formulaire_spip span.obligatoire { color: #FF6600; }
+#content .formulaire_spip em.attention {  color: #GET{c_container}; display: block; }
+#content .erreur { background-color: [(#GET{c_cadrestexte_bk})]; } 
 
 /**************** Recherche par mot clef */
 #mots_filtres { padding: 8px; }
@@ -551,9 +562,6 @@ div.spip_poesie div { margin-left: 60px; text-indent: -60px; }
 /* bloc d'intro */
 #letexte { clear: left; padding: 0 30px; font-size: 1.1em; line-height: 120%; }
 #letexte ul { font-size: 1em; line-height: 120%; }
-#letexte form { position: relative; padding: 0; margin: 0; }
-#letexte form p { text-align: right; }
-#letexte form .forum-texte p { text-align: left; }
 
 /* Rectification pour la météo sur 5 jours */
 .rainette_previsions_24h, .rainette_previsions_24h .jour, .rainette_previsions_24h .date,.rainette_previsions_24h .contenu {
