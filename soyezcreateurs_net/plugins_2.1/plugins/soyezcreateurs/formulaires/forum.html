@@ -1,6 +1,7 @@
 #SET{utilisergraver, non}
 
 <div class="formulaire_spip formulaire_forum ajax" id="formulaire_forum">
+[(#REM) pour IE qui sinon se perd dans l'ajax !, ne pas retirer]<br class='bugajaxie' />
 
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -21,7 +22,7 @@
 	il faudra certainement redessiner toute la page pour afficher le nouveau
 	forum
 
-][<form action="#ENV{action}#formulaire_forum" method="post" class="preview">
+][<form action="#ENV{action}#formulaire_forum" method="post" class="noajax">
 	<div>
 	[(#ACTION_FORMULAIRE{#ENV{action}})]
 	<input type='hidden' name='titre' value="#ENV{titre}" />
@@ -225,28 +226,24 @@
 </form>
 ]
 
-</div>
 [(#REM)
 	Sauver les donnees du formulaire dans un cookie, si on quitte la page,
 	et les remettre quand on revient (dans les limites de 4ko etc)
 ]
 <script type="text/javascript">/*<!#EVAL{chr(91)}CDATA#EVAL{chr(91)}*/
-var saveauto = true;
-function cookie_formulaire_forum(){
+if (window.jQuery)(function($){
 	var a = $.cookie('spip_contenu_formulaire_#ENV{_sign}');
+var saveauto = true;
 	if (a) {
 		$('#formulaire_forum textarea#EVAL{chr(91)}name=texte#EVAL{chr(93)}')
 		.val(a);
 		$.cookie('spip_contenu_formulaire_#ENV{_sign}', null);
 	}
-	$('#formulaire_forum form').not('.nocookiesave')
-	.bind('submit', function() {
+	/* virer le cookie a la validation finale du message */
+	$('input#EVAL{chr(91)}name=confirmer_previsu_forum#EVAL{chr(93)}')
+	.live('click', function(e) {
 		saveauto = false;
-	}).addClass('nocookiesave');
-}
-if (window.jQuery)(function($){
-	$.getScript('[(#CHEMIN{javascript/jquery.cookie.js}|url_absolue)]',function(){
-		setTimeout(cookie_formulaire_forum,100);
+	});
 		$(window)
 		.bind('unload', function(){
 			if (saveauto){
@@ -255,10 +252,11 @@ if (window.jQuery)(function($){
 					$.cookie('spip_contenu_formulaire_#ENV{_sign}', s);
 				else
 					$.cookie('spip_contenu_formulaire_#ENV{_sign}', null);
+		}else{
+			/* on vide le champs texte après le submit car refuser_traiter_formulaire_ajax(); va reposter le formulaire, et donc reposer un cookie car saveauto sera false la seconde fois. */
+			$('#formulaire_forum textarea#EVAL{chr(91)}name=texte#EVAL{chr(93)}').val('');
 			}
 		});
-	});
-	onAjaxLoad(cookie_formulaire_forum);
 }(jQuery));
 /*#EVAL{chr(93)}[(#EVAL{chr(93)})]>*/</script>
-]
+]</div>
