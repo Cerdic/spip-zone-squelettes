@@ -119,6 +119,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_evenements_tous' => 'tous les évènements',
 	'item_extension' => 'extension',
 	'item_fin' => 'en fin de liste',
+	'item_format_date_affdate' => 'Texte (1er juillet 2012)',
+	'item_format_date_affdate_jourcourt' => 'Texte sans l\'année en cours ou complet (1er juillet ou 1er juillet 2010)',
+	'item_format_date_affdate_court' => 'Texte sans l\'année en cours ou mois+année (1er juillet ou juillet 2010)',
+	'item_format_date_affdate_mois_annee' => 'Nom du mois suivi de l\'année (juillet 2012)',
+	'item_format_date_annee' => 'Année uniquement (2012)',
+	'item_format_date_nom_jour_affdate' => 'Texte précédé du nom du jour (dimanche 1er juillet 2012)',
+	'item_format_date_numerique_slash' => 'Numérique avec un slash séparateur (01/07/2012)',
+	'item_format_date_numerique_tiret' => 'Numérique avec un tiret séparateur (01-07-2012)',
 	'item_groupes_specifiques' => 'uniquement les mots-clés appartenant à certains groupes',
 	'item_hasard' => 'hasard (ordre aléatoire)',
 	'item_introduction' => 'introduction',
@@ -281,6 +289,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_exclure_site_en_cours' => 'Exclure le site en cours de la liste ?',
 	'label_filtrer_articles' => 'Ajouter des liens pour filtrer les éléments par articles ?',
 	'label_filtrer_sous_rubriques' => 'Ajouter des liens pour filtrer les éléments par sous-rubriques ?',
+	'label_format_date' => 'Choisir le format d\'affichage de la date',
 	'label_formulaire_notation' => 'Si formulaire de notation, lequel ?',
 	'label_formulaire_reponse_volant' => 'Formulaire de réponse volant ?',
 	'label_groupes_specifiques' => 'Si certains groupes, lesquels  ?',
@@ -375,7 +384,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_utiliser_logo_article_rubrique' => 'Afficher le logo de la rubrique parente si l\'article n\'a pas de logo ?',
 	'label_utiliser_logo_breve_rubrique' => 'Afficher le logo de la rubrique parente si la brève n\'a pas de logo ?',
 	'label_utiliser_logo_evenement_article_rubrique' => 'Afficher le logo de l\'article parent si l\'évènement n\'a pas de logo ?',
+	'label_vignette_afficher_date' => 'Ajouter la date de l\'article à la suite du titre ?',
 	'label_vignette_ajout_css' => 'Ajout en dur de CSS spécifiques ?',
+	'label_vignette_nb_documents' => 'Ajouter à la suite le nombre de documents joints à l\'article ?',
 	'label_width' => 'Largeur de la fenêtre (en pixels) :',
 
 	// N
@@ -473,7 +484,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Forum du site',
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
-	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
+	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
+	
 );
 
 ?>

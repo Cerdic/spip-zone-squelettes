@@ -617,4 +617,44 @@ function aveline_agenda_mini($i) {
 	return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
 
+// Filtre d'affichage de date
+// http://www.spip-contrib.net/Utilisation-des-filtres-de-date
+function filtre_aveline_affdate_dist($date, $format='affdate') {
+	if($format==NULL) {
+		$f_affdate = chercher_filtre('affdate');
+		return "N ".$f_affdate($date);
+	}
+	switch ($format) {
+		case "affdate": 				// affiche la date sous forme de texte (1er juillet 2012)
+		case "affdate_jourcourt": 	// affiche le numéro du jour et le nom du mois, si la date est dans l’année en cours (1er juillet),
+											// si la date n’est pas dans l’année en cours, on rajoute l’année (1er juillet 2010)
+		case "affdate_court": 		// affiche le numéro du jour et le nom du mois (si la date est dans l’année en cours) (1er juillet),
+											// si la date n’est pas dans l’année en cours, on affiche le nom du mois et l’année (juillet 2010)
+		case "affdate_mois_annee": // affiche seulement le mois et l’année (juillet 2012)
+			$f_affdate = chercher_filtre($format);
+			return $f_affdate($date);
+			break;
+		case "annee":					// affiche uniquement l'annee (2012)
+			$f_annee = chercher_filtre('annee');
+			return $f_annee($date);
+			break;
+		case "nom_jour_affdate":	// Idem affdate précédé du nom du jour (dimanche 1er juillet 2012)
+			$f_affdate = chercher_filtre('affdate');
+			$f_nom_jour = chercher_filtre('nom_jour');
+			return $f_nom_jour($date).' '.$f_affdate($date);
+			break;
+		case "numerique_slash":		// affiche la date sous forme numerique avec un slash séparateur (01/07/2012)
+			$f_annee = chercher_filtre('affdate');
+			return $f_annee($date,'d/m/Y');
+			break;
+		case "numerique_tiret":		// affiche la date sous forme numerique avec un tiret séparateur (01-07-2012)
+			$f_annee = chercher_filtre('affdate');
+			return $f_annee($date,'d-m-Y');
+			break;
+		default:
+			$f_affdate = chercher_filtre('affdate');
+			return f_affdate($date);
+			break;
+	}
+}
 ?>
