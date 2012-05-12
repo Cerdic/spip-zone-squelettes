@@ -622,7 +622,7 @@ function aveline_agenda_mini($i) {
 function filtre_aveline_affdate_dist($date, $format='affdate') {
 	if($format==NULL) {
 		$f_affdate = chercher_filtre('affdate');
-		return "N ".$f_affdate($date);
+		return $f_affdate($date);
 	}
 	switch ($format) {
 		case "affdate": 				// affiche la date sous forme de texte (1er juillet 2012)
