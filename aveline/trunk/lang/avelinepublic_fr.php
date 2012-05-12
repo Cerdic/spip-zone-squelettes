@@ -54,6 +54,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dans' => 'Dans',
 	'date_heure_a' => 'à',
 	'date_jour_le' => 'Le',
+	'document_un' => '1 document',
+	'documents_plusieurs' => '@nb@ documents',
 
 	// E
 	'en_cours' => 'En cours',
