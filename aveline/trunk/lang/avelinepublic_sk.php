@@ -56,6 +56,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dans' => 'V',
 	'date_heure_a' => 'o',
 	'date_jour_le' => 'dňa',
+	'document_un' => '1 document', # NEW
+	'documents_plusieurs' => '@nb@ documents', # NEW
 
 	// E
 	'en_cours' => 'Prebiehajúce',
