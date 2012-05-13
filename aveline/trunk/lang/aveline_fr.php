@@ -118,15 +118,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_deux' => 'en début et en fin de liste',
 	'item_evenements_tous' => 'tous les évènements',
 	'item_extension' => 'extension',
+	'item_fin' => 'en fin de liste',
 	'item_format_date_affdate' => 'Texte (1er juillet 2012)',
-	'item_format_date_affdate_jourcourt' => 'Texte sans l\'année en cours ou complet (1er juillet ou 1er juillet 2010)',
 	'item_format_date_affdate_court' => 'Texte sans l\'année en cours ou mois+année (1er juillet ou juillet 2010)',
+	'item_format_date_affdate_jourcourt' => 'Texte sans l\'année en cours ou complet (1er juillet ou 1er juillet 2010)',
 	'item_format_date_affdate_mois_annee' => 'Nom du mois suivi de l\'année (juillet 2012)',
 	'item_format_date_annee' => 'Année uniquement (2012)',
 	'item_format_date_nom_jour_affdate' => 'Texte précédé du nom du jour (dimanche 1er juillet 2012)',
 	'item_format_date_numerique_slash' => 'Numérique avec un slash séparateur (01/07/2012)',
 	'item_format_date_numerique_tiret' => 'Numérique avec un tiret séparateur (01-07-2012)',
-	'item_fin' => 'en fin de liste',
 	'item_groupes_specifiques' => 'uniquement les mots-clés appartenant à certains groupes',
 	'item_hasard' => 'hasard (ordre aléatoire)',
 	'item_introduction' => 'introduction',
@@ -484,7 +484,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Forum du site',
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
-	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
+	'nom_titre_descriptif_site' => 'Titre et descriptif du site'
 );
 
 ?>
