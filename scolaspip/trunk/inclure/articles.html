@@ -2,6 +2,7 @@
   Listes d'article dans scolaspip
   Distribue sous licence GPL
 ]
+#SET{rubrique,#ID_RUBRIQUE}
 <B_articles>
 <div class="liste articles">
 #ANCRE_PAGINATION
@@ -9,7 +10,7 @@
 <ul class="liste-items">
 <BOUCLE_articles(ARTICLES){id_rubrique ?}{!par date} {pagination #CONFIG{scolaspip_accueil/pagination_articles},5}{scolaspip_nb_articles}{!mots.titre=Exclu}>
 	<li class="item hentry">
-		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{120,30})]#TITRE</a></h3>	
+		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">[(#GET{rubrique}|>{0}|?{[(#LOGO_ARTICLE|image_reduire{120,40})], [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{120,30})]})]#TITRE</a></h3>	
 		<div class="info-publi[(#CONFIG{scolaspip_plus/affichedate}|!={non}|oui)[(#CONFIG{scolaspip_plus/afficheauteurs}|!={non}|oui) invisible]]">
 		[<abbr class="published[(#CONFIG{scolaspip_plus/affichedate}|=={non}|?{'',' invisible'})]" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]
 		[<span class="auteurs[(#CONFIG{scolaspip_plus/afficheauteurs}|=={non}|?{'',' invisible'})]"><:par_auteur:> (#LESAUTEURS)</span>]
