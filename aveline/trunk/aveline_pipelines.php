@@ -31,7 +31,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 		$version_actuelle = $config['gn_base_version'];
 	
 	if ($version_actuelle) {
-		include_spip('base/aveline_installation');
+		include_spip('aveline_administrations');
 		$config['noisettes'] = aveline_maj_noisettes($config['noisettes'], $version_actuelle);
 	}
 	
