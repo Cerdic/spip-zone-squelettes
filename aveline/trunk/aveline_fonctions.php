@@ -87,10 +87,7 @@ function critere_compteur_publie($idb, &$boucles, $crit){
 		);
 	} else {
 		// bug...
-		erreur_squelette(
-			_T('zbug_erreur_critere',
-				array('critere' => 'compteur_publie')
-			), $p->id_boucle);
+		return array('aveline:zbug_erreur_critere', array('critere' => 'compteur_publie'));
 	}
 	$boucle->group[] = $id_table;
 	if ($op) {
@@ -125,12 +122,27 @@ function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 			array("'>='", "'date_fin'", "sql_quote(archives_fin(\$Pile[0]['".$var_date."']))"),
 		);
 	} else {
-		$champ_date = "'" . $boucle->id_table ."." .$GLOBALS['table_date'][$boucle->type_requete] . "'";
-		$boucle->where[] = array(
-			'REGEXP',
-			$champ_date, 
-			"sql_quote(('^' . interdire_scripts(entites_html(\$Pile[0]['".$var_date."']))))"
-		);
+		// retrouver le champ date
+		$trouver_table = charger_fonction('trouver_table', 'base');
+		$desc = $trouver_table($boucle->type_requete);
+		// dans la description, sinon dans l'ancienne globale (deprecie)
+		$date = isset($desc['date']) ?
+			$desc['date'] :
+			(isset($GLOBALS['table_date'][$boucle->type_requete]) ?
+				$GLOBALS['table_date'][$boucle->type_requete] :
+				'');
+
+		if ($date) {
+			$champ_date = "'" . $boucle->id_table ."." . $date . "'";
+			$boucle->where[] = array(
+				'REGEXP',
+				$champ_date, 
+				"sql_quote(('^' . interdire_scripts(entites_html(\$Pile[0]['".$var_date."']))))"
+			);
+		} else {
+			// bug...
+			return array('aveline:zbug_erreur_critere', array('critere' => 'archives'));
+		}
 	}
 }
 
