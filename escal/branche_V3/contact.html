@@ -163,22 +163,25 @@ else {
 	if (empty($vPrenom)) {
 		echo "<p class='alerte'><:escal:contact_alerte_prenom:></p>";
 		$erreur=1;
-	}	
+	}
+if (lire_config('escal/config/contactmail', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_e_mail:> $vEmail\n\n";
 	if (empty($vEmail)) {
 		echo "<p class='alerte'><:escal:contact_alerte_mail1:></p>";
 		$erreur=1;
 	}
+	}
 	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
 		echo "<p class='alerte'><:escal:contact_alerte_mail2:></p>";
 		$erreur=1;
-	}	
+	}
+if (lire_config('escal/config/radio', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_motif:> $vSujet\n\n";
 	if (empty($vSujet)) {
 		echo "<p class='alerte'><:escal:contact_alerte_motif:></p>";
 		$erreur=1;
 	}
-
+  }
   $message.= "[(#CONFIG{escal/config/titrecheckbox})]";
   $message.= implode(" - ",$_POST['Niveau']);
 
