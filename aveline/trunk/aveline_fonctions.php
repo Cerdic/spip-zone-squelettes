@@ -197,7 +197,8 @@ function balise_ME($p){
 				array('champ' => '#ME')
 			  );
 		erreur_squelette($msg, $p);
-		return;
+		$p->code = "''";
+		return $p;
 	}
 
 	// retrouver la description de la table
@@ -304,19 +305,19 @@ if (!defined('_DIR_PLUGIN_NOTATION')) {
 
 // #AVELINE_CHOIX_TRI
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
-// Appel : #AVELINE_CHOIX_TRI{'objet','debut_ou_fin'}
+// Appel : #AVELINE_CHOIX_TRI{objet,debut_ou_fin}
 // S'utilise en conjonction avec le critère tri de Bonux
 // Les possibilités de tri pour chaque objet sont définis directement dans le code de la balise
 // pour récupérer les variables d'environnement adéquates.
 
 function balise_AVELINE_CHOIX_TRI_dist($p) {
-	$b = index_boucle($p);
+	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
 
 	// s'il n'y a pas de nom de boucle, on ne peut pas trier
 	if ($b === '') {
 		erreur_squelette(
 			_T('zbug_champ_hors_boucle',
-				array('champ' => '#TRI')
+				array('champ' => '#AVELINE_CHOIX_TRI')
 			), $p->id_boucle);
 		$p->code = "''";
 		return $p;
@@ -328,7 +329,7 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 	if (!isset($boucle->modificateur['tri_champ'])) {
 		erreur_squelette(
 			_T('zbug_tri_sans_critere',
-				array('champ' => '#TRI')
+				array('champ' => '#AVELINE_CHOIX_TRI')
 			), $p->id_boucle);
 		$p->code = "''";
 		return $p;
@@ -427,18 +428,20 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sen
  */
 function critere_tri($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
-	$id_table = $boucle->id_table;
 
 	// definition du champ par defaut
-	$_champ_defaut = !isset($crit->param[0][0]) ? "''" : calculer_liste(array($crit->param[0][0]), array(), $boucles, $boucle->id_parent);
-	$_sens_defaut = !isset($crit->param[1][0]) ? "1" : calculer_liste(array($crit->param[1][0]), array(), $boucles, $boucle->id_parent);
+	$_champ_defaut = !isset($crit->param[0][0]) ? "''"
+		: calculer_liste(array($crit->param[0][0]), array(), $boucles, $boucle->id_parent);
+	$_sens_defaut = !isset($crit->param[1][0]) ? "1"
+		: calculer_liste(array($crit->param[1][0]), array(), $boucles, $boucle->id_parent);
 	// On ajoute _id_noisette à la variable de tri
-	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']" : calculer_liste(array($crit->param[2][0]), array(), $boucles, $boucle->id_parent);
+	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']"
+		: calculer_liste(array($crit->param[2][0]), array(), $boucles, $boucle->id_parent);
 
 	$_tri = "((\$t=(isset(\$Pile[0]['tri'.$_variable]))?\$Pile[0]['tri'.$_variable]:$_champ_defaut)?tri_protege_champ(\$t):'')";
-	
+
 	$_sens_defaut = "(is_array(\$s=$_sens_defaut)?(isset(\$s[\$st=$_tri])?\$s[\$st]:reset(\$s)):\$s)";
-	$_sens ="((intval(\$t=(isset(\$Pile[0]['sens'.$_variable]))?\$Pile[0]['sens'.$_variable]:$_sens_defaut)==-1 OR \$t=='inverse')?-1:1)";
+	$_sens = "((intval(\$t=(isset(\$Pile[0]['sens'.$_variable]))?\$Pile[0]['sens'.$_variable]:$_sens_defaut)==-1 OR \$t=='inverse')?-1:1)";
 
 	$boucle->modificateur['tri_champ'] = $_tri;
 	$boucle->modificateur['tri_sens'] = $_sens;
@@ -453,11 +456,9 @@ function critere_tri($idb, &$boucles, $crit) {
 		\$senstri = (\$senstri<0)?' DESC':'';
 	};
 	";
-	$field = serialize(array_keys($boucle->show['field']));
 	$boucle->select[] = "\".tri_champ_select(\$tri).\"";
-	$boucle->order[] = "tri_champ_order(\$tri,'$id_table','$field').\$senstri";
+	$boucle->order[] = "tri_champ_order(\$tri,\$command['from']).\$senstri";
 }
-
 
 // Critère aveline_branche
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/branche-objet.yaml'
