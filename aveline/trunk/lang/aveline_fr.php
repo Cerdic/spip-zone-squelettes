@@ -487,6 +487,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
 
 	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.',
+	'zbug_erreur_champ' => 'Erreur dans la palise @champ@.',
 );
 
 ?>

@@ -193,22 +193,58 @@ function archives_fin($date) {
 function me($id_article, $id_auteur, $sioui = true, $sinon = false) {
 	static $deja = false;
 	static $auteurs = array();
+	// id_article peut arriver avec 'article/8' (ou rubrique/3 et on sort)
+	if (strpbrk($id_article, '/')) {
+		list($objet, $id_article) = explode('/', $id_article);
+		if ($objet != 'article') {
+			return $sinon;
+		}
+	}
 	if(!$deja) {
-		$r = spip_query("SELECT id_auteur
-			FROM spip_auteurs_articles
-			WHERE id_article=$id_article");
-		while($row = spip_fetch_array($r))
-			$auteurs[] = intval($row['id_auteur']);
+		$auteurs = sql_allfetsel("id_auteur", "spip_auteurs_liens", array(
+			"objet=".sql_quote('article'),
+			"id_objet=".sql_quote($id_article)));
+		$auteurs = array_map('array_shift', $auteurs);
+		$auteurs = array_map('intval', $auteurs);
 		$deja = true;
 	}
-	return in_array($id_auteur, $auteurs)?$sioui:$sinon;
+	return in_array($id_auteur, $auteurs) ? $sioui : $sinon;
 }
 
 function balise_ME($p){
-	$p->code = "me(".
-		champ_sql('id_article', $p).', '.
-		champ_sql('id_auteur', $p).', '.
-		"'me', '')";
+	$b = index_boucle($p);
+	if ($b === '') {
+		$msg = array('zbug_champ_hors_boucle',
+				array('champ' => '#ME')
+			  );
+		erreur_squelette($msg, $p);
+		return;
+	}
+
+	// retrouver la description de la table
+	$boucle = &$p->boucles[$b];
+	$trouver_table = charger_fonction('trouver_table','base');
+	$desc = $trouver_table($boucle->id_table);
+	// s'il n'y a pas de champ id_article ,
+	// chercher id_objet, objet
+	if (isset($desc['field']['id_article'])) {
+		// ancienne table spip_forum
+		$p->code = "me(".
+			champ_sql('id_article', $p).', '.
+			champ_sql('id_auteur', $p).', '.
+			"'me', '')";
+	} elseif (isset($desc['field']['objet']) AND isset($desc['field']['id_objet'])) {
+		// nouvelle table spip_forum
+		$p->code = "me(".
+			champ_sql('objet', $p) . " . '/' . " . champ_sql('id_objet', $p).", ".
+			champ_sql('id_auteur', $p).", ".
+			"'me', '')";
+	} else {
+		$msg = array('aveline:zbug_erreur_champ',
+			array('champ' => '#ME')
+		);
+		erreur_squelette($msg, $p);
+	}
 	return $p;
 }
 
