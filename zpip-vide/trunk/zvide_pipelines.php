@@ -20,10 +20,10 @@ function zvide_recuperer_fond($flux){
 			$bloc = '';
 		// Si on est sur un bloc contenu, navigation ou extra, on ajoute les noisettes de la page par defaut
 		// On ajoute également une ancre correspondant au nom du bloc
-		if (in_array($bloc,array('contenu','navigation','extra'))) {
+		if (in_array($bloc,array('content','extra1','extra2'))) {
 			$contexte = $flux['data']['contexte'];
 			$contexte['bloc'] = 'pre_'.$bloc;
-			$contexte['type'] = 'defaut';
+			$contexte['type-page'] = 'defaut';
 			$contexte['composition'] = '';
 			$complements_pre = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
 			$contexte['bloc'] = 'post_'.$bloc;
