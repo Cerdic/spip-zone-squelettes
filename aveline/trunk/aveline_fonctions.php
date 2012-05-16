@@ -102,15 +102,7 @@ function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 		);
 	} else {
 		// retrouver le champ date
-		$trouver_table = charger_fonction('trouver_table', 'base');
-		$desc = $trouver_table($boucle->type_requete);
-		// dans la description, sinon dans l'ancienne globale (deprecie)
-		$date = isset($desc['date']) ?
-			$desc['date'] :
-			(isset($GLOBALS['table_date'][$boucle->type_requete]) ?
-				$GLOBALS['table_date'][$boucle->type_requete] :
-				'');
-
+		$date = aveline_retrouver_champ_date($boucle->type_requete);
 		if ($date) {
 			$champ_date = "'" . $boucle->id_table ."." . $date . "'";
 			$boucle->where[] = array(
@@ -581,24 +573,63 @@ function aveline_calcul_exclure_objet($id_table,$id_objet,$id_en_cours,$exclure_
 		return array();
 }
 
+
+/**
+ * Retourne le champ date d'une table 
+ *
+ * @param string $type
+ * 		Nom de la boucle (ex: articles)
+ * 		Generalement $boucle->type_requete
+ * @return string
+ * 		Champ date, sinon ''
+**/
+function aveline_retrouver_champ_date($type) {
+	static $dates = array();
+	if (isset($dates[$type])) {
+		return $dates[$type];
+	}
+
+	// retrouver le champ date
+	$trouver_table = charger_fonction('trouver_table', 'base');
+	$desc = $trouver_table($type);
+	// dans la description, sinon dans l'ancienne globale (deprecie)
+	$date = isset($desc['date']) ?
+		$desc['date'] :
+		(isset($GLOBALS['table_date'][$type]) ?
+			$GLOBALS['table_date'][$type] :
+			'');
+
+	return $dates[$type] = $date;
+}
+
 // Critère aveline_selecteurs_archives_mois et aveline_selecteurs_archives_annees
 // Utilisée pour les sélecteurs d'archives
 // Balise disponible #NB_ARCHIVES
 function critere_aveline_selecteur_archives_mois_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
-	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
-	$id_objet = $boucle->id_table ."." . $boucle->primary;
-	$boucle->select[] = "COUNT($id_objet) AS nb_archives";
-	$boucle->group[] = "YEAR($champ_date)";
-	$boucle->group[] = "MONTH($champ_date)";
+	if ($date = aveline_retrouver_champ_date($boucle->type_requete)) {
+		$champ_date = $boucle->id_table ."." . $date;
+		$id_objet = $boucle->id_table ."." . $boucle->primary;
+		$boucle->select[] = "COUNT($id_objet) AS nb_archives";
+		$boucle->group[] = "YEAR($champ_date)";
+		$boucle->group[] = "MONTH($champ_date)";
+	} else {
+		// bug...
+		return array('aveline:zbug_erreur_critere', array('critere' => 'aveline_selecteur_archives_mois'));
+	}
 }
 
 function critere_aveline_selecteur_archives_annee_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
-	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
-	$id_objet = $boucle->id_table ."." . $boucle->primary;
-	$boucle->select[] = "COUNT($id_objet) AS nb_archives";
-	$boucle->group[] = "YEAR($champ_date)";
+	if ($date = aveline_retrouver_champ_date($boucle->type_requete)) {
+		$champ_date = $boucle->id_table ."." . $date;
+		$id_objet = $boucle->id_table ."." . $boucle->primary;
+		$boucle->select[] = "COUNT($id_objet) AS nb_archives";
+		$boucle->group[] = "YEAR($champ_date)";
+	} else {
+		// bug...
+		return array('aveline:zbug_erreur_critere', array('critere' => 'aveline_selecteur_archives_annee'));
+	}
 }
 
 /** Balise #NB_ARCHIVES associee aux criteres aveline_selecteur_archives_mois et aveline_selecteur_archives_annees */
