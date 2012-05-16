@@ -487,7 +487,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Diskusné fórum stránky',
 	'nom_site-mots_cles' => 'Kľúčové slová stránky',
 	'nom_site-syndic_articles' => 'Syndikované články z tejto stránky',
-	'nom_titre_descriptif_site' => 'Názov a popis stránky'
+	'nom_titre_descriptif_site' => 'Názov a popis stránky',
+
+	// Z
+	'zbug_erreur_champ' => 'Chyba v tagu @champ@.',
+	'zbug_erreur_critere' => 'Chyba v kritériu @critere@.'
 );
 
 ?>

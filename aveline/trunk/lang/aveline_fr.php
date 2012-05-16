@@ -486,8 +486,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
 	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
 
-	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.',
+	// Z
 	'zbug_erreur_champ' => 'Erreur dans la balise @champ@.',
+	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.'
 );
 
 ?>

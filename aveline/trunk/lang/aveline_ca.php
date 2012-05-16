@@ -486,7 +486,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-forum' => 'Fòrum del lloc',
 	'nom_site-mots_cles' => 'Paraules clau del lloc',
 	'nom_site-syndic_articles' => 'Articles sindicats d\'aquest lloc',
-	'nom_titre_descriptif_site' => 'Títol i descripció del lloc'
+	'nom_titre_descriptif_site' => 'Títol i descripció del lloc',
+
+	// Z
+	'zbug_erreur_champ' => 'Erreur dans la palise @champ@.', # NEW
+	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.' # NEW
 );
 
 ?>
