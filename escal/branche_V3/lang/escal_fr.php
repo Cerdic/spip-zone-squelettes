@@ -127,6 +127,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'page_contact2' => 'Page contact de' ,
 'pages_vues' => 'Nombre de pages visit&eacute;es : ', 
 'photos_hasard' => 'Quelques photos<br />au hasard',
+'plan_site' => 'Plan du site',
 'poster_message' => 'Poster un nouveau message',
 'premier_visiteur' => 'Vous &ecirc;tes le premier !',
 'publie' => 'Publi&eacute; le',
