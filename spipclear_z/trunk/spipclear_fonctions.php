@@ -17,7 +17,7 @@ function me($id_article, $id_auteur = 0) {
 	static $deja = false;
 	static $auteurs = array();
 	if(!$deja) {
-		$r = sql_select('id_auteur', 'spip_auteurs_articles', "id_article=$id_article");
+		$r = sql_select('id_auteur', 'spip_auteurs_liens', "objet='article' AND id_objet=$id_article");
 		while($row = sql_fetch($r))
 			$auteurs[] = intval($row['id_auteur']);
 		$deja = true;
