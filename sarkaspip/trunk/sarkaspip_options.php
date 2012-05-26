@@ -16,6 +16,9 @@ define('_SARKASPIP_DEBUG_CFG_ARBO', 'non');
 define('_SARKASPIP_DEBUG_CFG_BOUTON', 'non');
 define('_SARKASPIP_DEBUG_CFG_FONDS', 'non');
 
+// Liste des pages de configuration dans l'ordre de presentation
+define('_SARKASPIP_PAGES_CONFIG', 'accueil:header:plugins:backend:layout:bandeau:pied:noisettes:menus:sommaire:rubrique:article:auteur:breve:site:forum:agenda:herbier:galerie:album:plan:formulaires:recherche:styles:coins:modeles:maintenance');
+
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
 define('_SARKASPIP_CONFIG_INTRO_META', 150);
