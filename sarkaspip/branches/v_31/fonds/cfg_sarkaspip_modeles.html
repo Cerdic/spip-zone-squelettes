@@ -1,0 +1,40 @@
+<!-- titre=<:sarkaspip:cfg_titre_modeles:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_modeles:> -->
+<!-- boite=<:sarkaspip:cfg_boite_modeles:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_modele_img:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
+			{explication=<:sarkaspip:cfg_inf_effet_modele_img:>}
+			{choix=modele}
+			{suffixe=_img}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_modele_exclusif}
+			{explication=<:sarkaspip:cfg_inf_exclusif_img:>}
+			{suffixe=_img}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_modele_doc:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_modele_exclusif}
+			{explication=<:sarkaspip:cfg_inf_exclusif_doc:>}
+			{suffixe=_doc}
+			{env}>
+	</fieldset>
+	
+	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
+</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Modeles:<br />
+		#CFG_ARBO{sarkaspip_modeles}
+	</div>
+]
