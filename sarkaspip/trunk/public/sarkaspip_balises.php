@@ -23,7 +23,7 @@ function calcul_version_squelette() {
 	if ($revision > 0)
 		$version .= ' ['.strval($revision).']';
 	else if ($revision < 0)
-		$version .= ' ['.strval(abs($revision)).'&nbsp;svn]';
+		$version .= ' SVN&nbsp;['.strval(abs($revision)).']';
 
 	return $version;
 }
