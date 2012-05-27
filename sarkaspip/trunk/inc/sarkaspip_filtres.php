@@ -353,6 +353,8 @@ function statut_forum($id_article) {
 // =======================================================================================================================================
 //
 function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
+	include_spip('inc/config');
+
 	$dir = $ou;
 	foreach ($fonds as $_fond) {
 		if ($mode == 'maintenance') {
@@ -378,6 +380,8 @@ function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
 // =======================================================================================================================================
 //
 function restaurer_fonds($fichiers) {
+	include_spip('inc/config');
+
 	foreach ($fichiers as $_fichier) {
 		lire_fichier($_fichier,$tableau);
 		$fond = basename($_fichier, '.txt');

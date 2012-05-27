@@ -1,5 +1,3 @@
-<!-- nom=sarkaspip_maintenance -->
-
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
@@ -19,33 +17,35 @@
 //]]>
 </script>
 
-[(#VAL{1}|debut_cadre_trait_couleur{1,"",#ENV{_titre}})]
-<form method="post" action="#SELF"><div>
-	#ACTION_FORMULAIRE{#SELF}
-	<fieldset>
-		[<legend>(#ENV{_legende})</legend>]
-		[<p>(#ENV**{_description})</p>]
-		
-		[<p>(#ENV**{_choix})</p>]
-		<label>
-			<input type="radio" name="mode" value="tout" [(#ENV{mode, page}|=={tout}|?{checked="checked"})] />
-			#ENV{_label_oui}
-		</label>
-		<label>
-			<input type="radio" name="mode" value="page" [(#ENV{mode, page}|=={page}|?{checked="checked"})] />
-			#ENV{_label_non}
-		</label>
-		<p id="bloc_fonds">
-			[<label>(#ENV{_label_fond})</label>]
-			[<select name="fond_a_sauvegarder">
-				(#ENV*{_fonds})
-			</select>]
-		</p>
-	</fieldset>
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-	[<fieldset><div class="formulaire_message formulaire_message_ok">(#ENV*{message_ok})</div></fieldset>]
-	[<fieldset><div class="formulaire_message formulaire_message_erreur">(#ENV*{message_nok})</div></fieldset>]
+	<h3 class="titrem"><:sarkaspip:cfg_boite_fond_sauvegarde:></h3>
 
-	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}{choix=valider_seul}>
-</div></form>
-[(#VAL{1}|fin_cadre_trait_couleur)]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_fond_sauvegarde:></legend>
+			<p><:sarkaspip:cfg_inf_fond_sauvegarde:></p>
+
+			<p><:sarkaspip:cfg_inf_choix_sauvegarde:></p>
+			<label>
+				<input type="radio" name="mode" value="tout" [(#ENV{mode, page}|=={tout}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="mode" value="page" [(#ENV{mode, page}|=={page}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<p id="bloc_fonds">
+				<label><:sarkaspip:cfg_lbl_fond_sauvegarde:></label>
+				[<select name="fond_a_sauvegarder">
+					(#ENV*{_fonds})
+				</select>]
+			</p>
+		</fieldset>
+
+		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}{choix=valider_seul}>
+	</div></form>
+</div>
