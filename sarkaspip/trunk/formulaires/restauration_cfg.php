@@ -1,22 +1,12 @@
 <?php
-function formulaires_restauration_cfg_charger_dist($dir_fonds, $items_langue=array()){
-	$items=array();
-	foreach ($items_langue as $_cle => $_item) {
-		$index = '_' . $_cle;
-		$items[$index] = $_item;
-	}
-
-	$args = array_merge(array('_titre' => _T('cfg:charger_meta_titre'),
-								'_legende' => _T('cfg:charger_meta_legende'),
-								'_label' => _T('cfg:charger_meta_label'),
-								'_description' => _T('cfg:charger_meta_description')),
-								$items);
-
+function formulaires_restauration_cfg_charger_dist(){
 	$fonds = array();
-	$fichiers_cfg = preg_files($dir_fonds, "cfg_[^/]*[.]html$");
-	foreach ($fichiers_cfg as $_fichier) {
-		$fond = substr(basename($_fichier,'.html'), 4);
-		$fonds[$fond] = _T("sarkaspip:$fond");
+	$pages_cfg = explode(':', _SARKASPIP_PAGES_CONFIG);
+	foreach ($pages_cfg as $_page) {
+		if ($_page != 'maintenance') {
+			$fond = "sarkaspip_{$_page}";
+			$fonds[$fond] = _T("sarkaspip:$fond");
+		}
 	}
 
 	$dir = sous_repertoire(_DIR_TMP,"cfg");
@@ -34,21 +24,22 @@ function formulaires_restauration_cfg_charger_dist($dir_fonds, $items_langue=arr
 		$options .= '<option value="' . $_fichier . '">' . $nom . '</option>';
 	}
 	if ($options) $options .= '</optgroup>';
-	$args = array_merge($args, array('_fichiers_sauvegardes' => $options));
+	$valeurs = array('_fichiers_sauvegardes' => $options);
 
-	return $args;
+	return $valeurs;
 }
 
-function formulaires_restauration_cfg_verifier_dist($dir_fonds, $items_langue=array()){
+function formulaires_restauration_cfg_verifier_dist(){
 	return array();
 }
 
-function formulaires_restauration_cfg_traiter_dist($dir_fonds, $items_langue=array()){
+function formulaires_restauration_cfg_traiter_dist(){
 	$message=array();
 	
 	$fichier = _request('fichier_a_restaurer');
 	lire_fichier($fichier,$tableau);
 
+	include_spip('inc/config');
 	$fond = end(explode('/', dirname($fichier)));
 	$ok = ecrire_config($fond, $tableau);
 	

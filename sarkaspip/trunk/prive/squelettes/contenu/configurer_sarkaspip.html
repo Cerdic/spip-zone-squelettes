@@ -1,6 +1,12 @@
 [(#AUTORISER{webmestre}|sinon_interdire_acces)]
 [<h1>(#VAL{sarkaspip:cfg_titre_}|concat{#ENV{cfg, accueil}}|_T)</h1>]
+
 [(#SET{configurer, [(#ENV{type-page})_[(#ENV{cfg, accueil})]]})]
-<div class='ajax'>
-	[(#FORMULAIRE_{#GET{configurer}})]
-</div>
+[(#ENV{cfg, accueil}|=={maintenance}|non)
+	[<div class='ajax'>(#FORMULAIRE_{#GET{configurer}})</div>]
+]
+
+[(#ENV{cfg, accueil}|=={maintenance}|oui)
+	[<div class='ajax'>(#FORMULAIRE_SAUVEGARDE_CFG)</div>]
+	[<div class='ajax'>(#FORMULAIRE_RESTAURATION_CFG)</div>]
+]
