@@ -15,16 +15,15 @@ function balise_VERSION_SQUELETTE($p) {
 function calcul_version_squelette() {
 
 	$version = NULL;
-	
-	if (lire_fichier(_DIR_PLUGIN_SARKASPIP.'/plugin.xml', $contenu)
-	&& preg_match('/<version>(.*?)<\/version>/', $contenu, $match))
-		$version .= trim($match[1]);
+
+	$informer = chercher_filtre('info_plugin');
+	$version = $informer('sarkaspip', 'version');
 
 	$revision = version_svn_courante(_DIR_PLUGIN_SARKASPIP);
 	if ($revision > 0)
 		$version .= ' ['.strval($revision).']';
 	else if ($revision < 0)
-		$version .= ' ['.strval(abs($revision)).'&nbsp;<strong>svn</strong>]';
+		$version .= ' ['.strval(abs($revision)).'&nbsp;svn]';
 
 	return $version;
 }
