@@ -85,6 +85,8 @@ function scolaspip_plus_config($public=null){
 		'institution_lien_titre' => 'Site de l\'académie de Versailles',
 		'institution_nom' => 'académie de Versailles',
 		'nb_maxi_lignes_mosaique' => '4',
+		'afficher_logos_rubrique_menu_vertical' => 'non',
+		'afficher_logos_menu_horizontal' => 'oui',
 	), $config);
 		
 	return $config;	
