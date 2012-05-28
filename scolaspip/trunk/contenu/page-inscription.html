@@ -14,7 +14,7 @@
     <BOUCLE_personnes_inscrites(spip_auteurs spip_evenements_participants){id_evenement}{par nom}{reponse='oui'}>
     [(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<p class="success"><strong>#NOM</strong> : <:scolaspip:evenement_bien_inscrit:></p>]
     </BOUCLE_personnes_inscrites>
-    [(#SESSION{statut}|=={0minirezo}|oui)<p><a href="ecrire/?exec=agenda_inscriptions&id_evenement=#ID_EVENEMENT" title="<:scolaspip:evenement_liste_inscrits:>"><:agenda:liste_inscrits:></a><p>]
+    [(#AUTORISER{modifier,evenement,#ID_EVENEMENT})<p><a href="ecrire/?exec=agenda_inscriptions&id_evenement=#ID_EVENEMENT" title="<:scolaspip:evenement_liste_inscrits:>"><:agenda:liste_inscrits:></a><p>]
     <p class="info">
 	[(#NB_INSCRITS|singulier_ou_pluriel{scolaspip:evenement_un_inscrit, scolaspip:evenement_n_inscrits,nb})]
 	[(#PLACES|=={'0'}|?{'',' '})
