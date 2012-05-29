@@ -925,6 +925,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'msg_0_evt_agenda' => 'Aucun événement défini dans l\'agenda',
 	'msg_0_evt_annee' => 'Aucun événement de cette catégorie pour l\'année',
 	'msg_0_evt_saison' => 'Aucun événement de cette catégorie pour la saison',
+	'msg_0_article_syndique' => 'Aucun article écrit ces 60 dernier jours',
 	'msg_album_vide' => 'Aucune photo n\'est encore insérée dans cet album',
 	'msg_fichier_introuvable' => 'Fichier <strong>@fichier@</strong> introuvable. Vérifier la configuration du pipeline',
 	'msg_forum_ferme' => 'Ce forum est fermé : vous pouvez encore consulter les discussions mais vous ne pouvez plus ni ouvrir un sujet ni répondre &agrave un sujet.',
