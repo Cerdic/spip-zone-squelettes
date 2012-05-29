@@ -9,7 +9,8 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 	// Post traitement de configuration des plugins concernes
 	include_spip('inc/config');
 	if (lire_config('sarkaspip_plugins/config_boutonstexte') == 'sarkaspip') {
-		ecrire_config('boutonstexte/', array(	'selector'=>_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR));
+		ecrire_config('boutonstexte/', array(	'selector'=>_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR,
+												'txtOnly' => _SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY));
 	}
 	else
 		effacer_config('boutonstexte');

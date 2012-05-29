@@ -62,6 +62,7 @@ define('_SARKASPIP_AFAIRE_TAILLE_LOGO', '150');
 // Configuration minimale des plugins utilises par le squelette
 // -- Plugin BOUTONS TEXTE
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR', '#wrapper');
+define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', '_');
 // -- Plugin FANCYBOX
 define('_SARKASPIP_CONFIG_FANCYBOX_IMAGE', '.fancybox');
 define('_SARKASPIP_CONFIG_FANCYBOX_GALERIE', '.galerie .fancybox');
