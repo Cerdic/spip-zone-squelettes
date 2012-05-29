@@ -63,14 +63,12 @@ define('_SARKASPIP_AFAIRE_TAILLE_LOGO', '150');
 // -- Plugin BOUTONS TEXTE
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR', '#wrapper');
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', '_');
-// -- Plugin FANCYBOX
-define('_SARKASPIP_CONFIG_FANCYBOX_IMAGE', '.fancybox');
-define('_SARKASPIP_CONFIG_FANCYBOX_GALERIE', '.galerie .fancybox');
-// -- Plugin NYROCEROS
-define('_SARKASPIP_CONFIG_NYROCEROS_TOUT', 'non');
-define('_SARKASPIP_CONFIG_NYROCEROS_IMAGE', '.nyroceros');
-define('_SARKASPIP_CONFIG_NYROCEROS_GALERIE', '.galerie .nyroceros');
-define('_SARKASPIP_CONFIG_NYROCEROS_DIAPORAMA', 'non');
+// -- Plugin MEDIABOX
+define('_SARKASPIP_CONFIG_MEDIABOX_ACTIF', 'oui');
+define('_SARKASPIP_CONFIG_MEDIABOX_TOUT', 'non');
+define('_SARKASPIP_CONFIG_MEDIABOX_IMAGE', '.mediabox');
+define('_SARKASPIP_CONFIG_MEDIABOX_GALERIE', '.galerie .mediabox');
+define('_SARKASPIP_CONFIG_MEDIABOX_SKIN', 'white-shadow');
 // -- Plugin SOCIALTAGS
 define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
 define('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS', 'delicious:facebook:google:netvibes');

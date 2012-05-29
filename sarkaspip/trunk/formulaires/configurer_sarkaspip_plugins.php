@@ -15,21 +15,15 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 	else
 		effacer_config('boutonstexte');
 
-	if (lire_config('sarkaspip_plugins/config_fancybox') == 'sarkaspip') {
-		ecrire_config('fancybox/', array(	'selecteur_commun'=>_SARKASPIP_CONFIG_FANCYBOX_IMAGE,
-											'selecteur_galerie'=>_SARKASPIP_CONFIG_FANCYBOX_GALERIE));
+	if (lire_config('sarkaspip_plugins/config_mediabox') == 'sarkaspip') {
+		ecrire_config('mediabox/', array(	'active' => _SARKASPIP_CONFIG_MEDIABOX_ACTIF,
+											'traiter_toutes_images'=>_SARKASPIP_CONFIG_MEDIABOX_TOUT,
+											'selecteur_commun'=>_SARKASPIP_CONFIG_MEDIABOX_IMAGE,
+											'selecteur_galerie'=>_SARKASPIP_CONFIG_MEDIABOX_GALERIE,
+											'skin'=>_SARKASPIP_CONFIG_MEDIABOX_SKIN));
 	}
 	else
-		effacer_config('fancybox');
-
-	if (lire_config('sarkaspip_plugins/config_nyroceros') == 'sarkaspip') {
-		ecrire_config('nyroceros/', array(	'traiter_toutes_images'=>_SARKASPIP_CONFIG_NYROCEROS_TOUT,
-											'selecteur_commun'=>_SARKASPIP_CONFIG_NYROCEROS_IMAGE,
-											'selecteur_galerie'=>_SARKASPIP_CONFIG_NYROCEROS_GALERIE,
-											'installer_diapo_auto'=>_SARKASPIP_CONFIG_NYROCEROS_DIAPORAMA));
-	}
-	else
-		effacer_config('nyroceros');
+		effacer_config('mediabox');
 
 	if (lire_config('sarkaspip_plugins/config_socialtags') == 'sarkaspip') {
 		ecrire_config('socialtags/', array(	'jsselector'=>_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR,

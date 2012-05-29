@@ -9,10 +9,13 @@
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_plugins_info:></legend>
 			#SET{nb_plugins, 0}
-			[(#PLUGIN{BOUTONSTEXTE}|?{' '})
+			[(#PLUGIN{BOUTONSTEXTE}|oui)
 				[(#SET{nb_plugins, [(#GET{nb_plugins}|plus{1})]})]
 			]
-			[(#PLUGIN{NYRO}|?{' '})
+			[(#PLUGIN{MEDIABOX}|oui)
+				[(#SET{nb_plugins, [(#GET{nb_plugins}|plus{1})]})]
+			]
+			[(#PLUGIN{SOCIALTAGS}|oui)
 				[(#SET{nb_plugins, [(#GET{nb_plugins}|plus{1})]})]
 			]
 			[(#GET{nb_plugins}|=={0}|?{' '})<p><:sarkaspip:cfg_inf_plugins_0:></p>]
@@ -36,33 +39,17 @@
 		</fieldset>
 	]
 
-	[(#PLUGIN{FANCYBOX}|oui)
+	[(#PLUGIN{MEDIABOX}|oui)
 		<fieldset>
-			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{FANCYBOX, nom}|extraire_multi)]</legend>
-			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{FANCYBOX, nom}|extraire_multi)&nbsp;&#187;</p>]
+			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{MEDIABOX, nom}|extraire_multi)]</legend>
+			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{MEDIABOX, nom}|extraire_multi)&nbsp;&#187;</p>]
 			<label>
-				<input type="radio" name="config_fancybox" value="sarkaspip" [(#ENV{config_fancybox, defaut}|=={sarkaspip}|?{checked="checked"})] />
+				<input type="radio" name="config_mediabox" value="sarkaspip" [(#ENV{config_mediabox, defaut}|=={sarkaspip}|?{checked="checked"})] />
 				<:sarkaspip:cfg_lbl_config_sarkaspip:>
 			</label>
 			<br />
 			<label>
-				<input type="radio" name="config_fancybox" value="defaut" [(#ENV{config_fancybox, defaut}|=={defaut}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_defaut:>
-			</label>
-		</fieldset>
-	]
-
-	[(#PLUGIN{NYRO}|oui)
-		<fieldset>
-			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{NYRO, nom}|extraire_multi)]</legend>
-			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{NYRO, nom}|extraire_multi)&nbsp;&#187;</p>]
-			<label>
-				<input type="radio" name="config_nyroceros" value="sarkaspip" [(#ENV{config_nyroceros, defaut}|=={sarkaspip}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_sarkaspip:>
-			</label>
-			<br />
-			<label>
-				<input type="radio" name="config_nyroceros" value="defaut" [(#ENV{config_nyroceros, defaut}|=={defaut}|?{checked="checked"})] />
+				<input type="radio" name="config_mediabox" value="defaut" [(#ENV{config_mediabox, defaut}|=={defaut}|?{checked="checked"})] />
 				<:sarkaspip:cfg_lbl_config_defaut:>
 			</label>
 		</fieldset>
