@@ -34,7 +34,6 @@ function formulaires_evahabillage_sauvegarde_traiter_dist(){
 	if ((_request('sauvegarder')=='Sauvegarder') AND (_request('sauvegarde_habillage')!='Defaut')) {
 		$nom_sauvegarde=_request('sauvegarde_habillage');
 		echo $nom_sauvegarde;
-		/* 
         $nom_habillage_defaut=sql_select("habillage","spip_eva_habillage","sauvegarde = 'Defaut'");
         $tab_habillage_defaut=sql_fetch($nom_habillage_defaut);
         sql_delete("spip_eva_habillage","sauvegarde='".mysql_real_escape_string($nom_sauvegarde)."'");
@@ -43,13 +42,43 @@ function formulaires_evahabillage_sauvegarde_traiter_dist(){
         sql_insertq("spip_eva_habillage_themes",array('nom' => mysql_real_escape_string($nom_sauvegarde)));
 		$result_valeurs=sql_select("*","spip_eva_habillage_themes","nom='Defaut'");
         $tab_valeurs=sql_fetch($result_valeurs);
+		include_spip("inc/eva_habillage_definition_themes");
+		$def_themes = eva_habillage_definition_themes ();
         foreach($def_themes as $habillage_cles => $habillage_inutile) {sql_updateq('spip_eva_habillage_themes',array($habillage_cles => $tab_valeurs[$habillage_cles]),"nom='".mysql_real_escape_string($nom_sauvegarde)."'");}
         sql_delete("spip_eva_habillage_images","nom_habillage='".mysql_real_escape_string($nom_sauvegarde)."'");
         $result_images_sauve=sql_select('type,nom_div,nom_image,pos_x,pos_y,repetition,attach','spip_eva_habillage_images',"nom_habillage='Defaut'");
         while ($tab=sql_fetch($result_images_sauve)) {
             sql_insertq("spip_eva_habillage_images",array('type' => $tab['type'],'nom_habillage' => mysql_real_escape_string($nom_sauvegarde),'nom_div' => $tab['nom_div'], 'nom_image' => $tab['nom_image'], 'pos_x' => $tab['pos_x'],'pos_y' => $tab['pos_y'],'repetition' => $tab['repetition'], 'attach' => $tab['attach']));
-			}
-		*/
+		}
+	}
+	elseif ((_request('sauvegarder')=='Restaurer') AND (_request('restaurer_habillage')!='Defaut')) {
+		$nom_sauvegarde=_request('restaurer_habillage');
+		$recherche_habillage_restaure = sql_select('habillage','spip_eva_habillage',"sauvegarde='".mysql_escape_string($nom_sauvegarde)."'");
+        $tab__habillage_restaure = sql_fetch($recherche_habillage_restaure);
+        sql_updateq('spip_eva_habillage',array('habillage' => $tab__habillage_restaure['habillage']),"sauvegarde='Defaut'");
+        
+        sql_delete('spip_eva_habillage_images',"nom_habillage='Defaut'");
+        $recherche_images_restaure=sql_select('type,nom_div,nom_image,pos_x,pos_y,repetition,attach','spip_eva_habillage_images',"nom_habillage='".mysql_escape_string($nom_sauvegarde)."'");
+        while ($tab=sql_fetch($recherche_images_restaure)) {
+		sql_insertq('spip_eva_habillage_images',array('type' => $tab['type'],'nom_habillage' => 'Defaut','nom_div' => $tab['nom_div'],'nom_image' => $tab['nom_image'],'pos_x' => $tab['pos_x'],'pos_y' => $tab['pos_y'],'repetition' => $tab['repetition'],'attach' => $tab['attach']));
+        }
+        
+        $result_restaure=sql_select('*','spip_eva_habillage_themes',"nom='".mysql_escape_string($nom_sauvegarde)."'");
+        $tab_restaure=sql_fetch($result_restaure);
+		include_spip("inc/eva_habillage_definition_themes");
+		$def_themes = eva_habillage_definition_themes ();
+        foreach($def_themes as $habillage_cles => $habillage_inutile) {
+            if (isset($tab_restaure[$habillage_cles])) {sql_updateq('spip_eva_habillage_themes',array($habillage_cles => $tab_restaure[$habillage_cles]),"nom='Defaut'");}
+            else {sql_updateq('spip_eva_habillage_themes',array($habillage_cles => ''),"nom='Defaut'");}
+        }
+		include_spip('inc/eva_habillage_transition_module');
+		eva_habillage_transition_module();
+	}
+	elseif ((_request('sauvegarder')=='Supprimer ?') AND (_request('supprimer_habillage')!='Defaut')) {
+		$nom_sauvegarde=_request('supprimer_habillage');
+		sql_delete("spip_eva_habillage","sauvegarde='".mysql_escape_string($nom_sauvegarde)."'");
+        sql_delete("spip_eva_habillage_themes","nom='".mysql_escape_string($nom_sauvegarde)."'");
+        sql_delete("spip_eva_habillage_images","nom_habillage='".mysql_escape_string($nom_sauvegarde)."'");
 	}
 	$res['message_ok'] = _T('config_info_enregistree');
 	return $res;

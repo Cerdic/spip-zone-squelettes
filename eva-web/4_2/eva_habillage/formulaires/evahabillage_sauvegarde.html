@@ -18,14 +18,38 @@
 </ul>
 </fieldset>
 
+<?php 
+	$test_presence = sql_select('nom','spip_eva_habillage_themes',"nom != 'Defaut'",'','nom');
+    $tab_presence = sql_fetch($test_presence);
+	if ($tab_presence!='') {
+?>
 <h3 class='titrem'><:evahabillage:eva_etape4_restaurer:></h3>
 <p>
+<select name="restaurer_habillage">
+<?php
+	$resultat_sauvegarde1 = sql_select('nom','spip_eva_habillage_themes',"nom != 'Defaut'",'','nom');
+    while ($tab = sql_fetch($resultat_sauvegarde1)) echo '<option value="'.$tab['nom'].'">'.$tab['nom'].'</option>';
+?>
+</select>
+</p>
+<p style="text-align:center;">
 <input type="submit" class="submit" name="sauvegarder" value="<:evahabillage:eva_restaurer:>" />
 </p>
 
 <h3 class='titrem'><:evahabillage:eva_etape4_supprimer:></h3>
 <p>
+<select name="supprimer_habillage">
+<?php
+	$resultat_sauvegarde2 = sql_select('nom','spip_eva_habillage_themes',"nom != 'Defaut'",'','nom');
+    while ($tab = sql_fetch($resultat_sauvegarde2)) echo '<option value="'.$tab['nom'].'">'.$tab['nom'].'</option>';
+?>
+</select>
+</p>
+<p style="text-align:center;">
 <input type="submit" class="submit" name="sauvegarder" value="<:evahabillage:eva_supprimer:>" />
 </p>
+<?php
+}
+?>
 </form>
 </div>
