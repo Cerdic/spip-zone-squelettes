@@ -320,7 +320,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_inc_herbier_pos' => 'Choisissez dans quelle colonne vous désirez insérer la noisette des sites favoris',
 	'cfg_inf_inc_herbier_type' => 'Choisissez le modèle de présentation des sites favoris qui vous convient parmi ceux proposés ci-dessous.',
 	'cfg_inf_inc_messages' => 'Choisissez dans quelle colonne vous désirez insérer les derniers messages déposés sur le forum.',
-	'cfg_inf_inc_miniagenda_pos' => 'Choisissez dans quelle colonne vous désirez insérer le mini agenda. Pour configurer son affichage veuillez vous rendre dans la page <a href="?exec=cfg&cfg=sarkaspip_agenda">Agenda</a>.',
+	'cfg_inf_inc_miniagenda_pos' => 'Choisissez dans quelle colonne vous désirez insérer le mini agenda. Pour configurer son affichage veuillez vous rendre dans la page <a href="?exec=configurer_sarkaspip&cfg=agenda">Agenda</a>.',
 	'cfg_inf_inc_navigation' => 'Les noisettes de navigation dans les articles de la même rubrique ou les articles « Lire aussi » sont paginées.',
 	'cfg_inf_inc_nuage' => 'Choisissez dans quelle colonne vous désirez insérer la noisette Nuage de mots-clés',
 	'cfg_inf_inc_publications' => 'Choisissez dans quelle colonne vous désirez insérer les dernieres publications du site.',
