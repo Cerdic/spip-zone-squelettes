@@ -4,7 +4,7 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 	// On simule le traitement normal du cvt configurer
 	include_spip('inc/cvt_configurer');
 	$args = func_get_args();
-	cvtconf_formulaires_configurer_enregistre('configurer_sarkaspip_plugins', $args);
+	$trace = cvtconf_formulaires_configurer_enregistre('configurer_sarkaspip_plugins', $args);
 
 	// Post traitement de configuration des plugins concernes
 	include_spip('inc/config');
@@ -36,5 +36,7 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 	}
 	else
 		effacer_config('socialtags');
+
+	return array('message_ok'=>_T('config_info_enregistree').$trace,'editable'=>true);
 }
 ?>
