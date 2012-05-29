@@ -36,7 +36,7 @@ function SarkaSpip_insert_head($flux){
 	return $flux;
 }
 
-// Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers ˆ sauvegarder dans le plugin Mes Fichiers 2
+// Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers ï¿½ sauvegarder dans le plugin Mes Fichiers 2
 function SarkaSpip_mes_fichiers_a_sauver($flux){
 	$tmp_fonds = defined('_DIR_TMP') ? _DIR_TMP.'fonds/': _DIR_RACINE.'tmp/fonds/';
 	$tmp_styles = defined('_DIR_TMP') ? _DIR_TMP.'cfg/': _DIR_RACINE.'tmp/cfg/';
@@ -53,7 +53,7 @@ function SarkaSpip_mes_fichiers_a_sauver($flux){
 	return $flux;
 }
 
-// Pipeline "zengarden_activer_theme" permettant d'effectuer les traitements d'activation d'un theme lies ˆ Sarka-SPIP
+// Pipeline "zengarden_activer_theme" permettant d'effectuer les traitements d'activation d'un theme lies a Sarka-SPIP
 function SarkaSpip_zengarden_activer_theme($flux){
 	$dir_cfg = $flux['args']['dir'] . '/cfg';
 	$cfg = preg_files($dir_cfg);
@@ -68,7 +68,7 @@ function SarkaSpip_zengarden_activer_theme($flux){
 	include_spip('inc/sarkaspip_filtres');
 	$ok = sauvegarder_fonds($fonds, $dir_cfg, 'theme');
 
-	// On ecrit la nouvelle configuration nŽcessaire au theme choisi
+	// On ecrit la nouvelle configuration nï¿½cessaire au theme choisi
 	$flux['data'] = true;
 	foreach ($cfg as $_fichier_cfg) {
 		lire_fichier($_fichier_cfg, $tableau);
@@ -78,7 +78,7 @@ function SarkaSpip_zengarden_activer_theme($flux){
 	return $flux;
 }
 
-// Pipeline "zengarden_effacer_theme" permettant d'effectuer les traitements d'effacement d'un theme lies ˆ Sarka-SPIP
+// Pipeline "zengarden_effacer_theme" permettant d'effectuer les traitements d'effacement d'un theme lies a Sarka-SPIP
 function SarkaSpip_zengarden_effacer_theme($flux){
 	$dir_cfg = $flux['args']['dir'] . '/cfg';
 	$cfg = preg_files($dir_cfg);
