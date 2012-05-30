@@ -31,9 +31,9 @@ function formulaires_evahabillage_sauvegarde_charger_dist(){
 
 function formulaires_evahabillage_sauvegarde_traiter_dist(){
 	$res = array('editable'=>true);
+	$res['message_ok'] = 'Module inchang&eacute;';
 	if ((_request('sauvegarder')=='Sauvegarder') AND (_request('sauvegarde_habillage')!='Defaut')) {
 		$nom_sauvegarde=_request('sauvegarde_habillage');
-		echo $nom_sauvegarde;
         $nom_habillage_defaut=sql_select("habillage","spip_eva_habillage","sauvegarde = 'Defaut'");
         $tab_habillage_defaut=sql_fetch($nom_habillage_defaut);
         sql_delete("spip_eva_habillage","sauvegarde='".mysql_real_escape_string($nom_sauvegarde)."'");
@@ -50,6 +50,7 @@ function formulaires_evahabillage_sauvegarde_traiter_dist(){
         while ($tab=sql_fetch($result_images_sauve)) {
             sql_insertq("spip_eva_habillage_images",array('type' => $tab['type'],'nom_habillage' => mysql_real_escape_string($nom_sauvegarde),'nom_div' => $tab['nom_div'], 'nom_image' => $tab['nom_image'], 'pos_x' => $tab['pos_x'],'pos_y' => $tab['pos_y'],'repetition' => $tab['repetition'], 'attach' => $tab['attach']));
 		}
+		$res['message_ok'] = 'L\'habillage <b>'.mysql_real_escape_string($nom_sauvegarde).'</b> a &eacute;t&eacute; sauvegard&eacute;';
 	}
 	elseif ((_request('sauvegarder')=='Restaurer') AND (_request('restaurer_habillage')!='Defaut')) {
 		$nom_sauvegarde=_request('restaurer_habillage');
@@ -71,6 +72,7 @@ function formulaires_evahabillage_sauvegarde_traiter_dist(){
             if (isset($tab_restaure[$habillage_cles])) {sql_updateq('spip_eva_habillage_themes',array($habillage_cles => $tab_restaure[$habillage_cles]),"nom='Defaut'");}
             else {sql_updateq('spip_eva_habillage_themes',array($habillage_cles => ''),"nom='Defaut'");}
         }
+		$res['message_ok'] = 'La sauvegarde de l\'habillage <b>'.mysql_escape_string($nom_sauvegarde).'</b> a &eacute;t&eacute; restaur&eacute;e';
 		include_spip('inc/eva_habillage_transition_module');
 		eva_habillage_transition_module();
 	}
@@ -79,8 +81,8 @@ function formulaires_evahabillage_sauvegarde_traiter_dist(){
 		sql_delete("spip_eva_habillage","sauvegarde='".mysql_escape_string($nom_sauvegarde)."'");
         sql_delete("spip_eva_habillage_themes","nom='".mysql_escape_string($nom_sauvegarde)."'");
         sql_delete("spip_eva_habillage_images","nom_habillage='".mysql_escape_string($nom_sauvegarde)."'");
+		$res['message_ok'] = 'La sauvegarde de l\'habillage <b>'.mysql_escape_string($nom_sauvegarde).'</b> a &eacute;t&eacute; supprim&eacute;e';
 	}
-	$res['message_ok'] = _T('config_info_enregistree');
 	return $res;
 }
 
