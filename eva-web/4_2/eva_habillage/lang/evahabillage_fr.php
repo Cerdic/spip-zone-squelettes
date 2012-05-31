@@ -124,6 +124,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_choisir_squelette1_site' => "<em>&Eacute;tape 1 :</em> ins&eacute;rer par FTP le squelette concern&eacute; dans le r&eacute;pertoire <em>noisettes/site</em> du plugin EVA-web ou s&eacute;lectionnez une noisette du plugin EVA-bonus.",
 'eva_choisir_squelette1_auteur' => "<em>&Eacute;tape 1 :</em> ins&eacute;rer par FTP le squelette concern&eacute; dans le r&eacute;pertoire <em>noisettes/auteur</em> du plugin EVA-web ou s&eacute;lectionnez une noisette du plugin EVA-bonus.",
 'eva_choisir_squelette1_entete' => "<em>&Eacute;tape 1 :</em> ins&eacute;rer par FTP le squelette concern&eacute; dans le r&eacute;pertoire <em>noisettes/entete</em> du plugin EVA-web ou s&eacute;lectionnez une noisette du plugin EVA-bonus.",
+'eva_choisir_squelette1_pied' => "<em>&Eacute;tape 1 :</em> ins&eacute;rer par FTP le squelette concern&eacute; dans le r&eacute;pertoire <em>noisettes/pied</em> du plugin EVA-web ou s&eacute;lectionnez une noisette du plugin EVA-bonus.",
 'eva_choisir_squelette1bis' => "<em>&Eacute;tape 1 :</em> ins&eacute;rer par FTP le squelette concern&eacute; dans le r&eacute;pertoire <em>noisettes/entete</em>, <em>noisettes/pied</em> ou <em>noisettes/headers</em> du plugin EVA-web.",
 'eva_choisir_squelette2' => "<em>&Eacute;tape 2 :</em> compl&eacute;ter le formulaire suivant en supprimant l'extension <b>.html</b>",
 'eva_supprimer_squelette' => "Supprimer l'entr&eacute;e d'un squelette personnel ?",

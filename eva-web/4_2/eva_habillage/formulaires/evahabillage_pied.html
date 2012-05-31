@@ -1,5 +1,5 @@
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
-<h3 class='titrem'><img src="#CHEMIN_IMAGE{blocs.png}" class="cadre-icone" /><center>Gestion des blocs dans les <em>ent&ecirc;tes</em></center></h3>
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{blocs.png}" class="cadre-icone" /><center>Gestion des blocs dans le <em>pied de page</em></center></h3>
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
@@ -12,7 +12,7 @@
 <h3 class='titrem'>&Eacute;l&eacute;ments actuellement affich&eacute;s</h3>
 <?php
 $test_entete=false;
-$req_entete1=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='oui' AND attach='entete'",'','pos_x ASC');
+$req_entete1=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='oui' AND attach='pied'",'','pos_x ASC');
 $texte_entete='';
 while ($tab_entete1=sql_fetch($req_entete1)) {
 	$test_entete=true;
@@ -35,11 +35,11 @@ while ($tab_entete1=sql_fetch($req_entete1)) {
 	$texte_entete.='</table>';
 }
 if ($test_entete) {echo $texte_entete;}
-else {echo "<div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'>Aucun bloc dans vos ent&ecirc;tes : bizarre, bizarre !!!</div></div></div>";}
+else {echo "<div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'>Aucun bloc dans votre pied : bizarre, bizarre !!!</div></div></div>";}
 echo '</div>';
 
 $test_entete=false;
-$req_entete2=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='non' AND attach='entete'",'','pos_x ASC');
+$req_entete2=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='non' AND attach='pied'",'','pos_x ASC');
 $texte_entete='<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}" style="margin-bottom:14px;">';
 $texte_entete.="<h3 class='titrem'>&Eacute;l&eacute;ments actuellement non affich&eacute;s</h3>";
 while ($tab_entete1=sql_fetch($req_entete2)) {
@@ -67,37 +67,37 @@ $texte_entete.="</div>";
 if ($test_entete) {echo $texte_entete;}
 
 ?>
-<div style="text-align:center;"><input type="submit" style="margin-bottom:6px;" name="submit_bloc_entete" value="<:evahabillage:eva_valider:>"></div>
+<div style="text-align:center;"><input type="submit" style="margin-bottom:6px;" name="submit_bloc_pied" value="<:evahabillage:eva_valider:>"></div>
 <hr />
 
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}" style="margin-bottom:14px;">
 <h3 class='titrem'>Ins&eacute;rer un squelette personnel de type bloc dans le sommaire ?</h3>
-<:evahabillage:eva_choisir_squelette1_entete:><br />&nbsp;<br />
+<:evahabillage:eva_choisir_squelette1_pied:><br />&nbsp;<br />
 <:evahabillage:eva_choisir_squelette2:><br />&nbsp;<br />
 <table class="spip"><tr class="row_odd"><th>Nom du squelette</th><th>Ordre</th></tr>
-<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_entete" size="50" /></th>
+<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_pied" size="50" /></th>
 <?php
-echo '<th><select name="eva_mon_bloc_perso_pos_x_entete">';
+echo '<th><select name="eva_mon_bloc_perso_pos_x_pied">';
 for ($i=1;$i<=9;$i++) {
 	echo '<option value="'.$i.'" >'.$i.'</option>';
 }
 ?>
 </th></tr></table>
-<div style="text-align:center;"><input type="submit" name="submit_bloc_perso_entete" value="<:evahabillage:eva_valider:>"></div>
+<div style="text-align:center;"><input type="submit" name="submit_bloc_perso_pied" value="<:evahabillage:eva_valider:>"></div>
 </div>
 
 <?php
 	$test_suppr=false;
 	$texte_suppr="<hr /><div class='formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}'>
-	<h3 class='titrem'>Supprimer l'entr&eacute;e d'un squelette personnel dans l'ent&ecirc;te ?</h3>";
-	$texte_suppr.="<select name='eva_suppr_skel_perso_entete'>";
-	$supp_skel_perso=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND repetition='perso' AND attach='entete'");
+	<h3 class='titrem'>Supprimer l'entr&eacute;e d'un squelette personnel dans le pied de page ?</h3>";
+	$texte_suppr.="<select name='eva_suppr_skel_perso_pied'>";
+	$supp_skel_perso=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND repetition='perso' AND attach='pied'");
 	while ($tab_supp_skel_perso=sql_fetch($supp_skel_perso)) {
 		$test_suppr=true;
 		$texte_suppr.= '<option value="'.$tab_supp_skel_perso['id'].'">'.$tab_supp_skel_perso['nom_div'].'.html</option>';
 	}
 	$texte_suppr.="</select>";
-	$texte_suppr.= '<div style="text-align:center; margin:5px;"><input type="submit" name ="submit_supprime_skel_perso_entete" value="'._T('evahabillage:eva_suppression').'"></div>';
+	$texte_suppr.= '<div style="text-align:center; margin:5px;"><input type="submit" name ="submit_supprime_skel_perso_pied" value="'._T('evahabillage:eva_suppression').'"></div>';
 	$texte_suppr.="</div>";
 	if ($test_suppr) echo $texte_suppr;
 ?>
