@@ -24,10 +24,10 @@ $test_3cols=sql_select('habillage','spip_eva_habillage',"sauvegarde='Defaut'");
 include_spip('inc/presentation');
 include_spip("inc/eva_habillage_definition_themes");
 $les_blocs_array = EVA_les_blocs();
-$mes_blocs=$les_blocs_array['sommaire'];
+$mes_blocs=$les_blocs_array['rubrique'];
 ?>
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
-<h3 class='titrem'><img src="#CHEMIN_IMAGE{blocs.png}" class="cadre-icone" /><center>Gestion des blocs dans la page de <em>sommaire</em></center></h3>
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{blocs.png}" class="cadre-icone" /><center>Gestion des blocs dans les pages de type <em>rubrique</em></center></h3>
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
@@ -42,7 +42,7 @@ if ($eva_gauche) {
 		echo "<th width=$eva_gauche>";
 		echo '<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">';
 		echo "<h3 class='titrem'>Colonne de gauche</h3>";
-		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='sommaire' AND nom_image='gauche'",'','pos_x');
+		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='rubrique' AND nom_image='gauche'",'','pos_x');
 		while ($tab_noisettes=sql_fetch($test_noisettes)) {
 			if ($tab_noisettes['repetition']=='perso') {$eva_nom_du_bloc='Squelette '.$tab_noisettes['nom_div'].'.html';}
 			else {$eva_nom_du_bloc=_T('evahabillage:'.$tab_noisettes['nom_div']);}
@@ -73,7 +73,7 @@ if ($eva_gauche) {
 	echo "<th width=$eva_centre>";
 		echo '<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">';
 		echo "<h3 class='titrem'>Colonne centrale</h3>";
-		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='sommaire' AND nom_image='centre'",'','pos_x ASC');
+		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='rubrique' AND nom_image='centre'",'','pos_x ASC');
 		while ($tab_noisettes=sql_fetch($test_noisettes)) {
 			if ($tab_noisettes['repetition']=='perso') {$eva_nom_du_bloc='Squelette '.$tab_noisettes['nom_div'].'.html';}
 			else {$eva_nom_du_bloc=_T('evahabillage:'.$tab_noisettes['nom_div']);}
@@ -106,7 +106,7 @@ if ($eva_gauche) {
 		echo '<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">';
 		echo "<h3 class='titrem'>Colonne de droite</h3>";
 		if (!$eva_gauche) {$eva_colonne_test='gauche';} else {$eva_colonne_test='droite';}
-		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='sommaire' AND nom_image='$eva_colonne_test'",'','pos_x ASC');
+		$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='rubrique' AND nom_image='$eva_colonne_test'",'','pos_x ASC');
 		while ($tab_noisettes=sql_fetch($test_noisettes)) {
 			if ($tab_noisettes['repetition']=='perso') {$eva_nom_du_bloc='Squelette '.$tab_noisettes['nom_div'].'.html';}
 			else {$eva_nom_du_bloc=_T('evahabillage:'.$tab_noisettes['nom_div']);}
@@ -144,7 +144,7 @@ $texte_eva='<table><tr><th width=489>';
 	$texte_eva.= '</tr>';
 	$test_affichage_eva=false;
 	
-	$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='sommaire'",'','pos_x ASC');
+	$test_noisettes=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND attach='rubrique'",'','pos_x ASC');
 	while ($tab_noisettes=sql_fetch($test_noisettes)) {
 		if ((!$eva_droite) AND ($tab_noisettes['nom_image']=='droite')) {
 			echo '<input type="hidden" name="'.$tab_noisettes['nom_div'].'_nom_bloc'.'" value="'.$tab_noisettes['nom_div'].'">';
@@ -230,16 +230,16 @@ $texte_eva='<table><tr><th width=489>';
 	$texte_eva.= '</div>';
 	if  ($test_affichage_eva) { echo $texte_eva;}
 ?>
-<div style="text-align:center;"><input type="submit" name="bloc_sommaire_valider" value="<:evahabillage:eva_valider:>"></div>
+<div style="text-align:center;"><input type="submit" name="bloc_rubrique_valider" value="<:evahabillage:eva_valider:>"></div>
 </th></tr></table><hr />
 
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
-<h3 class='titrem'>Ins&eacute;rer un squelette personnel de type bloc dans le sommaire ?</h3>
-<:evahabillage:eva_choisir_squelette1_sommaire:><br />&nbsp;<br />
+<h3 class='titrem'>Ins&eacute;rer un squelette personnel de type bloc dans les rubriques ?</h3>
+<:evahabillage:eva_choisir_squelette1_rubrique:><br />&nbsp;<br />
 <:evahabillage:eva_choisir_squelette2:><br />&nbsp;<br />
 <table class="spip"><tr class="row_odd"><th>Nom du squelette</th><th>Dans la colonne</th><th>Ordre</th></tr>
-<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom_sommaire" size="30" /></th>
-<th><select name="eva_mon_bloc_perso_skel_sommaire">
+<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom_rubrique" size="30" /></th>
+<th><select name="eva_mon_bloc_perso_skel_rubrique">
 <?php
 if ($test_3_colonnes) {
 	echo '<option label="position du bloc" value="gauche">gauche</option>
@@ -256,7 +256,7 @@ elseif (!$eva_droite) {
 }
 ?>
 </select></th>
-<th><select name="eva_mon_bloc_perso_pos_x_sommaire">
+<th><select name="eva_mon_bloc_perso_pos_x_rubrique">
 <?php
 for ($i=1;$i<=9;$i++) {
 	echo '<option label="ordre du bloc" value="'.$i.'" >'.$i.'</option>';
@@ -265,7 +265,7 @@ for ($i=1;$i<=9;$i++) {
 </select></th>
 </tr>
 </table>
-<div style="text-align:center;"><input type="submit" name="skel_perso_sommaire" value="Ins&eacute;rer"></div>
+<div style="text-align:center;"><input type="submit" name="skel_perso_rubrique" value="Ins&eacute;rer"></div>
 <br />
 </div>
 
@@ -273,15 +273,15 @@ for ($i=1;$i<=9;$i++) {
 <?php
 	$test_suppr=false;
 	$texte_suppr="<hr /><div class='formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}'>
-	<h3 class='titrem'>Supprimer l'entr&eacute;e d'un squelette personnel dans le sommaire ?</h3>";
-	$texte_suppr.="<select name='eva_suppr_skel_perso_sommaire'>";
-	$supp_skel_perso=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND repetition='perso' AND attach='sommaire'");
+	<h3 class='titrem'>Supprimer l'entr&eacute;e d'un squelette personnel dans les rubriques ?</h3>";
+	$texte_suppr.="<select name='eva_suppr_skel_perso_rubrique'>";
+	$supp_skel_perso=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND repetition='perso' AND attach='rubrique'");
 	while ($tab_supp_skel_perso=sql_fetch($supp_skel_perso)) {
 		$test_suppr=true;
 		$texte_suppr.= '<option value="'.$tab_supp_skel_perso['id'].'">'.$tab_supp_skel_perso['nom_div'].'.html</option>';
 	}
 	$texte_suppr.="</select>";
-	$texte_suppr.= '<div style="text-align:center; margin:5px;"><input type="submit" name ="submit_supprime_skel_perso_sommaire" value="'._T('evahabillage:eva_suppression').'"></div>';
+	$texte_suppr.= '<div style="text-align:center; margin:5px;"><input type="submit" name ="submit_supprime_skel_perso_rubrique" value="'._T('evahabillage:eva_suppression').'"></div>';
 	$texte_suppr.="</div>";
 	if ($test_suppr) echo $texte_suppr;
 ?>
