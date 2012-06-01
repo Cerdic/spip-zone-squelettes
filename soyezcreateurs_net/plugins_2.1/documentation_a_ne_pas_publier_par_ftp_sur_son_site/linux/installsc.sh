@@ -30,6 +30,8 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mediatheque
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/noie
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nospam
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notifications
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/palette/branches/1_3 ./palette
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/photospip/branches/v1 ./photospip
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/changement_langue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/enluminures_typographiques_v3
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout
