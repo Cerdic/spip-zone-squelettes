@@ -22,7 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'fond_menu_on' => "Couleur du secteur courant du menu de navigation :",
 'fond_liste_elements_impairs' => "Couleur de fond des &eacute;l&eacute;ments de listes impairs :",
 'fond_liste_elements_pairs' => "Couleur de fond des &eacute;l&eacute;ments de listes pairs :",
-'texte_police_type' => "<div style='color:#990033;'>Nom de la police de caract&egrave;res g&eacute;n&eacute;rale du site :<br /><div style='text-align:center;'>(Exemple : georgia)</div></div>",
+'texte_police_type' => "<div style='text-align:center;'>Nom de la police de caract&egrave;res g&eacute;n&eacute;rale du site :<br />(Exemple : georgia)</div>",
 'texte_principal' => "<div style='color:#990033;'>Couleur du texte principal du site :</div>",
 'texte_liste_paire' => "<div style='color:#990033;'>Couleur du texte des listes paires :</div>",
 'texte_liste_impaire' => "<div style='color:#990033;'>Couleur du texte des listes impaires :</div>",
