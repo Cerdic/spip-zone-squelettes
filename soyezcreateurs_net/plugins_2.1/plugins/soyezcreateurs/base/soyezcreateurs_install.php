@@ -319,14 +319,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 3.0.7", "soyezcreateurs_install");
 			include_spip('inc/autoriser');
 			sql_update('spip_auteurs',array('webmestre'=>"'oui'"),sql_in("id_auteur",defined('_ID_WEBMESTRES')?explode(':',_ID_WEBMESTRES):(autoriser('configurer')?array($GLOBALS['visiteur_session']['id_auteur']):array(0)))); // le webmestre est celui qui fait l'upgrade si rien de defini
-			// Activer les lames du CouteauSuisse Special SoyezCreateurs (enlève la lame Webmestre)
-			$f = chercher_filtre('info_plugin');
-			if ($f('couteau_suisse', 'est_actif')) {
-				include_spip('base/cout_install');
-				cout_install_pack('SoyezCreateurs');
-				include_spip('inc/getdocument');
-				effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
-			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.7','non');
 		}
 		
@@ -444,6 +436,19 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.21','non');
 		}
+		if (version_compare($current_version,'3.0.22','<')) {
+			spip_log("SoyezCreateurs maj 3.0.22", "soyezcreateurs_install");
+			// Activer les lames du CouteauSuisse Special SoyezCreateurs (enlève la lame Webmestre et Ancre_Douces)
+			$f = chercher_filtre('info_plugin');
+			if ($f('couteau_suisse', 'est_actif')) {
+				include_spip('base/cout_install');
+				cout_install_pack('SoyezCreateurs');
+				include_spip('inc/getdocument');
+				effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
+			}
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');
+		}
+		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
