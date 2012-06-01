@@ -168,7 +168,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'eva_etape4_restaurer' => "Restaurer vos param&egrave;tres d'habillage pr&eacute;c&eacute;demment sauvegard&eacute;es :",
 'eva_etape4_supprimer' => "Supprimer une sauvegarde ?",
 'eva_etape4_sauvegarder' => "Pour sauvegarder ou mettre &agrave; jour une ancienne sauvegarde de vos param&egrave;tres d'habillage, indiquer ici le nom de cette sauvegarde (ne pas utiliser le nom <strong>Defaut</strong>) : ",
-'eva_choix_palette' => "La palette ci-dessous vous servira &agrave; choisir vos couleurs. Cliquez sur une couleur pour voir sa valeur, puis  copiez/collez cette valeurs dans l'un des champ ci-dessus.",
+'eva_choix_palette' => "<p>La palette ci-dessous vous servira &agrave; choisir vos couleurs. Cliquez sur une couleur pour voir sa valeur, puis  copiez cette valeurs que vous pourrez utiliser dans un autre formulaire.</p>
+<p>Vous pouvez aussi utiliser le plugin <em>Palette</em> qui vous proposera une palette directement dans les champs de saisie des couleurs d'EVA-web.</p>",
 'eva_etape3_liste_images_definies' => "Vos images de fond d&eacute;j&agrave; d&eacute;finies :",
 'eva_etape3_liste_puces_definies' => "Vos puces de liste d&eacute;j&agrave; d&eacute;finies :",
 'eva_etape5_detail' => "Vous pouvez ins&eacute;rer vos propres propri&eacute;t&eacute;s et attribus CSS pour votre site en les &eacute;crivant ci-dessous sans modifier les feuilles de style.<br />Exemple : <strong>#page {padding:20px;}</strong>",

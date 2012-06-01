@@ -1,8 +1,6 @@
 <?php
-function eva_habillage_choix_couleur() { ?>
-<hr />
-<?php echo _T('evahabillage:EVA_choix_palette'); ?>
-<br />
+function eva_habillage_choix_couleur() {
+echo _T('evahabillage:eva_choix_palette'); ?>
 <form name=colorform>
 <map name="colmap">
 <area shape="rect" coords="1,1,7,10" href="javascript:showColor('#00FF00')">
