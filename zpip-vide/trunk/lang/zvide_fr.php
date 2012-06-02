@@ -1,12 +1,14 @@
 <?php
-
-// Sécurité
-if (!defined("_ECRIRE_INC_VERSION")) return;
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/zpip-vide/trunk/lang/
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	
+	// C
 	'configurer_zvide' => 'En-tête et pied de page',
+
+	// D
 	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Contenu</i>.',
 	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Extra</i>.',
 	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Navigation</i>.',
@@ -30,14 +32,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page_rubrique' => 'Page par défaut pour les rubriques.',
 	'description_page_site' => 'Page par défaut pour les sites web référencés.',
 	'description_pagedefaut' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.',
+
+	// E
 	'explication_liens_add' => 'Vous pouvez saisir ici un ou plusieurs liens additionnels à mettre dans le pieds de page. Si vous ajoutez plusieurs liens, pensez à les séparer avec un |. Vous pouvez utiliser les raccourcis SPIP. Par exemple : <code>[Contact->12] | [Mentions légales->art13]</code>',
 	'explication_masquer_connexion' => 'Masquer les liens permettant de se connecter / se déconnecter ?',
-	'explication_masquer_logo' => 'Masquer le logo du site ? (Note : certains thèmes peuvent prévoir de le masquer en CSS.)',
 	'explication_masquer_logo' => 'Masquer le logo du site ?',
 	'explication_masquer_plan' => 'Masquer le lien d\'accès au plan du site ?',
 	'explication_masquer_rss' => 'Masquer le lien pointant sur le flux RSS du site ?',
 	'explication_masquer_slogan' => 'Masquer le slogan du site ?',
 	'explication_menu_lang' => 'Cette option n\'affecte que les sites multilingues.<br />L\'option <em>Défaut</em> reproduit le fonction de Zpip-dist : un formulaire de choix de langue est affiché sur toutes les pages. Lorsqu\'une langue est sélectionnée par l\'utilisateur, la page est rechargée en lui passant un paramètre <code>lang</code>. Ce fonctionnement est adapté aux sites utilisant les blocs multilingues (<code><multi></code>) dans les objets éditoriaux et ayant définit la variable globale <code>forcer_lang</code> à <code>true</code>.<br />L\'option <em>Page d\'accueil seulement</em> affichera le formulaire de sélection de langue uniquement sur la page d\'accueil.<br />L\'option <em>Retour à la page d\'accueil</em> affichera le formulaire sur toutes les pages, mais le choix d\'une langue entraînera le retour à la page d\'accueil dans la langue choisie.<br />Enfin, l\'option <em>Liens de traduction</em> correspond aux sites utilisant des liens de traduction entre articles. Le formulaire de choix de la langue ne sera affiché que sur les pages ne correspondant pas à un objet éditorial (accueil, plan du site, etc.). Sur les pages des articles, le formulaire sera affiché si des traductions sont disponibles et pointera sur ces traductions. Le fonctionnement sera équivalent sur les pages des rubriques si le plugin <em>trad_rub</em> est installé.',
+
+	// L
 	'label_choix_menu_lang_defaut' => 'Défaut',
 	'label_choix_menu_lang_liens_trad' => 'Liens de traduction',
 	'label_choix_menu_lang_masquer' => 'Masquer sur toutes les pages',
@@ -52,6 +57,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_menu_lang' => 'Menu de langues',
 	'label_options_en_tete' => 'Options de l\'en-tête de page',
 	'label_options_pied' => 'Options du pied de page',
+
+	// N
 	'nom_bloc_post_contenu' => 'Post-Contenu',
 	'nom_bloc_post_extra' => 'Post-Extra',
 	'nom_bloc_post_navigation' => 'Post-Navigation',
@@ -76,8 +83,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page_rubrique' => 'Rubrique',
 	'nom_page_site' => 'Site référencé',
 	'nom_pagedefaut' => 'Page par défaut',
-	'zvide' => 'Zpip-vide',
-	
+
+	// Z
+	'zvide' => 'Zpip-vide'
 );
 
 ?>
