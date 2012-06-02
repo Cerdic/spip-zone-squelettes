@@ -1,0 +1,46 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><center><:evahabillage:logos_taille_def:></em></center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+<?php
+	$test_logo1l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_mini_logo'");
+    $tab_logo1l=sql_fetch($test_logo1l);
+    $logo1l=$tab_logo1l['nom_image'];
+    $test_logo1h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_mini_logo'");
+    $tab_logo1h=sql_fetch($test_logo1h);
+    $logo1h=$tab_logo1h['nom_image'];
+    $test_logo2l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_petit_logo'");
+    $tab_logo2l=sql_fetch($test_logo2l);
+    $logo2l=$tab_logo2l['nom_image'];
+    $test_logo2h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_petit_logo'");
+    $tab_logo2h=sql_fetch($test_logo2h);
+    $logo2h=$tab_logo2h['nom_image'];
+	$test_logo3l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_logo_moyen'");
+    $tab_logo3l=sql_fetch($test_logo3l);
+    $logo3l=$tab_logo3l['nom_image'];
+    $test_logo3h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_logo_moyen'");
+    $tab_logo3h=sql_fetch($test_logo3h);
+    $logo3h=$tab_logo3h['nom_image'];
+?>
+<:evahabillage:logos_taille_detail:><br />&nbsp;<br />
+<table align="center" class="spip">
+<tr align="center" class="row_even">
+<td style="text-align:center;"><b>Type de logo</b></td><td style="text-align:center;"><b>Largeur maximale</b></td><td style="text-align:center;"><b>Hauteur maximale</b></td></tr>
+<tr style="text-align:center;" class="row_odd">
+<td style="text-align:center;">Mini logos</td><td style="text-align:center;"><center><input type="text" name="largeur_mini_logo" value="<?php echo $logo1l;?>" size="10"></center></td><td style="text-align:center;"><center><input type="text" name="hauteur_mini_logo" value="<?php echo $logo1h;?>" size="10"></center></td></tr>
+<tr style="text-align:center;" class="row_even">
+<td style="text-align:center;">Petits logos</td><td style="text-align:center;"><center><input type="text" name="largeur_petit_logo" value="<?php echo $logo2l;?>" size="10"></center></td><td style="text-align:center;"><center><input type="text" name="hauteur_petit_logo" value="<?php echo $logo2h;?>" size="10"></center></td></tr>
+<tr style="text-align:center;" class="row_odd">
+<td style="text-align:center;">Logos moyens</td><td style="text-align:center;"><center><input type="text" name="largeur_logo_moyen" value="<?php echo $logo3l;?>" size="10"></center></td><td style="text-align:center;"><center><input type="text" name="hauteur_logo_moyen" value="<?php echo $logo3h;?>" size="10"></center></td></tr> 
+</table>
+<div style="text-align:center;">
+<input type="submit" name="test_logotaille" value="<:evahabillage:eva_valider:>" />
+</div><br />
+</form>
+</div>

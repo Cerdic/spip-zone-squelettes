@@ -1,0 +1,19 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><center><:evahabillage:logos_taille_image_article_titre:></em></center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+<?php
+$test_image_article=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_image_article'");
+$tab_image_article=sql_fetch($test_image_article);
+$image_article=$tab_image_article['nom_image'];
+?>
+<:evahabillage:logos_taille_image_article:>
+<p style="text-align:center;"><input type="text" name="largeur_image_article" value="<?php echo $image_article;?>" size="10"></p>
+<div style="text-align:center;"><input type="submit" name="test_taille_images" value="<:evahabillage:eva_valider:>" /></div><br />
+</form>
+</div>
