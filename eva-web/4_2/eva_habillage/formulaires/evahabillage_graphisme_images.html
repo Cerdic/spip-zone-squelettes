@@ -1,0 +1,159 @@
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{image_pinceaux.png}" class="cadre-icone" /><center><:evahabillage:eva_etape3:></em></center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<:evahabillage:eva_etape3_pour_secteur:>
+<div style="text-align:center;"><select name="secteur_image">
+<?php
+include_spip("inc/eva_habillage_definition_themes");
+$def_div = EVA_div_images();
+foreach ($def_div as $cle => $val) {
+	if (strpos($cle,'image_')!==FALSE) {echo '<option value="'.$cle.'">'._T('evahabillage:'.$cle).'</option>';}
+}
+?>
+</select></div><br />
+<:evahabillage:eva_etape3_pos_x:>
+
+<div style="text-align:center;">
+<:evahabillage:eva_gauche:>
+<input type="radio" name="pos_x" value="left" checked />&nbsp;&nbsp;
+<:evahabillage:eva_centre:>
+<input type="radio" name="pos_x" value="center" />&nbsp;&nbsp;
+<:evahabillage:eva_droite:>
+<input type="radio" name="pos_x" value="right" /></div>
+<input type="radio" name="pos_x" value=4 />
+<:evahabillage:eva_etape3_pos_choix:>
+<br /><div style="text-align:center;"><input type="text" name="position_x" /></div>
+<div style="text-align:center;">
+<:evahabillage:eva_etape3_repeat_x:>
+<:evahabillage:eva_non:>
+<input type="radio" name="repeat_x" value=0 checked />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<:evahabillage:eva_oui:>
+<input type="radio" name="repeat_x" value=1 /></div><br />&nbsp;<br />
+<:evahabillage:eva_etape3_pos_y:>
+<div style="text-align:center;">
+<:evahabillage:EVA_haut:>
+<input type="radio" name="pos_y" value="top" checked />&nbsp;&nbsp;
+<:evahabillage:eva_centre:>
+<input type="radio" name="pos_y" value="center" />&nbsp;&nbsp;
+<:evahabillage:eva_bas:>
+<input type="radio" name="pos_y" value="bottom" /></div>
+<input type="radio" name="pos_y" value=4 />
+<:evahabillage:eva_etape3_pos_choix:>
+<br /><div style="text-align:center;"><input type="text" name="position_y" /></div>
+<div style="text-align:center;">
+<:evahabillage:eva_etape3_repeat_y:><:evahabillage:eva_non:>
+<input type="radio" name="repeat_y" value=0 checked />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<:evahabillage:eva_oui:>
+<input type="radio" name="repeat_y" value=2 /></div><br />&nbsp;<br />
+<div style="text-align:center;">
+<:evahabillage:eva_etape3_attach:>
+<:evahabillage:eva_normal:>
+<input type="radio" name="attach" value="scroll" checked/>&nbsp;&nbsp;&nbsp;&nbsp;
+<:evahabillage:eva_fixe:>
+<input type="radio" name="attach" value="fixed" /></div><br />&nbsp;<br />
+<div style="text-align:center;">
+<:evahabillage:eva_etape3_choix_image:>
+<strong>#EVAL{_DIR_IMG}eva_habillage</strong>, ou utilisez le formulaire de chargement ci-dessous pour &eacute;viter le chargement par FTP<br />
+<select name="nom_image">
+<?php
+$dir = opendir(_DIR_PLUGIN_EVA_HABILLAGE."mon_image");
+while ($nom_fichier = readdir($dir)) {
+    if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+		echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+	}
+}
+closedir($dir);
+$dir = opendir(_DIR_IMG."eva_habillage");
+while ($nom_fichier = readdir($dir)) {
+	if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+	echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+	}
+}
+closedir($dir);
+?>
+</select><br />&nbsp;<br />
+<input type="submit" name="submit_image_choix" value="<:evahabillage:eva_valider:>"></div><br />
+</div>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{image_pinceaux.png}" class="cadre-icone" /><center>Chargement d'images</em></center></h3>
+<center>L'image sera t&eacute;l&eacute;charg&eacute;e dans le r&eacute;pertoire <strong>#EVAL{_DIR_IMG}eva_habillage</strong><br />
+<span style='text-decoration:underline;'><strong>Attention :</strong></span>
+si une image portant le m&ecirc;me nom est d&eacute;j&agrave; pr&eacute;sente dans ce r&eacute;pertoire, elle sera alors &eacute;cras&eacute;e.
+<br />&nbsp;<br />
+<input type="file" name="image_eva_habillage_envoi" /><br />&nbsp;<br /><input type="submit" name="submit_chargement_image" value="Envoyer" />
+</center><br />
+</div>
+
+<?php
+$texte='<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">';
+$texte.='<h3 class="titrem"><img src="#CHEMIN_IMAGE{image_pinceaux.png}" class="cadre-icone" /><center>'._T('evahabillage:eva_etape3_liste_images_definies').'</em></center></h3>';
+$recup_exist_image = sql_select('id , nom_div , nom_image','spip_eva_habillage_images',"type = 'image' AND nom_habillage = 'Defaut'");
+$test_exist_image = sql_select('id','spip_eva_habillage_images',"type = 'image' AND nom_habillage = 'Defaut' LIMIT 1");
+$tab_test_exist_image = sql_fetch($test_exist_image);
+$couleur_table=1;
+$test=false;
+if ($tab_test_exist_image!='') {
+	$test=true;
+	$texte.='<br /><table align="center" class="spip">';
+	$texte.='<tr align="center" ';
+	if (($couleur_table%2)==0) {$texte.='class="row_even"';} else {$texte.='class="row_odd"';}
+	$couleur_table++;
+	$texte.='>';
+	$texte.='<td align="center"><div style="text-decoration:underline;">Secteur</div></td><td align="center"><div style="text-decoration:underline;">Image</div></td><td align="center"><div style="text-decoration:underline;">Supprimer ?</div></td></tr>';
+	while ($tab_exist_image = sql_fetch($recup_exist_image)) {
+		$texte.='<tr align="center" ';
+		if (($couleur_table%2)==0) {$texte.='class="row_even"';} else {$texte.='class="row_odd"';}
+		$couleur_table++;
+		$texte.='><td align="center">'._T('evahabillage:'.$tab_exist_image['nom_div']).'&nbsp;&nbsp;</td><td align="center"><strong>'.$tab_exist_image['nom_image'].'</strong></td><td align="center">';
+		$texte.='<input type="submit" name="submit_supprime_image_'.$tab_exist_image['id'].'" value="'._T('evahabillage:eva_supprimer').'" /></td></tr>';
+	}
+	$texte.='</table>';
+}
+$texte.='</div>';
+if ($test) {echo $texte;}
+?>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{image_pinceaux.png}" class="cadre-icone" /><center><:evahabillage:eva_etape3_liste_puce:></em></center></h3>
+<p><:evahabillage:eva_etape3_liste_puce_explication:></p>
+<div style="text-align:center;">
+<select name="nom_puce">
+<?php
+$dir = opendir(_DIR_PLUGIN_EVA_HABILLAGE."mon_image");
+while ($nom_fichier = readdir($dir)) {
+	if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+        echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+	}
+}
+closedir($dir);
+$dir = opendir(_DIR_IMG."eva_habillage");
+while ($nom_fichier = readdir($dir)) {
+	if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+		echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+	}
+}
+closedir($dir);
+?>
+</select><br />&nbsp;<br /><input type="submit" name="submit_choix_puce" value="<:evahabillage:eva_valider:>"></div><br />
+<?php
+$test_puce=sql_select('nom_image','spip_eva_habillage_images',"type='puce_spip' AND nom_habillage='Defaut'");
+$tab_puce=sql_fetch($test_puce);
+$puce=$tab_puce['nom_image'];
+if ($puce) {
+    echo '<hr /><p style="text-decoration:underline;">'._T('evahabillage:eva_etape3_definition_puce').'</p>';
+    echo "<p>La puce actuelle est <img src='"._DIR_IMG."eva_habillage/".$puce."' /></p>";
+    echo '<p>La supprimer et revenir aux puces g&eacute;n&eacute;r&eacute;es par SPIP ?&nbsp;&nbsp;&nbsp;&nbsp; 
+	<input type="submit" name="submit_supprime_puce" value="'._T('evahabillage:eva_supprimer').'" /></p>';
+}
+?>
+</div>
+</form>
