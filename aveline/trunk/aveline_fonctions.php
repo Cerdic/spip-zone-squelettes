@@ -92,7 +92,10 @@ function balise_AVELINE_COMPTEUR_ARTICLES_dist($p) {
 // Critère archives pour afficher uniquement les objets d'une date donnée, par exemple en passant à l'URL ?archives=2010-02
 // Repris du plugin minical
 // Adapté pour gérer les évènements en cours
-function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
+
+// Fourni par calendrier_mini
+
+/* function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 	$boucle = &$boucles[$idb];
 	if ($boucle->id_table == 'evenements') {
 		$boucle->where[] =
@@ -116,7 +119,7 @@ function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 		}
 	}
 }
-
+ */
 // Tester si le critère archives est de la forme AAAA, AAAA-MM ou AAAA-MM-JJ
 function archives_debut($date) {
 	if (!$date or $date=='tout')
