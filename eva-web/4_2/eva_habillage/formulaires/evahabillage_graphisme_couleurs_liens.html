@@ -1,0 +1,43 @@
+<?php
+	include_spip("inc/eva_habillage_definition_themes");
+	$mon_theme=eva_habillage_definition_themes ();
+	$resultat_themes_defini = sql_select('*','spip_eva_habillage_themes',"nom='Defaut'");
+	$tableau_themes_defini = sql_fetch($resultat_themes_defini);
+?>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><img src="#CHEMIN_IMAGE{palette.png}" class="cadre-icone" /><center><:evahabillage:lien_:></em></center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+<table align="center" class="spip">
+<?php
+$couleur_table=1;
+foreach($mon_theme as $habillage_cles => $habillage_inutile) {
+	if (strpos($habillage_cles,'lien_')!==FALSE) {
+		echo '<tr align="center" ';
+		if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
+		$couleur_table++;
+		echo '><td align="center">';
+		if ((strpos($mon_habillage,'droite')!=FALSE) AND ($habillage_cles=='taille_largeur_menu')) {echo _T('evahabillage:taille_largeur_menudroite');}
+		elseif ((strpos($mon_habillage,'droite')!=FALSE) AND ($habillage_cles=='taille_largeur_menudroite')) {echo _T('evahabillage:taille_largeur_menu');}
+		else {echo _T('evahabillage:'.$habillage_cles);}
+		echo '</td><td align="center">'.'<input ';
+		if ((strpos($habillage_cles,'bordure_style')===FALSE)
+			AND (strpos($habillage_cles,'bordure_largeur')===FALSE)
+			AND (strpos($habillage_cles,'taille_')===FALSE)
+			AND (strpos($habillage_cles,'admin_deplacement')===FALSE)
+			){echo 'class="palette" ';}
+		echo 'type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="25"></td></tr>';
+	}
+}
+?>
+</table>
+<div style="text-align:center;"><input type="submit" name="eva_choix_liens" value="<:evahabillage:eva_valider:>"></div><br />
+</form>
+</div>
