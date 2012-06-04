@@ -5,6 +5,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_evahabillage' => 'Habillages d\'EVA-web',
-	'bouton_evahabillage_new' => 'Habillages d\'EVA-web (nouveau)',
+	'bouton_evahabillage_new' => 'Habillages d\'EVA-web',
 );
 ?>
