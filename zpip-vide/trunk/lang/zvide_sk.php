@@ -17,14 +17,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_bloc_pre_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Contenu</i>.', # NEW
 	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Extra</i>.', # NEW
 	'description_bloc_pre_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Navigation</i>.', # NEW
-	'description_page-401' => 'Cette page est affichée lorsqu\'un visiteur demande à voir une page pour laquelle il n\'est pas autorisé.', # NEW
-	'description_page-404' => 'Cette page est affichée lorsqu\'un visiteur demande à voir une page qui n\'existe pas ou plus.', # NEW
-	'description_page-agenda' => 'Page destinée à présenter les évènements / l\'agenda de votre site.', # NEW
-	'description_page-forum' => 'Cette page est appelée lorsqu\'un visiteur souhaiter poster un message dans un forum.', # NEW
+	'description_page-401' => 'Táto stránka sa zobrazí, ak chce návštevník zobraziť takú stránku, na ktorej zobrazenie nemá dostatočné povolenia.',
+	'description_page-404' => 'Táto stránka sa zobrazí, ak chce návštevník zobraziť stránku, ktorá neexistuje.',
+	'description_page-agenda' => 'Stránka určená na zobrazenie udalostí/kalendára udalostí pre vašu stránku.',
+	'description_page-forum' => 'Táto stránka je vyvolaná, keď chce návštevník poslať príspevok do diskusného fóra.',
 	'description_page-login' => 'Cette page est nécessaire pour se connecter à l\'espace privé. Par sécurité, si la noisette <i>Formulaire d\'identification</i> spécifique à cette page n\'est pas insérée dans le bloc <i>Contenu</i>, elle y sera insérée d\'office.', # NEW
-	'description_page-plan' => 'Cette page est appelée pour afficher le plan du site.', # NEW
-	'description_page-recherche' => 'Cette page est affichée lorsqu\'une recherche est effectuée sur le site.', # NEW
-	'description_page-spip_pass' => 'Cette page est affichée lorsqu\'un visiteur a oublié son mot de passe et souhaite en changer.', # NEW
+	'description_page-plan' => 'Táto stránka sa vyvolá na zobrazenie mapy stránky.',
+	'description_page-recherche' => 'Táto stránka sa zobrazí pri vyhľadávaní.',
+	'description_page-spip_pass' => 'Táto stránka sa zobrazuje, keď návštevník zabudol svoje heslo a chce si ho zmeniť.',
 	'description_page_article' => 'Predvolená stránka pre články.',
 	'description_page_auteur' => 'Predvolená stránka pre autorov.',
 	'description_page_breve' => 'Predvolená stránka pre novinky.',
@@ -33,7 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page_mot' => 'Predvolená stránka pre kľúčové slová.',
 	'description_page_rubrique' => 'Predvolená stránka pre rubriky.',
 	'description_page_site' => 'Predvolená stránka pre webové stránky, na ktoré odkazujete.',
-	'description_pagedefaut' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.', # NEW
+	'description_pagedefaut' => 'Bloky tejto stránky budú pridané na všetky stránky tohto webu.',
 
 	// E
 	'explication_liens_add' => 'Vous pouvez saisir ici un ou plusieurs liens additionnels à mettre dans le pieds de page. Si vous ajoutez plusieurs liens, pensez à les séparer avec un |. Vous pouvez utiliser les raccourcis SPIP. Par exemple : <code>[Contact->12] | [Mentions légales->art13]</code>', # NEW
@@ -45,7 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_menu_lang' => 'Cette option n\'affecte que les sites multilingues.<br />L\'option <em>Défaut</em> reproduit le fonction de Zpip-dist : un formulaire de choix de langue est affiché sur toutes les pages. Lorsqu\'une langue est sélectionnée par l\'utilisateur, la page est rechargée en lui passant un paramètre <code>lang</code>. Ce fonctionnement est adapté aux sites utilisant les blocs multilingues (<code><multi></code>) dans les objets éditoriaux et ayant définit la variable globale <code>forcer_lang</code> à <code>true</code>.<br />L\'option <em>Page d\'accueil seulement</em> affichera le formulaire de sélection de langue uniquement sur la page d\'accueil.<br />L\'option <em>Retour à la page d\'accueil</em> affichera le formulaire sur toutes les pages, mais le choix d\'une langue entraînera le retour à la page d\'accueil dans la langue choisie.<br />Enfin, l\'option <em>Liens de traduction</em> correspond aux sites utilisant des liens de traduction entre articles. Le formulaire de choix de la langue ne sera affiché que sur les pages ne correspondant pas à un objet éditorial (accueil, plan du site, etc.). Sur les pages des articles, le formulaire sera affiché si des traductions sont disponibles et pointera sur ces traductions. Le fonctionnement sera équivalent sur les pages des rubriques si le plugin <em>trad_rub</em> est installé.', # NEW
 
 	// L
-	'label_choix_menu_lang_defaut' => 'Défaut', # NEW
+	'label_choix_menu_lang_defaut' => 'Predvolený',
 	'label_choix_menu_lang_liens_trad' => 'Odkazy na preklad',
 	'label_choix_menu_lang_masquer' => 'Schovať všetky stránky',
 	'label_choix_menu_lang_retour_sommaire' => 'Vrátiť sa na úvodnú stránku',
