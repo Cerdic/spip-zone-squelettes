@@ -115,7 +115,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lire_suite' => 'Read more ...',
 // M
 'menu' => 'On the menu',
+'mentions' => 'Legal notices',
 'message_non' => '(no message for the moment)',
+'meteo_titre_conditions' => 'Weather conditions in',
 'mots_clefs' => 'The keywords',
 'mots_clefs_associes' => 'Associated  keywords',
 // P
@@ -162,6 +164,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_espace_redacteurs' => 'The private space for writers and administrators',
 'title_haut_page' => 'Go back to the top of the page',
 'title_escal' => 'Link to the official site of Escal',
+'title_mentions' => 'Legal notices of the site',
 'title_w3c' => 'Valid XHTML 1.0 Strict site',
 'top_articles' => 'Most popular articles',
 'total_visites' => 'Total number of visits:',
@@ -169,6 +172,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // V
 'visiteur' => 'visitor',
 'visiteurs' => 'visitors',
+'votre_nom' => 'Your name ?',
 'vu' => 'seen',
 // W
 'webmestre' => 'Webmaster',

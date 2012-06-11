@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" >
+
+  <head>
+    <title>[(#NOM_SITE_SPIP|textebrut)] - <:escal:mentions:></title>
+    [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut)" />]
+
+[(#REM) feuille de style pour le bloc a_la_une ]
+      <link href="#CHEMIN{styles/alaune.css}" rel="stylesheet" type="text/css" />
+    <INCLURE {fond=inclusions/inc-head}>
+
+[(#REM) javascript pour les articles a la une ]
+<script src="#CHEMIN{scripts/onglets.js}" type="text/javaScript"></script>
+<script src="#CHEMIN{scripts/jquery.tabs.pack.js}" type="text/javaScript"></script>
+<script type="text/javascript">
+	   	$(document).ready(function(){
+	    // La une
+	    $('.laune').tabs({
+	        fxSlide: true,
+	        fxFade: true,
+	        fxSpeed: 'slow'
+	        });
+	});
+</script>
+  </head>
+
+<body onload="setHover('menu')" id="top">
+
+<noscript>
+<p class="alerte"><:escal:alerte_javascript:></p>
+</noscript>
+
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{env}>]
+          </div>
+
+          <div id="espace">
+          <!-- affichage de la version simplifiee du bloc d'identification par defaut ou si selectionnee dans la page de configuration -->
+            [(#CONFIG{escal/config/idlight}|non)<INCLURE {fond=inclusions/inc-identification_light}{lang}>]
+            [(#CONFIG{escal/config/idlight}|=={oui}|oui)<INCLURE {fond=inclusions/inc-identification_light}{lang}>]
+
+          <!-- affichage du bouton d'accès au forum si une rubrique a la mot-cle "forum" -->
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
+            </BOUCLE_forum>
+
+          <!-- affichage du formulaire de recherche et du menu de langue-->
+            #FORMULAIRE_RECHERCHE
+            <INCLURE {fond=inclusions/inc-menu_langues}>
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+<div id="mentions">
+[(#SET{proprietaire,#CONFIG{spip_proprietaire}})]
+	[(#TEXTES_LEGAUX{proprietaire_mentions_legales})]
+
+[(#GET*{proprietaire}|table_valeur{hebergeur_idem}|=={''}|oui)
+	[(#TEXTES_LEGAUX{hebergeur_mentions_legales})]
+]
+
+[(#GET*{proprietaire}|table_valeur{hebergeur_idem}|=={''}|non)
+	<:texteslegaux:hebergeur_mentions_legales_idem{nom_site=#NOM_SITE_SPIP,url_site=#URL_SITE_SPIP}|propre:>
+]
+
+[(#GET*{proprietaire}|table_valeur{createur_idem}|=={''}|oui)
+	[(#TEXTES_LEGAUX{createur_mentions_legales})]
+]
+
+[(#GET*{proprietaire}|table_valeur{createur_idem}|=={''}|non)
+	<:texteslegaux:createur_mentions_legales_idem{nom_site=#NOM_SITE_SPIP,url_site=#URL_SITE_SPIP}|propre:>
+]
+
+	[(#TEXTES_LEGAUX{mentions_legales_fonctionnement})]
+
+	[(#TEXTES_LEGAUX{mentions_legales_copyright})]
+
+</div>
+
+              
+            </div>
+          </div>
+
+          <div id="navigation">
+          
+          <!-- affichage du menu vertical par defaut ou si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/menuV1}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+            [(#CONFIG{escal/config/menuV1}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{lang}></div>]
+
+          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
+            [(#CONFIG{escal/config/accesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>]
+            [(#CONFIG{escal/config/accesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{lang}></div>]
+
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{lang}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

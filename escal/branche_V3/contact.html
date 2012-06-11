@@ -139,6 +139,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Niveau="",$Message="
 
 	$nom_site = entites_html($GLOBALS['meta']["nom_site"]);
 	$email_webmaster = entites_html($GLOBALS['meta']["email_webmaster"]);
+	
 if(!isset($_POST["Nom"])) {
 	formulaire();
 }
@@ -149,7 +150,7 @@ else {
 	$vEmail=trim(utf8_decode($_POST["Email"]));
 	$vSujet=trim(utf8_decode($_POST["Sujet"]));
 	$vAntispam=trim(htmlentities($_POST["Antispam"]));
-	$destinataire=$email_webmaster;
+  $destinataire="[(#CONFIG{escal/config/destinataire,#VAL{$email_webmaster}})]";
 	$titre="<:escal:page_contact2|html2unicode|unicode2charset:> $nom_site";
 	$message="<:escal:envoi_mail_provenance:> " . $_SERVER['HTTP_REFERER'] . "\n";
 	$message.="<:escal:envoi_mail_ip:> " . $_SERVER['REMOTE_ADDR'] . "\n";
@@ -164,17 +165,19 @@ else {
 		echo "<p class='alerte'><:escal:contact_alerte_prenom:></p>";
 		$erreur=1;
 	}
+	
 if (lire_config('escal/config/contactmail', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_e_mail:> $vEmail\n\n";
 	if (empty($vEmail)) {
 		echo "<p class='alerte'><:escal:contact_alerte_mail1:></p>";
 		$erreur=1;
-	}
-	}
+	  }
 	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
 		echo "<p class='alerte'><:escal:contact_alerte_mail2:></p>";
 		$erreur=1;
-	}
+	  }
+  }
+  
 if (lire_config('escal/config/radio', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_motif:> $vSujet\n\n";
 	if (empty($vSujet)) {
@@ -210,16 +213,34 @@ if (lire_config('escal/config/radio', 'oui') == 'oui') {
 //
 // on renvoie un message de confirmation
 //
+
+    if (empty($vEmail)) {
+    echo '<p class="texte-retour1">
+    <:escal:contact_retour_bonjour:> <span class="valeur1">  '. $vPrenom=utf8_encode(nl2br($vPrenom)) .' '. $vNom=utf8_encode(nl2br($vNom)) .'</span>.<br />
+    <:escal:contact_retour_commentaire1:>
+		</p>';
+    }
+    else{
 		echo '<p class="texte-retour1">
 		<:escal:contact_retour_bonjour:> <span class="valeur1">  '. $vPrenom=utf8_encode(nl2br($vPrenom)) .' '. $vNom=utf8_encode(nl2br($vNom)) .'</span>.<br />
-		<:escal:contact_retour_commentaire:>
+    <:escal:contact_retour_commentaire1:>
+    <:escal:contact_retour_commentaire2:>
 		<span class="valeur1"> '. $vEmail .'</span>
-		 </p>';
+    </p>';
+    }
+
+		 
+    if (!empty($vSujet)) {
 		echo '<p class="texte-retour2"><:escal:contact_motif:></p>';
 		echo '<p class="valeur2">'. $vSujet=utf8_encode(nl2br($vSujet)) .'</p>';
+		}
+		
+		if (!empty($_POST['Niveau'])) {
 		echo '<p class="texte-retour2"><:escal:contact_retour_checkbox:></p>';
 		for ($i=0; $i<count($_POST["Niveau"]); $i++)
 		echo '<p class="valeur2">'. $_POST["Niveau"][$i].'</p>';
+		}
+		
 		echo '<p class="texte-retour2"><:escal:contact_message:></p>';
 
 		echo '<p class="valeur3">'. $vMessage=utf8_encode(nl2br($vMessage)) .'</p>';

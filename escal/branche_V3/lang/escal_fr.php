@@ -67,8 +67,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_checkbox' => 'Vous n\'avez pas pr&eacute;cis&eacute; votre niveau.',
 'contact_alerte_message' => 'Vous n\'avez pas compos&eacute; de message ! Distrait(e) ?',
 'contact_retour_bonjour' => 'Bonjour, ',
-'contact_retour_commentaire' => 'Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site
-                              qui vous r&eacute;pondra d&egrave;s que possible &agrave; cette adresse :',
+'contact_retour_commentaire1' => 'Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site',
+'contact_retour_commentaire2' => 'qui vous r&eacute;pondra d&egrave;s que possible &agrave; cette adresse :',
 'contact_retour_checkbox' => 'Votre niveau :',
 'contenu_site' => 'Ce site contient : ',
 // D
@@ -117,7 +117,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lire_suite' => 'Lire la suite ...',
 // M
 'menu' => 'Au menu',
+'mentions' => 'Mentions l&eacute;gales',
 'message_non' => '(pas de message pour le moment)',
+'meteo_titre_conditions' => 'Conditions m&eacute;t&eacute;o &agrave;',
 'mots_clefs' => 'Les mots-cl&eacute;s',
 'mots_clefs_associes' => 'Mots-cl&eacute;s associ&eacute;s',
 // P
@@ -165,6 +167,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_espace_redacteurs' => 'L\'espace priv&eacute; des auteurs et administrateurs',
 'title_haut_page' => 'Remonter en haut de la page',
 'title_escal' => 'Lien vers le site officiel d\'Escal',
+'title_mentions' => 'Mentions l&eacute;gales du site',
 'title_w3c' => 'Site valide XHTML 1.0 Strict',
 'top_articles' => 'Articles les plus vus',
 'total_visites' => 'Nombre total de visites : ',
@@ -172,6 +175,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // V
 'visiteur' => 'visiteur',
 'visiteurs' => 'visiteurs',
+'votre_nom' => 'Votre nom ?',
 'vu' => 'vu',
 // W
 'webmestre' => 'Webmestre',

@@ -115,7 +115,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lire_suite' => 'Sigue ...',
 // M
 'menu' => 'Al men&uacute;',
+'mentions' => 'Menciones legales',
 'message_non' => '(ning&uacute;n mensaje por el momento)',
+'meteo_titre_conditions' => 'Condiciones meteorol&oacute;gicas a',
 'mots_clefs' => 'Las palabras clave',
 'mots_clefs_associes' => 'Palabras clave asociadas',
 // P
@@ -163,6 +165,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_espace_redacteurs' => 'El espacio privado de los autores y administradores',
 'title_haut_page' => 'Subir a lo alto de la p&aacute;gina',
 'title_escal' => 'Lazo hacia el sitio oficial de Escal',
+'title_mentions' => 'Menciones legales del sitio',
 'title_w3c' => 'Sitio v&aacute;lido XHTML 1.0 Strict',
 'top_articles' => 'Art&iacute;culos m&aacute;s le&iacute;dos',
 'total_visites' => 'N&uacute;mero total de visitas: ',
@@ -170,6 +173,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // V
 'visiteur' => 'visitante',
 'visiteurs' => 'visitantes',
+'votre_nom' => '&#380; Su nombre?',
 'vu' => 'visto',
 // W
 'webmestre' => 'Webmestre',

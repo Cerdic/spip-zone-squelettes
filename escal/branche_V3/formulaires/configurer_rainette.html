@@ -1,0 +1,57 @@
+<!-- Rainette -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configrainette.png}|balise_img{'',cadre-icone})]Rainette</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    <ul>
+            #SET{name,rainette}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <label for="#GET{name}">Activer la noisette Rainette ?</label>
+                    <div class="explication">Si vous avez activ&eacute; le
+                                              <a href="http://www.spip-contrib.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
+                                              vous pouvez faire apparaitre la noisette d&eacute;di&eacute;e dans votre page d'accueil. </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_nav" value="nav"
+                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_nav"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_extra" value="extra"
+                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_extra"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>
+
+            </li>
+            #SET{name,togglerainette}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Déplier / Replier la noisette ?</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui">oui</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non">non</label>
+                    </span></div>
+             </li>
+    </ul>
+        <ul>
+            #SET{name,ville}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <label for="#GET{name}">Pour quelle ville ?</label>
+                    <div class="explication">Entrez ici le code de la ville qui vous int&eacute;resse.<br />Ce code est &agrave; rechercher sur le web avec une adresse de type<br />http://xoap.weather.com/search/search?where=paris </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                            <input type="text" name="#GET{name}"  value="#ENV{ville}" />
+                    </div>
+            </li>
+    </ul>
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+    </div>
+    </form>
+    </div>
+    
