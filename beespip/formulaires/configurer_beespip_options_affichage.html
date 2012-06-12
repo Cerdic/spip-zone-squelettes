@@ -1,0 +1,95 @@
+<div class="formulaire_spip formulaire_cfg formulaire_#FORM">
+
+<h3 class='titrem'>[(#CHEMIN{prive/themes/spip/images/beespip_config-24.png}|image_reduire{24}|inserer_attribut{class,cadre-icone}|inserer_attribut{alt,''})] Configuration de Beespip</h3>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+<div>
+#ACTION_FORMULAIRE{#ENV{action}}
+
+	<fieldset><legend><img src="[(#CHEMIN{prive/themes/spip/images/entete.png})]" style="margin-bottom:-8px;" /> <:beespip:beespip_gestion_entete:></legend>
+	<strong>Nom du site</strong><br />Afficher le nom et le slogan du site<br />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{nom_site}}
+	<label for="beespip_nom_site_oui"><input type="radio" name="nom_site" id="beespip_nom_site_oui" value="oui"[ checked="(#ENV{nom_site,oui}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_nom_site_non"><input type="radio" name="nom_site" id="beespip_nom_site_non" value="non"[ checked="(#ENV{nom_site,oui}|=={non}|?{checked})"]><:beespip:beespip_non:></label>
+	<p />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{hauteur_entete}}
+	<label for="beespip_hauteur_entete"><strong>Hauteur de l'entête</strong><br />Fixer la hauteur en pixel de l'entête.<br />Cette valeur ne peut pas être inférieure à 55.<br />La valeur par défaut est de 275.<br />
+	Hauteur en px</label>
+	<input type="text" name="hauteur_entete" id="beespip_hauteur_entete" value="#ENV{hauteur_entete,275}" size="7" class="fondl"  />
+	<p />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{hauteur_menu}}
+	<label for="beespip_hauteur_menu"><strong>Position du menu</strong><br />Fixer la position en pixel du menu.<br />Le menu ayant une hauteur de 45px, cette valeur doit tenir compte de la hauteur de l'entête définie ci-dessus.<br />La valeur par défaut est de 5.<br />
+	Hauteur en px</label>
+	<input type="text" name="hauteur_menu" id="beespip_hauteur_menu" value="#ENV{hauteur_menu,5}" size="7" class="fondl"  />
+	<p />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{nb_items_menu}}
+	<label for="beespip_nb_items_menu"><strong>Nombre d'éléments dans le menu</strong><br />Définir le nombre d'entrées visibles dans le menu.<br />Cette valeur est utilisée pour le menu par défaut, qui est constitué des rubriques racines triées par numéro de titre (ou par titre). De plus, si le nombre d'items définis via le plugin "Menu" est inférieur à ce nombre, il sera alors complété par les rubriques racines, suivant la méthode décrite précédemment.<br />La valeur par défaut est de 5.<br /></label>
+	<input type="text" name="nb_items_menu" id="beespip_nb_items_menu" value="#ENV{nb_items_menu,5}" size="7" class="fondl"  />
+	<p />
+	[(#PLUGIN{menus}|oui)#SET{erreurs,#ENV**{erreurs}|table_valeur{menu_debut}}
+	<strong>Complément du menu</strong><br />Si le nombre d'&eacute;l&eacute;ments d&eacute;finis par le plugin "Menu"
+	est inf&eacute;rieur &agrave; la valeur d&eacute;finie ci-dessus, pr&eacute;cisez ou se positionneront les rubriques racines compl&eacute;mentaires.<br />
+	<label for="beespip_menu_debut_oui"><input type="radio" name="menu_debut" id="beespip_menu_debut_oui" value="oui"[ checked="(#ENV{menu_debut,oui}|=={oui}|?{checked})"]>Avant les &eacute;l&eacute;ments du plugin "Menu"</label><br />
+	<label for="beespip_menu_debut_non"><input type="radio" name="menu_debut" id="beespip_menu_debut_non" value="non"[ checked="(#ENV{menu_debut,oui}|=={non}|?{checked})"]>Apr&egrave;s les &eacute;l&eacute;ments du plugin "Menu"</label>
+	<p />]
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{largeur_items_menu}}
+	<label for="beespip_largeur_items_menu"><strong>Largeur du bloc des items de premier niveau</strong><br />La valeur 0 permet d'avoir une largeur automatique<br />
+	Largeur en px</label>
+	<input type="text" name="largeur_items_menu" id="beespip_largeur_items_menu" value="#ENV{largeur_items_menu,0}" size="7" class="fondl"  />
+	<p />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{taille_typo_menu}}
+	<label for="beespip_taille_typo_menu"><strong>Taille des items de premier niveau</strong><br />Définir la taille de la police du menu.<br />La valeur par défaut est de 1.1.<br />
+	Taille en em</label>
+	<input type="text" name="taille_typo_menu" id="beespip_taille_typo_menu" value="#ENV{taille_typo_menu,1.1}" size="7" class="fondl"  />
+
+</fieldset>
+<p />
+<fieldset><legend><strong><:beespip:beespip_emplacement_recherche:></strong></legend>
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{emplacement_recherche}}
+	<label for="beespip_emplacement_recherche_haut"><input type="radio" name="emplacement_recherche" id="beespip_emplacement_recherche_haut" value="haut"[ checked="(#ENV{emplacement_recherche,haut}|=={haut}|?{checked})"]>Dans le menu horizontal</label><br />
+	<label for="beespip_emplacement_recherche_bas"><input type="radio" name="emplacement_recherche" id="beespip_emplacement_recherche_bas" value="bas"[ checked="(#ENV{emplacement_recherche,haut}|=={bas}|?{checked})"]>Au niveau du "fil d'ariane"</label></fieldset>
+<p />
+<fieldset><legend><strong>Afficher les textes "articles" et "sous-rubriques" dans les pages de rubrique.</strong></legend>
+#SET{erreurs,#ENV**{erreurs}|table_valeur{libelle_rubrique_article}}
+	<label for="beespip_libelle_rubrique_article_oui"><input type="radio" name="libelle_rubrique_article" id="beespip_libelle_rubrique_article_oui" value="oui"[ checked="(#ENV{libelle_rubrique_article,oui}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_libelle_rubrique_article_non"><input type="radio" name="libelle_rubrique_article" id="beespip_libelle_rubrique_article_non" value="non"[ checked="(#ENV{libelle_rubrique_article,oui}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+<p />
+<fieldset><legend><strong>Modèle de pagination</strong></legend>
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{modele_pagination}}
+	<label for="beespip_modele_pagination_defaut"><input type="radio" name="modele_pagination" id="beespip_modele_pagination_defaut" value=""[ checked="(#ENV{modele_pagination,''}|=={''}|?{checked})"]>Par défaut.<br />Affiche le nombre d'article sous la forme  0 | 10 | 20 | 30 | 40 | ...</label><br />
+	<label for="beespip_modele_pagination_precedent_suivant"><input type="radio" name="modele_pagination" id="beespip_modele_pagination_precedent_suivant" value="precedent_suivant"[ checked="(#ENV{modele_pagination,''}|=={precedent_suivant}|?{checked})"]>Précédent suivant.<br />Affiche les liens sous la forme page précédente | page suivante</label><br />
+	<label for="beespip_modele_pagination_page"><input type="radio" name="modele_pagination" id="beespip_modele_pagination_page" value="page"[ checked="(#ENV{modele_pagination,''}|=={page}|?{checked})"]>Page.<br />Affiche le nombre de page sous la forme 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | ...</label><br />
+	<label for="beespip_modele_pagination_page_precedent_suivant"><input type="radio" name="modele_pagination" id="beespip_modele_pagination_page_precedent_suivant" value="page_precedent_suivant"[ checked="(#ENV{modele_pagination,''}|=={page_precedent_suivant}|?{checked})"]>Page avec précédent suivant.<br />Affiche le nombre de page sous la forme &lt; 1 | 2 | 3 | 4 | 5 | 6 &gt;</label></fieldset>
+<p />
+<fieldset><legend><strong><:beespip:beespip_dates:></strong></legend>
+	<:beespip:beespip_dates_articles:><br />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{dates_articles}}
+	<label for="beespip_dates_articles_oui"><input type="radio" name="dates_articles" id="beespip_dates_articles_oui" value="oui"[ checked="(#ENV{dates_articles,oui}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_dates_articles_non"><input type="radio" name="dates_articles" id="beespip_dates_articles_non" value="non"[ checked="(#ENV{dates_articles,oui}|=={non}|?{checked})"]><:beespip:beespip_non:></label><br />
+	<:beespip:beespip_dates_breves:><br />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{dates_breves}}
+	<label for="beespip_dates_breves_oui"><input type="radio" name="dates_breves" id="beespip_dates_breves_oui" value="oui"[ checked="(#ENV{dates_breves,oui}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_dates_breves_non"><input type="radio" name="dates_breves" id="beespip_dates_breves_non" value="non"[ checked="(#ENV{dates_breves,oui}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+<p />
+<fieldset><legend><strong><:beespip:beespip_auteurs_articles:></strong></legend>
+	<label for="beespip_auteurs_articles_oui"><input type="radio" name="auteurs_articles" id="beespip_auteurs_articles_oui" value="oui"[ checked="(#ENV{auteurs_articles,oui}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_auteurs_articles_non"><input type="radio" name="auteurs_articles" id="beespip_auteurs_articles_non" value="non"[ checked="(#ENV{auteurs_articles,oui}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+<p />
+<fieldset><legend><strong><:beespip:beespip_derniere_date_publication:></strong></legend>
+	<:beespip:beespip_derniere_date_publication_descr:><br />
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{derniere_date_publication}}
+	<label for="beespip_derniere_date_publication_oui"><input type="radio" name="derniere_date_publication" id="beespip_derniere_date_publication_oui" value="oui"[ checked="(#ENV{derniere_date_publication,non}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+	<label for="beespip_derniere_date_publication_non"><input type="radio" name="derniere_date_publication" id="beespip_derniere_date_publication_non" value="non"[ checked="(#ENV{derniere_date_publication,non}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+
+	<input type="hidden" name="_meta_casier" value="BeeSpip/affichage" />
+	<p class="boutons">
+		<input type="submit" name="_cfg_ok" value="<:bouton_enregistrer:>" class="submit" />
+	</p>
+</div>
+</form>
+</div>
+
+

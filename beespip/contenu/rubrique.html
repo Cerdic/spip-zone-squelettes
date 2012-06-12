@@ -1,0 +1,64 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+<div id="contenu" class="grid_12">
+	<div class="cartouche">
+		[(#LOGO_RUBRIQUE||image_reduire{200,200}|inserer_attribut{class,float-right})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)[<p class="post-info"><:dernier_ajout:> | <abbr class="date" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>]]
+	</div>
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div><div class="clear">&nbsp;</div>]
+
+	[(#REM) Gestion du portfolio et des documents ]
+	[(#INCLURE{fond=inclure/documents}{id_rubrique})]	
+
+	<INCLURE{fond=inclure/articles_liste,id_rubrique,lang,doublons}{tri=date}{ordre=1}{ajax}{largeur=680}>
+
+		[(#REM) Affiche un plan de la rubrique ]
+		<B_sous_rubriques>
+		<div class="menu rubriques">
+			[(#CONFIG{BeeSpip/affichage/libelle_rubrique_article}|=={'oui'}|oui)<h2><:sous_rubriques:></h2>]
+			<ul class="menu-liste">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}{doublons}>
+				<li class="menu-entree">
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>[<br />(#INTRODUCTION|PtoBR)]
+
+					[(#REM) Une boucle recursive pour le mini plan]
+					<B_miniplan>
+					<ul class="menu-liste">
+						<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}{doublons}>
+						<li class="menu-entree">
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>[<br />(#DESCRIPTIF|PtoBR)]
+							<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+						</li>
+						</BOUCLE_miniplan>
+					</ul>
+					</B_miniplan>
+
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</div>
+		</B_sous_rubriques>
+
+
+	[(#REM) Proposer un site ]
+	#FORMULAIRE_SITE
+
+	[<div class="notes"><h4><:info_notes:></h4>(#NOTES)</div>]
+</div>
+
+<div id="colonne" class="grid_4">
+	<INCLURE{fond=extra/#ENV{type},env}{doublons}>
+</div>
+</BOUCLE_contenu_rubrique>

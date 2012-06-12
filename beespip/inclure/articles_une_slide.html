@@ -1,0 +1,19 @@
+<BOUCLE_articles_rubrique(ARTICLES){id_rubrique?}{id_article?}{id_mot?}{id_auteur?}{par #ENV{tri,titre}}{inverse #ENV{ordre,0}}{lang}{doublons}>
+	<li><a href="#URL_ARTICLE"[ title="(#TITRE|attribut_html)"]>
+	#SET{img,#ENV{nb_articles_une_encours}|modulo{5}}
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide'}|oui)
+		[(#LOGO_ARTICLE||image_reduire{680,0}|image_recadre{682,432,center}|inserer_attribut{alt,#TITRE|attribut_html})]
+		[(#LOGO_ARTICLE|=={''}|oui)<img src="#CHEMIN{images/article_une#GET{img}.png}" style="height:432px;width:682px;" alt="[(#TITRE|attribut_html)]" />]
+	][(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)
+		[(#LOGO_ARTICLE||image_reduire{440,0}|image_recadre{442,302,center}|inserer_attribut{alt,#TITRE|attribut_html})]
+		[(#LOGO_ARTICLE|=={''}|oui)<img src="#CHEMIN{images/article_une#GET{img}.png}" style="height:302px;width:442px;" alt="[(#TITRE|attribut_html)]" />]
+	]</a>
+	<div class="accroche">
+	<h2 id="bouton_actu#ENV{nb_articles_une_encours}" style="display:none;">[(#TITRE|attribut_html)]</h2><h2><a href="#URL_ARTICLE"[ title="(#TITRE|attribut_html)"]>[(#TITRE|texte_backend)]</a></h2>
+	[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article}{affichage=court})]
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide'}|oui)
+		<p><a href="#URL_ARTICLE"[ title="(#TITRE|attribut_html)"]>[(#INTRODUCTION|supprimer_tags|texte_backend)]</a></p>
+	][(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)
+		<p><a href="#URL_ARTICLE"[ title="(#TITRE|attribut_html)"]>[(#INTRODUCTION|supprimer_tags|texte_backend|couper{280})]</a></p>
+	]</div></li>
+</BOUCLE_articles_rubrique>

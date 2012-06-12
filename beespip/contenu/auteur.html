@@ -1,0 +1,46 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}>
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</p>
+<div id="contenu_presentation" class="grid_16">
+
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[(#LOGO_AUTEUR||image_reduire{200,200}|inserer_attribut{class,float-left})]
+			<h1 class="h1 #EDIT{qui} fn">#NOM</h1>
+		</div>
+
+		[<div class="#EDIT{bio} texte note">(#BIO)</div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div>[(#REM) / vcard]
+</div>
+<div id="contenu" class="grid_8">
+
+	[(#REM) Articles de l'auteur ]
+	<INCLURE{fond=inclure/articles_liste,id_auteur,lang,doublons}{tri=date}{ordre=1}{ajax}>
+
+[<div class="notes"><h4><:info_notes:></h4>(#NOTES)</div>]
+</div>
+
+<div id="colonne" class="grid_8 ajax">
+#FORMULAIRE_ECRIRE_AUTEUR
+
+<INCLURE{fond=extra/#ENV{type},env}{ajax}{doublons}>
+	
+</div>
+</BOUCLE_contenu_auteur>

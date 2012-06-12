@@ -1,0 +1,28 @@
+		<div id="pied-bottom">
+			[(#REM) on teste si le menu "pied" du plugin "Menu" existe
+					Sinon on appelle le menu par défaut]
+			<BOUCLE_menu(MENUS?){identifiant=pied}>
+				#INCLURE{fond=inclure/menu, env, identifiant=pied}
+			</BOUCLE_menu>
+			<ul class="bottom-left menu-liste">
+				<li><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><:beespip:accueil:></a></li>
+				[(#ENV{intranet}|=={'oui'}|non)<li>| <a href='#URL_PAGE{backend}' title="<:beespip:consulter_syndic:>"><:beespip:syndic:></a></li>]
+				<li>| <a href="#URL_PAGE{plan}" title="<:plan_site:>"><:plan_site:></a></li>
+				<li>| <a href="#URL_SITE_SPIP/ecrire/" title="<:beespip:espace_prive:>"><:beespip:espace_prive:></a></li>
+				[(#SESSION{id_auteur}|oui)
+				<li>| <a href='#URL_LOGOUT' title="<:beespip:se_deconnecter:>"><:beespip:se_deconnecter:></a></li>
+				]
+				[(#SESSION{id_auteur}|non)
+				<li>| 
+				<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"	rel="nofollow" target="_blank" onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,contenu})]');return false;}" title="<:beespip:se_connecter:>"><:beespip:se_connecter:></a></li>
+				]
+			</ul>
+			<//B_menu>
+
+			<p class="bottom-right" >
+				<a href="http://www.spip.net/fr" onclick="window.open(this.href); return false;" title="<:site_realise_avec_spip:>">SPIP #SPIP_VERSION</a> |
+				<a href="http://www.beespip.org" onclick="window.open(this.href); return false;" title="<:beespip:squelette_beespip:>"><:beespip:squelette_beespip:> <:beespip:version:>[(#VAL{beespip}|beespip_info_version)]
+</a>
+			</p>
+			<BOUCLE_maj(RUBRIQUES){age>=0}{!par date}{0,1}>[(#CONFIG{BeeSpip/affichage/derniere_date_publication}|=={'oui'}|oui)<div class="pieddate"><:beespip:mis_a_jour:> [(#DATE|nom_jour)] [(#DATE|affdate)]</div>]</BOUCLE_maj>
+		</div>

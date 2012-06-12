@@ -1,0 +1,32 @@
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+<div class="liste documents documents_portfolio">
+	<h4><:info_portfolio:></h4>
+	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{vu=non}>[
+	<a href="(#URL_DOCUMENT)"
+		 type="#MIME_TYPE"
+		 rel="documents_portfolio[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)]"
+	[ title="(#TITRE|attribut_html|couper{80})"]>[(#FICHIER
+		|image_reduire{200,100}
+		|inserer_attribut{class,spip_logos}
+		|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]</a>
+	]</BOUCLE_documents_portfolio>
+</div>
+</B_documents_portfolio>
+
+
+[(#REM)
+	Liste des autres documents joints
+]
+<B_documents_joints>
+	<div class="liste documents documents_joints">
+	<h4><:beespip:titre_documents_joints:></h4>
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[
+		<div class="item grid_4[(#ENV{compteur}|=={1}|oui) alpha][(#COMPTEUR_BOUCLE|modulo{#ENV{compteur,3}}|=={1}|oui) alpha][(#COMPTEUR_BOUCLE|modulo{#ENV{compteur,3}}|=={0}|oui) omega]">[(#LOGO_DOCUMENT|#URL_DOCUMENT||image_reduire{200,100})<br />]
+			<strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
+			<br /><span class="small">(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</span>
+			#DESCRIPTIF
+		]</div>[(#COMPTEUR_BOUCLE|modulo{#ENV{compteur,3}}|=={0}|oui)<div class="clear">&nbsp;</div>]
+		</BOUCLE_documents_joints>
+	</div><div class="clear">&nbsp;</div>
+</B_documents_joints>

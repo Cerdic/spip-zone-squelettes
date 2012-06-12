@@ -1,0 +1,102 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+<div id="contenu" class="grid_12">
+	<div class="cartouche">
+		[(#LOGO_RUBRIQUE||image_reduire{200,200}|inserer_attribut{class,float-right})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)[<p class="post-info"><:dernier_ajout:> | <abbr class="date" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>]]
+	</div>
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div><div class="clear">&nbsp;</div>]
+
+	[(#REM) Gestion du portfolio et des documents ]
+	[(#INCLURE{fond=inclure/documents}{id_rubrique})]	
+
+
+	[(#REM) Compte et affiche le nombre total d'articles de la rubrique]
+	<B_compte_sites>
+	<BOUCLE_compte_sites(SITES){id_rubrique}>
+	</BOUCLE_compte_sites>
+	<p><:beespip:elle_contient:> #TOTAL_BOUCLE <:beespip:sites_references:>.</p>
+	</B_compte_sites>
+
+
+	<B_groupes_mots_tri>
+	<BOUCLE_groupes_mots_tri(GROUPES_MOTS) {id_groupe}{titre==^~~}><p><:beespip:presentation_des:>
+	[(#REM) Compte et affiche le nombre total d'articles de la sélection]
+	<BOUCLE_compte_sites2(SITES){id_groupe}{id_rubrique}>
+	</BOUCLE_compte_sites2><span class="texterub">#TOTAL_BOUCLE</span></B_compte_sites2> <:beespip:sites_par:> <span class="texterub">[(#TITRE|replace{~~}|replace{'&nbsp;'})]</span>.</p>
+	</BOUCLE_groupes_mots_tri>
+
+		<BOUCLE_mots_tri(MOTS){id_groupe}{par titre}{" <p /> "}>
+		<h2><a href="[(#SELF|parametre_url{id_mot|id_groupe,''}|parametre_url{id_mot,#ID_MOT})]" title="[(#DESCRIPTIF|sinon{#TITRE}|textebrut|attribut_html)]">#TITRE</a></h2>
+		<BOUCLE_sites_mots4(SITES) {par nom_site}{id_mot}{id_rubrique}{" <p />&nbsp;<br /> "}>
+		<div style="font-weight:bold;">#PUCE <a href="#URL_SITE" [title="(#DESCRIPTIF|textebrut|attribut_html)"] class="spip_out">#NOM_SITE</a></div>
+		<BOUCLE_mots4(MOTS){type==^~~} {id_syndic} {par titre}{" - "}>
+		<a href="[(#SELF|parametre_url{id_mot|id_groupe,''}|parametre_url{id_mot,#ID_MOT})]" [title="(#DESCRIPTIF|sinon{#TITRE}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+		</BOUCLE_mots4>
+		[<div style="text-align:justify;">(#DESCRIPTIF)</div>]
+		</BOUCLE_sites_mots4>
+		</BOUCLE_mots_tri>
+	</B_groupes_mots_tri>
+
+		<B_principale1>
+			<BOUCLE_detail_mot(MOTS) {id_mot}{0,1}><p><:beespip:selection_des:>
+			[(#REM)  Compte et affiche le nombre total d'articles de la sélection ]
+			<B_compte_sites_detail_mot><BOUCLE_compte_sites_detail_mot(SITES){id_mot}{id_rubrique}>
+			</BOUCLE_compte_sites_detail_mot><span class="texterub">#TOTAL_BOUCLE</span></B_compte_sites_detail_mot> <:beespip:sites_associes:> <strong>[(#TYPE|replace{~~}|replace{'&nbsp;'})] / <span class="texterub">[(#TITRE|supprimer_numero)]</span></strong>.</p></BOUCLE_detail_mot>
+			</B_detail_mot>
+			<p><:beespip:liste_sites_par:> <span class="texterub"><:beespip:ordre_alphabetique:></span>.</p>
+			<//B_detail_mot>
+		<div class="cleaner">&nbsp;</div>
+
+		[(#REM) Colonne gauche ]
+		<div class="grid_6 alpha">
+		<BOUCLE_principale1(SITES) {id_mot?}{par nom_site}{id_rubrique}{1/2}{" <p />&nbsp;<br /> "}>
+		<div style="font-weight:bold;">#PUCE <a href="#URL_SITE" [title="(#DESCRIPTIF|sinon{#TITRE}|textebrut|attribut_html)"] class="spip_out">#NOM_SITE</a></div>
+		<BOUCLE_sites_mots(MOTS) {type==^~~}{id_syndic} {par titre}{" - "}>
+		<a href="[(#SELF|parametre_url{id_mot|id_groupe,''}|parametre_url{id_mot,#ID_MOT})]" [title="(#DESCRIPTIF|sinon{#TITRE}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+		</BOUCLE_sites_mots>
+		[<div style="text-align:justify;">(#DESCRIPTIF)</div>]
+		</BOUCLE_principale1>
+		</div>
+
+		[(#REM) Colonne de droite ]
+		<div class="grid_6 omega">
+		<BOUCLE_principale2(SITES) {id_mot?}{par nom_site}{id_rubrique}{2/2}{" <p />&nbsp;<br /> "}>
+		<div style="font-weight:bold;">#PUCE <a href="#URL_SITE" [title="(#DESCRIPTIF|textebrut|attribut_html)"] class="spip_out">#NOM_SITE</a></div>
+		<BOUCLE_sites_mots2(MOTS) {type==^~~} {id_syndic} {par titre}{" - "}>
+		<a href="[(#SELF|parametre_url{id_mot|id_groupe,''}|parametre_url{id_mot,#ID_MOT})]" [title="(#DESCRIPTIF|sinon{#TITRE}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+		</BOUCLE_sites_mots2>
+		[<div style="text-align:justify;">(#DESCRIPTIF)</div>]
+		</BOUCLE_principale2>
+		</div>
+		</B_principale1>
+
+		<//B_principale1>
+
+	<//B_groupes_mots_tri>
+
+	<div class="clear">&nbsp;</div>
+
+
+	[(#REM) Proposer un site ]
+	#FORMULAIRE_SITE
+
+	[<div class="notes"><h4><:info_notes:></h4>(#NOTES)</div>]
+</div>
+
+<div id="colonne" class="grid_4">
+	<INCLURE{fond=extra/#ENV{type},env}{doublons}>
+</div>
+</BOUCLE_contenu_rubrique>

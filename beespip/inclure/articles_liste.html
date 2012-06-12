@@ -1,0 +1,17 @@
+<B_articles_rubrique>
+[(#ENV{bloc}|=={pagination}|non)#ANCRE_PAGINATION
+[(#CONFIG{BeeSpip/affichage/libelle_rubrique_article}|=={'oui'}|oui)<h2><:articles:></h2>]]
+<BOUCLE_articles_rubrique(ARTICLES){id_rubrique?}{id_article?}{id_mot?}{id_auteur?}{par #ENV{tri,titre}}{inverse #ENV{ordre,0}}{lang}{doublons}{pagination #ENV{nbpages,5}}>
+	[(#ENV{bloc}|=={sommaire}|?{<h2 class="sommaire">,<h3>})]<a href="#URL_ARTICLE" title="[(#INTRODUCTION|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a>[(#ENV{bloc}|=={sommaire}|?{</h2>,</h3>})]
+	[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article})]
+	<p>[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{120,120}|inserer_attribut{class,float-left})][(#INTRODUCTION|PtoBR|image_reduire{#ENV{largeur,200},0})]</p>
+	<p class="info-publi">		
+	<a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]" class="lire_la_suite">Lire la suite</a>
+	<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />	[(#TOTAL_BOUCLE|oui)
+		| <a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]&nbsp;([(#TOTAL_BOUCLE)])</a>
+		]
+	<//B_nb_commentaires>
+	</p>
+</BOUCLE_articles_rubrique>
+[(#ENV{bloc}|=={pagination}|non)[<div class="pagination">(#PAGINATION{#CONFIG{BeeSpip/affichage/modele_pagination}})</div>]]
+</B_articles_rubrique>

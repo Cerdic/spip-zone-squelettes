@@ -1,0 +1,60 @@
+<div class="formulaire_spip formulaire_cfg formulaire_#FORM">
+
+<h3 class='titrem'>[(#CHEMIN{prive/themes/spip/images/beespip_config-24.png}|image_reduire{24}|inserer_attribut{class,cadre-icone}|inserer_attribut{alt,''})] Configuration de Beespip</h3>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+<div>
+#ACTION_FORMULAIRE{#ENV{action}}
+
+	
+	<fieldset><legend><img src="[(#CHEMIN{prive/themes/spip/images/page_accueil.png})]" style="margin-bottom:-8px;" /> <strong><:beespip:beespip_choix_page_accueil:></strong></legend>
+			#SET{erreurs,#ENV**{erreurs}|table_valeur{page_accueil}}
+			<label for="beespip_accueil"><input type="radio" name="page_accueil" id="beespip_accueil" value="accueil"[ checked="(#ENV{page_accueil,accueil}|=={accueil}|?{checked})"]>2 colonnes avec des articles en Une.</label><br />
+			<label for="beespip_accueil_slide"><input type="radio" name="page_accueil" id="beespip_accueil_slide" value="slide"[ checked="(#ENV{page_accueil,accueil}|=={slide}|?{checked})"]>2 colonnes avec des articles en "slide" en Une.</label><br />
+			<label for="beespip_accueil_slide2"><input type="radio" name="page_accueil" id="beespip_accueil_slide2" value="slide2"[ checked="(#ENV{page_accueil,accueil}|=={slide2}|?{checked})"]>3 colonnes avec des articles en "slide" en Une.</label></fieldset>
+	<p />
+	[(#PLUGIN{agenda}|oui)<fieldset><legend><strong><:beespip:beespip_calendrier_public:></strong></legend>
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{calendrier_public}}
+		<label for="beespip_calendrier_public_oui"><input type="radio" name="calendrier_public" id="beespip_calendrier_public_oui" value="oui"[ checked="(#ENV{calendrier_public,non}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+		<label for="beespip_calendrier_public_non"><input type="radio" name="calendrier_public" id="beespip_calendrier_public_non" value="non"[ checked="(#ENV{calendrier_public,non}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+	<p />]
+	<fieldset><legend><strong>Option de la page d'accueil</strong></legend>
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{nb_article_une}}
+		<label for="beespip_nb_article_une">Nombre d'articles en "Une"</label><br />
+		<input type="text" name="nb_article_une" id="beespip_nb_article_une" value="#ENV{nb_article_une,6}" size="7" class="fondl" />
+		<br style="margin-bottom:15px;" />
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{nb_ligne_sousune}}
+		<label for="beespip_nb_ligne_sousune">Nombre de ligne d'articles en "Sous une". Une ligne contenant 3 articles, il vous faudra pr&eacute;voir un multiple de 3 lors de l'affectation des mots cl&eacute;s.</label><br />
+		<input type="text" name="nb_ligne_sousune" id="beespip_nb_ligne_sousune" value="#ENV{nb_ligne_sousune,1}" size="7" class="fondl" />
+		<br style="margin-bottom:15px;" />
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{nb_article_col_droite}}
+		<label for="beespip_nb_article_col_droite">Nombre d'articles dans la colonne de droite</label><br />
+		<input type="text" name="nb_article_col_droite" id="beespip_nb_article_col_droite" value="#ENV{nb_article_col_droite,2}" size="7" class="fondl" />
+
+		[(#PLUGIN{agenda}|oui)[(#CONFIG{BeeSpip/configuration/calendrier_public}|=={'oui'}|oui)
+		<br style="margin-bottom:15px;" />
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{nb_evenement_accueil}}
+		<label for="beespip_nb_evenement_accueil">Nombre d'événements à afficher</label><br />
+		<input type="text" name="nb_evenement_accueil" id="beespip_nb_evenement_accueil" value="#ENV{nb_evenement_accueil,5}" size="7" class="fondl" />
+		]]
+		<br style="margin-bottom:15px;" />
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{autres_articles}}
+		Afficher les autres articles en bas de page<br />
+		<label for="beespip_autres_articles_oui"><input type="radio" name="autres_articles" id="beespip_autres_articles_oui" value="oui"[ checked="(#ENV{autres_articles,non}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+		<label for="beespip_autres_articles_non"><input type="radio" name="autres_articles" id="beespip_autres_articles_non" value="non"[ checked="(#ENV{autres_articles,non}|=={non}|?{checked})"]><:beespip:beespip_non:></label>
+		<br style="margin-bottom:15px;" />
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{articles_populaires}}
+		Afficher les articles les plus consultés<br />
+		<label for="beespip_articles_populaires_oui"><input type="radio" name="articles_populaires" id="beespip_articles_populaires_oui" value="oui"[ checked="(#ENV{articles_populaires,non}|=={oui}|?{checked})"]><:beespip:beespip_oui:></label>
+		<label for="beespip_articles_populaires_non"><input type="radio" name="articles_populaires" id="beespip_articles_populaires_non" value="non"[ checked="(#ENV{articles_populaires,non}|=={non}|?{checked})"]><:beespip:beespip_non:></label></fieldset>
+	</fieldset>
+	<input type="hidden" name="_meta_casier" value="BeeSpip/configuration" />
+	<p class="boutons">
+		<input type="submit" name="_cfg_ok" value="<:bouton_enregistrer:>" class="submit" />
+	</p>
+</div>
+</form>
+</div>

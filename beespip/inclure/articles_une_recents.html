@@ -1,0 +1,25 @@
+[(#REM) On exclu les articles affichés en colonne de droite]<BOUCLE_article_colonne_droite(ARTICLES){titre_mot=actualites_colonne_droite}{!par date}{lang}{doublons}{0,#CONFIG{BeeSpip/configuration/nb_article_col_droite}}>
+</BOUCLE_article_colonne_droite>
+<BOUCLE_article_colonne_droite_sansmotscles(ARTICLES){!par date}{lang}{doublons}{0,#CONFIG{BeeSpip/configuration/nb_article_col_droite}}>
+</BOUCLE_article_colonne_droite_sansmotscles><//B_article_colonne_droite>
+#SET{affiche_article,#ARRAY}
+<B_articles>
+#ANCRE_PAGINATION
+#SET{compteur_boucle,0}
+<div class="grid_6 alpha filet_droit"><BOUCLE_articles(ARTICLES){!par date}{doublons}{pagination 10}{lang}>
+	#SET{affiche_article, #GET{affiche_article}|push{#ID_ARTICLE}}</BOUCLE_articles>
+
+	<B_calcul_articles>
+	[(#REM) Si le nombre d'articles de la rubrique est inférieur à 10, on calcule la valeur pour répartir les articles en 2 colonnes]
+		#SET{rupture,#TOTAL_BOUCLE|div{2}|ceil}
+		#SET{col2,#GET{rupture}|plus{1}}
+	<BOUCLE_calcul_articles(ARTICLES){!par date}{id_article IN #GET{affiche_article}}{lang}> </BOUCLE_calcul_articles>
+
+	<BOUCLE_lesarticles(ARTICLES) {!par date}{id_article IN #GET{affiche_article}}{lang}>#SET{compteur_boucle,#GET{compteur_boucle}|plus{1}}
+	[(#GET{compteur_boucle}|=={#GET{col2}}|oui)</div><div class="grid_6 omega">]
+	<h5 class="recents"><a href="#URL_ARTICLE"[ title="(#TITRE|texte_backend)"]>[(#TITRE|texte_backend)]</a></h5>
+	[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article}{affichage=court})]
+	</BOUCLE_lesarticles>
+	<div class="clear">&nbsp;</div>[<div class="pagination">(#PAGINATION{#CONFIG{BeeSpip/affichage/modele_pagination}})</div>]
+</div>
+</B_articles>

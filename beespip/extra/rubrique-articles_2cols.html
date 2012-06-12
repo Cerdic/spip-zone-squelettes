@@ -1,0 +1,70 @@
+<BOUCLE_extra_rubrique(RUBRIQUES){id_rubrique}>
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}>
+		<BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}>
+	</BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+	#SET{premiere_colonne,oui}[(#REM) Menu de navigation mots-cles ]
+	<B_mots>
+	<div class="grid_4[(#GET{premiere_colonne}|=={oui}|oui) alpha#SET{premiere_colonne,non}]">
+	<div class="liste mots liste_bloc_bandeau">
+		<h4><:mots_clefs:></h4>
+		<ul class="liste-items">
+			<BOUCLE_mots(MOTS) {id_rubrique} {par titre}{type!==^[~]}>
+			<li class="item"><a href="#URL_MOT" rel="tag" title="[(#TITRE|attribut_html)]">#TITRE</a></li>
+			</BOUCLE_mots>
+		</ul>
+	</div>
+	</div>
+	</B_mots>
+			
+	[(#REM) Breves du secteur ]
+	<B_breves>
+	<div class="grid_4[(#GET{premiere_colonne}|=={oui}|oui) alpha#SET{premiere_colonne,non}]">
+	<div class="liste breves liste_bloc_bandeau">
+			#ANCRE_PAGINATION
+			<h4><:breves:></h4>
+			<ul class="liste-items">
+					<BOUCLE_breves(BREVES) {doublons}{id_rubrique} {par date}{inverse} {pagination 5}>
+					<li class="item">[(#CONFIG{BeeSpip/affichage/dates_breves}|=={'oui'}|oui)[(#DATE|affdate{'d/m/Y'}) &ndash; ]]<a href="#URL_BREVE"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></li>
+					</BOUCLE_breves>
+			</ul>
+			[<p class="pagination">(#PAGINATION{#CONFIG{BeeSpip/affichage/modele_pagination}})</p>]
+	</div>
+	</div>
+	</B_breves>
+
+	[(#REM) Sites de la rubrique ]
+	<B_sites>
+	<div class="grid_4[(#GET{premiere_colonne}|=={oui}|oui) alpha#SET{premiere_colonne,non}]">
+	<div class="liste sites liste_bloc_bandeau">
+			<h4><:sur_web:></h4>
+			<ul class="liste-items">
+					<BOUCLE_sites(SITES) {doublons}{id_rubrique} {par nom_site}>
+					<li class="item"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+							<B_syndic>
+							<ul>
+									<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+									<li><a href="#URL_ARTICLE" class="spip_out" title="[(#TITRE|attribut_html)]">#TITRE</a></li>
+									</BOUCLE_syndic>
+							</ul>
+							</B_syndic>
+					</li>
+					</BOUCLE_sites>
+			</ul>
+	</div>
+	</div>
+	</B_sites>
+</BOUCLE_extra_rubrique>

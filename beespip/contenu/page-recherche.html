@@ -1,0 +1,53 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]</p>
+
+<div id="contenu" class="grid_16">
+	[<div class="cartouche">
+		<h1 class="h1"><:resultats_recherche:></h1>
+		<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+	</div>]
+
+	[(#REM) Articles trouves ]
+	<B_articles>
+	<div class="liste resultats articles">
+		#ANCRE_PAGINATION
+		<h2 class="h2"><:articles:> (#GRAND_TOTAL)</h2>
+		<ul class="liste-items">
+			<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination}{doublons}>
+			<li class="item"><a href="#URL_ARTICLE">#TITRE</a></li>
+			</BOUCLE_articles>
+		</ul>
+		[<p class="pagination">(#PAGINATION{#CONFIG{BeeSpip/affichage/modele_pagination}})</p>]
+	</div>
+	</B_articles>
+
+	[(#REM) Rubriques trouvees ]
+	<B_rubriques>
+	<div class="liste resultats rubriques">
+		#ANCRE_PAGINATION
+		<h2 class="h2"><:rubriques:> (#GRAND_TOTAL)</h2>
+		<ul class="liste-items">
+			<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}{doublons}>
+			<li class="item"><a href="#URL_RUBRIQUE">#TITRE</a></li>
+			</BOUCLE_rubriques>
+		</ul>
+		[<p class="pagination">(#PAGINATION{#CONFIG{BeeSpip/affichage/modele_pagination}})</p>]
+	</div>
+	</B_rubriques>
+</div>

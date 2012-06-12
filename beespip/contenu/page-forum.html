@@ -1,0 +1,91 @@
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+
+		<BOUCLE_contexte_article(ARTICLES) {id_article}>
+		<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_article>
+		&gt; <a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_article>
+		</B_contexte_article>
+
+		<BOUCLE_contexte_breve(BREVES) {id_breve}>
+		<BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_breve>
+		&gt; <a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_breve>
+
+		<BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+		<BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_rubrique>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_rubrique>
+
+		<BOUCLE_contexte_site(SITES) {id_syndic}>
+		<BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_site>
+		&gt; <a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_site>
+
+		<//B_contexte_site>
+		<//B_contexte_rubrique>
+		<//B_contexte_breve>
+		<//B_contexte_article>
+
+		<BOUCLE_contexte_forum(FORUMS) {id_forum}>
+		&gt; <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_forum>
+
+		&gt; <strong class="on"><:poster_message:></strong>
+		
+	</p><!--#hierarchie-->
+<div id="contenu" class="grid_12">
+
+
+	<div class="cartouche">
+		<h1 class="h1"><:poster_message:></h1>
+	</div>
+
+	<div class="resume articles">
+		<h2><:en_reponse:></h2>
+
+		<BOUCLE_forum_parent(FORUMS) {id_forum}>
+		<h3><a href="#URL_FORUM">#TITRE</a></h3>
+		<p class="post-info">Publi&eacute; par [(#NOM)] | <abbr class="date" title="[(#DATE|date_iso)]">[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)]</abbr></p>
+		[<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+		</BOUCLE_forum_parent>
+		
+		<BOUCLE_article(ARTICLES) {id_article}>
+		<h3><a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{150,100})]#TITRE</a></h3>
+		<p class="post-info">Publi&eacute; par [(#LESAUTEURS)] | <abbr class="date" title="[(#DATE|date_iso)]">[(#DATE|nom_jour)] [(#DATE|affdate)]</abbr></p>
+		[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION)</div>]
+		<p class="info-publi"><a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span></a>
+		</BOUCLE_article>
+		
+		<BOUCLE_breve(BREVES) {id_breve}>
+		[(#LOGO_BREVE||image_reduire{150,100})]
+		<h3><a href="#URL_BREVE">#TITRE</a></h3>
+		<p class="post-info"<abbr class="date" title="[(#DATE|date_iso)]">[(#DATE|affdate_jourcourt)]</abbr></p>
+		[<div class="introduction">(#INTRODUCTION)</div>]
+		</BOUCLE_breve>
+		
+		<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+		<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+		[<div class="texte">(#TEXTE)</div>]
+		</BOUCLE_rubrique>
+		
+		<BOUCLE_syndic(SITES) {id_syndic}>
+		<h3><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h3>
+		[<div class="texte">(#DESCRIPTIF)</div>]
+		</BOUCLE_syndic>
+		
+		<//B_forum_parent>
+
+	</div>
+
+	#FORMULAIRE_FORUM
+</div>

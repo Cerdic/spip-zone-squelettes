@@ -1,0 +1,32 @@
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_rubriques>
+[(#REM) On mémorise le nombre d'item à afficher]
+#SET{reste_a_afficher,#CONFIG{BeeSpip/affichage/nb_items_menu}}
+
+<ul class="menu-liste menu-items sf-menu">
+[(#REM) On teste si il existe un menu défini par le plugin ayant l'identifiant "menu"]
+<BOUCLE_menu(MENUS?){identifiant=menu}>
+	<B_entrees>
+	#SET{reste_a_afficher,#CONFIG{BeeSpip/affichage/nb_items_menu}|moins{#TOTAL_BOUCLE}}
+	[(#REM) On complète avec les rubriques racines si besoin]
+	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'oui'}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
+
+	<BOUCLE_entrees(MENUS_ENTREES?){id_menu}{par rang}>
+	#MENUS_AFFICHER_ENTREE
+		<BOUCLE_sous_menu(MENUS?){id_menus_entree}>
+			#INCLURE{fond=inclure/menu, env, id_menu, identifiant}
+		</BOUCLE_sous_menu>
+	[(#REM)
+		On ferme le li si le type d'entrée accepte des sous-menus
+		et si on a bien quelque chose dans le li (cas des menus sur #SESSION)
+	][(#TYPE_ENTREE|menus_type_refuser_sous_menu|non)
+		[(#MENUS_AFFICHER_ENTREE|trim|oui)</li>]
+	]
+	</BOUCLE_entrees>
+	
+	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'non'}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
+</BOUCLE_menu>
+	[(#REM) Il n'existe pas de menu, on affiche les rubriques racines]
+	<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>
+<//B_menu>
+</ul>
+	

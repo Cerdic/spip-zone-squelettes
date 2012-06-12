@@ -1,0 +1,66 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+<script type="text/javascript">
+	function equalHeight(group) {
+		var tallest = 0;
+		group.each(function() {
+			var thisHeight = $(this).height();
+			if(thisHeight > tallest) {
+				tallest = thisHeight;
+			}
+		});
+		group.height(tallest);
+	}
+	$(document).ready(function() {
+		equalHeight($(".liste_bloc"));
+	});
+</script>
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+
+<div id="contenu_presentation" class="grid_16">
+	<div class="cartouche">
+		[(#LOGO_RUBRIQUE||image_reduire{200,200}|inserer_attribut{class,float-right})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)[<p class="post-info"><:dernier_ajout:> | <abbr class="date" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>]]
+	</div>
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div><div class="clear">&nbsp;</div>]
+
+	[(#REM) Gestion du portfolio et des documents ]
+	[(#INCLURE{fond=inclure/documents}{id_rubrique})]
+</div>
+<div id="contenu" class="grid_16">
+	#SET{increment,0}
+	<BOUCLE_sous_rubriques(RUBRIQUES){par num titre,titre}{id_parent}{doublons}>
+	<BOUCLE_articles(ARTICLES){par num titre,titre}{id_rubrique = #_contenu_rubrique:ID_RUBRIQUE}{titre<#TITRE*}{doublons}>
+	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
+	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
+	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
+	</BOUCLE_articles>
+	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
+	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_RUBRIQUE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
+	[<div style="text-align:center;"><a href="[(#URL_RUBRIQUE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div></BOUCLE_sous_rubriques>
+	<BOUCLE_articles_fin(ARTICLES){par num titre,titre}{id_rubrique = #_contenu_rubrique:ID_RUBRIQUE}{doublons}>
+	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
+	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
+	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
+	</BOUCLE_articles_fin>
+
+
+	[(#REM) Proposer un site ]
+	#FORMULAIRE_SITE
+
+	[<div class="notes"><h4><:info_notes:></h4>(#NOTES)</div>]
+</div>
+
+[<div id="colonne_bandeau" class="grid_16">(#INCLURE{fond=extra/#ENV{type}-#COMPOSITION,env}{doublons})</div>]
+</BOUCLE_contenu_rubrique>

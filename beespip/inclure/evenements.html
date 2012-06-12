@@ -1,0 +1,15 @@
+<B_lesevenements>
+<div class="liste evenements[(#ENV{bandeau}|=={oui}|oui) liste_bloc_bandeau]">
+	<h4>Ev&egrave;nements associ&eacute;s</h4>
+	<ul class="liste-items">
+		<BOUCLE_lesevenements(EVENEMENTS) {par date} {id_article}{age<180}>
+		<li class="item"><span class="date dtstart" title="[(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})]"><strong>[(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})]</strong></span> #TITRE
+			[<p class="description  #EDIT{descriptif}">(#DESCRIPTIF)</p>]
+			[<p class="lieu"><span class="location #EDIT{lieu}">(#LIEU)</span>[<span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]</p>]
+			<B_mots><p class='category'><BOUCLE_mots(MOTS){id_evenement}{par num titre,titre}{', '}>#TITRE</BOUCLE_mots></p></B_mots>
+			[<div class='ajax'>(#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT})</div>]
+		</li>
+		</BOUCLE_lesevenements>
+	</ul>
+</div>
+</B_lesevenements>

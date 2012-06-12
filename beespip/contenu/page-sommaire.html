@@ -1,0 +1,72 @@
+[(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
+<div id="contenu" class="grid_12">
+	#SET{nb_articles_une,#CONFIG{BeeSpip/configuration/nb_article_une}}
+	#SET{nb_articles_sousune,#CONFIG{BeeSpip/configuration/nb_ligne_sousune}|mult{3}}
+
+	#SET{articles_avec_motscles,#ARRAY}
+	[(#REM) Les articles en "sous-une" ne peuvent pas être récupérés pour les boucles "sansmotscles"]
+	<BOUCLE_article_sousune(ARTICLES){titre_mot=actualites_sous_une}{!par date}{lang}{doublons}{0,#GET{nb_articles_sousune}}></BOUCLE_article_sousune>
+
+	[(#REM) Les articles de la colonne de droite ne peuvent pas être récupérés pour les boucles "sansmotscles"]
+	<BOUCLE_article_colonne_droite(ARTICLES){titre_mot=actualites_colonne_droite}{!par date}{lang}{doublons sansmotscles}{0,#CONFIG{BeeSpip/configuration/nb_article_col_droite}}></BOUCLE_article_colonne_droite>
+
+	
+	[(#REM) Si la page est en "slide2", il faut découper en 3 colonnes]
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)<div class="grid_8 alpha">]
+
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)<div id="slider" style="margin-top:10px;"><ul>]
+	<BOUCLE_articles_actualites(ARTICLES){titre_mot=actualites_une}{!par date}{lang}{0,#GET{nb_articles_une}}{doublons}>
+		[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)<INCLURE{fond=inclure/articles_une_slide,id_article,lang}{nb_articles_une_encours=#COMPTEUR_BOUCLE}>]
+		[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|non)<INCLURE{fond=inclure/articles_liste,id_article,lang}{bloc=pagination}{largeur=680}{tri=date}{ordre=1}>]
+	</BOUCLE_articles_actualites>
+		<BOUCLE_articles_actualites_sansmotscles(ARTICLES){!par date}{lang}{doublons}{doublons sansmotscles}{0,#GET{nb_articles_une}}>
+			[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)<INCLURE{fond=inclure/articles_une_slide,id_article,lang}{nb_articles_une_encours=#COMPTEUR_BOUCLE}>]
+			[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|non)<INCLURE{fond=inclure/articles_liste,id_article,lang}{bloc=pagination}{largeur=680{tri=date}{ordre=1}>]
+		</BOUCLE_articles_actualites_sansmotscles>
+	<//B_articles_actualites>
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)</ul></div>]
+
+	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)</div><div class="grid_4 omega actucolonne2">#INCLURE{fond=inclure/articles_une_colonne_droite,lang,doublons}</div>]
+	<div class="clear">&nbsp;</div>
+			
+	<BOUCLE_article_sous_une(ARTICLES){titre_mot=actualites_sous_une}{!par date}{lang}{0,#GET{nb_articles_sousune}}>
+	<div class="grid_4[(#COMPTEUR_BOUCLE|alterner{' alpha','',' omega'})]">
+	<h3 class="sommaire"><a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a></h3>
+	[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article}{affichage=court})]
+	[<div style="text-align:center">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{190,120}|inserer_attribut{alt,#TITRE|texte_backend})</div>][(#DESCRIPTIF|sinon{<p>[(#INTRODUCTION|couper{250}|PtoBR)]</p>}|image_reduire{190,120})]
+	<p><a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]" class="lire_la_suite">Lire la suite</a></p>
+	</div>[(#COMPTEUR_BOUCLE|modulo{3}|non)<div class="clear">&nbsp;</div>]
+	</BOUCLE_article_sous_une>
+		<BOUCLE_article_sous_une_sansmotscles(ARTICLES){!par date}{lang}{doublons}{doublons sansmotscles}{0,#GET{nb_articles_sousune}}>
+		<div class="grid_4[(#COMPTEUR_BOUCLE|alterner{' alpha','',' omega'})]">
+		<h3 class="sommaire"><a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a></h3>
+		[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article}{affichage=court})]
+		[<div style="text-align:center">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{190,120}|inserer_attribut{alt,#TITRE|texte_backend})</div>][(#DESCRIPTIF|sinon{<p>[(#INTRODUCTION|couper{250}|PtoBR)]</p>}|image_reduire{190,120})]
+		<p><a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]" class="lire_la_suite">Lire la suite</a></p>
+		</div>[(#COMPTEUR_BOUCLE|modulo{3}|non)<div class="clear">&nbsp;</div>]
+		</BOUCLE_article_sous_une_sansmotscles>
+	<//B_article_sous_une>
+	
+	[(#CONFIG{BeeSpip/configuration/autres_articles}|=={'oui'}|oui)<hr class="spip" />[(#INCLURE{fond=inclure/articles_une_recents,env,lang}{ajax}{doublons})]]
+</div>
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+
+<div id="colonne" class="grid_4">
+	<INCLURE{fond=extra/#ENV{type},env}{doublons}>
+</div>
+
+

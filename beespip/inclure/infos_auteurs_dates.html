@@ -1,0 +1,24 @@
+<BOUCLE_contenu_article(ARTICLES){id_article}>
+	[(#REM) Il y a soit l'affichage des dates, soit l'affichage des auteurs, soit les 2
+	L'affichage court est utilisé sur le sommaire
+	]
+	[(#CONFIG{BeeSpip/affichage/dates_articles}|ou{#CONFIG{BeeSpip/affichage/auteurs_articles}})
+	<p class="post-info">
+		[(#ENV{affichage}|=={'court'}|non)
+			[(#CONFIG{BeeSpip/affichage/auteurs_articles}|=={'oui'}|oui)[Publi&eacute; par (#LESAUTEURS)]]
+			[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)
+				[(#CONFIG{BeeSpip/affichage/auteurs_articles}|=={'non'}|?{"Publi&eacute; "," | "})]
+				<abbr class="date" title="[(#DATE|date_iso)]">[(#DATE|nom_jour)] [(#DATE|affdate)]</abbr>
+				[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[ | <:beespip:mis_a_jour:> <abbr class="date" title="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</abbr>,''})]
+			]
+		]
+		[(#ENV{affichage}|=={'court'}|oui)
+			[(#CONFIG{BeeSpip/affichage/auteurs_articles}|=={'oui'}|oui)[Par (#LESAUTEURS)]]
+			[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)
+				[(#CONFIG{BeeSpip/affichage/auteurs_articles}|=={'non'}|?{""," | "})]
+				<abbr class="date" title="[(#DATE|date_iso)]">[(#DATE|affdate{'d/m/Y'})]</abbr>
+			]
+		]
+	</p>
+	]
+</BOUCLE_contenu_article>

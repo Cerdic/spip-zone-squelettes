@@ -1,0 +1,61 @@
+<div class="grid_4 alpha omega liste">
+[(#REM) Faut-il afficher l'agenda]
+[(#PLUGIN{agenda}|oui)[(#CONFIG{BeeSpip/configuration/calendrier_public}|=={'oui'}|oui)<INCLURE{fond=inclure/agenda,env}{date}{ajax}{self}>]]
+
+[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|non)<INCLURE{fond=inclure/articles_une_colonne_droite,lang}{doublons}>]
+
+
+[(#REM) Les brèves ]
+<B_breves>
+<div class="liste breves">
+	<h4><:dernieres_breves:></h4>
+	<ul class="liste-items">
+		<BOUCLE_breves(BREVES) {doublons}{par date}{inverse} {0,5}{age<120}>
+		<li class="item">[(#CONFIG{BeeSpip/affichage/dates_breves}|=={'oui'}|oui)[(#DATE|affdate_jourcourt) &ndash; ]]<a href="#URL_BREVE"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></li>
+		</BOUCLE_breves>
+	</ul>
+</div>
+</B_breves>
+
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+
+[(#REM) Liens des forums ]
+<B_forums_liens>
+<div class="liste forums">
+	<h4><:derniers_commentaires:></h4>
+	<ul class="liste-items">
+		<BOUCLE_forums_liens(FORUMS?) {doublons}{plat} {par date}{inverse} {0,4}{age<120}>
+		<li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_forums_liens>
+	</ul>
+</div>
+</B_forums_liens>
+
+
+[(#REM) Sur le Web syndiqués]
+<B_syndic>
+<div class="liste syndic_articles">
+	<h4><:nouveautes_web:></h4>
+	<ul class="liste-items">
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {doublons}{age<180} {par date}{inverse} {0,5}{age<120}>
+		<li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+		</BOUCLE_syndic>
+	</ul>
+</div>
+</B_syndic>
+
+[(#REM) Sur le Web]
+<B_sites_autres>
+<div class="liste syndic">
+	<h4><:sur_web:></h4>
+	<ul class="liste-items">
+		<BOUCLE_sites_autres(SITES) {!par date} {doublons} {0,5}>
+		<li class="item"><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" onclick="window.open(this.href); return false;">#NOM_SITE</a></li>
+		</BOUCLE_sites_autres>
+	</ul>
+</div>
+</B_sites_autres>
+
+[(#CONFIG{BeeSpip/configuration/articles_populaires}|=={'oui'}|oui)<INCLURE{fond=inclure/articles_populaires,lang}>]
+</div>

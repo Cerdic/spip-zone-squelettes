@@ -1,0 +1,42 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}{doublons}>
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
+<div class="grid_4 alpha omega">
+  [(#REM) Breves dans la meme rubrique ]
+  <B_breves>
+  <div class="liste breves">
+      <h4><:autres_breves:></h4>
+      <ul class="liste-items">
+          <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {0,10}{doublons}>
+          <li class="item">[(#CONFIG{BeeSpip/affichage/dates_breves}|=={'oui'}|oui)[(#DATE|affdate_jourcourt) &ndash; ]]<a href="#URL_BREVE"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></li>
+          </BOUCLE_breves>
+      </ul>
+  </div>
+  </B_breves>
+
+  [(#REM) Menu de navigation mots-cles ]
+  <B_mots>
+  <div class="liste mots">
+      <h4><:mots_clefs:></h4>
+      <ul class="liste-items">
+      <BOUCLE_mots(MOTS) {id_breve} {par titre}{type!==^[~]}>
+          <li class="item"><a href="#URL_MOT" rel="tag" title="[(#TITRE|attribut_html)]">#TITRE</a></li>
+      </BOUCLE_mots>
+      </ul>
+  </div>
+  </B_mots>
+</div>
+</BOUCLE_breve_principal>

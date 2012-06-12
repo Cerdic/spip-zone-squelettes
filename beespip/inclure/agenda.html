@@ -1,0 +1,15 @@
+[(#PLUGIN{calendriermini}|oui)#CALENDRIER_MINI{#ENV{date},'date',#URL_PAGE{agenda}, #URL_PAGE{calendrier_mini_event.json}}]
+[(#PLUGIN{calendriermini}|non)#CALENDRIER_MINI{#ENV{date},'date',#SELF}]
+calendriermini
+[(#SET{date,#ENV{date}})]
+[(#REM) On teste si la date à afficher est la date du mois en cours, si c'est le cas, on fixe la date au jour précis]
+[(#ENV{date}|=={[(#VAL{Y-m}|date)]-01}|oui)[(#SET{date,#VAL{Y-m-d}|date})]]
+<div class="clear">&nbsp;</div>
+<B_evenements>
+	<ul class="liste-items evenements" style="margin-top:-10px;">
+	<BOUCLE_evenements(EVENEMENTS){!evenement_passe #ENV{date_debut,#GET{date}}}{!evenement_a_venir #ENV{date_debut,#GET{date}}|agenda_moisdecal{1,'Y-m-d H:i:00'}}{par date_debut}{0,#CONFIG{BeeSpip/configuration/nb_evenement_accueil}}>
+		<li class="item"><span class="date dtstart" title="[(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})]">[(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})]</span>
+		<p class="summary"><a href="[(#URL_ARTICLE|parametre_url{date,[(#DATE_DEBUT|affdate{'Y-m-d'})]})]">#TITRE</a></p></li>
+	</BOUCLE_evenements>
+	</ul>
+</B_evenements>
