@@ -11,12 +11,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'configurer_zvide' => 'Hlavička a päta stránky',
 
 	// D
-	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Contenu</i>.', # NEW
-	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Extra</i>.', # NEW
-	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages après le bloc <i>Navigation</i>.', # NEW
-	'description_bloc_pre_contenu' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Contenu</i>.', # NEW
-	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Extra</i>.', # NEW
-	'description_bloc_pre_navigation' => 'Les noisettes de ce bloc seront insérées sur toutes les pages avant le bloc <i>Navigation</i>.', # NEW
+	'description_bloc_post_contenu' => 'Oriešky tohto bloku budú vložené na všetky stránky po bloku <i>Obsah.</i>',
+	'description_bloc_post_extra' => 'Oriešky tohto bloku budú vložené na všetky stránky po bloku  <i>Extra.</i>',
+	'description_bloc_post_navigation' => 'Oriešky tohto bloku budú vložené na všetky stránky po bloku  <i>Navigácia.</i>',
+	'description_bloc_pre_contenu' => 'Oriešky tohto bloku budú vložené na všetky stránky pred blok  <i>Obsah.</i>',
+	'description_bloc_pre_extra' => 'Oriešky tohto bloku budú vložené na všetky stránky pred blok  <i>Extra.</i>',
+	'description_bloc_pre_navigation' => 'Oriešky tohto bloku budú vložené na všetky stránky pred blok <i>Navigácia.</i>',
 	'description_page-401' => 'Táto stránka sa zobrazí, ak chce návštevník zobraziť takú stránku, na ktorej zobrazenie nemá dostatočné povolenia.',
 	'description_page-404' => 'Táto stránka sa zobrazí, ak chce návštevník zobraziť stránku, ktorá neexistuje.',
 	'description_page-agenda' => 'Stránka určená na zobrazenie udalostí/kalendára udalostí pre vašu stránku.',
@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_choix_menu_lang_masquer' => 'Schovať všetky stránky',
 	'label_choix_menu_lang_retour_sommaire' => 'Vrátiť sa na úvodnú stránku',
 	'label_choix_menu_lang_sommaire' => 'Iba úvodná stránka',
-	'label_liens_add' => 'Liens additionnels', # NEW
+	'label_liens_add' => 'Ďalšie odkazy',
 	'label_masquer_connexion' => 'Odkaz na prihlásenie sa',
 	'label_masquer_logo' => 'Logo stránky',
 	'label_masquer_plan' => 'Mapa stránky',
@@ -61,12 +61,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_options_pied' => 'Možnosti päty stránky',
 
 	// N
-	'nom_bloc_post_contenu' => 'Post-Contenu', # NEW
-	'nom_bloc_post_extra' => 'Post-Extra', # NEW
-	'nom_bloc_post_navigation' => 'Post-Navigation', # NEW
-	'nom_bloc_pre_contenu' => 'Pré-Contenu', # NEW
-	'nom_bloc_pre_extra' => 'Pré-Extra', # NEW
-	'nom_bloc_pre_navigation' => 'Pré-Navigation', # NEW
+	'nom_bloc_post_contenu' => 'Po obsahu',
+	'nom_bloc_post_extra' => 'Po Extra',
+	'nom_bloc_post_navigation' => 'Po navigácii',
+	'nom_bloc_pre_contenu' => 'Pred obsah',
+	'nom_bloc_pre_extra' => 'Pred Extra',
+	'nom_bloc_pre_navigation' => 'Pred navigáciu',
 	'nom_page-401' => 'Chyba 401',
 	'nom_page-404' => 'Chyba 404',
 	'nom_page-agenda' => 'Kalendár udalostí',
