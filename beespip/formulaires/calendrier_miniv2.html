@@ -1,14 +1,18 @@
+<BOUCLE_exclus(ARTICLES) {titre_mot=exclu} {doublons}{lang}>
+	<BOUCLE_lesevenements(EVENEMENTS) {par date} {id_article}{doublons}>
+	</BOUCLE_lesevenements>
+</BOUCLE_exclus>
 <div id="calendar">
 	<h4><BOUCLE_titre(ARTICLES){id_article}>#TITRE</BOUCLE_titre><:icone_calendrier:><//B_titre></h4>
 	<table summary="<:icone_calendrier:>">
 		<caption>[
 			<a
-				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{-1,'Y-m'})]})"
+				class="ajax" href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{-1,'Y-m'})]})"
 				title="[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]"
 			>&#171;</a>][
 			(#ENV{#ENV{var_date},#ENV{date}}|affdate_mois_annee)][
 			<a
-				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{1,'Y-m'})]})"
+				class="ajax" href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{1,'Y-m'})]})"
 				title="[(#ENV{#ENV{var_date},#ENV{date}}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]"
 			>&#187;</a>]
 		</caption>
@@ -49,7 +53,7 @@
 			{date_fin >= #GET{'borne_debut_mois'}}>[
 			(#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes)],
 				#DESCRIPTIF,#LIEU,
-				#ENV{self},'',#ENV{var_date}})
+				[(#URL_PAGE{agenda}|parametre_url{#ENV{var_date},[(#DATE_DEBUT|affdate{'Y-m-d'})]})],'',#ENV{var_date}})
 			]</BOUCLE_calendrier>
 			[(#REM) le "courante" ci-dessus peut etre remplace par "debut" pour retrouver l'ancien comportement]
 			
