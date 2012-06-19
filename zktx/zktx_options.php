@@ -1,14 +1,16 @@
 <?php
-// Blocs Z	
+// Pousse toi d'l&agrave que j'mette mes nouveaux blocs Z !	
 	$GLOBALS['z_blocs'] = array('content','extra1','extra2','head','head_js','header','footer','foot_js','social');
 
-// Sécurité
+// Chuck Norris ne fait jamais d'erreur !
+// Quand bien même, s'il en fait une, 
+// il faudrait être suicidaire pour la lui signaler !
 	@ini_set('display_errors', 'off');
 	
-// Bloquer la diffusion serveur des versions SPIP + plugins
+// Ce qui se passe &agrave; Vegas reste &agrave; Vegas !!!
 	$GLOBALS['spip_header_silencieux'] = true; 
 
-// CK Options
+// CK : Des Options de s&eacute;rie !
 	$GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
 	$GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
 	$GLOBALS['toujours_paragrapher']=true;
@@ -32,6 +34,6 @@
 	$GLOBALS['fin_intertitre_4'] = '</h5>';
 	$GLOBALS['debut_intertitre_5'] = '<h6 class="h6">';
 	$GLOBALS['fin_intertitre_5'] = '</h6>';
-	// zapper les css de la BTE
+	// My CSS is better than yours, bitch !
 	$GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true; 
 ?>
