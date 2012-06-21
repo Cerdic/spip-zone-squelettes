@@ -17,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les_plus_anciens' => 'Articles les plus anciens',
 	'articles_les_plus_commentes' => 'Articles les plus commentés',
 	'articles_les_plus_recents' => 'Articles les plus récents',
+	'articles_les_plus_populaires' => 'Articles les plus populaires',
 	'articles_les_plus_visites' => 'Articles les plus visités',
 	'aucun_article_trouve' => 'Aucun article ne correspond à cette recherche.',
 	'aucun_auteur_trouve' => 'Aucun auteur ne correspond à cette recherche.',
