@@ -10,6 +10,7 @@ cd extensions
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/ancres_douces ./ancres_douces/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/bandeau
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/branches/v1 ./boutonstexte/
@@ -67,6 +68,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/player/branches
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/memoization
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/microblog
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nivoslider/branches/v1 ./nivoslider
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation/branches/v_0_9 ./notation
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk ./nuage/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/odt2spip/version_0.1_stable ./odt2spip/
