@@ -358,13 +358,13 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_recentes')),
 			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('avelinepublic:b_les_plus_anciennes')),
 			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_commentees')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_pertinents'))
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_pertinentes'))
 		)";
 	if ($objet == "'auteur'")
 		$choix = "array(
 			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('avelinepublic:par_nom')),
 			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('avelinepublic:par_nb_articles')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinentes'))
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	if ($objet == "'rubrique'")
 		$choix = "array(
