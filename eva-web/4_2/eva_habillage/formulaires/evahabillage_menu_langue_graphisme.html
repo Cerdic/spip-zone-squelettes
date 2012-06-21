@@ -1,0 +1,35 @@
+<?php
+include_spip('inc/eva_habillage_definition_themes');
+$tab_menu_lang=EVA_menu_langue();
+?>
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><center><:evahabillage:eva_menu_langue_graphisme:></center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+<p><:evahabillage:eva_menu_langue_graphisme_explication:></p>
+<table class="spip">
+<?php
+foreach ($tab_menu_lang as $cle => $value)
+	{
+		$req=sql_select('nom_image','spip_eva_habillage_images',"type='multilinguisme' AND nom_habillage='Defaut' AND nom_div='".$cle."'");
+		$tab=sql_fetch($req);
+		$code_menu_lang=$tab['nom_image'];
+		echo '<tr><td style="text-align:center;">';
+		echo _T('evahabillage:'.$cle).'</td>';
+		echo '<td style="text-align:center;"><input ';
+		if (($cle!='eva_menu_langue_bordure_style') AND ($cle!='eva_menu_langue_bordure_width'))
+		{echo 'class="palette" ';}
+		echo 'type="text" name="'.$cle.'" value="'.$code_menu_lang.'">';
+		echo '</td></tr>';
+	}
+?>
+</table>
+<p style='text-align:center;'><input type='submit' name="test_menu_langue" value='Valider' /></p>
+
+</form>
+</div>
