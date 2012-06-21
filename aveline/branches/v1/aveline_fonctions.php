@@ -309,7 +309,7 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 		$choix = "array(
 			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('avelinepublic:par_nom')),
 			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('avelinepublic:par_nb_articles')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinentes'))
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	if ($objet == "'rubrique'")
 		$choix = "array(
@@ -324,7 +324,7 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('avelinepublic:par_date_decroissante')),
 			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('avelinepublic:par_date_croissante')),
 			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinentes'))
 		)";
 	
 	$p->code = "calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
