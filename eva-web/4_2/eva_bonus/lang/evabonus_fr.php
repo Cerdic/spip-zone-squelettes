@@ -16,7 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evabonus_menu_horizontal_non_headers'=>'Pour faire fonctionner le menu horizontal, il faut aussi ins&eacute;rer la noisette <b>headers_menu_depliable_horiz</b> dans les headers',
 'evabonus_menu_horizontal_non_entete'=>'Pour faire fonctionner le menu horizontal, il faut aussi ins&eacute;rer la noisette <b>menu_depliable_horizontal</b> ou <b>menu_depliable_horizontal_articles</b> dans les ent&ecirc;tes',
 'evabonus_menu_horizontal_details'=>'<p style="text-align:center;">Choisissez ici vos pr&eacute;f&eacute;rences concernant l\'aspect graphique de votre menu dynamique horizontal.
-Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond situ&eacute; ci-dessous.</p>',
+Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond.</p>',
 'evabonus_menu_horizontal_couleur_fond'=>'Couleur de fond du menu',
 'evabonus_menu_horizontal_couleur_fond_survol'=>'Couleur de fond lors du survol',
 'evabonus_menu_horizontal_couleur_fond_actif'=>'Couleur de fond du secteur actif',
