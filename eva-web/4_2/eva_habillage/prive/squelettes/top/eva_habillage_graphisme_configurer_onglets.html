@@ -46,6 +46,31 @@ if ($envoi) {
 	</li>
 <?php
 }
+$req_menu_horizontal_actif0=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='menu_depliable_horizontal_articles' AND attach='entete'");
+$req_menu_horizontal_actif1=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='menu_depliable_horizontal' AND attach='entete'");
+$req_menu_horizontal_actif2=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='headers_menu_depliable_horiz' AND attach='headers'");
+//Requete speciale pour noisette de menu horizontale de sites references
+$req_menu_horizontal_actif3=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='menu_sites_horizontal' AND attach='entete'");
+$tab_menu_horizontal_actif0=sql_fetch($req_menu_horizontal_actif0);
+$tab_menu_horizontal_actif1=sql_fetch($req_menu_horizontal_actif1);
+$tab_menu_horizontal_actif2=sql_fetch($req_menu_horizontal_actif2);
+$tab_menu_horizontal_actif3=sql_fetch($req_menu_horizontal_actif3);
+$req_menu_horizontal_actif0=$tab_menu_horizontal_actif0['nom_image'];
+$req_menu_horizontal_actif1=$tab_menu_horizontal_actif1['nom_image'];
+$req_menu_horizontal_actif2=$tab_menu_horizontal_actif2['nom_image'];
+$req_menu_horizontal_actif3=$tab_menu_horizontal_actif3['nom_image'];
+if (($req_menu_horizontal_actif0=='oui' OR $req_menu_horizontal_actif1=='oui' OR $req_menu_horizontal_actif3=='oui')
+OR $req_menu_horizontal_actif2=='oui') 
+{
+?>
+
+<li style="margin-bottom:2px;">
+	<img src="<?php echo _DIR_PLUGIN_EVA_HABILLAGE."img_pack/eva.gif";?>" alt="" class="cadre-icone" height="24" width="24">
+	[(#ENV{exec}|=={eva_habillage_graphisme_menu_horizontal}|?{'<strong class="on">Menu horizontal</strong>','<a href="?exec=eva_habillage_graphisme_menu_horizontal">Menu horizontal</a>'})]
+</li>
+
+<?php
+}
 ?>
 </ul>
 </div>
