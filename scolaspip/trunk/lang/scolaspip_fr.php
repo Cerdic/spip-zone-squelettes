@@ -212,6 +212,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //r
     'rubriques_masquer'=>'Masquer les sous-rubriques',
     'rubriques_afficher'=>'Voir les sous-rubriques',
+    'rubriques_afficher_masquer'=>'Afficher/masquer les sous-rubriques',
 // s
     'scolaspip' => 'ScolaSPIP',
     'site_realise_avec_scolaspip'=>'Squelette ScolaSPIP',
