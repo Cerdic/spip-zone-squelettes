@@ -264,7 +264,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // v
     'voir_la_page'=>'Voir la page associée',
     'video'=>'Vidéo',
-    'video_associee'=>'à cette vidéo',
 );
 
 ?>
