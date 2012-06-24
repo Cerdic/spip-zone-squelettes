@@ -490,7 +490,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la balise @champ@.',
-	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.'
+	'zbug_erreur_critere' => 'Erreur dans le critère @critere@.',
+	'zbug_tri_sans_critere' => 'Balise #TRI sans critère de tri dans la boucle',
 );
 
 ?>

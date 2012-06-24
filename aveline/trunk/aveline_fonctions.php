@@ -188,7 +188,7 @@ function me($id_article, $id_auteur, $sioui = true, $sinon = false) {
 function balise_ME($p){
 	$b = index_boucle($p);
 	if ($b === '') {
-		$msg = array('zbug_champ_hors_boucle',
+		$msg = array('spip:zbug_champ_hors_boucle',
 				array('champ' => '#ME')
 			  );
 		erreur_squelette($msg, $p);
@@ -311,7 +311,7 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 	// s'il n'y a pas de nom de boucle, on ne peut pas trier
 	if ($b === '') {
 		erreur_squelette(
-			_T('zbug_champ_hors_boucle',
+			_T('spip:zbug_champ_hors_boucle',
 				array('champ' => '#AVELINE_CHOIX_TRI')
 			), $p->id_boucle);
 		$p->code = "''";
@@ -323,7 +323,7 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 	// dans un boucle recursive ou qu'on a oublie le critere {tri}
 	if (!isset($boucle->modificateur['tri_champ'])) {
 		erreur_squelette(
-			_T('zbug_tri_sans_critere',
+			_T('aveline:zbug_tri_sans_critere',
 				array('champ' => '#AVELINE_CHOIX_TRI')
 			), $p->id_boucle);
 		$p->code = "''";
