@@ -227,6 +227,29 @@ function aveline_maj_noisettes($noisettes, $current_version) {
 			}
 		}
 	}
+	if (version_compare($current_version,'0.4.0','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			$anciennes = array(
+				'ecrire:titre_documents_joints',
+				'spip:info_documents',
+				'spip:info_portfolio',
+				'public:forum',
+				'spip:titre_forum',
+				'public_public:articles_populaires',
+				'public:breves'
+			);
+			$nouvelles = array(
+				'medias:titre_documents_joints',
+				'medias:info_documents',
+				'medias:info_portfolio',
+				'forum:forum',
+				'forum:titre_forum',
+				'avelinepublic:articles_les_plus_populaires',
+				'breves:breves'
+			);
+			$noisettes[$cle]['parametres'] = str_replace($anciennes,$nouvelles,$noisettes[$cle]['parametres']);
+		}
+	}
 	return $noisettes;
 }
 
