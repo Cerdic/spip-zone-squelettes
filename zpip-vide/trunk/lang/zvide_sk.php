@@ -21,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-404' => 'Táto stránka sa zobrazí, ak chce návštevník zobraziť stránku, ktorá neexistuje.',
 	'description_page-agenda' => 'Stránka určená na zobrazenie udalostí/kalendára udalostí pre vašu stránku.',
 	'description_page-forum' => 'Táto stránka je vyvolaná, keď chce návštevník poslať príspevok do diskusného fóra.',
-	'description_page-login' => 'Cette page est nécessaire pour se connecter à l\'espace privé. Par sécurité, si la noisette <i>Formulaire d\'identification</i> spécifique à cette page n\'est pas insérée dans le bloc <i>Contenu</i>, elle y sera insérée d\'office.', # NEW
+	'description_page-login' => 'Stránka je potrebná na prihlasovanie do súkromnej zóny. Ak oriešok <i>Prihlasovací formulár</i> pre túto stránku nie je vložený v bloku <i>Obsah,</i> bude tam z dôvodov zabezpečenia stránky vložený automaticky.',
 	'description_page-plan' => 'Táto stránka sa vyvolá na zobrazenie mapy stránky.',
 	'description_page-recherche' => 'Táto stránka sa zobrazí pri vyhľadávaní.',
 	'description_page-spip_pass' => 'Táto stránka sa zobrazuje, keď návštevník zabudol svoje heslo a chce si ho zmeniť.',
@@ -36,7 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_pagedefaut' => 'Bloky tejto stránky budú pridané na všetky stránky tohto webu.',
 
 	// E
-	'explication_liens_add' => 'Vous pouvez saisir ici un ou plusieurs liens additionnels à mettre dans le pieds de page. Si vous ajoutez plusieurs liens, pensez à les séparer avec un |. Vous pouvez utiliser les raccourcis SPIP. Par exemple : <code>[Contact->12] | [Mentions légales->art13]</code>', # NEW
+	'explication_liens_add' => 'Sem môžete zadať jeden alebo viac odkazov, ktoré budú vložené do päty stránky. Ak vložíte viac odkazov, nezabudnite ich oddeliť znakom |. Môžete použiť skratky SPIPu. Napríklad: <code>[Kontakt->12] | [Informácie právneho charakteru->art13]</code>',
 	'explication_masquer_connexion' => 'Schovať odkazy umožňujúce prihlásiť sa/odhlásiť sa?',
 	'explication_masquer_logo' => 'Schovať logo stránky?',
 	'explication_masquer_plan' => 'Schovať odkaz na mapu stránky?',
