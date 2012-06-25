@@ -16,27 +16,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif' => "<strong>Descriptif : </strong>",
 'discipline' => "<strong>Discipline : </strong>",
 
-'EVA_installmots' => "eva install mots cl&eacute;s",
+'eva_installmots' => "eva install mots cl&eacute;s",
 'eva_mentions' => "Gestion des mentions l&eacute;gales",
 
 'gros_titre_page' => "Installation d'eva-web",
 'groupes_eva' => "Cr&eacute;ation des groupes de mots cl&eacute; pour EVA",
-'groupe_act_non' => "<br/> Le groupe activites n'existe pas",
+'groupe_act_non' => "<br /> Le groupe activites n'existe pas",
 'groupe_aff_non' => "<br/> Le groupe affichage n'existe pas",
 'groupe_num' => "<strong>Num&eacute;ro du groupe : </strong>",
 'groupe_titre' => "<strong>Nom du groupe : </strong>",
 'groupe_descriptif' => "<strong>Descriptif : </strong>",
 
 'presentation' => "Ce plugin permet de :<br/>- V&eacute;rifier et de cr&eacute;er les mots-cl&eacute;s<br/>
-						- V&eacute;rifier et de cr&eacute;er les groupes de mots-cl&eacute;s sp&eacute;cifiques au fonctionnement d'eva-web<br/>
-						- G&eacute;rer les renseignements à compl&eacute;ter pour les mentions l&eacute;gales<br/>",
+- V&eacute;rifier et de cr&eacute;er les groupes de mots-cl&eacute;s sp&eacute;cifiques au fonctionnement d'eva-web<br/>
+- G&eacute;rer les renseignements à compl&eacute;ter pour les mentions l&eacute;gales<br/>",
 'probleme_base' => "Il y a un problème dans votre base de donn&eacute;es.<br/>",
 
-'lienoff1' => "<a href='http://eva-web.edres74.net' target='_blank'>http://eva-web.edres74.net</a><br/>",
+'lienoff1' => "<a href='http://www.evaweb.fr' target='_blank'>http://www.evaweb.fr</a><br/>",
 'lienoff2' => "<a href='' target='_blank' ></a><br/>",
 'liste_activites' => "<br/><strong>Liste des activit&eacute;s Jclic propos&eacute;es dans ce site :</strong><br/>",
-'Liste_mots_activites' => "Liste des mots cl&eacute;s du groupe activites",
-'Liste_mots_affichage' => "Liste des mots cl&eacute;s du groupe affichage",
+'liste_mots_activites' => "Liste des mots cl&eacute;s du groupe activites",
+'liste_mots_affichage' => "Liste des mots cl&eacute;s du groupe affichage",
 
 'mot_deja' => "Le mot-cl&eacute; jclic est d&eacute;jà cr&eacute;&eacute;.<br/>",
 'mot_pas' => "Le mot-cl&eacute; jclic n'existe pas encore dans votre liste. <br/>",
@@ -59,8 +59,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'titre_presentation' => "<strong>Pr&eacute;sentation :</strong><br/>",
 
 'verification_mot' => "<strong>V&eacute;rification du mot-cl&eacute; :</strong><br/>",
-
-'' => "",
-
 );
 ?>
