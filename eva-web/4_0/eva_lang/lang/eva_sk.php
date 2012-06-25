@@ -144,7 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  (článok, fotoalbum, prezentácia a pod.) </p>
  <p>Ak chcete zistiť viac informácií o projekte <a href="http://eva-web.edres74.net">EVA-web,</a> navštívte stránku 
    <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
- <p><a href="http://eva-web.edres74.net">EVA-web</a> je slobodný softvér, ktorý sa distribuuje pod licenciou GNU General Public License 
+ <p><a href="http://eva-web.edres74.net">EVA-web</a> je slobodný softvér, ktorý sa distribuuje s licenciou GNU General Public License 
  <a rel="licence" target="_blank" href="http://sk.wikipedia.org/wiki/GNU_General_Public_License">GNU (GNU General Public Licencia GPL)</a>
  určená na používanie <a href="http://www.spip.net/">SPIPu.</a></p>
  <div style="text-align:center;"><a rel="licence" target="_blank" href="http://sk.wikipedia.org/wiki/GNU_General_Public_License"><img alt="Licencia GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
