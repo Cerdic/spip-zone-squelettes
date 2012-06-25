@@ -15,8 +15,10 @@ define('_DOMAINE_SITE', $domaine); // extrait dans l'url du site le nom du domai
 
 // on limite la taille des images
 
-define(’_IMG_MAX_WIDTH’,1000) ;
-define(’_IMG_MAX_HEIGHT’,1000) ;
+define('_IMG_MAX_WIDTH',1000) ;
+define('_IMG_MAX_HEIGHT',1000) ;
+define('_LOGO_MAX_WIDTH',1000) ;
+define('_LOGO_MAX_HEIGHT',1000) ;
 
 // multilinguisme
 
