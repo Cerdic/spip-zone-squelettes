@@ -762,6 +762,7 @@ function EVA_NBRE_rub() {
     global $eva_nbre_rub;
     $eva_nbre_rub = array(
     'nbre_rubrique_breves',
+	'nbre_rubrique_sites_ref',
     'nbre_rubrique_articles_syndic'
     );
     return $eva_nbre_rub;
