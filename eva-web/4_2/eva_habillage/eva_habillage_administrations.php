@@ -16,7 +16,7 @@ function eva_habillage_install($action){
 	$eva_ver_tab = sql_fetch($eva_verif);
 	$eva_id_habillage = $eva_ver_tab['id_habillage'];
 	if (!isset($eva_id_habillage)) {
-	sql_insertq($Table1,array('habillage' => '0','sauvegarde' => 'Defaut'));
+	sql_insertq($Table1,array('habillage' => 'eva4_menu_gauche.css','sauvegarde' => 'Defaut'));
 	sql_insertq($Table2,array('nom'=>'Defaut'));}
 	ecrire_meta('eva_habillage_base_version','0.3');
 	$test_eva=$GLOBALS['meta']['eva_habillage_base_version'];
@@ -29,7 +29,7 @@ function eva_habillage_install($action){
 	$eva_verif_table1=sql_select('id_habillage',$Table1,"sauvegarde = 'Defaut'");
 	$eva_verif_table1_tab=sql_fetch($eva_verif_table1);
 	$id_verif_table1=$eva_verif_table1_tab['id_habillage'];
-	if (!$id_verif_table1) {sql_insertq($Table1,array('habillage' => '0','sauvegarde' => 'Defaut'));}
+	if (!$id_verif_table1) {sql_insertq($Table1,array('habillage' => 'eva4_menu_gauche.css','sauvegarde' => 'Defaut'));}
 	$eva_verif_table2=sql_select('id',$Table2,"nom = 'Defaut'");
 	$eva_verif_table2_tab=sql_fetch($eva_verif_table2);
 	$id_verif_table2=$eva_verif_table2_tab['id'];
@@ -57,7 +57,7 @@ function eva_habillage_install($action){
 	$eva_ver_tab = sql_fetch($eva_verif);
 	$eva_id_habillage = $eva_ver_tab['id_habillage'];
 	if (!isset($eva_id_habillage)) {
-	sql_insertq($Table1,array('habillage' => '0','sauvegarde' => 'Defaut'));
+	sql_insertq($Table1,array('habillage' => 'eva4_menu_gauche.css','sauvegarde' => 'Defaut'));
 	sql_insertq($Table2,array('nom'=>'Defaut'));}
 	$test_eva=$GLOBALS['meta']['eva_habillage_base_version'];
 	if (!@opendir(_DIR_IMG."eva_habillage")) {mkdir(_DIR_IMG."eva_habillage");}
@@ -69,7 +69,7 @@ function eva_habillage_install($action){
 	$eva_verif_table1=sql_select('id_habillage',$Table1,"sauvegarde = 'Defaut'");
 	$eva_verif_table1_tab=sql_fetch($eva_verif_table1);
 	$id_verif_table1=$eva_verif_table1_tab['id_habillage'];
-	if (!$id_verif_table1) {sql_insertq($Table1,array('habillage' => '0','sauvegarde' => 'Defaut'));}
+	if (!$id_verif_table1) {sql_insertq($Table1,array('habillage' => 'eva4_menu_gauche.css','sauvegarde' => 'Defaut'));}
 	$eva_verif_table2=sql_select('id',$Table2,"nom = 'Defaut'");
 	$eva_verif_table2_tab=sql_fetch($eva_verif_table2);
 	$id_verif_table2=$eva_verif_table2_tab['id'];
