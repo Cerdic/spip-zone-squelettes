@@ -43,7 +43,7 @@
 <!-- Merci a Alain Sichel pour cette page contact -->
 
 <?php
-function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Niveau="",$Message="",$Antispam="") {
+function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Sujet="",$Niveau="",$Message="",$Antispam="") {
 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">
@@ -59,6 +59,19 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Niveau="",$Message="
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>
 [(#CONFIG{escal/config/contactmail}|=={non}|oui) --> ]
 
+[(#CONFIG{escal/config/champsup1}|non) <!-- ]
+[(#CONFIG{escal/config/champsup1}|=={non}|oui) <!-- ]
+                    <li><div class="liste">#CONFIG{escal/config/titrechampsup1}&nbsp;:</div>
+                    <input type="text" name="Champsup1" value="<?php echo trim(htmlentities($_POST['Champsup1'])) ?>" size="30" /></li>
+[(#CONFIG{escal/config/champsup1}|=={non}|oui) --> ]
+[(#CONFIG{escal/config/champsup1}|non) --> ]
+
+[(#CONFIG{escal/config/champsup2}|non) <!-- ]
+[(#CONFIG{escal/config/champsup2}|=={non}|oui) <!-- ]
+                    <li><div class="liste">#CONFIG{escal/config/titrechampsup2}&nbsp;:</div>
+                    <input type="text" name="Champsup2" value="<?php echo trim(htmlentities($_POST['Champsup2'])) ?>" size="30" /></li>
+[(#CONFIG{escal/config/champsup2}|=={non}|oui) --> ]
+[(#CONFIG{escal/config/champsup2}|non) --> ]
 
 
 [(#CONFIG{escal/config/radio}|=={non}|oui) <!-- ]
@@ -148,6 +161,8 @@ else {
 	$vPrenom=trim(utf8_decode($_POST["Prenom"]));
 	$vMessage=trim(utf8_decode($_POST["Message"]));
 	$vEmail=trim(utf8_decode($_POST["Email"]));
+	$vChampsup1=trim(utf8_decode($_POST["Champsup1"]));
+	$vChampsup2=trim(utf8_decode($_POST["Champsup2"]));
 	$vSujet=trim(utf8_decode($_POST["Sujet"]));
 	$vAntispam=trim(htmlentities($_POST["Antispam"]));
   $destinataire="[(#CONFIG{escal/config/destinataire,#VAL{$email_webmaster}})]";
@@ -177,7 +192,19 @@ if (lire_config('escal/config/contactmail', 'oui') == 'oui') {
 		$erreur=1;
 	  }
   }
-  
+
+if (lire_config('escal/config/champsup1', 'oui') == 'oui') {
+	$message.="#CONFIG{escal/config/titrechampsup1}";
+	$message.=" : ";
+	$message.="$vChampsup1\n\n";
+  }
+
+if (lire_config('escal/config/champsup2', 'oui') == 'oui') {
+	$message.="#CONFIG{escal/config/titrechampsup2}";
+	$message.=" : ";
+	$message.="$vChampsup2\n\n";
+  }
+
 if (lire_config('escal/config/radio', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_motif:> $vSujet\n\n";
 	if (empty($vSujet)) {
