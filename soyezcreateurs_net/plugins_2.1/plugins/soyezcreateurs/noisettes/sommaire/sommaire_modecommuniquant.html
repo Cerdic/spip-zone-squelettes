@@ -19,8 +19,11 @@
 		<div class="postListItem">	
 			<h2 class="postListItemTitle #EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></h2>
 			<span class="hSFDecoSpan"></span>
-		</div><!-- .postListItem -->	
-		[<img src="(#LOGO_ARTICLE_NORMAL|image_masque{images/hsf.png}|image_masque{images/hsf_over.png,mode=normal}|image_reduire{[(#GET{Largeurcontent_central})],0}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
+		</div><!-- .postListItem -->
+		[(#SET{Masque,[(#CHEMIN{images/hsf.png})]})]
+		[(#SET{LargeurMasque,[(#GET{Masque}|largeur)]})]
+		[(#SET{HauteurMasque,[(#GET{Masque}|hauteur)]})]
+		[<img src="(#LOGO_ARTICLE_NORMAL|image_passe_partout{#GET{LargeurMasque},#GET{HauteurMasque}}|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque}}|image_masque{#GET{Masque}}|image_masque{images/hsf_over.png,mode=normal}|image_reduire{[(#GET{Largeurcontent_central})],0}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
 		</li>
 	</BOUCLE_articles_recentsAlaUne>
 	</ul>
