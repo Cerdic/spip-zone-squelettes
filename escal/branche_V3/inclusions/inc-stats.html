@@ -9,20 +9,15 @@
 
 <ul>
 
-[(#CONFIG{escal/config/totalvisites}|=={oui}|oui)
+[(#CONFIG{escal/config/totalvisites}|=={non}|oui) <!-- ]
 <li>
 <:escal:total_visites:>
 <div class="detail">#TOTAL_VISITES <:escal:visiteurs:></div>
 </li>
-]
-[(#CONFIG{escal/config/totalvisites}|non)
-<li>
-<:escal:total_visites:>
-<div class="detail">#TOTAL_VISITES <:escal:visiteurs:></div>
-</li>
-]
+[(#CONFIG{escal/config/totalvisites}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/aujourdui}|=={oui}|oui)
+
+[(#CONFIG{escal/config/aujourdui}|=={non}|oui) <!-- ]
 <li>
 <:escal:aujourdhui:>
 <div class="detail">
@@ -33,34 +28,16 @@
 <//B_visites_jour>
 </div>
 </li>
-]
-[(#CONFIG{escal/config/aujourdui}|non)
-<li>
-<:escal:aujourdhui:>
-<div class="detail">
-<BOUCLE_visites_jour2(visites){date==^(#DATE|affdate{Y-m-d})}>
-[(#VISITES) <:escal:visiteurs:>]
-</BOUCLE_visites_jour2>
-<:escal:premier_visiteur:>
-<//B_visites_jour2>
-</div>
-</li>
-]
+[(#CONFIG{escal/config/aujourdui}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/totalpagesvisitees}|=={oui}|oui)
+[(#CONFIG{escal/config/totalpagesvisitees}|=={non}|oui) <!-- ]
 <li>
 <:escal:pages_vues:> 
 <div class="detail">#NBPAGES_VISITEES <:escal:pages:></div>
 </li>
-]
-[(#CONFIG{escal/config/totalpagesvisitees}|non)
-<li>
-<:escal:pages_vues:>
-<div class="detail">#NBPAGES_VISITEES <:escal:pages:></div>
-</li>
-]
+[(#CONFIG{escal/config/totalpagesvisitees}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/visiteursenligne}|=={oui}|oui)
+[(#CONFIG{escal/config/visiteursenligne}|=={non}|oui) <!-- ]
 <li>
 <:escal:en_ligne:>
 <div class="detail">[(#VAL{}|escal_visiteurs_connectes_compter)]
@@ -68,18 +45,9 @@
                     [(#VAL{}|escal_visiteurs_connectes_compter|>{01}|non)  <:escal:visiteur:>]
 </div>
 </li>
-]
-[(#CONFIG{escal/config/visiteursenligne}|non)
-<li>
-<:escal:en_ligne:>
-<div class="detail">[(#VAL{}|escal_visiteurs_connectes_compter)]
-                    [(#VAL{}|escal_visiteurs_connectes_compter|>{01}|oui)  <:escal:visiteurs:>]
-                    [(#VAL{}|escal_visiteurs_connectes_compter|>{01}|non)  <:escal:visiteur:>]
-</div>
-</li>
-]
+[(#CONFIG{escal/config/visiteursenligne}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/articlessites}|=={oui}|oui)
+[(#CONFIG{escal/config/articlessites}|=={non}|oui) <!-- ]
 <li>
 <BOUCLE_total(ARTICLES){tout}>
 </BOUCLE_total>
@@ -87,18 +55,9 @@
 <div class="detail">#TOTAL_BOUCLE <:escal:articles:></div>
 </B_total>
 </li>
-]
-[(#CONFIG{escal/config/articlessites}|non)
-<li>
-<BOUCLE_total2(ARTICLES){tout}>
-</BOUCLE_total2>
-<:escal:contenu_site:>
-<div class="detail">#TOTAL_BOUCLE <:escal:articles:></div>
-</B_total2>
-</li>
-]
+[(#CONFIG{escal/config/articlessites}|=={non}|oui) --> ]
 
-[(#CONFIG{escal/config/dernierarticleparu}|=={oui}|oui)
+[(#CONFIG{escal/config/dernierarticleparu}|=={non}|oui) <!-- ]
 <li>
 <BOUCLE_dernier(ARTICLES){tout}{par date}{inverse}{0,1}>
 <:escal:article_dernier:>
@@ -106,16 +65,7 @@
 <div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
 </BOUCLE_dernier>
 </li>
-]
-[(#CONFIG{escal/config/dernierarticleparu}|=non)
-<li>
-<BOUCLE_dernier2(ARTICLES){tout}{par date}{inverse}{0,1}>
-<:escal:article_dernier:>
-<div class="detail">"#TITRE"</div>
-<div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
-</BOUCLE_dernier2>
-</li>
-]
+[(#CONFIG{escal/config/dernierarticleparu}|=={non}|oui) --> ]
 
 </ul>
 
