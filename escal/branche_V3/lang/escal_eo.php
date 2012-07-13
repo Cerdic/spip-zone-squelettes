@@ -102,6 +102,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // F
 'fleche' => 'sago',
 'fois' => 'fojoj',
+'form_pet_envoi_mail_confirmation' => 'Retmesaĝo al la retejestro ĵus konvirmis vian aliĝon. ',
 'format' => 'Dosiertipo :',
 'forum' => 'Forumo',
 //H

@@ -238,7 +238,7 @@ function signature_a_confirmer($id_article, $url_page, $nom, $mail, $site, $url,
 	$titre = _T('petitions:form_pet_confirmation')." ". $titre;
 	$envoyer_mail = charger_fonction('envoyer_mail','inc');
 	if ($envoyer_mail($GLOBALS['meta']["email_webmaster"],$mail,$titre, $r))
-		return _T('petitions:form_pet_envoi_mail_confirmation',array('email'=>$mail));
+		return _T('escal:form_pet_envoi_mail_confirmation',array('email'=>$mail));
 
 	return false; # erreur d'envoi de l'email
 }

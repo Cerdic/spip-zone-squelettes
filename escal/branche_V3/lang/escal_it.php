@@ -103,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // F
 'fleche' => 'freccia',
 'fois' => 'volte',
+'form_pet_envoi_mail_confirmation' => 'Una posta elettronica di conferma ha appena stato mandato al webmaster del sito per convalidare la vostra iscrizione. ',
 'format' => 'Formato :',
 'forum' => 'Forum',
 //H
