@@ -9,16 +9,46 @@
     #ACTION_FORMULAIRE{#ENV{action}}
 
 
-            Par défaut, tous les cadres sont affichés <br />  <br />
+            Par défaut, tous les cadres sont affichés, sauf les cadres "Annonce" <br />  <br />
 <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
             Si vous changez le titre d'un cadre, vous pouvez aussi utiliser la balise multi et les chaines de langues pour le multilinguisme.
             <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/Les-fichiers-de-langues?lang=fr">En savoir plus</a>
 -->
      <ul>
+<!-- inc-annonce -->
+             #SET{name,annonce}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Un article en annonce au centre</strong> <br />
+                                              L'article le plus récent avec le mot-clé "annonce" <br />
+                                             (noisette inc-annonce)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
+<!-- inc-annonce_defilant -->
+             #SET{name,annoncedefilant}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><strong>Plusieurs articles défilants en annonce au centre</strong> <br />
+                                              Tous les articles avec le mot-clé "annonce" <br />
+                                             (noisette inc-annonce_defilant)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span></div>
+             </li>
 <!-- inc-alaune -->
              #SET{name,nombrealaune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Nombre d'articles &agrave; la une</strong>
+                    <div class="explication"><strong>Nombre d'articles &agrave; la une</strong> (sous le premier onglet)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},11})]"  />
