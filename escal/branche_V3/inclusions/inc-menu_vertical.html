@@ -9,7 +9,7 @@
 
 <div id="menuV">
 	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
-	<BOUCLE_exclure_rub_plan(RUBRIQUES){titre_mot=pas-au-menu}{doublons}>
+	<BOUCLE_exclure_rub_plan(RUBRIQUES){titre_mot=pas-au-menu-vertical}{doublons}>
 	<BOUCLE_exclure_ssrub_plan(RUBRIQUES){id_parent}{doublons}></BOUCLE_exclure_ssrub_plan>
 	</BOUCLE_exclure_rub_plan>
 
@@ -17,10 +17,12 @@
     <B_secteurs>
     <ul class="rubriques">
 		<BOUCLE_secteurs(RUBRIQUES) {racine}{lang}{par num titre, titre}{doublons}>
-		
+
       <li class="#EXPOSE">
       <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-      			<!-- affichage des articles des secteurs s'il y en a -->
+
+<!-- affichage des articles des secteurs s'il y en a -->
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 			<B_articles_racine>
 				<ul class="articles">
 					<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
@@ -30,7 +32,7 @@
 					</BOUCLE_articles_racine>
 				</ul>
 			</B_articles_racine>
-
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) -->]
 
 			<!-- affichage des sous-rubriques -->
 			<B_rubriques>
@@ -40,6 +42,7 @@
 	    		<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 
 	    		  <!-- affichage des articles -->
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 	    			<B_articles>
     					<ul class="articles">
 	    					<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
@@ -49,6 +52,7 @@
 	    					</BOUCLE_articles>
 	    				</ul>
 	    			</B_articles>
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) --> ]
 
 					<!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
 					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
