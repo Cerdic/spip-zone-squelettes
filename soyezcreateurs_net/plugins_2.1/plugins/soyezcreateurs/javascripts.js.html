@@ -350,6 +350,55 @@ function homeCarousel(elt) {
 	});
 }
 
+// Menu accessible : http://aquelito.fr/truc/menu/ 
+(function($){
+$.fn.aquelou = function(element, options) {
+	// Default settings
+	var defaults = {
+		arrowfff : "<span class='downarrow'>▼</span>",
+		dropClass : 'drop',
+		subClass : 'sub',
+		hoverClass : 'hover'
+	};
+	var $element = $(element), element = element;
+	var menu = this;
+	menu.set = {}
+	menu.init = function() {
+			menu.set = $.extend({}, defaults, options);
+			
+			/* Les roles ARIA */
+			$(this).parent('div').attr('role','navigation');
+			$(this).attr('role','menubar');
+			
+			$(this).addClass(menu.set.dropClass);
+			$('li',this).each(function () {
+				var menuParent = $(this).closest('ul').parent();
+				var lienSousMenu = $(this).find('a').first();
+				// si l'item est suivi d'un sous menu
+				if($(this).hasClass(menu.set.subClass)) {
+					lienSousMenu.append(menu.set.arrowfff);
+				}			
+				// actions
+				lienSousMenu.bind("mouseenter focus", function () {
+					menu.show( this );
+					menu.show( menuParent );
+				return false;
+				}).bind("mouseleave blur", function () {
+					menu.hide( this );
+					if ($(menuParent).hasClass(menu.set.hoverClass)) {
+						menu.hide( menuParent );
+					}
+				return false;
+				});	
+			});//end		
+	}
+	menu.show = function(vars) { $(vars).addClass( menu.set.hoverClass ); }// Ajouter la class hover
+	menu.hide = function(vars) { $(vars).removeClass( menu.set.hoverClass ); }// Supprime la class hover
+
+	menu.init();
+}
+})(jQuery);
+
 $(document).ready(function() {
 	myInitPages();
 	/* HOME SPECIAL FEATURE */
