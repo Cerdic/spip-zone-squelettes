@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_une' => 'Mettre cet article &agrave; la une',
 'aujourdhui'  => 'Aujourd\'hui : ',
 'auteurs' => 'Auteurs',
+'avec' => 'avec',
 'avec_le_squelette' => 'avec le squelette',
 // B
 'bandeau' => 'Bandeau',
@@ -39,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'calendrier' => 'Calendrier',
 'clic_telechargement' => 'Cliquer pour voir ou t&eacute;l&eacute;charger',
 'collegues' => 'Tous les coll&egrave;gues',
+'commentaires' => 'commentaires',
 'contact' => 'Contact',
 'contact_bienvenue' => 'Pour contacter le r&eacute;f&eacute;rent technique,
                           <br />veuillez remplir tous les champs de ce formulaire.',
@@ -70,7 +72,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_retour_commentaire1' => 'Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site',
 'contact_retour_commentaire2' => 'qui vous r&eacute;pondra d&egrave;s que possible &agrave; cette adresse :',
 'contact_retour_checkbox' => 'Votre niveau :',
-'contenu_site' => 'Ce site contient : ',
+'contenu_site' => 'Ce site compte : ',
 // D
 'dans_site' => 'dans ce site',
 // E
@@ -108,10 +110,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Un courrier &eacute;lectronique de confirmation vient d\'&ecirc;tre envoy&eacute; au webmaster du site afin de valider votre inscription. ',
 'format' => 'Format :',
 'forum' => 'Forum',
-//H
+//G
+'gros_jour' => 'Plus grosse journ&eacute;e',
+// H
 'haut_page' => 'Haut de page',
 // I
 'identification' => 'Identification',
+// J
+'jours' => 'jours',
 // L
 'le' => 'le',
 'lire_article' => 'Lire l\'article ...',
@@ -121,8 +127,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mentions' => 'Mentions l&eacute;gales',
 'message_non' => '(pas de message pour le moment)',
 'meteo_titre_conditions' => 'Conditions m&eacute;t&eacute;o &agrave;',
+'mots_cles' => 'mots-cl&eacute;s',
 'mots_clefs' => 'Les mots-cl&eacute;s',
 'mots_clefs_associes' => 'Mots-cl&eacute;s associ&eacute;s',
+'moyenne_visites' => 'Moyenne depuis',
 // P
 'pages' => 'pages',
 'page_auteur' => 'page de l\'auteur' ,
@@ -143,11 +151,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_resultat' => 'R&eacute;sultat de la recherche pour ',
 'recherche_sites_non' => 'Aucun site trouv&eacute; pour cette recherche',
 'repondre_message' => 'R&eacute;pondre &agrave; ce message',
+'rubriques' => 'rubriques',
 'rubrique_articles' => 'Les articles de cette rubrique',
 'rubrique_contenu' => 'Cette rubrique contient',
 'rubrique_sites_references' => 'Les sites r&eacute;f&eacute;renc&eacute;s dans cette rubrique',
 'rubrique_sous_rubriques' => 'Les sous-rubriques de cette rubrique',
-
 // S
 'sites' => 'Sites',
 'site_realise_avec' => 'Site r&eacute;alis&eacute; sous',
@@ -156,6 +164,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'sous_rubrique',
 'sous_rubriques' => 'sous_rubriques',
 'statistiques' => 'Statistiques du site',
+'sujets' => 'sujets',
+'sur_forum' => 'Sur le forum c\'est :',
 'sur_web' => 'Sur le web',
 // T
 'taille_augmenter' => 'Augmenter la taille des caract&egrave;res',
@@ -174,6 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'Nombre total de visites : ',
 'traductions_article' => 'traductions de cet article :',
 // V
+'visites_jour' => 'visites par jour',
 'visiteur' => 'visiteur',
 'visiteurs' => 'visiteurs',
 'votre_nom' => 'Votre nom ?',

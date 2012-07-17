@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_une' => 'Put this article on the front page',
 'aujourdhui'  => 'Today: ',
 'auteurs' => 'Authors',
+'avec' => 'width',
 'avec_le_squelette' => 'with the template',
 // B
 'bandeau' => 'Banner',
@@ -39,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'calendrier' => 'Calendar',
 'clic_telechargement' => 'Click to see or download',
 'collegues' => 'All the colleagues',
+'commentaires' => 'comments',
 'contact' => 'Contact',
 'contact_bienvenue' => 'To contact the technical referent, 
                          <br />please fill in all the fields of this form.',
@@ -106,10 +108,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'An e-mail of confirmation has just been sent to the webmaster of the site to validate your registration. ',
 'format' => 'File type :',
 'forum' => 'Forum',
+//G
+'gros_jour' => 'Biggest day',
 //H
 'haut_page' => 'Top of the page',
 // I
 'identification' => 'Identification',
+// J
+'jours' => 'days',
 // L
 'le' => 'on',
 'lire_article' => 'Read the article ...',
@@ -119,8 +125,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mentions' => 'Legal notices',
 'message_non' => '(no message for the moment)',
 'meteo_titre_conditions' => 'Weather conditions in',
+'mots_cles' => 'keywords',
 'mots_clefs' => 'The keywords',
 'mots_clefs_associes' => 'Associated  keywords',
+'moyenne_visites' => 'Average for',
 // P
 'pages' => 'pages',
 'page_auteur' => 'Author\'s pages' ,
@@ -141,6 +149,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_resultat' => 'Result of the search for ',
 'recherche_sites_non' => 'No site found for this search',
 'repondre_message' => 'Reply to this message',
+'rubriques' => 'sections',
 'rubrique_articles' => 'Articles of this section',
 'rubrique_contenu' => 'This section contains',
 'rubrique_sites_references' => 'Referenced sites in this section',
@@ -153,6 +162,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'sub-section',
 'sous_rubriques' => 'sub-sections',
 'statistiques' => 'Statistics of the site',
+'sujets' => 'topics',
+'sur_forum' => 'On the forum it is:',
 'sur_web' => 'On web',
 // T
 'taille_augmenter' => 'Increase the size of the characters',
@@ -171,6 +182,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'Total number of visits:',
 'traductions_article' => 'Translations of this article:',
 // V
+'visites_jour' => 'visits a day',
 'visiteur' => 'visitor',
 'visiteurs' => 'visitors',
 'votre_nom' => 'Your name ?',

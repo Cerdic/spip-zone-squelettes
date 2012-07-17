@@ -4,6 +4,7 @@
 // =======================================================================================================================================
    // pour gerer les classes des differents liens dans les articles
    // Un grand merci a l'auteur : bobof
+// =======================================================================================================================================
    
 function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $connect='')
 {
@@ -33,8 +34,9 @@ return inc_lien_dist($lien, $texte, $class, $titre, $hlang, $rel, $connect);
 
 // balises issues da la contrib  "Balises de comptage" de Franck
 // http://www.spip-contrib.net/Balises-de-comptage 
-
+// =======================================================================================================================================
 // balise #TOTAL_VISITES
+// =======================================================================================================================================
 function vst_total_visites() {
 	$query = "SELECT SUM(visites) AS total_abs FROM spip_visites";
 	$result = spip_query($query);
@@ -47,7 +49,9 @@ function balise_TOTAL_VISITES($p) {
 	$p->statut = 'php';
 	return $p;
 }
+// =======================================================================================================================================
 // balise #NBPAGES_VISITEES
+// =======================================================================================================================================
 function vst_total_pages_visitees() {
 	$query = "SELECT SUM(visites) AS nbPages FROM spip_visites_articles";
 	$result = spip_query($query);
@@ -61,7 +65,36 @@ function balise_NBPAGES_VISITEES($p) {
 	return $p;
 }
 
+// =======================================================================================================================================
+// balise #MOY_VISITES
+// =======================================================================================================================================
+function moyenne_visites_par_jour() {
+// calcul de la moyenne de visites
+// Période d'analyse couverte (nb de jours avant aujourd'hui)
+$periode = lire_config('escal/config/periodevisites', '365') ;
+
+// Sur tout le site, nombre de visites pendant la période
+$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
+		"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL $periode DAY) ORDER BY date";
+	$result=spip_query($query);
+        $i=0 ;
+        $total_absolu=0;
+	while ($row = spip_fetch_array($result)) {
+                $total_absolu = $total_absolu + $row['visites'];
+                $i++;
+	}
+// Nombre moyen de visites par jour sur la période
+        $moyenne =  round($total_absolu / $periode );
+        return $moyenne;
+}
+function balise_MOY_VISITES($p) {
+	$p->code = "moyenne_visites_par_jour()";
+	$p->statut = 'php';
+	return $p;
+}
+// =======================================================================================================================================
 // fonction pour l'affichage du nombre de visiteurs connectes
+// =======================================================================================================================================
 // issue du plugin "Nombre de visiteurs connectées"
 // http://www.spip-contrib.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
@@ -69,8 +102,40 @@ function escal_visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));
      }
 
+// =======================================================================================================================================
+// Balise : #JOUR_MAX_VISITES & #VAL_MAX_VISITES
+// =======================================================================================================================================
 
+  function generer_jour_val_max_visites($arg) {
+	$qv = spip_query("SELECT MAX(visites) as maxvi FROM spip_visites");
+	$rv = spip_fetch_array($qv);
+	$valmaxi = $rv['maxvi'];
+
+	if($arg=="date") {
+		$qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
+		$rd = spip_fetch_array($qd);
+		$jourmaxi = $rd['date'];
+	}
+	if($arg=="date") { $a = $jourmaxi; }
+	if($arg=="val") { $a = $valmaxi; }
+	return $a;
+}
+function balise_JOUR_MAX_VISITES($p) {
+	$arg="date";
+	$p->code = "generer_jour_val_max_visites($arg)";
+	$p->interdire_scripts = false;
+	return $p;
+}
+function balise_VAL_MAX_VISITES($p) {
+	$arg="val";
+	$p->code = "generer_jour_val_max_visites($arg)";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+// =======================================================================================================================================
 // paramètres pour le plugin diapo
+// =======================================================================================================================================
 
 //nombre de vignettes par page
 $GLOBALS['diapo_vignettes']=15;

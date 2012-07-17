@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_une' => 'Poner este art&iacute;culo en primera plana',
 'aujourdhui'  => 'Hoy: ',
 'auteurs' => 'Autores',
+'avec' => 'con',
 'avec_le_squelette' => 'Con el esqueleto',
 // B
 'bandeau' => 'Tira',
@@ -39,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'calendrier' => 'Calendario',
 'clic_telechargement' => 'Clicar para ver o descargar',
 'collegues' => 'Todos los colegas',
+'commentaires' => 'comentarios',
 'contact' => 'Contacto',
 'contact_bienvenue' => 'Para ponerse en contacto con el referente t&eacute;cnico, 
                           <br />por favor, completa todos los campos de este formulario.',
@@ -106,10 +108,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Un correo electr&oacute;nico de confirmaci&oacute;n acaba de ser enviado al webmaster del sitio con el fin de validar su inscripci&oacute;n. ',
 'format' => 'Formato :',
 'forum' => 'Foro',
+//G
+'gros_jour' => 'D&iacute;a m&aacute;s grueso',
 //H
 'haut_page' => 'Arriba',
 // I
 'identification' => 'Identificaci&oacute;n',
+// J
+'jours' => 'd&iacute;as',
 // L
 'le' => 'el',
 'lire_article' => 'Leer el art&iacute;culo ...',
@@ -119,8 +125,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mentions' => 'Menciones legales',
 'message_non' => '(ning&uacute;n mensaje por el momento)',
 'meteo_titre_conditions' => 'Condiciones meteorol&oacute;gicas a',
+'mots_cles' => 'palabras clave',
 'mots_clefs' => 'Las palabras clave',
 'mots_clefs_associes' => 'Palabras clave asociadas',
+'moyenne_visites' => 'Media desde hace',
 // P
 'pages' => 'P&aacute;ginas',
 'page_auteur' => 'p&aacute;gina del autor' ,
@@ -141,11 +149,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_resultat' => 'Resultado de la b&uacute;squeda para ',
 'recherche_sites_non' => 'Ning&uacute;n sitio encontrado para esta b&uacute;squeda',
 'repondre_message' => 'Responder este mensaje',
+'rubriques' => 'r&uacute;bricas',
 'rubrique_articles' => 'Los art&iacute;culos de esta r&uacute;brica',
 'rubrique_contenu' => 'Esta r&uacute;brica contiene',
 'rubrique_sites_references' => 'Los sitios referanciados en esta r&uacute;brica',
 'rubrique_sous_rubriques' => 'Las subr&uacute;bricas de esta r&uacute;brica',
-
 // S
 'sites' => 'Sitios',
 'site_realise_avec' => 'Sitio realizado con',
@@ -154,6 +162,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'subr&uacute;brica',
 'sous_rubriques' => 'subr&uacute;bricas',
 'statistiques' => 'Estad&iacute;sticas del sitio',
+'sujets' => 'temas',
+'sur_forum' => 'Sobre el foro es:',
 'sur_web' => 'En la web',
 // T
 'taille_augmenter' => 'Aumentar la talla car&aacute;cteres',
@@ -172,6 +182,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'N&uacute;mero total de visitas: ',
 'traductions_article' => 'Traducciones de este art&iacute;culo:',
 // V
+'visites_jour' => 'visitas al día',
 'visiteur' => 'visitante',
 'visiteurs' => 'visitantes',
 'votre_nom' => '&#380; Su nombre?',

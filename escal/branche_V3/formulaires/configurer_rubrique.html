@@ -12,18 +12,38 @@
             Par défaut, tous les cadres sont affichés <br />  <br />
 
      <ul>
+          <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
             #SET{name,nombreart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Nombre d'articles affichés par page de pagination</strong>
+                    <div class="explication">Nombre d'articles affichés par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     </div>
+            #SET{name,paginhaut}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Afficher la pagination en haut
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui">oui</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">non</label>
+                    </span></div>
+            #SET{name,paginbas}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Afficher la pagination en bas
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui">oui</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">non</label>
+                    </span></div>
              </li>
 <!-- inc-acces_direct -->
-            #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><strong>Noisette inc-acces_direct</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
@@ -38,8 +58,8 @@
                     </div>
             </li>
 <!-- inc-derniers_articles -->
-            #SET{name,derniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            #SET{name,derniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><strong>Noisette inc-derniers_articles</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
