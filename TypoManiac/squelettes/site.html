@@ -1,0 +1,188 @@
+<BOUCLE_principale(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><!-- Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie ie6 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie ie9 lte9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]--></BOUCLE_lang>
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+[<link rel="canonical" href="(#ID_SYNDIC|generer_url_entite{site}|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) On demande aux moteurs de ne pas indexer cette page pour ne pas passer devant le site qu'on reference.
+]<meta name="robots" content="noindex" />
+</head>
+
+  <body>
+
+<!-- Menu -->
+ 	<INCLURE{fond=inclure/nav,env} />
+
+
+<div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche - laisser vide -->
+    </div>
+        
+    <div class="span6">   <!-- Col centrale pour le titre principal -->
+				[(#REM) Contenu principal : affichage du site reference ]
+				<h1 class="#EDIT{nom_site}">#NOM_SITE</h1>				
+	</div>
+         
+    <div class="span3" align="right"> <!-- Col de droite  laisser vide -->          
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  <div class="container-fluid"> <!-- container -->
+
+	<!-- (#REM) Contenu principal : contenu de l'article ] -->
+
+  
+  
+  
+  
+  <div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche petit menu -->
+   <ul class="nav nav-list">
+
+       
+   <INCLURE{fond=inclure/share}>
+   
+   </ul>
+
+    </div>
+    
+    
+        
+    <div class="span6">   <!-- Col centrale pour contenu principal -->
+         
+
+   
+			<a href="#URL_SITE">[(#LOGO_SITE|image_reduire{300,*})]</a>
+				
+			
+				
+			[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
+			[<p class="#EDIT{url_site} hyperlien"><i class="icon-share-alt"></i> <a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+	
+			[(#REM) Articles issus de la syndication ]
+			<B_articles>
+			<div class="menu menu_articles">
+				#ANCRE_PAGINATION
+			
+				<ul class="unstyled">
+					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {!par date} {pagination 10}>
+					<li>
+						<h5><i class="icon-leaf"></i> [(#DATE|affdate_jourcourt)] &mdash; <a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+					
+						[<div class="introduction">(#DESCRIPTIF|image_reduire{500,*})</div>]
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
+	
+			[<div class="notes"><hr />(#NOTES)</div>]			
+			
+							
+	  <hr class="soften">
+
+	
+	
+	
+
+			
+		
+      [(#REM) Sites de la rubrique ]
+			<B_sites>
+
+
+	<h1>Autres sources</h1>
+
+			<div class="accordion" id="accordion2">
+		
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+               <h4><i class="icon-globe"></i>  <:sur_web:></h4>
+                </a>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                 						<div class="menu">
+	
+				<ul class="unstyled">
+					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+					<li>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"><i class="icon-globe"></i> #NOM_SITE</a>
+						<B_syndic>
+						<ul class="unstyled">
+							<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<60} {!par date} {0,3}>
+							<li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE||couper{80, '...'})]</a></li>
+							</BOUCLE_syndic>
+						</ul>
+						</B_syndic>
+					</li>
+					</BOUCLE_sites>
+				</ul>
+	
+			</div>
+		
+			
+		
+	
+			[(#REM) Proposer un site ]
+			#FORMULAIRE_SITE
+                </div>
+              </div>
+            </div>
+            	</B_sites>
+            
+           </div>	
+	
+
+
+			
+         </div>
+   
+         
+         
+    <div class="span3" align="right">
+    
+      	<!-- Col de droite --> 
+      	
+      	   <ul class="nav nav-list"> 
+      	<li><span class="arbo"><a href="#URL_SITE_SPIP/">Maison</a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane></span> <i class="icon-circle-arrow-left"></i></li>
+
+      	 </ul>
+				
+			<!-- (#REM) Menu de navigation mots-cles -->
+			
+			<p><br/></p>		
+			#MODELE{site_mots}
+		
+	
+         
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  </div> <!-- /container --> 
+    
+  
+    <INCLURE{fond=inclure/footer,self=#SELF} />
+    <INCLURE{fond=inclure/footer-scripts} />
+
+
+
+</html>
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucun_site:>})]
+<//B_principale>

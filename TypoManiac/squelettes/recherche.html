@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inclure/head} />
+<meta name="robots" content="none" />
+</head>
+
+
+
+  <body>
+
+<!-- Menu -->
+ 	<INCLURE{fond=inclure/nav,env} />
+
+
+<div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche - laisser vide -->
+    </div>
+        
+    <div class="span6">   <!-- Col centrale pour le titre principal -->
+				<h1><:resultats_recherche:></h1>		
+				<h1>&#171;&nbsp;#RECHERCHE&nbsp;&#187;</h1>		
+	</div>
+         
+    <div class="span3" align="right"> <!-- Col de droite  laisser vide -->          
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  <div class="container-fluid"> <!-- container -->
+
+	<!-- (#REM) Contenu principal : contenu de l'article ] -->
+
+  
+  
+  
+  
+  <div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche petit menu -->
+   <ul class="nav nav-list">
+
+       
+   <INCLURE{fond=inclure/share}>
+   
+   </ul>
+
+    </div>
+    
+    
+        
+    <div class="span6">   <!-- Col centrale pour contenu principal -->
+         
+
+	
+			
+			[(#REM) Articles trouves ]
+			<B_articles>
+			<div>	<hr class="soften">
+				#ANCRE_PAGINATION
+				<h2><:articles:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination}>
+					<li><i class="icon-leaf"></i> <a href="#URL_ARTICLE">#TITRE</a></li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
+						
+			[(#REM) Rubriques trouvees ]
+			<B_rubriques>
+			<div> 
+			<hr class="soften">
+
+				#ANCRE_PAGINATION
+				<h2><:rubriques:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination 10}>
+					<li><i class="icon-list-alt"></i> <a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_rubriques>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_rubriques>
+			
+			
+			
+			
+						
+			[(#REM) Mots-cles trouves ]
+			<B_mots>
+			<div>
+			<hr class="soften">
+
+				#ANCRE_PAGINATION
+				<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_mots(MOTS) {recherche} {!par points} {pagination 10}>
+					<li><i class="icon-search"></i> <a href="#URL_MOT">#TITRE</a></li>
+					</BOUCLE_mots>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_mots>
+			
+						
+			[(#REM) Breves trouvees ]
+			<B_breves>
+			<div>
+			<hr class="soften">
+
+				#ANCRE_PAGINATION
+				<h2><:breves:breves:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_breves(BREVES) {recherche} {!par points} {pagination 10}>
+					<li><i class="icon-leaf"></i> <a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_breves>
+			
+		
+			
+			[(#REM) Messages trouves ]
+			<B_messages>
+			<div>
+			<hr class="soften">
+
+				#ANCRE_PAGINATION
+				<h2><:messages_forum:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_messages(FORUMS?) {recherche} {!par points} {pagination 10}>
+					[<li><i class="icon-comment"></i> <a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>(#TEXTE|couper{80})</a></li>]
+					</BOUCLE_messages>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_messages>
+			
+	
+			
+			[(#REM) Sites web trouves ]
+			<B_sites>
+			<div>
+			<hr class="soften">
+
+				#ANCRE_PAGINATION
+				<h2><:sites_web:> (#GRAND_TOTAL)</h2>
+				<ul class="unstyled">
+					<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 10}>
+					<li><i class="icon-globe"></i> <a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_sites>					
+         </div>
+   
+         
+         
+    <div class="span3" align="right">
+             
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+ 
+  
+  </div> <!-- /container --> 
+    
+          <p><br/></p>
+  
+    <INCLURE{fond=inclure/footer,self=#SELF} />
+    <INCLURE{fond=inclure/footer-scripts} />
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+
+  <body>
+
+<!-- Menu -->
+ 	<INCLURE{fond=inclure/nav,env} />
+
+
+<div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche - laisser vide -->
+    </div>
+        
+    <div class="span6">   <!-- Col centrale pour le titre principal -->
+					<h1 class="#EDIT{titre}">#TITRE</h1>
+			
+	</div>
+         
+    <div class="span3" align="right"> <!-- Col de droite  laisser vide -->          
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  <div class="container-fluid"> <!-- container -->
+
+	<!-- (#REM) Contenu principal : contenu de l'article ] -->
+
+  
+  
+  
+  
+  <div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche petit menu -->
+   <ul class="nav nav-list">
+    
+   <INCLURE{fond=inclure/share}>
+   
+   </ul>
+
+    </div>
+    
+    
+        
+    <div class="span6">   <!-- Col centrale pour contenu principal -->
+         
+             <ul class="thumbnails">
+  <li class="span12">
+ 
+        [<div class="thumbnail logart">(#LOGO_ARTICLE_RUBRIQUE) </div>]   
+  </li>
+ </ul>
+
+							
+		
+		
+			
+					
+			[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+	
+		
+	
+			
+				
+			<//B_articles>[(#REM) supprimer pour toujours avoir le miniplan]
+	
+	
+			[(#REM) Documents joints a la rubrique ]
+			<B_documents_joints>
+			<div class="menu" id="documents_joints">
+				<h2><:medias:titre_documents_joints:></h2>
+				<ul class="unstyled">
+					<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
+					<li>
+						<a href="#URL_DOCUMENT" type="#MIME_TYPE" class="spip_doc[ (#EXTENSION|attribut_html)]"><strong class="#EDIT{titre} titre">[(#TITRE|sinon{[(#FICHIER|basename|couper{80})]})]</strong>
+						<small class="info_document">([<abbr title="<:info_document:> #TYPE_DOCUMENT" class="ext">(#EXTENSION|strtoupper)</abbr> - ][<span>(#TAILLE|taille_en_octets)</span>])</small></a>
+						[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div><!--#documents_joints-->
+			</B_documents_joints>
+	
+			[<div class="notes"><hr />(#NOTES)</div>]
+			
+
+<h1>Au programme</h1>
+			
+			[(#REM) Articles de la rubrique ]
+			<B_articles>
+
+
+			<div class="accordion" id="accordion2">
+			            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                  <h4><i class="icon-leaf"></i> Articles #TITRE</h4>
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+             				<div class="menu menu_breves">
+				
+				<ul class="unstyled">
+					<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
+					<li>
+						<i class="icon-leaf"></i> [(#DATE|affdate_jourcourt)  &ndash;] <a href="#URL_ARTICLE">[(#TITRE||couper{85, '...'})]</a>[, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]
+					</li>
+					</BOUCLE_articles>
+				</ul>
+			
+			</div>
+			
+                </div>
+              </div>
+            </div>
+            </B_articles>
+            
+            
+            
+            [(#REM) Breves du secteur ]
+			<B_breves>
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                 <h4><i class="icon-certificate"></i> <:breves:breves:></h4>
+                </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                 					<div class="menu menu_breves">
+		
+			
+				<ul class="unstyled">
+					<BOUCLE_breves(BREVES) {id_rubrique} {!par date} {age<365} >
+					<li><i class="icon-certificate"></i> [(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_BREVE">[(#TITRE||couper{80, '...'})]</a></li>
+					</BOUCLE_breves>
+				</ul>
+	
+
+			</div>
+			
+                </div>
+              </div>
+            </div>
+            </B_breves>
+            
+            
+            
+            [(#REM) Sites de la rubrique ]
+			<B_sites>
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+               <h4><i class="icon-globe"></i>  <:sur_web:></h4>
+                </a>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                 						<div class="menu">
+	
+				<ul class="unstyled">
+					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+					<li>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"><i class="icon-globe"></i> #NOM_SITE</a>
+						<B_syndic>
+						<ul class="unstyled">
+							<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<60} {!par date} {0,3}>
+							<li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE||couper{80, '...'})]</a></li>
+							</BOUCLE_syndic>
+						</ul>
+						</B_syndic>
+					</li><p></p>
+					</BOUCLE_sites>
+				</ul>
+	
+			</div>
+		
+			
+		
+	
+			[(#REM) Proposer un site ]
+			#FORMULAIRE_SITE
+                </div>
+              </div>
+            </div>
+            	</B_sites>
+            
+            [(#REM) Sous rubrique ]
+              <B_sous_rubriques>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseZero">
+               	<h4><i class="icon-barcode"></i> <:sous_rubriques:></h4>
+                </a>
+              </div>
+              <div id="collapseZero" class="accordion-body collapse">
+                <div class="accordion-inner">
+                
+			<div class="menu menu_rubriques">
+			
+				<ul class="unstyled">
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date} {!id_rubrique=46}>
+					<li>
+						<i class="icon-barcode"></i> <a href="#URL_RUBRIQUE">#TITRE</a>
+	
+						[(#REM) Une boucle recursive pour le mini plan]
+						<B_miniplan>
+						<ul class="unstyled">
+							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre}{!par date}>
+							<li>
+								<a href="#URL_RUBRIQUE">#TITRE</a>
+								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+							</li>
+							</BOUCLE_miniplan>
+						</ul>
+						</B_miniplan>
+	
+					</li>
+					</BOUCLE_sous_rubriques>
+				</ul>
+				</div>
+			
+                </div>
+              </div>
+            </div>
+            </B_sous_rubriques>
+ 
+           
+          </div>
+
+         </div>
+   
+         
+         
+    <div class="span3" align="right">
+    
+      	<!-- Col de droite --> 
+      	
+      	
+  
+      	
+      	   <ul class="nav nav-list"> 
+      	<li><span><a href="#URL_SITE_SPIP/">Maison</a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane></span> <i class="icon-circle-arrow-left"></i></li>
+
+      	 </ul>
+				
+			<!-- (#REM) Menu de navigation mots-cles -->
+			
+			<p><br/></p>		
+			#MODELE{rubrique_mots}
+		
+	
+		<p><br/></p>
+			
+			<!-- (#REM) Boucle principale -->
+			
+
+         
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  </div> <!-- /container --> 
+    
+  
+    <INCLURE{fond=inclure/footer,self=#SELF} />
+    <INCLURE{fond=inclure/footer-scripts} />
+        
+    
+</div><!--.page-->
+</body>
+</html>
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucune_rubrique:>})]
+<//B_principale>

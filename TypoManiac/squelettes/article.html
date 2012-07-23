@@ -1,0 +1,175 @@
+<BOUCLE_principale(ARTICLES) {id_article} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+  </head>
+
+  <body>
+
+   <!-- Menu -->
+   <INCLURE{fond=inclure/nav}{id_rubrique}{env} />
+    
+    
+    
+<div class="container-fluid"> <!-- container -->
+
+	<!-- (#REM) Contenu principal : contenu de l'article ] -->
+
+			
+  <div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche -->
+  
+    </div>
+        
+    <div class="span6">   <!-- Col centrale -->
+         
+  
+				[<h6 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h6>]
+				<h1 class="#EDIT{titre} surlignable">#TITRE</h1>
+				[<h6 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h6>]
+				[(#REM) Inclure le modele des liens de traductions ]
+				#MODELE{article_traductions}
+		
+
+			
+		         </div>
+         
+    <div class="span3" align="right">
+    
+      	<!-- Col de droite --> 
+      		
+      	
+         
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+  
+  
+  <div class="row-fluid">
+      
+    <div class="span3"> <!-- Col de gauche -->
+   <ul class="nav nav-list">
+
+    <li>
+      <i class="icon-user"></i> [(#LESAUTEURS)] le [(#DATE|affdate)]
+
+      </li>
+     <li>
+      <i class="icon-signal"></i> <span>#VISITES lectures</span>
+  </li>
+     <li>
+      <i class="icon-comment"></i> <span><BOUCLE_comm(FORUMS){id_article}{tout}><a href="[(#URL_ARTICLE)#forums]">#TOTAL_BOUCLE</a></BOUCLE_comm> réaction(s).</span>
+  </li>
+    
+   <INCLURE{fond=inclure/share}>
+   
+   </ul>
+
+    </div>
+        
+    <div class="span6">   <!-- Col centrale -->
+         
+         <ul class="thumbnails">
+  <li class="span12">
+  
+        [<div class="thumbnail logart">(#LOGO_ARTICLE_RUBRIQUE)</div>]    
+  </li>
+ </ul>
+
+
+					
+					
+			[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|justifier)</div>]
+			[<div class="#EDIT{texte} texte surlignable">(#TEXTE|justifier)</div>]
+		
+			[<hr /><p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{ps} ps surlignable"><hr />(#PS|image_reduire{500,*})</div>]
+		
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents,id_article, env})]
+	
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+			
+			[<div class="notes">   <hr class="soften">(#NOTES|justifier)</div>]
+			
+			 
+			
+			#LICENCE
+			
+			<hr />
+						
+			<div class="padd-post-box padd-post-box-replies padd-post-box-comments" id="forums"><!-- debut forums --> 
+			
+				[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			<INCLURE{fond=inclure/forum,id_article} />
+			[<h1><:forum:form_pet_message_commentaire:></h1>
+			(#FORMULAIRE_FORUM)]
+			
+	
+			
+			
+         </div><!-- fin forums -->
+         
+         </div>
+         
+    <div class="span3" align="right">
+    
+      	<!-- Col de droite --> 
+      	
+      	   <ul class="nav nav-list"> 
+      	<li><span><a href="#URL_SITE_SPIP/">Maison</a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane></span> <i class="icon-circle-arrow-left"></i></li>
+
+      	 </ul>
+				
+			<!-- (#REM) Menu de navigation mots-cles -->
+			
+			<p><br/></p>		
+			#MODELE{article_mots}
+		
+	
+		<p><br/></p>
+			[(#REM) Articles dans la meme rubrique ]
+			<B_articles_rubrique>
+			<div>
+				   <ul class="nav nav-list"> 
+					<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!par date} {doublons} {0,10}>
+					<li><span><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|couper{25})]</a> <i class=" icon-leaf"></i></span></li>
+					</BOUCLE_articles_rubrique>
+				</ul>
+			</div>
+			</B_articles_rubrique>
+
+
+         
+    </div>
+    
+  </div> <!-- / raw fluid --> 
+
+  
+ </div> <!-- /container --> 
+    
+  
+    <INCLURE{fond=inclure/footer,self=#SELF} />
+    <INCLURE{fond=inclure/footer-scripts} />
+    
+   
+       
+  </body>
+</html>
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucun_article:>})]
+<//B_principale>
