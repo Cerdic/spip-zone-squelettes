@@ -41,6 +41,17 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">non</label>
                     </span></div>
              </li>
+
+          <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            #SET{name,nombreesites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Nombre de sites affichés par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    </div>
+             </li>
+             
 <!-- inc-acces_direct -->
             <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
             #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
