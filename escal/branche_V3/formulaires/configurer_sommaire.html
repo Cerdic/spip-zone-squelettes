@@ -241,6 +241,13 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span><br /><br /></div>
+            #SET{name,nombreevent}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Nombre d'évènements affichés par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    </div>
 <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
             #SET{name,titrecalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titrecalendrier="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:calendrier:>})]"; ?>

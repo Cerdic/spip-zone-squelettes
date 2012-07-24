@@ -111,13 +111,13 @@
 
 
 <!-- affichage de la liste des evenements -->
-		
+#SET{nbrpagevent,#CONFIG{escal/config/nombreevent,5}}
 		<div id="entete-evenement">
   <:escal:evenements:>
 		</div>
     <B_agenda_global>
       <p style="align:right">#PAGINATION</p>
-		<BOUCLE_agenda_global (ARTICLES){!doublons evenements}{par date_redac}{pagination 5}>
+		<BOUCLE_agenda_global (ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpagevent}}>
 			<div class="liste-evenements">
 			[(#DATE_REDAC|jour)-][(#DATE_REDAC|mois):]
 			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
