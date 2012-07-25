@@ -448,6 +448,16 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');
 		}
+		if (version_compare($current_version,'3.0.23','<')) {
+			spip_log("SoyezCreateurs maj 3.0.23", "soyezcreateurs_install");
+			create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
+			$id_rub_fourretout = id_rubrique("000. Fourre-tout");
+			$id_raccourcis_typo = id_article("Raccourcis Typographiques de SPIP, mode d'emploi", $id_rub_fourretout);
+			create_article_mot("Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+			create_logo('documents/casiertypo.png', $type='art', $id_raccourcis_typo, 'png'); // 			
+
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.23','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
