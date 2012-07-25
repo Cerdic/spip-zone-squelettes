@@ -17,10 +17,10 @@
 		
         <B_sous_rubriques>
         <div class="menu articles">
-				 <h2 class="h2"><:sous_rubriques:></h2>
-				 <ul class="liste-items">
+				<h2 class="h2"><:sous_rubriques:></h2>
+				<ul class="liste-items">
 						<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-						 <li class="item">
+						<li class="item">
 								<a href="#URL_RUBRIQUE" [title="(#TEXTE|attribut_html|couper{80})"]>[(#TITRE)]</a>
 								[(#INCLURE{fond=inclure/articles}{ajax}{env}{id_rubrique}{titre= })]
 						</li>
@@ -29,6 +29,25 @@
 		</div>
         </B_sous_rubriques>
 		
+		[(#REM) Sites de la rubrique ]
+		<B_sites>
+		<h2 class="h2"><:sur_web:></h2>
+		<ul class="liste-items">
+				<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+				<li class="item">
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+						<B_syndic>
+						<ul>
+								<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{age<180}{!par date}{0,3}>
+								<li><a href="#URL_ARTICLE" class="spip_out" title="<:scolaspip:lien_externe:>">#TITRE</a></li>
+								</BOUCLE_syndic>
+						</ul>
+						</B_syndic>
+				</li>
+				</BOUCLE_sites>
+		</ul>
+		</B_sites>
+
 </div>
 
 <div class="droite">
