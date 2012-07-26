@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/avelinepublic?lang_cible=en
+// extrait automatiquement de http://trad.spip.net/tradlang_module/avelinepublic?lang_cible=en
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les_mieux_notes' => 'Best rated articles',
 	'articles_les_plus_anciens' => 'Oldest articles',
 	'articles_les_plus_commentes' => 'Most commented articles',
+	'articles_les_plus_populaires' => 'Articles les plus populaires', # NEW
 	'articles_les_plus_recents' => 'Latest articles',
 	'articles_les_plus_visites' => 'Most visited articles',
 	'aucun_article_trouve' => 'No article found.',

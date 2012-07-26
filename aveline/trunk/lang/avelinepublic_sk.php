@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/avelinepublic?lang_cible=sk
+// extrait automatiquement de http://trad.spip.net/tradlang_module/avelinepublic?lang_cible=sk
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les_mieux_notes' => 'Najlepšie hodnotené články',
 	'articles_les_plus_anciens' => 'Najstaršie články',
 	'articles_les_plus_commentes' => 'Najkomentovanejšie články',
+	'articles_les_plus_populaires' => 'Articles les plus populaires', # NEW
 	'articles_les_plus_recents' => 'Najnovšie články',
 	'articles_les_plus_visites' => 'Najnavštevovanejšie články',
 	'aucun_article_trouve' => 'Žiadne články sa nenašli.',
