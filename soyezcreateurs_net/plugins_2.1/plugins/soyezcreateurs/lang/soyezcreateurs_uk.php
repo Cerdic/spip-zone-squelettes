@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/soyezcreateurs?lang_cible=uk
+// extrait automatiquement de http://trad.spip.net/tradlang_module/soyezcreateurs?lang_cible=uk
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -49,7 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_masquer' => 'Замаскувати ( приховати)',
 	'cfg_affichage_nouveautes_ex' => 'Афішування ( показ)  блоку "Що нового " у вихідних даних по кожній рубриці, за списком нових статей поточної гілки',
 	'cfg_affichage_nouveautes_label' => 'Афішування ( показ) новин за галузями ',
-	'cfg_affichage_plan_ex' => 'Це посилання відправляє вас на сторінку зі списком всіх елементів з сайту, перерахованих у зворотному хронологічному порядку ',
+	'cfg_affichage_plan_ex' => 'Це посилання відправляє вас на сторінку зі списком всіх елементів з сайту, перерахованих у зворотному хронологічному порядку ', # MODIF
 	'cfg_affichage_plan_label' => 'Афішувати (показати ) посилання на план у зворотному хронологічному порядку у картриджі   Що нового?',
 	'cfg_affichage_zone_bandeau' => 'Показ ( Дисплей ) у верхній банер',
 	'cfg_affichage_zone_principale' => 'Показ ( Дисплей ) в головному меню',
@@ -111,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Відображення дати публікаці',
 	'cfg_datepublication_ex' => '(Якщо дата вимкнено, вона може бути відновлена ключовим словом "DevoilerDate" "Відкриття дати")',
 	'cfg_datepublication_label' => 'Афішувати ( показати)  дату публікації статей',
+	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant', # NEW
+	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>', # NEW
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)', # NEW
 	'cfg_decalage_bas_label' => 'Зрушення до низу логотипа, якщо він присутній в заголовку (у пікселях)',
 	'cfg_decalage_droite_label' => 'Перехід на право від логотипу, якщо він присутній в заголовку (у пікселях)',

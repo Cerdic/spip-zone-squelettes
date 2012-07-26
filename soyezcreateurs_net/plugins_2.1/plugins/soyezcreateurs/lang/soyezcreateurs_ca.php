@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/soyezcreateurs?lang_cible=ca
+// extrait automatiquement de http://trad.spip.net/tradlang_module/soyezcreateurs?lang_cible=ca
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -49,7 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_masquer' => 'Amagar',
 	'cfg_affichage_nouveautes_ex' => 'Visualització d\'un bloc "Què hi ha de nou" al cartutx de cada secció, que llista els nous articles de l\'actual branca',
 	'cfg_affichage_nouveautes_label' => 'Visualització de les novetats per branca',
-	'cfg_affichage_plan_ex' => 'Aquest enllaç envia a una pàgina que llista tots els articles del lloc, classificats per ordre anticronològic</i>',
+	'cfg_affichage_plan_ex' => 'Aquest enllaç envia a una pàgina que llista tots els articles del lloc, classificats per ordre anticronològic</i>', # MODIF
 	'cfg_affichage_plan_label' => 'Mostrar l\'enllaç cap el pla anticronològic al cartutx <i>Què hi ha de nou?</i>',
 	'cfg_affichage_zone_bandeau' => 'Visualització a la banda superior',
 	'cfg_affichage_zone_principale' => 'Visualització a la zona del menú principal',
@@ -111,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Visualització de la data de publicació',
 	'cfg_datepublication_ex' => ' (si està desactivat, es pot tornar a activar article per article amb le Paraula Clau "DevoilerDate")',
 	'cfg_datepublication_label' => 'Mostrar la data de publicació dels articles',
+	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant', # NEW
+	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>', # NEW
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)', # NEW
 	'cfg_decalage_bas_label' => 'Desplaçar cap a sota del logotip si és a l\'encapçalament (en píxel)',
 	'cfg_decalage_droite_label' => 'Desplaçament cap a la dreta del logo si està present a l\'encapçalament (en píxel)',

@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/soyezcreateurs?lang_cible=en
+// extrait automatiquement de http://trad.spip.net/tradlang_module/soyezcreateurs?lang_cible=en
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -49,7 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_masquer' => 'Hide',
 	'cfg_affichage_nouveautes_ex' => 'Display a "What\'s new" block in the panel for each section, listing the new articles in the current branch',
 	'cfg_affichage_nouveautes_label' => 'Diplay the news by branch',
-	'cfg_affichage_plan_ex' => 'This link connects to a page listing all the articles on the site, sorted in reverse chronological order</i>',
+	'cfg_affichage_plan_ex' => 'This link connects to a page listing all the articles on the site, sorted in reverse chronological order</i>', # MODIF
 	'cfg_affichage_plan_label' => 'Dispay the link to the antichronological map in the cartridge <i>What news ?</i>',
 	'cfg_affichage_zone_bandeau' => 'Display in the top banner',
 	'cfg_affichage_zone_principale' => 'Display in the main menu area',
@@ -111,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Displaying the publication date',
 	'cfg_datepublication_ex' => ' (if disabled, it can de enabled article per article withe the "DevoilerDate" keyword)',
 	'cfg_datepublication_label' => 'Display the publication date for articles',
+	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant', # NEW
+	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>', # NEW
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)', # NEW
 	'cfg_decalage_bas_label' => 'Shift downwards if the logo in the header (in pixels)',
 	'cfg_decalage_droite_label' => 'Shift to the right of the logo if present in the header (in pixels)',

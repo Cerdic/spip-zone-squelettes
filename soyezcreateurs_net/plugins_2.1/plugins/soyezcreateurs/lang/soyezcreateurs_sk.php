@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/soyezcreateurs?lang_cible=sk
+// extrait automatiquement de http://trad.spip.net/tradlang_module/soyezcreateurs?lang_cible=sk
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -49,7 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_masquer' => 'Schovať',
 	'cfg_affichage_nouveautes_ex' => 'Zobrazte blok „Čo je nové“ v paneli každej rubriky, ktorý zobrazí nové články v aktuálnej rubrike',
 	'cfg_affichage_nouveautes_label' => 'Zobraziť novinky podľa odvetvia',
-	'cfg_affichage_plan_ex' => 'Tento odkaz váš prepojí na stránku so všetkými článkami na stránke roztriedenými v chronologickom poradí od konca</i>',
+	'cfg_affichage_plan_ex' => 'Tento odkaz váš prepojí na stránku so všetkými článkami na stránke roztriedenými v chronologickom poradí od konca</i>', # MODIF
 	'cfg_affichage_plan_label' => 'Zobraziť odkaz na mapu v zostupnom poradí <i>Čo je nové?</i>',
 	'cfg_affichage_zone_bandeau' => 'Zobraziť v hornom pútači',
 	'cfg_affichage_zone_principale' => 'Zobraziť v oblasti hlavného menu',
@@ -111,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Zobraziť dátum publikovania',
 	'cfg_datepublication_ex' => ' (ak je deaktivovaný, dá sa aktivovať pri každom článku samostatne cez kľúčové slovo "DevoilerDate")',
 	'cfg_datepublication_label' => 'Zobraziť dátum publikovania článku',
+	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant', # NEW
+	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>', # NEW
 	'cfg_debut_contenu' => 'Na začiatku textu (niekde hore vpravo)',
 	'cfg_decalage_bas_label' => 'Posúnúť na spodnú stranu loga, ak sa nachádza v hlavičke (v pixeloch)',
 	'cfg_decalage_droite_label' => 'Posunúť na pravú stranu loga, ak sa nachádza v hlavičke (v pixeloch)',
