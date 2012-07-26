@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.spip.org/tradlang_module/aveline?lang_cible=ca
+// extrait automatiquement de http://trad.spip.net/tradlang_module/aveline?lang_cible=ca
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_breve-mots_cles' => 'Llista les paraules clau associades a la breu.',
 	'description_calendrier_mini' => 'Mostra un mini calendari amb un enllaç que apunta, si només hi ha un esdeveniment per aquest dia, cap a la pàgina \'Agenda\' filtrant els resultats sobre el dia en qüestió.',
 	'description_documents' => 'Per defecte, no mostra les fotografies, aquestes es mostren generalment via un portafolis. Podeu forçar que es visualitzin les fotografies si no mostreu el portafolis. ',
+	'description_evenement-contenuprincipal' => 'Affiche date, logo, lieu, texte, adresse, nombre de participants.', # NEW
 	'description_evenement-filariane' => 'Mostrar l\'arbre de les seccions fins a l\'esdeveniment.',
 	'description_evenement-mots_cles' => 'Llista les paraules clau associades a l\'esdeveniment. ',
 	'description_formulaire_inscription' => 'Només es mostrarà si heu autoritzat la inscripció de nous redactors. ',
@@ -105,6 +106,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_articles_tous' => 'tots els articles del lloc',
 	'item_ascendant' => 'classificació ascendent / creixent',
 	'item_aucun' => 'cap',
+	'item_auteur' => 'auteur', # NEW
 	'item_branche_actuelle' => 'a dins la branca',
 	'item_branche_specifique' => 'a dins d\'una o diverses branques concretes',
 	'item_breves_toutes' => 'totes les breus del lloc',
@@ -490,7 +492,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la palise @champ@.', # NEW
-	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.' # NEW
+	'zbug_erreur_critere' => 'Erreur dans le critere @critere@.', # NEW
+	'zbug_tri_sans_critere' => 'Balise #TRI sans critère de tri dans la boucle' # NEW
 );
 
 ?>
