@@ -41,6 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'clic_telechargement' => 'Click to see or download',
 'collegues' => 'All the colleagues',
 'commentaires' => 'comments',
+'comments_derniers' => 'Last comments',
 'contact' => 'Contact',
 'contact_bienvenue' => 'To contact the technical referent, 
                          <br />please fill in all the fields of this form.',
