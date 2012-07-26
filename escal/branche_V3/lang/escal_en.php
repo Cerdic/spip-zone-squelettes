@@ -31,7 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_une' => 'Put this article on the front page',
 'aujourdhui'  => 'Today: ',
 'auteurs' => 'Authors',
-'avec' => 'width',
+'avec' => 'with',
 'avec_le_squelette' => 'with the template',
 // B
 'bandeau' => 'Banner',

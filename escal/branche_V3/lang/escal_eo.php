@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_une' => 'Artikolo publikigota sur la unua paĝo',
 'aujourdhui'  => 'Hodiaŭ : ',
 'auteurs' => 'Aŭtoroj',
+'avec' => 'kun',
 'avec_le_squelette' => 'per la ŝablono',
 // B
 'bandeau' => 'reklamilo',
@@ -39,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'calendrier' => 'Kalendaro',
 'clic_telechargement' => 'Alklaku ĉu por vidi ĉu por elŝuti',
 'collegues' => 'Ĉiuj kolegoj',
+'commentaires' => 'komentoj',
 'contact' => 'Kontaktoj',
 'contact_bienvenue' => 'Por kontakti la teknikiston,
                           <br />bv. plenumi ĉi-tiun formularon.',
@@ -105,10 +107,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Retmesaĝo al la retejestro ĵus konvirmis vian aliĝon. ',
 'format' => 'Dosiertipo :',
 'forum' => 'Forumo',
+//G
+'gros_jour' => 'la plej aktiva tago',
 //H
 'haut_page' => 'paĝsupren',
 // I
 'identification' => 'Identigo',
+// J
+'jours' => 'tagoj',
 // L
 'le' => 'la',
 'lire_article' => 'Legi la artikolon ...',
@@ -118,8 +124,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mentions' => 'Laŭleĝaj mencioj',
 'message_non' => '(Neniu mesaĝo nun)',
 'meteo_titre_conditions' => 'Meteorologiaj kondiĉoj super',
+'mots_cles' => 'ŝlosilvortoj',
 'mots_clefs' => 'Ŝlosilvortoj',
 'mots_clefs_associes' => 'Asociigitaj ŝlosilvortoj',
+'moyenne_visites' => 'Averaĝo de',
 // P
 'pages' => 'paĝoj',
 'page_auteur' => 'Aŭtorpaĝo' ,
@@ -140,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_resultat' => 'Rezulto de la serĉo per ',
 'recherche_sites_non' => 'Neniu retejo trovita per tiu serĉo',
 'repondre_message' => 'Respondi la retmesaĝon',
+'rubriques' => 'rubrikoj',
 'rubrique_articles' => 'La artikoloj de tiu rubriko',
 'rubrique_contenu' => 'Tiu rubriko entenas',
 'rubrique_sites_references' => 'La retejoj entenitaj en tiu rubriko',
@@ -153,6 +162,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'subrubriko',
 'sous_rubriques' => 'subrubrikoj',
 'statistiques' => 'Retejostatistikoj',
+'sujets' => 'temoj',
+'sur_forum' => 'En la forumo estas:',
 'sur_web' => 'en la reto',
 // T
 'taille_augmenter' => 'Pligrandigi la signojn',
@@ -171,6 +182,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'Vizitoj entute: ',
 'traductions_article' => 'tradukoj de tiu artikolo :',
 // V
+'visites_jour' => 'vizitoj tage',
 'visiteur' => 'vizitanto',
 'visiteurs' => 'vizitantoj',
 'votre_nom' => 'via nomo?',
