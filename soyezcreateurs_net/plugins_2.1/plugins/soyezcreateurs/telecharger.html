@@ -13,21 +13,22 @@
 	<div class="texte">
 		<div class="cartouche">
 		<div class="titrepage"><h1><:ecrire:onglet_documents:></h1></div>
-		<B_TypeMedia>
+		<B_Medias>
 		<div class="onglets">
 			<ul>
-			<BOUCLE_TypeMedia(TYPES_DOCUMENTS){fusion media}{media IN image,video,audio,file}>
-				<li>[(#ENV{media,file}|=={#MEDIA}|?{<strong>,<a href="[(#URL_PAGE{telecharger}|parametre_url{media,#MEDIA})]">})][(#VAL{medias:media_}|concat{#MEDIA}|_T)][(#ENV{media,file}|=={#MEDIA}|?{</strong>,</a>})]</li>
-			</BOUCLE_TypeMedia>
+			<BOUCLE_Medias(DOCUMENTS){compteur types_documents, media}{media IN image,video,audio,file}>
+				<li class="ajax">[(#ENV{media,file}|=={#MEDIA}|?{<strong>,<a href="[(#URL_PAGE{telecharger}|parametre_url{media,#MEDIA})]">})][(#VAL{medias:media_}|concat{#MEDIA}|_T|concat{' (',#COMPTEUR{types_documents},')'})][(#ENV{media,file}|=={#MEDIA}|?{</strong>,</a>})]</li>
+			</BOUCLE_Medias>
 			</ul>
 		</div>
-		</B_TypeMedia>
+		</B_Medias>
 		</div>
-			<div id="letexte">
-				[(#INCLURE{fond=noisettes/telecharger_tableau}{env}{ajax})]
-[<div id="carto">
-(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_documents,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,objets=documents,autocenterandzoom=oui,autofocus_marker=oui})]]
-</div>]
+		
+		<div id="letexte">
+			[(#INCLURE{fond=noisettes/telecharger_tableau}{env}{ajax})]
+			[<div id="carto">
+			(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_documents,media=#ENV{media,file},limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,objets=documents,media=#ENV{media,file},autocenterandzoom=oui,autofocus_marker=oui})]]
+			</div>]
 		</div><!-- Fin de #letexte -->
 	</div><!-- Fin de .texte -->
 
