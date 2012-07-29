@@ -59,6 +59,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_enbas' => 'A sota dels articles i de les seccions',
 	'cfg_affichagelistedocuments_label' => 'Zona de publicació',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Llistar els documents adjunts a un article a les llistes d\'articles (centrals)',
+	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu', # NEW
 	'cfg_affichagelistedocuments_noicon' => 'No mostrar la icona del document a les llistes',
 	'cfg_affichagelistedocuments_nulpart' => 'Cap (desmarcar les altres opcions!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirecció cap el document si és únic i no hi ha cap text a dins de l\'article',

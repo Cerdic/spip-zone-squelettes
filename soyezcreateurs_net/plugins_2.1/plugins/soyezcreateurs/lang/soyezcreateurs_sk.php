@@ -59,6 +59,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_enbas' => 'Pod článkami a rubrikami',
 	'cfg_affichagelistedocuments_label' => 'Oblasť zobrazenia',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Zoznam dokumentov pripojených k článku v  (hlavnom) zozname článkov',
+	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu', # NEW
 	'cfg_affichagelistedocuments_noicon' => 'V zoznamoch nezobrazovať ikonu dokumentu',
 	'cfg_affichagelistedocuments_nulpart' => 'Nikde (odznačí ďalšie možnosti!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Presmerovanie na dokument, ak je iba jeden aa ak v článku nie je žiaden text',

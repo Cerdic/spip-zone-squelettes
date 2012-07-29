@@ -59,6 +59,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_enbas' => 'У нижній частині статей та рубрик',
 	'cfg_affichagelistedocuments_label' => 'Зона ( область ) афішування ( показу) ',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Список документів, які додаються до статті в списках статей (центральних)',
+	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu', # NEW
 	'cfg_affichagelistedocuments_noicon' => 'Не показувати іконку  документу в списках',
 	'cfg_affichagelistedocuments_nulpart' => 'Ніде (виключити інші варіанти!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Перенаправлення на документ, якщо він єдиний і немає тексту в статті',

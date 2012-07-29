@@ -59,6 +59,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_enbas' => 'Under the articles and sections',
 	'cfg_affichagelistedocuments_label' => 'Zone of display',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'List the documents attached to an article in the (central) list of articles',
+	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu', # NEW
 	'cfg_affichagelistedocuments_noicon' => 'Do not display the icon of the document in the lists',
 	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirection to the document if there is only one, and if there is no text in the article',
