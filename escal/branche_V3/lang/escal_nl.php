@@ -39,9 +39,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // C
 'calendrier' => 'Kalender',
 'clic_telechargement' => 'Klik om dit te zien of te downloaden',
-'collegues' => 'Alle collega/s',
+'collegues' => 'Alle collega\'s',
 'commentaires' => 'commentaaren',
-'comments_derniers' => 'Derniers commentaires',
+'comments_derniers' => 'laatste commentaaren',
 'contact' => 'Contact',
 'contact_bienvenue' => 'Om contact op te nemen met de technische referent, 
                          <br />Vul alle velden van dit formulier.',
@@ -94,7 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     <p>Als u denkt dat dit fout is,
                       <br />kan u de webmaster contacteren 
                       <br />met de 
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Contactpagina">Contact</a>
                       pagina van deze site.
                     </p>',
 'espace_redacteurs' => 'Editors area',

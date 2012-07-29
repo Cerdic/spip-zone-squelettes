@@ -186,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visites_jour' => 'visitas al día',
 'visiteur' => 'visitante',
 'visiteurs' => 'visitantes',
-'votre_nom' => '&#380; Su nombre?',
+'votre_nom' => '&iquest; Su nombre?',
 'vu' => 'visto',
 // W
 'webmestre' => 'Webmestre',

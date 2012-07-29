@@ -93,7 +93,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     <p>Se vi opinias, ke temas pri eraro en la retejo,
                       <br />eblas sciigi la problemon al ties retejestro
                       <br />per la pa&gcirc;o
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Kontakto</a>
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Kontaktpa&gcirc;o">Kontakto</a>
                       de tiu retejo.
                     </p>',
 'espace_redacteurs' => 'Zono Redaktantoj',

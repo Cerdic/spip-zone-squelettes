@@ -40,7 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'clic_telechargement' => 'klicken um zu sehen oder runterladen',
 'collegues' => 'Alle Kollegen',
 'commentaires' => 'Kommentare',
-'comments_derniers' => 'Derniers commentaires',
+'comments_derniers' => 'letzte Kommentare',
 'contact' => 'Kontakt',
 'contact_bienvenue' => 'Um mit dem technischen Leiter Kontakt aufzunehmen,
                           <br />f&uuml;llen Sie bitte alle Felder dieses Bogens.',
@@ -92,7 +92,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     </p>
                     <p>denken Sie, es geht um einen Fehler in der Website ?
                       <br />so k&ouml;nnen Sie dessen Webmaster mit dieser Seite
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]"  title="Page contact">Contact</a>
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]"  title="Kontaktseite">Kontakt</a>
 		                  auf dem Problem hinweisen.
 		                </p>',
 'espace_redacteurs' => 'Raum der Verfasser',
@@ -106,6 +106,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // F
 'fleche' => 'Pfeil',
 'fois' => 'mal',
+'form_pet_envoi_mail_confirmation' => 'Ein Best&auml;tigungse-mail wurde gerade dem Webmaster geschickt, um Ihre Einschreibung zu best&auml;tigen.',
 'format' => 'Format :',
 'forum' => 'Forum',
 //G
