@@ -91,23 +91,33 @@
                     </span>
                     </div>
 -->
-             #SET{name,choixderniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><br /> Critère de sélection  <br />
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right;">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
-                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Les plus récents</label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
-                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"]  /><label for="#GET{name}_hasard">Au hasard</label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_top" value="visites"
-                            [(#ENV{#GET{name}}|=={visites}|oui)checked="checked"] /><label for="#GET{name}_top">Les plus lus</label>
-                    </span><br /><br />
-                    </div>
              #SET{name,nombrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    </div>
+             #SET{name,choixderniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Critère de tri
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right;">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Date</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_top" value="visites"
+                            [(#ENV{#GET{name}}|=={visites}|oui)checked="checked"] /><label for="#GET{name}_top">Visites</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
+                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"]  /><label for="#GET{name}_hasard">Au hasard</label>
+                    </span>
+                    </div>
+             #SET{name,ordrearticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Ordre d'affichage
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right;">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="0"
+                            [(#ENV{#GET{name}}|=={!inverse}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Normal</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="1"
+                            [(#ENV{#GET{name}}|=={inverse}|oui)checked="checked"]  /><label for="#GET{name}_hasard">Inverse</label>
                     </span>
                     </div>
             </li>
