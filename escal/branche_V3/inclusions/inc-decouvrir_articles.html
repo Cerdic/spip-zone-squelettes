@@ -1,12 +1,29 @@
 	<h1 class="cadre">
-	[(#CONFIG{escal/config/titrederniersart,<:escal:articles_derniers:>})]
+ A découvrir
 	[(#LOGO_RUBRIQUE||image_reduire{36})]
 	</h1>
 
 <div class="texte [(#CONFIG{escal/config/togglederniersarticles}|=={oui}|oui)toggle]" id="derniers-articles" >
-#SET{nombrederniersart,#CONFIG{escal/config/nombrederniersart,5}}
 
-<BOUCLE_derniers(ARTICLES){branche} {par date} {inverse} {0,#GET{nombrederniersart}} {doublons}>
+#SET{nombrerecents,#CONFIG{escal/config/nombreartrecents,2}}
+#SET{nombrehasard,#CONFIG{escal/config/nombrearthasard,2}}
+#SET{nombreplusvus,#CONFIG{escal/config/nombreartplusvus,2}}
+#SET{nombremoinsvus,#CONFIG{escal/config/nombreartmoinsvus,2}}
+
+<BOUCLE_plus_recents(ARTICLES){branche}{lang=#ENV{lang}}{par date}{inverse}{0,#GET{nombrerecents}}{doublons}>
+</BOUCLE_plus_recents>
+
+<BOUCLE_au_hasard(ARTICLES){branche}{lang=#ENV{lang}}{par hasard}{0,#GET{nombrehasard}}{doublons}>
+</BOUCLE_au_hasard>
+
+<BOUCLE_plus_lus(ARTICLES){branche}{lang=#ENV{lang}}{par visites}{inverse}{0,#GET{nombreplusvus}}{doublons}>
+</BOUCLE_plus_lus>
+
+<BOUCLE_moins_lus(ARTICLES){branche}{lang=#ENV{lang}}{par visites}{0,#GET{nombremoinsvus}}{doublons}>
+</BOUCLE_moins_lus>
+
+
+<BOUCLE_affichage(ARTICLES){!doublons}{par hasard}>
 
 		<!-- 	affichage du titre avec lien vers l'article
 					de la date de publication
@@ -29,8 +46,8 @@
 			</B_test>
 		</div>
 
-</BOUCLE_derniers>
-
-
+</BOUCLE_affichage>
 
 </div><!-- fin texte -->
+
+
