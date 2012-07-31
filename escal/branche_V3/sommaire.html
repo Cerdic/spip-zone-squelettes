@@ -103,9 +103,11 @@
           <!-- affichage du bloc inc-evenements si selectionne dans la page de configuration -->
             [(#CONFIG{escal/config/evenements}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
 
-          <!-- affichage du bloc inc-calendrier si selectionne dans la page de configuration -->
+          <!-- affichage du bloc inc-calendrier si le plugin "Calendrier Mini" est active et si selectionne dans la page de configuration -->
+          [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
             [(#CONFIG{escal/config/calendrier}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-calendrier}{env}></div>]
-
+          ]
+          
           <!-- affichage du bloc inc-sites si selectionne dans la page de configuration -->
             [(#CONFIG{escal/config/sites}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites}{env}></div>]
 
@@ -114,7 +116,7 @@
 
 
 
-          </div>
+          </div> <!-- fin navigation -->
 
           <div id="extra">
 
@@ -153,9 +155,11 @@
             [(#CONFIG{escal/config/evenements}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
             [(#CONFIG{escal/config/evenements}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
 
-          <!-- affichage du bloc inc-calendrier par defaut ou si selectionne dans la page de configuration -->
+          <!-- affichage du bloc inc-calendrier si le plugin "Calendrier Mini" est active et si selectionne dans la page de configuration -->
+          [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
             [(#CONFIG{escal/config/calendrier}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-calendrier}{env}></div>]
             [(#CONFIG{escal/config/calendrier}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-calendrier}{env}></div>]
+          ]
 
           <!-- affichage du bloc inc-sites par defaut ou si selectionne dans la page de configuration -->
             [(#CONFIG{escal/config/sites}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites}{env}></div>]
@@ -166,7 +170,7 @@
             [(#CONFIG{escal/config/stats}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-stats}{env}></div>]
 
 
-          </div>
+          </div> <!-- fin extra -->
 
           <div id="pied">
             <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>

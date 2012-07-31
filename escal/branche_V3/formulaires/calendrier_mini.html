@@ -1,32 +1,57 @@
-<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
-<BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
-</BOUCLE_selection_articles1>
-</BOUCLE_selection_rubrique>
+[(#SET{urljson,[(#ENV{urljson}
+						|parametre_url{id_rubrique,#ENV{id_rubrique,#ENV{urljson}|parametre_url{id_rubrique}}}
+						|parametre_url{id_article,#ENV{id_article,#ENV{urljson}|parametre_url{id_article}}}
+						|parametre_url{id_mot,#ENV{id_mot,#ENV{urljson}|parametre_url{id_mot}}}
+						|parametre_url{lang,#ENV{lang,#ENV{urljson}|parametre_url{lang}}}
+						)]})
+]<div id="calendar" class="calendriermini minicalendar">
 
-<BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons evenements}>
-</BOUCLE_selection_articles>
+	<div class="calendar-container"
+					data-json="#GET{urljson}"
+					data-year="[(#ENV{date}|affdate{Y})]"
+					data-month="[(#ENV{date}|affdate{n})]"
+					data-url="#ENV{self}"
+					data-vardate="#ENV{var_date}"
+					>[(#REM)
 
+		Contenu alternatif statique pour les Bot et les utilisateurs sans JS
+		]<div class="alt">
+			#SET{start,#ENV{date}|affdate{Y-m-01}|strtotime}
+			#SET{end,#VAL{Y-m-01}|date{#GET{start}|plus{2764800}}|strtotime}
+			#SET{url,#GET{urljson}|parametre_url{start,#GET{start},'&'}|parametre_url{end,#GET{end},'&'}|url_absolue}
+			<strong>[(#ENV{date}|affdate_mois_annee)]&nbsp;:</strong>
+			<B_alt>
+			<ul class="liste-items">
+			<BOUCLE_alt(DATA){source json,#GET{url}}><BOUCLE_dates(DATA){source table,#VALEUR{start}|calendriermini_intervalle{#VALEUR{end}}}>[
+				<li class="item"><a href="[(#ENV{self}|parametre_url{#ENV{var_date},#VALEUR})]">(#VALEUR|affdate|unique)</a></li>
+				]</BOUCLE_dates></BOUCLE_alt>
+			</ul>
+			</B_alt>
+			<p><:minical:aucune_date:></p>
+			<//B_alt>
+			<p class="pagination">
+			#SET{prev,#VAL{Y-m-01}|date{#GET{start}|moins{172800}}}
+			#SET{next,#VAL{Y-m-01}|date{#GET{end}}}
+			<a href="[(#ENV{self}|parametre_url{#ENV{var_date},#GET{prev}|affdate{Y-m-d}})]">[(#GET{prev}|affdate_mois_annee)]</a>
+			| <a href="[(#ENV{self}|parametre_url{#ENV{var_date},#GET{next}|affdate{Y-m-d}})]">[(#GET{next}|affdate_mois_annee)]</a>
+			</p>
+		</div>
+	</div>
+</div>[
+(#REM) --------------------------------------------------------------------------------------------------
 
+Chargement du javascript du mini-calendrier
 
-<div id="calendar" class="divers">
-	<table summary="<:icone_calendrier:>">
-		<caption><BOUCLE_mois_precedent(ARTICLES){!doublons evenements}{mois_relatif>=1}{!par date}{0,1}>[
-			<a
-				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m'})]})"
-				title="[(#DATE|affdate_mois_annee)]">&#171;</a>]</BOUCLE_mois_precedent>[
-			(#ENV{date}|affdate_mois_annee)]<BOUCLE_mois_suivant(ARTICLES){!doublons evenements}{mois_relatif<=-1}{par date}{0,1}>[
-			<a
-				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m'})]})"
-				title="[(#DATE|affdate_mois_annee)]">&#187;</a>]</BOUCLE_mois_suivant>
-		</caption>
-    <tbody><BOUCLE_calendrier(ARTICLES) {!doublons evenements}
-			{agenda date, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[
-			(#DATE|agenda_memo{'',
-				[(#DATE|affdate{'j'})],
-				[(#ENV{self}|parametre_url{#ENV{var_date},[(#DATE|affdate{'Y-m-d'})]})]})
-			]</BOUCLE_calendrier>[
-			(#ENV{date}|agenda_mini)
-			]</tbody>
-	</table>
-	<span>&nbsp;</span>
-</div>
+]<script type='text/javascript'>/*<![CDATA[*/
+if (window.jQuery){jQuery(function(){
+		jQuery.getScript('[(#PRODUIRE{fond=javascript/calendrier_mini.js,lang=#ENV{lang}}|compacte)]',function(){minical.init('.minicalendar .calendar-container');});
+});}/*]]>*/</script>[
+(#REM) --------------------------------------------------------------------------------------------------
+
+Chargement de la css que l'on importe inline pour eviter un hit (performance)
++ fixer la css de background pour les boutons precedent/suivant
+
+]<style type="text/css">
+[(#INCLURE{css/minical.css}|compacte{css})]
+.calendriermini .ui-datepicker-header .ui-icon {background-image: url("#CHEMIN{css/img/month_prev_next-32x16.png}");}
+</style>

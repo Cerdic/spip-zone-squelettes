@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title><:escal:calendrier:> - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>	[
+    <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{env}>]
+          </div>
+
+          <div id="espace">
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+              <div id="cadre-rubrique">
+                <div id="titre-rubrique" style="margin:20px 0 20px 20px;">
+                  [(#ENV{date}|nom_jour|ucfirst) ][(#ENV{date}|affdate)]
+                </div>
+              </div>
+
+<B_articles_rubs>
+<!-- affichage des articles de la rubrique -->
+
+<!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
+
+<p style="align:right">#PAGINATION</p>
+
+	<BOUCLE_articles_rubs(ARTICLES){jour_relatif}{pagination 5}>
+		<div class="cadre-articles-rubrique">
+			<div class="titre-articles-rubrique">
+        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{25})]
+        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+      </div>
+			<div class="introduction-articles-rubrique">
+      [(#INTRODUCTION|supprimer_tags|couper{150})]
+      <br/>
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]"><strong><:escal:lire_article:></strong></a>
+      <br/>
+      </div>
+			<div class="auteur-articles-rubrique">
+        [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
+		    <BOUCLE_test(AUTEURS){id_article}>
+		    </BOUCLE_test>
+	       <:par_auteur:>
+			   <BOUCLE_auteurs_art(AUTEURS){id_article}{"<:escal:et:>"}>
+			   <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>"> #NOM</a>
+			   </BOUCLE_auteurs_art>
+	       </B_test>
+      </div>
+		</div>
+	</BOUCLE_articles_rubs>
+
+<p style="align:right">#PAGINATION</p>
+
+</B_articles_rubs>
+            </div>
+          </div>
+
+          <div id="navigation">
+          <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
+            [(#CONFIG{escal/config/menuV1}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{env}></div>]
+            [(#CONFIG{escal/config/menuV1}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{env}></div>]
+
+            [(#CONFIG{escal/config/menuV2}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{env}></div>]
+            [(#CONFIG{escal/config/menuV2}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{env}></div>]
+            
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-acces_direct}{env}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>
