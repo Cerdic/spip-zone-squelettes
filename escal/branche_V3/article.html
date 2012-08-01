@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
 
   <head>
-    <BOUCLE_titre(ARTICLES){id_article}>
-    <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]
-    </title>
-    </BOUCLE_titre>
-    [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <BOUCLE_head(ARTICLES){id_article}>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
+      <meta name="Description" content="(#INTRODUCTION|couper{150}|textebrut)" >
+      <meta name="Keywords" content=" <BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+      <meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+    </BOUCLE_head>
+
     <INCLURE {fond=inclusions/inc-head}>
       [(#REM) appel de la feuille de style pour l'impression ]
       <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
