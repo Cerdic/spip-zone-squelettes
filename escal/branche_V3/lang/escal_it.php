@@ -157,6 +157,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Le sotto-rubriche di questa rubrica',
 // S
 'sites' => 'Siti',
+'sites_favoris' => 'Siti favoriti',
 'site_realise_avec' => 'Sito realizzato con',
 'site_reference' => 'sito inserito',
 'sites_references' => 'siti inseriti',

@@ -157,6 +157,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'sites' => 'Retejoj',
+'sites_favoris' => 'Preferata retejoj',
 'site_realise_avec' => 'Retejo estigita per',
 'site_reference' => 'referencitaj retejoj',
 'sites_references' => '&Scirc;ablona retejo',

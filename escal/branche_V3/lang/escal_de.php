@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'sites' => 'Websites',
+'sites_favoris' => 'Lieblingswebsiten',
 'site_realise_avec' => 'Website aufgestellt mit',
 'site_reference' => 'verzeichnete Website',
 'sites_references' => 'verzeichneten Websites',
