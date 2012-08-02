@@ -6,6 +6,34 @@
 
      #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour},#URL_PAGE{calendrier_mini_escal.json}}
 
+<!-- affichage de la liste des evenements -->
+[(#CONFIG{escal/config/listeeventscalendrier}|=={non}|oui) <!-- ]
+<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
+<BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
+</BOUCLE_selection_articles1>
+</BOUCLE_selection_rubrique>
+
+<BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons evenements}>
+</BOUCLE_selection_articles>
+
+#SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+		<div id="entete-evenement">
+  <:escal:evenements:>
+		</div>
+    <B_agenda_global>
+      <p style="align:right">#PAGINATION</p>
+		<BOUCLE_agenda_global (ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpageventcalendrier}}>
+			<div class="liste-evenements">
+			[(#DATE_REDAC|jour)-][(#DATE_REDAC|mois):]
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+			</div>
+		</BOUCLE_agenda_global>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+		<//B_agenda_global>
+[(#CONFIG{escal/config/listeevents}|=={non}|oui) --> ]
+
   </div><!-- fin texte -->
 
 
