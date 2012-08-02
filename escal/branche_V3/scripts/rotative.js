@@ -1,6 +1,9 @@
 // JavaScript Document
 // Copyright Bernard Blazin - Juin 2007
 // Ne rien Modifier en-dessous
+
+
+// pour la noisette inc-actus
 var headline_count;
  var headline_interval;
  var old_headline = 0;
@@ -29,7 +32,7 @@ var headline_count;
  }
 
 
-
+// pour la noisette inc-photos
  var headline2_count;
  var headline2_interval;
  var old_headline2 = 0;
@@ -58,7 +61,7 @@ var headline_count;
  }
  
 
-
+// pour la noisette inc-annonce_defilant
  var headline3_count;
  var headline3_interval;
  var old_headline3 = 0;
@@ -84,4 +87,33 @@ var headline_count;
    });
    $("div.headline3:eq(" + current_headline3 + ")").show().animate({top: 5},"slow");
    old_headline3 = current_headline3;
+ }
+
+ 
+ // pour la noisette inc-sites_favoris
+ var headline4_count;
+ var headline4_interval;
+ var old_headline4 = 0;
+ var current_headline4 = 0;
+
+ $(document).ready(function(){
+   headline4_count = $("div.headline4").size();
+   $("div.headline4:eq("+current_headline4+")").css('top','5px');
+
+   headline4_interval = setInterval(headline4_rotate,8000); //temps en millisecondes
+   $('#scrollup4').hover(function() {
+     clearInterval(headline4_interval);
+   }, function() {
+     headline4_interval = setInterval(headline4_rotate,8000); //temps en millisecondes
+     headline4_rotate();
+   });
+ });
+
+ function headline4_rotate() {
+   current_headline4 = (old_headline4 + 1) % headline4_count;
+   $("div.headline4:eq(" + old_headline4 + ")").animate({top: -205},"slow", function() {
+     $(this).css('top','210px');
+   });
+   $("div.headline4:eq(" + current_headline4 + ")").show().animate({top: 5},"slow");
+   old_headline4 = current_headline4;
  }
