@@ -1,0 +1,65 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configonglets.png}|balise_img{'',cadre-icone})]Les onglets</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+	
+     <ul>
+            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,onglet1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier onglet
+                    <span class="choix" style="float: right">
+                            <select name="onglet1">
+                              <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
+                              <option value="article" [(#ENV{#GET{name}}|=={article}|?{'selected="selected"',''})] >Article d'accueil</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Ne pas afficher cet onglet</option>
+                            </select>
+                    </span>
+                    <br /><br />
+             #SET{name,onglet2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième onglet
+                    <span class="choix" style="float: right">
+                            <select name="onglet2">
+                              <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Plan du site</option>
+                              <option value="article" [(#ENV{#GET{name}}|=={article}|?{'selected="selected"',''})] >Article d'accueil</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Ne pas afficher cet onglet</option>
+                            </select>
+                    </span>
+                    <br /><br />
+             #SET{name,onglet3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième onglet
+                    <span class="choix" style="float: right">
+                            <select name="onglet3">
+                              <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
+                              <option value="article" [(#ENV{#GET{name}}|=={article}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Article d'accueil</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Ne pas afficher cet onglet</option>
+                            </select>
+                    </span>
+
+                    <br /><br /></div>
+             </li>
+     </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
