@@ -38,7 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_breve-mots_cles' => 'Zoznam kľúčových slov priradených k novinke.',
 	'description_calendrier_mini' => 'Zobrazí malý kalendár s odkazom na stránku udalosti v prípade jednej udalosti, ak je udalostí niekoľko s odkazom do diára, kde sú vytriedené udalosti pre daný deň.',
 	'description_documents' => 'Podľa predvolených nastavení nezobrazuje fotografie, tie sa zobrazujú pomocou portfólia. Zobrazovanie fotografií si môžete nastaviť, ak ich nezobrazujete v portfóliu.',
-	'description_evenement-contenuprincipal' => 'Affiche date, logo, lieu, texte, adresse, nombre de participants.', # NEW
+	'description_evenement-contenuprincipal' => 'Zobrazí dátum, logo, miesto, text, adresu, počet účastníkov.',
 	'description_evenement-filariane' => 'Zobrazí stromovú štruktúru rubrík až k udalosti.',
 	'description_evenement-mots_cles' => 'Zoznam kľúčových slov priradených k udalosti.',
 	'description_formulaire_inscription' => 'Zobrazí sa iba vtedy, ak ste povolili prihlasovanie nových redaktorov',
@@ -107,7 +107,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_articles_tous' => 'všetky články na stránke',
 	'item_ascendant' => 'zoradiť vzostupne',
 	'item_aucun' => 'žiadna položka',
-	'item_auteur' => 'auteur', # NEW
+	'item_auteur' => 'autor',
 	'item_branche_actuelle' => 'vo vetve',
 	'item_branche_specifique' => 'v jednej určitej vetve alebo vo viacerých určitých vetvách',
 	'item_breves_toutes' => 'všetky novinky na stránke',
@@ -493,8 +493,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Z
 	'zbug_erreur_champ' => 'Chyba v tagu @champ@.',
-	'zbug_erreur_critere' => 'Chyba v kritériu @critere@.', # MODIF
-	'zbug_tri_sans_critere' => 'Balise #TRI sans critère de tri dans la boucle' # NEW
+	'zbug_erreur_critere' => 'Chyba v kritériu @critere@.',
+	'zbug_tri_sans_critere' => 'Tag #TRI bez kritéria triedenia v cykle'
 );
 
 ?>
