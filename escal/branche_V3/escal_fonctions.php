@@ -134,6 +134,22 @@ function balise_VAL_MAX_VISITES($p) {
 }
 
 // =======================================================================================================================================
+// fonction pour les citations du pied de page
+// =======================================================================================================================================
+
+function citations($txt){
+$BDDArray = $txt;// Lecture de l'article
+$BDDArray = explode('<p>', $BDDArray); // couper à la  rencontre un p
+$BDDArray = array_map('rtrim', $BDDArray); // Suppression des fins de lignes de chaque élément
+$BDDArray = array_filter($BDDArray); // Suppression de TOUTES les entrées vides
+
+$citation = $BDDArray[array_rand($BDDArray)]; // une phrase au hasard dans le tableau
+if(strlen($citation)<200) //on ne veut pas dépasser 200 caractères
+return strip_tags($citation); //on vire les tags html
+else citations($txt);
+}
+
+// =======================================================================================================================================
 // paramètres pour le plugin diapo
 // =======================================================================================================================================
 
