@@ -15,7 +15,7 @@
 				<div id="s3slider">
 					<ul id="s3sliderContent">
 						[(#REM) Affiche les 4 articles les plus récents associés au mot-clé : slider]	
-						<BOUCLE_articles(ARTICLES) {titre_mot=slider} {!par date} {0, 4}>
+						<BOUCLE_articles(ARTICLES) {titre_mot=slider} {!par date} {doublons} {0, 4}>
 							<li class="s3sliderImage" id="featured-#ID_ARTICLE">
 								<a href="#URL_ARTICLE">							
 									#SET{largeur,(#LOGO_ARTICLE_RUBRIQUE|largeur)}
@@ -42,7 +42,7 @@
 						</BOUCLE_articles>
 						</B_articles>
 						[(#REM) Sinon : Affiche les 4 articles les plus récents ]
-						<BOUCLE_articles_sec(ARTICLES) {!par date} {0, 4}>
+						<BOUCLE_articles_sec(ARTICLES) {!par date} {doublons} {0, 4}>
 							<li class="s3sliderImage" id="featured-#ID_ARTICLE">
 								<a href="#URL_ARTICLE">															
 									#SET{largeur,(#LOGO_ARTICLE_RUBRIQUE|largeur)}
@@ -83,10 +83,10 @@
 				
 				<ul>
 					<li class="rss">
-						<a href="spip.php?page=backend" title="Flux RSS">Flux RSS</a>
+						<a href="#URL_PAGE{backend}" title="Flux RSS">Flux RSS</a>
 					</li>
 					<li class="contact">
-						<a href="spip.php?auteur1" title="Contactez-nous">Contactez-nous</a>
+						<a href="#URL_AUTEUR{1}" title="Contactez-nous">Contactez-nous</a>
 					</li>
 					<li class="twitter">
 						<a href="#" title="#NOM_SITE_SPIP sur Twitter">Suivre mes Tweets</a>
@@ -113,7 +113,7 @@
 			
 			<div class="padd-post-list">
 			
-				<BOUCLE_articles2(ARTICLES) {!par date} {4, 2} {"<div class='marge'></div>"}>
+				<BOUCLE_articles2(ARTICLES) {!par date} {doublons} {0, 2} {"<div class='marge'></div>"}>
 				<div class="padd-post-item padd-post-item-index">
 					<div class="padd-post-item-title">
 						<h2>#TITRE</h2>
@@ -142,7 +142,7 @@
 					</div>
 				</B_breves>
 				
-					<BOUCLE_articles3(ARTICLES) {!par date} {6, 1} {"<div class='marge'></div>"}>
+					<BOUCLE_articles3(ARTICLES) {!par date} {doublons} {0, 1} {"<div class='marge'></div>"}>
 					<div class="padd-post-item padd-post-item-index padd-post-item-index-2">
 						<div class="padd-post-item-title">
 							<h2>#TITRE</h2>
