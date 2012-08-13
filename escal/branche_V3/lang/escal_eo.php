@@ -147,6 +147,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Ser&ccirc;i ...',
 'recherche_articles_non' => 'Neniu artikolo trovita per tiu ser&ccirc;o',
 'recherche_resultat' => 'Rezulto de la ser&ccirc;o per ',
+'recherche_rubriques_non' => 'Neniu rubriko trovita per tiu ser&ccirc;o',
 'recherche_sites_non' => 'Neniu retejo trovita per tiu ser&ccirc;o',
 'repondre_message' => 'Respondi la retmesa&gcirc;on',
 'rubriques' => 'rubrikoj',
@@ -154,6 +155,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contenu' => 'Tiu rubriko entenas',
 'rubrique_sites_references' => 'La retejoj entenitaj en tiu rubriko',
 'rubrique_sous_rubriques' => 'Sekcioj de tiu rubriko',
+'rubrique_trouvee' => 'Trovita rubriko',
+'rubriques_trouvees' => 'Trovitaj rubrikoj',
 
 // S
 'sites' => 'Retejoj',

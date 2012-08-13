@@ -148,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Zoeken ...',
 'recherche_articles_non' => 'Geen artikel gevonden',
 'recherche_resultat' => 'zoekresultaten voor ',
+'recherche_rubriques_non' => 'Geen sectie gevonden',
 'recherche_sites_non' => 'Geen site gevonden voor deze zoekopdracht',
 'repondre_message' => 'Reageer op dit bericht',
 'rubriques' => 'rubrieken',
@@ -155,6 +156,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contenu' => 'Deze sectie bevat',
 'rubrique_sites_references' => 'Verwezen sites in deze sectie',
 'rubrique_sous_rubriques' => 'Sub-secties van deze sectie',
+'rubrique_trouvee' => 'sectie gevonden',
+'rubriques_trouvees' => 'secties gevonden',
 // S
 'sites' => 'Sites',
 'sites_favoris' => 'Favoriete websites',

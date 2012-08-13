@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // fichier de langue  LETTON pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -150,6 +150,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher'=> 'Mekl&#0275; &scaron;ana ...',
 'recherche_articles_non'=> 'Nav rakstu atrasts ar &scaron;o ierakstu',
 'recherche_resultat'=> 'Rezult&#8113; ts mekl&#0275; &scaron;anu',
+'recherche_rubriques_non' => 'Nav iedaļa atrasts ar &scaron;o ierakstu',
 'recherche_sites_non'=> 'Ne vietn&#0275;  atrodama &scaron;aj&#8113;  mekl&#0275; &scaron;an&#8113; ',
 'repondre_message'=> 'Atbild&#0275; t uz &scaron;o zinojumu',
 'rubriques'=> 'sekcijas',
@@ -157,6 +158,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contenu'=> '&Scaron;&#0299;  sadaļa satur',
 'rubrique_sites_references'=> 'Piesaist&#0299; tas viet&#8113; m &scaron;aj&#8113;  sadaļ&#8113; ',
 'rubrique_sous_rubriques'=> 'Apak&scaron;iedaļ&#8113; s &scaron;&#0299; s sadaļas',
+'rubrique_trouvee'=> 'iedaļa atrasts',
+'rubriques_trouvees'=> 'iedaļ&#8113; s atrasts',
 // S
 'sites'=> 'Vietas',
 'sites_favoris'=> 'Iecien&#0299; t&#8113; k&#8113; s vietnes',

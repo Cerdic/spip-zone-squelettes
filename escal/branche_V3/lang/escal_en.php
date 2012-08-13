@@ -148,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Search ...',
 'recherche_articles_non' => 'No article found for this entry',
 'recherche_resultat' => 'Result of the search for ',
+'recherche_rubriques_non' => 'No section found for this entry',
 'recherche_sites_non' => 'No site found for this search',
 'repondre_message' => 'Reply to this message',
 'rubriques' => 'sections',
@@ -155,6 +156,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contenu' => 'This section contains',
 'rubrique_sites_references' => 'Referenced sites in this section',
 'rubrique_sous_rubriques' => 'Sub-sections of this section',
+'rubrique_trouvee' => 'section found',
+'rubriques_trouvees' => 'sections found',
 // S
 'sites' => 'Sites',
 'sites_favoris' => 'Favorite sites',

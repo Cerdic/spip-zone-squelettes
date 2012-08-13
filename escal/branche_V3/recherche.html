@@ -55,6 +55,23 @@
                     </div>
                   <//B_compte_articles>
                   
+                  <B_compte_rubriques>
+                    <!-- si au moins une rubrique trouvée, on affiche le nombre trouvé -->
+                    <div class="compte-resultat">
+                      <strong>#TOTAL_BOUCLE</strong>
+                      [(#TOTAL_BOUCLE|>{01}|oui) <:escal:rubriques_trouvees:>]
+                      [(#TOTAL_BOUCLE|>{01}|non) <:escal:rubrique_trouvee:>]
+                      <:escal:dans_site:>
+                    </div>
+                  <BOUCLE_compte_rubriques(RUBRIQUES){recherche}{lang}>
+                  </BOUCLE_compte_rubriques>
+                  </B_compte_rubriques>
+                    <!-- si pas de rubrique trouvée -->
+                    <div class="compte-resultat">
+                      <:escal:recherche_rubriques_non:>
+                    </div>
+                  <//B_compte_rubriques>
+
                  <B_compte_sites>
                    <!-- si au moins un site trouvé -->
                     <div class="compte-resultat">
@@ -96,6 +113,22 @@
                       </div>
                     </div>
                   </BOUCLE_articles>
+
+                  <B_rubriques>
+                  <h2><:rubriques:></h2>
+                  <p style="align:right">#PAGINATION</p>
+                  <BOUCLE_rubriques(RUBRIQUES) {recherche} {lang} {par points}{inverse} {pagination 5}>
+                    <!-- on affiche le ou les rubrique(s) -->
+                    <div class="cadre-articles-rubrique">
+                      <div class="titre-articles-rubrique">
+                        [<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">(#TITRE)</a>]
+                      </div>
+                      <div class="introduction-articles-rubrique">
+                        [(#INTRODUCTION|supprimer_tags|couper{150})]
+                      </div>
+                    </div>
+                  </BOUCLE_rubriques>
+
 
                   <B_sites>
                   <h2><:escal:sites:></h2>
