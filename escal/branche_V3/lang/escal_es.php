@@ -74,6 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                   que le responder&aacute; cuanto antes a esta direcci&oacute;n:',
 'contact_retour_checkbox' => 'Su nivel:',
 'contenu_site' => 'Este sitio contiene: ',
+'copyright' => 'Reservados todos los derechos',
 // D
 'dans_site' => 'en este sitio',
 // E

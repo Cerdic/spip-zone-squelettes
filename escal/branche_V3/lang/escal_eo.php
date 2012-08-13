@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_retour_commentaire' => 'Via mesa&gcirc;o &jcirc;us estis sendita al retejestro, kiu respondos al vi kiel eble plej frue:',
 'contact_retour_checkbox' => 'Via nivelo:',
 'contenu_site' => '&Ccirc;i-tiu retejo enhavas : ',
+'copyright' => '&Ccirc;iuj rajtoj rezervitaj',
 // D
 'dans_site' => 'en tiu retejo',
 // E

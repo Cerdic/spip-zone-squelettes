@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_retour_commentaire2' => 'der Ihnen sobald wie m&ouml;glich antworten wird :',
 'contact_retour_checkbox' => 'Ihr Niveau :',
 'contenu_site' => 'dieser Webauftritt enth&auml;lt : ',
+'copyright' => 'Alle Rechte vorbehalten',
 // D
 'dans_site' => 'in diesem Webauftritt',
 // E

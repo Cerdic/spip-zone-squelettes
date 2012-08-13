@@ -74,6 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_retour_commentaire2'=> '                                 kur&scaron; Jums atbild&#0275; sim p&#0275; c iesp&#0275; jas &#8113; tr&#8113; k &scaron;aj&#8113;  adres&#0275; :',
 'contact_retour_checkbox'=> 'J&#0363;su l&#0299; menis:',
 'contenu_site'=> '&Scaron;&#0299;  vietne satur:',
+'copyright' => 'Visas ties&#0299;bas aizsarg&#0257;tas',
 // D
 'dans_site'=> '&Scaron;aj&#8113;  vietn&#0275; ',
 // E
