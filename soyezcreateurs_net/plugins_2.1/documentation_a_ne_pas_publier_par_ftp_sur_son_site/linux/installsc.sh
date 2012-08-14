@@ -73,7 +73,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation/branch
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk ./nuage/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/odt2spip/version_0.1_stable ./odt2spip/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/pays/branches/v1.0 ./pays/
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette/branches/v1 ./rainette/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/selecteur_generique/branches/v1 ./selecteur_generique
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/skeleditor/skeleditor-2 ./skeleditor/
