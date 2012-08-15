@@ -8,14 +8,18 @@
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
 
-            Par défaut, tous les cadres sont affichés <br />  <br />
-
+            <div class="explication">Par défaut, tous les blocs sont affichés </div>
 
      <ul>
+<legend><strong>Les blocs latéraux</strong></legend>
 <!-- inc-acces_direct -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-            #SET{name,artaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-acces_direct</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Un article avec le mot-clé "acces-direct pour des liens internes.
+                    <br />Le titre du bloc sera celui de l'article.
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -25,13 +29,17 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
-                    </div>
+                    <br /><br /><br />
+            </div>
             </li>
 <!-- inc-nav_mot -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-nav_mot</strong></label>
+                    <br />
+            <div class="explication">
             #SET{name,navmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-nav_mots</strong>
+                    Un menu de navigation par mots-clés si l’article est associé à un ou des mots-clés.
+                    Sont exclus les groupes de mots "techniques" utilisés par le squelette Escal.<br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -41,7 +49,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span><br /><br /></div>
-<!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
+            <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
             #SET{name,titrenavmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titrenavmot="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:mots_clefs_associes:>})]"; ?>
                     <div class="explication"><br /> Titre du cadre
@@ -50,12 +58,15 @@
                              <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrenavmot"; ?>"  />
                     </span>
                     </div>
--->
+            -->
             </li>
 <!-- inc-meme_rub -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-meme_rub</strong></label>
+                    <br />
+            <div class="explication">
             #SET{name,memerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-meme_rub</strong>
+                    Les autres articles de la même rubrique que l'article en cours.
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -64,8 +75,9 @@
                             [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-<!-- en attente de trouver une solution pour le multilinguisme
+                    </span>
+                    <br /><br /><br />
+            <!-- en attente de trouver une solution pour le multilinguisme
             #SET{name,titrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:meme_rubrique:>})]"; ?>
                     <div class="explication"><br /> Titre du cadre
@@ -74,17 +86,17 @@
                              <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrememerub"; ?>"  />
                     </span>
                     </div>
--->
+            -->
              #SET{name,nombrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $nombrememerub="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
-                    <div class="explication">Nombre d'articles
+                    Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrememerub"; ?>"  />
                     </span>
-                    </div>
+                    <br /> <br />
             #SET{name,togglememerubrique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Noisette repliée et dépliable
+                    Noisette repliée et dépliable
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -92,21 +104,23 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
+                    </span>
+            </div>
             </li>
-            
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+
+<legend><strong>Réponses des forums d'articles</strong></legend>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
             #SET{name,togglereponsearticle}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Réponses des forums d'articles</strong><br />
-                                        N'afficher que le premier message de chaque fil de discussion,<br />
-                                        les réponses étant dépliables
+                    N'afficher que le premier message de chaque fil de discussion, les réponses étant dépliables
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
+                    </span>
+            </div>
             </li>
      </ul>
 

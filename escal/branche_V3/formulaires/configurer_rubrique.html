@@ -9,19 +9,21 @@
     #ACTION_FORMULAIRE{#ENV{action}}
 
 
-            Par défaut, tous les cadres sont affichés <br />  <br />
+            <div class="explication">Par défaut, tous les blocs sont affichés </div>
 
      <ul>
-          <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+<legend><strong>Partie centrale</strong></legend>
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
             #SET{name,nombreart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles affichés par page de pagination
+                    Nombre d'articles affichés par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
-                    </div>
+                    <br /><br />
             #SET{name,paginhaut}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Afficher la pagination en haut
+                    Afficher la pagination en haut
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -29,9 +31,10 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
+                    </span>
+                    <br /><br />
             #SET{name,paginbas}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Afficher la pagination en bas
+                    Afficher la pagination en bas
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -39,10 +42,11 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
+                    </span>
+            </div>
+            </li>
 
-          <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,nombreesites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">Nombre de sites affichés par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -51,11 +55,15 @@
                     </span>
                     </div>
              </li>
-             
+<legend><strong>Les blocs latéraux</strong></legend>
 <!-- inc-acces_direct -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-acces_direct</strong></label>
+                    <br />
+            <div class="explication">
             #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-acces_direct</strong>
+                    Un article avec le mot-clé "acces-direct pour des liens internes.
+                    <br />Le titre du bloc sera celui de l'article.
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -65,13 +73,16 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />Le titre du cadre sera celui de l'article avec le mot-clé "acces-direct"
-                    </div>
+                    <br /><br /><br />
+            </div>
             </li>
 <!-- inc-derniers_articles -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-derniers_articles</strong></label>
+                    <br />
+            <div class="explication">
             #SET{name,derniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-derniers_articles</strong>
+                    Les derniers articles de la rubrique active.
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -80,8 +91,9 @@
                             [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-<!-- en attente de trouver une solution pour le multilinguisme
+                    </span>
+                    <br /><br /><br />
+            <!-- en attente de trouver une solution pour le multilinguisme
             #SET{name,titrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titrederniersart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:articles_derniers:>})]"; ?>
                     <div class="explication"><br /> Titre du cadre
@@ -90,16 +102,16 @@
                              <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrederniersart"; ?>"  />
                     </span>
                     </div>
--->
+            -->
              #SET{name,nombrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles
+                    Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
-                    </div>
+                    <br /><br />
             #SET{name,togglederniersarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Noisette repliée et dépliable
+                    Noisette repliée et dépliable
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -107,12 +119,17 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
+                    </span>
+            </div>
             </li>
 <!-- inc-decouvrir_articles -->
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>inc-decouvrir_articles</strong></label>
+                    <br />
+            <div class="explication">
             #SET{name,decouvrirart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><strong>Noisette inc-decouvrir_articles</strong>
+                    Les articles de la rubrique selon vos choix. Les articles seront ensuite mélangés au hasard
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
@@ -121,39 +138,38 @@
                             [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span><br /><br /><br /></div>
-
+                    </span>
+                    <br /><br /><br />
              #SET{name,nombreartrecents}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles les plus récents
+                    Nombre d'articles les plus récents
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
                     </span>
-                    </div>
+                    <br /><br />
              #SET{name,nombrearthasard}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles pris au hasard
+                    Nombre d'articles pris au hasard
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
                     </span>
-                    </div>
+                    <br /><br />
              #SET{name,nombreartplusvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles les plus visités
+                    Nombre d'articles les plus visités
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
                     </span>
-                    </div>
+                    <br /><br />
              #SET{name,nombreartmoinsvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Nombre d'articles les moins visités
+                    Nombre d'articles les moins visités
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
                     </span>
-                    </div>
-                    <div class="explication">Les articles seront ensuite mélangés au hasard</div>
+                    <br /><br />
              #SET{name,toggledecouvrirarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Noisette repliée et dépliable
+                    Noisette repliée et dépliable
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -161,7 +177,8 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
+                    </span>
+            </div>
             </li>
      </ul>
 

@@ -7,44 +7,46 @@
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <div class="explication">
+            Si vous avez activé le <a href="http://www.spip-contrib.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
+            vous pouvez faire apparaitre la noisette dédiée dans votre page d'accueil.
+            </div>
+            
     <ul>
 
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
             #SET{name,shoutbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <label for="#GET{name}">Activer la noisette Shoutbox ?</label>
-                    <div class="explication">Si vous avez activ&eacute; le
-                                            <a href="http://www.spip-contrib.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
-                                            vous pouvez faire apparaitre la noisette d&eacute;di&eacute;e dans votre page d'accueil. </div>
+                    Activer la noisette Shoutbox ?
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<div class="choix">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_nav" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_nav"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_estra" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_extra"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="nav"
+                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="extra"
+                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </div>
+                    </span>
+                    <br /><br /><br />
             #SET{name,titreshoutbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"><br /> Titre du cadre
+                    Titre du cadre
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Shoutbox})]"  />
                     </span>
-                    </div>
-
-            </li>
+                    <br /><br />
             #SET{name,toggleshoutbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Déplier / Replier la noisette ?</strong>
+                    Noisette repliée et dépliable
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
+                    </span>
+            </div>
+            </li>
     </ul>
     
     <input type="hidden" name="_meta_casier" value="escal/config" />

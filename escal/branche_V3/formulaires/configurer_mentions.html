@@ -7,22 +7,25 @@
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <div class="explication">
+            Si vous avez activ&eacute; le <a href="http://www.spip-contrib.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
+            vous pouvez faire apparaitre le lien vers la page dédiée dans le pied de votre page d'accueil.
+            </div>
+    
     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
             #SET{name,mentions}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-                    <label for="#GET{name}">Activer le lien vers la page "Mentions légales" ?</label>
-                    <div class="explication">Si vous avez activ&eacute; le
-                                              <a href="http://www.spip-contrib.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
-                                              vous pouvez faire apparaitre le lien vers la page dédiée dans le pied de votre page d'accueil. </div>
+                    Activer le lien vers la page "Mentions légales" ?
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<div class="choix">
+                    ]<div class="choix"  style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </div>
-
-            </li>
+             </div>
+             </li>
     </ul>
 
     <input type="hidden" name="_meta_casier" value="escal/config" />
