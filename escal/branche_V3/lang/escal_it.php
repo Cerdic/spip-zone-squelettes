@@ -8,7 +8,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'acces_direct' => 'Accesso diretto',
 'accueil' => 'Home page',
-'actus' => 'Attualit&agrave;',
+'actus' => 'Attualità',
 'adresse_non' => 'Questo autore non ha fornito il suo indirizzo email',
 'agenda' => 'Agenda',
 'alerte_javascript' => '',
@@ -65,13 +65,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_nom' => 'Non avete scritto il vostro cognome.',
 'contact_alerte_prenom' => 'Non avete scritto il vostro nome.',
 'contact_alerte_mail1' => 'Non avete dato la vostra email ...<br />Come potrei rispondervi?',
-'contact_alerte_mail2' => 'Il vostro indirizzo e-mail non &#269; corretto.',
+'contact_alerte_mail2' => 'Il vostro indirizzo e-mail non č corretto.',
 'contact_alerte_motif' => 'Non avete scelto l\'argomento del vostro messaggio.',
 'contact_alerte_checkbox' => 'Non avete precisato il vostro livello.',
 'contact_alerte_message' => 'Non avete scritto il messaggio! Distratto?',
 'contact_retour_bonjour' => 'Buongiorno, ',
-'contact_retour_commentaire' => 'Il vostro messaggio &#269; stato inviato 
-    al responsabile del sito che vi risponder&agrave; appena possibile a questo indirizzo:',
+'contact_retour_commentaire' => 'Il vostro messaggio č stato inviato 
+    al responsabile del sito che vi risponderà appena possibile a questo indirizzo:',
 'contact_retour_checkbox' => 'Il vostro livello:',
 'contenu_site' => 'Questo sito contiene : ',
 'copyright' => 'Tutti i diritti riservati',
@@ -90,7 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Messaggio: ',
 'envoyer_message' => 'Mandare un messaggio a ',
 'erreur404' => 'Errore 404',
-'erreur404_message' => '<p>La pagina che chiedete non esiste o pi&ugrave; sul sito.
+'erreur404_message' => '<p>La pagina che chiedete non esiste o più sul sito.
                     </p>
                     <p>Se pensate che si tratta duna errore nel sito,
                       <br />potete segnalare il problema al responsabile del sito
@@ -111,7 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'format' => 'Formato :',
 'forum' => 'Forum',
 //G
-'gros_jour' => 'Giorno pi&ugrave; importante',
+'gros_jour' => 'Giorno più importante',
 //H
 'haut_page' => 'Torna su',
 // I
@@ -123,7 +123,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lire_article' => 'Leggere l\'articolo ...',
 'lire_suite' => 'Leggere il seguito ...',
 // M
-'menu' => 'Al men&ugrave;',
+'menu' => 'Al menù',
 'mentions' => 'Menzioni legali',
 'message_non' => '(Nessun messaggio per il momento)',
 'meteo_titre_conditions' => 'Condizioni meteorologia a',
@@ -184,7 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_escal' => 'Link verso il sito ufficiale di Escal',
 'title_mentions' => 'Menzioni legali del sito',
 'title_w3c' => 'Sito convalida XHTML 1.0 Strict',
-'top_articles' => 'Articoli pi&#367; letti',
+'top_articles' => 'Articoli più letti',
 'total_visites' => 'Numero totale di visite: ',
 'traductions_article' => 'traduzioni di questo articolo :',
 // V
