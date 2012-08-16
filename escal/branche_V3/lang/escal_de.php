@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'alt_telechargements' => 'Herunterladen',
 'article' => 'Artikel',
 'articles' => 'Artikel',
+'article_archive' => 'Denken Sie daran!',
 'article_forum' => 'Artikelforum',
 'articles_associes' => 'siehe die verbundenen Artikel',
 'articles_associes_mot' => 'mit diesem Wort verbundener Artikel',
