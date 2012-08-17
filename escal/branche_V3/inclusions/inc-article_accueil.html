@@ -1,22 +1,36 @@
 <div class="accueil">
 
-<BOUCLE_contexte(RUBRIQUES){titre_mot=archive}>
-<BOUCLE_aleatoire(ARTICLES){branche}{par hasard}{0,1}>
+	<BOUCLE_accueil(ARTICLES){titre_mot=accueil}{par date}{inverse}{0,1}>
 
-  <div class="texte" id="accueil">
-  #TEXTE
-  </div>
+	  <div class="texte" id="accueil">
+	  #TEXTE
+	  </div>
 
-  [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
-  <div id="accueilforum">
-  <hr />
-  <INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
-  </div>
-  ]
-      
-</BOUCLE_aleatoire>
-</BOUCLE_contexte>
+	  [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+	  <div id="accueilforum">
+	  <hr />
+	  <INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	  </div>
+	  ]
 
-</div>
+	</BOUCLE_accueil>
+	</B_accueil>
 
+	    <BOUCLE_alt(ARTICLES){par date}{inverse}{0,1}>
 
+	      <div class="texte" id="accueil">
+	      #TEXTE
+	      </div>
+
+	      [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+	      <div id="accueilforum">
+	      <hr />
+	      <INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	      </div>
+	      ]
+
+	    </BOUCLE_alt>
+
+	<//B_accueil>
+
+	</div>
