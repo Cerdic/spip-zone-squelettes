@@ -202,7 +202,7 @@ $test_lang_personnalisation=array(
 	'tous_les_auteurs' => 'All writers',
 
 	// V
-	'version_eva' => 'EVA-Web 4.1',
+	'version_eva' => 'EVA-Web 4.2',
 	'visites' => 'Visits',
 	'voir_en_ligne' => 'See on the web',
 	'voir_image' => 'See the picture with original size',

@@ -198,7 +198,7 @@ und basiert auf dem Programm  <a href="http://www.spip.net/">SPIP</a>.</p>
 	'tous_les_auteurs' => 'Alle Verfaßer',
 
 	// V
-	'version_eva' => 'EVA-Web 4.1',
+	'version_eva' => 'EVA-Web 4.2',
 	'visites' => 'Besuche',
 	'voir_en_ligne' => 'Sehen Sie auf dem Web',
 	'voir_image' => 'Sehen Sie, daß die Abbildung mit ursprünglicher Größe',
