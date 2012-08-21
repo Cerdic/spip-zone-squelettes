@@ -203,7 +203,7 @@ corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui
 	'tous_les_auteurs' => 'tutti gli autori',
 
 	// V
-	'version_eva' => 'EVA-Web 4.1',
+	'version_eva' => 'EVA-Web 4.2', # MODIF
 	'visites' => 'Visite',
 	'voir_en_ligne' => 'Vedere sul net :',
 	'voir_image' => 'Vedere l\'immagine in dimensione normale',

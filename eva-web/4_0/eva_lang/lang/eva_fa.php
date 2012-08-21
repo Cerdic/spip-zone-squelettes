@@ -198,7 +198,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tous_les_auteurs' => 'تمام نويسنده‌ها',
 
 	// V
-	'version_eva' => 'اوا-وب 4.1',
+	'version_eva' => 'اوا-وب 4.2', # MODIF
 	'visites' => 'بازديد',
 	'voir_en_ligne' => 'وب را بنگريد: ',
 	'voir_image' => 'به تصوير در اندازه‌ي اصلي بنگريد',

@@ -203,7 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tous_les_auteurs' => 'គ្រប់អ្នកសរសេរ',
 
 	// V
-	'version_eva' => 'EVA-Web 4.1',
+	'version_eva' => 'EVA-Web 4.2', # MODIF
 	'visites' => 'ចំណូលមើល',
 	'voir_en_ligne' => 'មើល លើអិនរើណែត',
 	'voir_image' => 'មើលរូបភាព ជាទំហំដើម',
