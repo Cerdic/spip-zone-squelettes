@@ -1,0 +1,192 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>Archives Agenda [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inclure/head} />
+<meta name="robots" content="none" />
+</head>
+
+<body class="pas_surlignable page_contact">
+
+		
+			
+		
+		<!-- Menu -->
+		 	<INCLURE{fond=inclure/nav,env} />
+		
+		
+		<div class="row-fluid">
+		      
+		    <div class="span3"> <!-- Col de gauche - laisser vide -->
+		    </div>
+		        
+		    <div class="span6">   <!-- Col centrale pour le titre principal -->
+						<h1>Rencontres, débats, ateliers et autres petits rendez-vous passés</h1>					
+			</div>
+		         
+		    <div class="span3" align="right"> <!-- Col de droite  laisser vide -->          
+		    </div>
+		    
+		  </div> <!-- / raw fluid --> 
+		  
+		  
+		  
+		  <div class="container-fluid"> <!-- container -->
+		
+			<!-- (#REM) Contenu principal : contenu de l'article ] -->
+		
+		  
+		  
+		  
+		  
+		  <div class="row-fluid">
+		      
+		    <div class="span2"> <!-- Col de gauche petit menu -->
+		   		
+		    </div>
+		    
+		    
+		        
+		    <div class="span8">   <!-- Col centrale pour contenu principal -->
+		         
+			
+			
+			<B_ev>
+
+	<ul class="liste-items evenements">
+	<BOUCLE_ev(EVENEMENTS){!evenement_passe #ENV{date_debut,#ENV{date}}}{!evenement_a_venir #ENV{date_debut,#ENV{date}}|agenda_moisdecal{1,'Y-m-d H:i:00'}}{par date_debut}{id_article?}{id_rubrique?}{id_mot?}{id_evenement_source?}>
+		<li class="item">
+			#MODELE{evenement_vevent}
+		</li>
+	</BOUCLE_ev>
+	</ul>
+</B_ev>
+<//B_ev>
+		
+
+<B_mois>
+#ANCRE_PAGINATION
+<ul class="liste-items">
+<BOUCLE_mois(EVENEMENTS){!par date_debut}{evenement_passe #ENV{date}}{id_article?}{id_rubrique?}{id_mot?}{id_evenement_source?}{fusion_par_mois date_debut}{pagination 10}>
+<li> <i class="icon-comment"></i> [(#SELF|parametre_url{date_debut,#DATE_DEBUT|affdate{Y-m-01}}|lien_ou_expose{#DATE_DEBUT|affdate_mois_annee{},#ENV{date_debut,''}|=={#DATE_DEBUT|affdate{Y-m-01}}})]</li>
+
+</BOUCLE_mois>
+<p></p>
+<i class="icon-calendar"></i> <a href="#URL_PAGE{agenda}">Rendez-vous à venir</a>
+</ul>
+[<p class="pagination">(#PAGINATION)</p>]
+</B_mois>
+
+
+
+
+
+
+			
+					
+		         </div>
+		         
+		        
+		         
+		         
+		    <div class="span2" align="right">
+		    
+		      	<!-- Col de droite --> 
+		      	
+		      	  					
+					<!-- (#REM) Boucle principale -->
+					
+		
+		         
+		    </div>
+		    
+		  </div> <!-- / raw fluid --> 
+		  
+		  </div> <!-- /container --> 
+		    
+		  
+		    <INCLURE{fond=inclure/footer,self=#SELF} />
+		    <INCLURE{fond=inclure/footer-scripts} />
+		
+		<!-- Mettre Body, etc -->
+		
+		
+	
+	
+</div><!--.page-->
+</body>
+</html>
+
+
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+jQuery(document).ready(function() {
+
+	
+	$('#agenda').fullCalendar({
+			editable: false,
+			events: "[(#URL_PAGE{agenda.json})]",
+			header: {
+				left: 'prevYear,prev,next,nextYear today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			firstDay: 1,
+			monthNames:['<:date_mois_1|attribut_html:>','<:date_mois_2|attribut_html:>','<:date_mois_3|attribut_html:>','<:date_mois_4|attribut_html:>','<:date_mois_5|attribut_html:>','<:date_mois_6|attribut_html:>','<:date_mois_7|attribut_html:>','<:date_mois_8|attribut_html:>','<:date_mois_9|attribut_html:>','<:date_mois_10|attribut_html:>','<:date_mois_11|attribut_html:>','<:date_mois_12|attribut_html:>'],
+			monthNamesShort:['<:date_mois_1_abbr|attribut_html:>','<:date_mois_2_abbr|attribut_html:>','<:date_mois_3_abbr|attribut_html:>','<:date_mois_4_abbr|attribut_html:>','<:date_mois_5_abbr|attribut_html:>','<:date_mois_6_abbr|attribut_html:>','<:date_mois_7_abbr|attribut_html:>','<:date_mois_8_abbr|attribut_html:>','<:date_mois_9_abbr|attribut_html:>','<:date_mois_10_abbr|attribut_html:>','<:date_mois_11_abbr|attribut_html:>','<:date_mois_12_abbr|attribut_html:>'],
+			dayNames:['<:date_jour_1|attribut_html:>','<:date_jour_2|attribut_html:>','<:date_jour_3|attribut_html:>','<:date_jour_4|attribut_html:>','<:date_jour_5|attribut_html:>','<:date_jour_6|attribut_html:>','<:date_jour_7|attribut_html:>'],
+			dayNamesShort:['<:date_jour_1_abbr|attribut_html:>','<:date_jour_2_abbr|attribut_html:>','<:date_jour_3_abbr|attribut_html:>','<:date_jour_4_abbr|attribut_html:>','<:date_jour_5_abbr|attribut_html:>','<:date_jour_6_abbr|attribut_html:>','<:date_jour_7_abbr|attribut_html:>'],
+			buttonText: {
+					today: '<:date_aujourdhui|attribut_html:>',
+					month: '<:organiseur:cal_par_mois|attribut_html:>',
+					day: '<:organiseur:cal_par_jour|attribut_html:>',
+					week: '<:organiseur:cal_par_semaine|attribut_html:>'
+			},
+			weekMode : 'liquid',
+			loading: function(bool) {
+				if (bool) $('#calendrier-loading').show();
+				else $('#calendrier-loading').hide();
+			},
+			timeFormat: {
+				
+				agenda: "H'h'mm{ - H'h'mm}", 
+				
+				'': "H'h'(mm)" 
+			},
+			axisFormat: "H'h'(mm)",
+			allDayText:'<:organiseur:cal_jour_entier|attribut_html:>',
+			columnFormat: {
+				month: 'ddd',    
+				week: 'ddd d/M', 
+				day: 'dddd d/M'  
+			},
+			titleFormat: {
+				month: 'MMMM yyyy',                             
+				week: "d [ MMM] [ yyyy]{ '&#8212;' d MMM yyyy}", 
+				day: 'dddd d MMM yyyy'                  
+			},
+			dayClick: function(date, allDay, jsEvent, view) {
+				if(view.name=='month'){
+					$('.fc-button-agendaWeek').click();
+					$('#calendrier').fullCalendar( 'gotoDate', date );
+				}
+				else
+					if(view.name=='agendaWeek'){
+						$('.fc-button-agendaDay').click();
+						$('#calendrier').fullCalendar( 'gotoDate', date );
+					}
+			},
+			isRTL : [(#LANG_DIR|=={rtl}|?{true,false})]
+	})
+
+});
+/*]]>*/</script>
