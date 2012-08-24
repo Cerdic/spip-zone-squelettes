@@ -10,9 +10,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'actus' => 'Nachrichten',
 'adresse_non' => 'dieser Verfasser hat keine E-Mail-Adresse erteilt',
 'agenda' => 'Terminkalender',
-'alerte_javascript' => 'ohne JavaScript kann nicht diese Seite richtig arbeiten. Setzen Sie bitte es in Betrieb wieder',
+'alerte_javascript' => 'ohne JavaScript kann diese Seite nicht richtig arbeiten. Setzen Sie es bitte wieder in Betrieb',
 'annuaire' => 'Terminkalender',
-'annuaire_invitation' => 'auch Sie benutzen ESCAL-V2 ?<br />Dann fügen Sie in dieser Seite Ihre Webauftritt hinzu.',
+'annuaire_invitation' => 'Benutzen Sie auch ESCAL-V2 ?<br />Fügen Sie dann in dieser Seite Ihre Website hinzu.',
 'alt_telechargements' => 'Herunterladen',
 'article' => 'Artikel',
 'articles' => 'Artikel',
@@ -24,7 +24,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'articles_autres' => 'und anderen',
 'article_dernier' => 'letzter herausgegebener Artikel : ',
 'articles_derniers' => 'die letzten Artikel ',
-'article_imprimer' => 'diesen Artikel ausdrucken',
+'article_imprimer' => 'diesen Artikel drucken',
 'article_mise_en_ligne' => 'On-line gesetzt am' ,
 'article_trouve' => 'gefundener Artikel',
 'articles_trouves' => 'gefundene Artikel',
@@ -44,7 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'comments_derniers' => 'letzte Kommentare',
 'contact' => 'Kontakt',
 'contact_bienvenue' => 'Um mit dem technischen Leiter Kontakt aufzunehmen,
-                          <br />füllen Sie bitte alle Felder dieses Bogens.',
+                          <br />erfüllen Sie bitte alle Felder dieses Bogens.',
 'contact_nom' => 'Ihr Name :',
 'contact_prenom' => 'Ihr Vorname :',
 'contact_mail' => 'Ihre E-Mail-Adresse :',
@@ -62,21 +62,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_checkbox5' => 'schlecht',
 'contact_message' => 'Ihre Meldung :',
 'contact_envoyer' => 'senden',
-'contact_alerte_nom' => 'Sie haben Ihren Namen noch nicht erfaßt.',
-'contact_alerte_prenom' => 'Sie haben Ihren Vornamen noch nicht erfaßt.',
-'contact_alerte_mail1' => 'Sie haben Ihre E-Mail-Adresse nicht erfaßt ...<br />Wie könnte ich Ihnen antworten ?',
+'contact_alerte_nom' => 'Sie haben Ihren Namen noch nicht gegeben.',
+'contact_alerte_prenom' => 'Sie haben Ihren Vornamen noch nicht gegeben.',
+'contact_alerte_mail1' => 'Sie haben Ihre E-Mail-Adresse nicht gegeben ...<br />Wie könnte ich Ihnen antworten ?',
 'contact_alerte_mail2' => 'Ihre E-Mail-Adresse ist nicht richtig.',
 'contact_alerte_motif' => 'Sie haben keinen Grund gewählt.',
 'contact_alerte_checkbox' => 'Sie haben Ihr Niveau nicht klar ausgedrückt.',
-'contact_alerte_message' => 'Sie haben doch keine Meldung verfaßt!? Geistesabwesend ?',
+'contact_alerte_message' => 'Sie haben doch keine Meldung verfaßt!? Waren Sie abgelenkt ?',
 'contact_retour_bonjour' => 'Hallo , ',
 'contact_retour_commentaire1' => 'Ihre Meldung wurde ordentlich an den Webmaster geschickt',
 'contact_retour_commentaire2' => 'der Ihnen sobald wie möglich antworten wird :',
 'contact_retour_checkbox' => 'Ihr Niveau :',
-'contenu_site' => 'dieser Webauftritt enthält : ',
+'contenu_site' => 'diese Website enthält : ',
 'copyright' => 'Alle Rechte vorbehalten',
 // D
-'dans_site' => 'in diesem Webauftritt',
+'dans_site' => 'in dieser Website',
 // E
 'en_ligne' => 'Im Moment On-line : ',
 'envoi_mail_provenance' => 'Herkunft : ',
@@ -90,7 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Meldung : ',
 'envoyer_message' => 'Meldung schicken an ',
 'erreur404' => '404 Fehler',
-'erreur404_message' => '<p>die von Ihnen gefragte Seite existiert nicht oder nicht mehr in diesem Webauftritt .
+'erreur404_message' => '<p>die von Ihnen gefragte Seite existiert nicht oder nicht mehr in dieser Website .
                     </p>
                     <p>denken Sie, es geht um einen Fehler in der Website ?
                       <br />so können Sie dessen Webmaster mit dieser Seite
@@ -112,7 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'format' => 'Format :',
 'forum' => 'Forum',
 //G
-'gros_jour' => 'Ausgefülltester Tag',
+'gros_jour' => 'Beladenster Tag',
 //H
 'haut_page' => 'Oben',
 // I
@@ -127,7 +127,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'menu' => 'Im Menü',
 'mentions' => 'Gesetzeshinweise',
 'message_non' => '(keine Meldung im Moment)',
-'meteo_titre_conditions' => 'Wetterbedingungen über',
+'meteo_titre_conditions' => 'Wetterbedingungen in',
 'mots_cles' => 'Stichwörter',
 'mots_clefs' => 'die Stichwörter',
 'mots_clefs_associes' => 'verbundenen Stichwörter',
@@ -141,7 +141,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'photos_hasard' => 'einige Fotos<br />Beliebige...',
 'plan_site' => 'Sitemap',
 'poster_message' => 'einen neuen Brief aufgeben',
-'premier_visiteur' => 'Sie kommen der Erste !',
+'premier_visiteur' => 'Sie sind der Erste !',
 'publie' => 'veröffentlicht am',
 'puce' => 'Aufzählungszeichen',
 // R
@@ -151,7 +151,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_articles_non' => 'kein Artikel entspricht dieser Suche',
 'recherche_resultat' => 'Sucheergebnis um ',
 'recherche_rubriques_non' => 'keine Rubrik entspricht dieser Suche',
-'recherche_sites_non' => 'kein Webauftritt entspricht dieser Suche',
+'recherche_sites_non' => 'keine Website entspricht dieser Suche',
 'repondre_message' => 'An dieser Meldung antworten',
 'rubriques' => 'Rubriken',
 'rubrique_articles' => 'die Artikel dieser Rubrik',
