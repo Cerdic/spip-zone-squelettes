@@ -1,5 +1,8 @@
 <?php
 
+// Pour surligner les mots recherchés dans un article
+define('_SURLIGNE_RECHERCHE_REFERERS',true);
+
 // récupération de l'url du site
 // pour redéfinir la fonction inc_lien dans escal_options
 // un grand merci à l'auteur : bobof
