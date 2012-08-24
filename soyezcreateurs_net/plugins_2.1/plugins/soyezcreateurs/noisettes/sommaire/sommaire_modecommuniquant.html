@@ -23,7 +23,17 @@
 		[(#SET{Masque,[(#CHEMIN{images/hsf.png})]})]
 		[(#SET{LargeurMasque,[(#GET{Masque}|largeur)]})]
 		[(#SET{HauteurMasque,[(#GET{Masque}|hauteur)]})]
-		[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMasque},0}|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}|image_masque{#GET{Masque}}|image_masque{images/hsf_over.png,mode=normal}|image_reduire{[(#GET{Largeurcontent_central})],0}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
+		[(#SET{Cadre,[(#CHEMIN{images/hsf_over.png})]})]
+		[(#SET{LargeurCadre,[(#GET{Cadre}|largeur)]})]
+		[(#SET{HauteurCadre,[(#GET{Cadre}|hauteur)]})]
+		[(#SET{ImageCadree,
+			[(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMasque},0}
+			|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}
+			|image_masque{#GET{Masque}}
+			|image_masque{#GET{Cadre},mode=normal}
+			|image_reduire{[(#GET{LargeurCadre,[(#GET{Largeurcontent_central})]})],0})]}
+		)]
+		[<img src="(#GET{ImageCadree}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
 		</li>
 	</BOUCLE_articles_recentsAlaUne>
 	</ul>
