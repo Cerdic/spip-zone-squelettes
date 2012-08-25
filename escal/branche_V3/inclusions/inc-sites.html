@@ -5,9 +5,11 @@
   <div class="texte [(#CONFIG{escal/config/togglesites}|=={oui}|oui)toggle]" id="sites">
 #SET{nombresites,#CONFIG{escal/config/nombresites,5}}
 #SET{nombreartsites,#CONFIG{escal/config/nombreartsites,5}}
+
+[(#CONFIG{escal/config/sitesref}|=={oui}|non) <!-- ]
     <B_derniers_sites>
 
-          <BOUCLE_derniers_sites(SITES){syndication=oui}{par date}{inverse}{0,#GET{nombresites}}{doublons} >
+          <BOUCLE_derniers_sites(SITES){syndication=oui}{par date}{inverse}{0,#GET{nombresites}} >
     		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
     		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
     		      <B_articles_sites>
@@ -20,5 +22,24 @@
           </BOUCLE_derniers_sites>
 
     </B_derniers_sites>
+[(#CONFIG{escal/config/sitesref}|=={oui}|non) --> ]
+
+[(#CONFIG{escal/config/sitesref}|=={oui}|oui) <!-- ]
+    <B_derniers_sites2>
+
+          <BOUCLE_derniers_sites2(SITES){par date}{inverse}{0,#GET{nombresites}} >
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites2>
+    		      <ul>
+    				   <BOUCLE_articles_sites2(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,#GET{nombreartsites}}>
+    				   <li><a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites2>
+    				   </ul>
+    				   </B_articles_sites2>
+          </BOUCLE_derniers_sites2>
+
+    </B_derniers_sites2>
+[(#CONFIG{escal/config/sitesref}|=={oui}|oui) --> ]
 
   </div>
