@@ -18,13 +18,13 @@
 
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
 #SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}
-<BOUCLE_selection(ARTICLES){lang}{branche}{par date}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection1}{doublons selection2}>
+<BOUCLE_selection(ARTICLES){lang}{par date}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection1}{doublons selection2}>
 </BOUCLE_selection>
 
-<!--  On affiche au hasard les 11 articles selectionnes
+<!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par hasard}>
+  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par #CONFIG{escal/config/ordrealaune,date}}>
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
@@ -64,7 +64,7 @@
       sauf au premier affichage de la page -->  
   <B_autres_articles_une>
     <ul class="anchors">
-	<BOUCLE_autres_articles_une (ARTICLES){par hasard}{!doublons selection2}>
+	<BOUCLE_autres_articles_une (ARTICLES){!doublons selection2}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}>
     <li>
       <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>">
 
