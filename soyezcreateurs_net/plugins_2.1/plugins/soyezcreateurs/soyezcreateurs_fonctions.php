@@ -249,7 +249,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 	$get_same = sc_same_day($debut, $fin);
 	if ($get_same) {
 		if ($court == 'oui') {
-			$resultat = '<acronym title="'.$debut['jour_fr'].'" class="spip_acronym">'.substr($debut['jour_fr'],0,2).'</acronym>&nbsp;'.$debut['jour'].'&nbsp;';
+			$resultat = '<acronym title="'. ucfirst($debut['jour_fr']).'" class="spip_acronym">'. ucfirst(substr($debut['jour_fr'],0,2)).'</acronym>&nbsp;'.$debut['jour'].'&nbsp;';
 		}
 		else {
 			if (intval($debut['jour']) < 10)
@@ -294,7 +294,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 	}
 	else if (!$get_same) {
 		if ($court == 'oui') {
-			$resultat = '<acronym title="'.$debut['jour_fr'].'" class="spip_acronym">'.substr($debut['jour_fr'],0,2).'</acronym>&nbsp;'.$debut['jour'];
+			$resultat = '<acronym title="'. ucfirst($debut['jour_fr']).'" class="spip_acronym">'. ucfirst(substr($debut['jour_fr'],0,2)).'</acronym>&nbsp;'.$debut['jour'];
 			$resultat .= ' &ndash; <acronym title="'.$fin['jour_fr'].'" class="spip_acronym">'.substr($fin['jour_fr'],0,2).'</acronym>&nbsp;'.$fin['jour'];
 			if ($fin['annee'] != $debut['annee']) {
 				$resultat .= '&nbsp;'.$fin['mois_fr'].'&nbsp;'.$fin['annee'].'&nbsp;';
