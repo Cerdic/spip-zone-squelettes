@@ -730,7 +730,7 @@ function sc_wdcalendar_json($day, $type) {
 
 			$ret['events'][] = array(
 				intval($row['id_evenement']),
-				supprimer_numero(typo(extraire_multi($row['titre']))),
+				json_encode(supprimer_tags(supprimer_numero(typo(extraire_multi($row['titre']))))),
 				php2JsTime(mySql2PhpTime($row['date_debut'])),
 				php2JsTime(mySql2PhpTime($row['date_fin'])),
 				0,
