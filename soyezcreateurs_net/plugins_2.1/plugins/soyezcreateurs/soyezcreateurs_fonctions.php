@@ -730,7 +730,7 @@ function sc_wdcalendar_json($day, $type) {
 
 			$ret['events'][] = array(
 				intval($row['id_evenement']),
-				json_encode(supprimer_tags(supprimer_numero(typo(extraire_multi($row['titre']))))),
+				json_encode(unicode2charset(html2unicode(supprimer_tags(supprimer_numero(typo(extraire_multi($row['titre']))))))),
 				php2JsTime(mySql2PhpTime($row['date_debut'])),
 				php2JsTime(mySql2PhpTime($row['date_fin'])),
 				0,
@@ -738,7 +738,7 @@ function sc_wdcalendar_json($day, $type) {
 				0,//Recurring event,
 				$colorEvent, //color
 				0,//editable
-				$row['lieu'], //lieu
+				json_encode(unicode2charset(html2unicode(supprimer_tags(supprimer_numero(typo(extraire_multi($row['lieu']))))))), //lieu
 				urlencode_1738(generer_url_entite(intval($row['id_article']), 'article')) //url article spip //$attends				
 			);
 		}
