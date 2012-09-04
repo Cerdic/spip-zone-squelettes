@@ -253,7 +253,7 @@ function z_scaffolding($type,$table,$table_sql,$desc,$ext){
 function Z_pre_propre($flux){
 	static $init = false;
 	if (!$init){
-		$intertitre = $GLOBALS['debut_intertitre'];
+		$intertitre = isset($GLOBALS['debut_intertitre']) ? $GLOBALS['debut_intertitre'] : '';
 		$class = extraire_attribut($GLOBALS['debut_intertitre'],'class');
 		$class = ($class ? " $class":"");
 		$GLOBALS['debut_intertitre'] = inserer_attribut($GLOBALS['debut_intertitre'], 'class', "h3$class");
