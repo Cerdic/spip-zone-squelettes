@@ -439,10 +439,10 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 						$row2 = sc_trouver_corr_un($ev['ID']);
 						$aff['ligne'] .= '<strong>'.supprimer_numero(typo(extraire_multi($row['titre']))).'</strong>&nbsp;: ';
 						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags(typo($ev['SUMMARY'])) == extraire_multi($row2['titre']))
+						if (supprimer_tags(typo($ev['SUMMARY'])) == supprimer_numero(typo(extraire_multi($row2['titre']))))
 							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
 						else
-							$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$ev['SUMMARY']."</a>";	
+							$aff['ligne'] .= "<a href='".$url."'>".supprimer_numero(typo(extraire_multi($row2['titre'])))."&nbsp;: ".$ev['SUMMARY']."</a>";	
 						$aff['ligne'] .= '</div>';
 					}
 					else {
@@ -451,10 +451,10 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 						$row2 = sc_trouver_corr_un($ev['ID']);
 						$aff['ligne'] .= "<strong>".supprimer_numero(typo(extraire_multi($row['titre'])))."</strong>&nbsp;: ";
 						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags(typo($ev['SUMMARY'])) == extraire_multi($row2['titre']))
+						if (supprimer_tags(typo($ev['SUMMARY'])) == supprimer_numero(extraire_multi(typo($row2['titre']))))
 							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
 						else
-							$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$ev['SUMMARY']."</a>";	
+							$aff['ligne'] .= "<a href='".$url."'>".supprimer_numero(typo(extraire_multi($row2['titre'])))."&nbsp;: ".$ev['SUMMARY']."</a>";	
 						$aff['ligne'] .= '</div>';
 					}
 				}
@@ -470,20 +470,20 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 				$row2 = sc_trouver_corr_un($evts[0]['ID']);
 				$aff['ligne'] .= '<strong>'.supprimer_numero(typo(extraire_multi($row['titre']))).'</strong>&nbsp;: ';
 					$url = generer_url_entite($row2['id_article'], 'article');
-				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero(extraire_multi($row2['titre'])))))
+				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_numero(typo(extraire_multi($row2['titre']))))
 					$aff['ligne'] .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
 				else
-					$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
+					$aff['ligne'] .= "<a href='".$url."'>".supprimer_numero(typo(extraire_multi($row2['titre'])))."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
 				$aff['ligne'] .= '</div>';
 			}
 			else if ($agenda == 'mini') {
 				$row = sc_trouver_corr_un($evts[0]['ID']);
 				$url = generer_url_entite($row['id_article'], 'article');
 				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
-				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero(extraire_multi($row['titre'])))))
-					$title = extraire_multi($row['titre'])." - ".$info;
+				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_numero(typo(extraire_multi($row['titre']))))
+					$title = supprimer_numero(typo(extraire_multi($row['titre'])))." - ".$info;
 				else
-					$title = extraire_multi($row['titre'])." : ".$evts[0]['SUMMARY']." - ".$info;
+					$title = supprimer_numero(typo(extraire_multi($row['titre'])))." : ".$evts[0]['SUMMARY']." - ".$info;
 				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags(typo($title))."'>".intval($jour)."</a>";
 			}
 		$aff['class']= $type.' event';
