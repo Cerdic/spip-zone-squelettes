@@ -425,7 +425,7 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
 				$date_debut = $evts[0]['LIENJOUR'];
 				$id_rub = intval($row['id_secteur']);
-				$titre_rub = supprimer_numero($row['titre']);
+				$titre_rub = supprimer_numero(extraire_multi($row['titre']));
 				$url = generer_url_public('agenda_calendrier', array('id_rubrique'=>$id_rub,'date_ev'=>$date_debut));
 				$url_javascript = generer_url_public('agenda_calendrier_dyn', array('id_rubrique'=>$id_rub,'date_ev'=>$date_debut));
 				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags(typo($titre_rub))." ("._T('agenda:voir_evenements_rubrique').")' onclick=\"event.preventDefault();window.location.href='".$url_javascript."';\">".intval($jour)."</a>";
@@ -437,24 +437,24 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 						$aff['ligne'] .= '<div class="odd">';
 						$row = sc_trouver_corr_pl($ev['ID']);
 						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff['ligne'] .= '<strong>'.supprimer_numero(typo($row['titre'])).'</strong>&nbsp;: ';
+						$aff['ligne'] .= '<strong>'.supprimer_numero(typo(extraire_multi($row['titre']))).'</strong>&nbsp;: ';
 						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags(typo($ev['SUMMARY'])) == $row2['titre'])
+						if (supprimer_tags(typo($ev['SUMMARY'])) == extraire_multi($row2['titre']))
 							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
 						else
-							$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
+							$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$ev['SUMMARY']."</a>";	
 						$aff['ligne'] .= '</div>';
 					}
 					else {
 						$aff['ligne'] .= '<div>';
 						$row = sc_trouver_corr_pl($ev['ID']);
 						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff['ligne'] .= "<strong>".supprimer_numero(typo($row['titre']))."</strong>&nbsp;: ";
+						$aff['ligne'] .= "<strong>".supprimer_numero(typo(extraire_multi($row['titre'])))."</strong>&nbsp;: ";
 						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags(typo($ev['SUMMARY'])) == $row2['titre'])
+						if (supprimer_tags(typo($ev['SUMMARY'])) == extraire_multi($row2['titre']))
 							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
 						else
-							$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
+							$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$ev['SUMMARY']."</a>";	
 						$aff['ligne'] .= '</div>';
 					}
 				}
@@ -468,22 +468,22 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 				$aff['ligne'] .= '<div class="odd">';
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
 				$row2 = sc_trouver_corr_un($evts[0]['ID']);
-				$aff['ligne'] .= '<strong>'.supprimer_numero(typo($row['titre'])).'</strong>&nbsp;: ';
+				$aff['ligne'] .= '<strong>'.supprimer_numero(typo(extraire_multi($row['titre']))).'</strong>&nbsp;: ';
 					$url = generer_url_entite($row2['id_article'], 'article');
-				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero($row2['titre']))))
+				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero(extraire_multi($row2['titre'])))))
 					$aff['ligne'] .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
 				else
-					$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
+					$aff['ligne'] .= "<a href='".$url."'>".extraire_multi($row2['titre'])."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
 				$aff['ligne'] .= '</div>';
 			}
 			else if ($agenda == 'mini') {
 				$row = sc_trouver_corr_un($evts[0]['ID']);
 				$url = generer_url_entite($row['id_article'], 'article');
 				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
-				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero($row['titre']))))
-					$title = $row['titre']." - ".$info;
+				if (supprimer_tags(typo($evts[0]['SUMMARY'])) == supprimer_tags(typo(supprimer_numero(extraire_multi($row['titre'])))))
+					$title = extraire_multi($row['titre'])." - ".$info;
 				else
-					$title = $row['titre']." : ".$evts[0]['SUMMARY']." - ".$info;
+					$title = extraire_multi($row['titre'])." : ".$evts[0]['SUMMARY']." - ".$info;
 				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags(typo($title))."'>".intval($jour)."</a>";
 			}
 		$aff['class']= $type.' event';
@@ -650,7 +650,7 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 			'DTSTART' => $idatedeb,
 			'DTEND' => $vidatefin,
 			'DESCRIPTION' => $descriptif,
-			'SUMMARY' => $titre,
+			'SUMMARY' => supprimer_numero(typo(extraire_multi($titre))),
 			'HORAIRE' => $horaire,
 			'LOCATION' => $lieu,
 			'ID' => $url,
@@ -730,7 +730,7 @@ function sc_wdcalendar_json($day, $type) {
 
 			$ret['events'][] = array(
 				intval($row['id_evenement']),
-				$row['titre'],
+				supprimer_numero(typo(extraire_multi($row['titre']))),
 				php2JsTime(mySql2PhpTime($row['date_debut'])),
 				php2JsTime(mySql2PhpTime($row['date_fin'])),
 				0,
