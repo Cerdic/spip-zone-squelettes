@@ -60,7 +60,15 @@
 
             <div id="page">
               <div id="contenu">
-                <INCLURE{fond=inclusions/inc-article}{env}>
+                <BOUCLE_type_article(MOTS){id_rubrique}{type=type_article}{0,1}>
+                  #SET{type, #TITRE}
+                </BOUCLE_type_article>
+                  <!-- on recupere le chemin de la noisette associee -->
+                #SET{inclusion, (#CHEMIN{inclusions/inc-article_(#GET{type}|concat{.html})})}
+                  <!-- s'il y a une noisette associee, on l'affiche -->
+                [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-article_#GET{type}}{env})]]
+                  <!-- s'il n'y a en a pas, on affiche la noisette normale -->
+                [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-article}{env})]]
               </div>
             </div>
 
