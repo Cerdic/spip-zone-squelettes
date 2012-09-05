@@ -15,6 +15,24 @@
             <div class="explication">Choisir la présence ou l'absence d'un élément sur toutes les pages du site</div>
 
      <ul>
+<!-- favicon -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Favicon</strong></label>
+                    <br />
+                    <div class="explication">
+            #SET{name,favicon}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_favicon" value="favicon"
+                            [(#ENV{#GET{name}}|=={favicon}|oui)checked="checked"] /><label for="#GET{name}_favicon">à partir du fichier favicon.ico <br />celui d'Escal ou le vôtre, mis dans le dossier "squelettes"</label>
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_logosite" value="logosite"
+                            [(#ENV{#GET{name}}|=={logosite}|oui)checked="checked"] /><label for="#GET{name}_logosite">à partir du logo de votre site<br />il sera automatiquement transformé (taille, format) par Escal </label>
+
+                    </span>
+                    </div>
+             </li>
+             
 <!-- ombres laterales -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Ombres latérales des pages</strong></label>
@@ -24,14 +42,16 @@
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_gris" value="gris"
-                            [(#ENV{#GET{name}}|=={gris}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/ombregris.png}" alt="" /></label>
-                            
+                            [(#ENV{#GET{name}}|=={gris}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_gris"><img src="#CHEMIN{images/ombregris.png}" alt="" /></label>
+
                             <input type="radio" name="#GET{name}" id="#GET{name}_blanc" value="blanc"
-                            [(#ENV{#GET{name}}|=={blanc}|oui)checked="checked"] /><label for="#GET{name}_oui"><img src="#CHEMIN{images/ombreblanc.png}" alt="" /></label>
+                            [(#ENV{#GET{name}}|=={blanc}|oui)checked="checked"] /><label for="#GET{name}_blanc"><img src="#CHEMIN{images/ombreblanc.png}" alt="" /></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">Aucune</label>
-                    </span><br /><br /></div>
+                    </span>
+                    <br /><br />
+                    </div>
              </li>
 
 <!-- bandeau -->
