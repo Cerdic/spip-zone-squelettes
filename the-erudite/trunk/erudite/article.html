@@ -1,0 +1,61 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<INCLURE{fond=inclure/head,env} />
+<body class="pas_surlignable page_article article-#ID_article">
+<INCLURE{fond=inclure/header,env} />
+
+	<div id="container">
+		<div id="content" role="main">
+
+			[<blockquote class="epigraph #EDIT{surtitre}">(#DESCRIPTIF)</blockquote>]
+			<div id="post-#ID_ARTICLE" class="post-#ID_ARTICLE post hentry rubrique-#ID_PARENT secteur-#ID_SECTEUR">
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h2 class="entry-title #EDIT{titre}">#TITRE</h2>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				<div class="entry-content">
+[(#REM) TODO : vérifier largeur max des images avec les marges de the erudite]
+[(#REM) TODO : prévoir styles pour surtitre, soustitre et chapo]
+					[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{540,*})</div>]
+					[<div class="#EDIT{texte} texte surlignable">(#TEXTE|image_reduire{540,*})</div>]
+					[<hr /><p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+					[<div class="#EDIT{ps} ps surlignable"><hr />(#PS|image_reduire{540,*})</div>]
+[(#REM) TODO : vérifier styles portfoglio]
+					[(#REM) Gestion du portfolio et des documents ]
+					[(#INCLURE{fond=inclure/documents,id_article, env})]
+[(#REM) TODO : tester styles pétition ]
+					[(#REM) Petition :
+					La petition ayant une PAGINATION il faut absolument {env}
+					et pourquoi pas ajax
+					][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+					[<div class="notes"><hr />(#NOTES)</div>]
+				</div>
+				<div class="entry-meta">
+					<span class="entry-date"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></span>
+					[<span class="meta-sep">|</span>
+					<span class="author vcard"><:par_auteur:> (#LESAUTEURS)</span>]					
+					<span class="meta-sep">|</span>
+[(#REM) TODO : #TITRE_PARENT ]
+					<span class="cat-links"><?php printf( __( 'Posted in %s', 'erudite' ), get_the_category_list(', ') ) ?></span>
+					<span class="meta-sep">|</span>
+[(#REM) TODO : liste des mots clés]
+					<?php the_tags( __( '<span class="tag-links">Tagged ', 'erudite' ), ", ", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n" ) ?>
+<?php edit_post_link( __( 'Edit', 'erudite' ), "\t\t\t\t\t<span class=\"edit-link\">", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n" ) ?>
+					<span class="comments-link"><?php comments_popup_link( __( 'Comments (0)', 'erudite' ), __( 'Comments (1)', 'erudite' ), __( 'Comments (%)', 'erudite' ) ) ?></span>
+					[(#REM) Inclure le modele des liens de traductions ]
+					#MODELE{article_traductions}
+				</div>
+			</div><!-- .post -->
+[(#REM) TODO : pagination précédent / suivant]
+			<div id="nav-below" class="navigation">
+				<div class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">&larr;</span> %title' ) ?></div>
+				<div class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">&rarr;</span>' ) ?></div>
+			</div>
+[(#REM) TODO : les forums (plugin comments) ?]
+<?php comments_template() ?>
+
+		</div><!-- #content -->
+	</div><!-- #container -->
+
+<INCLURE{fond=inclure/sidebar,env} />
+<INCLURE{fond=inclure/footer,env} />
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucun_article:>})]
+<//B_principale>
