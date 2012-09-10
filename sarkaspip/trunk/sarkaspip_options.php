@@ -1,4 +1,6 @@
 <?php
+$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer');
+
 // Supprimer systematiquement les numeros des titres et noms
 $GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
 $GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
