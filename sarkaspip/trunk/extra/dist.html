@@ -15,43 +15,43 @@
 ]
 
 [(#REM) <!-- affichage du bloc des categories de la page agenda, herbier ou galerie --> ]
-[(#ENV{page}|=={agenda}|?{' '})
+[(#ENV{type-page}|=={agenda}|?{' '})
 	<INCLURE{fond=noisettes/agenda/inc_agenda_filtre}{ajax}{id_rubrique}{categorie}{annee}{mois}>
 ]
-[(#ENV{page}|=={galerie}|?{' '})
+[(#ENV{type-page}|=={galerie}|?{' '})
 	<INCLURE{fond=noisettes/galerie/inc_galerie_filtre}{ajax}{id_rubrique}{categorie}>
 ]
-[(#ENV{page}|=={herbier}|?{' '})
+[(#ENV{type-page}|=={herbier}|?{' '})
 	<INCLURE{fond=noisettes/herbier/inc_herbier_filtre}{ajax}{categorie}>
 ]
 [(#REM) <!-- affichage de la navigation dans les evenements de la journee --> ]
-[(#ENV{page}|=={evenement}|?{' '})
+[(#ENV{type-page}|=={evenement}|?{' '})
 	<INCLURE{fond=noisettes/agenda/inc_evenement_navigation}{id_secteur=#RACINE_SPECIALISEE{agenda}}{id_article}{id_evenement}>
 ]
 [(#REM) <!-- affichage du bloc des mots-cles d'une branche ou d'un article et de la navigation propre a la page --> ]
-[(#ENV{page}|=={article}|?{' '})
+[(#ENV{type-page}|=={article}|?{' '})
 	<INCLURE{fond=noisettes/article/inc_article_navigation}{id_article}{id_rubrique}>
 ]
-[(#ENV{page}|=={rubrique}|?{' '})
+[(#ENV{type-page}|=={rubrique}|?{' '})
 	<INCLURE{fond=noisettes/rubrique/inc_rubrique_navigation}{id_rubrique}{ajax}>
 ]
 [(#REM) <!-- affichage du bloc de navigation d'un album --> ]
-[(#ENV{page}|=={album}|?{' '})
+[(#ENV{type-page}|=={album}|?{' '})
 	<INCLURE{fond=noisettes/album/inc_album_navigation}{id_article}>
 ]
 [(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
-[(#ENV{page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
+[(#ENV{type-page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
 	<INCLURE{fond=noisettes/forum/inc_groupe_navigation}{id_secteur}{id_rubrique}>
 ]
 [(#REM) <!-- affichage du bloc de navigation d'une page forum ou sujet --> ]
-[(#ENV{page}|match{forum_forum|forum_sujet}|?{' '})
+[(#ENV{type-page}|match{forum_forum|forum_sujet}|?{' '})
 	<INCLURE{fond=noisettes/forum/inc_forum_navigation}{id_secteur}{id_rubrique}{id_article}>
 ]
-[(#ENV{page}|=={site}|?{' '})
+[(#ENV{type-page}|=={site}|?{' '})
 	<INCLURE{fond=noisettes/site/inc_site_filtre}{id_syndic}{id_rubrique}>
 ]
 [(#REM) <!-- affichage du bloc des mots-cles et de la navigation d'une breve --> ]
-[(#ENV{page}|=={breve}|?{' '})
+[(#ENV{type-page}|=={breve}|?{' '})
 		<INCLURE{fond=noisettes/breve/inc_breve_navigation}{id_breve}{id_secteur}>
 ]
 
@@ -79,7 +79,7 @@
 [(#REM) <!-- affichage du top album --> ]
 <BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{galerie}}>
 	[(#PLUGIN{SPLICKR}|?{' '})
-		[(#ENV{page}|=={sommaire}|?{' '})
+		[(#ENV{type-page}|=={sommaire}|?{' '})
 			<INCLURE{fond=noisettes/inc_splickrbox}{id_secteur=#ID_RUBRIQUE}>
 		]
 	]
@@ -92,7 +92,7 @@
 
 [(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={2}|?{' '})
-	[(#ENV{page}|match{article|album}|?{'',' '})
+	[(#ENV{type-page}|match{article|album}|?{'',' '})
 		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
 	]
 ]
@@ -103,15 +103,15 @@
 ]
 
 [(#REM) <!-- affichage des X dernieres breves, sites et articles syndiques en fonction du contexte --> ]
-[(#ENV{page}|!={herbier}|?{' '})
+[(#ENV{type-page}|!={herbier}|?{' '})
 	[(#CONFIG{sarkaspip_noisettes/position_herbier, 0}|=={2}|?{' '})
 		<INCLURE{fond=noisettes/herbier/inc_herbier_recents_#CONFIG{sarkaspip_noisettes/liste_herbier, 2}}{id_secteur}>
 	]
 ]
-[(#ENV{page}|!={breve}|et{#CONFIG{sarkaspip_noisettes/position_breves, 2}|=={2}}|oui)
+[(#ENV{type-page}|!={breve}|et{#CONFIG{sarkaspip_noisettes/position_breves, 2}|=={2}}|oui)
 	<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>
 ]
-[(#ENV{page}|!={site}|?{' '})<INCLURE{fond=noisettes/site/inc_sites_recents_#CONFIG{sarkaspip_noisettes/liste_sites, 2}}{id_secteur}>]
+[(#ENV{type-page}|!={site}|?{' '})<INCLURE{fond=noisettes/site/inc_sites_recents_#CONFIG{sarkaspip_noisettes/liste_sites, 2}}{id_secteur}>]
 
 [(#REM) <!-- Blocs de statistiques --> ]
 [(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={2}|?{' '})
