@@ -18,9 +18,6 @@
 [(#ENV{type-page}|=={agenda}|oui)
 	<INCLURE{fond=noisettes/agenda/inc_agenda_filtre}{ajax}{id_rubrique}{categorie}{annee}{mois}>
 ]
-[(#ENV{type-page}|=={galerie}|oui)
-	<INCLURE{fond=noisettes/galerie/inc_galerie_filtre}{ajax}{id_rubrique}{categorie}>
-]
 [(#ENV{type-page}|=={herbier}|oui)
 	<INCLURE{fond=noisettes/herbier/inc_herbier_filtre}{ajax}{categorie}>
 ]
@@ -39,7 +36,12 @@
 	]
 ]
 [(#ENV{type-page}|=={rubrique}|oui)
-	<INCLURE{fond=noisettes/rubrique/inc_rubrique_navigation}{id_rubrique}{ajax}>
+	[(#ENV{composition}|=={galerie}|non)
+		<INCLURE{fond=noisettes/rubrique/inc_rubrique_navigation}{id_rubrique}{ajax}>
+	]
+	[(#ENV{composition}|=={galerie}|oui)
+		<INCLURE{fond=noisettes/galerie/inc_galerie_filtre}{ajax}{id_rubrique}{categorie}>
+	]
 ]
 [(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
 [(#ENV{type-page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
@@ -94,7 +96,7 @@
 
 [(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={2}|oui)
-	[(#ENV{type-page}|match{article|album}|non)
+	[(#ENV{type-page}|match{article}|non)
 		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
 	]
 ]
