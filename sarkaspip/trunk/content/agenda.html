@@ -1,0 +1,14 @@
+<BOUCLE_rubrique_agenda(RUBRIQUES) {id_rubrique}>
+			[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/agenda/inc_agenda_annee_1}{ajax}{id_rubrique}{annee}{mois}{categorie}>
+			]
+			[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={2}|?{' '})
+				[(#ENV{type}|?{'',' '})
+					<INCLURE{fond=noisettes/agenda/inc_agenda_annee_2}{ajax}{id_rubrique}{annee}{mois}{categorie}>
+				]
+				[(#ENV{type}|?{' '})
+					[(#SET{format_agenda, [(#ENV{type,mois})_2]})]
+					[(#ENV{type, mois}|in_any{#LISTE{jour,mois,periode,semaine,trimestre}}|oui)<INCLURE{fond=noisettes/agenda/inc_agenda_#GET{format_agenda}}{type}{delais=900}{annee}{mois}{jour}{echelle}{partie_cal}{theme}>]
+				]
+			]
+</BOUCLE_rubrique_agenda>

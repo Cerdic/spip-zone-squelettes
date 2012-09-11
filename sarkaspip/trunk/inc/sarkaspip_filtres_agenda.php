@@ -99,8 +99,8 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 
 		$id_article = intval($id);
 		$select = array('t2.id_mot AS id_mot');
-		$from = array('spip_mots_articles AS t1', 'spip_mots AS t2');
-		$where = array('t1.id_article='.sql_quote($id_article),
+		$from = array('spip_mots_liens AS t1', 'spip_mots AS t2');
+		$where = array('t1.objet='.sql_quote('article').' AND t1.id_objet='.sql_quote($id_article),
 					   't2.id_mot=t1.id_mot');
 		$result = sql_select($select, $from, $where);
 		$cat = NULL;
