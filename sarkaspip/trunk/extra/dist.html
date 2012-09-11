@@ -27,29 +27,30 @@
 ]
 [(#REM) <!-- affichage du bloc des mots-cles d'une branche ou d'un article et de la navigation propre a la page --> ]
 [(#ENV{type-page}|=={article}|oui)
-	[(#ENV{composition}|=={album}|non)
+	[(#ENV{composition}|match{album|forum}|non)
 		<INCLURE{fond=noisettes/article/inc_article_navigation}{id_article}{id_rubrique}>
 	]
 	[(#REM) <!-- affichage du bloc de navigation d'un album --> ]
 	[(#ENV{composition}|=={album}|oui)
 		<INCLURE{fond=noisettes/album/inc_album_navigation}{id_article}>
 	]
+	[(#REM) <!-- affichage du bloc de navigation d'une page forum ou sujet --> ]
+	[(#ENV{type-page}|=={article}|et{#ENV{composition}|match{forum}}|oui)
+		<INCLURE{fond=noisettes/forum/inc_forum_navigation}{id_secteur}{id_rubrique}{id_article}>
+	]
 ]
 [(#ENV{type-page}|=={rubrique}|oui)
-	[(#ENV{composition}|=={galerie}|non)
+	[(#ENV{composition}|match{galerie|forums}|non)
 		<INCLURE{fond=noisettes/rubrique/inc_rubrique_navigation}{id_rubrique}{ajax}>
 	]
 	[(#ENV{composition}|=={galerie}|oui)
 		<INCLURE{fond=noisettes/galerie/inc_galerie_filtre}{ajax}{id_rubrique}{categorie}>
 	]
-]
-[(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
-[(#ENV{type-page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
-	<INCLURE{fond=noisettes/forum/inc_groupe_navigation}{id_secteur}{id_rubrique}>
-]
-[(#REM) <!-- affichage du bloc de navigation d'une page forum ou sujet --> ]
-[(#ENV{type-page}|match{forum_forum|forum_sujet}|oui)
-	<INCLURE{fond=noisettes/forum/inc_forum_navigation}{id_secteur}{id_rubrique}{id_article}>
+	[(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
+	[(#ENV{composition}|=={forums}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
+				:#ENV{id_rubrique}:#RACINE_SPECIALISEE{forum}:
+		<INCLURE{fond=noisettes/forum/inc_groupe_navigation}{id_secteur}{id_rubrique}>
+	]
 ]
 [(#ENV{type-page}|=={site}|oui)
 	<INCLURE{fond=noisettes/site/inc_site_filtre}{id_syndic}{id_rubrique}>
