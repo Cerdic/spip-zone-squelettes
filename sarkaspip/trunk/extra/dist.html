@@ -30,14 +30,16 @@
 ]
 [(#REM) <!-- affichage du bloc des mots-cles d'une branche ou d'un article et de la navigation propre a la page --> ]
 [(#ENV{type-page}|=={article}|oui)
-	<INCLURE{fond=noisettes/article/inc_article_navigation}{id_article}{id_rubrique}>
+	[(#ENV{composition}|=={album}|non)
+		<INCLURE{fond=noisettes/article/inc_article_navigation}{id_article}{id_rubrique}>
+	]
+	[(#REM) <!-- affichage du bloc de navigation d'un album --> ]
+	[(#ENV{composition}|=={album}|oui)
+		<INCLURE{fond=noisettes/album/inc_album_navigation}{id_article}>
+	]
 ]
 [(#ENV{type-page}|=={rubrique}|oui)
 	<INCLURE{fond=noisettes/rubrique/inc_rubrique_navigation}{id_rubrique}{ajax}>
-]
-[(#REM) <!-- affichage du bloc de navigation d'un album --> ]
-[(#ENV{type-page}|=={album}|oui)
-	<INCLURE{fond=noisettes/album/inc_album_navigation}{id_article}>
 ]
 [(#REM) <!-- affichage du bloc de navigation d'une page groupe de forum --> ]
 [(#ENV{type-page}|=={forum_groupe}|et{#ENV{id_rubrique}|!={#RACINE_SPECIALISEE{forum}}}|oui)
