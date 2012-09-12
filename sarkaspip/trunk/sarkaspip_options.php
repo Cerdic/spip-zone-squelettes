@@ -1,4 +1,11 @@
 <?php
+/**
+ * Squelette SarkaSPIP v4
+ * (c) 2005-2012 Licence GPL 3
+ */
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 $GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer');
 
 // Supprimer systematiquement les numeros des titres et noms
