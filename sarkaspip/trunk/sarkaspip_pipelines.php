@@ -1,40 +1,4 @@
 <?php
-// Pipeline insert_head public
-function SarkaSpip_insert_head($flux){
-	// Recuperation des parametres cfg sur le menu des rubriques
-	$position = lire_config('sarkaspip_menus/position_rubriques', 1);
-	$modele = lire_config('sarkaspip_menus/modele_rubriques', 1);
-	// Si le menu des rubriques est deroulant dans le bandeau
-	if (($position == 5) && ($modele == 1))
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant_horizontal.js')).'" type="text/javascript"></script>';
-	// Si le menu des rubriques est deroulant dans la colonne navigation
-	if (($position == 1) && ($modele == 1))
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant_vertical.js')).'" type="text/javascript"></script>';
-
-	// Insertion de la librairie jCarouselLite et des librairies connexes
-	$position = lire_config('sarkaspip_album/position_carrousel', 1);
-	$modele = lire_config('sarkaspip_album/modele_carrousel', 1);
-	if (($position != 0) && ($modele == 1)) {
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/jcarousellite_1.0.1.js')).'" type="text/javascript"></script>';
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.mousewheel.js')).'" type="text/javascript"></script>';
-	}
-
-	// Insertion de la librairie Innerfade pour la noisette des sites favoris
-	$position = lire_config('sarkaspip_noisettes/position_herbier', 0);
-	$modele = lire_config('sarkaspip_noisettes/liste_herbier', 2);
-	if (($position != 0) && ($modele == 2)) {
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.innerfade.js')).'" type="text/javascript"></script>';
-	}
-	
-	// Insertion de la librairie jquery.corner pour la noisette cfg_sarkaspip_coins
-	$coins_arrondis = lire_config('sarkaspip_coins/avec_arrondis', 0);
-	if (($coins_arrondis == 1)) {
-		$flux .= '<script src="'.url_absolue(find_in_path('scripts/jquery.corner.js')).'" type="text/javascript"></script>';
-		$flux .= '<script src="'.generer_url_public('sarkaspip_coins.js').'" type="text/javascript"></script>';
-	}
-	
-	return $flux;
-}
 
 // Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers � sauvegarder dans le plugin Mes Fichiers 2
 function SarkaSpip_mes_fichiers_a_sauver($flux){
