@@ -6,16 +6,16 @@
 -->
 ]
 <BOUCLE_combien(DOCUMENTS) {id_article}{mode=document}{extension IN png,jpg,gif}></BOUCLE_combien>
-	[(#TOTAL_BOUCLE|=={0}|?{' '})
+	[(#TOTAL_BOUCLE|=={0}|oui)
 		[(#SET{libelle, <:sarkaspip:0_photo|ucfirst:>})]
 	]
-	[(#TOTAL_BOUCLE|!={0}|?{' '})
+	[(#TOTAL_BOUCLE|!={0}|oui)
 		[(#SET{libelle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_photo:>,<:sarkaspip:photos:>})]]})]
 	]
 <//B_combien>
-[(#ENV{ancre_meme_page}|=={oui}|?{' '})
+[(#ENV{ancre_meme_page}|=={oui}|oui)
 	<a class="fonction" id="voir_photos" href="#photos"[ title="(#GET{libelle})"]></a>
 ]
-[(#ENV{ancre_meme_page}|=={non}|?{' '})
+[(#ENV{ancre_meme_page}|=={non}|oui)
 	[<a[ href="(#URL_PAGE{album, id_article=#ENV{id_article}}|ancre_url{photos})"]>(#GET{libelle})</a>]
 ]

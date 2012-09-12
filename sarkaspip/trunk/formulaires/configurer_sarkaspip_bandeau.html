@@ -1,13 +1,13 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-		[(#ENV{haut, 1}|=={0}|?{' '})
+		[(#ENV{haut, 1}|=={0}|oui)
 			jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
 			jQuery("#bloc_haut").hide();
 		]
-		[(#ENV{bas, 1}|=={0}|?{' '}) jQuery("#bloc_bas").hide();]
-		[(#ENV{menu_align, 0}|=={0}|?{' '})	jQuery("#bloc_largeur_menu").hide();]
-		[(#ENV{logo_reduit, 1}|=={0}|?{' '}) jQuery("#bloc_logo").hide();
+		[(#ENV{bas, 1}|=={0}|oui) jQuery("#bloc_bas").hide();]
+		[(#ENV{menu_align, 0}|=={0}|oui)	jQuery("#bloc_largeur_menu").hide();]
+		[(#ENV{logo_reduit, 1}|=={0}|oui) jQuery("#bloc_logo").hide();
 		]
 		jQuery("input[name='haut']").change(function() {
 			if (jQuery("input[name='haut']:checked").val() == 1)
@@ -103,19 +103,19 @@
 		</fieldset>
 
 		#SET{menu_horizontal_affiche, non}
-	[(#CONFIG{sarkaspip_menus/position_rubriques, 1}|=={5}|?{' '})
+	[(#CONFIG{sarkaspip_menus/position_rubriques, 1}|=={5}|oui)
 		#SET{menu_horizontal_affiche, oui}
 		[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_rubriques:>})]
 	]
-	[(#CONFIG{sarkaspip_menus/position_secteurs, 0}|=={5}|?{' '})
+	[(#CONFIG{sarkaspip_menus/position_secteurs, 0}|=={5}|oui)
 		#SET{menu_horizontal_affiche, oui}
 		[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_secteurs:>})]
 	]
-	[(#CONFIG{sarkaspip_menus/position_pages, 1}|=={5}|?{' '})
+	[(#CONFIG{sarkaspip_menus/position_pages, 1}|=={5}|oui)
 		#SET{menu_horizontal_affiche, oui}
 		[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_pages_speciales:>})]
 	]
-	[(#CONFIG{sarkaspip_menus/position_perso, 0}|=={5}|?{' '})
+	[(#CONFIG{sarkaspip_menus/position_perso, 0}|=={5}|oui)
 		#SET{menu_horizontal_affiche, oui}
 		[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_perso:>})]
 	]
@@ -135,7 +135,7 @@
 				<label><:sarkaspip:cfg_lbl_hauteur_minimale:></label>
 				<input type="text" name="bas_minheight" value="#ENV{bas_minheight, 23}" size="3" class="fondl" />
 				<br />
-	[(#GET{menu_horizontal_affiche}|=={oui}|?{' '})
+	[(#GET{menu_horizontal_affiche}|=={oui}|oui)
 				<p><:sarkaspip:cfg_inf_bandeau_bas_menu{lbl_menu=#GET{menu_horizontal_modele}}:></p>
 				<p><:sarkaspip:cfg_inf_alignement_menu:></p>
 				<label>

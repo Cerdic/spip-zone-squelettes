@@ -14,35 +14,35 @@
 	Sinon, en mode non exclusif, le fonctionnement sera classique (compatible versions precedentes)
  -->
 ]
-[(#MODE|=={image}|?{' '})
+[(#MODE|=={image}|oui)
 	#SET{affichage, image}
 ]
-[(#MODE|=={image}|?{'',' '})
-	[(#EXTENSION|match{jpg}|?{' '})
+[(#MODE|=={image}|non)
+	[(#EXTENSION|match{jpg}|oui)
 		#SET{affichage, image}
 	]
-	[(#EXTENSION|match{jpg|png|gif}|?{'',' '})
+	[(#EXTENSION|match{jpg|png|gif}|non)
 		#SET{affichage, logo}
 	]
 ]
 #SET{document_a_afficher,oui}
-[(#GET{affichage}|=={image}|?{' '})
+[(#GET{affichage}|=={image}|oui)
 	#SET{fichier,#URL_DOCUMENT}
 	#SET{width,#LARGEUR}
 	#SET{height,#HAUTEUR}
 	#SET{url,#ENV{lien}}
-	[(#CONFIG{sarkaspip_modeles/exclusif_doc, non}|=={oui}|?{' '})
+	[(#CONFIG{sarkaspip_modeles/exclusif_doc, non}|=={oui}|oui)
 		#SET{document_a_afficher,non}
 	]
 ]
-[(#GET{affichage}|=={logo}|?{' '})
+[(#GET{affichage}|=={logo}|oui)
 	[(#SET{fichier,[(#LOGO_DOCUMENT||extraire_attribut{src})]})]
 	[(#SET{width,[(#LOGO_DOCUMENT||extraire_attribut{width})]})]
 	[(#SET{height,[(#LOGO_DOCUMENT||extraire_attribut{height})]})]
 	#SET{url,#ENV{lien,#URL_DOCUMENT}}
 ]
 
-[(#GET{document_a_afficher}|=={oui}|?{' '})
+[(#GET{document_a_afficher}|=={oui}|oui)
 <dl class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
 	<dt>[<a href="(#GET{url})"[ class="(#ENV{lien_class})"] title='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]'[ (#ENV{lien}|?{'',type="#MIME_TYPE"})]>]<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]' />[(#GET{url}|?{</a>})]</dt>[
 	<dt class='#EDIT{titre} spip_doc_titre'[ style='width:(#GET{width}|min{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MAX}}|max{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MIN}})px;']><strong>(#TITRE)</strong></dt>][

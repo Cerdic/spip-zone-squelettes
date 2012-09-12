@@ -5,17 +5,17 @@
 -->
 ]
 <BOUCLE_combien(SIGNATURES) {id_article}{plat}></BOUCLE_combien>
-	[(#TOTAL_BOUCLE|=={0}|?{' '})
+	[(#TOTAL_BOUCLE|=={0}|oui)
 		[(#SET{libelle, <:sarkaspip:0_signature|ucfirst:>})]
 	]
-	[(#TOTAL_BOUCLE|!={0}|?{' '})
+	[(#TOTAL_BOUCLE|!={0}|oui)
 		[(#SET{libelle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:signature_petition:>,<:sarkaspip:signatures_petition:>})]]})]
 	]
 <//B_combien>
-[(#ENV{ancre_meme_page}|=={oui}|?{' '})
+[(#ENV{ancre_meme_page}|=={oui}|oui)
 	<a class="fonction" id="voir_signatures" href="#signatures"[ title="(#GET{libelle})"]></a>
 ]
 
-[(#ENV{ancre_meme_page}|=={non}|?{' '})
+[(#ENV{ancre_meme_page}|=={non}|oui)
 <a[ href="(#URL_ARTICLE|ancre_url{commentaires})"]>#GET{libelle}</a>
 ]

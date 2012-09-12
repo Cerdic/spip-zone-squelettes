@@ -1,13 +1,13 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-		[(#ENV{plugin_contact, 0}|=={0}|?{' '})
+		[(#ENV{plugin_contact, 0}|=={0}|oui)
 			jQuery("#bloc_contact_1").hide();
 		]
-		[(#ENV{plugin_contact, 0}|=={1}|?{' '})
+		[(#ENV{plugin_contact, 0}|=={1}|oui)
 			jQuery("#bloc_contact_0").hide();
 		]
-		[(#ENV{position_extrait, 1}|!={1}|?{' '})
+		[(#ENV{position_extrait, 1}|!={1}|oui)
 			jQuery("#bloc_pas_extrait").hide();
 		]
 		jQuery("input[name='plugin_contact']").change(function() {
@@ -58,13 +58,13 @@
 			</label>
 			<div id="bloc_contact_0">
 				<p><:sarkaspip:cfg_inf_form_contact_plugin_0:></p>
-				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|?{' '})
+				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|oui)
 					#SET{critere_statut, #ARRAY{0,0minirezo}}
 				]
-				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={1comite}|?{' '})
+				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={1comite}|oui)
 					#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite}}
 				]
-				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={6forum}|?{' '})
+				[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={6forum}|oui)
 					#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite,2,6forum}}
 				]
 				<B_auteurs>
@@ -74,13 +74,13 @@
 						#SET{groupe_statut, aucun}
 						#SET{groupe_en_cours, 0}
 				<BOUCLE_auteurs(AUTEURS){tout}{statut IN #GET{critere_statut}}{par statut}{par nom}>
-					[(#GET{groupe_statut}|!={#STATUT}|?{' '})
-						[(#GET{groupe_en_cours}|?{' '})</optgroup>]
+					[(#GET{groupe_statut}|!={#STATUT}|oui)
+						[(#GET{groupe_en_cours}|oui)</optgroup>]
 						<optgroup style="font-weight: strong;"[ label="(#STATUT|libelle_statut|ucfirst)"]>
 						[(#SET{groupe_statut, #STATUT})]
 						[(#SET{groupe_en_cours, 1})]
 					]
-					[(#EMAIL|?{' '})
+					[(#EMAIL|oui)
 						[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{auteur_contact, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
 					]
 				</BOUCLE_auteurs>
