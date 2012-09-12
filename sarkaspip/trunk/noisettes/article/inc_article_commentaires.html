@@ -6,7 +6,7 @@
 -->
 ] 
 <div id="commentaires_article" class="commentaires">
-[(#ENV{id_forum}|?{'', ' '})
+[(#ENV{id_forum}|non)
 	<a id="commentaires" name="commentaires" href="#commentaires"></a>
 	[(#ENV{statut}|=={ferme}|non)
 	<a class="fonction" id="commenter"[ href="(#URL_ARTICLE{#ID_ARTICLE}|parametre_url{commenter,oui}|parametre_url{id_forum,#ID_FORUM})"] title="<:sarkaspip:commenter_article:>"></a>
@@ -24,7 +24,7 @@
 	]
 ]
 <B_commentaires>
-[(#ENV{id_forum}|?{'', ' '})
+[(#ENV{id_forum}|non)
 	#ANCRE_PAGINATION
 	[(#ENV{position_pagination}|match{^(1|3)$}|oui)
 		[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
@@ -49,7 +49,7 @@
 	<//B_auteur_pere>
     	</div>
 		<div class="cartouche_simple">
-		[(#ENV{id_forum}|?{'', ' '})
+		[(#ENV{id_forum}|non)
 			[(#ENV{statut}|=={ferme}|non)
 			[<a class="fonction repondre_commentaire" href="(#URL_ARTICLE{#ID_ARTICLE}|parametre_url{commenter,oui}|parametre_url{id_forum,#ID_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commentaire:>"></a>]
 			]
@@ -67,7 +67,7 @@
 		<div class="nettoyeur"></div>
 	</div>
 </BOUCLE_commentaires>
-[(#ENV{id_forum}|?{'', ' '})
+[(#ENV{id_forum}|non)
 	[(#ENV{position_pagination}|match{^(2|3)$}|oui)
 		[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
 	]
