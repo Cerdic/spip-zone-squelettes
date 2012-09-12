@@ -1,7 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-#CACHE{0}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	[(#SET{complement, ''})]
 	[(#CONFIG{sarkaspip_formulaires/position_extrait, 1}|=={1}|oui)
 		[(#SET{complement, <:sarkaspip:commentaire_suite_article:>})]
@@ -12,19 +9,6 @@
 			[(#SET{afficher_titre, non})]
 		]
 	]
-	<INCLURE{fond=noisettes/inc_header}
-		{meta_titre=<:sarkaspip:poster_commentaire{poster_complement=}:>}>
-
-<body dir="#LANG_DIR">
-<div id="container">
-
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-	<INCLURE{fond=noisettes/bandeau}>
-</div>
-
-<div id="wrapper">
-	<div id="content">
 		<div class="titre"><h1><:sarkaspip:poster_commentaire{poster_complement=#GET{complement}}:></h1></div>
         [(#REM) <!-- Resume du texte de l'article auquel le commentaire s'adresse --> ]
 		[(#CONFIG{sarkaspip_formulaires/position_extrait, 1}|=={1}|oui)
@@ -55,27 +39,4 @@
 		[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{galerie}}|non)
 			<div class="formulaire">#FORMULAIRE_FORUM</div>
 		]
-	</div> <!--content-->
-</div> <!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-	<INCLURE{fond=noisettes/navigation}>
-</div> <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-</div> <!--extra-->
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
-	<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
-</div> <!--footer-->
-
-</div>
-</body>
-</html>
-
 </BOUCLE_article_principal>
-	<:sarkaspip:aucun_article:>
-<//B_article_principal>
