@@ -1,3 +1,6 @@
+#SET{composition,''}
+[(#ENV{recommander}|=={oui}|et{#PLUGIN{RECOMMANDER}})#SET{composition,'recommander'}]
+[(#ENV{signer}|=={oui}|et{#PLUGIN{PETITIONS}})#SET{composition,'signer'}]
 <BOUCLE_principale_article(ARTICLES){id_article}>
-<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#ENV{recommander}|et{#PLUGIN{RECOMMANDER}}|=={oui}|?{recommander,#COMPOSITION}} />
+<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#GET{composition}|sinon{#COMPOSITION}} />
 </BOUCLE_principale_article>
