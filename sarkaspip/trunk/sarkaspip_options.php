@@ -88,7 +88,7 @@ define('_SARKASPIP_PIPELINES', 'colonne_extra_debut:colonne_extra_fin:colonne_na
 $pipelines = explode(':', _SARKASPIP_PIPELINES);
 foreach ($pipelines as $_pipe) {
 	if (!isset($GLOBALS['spip_pipeline'][$_pipe]))
-		$GLOBALS['spip_pipeline'][$_pipe] = "|personnaliser_$_pipe";
+		$GLOBALS['spip_pipeline'][$_pipe] = "|sarkaspip_personnaliser_$_pipe";
 }
 // -- Fonction d'affichage des noisettes
 function afficher_noisettes($define, $flux, $ajax=true){
@@ -105,57 +105,57 @@ function afficher_noisettes($define, $flux, $ajax=true){
 	return $flux;
 }
 // -- Fonction d'insertion en debut de colonne extra
-function personnaliser_colonne_extra_debut($flux){
+function sarkaspip_personnaliser_colonne_extra_debut($flux){
 	if (defined('_PERSO_COLONNE_EXTRA_DEBUT'))
 		return afficher_noisettes(_PERSO_COLONNE_EXTRA_DEBUT, $flux, true);
 }
 // -- Fonction d'insertion en fin de colonne extra
-function personnaliser_colonne_extra_fin($flux){
+function sarkaspip_personnaliser_colonne_extra_fin($flux){
 	if (defined('_PERSO_COLONNE_EXTRA_FIN')) 
 		return afficher_noisettes(_PERSO_COLONNE_EXTRA_FIN, $flux, true);
 }
 // -- Fonction d'insertion en debut de colonne navigation
-function personnaliser_colonne_navigation_debut($flux){
+function sarkaspip_personnaliser_colonne_navigation_debut($flux){
 	if (defined('_PERSO_COLONNE_NAVIGATION_DEBUT'))
 		return afficher_noisettes(_PERSO_COLONNE_NAVIGATION_DEBUT, $flux, true);
 }
 // -- Fonction d'insertion en fin de colonne navigation
-function personnaliser_colonne_navigation_fin($flux){
+function sarkaspip_personnaliser_colonne_navigation_fin($flux){
 	if (defined('_PERSO_COLONNE_NAVIGATION_FIN'))
 		return afficher_noisettes(_PERSO_COLONNE_NAVIGATION_FIN, $flux, true);
 }
 // -- Fonction d'insertion en fin de menu des pages speciales
-function personnaliser_menu_pages_speciales_fin($flux){
+function sarkaspip_personnaliser_menu_pages_speciales_fin($flux){
 	if (defined('_PERSO_MENU_PAGES_SPECIALES_FIN'))
 		return afficher_noisettes(_PERSO_MENU_PAGES_SPECIALES_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de bandeau haut
-function personnaliser_bandeau_haut_debut($flux){
+function sarkaspip_personnaliser_bandeau_haut_debut($flux){
 	if (defined('_PERSO_BANDEAU_HAUT_DEBUT'))
 		return afficher_noisettes(_PERSO_BANDEAU_HAUT_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de bandeau haut
-function personnaliser_bandeau_haut_fin($flux){
+function sarkaspip_personnaliser_bandeau_haut_fin($flux){
 	if (defined('_PERSO_BANDEAU_HAUT_FIN'))
 		return afficher_noisettes(_PERSO_BANDEAU_HAUT_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de bandeau bas
-function personnaliser_bandeau_bas_debut($flux){
+function sarkaspip_personnaliser_bandeau_bas_debut($flux){
 	if (defined('_PERSO_BANDEAU_BAS_DEBUT'))
 		return afficher_noisettes(_PERSO_BANDEAU_BAS_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de bandeau bas
-function personnaliser_bandeau_bas_fin($flux){
+function sarkaspip_personnaliser_bandeau_bas_fin($flux){
 	if (defined('_PERSO_BANDEAU_BAS_FIN'))
 		return afficher_noisettes(_PERSO_BANDEAU_BAS_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de pied
-function personnaliser_pied_debut($flux){
+function sarkaspip_personnaliser_pied_debut($flux){
 	if (defined('_PERSO_PIED_DEBUT'))
 		return afficher_noisettes(_PERSO_PIED_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de pied
-function personnaliser_pied_fin($flux){
+function sarkaspip_personnaliser_pied_fin($flux){
 	if (defined('_PERSO_PIED_FIN'))
 		return afficher_noisettes(_PERSO_PIED_FIN, $flux, false);
 }
