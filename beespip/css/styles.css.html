@@ -366,8 +366,8 @@ form {
 	background: #GET{couleur_fond_formulaires};
 }
 /* Fieldset */
-form fieldset { clear: both; margin: 0 0 1em 0; padding: 0; border: 0; }
-form fieldset legend { margin: 0; padding: 0; font-size: 1.05em; font-weight: bold; /*background-color: #fff;*/ color: #333; } /* Preciser la couleur des legend et du fond pour IE/Win */
+form fieldset { clear: both; margin: 0 0 1em 0; padding: 0; border: 0; position: relative; }
+form fieldset legend { margin: 0; padding: 0; font-size: 1.05em; font-weight: bold; background-color: #GET{couleur_fond_formulaires}; color: #333; } /* Preciser la couleur des legend et du fond pour IE/Win */
 form fieldset fieldset { margin-top: 1em; }
 form fieldset fieldset legend { font-size: 1em; font-weight: normal; }
 form p {
@@ -394,14 +394,24 @@ input, select, textarea {
 	border-style: solid;
   	border-color: #d4d4d4 #ebebeb #ebebeb #d4d4d4;
 	font: 1em 'Lucida Grande', Verdana, Helvetica, sans-serif;
+	background: #[(#GET{couleur_fond_formulaires}|replace{#,''}|couleur_eclaircir|couleur_eclaircir|couleur_eclaircir)];
 }
 input:focus, select:focus, textarea:focus {
 	color: #[(#GET{couleur_secondaire_claire}|replace{#,''}|couleur_foncer|couleur_foncer|couleur_foncer)];
 	background: #[(#GET{couleur_secondaire_claire}|replace{#,''}|couleur_eclaircir|couleur_eclaircir|couleur_eclaircir)];
 }
+input[type="submit"]:hover {
+	color: #[(#GET{couleur_secondaire_claire}|replace{#,''}|couleur_foncer|couleur_foncer|couleur_foncer)];
+	background: #[(#GET{couleur_secondaire_claire}|replace{#,''}|couleur_eclaircir|couleur_eclaircir|couleur_eclaircir)];	
+}
+/* Hand cursor on clickable input elements */
+input[type="submit"],input.submit,
+input[type="button"],input.button,
+input[type="image"],input.image,
+button { cursor: pointer;  }
 
 input.button { 
-	font: bold 12px Arial, Sans-serif; 
+	font: bold 1.1em Arial, Sans-serif; 
 	height: 30px;
 	margin: 0;
 	padding: 2px 3px; 
