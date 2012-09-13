@@ -22,7 +22,12 @@ if (!defined('_SARKASPIP_DEBUG_CFG_BOUTON')) define('_SARKASPIP_DEBUG_CFG_BOUTON
 if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS', 'non');
 
 // Liste des pages de configuration dans l'ordre de presentation
-if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG', 'accueil:header:plugins:backend:layout:bandeau:pied:noisettes:menus:sommaire:rubrique:article:auteur:breve:site:forum:agenda:herbier:galerie:album:plan:formulaires:recherche:styles:coins:modeles:maintenance');
+if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
+'accueil
+|Contenu!sommaire:rubrique:article:auteur:breve:site:forum:plan:herbier:recherche:agenda:galerie:album:formulaires:modeles
+|Apparence!layout:bandeau:menus:pied:noisettes:styles:coins
+|R&eacute;f&eacute;rencement!header:backend
+|Outils!plugins:maintenance');
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
