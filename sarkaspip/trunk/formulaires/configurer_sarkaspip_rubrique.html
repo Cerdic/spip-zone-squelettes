@@ -1,22 +1,3 @@
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{position_articles, 1}|!={1}|oui)
-			jQuery("#bloc_pas_articles").hide();
-		]
-		jQuery("input[name='position_articles']").change(function() {
-			if (jQuery("input[name='position_articles']:checked").val() == 1) {
-				jQuery("#bloc_pas_articles").show();
-			}
-			else {
-				jQuery("#bloc_pas_articles").hide();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
-
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
 	<h3 class="titrem"><:sarkaspip:cfg_boite_rubrique:></h3>
@@ -27,60 +8,84 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_description:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
 				{explication=<:sarkaspip:cfg_inf_rubrique_logo:>}
 				{choix=taille_uniquement}
 				{suffixe=_rubrique}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_documents_joints:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_descriptif_document}{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_images_jointes:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
 				{explication=<:sarkaspip:cfg_inf_effet_image:>}
 				{choix=portfolio}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_rubriques_filles:></legend>
-			<p><:sarkaspip:cfg_inf_rubrique_filles:></p>
-			<label>
-				<input type="radio" name="avec_filles" value="oui" [(#ENV{avec_filles, non}|=={oui}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_oui:>
-			</label>
-			<label>
-				<input type="radio" name="avec_filles" value="non" [(#ENV{avec_filles, non}|=={non}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_non:>
-			</label>
+			<ul>
+				#SET{name,avec_filles}#SET{defaut,non}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_titre_edito">
+					<label><:sarkaspip:cfg_inf_rubrique_filles:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,oui}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_oui:></label>
+					</div>
+					#SET{val,non}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+					</div>
+				</li>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_articles_publies:></legend>
-			<p><:sarkaspip:cfg_inf_rubrique_articles:></p>
-			<label>
-				<input type="radio" name="position_articles" value="1" [(#ENV{position_articles, 1}|=={1}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_oui:>
-			</label>
-			<label>
-				<input type="radio" name="position_articles" value="0" [(#ENV{position_articles, 1}|=={0}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_non:>
-			</label>
-			<div id="bloc_pas_articles">
-				<br />
-				<INCLURE{fond=noisettes/cfg/inc_cfg_introduction}{env}>
-				<br /><br />
-				<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
-					{choix=taille_uniquement}
-					{suffixe=_articles}
-					{env}>
-				<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=5}{defaut_position=3}{env}>
-			</div>
+			<ul>
+				#SET{name,position_articles}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_titre_edito">
+					<label><:sarkaspip:cfg_inf_rubrique_articles:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,1}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_oui:></label>
+					</div>
+					#SET{val,0}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+					</div>
+				</li>
+				<li class="fieldset suite" id="bloc_pas_articles"><fieldset>
+					<ul>
+					<INCLURE{fond=noisettes/cfg/inc_cfg_introduction}{env}>
+					<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
+						{choix=taille_uniquement}
+						{suffixe=_articles}
+						{env}>
+					<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=5}{defaut_position=3}{env}>
+					</ul></fieldset>
+				</li>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
@@ -94,3 +99,22 @@
 	</div>
 ]
 </div>
+<script type="text/javascript">
+/*<![CDATA[*/
+	jQuery(document).ready(function() {
+		[(#ENV{position_articles, 1}|!={1}|oui)
+			jQuery("#bloc_pas_articles").hide();
+		]
+		jQuery("input[name='position_articles']").change(function() {
+			if (jQuery("input[name='position_articles']:checked").val() == 1) {
+				jQuery("#bloc_pas_articles").show('fast');
+			}
+			else {
+				jQuery("#bloc_pas_articles").hide('fast');
+			}
+			jQuery(this).blur();
+		});
+	});
+/*]]>*/
+</script>
+<style>li.fieldset.suite>fieldset {padding-left: 30px;border-top:0;}</style>

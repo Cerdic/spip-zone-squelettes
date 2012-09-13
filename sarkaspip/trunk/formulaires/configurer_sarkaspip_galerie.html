@@ -9,51 +9,69 @@
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_galerie_secteur:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_secteur_specialise}
 				{explication=<:sarkaspip:cfg_inf_galerie_id:>}
 				{secteur=galerie}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_galerie_page:></legend>
 			<p><:sarkaspip:cfg_inf_galerie_page:></p>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
 				{choix=titre_descriptif}
 				{label_titre=<:sarkaspip:cfg_lbl_galerie_titre:>}
 				{label_descriptif=<:sarkaspip:cfg_lbl_galerie_descriptif:>}
 				{defaut_titre=<:sarkaspip:galerie:>}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_galerie_modele:></legend>
-				<p><:sarkaspip:cfg_inf_galerie_albums_1_colonne:></p>
-				<label>
-					<input type="radio" name="album_1_colonne" value="1" [(#ENV{album_1_colonne, 0}|=={1}|?{checked="checked"})] />
-					<:sarkaspip:cfg_lbl_1_colonne:>
-				</label>
-				<br />
-				<label>
-					<input type="radio" name="album_1_colonne" value="0" [(#ENV{album_1_colonne, 0}|=={0}|?{checked="checked"})] />
-					<:sarkaspip:cfg_lbl_2_colonnes:>
-				</label>
-				<br /><br />
-				<label><:sarkaspip:cfg_lbl_intro_album:></label>
-				<input type="text" name="intro_album" value="#ENV{intro_album, 200}" size="3" class="fondl" />
+			<ul>
+				#SET{name,album_1_colonne}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_titre_edito">
+					<label><:sarkaspip:cfg_inf_galerie_albums_1_colonne:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,1}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_1_colonne:></label>
+					</div>
+					#SET{val,0}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_2_colonnes:></label>
+					</div>
+				</li>
+				#SET{name,intro_album}#SET{defaut,200}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:sarkaspip:cfg_lbl_pas_pagination:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				</li>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_galerie_pagination_1:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
 				{suffixe=_1}
 				{defaut_pas=5}
 				{defaut_position=3}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_galerie_tri_1:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_sens_tri}
 				{explication=<:sarkaspip:cfg_inf_galerie_sens_tri:>}
 				{suffixe=_1}
@@ -61,6 +79,7 @@
 				{label_sens_inverse=<:sarkaspip:cfg_lbl_tri_antichrono:>}
 				{defaut_sens=1}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>

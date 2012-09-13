@@ -9,32 +9,39 @@
 	[(#ENV{_cfg_}|form_hidden)]
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_description:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
 				{explication=<:sarkaspip:cfg_inf_article_sans_logo:>}
 				{env}>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_cartouche}
-				{explication_popularite=<:sarkaspip:cfg_inf_article_popularite:>}
-				{explication_notation=<:sarkaspip:cfg_inf_article_notation:>}
-				{explication_socialtags=<:sarkaspip:cfg_inf_article_socialtags:>}
+				{label_popularite=<:sarkaspip:cfg_inf_article_popularite:>}
+				{label_notation=<:sarkaspip:cfg_inf_article_notation:>}
+				{label_socialtags=<:sarkaspip:cfg_inf_article_socialtags:>}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_documents_joints:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_descriptif_document}{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_images_jointes:></legend>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
 				{explication=<:sarkaspip:cfg_inf_effet_image:>}
 				{choix=portfolio}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_commentaires:></legend>
 			<p><:sarkaspip:cfg_inf_article_commentaires:></p>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_presentation_commentaires}
 				{defaut_presentation=2}
 				{defaut_tri=2}
@@ -48,27 +55,40 @@
 				{label_sens_inverse=<:sarkaspip:cfg_lbl_tri_antichrono:>}
 				{defaut_sens=1}
 				{env}>
-			<p><:sarkaspip:cfg_inf_commentaires_lien_auteur:></p>
-			<label>
-				<input type="radio" name="auteur_commentaires" value="1" [(#ENV{auteur_commentaires, 1}|=={1}|?{checked="checked"})] />
-				<:sarkaspip:cfg_inf_lien_auteur_oui:>
-			</label>
-			<br />
-			<label>
-				<input type="radio" name="auteur_commentaires" value="2" [(#ENV{auteur_commentaires, 1}|=={2}|?{checked="checked"})] />
-				<:sarkaspip:cfg_inf_lien_auteur_non:>
-			</label>
+
+			<li class="editer pleine_largeur">
+				<p class="explication"><:sarkaspip:cfg_inf_commentaires_lien_auteur:></p>
+			</li>
+			#SET{name,auteur_commentaires}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]
+				#SET{val,1}
+				<div class="choix">
+					<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_inf_lien_auteur_oui:></label>
+				</div>
+				#SET{val,2}
+				<div class="choix">
+					<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_inf_lien_auteur_non:></label>
+				</div>
+			</li>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
 				{defaut_pas=20}
 				{defaut_position=2}
 				{suffixe=_commentaires}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_petition:></legend>
 			<p><:sarkaspip:cfg_inf_petition:></p>
+			<ul>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=20}{defaut_position=2}{suffixe=_signatures}{env}>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>

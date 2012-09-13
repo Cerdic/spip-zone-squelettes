@@ -1,41 +1,67 @@
-[<p>(#ENV{explication_popularite})</p>]
-<label>
-	<input type="radio" name="avec_popularite" value="oui" [(#ENV{avec_popularite, oui}|=={oui}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_oui:>
-</label>
-<label>
-	<input type="radio" name="avec_popularite" value="non" [(#ENV{avec_popularite, oui}|=={non}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_non:>
-</label>
+#SET{name,avec_popularite}#SET{defaut,oui}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label>#ENV{label_popularite,''}</label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]
+	[<p class="explication">(#ENV{explication_popularite})</p>]
+	#SET{val,oui}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_oui:></label>
+	</div>
+	#SET{val,non}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+	</div>
+</li>
+
+
 [(#PLUGIN{NOTATION}|oui)
-<br />
-[<p>(#ENV{explication_notation})</p>]
-<label>
-	<input type="radio" name="position_notation" value="0" [(#ENV{position_notation, 0}|=={0}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_non:>
-</label><br />
-<label>
-	<input type="radio" name="position_notation" value="1" [(#ENV{position_notation, 0}|=={1}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_cartouche:>
-</label><br />
-<label>
-	<input type="radio" name="position_notation" value="2" [(#ENV{position_notation, 0}|=={2}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_fin_description:>
-</label>
+#SET{name,position_notation}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label>#ENV{label_notation,''}</label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]
+	[<p class="explication">(#ENV{explication_notation})</p>]
+	#SET{val,0}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+	</div>
+	#SET{val,1}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bloc_cartouche:></label>
+	</div>
+	#SET{val,2}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bloc_fin_description:></label>
+	</div>
+</li>
 ]
-[(#PLUGIN{SOCIALTAGS}|oui)
-<br />
-[<p>(#ENV{explication_socialtags})</p>]
-<label>
-	<input type="radio" name="position_socialtags" value="0" [(#ENV{position_socialtags, 0}|=={0}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_non:>
-</label><br />
-<label>
-	<input type="radio" name="position_socialtags" value="1" [(#ENV{position_socialtags, 0}|=={1}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_cartouche:>
-</label><br />
-<label>
-	<input type="radio" name="position_socialtags" value="2" [(#ENV{position_socialtags, 0}|=={2}|?{checked="checked"})] />
-	<:sarkaspip:cfg_lbl_bloc_fin_description:>
-</label>
+[(#PLUGIN{SOCIALTAGS}|non)
+#SET{name,position_socialtags}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label>#ENV{label_socialtags,''}</label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]
+	[<p class="explication">(#ENV{explication_socialtags})</p>]
+	#SET{val,0}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+	</div>
+	#SET{val,1}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bloc_cartouche:></label>
+	</div>
+	#SET{val,2}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bloc_fin_description:></label>
+	</div>
+</li>
 ]

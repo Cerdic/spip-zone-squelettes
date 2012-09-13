@@ -1,10 +1,18 @@
-<B_groupes>	
- 	<label>#ENV{label}</label><br />
-	<select name="groupes#ENV{suffixe}[]" multiple="multiple" style="width: 100%;">
-<BOUCLE_groupes(GROUPES_MOTS){titre!=squelette_habillage}{id_groupe ?IN #ENV{id_groupe}}{par num titre, titre}>
-	<BOUCLE_mot_existe(MOTS){id_groupe}{0,1}>
-		[<option value="#_groupes:ID_GROUPE"[ (#_groupes:ID_GROUPE|in_array{#ENV{groupes#ENV{suffixe},#ARRAY}}|oui)selected="selected"]>(#_groupes:TITRE)</option>]
-	</BOUCLE_mot_existe>
-</BOUCLE_groupes>
-	</select> 	
+<B_groupes>
+#SET{name,groupes#ENV{suffixe}}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer pleine_largeur">
+	[<p class="explication">(#ENV{explication})</p>]
+</li>
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label for="#GET{name}">#ENV{label}</label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]<select name="#GET{name}[]" class="select" id="#GET{name}" multiple="multiple">
+		<BOUCLE_groupes(GROUPES_MOTS){titre!=squelette_habillage}{id_groupe ?IN #ENV{id_groupe}}{par num titre, titre}>
+			#SET{val,#ID_GROUPE}
+			<BOUCLE_mot_existe(MOTS){id_groupe}{0,1}>
+				<option value="#GET{val}"[(#GET{val}|in_array{#ENV{#GET{name},#LISTE{#GET{defaut}}}}|oui)selected="selected"]>[(#_groupes:TITRE|sinon{sans titre}|attribut_html)]</option>
+			</BOUCLE_mot_existe>
+		</BOUCLE_groupes>
+	</select>
+</li>
 </B_groupes>

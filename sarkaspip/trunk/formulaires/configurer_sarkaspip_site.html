@@ -8,18 +8,28 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_syndication:></legend>
-			<p><:sarkaspip:cfg_inf_syndication_nbj:></p>
-			<label><:sarkaspip:cfg_lbl_nb_jours_syndiques_1:> :</label>
-			<input type="text" name="nbj_syndication_1" value="#ENV{nbj_syndication_1, 30}" size="3" class="fondl" />
-			<br />
-			<label><:sarkaspip:cfg_lbl_nb_jours_syndiques_2:> :</label>
-			<input type="text" name="nbj_syndication_2" value="#ENV{nbj_syndication_2, 60}" size="3" class="fondl" />
-			<p><:sarkaspip:cfg_inf_syndication_pagination:></p>
-			<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
-				{suffixe=_site}
-				{defaut_pas=50}
-				{defaut_position=3}
-				{env}>
+			<p class="explication"><:sarkaspip:cfg_lbl_nb_jours_syndiques_1:></p>
+			<ul>
+				#SET{name,nbj_syndication_1}#SET{defaut,30}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:sarkaspip:cfg_lbl_nb_jours_syndiques_1:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				</li>
+				#SET{name,nbj_syndication_2}#SET{defaut,60}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:sarkaspip:cfg_lbl_nb_jours_syndiques_2:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				</li>
+
+				<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+					{explications=<:sarkaspip:cfg_inf_syndication_pagination:>}
+					{suffixe=_site}
+					{defaut_pas=50}
+					{defaut_position=3}
+					{env}>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
