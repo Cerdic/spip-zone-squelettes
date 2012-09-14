@@ -2,7 +2,16 @@
 function formulaires_sauvegarde_cfg_charger_dist() {
 
 	$options = '';
-	$pages_cfg = explode(':', _SARKASPIP_PAGES_CONFIG);
+
+	$pages_cfg = array();
+	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
+	foreach ($sections as $section){
+		$section = explode("!",$section);
+		$section = end($section);
+		$pages_cfg = $pages_cfg + array_map('trim',explode(":",$section));
+	}
+
+
 	foreach ($pages_cfg as $_page) {
 		if ($_page != 'maintenance') {
 			$fond = "sarkaspip_{$_page}";

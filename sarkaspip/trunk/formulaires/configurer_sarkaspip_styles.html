@@ -9,94 +9,100 @@
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_general:></legend>
-			<p><:sarkaspip:cfg_inf_css_general:></p>
-			<label><:sarkaspip:cfg_lbl_css_fo:></label>
-			<input type="text" name="fo_site" value="#ENV{fo_site, 'Helvetica,Verdana'}" size="50" class="fondl" />,Arial,sans-serif
-			<br />
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{explication=<:sarkaspip:cfg_inf_css_couleurs_site:>}
-				{suffixe=_site}
-				{choix=fg_bg_bi}
-				{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
-				{bg_defaut=#ffffff}
-				{fg_defaut=#000000}
-				{env}>
-			[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12|34)$}|oui)
+			<p class="explication"><:sarkaspip:cfg_inf_css_general:></p>
+			<ul>
+				#SET{name,fo_site}#SET{defaut,'Helvetica,Verdana'}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_stats_2_max_top">
+					<label for="#GET{name}"><:sarkaspip:cfg_lbl_css_fo:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+				</li>
 				<INCLURE{fond=formulaires/inc/cfg_couleurs}
-					{explication=<:sarkaspip:cfg_inf_css_couleurs_body:>}
-					{suffixe=_body}
+					{explication=<:sarkaspip:cfg_inf_css_couleurs_site:>}
+					{suffixe=_site}
 					{choix=fg_bg_bi}
 					{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
 					{bg_defaut=#ffffff}
 					{fg_defaut=#000000}
 					{env}>
-			]
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_lien}
-				{choix=fg_ho_td}
-				{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_lien:>}
-				{fg_defaut=#990000}
-				{ho_defaut=#990000}
-				{td_defaut=underline}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_intertitre}
-				{choix=fg}
-				{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_intertitre:>}
-				{fg_defaut=#6262a4}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{explication=<:sarkaspip:cfg_inf_css_couleurs_citations:>}
-				{suffixe=_citation}
-				{choix=fg_bg}
-				{bg_defaut=#eeeeee}
-				{fg_defaut=#000000}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_quote}
-				{choix=ca}
-				{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_quote:>}
-				{ca_defaut=#990000}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_code}
-				{choix=ca}
-				{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_code:>}
-				{ca_defaut=#669999}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_cadre}
-				{choix=ca}
-				{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_cadre:>}
-				{ca_defaut=transparent}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{explication=<:sarkaspip:cfg_inf_css_couleurs_tableaux:>}
-				{suffixe=_thead}
-				{choix=bg_fg}
-				{complement_label_fg=<:sarkaspip:cfg_lbl_css_tb_head:>}
-				{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_head:>}
-				{bg_defaut=#808080}
-				{fg_defaut=#ffffff}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_todd}
-				{choix=bg}
-				{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_odd:>}
-				{bg_defaut=#e0e0e0}
-				{env}>
-			<INCLURE{fond=formulaires/inc/cfg_couleurs}
-				{suffixe=_teven}
-				{choix=bg}
-				{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_even:>}
-				{bg_defaut=#eeeeee}
-				{env}>
+				[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12|34)$}|oui)
+					<INCLURE{fond=formulaires/inc/cfg_couleurs}
+						{explication=<:sarkaspip:cfg_inf_css_couleurs_body:>}
+						{suffixe=_body}
+						{choix=fg_bg_bi}
+						{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
+						{bg_defaut=#ffffff}
+						{fg_defaut=#000000}
+						{env}>
+				]
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_lien}
+					{choix=fg_ho_td}
+					{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_lien:>}
+					{fg_defaut=#990000}
+					{ho_defaut=#990000}
+					{td_defaut=underline}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_intertitre}
+					{choix=fg}
+					{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_intertitre:>}
+					{fg_defaut=#6262a4}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{explication=<:sarkaspip:cfg_inf_css_couleurs_citations:>}
+					{suffixe=_citation}
+					{choix=fg_bg}
+					{bg_defaut=#eeeeee}
+					{fg_defaut=#000000}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_quote}
+					{choix=ca}
+					{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_quote:>}
+					{ca_defaut=#990000}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_code}
+					{choix=ca}
+					{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_code:>}
+					{ca_defaut=#669999}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_cadre}
+					{choix=ca}
+					{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_cadre:>}
+					{ca_defaut=transparent}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{explication=<:sarkaspip:cfg_inf_css_couleurs_tableaux:>}
+					{suffixe=_thead}
+					{choix=bg_fg}
+					{complement_label_fg=<:sarkaspip:cfg_lbl_css_tb_head:>}
+					{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_head:>}
+					{bg_defaut=#808080}
+					{fg_defaut=#ffffff}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_todd}
+					{choix=bg}
+					{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_odd:>}
+					{bg_defaut=#e0e0e0}
+					{env}>
+				<INCLURE{fond=formulaires/inc/cfg_couleurs}
+					{suffixe=_teven}
+					{choix=bg}
+					{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_even:>}
+					{bg_defaut=#eeeeee}
+					{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_bandeau:></legend>
-			<p><:sarkaspip:cfg_inf_css_bandeau:></p>
-			<p><:sarkaspip:cfg_inf_css_couleurs:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_bandeau:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_couleurs:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_bandeau_haut:>}
 				{suffixe=_bandeau_haut}
@@ -135,11 +141,13 @@
 				{ho_defaut=#808080}
 				{td_defaut=none}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_pied:></legend>
-			<p><:sarkaspip:cfg_inf_css_pied:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_pied:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_pied_bas:>}
 				{suffixe=_pied_bas}
@@ -150,14 +158,19 @@
 				{ho_defaut=#aaaaaa}
 				{td_defaut=none}
 				{env}>
-			<label><:sarkaspip:cfg_lbl_css_ta:></label>
-			<input type="text" name="ta_pied_bas" value="#ENV{ta_pied_bas, right}" size="6" class="fondl" />
-			<br />
+			#SET{name,ta_pied_bas}#SET{defaut,right}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_stats_2_max_top">
+				<label for="#GET{name}"><:sarkaspip:cfg_lbl_css_ta:></label>[
+				<span class='erreur_message'>(#GET{erreurs})</span>
+				]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+			</li>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_noisettes:></legend>
-			<p><:sarkaspip:cfg_inf_css_noisettes:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_noisettes:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_noisettes_titre:>}
 				{suffixe=_noisette_titre}
@@ -218,11 +231,13 @@
 				{td_defaut=none}
 				{ca_defaut=#ffffff}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_pagination:></legend>
-			<p><:sarkaspip:cfg_inf_css_pagination:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_pagination:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_pagination:>}
 				{suffixe=_pagination}
@@ -242,11 +257,13 @@
 				{fg_defaut=#ffffff}
 				{td_defaut=none}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_extraits:></legend>
-			<p><:sarkaspip:cfg_inf_css_extraits:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_extraits:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_extrait_1:>}
 				{suffixe=_extrait}
@@ -267,11 +284,13 @@
 				{ho_defaut=#990000}
 				{td_defaut=underline}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_description:></legend>
-			<p><:sarkaspip:cfg_inf_css_description:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_description:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_description:>}
 				{suffixe=_description}
@@ -299,11 +318,13 @@
 				{bg_defaut=#eeeeee}
 				{ca_defaut=#808080}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_commentaires:></legend>
-			<p><:sarkaspip:cfg_inf_css_commentaires:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_commentaires:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{suffixe=_commentaire}
 				{choix=bg_bi_hb_fg_ca}
@@ -313,11 +334,13 @@
 				{fg_defaut=#6262a4}
 				{ca_defaut=#6262a4}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_arbre:></legend>
-			<p><:sarkaspip:cfg_inf_css_arbre:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_arbre:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_cadre:>}
 				{suffixe=_arbre}
@@ -345,11 +368,13 @@
 				{ho_defaut=#6262a4}
 				{td_defaut=underline}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_planche:></legend>
-			<p><:sarkaspip:cfg_inf_css_planche:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_planche:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_description:>}
 				{suffixe=_planche}
@@ -377,11 +402,13 @@
 				{ca_defaut=#eeeeee}
 				{ch_defaut=#6262a4}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_album:></legend>
-			<p><:sarkaspip:cfg_inf_css_album:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_album:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_carrousel:>}
 				{suffixe=_carrousel}
@@ -391,11 +418,13 @@
 				{ca_defaut=#eeeeee}
 				{ch_defaut=#6262a4}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_formulaires:></legend>
-			<p><:sarkaspip:cfg_inf_css_formulaires:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_formulaires:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_form_1:>}
 				{suffixe=_form}
@@ -429,11 +458,13 @@
 				{fg_defaut=#000000}
 				{ca_defaut=#f57900}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_css_forum:></legend>
-			<p><:sarkaspip:cfg_inf_css_forum:></p>
+			<p class="explication"><:sarkaspip:cfg_inf_css_forum:></p>
+			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_couleurs}
 				{explication=<:sarkaspip:cfg_inf_css_couleurs_tableaux_forum:>}
 				{suffixe=_thead_forum}
@@ -484,6 +515,7 @@
 				{fg_defaut=#6262a4}
 				{ca_defaut=#6262a4}
 				{env}>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=formulaires/inc/cfg_boutons}>

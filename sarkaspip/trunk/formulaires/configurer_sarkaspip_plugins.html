@@ -18,58 +18,37 @@
 			[(#PLUGIN{SOCIALTAGS}|oui)
 				[(#SET{nb_plugins, [(#GET{nb_plugins}|plus{1})]})]
 			]
-			[(#GET{nb_plugins}|=={0}|oui)<p><:sarkaspip:cfg_inf_plugins_0:></p>]
-			[(#GET{nb_plugins}|=={1}|oui)<p><:sarkaspip:cfg_inf_plugins_1:></p>]
-			[(#GET{nb_plugins}|>{1}|oui)<p><:sarkaspip:cfg_inf_plugins_n:></p>]
+			[(#GET{nb_plugins}|=={0}|oui)<p class="explication"><:sarkaspip:cfg_inf_plugins_0:></p>]
+			[(#GET{nb_plugins}|=={1}|oui)<p class="explication"><:sarkaspip:cfg_inf_plugins_1:></p>]
+			[(#GET{nb_plugins}|>{1}|oui)<p class="explication"><:sarkaspip:cfg_inf_plugins_n:></p>]
 		</fieldset>
 
-	[(#PLUGIN{BOUTONSTEXTE}|oui)
-		<fieldset>
-			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{BOUTONSTEXTE, nom}|extraire_multi)]</legend>
-			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{BOUTONSTEXTE, nom}|extraire_multi)&nbsp;&#187;</p>]
-			<label>
-				<input type="radio" name="config_boutonstexte" value="sarkaspip" [(#ENV{config_boutonstexte, defaut}|=={sarkaspip}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_sarkaspip:>
-			</label>
-			<br />
-			<label>
-				<input type="radio" name="config_boutonstexte" value="defaut" [(#ENV{config_boutonstexte, defaut}|=={defaut}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_defaut:>
-			</label>
-		</fieldset>
-	]
+	<BOUCLE_plugins(DATA){liste BOUTONSTEXTE,MEDIABOX,SOCIALTAGS}>
+		[(#PLUGIN{#VALEUR}|oui)
+			<fieldset>
+				<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{#VALEUR, nom}|extraire_multi)]</legend>
+				<ul>
+					[(#SET{name,[config_(#VALEUR|strtolower)]})]#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+						<label><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{#VALEUR, nom}|extraire_multi)&nbsp;&#187;</label>][
+						<span class='erreur_message'>(#GET{erreurs})</span>
+						]
+						#SET{val,sarkaspip}
+						<div class="choix">
+							<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+							<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_config_sarkaspip:></label>
+						</div>
+						#SET{val,defaut}
+						<div class="choix">
+							<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+							<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_config_defaut:></label>
+						</div>
+					</li>
+				</ul>
+			</fieldset>
+		]
+	</BOUCLE_plugins>
 
-	[(#PLUGIN{MEDIABOX}|oui)
-		<fieldset>
-			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{MEDIABOX, nom}|extraire_multi)]</legend>
-			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{MEDIABOX, nom}|extraire_multi)&nbsp;&#187;</p>]
-			<label>
-				<input type="radio" name="config_mediabox" value="sarkaspip" [(#ENV{config_mediabox, defaut}|=={sarkaspip}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_sarkaspip:>
-			</label>
-			<br />
-			<label>
-				<input type="radio" name="config_mediabox" value="defaut" [(#ENV{config_mediabox, defaut}|=={defaut}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_defaut:>
-			</label>
-		</fieldset>
-	]
-
-	[(#PLUGIN{SOCIALTAGS}|oui)
-		<fieldset>
-			<legend>[<:sarkaspip:cfg_lgd_plugin:>&nbsp;(#PLUGIN{SOCIALTAGS, nom}|extraire_multi)]</legend>
-			[<p><:sarkaspip:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{SOCIALTAGS, nom}|extraire_multi)&nbsp;&#187;</p>]
-			<label>
-				<input type="radio" name="config_socialtags" value="sarkaspip" [(#ENV{config_socialtags, defaut}|=={sarkaspip}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_sarkaspip:>
-			</label>
-			<br />
-			<label>
-				<input type="radio" name="config_socialtags" value="defaut" [(#ENV{config_socialtags, defaut}|=={defaut}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_config_defaut:>
-			</label>
-		</fieldset>
-	]
 
 		<INCLURE{fond=formulaires/inc/cfg_boutons}>
 	</div></form>

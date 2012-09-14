@@ -8,11 +8,17 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_fond_restauration:></legend>
-			<p><:sarkaspip:cfg_inf_fond_restauration:></p>
-			<label><:sarkaspip:cfg_lbl_fond_restauration:></label>
-			[<select name="fichier_a_restaurer">
-				(#ENV*{_fichiers_sauvegardes})
-			</select>]
+			<p class="explication"><:sarkaspip:cfg_inf_fond_restauration:></p>
+			<ul>
+				#SET{name,fond_a_sauvegarder}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_fonds">
+					<label for="#GET{name}"><:sarkaspip:cfg_lbl_fond_restauration:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					][<select name="#GET{name}" class="select" id="#GET{name}">
+					(#ENV*{_fichiers_sauvegardes})
+					</select>]
+				</li>
+			</ul>
 		</fieldset>
 
 		<INCLURE{fond=formulaires/inc/cfg_boutons}{choix=valider_seul}>
