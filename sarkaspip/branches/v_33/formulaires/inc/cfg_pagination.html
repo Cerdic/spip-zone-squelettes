@@ -1,0 +1,64 @@
+<li class="editer pleine_largeur">
+	[<p class="explication">(#ENV*{explications})</p>]
+	[(#ENV{choix}=={sans_position}|non)
+	<p class="explication"><:sarkaspip:cfg_inf_pagination_1:></p>
+	]
+	[(#ENV{choix}=={sans_position}|oui)
+	<p class="explication"><:sarkaspip:cfg_inf_pagination_2:></p>
+	]
+</li>
+#SET{name,modele_pagination#ENV{suffixe}}#SET{defaut,''}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label>#ENV{label,'Type de pagination&nbsp;:'}</label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]
+	#SET{val,''}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_pagination_1:></label>
+	</div>
+	#SET{val,page}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_pagination_2:></label>
+	</div>
+	#SET{val,precedent_suivant}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_pagination_3:></label>
+	</div>
+	#SET{val,page_precedent_suivant}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_pagination_3:></label>
+	</div>
+</li>
+#SET{name,pas_pagination#ENV{suffixe}}#SET{defaut,#ENV{defaut_pas}}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label for="#GET{name}"><:sarkaspip:cfg_lbl_pas_pagination:></label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+</li>
+[(#ENV{choix}=={sans_position}|non)
+#SET{name,position_pagination#ENV{suffixe}}#SET{defaut,#ENV{defaut_position}}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label><:sarkaspip:cfg_inf_pagination_bande:></label>[
+	<span class='erreur_message'>(#GET{erreurs})</span>
+	]
+	#SET{val,1}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bande_pos_1:></label>
+	</div>
+	#SET{val,2}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bande_pos_2:></label>
+	</div>
+	#SET{val,3}
+	<div class="choix">
+		<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+		<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_bande_pos_3:></label>
+	</div>
+</li>
+]

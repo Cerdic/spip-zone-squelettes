@@ -1,0 +1,92 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+	<h3 class="titrem"><:sarkaspip:cfg_boite_backend:></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_rss_articles:></legend>
+			<ul>
+			<INCLURE{fond=formulaires/inc/cfg_flux_rss}
+				{explication=<:sarkaspip:cfg_inf_rss_articles:>}
+				{suffixe=_articles}
+				{env}>
+			</ul>
+		</fieldset>
+
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_rss_albums:></legend>
+			<ul>
+			<INCLURE{fond=formulaires/inc/cfg_flux_rss}
+				{explication=<:sarkaspip:cfg_inf_rss_albums:>}
+				{suffixe=_albums}
+				{env}>
+			</ul>
+		</fieldset>
+
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_rss_evenements:></legend>
+			<ul>
+			<INCLURE{fond=formulaires/inc/cfg_flux_rss}
+				{explication=<:sarkaspip:cfg_inf_rss_evenements:>}
+				{suffixe=_evenements}
+				{env}>
+			</ul>
+		</fieldset>
+
+		<INCLURE{fond=formulaires/inc/cfg_boutons}>
+	</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|oui)
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Backend:<br />
+		[(#VAL{sarkaspip_backend}|afficher_config)]
+	</div>
+]
+</div>
+<script type="text/javascript">
+/*<![CDATA[*/
+	jQuery(document).ready(function() {
+		[(#ENV{rss_articles, oui}|!={oui}|oui)
+			jQuery("#bloc_rss_articles").hide();
+		]
+		[(#ENV{rss_albums, oui}|!={oui}|oui)
+			jQuery("#bloc_rss_albums").hide();
+		]
+		[(#ENV{rss_evenements, oui}|!={oui}|oui)
+			jQuery("#bloc_rss_evenements").hide();
+		]
+		jQuery("input[name='rss_articles']").change(function() {
+			if (jQuery("input[name='rss_articles']:checked").val() == 'oui') {
+				jQuery("#bloc_rss_articles").show('fast');
+			}
+			else {
+				jQuery("#bloc_rss_articles").hide('fast');
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='rss_albums']").change(function() {
+			if (jQuery("input[name='rss_albums']:checked").val() == 'oui') {
+				jQuery("#bloc_rss_albums").show('fast');
+			}
+			else {
+				jQuery("#bloc_rss_albums").hide('fast');
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='rss_evenements']").change(function() {
+			if (jQuery("input[name='rss_evenements']:checked").val() == 'oui') {
+				jQuery("#bloc_rss_evenements").show('fast');
+			}
+			else {
+				jQuery("#bloc_rss_evenements").hide('fast');
+			}
+			jQuery(this).blur();
+		});
+	});
+/*]]>*/
+</script>
+<style>li.fieldset.suite>fieldset {padding-left: 30px;border-top:0;}</style>
