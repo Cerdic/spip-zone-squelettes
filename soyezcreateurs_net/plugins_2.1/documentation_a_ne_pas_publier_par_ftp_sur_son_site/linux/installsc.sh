@@ -79,6 +79,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/selecteur_gener
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/skeleditor/skeleditor-2 ./skeleditor/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/socialtags
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip2pdf
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/thumbsites/branches/v0 ./thumbsites/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/splickrbox
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/twidget
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
