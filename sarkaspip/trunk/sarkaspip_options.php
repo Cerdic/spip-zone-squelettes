@@ -24,7 +24,7 @@ if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS',
 // Liste des pages de configuration dans l'ordre de presentation
 if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 'accueil
-|Contenu!sommaire:rubrique:article:auteur:breve:site:forum:plan:herbier:recherche:agenda:galerie:album:formulaires:modeles
+|Contenu!sommaire:rubrique:article:auteur:breve:site:forum:plan:herbier:recherche:agenda:galerie:album:comments:formulaires:modeles
 |Apparence!layout:bandeau:menus:pied:noisettes:styles:coins
 |R&eacute;f&eacute;rencement!header:backend
 |Outils!plugins:maintenance');
