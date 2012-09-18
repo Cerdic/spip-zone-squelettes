@@ -15,13 +15,13 @@
 [(#REM) Dans le contexte d'un MenuHaut, prendre aussi les articles de la branche pour le menu de navigation principale : Mot-Clef MENURACINE]
 <B_Racines_Local>
 <BOUCLE_Racines_Local(ARTICLES){branche}{par num titre}{titre_mot=MENURACINE}>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 </BOUCLE_Racines_Local>
 </B_Racines_Local>
 
 <B_Racines_Systematique>
 <BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 </BOUCLE_Racines_Systematique>
 </B_Racines_Systematique>
 
@@ -29,7 +29,7 @@
 
 <BOUCLE_Racines(ARTICLES){par num titre}{titre_mot IN 'MENURACINE','MENURACINE_Systematique'}{lang}>
 <BOUCLE_MENURACINE_EstDansUnMenuHaut(RUBRIQUES){id_secteur=#ID_SECTEUR}{titre_mot=MenuHaut}> </BOUCLE_MENURACINE_EstDansUnMenuHaut>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 <//B_MENURACINE_EstDansUnMenuHaut>
 </BOUCLE_Racines>
 
@@ -47,7 +47,16 @@
   <BOUCLE_debut_secteur_MenuHaut(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur_MenuHaut>
   <BOUCLE_ClasseRubriqueMenu_MenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu_MenuHaut>
   [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
-  <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,id_rubrique,id_article,rubriqueencours=#ENV{rubriqueencours},letitre=#TITRE,ledescriptif=#DESCRIPTIF}><BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut) /></li>
+  <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,
+	id_rubrique,
+	id_article,
+	rubriqueencours=#ENV{rubriqueencours},
+	letitre=#TITRE,
+	ledescriptif=#DESCRIPTIF,
+	largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},
+	hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16},
+	logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuprincipal,oui}}
+	><BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut) /></li>
   </B_test_expose_MenuHaut></BOUCLE_Rubriques_MenuHaut>
 </ul>
 </B_Rubriques_MenuHaut>
@@ -57,7 +66,7 @@
 <div class="espaceavant">
 <ul>
 <BOUCLE_RacinesBas_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINEBAS_Systematique}>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 </BOUCLE_RacinesBas_Systematique>
 </ul>
 </div>
@@ -67,7 +76,7 @@
 <div class="espaceavant">
 <ul>
 <BOUCLE_RacinesBas_Local(ARTICLES){branche}{par num titre}{titre_mot=MENURACINEBAS}>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 </BOUCLE_RacinesBas_Local>
 </ul>
 </div>
@@ -83,14 +92,32 @@
   <BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur>
   <BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu>
   [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
-  <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,id_rubrique,id_article,rubriqueencours=#ENV{rubriqueencours},letitre=#TITRE,ledescriptif=#DESCRIPTIF}>
+  <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,
+	id_rubrique,
+	id_article,
+	rubriqueencours=#ENV{rubriqueencours},
+	letitre=#TITRE,
+	ledescriptif=#DESCRIPTIF,
+	largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},
+	hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16},
+	logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuprincipal,oui}}
+	>
 <B_Rubriques>
 <ul>
   <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose>
   #SET{classessrub,''}
   <BOUCLE_debut_ssrubrique(RUBRIQUES){id_parent}{0,1}>#SET{classessrub,smenu}</BOUCLE_debut_ssrubrique>
   [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classessrub,[(#GET{classessrub}) ]encours})]})]
-  <li[ class="(#GET{classessrub})"]><INCLURE{fond=noisettes/menus/rubrique_li,id_rubrique,id_article,rubriqueencours=#ENV{rubriqueencours},letitre=#TITRE,ledescriptif=#DESCRIPTIF}><BOUCLE_SsRubriques(BOUCLE_Rubriques) /></li>
+	  <li[ class="(#GET{classessrub})"]><INCLURE{fond=noisettes/menus/rubrique_li,
+	  id_rubrique,
+	  id_article,
+	  rubriqueencours=#ENV{rubriqueencours},
+	  letitre=#TITRE,
+	  ledescriptif=#DESCRIPTIF,
+	  largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},
+	  hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16},
+	  logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuprincipal,oui}}
+  ><BOUCLE_SsRubriques(BOUCLE_Rubriques) /></li>
   </B_test_expose></BOUCLE_Rubriques>
 </ul>
 </B_Rubriques>
@@ -105,7 +132,7 @@
 <ul>
 [(#REM) Exclure les articles de MENURACINE* placés dans un MenuHaut]
 <BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot IN 'MENURACINEBAS','MENURACINEBAS_Systematique'}{lang}><BOUCLE_MENURACINEBAS_EstDansUnMenuHaut(RUBRIQUES){id_secteur=#ID_SECTEUR}{titre_mot=MenuHaut} /></B_MENURACINEBAS_EstDansUnMenuHaut>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}|=={oui}|oui)[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenuprincipal,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenuprincipal,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 <//B_MENURACINEBAS_EstDansUnMenuHaut></BOUCLE_RacinesBas>
 </ul>
 </div>
