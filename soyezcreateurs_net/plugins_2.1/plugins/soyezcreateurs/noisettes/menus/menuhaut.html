@@ -1,7 +1,7 @@
 <B_MenuHaut>
 <div id="menuhaut">
 	<ul id="menuh">
-		<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}{!lang_select}><li<BOUCLE_Sub(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,rien}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}{0,1}> class="sub[(#ENV{secteurencours}|=={#_MenuHaut:ID_RUBRIQUE}|?{' encours'})]"</BOUCLE_Sub>[(#INCLURE{fond=noisettes/menus/menuarticles,id_rubrique=#_MenuHaut:ID_RUBRIQUE,mot=AfficherArticlesMenuHaut}|oui) class="sub[(#ENV{secteurencours}|=={#_MenuHaut:ID_RUBRIQUE}|?{' encours'})]"]<//B_Sub>><INCLURE{fond=noisettes/menus/rubrique_li,
+		<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}{!lang_select}><li><INCLURE{fond=noisettes/menus/rubrique_li,
 			id_rubrique,
 			rubriqueencours=#ENV{secteurencours},
 			letitre=#TITRE,
@@ -15,7 +15,7 @@
 			>
 			<B_SousMenuHaut><ul>
 			<BOUCLE_SousMenuHaut(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,rien}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
-			<li[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]><INCLURE{fond=noisettes/menus/rubrique_li,
+			<li><INCLURE{fond=noisettes/menus/rubrique_li,
 			id_rubrique,
 			rubriqueencours=0,
 			letitre=#TITRE,
