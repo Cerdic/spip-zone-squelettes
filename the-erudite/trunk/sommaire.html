@@ -1,43 +1,257 @@
 <INCLURE{fond=inclure/head,env} />
+<body class="home blog first-page hiding hypenation">
 <INCLURE{fond=inclure/header,env} />
 
 	<div id="container">
 		<div id="content" role="main">
-
-<?php while ( have_posts() ) : the_post() ?>
-
-			<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
-				<h2 class="entry-title"><a href="<?php the_permalink() ?>" title="<?php printf( __('Permalink to %s', 'erudite'), the_title_attribute('echo=0') ) ?>" rel="bookmark"><?php the_title() ?></a></h2>
-				
-				<div class="entry-content">
-<?php the_content( __( 'Read More <span class="meta-nav">&rarr;</span>', 'erudite' ) ) ?>
-
-				<?php wp_link_pages('before=<p class="page-link">' . __( 'Pages:', 'erudite' ) . '&after=</p>&link_before=<span>&link_after=</span>') ?>
-				</div>
+		[<blockquote class='epigraph'>(#DESCRIPTIF_SITE_SPIP)</blockquote>]
+	<BOUCLE_first-post(ARTICLES){!par date}{0,1}>
+	<div id="post-#ID_ARTICLE" class="post-#ID_ARTICLE post type-post status-publish format-standard hentry category-child-category-i category-uncategorized first-post">
+		<h2 class="entry-title"><a href="#URL_ARTICLE" title="Permalink to Title Goes Here" rel="bookmark">#TITRE</a></h2>
+		<div class="entry-content">
+			[(#REM) <!-- TODO Prévoir une noisette pour le contenu commun au sommaire et à article -->]
+			[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{500,*})</div>]
+			[<div class="#EDIT{texte} texte surlignable">(#TEXTE|image_reduire{500,*})</div>]
+		
+			[<hr /><p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{ps} ps surlignable"><hr />(#PS|image_reduire{500,*})</div>]
+		
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents,id_article, env})]
+	
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+			
+			[<div class="notes"><hr />(#NOTES)</div>]
+		</div>
 				<div class="entry-meta">
-					<span class="entry-date"><abbr class="published" title="<?php the_time('Y-m-d\TH:i:sO') ?>"><?php unset($previousday); printf( __( '%1$s &#8211; %2$s', 'erudite' ), the_date( '', '', '', false ), get_the_time() ) ?></abbr></span>
+					<span class="entry-date"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|affdate)][ &#8211; (#DATE|heures)]:[(#DATE|minutes)]</abbr></span>
 					<span class="meta-sep">|</span>
-					<span class="author vcard"><?php printf( __( 'By %s', 'erudite' ), erdt_get_author_posts_link() ) ?></span>
+					[(#REM) <!-- TODO : problème avec la balise LESAUTEURS et les styles du thème : insère le span or les styles sont basés sur eux -->]
+					[<span class="author vcard"><:par_auteur:> (#LESAUTEURS)</span>
+					<span class="meta-sep">|</span>]
+					[(#REM) <!-- TODO : titre parent ou hiérarchie ? -->]
+					<span class="cat-links">Posted in <a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-i/" title="View all posts in Child Category I" rel="category tag">Child Category I</a>, <a href="http://erudite.somadesign.ca/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
 					<span class="meta-sep">|</span>
-					<span class="cat-links"><?php printf( __( 'Posted in %s', 'erudite' ), get_the_category_list(', ') ) ?></span>
+					<span class="comments-link"><a href="http://erudite.somadesign.ca/2009/03/title-goes-here/#comments" title="Comment on Title Goes Here">Comments (6)</a></span>
 					<span class="meta-sep">|</span>
-					<?php the_tags( __( '<span class="tag-links">Tagged ', 'erudite' ), ", ", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n" ) ?>
-<?php edit_post_link( __( 'Edit', 'erudite' ), "\t\t\t\t\t<span class=\"edit-link\">", "</span>\n\t\t\t\t\t<span class=\"meta-sep\">|</span>\n" ) ?>
-					<span class="comments-link"><?php comments_popup_link( __( 'Comments (0)', 'erudite' ), __( 'Comments (1)', 'erudite' ), __( 'Comments (%)', 'erudite' ) ) ?></span>
+					[(#REM) Inclure le modele des liens de traductions 
+					]<span>#MODELE{article_traductions}</span>
+				</div>
+			</div><!-- .post -->
+	</BOUCLE_first-post>
+
+
+		<div id="post-66" class="post-66 post type-post status-publish format-standard hentry category-uncategorized home-post home-post-2">
+		<h3 class="entry-title"><a href="http://erudite.somadesign.ca/2009/03/a-very-short-post/" title="Permalink to A Very Short Post" rel="bookmark">A Very Short Post</a></h3>
+		<div class="entry-content">
+<p>Pel­len­tesque habi­tant morbi tris­tique senec­tus et netus et male­suada fames ac turpis eges­tas. Vestibu­lum tor­tor quam, feu­giat vitae, ultricies eget, tem­por sit amet, ante. Donec eu libero sit amet quam eges­tas sem­per. Aenean ultricies mi vitae est. Mau­ris plac­erat eleifend leo.</p>
+			<p class="more-link"><a href="http://erudite.somadesign.ca/2009/03/a-very-short-post/" title="Keep reading &lsquo;A Very Short Post&rsquo;">Read More <span class="meta-nav">&rarr;</span></a></p>
+			<hr />
+								</div>
+				<div class="entry-meta">
+					<span class="entry-date"><abbr class="published" title="2009-03-16T17:32:56+0000">March 16, 2009 &#8211; 5:32 pm</abbr></span>
+					<span class="meta-sep">|</span>
+					<span class="author vcard">By <a href="http://erudite.somadesign.ca/author/admin/" title="Posts by Msr. Falutin">Msr. Falutin</a></span>
+					<span class="meta-sep">|</span>
+					<span class="cat-links">Posted in <a href="http://erudite.somadesign.ca/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
+					<span class="meta-sep">|</span>
+										<span class="comments-link"><a href="http://erudite.somadesign.ca/2009/03/a-very-short-post/#comments" title="Comment on A Very Short Post">Comments (3)</a></span>
 				</div>
 			</div><!-- .post -->
 
-<?php comments_template() ?>
 
-<?php endwhile; ?>
+		<div id="post-55" class="post-55 post type-post status-publish format-standard hentry category-child-category-i category-parent-category-i category-parent-category-ii tag-tag2 tag-tag5 tag-tag6 home-post home-post-3">
+		<h3 class="entry-title"><a href="http://erudite.somadesign.ca/2008/09/another-post-with-everything-in-it/" title="Permalink to Another Post with Everything In It" rel="bookmark">Another Post with Everything In It</a></h3>
+		<div class="entry-content">
+<p>Lorem ipsum dolor sit amet, con­sectetuer adip­isc­ing elit. Cur­abitur quam augue, vehic­ula quis, tin­cidunt vel, var­ius vitae, nulla. Sed con­va­l­lis orci. Duis libero orci, pretium a, con­va­l­lis quis, pel­len­tesque a, dolor. Cur­abitur vitae nisi non dolor vestibu­lum con­se­quat. Proin vestibu­lum. Ut ligula. Nul­lam sed dolor id odio volut­pat pul­v­inar. Inte­ger a leo. In et eros <span class="excerpt-more">…</span></p>
+			<p class="more-link"><a href="http://erudite.somadesign.ca/2008/09/another-post-with-everything-in-it/" title="Keep reading &lsquo;Another Post with Everything In It&rsquo;">Read More <span class="meta-nav">&rarr;</span></a></p>
+			<hr />
+								</div>
+				<div class="entry-meta">
+					<span class="entry-date"><abbr class="published" title="2008-09-17T17:10:52+0000">September 17, 2008 &#8211; 5:10 pm</abbr></span>
+					<span class="meta-sep">|</span>
+					<span class="author vcard">By <a href="http://erudite.somadesign.ca/author/admin/" title="Posts by Msr. Falutin">Msr. Falutin</a></span>
+					<span class="meta-sep">|</span>
+					<span class="cat-links">Posted in <a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-i/" title="View all posts in Child Category I" rel="category tag">Child Category I</a>, <a href="http://erudite.somadesign.ca/category/parent-category-i/" title="View all posts in Parent Category I" rel="category tag">Parent Category I</a>, <a href="http://erudite.somadesign.ca/category/parent-category-ii/" title="View all posts in Parent Category II" rel="category tag">Parent Category II</a></span>
+					<span class="meta-sep">|</span>
+					<span class="tag-links">Tagged <a href="http://erudite.somadesign.ca/tag/tag2/" rel="tag">tag2</a>, <a href="http://erudite.somadesign.ca/tag/tag5/" rel="tag">tag5</a>, <a href="http://erudite.somadesign.ca/tag/tag6/" rel="tag">tag6</a></span>
+					<span class="meta-sep">|</span>
+					<span class="comments-link"><a href="http://erudite.somadesign.ca/2008/09/another-post-with-everything-in-it/#comments" title="Comment on Another Post with Everything In It">Comments (9)</a></span>
+				</div>
+			</div><!-- .post -->
+
+
+		<div id="post-53" class="post-53 post type-post status-publish format-standard hentry category-uncategorized home-post home-post-4">
+		<h3 class="entry-title"><a href="http://erudite.somadesign.ca/2008/09/an-ordered-list-post/" title="Permalink to An Ordered List Post" rel="bookmark">An Ordered List Post</a></h3>
+		<div class="entry-content">
+<p>Nulla sagit­tis con­va­l­lis arcu. Sed sed nunc. Cur­abitur con­se­quat. Quisque metus enim, vene­natis fer­men­tum, mol­lis in, porta et, nibh. Duis vulpu­tate elit in elit. Mau­ris dic­tum libero id justo. Fusce in est. Sed nec diam. Pel­len­tesque habi­tant morbi tris­tique senec­tus et netus et male­suada fames ac turpis eges­tas. Quisque sem­per nibh eget nibh. Sed tem­por. <span class="excerpt-more">…</span></p>
+			<p class="more-link"><a href="http://erudite.somadesign.ca/2008/09/an-ordered-list-post/" title="Keep reading &lsquo;An Ordered List Post&rsquo;">Read More <span class="meta-nav">&rarr;</span></a></p>
+			<hr />
+								</div>
+				<div class="entry-meta">
+					<span class="entry-date"><abbr class="published" title="2008-09-17T17:09:41+0000">September 17, 2008 &#8211; 5:09 pm</abbr></span>
+					<span class="meta-sep">|</span>
+					<span class="author vcard">By <a href="http://erudite.somadesign.ca/author/snooty-mcstuck/" title="Posts by Snooty McStuck">Snooty McStuck</a></span>
+					<span class="meta-sep">|</span>
+					<span class="cat-links">Posted in <a href="http://erudite.somadesign.ca/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
+					<span class="meta-sep">|</span>
+										<span class="comments-link"><a href="http://erudite.somadesign.ca/2008/09/an-ordered-list-post/#respond" title="Comment on An Ordered List Post">Comments (0)</a></span>
+				</div>
+			</div><!-- .post -->
+
+
 
 			<div id="nav-below" class="navigation">
-				<div class="nav-previous"><?php next_posts_link(__( '<span class="meta-nav">&larr;</span> Older posts', 'erudite' )) ?></div>
-				<div class="nav-next"><?php previous_posts_link(__( 'Newer posts <span class="meta-nav">&rarr;</span>', 'erudite' )) ?></div>
+				<div class="nav-previous"><a href="http://erudite.somadesign.ca/page/2/" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+				<div class="nav-next"></div>
 			</div>
 
 		</div><!-- #content -->
 	</div><!-- #container -->
 
-<INCLURE{fond=inclure/sidebar,env} />
-<INCLURE{fond=inclure/footer,env} />
+<div id="footer-wrap">
+		<div id="footer-wrap-inner">
+			<div id="primary" class="footer">
+				<ul class="xoxo">
+		
+					<li id="about-sidebar">
+						<h3>About</h3>
+						<div>
+						<p>This is an example of an ‘About’ blurb. I’m sure that the author of this blog is highly intelligent, witty and even <em>possibly</em> socially competent.</p>
+<p>It can be modified from this theme‘s <strong>options panel</strong> in the admin area (Appearance ? Theme Options)</p>
+						</div>
+					</li>
+					
+					<li id="pages">
+						<h3>Pages</h3>
+						<ul>
+		<li class="page_item page-item-2"><a href="http://erudite.somadesign.ca/about/">About</a></li>
+<li class="page_item page-item-19"><a href="http://erudite.somadesign.ca/support/">Support</a></li>
+<li class="page_item page-item-21"><a href="http://erudite.somadesign.ca/links/">Links</a></li>
+<li class="page_item page-item-23"><a href="http://erudite.somadesign.ca/contact-us/">Contact Us</a>
+<ul class='children'>
+	<li class="page_item page-item-27"><a href="http://erudite.somadesign.ca/contact-us/our-location/">Our Location</a></li>
+</ul>
+</li>
+<li class="page_item page-item-25"><a href="http://erudite.somadesign.ca/news/">News</a>
+<ul class='children'>
+	<li class="page_item page-item-12"><a href="http://erudite.somadesign.ca/news/our-company/">Our Company</a></li>
+	<li class="page_item page-item-14"><a href="http://erudite.somadesign.ca/news/our-staff/">Our Staff</a>
+	<ul class='children'>
+		<li class="page_item page-item-29"><a href="http://erudite.somadesign.ca/news/our-staff/employment-opportunities/">Employment Opportunities</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-17"><a href="http://erudite.somadesign.ca/news/company-history/">History</a></li>
+</ul>
+</li>
+						</ul>
+					</li>
+								
+						</ul>
+			</div><!-- #primary .sidebar -->
+
+		<div id="secondary" class="footer">
+			<ul class="xoxo">
+	
+			<li id="categories-2" class="widget widget_categories">
+				<h3 class="widgettitle">Categories</h3>
+		<ul>
+	<li class="cat-item cat-item-3"><a href="http://erudite.somadesign.ca/category/parent-category-i/" title="View all posts filed under Parent Category I">Parent Category I</a>
+<ul class='children'>
+	<li class="cat-item cat-item-6"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-i/" title="View all posts filed under Child Category I">Child Category I</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-ii/" title="View all posts filed under Child Category II">Child Category II</a>
+	<ul class='children'>
+	<li class="cat-item cat-item-9"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-ii/grandchild-category-i/" title="View all posts filed under Grandchild Category I">Grandchild Category I</a>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://erudite.somadesign.ca/category/parent-category-ii/" title="View all posts filed under Parent Category II">Parent Category II</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://erudite.somadesign.ca/category/parent-category-iii/" title="View all posts filed under Parent Category III">Parent Category III</a>
+<ul class='children'>
+	<li class="cat-item cat-item-8"><a href="http://erudite.somadesign.ca/category/parent-category-iii/child-category-iii/" title="View all posts filed under Child Category III">Child Category III</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://erudite.somadesign.ca/category/uncategorized/" title="This is a description">Uncategorized</a>
+</li>
+		</ul>
+
+			</li>
+
+			<li id="archives-2" class="widget widget_archive">
+				<h3 class="widgettitle">Archives</h3>
+		<ul>
+			<li><a href='http://erudite.somadesign.ca/2009/03/' title='March 2009'>March 2009</a></li>
+	<li><a href='http://erudite.somadesign.ca/2008/09/' title='September 2008'>September 2008</a></li>
+	<li><a href='http://erudite.somadesign.ca/2008/08/' title='August 2008'>August 2008</a></li>
+	<li><a href='http://erudite.somadesign.ca/2008/03/' title='March 2008'>March 2008</a></li>
+		</ul>
+
+			</li>
+			</ul>
+		</div><!-- #secondary .sidebar -->
+
+		<div id="ternary" class="footer">
+			<ul class="xoxo">
+					<li id="search">
+					<h3><label for="s">Search</label></h3>
+					<form id="searchform" class="blog-search" method="get" action="http://erudite.somadesign.ca">
+						<div>
+							<input id="s" name="s" type="text" class="text" value="" size="10" tabindex="1" />
+							<input type="submit" class="button" value="Find" tabindex="2" />
+						</div>
+					</form>
+				</li>
+
+	<li id="linkcat-2" class="linkcat"><h3>Blogroll</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://wordpress.org/development/">Development Blog</a></li>
+<li><a href="http://codex.wordpress.org/">Documentation</a></li>
+<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
+<li><a href="http://wordpress.org/extend/ideas/">Suggest Ideas</a></li>
+<li><a href="http://wordpress.org/support/">Support Forum</a></li>
+<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
+<li><a href="http://planet.wordpress.org/">WordPress Planet</a></li>
+
+	</ul>
+</li>
+
+				<li id="rss-links">
+					<h3>RSS Feeds</h3>
+					<ul>
+						<li><a href="http://erudite.somadesign.ca/feed/" title="The Erudite latest posts" rel="alternate" type="application/rss+xml">All posts</a></li>
+						<li><a href="http://erudite.somadesign.ca/comments/feed/" title="The Erudite latest comments" rel="alternate" type="application/rss+xml">All comments</a></li>
+					</ul>
+				</li>
+
+				<li id="meta">
+					<h3>Meta</h3>
+					<ul>
+						
+						<li><a href="http://erudite.somadesign.ca/wp-login.php">Log in</a></li>
+						
+					</ul>
+				</li>
+				</ul>
+		</div><!-- #ternary .sidebar --><div id="footer">
+				<span id="generator-link"><a href="http://wordpress.org/" title="WordPress" rel="generator">WordPress</a></span>
+				<span class="meta-sep">|</span>
+				<span id="theme-link"><a href="http://somadesign.ca/" title="The Erudite theme for WordPress" rel="designer">The Erudite</a></span>
+			</div><!-- #footer -->
+		</div><!-- #footer-wrap-inner -->
+	</div><!-- #footer-wrap -->
+
+</div><!-- #wrapper .hfeed -->
+<script type='text/javascript' src='http://erudite.somadesign.ca/wp-content/themes/the-erudite/js/common.js?ver=3.0.3'></script>
+</body>
+</html>
+<!-- Dynamic page generated in 0.615 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-09-21 09:02:35 -->
+<!-- super cache -->
