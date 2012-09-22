@@ -115,6 +115,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'gros_jour' => 'Día más grueso',
 //H
 'haut_page' => 'Arriba',
+'hebergeur' => 'Alojamiento:',
 // I
 'identification' => 'Identificación',
 // J

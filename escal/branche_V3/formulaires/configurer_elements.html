@@ -220,6 +220,24 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
+                    <br /><br />
+            #SET{name,hebergeur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage de l'hébergeur
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+              #SET{name,nomhebergeur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Nom de votre hébergeur
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
             </div>
             </li>
 

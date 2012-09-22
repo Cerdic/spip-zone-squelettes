@@ -116,7 +116,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //G	   
 'gros_jour'=> 'Lielakais dienu',	   
 // H	   
-'haut_page'=> 'Lapas augša',	   
+'haut_page'=> 'Lapas augša',
+'hebergeur' => 'Saimnieks:',
 // I	   
 'identification'=> 'Identifikacija',	   
 // J	   

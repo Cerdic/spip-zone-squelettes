@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'gros_jour' => 'la plej aktiva tago',
 //H
 'haut_page' => 'paĝsupren',
+'hebergeur' => 'Gastiganto:',
 // I
 'identification' => 'Identigo',
 // J
