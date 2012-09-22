@@ -1,7 +1,6 @@
 <BOUCLE_principale(ARTICLES) {id_article}>
 <INCLURE{fond=inclure/head,env} />
-<body class="pas_surlignable page_article article-#ID_article">
-<INCLURE{fond=inclure/header,env} />
+<body class="single single-post postid-#ID_article single-format-standard hiding hypenation"><INCLURE{fond=inclure/header,env} />
 
 	<div id="container">
 		<div id="content" role="main">
@@ -29,19 +28,20 @@
 					[<div class="notes"><hr />(#NOTES)</div>]
 				</div>
 				<div class="entry-meta">
-					<span class="entry-date"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></span>
-					[<span class="meta-sep">|</span>
-					<span class="author vcard"><:par_auteur:> (#LESAUTEURS)</span>]					
+					<span class="entry-date"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|affdate)][ &#8211; (#DATE|heures)]:[(#DATE|minutes)]</abbr></span>
 					<span class="meta-sep">|</span>
-					<span class="cat-links"><BOUCLE_categories(HIERARCHIE){id_article}{', '}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categories></span>
+					[<span class="author vcard"><:par_auteur:> (#LESAUTEURS|supprimer_tags)</span>
+					<span class="meta-sep">|</span>]
+					[(#REM) <!-- TODO : titre parent ou hiérarchie ? -->]
+					<span class="cat-links">Posted in <a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-i/" title="View all posts in Child Category I" rel="category tag">Child Category I</a>, <a href="http://erudite.somadesign.ca/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
+					[(#REM) <!-- Afficher le nombre de commentaires -->]<BOUCLE_nb_commentaires(FORUMS){id_article}{plat} />[(#TOTAL_BOUCLE|oui)
 					<span class="meta-sep">|</span>
-[(#REM) TODO : liste des mots clés]
-					<span class="tag-links"></span><span class="meta-sep">|</span>
-					<span class="edit-link"></span>
-					<span class="meta-sep">|</span>
-					<span class="comments-link"></span>
-					[(#REM) Inclure le modele des liens de traductions ]
-					#MODELE{article_traductions}
+					<span class="comments-link"><a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires"><:erudite:commentaires:> [((#TOTAL_BOUCLE))]</a></span>
+					]
+					<//B_nb_commentaires>
+					[(#REM) Inclure le modele des liens de traductions 
+					][<span class="meta-sep">|</span>
+					<span>(#MODELE{article_traductions})</span>]
 				</div>
 			</div><!-- .post -->
 [(#REM) TODO : pagination précédent / suivant]
