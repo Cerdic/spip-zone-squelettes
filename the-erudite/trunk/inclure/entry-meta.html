@@ -1,0 +1,20 @@
+<BOUCLE_entry-meta(ARTICLES){id_article}>
+<div class="entry-meta">
+	<span class="entry-date"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|affdate)][ &#8211; (#DATE|heures)]:[(#DATE|minutes)]</abbr></span>
+	[<span class="meta-sep">|</span>
+	<span class="author vcard"><:par_auteur:> (#LESAUTEURS|supprimer_tags)</span>]
+	[(#REM) <!-- TODO : titre parent ou hiérarchie ? -->]
+	<B_parent><span class="meta-sep">|</span>
+	<BOUCLE_parent(RUBRIQUES){id_rubrique}>
+	<span class="cat-links">Posted in <a href="#URL_RUBRIQUE" title="View all posts in Child Category I" rel="category tag">#TITRE</a></span>
+	</BOUCLE_parent>
+	[(#REM) <!-- Afficher le nombre de commentaires -->]<BOUCLE_nb_commentaires(FORUMS){id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+	<span class="meta-sep">|</span>
+	<span class="comments-link"><a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires"><:erudite:commentaires:> [((#TOTAL_BOUCLE))]</a></span>
+	]
+	<//B_nb_commentaires>
+	[(#REM) Inclure le modele des liens de traductions 
+	][<span class="meta-sep">|</span>
+	<span>(#MODELE{article_traductions})</span>]
+</div>
+</BOUCLE_entry-meta>
