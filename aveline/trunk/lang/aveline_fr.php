@@ -9,10 +9,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-agenda' => 'Aveline - Extension Agenda',
 	'config-aveline-type-blog' => 'Aveline - Configuration de type blog',
 	'config-aveline-zpip-dist' => 'Aveline - Zpip-dist',
-	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip avec groupes de mots',
-	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip avec groupes de mots et menus',
-	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip avec secteurs de langue',
-	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip avec secteurs de langue et menus',
+	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip-dist avec groupes de mots',
+	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip-dist avec groupes de mots et menus',
+	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip-dist avec secteurs de langue',
+	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip-dist avec secteurs de langue et menus',
 
 	// D
 	'description-config-aveline-agenda' => 'Ajoute des noisettes pour afficher les évènements du plugin Agenda dans vos page. Utilisez l\'option <i>Fusionner avec la configuration actuelle</i>.',
@@ -487,6 +487,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
 	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
+	
+	// S
+	'secteur' => 'Secteur',
+	'secteur_exclu' => 'secteur exclu',
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la balise @champ@.',
