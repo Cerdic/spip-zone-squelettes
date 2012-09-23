@@ -11,10 +11,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-agenda' => 'Aveline – rozšírenie kalendára',
 	'config-aveline-type-blog' => 'Aveline – nastavenia typu blog',
 	'config-aveline-zpip-dist' => 'Aveline – Zpip-dist',
-	'config-aveline-zpip-groupe-mots' => 'Aveline – Zpip so skupinami slov',
-	'config-aveline-zpip-groupe-mots-menus' => 'Aveline – Zpip so skupinami slov a ponukami menu',
-	'config-aveline-zpip-secteurs-langue' => 'Aveline – Zpip s výberom jazyka',
-	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline – Zpip s výberom jazyka a ponukami menu',
+	'config-aveline-zpip-groupe-mots' => 'Aveline – Zpip so skupinami slov', # MODIF
+	'config-aveline-zpip-groupe-mots-menus' => 'Aveline – Zpip so skupinami slov a ponukami menu', # MODIF
+	'config-aveline-zpip-secteurs-langue' => 'Aveline – Zpip s výberom jazyka', # MODIF
+	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline – Zpip s výberom jazyka a ponukami menu', # MODIF
 
 	// D
 	'description-config-aveline-agenda' => 'Pridá oriešky na zobrazenie udalostí zásuvného modulu "Program" na vašu stránku. Označte možnosť <i>Zlúčiť s aktuálnymi nastaveniami.</i>',
@@ -490,6 +490,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-mots_cles' => 'Kľúčové slová stránky',
 	'nom_site-syndic_articles' => 'Syndikované články z tejto stránky',
 	'nom_titre_descriptif_site' => 'Názov a popis stránky',
+
+	// S
+	'secteur' => 'Secteur', # NEW
+	'secteur_exclu' => 'secteur exclu', # NEW
 
 	// Z
 	'zbug_erreur_champ' => 'Chyba v tagu @champ@.',

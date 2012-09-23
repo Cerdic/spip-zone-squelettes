@@ -11,10 +11,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-agenda' => 'Aveline - Extensió Agenda',
 	'config-aveline-type-blog' => 'Aveline - Configuració de tipus bloc',
 	'config-aveline-zpip-dist' => 'Aveline - Zpip-dist',
-	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip amb grups de mots',
-	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip amb grups de mots i menús',
-	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip amb sectors de llengua',
-	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip amb sectors de llengua i menús',
+	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip amb grups de mots', # MODIF
+	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip amb grups de mots i menús', # MODIF
+	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip amb sectors de llengua', # MODIF
+	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip amb sectors de llengua i menús', # MODIF
 
 	// D
 	'description-config-aveline-agenda' => 'Afegeix fragments per mostrar els esdeveniments del connector Agenda a la vostra pàgina. Utilitzeu la opció <i>Fusionar amb la configuració actual</i>.',
@@ -489,6 +489,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-mots_cles' => 'Paraules clau del lloc',
 	'nom_site-syndic_articles' => 'Articles sindicats d\'aquest lloc',
 	'nom_titre_descriptif_site' => 'Títol i descripció del lloc',
+
+	// S
+	'secteur' => 'Secteur', # NEW
+	'secteur_exclu' => 'secteur exclu', # NEW
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la palise @champ@.', # NEW

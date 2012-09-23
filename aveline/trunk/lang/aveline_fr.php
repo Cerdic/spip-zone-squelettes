@@ -487,7 +487,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-mots_cles' => 'Mots-Clés du site',
 	'nom_site-syndic_articles' => 'Articles syndiqués de ce site',
 	'nom_titre_descriptif_site' => 'Titre et descriptif du site',
-	
+
 	// S
 	'secteur' => 'Secteur',
 	'secteur_exclu' => 'secteur exclu',
