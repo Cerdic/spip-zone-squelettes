@@ -25,9 +25,15 @@ function zvide_recuperer_fond($flux){
 			$contexte['bloc'] = 'pre_'.$bloc;
 			$contexte['type'] = 'defaut';
 			$contexte['composition'] = '';
-			$complements_pre = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
+			if ($flux['args']['contexte']['voir']=='noisettes' && autoriser('configurer','noizetier'))
+					$complements_pre = recuperer_fond('noizetier-generer-bloc-voir-noisettes',$contexte,array('raw'=>true));
+				else
+					$complements_pre = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
 			$contexte['bloc'] = 'post_'.$bloc;
-			$complements_post = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
+			if ($flux['args']['contexte']['voir']=='noisettes' && autoriser('configurer','noizetier'))
+					$complements_post = recuperer_fond('noizetier-generer-bloc-voir-noisettes',$contexte,array('raw'=>true));
+				else
+					$complements_post = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
 			$ancre = "<a name=\"$bloc\"></a>\n";
 			$flux['data']['texte'] = $ancre.$complements_pre['texte'].$flux['data']['texte'].$complements_post['texte'];
 		}
