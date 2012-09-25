@@ -1,0 +1,22 @@
+[(#BOITE_OUVRIR{[<h2><a class="intitule" href="(#URL_PAGE{agenda})"><:sarkaspip:agenda:></a></h2>],noisette noisette_miniagenda})]
+
+#SET{id_article,#ENV{id_article,''}}
+<BOUCLE_ev(EVENEMENTS){id_evenement}>
+#CALENDRIER_MINI{#DATE_DEBUT,date_debut,#URL_PAGE{jour},#URL_PAGE{calendrier_mini_event.json,id_article=#ID_ARTICLE}|parametre_url{id_mot,#ID_MOT}}
+#SET{id_article,#ID_ARTICLE}
+</BOUCLE_ev>
+#CALENDRIER_MINI{#DATE_DEBUT,date_debut,#URL_PAGE{jour},#URL_PAGE{calendrier_mini_event.json}|parametre_url{id_article,#GET{id_article}}|parametre_url{id_rubrique,#GET{id_rubrique}}|parametre_url{id_mot,#ID_MOT}}
+<//B_ev>
+
+#BOITE_FERMER
+
+[(#ENV{type-page}|=={agenda}|oui)
+	<INCLURE{fond=inclure/agenda-filtre-mots,id_rubrique,id_mot,ajax}>
+]
+
+[(#GET{id_article}|oui)
+	<INCLURE{fond=inclure/agenda-evenements-meme-article,id_article=#GET{id_article},ajax,env} />
+
+	[(#REM) <!-- affichage de la navigation dans les evenements de la journee --> ]
+	<INCLURE{fond=noisettes/article/inc_article_lire_aussi,id_article=#GET{id_article},ajax,env}>
+]
