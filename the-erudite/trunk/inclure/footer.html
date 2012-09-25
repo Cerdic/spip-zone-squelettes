@@ -12,25 +12,8 @@
 					<li id="pages">
 						<h3>Pages</h3>
 						<ul>
-		<li class="page_item page-item-2"><a href="http://erudite.somadesign.ca/about/">About</a></li>
-<li class="page_item page-item-19"><a href="http://erudite.somadesign.ca/support/">Support</a></li>
-<li class="page_item page-item-21"><a href="http://erudite.somadesign.ca/links/">Links</a></li>
-<li class="page_item page-item-23"><a href="http://erudite.somadesign.ca/contact-us/">Contact Us</a>
-<ul class='children'>
-	<li class="page_item page-item-27"><a href="http://erudite.somadesign.ca/contact-us/our-location/">Our Location</a></li>
-</ul>
-</li>
-<li class="page_item page-item-25"><a href="http://erudite.somadesign.ca/news/">News</a>
-<ul class='children'>
-	<li class="page_item page-item-12"><a href="http://erudite.somadesign.ca/news/our-company/">Our Company</a></li>
-	<li class="page_item page-item-14"><a href="http://erudite.somadesign.ca/news/our-staff/">Our Staff</a>
-	<ul class='children'>
-		<li class="page_item page-item-29"><a href="http://erudite.somadesign.ca/news/our-staff/employment-opportunities/">Employment Opportunities</a></li>
-	</ul>
-</li>
-	<li class="page_item page-item-17"><a href="http://erudite.somadesign.ca/news/company-history/">History</a></li>
-</ul>
-</li>
+							<li class="page_item"><a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a></li>
+							<li class="page_item"><a rel="nofollow" href="#URL_PAGE{contact}"><:contact:></a></li>
 						</ul>
 					</li>
 								
@@ -42,43 +25,25 @@
 	
 			<li id="categories-2" class="widget widget_categories">
 				<h3 class="widgettitle">Categories</h3>
-		<ul>
-	<li class="cat-item cat-item-3"><a href="http://erudite.somadesign.ca/category/parent-category-i/" title="View all posts filed under Parent Category I">Parent Category I</a>
-<ul class='children'>
-	<li class="cat-item cat-item-6"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-i/" title="View all posts filed under Child Category I">Child Category I</a>
-</li>
-	<li class="cat-item cat-item-7"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-ii/" title="View all posts filed under Child Category II">Child Category II</a>
-	<ul class='children'>
-	<li class="cat-item cat-item-9"><a href="http://erudite.somadesign.ca/category/parent-category-i/child-category-ii/grandchild-category-i/" title="View all posts filed under Grandchild Category I">Grandchild Category I</a>
-</li>
-	</ul>
-</li>
-</ul>
-</li>
-	<li class="cat-item cat-item-4"><a href="http://erudite.somadesign.ca/category/parent-category-ii/" title="View all posts filed under Parent Category II">Parent Category II</a>
-</li>
-	<li class="cat-item cat-item-5"><a href="http://erudite.somadesign.ca/category/parent-category-iii/" title="View all posts filed under Parent Category III">Parent Category III</a>
-<ul class='children'>
-	<li class="cat-item cat-item-8"><a href="http://erudite.somadesign.ca/category/parent-category-iii/child-category-iii/" title="View all posts filed under Child Category III">Child Category III</a>
-</li>
-</ul>
-</li>
-	<li class="cat-item cat-item-1"><a href="http://erudite.somadesign.ca/category/uncategorized/" title="This is a description">Uncategorized</a>
-</li>
-		</ul>
-
-			</li>
-
-			<li id="archives-2" class="widget widget_archive">
-				<h3 class="widgettitle">Archives</h3>
-		<ul>
-			<li><a href='http://erudite.somadesign.ca/2009/03/' title='March 2009'>March 2009</a></li>
-	<li><a href='http://erudite.somadesign.ca/2008/09/' title='September 2008'>September 2008</a></li>
-	<li><a href='http://erudite.somadesign.ca/2008/08/' title='August 2008'>August 2008</a></li>
-	<li><a href='http://erudite.somadesign.ca/2008/03/' title='March 2008'>March 2008</a></li>
-		</ul>
-
-			</li>
+		<B_rubriques>
+				<ul>
+				<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre, titre}>
+					<li class="cat-item cat-item-#ID_RUBRIQUE"><a href="#URL_RUBRIQUE">#TITRE</a>
+						[(#REM) Une boucle recursive pour le mini plan]
+						<B_miniplan>
+						<ul class='children'>
+							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre}{!par date}>
+							<li class="cat-item cat-item-#ID_RUBRIQUE">
+								<a href="#URL_RUBRIQUE">#TITRE</a>
+								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+							</li>
+							</BOUCLE_miniplan>
+						</ul>
+						</B_miniplan>
+					</li>
+				</BOUCLE_rubriques>
+				</ul>
+		</B_rubriques>
 			</ul>
 		</div><!-- #secondary .sidebar -->
 
@@ -87,46 +52,48 @@
 					<li id="search">
 					#FORMULAIRE_RECHERCHE
 					</li>
-
-	<li id="linkcat-2" class="linkcat"><h3>Blogroll</h3>
+	[(#REM) Sites référencés (limité arbitrairement à 10) ]
+	<B_sites>
+	<li id="linkcat-2" class="linkcat"><h3><:sur_web:></h3>
 	<ul class='xoxo blogroll'>
-<li><a href="http://wordpress.org/development/">Development Blog</a></li>
-<li><a href="http://codex.wordpress.org/">Documentation</a></li>
-<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
-<li><a href="http://wordpress.org/extend/ideas/">Suggest Ideas</a></li>
-<li><a href="http://wordpress.org/support/">Support Forum</a></li>
-<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
-<li><a href="http://planet.wordpress.org/">WordPress Planet</a></li>
-
+	<BOUCLE_sites(SITES){par nom_site}{0,10}>
+		<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+	</BOUCLE_sites>
 	</ul>
-</li>
+	</li>
+	</B_sites>
 
 				<li id="rss-links">
-					<h3>RSS Feeds</h3>
+					<h3>RSS&nbsp;2.0</h3>
 					<ul>
-						<li><a href="http://erudite.somadesign.ca/feed/" title="The Erudite latest posts" rel="alternate" type="application/rss+xml">All posts</a></li>
-						<li><a href="http://erudite.somadesign.ca/comments/feed/" title="The Erudite latest comments" rel="alternate" type="application/rss+xml">All comments</a></li>
+						<li><a href="#URL_PAGE{backend}" rel="alternate"><:syndiquer_site:></a></li>
+
 					</ul>
 				</li>
 
 				<li id="meta">
 					<h3>Meta</h3>
 					<ul>
-						
-						<li><a href="http://erudite.somadesign.ca/wp-login.php">Log in</a></li>
-						
+					[
+		(#SESSION{id_auteur}|non)<li><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][
+		(#AUTORISER{ecrire})<li><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>][
+		(#SESSION{id_auteur}|oui)<li><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>]
+						</li>
 					</ul>
 				</li>
 				</ul>
 		</div><!-- #ternary .sidebar --><div id="footer">
-				<span id="generator-link"><a href="http://wordpress.org/" title="WordPress" rel="generator">WordPress</a></span>
+		<span>
+		<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee)]</BOUCLE_annee>-</B_annee>[(#DATE|annee) ]#NOM_SITE_SPIP</span>
 				<span class="meta-sep">|</span>
-				<span id="theme-link"><a href="http://somadesign.ca/" title="The Erudite theme for WordPress" rel="designer">The Erudite</a></span>
+				<span id="generator-link"><a href="http://www.spip.net/" rel="generator" class="spip_out"><:site_realise_avec_spip:></a></span>
+				<span class="meta-sep">|</span>
+				<span id="theme-link"><a href="http://somadesign.ca/projects/the-erudite/" title="The Erudite theme for WordPress" rel="designer">The Erudite</a></span>
 			</div><!-- #footer -->
 		</div><!-- #footer-wrap-inner -->
 	</div><!-- #footer-wrap -->
 
 </div><!-- #wrapper .hfeed -->
-<script type='text/javascript' src='http://erudite.somadesign.ca/wp-content/themes/the-erudite/js/common.js?ver=3.0.3'></script>
+<script type='text/javascript' src='#CHEMIN{js/common.js}'></script>
 </body>
 </html>
