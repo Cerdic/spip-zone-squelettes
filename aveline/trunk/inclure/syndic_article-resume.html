@@ -7,7 +7,14 @@
 ]
 [(#ENV{style_liste}|=={resume}|oui)
 	<li class="item hentry"[(#ENV{forcer_width_100}|oui)style="width:100%;"]>
-		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" [ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">[(#TITRE*)]</a></h3>
+		<h3 class="h3 entry-title">
+			[(#ENV{afficher_logo}|oui)
+				[(#ENV{choix_logo}|=={site}|oui)#INCLURE{fond=inclure/site-logo,id_syndic=#ID_SYNDIC,taille_max_logo}]
+				[(#ENV{choix_logo}|=={syndic_article}|oui)[(#DESCRIPTIF|extraire_balise{img}|image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|inserer_attribut{class, spip_logos})]]
+				[(#ENV{choix_logo}|=={syndic_article_site}|oui)[(#DESCRIPTIF|extraire_balise{img}|image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|inserer_attribut{class, spip_logos}|sinon{#INCLURE{fond=inclure/site-logo,id_syndic=#ID_SYNDIC,taille_max_logo}})]]
+			]
+			<a href="#URL_ARTICLE" [ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">[(#TITRE*)]</a>
+		</h3>
 		[(#ENV{afficher_docs_joints}|oui)[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]]
 		[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_nom_site}}|ou{#ENV{afficher_categorie}}|ou{#ENV{afficher_tags}})<div class="meta-publi">]
 			[(#ENV{afficher_date}|oui)[(#DATE|affdate_jourcourt)][(#ENV{afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
