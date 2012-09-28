@@ -141,6 +141,9 @@ define('_SUIVI_FORUM_THREAD', true);
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
+// http://www.weblog.eliaz.fr/article38.html Pour mettre une version plus récente de jQuery
+$spip_pipeline['insert_head'] = str_replace('|f_jQuery', '', $spip_pipeline['insert_head']);
+
 define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr:soft_scroller');
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
