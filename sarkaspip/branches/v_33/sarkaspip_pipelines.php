@@ -34,48 +34,47 @@ function sarkaspip_mes_fichiers_a_sauver($flux){
  * @param $flux
  * @return array
  */
-function sarkaspip_zengarden_activer_theme($flux){
-	$dir_cfg = $flux['args']['dir'] . '/cfg';
+function SarkaSpip_zengarden_activer_theme($flux){
+	$dir = $flux['args']['dir'];
+	$action = $flux['args']['action'];
+
+	$dir_cfg = $dir . '/cfg';
 	$cfg = preg_files($dir_cfg);
 
-	// On sauvegarde des valeurs actuelles pour un eventuel rappel
-	$dir_cfg = sous_repertoire(_DIR_TMP,"cfg");
-	$dir_cfg = sous_repertoire(_DIR_TMP,"themes");
-	$fonds = array();
-	foreach ($cfg as $_fichier_cfg) {
-		$fonds[] = basename($_fichier_cfg, '.txt');
-	}
-	include_spip('inc/sarkaspip_filtres');
-	$ok = sauvegarder_fonds($fonds, $dir_cfg, 'theme');
+	if ($action == 'activer') {
+		// On sauvegarde des valeurs actuelles pour un eventuel rappel
+		$dir_cfg = sous_repertoire(_DIR_TMP,"cfg");
+		$dir_cfg = sous_repertoire(_DIR_TMP,"themes");
+		$fonds = array();
+		foreach ($cfg as $_fichier_cfg) {
+			$fonds[] = basename($_fichier_cfg, '.txt');
+		}
+		include_spip('inc/sarkaspip_filtres');
+		$ok = sauvegarder_fonds($fonds, $dir_cfg, 'theme');
 
-	// On ecrit la nouvelle configuration necessaire au theme choisi
-	$flux['data'] = true;
-	foreach ($cfg as $_fichier_cfg) {
-		lire_fichier($_fichier_cfg, $tableau);
-		$fond = basename($_fichier_cfg, '.txt');
-		ecrire_config($fond, $tableau);
+		// On ecrit la nouvelle configuration n�cessaire au theme choisi
+		$flux['data'] = true;
+		foreach ($cfg as $_fichier_cfg) {
+			lire_fichier($_fichier_cfg, $tableau);
+			$fond = basename($_fichier_cfg, '.txt');
+			ecrire_config($fond, $tableau);
+		}
 	}
-	return $flux;
-}
+	else if ($action == 'effacer') {
+		$fichiers = array();
+		$flux['data'] = true;
+		foreach ($cfg as $_fichier_cfg) {
+			$fond = basename($_fichier_cfg, '.txt');
+			effacer_config($fond);
+			$fichiers[] = _DIR_TMP . 'themes/cfg/' . $fond . '.txt';
+		}
+		include_spip('inc/sarkaspip_filtres');
+		$ok = restaurer_fonds($fichiers);
+	}
+	else {
+		// action apercevoir : on ne fait rien, on sait pas faire..
+	}
 
-/**
- * Pipeline "zengarden_effacer_theme" permettant d'effectuer les traitements d'effacement d'un theme lies a Sarka-SPIP
- *
- * @param $flux
- * @return array
- */
-function sarkaspip_zengarden_effacer_theme($flux){
-	$dir_cfg = $flux['args']['dir'] . '/cfg';
-	$cfg = preg_files($dir_cfg);
-	$fichiers = array();
-	$flux['data'] = true;
-	foreach ($cfg as $_fichier_cfg) {
-		$fond = basename($_fichier_cfg, '.txt');
-		effacer_config($fond);
-		$fichiers[] = _DIR_TMP . 'themes/cfg/' . $fond . '.txt';
-	}
-	include_spip('inc/sarkaspip_filtres');
-	$ok = restaurer_fonds($fichiers);
 	return $flux;
 }
 
