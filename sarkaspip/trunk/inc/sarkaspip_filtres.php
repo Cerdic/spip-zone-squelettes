@@ -318,7 +318,7 @@ function statut_forum($id_article) {
 
 	// Nombre messages de forum de l'article
 	$from = array('spip_forum AS t1');
-	$where = array('t1.id_article='.sql_quote($id));
+	$where = array('t1.id_objet='.sql_quote($id), 't1.objet='.sql_quote('article'));
 	$nb = sql_countsel($from, $where);
 	// Nombre de tickets termines pour le jalon
 	if ($nb >= 1)
