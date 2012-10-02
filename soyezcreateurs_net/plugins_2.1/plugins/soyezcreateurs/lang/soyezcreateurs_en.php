@@ -9,6 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Go to menu',
+	'accessibilite_onglets' => 'Aller aux onglets', # NEW
 	'accessibilite_recherche' => 'Go to Search box',
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
@@ -184,6 +185,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_masque' => 'Hide the RSS pictogram on the (Site + Agenda) pages',
 	'cfg_max_agenda_label' => 'Maximum number of events listed under the agenda',
 	'cfg_menu_actif' => 'Active menu',
+	'cfg_menu_affichagelogo_label' => 'Affichage du logo', # NEW
 	'cfg_menu_clic' => 'Menu click',
 	'cfg_menu_footer_liens' => 'In the page footer',
 	'cfg_menu_haut' => 'Top & bottom menus',
@@ -271,6 +273,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_taille_logos_max' => 'Maximum height for logos of the heading menu',
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux', # NEW
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central', # NEW
+	'cfg_taille_logos_max_menufooter' => 'Taille maximum des logos du menu de pied de page', # NEW
+	'cfg_taille_logos_max_menuprincipal' => 'Taille maximum des logos du menu principal', # NEW
 	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil', # NEW
 	'cfg_texte_bandeau_annonce' => 'Text of the announcing banner in the header',
 	'cfg_texte_bandeau_label' => 'Text of the contact banner',

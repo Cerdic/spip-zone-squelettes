@@ -9,6 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Перейти до меню',
+	'accessibilite_onglets' => 'Aller aux onglets', # NEW
 	'accessibilite_recherche' => 'Перейти до пошуку',
 	'accessibilite_texte' => 'Перейти до тексту',
 	'accueil' => 'головна',
@@ -184,6 +185,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_masque' => 'Замаскувати ( приховати ) піктограму RSS  на сторінках (Сайт + щоденник)',
 	'cfg_max_agenda_label' => 'Максимальна кількість елементів, афішованих ( показаних) під щоденником',
 	'cfg_menu_actif' => 'Активне меню',
+	'cfg_menu_affichagelogo_label' => 'Affichage du logo', # NEW
 	'cfg_menu_clic' => 'Меню натиснути',
 	'cfg_menu_footer_liens' => 'У колонтитул',
 	'cfg_menu_haut' => 'Меню верхнє та нижнє',
@@ -271,6 +273,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_taille_logos_max' => 'Максимальний розмір логотипів меню і панелі інструментів', # MODIF
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux', # NEW
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central', # NEW
+	'cfg_taille_logos_max_menufooter' => 'Taille maximum des logos du menu de pied de page', # NEW
+	'cfg_taille_logos_max_menuprincipal' => 'Taille maximum des logos du menu principal', # NEW
 	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil', # NEW
 	'cfg_texte_bandeau_annonce' => 'Текст банера оголошення у верхній частині сайту',
 	'cfg_texte_bandeau_label' => 'Текст банера контакту сайта',

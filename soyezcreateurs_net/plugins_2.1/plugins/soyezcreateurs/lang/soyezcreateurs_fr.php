@@ -6,8 +6,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'accessibilite_onglets' => 'Aller aux onglets',
 	'accessibilite_menu' => 'Aller au menu',
+	'accessibilite_onglets' => 'Aller aux onglets',
 	'accessibilite_recherche' => 'Aller à la recherche',
 	'accessibilite_texte' => 'Aller au texte',
 	'accueil' => 'Accueil',
@@ -271,9 +271,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_taille_logos_max' => 'Taille maximum des logos du menu haut',
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux',
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central',
-	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil',
 	'cfg_taille_logos_max_menufooter' => 'Taille maximum des logos du menu de pied de page',
 	'cfg_taille_logos_max_menuprincipal' => 'Taille maximum des logos du menu principal',
+	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil',
 	'cfg_texte_bandeau_annonce' => 'Texte du bandeau d\'annonce en haut du site',
 	'cfg_texte_bandeau_label' => 'Texte du bandeau de contact du site',
 	'cfg_texte_central' => 'Texte central',

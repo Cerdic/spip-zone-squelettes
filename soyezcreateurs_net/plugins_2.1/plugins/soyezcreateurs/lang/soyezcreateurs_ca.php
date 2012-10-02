@@ -9,6 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Anar al menú',
+	'accessibilite_onglets' => 'Aller aux onglets', # NEW
 	'accessibilite_recherche' => 'Anar a la cerca',
 	'accessibilite_texte' => 'Anar al text',
 	'accueil' => 'Inici',
@@ -184,6 +185,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_masque' => 'Amagar el pictograma de flux RSS a les pàgines (Lloc + Agenda)',
 	'cfg_max_agenda_label' => 'Número màxim d\'elements mostrats a sota de l\'agenda',
 	'cfg_menu_actif' => 'Menú actiu',
+	'cfg_menu_affichagelogo_label' => 'Affichage du logo', # NEW
 	'cfg_menu_clic' => 'Menú clic',
 	'cfg_menu_footer_liens' => 'A peu de pàgina',
 	'cfg_menu_haut' => 'Menús a dalt & a baix',
@@ -271,6 +273,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_taille_logos_max' => 'Mida màxima dels logos del menú alt i de la caixa d\'eines', # MODIF
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux', # NEW
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central', # NEW
+	'cfg_taille_logos_max_menufooter' => 'Taille maximum des logos du menu de pied de page', # NEW
+	'cfg_taille_logos_max_menuprincipal' => 'Taille maximum des logos du menu principal', # NEW
 	'cfg_taille_logos_max_outils' => 'Taille maximum des logos de la boite à outil', # NEW
 	'cfg_texte_bandeau_annonce' => 'Text de la cibertira d\'anuncis al capdamunt del lloc ',
 	'cfg_texte_bandeau_label' => 'Text de la tira de contacte del lloc',
