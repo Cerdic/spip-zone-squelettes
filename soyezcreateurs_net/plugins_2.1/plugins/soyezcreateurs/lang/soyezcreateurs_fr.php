@@ -189,7 +189,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_menu_haut' => 'Menus haut & bas',
 	'cfg_menu_haut_affichagelogo_deroulant' => 'Menus déroulants',
 	'cfg_menu_haut_affichagelogo_deroulant_non' => 'N\'afficher que le texte',
-	'cfg_menu_haut_affichagelogo_label' => 'Logos du Menu Haut',
 	'cfg_menu_haut_affichagelogo_logoonly' => 'Affichage du logo seul',
 	'cfg_menu_haut_affichagelogo_logoplustexte' => 'Affichage du logo et du titre de la rubrique',
 	'cfg_menu_inactif' => 'Menu inactif',
