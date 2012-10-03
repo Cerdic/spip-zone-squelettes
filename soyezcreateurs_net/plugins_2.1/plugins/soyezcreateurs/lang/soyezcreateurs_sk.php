@@ -191,7 +191,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_menu_haut' => 'Vrchné a spodné menu',
 	'cfg_menu_haut_affichagelogo_deroulant' => 'Rozbaľovacie menu',
 	'cfg_menu_haut_affichagelogo_deroulant_non' => 'Zobraziť iba text',
-	'cfg_menu_haut_affichagelogo_label' => 'Logá hlavného menu',
 	'cfg_menu_haut_affichagelogo_logoonly' => 'Zobrazenie jedného loga',
 	'cfg_menu_haut_affichagelogo_logoplustexte' => 'Zobrazenie loga a názvu rubriky',
 	'cfg_menu_inactif' => 'Neaktívne menu ',
