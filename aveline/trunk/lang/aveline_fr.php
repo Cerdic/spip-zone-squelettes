@@ -91,6 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la même langue.',
 	'explication_themes_anythingslider' => 'Vous pouvez disposer de plus de thèmes en les activant sur la <a href="./?exec=configurer_anythingslider">page de configuration d\'AnythingSlider</a>.',
 	'explication_tri_recherche' => 'Par défaut, les résultats sont triés par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajoutée.',
+	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.',
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pour que les évènements puissent avoir leur propre logo, vous devez installer le plugin \'Documents et Logo pour Agenda\'.',
 	'explication_vignette_ajout_css' => 'Une majorité de thèmes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour améliorer l\'affichage. à ne pas activer si le thème prend en charge les vignettes.',
 
@@ -387,6 +388,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_titre_noisette_perso' => 'Si titre personnalisé :',
 	'label_toggle_controls' => 'Afficher les contrôles de navigation seulement au survol ?',
 	'label_tri' => 'Critère de tri :',
+	'label_url_minical' => 'Page de destination du mini-calendrier',
 	'label_utiliser_image_article' => 'Utiliser une image de l\'article comme logo si ni l\'article ni la rubrique parente n\'a de logo ?',
 	'label_utiliser_logo_article_rubrique' => 'Afficher le logo de la rubrique parente si l\'article n\'a pas de logo ?',
 	'label_utiliser_logo_breve_rubrique' => 'Afficher le logo de la rubrique parente si la brève n\'a pas de logo ?',
