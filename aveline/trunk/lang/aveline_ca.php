@@ -93,6 +93,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_restreindre_langue' => 'En el cas d\'un lloc multilingüe, es pot voler restringir que es mostrin només els objectes de la mateixa llengua.',
 	'explication_themes_anythingslider' => 'Podeu disposar de més temes activant-los a la <a href="./?exec=configurer_anythingslider">pàgina de configuració d\'AnythingSlider</a>.',
 	'explication_tri_recherche' => 'Per defecte, els resultats són classificats per pertinença. Si activeu la classificació modificable, la opció "Per pertinença" s\'afegirà automàticament.',
+	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Per tal que els esdeveniments puguin tenir el seu propi logotip, heu d\'instal·lar el connector \'Documents i Logo per Agenda\'.',
 	'explication_vignette_ajout_css' => 'Una majoria de temes per Zpip no tenen en compte les miniatures d\'autors. Aquesta opció permet afegir en dur, a dins dels esquelets, alguns estils CSS per millorar la visualització. No ho activeu si el tema té en compte les miniatures.',
 
@@ -389,6 +390,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_titre_noisette_perso' => 'Si títol personalitzat:',
 	'label_toggle_controls' => 'Mostrar els controls de navegació només si es passa per sobre el ratolí?',
 	'label_tri' => 'Criteri de classificació:',
+	'label_url_minical' => 'Page de destination du mini-calendrier', # NEW
 	'label_utiliser_image_article' => 'Utilitzar una imatge de l\'article com a logotip si ni l\'article ni la secció parenta tenen logotip?',
 	'label_utiliser_logo_article_rubrique' => 'Mostrar el logotip de la secció parenta si l\'article no té logotip?',
 	'label_utiliser_logo_breve_rubrique' => 'Mostrar el logotip de la secció parenta si la breu no té logotip?',
