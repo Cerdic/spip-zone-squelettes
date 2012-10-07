@@ -211,12 +211,13 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 
 	// On recupere le secteur de base soit via la methode du mot-cle, soit par la config
 	if ($type == 'motcle') {
-		$select = array('id_rubrique');
-		$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
+		$select = array('t1.id_objet AS id_rubrique');
+		$from = array('spip_mots_liens AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
 		$where = array('t3.titre='.sql_quote('squelette_habillage'),
 					   't3.id_groupe=t2.id_groupe',
 					   't2.titre='.sql_quote($mot),
-					   't2.id_mot=t1.id_mot');
+					   't2.id_mot=t1.id_mot',
+					   't1.objet='.sql_quote('rubrique'));
 		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$id_rubrique = $row['id_rubrique'];
