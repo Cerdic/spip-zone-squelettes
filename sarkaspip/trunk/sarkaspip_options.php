@@ -6,7 +6,7 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
-$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer');
+$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer','breadcrumb');
 
 // Liste des rubriques specialisees standard du squelette
 // Pour ajouter des rubriques perso, definir de la meme facon les constantes _PERSO_XXX
