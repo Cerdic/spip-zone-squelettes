@@ -50,35 +50,23 @@
 			<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=oui}>
 		]
 	]
-	[(#REM) <!--dans l'article en une, le cartouche et l'image sont avant le titre--> ]
-	[(#ENV{page}|=={une}|oui)
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
-			{id_article}
-			{avec_popularite=non}
-			{avec_notation=0}
-			{avec_socialtags=0}
-			{page})]
-		<div class="nettoyeur"></div>
-		[<div class="logo droite">(#GET{logo}|image_reduire{#ENV{taille_logo}})</div>]
-	]
-	[(#ENV{page}|match{^(edito)$}|oui)
-		<div class="nettoyeur"></div>
-		[<div class="logo droite">(#GET{logo}|image_reduire{#ENV{taille_logo}})</div>]
-	]
-	
-	[(#ENV{page}|match{^(edito)$}|oui)
-		[(#CONFIG{sarkaspip_sommaire/titre_edito, 1}|=={1}|oui)
-		[<div class="#EDIT{titre} titre"><h1>(#TITRE)</h1></div>]
-		]
-	]
 
-	[(#ENV{page}|match{^(edito)$}|non)
-		[<div class="#EDIT{titre} titre"><h1>(#TITRE)</h1></div>]
+	<header class="cartouche (#ENV{page}|match{^(edito)$}|et{#CONFIG{sarkaspip_sommaire/titre_edito, 1}|=={1}|non})hide]">
+	[<h1 class="#EDIT{titre} titre">[(#GET{logo}|image_reduire{#ENV{taille_logo}})](#TITRE)</h1>]
+
+	[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
+		{id_article}
+		{id_evenement}
+		{avec_popularite}
+		{avec_notation}
+		{avec_socialtags}
+		{page})
 	]
-	
+	</header>
+
 	<div class="description">
 	[(#ENV{page}|!={evenement}|oui)
-		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>[(#ENV{page}|match{^(edito|une)$}|oui)<br /><br />]]
+		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
 	]
 
 	[(#ENV{page}|=={une}|oui)
@@ -101,53 +89,39 @@
 		</div>
 	]
 
-	[(#ENV{page}|match{^(edito|une)$}|non)
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
-			{id_article}
-			{id_evenement}
-			{avec_popularite}
-			{avec_notation}
-			{avec_socialtags}
-			{page})]
-		<br class="nettoyeur" />
-		]
-
 
 	<BOUCLE_ev(EVENEMENTS){id_evenement}>
 	<div class="evenement one">#MODELE{evenement_vevent}</div>
 	</BOUCLE_ev>
 
-	[(#ENV{page}|match{^(edito|une)$}|non)
-		[<div class="logo gauche">(#GET{logo}|image_reduire{#ENV{taille_logo}})</div>]
-	]
-		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-		[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
-		
-		[<br class="nettoyeur" /><div class="#EDIT{hyperlien} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
-		[<br class="nettoyeur" /><div class="#EDIT{ps} ps">(#PS)</div>]
-		[<br class="nettoyeur" /><div class="notes">(#NOTES)</div>]
-		[(#REM) <!-- Notation de l'article --> ]
-		[(#SET{plugin_en_cours, non})]
-		[(#PLUGIN{NOTATION}|oui)
-			[(#ENV{avec_notation, 0}|=={2}|oui)
-				<br class="nettoyeur" /><div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
-				[(#SET{plugin_en_cours, oui})]
-			]
-		]
-		[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
-		[(#PLUGIN{SOCIALTAGS}|oui)
-			[(#ENV{avec_socialtags, 0}|=={2}|oui)
-				[(#GET{plugin_en_cours}|=={non}|oui)<br class="nettoyeur" /><div class="plugin">]
-				[(#INCLURE{fond=noisettes/socialtags})]
-				[(#SET{plugin_en_cours, oui})]
-			]
-		]
+	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+	[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
 
-		[(#GET{plugin_en_cours}|=={oui}|oui)</div>]
-		<br class="nettoyeur" />
+	[<div class="#EDIT{hyperlien} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	[<div class="#EDIT{ps} ps">(#PS)</div>]
+	[<div class="notes">(#NOTES)</div>]
+
+	[(#REM) <!-- Notation de l'article --> ]
+	[(#SET{plugin_en_cours, non})]
+	[(#PLUGIN{NOTATION}|oui)
+		[(#ENV{avec_notation, 0}|=={2}|oui)
+			<div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
+			[(#SET{plugin_en_cours, oui})]
+		]
+	]
+	[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
+	[(#PLUGIN{SOCIALTAGS}|oui)
+		[(#ENV{avec_socialtags, 0}|=={2}|oui)
+			[(#GET{plugin_en_cours}|=={non}|oui)<div class="plugin">]
+			[(#INCLURE{fond=noisettes/socialtags})]
+			[(#SET{plugin_en_cours, oui})]
+		]
+	]
+
+	[(#GET{plugin_en_cours}|=={oui}|oui)</div>]
 
 	[(#ENV{page}|=={forum}|et{#ENV{statut_forum}|!={ouvert}}|oui)
-		<div class="avertissement"><:sarkaspip:msg_forum_ferme:></div>
+		<div class="info"><:sarkaspip:msg_forum_ferme:></div>
 	]
 
 	</div>

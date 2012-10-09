@@ -10,7 +10,7 @@
 -->
 ]
 <BOUCLE_cartouche(ARTICLES) {id_article}>
-	<div class="cartouche">
+	<div class="meta">
 		[(#REM) <!-- Date de l'article ou de l'evenement --> ]
 		[(#ENV{page}|=={galerie}|oui)
 			[(#SET{date, [(#DATE|nom_mois|ucfirst)][&nbsp;(#DATE|annee)]})]
@@ -23,10 +23,10 @@
 		[(#ENV{page}|match{evenement|galerie}|non)
 			[(#SET{date, [(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]})]
 		]
-		[<time pubdate="pubdate" datetime="#DATE">(#GET{date})</time>]
+		[<time pubdate="pubdate" datetime="[(#DATE|date_iso)]">(#GET{date})</time>]
 
 		[(#REM) <!-- Auteur de l'article --> ]
-		[<span class="auteurs"><:sarkaspip:par_auteur:>&nbsp;(#LESAUTEURS)</span>]
+		[<span class="auteurs"><span class="sep">, </span><:sarkaspip:par_auteur:>&nbsp;(#LESAUTEURS)</span>]
 
 		[(#REM) <!-- Popularite de l'article --> ]
 		[(#ENV{avec_popularite, non}|=={oui}|oui)
