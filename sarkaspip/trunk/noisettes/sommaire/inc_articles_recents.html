@@ -6,18 +6,15 @@
 		- lang: pas encore utilise
  -->
 ]
-<B_article>
-	<div id="articles_recents" class="portfolio">
+<B_articlerec>
+	<div class="liste long articles articles_recents">
 		<h2><:sarkaspip:articles_recents:></h2>
-<BOUCLE_article(ARTICLES){id_secteur!==#RACINE_SPECIALISEE}{doublons}{par date}{inverse}{0,#CONFIG{sarkaspip_sommaire/max_articles_recents, 5}}>
-		<INCLURE{fond=noisettes/article/inc_article_introduction}
-			{id_article}
-			{afficher_mere=oui}
-			{afficher_commentaires=oui}
-			{logo_rubrique=#CONFIG{sarkaspip_sommaire/logo_rubrique, oui}}
-			{avec_lire_suite=#CONFIG{sarkaspip_sommaire/avec_lire_suite, non}}
-			{taille_logo=#CONFIG{sarkaspip_sommaire/taille_logo, 150}}
-			{taille_introduction=#CONFIG{sarkaspip_sommaire/intro_article, 300}}>
-</BOUCLE_article>
+		<ul class="liste-items">
+		<BOUCLE_articlerec(ARTICLES){id_secteur!==#RACINE_SPECIALISEE}{doublons}{par date}{inverse}{0,#CONFIG{sarkaspip_sommaire/max_articles_recents, 5}}>
+		<li class="item"><INCLURE{fond=inclure/resume/article,id_article,
+			coupe=#CONFIG{sarkaspip_sommaire/intro_article, 300},
+			logo_rubrique=#CONFIG{sarkaspip_sommaire/logo_rubrique,oui}|=={oui}|oui} /></li>
+		</BOUCLE_articlerec>
+		</ul>
 	</div>
-</B_article>
+</B_articlerec>
