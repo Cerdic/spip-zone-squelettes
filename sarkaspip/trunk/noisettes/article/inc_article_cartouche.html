@@ -23,14 +23,14 @@
 		[(#ENV{page}|match{evenement|galerie}|non)
 			[(#SET{date, [(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]})]
 		]
-		[(#GET{date}) <br />]
+		[<time pubdate="pubdate" datetime="#DATE">(#GET{date})</time>]
 
 		[(#REM) <!-- Auteur de l'article --> ]
-		[<:sarkaspip:par_auteur:>&nbsp;(#LESAUTEURS) <br />]
+		[<span class="auteurs"><:sarkaspip:par_auteur:>&nbsp;(#LESAUTEURS)</span>]
 
 		[(#REM) <!-- Popularite de l'article --> ]
 		[(#ENV{avec_popularite, non}|=={oui}|oui)
-			[<:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
+			[<span class="pop"><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%</span>]
 		]
 
 		[(#REM) <!-- Notation de l'article --> ]
