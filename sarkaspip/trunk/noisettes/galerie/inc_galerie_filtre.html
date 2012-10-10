@@ -5,33 +5,18 @@ Recoit en argument :
 --> ]
 <B_filtre_motscles>
 #ANCRE_PAGINATION
-<div id="noisette_filtre" class="noisette">
-	<h1 class="intitule"><:sarkaspip:filtre_titre:></h1>
-	<div class="contenu">
-		[(#ENV{categorie,-1}|=={-1}|?{
-			<h2 class="titre_bloc bouton"><:sarkaspip:filtre_soustitre_album_tout:></h2>,
-			<h2><a class="titre_bloc bouton" href="[(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ENV{id_rubrique}})]" title="<:sarkaspip:filtre_bulle_album_tout:>"><:sarkaspip:filtre_soustitre_album_tout:></a></h2>
-		})]
-	</div>
-	<div class="contenu">
-		[(#ENV{categorie,-1}|=={0}|?{
-			<h2 class="titre_bloc bouton"><:sarkaspip:filtre_soustitre_album_0_motcle:></h2>,
-			<h2><a class="titre_bloc bouton" href="[(#URL_PAGE{galerie, categorie=0}|parametre_url{id_rubrique,#ENV{id_rubrique}})]" title="<:sarkaspip:filtre_bulle_album_0_motcle:>"><:sarkaspip:filtre_soustitre_album_0_motcle:></a></h2>
-		})]
-	</div>
-	<div class="contenu">
-		<h2 class="titre_bloc"><:sarkaspip:filtre_soustitre_motcle:></h2>
-		<div class="liste"><ul>
-<BOUCLE_filtre_motscles(MOTS mots_articles articles){type != squelette_habillage}{id_article != ''}{id_rubrique==#BRANCHE_SPECIALISEE{galerie}}{fusion mots.titre}{par mots.titre}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_filtre, 10}}>
-			[(#ID_MOT|=={#ENV{categorie}}|?{
-				<li><span class="titre">#TITRE</span></li>,
-				<li><a class="titre" href="[(#URL_PAGE{galerie}|parametre_url{categorie,#ID_MOT}|parametre_url{id_rubrique,#ENV{id_rubrique}})]" title="<:sarkaspip:filtre_bulle_album_1_motcle:>">
-					#TITRE
-				</a></li>}
-			)]
-</BOUCLE_filtre_motscles>
-		</ul></div>
+<div id="noisette_filtre" class="noisette noisette_filtre galerie_filtre">
+	<h2 class="intitule"><:sarkaspip:filtre_titre:></h2>
+		<div class="btn-group">
+				[(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ENV{id_rubrique}}|lien_ou_expose{<:sarkaspip:filtre_soustitre_album_tout:>,#ENV{categorie,-1}|=={-1},btn})]
+				[(#URL_PAGE{galerie, categorie=0}|parametre_url{id_rubrique,#ENV{id_rubrique}}|lien_ou_expose{<:sarkaspip:filtre_soustitre_album_0_motcle:>,#ENV{categorie,-1}|=={0},btn})]
+		</div>
+		<strong class="h3-like"><:sarkaspip:filtre_soustitre_motcle:></strong>
+		<ul class="nav nav-pills nav-stacked">
+			<BOUCLE_filtre_motscles(MOTS articles){type != squelette_habillage}{articles.id_article > 0}{id_rubrique==#BRANCHE_SPECIALISEE{galerie}}{fusion mots.titre}{par mots.titre}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_filtre, 10}}>
+				<li[ class="(#ENV{categorie,-1}|=={#ID_MOT}|?{on active})"]>[(#URL_PAGE{galerie}|parametre_url{categorie,#ID_MOT}|parametre_url{id_rubrique,#ENV{id_rubrique}}|lien_ou_expose{#TITRE,#ENV{categorie,-1}|=={#ID_MOT},'',<:sarkaspip:filtre_bulle_album_1_motcle:>})]</li>
+			</BOUCLE_filtre_motscles>
+		</ul>
 		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_filtre}})</div>]
-	</div>
 </div>
 </B_filtre_motscles>
