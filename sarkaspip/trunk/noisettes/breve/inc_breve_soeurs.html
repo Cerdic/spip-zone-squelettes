@@ -7,16 +7,14 @@
 ]
 [(#SET{bulle, <:sarkaspip:navigation_bulle_vers_breve:>})]
 <B_breves_secteur>
-<div class="contenu">
-	#ANCRE_PAGINATION
-	<h2 class="titre_bloc"><:sarkaspip:breves_meme_rubrique:></h2>
-	<div class="liste"><ul>
-<BOUCLE_breves_secteur(BREVES){id_secteur}{par date}{inverse}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_navigation, 10}}>
-	[<li><[(#EXPOSE{span class="titre",a class="titre"[ href="(#URL_BREVE)"][ title="(#GET{bulle})"]})]>
-			(#TITRE)
-		</[(#EXPOSE{span,a})]></li>]
-</BOUCLE_breves_secteur>
-	</ul></div>
-	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_navigation}})</div>]
-</div>
+	<div class="liste short">
+		#ANCRE_PAGINATION
+		<ul class="nav nav-list">
+			<li class="nav-header"><:sarkaspip:breves_meme_rubrique:></li>
+			<BOUCLE_breves_secteur(BREVES){id_secteur}{par date}{inverse}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_navigation, 10}}>
+			<li[ class="(#EXPOSE{on active}"]>[(#URL_BREVE|lien_ou_expose{#TITRE,#EXPOSE,'',#GET{bulle}})]</li>
+			</BOUCLE_breves_secteur>
+		</ul>
+		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_navigation}})</div>]
+	</div>
 </B_breves_secteur>
