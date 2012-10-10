@@ -1,5 +1,7 @@
 #CACHE{7200}
+	</section>
 		<BOUCLE_site(SITES) {id_syndic}>
+			<section class="site">
 			[(#REM) <!-- affichage du titre de la page et de la description du site si id_syndic est non nul --> ]
 			<div class="site">
 				[(#INCLURE{fond=noisettes/site/inc_site_description}{id_syndic}{editable=oui})<br />]
@@ -7,9 +9,11 @@
 			#SET{nb_jours, #CONFIG{sarkaspip_site/nbj_syndication_2, 60}}
 			#SET{rubrique_site, #ID_RUBRIQUE}
 		</BOUCLE_site>
-			#SET{nb_jours, #CONFIG{sarkaspip_site/nbj_syndication_1, 30}}
-   			<div class="titre"><h1><:sarkaspip:sur_web:>,&nbsp;<:sarkaspip:articles_syndiques_n_jours{nb_jour=#GET{nb_jours}}:></h1></div>
+			<section class="sites">
+				#SET{nb_jours, #CONFIG{sarkaspip_site/nbj_syndication_1, 30}}
+   			<header class="cartouche"><h1><:sarkaspip:sur_web:> <small><:sarkaspip:articles_syndiques_n_jours{nb_jour=#GET{nb_jours}}:></small></h1></header>
 		<//B_site>
 
 			[(#REM) <!-- affichage des syndications du site courant ou de tout le site --> ]
 			[(#INCLURE{fond=noisettes/site/inc_site_articles_syndiques}{id_syndic}{nb_jours=#GET{nb_jours}}{ajax})]
+		</section>
