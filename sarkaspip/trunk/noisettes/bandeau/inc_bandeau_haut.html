@@ -1,5 +1,5 @@
 [(#REM) <!-- Bandeau Haut --> ]
-<header class="bandeau_haut clearfix">
+<div class="bandeau bandeau_haut clearfix">
 	[(#PIPELINE{bandeau_haut_debut,
 		[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
 	)]
@@ -14,6 +14,19 @@
 		[<small id="slogan_site_spip">(#CONFIG{sarkaspip_bandeau/slogan}|sinon{#SLOGAN_SITE_SPIP})</small>]
 		</h1>[(#SI_PAGE{sommaire}|non)</a>]
 	</div>
+
+	[(#CONFIG{sarkaspip_noisettes/position_rechspip, 3}|=={3}|oui)
+		<div class="recherche">
+			#FORMULAIRE_RECHERCHE
+		</div>
+	]
+
+	[(#PLUGIN{BOUTONSTEXTE}|oui)
+		<div class="boutonstexte">
+			<img src="#CHEMIN{images/fontsizeup.png}" alt="fontsizeup" class="textsizeup" />
+			<img src="#CHEMIN{images/fontsizedown.png}" alt="fontsizedown" class="textsizedown" />
+		</div>
+	]
 
 	[(#CONFIG{sarkaspip_menus/position_formulaires, 1}|=={4}|ou{#CONFIG{sarkaspip_menus/position_langues, 4}|=={4}})
 	<div class="nav_bandeau navbar navbar-fixed-top">
@@ -50,4 +63,4 @@
 	[(#PIPELINE{bandeau_haut_fin,
 		[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
 	)]
-</header>
+</div>
