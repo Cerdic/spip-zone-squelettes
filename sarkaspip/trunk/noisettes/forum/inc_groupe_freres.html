@@ -4,21 +4,13 @@ Recoit en argument:
 -->]
 [(#SET{bulle, <:sarkaspip:navigation_bulle_vers_groupe:>})]
 <B_groupes_freres>
-<div class="contenu">
-	<h2 class="titre_bloc"><:sarkaspip:titre_forum_groupes:></h2>
-	<div class="liste"><ul>
-<BOUCLE_groupes_freres(RUBRIQUES){id_parent=#ENV{id_secteur}}{par num titre}{par titre}>
-	[(#ENV{exposer_groupe}|=={oui}|oui)
-		[<li><[(#EXPOSE{span class="titre",a class="titre"[ href="(#URL_PAGE{forums}|parametre_url{id_rubrique,#ID_RUBRIQUE})"][ title="(#GET{bulle})"]})]>
-			(#TITRE)
-		</[(#EXPOSE{span,a})]></li>]
-	]
-	[(#ENV{exposer_groupe}|=={oui}|non)
-		[<li><a class="titre"[ href="(#URL_PAGE{forums}|parametre_url{id_rubrique,#ID_RUBRIQUE})"][ title="(#GET{bulle})"]>
-			(#TITRE)
-		</a></li>]
-	]
-</BOUCLE_groupes_freres>
-	</ul></div>
-</div>
+	<div class="liste short">
+		<ul class="nav nav-list">
+			<li class="nav-header"><:sarkaspip:titre_forum_groupes:></li>
+			<BOUCLE_groupes_freres(RUBRIQUES){id_parent=#ENV{id_secteur}}{par num titre}{par titre}>
+			#SET{expose,#EXPOSE|et{#ENV{exposer_groupe}|=={oui}}}
+			<li[ class="(#GET{expose}|?{on active}}"]>[(#URL_PAGE{forums}|parametre_url{id_rubrique,#ID_RUBRIQUE}|lien_ou_expose{#TITRE,#GET{expose},'',#GET{bulle}})]</li>
+			</BOUCLE_groupes_freres>
+		</ul>
+	</div>
 </B_groupes_freres>
