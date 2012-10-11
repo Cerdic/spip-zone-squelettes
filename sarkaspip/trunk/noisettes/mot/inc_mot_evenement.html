@@ -1,30 +1,24 @@
 <B_evenement>
-<div id="recherche_evenement" class="commentaires">
+<div id="recherche_evenement" class="recherche_evenement resultats rubriques">
 	<a rel="nofollow" href="#header" title="<:sarkaspip:kezako_haut_page:>" class="fonction revenir_haut_page"></a>
-    <h2><:sarkaspip:recherche_evenements_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
-	#ANCRE_PAGINATION
-    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|oui)
+	<div class="liste short">
+		<h3>[(#GRAND_TOTAL|singulier_ou_pluriel{agenda:info_un_evenement,agenda:info_nombre_evenements})]</h3>
+		#ANCRE_PAGINATION
+	  [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|oui)
+	    [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+	  ]
+    <ul class="liste-items">
+			<BOUCLE_evenement(EVENEMENTS){par date}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}
+				{id_mot=#ENV{id1,#ENV{id2,#ENV{id3}}}}
+				{id_mot=#ENV{id2,#ENV{id3,#ENV{id1}}}}
+				{id_mot=#ENV{id3,#ENV{id1,#ENV{id2}}}}
+			>
+	    <li class="item">[(#INCLURE{fond=inclure/resume/evenement,id_evenement,coupe=100})]</li>
+			</BOUCLE_evenement>
+		</ul>
+		[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|oui)
       [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
     ]
-    <ul>
-<BOUCLE_evenement(ARTICLES){id_secteur=#RACINE_SPECIALISEE{agenda}}{par date}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}
-	{id_mot=#ENV{id1,#ENV{id2,#ENV{id3}}}}
-	{id_mot=#ENV{id2,#ENV{id3,#ENV{id1}}}}
-	{id_mot=#ENV{id3,#ENV{id1,#ENV{id2}}}}
->
-  		[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
-          {titre=#TITRE}
-          {afficher_date=oui}
-          {date=#DATE}
-          {url=#URL_PAGE{evenement, id_article=#ID_ARTICLE}}
-          {afficher_logo=non}
-          {afficher_auteur=non}
-          {ajax}
-        )]
-</BOUCLE_evenement>
-	</ul>
-	[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|oui)
-      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-    ]
+	</div>
 </div>
 </B_evenement>
