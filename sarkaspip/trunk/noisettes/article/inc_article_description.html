@@ -15,14 +15,15 @@
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
+
 	[(#REM) <!-- Initialisation des parametres de config --> ]
 	#SET{logo, #LOGO_ARTICLE}
 	[(#ENV{logo_rubrique}|=={oui}|oui)
 		[(#SET{logo, #LOGO_ARTICLE_RUBRIQUE})]
 	]
-	
+
 	[(#REM) <!-- Icones d'action si l'article n'est pas l'edito ou la une --> ]
-	
+
 	[(#PLUGIN{ARTICLE_PDF}|oui)
 		[(#ENV{page}|match{^(article|evenement)$}|oui)
 			[(#MODELE{mod_bouton_pdf}{id_article})]
@@ -33,7 +34,7 @@
 			<a class="fonction" id="recommander" href="[(#URL_ARTICLE{#ID_ARTICLE}|parametre_url{recommander,oui})]" title="<:sarkaspip:recommander_article:>"></a>
 		]
 	]
-	
+
 	[(#PETITION|non)
 		[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
 		[(#GET{statut}|!={non_autorise}|oui)
@@ -52,51 +53,54 @@
 	]
 
 	<header class="cartouche [(#ENV{page}|match{^(edito)$}|et{#CONFIG{sarkaspip_sommaire/titre_edito, 1}|=={1}|non})hide]">
-	[<h1 class="titre">[(#GET{logo}|image_reduire{#ENV{taille_logo,150}})]<span class="#EDIT{titre}">(#TITRE)</span>
-	[<small class="soustitre #EDIT{soustitre}">(#SOUSTITRE)</small>]
-	</h1>]
 
-	[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
-		{id_article}
-		{id_evenement}
-		{avec_popularite}
-		{avec_notation}
-		{avec_socialtags}
-		{page})
-	]
+		[<h1 class="titre">[(#GET{logo}|image_reduire{#ENV{taille_logo,150}})]<span class="#EDIT{titre}">(#TITRE)</span>
+		[<small class="soustitre #EDIT{soustitre}">(#SOUSTITRE)</small>]
+		</h1>]
+
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
+			{id_article}
+			{id_evenement}
+			{avec_popularite}
+			{avec_notation}
+			{avec_socialtags}
+			{page})
+		]
+		[(#ENV{page}|=={une}|oui)
+			<div class="complements">
+				<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique}>
+			[(#PETITION|non)
+				[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+				[(#GET{statut}|!={non_autorise}|oui)
+					&nbsp;-&nbsp;
+					<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
+						{id_article}
+						{statut=#GET{statut}}
+						{ancre_meme_page=non}>
+				]
+			]
+			[(#PETITION|oui)
+				&nbsp;-&nbsp;
+				<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=non}>
+			]
+			</div>
+		]
 	</header>
 
-	<div class="description">
-
-	[(#ENV{page}|=={une}|oui)
-		<div class="complements">
-			<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique}>
-		[(#PETITION|non)
-			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
-			[(#GET{statut}|!={non_autorise}|oui)
-				&nbsp;-&nbsp;
-				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
-					{id_article}
-					{statut=#GET{statut}}
-					{ancre_meme_page=non}>
-			]
-		]
-		[(#PETITION|oui)
-			&nbsp;-&nbsp;
-			<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=non}>
-		]
-		</div>
-	]
+	<div class="main">
 
 
-	<BOUCLE_ev(EVENEMENTS){id_evenement}>
-	<div class="evenement one well">#INCLURE{fond=inclure/resume/evenement,id_evenement}</div>
-	</BOUCLE_ev>
+		<BOUCLE_ev(EVENEMENTS){id_evenement}>
+		<div class="evenement one well">#INCLURE{fond=inclure/resume/evenement,id_evenement}</div>
+		</BOUCLE_ev>
 
-	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-	[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
+		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
 
-	[<div class="#EDIT{hyperlien} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		[<div class="#EDIT{hyperlien} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	</div>
+
+	<footer>
 	[<div class="#EDIT{ps} ps">(#PS)</div>]
 	[<div class="notes">(#NOTES)</div>]
 
@@ -122,6 +126,5 @@
 	[(#ENV{page}|=={forum}|et{#ENV{statut_forum}|!={ouvert}}|oui)
 		<div class="info"><:sarkaspip:msg_forum_ferme:></div>
 	]
-
-	</div>
+	</footer>
 </BOUCLE_description>
