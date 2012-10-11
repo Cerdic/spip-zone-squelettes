@@ -52,7 +52,9 @@
 	]
 
 	<header class="cartouche [(#ENV{page}|match{^(edito)$}|et{#CONFIG{sarkaspip_sommaire/titre_edito, 1}|=={1}|non})hide]">
-	[<h1 class="#EDIT{titre} titre">[(#GET{logo}|image_reduire{#ENV{taille_logo}})](#TITRE)</h1>]
+	[<h1 class="titre">[(#GET{logo}|image_reduire{#ENV{taille_logo}})]<span class="#EDIT{titre}">(#TITRE)</span>
+	[<small class="soustitre #EDIT{soustitre}">(#SOUSTITRE)</small>]
+	</h1>]
 
 	[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
 		{id_article}
@@ -65,9 +67,6 @@
 	</header>
 
 	<div class="description">
-	[(#ENV{page}|!={evenement}|oui)
-		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-	]
 
 	[(#ENV{page}|=={une}|oui)
 		<div class="complements">
@@ -91,7 +90,7 @@
 
 
 	<BOUCLE_ev(EVENEMENTS){id_evenement}>
-	<div class="evenement one">#MODELE{evenement_vevent}</div>
+	<div class="evenement one well">#INCLURE{fond=inclure/resume/evenement,id_evenement}</div>
 	</BOUCLE_ev>
 
 	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
