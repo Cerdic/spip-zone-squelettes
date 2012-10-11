@@ -6,15 +6,18 @@
 -->
 ]
 <BOUCLE_description (RUBRIQUES) {id_rubrique}>
-	[<div class="#EDIT{titre} titre"><h1>(#TITRE)</h1></div>]
+	<header class="cartouche">
+		[<h1 class="titre">[(#LOGO_RUBRIQUE|image_reduire{#CONFIG{sarkaspip_rubrique/taille_logo_rubrique,150}})]<span class="#EDIT{titre}">(#TITRE)</span></h1>]
+	</header>
+
 	<div class="description">
-		[<div class="logo droite">(#LOGO_RUBRIQUE|image_reduire{#CONFIG{sarkaspip_rubrique/taille_logo_rubrique, 150}})</div>]
 		[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
 		[(#TEXTE*|non)
-			[<div class="#EDIT{descriptif} texte">(#DESCRIPTIF|typo_couleur)</div>]
+			[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|typo_couleur)</div>]
 		]
-		[<br class="nettoyeur" /><div class="notes">(#NOTES)</div>]
-		<br class="nettoyeur" />
+
+		[<div class="notes">(#NOTES)</div>]
+
 		[(#REM) <!-- Rubriques filles --> ]
 		[(#ENV{avec_filles, non}|=={oui}|oui)
 			<INCLURE{fond=noisettes/rubrique/inc_rubrique_filles}{id_rubrique}>
