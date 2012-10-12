@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head><title>[(#ENV{title}|sinon{<:soyezcreateurs:sommaire:>})] - [(#NOM_SITE_SPIP|textebrut)]</title>
+[(#REM) FaceBook Open Graph : https://developers.facebook.com/docs/opengraphprotocol/ & https://developers.facebook.com/tools/lint pour vérifier ]
+<meta name="og:title" content="[(#ENV{title}|sinon{<:soyezcreateurs:sommaire:>})]" />
+<meta name="og:type" content="article" />
+<meta name="og:url" content="[(#SELF|url_absolue)]" />
+<BOUCLE_LogoArticle(ARTICLES){id_article}{logo}>[<meta name="og:image" content="(#LOGO_ARTICLE_NORMAL|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoArticle><BOUCLE_LogoRubrique(RUBRIQUES){id_rubrique}{logo}>[<meta name="og:image" content="(#LOGO_RUBRIQUE_NORMAL|extraire_attribut{src}|url_absolue)" />]</BOUCLE_LogoRubrique>[<meta name="og:image" content="(#LOGO_SITE_SPIP_NORMAL|extraire_attribut{src}|url_absolue)" />]<//B_LogoRubrique><//B_LogoArticle>
+<meta name="og:site_name" content="[(#NOM_SITE_SPIP|textebrut)]" />
+[<meta name="og:description" content="(#ENV{metadescription,[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|attribut_html)]})" />]
+<meta name="og:locale" content="#LANG" />
+
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
 <BOUCLE_Icra(MOTS){type=_HTTP-EQUIV}{titre=pics-label}{texte!=}><link rel="meta" href="#URL_SITE_SPIP/labels.rdf" type="application/rdf+xml" title="ICRA labels" /></BOUCLE_Icra>
