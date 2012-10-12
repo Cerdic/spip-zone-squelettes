@@ -2,7 +2,7 @@
 		<BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}><li class="dropdown">#SET{aclass,dropdown-toggle}</BOUCLE_debut_secteur><li>#SET{aclass,''}<//B_debut_secteur>
 			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE"[ class="(#GET{aclass})" data-toggle="dropdown"]>(#TITRE|couper{80})[(#GET{aclass}|oui)<b class="caret"></b>]</a>]]
 			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-				[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien,id_rubrique,classe=#GET{aclass},toggle=#GET{aclass}|?{dropdown,''}})]
+				[(#INCLURE{fond=inclure/navigation/inc-rubrique_lien,id_rubrique,classe=#GET{aclass},toggle=#GET{aclass}|?{dropdown,''}})]
 			]
 			#SET{prof,0}
 			<B_menu_ssrubriques>
@@ -13,18 +13,18 @@
 				<BOUCLE_debut_ssrubrique(RUBRIQUES){id_parent}{0,1}><li></BOUCLE_debut_ssrubrique><li><//B_debut_ssrubrique>
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE"[ class="(#GET{aclass})" data-toggle="dropdown"]>(#TITRE|couper{80})[(#GET{aclass}|oui)<b class="caret"></b>]</a>]]
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-						[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien,id_rubrique,classe=#GET{aclass},toggle=#GET{aclass}|?{dropdown,''}})]
+						[(#INCLURE{fond=inclure/navigation/inc-rubrique_lien,id_rubrique,classe=#GET{aclass},toggle=#GET{aclass}|?{dropdown,''}})]
 					]
 				<BOUCLE_fin_hierarchie(RUBRIQUES){id_parent}{0,1}> </BOUCLE_fin_hierarchie>
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
-						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{avec_ul=oui})]
+						[(#INCLURE{fond=inclure/navigation/inc-articles_1}{id_rubrique}{avec_ul=oui})]
 					]
 				<//B_fin_hierarchie>
 					<BOUCLE_ssmenu(boucle_menu_ssrubriques)></BOUCLE_ssmenu>
 				</li>
 				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
 					[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|oui)
-						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique=#ID_PARENT}{avec_ul=non})]
+						[(#INCLURE{fond=inclure/navigation/inc-articles_1}{id_rubrique=#ID_PARENT}{avec_ul=non})]
 					]
 				]
 				#SET{prof,#GET{prof}|moins{1}}
@@ -33,7 +33,7 @@
 			</B_menu_ssrubriques>
 		<BOUCLE_fin_secteur(RUBRIQUES){id_parent}{0,1}> </BOUCLE_fin_secteur>
 			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
-				[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique=#ID_SECTEUR}{avec_ul=oui})]
+				[(#INCLURE{fond=inclure/navigation/inc-articles_1}{id_rubrique=#ID_SECTEUR}{avec_ul=oui})]
 			]
 		<//B_fin_secteur>
 		</li>
