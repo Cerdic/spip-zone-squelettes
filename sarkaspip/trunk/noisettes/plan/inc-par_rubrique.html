@@ -3,7 +3,7 @@
 [(#CONFIG{sarkaspip_plan/position_pagination, 1}|match{^(1|3)$}|oui)
 	<INCLURE{fond=noisettes/plan/inc-boutons_tri}{tri=par_rubrique}>
 ]
-<ul>
+<ul class="nav nav-list">
 <BOUCLE_non_vide(ARTICLES){id_article!==#RACINE_SPECIALISEE{galerie,not_in}}{0,1}>
 	[(#REM) <!-- Les articles des rubriques non specialisees --> ]
 	<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
@@ -11,7 +11,7 @@
 				{id_rubrique}
 				{classe=noeud})]
 		<B_articles_secteur>
-			<ul>
+			<ul class="nav nav-list">
 		<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 				[(#SET{date, [<span class="date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 				[<li>
@@ -25,13 +25,13 @@
 		</B_articles_secteur>
 	
 		<B_hierarchie>
-			<ul>
+			<ul class="nav nav-list">
 		<BOUCLE_hierarchie(RUBRIQUES){id_parent}{par num titre, titre}>
 				<li>[(#INCLURE{fond=noisettes/rubrique/lien}
 						{id_rubrique}
 						{classe=noeud})]
 				<B_articles_hierarchie>
-					<ul>
+					<ul class="nav nav-list">
 				<BOUCLE_articles_hierarchie(ARTICLES){id_rubrique}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 						[(#SET{date, [<span class="date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 						[<li>
@@ -58,7 +58,7 @@
 				{id_rubrique}
 				{classe=noeud})]
 	</BOUCLE_galerie>
-			<ul>
+			<ul class="nav nav-list">
 	<BOUCLE_albums(ARTICLES){id_secteur=#RACINE_SPECIALISEE{galerie}}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 				[(#SET{date, [<span class="date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 				[<li>

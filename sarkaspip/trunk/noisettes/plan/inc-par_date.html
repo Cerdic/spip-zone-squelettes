@@ -3,15 +3,15 @@
 [(#CONFIG{sarkaspip_plan/position_pagination, 1}|match{^(1|3)$}|oui)
 	<INCLURE{fond=noisettes/plan/inc-boutons_tri}{tri=par_date}>
 ]
-<ul>
+<ul class="nav nav-list">
 <BOUCLE_annee(ARTICLES){par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}{fusion YEAR(date)}>
 	<B_annee_relative>
-	<li><span class="noeud">[(#DATE|annee)]</span>
-		<ul>
+	<li class="nav-header"><span class="noeud">[(#DATE|annee)]</span>
+		<ul class="nav nav-list">
 	<BOUCLE_annee_relative(ARTICLES){annee_relatif}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}{lang_select=non}{fusion MONTH(date)}>
 		<B_articles_mois>
-			<li><span class="noeud">[(#DATE|nom_mois|ucfirst)]</span>
-				<ul>
+			<li class="nav-header"><span class="noeud">[(#DATE|nom_mois|ucfirst)]</span>
+				<ul class="nav nav-list">
 		<BOUCLE_articles_mois(ARTICLES){mois_relatif}{id_secteur!==#RACINE_SPECIALISEE{galerie,not_in}}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 					[(#SET{date, [<span class="date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 					[<li>
