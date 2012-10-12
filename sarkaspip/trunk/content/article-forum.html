@@ -5,14 +5,14 @@
 		[(#GET{statut_forum}|=={ouvert}|non)#SET{verrou, lock}]
 			<div id="sujet" class="forum">
 				[(#REM) <!-- Titre, logo, texte du sujet --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_sujet_description}
+				<INCLURE{fond=noisettes/forum/sujet_description}
 					{id_forum}
 					{statut_forum=#GET{statut_forum}}
 					{verrou=#GET{verrou}}>
 			</div>
 
 			[(#REM) <!-- Les reponses au sujet --> ]
-			<INCLURE{fond=noisettes/forum/inc_forum_sujet_reponses}
+			<INCLURE{fond=noisettes/forum/sujet_reponses}
 				{statut_forum=#GET{statut_forum}}
 				{id_thread}
 				{id_forum}
@@ -45,17 +45,17 @@
 						]
 
 						[(#REM) <!-- On traite d'abord les annonces --> ]
-						<INCLURE{fond=noisettes/forum/inc_forum_annonces}
+						<INCLURE{fond=noisettes/forum/liste-annonces}
 							{id_article}
 							{statut_forum=#GET{statut_forum}}>
 
 						[(#REM) <!-- On traite ensuite les sujets epingles --> ]
-						<INCLURE{fond=noisettes/forum/inc_forum_epingles}
+						<INCLURE{fond=noisettes/forum/liste-epingles}
 							{id_article}
 							{statut_forum=#GET{statut_forum}}>
 
 						[(#REM) <!-- On traite enfin les sujets non epingles --> ]
-						<INCLURE{fond=noisettes/forum/inc_forum_discussions}
+						<INCLURE{fond=noisettes/forum/liste-discussions}
 							{id_article}
 							{statut_forum=#GET{statut_forum}}
 							{ajax}>
