@@ -184,7 +184,7 @@ function afaire_liste_par_jalon($jalons) {
 		$i =0;
 		foreach($liste as $_jalon) {
 			$i += 1;
-			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', 
+			$page .= recuperer_fond('noisettes/afaire/jalon',
 				array('jalon' => $_jalon, 'ancre' => 'ancre_jalon_'.strval($i)));
 		}
 	}
