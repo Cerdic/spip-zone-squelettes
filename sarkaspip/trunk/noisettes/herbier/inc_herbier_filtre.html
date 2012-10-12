@@ -6,11 +6,11 @@ Recoit en argument :
 <div id="noisette_filtre" class="noisette noisette_filtre herbier_filtre">
 	<h2 class="intitule"><:sarkaspip:filtre_titre:></h2>
 	<ul class="nav nav-pills nav-stacked">
-		<li[ class="(#ENV{categorie,-1}|=={-1}|?{on active})"]>[(#URL_PAGE{herbier}|lien_ou_expose{<:sarkaspip:filtre_soustitre_herbier_tout:>,#ENV{categorie,-1}|=={-1}})]</li>
-		<li[ class="(#ENV{categorie,-1}|=={0}|?{on active})"]>[(#URL_PAGE{herbier, categorie=0}|lien_ou_expose{<:sarkaspip:filtre_soustitre_herbier_0_motcle:>,#ENV{categorie,-1}|=={0}})]</li>
+		<li[ class="(#ENV{categorie,-1}|=={-1}|?{on active})"]>[(#URL_PAGE{herbier}|lien_ou_expose{<:sarkaspip:filtre_soustitre_herbier_tout:>,#ENV{categorie,-1}|=={-1}|?{a}})]</li>
+		<li[ class="(#ENV{categorie,-1}|=={0}|?{on active})"]>[(#URL_PAGE{herbier, categorie=0}|lien_ou_expose{<:sarkaspip:filtre_soustitre_herbier_0_motcle:>,#ENV{categorie,-1}|=={0}|?{a}})]</li>
 		<li class="nav-header"><:sarkaspip:filtre_soustitre_motcle:></li>
 		<BOUCLE_filtre_motscles(MOTS syndic){type != squelette_habillage}{syndic.id_syndic> 0}{fusion mots.titre}{par mots.titre}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_motcle, 10}}>
-			<li[ class="(#ENV{categorie,-1}|=={#ID_MOT}|?{on active})"]>[(#URL_PAGE{herbier}|parametre_url{categorie,#ID_MOT}|lien_ou_expose{<i class="icon-tag"></i> #TITRE,#ENV{categorie,-1}|=={#ID_MOT},'',<:sarkaspip:filtre_bulle_herbier_1_motcle:>})]</li>
+			<li[ class="(#ENV{categorie,-1}|=={#ID_MOT}|?{on active})"]>[(#URL_PAGE{herbier}|parametre_url{categorie,#ID_MOT}|lien_ou_expose{<i class="icon-tag"></i> #TITRE,#ENV{categorie,-1}|=={#ID_MOT}|?{a},'',<:sarkaspip:filtre_bulle_herbier_1_motcle:>,tag})]</li>
 		</BOUCLE_filtre_motscles>
 	</ul>
 	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_motcle}})</div>]
