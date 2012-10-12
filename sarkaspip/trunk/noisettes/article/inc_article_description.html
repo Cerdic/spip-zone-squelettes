@@ -66,25 +66,26 @@
 			{avec_socialtags}
 			{page})
 		]
-		[(#ENV{page}|=={une}|oui)
-			<div class="complements">
-				<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique}>
-			[(#PETITION|non)
-				[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
-				[(#GET{statut}|!={non_autorise}|oui)
-					&nbsp;-&nbsp;
-					<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
-						{id_article}
-						{statut=#GET{statut}}
-						{ancre_meme_page=non}>
-				]
+		<div class="meta-publi">
+			<span class="category"><span class="sep">| </span><INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique}></span>
+
+		[(#PETITION|non)
+			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+			[(#GET{statut}|!={non_autorise}|oui)
+				<span class="comments"><span class="sep">| </span>
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
+					{id_article}
+					{statut=#GET{statut}}
+					{ancre_meme_page=non}>
+				</span>
 			]
-			[(#PETITION|oui)
-				&nbsp;-&nbsp;
-				<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=non}>
-			]
-			</div>
 		]
+		[(#PETITION|oui)
+			<span class="signatures"><span class="sep">| </span>
+			<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=non}>
+			</span>
+		]
+		</div>
 	</header>
 
 	<div class="main">

@@ -10,7 +10,7 @@
 -->
 ]
 <BOUCLE_cartouche(ARTICLES) {id_article}>
-	<div class="meta">
+	<div class="info-publi">
 		[(#REM) <!-- Date de l'article ou de l'evenement --> ]
 		[(#ENV{page}|=={galerie}|oui)
 			[(#SET{date, [(#DATE|nom_mois|ucfirst)][&nbsp;(#DATE|annee)]})]
@@ -30,25 +30,23 @@
 
 		[(#REM) <!-- Popularite de l'article --> ]
 		[(#ENV{avec_popularite, non}|=={oui}|oui)
-			[<span class="pop"><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%</span>]
+			[<span class="popularite"><span class="sep">, </span><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%</span>]
 		]
 
+	</div>
+	[(#SET{open,<div class="social">})]
 		[(#REM) <!-- Notation de l'article --> ]
-		[(#SET{plugin_en_cours, non})]
 		[(#PLUGIN{NOTATION}|oui)
 			[(#ENV{avec_notation, 0}|=={1}|oui)
-				<div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
-				[(#SET{plugin_en_cours, oui})]
+				[(#GET{open}|unique)][<div class="notation">(#FORMULAIRE_NOTATION)</div>]
 			]
 		]
 		[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
 		[(#PLUGIN{SOCIALTAGS}|oui)
 			[(#ENV{avec_socialtags, 0}|=={1}|oui)
-				[(#GET{plugin_en_cours}|=={non}|oui)<div class="plugin">]
+				[(#GET{open}|unique)]
 				[(#INCLURE{fond=noisettes/socialtags})]
-				[(#SET{plugin_en_cours, oui})]
 			]
 		]
-		[(#GET{plugin_en_cours}|=={oui}|oui)</div>]
-	</div>
+	[(#GET{open}|unique|non)</div>]
 </BOUCLE_cartouche>
