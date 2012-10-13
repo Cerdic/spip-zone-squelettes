@@ -70,6 +70,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_rubrique' => 'Articles publiés dans cette rubrique',
 	'articles_syndiques_n_jours' => 'ces @nb_jour@ derniers jours ',
 	'aucun_article' => 'Il n\'y a pas d\'article à cette adresse',
+	'aucun_resultat_recherche_pour' => 'Aucun résultat pour « @recherche@ »',
 	'aujourdhui' => 'aujourd\'hui',
 	'auteurs' => 'Auteurs',
 // B
