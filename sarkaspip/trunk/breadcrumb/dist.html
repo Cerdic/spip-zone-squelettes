@@ -1,47 +1,56 @@
 <BOUCLE_si(CONDITION){si #CONFIG{sarkaspip_bandeau/chemin, 1}|=={1}|oui}>
 	<ul class="breadcrumb">
-		[(#SI_PAGE{sommaire}|oui)
-		<li class="active"><:sarkaspip:accueil_site:></li>
-		]
+		#SET{found,''}
 		[(#SI_PAGE{sommaire}|non)
 		<li><a href="#URL_SITE_SPIP"><:sarkaspip:accueil_site:></a> <span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
 		]
+		[(#SI_PAGE{sommaire}|oui)
+		<li class="active"><:sarkaspip:accueil_site:></li>
+		#SET{found,' '}
+		]
 
-<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{id_secteur!=#RACINE_SPECIALISEE{squelette}}>
-	<BOUCLE_hierarchie(HIERARCHIE)>
-		<li>
-		[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
-			<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
+		<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{id_secteur!=#RACINE_SPECIALISEE{squelette}}>
+			<BOUCLE_hierarchie(HIERARCHIE)>
+				<li>
+				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
+					<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
+				]
+				[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
+						<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
+					]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+						<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
+					]
+				]
+				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
+			</BOUCLE_hierarchie>
+				<li[(#ENV{id_article}|non)class="active"]>
+				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
+					<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
+				]
+				[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
+						<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
+					]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+						<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
+					]
+				]
+				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
+				#SET{found,' '}
+		</BOUCLE_rubrique>
+		<BOUCLE_sujet(ARTICLES){id_article}>
+				<li class="active">
+				<INCLURE{fond=noisettes/article/lien}{id_article}{expose=' '}>
+				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
+				#SET{found,' '}
+		</BOUCLE_sujet>
+		[(#GET{found}|non)
+			<li class="active">
+			<strong>[(#VAL{breadcrumb:}|concat{#ENV{type-page}|replace{\W,'_'}}|_T)]</strong>
+			<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
 		]
-		[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
-				<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
-			]
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-				<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
-			]
-		]
-		<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
-	</BOUCLE_hierarchie>
-		<li[(#ENV{id_article}|non)class="active"]>
-		[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
-			<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-		]
-		[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
-				<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-			]
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-				<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-			]
-		]
-		<span class="divider">&gt;</span></li>
-</BOUCLE_rubrique>
-<BOUCLE_sujet(ARTICLES){id_article}>
-		<li class="active">
-		<INCLURE{fond=noisettes/article/lien}{id_article}{expose=' '}>
-		<span class="divider">&gt;</span></li>
-</BOUCLE_sujet>
 	</ul>
 </BOUCLE_si>
 <style type="text/css">.breadcrumb li:last-of-type .divider {display: none;}</style>
