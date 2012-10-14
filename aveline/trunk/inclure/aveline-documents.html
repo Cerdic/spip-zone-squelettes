@@ -1,7 +1,7 @@
 [(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 
 <BOUCLE_test_exclusion_portfolio(CONDITION){si #ENV{exclure_photos}}>
-	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?}{recherche?}{mode=document}{extension IN png,jpg,gif}{vu?}{doublons portfolio}> </BOUCLE_documents_portfolio>
+	<BOUCLE_documents_portfolio(DOCUMENTS) {id_objet?}{objet?}{id_mot?}{recherche?}{mode=document}{extension IN png,jpg,gif}{vu?}{doublons portfolio}> </BOUCLE_documents_portfolio>
 </BOUCLE_test_exclusion_portfolio>
 
 <B_liste_documents>
@@ -10,7 +10,7 @@
 	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_documents(DOCUMENTS) {tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{id_article?}{id_rubrique?}{recherche?}{extension !IN #ENV{exclure_extensions}|explode{','}}{vu?}{doublons portfolio}>
+	<BOUCLE_liste_documents(DOCUMENTS) {tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{id_objet?}{objet?}{id_mot?}{recherche?}{extension !IN #ENV{exclure_extensions}|explode{','}}{vu?}{doublons portfolio}>
 	[(#ENV{style_liste}|=={liste}|oui)
 		<li class="item">
 			<strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:medias:info_document:>})]</a></strong>
