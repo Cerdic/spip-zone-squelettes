@@ -25,13 +25,16 @@
 			largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
 			hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
 			logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}
-			><BOUCLE_LancerRecursion(RUBRIQUES){id_rubrique}{si #CONFIG{soyezcreateurs/deepmenu,rien}|=={arborescent}}><BOUCLE_SsSousMenuhaut(BOUCLE_SousMenuHaut) /></BOUCLE_LancerRecursion></li>
+			>[(#REM) Cette Boucle plante PHP dans certaines circonstances 
+			<B OUCLE_LancerRecursion(RUBRIQUES){id_rubrique}{si #CONFIG{soyezcreateurs/deepmenu,rien}|=={arborescent}}{!lang_select}>
+			Fatal error: Maximum function nesting level of '500' reached, aborting! in ecrire\inc\utils.php on line 66
+			]<?php if (#CONFIG{soyezcreateurs/deepmenu,rien}=='arborescent') {?><BOUCLE_SsSousMenuhaut(BOUCLE_SousMenuHaut) /><?php } ?></li>
 			</BOUCLE_SousMenuHaut>
 			<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,pas2ul=1,mot=AfficherArticlesMenuHaut}>
 			</ul>
 			</B_SousMenuHaut>
 			[(#REM) Cas où il n'y a que des articles et pas de sous rubrique au menu haut racine]
-			<BOUCLE_SubArticlesRacine(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,rien}|match{deroulant|arborescent}}{id_rubrique}>
+			<BOUCLE_SubArticlesRacine(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,rien}|match{deroulant|arborescent}}{id_rubrique}{!lang_select}>
 			<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,mot=AfficherArticlesMenuHaut}>
 			</BOUCLE_SubArticlesRacine>
 			<//B_SousMenuHaut>
