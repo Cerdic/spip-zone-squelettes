@@ -1,17 +1,15 @@
 [(#REM) Fil d'Ariane ]
-<div class="content-principal">
+<section>
 
-<div class="cartouche">
-    <h1 class="h1"><:poster_message:></h1>
-</div>
+	<header class="cartouche">
+    <h1><:poster_message:></h1>
+	</header>
 
-<div class="resume articles">
-    <h2 class="h2"><:en_reponse:></h2>
+	<div class="main">
+    <h2><:en_reponse:></h2>
 
     <BOUCLE_forum_parent(FORUMS) {id_forum}>
-    <h3 class="h3"><a href="#URL_FORUM">#TITRE</a></h3>
-		<div class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)[&nbsp;(#DATE|heures)][:(#DATE|minutes)]</abbr>][<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#NOM)</span>]</div>
-    [<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+		#INCLURE{fond=inclure/resume/comment,id_forum}
     </BOUCLE_forum_parent>
     
     <BOUCLE_article(ARTICLES) {id_article}>
@@ -23,18 +21,16 @@
     </BOUCLE_breve>
     
     <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
-    <h3 class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
-    [<div class="texte">(#TEXTE)</div>]
+		#INCLURE{fond=inclure/resume/rubrique,id_rubrique}
     </BOUCLE_rubrique>
     
     <BOUCLE_syndic(SITES) {id_syndic}>
-    <h3 class="h3"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h3>
-    [<div class="texte">(#DESCRIPTIF)</div>]
+		#INCLURE{fond=inclure/resume/site,id_syndic}
     </BOUCLE_syndic>
     
     <//B_forum_parent>
 
-</div>
+		#FORMULAIRE_FORUM
+	</div>
 
-#FORMULAIRE_FORUM
 </div>

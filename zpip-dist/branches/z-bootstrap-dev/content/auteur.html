@@ -1,21 +1,23 @@
 <BOUCLE_content(AUTEURS){id_auteur}>
-<div class="content-principal">
-	<div class="vcard">[(#REM) microformat vcard]
-		<div class="cartouche">
-			[(#LOGO_AUTEUR|image_reduire{200,200})]
-			<h1 class="h1 #EDIT{qui} fn">#NOM</h1>
-		</div>
-	
-		[<div class="#EDIT{bio} texte bio">(#BIO)</div>]
-		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-	</div>[(#REM) / vcard]
+<section class="vcard" itemscope itemtype="http://schema.org/Person"> [(#REM) microformat vcard]
+	<header class="cartouche">
+		<h1 class="#EDIT{qui} fn" itemprop="name">[(#LOGO_AUTEUR|image_reduire|inserer_attribut{itemprop,image})]#NOM</h1>
+	</header>
 
-	<INCLURE{fond=liste/articles-auteur,id_auteur,env,ajax} />
+	<div class="main">
+		[<div class="#EDIT{bio} chapo bio">(#BIO)</div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out" itemprop="url">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div>
 
-</div>
+	<footer>
+		[<div class="notes"><hr />(#NOTES)</div>]
+	</footer>
 
-[<div class="notes"><hr />(#NOTES)</div>]
+	<aside>
+		<INCLURE{fond=liste/articles-auteur,id_auteur,env,ajax} />
 
-#FORMULAIRE_ECRIRE_AUTEUR
+		#FORMULAIRE_ECRIRE_AUTEUR
+	</aside>
 
+</section>
 </BOUCLE_content>
