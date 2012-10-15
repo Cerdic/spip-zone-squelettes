@@ -34,7 +34,32 @@
 		]
 
 	</div>
+	<div class="meta-publi">
+		<span class="category"><i class="icon-folder-open"></i> <INCLURE{fond=noisettes/rubrique/lien}{id_rubrique}><span class="sep"> | </span></span>
+
+		[(#PETITION|non)
+			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+			[(#GET{statut}|!={non_autorise}|oui)
+				<INCLURE{fond=noisettes/article/meta-total_commentaires}
+					{id_article}
+					{statut=#GET{statut}}>
+			]
+		]
+		[(#PETITION|oui)
+			<INCLURE{fond=noisettes/article/meta-total_signatures}{id_article}>
+		]
+		<INCLURE{fond=noisettes/article/meta-tags}{id_article}>
+	</div>
+
 	[(#SET{open,'<div class="social">'})]
+		[(#PLUGIN{ARTICLE_PDF}|oui)
+			[(#GET{open}|unique{#ENV})]
+			<span class="pdf">[(#MODELE{mod_bouton_pdf}{id_article})]<span class="sep"> | </span></span>
+		]
+		[(#PLUGIN{RECOMMANDER}|oui)
+			[(#GET{open}|unique{#ENV})]
+			<span class="recommander"><a href="[(#URL_ARTICLE|parametre_url{recommander,oui})]" ><:sarkaspip:recommander_article:></a><span class="sep"> | </span></span>
+		]
 		[(#REM) <!-- Notation de l'article --> ]
 		[(#PLUGIN{NOTATION}|oui)
 			[(#ENV{avec_notation, 0}|=={1}|oui)

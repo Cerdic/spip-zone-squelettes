@@ -24,37 +24,9 @@
 
 	[(#REM) <!-- Icones d'action si l'article n'est pas l'edito ou la une --> ]
 
-	[(#PLUGIN{ARTICLE_PDF}|oui)
-		[(#ENV{page}|match{^(article|evenement)$}|oui)
-			[(#MODELE{mod_bouton_pdf}{id_article})]
-		]
-	]
-	[(#PLUGIN{RECOMMANDER}|oui)
-		[(#ENV{page}|match{^(edito|une)$}|non)
-			<a class="fonction" id="recommander" href="[(#URL_ARTICLE{#ID_ARTICLE}|parametre_url{recommander,oui})]" title="<:sarkaspip:recommander_article:>"></a>
-		]
-	]
-
-	[(#PETITION|non)
-		[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
-		[(#GET{statut}|!={non_autorise}|oui)
-			[(#ENV{afficher_commentaires}|=={oui}|oui)
-				<INCLURE{fond=noisettes/article/meta-total_commentaires}
-				{id_article}
-				{statut=#GET{statut}}
-				{ancre_meme_page=oui}>
-			]
-		]
-	]
-	[(#PETITION|oui)
-		[(#ENV{afficher_commentaires}|=={oui}|oui)
-			<INCLURE{fond=noisettes/article/meta-total_signatures}{id_article}{ancre_meme_page=oui}>
-		]
-	]
-
 	<header class="cartouche">
 
-		[<h1 class="titre">[(#GET{logo}|image_reduire{#ENV{taille_logo,150}})]<span class="#EDIT{titre}">(#TITRE)</span>
+		[<h1>[(#GET{logo}|image_reduire{#ENV{taille_logo,150}})]<span class="#EDIT{titre}">(#TITRE)</span>
 		[<small class="soustitre #EDIT{soustitre}">(#SOUSTITRE)</small>]
 		</h1>]
 
@@ -62,34 +34,18 @@
 			{id_article}
 			{id_evenement}
 			{avec_popularite}
+			{type-page})
+		]
+		[(#INCLURE{fond=noisettes/article/social}
+			{id_article}
 			{avec_notation}
 			{avec_socialtags}
-			{page})
+			{type-page})
 		]
-		<div class="meta-publi">
-			<span class="category"><span class="sep">| </span><INCLURE{fond=noisettes/rubrique/lien}{id_rubrique}></span>
 
-		[(#PETITION|non)
-			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
-			[(#GET{statut}|!={non_autorise}|oui)
-				<span class="comments"><span class="sep">| </span>
-				<INCLURE{fond=noisettes/article/meta-total_commentaires}
-					{id_article}
-					{statut=#GET{statut}}
-					{ancre_meme_page=non}>
-				</span>
-			]
-		]
-		[(#PETITION|oui)
-			<span class="signatures"><span class="sep">| </span>
-			<INCLURE{fond=noisettes/article/meta-total_signatures}{id_article}{ancre_meme_page=non}>
-			</span>
-		]
-		</div>
 	</header>
 
 	<div class="main">
-
 
 		<BOUCLE_ev(EVENEMENTS){id_evenement}>
 		<div class="evenement one well">#INCLURE{fond=inclure/resume/evenement,id_evenement}</div>
@@ -98,34 +54,12 @@
 		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
 		[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
 
-		[<div class="#EDIT{hyperlien} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 	</div>
 
 	<footer>
 	[<div class="#EDIT{ps} ps">(#PS)</div>]
 	[<div class="notes">(#NOTES)</div>]
 
-	[(#REM) <!-- Notation de l'article --> ]
-	[(#SET{plugin_en_cours, non})]
-	[(#PLUGIN{NOTATION}|oui)
-		[(#ENV{avec_notation, 0}|=={2}|oui)
-			<div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
-			[(#SET{plugin_en_cours, oui})]
-		]
-	]
-	[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
-	[(#PLUGIN{SOCIALTAGS}|oui)
-		[(#ENV{avec_socialtags, 0}|=={2}|oui)
-			[(#GET{plugin_en_cours}|=={non}|oui)<div class="plugin">]
-			[(#INCLURE{fond=noisettes/socialtags})]
-			[(#SET{plugin_en_cours, oui})]
-		]
-	]
-
-	[(#GET{plugin_en_cours}|=={oui}|oui)</div>]
-
-	[(#ENV{page}|=={forum}|et{#ENV{statut_forum}|!={ouvert}}|oui)
-		<div class="info"><:sarkaspip:msg_forum_ferme:></div>
-	]
 	</footer>
 </BOUCLE_description>

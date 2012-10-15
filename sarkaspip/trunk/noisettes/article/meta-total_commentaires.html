@@ -7,25 +7,11 @@
 		- ancre_meme_page: introduction/description, permet d'afficher ou pas les l'icone et de renvoyer vers l'ancre de la page sinon l'ancre de la page article
 -->
 ]
-<BOUCLE_combien(FORUMS) {id_article}{plat}></BOUCLE_combien>
-	[(#TOTAL_BOUCLE|=={0}|oui)
-		[(#SET{libelle, <:sarkaspip:0_commentaire|ucfirst:>})]
-	]
-	[(#TOTAL_BOUCLE|!={0}|oui)
-		[(#SET{libelle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]]})]
+<BOUCLE_combien(FORUMS) {id_article}{plat} />
+	[(#TOTAL_BOUCLE|oui)
+	<span class="comments">
+	<a href="[(#ENV{self,#URL_ARTICLE}|ancre_url{comments})]"[ title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zpip:info_1_commentaire,zpip:info_nb_commentaires}|attribut_html)[(#ENV{statut}|=={ferme}|oui)<:sarkaspip:forum_ferme|attribut_html:>]"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+	<span class="sep"> | </span>
+	</span>
 	]
 <//B_combien>
-[(#ENV{statut}|=={ferme}|oui)
-	[(#SET{libelle, [(#GET{libelle})&nbsp;<:sarkaspip:forum_ferme:>]})]
-]
-[(#ENV{ancre_meme_page}|=={oui}|oui)
-	<a class="fonction" id="voir_commentaires" href="#commentaires"[ title="(#GET{libelle})"]></a>
-]
-[(#ENV{ancre_meme_page}|=={non}|oui)
-	[(#ENV{page}|=={album}|non)
-		[<a[ href="(#URL_ARTICLE|ancre_url{commentaires})"]>(#GET{libelle})</a>]
-	]
-	[(#ENV{page}|=={album}|oui)
-		[<a[ href="(#URL_PAGE{album, id_article=#ENV{id_article}}|ancre_url{commentaires})"]>(#GET{libelle})</a>]
-	]
-]
