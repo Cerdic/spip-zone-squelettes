@@ -41,6 +41,8 @@ function SarkaSpip_zengarden_activer_theme($flux){
 	$dir_cfg = $dir . '/cfg';
 	$cfg = preg_files($dir_cfg);
 
+	include_spip('inc/config');
+
 	if ($action == 'activer') {
 		// On sauvegarde des valeurs actuelles pour un eventuel rappel
 		$dir_cfg = sous_repertoire(_DIR_TMP,"cfg");
