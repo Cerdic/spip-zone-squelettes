@@ -1,0 +1,32 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+
+	<header class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="#EDIT{titre}">#TITRE</h1>
+		[<p class="info-publi"><span class="published"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</span></p>]
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+		<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+			<div class="liste articles long">
+			<INCLURE{fond=liste/articles-resume,env,ajax,titre='Billets dans cette categorie'} />
+			</div>
+		</BOUCLE_articles>
+
+		<p class="warning">Aucun article dans cette catégorie</p>
+
+		<//B_articles>
+	</div>
+
+	<footer>
+		[<div class="notes"><hr />(#NOTES)</div>]
+	</footer>
+
+	<aside>
+	</aside>
+
+</section>
+</BOUCLE_content>
