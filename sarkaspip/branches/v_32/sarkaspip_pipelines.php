@@ -1,6 +1,9 @@
 <?php
 // Pipeline insert_head public
-function SarkaSpip_insert_head($flux){
+function SarkaSpip_insert_head($flux) {
+
+	include_spip('inc/config');
+	
 	// Recuperation des parametres cfg sur le menu des rubriques
 	$position = lire_config('sarkaspip_menus/position_rubriques', 1);
 	$modele = lire_config('sarkaspip_menus/modele_rubriques', 1);
@@ -60,6 +63,8 @@ function SarkaSpip_zengarden_activer_theme($flux){
 
 	$dir_cfg = $dir . '/cfg';
 	$cfg = preg_files($dir_cfg);
+
+	include_spip('inc/config');
 
 	if ($action == 'activer') {
 		// On sauvegarde des valeurs actuelles pour un eventuel rappel
