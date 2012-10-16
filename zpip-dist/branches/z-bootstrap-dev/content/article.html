@@ -7,10 +7,36 @@
 			<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
 		]</h1>
 
-
-		<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+		<p class="info-publi"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><i class="icon-calendar"></i> [(#DATE|nom_jour) ][(#DATE|affdate)]</time>[<span class="auteurs"><span class="sep">, </span><i class="icon-user"></i> <:par_auteur:> (#LESAUTEURS)</span>]</p>
 		[(#REM) Inclure le modele des liens de traductions ]
-		#MODELE{article_traductions}
+		<div class="meta-publi">
+			#MODELE{article_traductions}
+		<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+			<span class="comments">
+			<span class="sep">|</span>
+			<a[ href="(#REM|ancre_url{comments})"] [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zpip:info_1_commentaire,zpip:info_nb_commentaires}|attribut_html)"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+			</span>
+			]
+		<//B_nb_commentaires>
+		<BOUCLE_combien(SIGNATURES) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+			<span class="signatures">
+			<span class="sep">|</span>
+			<a[ href="(#REM|ancre_url{petition})"] [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zpip:info_1_signature,zpip:info_nb_signatures}|attribut_html)"]>[<i class="icon-ok-circle"></i> (#TOTAL_BOUCLE)]</a>
+			</span>
+			]
+		<//B_combien>
+			<B_tags>
+			<span class="tags">
+				<span class="sep">|</span>
+				<ul class="unstyled">
+					<BOUCLE_tags(MOTS){id_article}>
+					<li><a class="label" href="#URL_MOT"><i class="icon-tag"></i> #TITRE</a></li>
+					</BOUCLE_tags>
+				</ul>
+			</span>
+			</B_tags>
+		</div>
+
 	</header>
 
 	<div class="main">
