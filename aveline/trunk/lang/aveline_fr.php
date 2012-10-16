@@ -479,6 +479,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-404-filariane' => 'Fil d\'ariane de la page 404',
 	'nom_page-contenuprincipal' => 'Contenu principal générique',
 	'nom_page-forum-contenuprincipal' => 'Contenu principal de la page forum',
+	'nom_page-jour-contenuprincipal' => 'Contenu principal de la page Jour',
 	'nom_page-login-formulaire_login' => 'Formulaire d\'identification',
 	'nom_page-plan-contenuprincipal' => 'Contenu principal de la page plan',
 	'nom_page-recherche-articles' => 'Articles trouvés',
