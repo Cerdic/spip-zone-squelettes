@@ -1,0 +1,118 @@
+#CACHE{3600*24*75}
+<!--Squelette Datice Cr�teil 2010  - JM Labat - http://datice.ac-creteil.fr -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+
+<html lang="#LANG">
+
+<!-- ********************** Initialisation : style interne, métas et liens **************** -->
+<INCLURE{fond=inclusions/header}{id_article}>
+
+<body  dir="#LANG_DIR" >
+
+<div id="container">
+  	<div id="inclusions/header">
+		<INCLURE{fond=inclusions/bandeau}>
+		<INCLURE{fond=inclusions/bande-chemin}{id_rubrique}>
+	</div>
+  	<div id="wrapper">
+    		<div id="content">
+
+<div class="blog">
+<!-- ********************       Affichage auquel ce message répond ****************  -->
+<BOUCLE_billet(ARTICLES){id_article}  >
+
+
+
+<div class="billet">
+
+
+<div class="titre-billet">[(#TITRE|supprimer_numero)]</div> 
+<div class="blogdetail">
+
+<!-- *************** Décompte du nombre d'auteurs  ************************** -->
+<?php $compteur=0; ?>
+<BOUCLE_nbauteurs-article(AUTEURS) {id_article}>
+<?php $compteur=[(#TOTAL_BOUCLE)];  ?>
+</BOUCLE_nbauteurs-article>
+ 
+<!-- *************** Insertion éventuelle des logos  ************************** -->           
+<BOUCLE_logauteurs-article(AUTEURS) {id_article}{par num id_auteur} {inverse}>
+[(#LOGO_AUTEUR||image_reduire{40})]
+</BOUCLE_logauteurs-article>
+
+<!-- *************** Insertion des noms des auteurs  ************************** --> 
+ <?php if ($compteur==1) { ?> Auteur : <?php } ?>
+ <?php if ($compteur>1) { ?> Auteurs : <?php } ?>
+
+<?php $compteur=0; ?>
+<BOUCLE_auteurs-article1(AUTEURS) {id_article} >
+<?php $compteur=$compteur+1; if ($compteur>1) { ?> et <?php } ?>  
+<a href="#URL_AUTEUR">#NOM</a>  
+</BOUCLE_auteurs-article1>
+
+<!-- *************** Insertion de la date de publication  ************************** --> 
+</br> 
+Date : [(#DATE|nom_jour)] [(#DATE|affdate)] à [(#DATE|heures)]h  [(#DATE|minutes)]min [(#DATE|secondes)]s .
+    
+<!-- *************** Fin de la classe blogdetail  ************************** -->
+</div>
+
+[(#TEXTE|typo_couleur|image_reduire{400,0})]
+
+
+
+<!-- ***************                   Fin de la classe billet  ************************** -->
+</div>
+</BOUCLE_billet>
+</div >
+
+<div id="forum" class="forum">
+
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+
+<div class="visualisation">
+         <div class="titre">#TITRE</div>
+         <div class="detail">
+              [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+              [<:par_auteur:> (#NOM)]
+         </div>
+         <div class="texte">
+              [(#TEXTE)]
+              [<br><br><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+         </div>
+</div>
+</BOUCLE_forum_parent>
+
+     #FORMULAIRE_FORUM
+<!-- fin de la classe forum -->
+</div>
+<!-- fin de la classe content --> 
+	</div>
+  	<!-- fin de la classe wrapper -->
+	</div>
+	<div id="navigation">
+		<INCLURE{fond=inclusions/bloc-gauche}{id_rubrique}>
+	</div>
+
+
+	<div id="extra">
+ 		<INCLURE{fond=inclusions/bloc-droite}{id_secteur}{id_rubrique}{id_article}>
+	</div>
+
+
+
+
+	<div id="footer">
+		<INCLURE{fond=inclusions/footer}>
+	</div>
+
+<!-- fin de la classe container -->
+</div>
+</body>
+</html>
+
+</BOUCLE_article_principal>
+<:aucun_article:>
+<//B_article_principal>
