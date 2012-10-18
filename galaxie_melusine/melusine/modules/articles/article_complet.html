@@ -133,42 +133,11 @@
 
 <!-- ************ fin de la classe content **********************  -->  
 				</div>
-<!-- *******************************   Formulaire pour signer la pétition  **********************************************-->
-   			[<div class="petition">
-        			<div id="signer_petition" class="en-tete"><:signer_petition:></div>
-        			(#FORMULAIRE_SIGNATURE)
-    			</div>]
+[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
 
-<!-- *********************************  Signatures pétition  ********************************************************** -->
-    			<B_signatures>
-        			<BOUCLE_signatures_decompte(SIGNATURES) {id_article}>
-				</BOUCLE_signatures_decompte>
-        				[<div class="signatures">
-            				<div id="signatures_petitions" class="en-tete"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
-    
-            				<table>
-                				<thead>
-                    					<tr>
-                        					<td><:date:></td>
-                        					<td><:nom:></td>
-                        					<td><:sites_web:></td>
-                        					<td><:message:></td>
-                   				 	</tr>
-                				</thead>
-                				<tbody>]
-        			<//B_signatures_decompte>
-                		<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {0,30}>
-                    					<tr>
-                        					<td class="signature-date">[(#DATE|affdate_court)]</td>
-                        					<td class="signature-nom">#NOM</td>
-                        					<td class="signature-url"><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
-                        					[<td class="signature-message">(#MESSAGE)</td>]
-                    					</tr>
-                		</BOUCLE_signatures>
-                				</tbody>
-            				</table>
-       			 	</div>
-    			</B_signatures>
     <div style="clear:both">&nbsp;</div>
 
 			<!-- ************************Forums******************** -->
