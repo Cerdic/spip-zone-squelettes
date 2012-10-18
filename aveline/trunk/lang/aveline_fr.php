@@ -15,6 +15,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip-dist avec secteurs de langue et menus',
 
 	// D
+	'date_modif' => 'Date de modification',
 	'description-config-aveline-agenda' => 'Ajoute des noisettes pour afficher les évènements du plugin Agenda dans vos page. Utilisez l\'option <i>Fusionner avec la configuration actuelle</i>.',
 	'description-config-aveline-type-blog' => 'Présentation de type blog (les brèves sont désactivées).',
 	'description-config-aveline-zpip-dist' => 'Cette configuration reproduit Zpip-dist (adaptée pour un site monolingue).',
@@ -407,6 +408,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_ajout_css' => 'Ajout en dur de CSS spécifiques ?',
 	'label_vignette_nb_documents' => 'Ajouter à la suite le nombre de documents joints à l\'article ?',
 	'label_width' => 'Largeur de la fenêtre (en pixels) :',
+	'logo_objet_rubrique' => 'Logo (rubrique si absent)',
 
 	// N
 	'nom_anythingslider_liste_articles' => 'AnythingSlider avec une liste d\'articles',
@@ -524,6 +526,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'secteur' => 'Secteur',
 	'secteur_exclu' => 'secteur exclu',
+	'source_rss' => 'Source RSS',
+	
+	// T
+	'taille_max' => 'taille maximum :',
+	'titre' => 'Titre',
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la balise @champ@.',
