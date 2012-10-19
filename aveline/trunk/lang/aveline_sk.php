@@ -17,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline – Zpip s výberom jazyka a ponukami menu', # MODIF
 
 	// D
+	'date_modif' => 'Date de modification', # NEW
 	'description-config-aveline-agenda' => 'Pridá oriešky na zobrazenie udalostí zásuvného modulu "Program" na vašu stránku. Označte možnosť <i>Zlúčiť s aktuálnymi nastaveniami.</i>',
 	'description-config-aveline-type-blog' => 'Ukážka typu blog (novinky sú deaktivované).',
 	'description-config-aveline-zpip-dist' => 'Toto nastavenie kopíruje Zpip-dist (vhodné pre stránku napísanú v jednom jazyku).',
@@ -410,6 +411,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_ajout_css' => 'Pridať špeciálne CSS?',
 	'label_vignette_nb_documents' => 'Pridať za počet pripojených súborov k článku?',
 	'label_width' => 'Šírka okna (v pixeloch):',
+	'logo_objet_rubrique' => 'Logo (rubrique si absent)', # NEW
 
 	// N
 	'nom_anythingslider_liste_articles' => 'AnythingSlider so zoznamom článkov',
@@ -527,6 +529,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'secteur' => 'Secteur', # NEW
 	'secteur_exclu' => 'secteur exclu', # NEW
+	'source_rss' => 'Source RSS', # NEW
+
+	// T
+	'taille_max' => 'taille maximum :', # NEW
+	'titre' => 'Titre', # NEW
 
 	// Z
 	'zbug_erreur_champ' => 'Chyba v tagu @champ@.',

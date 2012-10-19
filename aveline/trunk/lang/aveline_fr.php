@@ -527,7 +527,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'secteur' => 'Secteur',
 	'secteur_exclu' => 'secteur exclu',
 	'source_rss' => 'Source RSS',
-	
+
 	// T
 	'taille_max' => 'taille maximum :',
 	'titre' => 'Titre',

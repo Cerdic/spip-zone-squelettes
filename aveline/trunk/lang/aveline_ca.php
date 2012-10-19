@@ -17,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip amb sectors de llengua i menús', # MODIF
 
 	// D
+	'date_modif' => 'Date de modification', # NEW
 	'description-config-aveline-agenda' => 'Afegeix fragments per mostrar els esdeveniments del connector Agenda a la vostra pàgina. Utilitzeu la opció <i>Fusionar amb la configuració actual</i>.',
 	'description-config-aveline-type-blog' => 'Presentació del tipus bloc (les breus estan desactivades).',
 	'description-config-aveline-zpip-dist' => 'Aquesta configuració reprodueix Zpip-dist (adaptada per un lloc monolingüe).',
@@ -409,6 +410,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_ajout_css' => 'Afegir en dur CSS específics?',
 	'label_vignette_nb_documents' => 'Ajouter à la suite le nombre de documents joints à l\'article ?', # NEW
 	'label_width' => 'Amplada de la finestra (en píxels):',
+	'logo_objet_rubrique' => 'Logo (rubrique si absent)', # NEW
 
 	// N
 	'nom_anythingslider_liste_articles' => 'Cap barra de desplaçament amb una llista d\'articles',
@@ -526,6 +528,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'secteur' => 'Secteur', # NEW
 	'secteur_exclu' => 'secteur exclu', # NEW
+	'source_rss' => 'Source RSS', # NEW
+
+	// T
+	'taille_max' => 'taille maximum :', # NEW
+	'titre' => 'Titre', # NEW
 
 	// Z
 	'zbug_erreur_champ' => 'Erreur dans la palise @champ@.', # NEW
