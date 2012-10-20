@@ -20,19 +20,34 @@
 
       <li class="#EXPOSE">
       <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-
+    <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
 <!-- affichage des articles des secteurs s'il y en a -->
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
-			<B_articles_racine>
+			<B_articles_racine1>
 				<ul class="articles">
-					<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+					<BOUCLE_articles_racine1(ARTICLES) {id_rubrique} {par date}{inverse}{doublons}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
-					</BOUCLE_articles_racine>
+					</BOUCLE_articles_racine1>
 				</ul>
-			</B_articles_racine>
+			</B_articles_racine1>
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) -->]
+    </BOUCLE_test>
+    </B_test>
+<!-- affichage des articles des secteurs s'il y en a -->
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
+			<B_articles_racine2>
+				<ul class="articles">
+					<BOUCLE_articles_racine2(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+					<li class="#EXPOSE">
+					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine2>
+				</ul>
+			</B_articles_racine2>
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) -->]
+    <//B_test>
 
 			<!-- affichage des sous-rubriques -->
 			<B_rubriques>
@@ -41,18 +56,34 @@
 					<li class="#EXPOSE">
 	    		<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 
-	    		  <!-- affichage des articles -->
+    <BOUCLE_test2(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+<!-- affichage des articles des secteurs s'il y en a -->
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
-	    			<B_articles>
-    					<ul class="articles">
-	    					<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
-	    					<li class="#EXPOSE">
-								<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-								</li>
-	    					</BOUCLE_articles>
-	    				</ul>
-	    			</B_articles>
-[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) --> ]
+			<B_articles_racine3>
+				<ul class="articles">
+					<BOUCLE_articles_racine3(ARTICLES) {id_rubrique} {par date}{inverse}{doublons}>
+					<li class="#EXPOSE">
+					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine3>
+				</ul>
+			</B_articles_racine3>
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) -->]
+    </BOUCLE_test2>
+    </B_test2>
+<!-- affichage des articles des secteurs s'il y en a -->
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
+			<B_articles_racine4>
+				<ul class="articles">
+					<BOUCLE_articles_racine4(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+					<li class="#EXPOSE">
+					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine4>
+				</ul>
+			</B_articles_racine4>
+[(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) -->]
+    <//B_test2>
 
 					<!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
 					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
