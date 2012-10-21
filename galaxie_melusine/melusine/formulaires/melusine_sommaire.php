@@ -31,21 +31,6 @@ function formulaires_melusine_sommaire_verifier(){
 }
 
 
-function rassembler_melusine_sommaire($i,$zone){
-	$var=$i;
-	$chemin='melusine_sommaire/'.$zone.'/'.$var;
-	$j=$i+1;
-	$varplus=$j;
-	$chemin_bas='melusine_sommaire/'.$zone.'/'.$varplus;
-	$pos_bas=lire_config($chemin_bas);
-	ecrire_config($chemin,$pos_bas);
-	ecrire_config($chemin_bas,'aucun');
-	$i++;
-	if($i<12){rassembler_sommaire($i,$zone);};
-}
-
-
-
 function formulaires_melusine_sommaire_traiter(){
 	$choixsom=_request('choixsom');
 	ecrire_config("melusine_sommaire/choixsom",$choixsom);
@@ -75,8 +60,8 @@ function formulaires_melusine_sommaire_traiter(){
 	}
 	if($action=="s"){
 		$chemin='melusine_sommaire/'.$zone.'/'.$var;
-		ecrire_config($chemin,'aucun');	
-		rassembler_sommaire($var,$zone);
+		ecrire_config($chemin,'aucun');
+		melusine_rassembler($var,"sommaire",$zone);
 	}
 	if($action=="a"){
 		$j=1;
