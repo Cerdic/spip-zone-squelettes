@@ -458,6 +458,69 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.23','non');
 		}
+		if (version_compare($current_version,'3.0.24','<')) {
+			spip_log("SoyezCreateurs maj 3.0.24", "soyezcreateurs_install");
+			// Initialisation Sigles du dictionnaire
+			if (_DIR_PLUGIN_DICTIONNAIRES) {
+				include_spip('action/editer_dictionnaire');
+				$id_dictionnaire = sql_fetsel("id_dictionnaire", "spip_dictionnaires", "titre='"._T('dictionnaire:importer_acronymes_titre')."'");
+				if (is_array($id_dictionnaire)) {
+					$id_dictionnaire = $id_dictionnaire['id_dictionnaire'];
+				}
+				if (!$id_dictionnaire) {
+					if ($id_dictionnaire = insert_dictionnaire()){
+						// On lui met des champs par défaut
+						dictionnaire_set($id_dictionnaire, array(
+							'titre' => _T('dictionnaire:importer_acronymes_titre'),
+							'actif' => 1,
+							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
+							'type_defaut' => 'abbr',
+						));
+					}
+				}
+				if ($id_dictionnaire) {
+					$definition = array(
+						'id_dictionnaire' => $id_dictionnaire,
+						'titre' => 'SPIP',
+						'texte' => 'Système de Publication pour un Internet Participatif',
+						'type' => 'abbr',
+						'casse' => 1,
+						'statut' => 'publie',
+						'lang' => 'fr'
+					);
+					$id_definition = sql_fetsel("id_definition", "spip_definitions", "titre='".$definition['titre']."' AND id_dictionnaire=$id_dictionnaire");
+					if (!$id_definition) {
+						// On crée la définition dans la base SANS calculer le cache
+						include_spip('action/editer_definition');
+						if ($id_definition = insert_definition()){
+							definition_set($id_definition, $definition, false);
+						}
+					}
+					$definition = array(
+						'id_dictionnaire' => $id_dictionnaire,
+						'titre' => 'RGAA',
+						'texte' => 'Référentiel Général pour l\'Accessibilité des Administrations',
+						'type' => 'abbr',
+						'casse' => 1,
+						'statut' => 'publie',
+						'lang' => 'fr'
+					);
+					$id_definition = sql_fetsel("id_definition", "spip_definitions", "titre='".$definition['titre']."' AND id_dictionnaire=$id_dictionnaire");
+					if (!$id_definition) {
+						// On crée la définition dans la base SANS calculer le cache
+						include_spip('action/editer_definition');
+						if ($id_definition = insert_definition()){
+							definition_set($id_definition, $definition, false);
+						}
+					}
+				}
+				// On calcule le cache des définitions une seule fois à la fin
+				include_spip('inc/dictionnaires');
+				dictionnaires_lister_definitions(true);
+				
+			}
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.24','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
