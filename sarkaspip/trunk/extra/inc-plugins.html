@@ -1,0 +1,15 @@
+[(#REM) <!-- affichage de la noisette Rainette --> ]
+[(#PLUGIN{RAINETTE}|oui)
+	[(#CONFIG{sarkaspip_noisettes/position_rainette, 0}|=={2}|oui)
+		<INCLURE{fond=noisettes/inc_rainette}>
+	]
+]
+
+[(#REM) <!-- affichage du top album --> ]
+<BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{galerie}}>
+	[(#PLUGIN{SPLICKR}|oui)
+		[(#ENV{type-page}|=={sommaire}|oui)
+			<INCLURE{fond=noisettes/inc_splickrbox}{id_secteur=#ID_RUBRIQUE}>
+		]
+	]
+</BOUCLE_acces_splickrbox>
