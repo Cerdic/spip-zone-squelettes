@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les_mieux_notes' => 'Best rated articles',
 	'articles_les_plus_anciens' => 'Oldest articles',
 	'articles_les_plus_commentes' => 'Most commented articles',
-	'articles_les_plus_populaires' => 'Articles les plus populaires', # NEW
+	'articles_les_plus_populaires' => 'Most popular articles',
 	'articles_les_plus_recents' => 'Latest articles',
 	'articles_les_plus_visites' => 'Most visited articles',
 	'aucun_article_trouve' => 'No article found.',
@@ -50,15 +50,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categories_deux_points' => 'Categories:',
 	'colon2' => '::',
 	'commentaires' => 'Comments',
-	'contact' => 'Contact',
 	'contributeurs' => 'Contributors',
 
 	// D
 	'dans' => 'In',
 	'date_heure_a' => 'at',
 	'date_jour_le' => 'the',
-	'document_un' => '1 document', # NEW
-	'documents_plusieurs' => '@nb@ documents', # NEW
+	'document_un' => '1 document',
+	'documents_plusieurs' => '@nb@ documents',
 
 	// E
 	'en_cours' => 'Ongoing',
@@ -94,7 +93,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_cles_deux_points' => 'Keywords:',
 
 	// N
-	'nb_participants_deux_points' => 'Number of participants:',
 	'notez_cet_article' => 'Rate this article',
 	'nous_contacter' => 'Contact us',
 

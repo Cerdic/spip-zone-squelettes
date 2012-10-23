@@ -50,7 +50,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categories_deux_points' => 'Kategórie:',
 	'colon2' => '::',
 	'commentaires' => 'Komentáre',
-	'contact' => 'Kontakt',
 	'contributeurs' => 'Prispievatelia',
 
 	// D
@@ -94,7 +93,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_cles_deux_points' => 'Kľúčové slová:',
 
 	// N
-	'nb_participants_deux_points' => 'Počet účastníkov:',
 	'notez_cet_article' => 'Ohodnotiť tento článok',
 	'nous_contacter' => 'Kontaktujte nás',
 
