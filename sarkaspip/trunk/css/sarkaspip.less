@@ -1,7 +1,7 @@
 @import "css/variables.less";
 @import "css/mixins.less";
 
-body {margin-top: @navbarHeight;}
+body {margin-top: @navbarHeight;} /* place pour la barre static */
 
 .secondary [class^="icon-"],
 .secondary [class*=" icon-"] {opacity: 0.5;filter: ~"alpha(opacity=50)";}
@@ -30,9 +30,17 @@ section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
 .formulaire_recherche form .input-append {width:100%;}
 .formulaire_recherche form input.search {width:100%;}
 
-.bandeau .recherche {max-width: 250px;position: absolute;top:0;right: 0;margin:@paddingLarge;margin-right: 0;margin-left: 0;}
+.bandeau .recherche {max-width: 4*@gridColumnWidth+3*@gridGutterWidth;position: absolute;top:0;right: 0;margin:@paddingLarge;margin-right: 0;margin-left: 0;}
 .bandeau .formulaire_recherche {margin-bottom: 0;}
-
+@media (min-width: 1200px) {
+  .bandeau .recherche {max-width: 3*@gridColumnWidth1200+2*@gridGutterWidth1200;}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .bandeau .recherche {max-width: 4*@gridColumnWidth768+3*@gridGutterWidth768;}
+}
+@media (max-width: 768px) {
+  .bandeau .recherche {max-width: 3*@gridColumnWidth768+2*@gridGutterWidth768;}
+}
 @media (max-width: 550px) {
   .bandeau .recherche {width: 100%;max-width: 100%;position: relative;}
 }
