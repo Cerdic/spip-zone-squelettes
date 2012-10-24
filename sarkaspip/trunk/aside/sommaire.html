@@ -5,48 +5,11 @@
 
 <INCLURE{fond=aside/inc-nav-base,env} />
 
-[(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
-[(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={1}|oui)
-	[(#ENV{type-page}|match{article|album}|non)
-		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
-	]
-]
-
-[(#REM) <!-- affichage du panneau derniers messages de forum sauf sur les pages du forum --> ]
-[(#CONFIG{sarkaspip_noisettes/position_messages, 0}|=={1}|oui)
-	[(#ENV{id_secteur}|=={#RACINE_SPECIALISEE{forum}}|non)
-		<INCLURE{fond=noisettes/inc_messages}{id_secteur}>
-	]
-]
+<INCLURE{fond=aside/inc-plugins,env} />
 
 [(#REM) <!-- affichage du panneau d'annonce --> ]
 [(#CONFIG{sarkaspip_noisettes/position_annonce, 0}|=={1}|oui)
 	<INCLURE{fond=noisettes/inc_annonce}>
-]
-
-[(#REM) <!-- affichage de la noisette Rainette --> ]
-[(#PLUGIN{RAINETTE}|oui)
-	[(#CONFIG{sarkaspip_noisettes/position_rainette, 0}|=={1}|oui)
-		<INCLURE{fond=noisettes/inc_rainette}>
-	]
-]
-
-[(#REM) <!-- affichage des X dernieres breves ou derniers sites en fonction du contexte --> ]
-[(#ENV{type-page}|!={herbier}|oui)
-	[(#CONFIG{sarkaspip_noisettes/position_herbier, 0}|=={1}|oui)
-		<INCLURE{fond=noisettes/herbier/liste-recents,id_secteur}>
-	]
-]
-[(#ENV{type-page}|!={breve}|et{#CONFIG{sarkaspip_noisettes/position_breves, 2}|=={1}}|oui)
-	<INCLURE{fond=noisettes/breve/nav-recentes}{id_secteur}>
-]
-
-[(#REM) <!-- Blocs de statistiques --> ]
-[(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={1}|oui)
-	<INCLURE{fond=noisettes/statistiques/stats_site}>
-]
-[(#CONFIG{sarkaspip_noisettes/position_stats_2, 0}|=={1}|oui)
-	<INCLURE{fond=noisettes/statistiques/liste-articles}>
 ]
 
 [(#REM) <!-- Pipeline de fin pour inserer des noisettes perso --> ]

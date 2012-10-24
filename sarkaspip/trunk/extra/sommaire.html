@@ -5,22 +5,15 @@
 
 <INCLURE{fond=extra/inc-nav-base,env} />
 
-[(#REM) <!-- affichage de la noisette Nuage --> ]
-[(#PLUGIN{NUAGE}|oui)
-	[(#CONFIG{sarkaspip_noisettes/position_nuage, 0}|=={2}|oui)
-		<INCLURE{fond=noisettes/mot/nav-nuage}>
-	]
-]
-
 <INCLURE{fond=extra/inc-plugins,env} />
 
 <INCLURE{fond=extra/inc-recents,env} />
 
 [(#REM) <!-- Blocs de statistiques --> ]
-[(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={2}|oui)
+[(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|in_any{#LISTE{1,2}}|oui)
 	<INCLURE{fond=noisettes/statistiques/stats_site}>
 ]
-[(#CONFIG{sarkaspip_noisettes/position_stats_2, 0}|=={2}|oui)
+[(#CONFIG{sarkaspip_noisettes/position_stats_2, 0}|in_any{#LISTE{1,2}}|oui)
 	<INCLURE{fond=noisettes/statistiques/liste-articles}>
 ]
 

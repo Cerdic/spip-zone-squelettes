@@ -7,7 +7,7 @@
 ]
 
 [(#REM) <!-- Bloc de recherche --> ]
-[(#CONFIG{sarkaspip_noisettes/position_recherche, 2}|=={1}|oui)
+[(#CONFIG{sarkaspip_noisettes/position_recherche, 2}|in_any{#LISTE{1,2}}|oui)
 	<INCLURE{fond=noisettes/recherche/form}>
 ]
 
@@ -25,16 +25,4 @@
 	<INCLURE{fond=noisettes/menu/formulaires,id_rubrique,position=navigation,type-page,page,composition}>
 	</ul>
 </div>
-]
-
-[(#REM) <!-- affichage de la noisette Nuage --> ]
-[(#PLUGIN{NUAGE}|oui)
-	[(#CONFIG{sarkaspip_noisettes/position_nuage, 0}|=={1}|oui)
-		<INCLURE{fond=noisettes/mot/nav-nuage}>
-	]
-]
-
-[(#REM) <!-- affichage du mini-agenda -->]
-[(#CONFIG{sarkaspip_noisettes/position_miniagenda, 2}|=={1}|oui)
-	<INCLURE{fond=noisettes/agenda/inc_mini_agenda_#CONFIG{sarkaspip_agenda/plugin, 1}}{ajax}{id_rubrique=#ID_RUBRIQUE}{self=#SELF}>
 ]
