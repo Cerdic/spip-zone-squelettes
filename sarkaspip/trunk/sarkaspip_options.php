@@ -55,7 +55,6 @@ if (!defined('_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO')) define('_SARKASPIP_CONFIG
 // -- Pour le contact du site
 if (!defined('_SARKASPIP_CONFIG_AUTORISATION_CONTACT')) define('_SARKASPIP_CONFIG_AUTORISATION_CONTACT', '0minirezo');
 // -- Pour la fenetre de dialgue utilisant le plugin SHOUTBOX
-if (!defined('_SARKASPIP_CONFIG_SHOUTBOX_PAGE')) define('_SARKASPIP_CONFIG_SHOUTBOX_PAGE', 'dialogue');
 if (!defined('_SARKASPIP_CONFIG_SHOUTBOX_TAILLE')) define('_SARKASPIP_CONFIG_SHOUTBOX_TAILLE', 50);
 // -- Pour le chemin du bandeau
 if (!defined('_SARKASPIP_CONFIG_SYMBOLE_CHEMIN')) define('_SARKASPIP_CONFIG_SYMBOLE_CHEMIN', '&gt;');
