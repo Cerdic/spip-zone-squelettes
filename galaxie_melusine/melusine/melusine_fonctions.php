@@ -260,7 +260,10 @@ function melusine_message_noisettes_a_deplacer($casier="melusine_perso_a_deplace
 				// Chemins pour le privé
 				$chemin_fichier = substr($value,3);
 				$chemin_copie = str_replace(_DIR_PLUGIN_MELUSINE,$dossier_squelettes."/",$value);
+				$chemin_socialtags = str_replace(_DIR_PLUGIN_MELUSINE,_DIR_PLUGIN_MELUSINE_SOCIALTAGS,$value);
+
 				$chemin_test_fichier = $value;
+				$chemin_test_socialtags = $chemin_socialtags;
 				$chemin_test_copie = "../".$chemin_copie;
 
 
@@ -269,13 +272,16 @@ function melusine_message_noisettes_a_deplacer($casier="melusine_perso_a_deplace
 					$chemin_test_fichier = $chemin_fichier;
 					$chemin_copie = substr($chemin_copie,3);
 					$chemin_test_copie = $chemin_copie;
+					$chemin_test_socialtags = substr($chemin_socialtags,3);
 
 				}
 
 				// On vérifie que le fichier existe encore dans Mélusine
 				// qu'il n'est pas vide
 				// et qu'il n'existe pas encore dans le répertoire squelettes
-				if (file_exists($chemin_test_fichier) AND filesize($chemin_test_fichier)>0 AND !file_exists($chemin_test_copie)) {
+				// et qu'il n'est pas non plus dans les socialtags...
+
+				if (file_exists($chemin_test_fichier) AND filesize($chemin_test_fichier)>0 AND !file_exists($chemin_test_copie) AND !file_exists($chemin_test_socialtags)) {
 					$return .= wrap("<strong>Copier</strong> ".wrap($chemin_fichier,"<code>")." dans ".wrap($chemin_copie,"<code>"),"<li class='liste-item'>");
 				}
 			}
