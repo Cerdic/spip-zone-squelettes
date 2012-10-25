@@ -5,27 +5,36 @@
 		{id_rubrique}
 		{avec_filles=#CONFIG{sarkaspip_rubrique/avec_filles, non}}>
 
-	[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
-	<INCLURE{fond=noisettes/document/liste-documents_joints}
-		{id_rubrique}
-		{avec_descriptif=#CONFIG{sarkaspip_rubrique/avec_descriptif, non}}>
+	<aside>
+		[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
+		<INCLURE{fond=noisettes/document/liste-documents_joints}
+			{id_rubrique}
+			{avec_descriptif=#CONFIG{sarkaspip_rubrique/avec_descriptif, non}}>
 
-	[(#REM) <!-- Images du portfolio de la rubrique --> ]
-	#SET{plugin, aucun}
-	#SET{diaporama, non}
-	[(#CONFIG{sarkaspip_rubrique/mode_galerie, 0}|!={0}|oui)
-		[(#SET{plugin, mediabox})]
-	]
-	[(#CONFIG{sarkaspip_rubrique/mode_galerie, 0}|=={2}|oui)
-		[(#SET{diaporama, oui})]
-	]
-	<INCLURE{fond=noisettes/document/liste-images_jointes}
-		{id_rubrique}
-		{effet_galerie=#GET{plugin}}
-		{avec_diaporama=#GET{diaporama}}>
-</section> <!-- Fin rubrique -->
+		[(#REM) <!-- Images du portfolio de la rubrique --> ]
+		#SET{plugin, aucun}
+		#SET{diaporama, non}
+		[(#CONFIG{sarkaspip_rubrique/mode_galerie, 0}|!={0}|oui)
+			[(#SET{plugin, mediabox})]
+		]
+		[(#CONFIG{sarkaspip_rubrique/mode_galerie, 0}|=={2}|oui)
+			[(#SET{diaporama, oui})]
+		]
+		<INCLURE{fond=noisettes/document/liste-images_jointes}
+			{id_rubrique}
+			{effet_galerie=#GET{plugin}}
+			{avec_diaporama=#GET{diaporama}}>
 
-[(#REM) <!-- Articles de la rubrique --> ]
-[(#CONFIG{sarkaspip_rubrique/position_articles, 1}|=={1}|oui)
-	<INCLURE{fond=noisettes/rubrique/liste-articles}{ajax}{id_rubrique}>
-]
+		[(#REM) <!-- Articles de la rubrique --> ]
+		[(#CONFIG{sarkaspip_rubrique/position_articles, 1}|=={1}|oui)
+			<INCLURE{fond=noisettes/rubrique/liste-articles}{ajax}{id_rubrique}>
+		]
+
+		[(#CONFIG{activer_sites}|=={oui}|oui)
+			[(#REM) <!-- Autorisation niveau visiteur : tout visiteur connecte ou pas peut proposer un site (seul cas possible) -->]
+			[(#CONFIG{proposer_sites}|=={2}|oui)
+				<INCLURE{fond=noisettes/rubrique/referencer,id_rubrique} />
+			]
+		]
+	</aside>
+</section>
