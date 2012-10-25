@@ -15,13 +15,13 @@
 <tr class="[(#ENV{compteur_boucle}|alterner{row_odd,row_even})]">
 	<td class="etat"><img src="[(#CHEMIN{[images/forum_(#ENV{sujet})[_(#GET{verrou})].gif]})"][ alt="(#ENV{sujet})"] width="24" height="24" /></td>
 	<td class="description" id="forum#ENV{id_forum}">
-		<h3 class="titre">
-			<a href="[(#URL_PAGE{forum}|parametre_url{id_article,#ENV{id_article}}|parametre_url{id_forum,#ENV{id_forum}})]"[(#GET{verrou}|oui) title="<:sarkaspip:bulle_sujet_verrouille:>"]>
+		<strong class="titre">
+			<a href="[(#URL_ARTICLE{#ENV{id_article}}|parametre_url{id_forum,#ENV{id_forum}})]"[(#GET{verrou}|oui) title="<:sarkaspip:bulle_sujet_verrouille:>"]>
 				[(#ENV{titre}|nettoyer_titre_sujet)]
 			</a>
-		</h3>
+		</strong>
 	</td>
-	<td class="etat">[(#GET{resolu}|oui)<img src="#CHEMIN{images/forum_sujet_resolu.gif}" alt="#ENV{resolu}" width="24" height="24" />]</td>
+	<td class="resolu">[<i(#GET{resolu}|oui)class="icon-ok" title="[(#ENV{resolu,<:sarkaspip:colonne_resolu:>}|attribut_html)]"></i>]</td>
 
 	<BOUCLE_compteur_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_compteur_reponses>
 	<td class="messages">#TOTAL_BOUCLE</td>
@@ -29,15 +29,7 @@
 
 	<td class="dernier_message">
 	<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{!par date}{0,1}>
-		[(#DATE|affdate)]&nbsp;<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]<br />
-		<:sarkaspip:par_auteur:>
-		<BOUCLE_auteur_message(AUTEURS){id_auteur}{tout}>
-			<a href="#URL_AUTEUR">#NOM</a>
-		</BOUCLE_auteur_message>
-		</B_auteur_message>
-			[(#NOM|sinon{<:sarkaspip:anonyme:>})]
-		<//B_auteur_message>
+		[<time datetime="[(#DATE|date_iso)]"><i class="icon-calendar"></i> (#DATE|affdate_heure)</time>][<span class="auteurs"><span class="sep">, </span><i class="icon-user"></i> <:par_auteur:> (#NOM)</span>]
 	</BOUCLE_dernier_message>
 	</td>
 </tr>
-<tr>

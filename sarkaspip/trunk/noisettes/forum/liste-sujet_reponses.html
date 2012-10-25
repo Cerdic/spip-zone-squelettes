@@ -11,12 +11,32 @@
 [(#ENV{verrou}|=={lock}|oui)#SET{verrou, lock}]
 <BOUCLE_titre(FORUMS){id_forum=#ENV{id_thread}}>
 		[(#TITRE|strstr{_verrouille_}|oui) #SET{verrou, lock}]
-</BOUCLE_titre><div id="reponses" class="forum">
+</BOUCLE_titre>
+
+
+[(#REM) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+[(#PARAMETRES_FORUM|?{''})]
+<B_comments_list>
+<div class="forum">
+	<h2><span class="label"><:sarkaspip:forum_sujet_reponses:></span></h2>
+	<ul class="comments-ul comments-items">
+		<BOUCLE_comments_list(FORUMS){id_thread}{id_forum!=#ENV{id_forum}}{plat} {par date}{inverse #ENV{sens_tri}}{pagination #CONFIG{sarkaspip_forum/pas_pagination_2, 30}}>
+		<li class="comment-li comment-item[ (#COMPTEUR_BOUCLE|alterner{'odd','even'})][ (#COMPTEUR_BOUCLE|=={1}|oui)first][ (#EXPOSE)][(#ID_OBJET|me{#OBJET,#ID_AUTEUR})me]">
+			<INCLURE{fond=inclure/comment,id_forum,compteur=#COMPTEUR_BOUCLE} />
+		</li>
+		</BOUCLE_comments_list>
+	</ul>
+</div>
+</B_comments_list>
+
+
+<!--
+<div id="reponses" class="forum">
 	<a id="reponses" name="reponses" href="#reponses"></a>
 	[(#GET{verrou}|non)
 		<a class="fonction" id="commenter" href="#formulaire_reponse" title="<:sarkaspip:ecrire_reponse:>"></a>
 	]
-	<h2><:sarkaspip:forum_sujet_reponses:></h2>
+
 
 <B_reponses>
 #ANCRE_PAGINATION
@@ -24,7 +44,6 @@
 [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_forum/modele_pagination_2}})</div>]
 ]	
 	<table>
-
 
 <BOUCLE_reponses(FORUMS){id_thread}{id_forum!=#ENV{id_forum}}{plat}{par date}{inverse #ENV{sens_tri}}{pagination #CONFIG{sarkaspip_forum/pas_pagination_2, 30}}>
 		<tr class="message">
@@ -67,7 +86,7 @@
 </B_reponses>	
 <br class="nettoyeur" />
 </div>
-
+-->
 
 [(#REM) <!-- Forumlaire de reponse --> ]
 [(#GET{verrou}|non)
