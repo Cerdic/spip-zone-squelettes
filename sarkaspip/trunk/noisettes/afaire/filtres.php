@@ -45,7 +45,7 @@ function afaire_tdm_par_jalon($jalons) {
 			$i += 1;
 			$nb = afaire_compteur_jalon($_jalon);
 			$nb_str = ($nb == 0) ? _T('sarkaspip:0_ticket') : (($nb == 1) ? strval($nb).' '._T('sarkaspip:1_ticket') : strval($nb).' '._T('sarkaspip:n_tickets'));
-			$page .= '<li><a href="#ancre_jalon_'.strval($i).'" title="'._T('sarkaspip:afaire_aller_jalon').'">'
+			$page .= '<li class="item"><a href="#ancre_jalon_'.strval($i).'" title="'._T('sarkaspip:afaire_aller_jalon').'">'
 				._T('sarkaspip:afaire_colonne_jalon').'&nbsp;&#171;&nbsp;'.$_jalon.'&nbsp;&#187;, '.$nb_str
 				.'</a></li>';
 		}
@@ -53,7 +53,7 @@ function afaire_tdm_par_jalon($jalons) {
 	$nb = afaire_compteur_jalon();
 	if ($nb > 0) {
 		$nb_str = ($nb == 1) ? strval($nb).' '._T('sarkaspip:1_ticket') : strval($nb).' '._T('sarkaspip:n_tickets');
-		$page .= '<li><a href="#ancre_jalon_non_planifie" title="'._T('sarkaspip:afaire_aller_jalon').'">&#171;&nbsp;'
+		$page .= '<li class="item"><a href="#ancre_jalon_non_planifie" title="'._T('sarkaspip:afaire_aller_jalon').'">&#171;&nbsp;'
 			._T('sarkaspip:afaire_non_planifies').'&nbsp;&#187;, '.$nb_str
 			.'</a></li>';
 	}
@@ -71,13 +71,10 @@ function afaire_tdm_par_jalon($jalons) {
 function afaire_compteur_jalon($jalon='', $statut='') {
 	$valeur = 0;
 	// Nombre total de tickets pour le jalon
-	$select = array('t1.id_ticket');
-	$from = array('spip_tickets AS t1');
-	$where = array('t1.jalon='.sql_quote($jalon));
+	$where = array('jalon='.sql_quote($jalon));
 	if ($statut)
-		$where = array_merge($where, array('t1.statut='.sql_quote($statut)));
-	$result = sql_select($select, $from, $where);
-	$valeur = sql_count($result);
+		$where[] = 'statut='.sql_quote($statut);
+	$valeur = sql_countsel('spip_tickets', $where);
 	return $valeur;
 }
 // FIN du Filtre : afaire_compteur_jalon
@@ -92,16 +89,12 @@ function afaire_compteur_jalon($jalon='', $statut='') {
 function afaire_avancement_jalon($jalon='') {
 	$valeur = 0;
 	// Nombre total de tickets pour le jalon
-	$select = array('t1.id_ticket');
-	$from = array('spip_tickets AS t1');
-	$where = array('t1.jalon='.sql_quote($jalon));
-	$result = sql_select($select, $from, $where);
-	$n1 = sql_count($result);
+	$where = array('jalon='.sql_quote($jalon));
+	$n1 = sql_countsel('spip_tickets', $where);
 	// Nombre de tickets termines pour le jalon
-	if ($n1 != 0) {
-		$where = array_merge($where, array(sql_in('t1.statut', array('resolu','ferme'))));
-		$result = sql_select($select, $from, $where);
-		$n2 = sql_count($result);
+	if ($n1 > 0) {
+		$where[] = sql_in('statut', array('resolu','ferme'));
+		$n2 = sql_countsel('spip_tickets', $where);
 		$valeur = floor($n2*100/$n1);
 	}
 	return $valeur;
@@ -115,20 +108,16 @@ function afaire_avancement_jalon($jalon='') {
 // Fonction : Retourne l'info qu'au moins un ticket a ete cree
 // =======================================================================================================================================
 //
-function afaire_ticket_existe($bidon) {
+function afaire_ticket_existe() {
 	$existe = false;
 	// Test si la table existe
-	$table = sql_showtable('spip_tickets', true);
-	if ($table) {
+	$trouver_table = charger_fonction('trouver_table','base');
+	if ($trouver_table('spip_tickets')){
 		// Nombre total de tickets
-		$from = array('spip_tickets AS t1');
-		$where = array();
-		$result = sql_countsel($from, $where);
-		// Nombre de tickets termines pour le jalon
-		if ($result >= 1)
+		if (sql_countsel('spip_tickets'))
 			$existe = true;
 	}
-	return $existe;
+	return $existe ? ' ':'';
 }
 // FIN du Filtre : afaire_ticket_existe
 
