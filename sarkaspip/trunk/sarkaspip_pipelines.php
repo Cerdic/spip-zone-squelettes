@@ -7,6 +7,16 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /**
+ * Post-propre : appliquer le filtre des couleurs typo_couleur automatiquement
+ * @param string $texte
+ * @return mixed
+ */
+function sarkaspip_post_propre($texte){
+	$texte = typo_couleur($texte);
+	return $texte;
+}
+
+/**
  * Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers a sauvegarder dans le plugin Mes Fichiers 2
  *
  * @param $flux
