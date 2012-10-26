@@ -9,6 +9,76 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 // TODO : conditionner a l'existence du plugin tickets
 include_spip("noisettes/afaire/filtres");
 
+/**
+ * Tester si on doit rediriger une rubrique vers son article orphelin
+ * - si reglage active dans la configuration
+ * - si la rubrique ne contient qu'un article, aucune sous-rubrique ni documents
+ *
+ * @param $id_rubrique
+ * @return string|int
+ */
+function sarkaspip_test_si_redirection_article_solitaire($id_rubrique){
+	include_spip("inc/config");
+	$serveur = '';
+
+	// si reglage pas active, renvoyer rien (pas de redirection)
+	if (lire_config('sarkaspip_menus/option_rubriques',0)!=2)
+		return "";
+
+	$trouver_table = charger_fonction('trouver_table', 'base');
+	include_spip('public/compiler');
+	include_spip('public/composer');
+	// si plus d'un article publie, pas de redirection (on prend les 2 premiers, permet d'avoir l'id de l'article unique si besoin
+	// il faut passer par une boucle compilateur pour avoir les conditions de statut publie
+	if (!$desc = $trouver_table("spip_articles", $serveur))
+		return "";
+	$id_table_objet = "id_article";
+	$id_table = $table_objet = "articles";
+	$boucle = new Boucle();
+	$boucle->show = $desc;
+	$boucle->nom = 'articles_publies';
+	$boucle->id_boucle = $id_table;
+	$boucle->id_table = $id_table;
+	$boucle->sql_serveur = $serveur;
+	$boucle->select[] = $id_table_objet;
+	$boucle->from[$table_objet] = "spip_articles";
+	$boucle->where[] = $id_table.".id_rubrique=".intval($id_rubrique);
+	$boucle->limit = "0,2";
+	instituer_boucle($boucle, false);
+	$res = calculer_select($boucle->select,$boucle->from,$boucle->from_type,$boucle->where,$boucle->join,$boucle->group,$boucle->order,$boucle->limit,$boucle->having,$table_objet,$id_table,$serveur);
+	$a = array();
+	while ($row = sql_fetch($res))
+		$a[] = $row;
+	if (count($a)!=1)
+		return "";
+
+	// si une sous-rubrique publie, pas de redirection
+	// il faut passer par une boucle compilateur pour avoir les conditions de statut publie
+	if (!$desc = $trouver_table("spip_rubriques", $serveur))
+		return "";
+	$id_table_objet = "id_rubrique";
+	$id_table = $table_objet = "rubriques";
+	$boucle = new Boucle();
+	$boucle->show = $desc;
+	$boucle->nom = 'sousrubriques_publies';
+	$boucle->id_boucle = $id_table;
+	$boucle->id_table = $id_table;
+	$boucle->sql_serveur = $serveur;
+	$boucle->select[] = $id_table_objet;
+	$boucle->from[$table_objet] = "spip_rubriques";
+	$boucle->where[] = $id_table.".id_parent=".intval($id_rubrique);
+	$boucle->limit = "0,1";
+	instituer_boucle($boucle, false);
+	$res = calculer_select($boucle->select,$boucle->from,$boucle->from_type,$boucle->where,$boucle->join,$boucle->group,$boucle->order,$boucle->limit,$boucle->having,$table_objet,$id_table,$serveur);
+	if (sql_fetch($res))
+		return "";
+
+	if (sql_countsel("spip_documents_liens","objet=".sql_quote('rubrique')." AND id_objet=".intval($id_rubrique)))
+		return "";
+
+	return intval(reset(reset($a)));
+}
+
 // =======================================================================================================================================
 // Filtre : typo_couleur
 // =======================================================================================================================================

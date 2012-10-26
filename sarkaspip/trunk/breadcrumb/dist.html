@@ -11,32 +11,10 @@
 
 		<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{id_secteur!=#RACINE_SPECIALISEE{squelette}}>
 			<BOUCLE_hierarchie(HIERARCHIE)>
-				<li>
-				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
-					<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
-				]
-				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|non)
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
-						<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}>
-					]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-						<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
-					]
-				]
+				<li><INCLURE{fond=noisettes/rubrique/lien,id_rubrique=#ID_RUBRIQUE}>
 				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
 			</BOUCLE_hierarchie>
-				<li[(#ENV{id_article}|non)class="active"]>
-				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
-					<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-				]
-				[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|non)
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
-						<INCLURE{fond=noisettes/rubrique/lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-					]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-						<INCLURE{fond=noisettes/menu/inc-rubrique_lien}{id_rubrique=#ID_RUBRIQUE}{expose=#ENV{id_article}|non}>
-					]
-				]
+				<li[(#ENV{id_article}|non)class="active"]><INCLURE{fond=noisettes/rubrique/lien,id_rubrique=#ID_RUBRIQUE,expose=#ENV{id_article}|non}>
 				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
 				#SET{found,' '}
 		</BOUCLE_rubrique>
