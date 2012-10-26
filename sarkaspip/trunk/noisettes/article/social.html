@@ -8,6 +8,12 @@
 ]
 <BOUCLE_social(ARTICLES) {id_article}>
 	[(#SET{open,'<div class="social">'})]
+		[(#REM) <!-- Notation de l'article --> ]
+		[(#PLUGIN{NOTATION}|oui)
+			[(#ENV{avec_notation, 0}|=={1}|oui)
+				[(#GET{open}|unique{#ENV})][<div class="notation">(#FORMULAIRE_NOTATION)<span class="sep"> | </span></div>]
+			]
+		]
 		[(#PLUGIN{ARTICLE_PDF}|oui)
 			[(#GET{open}|unique{#ENV})]
 			<span class="pdf">[(#MODELE{mod_bouton_pdf}{id_article})]<span class="sep"> | </span></span>
@@ -15,12 +21,6 @@
 		[(#PLUGIN{RECOMMANDER}|oui)
 			[(#GET{open}|unique{#ENV})]
 			<span class="recommander"><a href="[(#URL_ARTICLE|parametre_url{recommander,oui})]"  class="label popin"><i class="icon-share"></i><span> <:sarkaspip:recommander_article:></span></a><span class="sep"> | </span></span>
-		]
-		[(#REM) <!-- Notation de l'article --> ]
-		[(#PLUGIN{NOTATION}|oui)
-			[(#ENV{avec_notation, 0}|=={1}|oui)
-				[(#GET{open}|unique{#ENV})][<div class="notation">(#FORMULAIRE_NOTATION)</div>]
-			]
 		]
 		[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
 		[(#PLUGIN{SOCIALTAGS}|oui)
