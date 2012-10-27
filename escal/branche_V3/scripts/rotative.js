@@ -62,32 +62,8 @@ var headline_count;
  
 
 // pour la noisette inc-annonce_defilant
- var headline3_count;
- var headline3_interval;
- var old_headline3 = 0;
- var current_headline3 = 0;
-
- $(document).ready(function(){
-   headline3_count = $("div.headline3").size();
-   $("div.headline3:eq("+current_headline3+")").css('top','5px');
-
-   headline3_interval = setInterval(headline3_rotate,8000); //temps en millisecondes
-   $('#scrollup3').hover(function() {
-     clearInterval(headline3_interval);
-   }, function() {
-     headline3_interval = setInterval(headline3_rotate,8000); //temps en millisecondes
-     headline3_rotate();
-   });
- });
-
- function headline3_rotate() {
-   current_headline3 = (old_headline3 + 1) % headline3_count;
-   $("div.headline3:eq(" + old_headline3 + ")").animate({top: -205},"slow", function() {
-     $(this).css('top','210px');
-   });
-   $("div.headline3:eq(" + current_headline3 + ")").show().animate({top: 5},"slow");
-   old_headline3 = current_headline3;
- }
+// script déporté dans annoncedefil.js.html
+// pour prise en compte des variables spip
 
  
  // pour la noisette inc-sites_favoris
