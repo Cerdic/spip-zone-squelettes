@@ -12,12 +12,16 @@
         <div id="ombre-droite">
           <div id="conteneur">
 
-            <div id="entete">
-              
-              <INCLURE {fond=inclusions/inc-bandeau}>
-            [(#CONFIG{escal/config/menuH}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
-            [(#CONFIG{escal/config/menuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu}{env}>]
-            </div>
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-bandeau}>
+
+            [(#CONFIG{escal/config/menuH}|=={non}|non)
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau}{env}>]
+            ]
+
+          </div>
 
             <div id="espace">
             </div>
@@ -75,11 +79,18 @@
 
             [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
           <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
-            [(#CONFIG{escal/config/menuV1}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{env}></div>]
-            [(#CONFIG{escal/config/menuV1}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical}{env}></div>]
-
-            [(#CONFIG{escal/config/menuV2}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{env}></div>]
-            [(#CONFIG{escal/config/menuV2}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-menu_vertical_2}{env}></div>]
+            [(#CONFIG{escal/config/menuV1}|=={non}|non)
+              <div class="cadre-bleu">
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical}{env}>]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical}{env}>]
+              </div>
+            ]
+            [(#CONFIG{escal/config/menuV2}|=={non}|non)
+              <div class="cadre-bleu">
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical2}{env}>]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical2}{env}>]
+              </div>
+            ]
 
             </div>
 
