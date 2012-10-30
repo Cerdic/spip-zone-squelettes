@@ -27,8 +27,10 @@
 				[<li class="[(#GET{classe_li})]">(#ENV{id_rubrique}|?{<a href="[(#URL_PAGE{referencement,id_rubrique=[(#ENV{id_rubrique})]})]"><:sarkaspip:bouton_referencement:></a>})</li>]
 			})]
 		})]
-		[(#CONFIG{accepter_inscriptions}|=={oui}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>})]
-		[(#PLUGIN{SPIPLISTES}|ou{#PLUGIN{CLEVERMAIL}}|ou{#PLUGIN{ABOMAILMANS}}|oui)
+		[(#REM|inscription_possible|oui)
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>
+		]
+		[(#VAL{SPIPLISTES}|abonnement_possible|ou{#VAL{ABOMAILMANS}|abonnement_possible}|oui)
 			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{abonnement-newsletter})]"><:sarkaspip:newsletter:></a></li>
 		]
 		[(#SESSION{id_auteur}|?{'',' '})
