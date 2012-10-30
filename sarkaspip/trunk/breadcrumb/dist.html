@@ -24,6 +24,13 @@
 				<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
 				#SET{found,' '}
 		</BOUCLE_sujet>
+		[(#ID_ALBUM|oui)
+			<li>[(#URL_PAGE{galerie}|lien_ou_expose{<:breadcrumb:galerie:>})]
+			<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
+			<li class="active">[(#URL_ALBUM{#ID_ALBUM}|lien_ou_expose{#INFO_TITRE{album,#ID_ALBUM},' '})]
+			<span class="divider">#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}</span></li>
+			#SET{found,' '}
+		]
 		[(#GET{found}|non)
 			<li class="active">
 			<strong>[(#VAL{breadcrumb:}|concat{#ENV{type-page}|replace{\W,'_'}}|_T)]</strong>
