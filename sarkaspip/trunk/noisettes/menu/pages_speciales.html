@@ -1,41 +1,25 @@
-<B_acces_rubriques>
-<BOUCLE_acces_rubriques(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{agenda:galerie:forum}}>
-[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|oui)
-	[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|oui)
-		<li class="menu_pages_speciales[(#SI_PAGE{agenda}|oui)on active]"><a href="[(#URL_PAGE{agenda})]"><:sarkaspip:agenda:></a></li>
-	]
-	[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={2}|oui)
-		[(#PLUGIN{AGENDA}|oui)
-		<li class="menu_pages_speciales[(#SI_PAGE{agenda}|oui)on active]"><a href="[(#URL_PAGE{agenda})]"><:sarkaspip:agenda:></a></li>
-		]
-	]
-]
-[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{galerie}}|oui)
-		<li class="menu_pages_speciales[(#SI_PAGE{galerie}|oui)on active]"><a href="[(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_RUBRIQUE})]"><:sarkaspip:galerie:></a></li>
-		
-]
-[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{forum}}|oui)
-		<li class="menu_pages_speciales[(#SI_PAGE{forums}|oui)on active]"><a href="[(#URL_RUBRIQUE)]"><:sarkaspip:forum:></a></li>
-		
-]
-</BOUCLE_acces_rubriques>
+<BOUCLE_has_agenda(EVENEMENTS?){0,1}>
+	<li class="menu_pages_speciales[(#SI_PAGE{agenda}|oui)on active]"><a href="[(#URL_PAGE{agenda})]"><:sarkaspip:agenda:></a></li>
+</BOUCLE_has_agenda>
 
-<B_acces_mots>
+<BOUCLE_has_album(ALBUMS?){0,1}>
+	<li class="menu_pages_speciales[(#SI_PAGE{galerie}|oui)on active]"><a href="[(#URL_PAGE{galerie})]"><:sarkaspip:galerie:></a></li>
+</BOUCLE_has_album>
+
+<BOUCLE_has_forum(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{forum}}>
+	<li class="menu_pages_speciales[(#SI_PAGE{forums}|oui)on active]"><a href="[(#URL_RUBRIQUE)]"><:sarkaspip:forum:></a></li>
+</BOUCLE_has_forum>
+
 <BOUCLE_acces_mots(MOTS) {type != squelette_habillage}{0,1}>
-		<li class="menu_pages_speciales[(#SI_PAGE{mot}|oui)on active]"><a href="[(#URL_PAGE{mot})]"><:sarkaspip:mots_clefs:></a></li>
-		
+	<li class="menu_pages_speciales[(#SI_PAGE{mot}|oui)on active]"><a href="[(#URL_PAGE{mot})]"><:sarkaspip:mots_clefs:></a></li>
 </BOUCLE_acces_mots>
 
-<B_acces_herbier>
-<BOUCLE_acces_herbier(SITES) {id_secteur!==#RACINE_SPECIALISEE{galerie,not_in}}{0,1}>
+<BOUCLE_acces_herbier(SITES){0,1}>
 	<li class="menu_pages_speciales[(#SI_PAGE{herbier}|oui)on active]"><a href="[(#URL_PAGE{herbier})]"><:sarkaspip:herbier_sites|ucfirst:></a></li>
-		
 </BOUCLE_acces_herbier>
 
-<B_acces_syndics>
-<BOUCLE_acces_syndics(SYNDIC_ARTICLES) {id_secteur!==#RACINE_SPECIALISEE{galerie,not_in}}{0,1}>
-		<li class="menu_pages_speciales[(#SI_PAGE{site}|oui)on active]"><a href="[(#URL_PAGE{site})]"><:sarkaspip:sur_web:></a></li>
-		
+<BOUCLE_acces_syndics(SYNDIC_ARTICLES){0,1}>
+	<li class="menu_pages_speciales[(#SI_PAGE{site}|oui)on active]"><a href="[(#URL_PAGE{site})]"><:sarkaspip:sur_web:></a></li>
 </BOUCLE_acces_syndics>
 
 [(#PLUGIN{TICKETS}|oui)
