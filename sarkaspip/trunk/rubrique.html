@@ -1,9 +1,5 @@
-<BOUCLE_racforum(RUBRIQUES){id_rubrique=#RACINE_SPECIALISEE{forum}}><BOUCLE_is_forum(RUBRIQUES){id_rubrique=#ENV{id_rubrique}}{branche}>
-	<INCLURE{fond=structure,env,id_secteur=#ID_SECTEUR,type-page=rubrique,composition=forums} />
-</BOUCLE_is_forum></BOUCLE_racforum>
-	#SET{redirection,#ID_RUBRIQUE|sarkaspip_test_si_redirection_article_solitaire}
-	[(#GET{redirection}|non|sinon_interdire_acces{#URL_ARTICLE{#GET{redirection}}})]
-	<BOUCLE_principale_rubrique(RUBRIQUES){id_rubrique}>
-	<INCLURE{fond=structure,env,id_secteur=#ID_SECTEUR,type-page=rubrique,composition=#ENV{referencer}|=={oui}|?{referencer,#AGENDA|?{agenda,#COMPOSITION}}} />
-	</BOUCLE_principale_rubrique>
-<//B_racforum>
+#SET{redirection,#ID_RUBRIQUE|sarkaspip_test_si_redirection_article_solitaire}
+[(#GET{redirection}|non|sinon_interdire_acces{#URL_ARTICLE{#GET{redirection}}})]
+<BOUCLE_principale_rubrique(RUBRIQUES){id_rubrique}>
+<INCLURE{fond=structure,env,id_secteur=#ID_SECTEUR,type-page=rubrique,composition=#ENV{referencer}|=={oui}|?{referencer,#AGENDA|?{agenda,#COMPOSITION}}} />
+</BOUCLE_principale_rubrique>

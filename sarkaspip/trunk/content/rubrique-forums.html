@@ -1,4 +1,4 @@
-<BOUCLE_forum(RUBRIQUES) {id_rubrique=#ENV{id_rubrique, #RACINE_SPECIALISEE{forum}}}>
+<BOUCLE_forum(RUBRIQUES) {id_rubrique}>
 	[(#REM) <!-- Contenu de la rubrique --> ]
 	<section class="forums">
 		[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
@@ -7,8 +7,11 @@
 			{avec_filles=non}>
 
 		<aside>
-			[(#REM) <!-- Affichage du ou des differents groupes de forums --> ]
-			<INCLURE{fond=noisettes/forum/liste-groupes}{id_rubrique=#ENV{id_rubrique,''}|=={#RACINE_SPECIALISEE{forum}}|?{'',#ENV{id_rubrique,''}}}>
+			[(#REM) <!-- Affichage des sujets de ce groupe --> ]
+			<INCLURE{fond=noisettes/forum/liste-groupes}{id_rubrique}>
+
+			[(#REM) <!-- Affichage du ou des differents sous-groupes de forums --> ]
+			<INCLURE{fond=noisettes/forum/liste-groupes}{id_parent=#ID_RUBRIQUE}>
 		</aside>
 	</section>
 </BOUCLE_forum>

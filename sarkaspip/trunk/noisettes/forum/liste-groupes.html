@@ -4,7 +4,7 @@
 		- id_rubrique: id de rubrique correspondant au groupe de forums ou vide si tous les groupes
 -->
 ]
-<BOUCLE_groupe_forum(RUBRIQUES){id_parent=#RACINE_SPECIALISEE{forum}}{id_rubrique?}{par num titre}>
+<BOUCLE_groupe_forum(RUBRIQUES){id_parent?}{id_rubrique?}{par num titre}>
 <div class="groupe">
 	[(#EXPOSE|non)
 	<h2><span class="#EDIT{titre}">[(#TITRE)]</span>
@@ -13,6 +13,8 @@
 		</a>
 	</h2>
 	]
+	[(#REM) <!-- Afficher table par rubrique ou toute si racine --> ]
+	<B_forums>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -24,8 +26,6 @@
 			</tr>
 		</thead>
 	
-	[(#REM) <!-- Afficher table par rubrique ou toute si racine --> ]
-	<B_forums>
 		<tbody>
 		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
 			<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
@@ -70,7 +70,7 @@
 			</tr>
 		</BOUCLE_forums>
 		</tbody>
-	</B_forums>	
-	</table>	
+	</table>
+	</B_forums>
 </div>
 </BOUCLE_groupe_forum>

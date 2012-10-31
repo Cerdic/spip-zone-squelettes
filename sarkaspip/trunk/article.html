@@ -1,9 +1,5 @@
 #SET{composition,''}
 [(#ENV{recommander}|=={oui}|et{#PLUGIN{RECOMMANDER}})#SET{composition,'recommander'}]
-<BOUCLE_racforum(RUBRIQUES){id_rubrique=#RACINE_SPECIALISEE{forum}}><BOUCLE_is_forum(ARTICLES){id_article}{branche}>
-	<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=forum} />
-</BOUCLE_is_forum></BOUCLE_racforum>
-	<BOUCLE_principale_article(ARTICLES){id_article}>
-	<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#GET{composition}|sinon{#COMPOSITION}} />
-	</BOUCLE_principale_article>
-<//B_racforum>
+<BOUCLE_principale_article(ARTICLES){id_article}>
+<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#GET{composition}|sinon{#COMPOSITION}} />
+</BOUCLE_principale_article>
