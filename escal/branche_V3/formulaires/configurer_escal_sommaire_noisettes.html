@@ -297,7 +297,15 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br /><br /><br /><br />
+                    <br /><br /><br />
+            #SET{name,tempoactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Temporisation entre chaque actu (en secondes)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
+                    <br /><br />
             <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
             #SET{name,titreactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titreactus="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:actus:>})]"; ?>
@@ -355,6 +363,14 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrephotos"; ?>"  />
                     </span>
                     <br /><br />
+            #SET{name,tempophotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Temporisation entre chaque image (en secondes)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},8})]"  />
+                    </span>
+                    <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
+                    <br /><br />
             #SET{name,togglephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Noisette repliée et dépliable
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -391,6 +407,14 @@
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombresitesfav"; ?>"  />
                     </span>
+                    <br /><br />
+            #SET{name,tempositesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Temporisation entre chaque logo de site (en secondes)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},8})]"  />
+                    </span>
+                    <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
             </div>
             </li>
 <!-- inc-derniers_comments -->
