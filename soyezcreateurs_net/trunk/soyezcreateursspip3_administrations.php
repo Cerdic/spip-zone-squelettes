@@ -15,7 +15,7 @@ include_spip('inc/meta');
  * @param unknown_type $nom_meta_base_version
  * @param unknown_type $version_cible
  */
-function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
+function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 	include_spip('base/soyezcreateurs');
 	$current_version = 0.0;
 	if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
@@ -575,7 +575,7 @@ function soyezcreateurs_changer_cfg($cfg) {
  *
  * @param unknown_type $nom_meta_base_version
  */
-function soyezcreateurs_vider_tables($nom_meta_base_version) {
+function soyezcreateursspip3_vider_tables($nom_meta_base_version) {
 	effacer_meta('soyezcreateurs');
 	effacer_meta('soyezcreateurs_couleurs');
 	effacer_meta('soyezcreateurs_google');
