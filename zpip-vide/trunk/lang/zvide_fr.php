@@ -60,6 +60,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_menu_lang' => 'Menu de langues',
 	'label_options_en_tete' => 'Options de l\'en-tête de page',
 	'label_options_pied' => 'Options du pied de page',
+	'label_taille_logo' => 'Taille maximum du logo en pixels',
 
 	// N
 	'nom_bloc_post_contenu' => 'Post-Contenu',

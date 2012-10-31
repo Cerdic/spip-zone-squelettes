@@ -10,14 +10,25 @@
 				<label><:zvide:label_masquer_logo:></label>
 				<p class="explication"><:zvide:explication_masquer_logo:></p>
 				<div class="choix">
-					<input type="radio" name="masquer_logo" class="radio" id="masquer_logo_oui" value="on" [(#ENV{masquer_logo}|oui) checked="checked"] />
+					<input type="radio" name="masquer_logo" class="radio" id="masquer_logo_oui" value="on" [(#ENV{masquer_logo}|oui) checked="checked"] 
+					onChange="jQuery('li.editer_taille_logo').hide(400);" />
 					<label for='masquer_logo_oui'><:item_oui:></label>
 				</div>
 				<div class="choix">
-					<input type="radio" name="masquer_logo" class="radio" id="masquer_logo_non" value="" [(#ENV{masquer_logo}|non) checked="checked"] />
+					<input type="radio" name="masquer_logo" class="radio" id="masquer_logo_non" value="" [(#ENV{masquer_logo}|non) checked="checked"] 
+					onChange="jQuery('li.editer_taille_logo').show(400);" />
 					<label for='masquer_logo_non'><:item_non:></label>
 				</div>
 			</li>
+			<li class="editer_taille_logo[ (#ENV**{erreurs}|table_valeur{taille_logo}|oui)erreur]">
+				<label><:zvide:label_taille_logo:></label>
+				<input type="text" name="taille_logo" class="text" id="taille_logo" value="#ENV*{taille_logo,300}" />
+			</li>
+			[(#ENV{masquer_logo}|oui)<script type="text/javascript">// <!\[CDATA\[
+				jQuery(document).ready(function(){
+					jQuery('li.editer_taille_logo').hide(400);
+				});
+			//\]\]></script>]
 			<li class="editer_masquer_slogan[ (#ENV**{erreurs}|table_valeur{masquer_slogan}|oui)erreur]">
 				<label><:zvide:label_masquer_slogan:></label>
 				<p class="explication"><:zvide:explication_masquer_slogan:></p>
