@@ -1,0 +1,23 @@
+[(#REM) Portfolio ]
+<B_sites>
+<section class="panel" id="portfolio">
+	<h1 class="h1 droite"><small>Yet another</small> web <big>Portfolio</big></h1>
+	<!--
+	<bOUCLE_sites(SITES) {id_rubrique = 2} {0,1}>
+		<INCLURE{fond=liste/sites-resume,env,ajax,titre=Nos derni&egrave;res r&eacute;f&eacute;rences} />
+	</bOUCLE_sites>
+	-->
+	<section class="liste resume sites">
+		#ANCRE_PAGINATION
+		<h2 class="h2">[(#ENV{titre,Portfolio})]</h2>
+		<ul class="liste-items">
+			<BOUCLE_sites(SITES){id_rubrique = 2} {!par date} {pagination #ENV{nb,3}}>
+				<li class="item hentry [(#COMPTEUR_BOUCLE|alterner{'rotate-gauche','rotate-droite'})]">
+					#INCLURE{fond=inclure/site-resume,id_syndic}
+				</li>
+			</BOUCLE_sites>
+		</ul>
+		[<nav class="pagination droite">(#PAGINATION{precedent_suivant})</nav>]
+	</section>
+</section>
+</B_sites><//B_sites>
