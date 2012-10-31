@@ -78,10 +78,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$id_mot = id_mot("Gallerie", $id_groupe);
 			if ($id_mot>0) {
 				sql_delete("spip_mots", "id_mot=$id_mot");
-				sql_delete("spip_mots_articles", "id_mot=$id_mot");
-				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+				sql_delete("spip_mots_liens", "id_mot=$id_mot");
 			}
 			spip_log("SoyezCreateurs maj 2.1.1", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.1','non');
@@ -92,10 +89,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$id_mot = id_mot("NewsLetter", $id_groupe);
 			if ($id_mot>0) {
 				sql_delete("spip_mots", "id_mot=$id_mot");
-				sql_delete("spip_mots_articles", "id_mot=$id_mot");
-				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+				sql_delete("spip_mots_liens", "id_mot=$id_mot");
 			}
 			spip_log("SoyezCreateurs maj 2.1.2", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.2','non');
@@ -126,7 +120,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
 			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
-			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'syndic', 'oui', 'non', 'non');
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
 				create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
 			$id_groupe = id_groupe("_TypeRubrique");
@@ -134,10 +128,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				$id_mot = id_mot("membre", $id_groupe);
 				if ($id_mot>0) {
 					sql_delete("spip_mots", "id_mot=$id_mot");
-					sql_delete("spip_mots_articles", "id_mot=$id_mot");
-					sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-					sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-					sql_delete("spip_mots_forum", "id_mot=$id_mot");
+					sql_delete("spip_mots_liens", "id_mot=$id_mot");
 				}
 			}
 			$cfg = array(
@@ -187,7 +178,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
     			$mentions['texte'] .= '{{{'.supprimer_numero($r['titre']).'}}}'."\n";
     			$mentions['texte'] .= "\n".$r['texte']."\n\n";
 			}
-			$ex = "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])";
+			$ex = "Mentions légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])";
 			$ex .= "\n\n[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].";
 			create_article($mentions, "000. Fourre-tout");
 			create_mot("_Specialisation", "MentionsLegales", $ex, "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
@@ -198,7 +189,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.10','<')) {
 			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
-			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non');
+			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'rubriques', 'non', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
 		}
 		if (version_compare($current_version,'2.1.11','<')) {
@@ -347,7 +338,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.12','<')) {
 			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
-			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'rubriques', 'oui', 'non', 'non');
 				create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
 				create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
 				create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
@@ -366,7 +357,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.15','<')) {
 			spip_log("SoyezCreateurs maj 3.0.15", "soyezcreateurs_install");
-			create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+			create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'articles', 'oui', 'oui', 'non');
 				$id_mot = create_mot("_EnDirect", "00. Quoi de neuf ?", "", "");
 				create_logo('documents/newspaper.png', $type='mot', $id_mot, 'png'); // http://www.iconfinder.com/icondetails/8437/16/newspaper_icon
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.15','non');
@@ -383,7 +374,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.18','<')) {
 			spip_log("SoyezCreateurs maj 3.0.18", "soyezcreateurs_install");
-			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'rubriques', 'oui', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.18','non');
 		}
 		if (version_compare($current_version,'3.0.19','<')) {
@@ -529,7 +520,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		/*
 		#En attente
 		if (version_compare($current_version,'3.0.11','<')) {
-			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'articles', 'oui', 'non', 'non');
 				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef à chaque article de l'annuaire.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.11','non');
 		}
@@ -542,10 +533,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$id_mot = id_mot("Agenda", $id_groupe);
 			if ($id_mot>0) {
 				sql_delete("spip_mots", "id_mot=$id_mot");
-				sql_delete("spip_mots_articles", "id_mot=$id_mot");
-				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+				sql_delete("spip_mots_liens", "id_mot=$id_mot");
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.14','non');
 		}
