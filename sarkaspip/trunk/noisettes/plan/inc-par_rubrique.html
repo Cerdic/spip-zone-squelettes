@@ -4,7 +4,7 @@
 	<INCLURE{fond=noisettes/plan/inc-boutons_tri}{tri=par_rubrique}>
 ]
 <ul class="nav nav-list">
-<BOUCLE_non_vide(ARTICLES){id_article!==#RACINE_SPECIALISEE{galerie,not_in}}{0,1}>
+<BOUCLE_non_vide(ARTICLES){0,1}>
 	[(#REM) <!-- Les articles des rubriques non specialisees --> ]
 	<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
 		<li>[(#INCLURE{fond=noisettes/rubrique/lien}
@@ -53,21 +53,12 @@
 	
 	[(#REM) <!-- Les albums de la galerie --> ]
 	<B_albums>
-	<BOUCLE_galerie(RUBRIQUES){id_rubrique=#RACINE_SPECIALISEE{galerie}}>
-		<li>[(#INCLURE{fond=noisettes/rubrique/lien}
-				{id_rubrique}
-				{classe=noeud})]
-	</BOUCLE_galerie>
+		<li><a class="noeud" href="[(#URL_PAGE{galerie})]"><:sarkaspip:galerie:></a>
 			<ul class="nav nav-list">
-	<BOUCLE_albums(ARTICLES){id_secteur=#RACINE_SPECIALISEE{galerie}}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
+			<BOUCLE_albums(ALBUMS){par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 				[(#SET{date, [<span class="date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
-				[<li>
-					(#INCLURE{fond=noisettes/article/lien}
-						{id_article}
-						{classe=feuille}
-						{avant_titre=#GET{date}})
-				</li>]
-	</BOUCLE_albums>
+				[<li><a class="feuille" href="#URL_ALBUM">#GET{date}(#TITRE)</a></li>]
+			</BOUCLE_albums>
 			</ul>
 		</li>
 	</B_albums>

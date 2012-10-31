@@ -4,13 +4,13 @@
 		<h2><:sarkaspip:herbier_sites|ucfirst:> <small><a href="[(#URL_PAGE{herbier}|parametre_url{type,liste})]">Tous les sites</a></small></h2>
 		<div class="liste short herbier clearfix[(#CONFIG{sarkaspip_noisettes/liste_herbier, 2}|=={2}|oui)carousel slide]">
 			<ul class="liste-items carousel-inner">
-				<BOUCLE_herbier(SITES) {id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_herbier, 5}}>
+				<BOUCLE_herbier(SITES) {id_secteur ?}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_herbier, 5}}>
 				[(#REM) <!-- Bloc des vignettes defilantes de l'herbier -->]
 				[<li class="item[ (#VAL{active}|unique)]">#INCLURE{fond=inclure/resume/site,id_syndic}(#LOGO_SITE|oui)</li>]
 				</BOUCLE_herbier>
 			</ul>
 		</div>
-			<BOUCLE_combien(SITES) {id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}}></BOUCLE_combien>
+			<BOUCLE_combien(SITES) {id_secteur ?}></BOUCLE_combien>
 			<span class="label">
 			[(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site_herbier:>,<:sarkaspip:n_sites_herbier:>})]]
 			[(#ENV{id_secteur}|?{<:sarkaspip:herbier_contexte_secteur:>,<:sarkaspip:herbier_contexte_global:>})]</span>
