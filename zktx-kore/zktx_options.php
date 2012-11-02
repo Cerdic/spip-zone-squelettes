@@ -1,7 +1,7 @@
 <?php
 // connection noiZetier
-  //define('_NOIZETIER_REPERTOIRE_PAGES','content/');
-	//define('_NOIZETIER_LISTER_PAGES_SANS_XML',true);
+  define('_NOIZETIER_REPERTOIRE_PAGES','content/');
+	define('_NOIZETIER_LISTER_PAGES_SANS_XML',true);
 
 
 // Pousse toi d'là que j'mette mes nouveaux blocs Z !	
@@ -14,7 +14,8 @@
 		'header',
 		'nav', // rajout
 		'footer',
-		'foot_js' //,
+		'foot_js',
+		'social' //,
 		// 'p_cartouche',
 		// 'p_contenu',
 		// 'p_extra'
