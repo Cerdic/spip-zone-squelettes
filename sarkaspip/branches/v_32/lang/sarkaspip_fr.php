@@ -848,6 +848,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum' => 'Forum',
 	'forum_completer_reponse' => 'Apporter un complément de réponse',
 	'forum_completer_reponse_dessous' => 'Compléter la réponse ci-dessous',
+	'forum_ferme' => '(fermé)',
 	'forums_meme_groupe' => 'Forums du groupe',
 	'forum_sujet_reponses' => 'Réponses',
 	'fourni_par_weather_com' => 'par weather.com®',
