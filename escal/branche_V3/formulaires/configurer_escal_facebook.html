@@ -1,0 +1,56 @@
+<!-- Article PDF -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configfacebook.png}|balise_img{'',cadre-icone})]Facebook</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <div class="explication">
+            Si vous avez activé le <a href="http://contrib.spip.net/Modeles-Facebook" title="Documentation">plugin "Modèles Facebook"</a>,
+            le bouton "J'aime" apparaitra dans le pied de page.<br />
+            N'oubliez pas de configurer ce plugin avec l'adresse URL de votre page ou de votre profil Facebook.
+            </div>
+
+            <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            #SET{name,boutonfacebook}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Aspect du bouton
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                    <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_button_count" value="button_count"
+                            [(#ENV{#GET{name}}|=={button_count}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_button_count"><img src="#CHEMIN{images/buttoncount.png}" alt="" /></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_box_count" value="box_count"
+                            [(#ENV{#GET{name}}|=={box_count}|oui)checked="checked"] /><label for="#GET{name}_box_count"><img src="#CHEMIN{images/boxcount.png}" alt="" /></label>
+                    </span>
+             <br /><br /><br /><br /><br /><br /><br />
+            #SET{name,sendfacebook}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Bouton "Envoyer"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+
+             </div>
+            </li>
+            </ul>
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+    </div>
+    </form>
+    </div>
