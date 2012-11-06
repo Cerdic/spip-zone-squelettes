@@ -1,11 +1,14 @@
 @import "css/variables.less";
 @import "css/mixins.less";
 
+body {background-color: @grayLighter;}
+.page {background-color: @bodyBackground;}
+
 .navbar-fixed-top {margin-bottom: 0;}
 #header {
   text-align: left;
   padding:3*@baseLineHeight 0;
-  background: @gray;
+  background-color: darken(@purple,20%);
   color:@white;
 }
 #content,#aside {margin-top: @baseLineHeight;}
@@ -18,16 +21,31 @@
 }
 
 .doc-sidenav {
-  a {border:1px solid @grayLighter;margin-top: -1px;};
-  .border-radius(@baseBorderRadius)
+  .box-shadow(0 1px 4px rgba(0, 0, 0, 0.067));
+  &>li>a {border:1px solid @grayLighter;margin-top: -1px;padding: 8px 14px;};
+  li:first-child a {.border-top-radius(@borderRadiusLarge)}
+  li:last-child a {.border-bottom-radius(@borderRadiusLarge)}
+
 }
 
 /* contenu */
 .article {
+  &.prop {.opacity(50);}
   &>.article-header {
     color:@gray;
     border-bottom: 1px solid @grayLighter;
     margin-bottom: @baseLineHeight;
   }
   margin-bottom: 2*@baseLineHeight;
+
+  position: relative;
+  .actions-moderer {position: absolute;top:0;right: -30px;}
 }
+
+.placeholder {font-size: 2*@baseFontSize;float:right;clear:right;margin-right: -30px;}
+
+
+/* home */
+.page_sommaire #header {padding: 6*@baseLineHeight 0;}
+.page_sommaire #header .container {text-align: center}
+.page_sommaire #content {text-align: center}
