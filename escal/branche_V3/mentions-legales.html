@@ -55,8 +55,10 @@
             <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
 
-          <!-- affichage du formulaire de recherche et du menu de langue-->
-            #FORMULAIRE_RECHERCHE
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
+            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
+            
             <INCLURE {fond=inclusions/inc-menu_langues}>
           </div>
 
@@ -93,7 +95,10 @@
           </div>
 
           [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
-          
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+            
           <!-- affichage du menu vertical par defaut ou si selectionne dans la page de configuration -->
             [(#CONFIG{escal/config/menuV1}|=={non}|non)
               <div class="cadre-bleu">

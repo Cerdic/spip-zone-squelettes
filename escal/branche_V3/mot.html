@@ -30,7 +30,11 @@
           <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
             <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
           </BOUCLE_forum>
-          #FORMULAIRE_RECHERCHE
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
+            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
+            
           </div>
 
           <div id="page">
@@ -85,6 +89,10 @@
           </div>
 
           [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+            
           <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
             [(#CONFIG{escal/config/menuV1}|=={non}|non)
               <div class="cadre-bleu">
@@ -105,6 +113,9 @@
           </div>
           
           [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
             
             <div class="cadre-bleu">
               <INCLURE {fond=inclusions/inc-menu_mots}{env}>
