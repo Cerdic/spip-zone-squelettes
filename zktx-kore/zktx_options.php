@@ -49,11 +49,10 @@
 // Ce qui se passe à Vegas reste à Vegas !!!
 	$GLOBALS['spip_header_silencieux'] = true; 
 
-// CK : Des Options de série !
+// CK : Des Options ... de série !
 	$GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
 	$GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
 	$GLOBALS['toujours_paragrapher']=true;
-	if (!defined('_SET_HTML_BASE')) define('_SET_HTML_BASE',false);
 	$GLOBALS['derniere_modif_invalide']=true;
 	if (!defined('_DUREE_CACHE_DEFAUT')) define('_DUREE_CACHE_DEFAUT',86400);
 	if (!defined('_DELAI_CACHE_resultats')) define('_DELAI_CACHE_resultats',600);
