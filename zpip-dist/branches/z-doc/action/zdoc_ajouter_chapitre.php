@@ -21,11 +21,12 @@ function action_zdoc_ajouter_chapitre($arg=null) {
 		'statut' => 'publie'
 	);
 
+	$numero = 1; // par defaut en tete
 	if ($row = sql_fetsel('*','spip_articles','id_article='.$id_article_precedent)){
 		include_spip('inc/filtres');
 		$numero = recuperer_numero($row['titre'])+1;
-		$set['titre'] = $numero.". ".$set['titre'];
 	}
+	$set['titre'] = $numero.". ".$set['titre'];
 
 	include_spip("action/editer_article");
 	$id_article = article_inserer($set['id_rubrique']);

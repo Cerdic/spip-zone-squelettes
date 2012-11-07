@@ -1,4 +1,13 @@
 <section class="rubrique rubrique#ID_RUBRIQUE">
+	<?php if ($GLOBALS['visiteur_session']['statut']
+	  AND include_spip('inc/autoriser')
+		AND autoriser('publierdans','rubrique','#ID_RUBRIQUE')){
+	?>
+	<div class="actions actions-ajouter">
+		[(#BOUTON_ACTION{'<i class="icon-plus-sign"></i> Ajouter un chapitre ici',#URL_ACTION_AUTEUR{zdoc_ajouter_chapitre,#ID_RUBRIQUE},'btn-primary btn-mini'})]
+	</div>
+	<?php } ?>
+
 	<BOUCLE_arts(ARTICLES){par num titre,titre}{id_rubrique}>
 	<article class="article article#ID_ARTICLE[(#STATUT|=={prop}|oui)prop]" id="[(#TITRE|title2anchor)]">
 		<header class="article-header">

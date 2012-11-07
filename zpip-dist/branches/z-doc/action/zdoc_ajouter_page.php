@@ -13,11 +13,13 @@ function action_zdoc_ajouter_page($id_rubrique_precedente=null) {
 		'titre' => 'Nouvelle page',
 	);
 
+	$numero = 1; // par defaut en tete
 	if ($row = sql_fetsel('*','spip_rubriques','id_rubrique='.$id_rubrique_precedente)){
 		$set['id_parent'] = $row['id_parent'];
+		include_spip('inc/filtres');
 		$numero = recuperer_numero($row['titre'])+1;
-		$set['titre'] = $numero.". ".$set['titre'];
 	}
+	$set['titre'] = $numero.". ".$set['titre'];
 
 	include_spip("action/editer_rubrique");
 	$id_rubrique = rubrique_inserer($set['id_parent']);
