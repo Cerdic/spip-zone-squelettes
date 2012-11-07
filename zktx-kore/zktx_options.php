@@ -1,4 +1,24 @@
 <?php
+// une url, c'est en minuscule et ce, quelque soit son format !
+	define('_url_minuscules',true);
+	// et ici je forcerais bien la nature du separateur ("-") si je savais comment faire ...
+	
+	// Forcer les url absolues a peu pres partout 
+	// certainement optimisable (pas sur que ca releve de typo)
+	if (!defined('_SET_HTML_BASE')) define('_SET_HTML_BASE',true);
+	$GLOBALS['table_des_traitements']['URL_ARTICLE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_RUBRIQUE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_MOT'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_SITE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_BREVE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_PAGE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['CHEMIN'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['CSS'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	// Et ca, forcement ca marche pas ...
+	//$GLOBALS['table_des_traitements']['TEXTE'][]= 'typo(abs_url(%s), "TYPO", $connect)';
+	//$GLOBALS['table_des_traitements']['CHAPO'][]= 'typo(abs_url(%s), "TYPO", $connect)';
+	//$GLOBALS['table_des_traitements']['DESCRIPTIF'][]= 'typo(abs_url(%s), "TYPO", $connect)';
+
 // connection noiZetier
   define('_NOIZETIER_REPERTOIRE_PAGES','content/');
 	define('_NOIZETIER_LISTER_PAGES_SANS_XML',true);
