@@ -5,30 +5,22 @@
 	
 	// Forcer les url absolues a peu pres partout 
 	// certainement optimisable (pas sur que ca releve de typo)
-	if (!defined('_SET_HTML_BASE')) define('_SET_HTML_BASE',false);
-	/* 	
-	$table_des_traitements['URL_ARTICLE'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['URL_AUTEUR'][]= 'url_absolue(%s,true)';
-	$table_des_traitements['URL_RUBRIQUE'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['URL_MOT'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['URL_SITE'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['URL_BREVE'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['URL_PAGE'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['CHEMIN'][]= 'url_absolue(%s,true)';
-	$GLOBALS['table_des_traitements']['CSS'][]= 'url_absolue(%s,true)'; 
+	/*
+	if (!defined('_SET_HTML_BASE')) define('_SET_HTML_BASE',true);
+ 	$GLOBALS['table_des_traitements']['URL_ARTICLE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_AUTEUR'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_RUBRIQUE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_MOT'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_SITE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_BREVE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['URL_PAGE'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['CHEMIN'][]= 'typo(url_absolue(%s), "TYPO", $connect)';
+	$GLOBALS['table_des_traitements']['CSS'][]= 'typo(url_absolue(%s), "TYPO", $connect)';  
 	*/
-	// Et la même chose dans tous les champs texte
-	/* 	
-	$GLOBALS['table_des_traitements']['TEXTE'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['CHAPO'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['DESCRIPTIF'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['INTRODUCTION'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['PS'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['DESCRIPTIF_SITE_SPIP'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')';
-	$GLOBALS['table_des_traitements']['SLOGAN_SITE_SPIP'][]= 'abs_url('. _TRAITEMENT_RACCOURCIS .')'; 
-	*/
-	
-	
+	// Et ca, forcement ca marche pas ...
+	//$GLOBALS['table_des_traitements']['TEXTE'][]= 'typo(abs_url(%s), "TYPO", $connect)';
+	//$GLOBALS['table_des_traitements']['CHAPO'][]= 'typo(abs_url(%s), "TYPO", $connect)';
+	//$GLOBALS['table_des_traitements']['DESCRIPTIF'][]= 'typo(abs_url(%s), "TYPO", $connect)';
 
 // connection noiZetier
   define('_NOIZETIER_REPERTOIRE_PAGES','content/');
