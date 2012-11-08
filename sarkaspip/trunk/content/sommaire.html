@@ -35,12 +35,10 @@
 	]
 </BOUCLE_0_article>
 
-<BOUCLE_0_album(ARTICLES) {id_secteur=#RACINE_SPECIALISEE{galerie}}{0,1}>
-	[(#REM) <!-- Derniers articles publies --> ]
-	[(#CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}|oui)
-		<INCLURE{fond=noisettes/sommaire/liste-albums_recents}{lang}>
-		#SET{page_vide, 0}
-	]
+<BOUCLE_0_album(ALBUMS) {0,1} {si #CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}}>
+	[(#REM) <!-- Derniers albums publies --> ]
+	<INCLURE{fond=noisettes/sommaire/liste-albums_recents}{lang}>
+	#SET{page_vide, 0}
 </BOUCLE_0_album>
 
 [(#GET{page_vide}|oui)
