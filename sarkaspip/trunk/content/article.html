@@ -8,30 +8,16 @@
 			{page=article}
 			{afficher_commentaires=oui}
 			{avec_popularite=#CONFIG{sarkaspip_article/avec_popularite, oui}}
-			{avec_notation=#CONFIG{sarkaspip_article/position_notation, 0}}
-			{avec_socialtags=#CONFIG{sarkaspip_article/position_socialtags, 0}}
+			{avec_socialbar=#CONFIG{sarkaspip_article/position_socialbar, 0}}
 			{logo_rubrique=#CONFIG{sarkaspip_article/logo_rubrique, oui}}
 			{taille_logo=#CONFIG{sarkaspip_article/taille_logo, 150}}>
 
 		<aside>
 			[(#REM) <!-- Documents (sauf images) du portfolio de l'article --> ]
-			<INCLURE{fond=noisettes/document/liste-documents_joints}
-				{id_article}
-				{avec_descriptif=#CONFIG{sarkaspip_article/avec_descriptif, non}}>
+			<INCLURE{fond=noisettes/document/liste-documents_joints,id_article} />
 
 			[(#REM) <!-- Images du portfolio de l'article --> ]
-			#SET{plugin, aucun}
-			#SET{diaporama, non}
-			[(#CONFIG{sarkaspip_article/mode_galerie, 0}|!={0}|oui)
-				[(#SET{plugin, mediabox})]
-			]
-			[(#CONFIG{sarkaspip_article/mode_galerie, 0}|=={2}|oui)
-				[(#SET{diaporama, oui})]
-			]
-			<INCLURE{fond=noisettes/document/liste-images_jointes}
-				{id_article}
-				{effet_galerie=#GET{plugin}}
-				{avec_diaporama=#GET{diaporama}}>
+			<INCLURE{fond=noisettes/document/liste-images_jointes,id_article} />
 
 			[(#REM) <!-- Commentaires --> ]
 			[(#PETITION|non)

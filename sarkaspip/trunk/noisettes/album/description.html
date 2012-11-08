@@ -12,11 +12,8 @@
 			{id_album}
 			{type-page})
 		]
-		[(#INCLURE{fond=noisettes/album/social}
-			{id_album}
-			{avec_notation}
-			{avec_socialtags}
-			{type-page})
+		[(#ENV{avec_socialbar,0}|=={1}|oui)
+		[(#INCLURE{fond=noisettes/album/social,id_album,type-page})]
 		]
 	</header>
 
@@ -25,7 +22,10 @@
 
 	</div>
 
-	[<footer>
-		<div class="notes">(#NOTES)</div>
-	</footer>]
+	<footer>
+		[(#ENV{avec_socialbar,0}|=={1}|oui)
+		[(#INCLURE{fond=noisettes/album/social,id_album,type-page})]
+		]
+		[<div class="notes">(#NOTES)</div>]
+	</footer>
 </BOUCLE_description>

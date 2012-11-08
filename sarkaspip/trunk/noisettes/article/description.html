@@ -31,11 +31,8 @@
 			{avec_popularite}
 			{type-page})
 		]
-		[(#INCLURE{fond=noisettes/article/social}
-			{id_article}
-			{avec_notation}
-			{avec_socialtags}
-			{type-page})
+		[(#ENV{avec_socialbar,0}|=={1}|oui)
+		[(#INCLURE{fond=noisettes/article/social,id_article,type-page})]
 		]
 
 	</header>
@@ -53,8 +50,10 @@
 	</div>
 
 	<footer>
-	[<div class="#EDIT{ps} ps">(#PS)</div>]
-	[<div class="notes">(#NOTES)</div>]
-
+		[(#ENV{avec_socialbar,0}|=={2}|oui)
+		[(#INCLURE{fond=noisettes/article/social,id_article,type-page})]
+		]
+		[<div class="#EDIT{ps} ps">(#PS)</div>]
+		[<div class="notes">(#NOTES)</div>]
 	</footer>
 </BOUCLE_description>
