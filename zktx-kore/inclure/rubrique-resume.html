@@ -1,0 +1,24 @@
+<BOUCLE_rubriques(RUBRIQUES) {id_rubrique} {statut?}>
+<li class="item hentry">
+	<h3 class="h3 entry-title"><a href="#URL_RUBRIQUE" rel="bookmark">[(#LOGO_RUBRIQUE|image_reduire{150,100})]#TITRE</a></h3>
+	[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{160})</div>]
+	
+	[(#REM) Une boucle recursive pour le mini plan]
+	<nav class="menu rubriques">
+		
+		[(#REM) Une boucle recursive pour le mini plan]
+		<B_miniplan>
+		<ul class="menu-items menu-liste">
+			<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+			<li class="item menu-entree">
+				<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+				<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+			</li>
+			</BOUCLE_miniplan>
+		</ul>
+		</B_miniplan>
+		
+	</nav>
+	
+</li>
+</BOUCLE_rubriques>

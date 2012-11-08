@@ -23,27 +23,21 @@
 </figure><!-- /#documents_portfolio -->
 </B_documents_portfolio>
 
-[(#REM)
-	Afficher en grand le document demande dans l'URL
-]
+[(#REM) Afficher en grand le document demande dans l'URL ]
 <BOUCLE_afficher_document(DOCUMENTS) {id_document}{id_article} {mode=document}{extension IN png,jpg,gif}>
 [(#MODELE{emb,lien=#URL_DOCUMENT}|image_reduire{500,*})]
 </BOUCLE_afficher_document>
 
 
-[(#REM)
-	Si un seul document est joint a l'article, et si le texte est vide,
-	on incruste automatiquement ce document
-]
+[(#REM) Si un seul document est joint a l'article, et si le texte est vide, on incruste automatiquement ce document ]
 <BOUCLE_documents_decompte(DOCUMENTS spip_documents_liens articles) {id_article} {mode=document}{texte=''}{extension !IN gif,jpg,png} {vu=non}>
-[(#TOTAL_BOUCLE|=={1}
-	|?{[(#INCLURE{fond=modeles/emb, id_document}
-	|trim)]})]</BOUCLE_documents_decompte>
+	[(#TOTAL_BOUCLE|=={1}
+		|?{[(#INCLURE{fond=modeles/emb, id_document}
+		|trim)]})]
+</BOUCLE_documents_decompte>
 
 
-[(#REM)
-	Sinon, liste des autres documents joints
-]
+[(#REM) Sinon, liste des autres documents joints ]
 <B_documents_joints>
 <aside class="menu" id="documents_joints">
 	<h2><:medias:titre_documents_joints:></h2>
