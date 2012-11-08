@@ -1,25 +1,10 @@
+[(#REM) menu top par defaut : Nom de l'utilisateur connecte et lien de connexion/deconnexion et inscription]
 [<li class="menu_formulaires auteur" title="<:sarkaspip:message_bonjour:> [(#VAL{sarkaspip:statut_}|concat{#SESSION{statut}}|_T)]"><span class="brand"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]">(#SESSION{nom}) <img src="[(#CHEMIN_IMAGE{[auteur-(#SESSION{statut})-16]})]" alt="<:sarkaspip:message_bonjour:> [(#VAL{sarkaspip:statut_}|concat{#SESSION{statut}}|_T)]" /></a></span></li>]
 
-[(#CONFIG{sarkaspip_menus/lien_plan, 0}|=={1}|oui)
-	<li class="menu_formulaires"><a href="#URL_PAGE{plan,tri=par_rubrique}"><:sarkaspip:plan_site:></a></li>
-]
-[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={0}|oui)
-	[(#CONFIG{sarkaspip_formulaires/auteur_contact}|oui)
-		 <li class="menu_formulaires"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
-	]
-]
-[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={1}|oui)
-	[(#PLUGIN{CONTACT}|oui)
-		 <li class="menu_formulaires"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
-	]
-]
-[(#CONFIG{accepter_inscriptions}|=={oui}|?{ <li class="menu_formulaires"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>})]
-[(#PLUGIN{SPIPLISTES}|ou{#PLUGIN{CLEVERMAIL}}|ou{#PLUGIN{ABOMAILMANS}}|oui)
-	 <li class="menu_formulaires"><a href="[(#URL_PAGE{abonnement-newsletter})]"><:sarkaspip:newsletter:></a></li>
-]
 [(#SESSION{id_auteur}|non)
 	[(#REM) <!-- Auteur non connecte -->]
-	 <li class="menu_formulaires"><a href="[(#URL_PAGE{login-public}|parametre_url{url,''})]"><:sarkaspip:login_membre:></a></li>
+	<li class="menu_formulaires"><a href="[(#URL_PAGE{login-public}|parametre_url{url,''})]"><:sarkaspip:login_membre:></a></li>
+	[(#CONFIG{accepter_inscriptions}|=={oui}|?{ <li class="menu_formulaires"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>})]
 ]
 [(#SESSION{id_auteur}|oui)
 	[(#REM) <!-- Auteur connecte -->]

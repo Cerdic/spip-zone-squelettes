@@ -1,14 +1,25 @@
 [(#REM) <!-- Affichage du copyright et outils du site --> ]
 <div class="pied_bas">
-[(#PIPELINE{pied_debut,
-	[(#ARRAY{args, '', data, ''})]}
-)]
-	<INCLURE{fond=footer/inc-copyright}>
-	<INCLURE{fond=footer/inc-outils}{squelette}>
-	[(#VAL{footer/inc-habillage}|trouver_fond|oui) #INCLURE{fond=footer/inc-habillage} ]
-[(#PIPELINE{pied_fin,
-	[(#ARRAY{args, '', data, ''})]}
-)]
+	[(#PIPELINE{pied_debut,
+		[(#ARRAY{args, '', data, ''})]}
+	)]
+
+	[(#CONFIG{sarkaspip_menus/footer, 1}|=={1}|oui)
+		<div class="links">
+			<INCLURE{fond=inclure/menufooter,env}>
+		</div>
+	]
+	[<div class="extralinks">
+	(#CONFIG{sarkaspip_pied/outils_perso, ''}|propre)
+	</div>]
+
+
+	<INCLURE{fond=footer/inc-copyright} />
+
+
+	[(#PIPELINE{pied_fin,
+		[(#ARRAY{args, '', data, ''})]}
+	)]
 </div>
 [(#REM) <!-- Bloc des badges --> ]
 [(#CONFIG{sarkaspip_noisettes/position_badges, 1}|=={1}|oui)

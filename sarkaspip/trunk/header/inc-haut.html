@@ -28,36 +28,10 @@
 		</div>
 	]
 
-	[(#CONFIG{sarkaspip_menus/position_formulaires, 1}|=={4}|ou{#CONFIG{sarkaspip_menus/position_langues, 4}|=={4}})
-	<div class="nav_bandeau navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				[(#CONFIG{sarkaspip_menus/position_formulaires, 1}|=={4}|oui)
-				<ul class="nav">
-					<!-- Navigation dans les raccourcis -->
-						<INCLURE{fond=noisettes/menu/formulaires,id_rubrique=#ENV{id_rubrique,0},position=bandeau_haut,type-page,page,composition}>
-				</ul>
-				]
-				[(#CONFIG{sarkaspip_menus/position_langues, 4}|=={4}|oui)
-				<ul class="nav nav-pills pull-right">
-					<!-- Navigation dans les langues -->
-						<INCLURE{fond=header/inc-langues}>
-				</ul>
-				]
-			</div>
+	[(#CONFIG{sarkaspip_menus/top, 1}|=={1}|ou{#CONFIG{sarkaspip_menus/position_langues, 4}|=={4}})
+		<div class="nav_bandeau navbar navbar-fixed-top">
+			<INCLURE{fond=inclure/menutop,env} />
 		</div>
-	</div>
-	]
-
-  <!-- Navigation dans les raccourcis -->
-	[(#CONFIG{sarkaspip_menus/position_pages, 1}|=={4}|oui)
-	<div class="nav_menu_pages_speciales navbar subnav">
-		<div class="navbar-inner">
-			<ul class="nav">
-			<INCLURE{fond=noisettes/menu/pages_speciales,position=bandeau_haut,type-page,page,composition}>
-			</ul>
-		</div>
-	</div>
 	]
 
 	[(#PIPELINE{bandeau_haut_fin,
