@@ -26,7 +26,7 @@ if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS',
 if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 'accueil
 |Contenu!sommaire:rubrique:article:auteur:breve:site:forum:plan:herbier:recherche:agenda:galerie:album:comments:formulaires:modeles
-|Apparence!layout:bandeau:menus:pied:noisettes:styles:coins
+|Apparence!layout:bandeau:menus:pied:noisettes
 |R&eacute;f&eacute;rencement!header:backend
 |Outils!plugins:maintenance');
 
