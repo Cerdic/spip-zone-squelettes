@@ -10,16 +10,12 @@
 	<div id="albums_auteur" class="album albums_auteur">
 		<h2><:sarkaspip:albums_auteur:></h2>
 		#ANCRE_PAGINATION
-		[(#CONFIG{sarkaspip_auteur/position_pagination_albums, 2}|match{^(1|3)$}|oui)
-			[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_auteur/modele_pagination_albums}})</div>]
-		]
+		[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{top})]
 		<ul class="thumbnails">
 			<BOUCLE_album(ALBUMS){id_auteur}{par date}{inverse}{pagination #CONFIG{sarkaspip_auteur/pas_pagination_albums, 5}}>
 			<li class="item">#INCLURE{fond=inclure/resume/album,id_album}</li>
 			</BOUCLE_album>
 		</ul>
-		[(#CONFIG{sarkaspip_auteur/position_pagination_albums, 2}|match{^(2|3)$}|oui)
-			[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_auteur/modele_pagination_albums}})</div>]
-		]
+		[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{bottom})]
 	</div>
 </B_album>

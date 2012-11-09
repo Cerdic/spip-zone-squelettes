@@ -9,17 +9,13 @@
 		<div class="liste short">
 			<strong class="label">[(#GRAND_TOTAL|objet_afficher_nb{breve})]</strong>
 			#ANCRE_PAGINATION
-			[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(1|3)$}|oui)
-			  [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
-			]
+			[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{top})]
 			<ul class="liste-items">
 				<BOUCLE_breves_recherche(BREVES) {recherche} {par points} {inverse} {pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_breve, 5}}>
 				<li class="item">#INCLURE{fond=inclure/resume/breve,id_breve,coupe=100}</li>
 				</BOUCLE_breves_recherche>
 			</ul>
-			[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(2|3)$}|oui)
-			  [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
-			]
+			[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{bottom})]
 		</div>
 	</div>
 </B_breves_recherche>

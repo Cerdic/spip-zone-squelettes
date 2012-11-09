@@ -9,17 +9,13 @@
 		<div class="liste short">
 			<strong class="label">[(#GRAND_TOTAL|objet_afficher_nb{rubrique})]</strong>
 			#ANCRE_PAGINATION
-			[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(1|3)$}|oui)
-			  [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
-			]
+			[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{top})]
 			<ul class="liste-items">
 			<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_rubrique, 5}}>
 				<li class="item">#INCLURE{fond=inclure/resume/rubrique,id_rubrique}</li>
 			</BOUCLE_rubriques>
 			</ul>
-			[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(2|3)$}|oui)
-			  [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
-			]
+			[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{bottom})]
 		</div>
 	</div>
 </B_rubriques>

@@ -79,6 +79,42 @@ function sarkaspip_test_si_redirection_article_solitaire($id_rubrique){
 	return intval(reset(reset($a)));
 }
 
+/**
+ * Surcharge du filtre pagination pour utiliser le modele par defaut issu de la configuration de SarkaSpip
+ */
+function filtre_pagination($total, $nom, $position, $pas, $liste = true, $modele='', $connect='', $env=array()) {
+
+	if (!$modele){
+		if (!function_exists('lire_config'))
+			include_spip('inc/config');
+		$modele = lire_config('sarkaspip_modeles/modele_pagination','page');
+	}
+	return filtre_pagination_dist($total, $nom, $position, $pas, $liste, $modele, $connect, $env);
+}
+
+/**
+ * Afficher la pagination ou non en fonction de la configuration de position et de seuil
+ * et en fonction du nombre d'items affichés dans la liste ainsi que de la position (haut|top|debut)/(bas|bottom|fin)
+ * @param int $nb_items
+ * @param string $ou
+ * @return string
+ */
+function affiche_pagination($nb_items, $ou='bottom'){
+	if (!function_exists('lire_config'))
+		include_spip('inc/config');
+
+	$position = lire_config('sarkaspip_modeles/position_pagination','2');
+	if ($position==3) return ' ';
+	if ($position==1 AND !in_array($ou,array("bottom","bas","fin"))) return ' ';
+	if ($position==2 AND !in_array($ou,array("top","haut","debut"))) return ' ';
+
+	$seuil = lire_config('sarkaspip_modeles/seuil_double_pagination','');
+	if (intval($seuil) AND $nb_items>$seuil)
+		return ' ';
+
+	return '';
+}
+
 // =======================================================================================================================================
 // Filtre : typo_couleur
 // =======================================================================================================================================

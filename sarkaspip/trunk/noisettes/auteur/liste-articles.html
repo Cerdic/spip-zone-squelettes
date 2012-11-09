@@ -8,9 +8,7 @@
 	<div id="articles_auteur" class="liste long articles articles_auteur">
 		<h2><:sarkaspip:articles_auteur:> <small>[(#GRAND_TOTAL|singulier_ou_pluriel{info_1_article,info_nb_articles})]</small></h2>
 		#ANCRE_PAGINATION
-		[(#CONFIG{sarkaspip_auteur/position_pagination_articles, 2}|match{^(1|3)$}|oui)
-			[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_auteur/modele_pagination_articles}})</div>]
-		]
+		[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{top})]
 		<ul class="liste-items">
 			<BOUCLE_article(ARTICLES){id_rubrique!==#BRANCHE_SPECIALISEE}{id_auteur}{par date}{inverse}{pagination #CONFIG{sarkaspip_auteur/pas_pagination_articles, 5}}>
 				<li class="item">#INCLURE{fond=inclure/resume/article,id_article,
@@ -19,8 +17,6 @@
 					hauteur_logo=#CONFIG{sarkaspip_auteur/taille_logo_articles,-1}}</li>
 			</BOUCLE_article>
 		</ul>
-		[(#CONFIG{sarkaspip_auteur/position_pagination_articles, 2}|match{^(2|3)$}|oui)
-			[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_auteur/modele_pagination_articles}})</div>]
-		]
+		[[<div class="pagination">(#PAGINATION)</div>](#TOTAL_BOUCLE|affiche_pagination{bottom})]
 	</div>
 </B_article>
