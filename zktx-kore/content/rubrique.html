@@ -22,10 +22,28 @@
 </B_articles>
 
 [(#REM) Si aucun article, affiche un plan de la rubrique ]
-<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{0,1}>
-	<INCLURE{fond=liste/rubriques-resume,env,ajax,titre=<:sous_rubriques:>} />
-</BOUCLE_sous_rubriques>
+
+[(#REM) Non fonctionnel et je ne sais pas pourquoi ...
+	<bOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre}{!par date}{0,1}>
+		<iNCLURE{fond=liste/rubriques-resume,env,ajax,titre=<:sous_rubriques:>} />
+	</bOUCLE_sous_rubriques>
+]
+[(#REM) Alternative en attendant mieux...]	
+<B_sous_rubriques>
+<section class="liste resume rubriques">
+	#ANCRE_PAGINATION
+	<h2 class="h2">[(#ENV{titre,<:sous_rubriques:>})]</h2>
+	<ul class="liste-items">
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre, titre} {pagination #ENV{nb,6}}>
+		#INCLURE{fond=inclure/rubrique-resume,id_rubrique}
+		</BOUCLE_sous_rubriques>
+	</ul>
+	[<nav class="pagination">(#PAGINATION)</nav>]
+</section>
 <nav class="nettoyeur skiplink remonter"><a rel="nofollow" href="#header" title="Haut de page">Haut de page</a></nav>
+</B_sous_rubriques>
+	
+	
 	
 <//B_articles>
 
