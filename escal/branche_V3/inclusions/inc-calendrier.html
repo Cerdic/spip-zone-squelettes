@@ -4,9 +4,16 @@
 
 	<div class="texte [(#CONFIG{escal/config/togglecalendrier}|=={oui}|oui)toggle]" >
 
-[(#CONFIG{escal/config/affichcalendrier}|=={non}|oui) <!-- ]
+<!-- on teste si le plugin Calendrier Mini est activé
+sinon, on renvoie une alerte -->
+[(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
      #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour},#URL_PAGE{calendrier_mini_escal.json}}
-[(#CONFIG{escal/config/affichcalendrier}|=={non}|oui) --> ]
+]
+[(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|non)
+Le calendrier ne s'affichera que lorsque vous aurez activé le <a href="http://contrib.spip.net/Calendrier-Mini-2-0">plugin "Mini Calendrier"</a>
+]
+
+
 
 <!-- affichage de la liste des evenements -->
 [(#CONFIG{escal/config/listeeventscalendrier}|=={non}|oui) <!-- ]
@@ -44,6 +51,7 @@
 	 </BOUCLE_rubrique_agenda>
 	 </div>
 [(#CONFIG{escal/config/liennouvelevent}|=={non}|oui) --> ]
+
 
   </div><!-- fin texte -->
 

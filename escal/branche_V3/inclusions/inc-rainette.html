@@ -1,7 +1,17 @@
   <h1 class="cadre">
-      [(#MODELE{rainette_infos, code=#CONFIG{escal/config/ville}, sous_modele=infos_ville})]
+    [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|oui)
+      #MODELE{rainette_infos, code=#CONFIG{escal/config/ville}, sous_modele=infos_ville}
+    ]
+    [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|non)
+      Rainette
+    ]
   </h1>
 
   <div class="texte [(#CONFIG{escal/config/togglerainette}|=={oui}|oui)toggle]">
-      [(#MODELE{rainette_conditions, code=#CONFIG{escal/config/ville}, sous_modele=escal_conditions_tempsreel})]
+    [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|oui)
+      #MODELE{rainette_conditions, code=#CONFIG{escal/config/ville}, sous_modele=escal_conditions_tempsreel}
+    ]
+    [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|non)
+      La noisette Rainette ne s'affichera que si vous avez activé le <a href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien">plugin "Rainette"</a>
+    ]
   </div>

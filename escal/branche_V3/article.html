@@ -31,7 +31,7 @@
 
           [(#REM) mise en place du formulaire recherche]
           <div id="espace">
-            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}{lang}>
             <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
 
@@ -99,19 +99,19 @@
             ]
 
 
-          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/artaccesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-            [(#CONFIG{escal/config/artaccesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          
-          <!-- affichage du bloc inc-nav_mots si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/navmot}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-nav_mots}{id_article}{env}></div>]
-
-          <!-- affichage du bloc inc-meme_rub si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/memerub}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}{env}></div>]
-
-          <!-- affichage du bloc inc-evenements si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/evenementsArt}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavart1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart1,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavart2}|oui) [(#CONFIG{escal/config/blocnavart2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart2}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart3}|oui) [(#CONFIG{escal/config/blocnavart3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart3}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart4}|oui) [(#CONFIG{escal/config/blocnavart4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart4}}{env}></div>
+         ]]
 
             </div>
 
@@ -124,20 +124,19 @@
               </BOUCLE_test2>
               </B_test2>
 
-          <!-- affichage du bloc inc-nav_mots par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/navmot}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-nav_mots}{id_article}{env}></div>]
-            [(#CONFIG{escal/config/navmot}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-nav_mots}{id_article}{env}></div>]
-
-          <!-- affichage du bloc inc-acces_direct si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/artaccesdirect}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          <!-- affichage du bloc inc-meme_rubrique par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/memerub}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}{env}></div>]
-            [(#CONFIG{escal/config/memerub}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}{env}></div>]
-            
-          <!-- affichage du bloc inc-evenements par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/evenementsArt}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
-            [(#CONFIG{escal/config/evenementsArt}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextraart1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart1,nav_mots}}{id_rubrique}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextraart2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart2,meme_rub}}{id_rubrique}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextraart3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart3,evenements}}{id_rubrique}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextraart4}|oui) [(#CONFIG{escal/config/blocextraart4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart4}}{id_rubrique}{env}></div>
+         ]]
             
               <//B_test2>
 

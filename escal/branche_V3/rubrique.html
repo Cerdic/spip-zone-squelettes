@@ -28,7 +28,7 @@
           </div>
 
             <div id="espace">
-            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}{lang}>
             <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
 
@@ -74,18 +74,17 @@
               </div>
             ]
 
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavrub1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavrub1,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavrub2}|oui) [(#CONFIG{escal/config/blocnavrub2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavrub2}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavrub3}|oui) [(#CONFIG{escal/config/blocnavrub3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavrub3}}{env}></div>
+         ]]
 
-          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/rubaccesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-            [(#CONFIG{escal/config/rubaccesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-
-          <!-- affichage du bloc inc-derniers_articles si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/derniersart}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{env}></div>]
-
-          <!-- affichage du bloc inc-decouvrir_articles si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/decouvrirart}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-decouvrir_articles}{env}></div>]
-            
             </div>
 
             [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
@@ -96,18 +95,16 @@
               <BOUCLE_test2(RUBRIQUES){id_rubrique}{titre_mot==^(trombino)$}>
               </BOUCLE_test2>
               </B_test2>
-
-          <!-- affichage du bloc inc-acces_direct si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/rubaccesdirect}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          <!-- affichage du bloc inc-derniers_articles par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/derniersart}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{env}></div>]
-            [(#CONFIG{escal/config/derniersart}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_articles}{env}></div>]
-
-          <!-- affichage du bloc inc-decouvrir_articles par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/decouvrirart}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-decouvrir_articles}{env}></div>]
-            [(#CONFIG{escal/config/decouvrirart}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-decouvrir_articles}{env}></div>]
-            
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextrarub1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrarub1,derniers_articles}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrarub2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrarub2,decouvrir_articles}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrarub3}|oui) [(#CONFIG{escal/config/blocextrarub3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrarub3}}{env}></div>
+         ]]
               <//B_test2>
             </div>
 

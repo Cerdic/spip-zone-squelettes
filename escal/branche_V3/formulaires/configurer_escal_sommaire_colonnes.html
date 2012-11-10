@@ -1,0 +1,497 @@
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configcolonnes.png}|balise_img{'',cadre-icone})]Choix des blocs latéraux</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+            <div class="explication">
+            <strong>Edito</strong> : article avec mot-clé "edito". Le titre du bloc sera celui de l'article.<br />
+            <strong>Accès direct</strong> : article avec le mot-clé "acces-direct" pour des liens internes. Le titre du bloc sera celui de l'article.<br />
+            <strong>Articles les plus vus</strong> : affichage des articles les plus visités.<br />
+            <strong>Identification</strong> : pour s'identifier, donc.<br />
+            <strong>Actus</strong> : les articles avec le mot-clé "actus" défilent.<br />
+            <strong>Photos au hasard</strong> : les images des articles avec le mot-clé "photo-une" défilent.<br />
+            <strong>Sites favoris</strong> : les vignettes des sites référencés avec le mot-clé "favori" défilent.<br />
+            <strong>Derniers commentaires</strong> : les derniers commentaires d'articles de tout le site.<br />
+            <strong>Evènements à venir</strong> : liste les articles des rubriques ou les articles isolés avec le mot-clé "agenda".<br />
+            <strong>Sur le web</strong> : le titre et les derniers articles des sites syndiqués.<br />
+            <strong>Statistiques</strong> : tout un choix paramétrable plus bas.<br /><br />
+            Pour les noisettes suivantes, la configuration se fait dans la partie "Plugins plus"<br />
+            <strong>Calendrier</strong> : nécessite le plugin "Calendrier Mini".<br />
+            <strong>Rainette</strong> : nécessite le plugin "Rainette". Infos sur la météo d'une ville au choix.<br />
+            <strong>Shoutbox</strong> : nécessite le plugin "Shoutbox". Pour discuter en direct.<br />
+            </div>
+
+     <ul>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Colonne "navigation" (par défaut à gauche)</strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnav1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Quatrième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Cinquième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Sixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Septième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav8}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Huitième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav9}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Neuvième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocnav10}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Dixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Colonne "extra" (par défaut à droite)</strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextra1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Quatrième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Cinquième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Sixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Septième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra8}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Huitième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra9}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Neuvième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocextra10}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Dixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="edito" [(#ENV{#GET{name}}|=={edito}|?{'selected="selected"',''})] >Edito</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="top" [(#ENV{#GET{name}}|=={top}|?{'selected="selected"',''})] >Articles les plus vus</option>
+                              <option value="identification" [(#ENV{#GET{name}}|=={identification}|?{'selected="selected"',''})] >Identification</option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] >Actus</option>
+                              <option value="photos" [(#ENV{#GET{name}}|=={photos}|?{'selected="selected"',''})] >Photos au hasard</option>
+                              <option value="sites_favoris" [(#ENV{#GET{name}}|=={sites_favoris}|?{'selected="selected"',''})] >Sites favoris</option>
+                              <option value="derniers_comments" [(#ENV{#GET{name}}|=={derniers_comments}|?{'selected="selected"',''})] >Derniers commentaires</option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] >Evènements à venir</option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] >Sur le web</option>
+                              <option value="stats" [(#ENV{#GET{name}}|=={stats}|?{'selected="selected"',''})] >Statistiques</option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] >Mini calendrier</option>
+                              <option value="rainette" [(#ENV{#GET{name}}|=={rainette}|?{'selected="selected"',''})] >Rainette</option>
+                              <option value="shoutbox" [(#ENV{#GET{name}}|=={shoutbox}|?{'selected="selected"',''})] >Shoutbox</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+</ul>
+            
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

@@ -9,8 +9,6 @@
     #ACTION_FORMULAIRE{#ENV{action}}
 
 
-            <div class="explication">Par défaut, tous les blocs sont affichés </div>
-
      <ul>
 <legend><strong>Partie centrale</strong></legend>
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
@@ -56,44 +54,107 @@
                     </span>
                     </div>
              </li>
+
 <legend><strong>Les blocs latéraux</strong></legend>
-<!-- inc-acces_direct -->
+
+            <div class="explication">
+            <strong>Accès direct</strong> : article avec le mot-clé "acces-direct" pour des liens internes. Le titre du bloc sera celui de l'article.<br />
+            <strong>Derniers articles</strong> : derniers articles de la rubrique en cours et de ses sous-rubriques.<br />
+            <strong>A découvrir</strong> : un choix d'articles de la rubrique en cours et de ses sous-rubriques.<br />
+            </div>
+
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>inc-acces_direct</strong></label>
+                    <label><strong>Colonne "navigation" (par défaut à gauche)</strong></label>
                     <br />
             <div class="explication">
-            #SET{name,rubaccesdirect}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Un article avec le mot-clé "acces-direct pour des liens internes.
-                    <br />Le titre du bloc sera celui de l'article.
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_nav" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_nav"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_extra" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] /><label for="#GET{name}_extra"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
                     </span>
-                    <br /><br /><br />
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
             </div>
             </li>
-<!-- inc-derniers_articles -->
+
+
+
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>inc-derniers_articles</strong></label>
+                    <label><strong>Colonne "extra" (par défaut à droite)</strong></label>
                     <br />
             <div class="explication">
-            #SET{name,derniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Les derniers articles de la rubrique active.
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_nav" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_nav"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_extra" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_extra"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
                     </span>
-                    <br /><br /><br />
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+
+
+<!-- inc-derniers_articles -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Derniers articles</strong></label>
+                    <br />
+            <div class="explication">
             <!-- en attente de trouver une solution pour le multilinguisme
             #SET{name,titrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $titrederniersart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:articles_derniers:>})]"; ?>
@@ -124,49 +185,45 @@
             </div>
             </li>
 <!-- inc-decouvrir_articles -->
+
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-            <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>inc-decouvrir_articles</strong></label>
+                    <label><strong>A découvrir</strong></label>
                     <br />
             <div class="explication">
-            #SET{name,decouvrirart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Les articles de la rubrique selon vos choix. Les articles seront ensuite mélangés au hasard
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_nav" value="nav"
-                            [(#ENV{#GET{name}}|=={nav}|oui)checked="checked"] /><label for="#GET{name}_nav"><img src="#CHEMIN{images/noisetteG.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_extra" value="extra"
-                            [(#ENV{#GET{name}}|=={extra}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_extra"><img src="#CHEMIN{images/noisetteD.gif}" alt="" /></label>
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br /><br /><br />
+
              #SET{name,nombreartrecents}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles les plus récents
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
                     </span>
                     <br /><br />
              #SET{name,nombrearthasard}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles pris au hasard
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
                     </span>
                     <br /><br />
              #SET{name,nombreartplusvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles les plus visités
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
                     </span>
                     <br /><br />
              #SET{name,nombreartmoinsvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles les moins visités
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},0})]"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,pagindecouvrir}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /><br />
              #SET{name,toggledecouvrirarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}

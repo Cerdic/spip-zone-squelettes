@@ -57,7 +57,7 @@
             [(#CONFIG{escal/config/idlight}|=={oui}|oui)<INCLURE {fond=inclusions/inc-identification_light}{env}>]
 
           <!-- affichage du bouton d'accès au forum si une rubrique a la mot-cle "forum" -->
-            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}>
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}{lang}>
             <a href="spip.php?page=rubrique-forum"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
 
@@ -81,7 +81,7 @@
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
-
+            
           <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
             [(#CONFIG{escal/config/menuV1}|=={non}|non)
               <div class="cadre-bleu">
@@ -95,55 +95,39 @@
               [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical_2}{env}>]
               </div>
             ]
+            
 
-
-          <!-- affichage du bloc inc-edito par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/edito}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-edito}{env}></div>]
-            [(#CONFIG{escal/config/edito}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-edito}{env}></div>]
-
-          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/accesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-            [(#CONFIG{escal/config/accesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          <!-- affichage du bloc inc-top (articles les plus vus) par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/top}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-top}{env}></div>]
-            [(#CONFIG{escal/config/top}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-top}{env}></div>]
-
-          <!-- affichage du bloc inc-actus si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/actus}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-actus}{env}></div>]
-
-          <!-- affichage du bloc inc-photos (quelques photos au hasard) si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/photos}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-photos}{env}></div>]
-
-          <!-- affichage du bloc inc-sites_favoris par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/favoris}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites_favoris}{env}></div>]
-
-          <!-- affichage du bloc inc-derniers_comments (quelques photos au hasard) si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/dernierscomments}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_comments}{env}></div>]
-
-          <!-- affichage du bloc rainette si plugin "Rainette" active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|oui)
-            [(#CONFIG{escal/config/rainette}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-rainette}{env}></div>]
-          ]
-          
-          <!-- affichage du bloc shoutbox si plugin "Shoutbox" active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_SHOUTBOX')}|oui)
-            [(#CONFIG{escal/config/shoutbox}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-shoutbox}{env}></div>]
-          ]
-          
-          <!-- affichage du bloc inc-evenements si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/evenements}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
-
-          <!-- affichage du bloc inc-calendrier si le plugin "Calendrier Mini" est active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
-            [(#CONFIG{escal/config/calendrier}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-calendrier}{env}></div>]
-          ]
-          
-          <!-- affichage du bloc inc-sites si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/sites}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites}{env}></div>]
-
-          <!-- affichage du bloc inc-stats si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/stats}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-stats}{env}></div>]
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnav1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav1,edito}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav2,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav3,top}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav4}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav4}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav5}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav5}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav6}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav6}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav7}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav7}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav8}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav8}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav9}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav10}|oui) [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav10}}{env}></div>
+         ]]
 
           </div> <!-- fin navigation -->
 
@@ -152,62 +136,37 @@
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
 
-          <!-- affichage du bloc d'identification par defaut ou si selectionnee dans la page de configuration -->
-            [(#CONFIG{escal/config/idbloc}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-identification}{env}></div>]
-            [(#CONFIG{escal/config/idbloc}|=={oui}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-identification}{env}></div>]
-
-          <!-- affichage du bloc inc-edito si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/edito}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-edito}{env}></div>]
-
-          <!-- affichage du bloc inc-acces_direct si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/accesdirect}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          <!-- affichage du bloc inc-top (articles les plus vus) si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/top}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-top}{env}></div>]
-
-          <!-- affichage du bloc inc-actus par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/actus}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-actus}{env}></div>]
-            [(#CONFIG{escal/config/actus}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-actus}{env}></div>]
-
-          <!-- affichage du bloc inc-photos (quelques photos au hasard) par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/photos}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-photos}{env}></div>]
-            [(#CONFIG{escal/config/photos}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-photos}{env}></div>]
-
-          <!-- affichage du bloc inc-sites_favoris par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/favoris}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites_favoris}{env}></div>]
-            [(#CONFIG{escal/config/favoris}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites_favoris}{env}></div>]
-            
-          <!-- affichage du bloc inc-derniers_comments par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/dernierscomments}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_comments}{env}></div>]
-            [(#CONFIG{escal/config/dernierscomments}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-derniers_comments}{env}></div>]
-
-          <!-- affichage du bloc rainette si plugin "Rainette" active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_RAINETTE')}|oui)
-            [(#CONFIG{escal/config/rainette}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-rainette}{env}></div>]
-          ]
-          
-          <!-- affichage du bloc shoutbox si plugin "Shoutbox" active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_SHOUTBOX')}|oui)
-            [(#CONFIG{escal/config/shoutbox}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-shoutbox}{env}></div>]
-          ]
-          
-          <!-- affichage du bloc inc-evenements par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/evenements}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
-            [(#CONFIG{escal/config/evenements}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-evenements}{env}></div>]
-
-          <!-- affichage du bloc inc-calendrier si le plugin "Calendrier Mini" est active et si selectionne dans la page de configuration -->
-          [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
-            [(#CONFIG{escal/config/calendrier}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-calendrier}{env}></div>]
-          ]
-
-          <!-- affichage du bloc inc-sites par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/sites}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites}{env}></div>]
-            [(#CONFIG{escal/config/sites}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-sites}{env}></div>]
-
-          <!-- affichage du bloc inc-stats par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/stats}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-stats}{env}></div>]
-            [(#CONFIG{escal/config/stats}|=={extra}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-stats}{env}></div>]
-
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextra1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra1,identification}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra2,actus}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra3,photos}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra4,sites_favoris}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra5}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra5,derniers_comments}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra6}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra6,evenements}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra7}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra7,sites}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra8}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra8,stats}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra9}|oui) [(#CONFIG{escal/config/blocextra9}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextra10}|oui) [(#CONFIG{escal/config/blocextra10}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra10}}{env}></div>
+         ]]
 
           </div> <!-- fin extra -->
 
