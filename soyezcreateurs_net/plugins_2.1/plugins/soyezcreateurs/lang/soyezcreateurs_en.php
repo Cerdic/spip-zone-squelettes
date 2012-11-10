@@ -9,7 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Go to menu',
-	'accessibilite_onglets' => 'Aller aux onglets', # NEW
+	'accessibilite_onglets' => 'Go to the thumb indexes', # MODIF
 	'accessibilite_recherche' => 'Go to Search box',
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
@@ -29,7 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agendamoisde' => 'Calendar for',
 	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
-	'annuaire' => 'Annuaire', # NEW
+	'annuaire' => 'Directory', # MODIF
 	'annuaire_consulter' => 'Consulter l\'annuaire', # NEW
 	'annuaire_local' => 'Annuaire local', # NEW
 	'annuaire_vide' => 'L\'annuaire est vide.', # NEW
