@@ -62,7 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_menu_lang' => 'Jazykové menu',
 	'label_options_en_tete' => 'Možnosti hlavičky stránky',
 	'label_options_pied' => 'Možnosti päty stránky',
-	'label_taille_logo' => 'Taille maximum du logo en pixels', # NEW
+	'label_taille_logo' => 'Maximálna veľkosť loga v pixeloch',
 
 	// N
 	'nom_bloc_post_contenu' => 'Po obsahu',
