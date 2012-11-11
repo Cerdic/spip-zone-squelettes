@@ -59,6 +59,20 @@
                     <label><strong>Bandeau</strong></label>
                     <br />
             <div class="explication">
+              #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Image de fond (largeur : 950px maximum)<br />
+              exemple : images/fond.jpg si votre fond est dans /squelettes/images et s'appelle fond.jpg (laisser vide si pas d'image)
+              <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="texte" style="width:80%" name="#GET{name}" id="#GET{name}" value="#CONFIG{escal/config/fondbandeau}"  />
+                    </span>
+              <br />
+            </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
               #SET{name,nomsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               Nom du site présent
                     [<span class='erreur_message'>(#GET{erreurs})</span>
