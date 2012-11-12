@@ -618,6 +618,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_rainette_ville' => 'Indiquez le code de cette ville : ',
 	'cfg_lbl_rss_age' => 'Age maximal pour faire partie du flux (en jours)',
 	'cfg_lbl_rss_nombre' => 'Nombre maximal d\'éléments dans le flux sans tenir compte de l\'âge',
+	'cfg_lbl_rubrique_court_circuit' => 'Court-circuiter les page de rubriques qui n\'ont qu\'un article (en redirigeant automatiquement vers l\'article)',
 	'cfg_lbl_slogan' => 'Slogan du site : ',
 	'cfg_lbl_stathit_max_hasard' => 'Nombre maximal d\'articles choisis au hasard',
 	'cfg_lbl_stathit_max_top' => 'Nombre maximal d\'articles populaires',

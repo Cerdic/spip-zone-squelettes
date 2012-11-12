@@ -22,7 +22,7 @@ function sarkaspip_test_si_redirection_article_solitaire($id_rubrique){
 	$serveur = '';
 
 	// si reglage pas active, renvoyer rien (pas de redirection)
-	if (lire_config('sarkaspip_menus/option_rubriques',0)!=2)
+	if (lire_config('sarkaspip/menus/option_rubriques',0)!=2)
 		return "";
 
 	$trouver_table = charger_fonction('trouver_table', 'base');
@@ -87,7 +87,7 @@ function filtre_pagination($total, $nom, $position, $pas, $liste = true, $modele
 	if (!$modele){
 		if (!function_exists('lire_config'))
 			include_spip('inc/config');
-		$modele = lire_config('sarkaspip_modeles/modele_pagination','page');
+		$modele = lire_config('sarkaspip/modeles/modele_pagination','page');
 	}
 	return filtre_pagination_dist($total, $nom, $position, $pas, $liste, $modele, $connect, $env);
 }
@@ -103,12 +103,12 @@ function affiche_pagination($nb_items, $ou='bottom'){
 	if (!function_exists('lire_config'))
 		include_spip('inc/config');
 
-	$position = lire_config('sarkaspip_modeles/position_pagination','2');
+	$position = lire_config('sarkaspip/modeles/position_pagination','2');
 	if ($position==3) return ' ';
 	if ($position==1 AND !in_array($ou,array("bottom","bas","fin"))) return ' ';
 	if ($position==2 AND !in_array($ou,array("top","haut","debut"))) return ' ';
 
-	$seuil = lire_config('sarkaspip_modeles/seuil_double_pagination','');
+	$seuil = lire_config('sarkaspip/modeles/seuil_double_pagination','');
 	if (intval($seuil) AND $nb_items>$seuil)
 		return ' ';
 

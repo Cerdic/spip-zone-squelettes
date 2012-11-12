@@ -10,27 +10,12 @@
 			<legend><:sarkaspip:cfg_lgd_fond_sauvegarde:></legend>
 			<p class="explication"><:sarkaspip:cfg_inf_fond_sauvegarde:></p>
 			<ul>
-				#SET{name,mode}#SET{defaut,page}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label><:sarkaspip:cfg_inf_choix_sauvegarde:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
-					]
-					#SET{val,tout}
-					<div class="choix">
-						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_oui:></label>
-					</div>
-					#SET{val,page}
-					<div class="choix">
-						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
-					</div>
-				</li>
 				#SET{name,fond_a_sauvegarder}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_fonds">
 					<label for="#GET{name}"><:sarkaspip:cfg_lbl_fond_sauvegarde:></label>[
 					<span class='erreur_message'>(#GET{erreurs})</span>
 					]<select name="#GET{name}" class="select" id="#GET{name}">
+						<option value="--">Toutes les configurations</option>
 						#ENV*{_fonds}
 					</select>
 				</li>

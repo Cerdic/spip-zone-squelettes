@@ -5,6 +5,7 @@
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
+		<input type="hidden" name="_meta_casier" value="sarkaspip/rubrique" />
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_description:></legend>
@@ -14,6 +15,18 @@
 				{choix=taille_uniquement}
 				{suffixe=_rubrique}
 				{env}>
+				#SET{name,court_circuit}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,1}
+					<div class="choix">
+						<input type="hidden" name="#GET{name}" value="0" />
+						<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_rubrique_court_circuit:></label>
+					</div>
+				</li>
 			</ul>
 		</fieldset>
 		<!--

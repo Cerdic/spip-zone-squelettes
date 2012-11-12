@@ -49,6 +49,7 @@ function formulaires_restauration_cfg_traiter_dist(){
 
 	include_spip('inc/config');
 	$fond = end(explode('/', dirname($fichier)));
+	$fond = str_replace("sarkaspip_","sarkaspip/",$fond);
 	$ok = ecrire_config($fond, $tableau);
 	
 	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
@@ -56,24 +57,4 @@ function formulaires_restauration_cfg_traiter_dist(){
 	return $message;
 }
 
-
-// =======================================================================================================================================
-// Filtre : restaurer_fonds
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Restaure les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne
-// =======================================================================================================================================
-//
-function restaurer_fonds($fichiers) {
-	include_spip('inc/config');
-
-	foreach ($fichiers as $_fichier) {
-		lire_fichier($_fichier,$tableau);
-		$fond = basename($_fichier, '.txt');
-		$ok = ecrire_config($fond, $tableau);
-	}
-
-	return $ok;
-}
-// FIN du Filtre : restaurer_fonds
 ?>
