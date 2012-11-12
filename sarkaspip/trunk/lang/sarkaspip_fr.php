@@ -327,7 +327,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_inc_publications' => 'Choisissez dans quelle colonne vous désirez insérer les dernieres publications du site.',
 	'cfg_inf_inc_rainette_pos' => 'Choisissez dans quelle colonne vous désirez insérer la noisette météo.',
 	'cfg_inf_inc_rainette_ville' => 'La noisette météo permet d\'afficher les conditions et les prévisions météorologiques d\'une ville française grâce à un code disponible à <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">cette adresse</a> sur le site de weather.com ®.',
-	'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en complément du formulaire SPIP (pensez à assurer la cohérence avec les choix précédents).',
+	'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en colonne de navigation, en complément du formulaire SPIP',
 	'cfg_inf_inc_recherche_pos' => 'Choisissez dans quelle colonne vous désirez insérer les formulaires de recherche (pensez à assurer la cohérence avec le choix précédent et suivant).',
 	'cfg_inf_inc_rechspip_pos' => 'Choisissez comment vous souhaitez insérer le formulaires de recherche SPIP: dans le chemin du bandeau ou dans une noisette positionnée dans la colonne extra ou navigation et regroupant, le cas échéant, un formulaire de recherche externe.',
 	'cfg_inf_inc_sites' => 'Choisissez le modèle de liste des articles syndiqués qui vous convient parmi ceux proposés ci-dessous.',
