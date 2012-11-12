@@ -276,52 +276,6 @@ function statut_forum($id_article) {
 }
 // FIN du Filtre : statut_forum
 
-// =======================================================================================================================================
-// Filtre : sauvegarder_fonds
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Cree les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne 
-// =======================================================================================================================================
-//
-function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
-	include_spip('inc/config');
-
-	$dir = $ou;
-	foreach ($fonds as $_fond) {
-		if ($mode == 'maintenance') {
-			$dir = sous_repertoire($ou, $_fond);
-			$nom = $_fond . "_" . date("Ymd_Hi") . ".txt";
-		}
-		else {
-			$nom = $_fond . ".txt";
-		}
-		$f = $dir . $nom;
-		$ok = ecrire_fichier($f, serialize(lire_config($_fond)));
-	}
-
-	return $ok;
-}
-// FIN du Filtre : sauvegarder_fonds
-
-// =======================================================================================================================================
-// Filtre : restaurer_fonds
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Restaure les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne 
-// =======================================================================================================================================
-//
-function restaurer_fonds($fichiers) {
-	include_spip('inc/config');
-
-	foreach ($fichiers as $_fichier) {
-		lire_fichier($_fichier,$tableau);
-		$fond = basename($_fichier, '.txt');
-		$ok = ecrire_config($fond, $tableau);
-	}
-
-	return $ok;
-}
-// FIN du Filtre : restaurer_fonds
 
 // =======================================================================================================================================
 // Filtre : nettoyer_titre_sujet

@@ -55,4 +55,33 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
 			$message['message_ok'] = _T('sarkaspip:cfg_msg_fichiers_sauvegardes_ok');
 	return $message;
 }
+
+
+// =======================================================================================================================================
+// Filtre : sauvegarder_fonds
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Cree les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne
+// =======================================================================================================================================
+//
+function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
+	include_spip('inc/config');
+
+	$dir = $ou;
+	foreach ($fonds as $_fond) {
+		if ($mode == 'maintenance') {
+			$dir = sous_repertoire($ou, $_fond);
+			$nom = $_fond . "_" . date("Ymd_Hi") . ".txt";
+		}
+		else {
+			$nom = $_fond . ".txt";
+		}
+		$f = $dir . $nom;
+		$ok = ecrire_fichier($f, serialize(lire_config($_fond)));
+	}
+
+	return $ok;
+}
+// FIN du Filtre : sauvegarder_fonds
+
 ?>
