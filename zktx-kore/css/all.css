@@ -56,8 +56,16 @@
 	.fl-gauche {float:left;}
 	.fl-droite {float:right;}
 	.share {float:left; padding:0; margin:0;}
+	.zomm:hover {z-index: 50 !important;  -moz-transform: rotate(0deg) scale(1.3) !important; -webkit-transform: rotate(0deg) scale(1.3) !important; transform: rotate(0deg) scale(1.3) !important; transition: transform .1s ease-in; -moz-transition: -moz-transform .1s ease-in; -webkit-transition: -webkit-transform .1s ease-in;}
 	.rotate-gauche {-moz-transform: rotate(-2deg); -webkit-transform: rotate(-2deg); transform: rotate(-2deg);}
 	.rotate-droite {-moz-transform: rotate(2deg); -webkit-transform: rotate(2deg); transform: rotate(2deg);} 
+	
+	/* largeur de blocs (responsive WD) */
+	.un-demi, .un-tiers, .un-quart, .deux-tiers { margin:0 1.6276em 1em 0; } /* ou adapter selon chq aff. */
+	.un-demi { width:48%; }
+	.un-tiers { /* width: 31.914893617021278%; *width: 31.861702127659576%; */ width:31.25%; margin:0 1.417187392em 1em 0; }
+        .un-quart { width:24%; }
+	.deux-tiers { width:60%; }
 
 	/* Boutons > Call to action */
     /* insérer ici les styles additionnels à varicelle */
@@ -74,19 +82,19 @@
 	.extra { width:100%; clear:both; margin:1em 0; }
 	#footer {width:100%; clear:both; margin:1em auto; padding:0;}
 
-/* Elements adaptables (Ktx Zig-zag template + Davduf.net) */
+	/* Préparer le terrain pour un mode 'one-page layout'
 	.content-wrapper {}
   .panel {padding: 2em 0; margin: 0 0 4em 0; clear:both;}
-	.col { *zoom: 1; }
-	.col:before, .col:after { display: table; line-height: 0; content: "";	}
-	.col:after { clear: both; }
+	*/
 	
-	.one-half { }
-	.one-third { float:left; width: 31.914893617021278%; *width: 31.861702127659576%; }
-        .one-third:first-child, .one-third.first {margin-right:1.2em;} 
-        .one-third:last-child, .one-third.last {margin-left:1.2em;} 
-	.two-third { }
-	.one-fourth { }
+	/* Préparer le terrain pour affichage en colonne responsive */
+	
+	.liste, .extra { *zoom: 1; }
+	.liste:before, .liste:after,
+	.extra:before, .extra:after { display: table; line-height: 0; content: ""; }
+	.liste:after, .extra:after { clear: both; }
+
+
 	
 
 /* Header */
@@ -120,19 +128,18 @@
 		* .item = la li
 	
 	*/
-	
-	.liste-items { margin:0;}
-	
-	.liste .liste-items { }
-	.liste .item { list-style:none; float:left; width:28%; min-height:290px; background: transparent none; margin:0 1.6276em 1em 0; padding:1em;}
-	.liste .item:hover { background:#EFEFEF; z-index: 50 !important;  -moz-transform: rotate(0deg) scale(1.3) !important; -webkit-transform: rotate(0deg) scale(1.3) !important; transform: rotate(0deg) scale(1.3) !important; transition: transform .1s ease-in; -moz-transition: -moz-transform .1s ease-in; -webkit-transition: -webkit-transform .1s ease-in;}
+	.liste .liste-items { margin:0;}
+	.liste .item { list-style:none; float:left; background: transparent none;  padding:0;  background:red;
+		min-height:240px; /* trouver mieux ! */
+	}
+	.liste .item:hover { background:#EFEFEF; }
 	.liste .item h3 { background:none transparent; font-weight:bold;}
 	.liste .item:hover { background-color: #eee;}
 	.liste .item .h3 { margin:0;}
 	.liste .item .h3 a:hover { }
 	.liste .item .entry-content { margin:0; font-size:0.9em; vertical-align:top; }
 
-	.liste .spip_logos { float:left; margin:0 1em 1em 0; }
+	.liste .spip_logos { float:left; margin:0 1em 0 0; }
 	
 	.content .pagination {clear:both; padding:40px 0 20px 0; text-align:right;}	
 	
@@ -186,9 +193,6 @@
 	.formulaire_spip .boutons input { margin-left: 1em; }
 	.formulaire_spip .boutons input, input.submit {}
 
-	@media print {
-		.formulaire_spip { display: none; }
-	}
 
 	/* Previsualisation du message */
 	fieldset.previsu { margin-bottom: /*@margin-bottom*/1.5em/*/@*/;padding: /*@demi-margin-bottom*/0.75em/*/@*/; border: 2px dashed #F57900; }
@@ -372,8 +376,9 @@
 	
 /* ====================== MEDIAQUERIES ========================= */
 
-/* smartphone */
+/* 1/ smartphone */
 @media only screen and (min-width: 320px) and (max-width: 480px) { 
+/* marche sur mon galaxy note en portrait */
     body {font-size:120%;}
     #page {min-width:320px;max-width: 480px; padding:0; margin:0;}
     #header, #nav, #nom_site_spip, #slogan_site_spip, .texte, .chapo , .extras { 
@@ -384,62 +389,68 @@
 			vertical-align:middle; 
 			text-align:center;
 		}
+
 		#slogan_site_spip {font-size:0.9em;}
-    #nav {background-image:none; background-color:#F90!important; float:none;}
+    #nav { float:none;}
 		#nav ul { padding:0; margin:0; width:auto; clear:both; }
 } 
 
-/* smartphone portrait */
+/* 2/ smartphone portrait */
 @media only screen and (max-width: 320px) { 
+	/* OK IP4 iOs 5.1 paysage ET portrait */
 	body { text-align: center; }
+
 }
 
-/* "smartphone" paysage */
+/* 3/ "smartphone" paysage */
 @media only screen and (min-width: 321px) and (max-width: 480px) { 
+	/* ok Galaxy note portrait */
 
 }
 
-/* from 321 to 768 */
+/* 4/ from 321 to 768 */
 @media 	only screen and (min-width: 321px) and (max-width: 767px) { 
+	/* OK Galaxy note portrait */
 
 }
 
-/* home only - from 481 */
+/* 5/ home only - from 481 */
 @media only screen and (min-width: 481px) { 
+	/* OK Galaxy note paysage */
 
 }
 
-/* from 481 to 1199 */
+/* 6/ from 481 to 1199 */
 @media only screen and (min-width: 481px) and (max-width: 1199px) {
 
 }
 
-/* from 768 up */
+/* 7/ from 768 up */
 @media only screen and (min-width: 768px) {
 
 }
 
-/* "tablet" */
+/* 8/ "tablet" */
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
 	#page { padding-bottom: 50px; }
 }
 
-/* "tablet" portrait */
+/* 9/ "tablet" portrait */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 	#page { width: 984px; margin: 0 auto; }
 }
 
-/* "tablet" paysage */
+/* 10/ "tablet" paysage */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
 
 }
 
-/* "desktop" */
+/* 11/ "desktop" */
 @media only screen and (min-width: 1200px) {
 
 }
 
-/* Sortie papier */
+/* 12/ Sortie papier */
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
   a, a:visited { text-decoration: underline; }
@@ -453,6 +464,8 @@
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
+
+  .formulaire_spip { display: none; }
 }
 
 
