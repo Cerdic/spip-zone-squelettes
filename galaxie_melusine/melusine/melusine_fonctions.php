@@ -226,7 +226,7 @@ function melusine_rassembler($i,$objet="squelettes",$zone="effectifs"){
 	ecrire_config($chemin,$pos_bas);
 	ecrire_config($chemin_bas,'aucun');
 	$i++;
-	if($i<12){melusine_rassembler($i,$zone,$objet);};
+	if($i<12){melusine_rassembler($i,$objet,$zone);};
 }
 /**
  * Retourne la liste des fichiers qui doivent être déplacés
