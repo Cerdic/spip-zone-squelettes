@@ -334,6 +334,17 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
                     <br /><br />
+             #SET{name,exclurefav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Exclure les sites avec le mot-clé "favori" puisque déjà présents dans le bloc "Sites favoris" si vous l'utilisez
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
              #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
              <?php $nombresites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
                     Nombre de sites

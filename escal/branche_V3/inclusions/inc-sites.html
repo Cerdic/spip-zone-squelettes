@@ -4,13 +4,34 @@
 
   <div class="texte [(#CONFIG{escal/config/togglesites}|=={oui}|oui)toggle]" id="sites">
 
+#SET{nombresites,#CONFIG{escal/config/nombresites,5}}
+#SET{nombreartsites,#CONFIG{escal/config/nombreartsites,5}}
 
-[(#CONFIG{escal/config/sitessyndic}|=={oui}|non)
-  <INCLURE {fond=inclusions/inc-sites_references}{env}>
-]
+<BOUCLE_exclusion(SITES){si #CONFIG{escal/config/exclurefav}|=={oui}}{titre_mot=favori}{doublons}>
+</BOUCLE_exclusion>
 
-[(#CONFIG{escal/config/sitessyndic}|=={oui}|oui)
-  <INCLURE {fond=inclusions/inc-sites_syndiques}>
-]
+          <BOUCLE_derniers_sites(SITES){si #CONFIG{escal/config/sitessyndic}|=={oui}|non}{doublons}{par nom_site}{0,#GET{nombresites}} >
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites>
+    		      <ul>
+    				   <BOUCLE_articles_sites(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,#GET{nombreartsites}}>
+    				   <li><a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites>
+    				   </ul>
+    				   </B_articles_sites>
+          </BOUCLE_derniers_sites>
+
+          <BOUCLE_derniers_sites2(SITES){si #CONFIG{escal/config/sitessyndic}|=={oui}|oui}{doublons}{syndication=oui}{par nom_site}{0,#GET{nombresites}} >
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites2>
+    		      <ul>
+    				   <BOUCLE_articles_sites2(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,#GET{nombreartsites}}>
+    				   <li><a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites2>
+    				   </ul>
+    				   </B_articles_sites2>
+          </BOUCLE_derniers_sites2>
 
   </div>
