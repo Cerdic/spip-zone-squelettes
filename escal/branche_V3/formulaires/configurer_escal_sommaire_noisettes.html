@@ -153,6 +153,16 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
+            <br /><br />
+            #SET{name,toggleperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Noisette personnelle
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
              </div>
              
              </li>
@@ -223,11 +233,10 @@
                     </div>
               -->
              #SET{name,nombrephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombrephotos="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
                     Nombre d'images
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombrephotos"; ?>"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
                     </span>
                     <br /><br />
             #SET{name,tempophotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -246,11 +255,10 @@
                     <br />
             <div class="explication">
              #SET{name,nombresitesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombresitesfav="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"; ?>
                     Nombre de sites
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombresitesfav"; ?>"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
                     </span>
                     <br /><br />
             #SET{name,tempositesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -346,19 +354,17 @@
                     </span>
                     <br /><br />
              #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombresites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
                     Nombre de sites
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombresites"; ?>"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /><br />
              #SET{name,nombreartsites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $nombreartsites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"; ?>
                     Nombre d'articles par sites
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$nombreartsites"; ?>"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
 
             </div>
@@ -404,11 +410,10 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
             #SET{name,periodevisites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <?php $periode="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},365})]"; ?>
                     <div style="padding-left:100px;">sur une période de
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$periode"; ?>"  /> jours
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},365})]"  /> jours
                     </span></div>
                     <br />
             #SET{name,grosjour}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -548,7 +553,58 @@
             -->
             </div>
             </li>
-            
+<!-- inc-perso -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Noisette à personnaliser</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titreperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <strong>Titre du cadre</strong>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Ma noisette})]"  />
+                    </span>
+            <br /><br />
+            #SET{name,choixperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <strong>Choix de l'affichage</strong><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="listedateauteur"
+                            [(#ENV{#GET{name}}|=={listedateauteur}|oui)checked="checked"] /><label for="#GET{name}_date">Liste avec titre (et lien), date de publication et auteur</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="listesimple"
+                            [(#ENV{#GET{name}}|=={listesimple}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste avec titre (et lien) seul</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="listedefilante"
+                            [(#ENV{#GET{name}}|=={listedefilante}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste défilante avec titre et début du texte</label>
+                    </span>
+            <br /><br />
+            <strong>Pour les 2 premiers choix : </strong><br />
+            #SET{name,nombreartperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},15})]"  />
+                    </span>
+            <br />
+            #SET{name,paginperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+            <br /><br />
+            <strong>Pour le troisième choix : </strong><br />
+            #SET{name,tempoperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Temporisation entre chaque logo de site (en secondes)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
+
+            </div>
+            </li>
      </ul>
 
 

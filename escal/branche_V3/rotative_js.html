@@ -134,4 +134,34 @@
    old_headline4 = current_headline4;
  }
 
+// **********************************
+// pour la noisette inc-perso
+// **********************************
 
+ var headline5_count;
+ var headline5_interval;
+ var old_headline5 = 0;
+ var current_headline5 = 0;
+ var tempo5 = '#CONFIG{escal/config/tempoperso,5}' * 1000;
+
+ $(document).ready(function(){
+   headline5_count = $("div.headline5").size();
+   $("div.headline5:eq("+current_headline5+")").css('top','5px');
+
+   headline5_interval = setInterval(headline5_rotate,tempo5); //temps en millisecondes
+   $('#scrollup5').hover(function() {
+     clearInterval(headline5_interval);
+   }, function() {
+     headline5_interval = setInterval(headline5_rotate,tempo5); //temps en millisecondes
+     headline5_rotate();
+   });
+ });
+
+ function headline5_rotate() {
+   current_headline5 = (old_headline5 + 1) % headline5_count;
+   $("div.headline5:eq(" + old_headline5 + ")").animate({top: -205},"slow", function() {
+     $(this).css('top','210px');
+   });
+   $("div.headline5:eq(" + current_headline5 + ")").show().animate({top: 5},"slow");
+   old_headline5 = current_headline5;
+ }

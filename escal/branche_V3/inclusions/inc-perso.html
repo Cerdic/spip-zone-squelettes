@@ -1,0 +1,61 @@
+
+
+	<h1 class="cadre">
+  [(#CONFIG{escal/config/titreperso,Ma noisette})]
+  </h1>
+
+	<div class="texte [(#CONFIG{escal/config/toggleperso}|=={oui}|oui)toggle]" id="perso">
+
+#SET{nombreartperso,#CONFIG{escal/config/nombreartperso,5}}
+#SET{paginperso,#CONFIG{escal/config/paginperso,5}}
+
+  <B_perso1>
+    <p style="align:right">#PAGINATION</p>
+	<BOUCLE_perso1(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedateauteur}|oui}{titre_mot=actus}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+		<!-- 	affichage du titre avec lien vers l'article
+					de la date de publication
+					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[<:escal:le:> (#DATE|affdate) ]
+			<BOUCLE_test(AUTEURS){id_article}{lang_select}>
+		  </BOUCLE_test>
+		  <br /><:par_auteur:>
+			<BOUCLE_auteurs(AUTEURS){id_article}{",<br />"}{lang_select}>
+      [<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]</BOUCLE_auteurs>
+			</B_test>
+		</div>
+	</BOUCLE_perso1>
+	
+	<B_perso2>
+    <p style="align:right">#PAGINATION</p>
+	<BOUCLE_perso2(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listesimple}|oui}{titre_mot=actus}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+		<!-- 	affichage du titre avec lien vers l'article -->
+		<div class="titre-article-cadre">
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+	</BOUCLE_perso2>
+
+	<B_perso3>
+	<div id="scrollup5">
+  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{titre_mot=actus}{lang}>
+  <div class="headline5" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">#TITRE</a>
+  <div class="intro">
+  [(#INTRODUCTION|couper{80}|propre)]
+  </div>
+  </div>
+  </BOUCLE_perso3>
+  </div>
+  </B_perso3>
+  
+	</div><!-- fin texte -->
+
+
