@@ -60,13 +60,6 @@
 	.rotate-gauche {-moz-transform: rotate(-2deg); -webkit-transform: rotate(-2deg); transform: rotate(-2deg);}
 	.rotate-droite {-moz-transform: rotate(2deg); -webkit-transform: rotate(2deg); transform: rotate(2deg);} 
 	
-	/* largeur de blocs (responsive WD) */
-	.un-demi, .un-tiers, .un-quart, .deux-tiers { margin:0 1.6276em 1em 0; } /* ou adapter selon chq aff. */
-	.un-demi { width:48%; }
-	.un-tiers { /* width: 31.914893617021278%; *width: 31.861702127659576%; */ width:31.25%; margin:0 1.417187392em 1em 0; }
-        .un-quart { width:24%; }
-	.deux-tiers { width:60%; }
-
 	/* Boutons > Call to action */
     /* insérer ici les styles additionnels à varicelle */
 
@@ -74,7 +67,6 @@
 /* Structure */
 
 	.page {background:#FFF; margin:0 auto; position:relative; max-width:1120px; padding:0 0 1em 0; box-shadow:1px 1px 60px #111;}
-  #top { margin:0; padding:0 40px; width:100%;} /* Liens d'access. */
 	#header { background: #EFEFEF; position:relative; overflow:hidden; padding:1em; }
 	#nav {width:100%; margin:0; padding:1em 0; background: #EFEFEF; border-top:6px solid black;}
 	#container { margin:0 auto; padding:0 1em;}
@@ -89,13 +81,20 @@
 	
 	/* Préparer le terrain pour affichage en colonne responsive */
 	
-	.liste, .extra { *zoom: 1; }
+	.liste, .extra, .col { *zoom: 1; }
 	.liste:before, .liste:after,
-	.extra:before, .extra:after { display: table; line-height: 0; content: ""; }
-	.liste:after, .extra:after { clear: both; }
+	.extra:before, .extra:after, .col:before, .col:after { display: table; line-height: 0; content: ""; }
+	.liste:after, .extra:after, .col:after { clear: both; }
 
+	/* largeur de blocs (responsive WD) */
+	.un-demi, .un-tiers, .un-quart, .un-cinq, .deux-tiers, .trois-quarts { float:left; margin:0 1em 1em 0;}
+	.un-demi.last, .un-tiers.last, .un-quart.last, .un-cinq.last, .deux-tiers.last, .trois-quarts.last { margin-right:0; }
+	.un-demi { width:49.266237258911136529%; }
+	.un-tiers { /* width: 31.914893617021278%; *width: 31.861702127659576%; */ width:32.3544712%; }
+	.un-quart { width:23.898591%; margin-right: 1em; }
+	.deux-tiers { width:60%; }
+    .un-cinq { width:18.82506%; }
 
-	
 
 /* Header */
 
@@ -129,7 +128,7 @@
 	
 	*/
 	.liste .liste-items { margin:0;}
-	.liste .item { list-style:none; float:left; background: transparent none;  padding:0;  background:red;
+	.liste .item { list-style:none; float:left; background: transparent none;  padding:0; 
 		min-height:240px; /* trouver mieux ! */
 	}
 	.liste .item:hover { background:#EFEFEF; }
@@ -237,12 +236,6 @@
 
 
 /* Asides */
-
-	/* Styles généraux */
-	one-half { }
-	one-third { }
-	two-third { }
-	one-fourth { }
 		
 	/* VCard */
 	/*
@@ -259,23 +252,31 @@
 /* Navigation */
 
 	/* Skip Links */
-        .skiplink.nettoyeur { margin:1em 0; text-align:right; }
-	.skiplink {font-size:1em;}
+	
+	.skiplink {font-size:0.8em;}
+	
+  .skiplink.nettoyeur { margin:1em 0; text-align:right; }
+	
 	.skiplink.remonter a:link, .skiplink.remonter a:visited,
-	.skiplink.descendre a:link, .skiplink.descendre a:visited {padding:0 25px 0 0; text-decoration:none; opacity:0.3;}
+	.skiplink.descendre a:link, .skiplink.descendre a:visited {padding:0 1.5em 0 0; text-decoration:none; opacity:0.3;}
 	.skiplink.remonter a:hover, .skiplink.remonter a:active, .skiplink.remonter a:focus, 
 	.skiplink.descendre a:hover, .skiplink.descendre a:active, .skiplink.descendre a:focus {color:#000; text-decoration:none; opacity:1;} 
-	.skiplink.remonter a {background: transparent url(img/remonter.png) scroll no-repeat right top;}
-	.skiplink.descendre a {background: transparent url(img/descendre.png) scroll no-repeat right top;}
+	.skiplink.remonter a {background: transparent url(img/remonter.png) scroll no-repeat right center;}
+	.skiplink.descendre a {background: transparent url(img/descendre.png) scroll no-repeat right center;}
 	
-  #top {background:transparent url(img/varicelle-sprite.png) scroll repeat-x left bottom; text-align:right;}
-	#top a:link, #top a:visited { padding:0 0 0 1.8em; margin:0 0 0 2.8em; color:#F9F9F9; background:transparent; text-decoration:none; font-size:0.8em;}
-	#top a:hover, #top a:active, #top a:focus {color:#111; text-decoration:underline;}
-	#top a.go_content {background:url(img/picto_contenu.png) scroll no-repeat left top;}
-	#top a.go_nav {background:url(img/picto_nav.png) scroll no-repeat left top;}
-	#top a.go_map {background:url(img/picto_plan.png) scroll no-repeat left top;}
-	#top a.go_plus {background:url(img/picto_accessibilite.png) scroll no-repeat left top;}
-	#top .sep {display:none;}
+	#raccourcis { position:absolute; top:0; right:0; margin:0; padding:0 1em; }
+	
+	/* 
+		Terrain prepare pour mettre des pictos si vous le souhaitez :
+		
+		#raccourcis a:link, #raccourcis a:visited { padding:0 0 0 1.8em; margin:0 0 0 2.8em; background:transparent; text-decoration:none; font-size:0.8em;}
+		#raccourcis a:hover, #raccourcis a:active, #raccourcis a:focus {color:#111; text-decoration:underline;}
+		#raccourcis a.go_content {background:url(img/picto_contenu.png) scroll no-repeat left top;}
+		#raccourcis a.go_nav {background:url(img/picto_nav.png) scroll no-repeat left top;}
+		#raccourcis a.go_map {background:url(img/picto_plan.png) scroll no-repeat left top;}
+		#raccourcis a.go_plus {background:url(img/picto_accessibilite.png) scroll no-repeat left top;}
+	*/
+	#raccourcis .sep {display:none;}
 
 	/* Navbar */
 	#nav ul {padding:0; }
