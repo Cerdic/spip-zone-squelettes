@@ -9,7 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Go to menu',
-	'accessibilite_onglets' => 'Go to the thumb indexes', # MODIF
+	'accessibilite_onglets' => 'Go to tabs',
 	'accessibilite_recherche' => 'Go to Search box',
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
