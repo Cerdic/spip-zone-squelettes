@@ -31,7 +31,7 @@
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
             [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
-            
+
             <INCLURE {fond=inclusions/inc-menu_langues_self}>
           </div>
 
@@ -45,16 +45,16 @@
                   </div>
                 </div>
                 <div id="texte-article" >
-                
+
                   <B_compte_articles>
                     <!-- si au moins un article trouvé, on affiche le nombre trouvé -->
                     <div class="compte-resultat">
                       <strong>#TOTAL_BOUCLE</strong>
                       [(#TOTAL_BOUCLE|>{01}|oui) <:escal:articles_trouves:>]
-                      [(#TOTAL_BOUCLE|>{01}|non) <:escal:article_trouve:>] 
+                      [(#TOTAL_BOUCLE|>{01}|non) <:escal:article_trouve:>]
                       <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_articles(ARTICLES){recherche}{lang}>
+                  <BOUCLE_compte_articles(ARTICLES){recherche}{lang}{doublons articles}>
                   </BOUCLE_compte_articles>
                   </B_compte_articles>
                     <!-- si pas d'article trouvé -->
@@ -62,7 +62,7 @@
                       <:escal:recherche_articles_non:>
                     </div>
                   <//B_compte_articles>
-                  
+
                   <B_compte_rubriques>
                     <!-- si au moins une rubrique trouvée, on affiche le nombre trouvé -->
                     <div class="compte-resultat">
@@ -71,7 +71,7 @@
                       [(#TOTAL_BOUCLE|>{01}|non) <:escal:rubrique_trouvee:>]
                       <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_rubriques(RUBRIQUES){recherche}{lang}>
+                  <BOUCLE_compte_rubriques(RUBRIQUES){recherche}{lang}{doublons rubriques}>
                   </BOUCLE_compte_rubriques>
                   </B_compte_rubriques>
                     <!-- si pas de rubrique trouvée -->
@@ -88,7 +88,7 @@
                     [(#TOTAL_BOUCLE|>{1}|non) <:escal:site_reference:>]
                     <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_sites(SITES){recherche}>
+                  <BOUCLE_compte_sites(SITES){recherche}{doublons sites}>
                   </BOUCLE_compte_sites>
                   </B_compte_sites>
                     <!-- si pas de site trouvé -->
@@ -96,11 +96,11 @@
                       <:escal:recherche_sites_non:>
                     </div>
                   <//B_compte_sites>
-                
+
                   <B_articles>
                   <h2><:articles:></h2>
                   <p style="align:right">#PAGINATION</p>
-                  <BOUCLE_articles(ARTICLES) {recherche} {lang} {par points}{inverse} {pagination 5}>
+                  <BOUCLE_articles(ARTICLES) {!doublons articles} {pagination 5}>
                     <!-- on affiche le ou les article(s) -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -124,7 +124,7 @@
                   <B_rubriques>
                   <h2><:rubriques:></h2>
                   <p style="align:right">#PAGINATION</p>
-                  <BOUCLE_rubriques(RUBRIQUES) {recherche} {lang} {par points}{inverse} {pagination 5}>
+                  <BOUCLE_rubriques(RUBRIQUES) {!doublons rubriques}{pagination 5}>
                     <!-- on affiche le ou les rubrique(s) -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -140,7 +140,7 @@
                   <B_sites>
                   <h2><:escal:sites:></h2>
                   <p style="align:right">#PAGINATION</p>
-                  <BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+                  <BOUCLE_sites(SITES) {!doublons sites}{pagination 5}>
                     <!-- on affiche les sites trouvés -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -162,7 +162,7 @@
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
-            
+
           <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
             [(#CONFIG{escal/config/menuV1}|=={non}|non)
               <div class="cadre-bleu">
@@ -176,7 +176,7 @@
               [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical_2}{env}>]
               </div>
             ]
-            
+
             <div class="cadre-bleu">
               <INCLURE {fond=inclusions/inc-acces_direct}{env}>
             </div>
