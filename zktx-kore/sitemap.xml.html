@@ -9,7 +9,7 @@
 	Duree de reindexation et priorite ne sont pas precisees,
 	sauf pour l'accueil.
 
-	Mais si date_modif est recente (1 jour) on l'indique, pour que ce
+	Mais si date_modif est recente (1 semaine) on l'indique, pour que ce
 	soit reindexe en priorite
 
 	(On pose un cache a zero pour echapper au test _IS_BOT)
@@ -30,7 +30,7 @@
 <url><loc>(#URL_RUBRIQUE|url_absolue)</loc></url>]</BOUCLE_r>
 
 [(#REM) Articles ]
-[(#SET{recent,[(#VAL{Y-m-d H:i:s}|date{#VAL{"-1 day"}|strtotime})]})]
+[(#SET{recent,[(#VAL{Y-m-d H:i:s}|date{#VAL{"-1 week"}|strtotime})]})]
 <BOUCLE_a(ARTICLES){!par date_modif}{!par date}{0,2000}>[
 <url><loc>(#URL_ARTICLE|url_absolue)</loc>[(#DATE_MODIF**|>{#GET{recent}}
 |?{[<lastmod>(#DATE_MODIF**|date_iso)</lastmod>]})]</url>]</BOUCLE_a>
