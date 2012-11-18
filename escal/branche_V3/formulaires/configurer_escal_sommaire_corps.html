@@ -7,6 +7,7 @@
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
+
     
      <ul>
      
@@ -29,43 +30,62 @@
                     </span>
              </div>
              </li>
-    
+
 <br />
 <legend><strong>Partie centrale</strong></legend>
-    
-<!-- inc-annonce -->
-             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Annonce</strong></label>
-                    <br />
-             <div class="explication">
-             #SET{name,annonce}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    L'article le plus récent avec le mot-clé "annonce"<br /> dans un encart au centre.
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+            <div class="explication" style="margin:10px">
+            <strong>Annonce</strong> : l'article le plus récent avec le mot-clé "annonce" dans un encart.<br />
+            <strong>Annonces défilantes</strong> : tous les articles avec le mot-clé "annonce-defilant" défilent dans un encart.<br />
+            <strong>A la une</strong> : Une boite avec des onglets : les derniers articles du site, plan du site, ....<br />
+            </div>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Choix des blocs</strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocune1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  >Annonce</option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] >Annonces défilantes</option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >A la une</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
                     </span>
-             </div>
-             </li>
+            <br /><br />
+             #SET{name,blocune2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  >Annonce</option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] >Annonces défilantes</option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})]>A la une/option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]  [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            <br /><br />
+             #SET{name,blocune3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  >Annonce</option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] >Annonces défilantes</option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})] >A la une</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]  [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+
+
 <!-- inc-annonce_defilant -->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Annonces défilantes</strong></label>
                     <br />
              <div class="explication">
-             #SET{name,annoncedefilant}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Tous les articles avec le mot-clé "annonce-defilant"<br />défilent dans un encart au centre.
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-                    <br /><br />
             #SET{name,hauteurannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Hauteur du cadre (en px)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -82,7 +102,7 @@
                     <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
              </div>
              </li>
-             
+<!-- inc-a_la_une -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <label><strong>Les onglets du bloc central</strong></label>
                     [<span class='erreur_message'>(#GET{erreurs})</span>]
