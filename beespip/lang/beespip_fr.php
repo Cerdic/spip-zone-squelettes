@@ -161,6 +161,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // I
 'il_y_a' => 'Il y a',
 'index' => 'Index',
+'info_document' => 'Document',
 'info_portfolio' => 'Portfolio',
 
 
@@ -225,6 +226,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // T
 'titre_documents_joints' => 'Documents joints',
+'telecharger' => 'Télécharger',
 
 // V
 'version' => 'v.',
