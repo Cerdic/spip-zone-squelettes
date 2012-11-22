@@ -1,0 +1,20 @@
+[(#REM) Listes de breves dans scolaspip]
+<B_breves>
+<div class="liste articles breves" >
+#ANCRE_PAGINATION
+<h2 class="h2"><:scolaspip:actualites:></h2>
+<ul class="liste-items">
+<BOUCLE_breves(BREVES){id_secteur ?}{!par date}{pagination 10}>
+	[<li class="item hentry" title="<:scolaspip:breve_publie_le:> [(#DATE|nom_jour) ][(#DATE|affdate)]">
+		<h3 class="h3 entry-title"><a href="#URL_BREVE" title="<:scolaspip:affiche_breve:>">[(#LOGO_BREVE|right||image_reduire{80,40})](#TITRE)</a></h3>
+		<div class="contenu_breve">
+			[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+			[<p class="hyperlien #EDIT{hyperlien}"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" title="<:scolaspip:lien_externe:>">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[(#INCLURE{fond=inclure/documents,id_breve}{titre= })]
+		</div>
+	</li>]
+</BOUCLE_breves>
+</ul>
+[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_breves>
