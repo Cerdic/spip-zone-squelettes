@@ -4,9 +4,13 @@
 <BOUCLE_titrealt(ARTICLES){par date}{inverse}{0,1}>
 #SET{titrealt,#TITRE}
 </BOUCLE_titrealt>
+<BOUCLE_titremonart(ARTICLES){titre_mot=mon-article}>
+#SET{titremonart,#TITRE}
+</BOUCLE_titremonart>
+
 
 <BOUCLE_titrerub(RUBRIQUES){titre_mot=RubriqueOnglet}{0,1}>
-#SET{titrerub,#TITRE}
+[(#SET{titrerub,#TITRE|replace{' ', &nbsp;}})]
 </BOUCLE_titrerub>
 
 
@@ -15,22 +19,25 @@
   <ul class="onglets">
 <!-- onglet 1 -->
     [(#CONFIG{escal/config/onglet1}|non)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={derniersarticles}|oui)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={plansite}|oui)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="<:escal:plan_site:>"><:escal:plan_site:></a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="<:escal:plan_site:>"><:escal:plan_site:></a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={articleaccueil}|oui)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="Article d'accueil">#GET{titre, #GET{titrealt}}</a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="Article d'accueil">#GET{titre, #GET{titrealt}}</a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={articlearchive}|oui)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="Article archive"><:escal:article_archive:></a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="Article archive"><:escal:article_archive:></a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={rubrique}|oui)
-    <li><a href="#onglet" name="contenu_1" class="tab active" title="Rubrique">#GET{titrerub}</a></li>
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="Rubrique">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_1" class="tab active" id="premier" title="Article à voir">#GET{titremonart}</a></li>
     ]
 <!-- onglet 2 -->
     [(#CONFIG{escal/config/onglet2}|=={derniersarticles}|oui)
@@ -51,6 +58,9 @@
     [(#CONFIG{escal/config/onglet2}|=={rubrique}|oui)
     <li><a href="#onglet" name="contenu_2" class="tab" title="Rubrique">#GET{titrerub}</a></li>
     ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab" title="Article à voir">#GET{titremonart}</a></li>
+    ]
 <!-- onglet 3 -->
     [(#CONFIG{escal/config/onglet3}|=={derniersarticles}|oui)
     <li><a href="#onglet" name="contenu_3" class="tab" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
@@ -67,6 +77,9 @@
     [(#CONFIG{escal/config/onglet3}|=={rubrique}|oui)
     <li><a href="#onglet" name="contenu_3" class="tab" title="Rubrique">#GET{titrerub}</a></li>
     ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab" title="Article à voir">#GET{titremonart}</a></li>
+    ]
 <!-- onglet 4 -->
     [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
     <li><a href="#onglet" name="contenu_4" class="tab" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
@@ -82,6 +95,28 @@
     ]
     [(#CONFIG{escal/config/onglet4}|=={rubrique}|oui)
     <li><a href="#onglet" name="contenu_4" class="tab" title="Rubrique">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+<!-- onglet 5 -->
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={plansite}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="<:escal:plan_site:>"><:escal:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articleaccueil}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="Article d'accueil">#GET{titre, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articlearchive}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="Rubrique">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="Article à voir">#GET{titremonart}</a></li>
     ]
   </ul>
 
@@ -116,6 +151,11 @@
     <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}>
   </div>
     ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}>
+  </div>
+    ]
 <!-- onglet 2 -->
     [(#CONFIG{escal/config/onglet2}|=={derniersarticles}|oui)
   <div class="contenu_2 content">
@@ -145,6 +185,11 @@
     [(#CONFIG{escal/config/onglet2}|=={rubrique}|oui)
   <div class="contenu_2 content">
     <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}>
   </div>
     ]
 <!-- onglet 3 -->
@@ -178,6 +223,11 @@
     <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}>
   </div>
     ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}>
+  </div>
+    ]
 <!-- onglet 4 -->
     [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
   <div class="contenu_4 content">
@@ -202,6 +252,42 @@
     [(#CONFIG{escal/config/onglet4}|=={rubrique}|oui)
   <div class="contenu_4 content">
     <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}>
+  </div>
+    ]
+<!-- onglet 5 -->
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={plansite}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articleaccueil}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articlearchive}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}>
   </div>
     ]
 </div>  <!-- cadre-une -->
