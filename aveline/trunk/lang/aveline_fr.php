@@ -400,6 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_afficher_date' => 'Ajouter la date de l\'article à la suite du titre ?',
 	'label_vignette_ajout_css' => 'Ajout en dur de CSS spécifiques ?',
 	'label_vignette_nb_documents' => 'Ajouter à la suite le nombre de documents joints à l\'article ?',
+	'label_vignettes_carrees' => 'Générer des vignettes carrées ?',
 	'logo_objet_rubrique' => 'Logo (rubrique si absent)',
 
 	// N

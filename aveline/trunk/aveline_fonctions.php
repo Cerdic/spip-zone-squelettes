@@ -2,6 +2,9 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
+// Nécessaire pour le formulaire volant
+if (!defined('_FORUM_AUTORISER_POST_ID_FORUM')) define('_FORUM_AUTORISER_POST_ID_FORUM', true);
+
 // Filtre pour afficher les statistiques d'un mot-clé
 // [(#ID_MOT|statistiques_mot{#ID_GROUPE})] // passer #ID_GROUPE si possible (evite une requete)
 function filtre_statistiques_mot_dist($id_mot, $id_groupe=''){
