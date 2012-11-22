@@ -8,7 +8,7 @@
 	<B_entrees>
 	#SET{reste_a_afficher,#CONFIG{BeeSpip/affichage/nb_items_menu}|moins{#TOTAL_BOUCLE}}
 	[(#REM) On complète avec les rubriques racines si besoin]
-	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'oui'}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
+	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'oui'}|et{#GET{reste_a_afficher}|>{0}}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
 
 	<BOUCLE_entrees(MENUS_ENTREES?){id_menu}{par rang}>
 	#MENUS_AFFICHER_ENTREE
@@ -23,7 +23,7 @@
 	]
 	</BOUCLE_entrees>
 	
-	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'non'}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
+	[(#CONFIG{BeeSpip/affichage/menu_debut}|=={'non'}|et{#GET{reste_a_afficher}|>{0}}|oui)<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>]
 </BOUCLE_menu>
 	[(#REM) Il n'existe pas de menu, on affiche les rubriques racines]
 	<INCLURE{fond=inclure/menu_rubrique}{reste_a_afficher=#GET{reste_a_afficher}}{env}>

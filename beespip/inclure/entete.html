@@ -1,7 +1,8 @@
 #SET{hauteur_entete,#CONFIG{BeeSpip/affichage/hauteur_entete}}
 #SET{hauteur_menu,#CONFIG{BeeSpip/affichage/hauteur_menu}}
+#SET{taille_menu,#CONFIG{BeeSpip/affichage/taille_menu}}
 [(#REM)On vérifie si la position du menu est possible, sinon on la fixe en bas de l'entete]
-#SET{hauteur_menu_max,#GET{hauteur_entete}|moins{45}}
+#SET{hauteur_menu_max,#GET{hauteur_entete}|moins{#GET{taille_menu}}}
 [(#GET{hauteur_menu}|>{#GET{hauteur_menu_max}}|oui)#SET{hauteur_menu,#GET{hauteur_menu_max}}]
 <div id="entete" class="container_16" style="height:#GET{hauteur_entete}px;">
 	<INCLURE{fond=inclure/liens_evitement,env}>

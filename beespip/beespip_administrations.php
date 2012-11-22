@@ -170,6 +170,11 @@ function beespip_upgrade($nom_meta_base_version, $version_cible){
                         ecrire_config('BeeSpip/affichage/menu_debut','oui');
                         ecrire_meta($nom_meta_base_version,$current_version="0.50",'non');
                 }
+                if (version_compare($current_version,"0.51","<")){
+                        // Ajout des nouvelles configurations
+                        ecrire_config('BeeSpip/affichage/taille_menu','45');
+                        ecrire_meta($nom_meta_base_version,$current_version="0.51",'non');
+                }
                 ecrire_metas();
         }
 }
