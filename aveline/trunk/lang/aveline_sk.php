@@ -403,6 +403,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_afficher_date' => 'Pridať dátum článku za nadpis?',
 	'label_vignette_ajout_css' => 'Pridať špeciálne CSS?',
 	'label_vignette_nb_documents' => 'Pridať za počet pripojených súborov k článku?',
+	'label_vignettes_carrees' => 'Générer des vignettes carrées ?', # NEW
 	'logo_objet_rubrique' => 'Logo (rubrique si absent)', # NEW
 
 	// N
