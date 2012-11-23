@@ -24,6 +24,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_image
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forum
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/iterateurs
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/job_queue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mediabox
@@ -86,6 +87,38 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/yaml
 cd ..
 
+#Création du dossier /lib et se placer dedans
+mkdir lib
+cd lib
+# Pour le plugin Palette 
+wget http://files.spip.org/contribs/farbtastic_1_3_1.zip
+unzip farbtastic_1_3_1.zip
+rm farbtastic_1_3_1.zip
+# Pour le plugin PhotoSPIP
+wget http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.8.zip
+unzip jquery.imgareaselect-0.9.8.zip
+rm jquery.imgareaselect-0.9.8.zip
+# Pour le plugin ArticlePDF
+wget http://www.fpdf.org/fr/download/fpdf17.zip
+unzip fpdf17.zip
+rm fpdf17.zip
+# Pour CKEditor
+wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.5/ckeditor_3.6.5.zip
+unzip ckeditor_3.6.5.zip
+rm ckeditor_3.6.5.zip
+wget http://ftp.espci.fr/pub/html2spip/html2spip-0.6.zip
+unzip html2spip-0.6.zip
+rm html2spip-0.6.zip
+wget http://netcologne.dl.sourceforge.net/project/kcfinder/KCFinder/2.51/kcfinder-2.51.zip
+unzip kcfinder-2.51.zip
+rm kcfinder-2.51.zip
+# Pour le plugin GIS
+wget https://github.com/downloads/brunob/mxn/mxn-gis-2.2.2.zip
+unzip mxn-gis-2.2.2.zip
+rm mxn-gis-2.2.2.zip
+#retour à la racine
+cd ..
+
 #Installation du squelette SoyezCreateur : il faut le faire dans un sous dossier
 #car sinon, conflit avec le .svn de SPIP
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_2.1/ ./__sc/
@@ -99,4 +132,4 @@ rm -r -f ./__sc
 mkdir squelettes
 
 #mettre les droits idoines pour les dossiers
-chmod 755 config/ IMG/ local/ tmp/
+chmod -R 755 config/ IMG/ local/ tmp/
