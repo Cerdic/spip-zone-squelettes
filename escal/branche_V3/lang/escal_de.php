@@ -1,4 +1,5 @@
 <?php
+// fichier de langue allemand pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
@@ -29,6 +30,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_trouve' => 'gefundener Artikel',
 'articles_trouves' => 'gefundene Artikel',
 'article_une' => 'diesen Artikel in die Titelseite setzen',
+'a_telecharger' => 'Herunterladen',
+'a_decouvrir' => 'Entdecken',
 'aujourdhui'  => 'Heute : ',
 'auteurs' => 'Verfasser',
 'avec' => 'mit',

@@ -1,5 +1,5 @@
 <?php
-// fichier de langue pour le squelette Escal	   
+// fichier de langue letton pour le squelette Escal
 	   
 if (!defined('_ECRIRE_INC_VERSION')) return;	   
 	   
@@ -29,7 +29,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_mise_en_ligne'=> 'Raksts publicets',	   
 'article_trouve'=> 'pants atrasts',	   
 'articles_trouves'=> 'raksti atrasts',	   
-'article_une'=> 'Nodot šo rakstu pirmaja lapa',	   
+'article_une'=> 'Nodot šo rakstu pirmaja lapa',
+'a_telecharger' => 'Lejupielādēt',
+'a_decouvrir' => 'Atklāt',
 'aujourdhui'=> 'šodien:',	   
 'auteurs'=> 'Autori',	   
 'avec'=> 'platums',	   

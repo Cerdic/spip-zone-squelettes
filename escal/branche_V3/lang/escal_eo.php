@@ -1,5 +1,5 @@
 <?php
-// fichier de langue pour le squelette Escal
+// fichier de langue espéranto pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
@@ -30,6 +30,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_trouve' => 'Trovita artikolo',
 'articles_trouves' => 'Trovitaj artikoloj',
 'article_une' => 'Artikolo publikigota sur la unua paĝo',
+'a_telecharger' => 'Elŝutu',
+'a_decouvrir' => 'Malkovri',
 'aujourdhui'  => 'Hodiaŭ : ',
 'auteurs' => 'Aŭtoroj',
 'avec' => 'kun',
