@@ -134,15 +134,15 @@ $test_lang_personnalisation=array(
 	'mentions_lois' => 'En vertu de la loi pour la confiance dans l\'économie numérique (LCEN) du 21 juin 2004, voici les coordonnées de l\'éditeur et du prestataire qui accueille le site :',
 	'mentions_prestataire' => 'Prestataire assurant le stockage direct et permanent :',
 	'mentions_qualite' => 'Qualité :',
-	'mentions_qui_texte' => '<p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
+	'mentions_qui_texte' => '<p>A l\'origine <a href="http://www.evaweb.fr">EVA</a>
 	correspond à un projet de portail d\'Intranet d\'Établissement, installé sur 
 	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
 	<p>Cette version, légèrement adaptée, permet à une école ou à un établissement de mettre 
 	en place un site web collaboratif, en proposant différents modèles de publication 
 	(article, album photo, diaporama ...) </p>
-	<p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
-  	<a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
-	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribué sous Licence Publique Générale 
+	<p>Pour plus de renseignements sur le projet <a href="http://www.evaweb.fr">EVA-web</a>, consultez le site 
+  	<a href="http://www.evaweb.fr">http://www.evaweb.fr</a></p>
+	<p><a href="http://www.evaweb.fr">EVA-web</a> est un logiciel libre distribué sous Licence Publique Générale 
 	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
 	conçu pour fonctionner à partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
 	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
