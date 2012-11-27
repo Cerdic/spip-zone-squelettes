@@ -93,7 +93,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_precedent_suivant_type_lien' => 'Choisissez le type de lien à afficher',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la même langue.',
-	'explication_themes_anythingslider' => 'Vous pouvez disposer de plus de thèmes en les activant sur la <a href="./?exec=configurer_anythingslider">page de configuration d\'AnythingSlider</a>.',
 	'explication_tri_recherche' => 'Par défaut, les résultats sont triés par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajoutée.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.',
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pour que les évènements puissent avoir leur propre logo, vous devez installer le plugin \'Documents et Logo pour Agenda\'.',
