@@ -5,33 +5,8 @@
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
+		<input type="hidden" name="_meta_casier" value="sarkaspip/noisettes" />
 		#ACTION_FORMULAIRE{#ENV{action}}
-
-		[(#REM) <!-- Choix de la pagination des noisettes de navigation --> ]
-		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_inc_navigation:></legend>
-			<ul>
-			<INCLURE{fond=formulaires/inc/cfg_pagination}
-				{explications=<:sarkaspip:cfg_inf_inc_navigation:>}
-				{defaut_pas=10}
-				{suffixe=_navigation}
-				{choix=sans_position}
-				{env}>
-			</ul>
-		</fieldset>
-
-		[(#REM) <!-- Choix de la pagination des noisettes de filtre --> ]
-		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_inc_filtre:></legend>
-			<ul>
-				<INCLURE{fond=formulaires/inc/cfg_pagination}
-					{explications=<:sarkaspip:cfg_inf_inc_filtre:>}
-					{defaut_pas=10}
-					{suffixe=_filtre}
-					{choix=sans_position}
-					{env}>
-			</ul>
-		</fieldset>
 
 		[(#REM) <!-- Choix d'affihcage des noisettes --> ]
 		<fieldset class="noisettes_choix">
@@ -425,7 +400,58 @@
 					</div>
 				</li>
 				]
+				[(#REM) <!-- twitget  --> ]
+				[(#PLUGIN{TWIDGET}|oui)
+				#SET{name,position_twidget}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,2}
+					<div class="choix">
+						<input type="hidden" name="#GET{name}" value="0" />
+						<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_position_twitget:></label>
+					</div>
+					<div class="suite">
+						<p class="explication"><:sarkaspip:cfg_inf_inc_twitget_timeline:></p>
+						<ul>
+							#SET{name,twidget_user}#SET{defaut,''}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+								<label for="#GET{name}"><:sarkaspip:cfg_lbl_twitget_user_or_search:></label>[
+								<span class='erreur_message'>(#GET{erreurs})</span>
+								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+							</li>
+						</ul>
+					</div>
+				</li>
+				]
+			</ul>
+		</fieldset>
 
+		[(#REM) <!-- Choix de la pagination des noisettes de navigation --> ]
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_inc_navigation:></legend>
+			<ul>
+			<INCLURE{fond=formulaires/inc/cfg_pagination}
+				{explications=<:sarkaspip:cfg_inf_inc_navigation:>}
+				{defaut_pas=10}
+				{suffixe=_navigation}
+				{choix=sans_position}
+				{env}>
+			</ul>
+		</fieldset>
+
+		[(#REM) <!-- Choix de la pagination des noisettes de filtre --> ]
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_inc_filtre:></legend>
+			<ul>
+				<INCLURE{fond=formulaires/inc/cfg_pagination}
+					{explications=<:sarkaspip:cfg_inf_inc_filtre:>}
+					{defaut_pas=10}
+					{suffixe=_filtre}
+					{choix=sans_position}
+					{env}>
 			</ul>
 		</fieldset>
 
