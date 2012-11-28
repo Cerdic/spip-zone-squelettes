@@ -95,7 +95,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_precedent_suivant_type_lien' => 'Escolliu el tipus d\'enllaç a mostrar',
 	'explication_raccourcis_typo' => 'Podeu utilitzar les dreceres tipogràfiques d\'SPIP.',
 	'explication_restreindre_langue' => 'En el cas d\'un lloc multilingüe, es pot voler restringir que es mostrin només els objectes de la mateixa llengua.',
-	'explication_themes_anythingslider' => 'Podeu disposar de més temes activant-los a la <a href="./?exec=configurer_anythingslider">pàgina de configuració d\'AnythingSlider</a>.',
 	'explication_tri_recherche' => 'Per defecte, els resultats són classificats per pertinença. Si activeu la classificació modificable, la opció "Per pertinença" s\'afegirà automàticament.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Per tal que els esdeveniments puguin tenir el seu propi logotip, heu d\'instal·lar el connector \'Documents i Logo per Agenda\'.',

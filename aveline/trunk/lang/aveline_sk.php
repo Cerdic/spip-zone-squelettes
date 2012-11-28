@@ -96,7 +96,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_precedent_suivant_type_lien' => 'Vyberte si, aký typ odkazov sa má zobraziť',
 	'explication_raccourcis_typo' => 'Môžete používať klávesové skratky SPIPu.',
 	'explication_restreindre_langue' => 'V prípade viacjazyčnej stránky môžete chcieť obmedziť zobrazenie na objekty v rovnakom jazyku.',
-	'explication_themes_anythingslider' => 'Môžete mať viac farebných motívov po aktivovaní <a href="./?exec=configurer_anythingslider">stránky s nastaveniami AnythingSlider.</a>',
 	'explication_tri_recherche' => 'Podľa predvolených nastavení budú výsledky zotriedené podľa relevantnosti. Ak aktivujete triedenie podľa úprav, možnosť "podľa relevantnosti" bude pridaná automaticky.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pre udalosti, ktoré môžu mať svoje vlastné logo musíte nainštalovať zásuvný modul "Dokumenty a logo pre kalendár udalostí".',
