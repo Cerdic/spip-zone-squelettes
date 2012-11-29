@@ -4,7 +4,7 @@ $GLOBALS['z_blocs'] = array('content','aside','head','head_js','header','footer'
 if ($GLOBALS['visiteur_session']['statut']=='0minirezo')
 	$GLOBALS['marqueur'].=":minirezo";
 
-define('_ZENGARDEN_FILTRE_THEMES','zboot');
+define('_ZENGARDEN_FILTRE_THEMES','spipr');
 define('_ALBUMS_INSERT_HEAD_CSS',false);
 
 function title2anchor($titre,$id_article=""){
