@@ -9,6 +9,25 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 // TODO : conditionner a l'existence du plugin tickets
 include_spip("noisettes/afaire/filtres");
 
+function sarkaspip_detecter_plugin_newsletter(){
+	$f = find_in_path("newsletter/subscribe.php");
+	if (!$f) return "";
+	$d = dirname(dirname($f));
+	$base = "";
+	if (strncmp($d,_DIR_PLUGINS_DIST,strlen(_DIR_PLUGINS_DIST))==0)
+		$base = _DIR_PLUGINS_DIST;
+	elseif (strncmp($d,_DIR_PLUGINS,strlen(_DIR_PLUGINS))==0)
+		$base = _DIR_PLUGINS;
+	if (!$base) return "";
+
+	$d = substr($d,strlen($base));
+	$get_infos = charger_fonction("get_infos","plugins");
+	if (!$infos = $get_infos($d,false,$base))
+		return "";
+
+	return $infos['prefix'];
+}
+
 /**
  * Tester si on doit rediriger une rubrique vers son article orphelin
  * - si reglage active dans la configuration
