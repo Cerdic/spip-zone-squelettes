@@ -32,7 +32,7 @@
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
             [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
-            
+
             <INCLURE {fond=inclusions/inc-menu_langues_self}>
           </div>
 
@@ -61,7 +61,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>
 
 
-                    
+
 [(#CONFIG{escal/config/contactmail}|=={non}|oui) <!-- ]
                     <li><div class="liste"><:escal:contact_mail:></div>
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>
@@ -151,7 +151,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
                   </ul>
 <?php
 //
-// on recupere les donnees 
+// on recupere les donnees
 // on verifie si tout est bien rempli, sinon on envoie un message d'alerte
 // si oui on prepare le contenu du mail
 //
@@ -160,7 +160,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
 
 	$nom_site = entites_html($GLOBALS['meta']["nom_site"]);
 	$email_webmaster = entites_html($GLOBALS['meta']["email_webmaster"]);
-	
+
 if(!isset($_POST["Nom"])) {
 	formulaire();
 }
@@ -182,13 +182,13 @@ else {
 	if (empty($vNom)) {
 		echo "<p class='alerte'><:escal:contact_alerte_nom:></p>";
 		$erreur=1;
-	}	
+	}
 	$message.="<:escal:envoi_mail_prenom:> $vPrenom\n\n";
 	if (empty($vPrenom)) {
 		echo "<p class='alerte'><:escal:contact_alerte_prenom:></p>";
 		$erreur=1;
 	}
-	
+
 if (lire_config('escal/config/contactmail', 'oui') == 'oui') {
 	$message.="<:escal:envoi_mail_e_mail:> $vEmail\n\n";
 	if (empty($vEmail)) {
@@ -220,8 +220,8 @@ if (lire_config('escal/config/radio', 'oui') == 'oui') {
 		$erreur=1;
 	}
   }
-  $message.= "[(#CONFIG{escal/config/titrecheckbox})]";
-  
+
+  $message.= "[(#CONFIG{escal/config/titrecheckbox})] : ";
 if (is_array($_POST['Niveau'])) {
   $message.= implode(" - ",$_POST['Niveau']);
 }
@@ -267,18 +267,18 @@ if (is_array($_POST['Niveau'])) {
     </p>';
     }
 
-		 
+
     if (!empty($vSujet)) {
 		echo '<p class="texte-retour2"><:escal:contact_motif:></p>';
 		echo '<p class="valeur2">'. $vSujet=utf8_encode(nl2br($vSujet)) .'</p>';
 		}
-		
+
 		if (!empty($_POST['Niveau'])) {
-		echo '<p class="texte-retour2"><:escal:contact_retour_checkbox:></p>';
+		echo '<p class="texte-retour2">[(#CONFIG{escal/config/titrecheckbox,<:escal:contact_retour_checkbox:>})]</p>';
 		for ($i=0; $i<count($_POST["Niveau"]); $i++)
 		echo '<p class="valeur2">'. $_POST["Niveau"][$i].'</p>';
 		}
-		
+
 		echo '<p class="texte-retour2"><:escal:contact_message:></p>';
 
 		echo '<p class="valeur3">'. $vMessage=utf8_encode(nl2br($vMessage)) .'</p>';
@@ -294,7 +294,7 @@ if (is_array($_POST['Niveau'])) {
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
-            
+
           <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
             [(#CONFIG{escal/config/menuV1}|=={non}|non)
               <div class="cadre-bleu">
@@ -308,7 +308,7 @@ if (is_array($_POST['Niveau'])) {
               [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical_2}{env}>]
               </div>
             ]
-            
+
             <div class="cadre-bleu">
               <INCLURE {fond=inclusions/inc-acces_direct}{env}>
             </div>
