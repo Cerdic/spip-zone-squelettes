@@ -417,6 +417,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'Veure només la imatge',
 	'voirle' => 'Veure el ',
 	'voirsitespar' => 'Veure els llocs amb',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Vous souhaitez être tenu au courant ?', # NEW
 
 	// W
 	'wdcalendar_all_day' => 'Tot el dia',

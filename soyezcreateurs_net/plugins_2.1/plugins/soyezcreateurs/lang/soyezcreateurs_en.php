@@ -417,6 +417,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'See the image on its own',
 	'voirle' => 'See the',
 	'voirsitespar' => 'See the sites with',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Vous souhaitez être tenu au courant ?', # NEW
 
 	// W
 	'wdcalendar_all_day' => 'All day', # MODIF
