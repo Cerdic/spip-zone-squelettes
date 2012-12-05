@@ -60,7 +60,7 @@
             <div class="explication">
             <strong>Accès direct</strong> : article avec le mot-clé "acces-direct" pour des liens internes. Le titre du bloc sera celui de l'article.<br />
             <strong>Derniers articles</strong> : derniers articles de la rubrique en cours et de ses sous-rubriques.<br />
-            <strong>A découvrir</strong> : un choix d'articles de la rubrique en cours et de ses sous-rubriques.<br />
+            <strong>A découvrir</strong> : un choix d'articles du site ou bien de la rubrique en cours et de ses sous-rubriques.<br />
             <strong>A télécharger</strong> : liste les documents de la rubrique (pas de ses articles).<br />
             </div>
 
@@ -73,7 +73,9 @@
                     Premier bloc
                     <span class="choix" style="float: right">
                             <select name="#GET{name}">
-                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
                               <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
                               <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
@@ -86,6 +88,38 @@
                     Deuxième bloc
                     <span class="choix" style="float: right">
                             <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="rien" >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Quatrième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
                               <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
                               <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
@@ -95,10 +129,27 @@
                     </span>
              <br /><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>]
-             #SET{name,blocnavrub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Troisième bloc
+             #SET{name,blocnavrub5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Cinquième bloc
                     <span class="choix" style="float: right">
                             <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Sixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
                               <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
                               <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
@@ -197,7 +248,17 @@
                     <label><strong>A découvrir</strong></label>
                     <br />
             <div class="explication">
-
+             #SET{name,siteourub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Où prendre les articles ? <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_site" value="site"
+                            [(#ENV{#GET{name}}|=={site}|oui)checked="checked"] /><label for="#GET{name}_site">Dans tout le site</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_rub" value="rub"
+                            [(#ENV{#GET{name}}|=={rub}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_rub">Uniquement dans la rubrique en cours et ses sous-rubriques</label>
+                    </span>
+                    <br /><br /><br />
              #SET{name,nombreartrecents}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles les plus récents
                     [<span class='erreur_message'>(#GET{erreurs})</span>
