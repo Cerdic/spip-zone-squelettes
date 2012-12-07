@@ -29,7 +29,7 @@
 
 <div id="contenu_presentation" class="grid_16">
 	<div class="cartouche">
-		[(#LOGO_RUBRIQUE||image_reduire{200,200}|inserer_attribut{class,float-right})]
+		[(#LOGO_RUBRIQUE||image_reduire{200,200}|inserer_attribut{class,float-right}|inserer_attribut{alt,#TITRE|texte_backend})]
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)[<p class="post-info"><:dernier_ajout:> | <abbr class="date" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>]]
 	</div>
@@ -44,15 +44,15 @@
 	<BOUCLE_articles(ARTICLES){par num titre,titre}{id_rubrique = #_contenu_rubrique:ID_RUBRIQUE}{titre<#TITRE*}{doublons}>
 	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
 	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
-	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
+	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120}|inserer_attribut{alt,#TITRE|texte_backend})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
 	</BOUCLE_articles>
 	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
 	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_RUBRIQUE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
-	[<div style="text-align:center;"><a href="[(#URL_RUBRIQUE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div></BOUCLE_sous_rubriques>
+	[<div style="text-align:center;"><a href="[(#URL_RUBRIQUE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120}|inserer_attribut{alt,#TITRE|texte_backend})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div></BOUCLE_sous_rubriques>
 	<BOUCLE_articles_fin(ARTICLES){par num titre,titre}{id_rubrique = #_contenu_rubrique:ID_RUBRIQUE}{doublons}>
 	[(#GET{increment}|=={4}|oui)<div class="clear">&nbsp;</div>#SET{increment,0}]#SET{increment,#GET{increment}|plus{1}}
 	<div class="grid_4[(#GET{increment}|=={1}|oui) alpha][(#GET{increment}|=={4}|oui) omega]"><div class="liste_bloc"><h3><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"]>[(#TITRE)]</a></h3>
-	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
+	[<div style="text-align:center;"><a href="[(#URL_ARTICLE)]"[ title="(#TITRE|attribut_html)"] class="image_survol">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180,120}|inserer_attribut{alt,#TITRE|texte_backend})</a></div>][(#DESCRIPTIF|PtoBR)]</div></div>
 	</BOUCLE_articles_fin>
 
 
