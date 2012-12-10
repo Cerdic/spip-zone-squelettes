@@ -408,6 +408,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_itm_pagination_format_3' => 'Période abrégée (08-09)',
 	'cfg_lbl_1_colonne' => 'Affichage une colonne',
 	'cfg_lbl_2_colonnes' => 'Affichage deux colonnes',
+	'cfg_lbl_activer_recherche_par_motcle' => 'Activer la recherche par mot-clé',
 	'cfg_lbl_agenda_descriptif' => 'Vous pouvez rédiger un descriptif succinct pour présenter votre agenda (composition, mots-clés...). Ce texte peut être écrit en utilisant les raccourcis classiques de SPIP.',
 	'cfg_lbl_agenda_modele_1' => 'Par année calendaire',
 	'cfg_lbl_agenda_modele_2' => 'Par saison',

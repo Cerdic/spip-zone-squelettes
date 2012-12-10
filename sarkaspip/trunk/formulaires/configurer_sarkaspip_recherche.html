@@ -12,10 +12,26 @@
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_recherche_choix_groupe:></legend>
 			<ul>
-			<INCLURE{fond=formulaires/inc/cfg_groupes_mots}
-					{suffixe=_recherche}
-					{label= <:sarkaspip:cfg_lbl_groupes_mots_recherche:> }
-					{env}>
+				#SET{name,activer_par_motcle}#SET{obli,''}#SET{defaut,'oui'}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]
+					#SET{val,non}
+					<input type="hidden" name="#GET{name}" value="#GET{val}" />
+					#SET{val,oui}
+					<div class="choix">
+						<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_activer_recherche_par_motcle:></label>
+					</div>
+				</li>
+				<li class="fieldset suite" id="select_groupes"><fieldset>
+					<ul>
+					<INCLURE{fond=formulaires/inc/cfg_groupes_mots}
+						{suffixe=_recherche}
+						{label= <:sarkaspip:cfg_lbl_groupes_mots_recherche:> }
+						{env}>
+					</ul></fieldset>
+				</li>
 			</ul>
 		</fieldset>
 
@@ -42,3 +58,22 @@
 	</div>
 ]
 </div>
+<script type="text/javascript">/*<![CDATA[*/
+	jQuery(document).ready(function() {
+		[(#ENV{activer_par_motcle,oui}|=={oui}|non)
+			jQuery("#select_groupes").hide();
+		]
+		[(#ENV{activer_par_motcle,oui}|=={oui}|oui)
+			jQuery("#select_groupes").show();
+		]
+		jQuery("input.checkbox[name='activer_par_motcle']").change(function() {
+			if (jQuery(this).prop("checked")) {
+				jQuery("#select_groupes").show('fast');
+			}
+			else {
+				jQuery("#select_groupes").hide('fast');
+			}
+		});
+	});
+/*]]>*/</script>
+<style>li.fieldset.suite>fieldset {padding-left: 30px;border-top:0;}</style>
