@@ -24,6 +24,7 @@ array('form_inscriptions','sommaire rubrique article breve site auteur entete pi
 array('abonnement-liste','sommaire rubrique article breve site auteur','Propose un formulaire d\'inscription aux listes de diffusion du site. N&eacute;cessite le plugin spip-liste.','Olivier Gautier'),
 array('menu_sites_horizontal','entete','Un menu horizontal d&eacute;pliable contenant des sites r&eacute;f&eacute;renc&eacute;s dont le mot-cl&eacute; est "bandeau" adapt&eacute; du plugin <a href="http://www.spip-contrib.net/Le-menu-deroulant-Babbibel">Menu d&eacute;roulant Babbibel</a> (&agrave accompagner imp&eacute;rativement des headers accompagnant ce menu : headers_menu_depliable_horiz)','Thomas Delhom&eacute;nie et Olivier Gautier'),
 array('rubrique_site_complet','rubrique','Liste de la totalit&eacute; des sites r&eacute;f&eacute;renc&eacute;s dans une rubrique (sans pagination)','Olivier Gautier'),
+array('tweetnspip','sommaire rubrique article breve site auteur','Affiche le fil Tweeter issu du plugin <a href="http://contrib.spip.net/Tweet-n-Spip" target="_blank">Tweet\'N\'SPIP</a>','Olivier Gautier'),
 );
 return $retour;
 }
