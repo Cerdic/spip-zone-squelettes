@@ -41,7 +41,7 @@ function sarkaspip_test_si_redirection_article_solitaire($id_rubrique){
 	$serveur = '';
 
 	// si reglage pas active, renvoyer rien (pas de redirection)
-	if (lire_config('sarkaspip/menus/option_rubriques',0)!=2)
+	if (!lire_config('sarkaspip/rubrique/court_circuit',0))
 		return "";
 
 	$trouver_table = charger_fonction('trouver_table', 'base');
