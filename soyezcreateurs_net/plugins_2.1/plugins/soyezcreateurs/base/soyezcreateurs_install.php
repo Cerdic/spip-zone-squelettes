@@ -521,6 +521,24 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.24','non');
 		}
+		if (version_compare($current_version,'3.0.25','<')) {
+			// Suppresion de "_Specialisation", "Gallerie"
+			$id_groupe = id_groupe("_META");
+			$id_mot = id_mot("Description", $id_groupe);
+			if ($id_mot>0) {
+				if (!$GLOBALS['meta']['descriptif_site']) {
+					$descritif_site = sql_fetsel("texte", "spip_mots", "id_mot=$id_mot");
+					ecrire_meta('descriptif_site', $descritif_site['texte'], 'non');
+				}
+				sql_delete("spip_mots", "id_mot=$id_mot");
+			}
+			$id_mot = id_mot("revisit-after", $id_groupe);
+			if ($id_mot>0) {
+				sql_delete("spip_mots", "id_mot=$id_mot");
+			}
+			spip_log("SoyezCreateurs maj 3.0.25", "soyezcreateurs_install");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.25','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
