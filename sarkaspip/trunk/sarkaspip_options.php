@@ -14,7 +14,7 @@ define('_ALBUMS_INSERT_HEAD_CSS',false);
 // dans le fichier mes_options.php
 if (!defined('_SARKASPIP_MOT_SECTEURS_SPECIALISES')) define('_SARKASPIP_MOT_SECTEURS_SPECIALISES', 'agenda:galerie:squelette:forum');
 if (!defined('_SARKASPIP_TYPE_SECTEURS_SPECIALISES')) define('_SARKASPIP_TYPE_SECTEURS_SPECIALISES', 'config:config:config:config');
-if (!defined('_SARKASPIP_FOND_SECTEURS_SPECIALISES')) define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galerie:sarkaspip_accueil:sarkaspip_forum');
+if (!defined('_SARKASPIP_FOND_SECTEURS_SPECIALISES')) define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip/agenda:sarkaspip/galerie:sarkaspip/accueil:sarkaspip/forum');
 
 // Modes de debug du squelette
 if (!defined('_SARKASPIP_DEBUG_CSS')) define('_SARKASPIP_DEBUG_CSS', 'non');
