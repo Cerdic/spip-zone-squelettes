@@ -536,6 +536,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			if ($id_mot>0) {
 				sql_delete("spip_mots", "id_mot=$id_mot");
 			}
+			$id_groupe = id_groupe("_Specialisation_Rubrique");
+			$id_mot = id_mot("agenda_principal", $id_groupe);
+			if ($id_mot>0) {
+				sql_delete("spip_mots", "id_mot=$id_mot");
+			}
 			spip_log("SoyezCreateurs maj 3.0.25", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.25','non');
 		}
