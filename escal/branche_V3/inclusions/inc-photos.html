@@ -1,23 +1,26 @@
 <!-- on selectionne les articles des rubriques avec le mot-cle photo-une et on stocke dans doublons photos -->
     <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=photo-une}>
-    <BOUCLE_selection_articles1(ARTICLES){branche}{doublons photos}>
+    <BOUCLE_selection_articles1(ARTICLES){branche}>
+      <BOUCLE_selection_docs(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{doublons photos}>
+      </BOUCLE_selection_docs>
     </BOUCLE_selection_articles1>
     </BOUCLE_selection_rubrique>
 <!-- on selectionne les articles avec le mot-cle photo-une et on stocke dans doublons photos -->
-    <BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}{doublons photos}>
+    <BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}>
+      <BOUCLE_selection_docs2(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{doublons photos}>
+      </BOUCLE_selection_docs2>
     </BOUCLE_selection_articles2>
 
 
-	<h1 class="cadre photos">
+	<h1 class="cadre">
     [(#CONFIG{escal/config/titrephotos,<:escal:photos_hasard:>})]
-  </h1>      
+  </h1>
 
-	<div class="texte photos [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
-#SET{nombrephotos,#CONFIG{escal/config/nombrephotos,10}}
+	<div class="texte [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
+#SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
   <div id="scrollup2">
-  <BOUCLE_direct(ARTICLES){!doublons photos}>
 
-      <BOUCLE_photo_une(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,#GET{nombrephotos}}{par hasard}>
+      <BOUCLE_photo_une(DOCUMENTS){!doublons photos}{0,#GET{nombrephotos}}{par hasard}>
       <div class="headline2">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
@@ -25,12 +28,7 @@
 								 title="[(#TITRE)]" />
 			</a>
       </div>
-      </BOUCLE_photo_une>   
-  
-  </BOUCLE_direct>
-  </B_direct>
-  Ici vous pouvez afficher les images des articles avec le mot-clé "photo-une" ou celles des articles des rubriques avec le mot-clé "photo-une"  .<br /><br />
-  Et les images défilent.
-  <//B_direct>
+      </BOUCLE_photo_une>
+
 	</div>
   </div>
