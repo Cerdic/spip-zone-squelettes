@@ -158,7 +158,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
 }
   include_spip('inc/filtres');
 
-	$nom_site = entites_html($GLOBALS['meta']["nom_site"]);
+	$nom_site = $GLOBALS['meta']["nom_site"];
 	$email_webmaster = entites_html($GLOBALS['meta']["email_webmaster"]);
 
 if(!isset($_POST["Nom"])) {
@@ -175,15 +175,14 @@ else {
 	$vAntispam=trim(htmlentities($_POST["Antispam"]));
   $destinataire="[(#CONFIG{escal/config/destinataire,#VAL{$email_webmaster}})]";
 	$titre="<:escal:page_contact2|html2unicode|unicode2charset:> $nom_site";
-	
+
 	$uNom=utf8_encode(nl2br($vNom));
 	$uPrenom=utf8_encode(nl2br($vPrenom));
 	$uChampsup1=utf8_encode(nl2br($vChampsup1));
 	$uChampsup2=utf8_encode(nl2br($vChampsup2));
 	$uSujet=utf8_encode(nl2br($vSujet));
-	$uMessage=utf8_encode(nl2br($vMessage));
+  $uMessage=utf8_encode($vMessage);
 
-	
 	$message="<:escal:envoi_mail_provenance:> " . $_SERVER['HTTP_REFERER'] . "\n";
 	$message.="<:escal:envoi_mail_ip:> " . $_SERVER['REMOTE_ADDR'] . "\n";
 	$message.="<:escal:envoi_mail_navigateur:>" . $_SERVER['HTTP_USER_AGENT'] . "\n\n";
@@ -217,9 +216,9 @@ if (lire_config('escal/config/champsup1', 'oui') == 'oui') {
   }
 
 if (lire_config('escal/config/champsup2', 'oui') == 'oui') {
-	$message.="#CONFIG{escal/config/titrechampsup2}";
-	$message.=" : ";
-	$message.="$uChampsup2\n\n";
+ $message.="#CONFIG{escal/config/titrechampsup2}";
+ $message.=" : ";
+ $message.="$uChampsup2\n\n";
   }
 
 if (lire_config('escal/config/radio', 'oui') == 'oui') {
@@ -230,9 +229,11 @@ if (lire_config('escal/config/radio', 'oui') == 'oui') {
 	}
   }
 
-  $message.= "[(#CONFIG{escal/config/titrecheckbox})] : ";
-if (is_array($_POST['Niveau'])) {
-  $message.= implode(" - ",$_POST['Niveau']);
+if (lire_config('escal/config/checkbox', 'oui') == 'oui') {
+    $message.= "[(#CONFIG{escal/config/titrecheckbox})] : ";
+  if (is_array($_POST['Niveau'])) {
+    $message.= implode(" - ",$_POST['Niveau']);
+  }
 }
 
   $message.=" \n\n <:escal:envoi_mail_message:> \n $uMessage\n";
