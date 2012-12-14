@@ -19,6 +19,7 @@
             #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <div class="explication">
+                    layout fixe avec une largeur de 950px <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
@@ -35,24 +36,14 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
                             [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+
+                    <br /><br />
+                    layout fluide s'adaptant à la largeur de l'écran (en phase de test)<br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMPfluide" value="PMPfluide"
+                            [(#ENV{#GET{name}}|=={PMPfluide}|oui)checked="checked"] /><label  for="#GET{name}_PMPfluide"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
                     </span></div>
              </li>
-
-            [(#CONFIG{escal/config/layout}|=={PMP}|oui)
-            #SET{name,margesPMP}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-            <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication">Si vous avez choisi le premier layout : <br />Blocs latéraux collés aux bords
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span></div>
-             </li>
-             ]
-
 
     </ul>
 
