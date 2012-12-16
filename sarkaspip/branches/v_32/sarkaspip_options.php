@@ -72,7 +72,8 @@ define('_SARKASPIP_CONFIG_MEDIABOX_SKIN', 'white-shadow');
 // -- Plugin SOCIALTAGS
 define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
 define('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS', 'delicious:facebook:google:netvibes');
-// Filtrer les thèmes dans le Plugin ZEN-GARDEN pour obtenir que ceux de Sarka-SPIP
+// -- Plugin ZEN GARDEN
+// --- Filtrer les thèmes pour obtenir que ceux de Sarka-SPIP
 define('_ZENGARDEN_FILTRE_THEMES', 'sarkaspip');
 
 // Pipelines specifiques a Sarka-SPIP
