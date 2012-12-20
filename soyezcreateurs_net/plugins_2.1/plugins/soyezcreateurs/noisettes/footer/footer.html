@@ -13,23 +13,7 @@
 <INCLURE{fond=noisettes/footer/#GET{noisettefooter}}{id_rubrique}{id_article}{rubriqueencours}{template}{secteurencours}{env}>
 <//B_TheRub>
 </div><!-- id="contenu" -->	
-	<div id="footer" class="clearbottom">
-[(#SET{div_menufooter,0})]
-		<B_MenuFooter><div id="menufooter"><ul>[(#SET{div_menufooter,1})]<BOUCLE_MenuFooter(ARTICLES){titre_mot=MenuFooter}{par num titre}{" "}><li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenufooter,oui}|=={oui}|oui)[<img class="menu_footer_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenufooter,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenufooter,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li></BOUCLE_MenuFooter></B_MenuFooter>
-[(#CONFIG{soyezcreateurs_layout/positionliensnav,nav}|=={menu_footer}|oui)
-[[(#GET{div_menufooter}|non)<div id="menufooter"><ul>][(#SET{div_menufooter,1})](#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})]
-]
-		[(#GET{div_menufooter}|oui)</ul></div>]
-	[(#PLUGIN{nuage}|oui)[(#CONFIG{soyezcreateurs_layout/positionnuage,footer}|=={footer}|oui)<div id="nuage"><INCLURE{fond=noisettes/navigation/nuagedemotcle,env}></div>]]
-	[(#CONFIG{soyezcreateurs/bandeau_contact_extra,bas}|=={bas}|oui)
-		[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
-	]
-		<div id="footerbas">
-			<div id="copymentions"><abbr lang="en" title="Copyright">&copy;</abbr> [(#DATE|annee)][, (#NOM_SITE_SPIP|supprimer_tags)]<span class="navstuff"> <img src="#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<BOUCLE_mentionlegale(ARTICLES){titre_mot=MentionsLegales}{!par date}{0,1}{lang}><a href="#ARTICLE_URL">#TITRE</a></BOUCLE_mentionlegale><BOUCLE_mentionlegaleTraductionParDefaut(ARTICLES){titre_mot=MentionsLegales}{!par date}{0,1}{origine_traduction}><a href="#ARTICLE_URL">#TITRE</a></BOUCLE_mentionlegaleTraductionParDefaut><:soyezcreateurs:mentions_legales_obligatoires|propre|ptobr:><//B_mentionlegaleTraductionParDefaut><//B_mentionlegale></span></div>
-			<div id="droitsauteurs" class="navstuff"></div>
-			<div id="w3cgohome" class="navstuff"><:soyezcreateurs:copyright_realisation:>[(#CONFIG{soyezcreateurs/realisation,'<a href="http://www.pyrat.net/" title="Visiter le site du créateur de ce site">Pyrat.net</a>'}|propre|ptobr)] <img src="#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:soyezcreateurs:copyright_spip:><BOUCLE_meta_tags(MOTS){type=_HTTP-EQUIV}{titre=pics-label}{texte!=}> <img src="#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:soyezcreateurs:copyright_icra:></BOUCLE_meta_tags>[ <img src="#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:soyezcreateurs:copyright_cnil:>(#CONFIG{soyezcreateurs/numero_cnil})]</div>
-		</div>
-	</div><!-- id="footer" -->
+<INCLURE{fond=noisettes/footer/footer_pied}{id_rubrique}{id_article}{rubriqueencours}{template}{secteurencours}{env}>
 	<div id="participer">[<div><span>(#CONFIG{soyezcreateurs/connexion_public, }|=={on}|oui)<INCLURE{fond=noisettes/lien-login-logout}{env}></span></div>][<div><span>(#CONFIG{accepter_inscriptions}|=={oui}|?{<a href="[(#EVAL{_DIR_RESTREINT_ABS})]"><:soyezcreateurs:participez:></a>})</span></div>]</div>
 </div><!-- id="container" -->
 [<script src="(#PRODUIRE{fond=javascripts.js}|compacte)" type="text/javascript"></script>]
