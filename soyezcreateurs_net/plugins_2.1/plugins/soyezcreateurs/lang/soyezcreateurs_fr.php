@@ -219,6 +219,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_mairie' => 'Affichage d\'un portail d\'accueil de type mairie',
 	'cfg_mode_nouveautes' => 'Affichage sous forme d\'extrait des dernières nouveautés',
 	'cfg_mode_portail' => 'Affichage d\'un portail d\'accueil',
+	'cfg_mode_blog' => 'Affichage d\'un portail d\'accueil de type blog',
 	'cfg_mode_portail_actu' => 'Affichage d\'un portail d\'accueil orienté actualités',
 	'cfg_nav' => 'Navigation',
 	'cfg_nav_p' => 'Navigation principale',
@@ -269,6 +270,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_systematiquement' => 'Systématiquement',
 	'cfg_taille_logos_max' => 'Taille maximum des logos du menu haut',
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux',
+	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog',
+	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog',
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central',
 	'cfg_taille_logos_max_menufooter' => 'Taille maximum des logos du menu de pied de page',
 	'cfg_taille_logos_max_menuprincipal' => 'Taille maximum des logos du menu principal',
@@ -319,6 +322,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniersarticlespublies' => 'Les derniers articles publiés',
 	'descriptif' => 'Descriptif',
 	'docatelecharger' => 'Documents à télécharger',
+	'discus_en_cours' => 'Discussion en cours',
 
 	// E
 	'ecoute' => 'Ecoute de :',
