@@ -544,6 +544,20 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 3.0.25", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.25','non');
 		}
+		if (version_compare($current_version,'3.0.26','<')) {
+			// Menu de navigation haute
+			$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+			spip_log("SoyezCreateurs maj 3.0.26", "soyezcreateurs_install");
+			// Rubrique où placer les articles pour bien s'organiser
+			$id_rubrique = id_rubrique('000. Fourre-tout');
+			if ($id_rubrique >0) {
+				create_rubrique('10. Navigation haute', $id_rubrique, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot$id_mot] pour la documentation.");
+			}
+			create_rubrique_mot('000. Fourre-tout', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
+			create_rubrique_mot('10. Navigation haute', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
+			create_rubrique_mot('10. Navigation haute', 'PasDansFildAriane', "_Specialisation_Rubrique");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.26','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
