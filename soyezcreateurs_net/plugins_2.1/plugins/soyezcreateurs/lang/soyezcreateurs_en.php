@@ -214,6 +214,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Display mode of the home page',
 	'cfg_mode_affichage_logo_label' => 'Display mode of the logo (if present)',
 	'cfg_mode_bandeau_contact_label' => 'Display mode of the contact banner',
+	'cfg_mode_blog' => 'Affichage d\'un portail d\'accueil de type blog', # NEW
 	'cfg_mode_communiquant' => 'Display a communicative welcome portal ',
 	'cfg_mode_edito' => 'Display Editorial',
 	'cfg_mode_evenementiel' => 'Viewing home portal event-type',
@@ -269,6 +270,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux_label' => 'Display sub-sections in the main menu',
 	'cfg_sponsor' => 'You like this template, you can show by using this identifier to pubs and research: @id@ (skeletons corresponding to download at <a href = "http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> and <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> and install in your templates folder).',
 	'cfg_systematiquement' => 'Systematically',
+	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog', # NEW
+	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog', # NEW
 	'cfg_taille_logos_max' => 'Maximum height for logos of the heading menu',
 	'cfg_taille_logos_max_contenu_automatique' => 'Maximum size of the central automatic content logos ', # MODIF
 	'cfg_taille_logos_max_listes_sites' => 'Maximum size of the logos of the sites listed in the central content', # MODIF
@@ -320,6 +323,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Last update of the site:',
 	'derniersarticlespublies' => 'The last articles published',
 	'descriptif' => 'Description',
+	'discus_en_cours' => 'Discussion en cours', # NEW
 	'docatelecharger' => 'Document download',
 
 	// E

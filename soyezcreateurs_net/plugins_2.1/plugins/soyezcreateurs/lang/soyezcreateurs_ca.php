@@ -214,6 +214,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Tipus de publicació de la pàgina d\'inici del lloc',
 	'cfg_mode_affichage_logo_label' => 'Tipus de publicació del logotip (si n\'hi ha)',
 	'cfg_mode_bandeau_contact_label' => 'Tipus de publicació de la banda de contacte',
+	'cfg_mode_blog' => 'Affichage d\'un portail d\'accueil de type blog', # NEW
 	'cfg_mode_communiquant' => 'Mostrar un portal de benvinguda del tipus comunicació',
 	'cfg_mode_edito' => 'Publicació de l\'Editorial',
 	'cfg_mode_evenementiel' => 'Visualització d\'un portal d\'inici de tipus cronològic',
@@ -269,6 +270,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux_label' => 'Visualització de subseccions al menú principal ',
 	'cfg_sponsor' => 'Aprecieu aquest esquelet, podeu manifestar-ho utilitzant aquest identificador per les publicitats i les cerques: @id@ (els esquelets corresponents els podeu descarregar a <a href="http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html">ads_column.html</a> i a <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html">ads_search.html</a> i instal·lar-los a la vostra carpeta esquelets).',
 	'cfg_systematiquement' => 'Sistemàticament',
+	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog', # NEW
+	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog', # NEW
 	'cfg_taille_logos_max' => 'Mida màxima dels logos del menú alt i de la caixa d\'eines', # MODIF
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux', # NEW
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central', # NEW
@@ -320,6 +323,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Darrera actualització del lloc:',
 	'derniersarticlespublies' => 'Els últims articles publicats',
 	'descriptif' => 'Descripció',
+	'discus_en_cours' => 'Discussion en cours', # NEW
 	'docatelecharger' => 'Documents per descarregar',
 
 	// E

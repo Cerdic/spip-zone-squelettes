@@ -214,6 +214,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Режим афішування ( дисплея)  головної сторінки сайту',
 	'cfg_mode_affichage_logo_label' => 'Засіб афішування ( дисплея )  логотипу  (якщо є)',
 	'cfg_mode_bandeau_contact_label' => 'Засіб афішування ( дисплея) банеру зв\'язку',
+	'cfg_mode_blog' => 'Affichage d\'un portail d\'accueil de type blog', # NEW
 	'cfg_mode_communiquant' => 'Афішування ( перегляд) порталу головної сторінки типу зв\'язку',
 	'cfg_mode_edito' => 'Афішування ( показ) передової',
 	'cfg_mode_evenementiel' => 'Афішування ( показ) порталу головної сторінки типу подій',
@@ -269,6 +270,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux_label' => 'Афішування ( показ )під-рубрик в головному меню',
 	'cfg_sponsor' => 'Вам сподобався цей кістяк, ви можете його проявляти, використовуючи даний ідентифікатор для реклами і пошуку: @ @ ID (відповідні скелети завантажити на <HREF = "http://www.pyrat.net/squelettes/noisettes/ додаткових / ads_column.html "> ads_column.html </ A> і <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html </> і встановити у вашому скелети файл).',
 	'cfg_systematiquement' => 'Систематично',
+	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog', # NEW
+	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog', # NEW
 	'cfg_taille_logos_max' => 'Максимальний розмір логотипів меню і панелі інструментів', # MODIF
 	'cfg_taille_logos_max_contenu_automatique' => 'Taille maximum des logos des contenus automatiques centraux', # NEW
 	'cfg_taille_logos_max_listes_sites' => 'Taille maximum des logos des sites affichés en liste dans le contenu central', # NEW
@@ -320,6 +323,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Останнє оновлення сайту:',
 	'derniersarticlespublies' => 'Останні опубліковані статті',
 	'descriptif' => 'Опис',
+	'discus_en_cours' => 'Discussion en cours', # NEW
 	'docatelecharger' => 'Документи для завантаження',
 
 	// E
