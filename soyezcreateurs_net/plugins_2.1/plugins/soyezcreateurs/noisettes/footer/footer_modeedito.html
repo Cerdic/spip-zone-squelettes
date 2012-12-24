@@ -41,10 +41,10 @@
 <div class="espaceavant">
 <INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,id_article}>
 <B_Rubriques_MenuHaut>
-<ul>
+<ul class="menuul#ID_RUBRIQUE">
   <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose_MenuHaut>
-  #SET{classeracine,''}
-  <BOUCLE_debut_secteur_MenuHaut(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur_MenuHaut>
+  #SET{classeracine,menuli#ID_RUBRIQUE}
+  <BOUCLE_debut_secteur_MenuHaut(RUBRIQUES){id_parent}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]smenu})]</BOUCLE_debut_secteur_MenuHaut>
   <BOUCLE_ClasseRubriqueMenu_MenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu_MenuHaut>
   [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
   <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,
@@ -86,10 +86,10 @@
 
 <div class="espaceavant">
 <B_Secteurs>
-<ul class="tv">
+<ul class="tv menuul#ID_RUBRIQUE">
   <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{!mots.titre=MenuHaut}{!mots.titre=PasDansMenu}{!lang_select}>
-  #SET{classeracine,''}
-  <BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur>
+  #SET{classeracine,menuli#ID_RUBRIQUE}
+  <BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]smenu})]</BOUCLE_debut_secteur>
   <BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu>
   [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
   <li[ class="(#GET{classeracine})"]><INCLURE{fond=noisettes/menus/rubrique_li,
@@ -103,7 +103,7 @@
 	logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuprincipal,oui}}
 	>
 <B_Rubriques>
-<ul>
+<ul class="menuul#ID_RUBRIQUE">
   <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose>
   #SET{classessrub,''}
   <BOUCLE_debut_ssrubrique(RUBRIQUES){id_parent}{0,1}>#SET{classessrub,smenu}</BOUCLE_debut_ssrubrique>
