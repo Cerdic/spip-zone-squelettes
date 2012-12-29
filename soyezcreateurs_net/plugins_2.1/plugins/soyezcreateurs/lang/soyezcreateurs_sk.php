@@ -214,7 +214,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Režim zobrazenia domovskej stránky',
 	'cfg_mode_affichage_logo_label' => 'Režim zobrazenia loga (ak existuje)',
 	'cfg_mode_bandeau_contact_label' => 'Režim zobrazenia pútača s kontaktom',
-	'cfg_mode_blog' => 'Affichage d\'un portail d\'accueil de type blog', # NEW
+	'cfg_mode_blog' => 'Zobrazenie úvodnej stránky portálu typu blog',
 	'cfg_mode_communiquant' => 'Zobraziť uvítaciu stránku ',
 	'cfg_mode_edito' => 'Zobraziť Úvodník',
 	'cfg_mode_evenementiel' => 'Zobrazenie úvodnej stránky portálu typu rozprávanie udalostí',
@@ -270,8 +270,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux_label' => 'Podrubriky zobrazovať v hlavnom menu',
 	'cfg_sponsor' => 'To, že sa vám páči táto šablóna, môžete ukázať použitím tohto identifikátora pre puby a vyhľadávanie: @id@ (šablóny určené na stiahnutie na <a href = "http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> a <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> a nainštalovať ich do priečinka so šablónami).',
 	'cfg_systematiquement' => 'Systematicky',
-	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog', # NEW
-	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog', # NEW
+	'cfg_taille_logos_alaune_blog' => 'Maximálna veľkosť loga v prednej časti v režime Blog',
+	'cfg_taille_logos_derniers_art_blog' => 'Maximálna veľkosť loga najnovších článkov v režime Blog',
 	'cfg_taille_logos_max' => 'Maximálna výška log vrchného menu',
 	'cfg_taille_logos_max_contenu_automatique' => 'Maximálna veľkosť obrázkov v automatických hlavných obsahoch',
 	'cfg_taille_logos_max_listes_sites' => 'Maximálna veľkosť obrázkov stránok v zozname v hlavnom texte',
@@ -323,7 +323,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Najnovšia aktualizácia stránky:',
 	'derniersarticlespublies' => 'Najnovší publikovaný článok',
 	'descriptif' => 'Popis',
-	'discus_en_cours' => 'Discussion en cours', # NEW
+	'discus_en_cours' => 'Diskusia prebieha',
 	'docatelecharger' => 'Stiahnuť dokumenty',
 
 	// E
@@ -421,7 +421,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'Zobraziť obrázok samostatne',
 	'voirle' => 'Zobraziť',
 	'voirsitespar' => 'Zobraziť stránky s',
-	'vous_souhaitez_etre_tenu_au_courant' => 'Vous souhaitez être tenu au courant ?', # NEW
+	'vous_souhaitez_etre_tenu_au_courant' => 'Chcete ostať v obraze?',
 
 	// W
 	'wdcalendar_all_day' => 'Celý deň',
