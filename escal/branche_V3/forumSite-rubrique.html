@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
+
+  <!-- on se met dans le contexte de la rubrique appelée -->
+  <BOUCLE_rubrique_principal(RUBRIQUES){titre_mot=forum}{lang=#ENV{lang}}>
+    <head>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]
+      </title>	[
+      <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+      <INCLURE {fond=inclusions/inc-head}>
+      [<link href="(#URL_PAGE{forum.css}|direction_css)" rel="stylesheet" type="text/css" />]
+    </head>
+
+    <body id="top" onload="setHover('menu')">
+      <div id="ombre-gauche">
+        <div id="ombre-droite">
+          <div id="conteneur">
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-bandeau}>
+
+            [(#CONFIG{escal/config/menuH}|=={non}|non)
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau}{env}>]
+            ]
+
+          </div>
+
+            <div id="espace">
+            <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}{lang}>
+            <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
+            </BOUCLE_forum>
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
+            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
+            
+            <INCLURE {fond=inclusions/inc-menu_langues}>
+            </div>
+
+            <div id="page">
+              <div id="contenu">
+                <INCLURE{fond=inclusions/inc-rubrique_forumSite}{env}>
+              </div>
+            </div>
+
+
+            <div id="navigation">
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavforumsite1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite1,choixmenuV1}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite2,choixmenuV2}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite3,edito}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite4,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite5}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite5,top}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite6}|oui) [(#CONFIG{escal/config/blocnavforumsite6}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite6}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite7}|oui) [(#CONFIG{escal/config/blocnavforumsite7}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite7}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite8}|oui) [(#CONFIG{escal/config/blocnavforumsite8}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite8}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite9}|oui) [(#CONFIG{escal/config/blocnavforumsite9}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite10}|oui) [(#CONFIG{escal/config/blocnavforumsite10}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite10}}{env}></div>
+         ]]
+            
+            </div>
+
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+            </div>
+
+          </div>
+          <!-- fin conteneur -->
+        </div>
+      </div>
+    </body>
+    </BOUCLE_rubrique_principal>
+</html>

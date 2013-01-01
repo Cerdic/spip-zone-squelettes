@@ -8,8 +8,7 @@
     </BOUCLE_titre>
     [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
     <INCLURE {fond=inclusions/inc-head}>
-      [(#REM) appel de la feuille de style pour l'impression ]
-      <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
+    [<link href="(#URL_PAGE{forum.css}|direction_css)" rel="stylesheet" type="text/css" />]
   </head>
   <body id="top" onload="setHover('menu')">
     <div id="ombre-gauche">
@@ -30,7 +29,7 @@
           [(#REM) mise en place du formulaire recherche]
           <div id="espace">
             <BOUCLE_forum(RUBRIQUES){titre_mot="forum"}{lang}>
-            <a href="[(#URL_PAGE{rubrique-forum}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
+            <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
             </BOUCLE_forum>
 
           <!-- affichage du formulaire de recherche-->
@@ -65,42 +64,48 @@
 
             <div id="page">
               <div id="contenu">
-                <INCLURE{fond=inclusions/inc-article_forum}{env}>
+                <INCLURE{fond=inclusions/inc-article_forumSite}{env}>
               </div>
             </div>
 
-            [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
+            <div id="navigation">
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
-            
-            <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
-            [(#CONFIG{escal/config/menuV1}|=={non}|non)
-              <div class="cadre-bleu">
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical}{env}>]
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical}{env}>]
-              </div>
-            ]
-            [(#CONFIG{escal/config/menuV2}|=={non}|non)
-              <div class="cadre-bleu">
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical_2}{env}>]
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical_2}{env}>]
-              </div>
-            ]
 
 
-          <!-- affichage du bloc inc-acces_direct par defaut ou si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/artaccesdirect}|non)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-            [(#CONFIG{escal/config/artaccesdirect}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-acces_direct}{env}></div>]
-
-          
-          <!-- affichage du bloc inc-nav_mots si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/navmot}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-nav_mots}{id_article}{env}></div>]
-
-          <!-- affichage du bloc inc-meme_rub si selectionne dans la page de configuration -->
-            [(#CONFIG{escal/config/memerub}|=={nav}|oui)<div class="cadre-bleu"><INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}{env}></div>]
-
-
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavforumsite1}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite1,choixmenuV1}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite2}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite2,choixmenuV2}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite3}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite3,edito}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite4}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite4,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite5}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite5,top}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite6}|oui) [(#CONFIG{escal/config/blocnavforumsite6}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite6}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite7}|oui) [(#CONFIG{escal/config/blocnavforumsite7}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite7}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite8}|oui) [(#CONFIG{escal/config/blocnavforumsite8}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite8}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite9}|oui) [(#CONFIG{escal/config/blocnavforumsite9}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite10}|oui) [(#CONFIG{escal/config/blocnavforumsite10}|=={rien}|non)
+           <div class="cadre-bleu"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite10}}{env}></div>
+         ]]
+         
             </div>
 
 

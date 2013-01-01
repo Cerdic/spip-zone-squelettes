@@ -1,7 +1,7 @@
 <!-- Affichage des articles de la même rubrique s'ils existent-->
 
 #SET{nombrememerub,#CONFIG{escal/config/nombrememerub,10}}
-
+#SET{nbrpagmemerub,#CONFIG{escal/config/paginmemerub,5}}
 <B_meme_rubrique>
 
 <h1 class="cadre meme-rub a-droite" >
@@ -11,7 +11,9 @@
 
 <div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >
 
-	<BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}>
+  <B_meme_rubrique>
+    <p style="align:right">#PAGINATION</p>
+	<BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
 	
 		<!-- 	affichage du titre avec lien vers l'article
 					de la date de publication
