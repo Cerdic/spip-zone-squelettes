@@ -59,6 +59,17 @@
                     <label><strong>Bandeau</strong></label>
                     <br />
             <div class="explication">
+              #SET{name,logobandeaunon}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Suppression du logo
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+              <br /><br />
               #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               Image de fond (largeur : 950px maximum)<br />
               exemple : images/fond.jpg si votre fond est dans /squelettes/images et s'appelle fond.jpg (laisser vide si pas d'image)
