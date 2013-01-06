@@ -82,6 +82,9 @@ if (!defined('_SARKASPIP_CONFIG_MEDIABOX_SKIN')) define('_SARKASPIP_CONFIG_MEDIA
 // -- Plugin SOCIALTAGS
 if (!defined('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR')) define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
 if (!defined('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS')) define('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS', 'delicious:facebook:google:netvibes');
+// -- Plugin ZEN GARDEN
+// --- Filtrer les thèmes pour obtenir que ceux de Sarka-SPIP
+define('_ZENGARDEN_FILTRE_THEMES', 'sarkaspip');
 
 
 
