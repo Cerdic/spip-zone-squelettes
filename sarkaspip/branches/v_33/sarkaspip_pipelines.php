@@ -34,7 +34,7 @@ function sarkaspip_mes_fichiers_a_sauver($flux){
  * @param $flux
  * @return array
  */
-function SarkaSpip_zengarden_activer_theme($flux){
+function sarkaspip_zengarden_activer_theme($flux){
 	$dir = $flux['args']['dir'];
 	$action = $flux['args']['action'];
 
