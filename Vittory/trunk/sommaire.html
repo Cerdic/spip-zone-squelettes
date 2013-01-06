@@ -1,0 +1,66 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
+	<meta name="revisit-after" content="30 days" />
+	<meta name="robots" content="index,follow" />
+	<meta name="generator" content="SPIP + Vittory" />
+	<meta name="author" content="" />
+	<meta name="copyright" content="Copyright [(#NOM_SITE_SPIP|textebrut)]" />
+	<meta name="distribution" content="global" />
+	<meta name="description" content="[(#GET{meta_description}|textebrut)]" />
+	[<link rel="shortcut icon" href="(#CHEMIN{images/favicon.ico})" type="image/x-icon" />]
+	<link rel="stylesheet" href="?page=style.css&var_mode=recalcul" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis+Light' rel='stylesheet' type='text/css'>
+	[(#INSERT_HEAD)]
+	[(#CONFIG{vittory/maps_use}|=={'true'}|?{' ',''})
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+	]
+</head>
+<body body dir="#LANG_DIR">
+	<div id="map"></div>
+	<div id="bf_container" class="bf_container">
+		<div id="bf_background" class="bf_background">
+			<img src="[(#CONFIG{vittory/body_default_background})]" alt="image1" style="display:none;"/>
+			<div class="bf_overlay"></div>
+		</div>
+		<div id="bf_page_menu" class="bf_menu">
+			[<h1 class="title">(#CONFIG{vittory/title_line_1, 'Vittory&#146;s'})[<span>(#CONFIG{vittory/title_line_2, 'trattoria italiana'})</span>]</h1>]
+			<ul>[(#SET{mes_articles, ''})]
+				<BOUCLE_cacher(ARTICLES){titre_mot='cacher'}{doublons}{par num titre}>
+				</BOUCLE_cacher>
+				<BOUCLE_articles(ARTICLES){titre_mot='menu'}{doublons}{par num titre}>
+					[<li><a href="#" data-content="art#ID_ARTICLE"><span class="bf_hover"></span><span>(#TITRE|supprimer_numero)</span></a></li>]
+					[(#SET{le_portfolio, ''})]
+					[(#SET{la_galerie, ''})]
+					<BOUCLE_documents_portfolio(DOCUMENTS) {id_article=#ID_ARTICLE} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{doublons}>
+						[(#SET{le_portfolio, #GET{le_portfolio} <li><a href="#"><img src="[(#FICHIER|image_passe_partout{#CONFIG{vittory/gallery_thumbswidth,'500'},#CONFIG{vittory/gallery_thumbsheight,'234'}}|image_recadre{#CONFIG{vittory/gallery_thumbswidth,'500'},#CONFIG{vittory/gallery_thumbsheight,'234'},center}|extraire_attribut{src})]" alt="[(#TITRE|attribut_html|couper{80})]"/></a></li>})]
+						[(#SET{la_galerie, #GET{la_galerie} <div class="bf_gallery_item"><div class="bf_heading"><h2>[(#TITRE|attribut_html|couper{80})]</h2></div><div class="bf_desc"><p>[(#DESCRIPTIF|attribut_html|couper{80})]</p></div><img src="[(#FICHIER|image_passe_partout{#CONFIG{vittory/gallery_width,'500'},#CONFIG{vittory/gallery_height,'234'}}|image_recadre{#CONFIG{vittory/gallery_width,'500'},#CONFIG{vittory/gallery_height,'234'},center}|extraire_attribut{src})]" alt="image1" data-bgimg="[(#FICHIER|image_reduire{1000,669}|extraire_attribut{src})]" /></div>})]
+					</BOUCLE_documents_portfolio>
+					[(#GET{le_portfolio}|?{' ',''})
+						[(#SET{le_portfolio, <ul id="bf_dishes"> #GET{le_portfolio} </ul>})]
+						[(#SET{la_galerie, <div id="bf_gallery" class="bf_gallery"><a id="bf_close" href="#" class="bf_close"></a><div class="bf_nav"><a id="bf_prev" href="#" class="bf_prev"></a><a id="bf_next" href="#" class="bf_next"></a></div><div class="bf_gallery_wrapper"> #GET{la_galerie} </div></div>})]
+					]
+					[(#SET{mes_articles, #GET{mes_articles} <div class="bf_page" id="art#ID_ARTICLE"><div class="bf_content_text"><h2>[(#TITRE|supprimer_numero)]</h2>[<div class="#EDIT{texte} texte">(#TEXTE)</div>] [(#GET{le_portfolio})]</div>[(#GET{la_galerie})]</div>})]
+				</BOUCLE_articles>
+				[(#CONFIG{vittory/maps_use}|=={'true'}|?{' ',''})
+				<li><a href="#" data-content="visit"><span class="bf_hover"></span><span>#CONFIG{vittory/maps_menu_name, 'Google Maps'}</span></a></li>
+				]
+			</ul>
+		</div>
+		[(#GET{mes_articles})]
+		[(#SET{mes_articles, ''})]
+		</div>
+		[(#CONFIG{vittory/maps_use}|=={'true'}|?{' ',''})
+		<div class="bf_page" id="visit">
+		</div>
+		]
+	</div>
+	<div class="bf_footer">[(#SET{html_footer, [(#GET{html_footer}|concat{[(#CONFIG{vittory/footer_perso}|propre|ptobr|trim)]})]})][(#GET{html_footer})]</div>
+	[<script type="text/javascript" src="(#CHEMIN{js/jquery.mousewheel.js})"></script>]
+	<script type="text/javascript" src="?page=script.js&var_mode=recalcul"></script>
+</body>
+</html>

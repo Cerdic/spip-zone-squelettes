@@ -1,0 +1,38 @@
+	<B_galerie>
+
+	<BOUCLE_galerie(DOCUMENTS) {pagination 3}>
+		#SET{fichier,#DISTANT|=={oui}|?{#FICHIER,#FICHIER|basename}}
+		<div class="row">
+			<div class="left">
+				#ID_DOCUMENT
+			</div>
+			<div class="right fixed">
+				[<strong class="titre #EDIT{titre}">(#TITRE|sinon{#VAL{<i>}|concat{<:info_sans_titre:>,'</i>'}})</strong>]
+				[<br/>(#DESCRIPTIF|attribut_html)]
+				[<br/>(#LARGEUR|?{[(#LARGEUR)[ x (#HAUTEUR) px]],''})]
+				[<br/>(#TAILLE|taille_en_octets)]
+			</div>
+			<div class="right fixed centered">
+				[(#MEDIA|=={image}|oui)[
+					<a href="#" title="IMG/#EXTENSION/#GET{fichier}" onclick='select(this);return false;'>(#LOGO_DOCUMENT{apercu,180,100}|inserer_attribut{alt,[(#GET{fichier}|couper{60}|texte_backend)]})</a>
+				]]
+			</div>
+		</div>
+	</BOUCLE_galerie>
+	<br class="clear" />
+	[<p class="explication centered">(#PAGINATION{page})</p>]
+	</B_galerie>
+	<p class="error"><:vittory:no_doc:></p>
+	<//B_galerie>
+
+
+	<style type="text/css">
+		.row		{width:100%;height:110px;border:1px solid transparent;-moz-border-radius:25px; border-radius:25px;}
+		.row:hover,.selected {border:1px solid #ccc;background-color:#fff;}
+		.right		{float:right;padding:4px}
+		.left		{float:left;padding:42px 0 0 12px;}
+		.clear		{clear:both}
+		.fixed		{width:40%}
+		.centered	{text-align:center}
+		.icons		{float:left;margin-right:5px;}
+	</style>

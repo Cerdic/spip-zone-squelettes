@@ -1,0 +1,346 @@
+<!-- autoriser=webmestre -->
+<!-- refus=<:cfg:refus_configuration_webmestre:> -->
+<!-- depot=metapack -->
+<!-- nom=vittory -->
+
+[(#SET{en_cours, #VAL{<img src=../}|concat{#CONFIG{vittory/body_default_background}}|concat{>},''})]
+
+<div class="formulaire_spip formulaire_configurer formulaire_config_vitorry">
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	
+	<form name="formulaire_config_vitorry" method="post"  action="#SELF">
+	<div>
+	#ACTION_FORMULAIRE{#SELF}
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-home icons"></span><:vittory:body:>&nbsp;</legend>
+		
+		<ul>		
+			<li>
+				<label for="body_default_background"><:vittory:default_background:> :</label>
+				<input type="text" name="body_default_background" class="type_txt" id="body_default_background" size="42" value="#ENV{body_default_background, 'none'}" />
+					[(#GET{en_cours}|oui) 
+						[(#GET{en_cours}|image_reduire{100}||inserer_attribut{align,right}|inserer_attribut{id,'bgcss'})]
+						<p class="explication">N'importe quel document au format image peut être utilisé comme fond d'écran du site.</p>
+					]
+			</li>	
+			</ul>
+				#FORMULAIRE_CONFIGURER_VITTORY_DOCUMENTS
+			<ul>
+			<li>
+				<label for="body_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="body_bgcolor" class="palette" id="body_bgcolor" size="7" value="#ENV{body_bgcolor,'#CCCCCC'}" />
+			</li>
+			<li>
+				<label for="body_textcolor"><:vittory:color_text:> :</label>
+				<input type="text" name="body_textcolor" class="palette" id="body_textcolor" size="7" value="#ENV{body_textcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="body_linkcolor"><:vittory:color_link:> :</label>
+				<input type="text" name="body_linkcolor" class="palette" id="body_linkcolor" size="7" value="#ENV{body_linkcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="body_link_hover_color"><:vittory:color_link:><:vittory:hover:> :</label>
+				<input type="text" name="body_link_hover_color" class="palette" id="body_link_hover_color" size="7" value="#ENV{body_link_hover_color,'#000000'}" />
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-pin-w icons"></span><:vittory:overlay:>&nbsp;</legend>
+		<p class="explication">Le revêtement est au dessus de l'image de fond, il permets de changer la teinte globale.</p>
+		<ul>
+			<li>
+				<label for="overlay_opacity"><:vittory:opacity:> :</label>
+				<input type="text" name="overlay_opacity" class="type_txt" id="overlay_opacity" size="1" value="#ENV{overlay_opacity,0.5}" />
+			</li>
+			<li>
+				<label for="overlay_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="overlay_bgcolor" class="palette" id="overlay_bgcolor" size="7" value="#ENV{overlay_bgcolor,'#000000'}" />
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-home icons"></span><:vittory:titre:>&nbsp;</legend>
+		<p class="explication">Le titre (différent du nom du site) est composé de 2 lignes situées en haut à gauche.</p>
+		<ul>
+			<li>
+				<label for="title_line_1"><:vittory:text_1:> :</label>
+				<input type="text" name="title_line_1" class="type_txt" id="title_line_1" size="20" value="#ENV{title_line_1, 'Vittory'}" />
+			</li>
+			<li>
+				<label for="title_line_2"><:vittory:text_2:> :</label>
+				<input type="text" name="title_line_2" class="type_txt" id="title_line_2" size="20" value="#ENV{title_line_2, 'trattoria italiana'}" />
+			</li>
+			<li>
+				<label for="title_2_margin"><:vittory:text_2:><:vittory:margin:> :</label>
+				<input type="text" name="title_2_margin" class="type_txt" id="title_2_margin" size="1" value="#ENV{title_2_margin, 100}" />
+				<small>px</small>
+			</li>
+			<li>
+				<label for="title_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="title_bgcolor" class="palette" id="title_bgcolor" size="7" value="#ENV{title_bgcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="title_textcolor"><:vittory:color_text:> :</label>
+				<input type="text" name="title_textcolor" class="palette" id="title_textcolor" size="7" value="#ENV{title_textcolor,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="title_alpha"><:vittory:alpha:> :</label>
+				<input type="text" name="title_alpha" class="type_txt" id="title_alpha" size="1" value="#ENV{title_alpha,0}" />
+				<small>0 - 127</small>
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-heart icons"></span><:vittory:menu:>&nbsp;</legend>
+		<p class="explication">Pour apparaître dans le menu de gauche vos article doivent être liés au mot clé "menu".</p>
+		<ul>
+			<li>
+				<label for="menu_width"><:vittory:width:> :</label>
+				<input type="text" name="menu_width" class="type_txt" id="menu_width" size="1" value="#ENV{menu_width,300}" />
+				<small>px</small>
+			</li>
+			<li>
+				<label for="menu_grid"><:vittory:color_grid:> :</label>
+				<input type="text" name="menu_grid" class="palette" id="menu_grid" size="7" value="#ENV{menu_grid,'#000000'}" />
+			</li>
+			<li>
+				<label for="menu_alpha"><:vittory:alpha:> :</label>
+				<input type="text" name="menu_alpha" class="type_txt" id="menu_alpha" size="1" value="#ENV{menu_alpha,50}" />
+				<small>0-127</small>
+			</li>
+			<li>
+				<label for="menu_linkcolor"><:vittory:color_link:> :</label>
+				<input type="text" name="menu_linkcolor" class="palette" id="menu_linkcolor" size="7" value="#ENV{menu_linkcolor,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="menu_linkshadow"><:vittory:color_shadow:> :</label>
+				<input type="text" name="menu_linkshadow" class="palette" id="menu_linkshadow" size="7" value="#ENV{menu_linkshadow,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="menu_bgcolor"><:vittory:color_back:><:vittory:hover:> :</label>
+				<input type="text" name="menu_bgcolor" class="palette" id="menu_bgcolor" size="7" value="#ENV{menu_bgcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="menu_link_hover_color"><:vittory:color_link:><:vittory:hover:> :</label>
+				<input type="text" name="menu_link_hover_color" class="palette" id="menu_link_hover_color" size="7" value="#ENV{menu_link_hover_color,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="menu_link_hover_shadow"><:vittory:color_shadow:><:vittory:hover:> :</label>
+				<input type="text" name="menu_link_hover_shadow" class="palette" id="menu_link_hover_shadow" size="7" value="#ENV{menu_link_hover_shadow,'#FFFFFF'}" />
+			</li>
+		</ul>		
+	</fieldset>
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-pencil icons"></span><:vittory:content:>&nbsp;</legend>
+		<p class="explication">Le corps de la page, là où vont s'afficher les articles.</p>
+		<ul>
+			<li>
+				<label for="content_width"><:vittory:width:> :</label>
+				<input type="text" name="content_width" class="type_txt" id="content_width" size="1" value="#ENV{content_width,300}" />
+				<small>px</small>
+			</li>
+			<li>
+				<label for="content_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="content_bgcolor" class="palette" id="content_bgcolor" size="7" value="#ENV{content_bgcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="content_alpha"><:vittory:alpha:> :</label>
+				<input type="text" name="content_alpha" class="type_txt" id="content_alpha" size="1" value="#ENV{content_alpha,50}" />
+				<small>0-127</small>
+			</li>
+			<li>
+				<label for="content_titlecolor"><:vittory:color_title:> :</label>
+				<input type="text" name="content_titlecolor" class="palette" id="content_titlecolor" size="7" value="#ENV{content_titlecolor,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="content_titleshadow"><:vittory:color_shadow:> :</label>
+				<input type="text" name="content_titleshadow" class="palette" id="content_titleshadow" size="7" value="#ENV{content_titleshadow,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="content_textcolor"><:vittory:color_text:> :</label>
+				<input type="text" name="content_textcolor" class="palette" id="content_textcolor" size="7" value="#ENV{content_textcolor,'#FFFFFF'}" />
+			</li>
+		</ul>
+	</fieldset>
+
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-image icons"></span><:vittory:gallery:>&nbsp;</legend>
+		<p class="explication">Un seul article peut être utilisé comme galerie en disposant d’images dans le portfolio.</p>
+		<ul>
+			<!--<li>
+				<label for="gallery_width"><:vittory:width:> :</label>
+				<input type="text" name="gallery_width" class="type_txt" id="gallery_width" size="1" value="#ENV{gallery_width,500}" />
+				<small>px</small>
+			</li>
+			<li>
+				<label for="gallery_height"><:vittory:height:> :</label>
+				<input type="text" name="gallery_height" class="type_txt" id="gallery_height" size="1" value="#ENV{gallery_height,234}" />
+				<small>px</small>
+			</li>-->
+			<li>
+				<label for="gallery_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="gallery_bgcolor" class="palette" id="gallery_bgcolor" size="7" value="#ENV{gallery_bgcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="gallery_alpha"><:vittory:alpha:> :</label>
+				<input type="text" name="gallery_alpha" class="type_txt" id="gallery_alpha" size="1" value="#ENV{gallery_alpha,50}" />
+				<small>0-127</small>
+			</li>
+			<li>
+				<label for="gallery_titlecolor"><:vittory:color_text:> :</label>
+				<input type="text" name="gallery_titlecolor" class="palette" id="gallery_titlecolor" size="7" value="#ENV{gallery_titlecolor,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="gallery_titleshadow"><:vittory:color_shadow:> :</label>
+				<input type="text" name="gallery_titleshadow" class="palette" id="gallery_titleshadow" size="7" value="#ENV{gallery_titleshadow,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="gallery_thumbswidth"><:vittory:thumbswidth:> :</label>
+				<input type="text" name="gallery_thumbswidth" class="type_txt" id="gallery_thumbswidth" size="1" value="#ENV{gallery_thumbswidth,120}" />
+				<small>px</small>
+			</li>
+			<li>
+				<label for="gallery_thumbsheight"><:vittory:thumbsheight:> :</label>
+				<input type="text" name="gallery_thumbsheight" class="type_txt" id="gallery_thumbsheight" size="1" value="#ENV{gallery_thumbsheight,56}" />
+				<small>px</small>
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+		<legend><span class="ui-icon ui-icon-script icons"></span><:vittory:maps:>&nbsp;</legend>
+		<p class="explication">Menu spécial pour afficher vos coordonées sur une carte Google en fond de page.</p>
+		<ul>
+		<li>
+			<label for="maps_use" title="maps_use"><:vittory:maps_use:> :</label>
+			<select name="maps_use" id="maps_use" style="width:70px">
+				<option value="true" [(#ENV{maps_use}|=={#VAL{'true'}}|?{selected="selected",''})]><:oui:></option>
+				<option value="false" [(#ENV{maps_use}|=={#VAL{'false'}}|?{selected="selected",''})]><:non:></option>
+			</select> 
+		</li>
+		</ul>
+		<ul id="optionsMaps">
+			<li>
+				<label for="maps_menu_name"><:vittory:maps_menu_name:> :</label>
+				<input type="text" name="maps_menu_name" class="type_txt" id="maps_menu_name" size="38" value="#ENV{maps_menu_name, 'Google Maps'}" />
+			</li>
+			<li>
+				<label for="maps_address"><:vittory:maps_address:> :</label>
+				<input type="text" name="maps_address" class="type_txt" id="maps_address" size="38" value="#ENV{maps_address, 'Fondamenta Beata Giuliana 4, Venezia'}" />
+			</li>
+			<li>
+				<label for="maps_lat"><:vittory:maps_lat:> :</label>
+				<input type="text" name="maps_lat" class="type_txt" id="maps_lat" size="20" value="#ENV{maps_lat, '45.428688849691014'}" />
+			</li>
+			<li>
+				<label for="maps_lon"><:vittory:maps_lon:> :</label>
+				<input type="text" name="maps_lon" class="type_txt" id="maps_lon" size="20" value="#ENV{maps_lon, '12.317744493484497'}" />
+			</li>
+			<li>
+				<label for="maps_zoom"><:vittory:maps_zoom:> :</label>
+				<input type="text" name="maps_zoom" class="type_txt" id="maps_zoom" size="1" value="#ENV{maps_zoom, '18'}" />
+				<small>0-21+</small>
+			</li>
+			<li>
+				<label for="maps_tilt" title="maps_tilt"><:vittory:maps_tilt:> :</label>
+				<select name="maps_tilt" id="maps_tilt" style="width:70px">
+					<option value="45" [(#ENV{maps_tilt}|=={#VAL{'45'}}|?{selected="selected",''})]><:oui:></option>
+					<option value="0" [(#ENV{maps_tilt}|=={#VAL{'0'}}|?{selected="selected",''})]><:non:></option>
+				</select> 
+			</li>
+			<li id="optionsMapsTilt">
+				<label for="maps_heading" title="maps_heading"><:vittory:maps_heading:> :</label>
+				<select name="maps_heading" id="maps_heading" style="width:70px">
+					<option value="0" [(#ENV{maps_heading}|=={#VAL{'0'}}|?{selected="selected",''})]><:vittory:nord:></option>
+					<option value="180" [(#ENV{maps_heading}|=={#VAL{'180'}}|?{selected="selected",''})]><:vittory:sud:></option>
+					<option value="90" [(#ENV{maps_heading}|=={#VAL{'90'}}|?{selected="selected",''})]><:vittory:est:></option>
+					<option value="270" [(#ENV{maps_heading}|=={#VAL{'270'}}|?{selected="selected",''})]><:vittory:ouest:></option>
+				</select> 
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+	<legend><span class="ui-icon ui-icon-contact icons"></span><:vittory:footer:>&nbsp;</legend>
+		<p class="explication">Configuration du pieds de page, vous pouvez utiliser la syntaxe spip.</p>
+		<ul>
+			<li>
+				<label for="footer_bgcolor"><:vittory:color_back:> :</label>
+				<input type="text" name="footer_bgcolor" class="palette" id="footer_bgcolor" size="7" value="#ENV{footer_bgcolor,'#000000'}" />
+			</li>
+			<li>
+				<label for="footer_alpha"><:vittory:alpha:> :</label>
+				<input type="text" name="footer_alpha" class="type_txt" id="footer_alpha" size="1" value="#ENV{footer_alpha,0}" />
+				<small>0-127</small>
+			</li>
+			<li>
+				<label for="footer_textcolor"><:vittory:color_text:> :</label>
+				<input type="text" name="footer_textcolor" class="palette" id="footer_textcolor" size="7" value="#ENV{footer_textcolor,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="footer_linkcolor"><:vittory:color_link:> :</label>
+				<input type="text" name="footer_linkcolor" class="palette" id="footer_linkcolor" size="7" value="#ENV{footer_linkcolor,'#DDDDDD'}" />
+			</li>
+			<li>
+				<label for="footer_linkcolor_hover"><:vittory:color_link:><:vittory:hover:> :</label>
+				<input type="text" name="footer_linkcolor_hover" class="palette" id="footer_linkcolor_hover" size="7" value="#ENV{footer_linkcolor_hover,'#FFFFFF'}" />
+			</li>
+			<li>
+				<label for="footer_perso">Copyright :</label>
+				<textarea name="footer_perso" id="footer_perso" rows="2" cols="10">#ENV{footer_perso,''}</textarea>
+			</li>
+		</ul>
+	</fieldset>
+
+	<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+
+	</div>
+	</form>
+</div>
+	
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		ToggleMaps($("SELECT#maps\_use option:selected").val());
+
+		$('SELECT#maps\_use').change(function() { ToggleMaps($("SELECT#maps\_use option:selected").val()); });
+		$('SELECT#maps\_tilt').change(function() { ToggleHeading($("SELECT#maps\_tilt option:selected").val()); });
+
+		function ToggleMaps(t){
+			if(t=='true'){
+				$('#optionsMaps').show('slow');
+				ToggleHeading($("SELECT#maps\_tilt option:selected").val());
+			}else{
+				$('#optionsMaps').hide('slow');
+			}
+			return false;
+		}
+
+		function ToggleHeading(t){
+			if(t=='45'){
+				$('#optionsMapsTilt').show('slow');
+			}else{
+				$('#optionsMapsTilt').hide('slow');
+			}
+			return false;
+		}
+
+	});
+
+	function select(lnk){
+		var bg=$(lnk).attr("title");
+		$("#body_default_background").val(bg);
+		$("#bgcss").attr("src",'../'+bg);
+		$(".row").removeClass('selected');
+		$(lnk).parent().parent().addClass('selected');
+	}
+
+</script>
