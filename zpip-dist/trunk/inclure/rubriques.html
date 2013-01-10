@@ -4,17 +4,17 @@
 	On fait un plan, et, quand on avance vers une rubrique,
 	on l'affiche si son parent est expose ou est la racine du site. ]
 <B_rubriques>
-<div class="menu rubriques">
-	<h2 class="h2"><:rubriques:></h2>
-	<ul class="menu-items menu-liste">
+<div class="well">
+	<ul class="nav nav-list">
+	<li class="nav-header"><:rubriques:></li>
 	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
-		<li class="item menu-entree">
+		<li class="#EXPOSE{active}">
 			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
 
 			<B_sous_rubriques>
-			<ul class="menu-items menu-liste">
+			<ul class="nav nav-list">
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-					<li class="item menu-entree"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+					<li class="#EXPOSE{active}"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 				</B_test_expose></BOUCLE_sous_rubriques>
 			</ul>
 			</B_sous_rubriques>
