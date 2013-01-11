@@ -15,12 +15,10 @@
 <div class="actif_gauche">
 	<h2>Accueil mobile</h2>
 	<ul>
-		<BOUCLE_test0(POUR){tableau #GET{mobil}}>
+		<BOUCLE_test0(POUR){tableau #GET{mobil}}{valeur!=aucun}>
 		
-			<li>
-				[(#VALEUR!={"aucun"}|?{<li>#VALEUR<input type='submit' class="bas"  name='position' value="d#CLE" /><input type='submit' class="haut" name='position' value=m#CLE /><input type='submit' class="sup" name='position' value=s#CLE /></li> 
-      , })]
-			</li>	
+			<li>[(#VALEUR|replace{"_"," "})]<span class="boutons"><input type='submit' title="Vers le bas" class="bas"  name='position' value="d#CLE" /><input type='submit' title="Vers le haut" class="haut" name='position' value="m#CLE" /><input type='submit' title="Supprimer" class="sup" name='position' value="s#CLE" /></span>
+			</li>
 		</BOUCLE_test0>
 	</ul>
 </div>
@@ -31,7 +29,7 @@
 	<ul>
 		<BOUCLE_test2(POUR){tableau #GET{skel}}>	
 			<li>
-				<input type='submit' class="ajoutg" name='position' value="a#VALEUR" />#VALEUR			
+				<input type='submit' class="ajoutg" title="Ajouter" name='position' value="a#VALEUR" />[(#VALEUR|replace{"_"," "})]
 			</li>
 		</BOUCLE_test2>
 	</ul>
