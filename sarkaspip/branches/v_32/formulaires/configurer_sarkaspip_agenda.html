@@ -1,40 +1,3 @@
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{type, 1}|!={2}|?{' '})
-			jQuery("#select_mois1").prepend('<option value=1><:date_mois_1|ucfirst:></option>');
-			jQuery("#select_mois1 option:first").attr({selected: "selected"});
-			jQuery("#bloc_saison").hide();
-		]
-		[(#ENV{type_resume, oui}|!={oui}|?{' '})
-			jQuery("#bloc_taille_resume").hide();
-		]
-		jQuery("input[name='type']").change(function() {
-			if (jQuery("input[name='type']:checked").val() == 2) {
-				jQuery("#bloc_saison").show();
-				jQuery("#select_mois1 option:first").remove();
-				jQuery("#select_mois1 option:first").attr({selected: "selected"});
-			}
-			else {
-				jQuery("#select_mois1").prepend('<option value=1><:date_mois_1|ucfirst:></option>');
-				jQuery("#select_mois1 option:first").attr({selected: "selected"});
-				jQuery("#bloc_saison").hide();
-			}
-			jQuery(this).blur();
-		});	
-		jQuery("input[name='type_resume']").change(function() {
-			if (jQuery("input[name='type_resume']:checked").val() == 'oui') {
-				jQuery("#bloc_taille_resume").show();
-			}
-			else {
-				jQuery("#bloc_taille_resume").hide();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
-
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
 	<h3 class="titrem"><:sarkaspip:cfg_boite_agenda:></h3>
@@ -171,11 +134,43 @@
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
 	</div></form>
 
-[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|oui)
-	<div id="bloc_debug">
-		<br />
-		>> Debug - Etat des variables du fond Agenda:<br />
-		[(#VAL{sarkaspip_agenda}|afficher_config)]
-	</div>
-]
+	[(#VAL{sarkaspip_agenda}|afficher_config)]
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{type, 1}|!={2}|?{' '})
+			jQuery("#select_mois1").prepend('<option value=1><:date_mois_1|ucfirst:></option>');
+			jQuery("#select_mois1 option:first").attr({selected: "selected"});
+			jQuery("#bloc_saison").hide();
+		]
+		[(#ENV{type_resume, oui}|!={oui}|?{' '})
+			jQuery("#bloc_taille_resume").hide();
+		]
+		jQuery("input[name='type']").change(function() {
+			if (jQuery("input[name='type']:checked").val() == 2) {
+				jQuery("#bloc_saison").show();
+				jQuery("#select_mois1 option:first").remove();
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
+			}
+			else {
+				jQuery("#select_mois1").prepend('<option value=1><:date_mois_1|ucfirst:></option>');
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
+				jQuery("#bloc_saison").hide();
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='type_resume']").change(function() {
+			if (jQuery("input[name='type_resume']:checked").val() == 'oui') {
+				jQuery("#bloc_taille_resume").show();
+			}
+			else {
+				jQuery("#bloc_taille_resume").hide();
+			}
+			jQuery(this).blur();
+		});
+	});
+//]]>
+</script>
+

@@ -1,46 +1,3 @@
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{modele_carrousel, 1}|=={1}|?{jQuery("#bloc_modele_3").hide();})]
-		[(#ENV{modele_carrousel, 1}|!={1}|?{jQuery("#bloc_modele_2").hide();})]
-		[(#ENV{position_carrousel, 1}|=={0}|?{jQuery("#bloc_modele_1").hide();})]
-		[(#ENV{afficher_zoom, oui}|=={oui}|?{jQuery("#effet_mediabox_diapo").hide();})]
-
-		jQuery("input[name='position_carrousel']").change(function() {
-			if (jQuery("input[name='position_carrousel']:checked").val() == 0) {
-				jQuery("#bloc_modele_1").hide();
-			}
-			else {
-				jQuery("#bloc_modele_1").show();
-			}
-			jQuery(this).blur();
-		});	
-
-		jQuery("input[name='modele_carrousel']").change(function() {
-			if (jQuery("input[name='modele_carrousel']:checked").val() == 1) {
-				jQuery("#bloc_modele_3").hide();
-				jQuery("#bloc_modele_2").show();
-			}
-			else {
-				jQuery("#bloc_modele_2").hide();
-				jQuery("#bloc_modele_3").show();
-			}
-			jQuery(this).blur();
-		});	
-
-		jQuery("input[name='afficher_zoom']").change(function() {
-			if (jQuery("input[name='afficher_zoom']:checked").val() == "oui") {
-				jQuery("#effet_mediabox_diapo").hide();
-			}
-			else {
-				jQuery("#effet_mediabox_diapo").show();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
-
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
 	<h3 class="titrem"><:sarkaspip:cfg_boite_album:></h3>
@@ -194,11 +151,39 @@
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
 	</div></form>
 
-[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|oui)
-	<div id="bloc_debug">
-		<br />
-		>> Debug - Etat des variables du fond Album:<br />
-		[(#VAL{sarkaspip_album}|afficher_config)]
-	</div>
-]
+	[(#VAL{sarkaspip_album}|afficher_config)]
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{modele_carrousel, 1}|=={1}|?{jQuery("#bloc_modele_3").hide();})]
+		[(#ENV{modele_carrousel, 1}|!={1}|?{jQuery("#bloc_modele_2").hide();})]
+		[(#ENV{position_carrousel, 1}|=={0}|?{jQuery("#bloc_modele_1").hide();})]
+		[(#ENV{afficher_zoom, oui}|=={oui}|?{jQuery("#effet_mediabox_diapo").hide();})]
+
+		jQuery("input[name='position_carrousel']").change(function() {
+			if (jQuery("input[name='position_carrousel']:checked").val() == 0) {
+				jQuery("#bloc_modele_1").hide();
+			}
+			else {
+				jQuery("#bloc_modele_1").show();
+			}
+			jQuery(this).blur();
+		});
+
+		jQuery("input[name='modele_carrousel']").change(function() {
+			if (jQuery("input[name='modele_carrousel']:checked").val() == 1) {
+				jQuery("#bloc_modele_3").hide();
+				jQuery("#bloc_modele_2").show();
+			}
+			else {
+				jQuery("#bloc_modele_2").hide();
+				jQuery("#bloc_modele_3").show();
+			}
+			jQuery(this).blur();
+		});
+	});
+//]]>
+</script>
+

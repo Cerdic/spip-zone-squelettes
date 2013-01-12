@@ -1,46 +1,3 @@
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
-			jQuery("#bloc_max_articles").hide();
-		]
-		[(#ENV{position_albums_recents, 1}|!={1}|?{' '})
-			jQuery("#bloc_max_albums").hide();
-		]
-		[(#ENV{article_edito, 0}|=={0}|?{' '})
-			jQuery("#bloc_titre_edito").hide();
-		]
-		jQuery("input[name='position_articles_recents']").change(function() {
-			if (jQuery("input[name='position_articles_recents']:checked").val() == 1) {
-				jQuery("#bloc_max_articles").show();
-			}
-			else {
-				jQuery("#bloc_max_articles").hide();
-			}
-			jQuery(this).blur();
-		});	
-		jQuery("input[name='position_albums_recents']").change(function() {
-			if (jQuery("input[name='position_albums_recents']:checked").val() == 1) {
-				jQuery("#bloc_max_albums").show();
-			}
-			else {
-				jQuery("#bloc_max_albums").hide();
-			}
-			jQuery(this).blur();
-		});	
-		jQuery("#select_article").change(function() {
-			if (jQuery("#select_article option:selected").val() == 0) {
-				jQuery("#bloc_titre_edito").hide();
-			}
-			else {
-				jQuery("#bloc_titre_edito").show();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
-
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
 	<h3 class="titrem"><:sarkaspip:cfg_boite_sommaire:></h3>
@@ -142,11 +99,48 @@
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
 	</div></form>
 
-[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|oui)
-	<div id="bloc_debug">
-		<br />
-		>> Debug - Etat des variables du fond Sommaire:<br />
-		[(#VAL{sarkaspip_sommaire}|afficher_config)]
-	</div>
-]
+	[(#VAL{sarkaspip_sommaire}|afficher_config)]
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
+			jQuery("#bloc_max_articles").hide();
+		]
+		[(#ENV{position_albums_recents, 1}|!={1}|?{' '})
+			jQuery("#bloc_max_albums").hide();
+		]
+		[(#ENV{article_edito, 0}|=={0}|?{' '})
+			jQuery("#bloc_titre_edito").hide();
+		]
+		jQuery("input[name='position_articles_recents']").change(function() {
+			if (jQuery("input[name='position_articles_recents']:checked").val() == 1) {
+				jQuery("#bloc_max_articles").show();
+			}
+			else {
+				jQuery("#bloc_max_articles").hide();
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='position_albums_recents']").change(function() {
+			if (jQuery("input[name='position_albums_recents']:checked").val() == 1) {
+				jQuery("#bloc_max_albums").show();
+			}
+			else {
+				jQuery("#bloc_max_albums").hide();
+			}
+			jQuery(this).blur();
+		});
+		jQuery("#select_article").change(function() {
+			if (jQuery("#select_article option:selected").val() == 0) {
+				jQuery("#bloc_titre_edito").hide();
+			}
+			else {
+				jQuery("#bloc_titre_edito").show();
+			}
+			jQuery(this).blur();
+		});
+	});
+//]]>
+</script>

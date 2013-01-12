@@ -1,34 +1,3 @@
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{position_articles, 1}|!={1}|?{' '})
-			jQuery("#bloc_articles").hide();
-		]
-		[(#ENV{position_albums, 1}|!={1}|?{' '})
-			jQuery("#bloc_albums").hide();
-		]
-		jQuery("input[name='position_articles']").change(function() {
-			if (jQuery("input[name='position_articles']:checked").val() == 1) {
-				jQuery("#bloc_articles").show();
-			}
-			else {
-				jQuery("#bloc_articles").hide();
-			}
-			jQuery(this).blur();
-		});	
-		jQuery("input[name='position_albums']").change(function() {
-			if (jQuery("input[name='position_albums']:checked").val() == 1) {
-				jQuery("#bloc_albums").show();
-			}
-			else {
-				jQuery("#bloc_albums").hide();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
-
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
 	<h3 class="titrem"><:sarkaspip:cfg_boite_auteur:></h3>
@@ -121,11 +90,36 @@
 		<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
 	</div></form>
 
-[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|oui)
-	<div id="bloc_debug">
-		<br />
-		>> Debug - Etat des variables du fond Auteur:<br />
-		[(#VAL{sarkaspip_auteur}|afficher_config)]
-	</div>
-]
+	[(#VAL{sarkaspip_auteur}|afficher_config)]
 </div>
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_articles, 1}|!={1}|?{' '})
+			jQuery("#bloc_articles").hide();
+		]
+		[(#ENV{position_albums, 1}|!={1}|?{' '})
+			jQuery("#bloc_albums").hide();
+		]
+		jQuery("input[name='position_articles']").change(function() {
+			if (jQuery("input[name='position_articles']:checked").val() == 1) {
+				jQuery("#bloc_articles").show();
+			}
+			else {
+				jQuery("#bloc_articles").hide();
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='position_albums']").change(function() {
+			if (jQuery("input[name='position_albums']:checked").val() == 1) {
+				jQuery("#bloc_albums").show();
+			}
+			else {
+				jQuery("#bloc_albums").hide();
+			}
+			jQuery(this).blur();
+		});
+	});
+//]]>
+</script>
