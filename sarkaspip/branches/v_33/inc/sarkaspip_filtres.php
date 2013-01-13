@@ -402,10 +402,19 @@ function nettoyer_titre_sujet($titre, $resolu='') {
 //
 function afficher_config($meta) {
 	$texte ='';
-	if ($meta) {
-		$f = chercher_filtre('foreach');
-		$texte = $f(lire_config($meta));
+
+	if (_SARKASPIP_DEBUG_CFG_ARBO == 'oui') {
+		if ($meta) {
+			include_spip('inc/config');
+			$f = chercher_filtre('foreach');
+			$config = $f(lire_config($meta));
+			$texte = '<div id="bloc_debug">'
+				   . '<p>Debug - Variables de configuration - Page ' . _T('sarkaspip:' . $meta) . '</p>'
+				   . $config
+				   . '</div>';
+		}
 	}
+
 	return $texte;
 }
 // FIN du Filtre : afficher_config
@@ -432,13 +441,14 @@ function inscription_possible() {
 
 function abonnement_possible($plugin) {
 	$retour = false;
+	static $statuts_spipliste = array('liste','pub_jour','pub_hebdo','pub_7jours','pub_mensul','pub_mois','pub_an');
 
 	$informer = chercher_filtre('info_plugin');
 	$plugin_actif = ($informer($plugin, 'est_actif') == 1);
 
 	if ($plugin_actif) {
 		if (strtolower($plugin) == 'spiplistes') {
-			$nb_listes = sql_countsel('spip_listes', array('statut=' . sql_quote('liste')));
+			$nb_listes = sql_countsel('spip_listes', array(sql_in('statut', $statuts_spipliste)));
 			if ($nb_listes > 0)
 				$retour = true;
 		}
