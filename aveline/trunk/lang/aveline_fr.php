@@ -95,7 +95,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la même langue.',
 	'explication_tri_recherche' => 'Par défaut, les résultats sont triés par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajoutée.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.',
-	'explication_utiliser_logo_evenement_article_rubrique' => 'Pour que les évènements puissent avoir leur propre logo, vous devez installer le plugin \'Documents et Logo pour Agenda\'.',
 	'explication_vignette_ajout_css' => 'Une majorité de thèmes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour améliorer l\'affichage. à ne pas activer si le thème prend en charge les vignettes.',
 
 	// I
