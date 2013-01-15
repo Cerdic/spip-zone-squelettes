@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire_forum' => 'Forum page',
 	'annuaire_general' => 'General parameters',
 	'annuaire_gratuit' => 'Free directory of links in hard copy',
-	'annuaire_herbier' => 'Links page', # MODIF
+	'annuaire_herbier' => 'Herbarium',
 	'annuaire_login_public' => 'Public login page',
 	'annuaire_menu' => 'Site menu',
 	'annuaire_mot' => 'Keyword page',
@@ -166,9 +166,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     <br />Set your style options for the forums page.',
 	'descriptif_general' => '<h4>General settings</h4>
     <br />A page which combines all the general settings for the site.',
-	'descriptif_herbier' => '<h4>Links page settings</h4>
+	'descriptif_herbier' => '<h4>Herbarium settings</h4>
     <br />Set your style options for the links page.
-    <p />This is the page which displays the syndicated sites\' news', # MODIF
+    <p />This is the page which displays the syndicated sites\' news',
 	'descriptif_login_public' => '<h4>Public login page settings</h4>
     <br />Set your style options for the public login page.',
 	'descriptif_menu' => '<h4>Menu settings</h4>
