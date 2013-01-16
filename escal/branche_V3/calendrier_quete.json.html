@@ -5,8 +5,17 @@
 </BOUCLE_selection_rubrique>
 <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{lang}{doublons}>
 </BOUCLE_selection_articles>
-[<BOUCLE_periode(ARTICLES){id_mot?}{branche?}{!doublons}
+[<BOUCLE_periode(ARTICLES){!doublons}
 	{agenda date, periode,
 	#ENV{start}|todate|affdate{Y}, #ENV{start}|todate|affdate{m}, #ENV{start}|todate|affdate{d},
-	#ENV{end}|todate|affdate{Y}, #ENV{end}|todate|affdate{m}, #ENV{end}|todate|affdate{d}}{', '}>
-[(#ARRAY{id,#ID_ARTICLE,title,[(#TITRE|html2unicode|unicode2charset)],allDay,#EVAL{false},start,#DATE_REDAC,end,#DATE_REDAC,url,#URL_ARTICLE,className,calendrier-couleur6,description,[(#INTRODUCTION|html2unicode|unicode2charset)]}|json_encode)]</BOUCLE_periode>]
+	#ENV{end}|todate|affdate{Y}, #ENV{end}|todate|affdate{m}, #ENV{end}|todate|affdate{d}}{', '}
+  >
+[(#ARRAY{id,#ID_ARTICLE,
+title,[(#TITRE|html2unicode|unicode2charset)],
+allDay,#EVAL{false},
+start,#DATE_REDAC,
+end,#DATE_REDAC,
+url,#URL_ARTICLE,
+className,calendrier-couleur6,
+description,[(#INTRODUCTION|html2unicode|unicode2charset)]}|json_encode)]
+</BOUCLE_periode>]
