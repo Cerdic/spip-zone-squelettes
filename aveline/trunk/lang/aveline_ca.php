@@ -97,7 +97,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_restreindre_langue' => 'En el cas d\'un lloc multilingüe, es pot voler restringir que es mostrin només els objectes de la mateixa llengua.',
 	'explication_tri_recherche' => 'Per defecte, els resultats són classificats per pertinença. Si activeu la classificació modificable, la opció "Per pertinença" s\'afegirà automàticament.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
-	'explication_utiliser_logo_evenement_article_rubrique' => 'Per tal que els esdeveniments puguin tenir el seu propi logotip, heu d\'instal·lar el connector \'Documents i Logo per Agenda\'.',
 	'explication_vignette_ajout_css' => 'Una majoria de temes per Zpip no tenen en compte les miniatures d\'autors. Aquesta opció permet afegir en dur, a dins dels esquelets, alguns estils CSS per millorar la visualització. No ho activeu si el tema té en compte les miniatures.',
 
 	// I

@@ -98,7 +98,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_restreindre_langue' => 'V prípade viacjazyčnej stránky môžete chcieť obmedziť zobrazenie na objekty v rovnakom jazyku.',
 	'explication_tri_recherche' => 'Podľa predvolených nastavení budú výsledky zotriedené podľa relevantnosti. Ak aktivujete triedenie podľa úprav, možnosť "podľa relevantnosti" bude pridaná automaticky.',
 	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
-	'explication_utiliser_logo_evenement_article_rubrique' => 'Pre udalosti, ktoré môžu mať svoje vlastné logo musíte nainštalovať zásuvný modul "Dokumenty a logo pre kalendár udalostí".',
 	'explication_vignette_ajout_css' => 'Väčšina farebných motívov pre Zpip neberie do úvahy miniatúry autorov. Táto možnosť vám umožňuje znova pridať pevnú šablónu do niektorých štýlov CSS na vylepšenie zobrazenia. Neaktivujte túto možnosť, ak farebný motív podporuje miniatúry.',
 
 	// I
