@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_zone_bandeau' => 'Affichage dans le bandeau du haut',
 	'cfg_affichage_zone_principale' => 'Affichage dans la zone de menu principal',
 	'cfg_affichage_zone_secondaire' => 'Affichage dans la zone de menu secondaire',
+	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce',
 	'cfg_affichagelistedocuments' => 'Affichage de la liste des documents joints',
 	'cfg_affichagelistedocuments_cartouche' => 'En bas du cartouche des articles et des rubriques',
 	'cfg_affichagelistedocuments_enbas' => 'En bas des articles et des rubriques',
