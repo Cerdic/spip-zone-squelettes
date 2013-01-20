@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_plan_ex' => 'Aquest enllaç envia a una pàgina que llista tots els articles del lloc, classificats per ordre anticronològic</i>', # MODIF
 	'cfg_affichage_plan_label' => 'Mostrar l\'enllaç cap el pla anticronològic al cartutx <i>Què hi ha de nou?</i>',
 	'cfg_affichage_zone_bandeau' => 'Visualització a la banda superior',
+	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce', # NEW
 	'cfg_affichage_zone_principale' => 'Visualització a la zona del menú principal',
 	'cfg_affichage_zone_secondaire' => 'Visualització a la zona del menú secundari',
 	'cfg_affichagelistedocuments' => 'Visualització de la llista dels documents adjunts',

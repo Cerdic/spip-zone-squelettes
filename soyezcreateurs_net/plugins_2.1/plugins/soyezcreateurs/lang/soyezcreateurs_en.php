@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_plan_ex' => 'This link connects to a page listing all the articles on the site, sorted in reverse chronological order</i>', # MODIF
 	'cfg_affichage_plan_label' => 'Dispay the link to the antichronological map in the cartridge <i>What news ?</i>',
 	'cfg_affichage_zone_bandeau' => 'Display in the top banner',
+	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce', # NEW
 	'cfg_affichage_zone_principale' => 'Display in the main menu area',
 	'cfg_affichage_zone_secondaire' => 'Display in the secondary menu area',
 	'cfg_affichagelistedocuments' => 'Dispaly attached documents',

@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_plan_ex' => 'Це посилання відправляє вас на сторінку зі списком всіх елементів з сайту, перерахованих у зворотному хронологічному порядку ', # MODIF
 	'cfg_affichage_plan_label' => 'Афішувати (показати ) посилання на план у зворотному хронологічному порядку у картриджі   Що нового?',
 	'cfg_affichage_zone_bandeau' => 'Показ ( Дисплей ) у верхній банер',
+	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce', # NEW
 	'cfg_affichage_zone_principale' => 'Показ ( Дисплей ) в головному меню',
 	'cfg_affichage_zone_secondaire' => 'Показ ( Дисплей)  у зоні вторинного меню',
 	'cfg_affichagelistedocuments' => ' Афішування ( Показ) переліку документів, що додаються',

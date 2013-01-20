@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_plan_ex' => 'Tento odkaz pošle na stránku so všetkými článkami zoradenými zostupne</i>',
 	'cfg_affichage_plan_label' => 'Zobraziť odkaz na mapu v zostupnom poradí <i>Čo je nové?</i>',
 	'cfg_affichage_zone_bandeau' => 'Zobraziť v hornom pútači',
+	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce', # NEW
 	'cfg_affichage_zone_principale' => 'Zobraziť v oblasti hlavného menu',
 	'cfg_affichage_zone_secondaire' => 'Zobraziť v oblasti druhého menu',
 	'cfg_affichagelistedocuments' => 'Zobraziť pripojené dokumenty',
