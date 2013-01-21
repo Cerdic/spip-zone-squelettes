@@ -1,0 +1,14 @@
+<BOUCLE_principale (DOCUMENTS) {id_document} {mode=document} {extension==jpg|png|gif} >
+<div id="menu">
+	 
+	<ul id="albumvignettes">
+		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre} >
+		<li[ class="(#EXPOSE{on,off})"]><a href="[(#URL_ARTICLE|parametre_url{'id_document',#ID_DOCUMENT})]"[ title="(#TITRE|supprimer_numero)"]>
+			[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIER|image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
+		</a></li>
+		</BOUCLE_vignettes>
+	</ul>
+
+	<div class="nettoyeur"></div>
+</div>
+</BOUCLE_principale>
