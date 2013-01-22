@@ -36,7 +36,8 @@ if (defined("_DIR_PLUGIN_EVASQUELETTES")) {$chemin_squelettes =$test;} else {$ch
                 $envoi .= implode(' , ',$image_val);
 		if (file_exists(_DIR_IMG."eva_habillage/".$tab_image_def['nom_image'])) {
 		$envoi .=" {background-image : url("._DIR_IMG."eva_habillage/".$tab_image_def['nom_image'].");\n";}
-		else {$envoi .=" {background-image : url("._DIR_PLUGIN_EVA_HABILLAGE."mon_image/".$tab_image_def['nom_image'].");\n";}
+		elseif (file_exists(_DIR_PLUGIN_EVA_HABILLAGE."mon_image/".$tab_image_def['nom_image'])) {
+				$envoi .=" {background-image : url("._DIR_PLUGIN_EVA_HABILLAGE."mon_image/".$tab_image_def['nom_image'].");\n";}
                 $envoi .= "background-position : ".$tab_image_def['pos_x']." ".$tab_image_def['pos_y'].";\n";
                 $envoi .= "background-repeat : ".$tab_image_def['repetition'].";\n";
                 $envoi .="background-attachment : ".$tab_image_def['attach'].";}\n";
