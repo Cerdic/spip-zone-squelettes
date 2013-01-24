@@ -29,30 +29,43 @@
 
 <!-- affichage logo -->
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50})]
+<!-- affichage surtitre -->
+    [(#CONFIG{escal/config/surtitreune}|=={non}|non)
+    <div id="surtitre-article" class="#EDIT{surtitre}">[(#SURTITRE)]</div>
+    ]
 <!-- affichage titre -->
 			<div class="titre">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="<:par_auteur:><BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM)]</BOUCLE_auteurs> <:escal:le:> [(#DATE|affdate)]">
 			#TITRE
 			</a>
       </div>
+<!-- affichage soustitre -->
+    [(#CONFIG{escal/config/soustitreune}|=={non}|non)
+		<div id="soustitre-article" class="#EDIT{soustitre}">[(#SOUSTITRE)]</div>
+		]
 <!-- affichage rubrique -->
 			<BOUCLE_Rub(RUBRIQUES){id_rubrique}>
 			<div class="rubrique">
 			<:rubrique:> : [(#TITRE)]
 			</div>
 			</BOUCLE_Rub>
+<!-- affichage descriptif -->
+		[(#CONFIG{escal/config/descriptifune}|=={non}|non)
+		<div id="descriptif-article">[(#DESCRIPTIF)]</div>
+		]
 <!-- affichage premiere image + texte -->
       <div class="image-une" >
       <BOUCLE_image(DOCUMENTS){id_article}{extension==jpg|png|gif}{0,1}>
       <img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
       </BOUCLE_image>
       </div>
-
-      [<div class="texte">
-			(#INTRODUCTION|couper{300}|propre)
+      <div class="texte">
+    [(#CONFIG{escal/config/texteune}|=={non}|non)
+			[(#TEXTE|couper{300}|propre)]
 			<br />
+		]
   		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]"><strong><:escal:lire_suite:></strong></a>
-			</div>]
+			</div>
       <div class="nettoyeur"></div>
     </div>
   </BOUCLE_dernier_endate>
