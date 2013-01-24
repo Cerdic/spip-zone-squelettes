@@ -45,10 +45,6 @@
 	<//B_articles>
 	</div>
 
-	<footer>
-		[<div class="notes"><hr />(#NOTES)</div>]
-	</footer>
-
 	<aside>
 		[(#REM) Gestion du portfolio et des documents ]
 		[(#INCLURE{fond=inclure/documents,id_rubrique})]
@@ -60,7 +56,7 @@
 					<h2 class="h2"><:breves:breves:></h2>
 					<ul class="liste-items">
 							<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
-							<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
+							<li class="item short">#INCLURE{fond=inclure/resume/breve,id_breve}</li>
 							</BOUCLE_breves>
 					</ul>
 					[<div class="pagination">(#PAGINATION)</div>]
@@ -73,12 +69,11 @@
 					<h2 class="h2"><:sur_web:></h2>
 					<ul class="liste-items">
 							<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-							<li class="item">
-				<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+							<li class="item short">#INCLURE{fond=inclure/resume/site,id_syndic}
 									<B_syndic>
 									<ul>
 											<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-											<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+											<li class="short">#INCLURE{fond=inclure/resume/syndic_article,id_syndic_article}</li>
 											</BOUCLE_syndic>
 									</ul>
 									</B_syndic>
@@ -91,6 +86,10 @@
 		[(#REM) Proposer un site ]
 		#FORMULAIRE_SITE
 	</aside>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
 
 </section>
 </BOUCLE_content>
