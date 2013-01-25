@@ -1,11 +1,8 @@
 @import "css/variables.less";
+@import "css/spip.variables.less";
 @import "css/mixins.less";
 
 .page {padding-top: @navbarHeight;} /* place pour la barre static */
-
-/* typo : plus d'air */
-p, ul, ol {margin-bottom: @baseLineHeight;}
-.liste-items {  p, ul, ol {margin-bottom: @baseLineHeight/2;}}
 
 // faciliter la reconaissance des liens dans le contenu texte principal
 article {.main a,footer a {text-decoration: underline;}}
@@ -26,16 +23,16 @@ article {.main a,footer a {text-decoration: underline;}}
 .secondary [class^="icon-"],
 .secondary [class*=" icon-"] {opacity: 0.5;filter: ~"alpha(opacity=50)";}
 
-.cartouche {margin-bottom: @baseLineHeight;}
 ul.tags {list-style: none;display: inline; li {display: inline; a {color:inherit;} .sep {display: none;}}}
 div.socialtags {clear: none;display: inline;display: inline-block;}
 .main {
   .clearfix;
-  margin-bottom: @baseLineHeight;
-  .texte, .chapo {.clearfix;margin-bottom: @baseLineHeight;}
+  margin-bottom: @emLineHeight;
+  &:last-child {margin-bottom: 0}
+  .texte, .chapo {.clearfix;}
 }
-section > footer, article > footer {.clearfix;margin-bottom: @baseLineHeight;}
-section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
+section > footer, article > footer {.clearfix;margin-bottom: @emLineHeight;}
+section > aside, article > aside {.clearfix;margin-bottom: @emLineHeight;}
 
 .documents .liste-items,.liste-items.documents {
   .introduction {color: @gray;}
@@ -49,7 +46,7 @@ section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
 
 /* form recherche */
 
-.formulaire_recherche {padding-right: 42px+2*14px;} /* provisionner la largeur du bouton+padding sur le input.search */
+.formulaire_recherche,.secondary .formulaire_recherche {padding-right: 42px+2*14px;} /* provisionner la largeur du bouton+padding sur le input.search */
 .formulaire_recherche form .input-append {width:100%;}
 .formulaire_recherche form input.search {width:100%;}
 
@@ -69,10 +66,9 @@ section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
 }
 
 /* une et edito*/
-.edito, .une {font-size: @baseFontSize+1px;line-height: @baseLineHeight;font-weight: 200;}
-.edito p, .une p {font-size: inherit;line-height: inherit;font-weight: inherit;}
-.hero-unit.edito,.hero-unit.une {padding: @baseLineHeight * 1.5;}
-.edito {.info-publi, .meta-publi, .social {display: none}}
+.edito, .une {font-size:1.0em;;font-weight: 200;.notes {margin-top: 0;padding-top: 0}}
+.edito {.publication, .postmeta, .social {display: none}}
+.edito {margin-bottom: 2 * @emVertMargin; .main {margin-bottom: 0}}
 
 /* herbier */
 .noisette_herbier .liste.herbier .item .spip_logos {display: block;}
@@ -115,9 +111,9 @@ section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
 .twidget .twtr-doc {width: 100% !important;}
 
 /* resultats */
-.resultats .liste-items .entry .info-publi {display: block;margin-bottom: 0;}
+.resultats .liste-items .entry .publication {display: block;margin-bottom: 0;}
 .resultats .liste-items .entry .entry-content {display: block;margin-bottom: 0;}
-.resultats .liste-items .entry .spip_logos {display: inline;max-width: 25px;}
+.resultats .liste-items .entry .spip_logos {display: inline;max-width: 25px;height: auto!important;}
 
 /* pied */
 /* badges dans le pied : sprite calculee dans inc_badges */
@@ -160,7 +156,7 @@ section > aside, article > aside {.clearfix;margin-bottom: @baseLineHeight;}
   }
 }
 .forums {
-  .cartouche .info-publi {display: none;}
+  .cartouche .publication {display: none;}
   .comment {
     padding: 0;
     padding-left: 2*(@gridColumnWidth+@gridGutterWidth);
