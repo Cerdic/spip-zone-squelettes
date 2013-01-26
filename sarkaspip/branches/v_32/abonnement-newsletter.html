@@ -16,12 +16,18 @@
 			<div id="newsletter" class="formulaire">
 				[<div class="titre"><h1>(#CONFIG{sarkaspip_formulaires/titre_lettre, <:sarkaspip:inscrire_a_newsletter:>})</h1></div>]
 				[<div class="description">(#CONFIG{sarkaspip_formulaires/descriptif_lettre}|propre)</div>]
-				[(#PLUGIN{ABOMAILMANS}|oui)
-					[(#FORMULAIRE_ABOMAILMAN)]
+				[(#PLUGIN{MAILSUBSCRIBERS}|oui)
+					[(#FORMULAIRE_NEWSLETTER_SUBSCRIBE)]
+					[(#FORMULAIRE_NEWSLETTER_UNSUBSCRIBE)]
 				]
-				[(#PLUGIN{ABOMAILMANS}|non)
-					[(#PLUGIN{SPIPLISTES}|oui)
-						[(#FORMULAIRE_ABONNEMENT)]
+				[(#PLUGIN{MAILSUBSCRIBERS}|non)
+					[(#PLUGIN{ABOMAILMANS}|oui)
+						[(#FORMULAIRE_ABOMAILMAN)]
+					]
+					[(#PLUGIN{ABOMAILMANS}|non)
+						[(#PLUGIN{SPIPLISTES}|oui)
+							[(#FORMULAIRE_ABONNEMENT)]
+						]
 					]
 				]
 			</div>

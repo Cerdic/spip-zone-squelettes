@@ -473,6 +473,9 @@ function abonnement_possible($plugin) {
 			if ($nb_listes > 0)
 				$retour = true;
 		}
+		else if (strtolower($plugin) == 'mailsubscribers') {
+			$retour = true;
+		}
 	}
 
 	return $retour;

@@ -118,13 +118,18 @@
 		<fieldset>
 			<legend><:sarkaspip:cfg_lgd_form_lettre:></legend>
 	[(#SET{plugin, ''})]
-	[(#PLUGIN{SPIPLISTES}|ou{#PLUGIN{ABOMAILMANS}}|oui)
-		[(#PLUGIN{ABOMAILMANS}|oui)
-			[(#SET{plugin, [(#PLUGIN{ABOMAILMANS, nom}|extraire_multi)]})]
+	[(#PLUGIN{MAILSUBSCRIBERS}|ou{#PLUGIN{SPIPLISTES}}|ou{#PLUGIN{ABOMAILMANS}}|oui)
+		[(#PLUGIN{MAILSUBSCRIBERS}|oui)
+			[(#SET{plugin, [(#PLUGIN{MAILSUBSCRIBERS, nom}|extraire_multi)]})]
 		]
-		[(#PLUGIN{ABOMAILMANS}|non)
-			[(#PLUGIN{SPIPLISTES}|oui)
-				[(#SET{plugin, [(#PLUGIN{SPIPLISTES, nom}|extraire_multi)]})]
+		[(#PLUGIN{MAILSUBSCRIBERS}|non)
+			[(#PLUGIN{ABOMAILMANS}|oui)
+				[(#SET{plugin, [(#PLUGIN{ABOMAILMANS, nom}|extraire_multi)]})]
+			]
+			[(#PLUGIN{ABOMAILMANS}|non)
+				[(#PLUGIN{SPIPLISTES}|oui)
+					[(#SET{plugin, [(#PLUGIN{SPIPLISTES, nom}|extraire_multi)]})]
+				]
 			]
 		]
 			<p><:sarkaspip:cfg_inf_form_lettre:></p>
@@ -138,7 +143,7 @@
 				{env}>
 	]
 	[(#GET{plugin}|non)
-			#SET{plugins, '&#171; Abomailmans &#187;, &#171; SPIP-Listes &#187;'}
+			#SET{plugins, '&#171; Mailsubscribers &#187;, &#171; Abomailmans &#187;, &#171; SPIP-Listes &#187;'}
 			<p class="avertissement"><:sarkaspip:cfg_inf_plugins_inactifs{lbl_plugins=#GET{plugins}}:></p>
 	]
 		</fieldset>
