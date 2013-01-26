@@ -441,21 +441,13 @@ function inscription_possible() {
 
 function abonnement_possible($plugin) {
 	$retour = false;
-	static $statuts_spipliste = array('liste','pub_jour','pub_hebdo','pub_7jours','pub_mensul','pub_mois','pub_an');
 
 	$informer = chercher_filtre('info_plugin');
 	$plugin_actif = ($informer($plugin, 'est_actif') == 1);
 
 	if ($plugin_actif) {
-		if (strtolower($plugin) == 'spiplistes') {
-			$nb_listes = sql_countsel('spip_listes', array(sql_in('statut', $statuts_spipliste)));
-			if ($nb_listes > 0)
-				$retour = true;
-		}
-		else if (strtolower($plugin) == 'abomailmans') {
-			$nb_listes = sql_countsel('spip_abomailmans', array('desactive=' . sql_quote('0')));
-			if ($nb_listes > 0)
-				$retour = true;
+		if (strtolower($plugin) == 'mailsubscribers') {
+			$retour = true;
 		}
 	}
 
