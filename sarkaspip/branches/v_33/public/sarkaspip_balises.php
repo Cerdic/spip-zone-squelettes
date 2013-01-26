@@ -231,6 +231,7 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 		}
 	}
 	else if ($type == 'config') {
+		include_spip('inc/config');
 		if (function_exists('lire_config')) {
 			$valeur = lire_config($fond.'/rubrique_'.$mot);
 			if (($valeur != NULL) && ($valeur > 0)) $id_rubrique = $valeur;
