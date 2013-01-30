@@ -28,7 +28,7 @@ function formulaires_evahabillage_graphisme_images_traiter_dist(){
 		}
 	}
 	// Saisie d'une image pour un secteur du site
-	if(_request('submit_image_choix')) {
+	if((_request('submit_image_choix')) AND (_request('nom_image')!='')) {
 		$recup_image_exists = sql_select('id','spip_eva_habillage_images',"nom_div = '"._request('secteur_image')."' AND nom_habillage = 'Defaut'");
         $tab_recup_image_exists = sql_fetch($recup_image_exists);
         $repeat = _request('repeat_x')+_request('repeat_y');
