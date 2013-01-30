@@ -313,6 +313,7 @@ function balise_SI_PAGE_dist($p) {
  * @param <type> $p
  * @return <type>
  */
+if (!_SPIP3){
 function balise_BOITE_OUVRIR_dist($p) {
 	$_titre = interprete_argument_balise(1,$p);
 	$_class = interprete_argument_balise(2,$p);
@@ -324,6 +325,7 @@ function balise_BOITE_OUVRIR_dist($p) {
 	$p->interdire_scripts = false;
 	return $p;
 }
+}
 
 /**
  * #BOITE_PIED{class}
@@ -332,6 +334,7 @@ function balise_BOITE_OUVRIR_dist($p) {
  * @param <type> $p
  * @return <type>
  */
+if (!_SPIP3){
 function balise_BOITE_PIED_dist($p) {
 	$_class = interprete_argument_balise(1,$p);
 	$_class = ($_class?"$_class":"");
@@ -339,6 +342,7 @@ function balise_BOITE_PIED_dist($p) {
 	$p->code = "Z_box_foot($_class)";
 	$p->interdire_scripts = false;
 	return $p;
+}
 }
 
 /**
@@ -348,10 +352,12 @@ function balise_BOITE_PIED_dist($p) {
  * @param <type> $p
  * @return <type>
  */
+if (!_SPIP3){
 function balise_BOITE_FERMER_dist($p) {
 	$p->code = "Z_box_close()";
 	$p->interdire_scripts = false;
 	return $p;
+}
 }
 
 /**

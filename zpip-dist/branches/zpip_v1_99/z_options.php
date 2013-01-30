@@ -18,4 +18,12 @@ if ($z = _request('var_zajax')) {
 		set_request('var_zajax'); // enlever cette demande incongrue
 }
 
+include_spip('plugins/installer'); // spip_version_compare dans SPIP 3.x
+include_spip('inc/plugin'); // spip_version_compare dans SPIP 2.x
+if (spip_version_compare($GLOBALS['spip_version_branche'], '3.0.0alpha', '>=')) {
+                define('_SPIP3', true);
+} else {
+                define('_SPIP3', false);
+}
+
 ?>
