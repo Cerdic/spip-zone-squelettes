@@ -1,4 +1,21 @@
 #CACHE{0}
+[(#REM) 
+	Surcharge du squelettes metas.html, initialement injecté par le plugin 'Metas'
+	Revu et agrémenté pour prendre en compte
+	* certaines préconisations d'usage en matière de Référencement de sites dans les moteurs de recherche
+	* intégrer également des métas spécifiques aux 2 gros réseaux sociaux du moment
+		lesquels peuvent nécessiter certaines personalisations, fonction de la stratégie SMO (Social Media Optimization)
+		que vous aurez établis, si toutefois vous en établissez une.
+	
+	2013.02.01 : Ce fichier n'a pas vocation à rester dans ZKTX 
+	et integrera sans doute à terme un plugin dédié
+	
+	Si vous souhaitez revenir au squelette metas.html par defaut du plugin,
+	Remplacez dans vos surcharges de head/xxx.html l'inclusion 
+		{fond=inclure/metas}{env}
+	par
+		{fond=metas}{env}
+]
 <BOUCLE_article(ARTICLES){id_article}>
 <BOUCLE_metas_article(METAS){id_article}>
 <title>[(#TITRE|sinon{#_article:TITRE|couper{80}}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
@@ -73,15 +90,21 @@
 
 [(#REM) Facebook Open Graph > Données générales et récurentes ]
 [<meta property="og:image" content="(#LOGO_SITE_SPIP|extraire_attribut{src})"/>]
-<meta property="og:site_name" content="[(#NOM_SITE_SPIP|textebrut)]"/>
-<meta property="og:type" content="company"/>
-<meta property="fb:admins" content="144398285587013"/>
-<meta property="og:latitude" content="47.3504437"/>
-<meta property="og:longitude" content="-0.7586123"/>
-<meta property="og:street-address" content="16 rue du Vieux Pont"/>
-<meta property="og:locality" content="Chalonnes sur Loire"/>
-<meta property="og:region" content="Pays de loire"/>
-<meta property="og:postal-code" content="49290"/>
-<meta property="og:country-name" content="FRANCE"/>
-<meta property="og:email" content="contact@votresiteinter.net"/>
-<meta property="og:phone_number" content="+33664147556"/>
+[<meta property="og:site_name" content="(#NOM_SITE_SPIP|textebrut)"/>]
+[<meta property="og:email" content="(#EMAIL_WEBMASTER)"/>]
+
+[(#REM) Les metas OG suivantes peuvent être utilisées en fonction des besoins (liste non exhaustive)
+				cf : http://developers.facebook.com/docs/technical-guides/opengraph/built-in-objects/
+
+	<meta property="og:type" content=""/>
+	<meta property="fb:admins" content=""/>
+	<meta property="og:latitude" content=""/>
+	<meta property="og:longitude" content=""/>
+	<meta property="og:street-address" content=""/>
+	<meta property="og:locality" content=""/>
+	<meta property="og:region" content=""/>
+	<meta property="og:postal-code" content=""/>
+	<meta property="og:country-name" content=""/>
+	<meta property="og:phone_number" content=""/>
+
+]
