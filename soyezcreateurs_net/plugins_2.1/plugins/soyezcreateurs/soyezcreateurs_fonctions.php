@@ -176,6 +176,13 @@ function sc_replace($texte,$search,$replace) {
 	return trim(str_replace($search,$replace,$texte));
 }
 
+function sc_supprimer_slogan($texte) {
+  $regexp = '/<(sub|sup)[^>]*>([^<]*)<\/\1>/i';
+  $replace = "";
+  $texte = trim(preg_replace($regexp, $replace, $texte));
+  return $texte;
+}
+
 function sc_NewLine2str($texte) {
 	return str_replace('"','\"',str_replace("\r",'',str_replace("\n",'\n',$texte)));
 }
