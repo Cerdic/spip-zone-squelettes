@@ -19,18 +19,16 @@
 	<div class="texte [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
 #SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
   <div id="scrollup2">
-
-      <BOUCLE_photo_une(DOCUMENTS){!doublons photos}{0,#GET{nombrephotos}}{par hasard}>
+<BOUCLE_articles(ARTICLES)>
+      <BOUCLE_photo_une(DOCUMENTS){id_article}{!doublons photos}{0,#GET{nombrephotos}}{par hasard}>
       <div class="headline2">
-
-      <a href="<BOUCLE_lien(spip_documents_liens){objet=article}{id_document}>spip.php?article#ID_OBJET&lang=#ENV{lang}</BOUCLE_lien>">
-
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
-								 alt='[(#TITRE)]'
-								 title="[(#TITRE)]" />
-			</a>
+                                 alt='[(#TITRE)]'
+                                 title="[(#TITRE)]" />
+            </a>
       </div>
       </BOUCLE_photo_une>
-
+</BOUCLE_articles>
 	</div>
   </div>
