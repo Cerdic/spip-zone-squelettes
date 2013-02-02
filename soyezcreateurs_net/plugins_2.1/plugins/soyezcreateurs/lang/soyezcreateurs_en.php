@@ -314,7 +314,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
-	'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this template\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
+	'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this template\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'Logout',
