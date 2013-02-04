@@ -1,0 +1,11 @@
+	[(#CONFIG{fsgtf/imSortOrder, 0}|=={0}|oui) #FORMULAIRE_CONFIGURER_FSGTF_DOCUMENTS_2 ]
+	<B_galerie>
+	<div class="detail" style="margin:0 10px"><:fsgtf:manorg_info:></div>
+	<ul id="liste_des_images">
+	<BOUCLE_galerie(DOCUMENTS) { id_document IN #CONFIG**{fsgtf/imSortOrder}|explode{','} }>
+		#SET{fichier,#DISTANT|=={oui}|?{#FICHIER,#FICHIER|basename}}
+		[(#MEDIA|=={image}|oui)[<li><div style="background:transparent url((#LOGO_DOCUMENT{apercu,120,100}|extraire_attribut{src})) center;"[ title="(#TITRE)"]><span>#ID_DOCUMENT</span></div></li>]]
+	</BOUCLE_galerie>
+	</ul>
+	<br class="clear" />
+	</B_galerie>

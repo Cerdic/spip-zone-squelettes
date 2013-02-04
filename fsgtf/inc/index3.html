@@ -1,0 +1,7 @@
+[(#SET{les_images,''})]
+[(#SET{les_textes,''})]
+<BOUCLE_photo(DOCUMENTS){extension==jpg|png|gif}{id_document IN #CONFIG**{fsgtf/imSortOrder}|explode{','} }>
+	[(#SET{les_images,#GET{les_images}<img src="[(#FICHIER|image_passe_partout{#CONFIG{fsgtf/bg_width,'600'},#CONFIG{fsgtf/bg_height,'400'}}|image_recadre{#CONFIG{fsgtf/bg_width,'600'},#CONFIG{fsgtf/bg_height,'400'},center}|extraire_attribut{src})]" alt="Image #COMPTEUR_BOUCLE" longdesc="[(#FICHIER|image_passe_partout{250,180}|image_recadre{250,180}|extraire_attribut{src})]" />})]
+	[(#SET{les_textes,#GET{les_textes}<div class="tf_content" id="content#COMPTEUR_BOUCLE" >[<h2[ class="(#EDIT{titre})"]>(#TITRE)</h2>][<p[ class="(#EDIT{descriptif} )shadow"]>(#DESCRIPTIF|PtoBR)</p>]</div>})]
+</BOUCLE_photo>
+<INCLURE{fond=inc/fsgtf}{les_images=#GET{les_images}}{les_textes=#GET{les_textes}}>

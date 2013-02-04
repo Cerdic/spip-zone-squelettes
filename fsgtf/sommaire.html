@@ -1,0 +1,7 @@
+[(#CACHE{3600})]
+[(#CONFIG{fsgtf/order_method,0}|match{^(0|1|2)$}|oui)[(#CONFIG{fsgtf/order_method,0}
+		|=={0}|oui)#SET{filtre_par,date,titre,id_document}][(#CONFIG{fsgtf/order_method,0}
+		|=={1}|oui)#SET{filtre_par,titre,date,id_document}][(#CONFIG{fsgtf/order_method,0}
+		|=={2}|oui)#SET{filtre_par,id_document}]
+]<INCLURE{fond=inc/index012}{filtre_par=#GET{filtre_par}}>
+[(#CONFIG{fsgtf/order_method,0}|=={3}|oui)<INCLURE{fond=inc/index3}>]

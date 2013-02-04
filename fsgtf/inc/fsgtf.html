@@ -1,0 +1,83 @@
+[(#SET{css,?page=style.css})]
+[(#SET{js,?page=script.js})]
+[(#SESSION{statut}|=={0minirezo}
+	|oui)#SET{css,?page=style.css&var_mode=recalcul}#SET{js,?page=script.js&var_mode=recalcul}
+]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<head>
+		<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+		<meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
+		[<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
+		<meta name="revisit-after" content="30 days" />
+		<meta name="robots" content="index,follow" />
+		<B_auteurs><meta name="author" content="<BOUCLE_auteurs(AUTEURS){tous} {","}>[(#NOM|attribut_html)]</BOUCLE_auteurs>" /></B_auteurs>
+		<meta name="generator" content="SPIP" />
+		<meta name="copyright" content="Copyright [(#NOM_SITE_SPIP|textebrut)]" />
+		<meta name="distribution" content="global" />
+		<B_keywords><meta name="keywords" content="<BOUCLE_keywords(MOTS) {","}>[(#TITRE|attribut_html)]</BOUCLE_keywords>" /></B_keywords>
+		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+		[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" type="image/x-icon" />]
+		#INSERT_HEAD_CSS
+		<link rel="stylesheet" href="#GET{css}" type="text/css" media="all" />
+		#INSERT_HEAD
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css' />
+	</head>
+	<body body dir="#LANG_DIR">
+		<div class="tf_title" id="tf_title">#SLOGAN_SITE_SPIP</div>
+		<div id="tf_loading" class="tf_loading"></div>
+		<div id="tf_bg" class="tf_bg">
+			#LES_IMAGES
+			<div class="tf_pattern" id="tf_pattern"></div>
+		</div>
+		<div id="tf_content_wrapper" class="tf_content_wrapper">
+			#LES_TEXTES
+		</div>
+
+		<div id="tf_thumbs" class="tf_thumbs shadow">
+			<span id="tf_zoom" class="tf_zoom"></span>
+			<img src="" alt="Thumb1"/>
+		</div>
+
+		<div id="tf_next" class="tf_next"></div>
+		<div id="tf_prev" class="tf_prev"></div>
+		<div class="reference">
+			<BOUCLE_sites_a_droite(SITES){par nom_site}{titre_mot=droite}{doublons}>
+				<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" [title="(#URL_SITE|texte_backend)"]>#NOM_SITE</a> &nbsp; 
+			</BOUCLE_sites_a_droite>
+			<BOUCLE_sites(SITES){par nom_site}{doublons}>
+				<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" [title="(#URL_SITE|texte_backend)"] class="last">#NOM_SITE</a> &nbsp; 
+			</BOUCLE_sites>
+		</div>
+		<div class="description">
+			<span>#CONFIG{fsgtf/help_text, 'Utilisez les touches &uarr; et &darr; ou la roulette pour naviguer.'}</span>
+		</div>
+		[<script type="text/javascript" src="(#CHEMIN{js/jquery.flip.min.js})"></script>]
+		[<script type="text/javascript" src="(#CHEMIN{js/jquery.mousewheel.min.js})"></script>]
+		<script type="text/javascript">
+			/*
+			the images preload plugin
+			*/
+			(function($) {
+				$.fn.preload = function(options) {
+					var opts 	= $.extend({}, $.fn.preload.defaults, options);
+					o			= $.meta ? $.extend({}, opts, this.data()) : opts;
+					var c		= this.length,
+						l		= 0;
+					return this.each(function() {
+						var $i	= $(this);
+						$('<img/>').load(function(i){
+							++l;
+							if(l == c) o.onComplete();
+						}).attr('src',$i.attr('src'));
+					});
+				};
+				$.fn.preload.defaults = {
+					onComplete	: function(){return false;}
+				};
+			})(jQuery);
+		</script>
+		<script type="text/javascript" src="#GET{js}"></script>
+	</body>
+</html>
