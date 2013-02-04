@@ -315,7 +315,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => '<a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>/
-<a href=\'http://www.mantalo.net/\' title=\'Visit the website of the creator of this template in GPL license\'>SoyezCreateurs</a> template, powered by ',
+<a href=\'http://www.mantalo.net/\' title=\'Visit the website of the creator of this template in GPL license\'>SoyezCreateurs</a>',
 
 	// D
 	'deconnexion' => 'Logout',
