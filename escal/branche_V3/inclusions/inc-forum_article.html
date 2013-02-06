@@ -1,9 +1,5 @@
 	<div class="forum-article">
 
-	<BOUCLE_forums(ARTICLES){id_article}>
-		<B_thread>
-<a name="forum#ID_FORUM"></a>
-
 			<img class="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
 
 			<div class="repondre-article">
@@ -12,9 +8,14 @@
   			</a>
 			</div>
 
-			[<p class="pagination">(#PAGINATION)</p>]
-			<BOUCLE_thread(FORUMS){id_article}{par date}{inverse}{pagination 5}>
 
+
+<BOUCLE_test(FORUMS){id_article}{plat}{par date}{inverse}>
+
+      <B_thread>
+      <a name="forum#ID_FORUM"></a>
+      [<p class="pagination">(#PAGINATION)</p>]
+			<BOUCLE_thread(FORUMS){id_thread}{doublons}{pagination 5}>
 				<div class="forum-thread" >
 				  <div class="titre-message">
 						#TITRE
@@ -70,18 +71,11 @@
         </B_reponses>
 
 			</BOUCLE_thread>
-			#PAGINATION
-			</B_thread>
+      [<p class="pagination">(#PAGINATION)</p>]
+      </B_thread>
 			
-			<div id="repondre-article">
-			<img src="#CHEMIN{images/forum.png}" alt='Le forum' />
-      <a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>">
+			
+</BOUCLE_test>
 
-			<:repondre_article:>
-			</a>
-			<:escal:message_non:>
-			</div>
 
-      <//B_thread>
-    </BOUCLE_forums>
 	</div><!-- fin forum-article -->
