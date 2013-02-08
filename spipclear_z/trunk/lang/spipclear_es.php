@@ -12,7 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_commentaire' => 'Añadir un comentario',
 	'archive' => 'Archivo',
 	'archives' => 'Archivos',
-	'archives_precedents' => 'Précédents', # MODIF
+	'archives_precedents' => 'Precedentes',
 	'archives_suivants' => 'Suivants', # NEW
 	'attime' => 'a las',
 	'aucun_commentaire' => 'Ningún comentario',
@@ -30,7 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'calendrier' => 'Calendario',
 	'categorie' => 'Categoría',
 	'categories' => 'Categorías',
-	'ce_bestof_label' => 'Billet sélectionné', # MODIF
+	'ce_bestof_label' => 'Entrada seleccionada',
 	'commentaire' => 'comentario',
 	'commentaires' => 'comentarios',
 	'commentaires_fermes' => 'Los comentarios para esta anotación están cerrados',
@@ -52,7 +52,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniers_billets' => 'Derniers billets', # NEW
 	'derniers_commentaires' => 'Derniers commentaires', # NEW
 	'description_page-sommaire' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.', # MODIF
-	'document_non_trouve' => 'Document non trouvé', # MODIF
+	'document_non_trouve' => 'Documento no encontrado',
 	'document_non_trouve_explication' => 'Le document que vous cherchez n\'existe pas.', # NEW
 
 	// F
@@ -149,14 +149,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_erreur1' => 'La búsqueda de',
 	'texte_erreur2' => 'no da ningún resultado.',
 	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # MODIF
-	'titre_erreur' => 'Error :',
+	'titre_erreur' => 'Error:',
 	'trackback' => 'trackback',
 	'trackbacks' => 'trackbacks',
 	'trackbacks_fermes' => 'Los trackbacks para esta anotación están cerrados.',
 	'trackbacks_pour_faire' => 'Para hacer un trackback sobre esta anotación',
 
 	// U
-	'un_seul_mot' => 'solo una palabra',
+	'un_seul_mot' => 'una sola palabra',
 
 	// V
 	'voir_capture' => 'Afficher la capture d\'écran', # MODIF
