@@ -156,14 +156,42 @@
              </div>
              
              </li>
-             
+     </ul>
+              <div class="explication">
+              <p><strong>Titres des noisettes</strong></p>
 
+              <p>dans le cas d'un <strong>site multilingue</strong>, si vous voulez changer le titre d'une noisette
+              tout en conservant le multilinguisme, vous devez écrire ce titre en suivant cet exemple :</p>
+              <p> &lt;multi&gt; [fr]Exemple [en]Example [de]Beispiel [es]Ejemplo [it]Esempio &lt;/multi&gt;</p>
+              <p>En laissant la case vide, Escal utilisera le titre par défaut.</p>
+              </div>
+     <ul>
+
+<!-- inc-edito -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Edito</strong></label>
+                    <br />
+            <div class="explication">
+            Le titre de cette noisette est donné par le titre de l'article avec le mot-clé "edito".
+            Article dont il faut décliner les traductions sur un site multilingue.
+            </div>
+            </li>
+<!-- inc-acces_direct -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Accès direct</strong></label>
+                    <br />
+            <div class="explication">
+            Le titre de cette noisette est donné par le titre de l'article avec le mot-clé "acces-direct".
+            Article dont il faut décliner les traductions sur un site multilingue.
+            </div>
+            </li>
 <!-- inc-identification -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Identification</strong></label>
                     <br />
             <div class="explication">
             #SET{name,inscription}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <p>Le titre de cette noisette n'est pas modifiable.</p>
                     Afficher le formulaire d'inscription de nouveaux rédacteurs <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
@@ -181,15 +209,14 @@
                     <label><strong>Articles les plus vus</strong></label>
                     <br />
             <div class="explication">
-              <!-- en attente de trouver une solution pour le multilinguisme
-             #SET{name,titretop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Titre du cadre
+            #SET{name,titretop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui"
-                             value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:top_articles:>})]"  />
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
                     </span>
-              -->
+            <br /><br />
             #SET{name,nombretop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -203,6 +230,14 @@
                     <label><strong>Actus</strong></label>
                     <br />
             <div class="explication">
+            #SET{name,titreactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
             #SET{name,tempoactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Temporisation entre chaque actu (en secondes)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -211,16 +246,6 @@
                     </span>
                     <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
                     <br /><br />
-            <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
-            #SET{name,titreactus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titreactus="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:actus:>})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titreactus"; ?>"  />
-                    </span>
-                    </div>
-            -->
 
             </div>
             </li>
@@ -229,16 +254,14 @@
                     <label><strong>Photos au hasard</strong></label>
                     <br />
             <div class="explication">
-            <!-- en attente de trouver une solution pour le multilinguisme
             #SET{name,titrephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrephotos="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:photos_hasard:>})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
+                    Titre de la noisette
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrephotos"; ?>"  />
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
                     </span>
-                    </div>
-              -->
+            <br /><br />
              #SET{name,nombrephotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'images
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -261,6 +284,14 @@
                     <label><strong>Sites favoris</strong></label>
                     <br />
             <div class="explication">
+            #SET{name,titresitesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
              #SET{name,nombresitesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre de sites
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -282,6 +313,14 @@
                     <label><strong>Derniers commentaires</strong></label>
                     <br />
             <div class="explication">
+            #SET{name,titredernierscomms}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
             #SET{name,nbredernierscomms}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre de commentaires affichés
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -303,16 +342,14 @@
                     <label><strong>Evènements à venir</strong></label>
                     <br />
             <div class="explication">
-            <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
             #SET{name,titreevenements}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titreevenements="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:evenements:>})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
+                    Titre de la noisette
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titreevenements"; ?>"  />
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
                     </span>
-                    </div>
-            -->
+            <br /><br />
             #SET{name,paginevenements}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'évènements par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -328,16 +365,14 @@
                     <label><strong>Sur le web</strong></label>
                     <br />
             <div class="explication">
-            <!-- en attente de trouver une solution pour le multilinguisme
             #SET{name,titresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titresites="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:sur_web:>})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
+                    Titre de la noisette
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titresites"; ?>"  />
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
                     </span>
-                    </div>
-            -->
+            <br /><br />
             #SET{name,sitessyndic}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Uniquement les sites syndiqués
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -381,6 +416,14 @@
                     <label><strong>Statistiques</strong></label>
                     <br />
             <div class="explication">
+            #SET{name,titrestats}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
 
             <strong>Choix des statistiques à présenter :</strong>
                     <br /><br />
@@ -548,16 +591,6 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-            <!-- en attente de trouver une solution pour le multilinguisme (enlever les 2 br au dessus)
-            #SET{name,titrestats}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-             <?php $titrestats="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},<:escal:statistiques:>})]"; ?>
-                    <div class="explication"><br /> Titre du cadre
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$titrestats"; ?>"  />
-                    </span>
-                    </div>
-            -->
             </div>
             </li>
 <!-- inc-perso -->
@@ -566,10 +599,10 @@
                     <br />
             <div class="explication">
             #SET{name,titreperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <strong>Titre du cadre</strong>
+                    <strong>Titre de la noisette</strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:280px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Ma noisette})]"  />
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Ma noisette})]"  />
                     </span>
             <br /><br />
             #SET{name,choixperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
