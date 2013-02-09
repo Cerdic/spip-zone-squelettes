@@ -1,0 +1,21 @@
+#SET{article, #ENV{id_article}}
+<BOUCLE_r(RUBRIQUES){id_rubrique}>
+		Rubrique #ID_RUBRIQUE
+<BOUCLE_a(ARTICLES){branche}{!id_article = #GET{article}}{!par date}{statut IN 'publie','redac'}>
+<h3 class="#EDIT{titre}"><a href='#URL_ARTICLE'>#TITRE</a><br />[par (#LESAUTEURS)][, le (#DATE|affdate)]</h3>
+
+<ul class='liste-items documents documents_portfolio'>
+
+	<BOUCLE_propals
+	(DOCUMENTS){id_article}>
+	<li class="#STATUT"><a href="#URL_DOCUMENT" class="mediabox" rel="propal">[(#LOGO_DOCUMENT|image_recadre{80,80}|image_reduire{80})]</a></li>
+	</BOUCLE_propals>
+	<li>Aucune proposition</li>
+	<//B_propals>
+</ul>
+
+</BOUCLE_a>
+<p>Aucun article trouvé. Article #GET{article}</p>
+<pre>[(#ENV**|unserialize|print_r{1})]</pre>
+<//B_a>
+</BOUCLE_r>
