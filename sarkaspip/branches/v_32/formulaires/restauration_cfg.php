@@ -15,7 +15,8 @@ function formulaires_restauration_cfg_charger_dist(){
 	$groupe = '';
 	foreach ($saves as $_fichier) {
 		$nom = basename($_fichier);
-		$_dir = end(explode('/', dirname($_fichier)));
+		$dirs = explode('/', dirname($_fichier));
+		$_dir = end($dirs);
 		if ($_dir != $groupe) {
 			if ($options) $options .= '</optgroup>';
 			$options .= '<optgroup style="font-weight: strong;" label="'.$fonds[$_dir].'">';
@@ -40,7 +41,8 @@ function formulaires_restauration_cfg_traiter_dist(){
 	lire_fichier($fichier,$tableau);
 
 	include_spip('inc/config');
-	$fond = end(explode('/', dirname($fichier)));
+	$dirs = explode('/', dirname($fichier));
+	$fond = end($dirs);
 	$ok = ecrire_config($fond, $tableau);
 	
 	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
