@@ -13,8 +13,7 @@ function formulaires_evahabillage_langue_charger_dist(){
 
 function formulaires_evahabillage_langue_traiter_dist(){
 	$res = array('editable'=>true);
-	include_once (_DIR_PLUGIN_EVASQUELETTES.'lang/local_fr.php');
-	$tableau=array();
+	include (_DIR_PLUGIN_EVASQUELETTES.'lang/local_fr.php');
 	foreach ($langue_fichier_initial as $cle => $val) {
 		sql_delete('spip_eva_habillage_images',"type = 'fichier_lang' AND attach='"._request('langue')."' AND nom_habillage = 'Defaut' AND nom_div = '".$cle."'");
 		if (_request($cle)) {
