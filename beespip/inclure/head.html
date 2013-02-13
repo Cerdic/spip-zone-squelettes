@@ -82,7 +82,7 @@ $(document).ready(function(){
 });
 </script>
 
-[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)
+[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|et{#ENV{composition}|=={sommaire}}|oui)
 	<script type="text/javascript" src="#CHEMIN{js/easySlider1.7.js}"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){	
@@ -92,8 +92,18 @@ $(document).ready(function(){
 				numeric: true,
 				pause:7000
 			});
-		});	
-	</script>
+			$(".affiche_slide").click(function(){
+			  window.location = $(this).find("a").eq(0).attr('href');
+			});
+			$(".affiche_slide").hover(function(){
+				$(this).css({'cursor':'pointer'});
+				// On peut ajouter ici d'autres modifications CSS au survol du bloc
+			  },function(){
+				// Ici, annuler les modifications CSS du survol.
+				// Le curseur reprend sa forme automatiquement
+			  });   
+		});
+	</script> 
 	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide'}|oui)<link rel="stylesheet" type="text/css" media="all" href="[(#PRODUIRE{fond=css/easyslider.css}|direction_css|url_absolue_css|compacte)]" />]
 	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)<link rel="stylesheet" type="text/css" media="all" href="[(#PRODUIRE{fond=css/easyslider2.css}|direction_css|url_absolue_css|compacte)]" />]
 ]
