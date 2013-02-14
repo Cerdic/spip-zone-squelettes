@@ -87,8 +87,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Personnalisation de la page d\'accueil',
 
 	// M
-	'msg_erreur_v00' => 'Echec ',
-	'msg_erreur_v02' => 'Echec à la création du champ extra « Billet Sélectionné »',
+	'msg_erreur_v00' => 'Échec ',
+	'msg_erreur_v02' => 'Échec à la création du champ extra « Billet Sélectionné »',
 
 	// N
 	'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation',
