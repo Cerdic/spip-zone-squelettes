@@ -89,8 +89,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Prispôsobenie úvodnej stránky',
 
 	// M
-	'msg_erreur_v00' => 'Chyba ',
-	'msg_erreur_v02' => 'Nepodarilo sa vytvoriť špeciálne pole "Vybraný lístok"',
+	'msg_erreur_v00' => 'Chyba ', # MODIF
+	'msg_erreur_v02' => 'Nepodarilo sa vytvoriť špeciálne pole "Vybraný lístok"', # MODIF
 
 	// N
 	'navigation_desactiver_calendrier' => 'Nezobrazovať kalendár v navigácii',

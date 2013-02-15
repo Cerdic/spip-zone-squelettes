@@ -89,8 +89,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Customizing the home page',
 
 	// M
-	'msg_erreur_v00' => 'Fail',
-	'msg_erreur_v02' => 'Failure when creating the extra field "Selected post"',
+	'msg_erreur_v00' => 'Fail', # MODIF
+	'msg_erreur_v02' => 'Failure when creating the extra field "Selected post"', # MODIF
 
 	// N
 	'navigation_desactiver_calendrier' => 'Do not display the calendar in the navigation',
