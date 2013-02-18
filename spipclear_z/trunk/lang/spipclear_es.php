@@ -13,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archive' => 'Archivo',
 	'archives' => 'Archivos',
 	'archives_precedents' => 'Precedentes',
-	'archives_suivants' => 'Suivants', # NEW
+	'archives_suivants' => 'Siguientes',
 	'attime' => 'a las',
 	'aucun_commentaire' => 'Ningún comentario',
 	'aucun_lien' => 'Ningún enlace',
@@ -73,8 +73,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_choix_theme' => 'Elija el tema que desea utilizar para su blog',
 
 	// L
-	'label_limite' => '', # NEW
-	'label_nom_theme' => 'Saisissez le nom du thème perso (correspond &agrave xxxx du sous-répertoire squelettes/themes/xxxx/)', # MODIF
+	'label_limite' => '',
+	'label_nom_theme' => 'Introduzca el nombre del tema personal (corresponde a xxxx del sub-repertorio esqueletos/temas/xxxx/)', # MODIF
 	'label_theme_defaut' => 'Tema por defecto (tipo DotClear)',
 	'label_theme_perso' => 'Tema personal (definir a continuación)',
 	'langue' => 'Idioma',
@@ -84,26 +84,26 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien' => 'Enlace',
 	'lien_permanent' => 'Enlace permanente',
 	'liens' => 'Enlaces',
-	'lire_la_suite' => 'Lire la suite', # NEW
+	'lire_la_suite' => 'Leer más',
 	'look_navigation' => 'Personalización del bloque de navegación',
 	'look_sommaire' => 'Personalización de la página de inicio',
 
 	// M
 	'msg_erreur_v00' => 'Error',
-	'msg_erreur_v02' => 'Error en la creación del campo extra «Entrada Seleccionada»', # MODIF
+	'msg_erreur_v02' => 'Error en la creación del campo extra «Entrada Seleccionada»',
 
 	// N
-	'navigation_desactiver_calendrier' => 'Ne pas afficher le calendrier dans la navigation', # NEW
+	'navigation_desactiver_calendrier' => 'No mostrar el calendario en la navegación',
 	'noisette_desc_bestof' => 'Muestra una lista marcable de las entradas seleccionadas',
 	'noisette_desc_calendrier' => 'Muestra un calendario mensual',
 	'noisette_desc_categories' => 'Lista de las categorías',
 	'noisette_desc_contact' => 'Muestra un enlace hacia la página contacto (plugin Contact)',
 	'noisette_desc_langs' => 'Permite cambiar el idioma de muestra del blog',
 	'noisette_desc_lastcomments' => 'Lista de los últimos n comentarios',
-	'noisette_desc_lastposts' => 'Liste des n derniers billets sous forme de résumé', # MODIF
-	'noisette_desc_links' => 'Affiche la liste de l\'ensemble des sites', # NEW
+	'noisette_desc_lastposts' => 'Lista de las últimas n entradas en forma de resumen',
+	'noisette_desc_links' => 'Muestra una lista de todos los sitios',
 	'noisette_desc_navigation' => 'Muestra los enlaces de navegación (inicio, archivos)',
-	'noisette_desc_subscribe' => 'Affiche les boutons rss et atom pour les billets et les comentaires', # NEW
+	'noisette_desc_subscribe' => 'Muestra los botones rss y atom para las entradas y comentarios',
 	'noisette_titre_bestof' => 'Entradas seleccionadas',
 	'noisette_titre_calendrier' => 'Calendario',
 	'noisette_titre_categories' => 'Categorías',
@@ -138,8 +138,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'selection' => 'para recordar',
 	'selectionner_theme' => 'Haga click para seleccionar este tema',
 	'site_comment' => 'sitio',
-	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).', # MODIF
-	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)', # MODIF
+	'sommaire_afficher_tags' => 'No mostrar las etiquetas en las listas de artículos (página de inicio, resultados, etc).',
+	'sommaire_articles_entiers' => 'Mostrar los artículos enteros (por defecto, sólo se muestra una introducción)',
 	'sommaire_spipclear' => 'Aplicar SpipClear en la página de inicio del sitio (no funciona más que para un sector).',
 	'syndication' => 'Syndication',
 
@@ -148,7 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tags' => 'Etiquetas',
 	'texte_erreur1' => 'La búsqueda de',
 	'texte_erreur2' => 'no da ningún resultado.',
-	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # MODIF
+	'themes_installes' => '<strong>Los temas instalados en este SPIP</strong> (haga click sobre el icono de un tema para seleccionarlo)',
 	'titre_erreur' => 'Error:',
 	'trackback' => 'trackback',
 	'trackbacks' => 'trackbacks',

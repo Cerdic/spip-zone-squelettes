@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'label_limite' => '',
-	'label_nom_theme' => 'Zadajte názov vlastného farebného motívu (xxxx je podpriečinok squelettes/themes/xxxx/)',
+	'label_nom_theme' => 'Zadajte názov vlastného farebného motívu (xxxx je podpriečinok squelettes/themes/xxxx/)', # MODIF
 	'label_theme_defaut' => 'Predvolený farebný motív (typ DotClear – bez bodiek)',
 	'label_theme_perso' => 'Vlastný farebný motív (treba definovať nižššie)',
 	'langue' => 'Jazyk',
