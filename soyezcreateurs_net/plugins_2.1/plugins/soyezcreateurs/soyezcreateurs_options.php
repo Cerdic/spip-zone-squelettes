@@ -150,9 +150,9 @@ define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trous
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
-$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
+$GLOBALS['cs_installer']['MantaloTonic'] = 'cs_MantaloTonic';
 
-function cs_SoyezCreateurs() { return array(
+function cs_MantaloTonic() { return array(
 	// Installation des outils par défaut
 	'outils' =>
 		'boites_privees,

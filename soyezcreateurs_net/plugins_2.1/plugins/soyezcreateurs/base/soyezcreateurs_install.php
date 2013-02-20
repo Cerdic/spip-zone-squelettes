@@ -1,6 +1,6 @@
 <?php
 /*
-* Configuration de SPIP pour SoyezCreateurs
+* Configuration de SPIP pour MantaloTonic
 * Realisation : RealET : real3t@gmail.com
 * Attention, fichier en UTF-8 sans BOM
 */
@@ -24,7 +24,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			&& // Verification que le plugin n'a pas ete deja installe par l'ancienne methode
 			(sql_countsel('spip_groupes_mots', "(titre = '_LayoutGala')") != 0)
 		) {
-			spip_log("SoyezCreateurs deja installe", "soyezcreateurs_install");
+			spip_log("MantaloTonic deja installe", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (version_compare($current_version,'2.1','<')) {
@@ -61,7 +61,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				}
 
 			}
-			spip_log("SoyezCreateurs installation 2.1", "soyezcreateurs_install");
+			spip_log("MantaloTonic installation 2.1", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (
@@ -70,7 +70,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			(sql_countsel('spip_mots', "(titre = 'NewsLetter')") != 0)
 		) {
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
-			spip_log("SoyezCreateurs installation 2.1 avec mot", "soyezcreateurs_install");
+			spip_log("MantaloTonic installation 2.1 avec mot", "soyezcreateurs_install");
 		}
 		if (version_compare($current_version,'2.1.1','<')) {
 			// Suppresion de "_Specialisation", "Gallerie"
@@ -83,7 +83,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			spip_log("SoyezCreateurs maj 2.1.1", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.1", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.1','non');
 		}
 		if (version_compare($current_version,'2.1.2','<')) {
@@ -97,35 +97,35 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			spip_log("SoyezCreateurs maj 2.1.2", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.2", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.2','non');
 		}
 		if (version_compare($current_version,'2.1.3','<')) {
 			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
-			spip_log("SoyezCreateurs maj 2.1.3", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.3", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
 		}
 		if (version_compare($current_version,'2.1.4','<')) {
 			ecrire_meta('image_process', 'gd2', 'non');
 			ecrire_meta('btv2', 'a:1:{s:7:"avancee";s:3:"Oui";}', 'non');
 			ecrire_meta('bte', 'a:14:{s:5:"puces";s:3:"Oui";s:14:"titraille1open";s:17:"<h2 class="spip">";s:15:"titraille1close";s:5:"</h2>";s:14:"titraille2open";s:17:"<h3 class="spip">";s:15:"titraille2close";s:5:"</h3>";s:14:"titraille3open";s:17:"<h4 class="spip">";s:15:"titraille3close";s:5:"</h4>";s:14:"titraille4open";s:17:"<h5 class="spip">";s:15:"titraille4close";s:5:"</h5>";s:14:"titraille5open";s:17:"<h6 class="spip">";s:15:"titraille5close";s:5:"</h6>";s:9:"insertcss";s:3:"Non";s:17:"defaultbarrestyle";s:5:"close";s:14:"mode_titraille";N;}', 'non');
-			spip_log("SoyezCreateurs maj 2.1.4", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.4", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.4','non');
 		}
 		if (version_compare($current_version,'2.1.5','<')) {
 			ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
 			ecrire_meta('gd_formats', 'gif,jpg,png', 'non');
 			ecrire_meta('formats_graphiques', 'gif,jpg,png', 'non');
-			spip_log("SoyezCreateurs maj 2.1.5", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.5", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.5','non');
 		}
 		if (version_compare($current_version,'2.1.6','<')) {
 			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
-			spip_log("SoyezCreateurs maj 2.1.6", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.6", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.6','non');
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
-			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.7", "soyezcreateurs_install");
 			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
 				create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
@@ -168,7 +168,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 		if (version_compare($current_version,'2.1.8','<')) {
-			spip_log("SoyezCreateurs maj 2.1.8", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.8", "soyezcreateurs_install");
 			include_spip('inc/sc_article');
 			rename_rubrique("000. Racine", "000. Fourre-tout");
 			$article1 = trouve_article_sc("Politique d'accessibilité du site");
@@ -179,7 +179,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 
 		if (version_compare($current_version,'2.1.9','<')) {
-			spip_log("SoyezCreateurs maj 2.1.9", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.9", "soyezcreateurs_install");
 			$mentions = array('titre' => 'Mentions légales', 'texte' => '');
 			$id_groupe = id_groupe("_InformationsLegales");
 			$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', "id_groupe=$id_groupe", '', 'num');
@@ -197,24 +197,24 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
 		}
 		if (version_compare($current_version,'2.1.10','<')) {
-			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.10", "soyezcreateurs_install");
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
 		}
 		if (version_compare($current_version,'2.1.11','<')) {
-			spip_log("SoyezCreateurs maj 2.1.11", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.11", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
 			create_rubrique_mot('000. Fourre-tout', 'PasDansFildAriane', "_Specialisation_Rubrique");
 			create_rubrique_mot('999. Citations', 'PasDansFildAriane', "_Specialisation_Rubrique");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.11','non');
 		}
 		if (version_compare($current_version,'2.1.12','<')) {
-			spip_log("SoyezCreateurs maj 2.1.12", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.12", "soyezcreateurs_install");
 			create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.12','non');
 		}
 		if (version_compare($current_version,'2.1.13','<')) {
-			spip_log("SoyezCreateurs maj 2.1.13", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.13", "soyezcreateurs_install");
 			create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "");
 			create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.13','non');
@@ -242,7 +242,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					'id_mot='  . intval($id_mot));
 			}
 			
-			spip_log("SoyezCreateurs maj 3.0.0", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.0", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.0','non');
 		}
 		if (version_compare($current_version,'3.0.1','<')) {
@@ -271,7 +271,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sauvegarder_savecfg('soyezcreateurs_couleurs','Vert été','a:54:{s:7:"body_bk";s:7:"#d0ef6c";s:6:"header";s:7:"#f1f7d9";s:9:"header_bk";s:7:"#25a716";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#1f8811";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#148811";s:10:"navigation";s:7:"#bce38c";s:13:"navigation_bk";s:7:"#3d8538";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#38853d";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#ffffff";s:8:"extra_bk";s:7:"#38853d";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#3d8538";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#12c110";s:13:"menu_a_active";s:7:"#000000";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#29c322";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#ffffff";s:9:"container";s:7:"#25c322";s:12:"container_bk";s:7:"#f1f7d9";s:9:"titraille";s:7:"#22c324";s:12:"titraille_bk";s:7:"#c4ef6c";s:4:"link";s:7:"#32ec27";s:7:"visited";s:7:"#27ec27";s:5:"hover";s:7:"#34da2f";s:6:"active";s:7:"#32a72f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#01673e";s:22:"titraille_ssniveaux_bk";s:7:"#a6eccd";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f6f9e4";s:13:"header_lettre";s:7:"#f1f7d9";s:16:"header_lettre_bk";s:7:"#25a716";s:16:"titraille_lettre";s:7:"#01673e";}');
 				sauvegarder_savecfg('soyezcreateurs_couleurs','Violet & vert','a:54:{s:7:"body_bk";s:7:"#9ed897";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#663b62";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#164017";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#663b64";s:10:"navigation";s:7:"#c982c2";s:13:"navigation_bk";s:7:"#69c975";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#70a16e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#8a0f81";s:8:"extra_bk";s:7:"#69c975";s:6:"menu_a";s:7:"#af12a2";s:9:"menu_a_bk";s:7:"#f6daf5";s:12:"menu_a_hover";s:7:"#a4569f";s:15:"menu_a_hover_bk";s:7:"#61b757";s:13:"menu_a_active";s:7:"#cd55c7";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#670165";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#663b62";s:9:"container";s:7:"#cc6cd0";s:12:"container_bk";s:7:"#c5f2d1";s:9:"titraille";s:7:"#670161";s:12:"titraille_bk";s:7:"#c08cd4";s:4:"link";s:7:"#c055cd";s:7:"visited";s:7:"#de66d4";s:5:"hover";s:7:"#a16ea0";s:6:"active";s:7:"#40163f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#eca6e6";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f9e4f4";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#663b62";s:16:"titraille_lettre";s:7:"#670161";}');
 			}
-			spip_log("SoyezCreateurs maj 3.0.1", "soyezcreateurs_install");			
+			spip_log("MantaloTonic maj 3.0.1", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.1','non');
 		}
 
@@ -280,7 +280,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			if ($id_rubrique >0) {
 				create_rubrique('10. NewsLetter', $id_rubrique, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 			}
-			spip_log("SoyezCreateurs maj 3.0.2", "soyezcreateurs_install");			
+			spip_log("MantaloTonic maj 3.0.2", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.2','non');
 		}
 
@@ -292,7 +292,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			calculer_rubriques();
 			propager_les_secteurs();
 			
-			spip_log("SoyezCreateurs maj 3.0.3", "soyezcreateurs_install");			
+			spip_log("MantaloTonic maj 3.0.3", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.3','non');
 		}
 		if (version_compare($current_version,'3.0.4','<')) {
@@ -311,12 +311,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.5','non');
 		}
 		if (version_compare($current_version,'3.0.6','<')) {
-			spip_log("SoyezCreateurs maj 3.0.6", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.6", "soyezcreateurs_install");
 			create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.6','non');
 		}
 		if (version_compare($current_version,'3.0.7','<')) {
-			spip_log("SoyezCreateurs maj 3.0.7", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.7", "soyezcreateurs_install");
 			include_spip('inc/autoriser');
 			sql_update('spip_auteurs',array('webmestre'=>"'oui'"),sql_in("id_auteur",defined('_ID_WEBMESTRES')?explode(':',_ID_WEBMESTRES):(autoriser('configurer')?array($GLOBALS['visiteur_session']['id_auteur']):array(0)))); // le webmestre est celui qui fait l'upgrade si rien de defini
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.7','non');
@@ -336,17 +336,17 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.0.10','<')) {
 			create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
 			
-			spip_log("SoyezCreateurs maj 3.0.10", "soyezcreateurs_install");			
+			spip_log("MantaloTonic maj 3.0.10", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.10','non');
 		}
 		if (version_compare($current_version,'3.0.11','<')) {
-			spip_log("SoyezCreateurs maj 3.0.11", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.11", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique_ou_Article", "Archives", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doivent être considérés comme archivés.", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
 			create_mot("_Specialisation_Rubrique_ou_Article", "GrosLogo", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doit afficher le logo de l'article ou de la rubrique en grand (flottant à gauche du texte de l'article).", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.11','non');
 		}
 		if (version_compare($current_version,'3.0.12','<')) {
-			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.12", "soyezcreateurs_install");
 			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
 				create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
@@ -354,50 +354,50 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.12','non');
 		}
 		if (version_compare($current_version,'3.0.13','<')) {
-			spip_log("SoyezCreateurs maj 3.0.13", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.13", "soyezcreateurs_install");
 			create_mot("_ModePortail", "CycloShow", "Affecter ce mot clef à la rubrique de SPIP dont les articles doivent apparaitre dans la zone du cycle d'images.\n\nIndiquer dans le texte du mot clef le nombre d'articles de la rubrique à prendre en compte.", "");
 			create_mot("_ModePortail", "Defilant", "Affecter ce mot clef à la rubrique de SPIP dont les brèves doivent apparaitre dans la zone de texte défilant en haut de la page.\n\n", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.13','non');
 		}
 		if (version_compare($current_version,'3.0.14','<')) {
-			spip_log("SoyezCreateurs maj 3.0.14", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.14", "soyezcreateurs_install");
 				create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.14','non');
 		}
 		if (version_compare($current_version,'3.0.15','<')) {
-			spip_log("SoyezCreateurs maj 3.0.15", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.15", "soyezcreateurs_install");
 			create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 				$id_mot = create_mot("_EnDirect", "00. Quoi de neuf ?", "", "");
 				create_logo('documents/newspaper.png', $type='mot', $id_mot, 'png'); // http://www.iconfinder.com/icondetails/8437/16/newspaper_icon
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.15','non');
 		}
 		if (version_compare($current_version,'3.0.16','<')) {
-			spip_log("SoyezCreateurs maj 3.0.16", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.16", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlanLocal", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) des plan locaux du site (ceux affichés quand une rubrique n'a ni texte, ni article, ni site).\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans les plan locaux du site.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.16','non');
 		}
 		if (version_compare($current_version,'3.0.17','<')) {
-			spip_log("SoyezCreateurs maj 3.0.17", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.17", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique", "PasDansMenuExtra", "Pour interdire que la rubrique soit dans le menu des extra (menu droit)", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.17','non');
 		}
 		if (version_compare($current_version,'3.0.18','<')) {
-			spip_log("SoyezCreateurs maj 3.0.18", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.18", "soyezcreateurs_install");
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.18','non');
 		}
 		if (version_compare($current_version,'3.0.19','<')) {
-			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.12", "soyezcreateurs_install");
 				create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.19','non');
 		}
 		if (version_compare($current_version,'3.0.20','<')) {
-			spip_log("SoyezCreateurs maj 3.0.20", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.20", "soyezcreateurs_install");
 			create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif)./n/nLe site prendra le dernier article ayant ce mot clef", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
 		if (version_compare($current_version,'3.0.21','<')) {
-			spip_log("SoyezCreateurs maj 3.0.21", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.21", "soyezcreateurs_install");
 			if (defined(_DIR_PLUGIN_DICTIONNAIRES)) {
 				if (sql_countsel('spip_dictionnaires', "(titre = '"._T('dictionnaire:importer_acronymes_titre')."')") == 0) {
 					include_spip('action/editer_dictionnaire');
@@ -437,19 +437,19 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.21','non');
 		}
 		if (version_compare($current_version,'3.0.22','<')) {
-			spip_log("SoyezCreateurs maj 3.0.22", "soyezcreateurs_install");
-			// Activer les lames du CouteauSuisse Special SoyezCreateurs (enlève la lame Webmestre et Ancre_Douces)
+			spip_log("MantaloTonic maj 3.0.22", "soyezcreateurs_install");
+			// Activer les lames du CouteauSuisse Special MantaloTonic (enlève la lame Webmestre et Ancre_Douces)
 			$f = chercher_filtre('info_plugin');
 			if ($f('couteau_suisse', 'est_actif')) {
 				include_spip('base/cout_install');
-				cout_install_pack('SoyezCreateurs');
+				cout_install_pack('MantaloTonic');
 				include_spip('inc/getdocument');
 				effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');
 		}
 		if (version_compare($current_version,'3.0.23','<')) {
-			spip_log("SoyezCreateurs maj 3.0.23", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.23", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
 			$id_rub_fourretout = id_rubrique("000. Fourre-tout");
 			$id_raccourcis_typo = id_article("Raccourcis Typographiques de SPIP, mode d'emploi", $id_rub_fourretout);
@@ -459,7 +459,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.23','non');
 		}
 		if (version_compare($current_version,'3.0.24','<')) {
-			spip_log("SoyezCreateurs maj 3.0.24", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.24", "soyezcreateurs_install");
 			// Initialisation Sigles du dictionnaire
 			if (defined('_DIR_PLUGIN_DICTIONNAIRES')) {
 				include_spip('action/editer_dictionnaire');
@@ -541,13 +541,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			if ($id_mot>0) {
 				sql_delete("spip_mots", "id_mot=$id_mot");
 			}
-			spip_log("SoyezCreateurs maj 3.0.25", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.25", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.25','non');
 		}
 		if (version_compare($current_version,'3.0.26','<')) {
 			// Menu de navigation haute
 			$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
-			spip_log("SoyezCreateurs maj 3.0.26", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 3.0.26", "soyezcreateurs_install");
 			// Rubrique où placer les articles pour bien s'organiser
 			$id_rubrique = id_rubrique('000. Fourre-tout');
 			if ($id_rubrique >0) {
@@ -574,7 +574,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		// en l'occurrence, remplacer dans le squelette {titre_mot=Agenda} par {agenda=1}
 		if (version_compare($current_version,'2.1.14','<')) {
 			include_spip('base/soyezcreateurs');
-			spip_log("SoyezCreateurs maj 2.1.14", "soyezcreateurs_install");
+			spip_log("MantaloTonic maj 2.1.14", "soyezcreateurs_install");
 			$id_groupe = id_groupe("_Specialisation_Rubrique");
 			$id_mot = id_mot("Agenda", $id_groupe);
 			if ($id_mot>0) {

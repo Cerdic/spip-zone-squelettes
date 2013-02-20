@@ -13,7 +13,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
-	'soyezcreateurs_description' => 'Ce plugin active ou désactive le squelette {{SoyezCréateurs}}.
+	'soyezcreateurs_description' => 'Ce plugin active ou désactive le squelette {{MantaloTonic}}.
 	
 Un squelette
 -* conforme aux bonnes pratiques en matière d\'accessibilité,
