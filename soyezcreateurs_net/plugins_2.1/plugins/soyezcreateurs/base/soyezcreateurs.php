@@ -1,6 +1,6 @@
 <?php
 /*
-* Configuration de SPIP pour MantaloTonic
+* Configuration de SPIP pour SoyezCreateurs
 * Configurateur de mots clefs et de rubriques bas'e sur
 * Configurateur Squelette Epona - 2004 Nov 10 - Marc Lebas.
 * Realisation : RealET : real3t@gmail.com
@@ -43,7 +43,7 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('barre_typo_generalisee', 'a:6:{s:38:\"rubriques_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"groupesmots_texte_barre_typo_generalisee\";s:2:\"on\";s:33:\"mots_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"sites_description_barre_typo_generalisee\";s:2:\"on\";s:48:\"configuration_description_barre_typo_generalisee\";s:2:\"on\";s:42:\"auteurs_quietesvous_barre_typo_generalisee\";s:2:\"on\";}','non');
 	ecrire_meta('socialtags', 'a:5:{s:4:"tags";a:7:{i:0;s:0:"";i:1;s:9:"blogmarks";i:2;s:9:"delicious";i:3;s:4:"digg";i:4;s:6:"google";i:5;s:7:"twitter";i:6;s:6:"viadeo";}s:10:"jsselector";s:11:"#socialtags";s:5:"badge";s:0:"";s:7:"badgejs";s:0:"";s:9:"ifreferer";N;}','non');
 	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') )
-		ecrire_meta('nom_site', 'Mon site SPIP <sub>Squelette MantaloTonic</sub>','non');
+		ecrire_meta('nom_site', 'Mon site SPIP <sub>Squelette SoyezCreateurs</sub>','non');
 	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", "soyezcreateurs_install");
 	return true;
 }
@@ -633,7 +633,7 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
 	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "");
-		create_mot("_InformationsLegales", "20. Hébergeur", "Mettre les coordonnées de l'hébergeur ci-dessous", "[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + MantaloTonic");
+		create_mot("_InformationsLegales", "20. Hébergeur", "Mettre les coordonnées de l'hébergeur ci-dessous", "[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + SoyezCreateurs");
 		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL'autorisation de mise en place d'un lien est valable pour tout support, à l'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Paternité-Partage des Conditions Initiales à l'Identique 2.0 France->http://creativecommons.org/licenses/by-sa/2.0/fr/] qui s'applique.");
 		create_mot("_InformationsLegales", "35. Traitement automatisé d'informations nominatives", "", "Ce site ne collecte sur les visiteurs du site aucune autre information nominative ou personnelle que celles qui lui sont ouvertement et volontairement fournies en particulier par l'intermédiaire des adresses électroniques de ses correspondants.\n\nNous vous rappelons que vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi \"Informatique et Libertés\" du 6 janvier 1978). \nPour exercer ce droit, contactez-nous.\n");
 		create_mot("_InformationsLegales", "40. Réalisation", "Mettre ci-dessous les informations concernant la réalisation de ce site.", "Ce site a été réalisé par [Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] en utilisant l'outil [SPIP->http://www.spip.net/].\n\n[Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.");
@@ -728,7 +728,7 @@ function soyezcreateurs_config_motsclefs() {
 	create_rubrique_mot('999. Citations', 'Citations', "_Specialisation_Rubrique");
 	
 	include_spip('inc/sc_article');
-	$article1 = trouve_article_sc("Premiers pas dans le squelette MantaloTonic");
+	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
 		create_article($article1, "000. Fourre-tout");
 		create_article_mot($article1['titre'], "000. Fourre-tout", "EDITO", "_Specialisation");
 	$article2 = trouve_article_sc('Partage');
