@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'label_limite' => '',
-	'label_nom_theme' => 'Zadajte názov vlastného farebného motívu (xxxx je podpriečinok squelettes/themes/xxxx/)', # MODIF
+	'label_nom_theme' => 'Zadajte názov vlastného farebného motívu (xxxx je podpriečinok squelettes/themes/xxxx/)',
 	'label_theme_defaut' => 'Predvolený farebný motív (typ DotClear – bez bodiek)',
 	'label_theme_perso' => 'Vlastný farebný motív (treba definovať nižššie)',
 	'langue' => 'Jazyk',
@@ -89,8 +89,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Prispôsobenie úvodnej stránky',
 
 	// M
-	'msg_erreur_v00' => 'Chyba ', # MODIF
-	'msg_erreur_v02' => 'Nepodarilo sa vytvoriť špeciálne pole "Vybraný lístok"', # MODIF
+	'msg_erreur_v00' => 'Chyba ',
+	'msg_erreur_v02' => 'Nepodarilo sa vytvoriť špeciálne pole "Vybraný lístok"',
 
 	// N
 	'navigation_desactiver_calendrier' => 'Nezobrazovať kalendár v navigácii',

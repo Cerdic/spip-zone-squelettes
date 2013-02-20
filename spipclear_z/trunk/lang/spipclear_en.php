@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'label_limite' => '',
-	'label_nom_theme' => 'Enter the name of the personal theme (correspond to the xxxx in the subdirectory squelettes/themes/xxxx/)', # MODIF
+	'label_nom_theme' => 'Enter the name of the personal theme (correspond to the xxxx in the subdirectory squelettes/themes/xxxx/)',
 	'label_theme_defaut' => 'Default theme (DotClear type)',
 	'label_theme_perso' => 'Personal theme (to define below)',
 	'langue' => 'Language',
@@ -89,8 +89,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'look_sommaire' => 'Customizing the home page',
 
 	// M
-	'msg_erreur_v00' => 'Fail', # MODIF
-	'msg_erreur_v02' => 'Failure when creating the extra field "Selected post"', # MODIF
+	'msg_erreur_v00' => 'Fail',
+	'msg_erreur_v02' => 'Failure when creating the extra field "Selected post"',
 
 	// N
 	'navigation_desactiver_calendrier' => 'Do not display the calendar in the navigation',
