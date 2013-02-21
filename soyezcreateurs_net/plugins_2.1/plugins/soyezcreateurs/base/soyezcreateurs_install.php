@@ -558,6 +558,47 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_rubrique_mot('10. Navigation haute', 'PasDansFildAriane', "_Specialisation_Rubrique");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.26','non');
 		}
+		if (version_compare($current_version,'3.0.27','<')) {
+			spip_log("SoyezCreateurs maj 3.0.27", "soyezcreateurs_install");
+			create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site./n/nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "Réseaux sociaux");
+			$id_rubrique = id_rubrique('000. Fourre-tout');
+			if ($id_rubrique >0) {
+				create_rubrique('80. Réseaux sociaux', $id_rubrique, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "10. Facebook";
+				$sitesdj['url_site'] = "https://www.facebook.com/";
+				$sitesdj['descriptif'] = 'Retrouvez-nous sur Facebook';
+				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+				create_logo('documents/facebook.png', $type='site', $id_site, 'png');
+				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+				
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "20. Twitter";
+				$sitesdj['url_site'] = "https://fr.twitter.com/";
+				$sitesdj['descriptif'] = 'Retrouvez-nous sur Twitter';
+				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+				create_logo('documents/twitter.png', $type='site', $id_site, 'png');
+				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+				
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "30. Viadeo";
+				$sitesdj['url_site'] = "http://www.viadeo.com/fr/";
+				$sitesdj['descriptif'] = 'Retrouvez-nous sur Viadeo';
+				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+				create_logo('documents/viadeo.png', $type='site', $id_site, 'png');
+				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+				
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "90. Flux RSS du site";
+				$sitesdj['url_site'] = "?page=backend";
+				$sitesdj['descriptif'] = _T('syndiquer_site');
+				$sitesdj['statut'] = 'publie';
+				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+				create_logo('documents/rss.png', $type='site', $id_site, 'png');
+				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+			}			
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.27','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
