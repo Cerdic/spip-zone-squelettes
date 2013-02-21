@@ -27,7 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agendamoisde' => 'Calendar for',
-	'aidesc' => 'Help about SoyezCréateurs',
+	'aidesc' => 'Help about SoyezCréateurs', # MODIF
 	'alaune' => 'Featured',
 	'annuaire' => 'Directory',
 	'annuaire_consulter' => 'Consult the directory',
@@ -153,7 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Don\'t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
 	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
-	'cfg_info' => 'Configuration of SoyezCreateurs',
+	'cfg_info' => 'Configuration of SoyezCreateurs', # MODIF
 	'cfg_largeur' => 'Width',
 	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
 	'cfg_largeur_conteneur' => 'Width of the container',
@@ -308,14 +308,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
-	'configurersc' => 'Set SoyezCréateurs',
+	'configurersc' => 'Set SoyezCréateurs', # MODIF
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => '<a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>/
-<a href=\'http://www.mantalo.net/\' title=\'Visit the website of the creator of this template in GPL license\'>SoyezCreateurs</a>',
+<a href=\'http://www.mantalo.net/\' title=\'Visit the website of the creator of this template in GPL license\'>SoyezCreateurs</a>', # MODIF
 
 	// D
 	'deconnexion' => 'Logout',
@@ -404,7 +404,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Learn more about the criterion',
 	'sedna' => 'Sedna (RSS aggregator)',
 	'sommaire' => 'Summary',
-	'soyezcreateurs' => 'Be Creative',
+	'soyezcreateurs' => 'Be Creative', # MODIF
 	'soyezcreateurs_couleurs' => 'Colors',
 	'soyezcreateurs_google' => 'Referencing',
 	'soyezcreateurs_layout' => 'Localization',
