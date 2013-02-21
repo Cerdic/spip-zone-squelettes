@@ -1,25 +1,26 @@
 <?php
 if (!defined('_ECRIRE_INC_VERSION')) return; 
+if (!defined('_SC_BRANDING')) define ('_SC_BRANDING','SoyezCr√©ateurs');
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
-define('_IMG_GD_QUALITE', 95); // Haute qualitÈ pour les images rÈduites ; voir http://www.spip-contrib.net/Astuces-SPIP 
+define('_IMG_GD_QUALITE', 95); // Haute qualit√© pour les images r√©duites ; voir http://www.spip-contrib.net/Astuces-SPIP 
 
 define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
 define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461
-define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris ‡ partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
+define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris √† partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
 
 $GLOBALS['toujours_paragrapher'] = true;
-$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplÈmentaires !
+$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo suppl√©mentaires !
 define('_AUTOBR', ''); // cf http://www.spip.net/fr_article5427.html (TextWheel)
 
 // Recalculer le cache si la config du site change
 $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta']['btv2'].$GLOBALS['meta']['soyezcreateurs_couleurs'].$GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte'].$GLOBALS['meta']['nom_site'].$GLOBALS['meta']['slogan_site'].$GLOBALS['meta']['descriptif_site'].$GLOBALS['meta']['email_webmaster']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
 define('_TRI_GROUPES_MOTS', '0+titre,titre');  // cf http://trac.rezo.net/trac/spip/changeset/14712
-define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte ‡ partir de http://trac.rezo.net/trac/spip/changeset/10121
-define('_URLS_PROPRES_MAX', 60); // pris en compte ‡ partire de http://trac.rezo.net/trac/spip/changeset/10346 
-# FBI : si on trie sur les titre puis sur les dates, les dates ne classent que ceux qui ont le mÍme titre ==> inutile
-# TODO later : quand les rang seront gÈrÈs, 'rang, date DESC' fonctionnera
+define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte √† partir de http://trac.rezo.net/trac/spip/changeset/10121
+define('_URLS_PROPRES_MAX', 60); // pris en compte √† partire de http://trac.rezo.net/trac/spip/changeset/10346 
+# FBI : si on trie sur les titre puis sur les dates, les dates ne classent que ceux qui ont le m√™me titre ==> inutile
+# TODO later : quand les rang seront g√©r√©s, 'rang, date DESC' fonctionnera
 #define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
 define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
 define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
@@ -27,7 +28,7 @@ define("_CLEVERMAIL_DISTANT", true); // Pour que CM calcule l'URL publique du sq
 
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
-	Merci ‡ ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
+	Merci √† ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
 */
 $_GET['marker_icon_name'] = '_Marker_icon';
 
@@ -113,7 +114,7 @@ $couleurs( array(
 // Tous ces parametres sont inutiles et non pris en compte si le plugin cfg est installe
 $GLOBALS['barre_typo_pas_de_fausses_puces'] = true;
 $GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true;
-$GLOBALS['config_intertitre'] = true; // Necessaire pour empÈcher la configuration par CFG
+$GLOBALS['config_intertitre'] = true; // Necessaire pour emp√©cher la configuration par CFG
 $GLOBALS['debut_intertitre'] = '<h2 class="spip">';
 $GLOBALS['fin_intertitre'] = '</h2>';
 $GLOBALS['debut_intertitre_2'] = '<h3 class="spip">';
@@ -137,13 +138,13 @@ define('_SUIVI_FORUM_THREAD', true);
 
 // Se passer de |supprimer_numero partout
 //$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)'; //  cf http://trac.rezo.net/trac/spip/changeset/15451
-// RemplacÈ par un pipeline sur declarer_tables_interfaces
+// Remplac√© par un pipeline sur declarer_tables_interfaces
 
 // Gere l'inscription aux evenements
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
-// http://www.weblog.eliaz.fr/article38.html Pour mettre une version plus rÈcente de jQuery
+// http://www.weblog.eliaz.fr/article38.html Pour mettre une version plus r√©cente de jQuery
 $spip_pipeline['insert_head'] = str_replace('|f_jQuery', '', $spip_pipeline['insert_head']);
 
 define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr:soft_scroller');
@@ -153,7 +154,7 @@ define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trous
 $GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
 
 function cs_SoyezCreateurs() { return array(
-	// Installation des outils par dÈfaut
+	// Installation des outils par d√©faut
 	'outils' =>
 		'boites_privees,
 		citations_bb,
@@ -164,7 +165,7 @@ function cs_SoyezCreateurs() { return array(
 		corbeille,
 		spip_ecran',
 
-	// Installation des variables par dÈfaut
+	// Installation des variables par d√©faut
 	'variables' => array(
 		'expo_bofbof' => 1,
 		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
