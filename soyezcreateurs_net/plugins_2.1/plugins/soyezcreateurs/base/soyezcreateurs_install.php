@@ -393,7 +393,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.20','<')) {
 			spip_log("SoyezCreateurs maj 3.0.20", "soyezcreateurs_install");
-			create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif)./n/nLe site prendra le dernier article ayant ce mot clef", "");
+			create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
 		if (version_compare($current_version,'3.0.21','<')) {
@@ -560,7 +560,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.27','<')) {
 			spip_log("SoyezCreateurs maj 3.0.27", "soyezcreateurs_install");
-			create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site./n/nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "Réseaux sociaux");
+			create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site.\n\nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "Réseaux sociaux");
 			$id_rubrique = id_rubrique('000. Fourre-tout');
 			if ($id_rubrique >0) {
 				create_rubrique('80. Réseaux sociaux', $id_rubrique, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
