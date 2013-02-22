@@ -594,7 +594,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				$sitesdj['descriptif'] = 'Syndiquer tout le site';
 				$sitesdj['statut'] = 'publie';
 				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-				create_logo('documents/rss.png', $type='site', $id_site, 'png');
+				create_logo('images/rss.png', $type='site', $id_site, 'png');
 				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
 			}			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.27','non');
