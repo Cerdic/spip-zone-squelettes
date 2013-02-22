@@ -312,7 +312,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Déclaration CNIL nº',
 	'copyright_icra' => 'Étiqueté grâce à <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Réalisation : ',
-	'copyright_spip' => 'Propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>&nbsp;+&nbsp;<a href=\'http://www.mantalo.net/\' title=\'Visiter le site des créateurs de ce squelette en licence libre GPL\'>@soyezcreateurs@</a>',
+	'copyright_spip' => 'Propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a> + <a href=\'http://www.mantalo.net/\' title=\'Visiter le site des créateurs de ce squelette en licence libre GPL\'>@soyezcreateurs@</a>',
 
 	// D
 	'deconnexion' => 'déconnexion',
