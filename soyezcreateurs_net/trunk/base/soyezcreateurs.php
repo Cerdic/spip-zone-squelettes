@@ -646,7 +646,7 @@ function create_formidable($formidable) {
 function find_site_mot($id_mot, $id_syndic) {
 	$count = sql_countsel(
 		"spip_mots_liens", 
-		"id_mot = $id_mot AND id_objet = $id_syndic AND objet = 'syndic'"
+		"id_mot = $id_mot AND id_objet = $id_syndic AND objet = 'site'"
 	);
 	return $count;
 }
@@ -659,7 +659,7 @@ function create_site_mot($id_syndic, $mot, $groupe) {
 			"spip_mots_liens", array(
 				"id_mot" => $id_mot,
 				"id_objet" => $id_syndic,
-				"objet" => 'syndic'
+				"objet" => 'site'
 			)
 		);
 	}
