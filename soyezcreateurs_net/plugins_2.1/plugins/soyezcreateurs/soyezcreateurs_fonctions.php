@@ -20,8 +20,10 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * http://www.spip-contrib.net/spip.php?article76
 */
 
-if (spip_version_compare($GLOBALS['spip_version_branche'], '3.0.0', '>=')) 
-	if (!defined('_SPIP3')) define('_SPIP3', true); 		
+if (function_exists(spip_version_compare)) { // gerer son absence dans les branche precedente a SPIP 2.x et à l'activation du plugin
+	if (spip_version_compare($GLOBALS['spip_version_branche'], '3.0.0', '>=')) 
+		if (!defined('_SPIP3')) define('_SPIP3', true);
+}		
 
 function sc_sommaire_article($texte,$istxt=0)
 {
