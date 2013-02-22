@@ -19,6 +19,10 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * reportez-vous au forum de l'article :
  * http://www.spip-contrib.net/spip.php?article76
 */
+
+if (spip_version_compare($GLOBALS['spip_version_branche'], '3.0.0', '>=')) 
+	if (!defined('_SPIP3')) define('_SPIP3', true); 		
+
 function sc_sommaire_article($texte,$istxt=0)
 {
 	// Conversion des intertitres d'enluminures type {ß{titre}ß}
@@ -805,9 +809,12 @@ function critere_archive_dist($idb, &$boucles, $crit) {
 	// Cas de la boucle ARTICLES
 	if ($boucle->type_requete == 'articles') {
 		$art = $boucle->id_table . '.id_article';
-		$boucle->from['zzzma'] =  'spip_mots_articles';
+		if (defined('_SPIP3')) {
+			$boucle->from['zzzma'] =  'spip_mots_liens';
+		} else {
+			$boucle->from['zzzma'] =  'spip_mots_articles';
+		}
 		$boucle->from['zzzm'] =  'spip_mots';
-		$boucle->join['zzzma'] = array("'articles'","'id_article'");
 		$boucle->join['zzzm'] = array("'zzzma'","'id_mot'");
 		if ($not) {
 			$boucle->where[] = array("'NOT'", 
@@ -835,7 +842,11 @@ function critere_archive_dist($idb, &$boucles, $crit) {
  */
 function masquer_rubriques_where($primary, $_publique=''){
 	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
+	if (defined('_SPIP3')) {
+		return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_objet','spip_mots_liens as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzr.objet='rubrique' AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
+	} else {
+		return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
+	}
 }
 
 /**
@@ -878,7 +889,11 @@ function masquer_liste_rub_direct(){
 	// liste des rubriques directement masquer
 	$where = array();
 	include_spip('base/abstract_sql');
-	$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
+	if (defined('_SPIP3')) {
+		$liste_rubriques = sql_allfetsel('id_objet','spip_mots_liens AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot',array('m.titre='.sql_quote(_MOT_MASQUER),'mr.objet="rubrique"'));
+	} else {
+		$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
+	}
 	$liste_rubriques = array_map('reset',$liste_rubriques);
 	$liste_rubriques = array_unique($liste_rubriques);
 	return $liste_rubriques;
@@ -903,7 +918,11 @@ function masquer_articles_accessibles_where($primary, $critnot='', $_publique=''
  */
 function masquer_articles_where($primary, $_publique=''){
 	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+	if (defined('_SPIP3')) {
+		return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_liens as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+	} else {
+		return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+	}
 }
 
 /** Plugin Dictionnaires **/
