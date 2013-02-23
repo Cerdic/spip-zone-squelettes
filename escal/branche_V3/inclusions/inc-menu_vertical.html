@@ -5,18 +5,20 @@
   <div class="texte" >
 
 
-
-
 <div id="menuV">
-	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
-	<BOUCLE_exclure_rub_plan(RUBRIQUES){titre_mot=pas-au-menu-vertical}{doublons}>
-	<BOUCLE_exclure_ssrub_plan(RUBRIQUES){id_parent}{doublons}></BOUCLE_exclure_ssrub_plan>
-	</BOUCLE_exclure_rub_plan>
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu-vertical" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot=pas-au-menu-vertical}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+	
+	<!-- exclusion des articles avec le mot-clé "pas-au-menu-vertical" -->
+	<BOUCLE_exclure_art_menu(ARTICLES){titre_mot=pas-au-menu-vertical}{doublons articles}>
+	</BOUCLE_exclure_art_menu>
 
 		<!-- on affiche les secteurs avec leur logo s'ils en ont un sinon le logo du site -->
     <B_secteurs>
     <ul class="rubriques">
-  <BOUCLE_secteurs(RUBRIQUES) {racine}{lang}{par num titre, titre}{doublons}>
+  <BOUCLE_secteurs(RUBRIQUES) {racine}{lang}{par num titre, titre}{doublons rubriques}>
 
       <li class="#EXPOSE">
       <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
@@ -25,7 +27,7 @@
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 			<B_articles_racine1>
 				<ul class="articles">
-					<BOUCLE_articles_racine1(ARTICLES) {id_rubrique} {par date}{inverse}{doublons}>
+					<BOUCLE_articles_racine1(ARTICLES) {id_rubrique} {par date}{inverse}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
@@ -39,7 +41,7 @@
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 			<B_articles_racine2>
 				<ul class="articles">
-					<BOUCLE_articles_racine2(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+					<BOUCLE_articles_racine2(ARTICLES) {id_rubrique} {par num titre, titre}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
@@ -52,7 +54,7 @@
 			<!-- affichage des sous-rubriques -->
 			<B_rubriques>
 				<ul class="rubriques">
-					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}>
+					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons rubriques}>
 					<li class="#EXPOSE">
 	    		<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 
@@ -61,7 +63,7 @@
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 			<B_articles_racine3>
 				<ul class="articles">
-					<BOUCLE_articles_racine3(ARTICLES) {id_rubrique} {par date}{inverse}{doublons}>
+					<BOUCLE_articles_racine3(ARTICLES) {id_rubrique} {par date}{inverse}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
@@ -75,7 +77,7 @@
 [(#CONFIG{escal/config/articlesmenuV1}|=={non}|oui) <!-- ]
 			<B_articles_racine4>
 				<ul class="articles">
-					<BOUCLE_articles_racine4(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+					<BOUCLE_articles_racine4(ARTICLES) {id_rubrique} {par num titre, titre}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>

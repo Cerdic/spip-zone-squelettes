@@ -5,13 +5,18 @@
 	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><:escal:accueil:></a>
 	</li>
 
-	<!-- exclusion des rubriques masquées, c'est à dire avec le mot-clé "pas-au-menu"-->
-	<BOUCLE_exclure_rub_menu(RUBRIQUES){tout}{titre_mot=pas-au-menu}{doublons}>
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot=pas-au-menu}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
 	</BOUCLE_exclure_rub_menu>
+
+	<!-- exclusion des articles avec le mot-clé "pas-au-menu" -->
+	<BOUCLE_exclure_art_menu(ARTICLES){titre_mot=pas-au-menu}{doublons articles}>
+	</BOUCLE_exclure_art_menu>
 
 
  <!-- affichage des autres rubriques -->
-    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons}>
+    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons rubriques}>
 	   <li class="#EXPOSE">
 	   <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
      <BOUCLE_test(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_test>
@@ -19,7 +24,7 @@
      
       <B_articles_racine1>
 				<ul class="articles">
-					<BOUCLE_articles_racine1(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons}>
+					<BOUCLE_articles_racine1(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
@@ -32,14 +37,14 @@
   			<!-- affichage des sous-menus -->
   			<B_rubriques>
 			  <ul>
-				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons}>
+				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
           <li class="#EXPOSE">
 				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
 						<BOUCLE_test2(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test2>
 			    </a>
 			<B_articles_rubrique>
 				<ul class="articles">
-					<BOUCLE_articles_rubrique(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons}>
+					<BOUCLE_articles_rubrique(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
 					<li class="#EXPOSE">
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 					</li>
