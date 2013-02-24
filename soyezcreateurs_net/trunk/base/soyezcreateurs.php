@@ -37,11 +37,13 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('messagerie_agenda', 'non','non');
 	ecrire_meta('articles_versions', 'oui','non');
 	ecrire_meta('activer_statistiques', 'oui','non');
-	ecrire_meta('documents_article', 'oui','non');
-	ecrire_meta('documents_rubrique', 'oui','non');
+	ecrire_meta('documents_date', 'non','non');
+	ecrire_meta('documents_objets', 'spip_articles,spip_rubriques,','non');
 	ecrire_meta('preview', ',0minirezo,1comite,','non');
 	ecrire_meta('barre_typo_generalisee', 'a:6:{s:38:\"rubriques_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"groupesmots_texte_barre_typo_generalisee\";s:2:\"on\";s:33:\"mots_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"sites_description_barre_typo_generalisee\";s:2:\"on\";s:48:\"configuration_description_barre_typo_generalisee\";s:2:\"on\";s:42:\"auteurs_quietesvous_barre_typo_generalisee\";s:2:\"on\";}','non');
 	ecrire_meta('image_process', 'gd2', 'non');
+	ecrire_meta('max_taille_vignettes', '8100000', 'non');
+	ecrire_meta('taille_preview', '150', 'non');
 	ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
 	ecrire_meta('gd_formats', 'gif,jpg,png', 'non');
 	ecrire_meta('formats_graphiques', 'gif,jpg,png', 'non');
