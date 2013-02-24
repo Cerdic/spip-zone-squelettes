@@ -394,9 +394,10 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 					include_spip('action/editer_dictionnaire');
 					if ($id_dictionnaire = insert_dictionnaire()){
 						// On lui met des champs par défaut
+						autoriser_exception('modifier','dictionnaire',$id_dictionnaire);
 						dictionnaire_set($id_dictionnaire, array(
 							'titre' => _T('dictionnaire:importer_acronymes_titre'),
-							'actif' => 'actif',
+							'statut' => 'actif',
 							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
 							'type_defaut' => 'abbr',
 						));
@@ -417,9 +418,9 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 					);
 					
 					// On crée la définition dans la base SANS calculer le cache
-					include_spip('action/editer_definition');
-					if ($id_definition = insert_definition()){
-						definition_set($id_definition, $definition, false);
+					if (!$id_definition) {
+						include_spip('action/editer_definition');
+						$id_definition = insert_definition($definition);
 					}
 					include_spip('inc/dictionnaires');
 					dictionnaires_lister_definitions(true);
@@ -463,7 +464,7 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 						// On lui met des champs par défaut
 						dictionnaire_set($id_dictionnaire, array(
 							'titre' => _T('dictionnaire:importer_acronymes_titre'),
-							'actif' => 'actif',
+							'statut' => 'actif',
 							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
 							'type_defaut' => 'abbr',
 						));
@@ -481,11 +482,8 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 					);
 					$id_definition = sql_fetsel("id_definition", "spip_definitions", "titre='".$definition['titre']."' AND id_dictionnaire=$id_dictionnaire");
 					if (!$id_definition) {
-						// On crée la définition dans la base SANS calculer le cache
 						include_spip('action/editer_definition');
-						if ($id_definition = insert_definition()){
-							definition_set($id_definition, $definition, false);
-						}
+						$id_definition = insert_definition($definition);
 					}
 					$definition = array(
 						'id_dictionnaire' => $id_dictionnaire,
@@ -498,11 +496,8 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 					);
 					$id_definition = sql_fetsel("id_definition", "spip_definitions", "titre='".$definition['titre']."' AND id_dictionnaire=$id_dictionnaire");
 					if (!$id_definition) {
-						// On crée la définition dans la base SANS calculer le cache
 						include_spip('action/editer_definition');
-						if ($id_definition = insert_definition()){
-							definition_set($id_definition, $definition, false);
-						}
+						$id_definition = insert_definition($definition);
 					}
 				}
 				// On calcule le cache des définitions une seule fois à la fin
