@@ -396,7 +396,7 @@ function soyezcreateursspip3_upgrade($nom_meta_base_version,$version_cible){
 						// On lui met des champs par défaut
 						dictionnaire_set($id_dictionnaire, array(
 							'titre' => _T('dictionnaire:importer_acronymes_titre'),
-							'actif' => 1,
+							'actif' => 'actif',
 							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
 							'type_defaut' => 'abbr',
 						));
