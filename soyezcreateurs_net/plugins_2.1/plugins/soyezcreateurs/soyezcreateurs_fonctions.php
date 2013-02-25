@@ -817,6 +817,7 @@ function critere_archive_dist($idb, &$boucles, $crit) {
 			$boucle->from['zzzma'] =  'spip_mots_liens';
 		} else {
 			$boucle->from['zzzma'] =  'spip_mots_articles';
+			$boucle->join['zzzma'] = array("'articles'","'id_article'");
 		}
 		$boucle->from['zzzm'] =  'spip_mots';
 		$boucle->join['zzzm'] = array("'zzzma'","'id_mot'");
@@ -849,8 +850,8 @@ function masquer_rubriques_where($primary, $_publique=''){
 	if (defined('_SPIP3')) {
 		return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_objet','spip_mots_liens as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzr.objet='rubrique' AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
 	} else {
-		return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
-	}
+	return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
+}
 }
 
 /**
@@ -896,7 +897,7 @@ function masquer_liste_rub_direct(){
 	if (defined('_SPIP3')) {
 		$liste_rubriques = sql_allfetsel('id_objet','spip_mots_liens AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot',array('m.titre='.sql_quote(_MOT_MASQUER),'mr.objet="rubrique"'));
 	} else {
-		$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
+	$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
 	}
 	$liste_rubriques = array_map('reset',$liste_rubriques);
 	$liste_rubriques = array_unique($liste_rubriques);
@@ -925,8 +926,8 @@ function masquer_articles_where($primary, $_publique=''){
 	if (defined('_SPIP3')) {
 		return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_liens as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
 	} else {
-		return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
-	}
+	return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+}
 }
 
 /** Plugin Dictionnaires **/
