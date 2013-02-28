@@ -250,6 +250,20 @@ function aveline_maj_noisettes($noisettes, $current_version) {
 			$noisettes[$cle]['parametres'] = str_replace($anciennes,$nouvelles,$noisettes[$cle]['parametres']);
 		}
 	}
+	if (version_compare($current_version,'0.4.1','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array(
+				'anythingslider_liste_articles',
+				'anythingslider_liste_evenements',
+				'anythingslider_liste_syndic_articles'
+			))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'start_stopped')
+						$noisettes[$cle]['parametres']['auto_play'] = ($valeur=="") ? "on" : "";
+				}
+			}
+		}
+	}
 	return $noisettes;
 }
 
