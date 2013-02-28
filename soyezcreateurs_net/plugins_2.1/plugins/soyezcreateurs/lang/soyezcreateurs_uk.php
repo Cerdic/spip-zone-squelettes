@@ -359,6 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
 	'menu_replier' => 'знову скласти: ',
+	'menunavrwd' => 'Menu de navigation', # NEW
 	'mot' => 'Слово',
 	'mots' => 'Слова',
 	'mots_title' => 'Ключові слова сайту',

@@ -359,6 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_deplier' => 'Desplegar: ',
 	'menu_picalt' => 'Clicar per ',
 	'menu_replier' => 'reduir: ',
+	'menunavrwd' => 'Menu de navigation', # NEW
 	'mot' => 'Paraula',
 	'mots' => 'Paraules',
 	'mots_title' => 'Les paraules clau del lloc',

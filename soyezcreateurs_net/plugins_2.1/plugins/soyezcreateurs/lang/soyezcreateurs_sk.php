@@ -359,6 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
 	'menu_replier' => 'Poskladať: ',
+	'menunavrwd' => 'Menu de navigation', # NEW
 	'mot' => 'Slovo',
 	'mots' => 'Slová',
 	'mots_title' => 'Kľúčové slová stránky',

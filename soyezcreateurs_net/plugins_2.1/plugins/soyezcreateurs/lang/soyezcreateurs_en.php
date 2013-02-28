@@ -360,6 +360,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
+	'menunavrwd' => 'Menu de navigation', # NEW
 	'mot' => 'Word',
 	'mots' => 'Words',
 	'mots_title' => 'The site\'s keywords',
