@@ -1,14 +1,21 @@
 <div id="bandeau">
 
-  [(#REM) affichage du logo du site s'il existe avec un lien vers la page d'accueil
-  sinon affichage de l'image bandacad.jpg
-  attention, cette image n'est pas libre de droit ! ] 
 
-[(#CONFIG{escal/config/logobandeaunon}|=={oui}|non)
-  [<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="Accueil">
-  (#LOGO_SITE_SPIP||sinon{<img src="[(#CHEMIN{images/bandacad.jpg})]" alt="<:escal:bandeau:>" />}|image_reduire{950})
-  </a>]
+[(#REM) affichage de l'image bandacad.jpg logo avec un lien vers la page d'accueil
+  attention, cette image n'est pas libre de droit ! ]
+
+
+  <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="Accueil">
+  
+[(#CONFIG{escal/config/fondbandeau}|oui)
+  [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
 ]
+[(#CONFIG{escal/config/fondbandeau}|non)
+  [(#CONFIG{escal/config/logobandeaunon}|=={oui}|non)
+  [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+  ]
+]
+  </a>
 
 <div id="titrepage">
   <div id="nom-site-spip">
