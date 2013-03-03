@@ -20,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@ do  @fjour_l@ @fjour@ @fmois_l@ @fannee@ o @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ do @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Odoslať udalosť',
-	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je pravdepodobnejšie, jej publikovanie bude schválené.',
+	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je pravdepodobnejšie, jej publikovanie bude schválené.', # MODIF
 	'agenda_proposer_evenement_title' => 'Informácie o udalosti môžete poslať administrátorovi stránky',
 	'agenda_sd' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ od @dheure@:@dminutes@ do @fheure@:@fminutes@',
 	'agenda_sd_h' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@',
@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Zoznam dokumentov pripojených k článku v  (hlavnom) zozname článkov',
 	'cfg_affichagelistedocuments_masquervus' => 'Nezobrazuje dokumenty vložené v obsahu',
 	'cfg_affichagelistedocuments_noicon' => 'V zoznamoch nezobrazovať ikonu dokumentu',
-	'cfg_affichagelistedocuments_nulpart' => 'Nikde (odznačí ďalšie možnosti!)',
+	'cfg_affichagelistedocuments_nulpart' => 'Nikde (odznačí ďalšie možnosti!)', # MODIF
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Presmerovanie na dokument, ak je iba jeden aa ak v článku nie je žiaden text',
 	'cfg_afficher_titre_invisible' => 'Neviditeľný: Text je prepísaný pútačom',
 	'cfg_afficher_titre_label' => 'Zobrazenie názvu stránky',
@@ -355,7 +355,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'V rovnakej rubrike...',
-	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l\'économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded]',
+	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l\'économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded]', # MODIF
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
 	'menu_replier' => 'Poskladať: ',
@@ -441,8 +441,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'Júl',
 	'wdcalendar_jun' => 'Jún',
-	'wdcalendar_loading_data' => 'Nahrávajú sa dáta...',
-	'wdcalendar_loading_fail' => 'Prepáčte, vaše dáta sa nedajú nahrať, ďakujeme, skúste to neskôr',
+	'wdcalendar_loading_data' => 'Nahrávajú sa dáta...', # MODIF
+	'wdcalendar_loading_fail' => 'Prepáčte, vaše dáta sa nedajú nahrať, ďakujeme, skúste to neskôr', # MODIF
 	'wdcalendar_location' => 'Miesto',
 	'wdcalendar_mar' => 'Mar',
 	'wdcalendar_may' => 'Máj',

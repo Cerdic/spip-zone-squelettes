@@ -20,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Submit an event',
-	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.',
+	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.', # MODIF
 	'agenda_proposer_evenement_title' => 'You may suggest an event to the site\'s administrator.',
 	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
 	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_listeravecarticles' => 'List the documents attached to an article in the (central) list of articles',
 	'cfg_affichagelistedocuments_masquervus' => 'Do not display the documents inserted in the content',
 	'cfg_affichagelistedocuments_noicon' => 'Do not display the icon of the document in the lists',
-	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)',
+	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)', # MODIF
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirection to the document if there is only one, and if there is no text in the article',
 	'cfg_afficher_titre_invisible' => 'Invisible: the text is overwritten by the banner',
 	'cfg_afficher_titre_label' => 'Dispaly of the site name',
@@ -356,7 +356,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'In the same section...',
-	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
@@ -442,8 +442,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'July',
 	'wdcalendar_jun' => 'June',
-	'wdcalendar_loading_data' => 'Data loading...',
-	'wdcalendar_loading_fail' => 'Sorry, we are unable to load your data, please try later ',
+	'wdcalendar_loading_data' => 'Data loading...', # MODIF
+	'wdcalendar_loading_fail' => 'Sorry, we are unable to load your data, please try later ', # MODIF
 	'wdcalendar_location' => 'Location',
 	'wdcalendar_mar' => 'Mar',
 	'wdcalendar_may' => 'May',

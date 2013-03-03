@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Список документів, які додаються до статті в списках статей (центральних)',
 	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu', # NEW
 	'cfg_affichagelistedocuments_noicon' => 'Не показувати іконку  документу в списках',
-	'cfg_affichagelistedocuments_nulpart' => 'Ніде (виключити інші варіанти!)',
+	'cfg_affichagelistedocuments_nulpart' => 'Ніде (виключити інші варіанти!)', # MODIF
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Перенаправлення на документ, якщо він єдиний і немає тексту в статті',
 	'cfg_afficher_titre_invisible' => 'Невидимий: текст спалюється в банері',
 	'cfg_afficher_titre_label' => 'Афішування ( Показ )  назви сайту',
@@ -355,7 +355,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'У цій же рубриці...',
-	'mentions_legales_obligatoires' => 'Юридичні вимоги обов\'язкові ([CNIL | Національна комісія з інформатики і свободи-> http://www.cnil.fr/] і [LCEN | Закон про впевненість в економіці Цифровий> http://www.legifrance.gouv. COM / WAspad / UnTexteDeJorf? numjo ECOX0200175L =]). Все, що потрібно знати-> http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов\'язань-> http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Юридичні вимоги обов\'язкові ([CNIL | Національна комісія з інформатики і свободи-> http://www.cnil.fr/] і [LCEN | Закон про впевненість в економіці Цифровий> http://www.legifrance.gouv. COM / WAspad / UnTexteDeJorf? numjo ECOX0200175L =]). Все, що потрібно знати-> http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов\'язань-> http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
 	'menu_replier' => 'знову скласти: ',
