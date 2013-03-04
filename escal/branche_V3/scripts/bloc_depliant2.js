@@ -12,10 +12,10 @@ var hideText='Masquer les réponses';
 var is_visible = false;
 
 // append show/hide links to the element directly preceding the element with a class of "toggle"
-$('.toggle2').prev().append(' <a href="#" class="toggleLink2">'+showText+'</a>');
+$('.forum-article > .toggle2').prev().append(' <a href="#" class="toggleLink2">'+showText+'</a>');
 
 // hide all of the elements with a class of 'toggle'
-$('.toggle2').hide();
+$(".forum-article > .toggle2").hide();
 
 // capture clicks on the toggle links
 $('a.toggleLink2').click(function() {
