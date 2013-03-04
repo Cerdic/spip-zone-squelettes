@@ -1,34 +1,31 @@
 <body>
-	<div class="page">
-		<div class="container">
-
-			<div class="header" id="header">
-				<INCLURE{fond=header/#ENV{type-page},env} />
-			</div>
+<div class="page">
+	<div class="container">
+		<div class="header" id="header">
+			<INCLURE{fond=header/#ENV{type-page},env} />
 		</div>
-			<div class="navbar navbar-inverse row" id="nav">
-				<div class="navbar-wrap span12">
-				<INCLURE{fond=inclure/nav,env} />
-				</div>
+		[<div class="navbar navbar-fixed-top navbar-responsive center" id="nav">
+			(#INCLURE{fond=inclure/nav,env}|navbar_responsive)
+		</div>]
+		<div class="row">
+			<div class="content span8 " id="content">
+				<INCLURE{fond=fil_ariane/#ENV{type-page},env} />
+				<INCLURE{fond=content/#ENV{type-page},env} />
 			</div>
-		<div class="container">
-			<div class="row wrapper">
-				<div class="content primary span8" id="content">
-					<INCLURE{fond=breadcrumb/#ENV{type-page},env} />
-					<INCLURE{fond=content/#ENV{type-page},env} />
-				</div>
-				<div class="aside secondary span3" id="aside">
-					<INCLURE{fond=aside/#ENV{type-page},env} />
-				</div>
-				<div class="extra secondary span3" id="extra">
-					<INCLURE{fond=extra/#ENV{type-page},env} />
-				</div>
+			<div class="aside secondary col span3 offset1" id="aside">
+				<INCLURE{fond=aside/#ENV{type-page},env} />
+				<INCLURE{fond=extra/#ENV{type-page},env} />
 			</div>
 		</div>
 		<div class="footer" id="footer">
-			<div class="container inner">
+			[<div class="navbar navbar-fixed-bottom navbar-responsive center" id="nav-bottom">
+				<div class="menu-conteneur navbar-inner ">
+				(#INCLURE{fond=inclure/menu,env, identifiant=etapes}|navbar_responsive{nav-bottom})
+				</div>
+			</div>]
 			<INCLURE{fond=footer/#ENV{type-page},env} />
-			</div>
+
 		</div>
 	</div>
+</div>
 </body>
