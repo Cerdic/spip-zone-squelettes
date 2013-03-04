@@ -83,7 +83,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
 
 
 [(#CONFIG{escal/config/radio}|=={non}|oui) <!-- ]
-                    <li><:escal:contact_motif:></li>
+                    <li><:escal:contact_motif:>
                       <ul>
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif1:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif1:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif1:></li>
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif2:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif2:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif2:></li>
@@ -91,13 +91,14 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif4:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif4:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif4:></li>
                         <li><input type="radio" name="Sujet" value="<:escal:contact_motif5:>"  size="30" <?php if ($_POST['Sujet']=='<:escal:contact_motif5:>') { echo 'checked="checked"'; } ?> /><:escal:contact_motif5:></li>
                       </ul>
+                    </li>
 [(#CONFIG{escal/config/radio}|=={non}|oui) --> ]
 
 
 
 
-<div id="checkbox">
-  <li>[(#CONFIG{escal/config/titrecheckbox}|oui)<br />[(#CONFIG{escal/config/titrecheckbox})]<br /><br /> ]
+
+  <li id="checkbox">[(#CONFIG{escal/config/titrecheckbox}|oui)<br />[(#CONFIG{escal/config/titrecheckbox})]<br /><br /> ]
 
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)<ul><li>]
 
@@ -132,7 +133,7 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
 [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li></ul>]
 
   </li>
-</div>
+
 
 
                   <li style="display:none;">
@@ -141,13 +142,20 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
                   </li>
 
 
-                    <br /><br />
-                    <li><:escal:contact_message:></li> <br />
-                    <li>
-                    <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
-                    $erreur=1; }
-                    else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
-                    <input id="envoi" type="submit" name="Submit" value="<:escal:contact_envoyer:>" alt="Envoi"  title="Envoi de votre message" />  </li>
+
+                    <li><br /><:escal:contact_message:></li>
+                    <li><br />
+                    <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff">
+                    <?php
+                      if (ereg("[]%~#`$&|}{^[><]",$Message))
+                        { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
+                        $erreur=1;
+                        }
+                      else {echo trim($_POST['Message']); }
+                    ?>
+                    </textarea>
+                    </li>
+                    <li><input id="envoi" type="submit" name="Submit" value="<:escal:contact_envoyer:>" alt="Envoi"  title="Envoi de votre message" />  </li>
                   </ul>
 <?php
 //
@@ -305,24 +313,79 @@ if (lire_config('escal/config/checkbox', 'oui') == 'oui') {
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
 
-          <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
-            [(#CONFIG{escal/config/menuV1}|=={non}|non)
-              <div class="cadre-couleur">
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical}{env}>]
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical}{env}>]
-              </div>
-            ]
-            [(#CONFIG{escal/config/menuV2}|=={non}|non)
-              <div class="cadre-couleur">
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu_vertical_2}{env}>]
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau_vertical_2}{env}>]
-              </div>
-            ]
 
-            <div class="cadre-couleur">
-              <INCLURE {fond=inclusions/inc-acces_direct}{env}>
-            </div>
-          </div>
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavpages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages1,choixmenuV1}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages2,choixmenuV2}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages3,edito}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages4,acces_direct}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages5,top}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages6}|oui) [(#CONFIG{escal/config/blocnavpages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages6}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages7}|oui) [(#CONFIG{escal/config/blocnavpages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages7}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages8}|oui) [(#CONFIG{escal/config/blocnavpages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages8}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages9}|oui) [(#CONFIG{escal/config/blocnavpages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages10}|oui) [(#CONFIG{escal/config/blocnavpages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages10}}{env}></div>
+         ]]
+
+          </div> <!-- fin navigation -->
+
+          [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextrapages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages1,actus}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages2,photos}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages3,sites_favoris}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages4,derniers_comments}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages5,evenements}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages6,sites}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages7,stats}}{env}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages8}|oui) [(#CONFIG{escal/config/blocextrapages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages8}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages9}|oui) [(#CONFIG{escal/config/blocextrapages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages9}}{env}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages10}|oui) [(#CONFIG{escal/config/blocextrapages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages10}}{env}></div>
+         ]]
+
+          </div> <!-- fin extra -->
 
           <div id="pied">
             <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>

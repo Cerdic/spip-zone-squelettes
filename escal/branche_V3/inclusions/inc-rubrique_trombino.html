@@ -8,9 +8,10 @@
     </BOUCLE_mots_rubrique>
   </BOUCLE_articles_mots>
 
-<form name="critere" action="#SELF" class="ajax">
-[(#SELF|parametre_url{id_mot,''}|form_hidden)]
 
+<form action="#SELF" class="ajax">
+[(#SELF|parametre_url{id_mot}|form_hidden)]
+      <p><!-- juste pour la validation XHTML -->
          <select name="id_mot" id="idselect" size="1">
              <option value=""><:escal:collegues:></option>
              
@@ -19,9 +20,10 @@
              </BOUCLE_mot_critere1>
        
          </select>
-
-  <button type="submit">Afficher</button>
+        <button type="submit" >Afficher</button>
+      </p>
 </form>
+
 
 	<B_les_articles>
 	<div class="pagination-trombino">
@@ -29,10 +31,10 @@
 	</div> 
 	
 	<div class="trombino">
-	<table width="100%">
+	<table>
 		<BOUCLE_les_articles(ARTICLES){id_rubrique}{par titre}{id_mot?}{pagination 15} >
 			[(#COMPTEUR_BOUCLE|alterner{'<tr>','',''})]
-			<td width="33%">
+			<td>
 
 					<BOUCLE_docs(DOCUMENTS){id_article}{extension==jpg|png|gif}>
 
