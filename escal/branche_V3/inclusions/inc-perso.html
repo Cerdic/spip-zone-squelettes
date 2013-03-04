@@ -3,7 +3,7 @@
     [(#CONFIG{escal/config/titreperso}|propre|_T|PtoBR)]
   ]
 	[(#CONFIG{escal/config/titreperso}|non)
-    <:escal:top_articles:>
+    Ma noisette
   ]
   </h1>
 
@@ -12,19 +12,28 @@
 #SET{nombreartperso,#CONFIG{escal/config/nombreartperso,5}}
 #SET{paginperso,#CONFIG{escal/config/paginperso,5}}
 
-<BOUCLE_testmotcle(ARTICLES){titre_mot=special}>&nbsp;</BOUCLE_testmotcle>
+<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=special}>
+<BOUCLE_selection_articles1(ARTICLES){branche}{doublons special}>
+</BOUCLE_selection_articles1>
+</BOUCLE_selection_rubrique>
+
+<BOUCLE_selection_articles(ARTICLES){titre_mot=special}{doublons special}>
+</BOUCLE_selection_articles>
+
+<BOUCLE_testmotcle(ARTICLES){!doublons special}>
+</BOUCLE_testmotcle>
 </B_testmotcle>
   Ici vous pouvez afficher les articles avec le mot-clé "spécial".<br /><br />
 <//B_testmotcle>
 
-<BOUCLE_testchoix(ARTICLES){si #CONFIG{escal/config/choixperso}|non}{0,1}>
+[(#CONFIG{escal/config/choixperso}|non)
   Le type d'affichage de cette noisette se fait dans l'interface de configuration d'Escal.
-</BOUCLE_testchoix>
+]
 
 
   <B_perso1>
     <p style="align:right">#PAGINATION</p>
-	<BOUCLE_perso1(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedateauteur}|oui}{titre_mot=special}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+	<BOUCLE_perso1(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedateauteur}|oui}{!doublons special}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
 		<!-- 	affichage du titre avec lien vers l'article
 					de la date de publication
 					et de l'auteur(s) avec un lien pour lui envoyer un message -->
@@ -47,7 +56,7 @@
 	
 	<B_perso2>
     <p style="align:right">#PAGINATION</p>
-	<BOUCLE_perso2(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listesimple}|oui}{titre_mot=special}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+	<BOUCLE_perso2(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listesimple}|oui}{!doublons special}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
 		<!-- 	affichage du titre avec lien vers l'article -->
 		<div class="titre-article-cadre">
 			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut)"]>
@@ -58,7 +67,7 @@
 
 	<B_perso3>
 	<div id="scrollup5">
-  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{titre_mot=special}{lang}>
+  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{!doublons special}{lang}>
   <div class="headline5" >
   <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">#TITRE</a>
   <div class="intro">
