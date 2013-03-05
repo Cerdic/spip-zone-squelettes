@@ -1,0 +1,116 @@
+[(#REM) Fil d'Ariane ]
+#CACHE{0}
+<p id="hierarchie">
+	<a href="#URL_SITE_SPIP/"><:accueil_site:></a>[<span class="sep">(#ENV{ms_config}|ou{#ENV{cfg}}|oui) &gt; 
+	</span><a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''})]" class="on"><:mediaspip_config:hierarchie_configuration:></a>][<span class="sep">(#ENV{ms_config}|ou{#ENV{cfg}}|non)&gt;
+	</span><strong class="on"><:mediaspip_config:hierarchie_configuration:></strong>]
+</p>
+
+<div class="contenu-principal">
+	<div class="cartouche">
+		<h2 class="h2"><:mediaspip_config:titre_configuration:></h2>
+	</div>
+	[(#AUTORISER{configurer}|oui)
+		[(#ENV{ms_config}|oui)
+			[(#CHEMIN{inclure/config_#ENV{ms_config}.html}|oui)
+				<INCLURE{fond=inclure/config_#ENV{ms_config},env,ajax}>
+			]
+			[(#CHEMIN{inclure/config_#ENV{ms_config}.html}|non)
+				<p><:mediaspip_config:message_page_config:></p>
+			]
+		]
+		[(#ENV{cfg}|oui)
+			[(#REM)
+				Compatibilite avec les vieux CFG dans fonds/
+				On est un peu oblige de le faire ici parce que
+				/prive/exec/xx.html est prioritaire sur le exec.php
+			][(#CHEMIN{[fonds/cfg_(#ENV{cfg}).html]}|oui)
+				[(#CFG_EXEC|sinon{<:cfg_interface:erreur_compatibilite:>})]
+			]
+
+			[(#CHEMIN{[fonds/cfg_(#ENV{cfg}).html]}|non)
+				[(#CHEMIN{[configurer/form_(#ENV{cfg}).html]}|oui)
+					[(#ENV{onglet}|oui)
+						[(#SET{cfg,[(#ENV{cfg}|concat{[_(#ENV{onglet})]})]})]
+					][(#ENV{onglet}|non)
+						#SET{cfg,#ENV{cfg}}]
+	
+					[<h1>(#TRAD{configuration,#ENV{cfg},#ENV{onglet}}|sinon{#GET{cfg}})</h1>]
+	
+					[(#REM) Hierarchie : on affiche le fil d'ariane
+						Huhu, vivement un fil plus simple !!!
+					]
+	
+					[(#REM)
+						Navigation : on affiche un descriptif si present, puis
+						recherche dans l'ordre (complete de $onglet si present) :
+						- cfg/nav_$nom.html
+						- cfg/nav_defaut.html
+					]
+					<!--#navigation-->
+					[<div class="cadre cadre-info">
+						(#TRAD{description,#ENV{cfg},#ENV{onglet}}|propre)
+					</div>]
+					#SET{trouve,0}
+					[<div class="cadre cadre-info">
+						(#CHEMIN{[configurer/nav_(#ENV{cfg}).html]}|oui)
+							#SET{trouve,1}
+							[(#INCLURE{fond=configurer/nav_#ENV{cfg},cfg,onglet})]
+					</div>]
+					[(#GET{trouve}|non)
+					<div class="cadre cadre-info">
+						[(#INCLURE{fond=configurer/nav_defaut,cfg,onglet})]
+					</div>]
+					<!--/#navigation-->
+	
+					[(#REM)
+						recherche dans l'ordre  :
+						- configurer/$nom_onglet.html
+						- configurer/$nom.html
+						- #FORMULAIRE_CONFIGURER{$nom_onglet} (soit configurer/form_$nom_onglet)
+					]
+					#SET{trouve,0}
+					[(#CHEMIN{[configurer/(#GET{cfg}).html]}|oui)
+						#SET{trouve,1}
+						[(#INCLURE{fond=configurer/[(#GET{cfg})],cfg,onglet})]
+					]
+					[(#GET{trouve}|non)
+						[(#CHEMIN{[configurer/(#ENV{cfg}).html]}|oui)
+							#SET{trouve,1}
+							[(#INCLURE{fond=configurer/[(#ENV{cfg})],cfg,onglet})]
+						]
+					]
+					[(#GET{trouve}|non)[
+						<div class="ajax">
+							(#FORMULAIRE_CONFIGURER{#GET{cfg}})
+						</div>
+					]]
+				]
+				[(#CHEMIN{[configurer/form_(#ENV{cfg}).html]}|non)
+					#SET{cfg,pas_ok}
+				]
+			]
+		]
+		[(#ENV{ms_config}|non|et{#ENV{cfg}|non}|ou{#GET{cfg}|=={pas_ok}}|oui)
+			<p><:mediaspip_config:message_page_config:></p>
+			<INCLURE{fond=inclure/infos_plugins_conseilles,env}>
+		]
+	]
+	[(#AUTORISER{configurer}|non)
+		[(#SESSION{id_auteur}|intval|oui)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur">
+				<:mediaspip_config:erreur_config_autorisation_insuffisante:>
+			</p>
+		</div>
+		]
+		[(#SESSION{id_auteur}|intval|non)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur">
+				<:mediaspip_config:erreur_config_autorisation_identifie:>
+			</p>
+			#FORMULAIRE_LOGIN
+		</div>
+		]
+	]
+</div>

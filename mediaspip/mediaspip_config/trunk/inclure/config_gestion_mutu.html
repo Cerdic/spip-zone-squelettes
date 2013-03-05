@@ -1,0 +1,50 @@
+#CACHE{0}
+[(#REM) Inclure les styles spécifiques]
+[<style>
+	(#INCLURE{fond=prive/style_prive_plugin_gestion_mutu,ltr=left})
+</style>]
+<div class="configuration">
+	<div class="config_nav">
+		<div class="logo_config">
+			[(#CHEMIN{images/gestion_mutu-128.png}|image_reduire{64,0})]
+		</div>
+		<p><:gestion_mutus:editer_mutus_explication:></p>
+	</div>
+	<div class="configuration_contenu">
+		<h1 class="grostitre"><:gestion_mutus:titre_controle_mutus:></h1>
+		<BOUCLE_autorise_lister(CONDITION){si #AUTORISER{lister,mutu}|oui}>
+		#SET{self,#SELF|parametre_url{id_mutu|id_auteur|debut_id_mutu,''}}
+		
+		<B_mutu>
+		[(#REM) Les boutons pour tout le lot de message d'un emetteur ---------------------------------------------------------]
+		[(#ENV{id_admin}|ou{#ENV{id_auteur}}|ou{#ENV{id_mutu}})
+		<a class='annule_filtre ajax' href='#GET{self}' title="<:gestion_mutu:title_tout_voir|attribut_html:>">[(#CHEMIN{images/annuler-recherche.png}|balise_img|inserer_attribut{alt,<:gestion_mutus:title_tout_voir:>})]</a>
+		]
+		[(#ENV{id_auteur}|oui)
+		<div class='source'>
+		<div class='par'><:gestion_mutus:info_mutu_demandee_par:>
+		[<a href='#URL_AUTEUR{#ENV{id_auteur}}'>(#INFO_NOM{auteur,#ENV{id_auteur}})</a>]
+		</div>
+		</div>
+		]
+		
+		<INCLURE{fond=prive/liste/inc-boutons-filtres-statut-mutu,env}>
+		<h2>[(#GRAND_TOTAL|singulier_ou_pluriel{gestion_mutus:titre_une_instance_mutu,gestion_mutus:titre_nombre_instances_mutus}|sinon{<:gestion_mutus:titre_aucune_instance_mutu:>})]</h2>
+		#ANCRE_PAGINATION
+		[<p class='pagination'>(#PAGINATION)</p>]
+		<ul class='liste_items mutus'>
+		<BOUCLE_mutu(MUTUS){id_mutu?}{id_admin ?}{id_auteur ?}{domaine ?}{statut?}{pagination}{!par id_mutu}{tous}>
+		<li class="item mutu statut_#STATUT[ (#COMPTEUR_BOUCLE|alterner{'','odd'})]" id='mutu#ID_MUTU'>
+		[(#INCLURE{fond=prive/modeles/mutu}{id_mutu}{self})]
+		</li>
+		</BOUCLE_mutu>
+		</ul>
+		[<p class='pagination'>(#PAGINATION)</p>]
+		</B_mutu>
+		
+		[(#INCLURE{fond=prive/listes/inc-boutons-filtres-statut-mutus}{env})]
+		<h2><:gestion_mutus:message_aucune_mutu:></h2>
+		<//B_mutu>
+		</BOUCLE_autorise_lister>
+	</div>
+</div>

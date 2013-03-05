@@ -1,0 +1,19 @@
+<B_menus>
+<div class="config_nav">
+	<div class="logo_config">
+		<img src="#CHEMIN{images/menus-48.png}" alt="" />
+	</div>
+	<h4><:mediaspip_config:titre_autres_menus:></h4>
+	<ul class="menu-liste">
+		<BOUCLE_menus(MENUS){par titre}>
+		[(#ID_MENU|=={#ENV{id_config_menu}}|non)
+		#SET{auth,#AUTORISER{modifier,menu,#ID_MENU}}
+		<li class="menu-entree">
+			[(#GET{auth}|oui)<a href="[(#SELF|parametre_url{nouveau,''}|parametre_url{id_config_menu,#ID_MENU})]">]#TITRE [((#IDENTIFIANT))][(#GET{auth}|oui)</a>]
+		</li>]
+		</BOUCLE_menus>
+		<li class="menu-entree"><a href="[(#SELF|parametre_url{nouveau,''}|parametre_url{id_config_menu,''})]"><:mediaspip_config:infos_tous_menus:></a></li>
+		[(#ENV{nouveau}|=={oui}|non)<li class="menu-entree"><a href="[(#SELF|parametre_url{nouveau,oui}|parametre_url{id_config_menu,''})]"><:menus:editer_menus_nouveau:></a></li>]
+	</ul>
+</div>
+</B_menus>

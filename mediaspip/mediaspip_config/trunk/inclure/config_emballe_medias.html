@@ -1,0 +1,30 @@
+[(#AUTORISER{configurer,emballe_medias}|sinon_interdire_acces)]
+<div class="configuration" id="emballe_medias">
+	<h1 class="grostitre">
+		<:emballe_medias:emballe_medias:>
+		</h1>
+	<div class="config_nav">
+		#BOITE_OUVRIR
+		<ul class="liste-items">
+			<li class="item[(#ENV{cfg}|in_array{#LISTE{types,styles}}|non)on]">
+				[(#ENV{cfg}|in_array{#LISTE{types,styles}}|?{<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,none})]" class="ajax"><:emballe_medias:emballe_medias_fichiers:></a>,<strong><:emballe_medias:emballe_medias_fichiers:></strong>})]
+			</li>[(#CONFIG{emballe_medias/fichiers/gerer_types}|=={on}|oui)
+			<li class="item[(#ENV{cfg}|=={types}|oui)on]">
+				[(#ENV{cfg}|=={types}|?{<strong><:emballe_medias:emballe_medias_types:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,types})]" class="ajax"><:emballe_medias:emballe_medias_types:></a>})]
+			</li>]
+			<li class="item[(#ENV{cfg}|=={styles}|oui)on]">
+				[(#ENV{cfg}|=={styles}|?{<strong><:emballe_medias:emballe_medias_styles:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,styles})]" class="ajax"><:emballe_medias:emballe_medias_styles:></a>})]
+			</li>
+		</ul>
+		#BOITE_FERMER
+	</div>
+	<div class="configuration_contenu">
+		<div class="ajax">[(#ENV{cfg}|in_array{#LISTE{types,styles}}|non)
+			#FORMULAIRE_CONFIGURER_EMBALLE_MEDIAS_FICHIERS
+		][(#ENV{cfg}|=={types}|oui)
+			#FORMULAIRE_CONFIGURER_EMBALLE_MEDIAS_TYPES
+		][(#ENV{cfg}|=={styles}|oui)
+			#FORMULAIRE_CONFIGURER_EMBALLE_MEDIAS_STYLES
+		]</div>
+	</div>
+</div>

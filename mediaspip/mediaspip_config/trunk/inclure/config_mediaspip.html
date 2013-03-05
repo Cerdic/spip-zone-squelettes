@@ -1,0 +1,36 @@
+[(#AUTORISER{configurer,mediaspip}|sinon_interdire_acces)]
+<div class="configuration" id="mediaspip">
+	<h1 class="grostitre"><:mediaspip_config:icone_mediaspip:></h1>
+	<div class="config_nav">
+		<ul class="menu-liste">
+			<li class="menu-entree[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|non)on]">
+				[(#ENV{cfg}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|?{<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,none})]" class="ajax"><:mediaspip_core:mediaspip_home:></a>,<strong><:mediaspip_core:mediaspip_home:></strong>})]
+			</li>
+			<li class="menu-entree[(#ENV{cfg}|=={squelettes}|oui)on]">
+				[(#ENV{cfg}|=={squelettes}|?{<strong><:mediaspip_core:mediaspip_squelettes:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,squelettes})]" class="ajax"><:mediaspip_core:mediaspip_squelettes:></a>})]
+			</li>
+			<li class="menu-entree[(#ENV{cfg}|=={medias}|oui)on]">
+				[(#ENV{cfg}|=={medias}|?{<strong><:mediaspip_core:mediaspip_medias:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,medias})]" class="ajax"><:mediaspip_core:mediaspip_medias:></a>})]
+			</li>[(#PLUGIN{notation}|oui)
+			<li class="menu-entree[(#ENV{cfg}|=={plugins}|oui)on]">
+				[(#ENV{cfg}|=={plugins}|?{<strong><:mediaspip_core:mediaspip_plugins:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,plugins})]" class="ajax"><:mediaspip_core:mediaspip_plugins:></a>})]				
+			</li>]
+			<li class="menu-entree[(#ENV{cfg}|=={secteurs}|oui)on]">
+				[(#ENV{cfg}|=={secteurs}|?{<strong><:mediaspip_core:mediaspip_secteurs:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,secteurs})]" class="ajax"><:mediaspip_core:mediaspip_secteurs:></a>})]
+			</li>
+		</ul>
+	</div>
+	<div class="configuration_contenu">
+		<div class="ajax">[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|non)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_HOME
+		][(#ENV{cfg}|=={squelettes}|oui)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_SQUELETTES
+		][(#ENV{cfg}|=={medias}|oui)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_MEDIAS
+		][(#ENV{cfg}|=={plugins}|oui)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_PLUGINS
+		][(#ENV{cfg}|=={secteurs}|oui)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_SECTEURS
+		]</div>
+	</div>
+</div>

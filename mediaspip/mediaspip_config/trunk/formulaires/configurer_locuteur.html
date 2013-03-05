@@ -1,0 +1,54 @@
+[(#REM)
+	Squelette du formulaire FORMULAIRE_CONFIGURER_LOCUTEUR
+	Configure les langues du site disponibles
+]
+
+<div class="formulaire_spip formulaire_configurer formulaire_#ENV{form}" id="formulaire_#ENV{form}">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<B_defaut>
+			<li class="editer editer_langue_site">
+				<label for="changer_langue_site"><:info_langue_principale:></label>
+				<div class="explication">
+					<:texte_selection_langue_principale:>
+				</div>
+				<select name="changer_langue_site" id="changer_langue_site">
+					<BOUCLE_defaut(POUR){tableau #ENV*{_auth}}>
+					<option value="#CLE"[(#ENV{langue_site}|=={#CLE}|oui)selected="selected"]>#VALEUR</option>
+					</BOUCLE_defaut>
+				</select>
+			</li>
+			</B_defaut>
+			<B_bloquees>
+			<li class="editer editer_langues_bloquees">
+				<p class="explication">
+					<:info_multi_langues_choisies:>
+				</p>
+				<BOUCLE_bloquees(POUR){tableau #ENV*{_bloquees}}>
+				<div class="choix">
+					<input type='hidden' name='langues_auth[]' id='langue_auth_#CLE' value='#CLE' />
+					<input type='checkbox' checked='checked' disabled='disabled' id='langues_auth_disabled_#CLE' />
+					<label for='langue_auth_#CLE'>#VALEUR &nbsp;<span style='color: #777777'>[#CLE]</span></label>
+				</div>
+				</BOUCLE_bloquees>
+				</li>
+			</B_bloquees>
+			<B_auth>
+			<li class="editer editer_langues">
+			<BOUCLE_auth(POUR){tableau #ENV*{_langues}}>
+			<div class="choix[(#VALEUR|in_array{#ENV*{_trad}}|oui)langue_complete] [(#COMPTEUR_BOUCLE|alterner{'gauche','droite'})]">
+				<input type='checkbox' name='langues_auth[]' id='langue_auth_#CLE' value='#CLE'[(#VALEUR|in_array{#ENV*{_auth}}|oui)checked="checked"] />
+				<label for='langue_auth_#CLE'>#VALEUR &nbsp;[#CLE]</label>
+			</div>
+			</BOUCLE_auth>
+			</li>
+			</B_auth>
+		</ul>
+		<p class="boutons">
+			<input type="submit" class="submit" value="<:bouton_valider:>" />
+		</p>
+	</div></form>
+</div>

@@ -1,0 +1,25 @@
+<h1 class="grostitre"><:mediaspip_config:icone_visiteurs:></h1>
+
+<h2 class="h2"><:mediaspip_config:infos_inscription_visiteurs:></h2>
+
+<div class="ajax" id="configurer_visiteurs">
+#FORMULAIRE_CONFIGURER_VISITEURS
+</div>
+
+<div class="configuration" id="editer_visiteurs">
+	<h2 class="h2">
+		<:mediaspip_config:infos_visiteur_creer_modifier:>
+	</h2>
+	<div class="config_nav">
+	<INCLURE{fond=inclure/config_liste_auteurs,env}>
+	</div>
+	<div class="configuration_contenu">
+		#BOITE_OUVRIR{'',notice}
+		[(#ENV{id_auteur}|non)<:mediaspip_config:infos_visiteur_creer:>]
+		[(#ENV{id_auteur}|oui)#SET{login,#INFO_NOM{auteur,#ENV{id_auteur}}<:mediaspip_config:infos_visiteur_modifier{login=#GET{login}}:>]
+		#BOITE_FERMER
+		<div class="ajax">
+		#FORMULAIRE_EDITER_AUTEUR{#ENV{id_auteur,new},#ENV{redirect,#SELF|ancre_url{editer_visiteurs}},#ENV{lier_id_article},#ENV{config_fonc,auteurs_edit_config},#ENV**{auteur}}
+		</div>
+	</div>
+</div>

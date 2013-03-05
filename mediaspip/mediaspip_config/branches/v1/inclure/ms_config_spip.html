@@ -1,0 +1,60 @@
+#CACHE{86400}
+<div class="menu ms_config_spip">
+	<h2><:mediaspip_config:configuration_spip:></h2>
+	<ul class="menu-liste liste-item">
+		<li class="menu-entree[(#ENV{ms_config}|=={votre_site}|oui)on]">
+			[(#ENV{ms_config}|=={votre_site}|non)<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,votre_site})]">
+				[(#CHEMIN{images/identite.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:mediaspip_config:icone_votre_site:>
+			</a>]
+			[(#ENV{ms_config}|=={votre_site}|oui)<strong class="on">
+				[(#CHEMIN{images/identite.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:mediaspip_config:icone_votre_site:>
+			</strong>]
+		</li>
+		<li class="menu-entree[(#ENV{ms_config}|=={multilang}|oui)on]">
+			[(#ENV{ms_config}|=={multilang}|non)<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,multilang})]">
+				[(#CHEMIN{images/traduction.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:icone_gestion_langues:>
+			</a>]
+			[(#ENV{ms_config}|=={multilang}|oui)<strong class="on">
+				[(#CHEMIN{images/traduction.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:icone_gestion_langues:>
+			</strong>]
+		</li>
+		[(#PLUGIN{multilang}|oui)<li class="menu-entree[(#ENV{cfg}|=={multilang}|oui)on]">
+			[(#ENV{cfg}|=={multilang}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,multilang})]">
+				[(#CHEMIN{images/multilang-48.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:multilang:cfg_titre_multilang:>
+			</a>]
+			[(#ENV{cfg}|=={multilang}|oui)<strong class="on">
+				[(#CHEMIN{images/multilang-48.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:multilang:cfg_titre_multilang:>
+			</strong>]
+		</li>]
+		<li class="menu-entree[(#ENV{ms_config}|=={plugins}|oui)on]">
+			[(#ENV{ms_config}|=={plugins}|non)<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,plugins})]"[(#ENV{ms_config}|=={plugins}|oui)class="on"]>
+				[(#CHEMIN{images/step-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:mediaspip_config:icone_admin_plugin:>
+			</a>]
+			[(#ENV{ms_config}|=={plugins}|oui)<strong class="on">
+				[(#CHEMIN{images/step-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:mediaspip_config:icone_admin_plugin:>
+			</strong>]
+		</li>
+		[(#CONFIG{mediaspip_docs_perdus,'a:0:{}'}|unserialize|count|>{0}|oui)
+		[(#SET{nb,[(#CONFIG{mediaspip_docs_perdus}|unserialize|count)]})]
+		<li class="menu-entree[(#ENV{ms_config}|=={docs_disparus}|oui)on]">
+			[(#ENV{ms_config}|=={docs_disparus}|non)<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,docs_disparus})]"[(#ENV{ms_config}|=={docs_disparus}|oui)class="on"]>
+				<:mediaspip_config:icone_docs_disparus:> ([(#GET{nb})])
+			</a>]
+			[(#ENV{ms_config}|=={docs_disparus}|oui)<strong class="on">
+				<:mediaspip_config:icone_docs_disparus:> ([(#GET{nb})])
+			</strong>]
+		</li>]
+	</ul>
+</div>
+#INCLURE{fond=inclure/ms_config_spip_squelettes,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_documents,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_auteurs,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_interactivite,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_avancee,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_statistiques,cfg,ms_config}
+#INCLURE{fond=inclure/ms_config_spip_outils,cfg,ms_config}
+[<div class="menu ms_config_plugins">
+	<h2><:mediaspip_config:configuration_plugins:></h2>
+	(#VAL|ms_config_afficher_plugins|trim)
+</div>]

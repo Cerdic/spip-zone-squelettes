@@ -1,0 +1,24 @@
+<div class="config_nav">
+[(#ENV{id_diogene}|intval|is_numeric|oui)
+	<div class="ajax">
+		[(#SET{label,<:diogene:libelle_logo_diogene|strtolower|ucfirst:>})]
+		#FORMULAIRE_EDITER_LOGO{diogene,#ENV{id_diogene},'',#ARRAY{label,#GET{label},image_reduire,150}}
+	</div>
+]
+	<B_diogenes>
+		<h4><:mediaspip_config:titre_autres_diogenes:></h4>
+		<ul class="menu-liste">
+			<BOUCLE_diogenes(DIOGENES){par id_diogene,titre}>
+			[(#ID_DIOGENE|=={#ENV{id_diogene}}|non)
+			<li class="menu-entree">
+				<a href="[(#SELF|parametre_url{id_diogene,#ID_DIOGENE}|parametre_url{nouveau,''}|parametre_url{objet,''})]">##ID_DIOGENE #TITRE [((#IDENTIFIANT))]</a>
+			</li>]
+			[(#ID_DIOGENE|=={#ENV{id_diogene}}|oui)
+			<li class="menu-entree on">
+				##ID_DIOGENE #TITRE [((#IDENTIFIANT))]
+			</li>]
+			</BOUCLE_diogenes>
+			<li class="menu-entree"><a href="[(#SELF|parametre_url{id_diogene,''}|parametre_url{nouveau,''}|parametre_url{objet,''})]"><:mediaspip_config:infos_tous_diogenes:></a></li>
+		</ul>
+	</B_diogenes>
+</div>

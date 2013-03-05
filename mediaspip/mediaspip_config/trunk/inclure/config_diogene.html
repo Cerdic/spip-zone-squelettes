@@ -1,0 +1,49 @@
+<div class="configuration">
+<h1 class="grostitre"><:mediaspip_config:icone_config_diogene:></h1>
+
+<BOUCLE_diogene_presents(CONDITION){si #ENV{id_diogene}|intval|ou{#ENV{nouveau}|=={oui}}|oui}>
+#INCLURE{fond=inclure/infos_diogene,env}
+	<BOUCLE_diogene(DIOGENES){id_diogene}>
+		#SET{objet,#OBJET}
+	</BOUCLE_diogene>
+		#SET{objet,#ENV{objet,article}}
+	<//B_diogene>
+<div class="configuration_contenu">
+	<div class="ajax">
+		#FORMULAIRE_EDITER_DIOGENE{#ENV{id_diogene,new},#GET{objet},#ENV{redirect,#SELF|parametre_url{id_diogene,''}}}
+	</div>
+</div>
+</BOUCLE_diogene_presents>
+<p><:diogene:editer_diogene_explication:></p>
+
+<B_diogene_principaux>
+<ul class="menu-liste">
+	<BOUCLE_diogene_principaux(DIOGENES){par num titre,id_diogene,objet, titre}>
+	<li class="menu-entree">
+		<a href="[(#SELF|parametre_url{id_diogene,#ID_DIOGENE})]">##COMPTEUR_BOUCLE - #TITRE [#OBJET]</a>
+	</li>
+	</BOUCLE_diogene_principaux>
+</ul>
+</B_diogene_principaux>
+
+<B_objets>
+<h2><:mediaspip_config:icone_config_diogene_nouveau:></h2>
+<ul class="menu-liste">
+<BOUCLE_objets(DATA){source tableau,#PIPELINE{diogene_objets}}>
+#SET{max,''}
+<BOUCLE_diogenes_cle(DIOGENES){objet=#CLE}> </BOUCLE_diogenes_cle>
+[(#SET{max,#VALEUR|table_valeur{diogene_max}|sinon{0}})]
+[(#GET{max}|>{0}|<{#TOTAL_BOUCLE}|oui)
+	<li class="menu-entree">
+		<a href="[(#SELF|parametre_url{nouveau,oui}|parametre_url{objet,#CLE})]"><:diogene:icone_editer_diogene_nouveau{type=#CLE}:></a>
+	</li>]
+</B_diogenes_cle>
+	<li class="menu-entree">
+		<a href="[(#SELF|parametre_url{nouveau,oui}|parametre_url{objet,#CLE})]"><:diogene:icone_editer_diogene_nouveau{type=#CLE}:></a>
+	</li>
+<//B_diogenes_cle>
+</BOUCLE_objets>
+</ul>
+</B_objets>
+<//B_diogene_presents>
+</div>

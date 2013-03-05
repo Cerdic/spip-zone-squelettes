@@ -1,0 +1,14 @@
+#CACHE{0}
+<h3><:iextras:titre_iextras:></h3>
+<div class="configuration">
+	[(#ENV{extra_id}|non)
+		#SET{tables,#REM|cextras_objets_valides}
+		#SET{extras_table,#REM|iextras_get_extras_par_table}
+		<INCLURE{fond=prive/contenu/champs_extras,extras=#GET**{extras_table},noms_tables=#GET**{tables},url_edit_extra=#SELF}>
+		[(#INCLURE{fond=prive/contenu/champs_extras_possibles,extras=[(#REM|extras_champs_utilisables)],noms_tables=#GET{tables}})]
+		[(#VAL{iextras:icone_creer_champ_extra}|_T|icone_inline{#SELF|parametre_url{extra_id,new},#CHEMIN{images/iextras-24.png},creer.gif,#LANG_RIGHT})<br class="nettoyeur" />]
+	]
+	[(#ENV{extra_id}|oui)
+		<INCLURE{fond=prive/editer/champs_extras,extra_id=#ENV{extra_id,new},titre=#ENV{extra_id}|=={new}|?{<:iextras:info_nouveau_champ_extra:>,<:iextras:info_modifier_champ_extra:>},redirect=#SELF|parametre_url{extra_id,''},icone_retour=#VAL{icone_retour}|_T|icone_inline{#SELF|parametre_url{extra_id,''},#CHEMIN{images/iextras-24.png},rien.gif,#LANG_LEFT}}>
+	]
+</div>

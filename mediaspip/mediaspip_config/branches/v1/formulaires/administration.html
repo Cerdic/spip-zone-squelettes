@@ -1,0 +1,26 @@
+ <div[ class="(#ENV{divclass,spip-admin-bloc})"] id="spip-admin" dir="#LANG_DIR">[
+	<a href="(#ENV{analyser})" class="spip-admin-boutons"
+		id="analyser"><:analyse_xml:>[ ((#ENV{xhtml_error}))]</a>]
+	[(#ENV{id_article}|oui)	
+	[<a href="(#ENV{id_article}|generer_url_publier{article})" class="spip-admin-boutons"
+		id="voir_article"><:article:>&nbsp;[(#ENV{id_article})]</a>]]
+	[(#ENV{id_rubrique}|et{#AUTORISER{modifier,rubrique,#ENV{id_rubrique}}}|oui)
+	[<a href="(#ENV{id_rubrique}|generer_url_publier{rubrique})" class="spip-admin-boutons"
+		id="voir_rubrique"><:rubrique:>&nbsp;[(#ENV{id_rubrique})]</a>]]
+	[(#ENV{id_syndic}|oui)[(#AUTORISER{modifier,site,#ENV{id_syndic}}|oui)
+	<a href="[(#ENV{id_syndic}|generer_url_publier{site})]" class="spip-admin-boutons"
+		id="voir_site"><:info_site:>&nbsp;[(#ENV{id_syndic})]</a>]]
+	[<a href="[(#URL_AUTEUR{#ENV{id_auteur}}|parametre_url{vue,profil})]" class="spip-admin-boutons"
+		id="voir_auteur"><:auteur:>&nbsp;(#ENV{id_auteur})</a>]
+	<a href="[(#SELF|parametre_url{var_mode,#ENV{calcul}})]" class="spip-admin-boutons"
+		id="var_mode"><:admin_recalculer:>[(#ENV{use_cache})]</a>[
+	<a href="(#ENV{debug})" class="spip-admin-boutons" id="debug"><:admin_debug:></a>]
+	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+	<BOUCLE_diogene_rubrique(DIOGENES){id_secteur}>
+	[(#OBJET|=={rubrique}|non)
+	<a href="[(#VAL{'new'}|generer_url_publier{#OBJET,#ID_SECTEUR}|parametre_url{id_rubrique,#ENV{id_rubrique,#ID_SECTEUR}}|parametre_url{id_parent,#_rubrique:ID_RUBRIQUE})]" class="spip-admin-boutons"><:diogene:lien_creer:>[(#TITRE|lcfirst)]</a>]
+	[(#OBJET|=={rubrique}|oui)
+	<a href="[(#VAL{'new'}|generer_url_publier{#OBJET,#ID_SECTEUR}|parametre_url{id_parent,#_rubrique:ID_RUBRIQUE})]" class="spip-admin-boutons"><:diogene:lien_creer:>[(#TITRE|lcfirst)]</a>]
+	</BOUCLE_diogene_rubrique>
+	</BOUCLE_rubrique>
+</div>

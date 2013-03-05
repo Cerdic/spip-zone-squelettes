@@ -1,0 +1,41 @@
+<B_auteurs>
+	[(#GRAND_TOTAL|>{10}|ou{#ENV{recherche}}|oui)
+		[(#FORMULAIRE_RECHERCHE{#SELF})]
+		[(#INCLURE{fond=inclure/config_liste_auteurs_selecteur,env})]
+	]
+	#ANCRE_PAGINATION
+	<ul class="liste-items">
+		<BOUCLE_si_auteur(CONDITION){si #ENV{id_auteur}|oui}>
+		<BOUCLE_auteur_existe(AUTEURS){id_auteur}{tout}>
+		<li class="item">
+			<a href="[(#SELF|parametre_url{id_auteur,''}|ancre_url{editer_visiteurs})]">
+			<:mediaspip_config:lien_creer_auteur:>
+			</a>
+		</li>
+		</BOUCLE_auteur_existe>
+		</B_auteur_existe>
+		<li class="item on">
+			<:mediaspip_config:lien_creer_auteur:>
+		</li>
+		<//B_auteur_existe>
+		</BOUCLE_si_auteur>
+		</B_si_auteur>
+		<li class="item on">
+			<:mediaspip_config:lien_creer_auteur:>
+		</li>
+		<//B_si_auteur>
+	</ul>
+	<h4><:mediaspip_config:infos_visiteur_choisir_modifier:></h4>
+	<ul class="liste-items">
+	<BOUCLE_auteurs(AUTEURS){par nom}{recherche?}{tout}{pagination 10}>
+		<li class="item[(#ENV{id_auteur}|=={#ID_AUTEUR}|oui)on]">
+			[(#ENV{id_auteur}|=={#ID_AUTEUR}|non)<a href="[(#SELF|parametre_url{id_auteur,#ID_AUTEUR}|ancre_url{editer_visiteurs})]" class="ajax">]
+			#NOM[ ((#LOGIN))]
+			[(#ENV{id_auteur}|=={#ID_AUTEUR}|non)</a>]
+		</li>
+	</BOUCLE_auteurs>
+	</ul>
+	<p class="pagination">#PAGINATION</p>
+</B_auteurs>
+[(#FORMULAIRE_RECHERCHE{#SELF})]
+<//B_auteurs>

@@ -1,0 +1,32 @@
+[(#REM)
+	Surcharge de l'élément de menu par défaut "objet"
+	
+	Dans le cas où le site est multilingue :
+	-* Pour les articles, vérifies que l'article existe dans la langue de l'interface :
+	-** Si oui : affichage de l'article dans la langue en cours
+	-** Si non : affichage de l'article original
+
+][(#SET{titre, #ENV*{titre}|typo|sinon{#INFO_TITRE{#ENV{type_objet}, #ENV{id_objet}}}|sinon{<:info_sans_titre:>}})]
+
+[(#ENV{appel_formulaire}|oui)
+	<div class="titre">#GET{titre}</div>
+	<div class="infos">#ENV{type_objet}-#ENV{id_objet}</div>
+]
+<BOUCLE_si_appel(CONDITION){si #ENV{appel_menu}|oui}>
+	<BOUCLE_si_article(CONDITION){si #ENV{type_objet}|=={article}|oui}>
+		<BOUCLE_article(ARTICLES){id_article=#ENV{id_objet}}>#ID_ORIG
+			<BOUCLE_article_trad(ARTICLES){traduction}{lang=#ENV*{env}|table_valeur{lang}}>
+				<li class="menu-entree[ (#ENV{css})][ (#ID_ARTICLE|menus_exposer{#ENV{type_objet},#ENV*{env}})]">
+					<a href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">#TITRE</a>
+			</BOUCLE_article_trad>
+			</B_article_trad>
+				<li class="menu-entree[ (#ENV{css})][ (#ID_ARTICLE|menus_exposer{#ENV{type_objet},#ENV*{env}})]">
+					<a href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">#TITRE</a>
+			<//B_article_trad>
+		</BOUCLE_article>
+	</BOUCLE_si_article>
+	</B_si_article>
+	<li class="menu-entree[ (#ENV{css})][ (#ENV{id_objet}|menus_exposer{#ENV{type_objet},#ENV*{env}})]">
+		<a href="#INFO_URL{#ENV{type_objet}, #ENV{id_objet}}" title="[(#GET{titre}|attribut_html)]">#GET{titre}</a>
+	<//B_si_article>
+</BOUCLE_si_appel>

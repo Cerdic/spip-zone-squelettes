@@ -1,0 +1,42 @@
+<div class="configuration">
+<h1 class="grostitre"><:mediaspip_config:icone_docs_disparus:></h1>
+
+<div class="ajax config_nav">
+	[(#BOUTON_ACTION{<:mediaspip_config:bouton_verifier_originaux:>,#URL_ACTION_AUTEUR{mediaspip_verifier_originaux,'',#SELF}})]
+</div>
+
+<B_docs_disparus>
+<div class="ajax configuration_contenu">[(#SET{total,#GRAND_TOTAL})]
+	<h4><:mediaspip_config:titre_documents_manquants{nb=#GET{total}}:></h4>
+	#ANCRE_PAGINATION
+	<ul class="menu-liste">
+	<BOUCLE_docs_disparus(DOCUMENTS){id_document IN #CONFIG{mediaspip_docs_perdus}|unserialize}{tout}{pagination 30}>
+		<BOUCLE_article_document(ARTICLES){id_document}{origine_traduction}{statut IN prop,prepa,publie}{0,1}>
+		<BOUCLE_diogene(DIOGENES){id_secteur}{objet IN emballe_media,article}>
+		<li class="menu-entree">
+			<a href="[(#ID_ARTICLE|generer_url_publier{article})]">##ID_DOCUMENT - [(#_docs_disparus:TITRE|sinon{#FICHIER|basename})][(#_docs_disparus:TITRE|oui)([(#FICHIER|basename)])]</a>
+		</li>
+		</BOUCLE_diogene>
+		</B_diogene>
+		<BOUCLE_document_lien(DOCUMENTS documents_liens){id_document}{tout}{0,1}>
+		<li class="menu-entree">
+			##ID_DOCUMENT - [(#_docs_disparus:TITRE|sinon{#FICHIER|basename})][(#_docs_disparus:TITRE|oui)([(#FICHIER|basename)])]
+			[(#OBJET|et{#ID_OBJET}|oui)<br /><:mediaspip_config:message_doc_disparu_objet{objet=#OBJET,id_objet=#ID_OBJET}:>]
+			[(#BOUTON_ACTION{<:icone_supprimer_document:>,[(#URL_ACTION_AUTEUR{documenter,-[(#ID_OBJET|sinon{1})]/[(#OBJET|sinon{article})]/#ID_DOCUMENT,#SELF})]})]
+		</li>	
+		</BOUCLE_document_lien>
+		<//B_diogene>
+		</BOUCLE_article_document>
+		<BOUCLE_document(DOCUMENTS documents_liens){id_document}{tout}{0,1}>
+		<li class="menu-entree">
+			##ID_DOCUMENT - [(#_docs_disparus:TITRE|sinon{#FICHIER|basename})][(#_docs_disparus:TITRE|oui)([(#FICHIER|basename)])]
+			[(#OBJET|et{#ID_OBJET}|oui)<br /><:mediaspip_config:message_doc_disparu_objet{objet=#OBJET,id_objet=#ID_OBJET}:>]
+			[(#BOUTON_ACTION{<:icone_supprimer_document:>,[(#URL_ACTION_AUTEUR{documenter,-[(#ID_OBJET|sinon{1})]/[(#OBJET|sinon{article})]/#ID_DOCUMENT,#SELF})]})]
+		</li>	
+		</BOUCLE_document>
+	</BOUCLE_docs_disparus>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_docs_disparus>
+</div>

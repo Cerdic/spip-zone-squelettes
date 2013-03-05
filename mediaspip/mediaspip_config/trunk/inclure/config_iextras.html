@@ -1,0 +1,15 @@
+#CACHE{0}
+<h1 class="grostitre"><:iextras:titre_iextras:></h1>
+<div class="configuration">
+	[(#ENV{objet}|non)
+	[(#BOITE_OUVRIR{ <:iextras:liste_objets_applicables:>})]
+		<INCLURE{fond=prive/objets/liste/champs_extras_objets} />
+		#BOITE_FERMER
+		<INCLURE{fond=prive/objets/contenu/champs_extras_possibles} />
+	]
+	[(#ENV{objet}|oui)
+		<h3><:iextras:champs_extras_de{objet=#ENV{objet}}:></h3>
+		[(#SELF|parametre_url{objet,''}|icone_verticale{<:icone_retour:>,iextras-24,'',left retour})]
+		#FORMULAIRE_EDITER_CHAMPS_EXTRAS{#ENV{objet}, #GET{retour}}
+	]
+</div>

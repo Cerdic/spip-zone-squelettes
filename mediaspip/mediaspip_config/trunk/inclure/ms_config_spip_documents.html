@@ -1,0 +1,88 @@
+<div class="menu ms_config_spip documents">
+	<h2><:mediaspip_config:configuration_documents:></h2>
+	<ul class="menu-liste liste-item"><BOUCLE_facd(CONDITION){si #PLUGIN{facd}|oui}>#SET{flux_fichiers,''}
+		<li class="menu-entree[(#ENV{ms_config}|=={facd_file}|oui)on]">[(#SET{flux_fichiers,[(#GET{flux_fichiers}|concat{[(#VAL{[(#ENV{ms_config}|=={facd_file}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,facd_file})]">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:facd:titre_page_file_menu:>
+			</a>]})]})]})]
+			<BOUCLE_page_facd(CONDITION){si #ENV{ms_config}|=={facd_file}|oui}>
+			[(#SET{flux_fichiers,[(#GET{flux_fichiers}|concat{[(#VAL{<strong class="on">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:facd:titre_page_file_menu:>
+			</strong>})]})]})]
+			<BOUCLE_autoriser_relancer(CONDITION){si #AUTORISER{configurer}|et{#PLUGIN{spipmotion}|oui}|oui}>
+				<B_profils_reencoder>
+				[(#SET{flux_fichiers,[(#GET{flux_fichiers}|concat{[(#VAL{<ul class="menu-liste liste-item">
+					<li class="menu-entree">
+						[(#BOUTON_ACTION{<:spipmotion:bouton_reencoder_tout:>,#URL_ACTION_AUTEUR{spipmotion_ajouter_file_encodage_tout,'',#SELF},'',<:spipmotion:bouton_reencoder_tout_message:>})]
+					</li class="menu-entree">})]})]})]
+					<BOUCLE_profils_reencoder(POUR){tableau #CONFIG{spipmotion/fichiers_videos_sortie,#ARRAY}|array_merge{#CONFIG{spipmotion/fichiers_audios_sortie,#ARRAY}}}>
+						[(#SET{flux_fichiers,[(#GET{flux_fichiers}|concat{[(#VAL{<li class="menu-entree">
+							[(#BOUTON_ACTION{<:spipmotion:bouton_reencoder_tout_format{format=#VALEUR}:>,#URL_ACTION_AUTEUR{spipmotion_ajouter_file_encodage_tout,#VALEUR,#SELF},'',<:spipmotion:bouton_reencoder_tout_message_format{format=#VALEUR}:>})]
+						</li>})]})]})]
+					</BOUCLE_profils_reencoder>
+				[(#SET{flux_fichiers,[(#GET{flux_fichiers}|concat{[(#VAL{</ul>})]})]})]
+				</B_profils_reencoder>
+				</BOUCLE_autoriser_relancer>
+			</BOUCLE_page_facd>
+		[(#SET{flux_fichiers,[(#GET{flux_fichiers}|trim|concat{[(#VAL{</li>
+		<li class="menu-entree[(#ENV{cfg}|=={spipmotion}|oui)on]">[(#ENV{cfg}|=={spipmotion}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,spipmotion})]">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:spipmotion:spipmotion_boite:>
+			</a>][(#ENV{cfg}|=={spipmotion}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:spipmotion:spipmotion_boite:>
+			</strong>]
+		</li>
+		<li class="menu-entree[(#ENV{ms_config}|=={spipmotion_logiciels}|oui)on]">[(#ENV{ms_config}|=={spipmotion_logiciels}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{cfg,''}|parametre_url{ms_config,spipmotion_logiciels})]">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:spipmotion:titre_page_ffmpeg_infos:>
+			</a>][(#ENV{ms_config}|=={spipmotion_logiciels}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/spipmotion.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:spipmotion:titre_page_ffmpeg_infos:>
+			</strong>]
+		</li>})]})]})]
+		</BOUCLE_facd>
+		[(#SET{flux_fichiers,[(#GET{flux_fichiers}|trim|concat{[(#VAL{[(#PLUGIN{emballe_medias}|oui)<li class="menu-entree[(#ENV{ms_config}|=={emballe_medias}|oui)on]">[(#ENV{ms_config}|=={emballe_medias}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,''})]">
+				[(#CHEMIN{images/emballe_medias-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:emballe_medias:emballe_medias:>
+			</a>][(#ENV{ms_config}|=={emballe_medias}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/emballe_medias-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:emballe_medias:emballe_medias:>
+			</strong>]
+		</li>][(#PLUGIN{doc2img}|oui)
+		<li class="menu-entree[(#ENV{cfg}|=={doc2img}|oui)on]">[(#ENV{cfg}|=={doc2img}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,doc2img})]">
+				[(#CHEMIN{images/doc2img-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] Doc2Img
+			</a>][(#ENV{cfg}|=={doc2img}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/doc2img-128.png}|image_reduire{20,20}|inserer_attribut{alt,''})] Doc2Img
+			</strong>]
+		</li>][(#PLUGIN{getid3}|oui)
+		<li class="menu-entree[(#ENV{cfg}|=={getid3}|oui)on]">[(#ENV{cfg}|=={getid3}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,getid3})]">
+				[(#CHEMIN{images/id3v2.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:getid3:titre_getid3:>
+			</a>][(#ENV{cfg}|=={getid3}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/id3v2.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:getid3:titre_getid3:>
+			</strong>]
+		</li>][(#PLUGIN{oembed}|oui)
+		<li class="menu-entree[(#ENV{cfg}|=={oembed}|oui)on]">[(#ENV{cfg}|=={oembed}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,'oembed'})]">
+				[(#CHEMIN{prive/themes/spip/images/oembed-24.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:oembed:titre_configurer_oembed:>
+			</a>][(#ENV{cfg}|=={oembed}|oui)
+			<strong class="on">
+				[(#CHEMIN{prive/themes/spip/images/oembed-24.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:oembed:titre_configurer_oembed:>
+			</strong>]
+		</li>][(#PLUGIN{Fulltext}|oui)
+		<li class="menu-entree[(#ENV{ms_config}|=={fulltext_document}|oui)on]">[(#ENV{ms_config}|=={fulltext_document}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,'fulltext_document'}|parametre_url{cfg,''})]">
+				[(#CHEMIN{fulltext.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:fulltext:configuration_indexation_document:>
+			</a>][(#ENV{ms_config}|=={fulltext_document}|oui)
+			<strong class="on">
+				[(#CHEMIN{fulltext.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:fulltext:configuration_indexation_document:>
+			</strong>]
+		</li>]})]})]}|trim)]
+		[(#PIPELINE{ms_config_nav,[(#ARRAY{args,[(#ENV*|unserialize|array_merge{#ARRAY{config_type,documents}})],data,#GET{flux_fichiers}})]})]
+	</ul>
+</div>
+#FILTRE{trim}

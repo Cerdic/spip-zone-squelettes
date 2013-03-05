@@ -1,0 +1,35 @@
+<div class="configuration">
+<h1 class="grostitre"><:mediaspip_config:icone_config_menus:></h1>
+
+<p><:menus:editer_menus_explication:></p>
+<B_menus_presents>
+#INCLURE{fond=inclure/infos_menus,env}
+<BOUCLE_menus_presents(CONDITION){si #ENV{id_config_menu}|intval|ou{#ENV{nouveau}|=={oui}}|oui}>
+	<div class="configuration_contenu">
+		<BOUCLE_menu_existant(MENUS){id_menu=#ENV{id_config_menu}}>
+		<div class="ajax">#FORMULAIRE_EDITER_MENU{#ENV{id_config_menu}, #ENV{nouveau,''}}</div>
+		<div class="ajax">#FORMULAIRE_EDITER_MENUS_ENTREE{#ENV{id_config_menu}}</div>
+		</BOUCLE_menu_existant>
+		</B_menu_existant>
+		[(#ENV{nouveau}|=={oui}|oui)
+		<div class="ajax">#FORMULAIRE_EDITER_MENU{#ENV{id_config_menu}, #ENV{nouveau,''}}</div>]
+		[(#ENV{nouveau}|=={oui}|non)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur"><:menus:erreur_menu_inexistant{id=#ENV{id_config_menu}}:></p>
+		</div>]
+		<//B_menu_existant>
+	</div>
+</BOUCLE_menus_presents>
+</B_menus_presents>
+<B_menus_principaux>
+	<ul class="menu-liste">
+		<BOUCLE_menus_principaux(MENUS){par id_menu}>
+		<li class="menu-entree">#SET{auth,#AUTORISER{modifier,menu,#ID_MENU}}
+			[(#GET{auth}|oui)<a href="[(#SELF|parametre_url{id_config_menu,#ID_MENU})]">]##ID_MENU - #TITRE [#IDENTIFIANT][(#GET{auth}|oui)</a>]
+		</li>
+		</BOUCLE_menus_principaux>
+		<li class="menu-entree"><a href="[(#SELF|parametre_url{nouveau,oui})]"><:menus:editer_menus_nouveau:></a></li>
+	</ul>
+</B_menus_principaux>
+<//B_menus_presents>
+</div>

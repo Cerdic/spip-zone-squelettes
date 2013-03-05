@@ -1,0 +1,34 @@
+<div class="configuration">
+<h1 class="grostitre"><:mediaspip_config:icone_config_gestion_secteurs:></h1>
+
+#SET{hidden,<input type='hidden' name='secteur_seulement' value='oui' />,<input type='hidden' name='id_parent' value='0' />}
+<B_secteurs_presents>
+#INCLURE{fond=inclure/infos_secteurs,env}
+<BOUCLE_secteurs_presents(CONDITION){si #ENV{id_rubrique}|intval|ou{#ENV{nouveau}|=={oui}}|oui}>
+	<div class="configuration_contenu">
+		<BOUCLE_secteurs_existant(RUBRIQUES){id_rubrique=#ENV{id_rubrique}}{tout}>
+		<div class="ajax">[(#FORMULAIRE_EDITER_RUBRIQUE{#ENV{id_rubrique,new},0,'',0,'',#ARRAY,#GET{hidden}})]</div>
+		</BOUCLE_secteurs_existant>
+		</B_secteurs_existant>
+		[(#ENV{nouveau}|=={oui}|oui)
+		<div class="ajax">[(#FORMULAIRE_EDITER_RUBRIQUE{oui,0,'',0,'',#ARRAY,#GET{hidden}})]</div>]
+		[(#ENV{nouveau}|=={oui}|non)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur"><:menus:erreur_menu_inexistant{id=#ENV{id_config_menu}}:></p>
+		</div>]
+		<//B_secteurs_existant>
+	</div>
+</BOUCLE_secteurs_presents>
+</B_secteurs_presents>
+<B_secteurs_principaux>
+	<ul class="menu-liste">
+		<BOUCLE_secteurs_principaux(RUBRIQUES){racine}{par id_rubrique}{tout}>
+		<li class="menu-entree">#SET{auth,#AUTORISER{modifier,rubrique,#ID_RUBRIQUE}}
+			[(#GET{auth}|oui)<a href="[(#SELF|parametre_url{id_rubrique,#ID_RUBRIQUE})]">]##COMPTEUR_BOUCLE - #TITRE[(#GET{auth}|oui)</a>]
+		</li>
+		</BOUCLE_secteurs_principaux>
+	</ul>
+</B_secteurs_principaux>
+<p><li class="menu-entree"><a href="[(#SELF|parametre_url{nouveau,oui})]"><:mediaspip_config:editer_secteur_nouveau:></a></li></p>
+<//B_secteurs_presents>
+</div>

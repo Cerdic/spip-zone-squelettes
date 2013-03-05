@@ -1,0 +1,147 @@
+[(#SET{notices,[(#SESSION{notices}|unserialize|is_array|?{[(#SESSION{notices}|unserialize)],#ARRAY})]})]
+#SET{plugins_conseils,#ARRAY}
+
+[(#GET{notices}|count|>{0}|oui)
+<div class="actions">
+	[(#BOUTON_ACTION{<:mediaspip_config:bouton_retablir_notices:>,[(#URL_ACTION_AUTEUR{mediaspip_notices,supprimer/tout,#SELF})]})]
+</div>]
+
+[(#PLUGIN{mediabox}|non)
+	[(#CONFIG{mediaspip/squelettes/embed_code,on}|=={on}|oui)
+		#SET{plugins_conseils,#GET{plugins_conseils}|push{MEDIABOX}}
+	]
+	[(#PLUGIN{legendes}|oui)
+		[(#VAL{mediabox}|in_array{#GET{plugins_conseils}}|non)
+			#SET{plugins_conseils,#GET{plugins_conseils}|push{MEDIABOX}}
+		]
+	]
+]
+
+[(#REM)
+	Le plugin multilang si plusieurs langues dispos
+]
+#SET{langues,#EVAL{$GLOBALS['meta']['langues_multilingue']}}
+[(#GET{langues}|explode{','}|count|>{1}|oui|et{#PLUGIN{multilang}|non})
+	#SET{plugins_conseils,#GET{plugins_conseils}|push{MULTILANG}}
+]
+
+#SET{config_texte,#CONFIG{emballe_medias/fichiers/fichiers_textes,#ARRAY}}
+#SET{config_image,#CONFIG{emballe_medias/fichiers/fichiers_images,#ARRAY}}
+<BOUCLE_si_epub(CONDITION){si #PLUGIN{epubreader}|non|et{#VAL{epub}|in_array{#GET{config_texte}}|oui}|oui}>
+	#SET{plugins_conseils,#GET{plugins_conseils}|push{EPUBREADER}}
+</BOUCLE_si_epub>
+<BOUCLE_si_pdf(CONDITION){si #PLUGIN{doc2img}|non|et{#VAL{pdf}|in_array{#GET{config_texte}}|oui|ou{#VAL{ai}|in_array{#GET{config_image}}|ou{#VAL{psd}|in_array{#GET{config_image}}}|ou{#VAL{bmp}|in_array{#GET{config_image}}}|ou{#VAL{tif}|in_array{#GET{config_image}}}|ou{#VAL{xcf}|in_array{#GET{config_image}}}}}|oui}>
+	#SET{plugins_conseils,#GET{plugins_conseils}|push{doc2img}}
+</BOUCLE_si_pdf>
+
+<BOUCLE_si_plugins_conseilles(CONDITION){si #VAL{plugins_conseilles}|in_array{#GET{notices}}|non}>
+<B_plugins_conseilles>
+[(#BOITE_OUVRIR{<h3>[(#VAL{mediaspip_config:titre_plugins_conseilles}|_T)]</h3>,notice})]
+	<p class="explication"><:mediaspip_config:explication_plugins_conseilles:></p>
+	<ul class="liste-items plugins">
+	<BOUCLE_plugins_conseilles(POUR){tableau #GET{plugins_conseils}}>
+		<BOUCLE_plugin(PAQUETS plugins){tout}{prefixe=#VALEUR}>
+		<li class="items">
+			<div class="nom_plugin"><strong>#NOM</strong></div>
+			[<div class="description_plugin">(#SLOGAN|propre)</div>]
+			<p>
+				<a href="[(#SELF|parametre_url{cfg,''}|parametre_url{ms_config,plugins}|parametre_url{voir,inactif})]"><:mediaspip_config:message_acceder_conf_plugins:></a><br />
+			</p>
+		</li>
+		</BOUCLE_plugin>
+		</B_plugin>
+		<li class="items">
+			<div class="nom_plugin">#VALEUR</div>
+			<div class="description_plugin"><:mediaspip_config:info_plugin_non_disponible:></div>
+			<p>
+				<a href="[(#SELF|parametre_url{cfg,''}|parametre_url{ms_config,plugins})]"><:mediaspip_config:message_acceder_conf_plugins:></a><br />
+			</p>
+		</li>
+		<//B_plugin>
+	</BOUCLE_plugins_conseilles>
+	</ul>
+	#BOITE_PIED
+	[(#BOUTON_ACTION{<:mediaspip_config:bouton_supprimer_notice:>,[(#URL_ACTION_AUTEUR{mediaspip_notices,ajouter/plugins_conseilles,#SELF})]})]
+#BOITE_FERMER
+</B_plugins_conseilles>
+</BOUCLE_si_plugins_conseilles>
+
+[(#SET{extensions_em_geo,[(#LISTE{kmz,kml}|array_intersect{#CONFIG{emballe_medias/fichiers/fichiers_textes,#ARRAY}})]})]
+<BOUCLE_si_extgeo(CONDITION){si #GET{extensions_em_geo}|count|>{1}|et{#VAL{extensions_extgeo}|in_array{#GET{notices}}|non}|oui}>
+	#SET{plugins_geo,#LISTE{GIS,DIOGENE_GEO}}
+	#SET{plugins_geo_non_presents,#ARRAY}
+	<BOUCLE_plugins_geo(PLUGINS){prefixe IN #GET{plugins_geo}}>
+	[(#PLUGINS{#PREFIXE}|non)
+		#SET{plugins_geo_presents,#GET{plugins_geo_non_presents}|push{#PREFIXE}}
+	]
+	</BOUCLE_plugins_geo>
+	<B_plugins_geo_presents>
+	#SET{extensions_em_geo_string,#GET{extensions_em_geo}|implode{', '}}
+	[(#BOITE_OUVRIR{'',notice})]
+		<p><:mediaspip_config:message_formats_emballe_media_plugin{formats=#GET{extensions_em_geo_string}}:></p>
+		<ul>
+		<BOUCLE_plugins_geo_presents(PLUGINS){prefixe IN #GET{plugins_geo_non_presents}}>
+		<li>
+			#NOM[<br>
+			<small>(#SLOGAN)</small>]
+		</li>
+		</BOUCLE_plugins_geo_presents>
+		</ul>
+		<p>
+			<a href="[(#SELF|parametre_url{cfg,''}|parametre_url{ms_config,plugins})]"><:mediaspip_config:message_acceder_conf_plugins:></a><br />
+			<a href="[(#SELF|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,fichiers})]"><:mediaspip_config:message_acceder_conf_emballe_medias:></a>
+		</p>
+		#BOITE_PIED
+		[(#BOUTON_ACTION{<:mediaspip_config:bouton_supprimer_notice:>,[(#URL_ACTION_AUTEUR{mediaspip_notices,ajouter/extensions_extgeo,#SELF})]})]
+	#BOITE_FERMER
+	</B_plugins_geo_presents>
+</BOUCLE_si_extgeo>
+
+[(#SET{extensions_videos,[(#CONFIG{emballe_medias/fichiers/fichiers_videos,#ARRAY}|array_diff{#CONFIG{spipmotion/fichiers_videos,#ARRAY}})]})]
+[(#SET{extensions_audios,[(#CONFIG{emballe_medias/fichiers/fichiers_audios,#ARRAY}|array_diff{#CONFIG{spipmotion/fichiers_audios,#ARRAY}})]})]
+[(#GET{extensions_videos}|count|>{0}|ou{#GET{extensions_audios}|count|>{0}}|et{#VAL{extensions_spipmotion}|in_array{#GET{notices}}|non}|oui)
+	[(#SET{extensions_videos_string,[(#GET{extensions_videos}|implode{', '})]})]
+	[(#SET{extensions_audios_string,[(#GET{extensions_audios}|implode{', '})]})]
+	[(#BOITE_OUVRIR{'',notice})]
+		<p><:mediaspip_config:message_formats_spipmotion:></p>
+		<ul>
+		[(#GET{extensions_videos}|count|>{0}|oui)
+		<li><:mediaspip_config:message_formats_spipmotion_video{formats=#GET{extensions_videos_string}}:></li>]
+		[(#GET{extensions_audios}|count|>{0}|oui)
+		<li><:mediaspip_config:message_formats_spipmotion_audio{formats=#GET{extensions_audios_string}}:></li>]
+		</ul>
+		<p>
+			<a href="[(#SELF|parametre_url{cfg,spipmotion})]"><:mediaspip_config:message_acceder_conf_spipmotion:></a><br />
+			<a href="[(#SELF|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,fichiers})]"><:mediaspip_config:message_acceder_conf_emballe_medias:></a>
+		</p>
+		#BOITE_PIED
+		[(#BOUTON_ACTION{<:mediaspip_config:bouton_supprimer_notice:>,[(#URL_ACTION_AUTEUR{mediaspip_notices,ajouter/extensions_spipmotion,#SELF})]})]
+	#BOITE_FERMER
+]
+
+<BOUCLE_si_doc2img(CONDITION){si #PLUGIN{doc2img}|et{#CONFIG{doc2img_imagick_extensions}|unserialize|is_array}|et{#VAL{extensions_doc2img}|in_array{#GET{notices}}|non}|oui}>
+#SET{ext_spip,#ARRAY}
+<BOUCLE_videos(TYPES_DOCUMENTS){!mime_type LIKE video/%}{extension !IN gif,jpg,png}>#SET{ext_spip,#GET{ext_spip}|push{#EXTENSION}}</BOUCLE_videos>
+#SET{ext_a_virer,#ARRAY{mp4,mpc,gif,png,jpg}}
+[(#SET{extensions_em_doc2img,[(#CONFIG{emballe_medias/fichiers/fichiers_images,#ARRAY}|array_merge{#CONFIG{emballe_medias/fichiers/fichiers_textes,#ARRAY}})]})]
+[(#SET{extensions_doc2img,[(#GET{ext_spip}|array_diff{#GET{ext_a_virer}}|array_intersect{#VAL{strtolower}|array_map{#CONFIG{doc2img_imagick_extensions}|unserialize}})]})]
+[(#SET{extensions_doc2img_possibles,[(#GET{extensions_doc2img}|array_intersect{#GET{extensions_em_doc2img}})]})]
+[(#SET{extensions_doc2img_inutilisees,[(#GET{extensions_doc2img_possibles}|array_diff{[(#VAL{trim}|array_map{[(#CONFIG{doc2img/format_document}|explode{','})]})]})]})]
+[(#GET{extensions_doc2img_inutilisees}|count|>{0}|oui)
+	[(#BOITE_OUVRIR{'',notice})]
+		<p><:mediaspip_config:message_formats_doc2img:></p>
+		[(#SET{extensions_doc2img_inutilisees_string,[(#GET{extensions_doc2img_inutilisees}|implode{', '})]})]
+		<ul>
+			<li>
+				<:mediaspip_config:message_formats_doc2img_extensions{formats=#GET{extensions_doc2img_inutilisees_string}}:>
+			</li>
+		</ul>	
+		<p>
+			<a href="[(#SELF|parametre_url{cfg,doc2img})]"><:mediaspip_config:message_acceder_conf_doc2img:></a><br />
+			<a href="[(#SELF|parametre_url{ms_config,emballe_medias}|parametre_url{cfg,fichiers})]"><:mediaspip_config:message_acceder_conf_emballe_medias:></a>
+		</p>
+		#BOITE_PIED
+			[(#BOUTON_ACTION{<:mediaspip_config:bouton_supprimer_notice:>,[(#URL_ACTION_AUTEUR{mediaspip_notices,ajouter/extensions_doc2img,#SELF})]})]
+	#BOITE_FERMER
+]
+</BOUCLE_si_doc2img>

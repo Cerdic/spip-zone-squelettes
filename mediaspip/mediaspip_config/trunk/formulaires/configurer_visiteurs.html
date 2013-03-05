@@ -1,0 +1,30 @@
+[(#REM)
+	Squelette du formulaire FORMULAIRE_CONFIGURER_VISITEURS
+	Configure la possibilité des gens de s'inscrire ou pas dans le site
+]
+
+<div class="formulaire_spip formulaire_configurer formulaire_#ENV{form}" id="formulaire_#ENV{form}">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<li class="editer_accepter_visiteurs">
+				<p class="explication">
+					<:mediaspip_config:explication_accepter_visiteurs:>
+				</p>
+				<div class="choix">
+					<input type="radio" id="accepter_visiteurs_oui" value="oui" name="accepter_visiteurs"[(#ENV{accepter_visiteurs}|=={oui}|oui)checked="checked"] />
+					<label for="accepter_visiteurs_oui"><:info_option_accepter_visiteurs:></label>
+				</div>
+				<div class="choix">
+					<input type="radio" id="accepter_visiteurs_non" value="non" name="accepter_visiteurs"[(#ENV{accepter_visiteurs}|=={oui}|non)checked="checked"] />
+					<label for="accepter_visiteurs_non"><:info_option_ne_pas_accepter_visiteurs:></label>
+				</div>
+			</li>
+		</ul>
+		<p class="boutons">
+			<input type="submit" class="submit" value="<:bouton_valider:>" />
+		</p>
+	</div></form>
+</div>
