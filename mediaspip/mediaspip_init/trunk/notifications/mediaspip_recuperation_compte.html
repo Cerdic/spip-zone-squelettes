@@ -1,0 +1,18 @@
+[(#REM)
+
+	Squelette de la notification lors de la récupération d'un utilisateur sur le site maitre de la mutu
+  
+	(c) 2010-2012 Plugin MediaSPIP Init
+	Distribue sous licence GPL
+
+][(#HTTP_HEADER{Content-type: text/plain[; charset=(#CHARSET)]})]
+<BOUCLE_mutu(AUTEURS){id_auteur}{statut?}{tout}>
+[(#VAL{mediaspip_init:notif_titre_recuperation_compte}|_T{#ARRAY{nom_site_spip,#NOM_SITE_SPIP}}|nettoyer_titre_email)]
+
+[(#VAL{mediaspip_init:notif_texte_bonjour}|_T{#ARRAY{nom,#NOM}})]
+
+[(#VAL{mediaspip_init:notif_texte_compte_cree}|_T{#ARRAY{nouveau_site,#URL_SITE_SPIP,site_maitre,#ENV{site_maitre}}})]
+
+<:mediaspip_init:notif_texte_compte_pass:>
+</BOUCLE_mutu>
+#FILTRE{supprimer_tags|filtrer_entites|trim}
