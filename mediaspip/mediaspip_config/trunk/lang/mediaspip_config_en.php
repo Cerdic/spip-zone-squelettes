@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.mediaspip.net/spip.php?page=tradlang
+// extrait automatiquement de http://trad.spip.net/tradlang_module/mediaspip_config?lang_cible=en
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -24,6 +24,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'configuration_statistiques' => 'Statistics',
 
 	// E
+	'editer_secteur_nouveau' => 'Créer un nouveau secteur', # NEW
 	'erreur_config_autorisation_identifie' => 'You must be logged in to access the administration panel.',
 	'erreur_config_autorisation_insuffisante' => 'You don\\t have a sufficient permission level to access this page.',
 	'erreur_saveauto_mail_fichier_lourd' => 'The backup file is too large to be sent by email. You may retrieve a copy using your site administration interface at the address: @url@',
@@ -42,19 +43,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'icone_config_diogene' => 'Form templates configuration',
 	'icone_config_diogene_nouveau' => 'Create a new template',
 	'icone_config_gestion_mutu' => 'Pooling websites management',
+	'icone_config_gestion_secteurs' => 'Gestion des secteurs', # NEW
 	'icone_config_menus' => 'Menus configuration',
 	'icone_docs_disparus' => 'Missing documents',
 	'icone_forums_config' => 'Forums configuration',
 	'icone_forums_management' => 'Forums management',
 	'icone_mediaspip' => 'Skeleton management',
 	'icone_phpinfo' => 'PHP settings',
+	'icone_supprimer_secteur' => 'Supprimer ce secteur', # NEW
 	'icone_theme' => 'Configuration du thème actuel',
 	'icone_visiteurs' => 'User management',
 	'icone_votre_site' => 'Informations about the website',
+	'info_plugin_non_disponible' => 'Ce plugin n\'est pas disponible sur votre installation.', # NEW
 	'infos_champs_formulaire_forum' => 'Fields available in the form',
 	'infos_inscription_visiteurs' => 'Users subscription',
 	'infos_tous_diogenes' => 'All templates',
 	'infos_tous_menus' => 'All menus',
+	'infos_tous_secteurs' => 'Tous les secteurs', # NEW
 	'infos_visiteur_choisir_modifier' => 'Choose a user to edit',
 	'infos_visiteur_creer' => 'You are adding a new user',
 	'infos_visiteur_creer_modifier' => 'Add or edit a user',
@@ -65,6 +70,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_form_email_auteur' => 'Email address',
 	'label_form_nom_site_auteur' => 'Site\'s name',
 	'label_form_url_site_auteur' => 'Site\'s URL',
+	'label_site_background' => 'Téléverser une nouvelle image de fond :', # NEW
 	'legend_form_identification_auteur' => 'Connection identifiers',
 	'lien_creer_auteur' => 'Create new user',
 
@@ -76,6 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_config_lang_ok' => 'The language configuration has been modified',
 	'message_config_site_ok' => 'The website informations have been modified',
 	'message_config_visiteurs_ok' => 'The configuration concerning the subscription of the users has been modified',
+	'message_confirmation_supprimer_secteur' => 'Êtes vous sûrs de vouloir supprimer ce secteur ?', # NEW
 	'message_doc_disparu_objet' => 'This document was linked to the object of kind "@objet@" number "@id_objet@"',
 	'message_formats_doc2img' => 'Some file types that can be uploaded and compatible with the file converter in series of images (Doc2img) are not present in the configuration of the converter:',
 	'message_formats_doc2img_extensions' => '@formats@',
@@ -90,9 +97,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'theme_previsu' => 'You currently preview',
 	'titre_autres_diogenes' => 'Other templates',
 	'titre_autres_menus' => 'Other menus',
+	'titre_autres_secteurs' => 'Les autres secteurs', # NEW
 	'titre_configuration' => 'Website configuration',
 	'titre_documents_manquants' => '@nb@ original missing document(s)',
-	'titre_plugins_conseilles' => 'Recommended additional plugins'
+	'titre_plugins_conseilles' => 'Recommended additional plugins',
+	'titre_site_background' => 'Image de fond' # NEW
 );
 
 ?>

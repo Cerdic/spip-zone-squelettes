@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// Fichier source, a modifier dans http://svn.aires-de-confluxence.info/svn/squelettes_spip/mediaspip_config/lang/
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/mediaspip/mediaspip_config/trunk/lang/
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -48,13 +48,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'icone_forums_management' => 'Gestion des forums',
 	'icone_mediaspip' => 'Gestion du squelette',
 	'icone_phpinfo' => 'Configuration de PHP',
+	'icone_supprimer_secteur' => 'Supprimer ce secteur',
 	'icone_theme' => 'Configuration du thème actuel',
 	'icone_visiteurs' => 'Gestion des utilisateurs',
 	'icone_votre_site' => 'Informations du site',
 	'info_plugin_non_disponible' => 'Ce plugin n\'est pas disponible sur votre installation.',
 	'infos_champs_formulaire_forum' => 'Champs disponibles dans le formulaire',
 	'infos_inscription_visiteurs' => 'Inscription des utilisateurs',
-	'icone_supprimer_secteur' => 'Supprimer ce secteur',
 	'infos_tous_diogenes' => 'Tous les templates',
 	'infos_tous_menus' => 'Tous les menus',
 	'infos_tous_secteurs' => 'Tous les secteurs',
