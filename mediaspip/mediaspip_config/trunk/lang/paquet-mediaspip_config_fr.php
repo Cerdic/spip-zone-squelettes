@@ -1,21 +1,15 @@
 <?php
-
-// Ceci est un fichier langue de SPIP -- This is a SPIP language file
-
-///  Fichier produit par PlugOnet
-// Module: paquet-mediaspip_config
-// Langue: fr
-// Date: 23-06-2012 10:35:46
-// Items: 3
-
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/mediaspip/mediaspip_config/trunk/lang/
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// M
+	// M
 	'mediaspip_config_description' => 'Squelette de configuration pour les plateformes MediaSPIP.
 _ Permet d\'avoir une partie de configuration publique.',
 	'mediaspip_config_nom' => 'MediaSPIP Configuration',
-	'mediaspip_config_slogan' => 'Configurer son MediaSPIP',
+	'mediaspip_config_slogan' => 'Configurer son MediaSPIP'
 );
+
 ?>

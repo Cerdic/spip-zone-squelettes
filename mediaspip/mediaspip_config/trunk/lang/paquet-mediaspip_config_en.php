@@ -1,21 +1,17 @@
 <?php
-
-// Ceci est un fichier langue de SPIP -- This is a SPIP language file
-
-///  Fichier produit par PlugOnet
-// Module: paquet-mediaspip_config
-// Langue: en
-// Date: 23-06-2012 10:35:46
-// Items: 3
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// extrait automatiquement de http://trad.spip.net/tradlang_module/paquet-mediaspip_config?lang_cible=en
+// ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// M
+	// M
 	'mediaspip_config_description' => 'Setup skeleton for the MediaSPIP websites.
 _ Allow to configure the website in the public area.',
 	'mediaspip_config_nom' => 'MediaSPIP Setup',
-	'mediaspip_config_slogan' => 'Setup our MediaSPIP',
+	'mediaspip_config_slogan' => 'Setup our MediaSPIP'
 );
+
 ?>
