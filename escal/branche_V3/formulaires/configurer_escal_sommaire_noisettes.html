@@ -337,6 +337,52 @@
 
             </div>
             </li>
+<!-- inc-calendrier -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Mini-Calendrier</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titrecalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
+            #SET{name,listeeventscalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Liste des évènement à venir en dessous
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,pagincalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'évènements par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,liennouvelevent}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien "Ajouter un évènement"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+
+            </div>
+            </li>
+            
+            
 <!-- inc-evenements -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Evènements à venir</strong></label>
