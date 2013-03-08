@@ -1,0 +1,21 @@
+<!-- onglets bootstrap des catégories de logos -->
+
+<ul class="nav nav-tabs">
+	<BOUCLE_titres(MOTS){id_groupe=2}{doublons contenus}>
+	<li><a href="[#(#TITRE)]" data-toggle="tab">#TITRE</a></li>
+	</BOUCLE_titres>
+</ul>
+
+<div class="tab-content">
+	<BOUCLE_contenus(MOTS){id_groupe=2}{doublons}>
+	<div class="tab-pane[ (#COMPTEUR_BOUCLE|=={0}|oui)active]" id="#TITRE">
+		[(#INCLURE{fond=inclure/carousel}{id_mot=#ID_MOT})]
+	</div>
+	</BOUCLE_contenus>
+</div>
+
+<script>
+$(function () {
+$('.nav-tabs a:last').tab('show');
+})
+</script>

@@ -1,0 +1,37 @@
+[(#REM)
+		Un carrousel directement intégré à Bootstrtap;
+		il est responsive mais ne se pilote pas au clavier;
+		du mal à intégrer les effets;
+]
+[(#SET{id,[(#ENV{id_mot})]})]
+
+<div id="slider_#GET{id}" class="carousel_#GET_id slide">
+
+	<ol class="carousel-indicators">
+	<BOUCLE_boutons(DOCUMENTS) {extension IN jpeg,png,gif} {doublons items} >
+		<li data-target="#slider_#GET{id}"
+			data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [(#COMPTEUR_BOUCLE|=={1}|oui)class="active"]></li>
+	</BOUCLE_boutons>
+	</ol>
+
+	<div class="carousel-inner">
+	<BOUCLE_items(DOCUMENTS) {extension IN jpeg,png,gif} {doublons} >
+		<row class="item[ (#COMPTEUR_BOUCLE|=={1}|oui)active]">
+			[<a href="#FICHIER" class="spip_documents mediabox" rel="items_#GET{id}">(#FICHIER
+				|image_reduire{600,400}
+				|image_passe_partout{600,400}
+				|image_recadre{600,400, 'transparent'})</a>]
+			[<footer>(#CREDITS)</footer>]
+			[<aside>(#NOTATION)</aside>]
+		</row>
+	</BOUCLE_items>
+	</div>
+
+	<a href="#slider_#GET{id}" class="carousel-control left" data-slide="prev">&lsaquo;</a>
+	<a href="#slider_#GET{id}" class="carousel-control right" data-slide="next">&rsaquo;</a>
+
+</div>
+
+<script type="text/javascript">
+	$('.carousel_#GET{id}').carousel()
+</script>
