@@ -2,9 +2,14 @@
 
 <ul class="menulist">
 
-	<!-- exclusion des rubriques masquées, c'est à dire avec le mot-clé "pas-au-menu"-->
-	<BOUCLE_exclure_rub_menu(RUBRIQUES){tout}{titre_mot=pas-au-menu-vertical}{doublons}>
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu-vertical" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot=pas-au-menu-vertical}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
 	</BOUCLE_exclure_rub_menu>
+
+	<!-- exclusion des articles avec le mot-clé "pas-au-menu-vertical" -->
+	<BOUCLE_exclure_art_menu(ARTICLES){titre_mot=pas-au-menu-vertical}{doublons articles}>
+	</BOUCLE_exclure_art_menu>
 
  <!-- affichage des autres rubriques -->
 	<BOUCLE_smenuspipr(RUBRIQUES){racine}{lang}{par num titre, titre}{doublons}>
