@@ -1,6 +1,5 @@
 <?php
 if (!defined('_ECRIRE_INC_VERSION')) return; 
-if (!defined('_SC_BRANDING')) define ('_SC_BRANDING','SoyezCréateurs');
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
 define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://www.spip-contrib.net/Astuces-SPIP 
