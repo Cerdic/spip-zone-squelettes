@@ -93,14 +93,15 @@
       }
 </script>
                   <div style="height:100px;background-color:[(#CONFIG{escal/config/couleur3,#336699})]" id="desc">
-                      [(#CONFIG{escal/config/fondbandeau}|oui)
-                        [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{387})]
-                      ]
-                      [(#CONFIG{escal/config/fondbandeau}|non)
-                        [(#CONFIG{escal/config/logobandeaunon}|=={oui}|non)
+                    [(#CONFIG{escal/config/fondbandeau}|?{
+                      [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{387})]
+                      ,
+                      [(#CONFIG{escal/config/fondbandeau2}|?{
+                        [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}|balise_img{<:escal:bandeau:>}|image_reduire{387})]
+                        ,
                         [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{387})]
-                        ]
-                      ]
+                        })]
+                    })]
                   </div>
                   <div id="option0" style="display: none;">
                         [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{387})]
@@ -111,7 +112,7 @@
 										[(#VALEUR|balise_img{<:escal:bandeau:>}|image_reduire{387})]
                     </div>
 									</BOUCLE_affiche_image>
-									
+									<br />
                   <select name="#GET{name}" class="select" id="imgbandeau" onchange="descriptifChange('desc');">
                   <option
                     onmouseout="descriptifOption('desc', 'out', 'option0')"
@@ -129,6 +130,16 @@
                     </option>
 									</BOUCLE_choix_image>
                   </select>
+                <br /><br />
+                #SET{name,fondbandeau2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                Et si votre hébergeur ne permet pas de lister les fichiers présents,
+                vous pouvez indiquer ici le chemin de votre fichier image.<br />
+                exemple : images/bandeau/bandeau.jpg<br />
+                si votre fichier bandeau.jpg est dans squelettes/images/bandeau
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
 
                     </span>
               <br />
