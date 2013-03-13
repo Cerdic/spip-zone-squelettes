@@ -16,14 +16,19 @@
 <dl>
 	<dt class="titre #EDIT{titre}">[(#TITRE|sinon{[(#DESCRIPTIF|couper{20}|sinon{[(#FICHIER|couper{20})]})]})]</dt>
 	<dd class="img">[(#FICHIER|image_passe_partout{200,200}|image_reduire{150}|image_recadre{150,150,'0F65A2'})]</dd>
-	<dd class="mots ajax">[(#FORMULAIRE_ETIQUETTES)]</dd>
-	<dd class="article">
-		<BOUCLE_sml(spip_documents_liens){id_document}>
+	<dd class="mots"><h3>Mots clé</h3>
+		<BOUCLE_sml(MOTS){id_document}{','}>
+			<a href="[(#URL_MOT)]">#TITRE</a>
+		</BOUCLE_sml>
+	</dd>
+	<dd class="article"><h3>Articles</h3>
+		<BOUCLE_sdl(spip_documents_liens){id_document}{','}>
 			[(#OBJET|=={'article'}|oui)
 				<a href="[(#URL_ARTICLE{#ID_OBJET})]">[(#INFO_TITRE{article,#ID_OBJET})]</a>
 			]
-		</BOUCLE_sml>
+		</BOUCLE_sdl>
 	</dd>
 </dl>
+	<div class="ajax">[(#FORMULAIRE_ETIQUETTES{aide=aucun})]</div>
 </BOUCLE_docs>
 </B_docs>

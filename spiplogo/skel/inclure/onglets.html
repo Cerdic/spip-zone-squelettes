@@ -2,14 +2,20 @@
 
 <ul class="nav nav-tabs">
 	<BOUCLE_titres(MOTS){id_groupe=2}{doublons contenus}>
-	<li><a href="[#(#TITRE)]" data-toggle="tab">#TITRE</a></li>
+	<li><a href="[#(#ID_MOT)]" data-toggle="tab">#TITRE</a></li>
 	</BOUCLE_titres>
 </ul>
 
 <div class="tab-content">
 	<BOUCLE_contenus(MOTS){id_groupe=2}{doublons}>
-	<div class="tab-pane[ (#COMPTEUR_BOUCLE|=={0}|oui)active]" id="#TITRE">
-		[(#INCLURE{fond=inclure/carousel}{id_mot=#ID_MOT})]
+	<div class="tab-pane[ (#COMPTEUR_BOUCLE|=={0}|oui)active]" id="#ID_MOT">
+		[<!--(#INCLURE{fond=inclure/carousel}{id_mot=#ID_MOT})-->]
+		<h3>On cherche tous les documents liés au mot #TITRE (mot N°#ID_MOT):</h3>
+		<BOUCLE_docs(DOCUMENTS spip_mots_liens){tout}{id_mot}{objet='document'}>
+			[<a href="#URL_DOCUMENT" class="mediabox">(#FICHIER|image_recadre{200,200}|image_reduire{150})</a>]
+		</BOUCLE_docs>
+		aucun doc avec le mot clé #TITRE !
+		<//B_docs>
 	</div>
 	</BOUCLE_contenus>
 </div>
