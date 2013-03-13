@@ -1,0 +1,29 @@
+[(#REM)
+	permet d'associer rapidement un ou plusieurs mots-clé
+	à un document
+	auteur : cym
+]
+
+<h1>Modele en cours de dev</h1>
+<h3>affiche une série de logos,
+	avec une pagination,
+	recadrés pour qu'ils aient tous a peu pres le meme format,
+	et avec un système permettant de leur coller des mots clé
+	et de voir leur article d'origine
+	et leur(s) auteur(s) (crédits).</h3>
+<B_docs>#PAGINATION
+<BOUCLE_docs(DOCUMENTS){tout}{pagination 10}>
+<dl>
+	<dt class="titre #EDIT{titre}">[(#TITRE|sinon{[(#DESCRIPTIF|couper{20}|sinon{[(#FICHIER|couper{20})]})]})]</dt>
+	<dd class="img">[(#FICHIER|image_passe_partout{200,200}|image_reduire{150}|image_recadre{150,150,'0F65A2'})]</dd>
+	<dd class="mots ajax">[(#FORMULAIRE_ETIQUETTES)]</dd>
+	<dd class="article">
+		<BOUCLE_sml(spip_documents_liens){id_document}>
+			[(#OBJET|=={'article'}|oui)
+				<a href="[(#URL_ARTICLE{#ID_OBJET})]">[(#INFO_TITRE{article,#ID_OBJET})]</a>
+			]
+		</BOUCLE_sml>
+	</dd>
+</dl>
+</BOUCLE_docs>
+</B_docs>
