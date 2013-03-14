@@ -34,7 +34,7 @@
               #SET{name,imagefond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               Vos fonds doivent être placés dans /squelettes/images/fonds <br />
               Toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
-              Avec Firefox, vous aurez même un aperçu de votre fond !
+              Avec Firefox, vous aurez même un aperçu de votre fond en direct !
               <br /><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
@@ -52,17 +52,17 @@
           document.getElementById(id).innerHTML = document.getElementById(optionValue).innerHTML;
       }
 </script>
-                  <div style="height:100px;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})]" id="desc">
-                    [(#CONFIG{escal/config/imagefond}|?{
-                      [(#CHEMIN{[(#CONFIG{escal/config/imagefond})]}|balise_img{<:escal:bandeau:>}|image_reduire{387,100})]
-                      ,
-                      [(#CONFIG{escal/config/imagefond2}|?{
-                        [(#CHEMIN{[(#CONFIG{escal/config/imagefond2})]}|balise_img{<:escal:bandeau:>}|image_reduire{387,100})]
-                        ,
-                        &nbsp;
-                        })]
-                    })]
+                  <div style="
+                              height:100px;
+                              background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];
+                              [(#CONFIG{escal/config/imagefond}|?{
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]); ,
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+                              })];
+                              margin-bottom: 2px;
+                              " >
                   </div>
+                  <div id="desc" style="height:100px;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];</div>
                   <div id="option0" style="display: none;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})]">
                   </div>
                   <BOUCLE_affiche_image(DATA){source glob, ../squelettes/images/fonds/{*.jpg,*.png,*.gif}}>
