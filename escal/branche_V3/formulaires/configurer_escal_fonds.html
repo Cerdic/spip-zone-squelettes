@@ -99,10 +99,43 @@
                     ]<span class="choix">
                              <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
                     </span>
-
+                <br /><br />
+                #SET{name,imagefondunique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                Par défaut, l'image de fond est répétée hizontalement et/ou verticalement,
+                ce qui est bien pour un fond dégradé par exemple.
+                Mais si vous avez une image qui ne doit pas se répéter, cocher "oui" en dessous
+                et votre image s'adaptera à l'écran du visiteur et restera fixe. <br /><br />
+                - Taille conseillée pour la plupart des écrans : 2000px par 1300px<br />
+                - Le poids de l'image doit être optimisé pour ne pas ralentir considérablement le chargement<br />
+                Voir <a href="http://www.alsacreations.com/astuce/lire/1216-arriere-plan-background-extensible.html" title="Plus d'infos">
+                      Un arrière-plan extensible intelligent
+                      </a>
+                <br /><br />
+                    Adapter le fond à l'écran ?
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </div>
             </li>
-            
+          </ul>
+<!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    
+          <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Couleur 1</strong></label>
                     <br />

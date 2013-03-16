@@ -97,18 +97,27 @@
 /*************/
 body {
   background-color: [ (#CONFIG{escal/config/couleurfond,#DFDFDF})];
-  
-[(#CONFIG{escal/config/imagefond}|?{
-  background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]);
-  ,
-  [(#CONFIG{escal/config/imagefond2}|?{
-    background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+  [(#CONFIG{escal/config/imagefond}|?{
+    background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]);
     ,
-    background-image: none;
-    })]
-})]
-
+    [(#CONFIG{escal/config/imagefond2}|?{
+      background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+      ,
+      background-image: none;
+      })]
+  })]
+  [(#CONFIG{escal/config/imagefondunique}|=={oui})
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+  ]
 }
+
+
 
 /* gris */
 .calendar_not_this_month,
