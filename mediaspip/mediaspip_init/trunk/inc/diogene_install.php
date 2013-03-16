@@ -29,9 +29,9 @@ function inc_diogene_install_dist($rubriques){
 				'ps',
 				'urlref'
 			)),
-			'champs_ajoutes' => array(
+			'champs_ajoutes' => serialize(array(
 				'geo','auteurs','spipicious','licence','forum'
-			),
+			)),
 			'menu'=> 'on',
 			'statut_auteur' => '1comite',
 			'statut_auteur_publier' => '0minirezo',
@@ -47,26 +47,26 @@ function inc_diogene_install_dist($rubriques){
 		$set_edito = array(
 			'titre' => filtrer_entites(_T('mediaspip_core:publier_un_edito_titre')),
 			'description' => filtrer_entites(_T('mediaspip_core:publier_un_edito_desc')),
-			'champs_caches' => array(
+			'champs_caches' => serialize(array(
 				'soustitre',
 				'surtitre',
 				'descriptif',
 				'chapo',
 				'ps',
 				'urlref'
-			),
-			'champs_ajoutes' => array(
+			)),
+			'champs_ajoutes' => serialize(array(
 				'auteurs','date','forum'
-			),
+			)),
 			'menu'=> 'on',
 			'statut_auteur' => '0minirezo',
 			'statut_auteur_publier' => '0minirezo',
 			'id_secteur' => $rubriques['editos'],
 			'objet' => 'article',
 			'type' => 'editorial',
-			'options_complements' => array(
+			'options_complements' => serialize(array(
 				'polyhier_desactiver' => 'on'
-			)
+			))
 		);
 		$err .= diogene_modifier($id_diogene_edito, $set_edito);
 	}
@@ -76,18 +76,17 @@ function inc_diogene_install_dist($rubriques){
 		$set_sites = array(
 			'titre' => filtrer_entites(_T('mediaspip_core:publier_un_site_titre')),
 			'description' => filtrer_entites(_T('mediaspip_core:publier_un_site_desc')),
-			'champs_caches' => '',
-			'champs_ajoutes' => array(),
+			'champs_caches' => serialize(array()),
+			'champs_ajoutes' => serialize(array()),
 			'menu'=> 'on',
 			'statut_auteur' => '0minirezo',
 			'statut_auteur_publier' => '0minirezo',
 			'id_secteur' => $rubriques['sites'],
 			'objet' => 'site',
 			'type' => 'sites',
-			'options_complements' => array(
+			'options_complements' => serialize(array(
 				'polyhier_desactiver' => 'on'
-			)
-
+			))
 		);
 		$err .= diogene_modifier($id_diogene_sites, $set_sites);
 	}
@@ -97,26 +96,26 @@ function inc_diogene_install_dist($rubriques){
 		$set_actu = array(
 			'titre' => filtrer_entites(_T('mediaspip_core:publier_une_actu_titre')),
 			'description' => filtrer_entites(_T('mediaspip_core:publier_une_actu_desc')),
-			'champs_caches' => array(
+			'champs_caches' => serialize(array(
 				'soustitre',
 				'surtitre',
 				'descriptif',
 				'chapo',
 				'ps',
 				'urlref'
-			),
-			'champs_ajoutes' => array(
+			)),
+			'champs_ajoutes' => serialize(array(
 				'date','geo','auteurs','forum'
-			),
+			)),
 			'menu'=> 'on',
 			'statut_auteur' => '0minirezo',
 			'statut_auteur_publier' => '0minirezo',
 			'id_secteur' => $rubriques['actus'],
 			'objet' => 'article',
 			'type' => 'actu',
-			'options_complements' => array(
+			'options_complements' => serialize(array(
 				'polyhier_desactiver' => 'on'
-			)
+			))
 		);
 		$err .= diogene_modifier($id_diogene_actu, $set_actu);
 	}
@@ -125,17 +124,17 @@ function inc_diogene_install_dist($rubriques){
 		$set_categorie = array(
 			'titre' => filtrer_entites(_T('mediaspip_core:publier_une_categorie_titre')),
 			'description' => filtrer_entites(_T('mediaspip_core:publier_une_categorie_desc')),
-			'champs_caches' => array('descriptif'),
-			'champs_ajoutes' => '',
+			'champs_caches' => serialize(array('descriptif')),
+			'champs_ajoutes' => serialize(array()),
 			'menu'=> 'on',
 			'statut_auteur' => '0minirezo',
 			'statut_auteur_publier' => '0minirezo',
 			'id_secteur' => $rubriques['medias'],
 			'objet' => 'rubrique',
 			'type' => 'categorie',
-			'options_complements' => array(
+			'options_complements' => serialize(array(
 				'polyhier_desactiver' => 'on'
-			)
+			))
 		);
 		$err .= diogene_modifier($id_diogene_categorie, $set_categorie);
 	}
