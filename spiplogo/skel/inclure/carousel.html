@@ -3,27 +3,31 @@
 		il est responsive mais ne se pilote pas au clavier;
 		du mal à intégrer les effets;
 ]
-[(#SET{id,[(#ENV{id_mot})]})]
+[(#SET{id,[(#ENV{id_mot,1})]})]
 
-<div id="slider_#GET{id}" class="carousel_#GET_id slide">
+<div id="slider_#GET{id}" class="carousel carousel_#GET_id slide">
 
 	<ol class="carousel-indicators">
 	<BOUCLE_boutons(DOCUMENTS) {extension IN jpeg,png,gif} {doublons items} >
 		<li data-target="#slider_#GET{id}"
-			data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [(#COMPTEUR_BOUCLE|=={1}|oui)class="active"]></li>
+			data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class=(#COMPTEUR_BOUCLE|=={1}|oui)"active"]></li>
 	</BOUCLE_boutons>
 	</ol>
 
 	<div class="carousel-inner">
 	<BOUCLE_items(DOCUMENTS) {extension IN jpeg,png,gif} {doublons} >
-		<row class="item[ (#COMPTEUR_BOUCLE|=={1}|oui)active]">
+		<div class="item[ (#COMPTEUR_BOUCLE|=={1}|oui)active]">
 			[<a href="#FICHIER" class="spip_documents mediabox" rel="items_#GET{id}">(#FICHIER
 				|image_reduire{600,400}
 				|image_passe_partout{600,400}
 				|image_recadre{600,400, 'transparent'})</a>]
-			[<footer>(#CREDITS)</footer>]
-			[<aside>(#NOTATION)</aside>]
-		</row>
+			<div class="carousel-caption">
+				<h4>#TITRE</h4>
+				[(#CREDITS)]
+				[(#NOTATION)]
+			</div>
+
+		</div>
 	</BOUCLE_items>
 	</div>
 
