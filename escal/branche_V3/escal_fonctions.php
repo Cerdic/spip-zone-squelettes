@@ -5,7 +5,7 @@
    // pour gerer les classes des differents liens dans les articles
    // Un grand merci a l'auteur : bobof
 // =======================================================================================================================================
-   
+if (!function_exists('inc_lien')){
 function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $connect='')
 {
 	$mode = ($texte AND $class) ? 'url' : 'tout';
@@ -31,7 +31,7 @@ function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $c
 	elseif (!$class) $class = "spip_out"; # spip_out pour les liens externes
 return inc_lien_dist($lien, $texte, $class, $titre, $hlang, $rel, $connect);
 }
-
+}
 // balises issues da la contrib  "Balises de comptage" de Franck
 // http://www.spip-contrib.net/Balises-de-comptage 
 // =======================================================================================================================================
