@@ -20,14 +20,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Submit an event',
-	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.', # MODIF
+	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.',
 	'agenda_proposer_evenement_title' => 'You may suggest an event to the site\'s administrator.',
 	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
 	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agendamoisde' => 'Calendar for',
-	'aidesc' => 'Help about SoyezCréateurs', # MODIF
+	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
 	'annuaire' => 'Directory',
 	'annuaire_consulter' => 'Consult the directory',
@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_listeravecarticles' => 'List the documents attached to an article in the (central) list of articles',
 	'cfg_affichagelistedocuments_masquervus' => 'Do not display the documents inserted in the content',
 	'cfg_affichagelistedocuments_noicon' => 'Do not display the icon of the document in the lists',
-	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)', # MODIF
+	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirection to the document if there is only one, and if there is no text in the article',
 	'cfg_afficher_titre_invisible' => 'Invisible: the text is overwritten by the banner',
 	'cfg_afficher_titre_label' => 'Dispaly of the site name',
@@ -153,7 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Don\'t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
 	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
-	'cfg_info' => 'Configuration of SoyezCreateurs', # MODIF
+	'cfg_info' => 'Configuration of SoyezCreateurs',
 	'cfg_largeur' => 'Width',
 	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
 	'cfg_largeur_conteneur' => 'Width of the container',
@@ -308,14 +308,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
-	'configurersc' => 'Set SoyezCréateurs', # MODIF
+	'configurersc' => 'Set SoyezCréateurs',
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
-	'copyright_spip' => '<a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>/
-<a href=\'http://www.mantalo.net/\' title=\'Visit the website of the creator of this template in GPL license\'>SoyezCreateurs</a>', # MODIF
+	'copyright_spip' => '
+<a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Logout',
@@ -356,11 +356,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'In the same section...',
-	'mentions_legales_obligatoires' => 'Compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
+	'mentions_legales_obligatoires' => 'French compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
-	'menunavrwd' => 'Menu de navigation', # NEW
+	'menunavrwd' => 'Navigation menu',
 	'mot' => 'Word',
 	'mots' => 'Words',
 	'mots_title' => 'The site\'s keywords',
@@ -405,7 +405,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Learn more about the criterion',
 	'sedna' => 'Sedna (RSS aggregator)',
 	'sommaire' => 'Summary',
-	'soyezcreateurs' => 'Be Creative', # MODIF
+	'soyezcreateurs' => 'Be Creative',
 	'soyezcreateurs_couleurs' => 'Colors',
 	'soyezcreateurs_google' => 'Referencing',
 	'soyezcreateurs_layout' => 'Localization',
@@ -442,8 +442,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'July',
 	'wdcalendar_jun' => 'June',
-	'wdcalendar_loading_data' => 'Data loading...', # MODIF
-	'wdcalendar_loading_fail' => 'Sorry, we are unable to load your data, please try later ', # MODIF
+	'wdcalendar_loading_data' => 'Loading data...',
+	'wdcalendar_loading_fail' => 'Sorry, we are unable to load your data, please try later ',
 	'wdcalendar_location' => 'Location',
 	'wdcalendar_mar' => 'Mar',
 	'wdcalendar_may' => 'May',
