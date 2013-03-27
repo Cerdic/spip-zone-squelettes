@@ -40,7 +40,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			/**
 			 * Activation des documents sur les articles
 			 */
-			ecrire_meta("documents_article", "oui");
+			ecrire_meta("documents_objets", implode(',',array('spip_articles')));
 
 			/**
 			 * Ne pas activer les inscriptions de rédacteurs
@@ -104,12 +104,11 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta("langues_proposees","fr,en");
 			$config_multilang = lire_config('multilang',array(
 									'siteconfig' => 'on',
-									'article' => '',
-									'breve' => '',
 									'rubrique' => 'on',
 									'auteur' => 'on',
 									'document' => 'on',
-									'motcle' => '',
+									'diogene' => 'on',
+									'collection' => 'on',
 									'site' => 'on',
 									'multilang_public' => 'on',
 									'multilang_crayons' => 'on')
@@ -564,6 +563,32 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta('gis',serialize($config_gis),'oui');
 			
 			ecrire_meta($nom_meta_base_version,$current_version='0.2.2','non');
+		}
+		if(version_compare($current_version,'0.3.0','<')){
+			/**
+			 * On ajoute diogène et collection dans multilang
+			 */
+			$config_multilang = lire_config('multilang',array(
+									'siteconfig' => 'on',
+									'rubrique' => 'on',
+									'auteur' => 'on',
+									'document' => 'on',
+									'diogene' => 'on',
+									'collection' => 'on',
+									'site' => 'on',
+									'multilang_public' => 'on',
+									'multilang_crayons' => 'on')
+								);
+			$config_multilang['diogene'] = 'on';
+			$config_multilang['collection'] = 'on';
+			ecrire_meta("multilang",serialize($config_multilang));
+			
+			/**
+			 * Activation des documents sur les articles
+			 */
+			ecrire_meta("documents_objets", implode(',',array('spip_articles')));
+			
+			ecrire_meta($nom_meta_base_version,$current_version='0.3.0','non');
 		}
 	}
 }
