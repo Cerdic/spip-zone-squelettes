@@ -132,6 +132,26 @@
 
           <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Couleur page</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleurpage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coulpage="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FFFFFF})]";
+            if(isset($_POST["reinitpage"])) { $coulpage="#FFFFFF"; }
+            if(isset($_POST["reinitF"])) { $coulpage="#FFFFFF"; }
+            ?>
+                    (par défaut : #FFFFFF)<br />
+                    fond des pages  (on peut aussi écrire "transparent", ce qui peut être sympa avec une image de fond)
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style="background-color:<?php echo "$coulpage"; ?>">
+                             <input type="texte" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$coulpage"; ?>" />
+                             <input type="submit" name="reinitpage" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Couleur 1</strong></label>
                     <br />
             <div class="explication">
@@ -162,7 +182,7 @@
             if(isset($_POST["reinitF"])) { $coul2="#FFFFFF"; }
             ?>
                     (par défaut : #FFFFFF)<br />
-                    fond des pages, forum, agenda
+                    fond des articles, forum, agenda
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul2"; ?>">

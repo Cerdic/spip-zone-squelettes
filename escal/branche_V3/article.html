@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
 
+<BOUCLE_article_principal(ARTICLES){id_article}>
+
   <head>
-    <BOUCLE_head(ARTICLES){id_article}>
       <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
       <meta name="Description" content="[(#INTRODUCTION|couper{150}|textebrut)]" />
       <meta name="Keywords" content=" <BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>" />
@@ -11,7 +12,6 @@
       <BOUCLE_couleur_article(HIERARCHIE){id_rubrique}{id_article}{0,1}>
       [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
       </BOUCLE_couleur_article>
-    </BOUCLE_head>
 
 
       [(#REM) appel de la feuille de style pour l'impression ]
@@ -23,8 +23,7 @@
         <div id="conteneur">
 
           <div id="entete">
-
-            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-bandeau}{env}>
 
             [(#CONFIG{escal/config/menuH}|=={non}|non)
               [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
@@ -66,8 +65,8 @@
 
           </div>
 
-          <!-- on se met dans le contexte de l'article appelé -->
-          <BOUCLE_article_principal(ARTICLES){id_article}{doublons}>
+
+          <BOUCLE_article_central(ARTICLES){id_article}{doublons}>
 
             <div id="page">
               <div id="contenu">
@@ -141,7 +140,7 @@
 
             </div>
 
-          </BOUCLE_article_principal>
+          </BOUCLE_article_central>
           
             <div id="page">
               <div id="contenu">
@@ -163,7 +162,7 @@
               </div>
             </div>
             
-          <//B_article_principal>
+          <//B_article_central>
 
             <div id="pied">
               <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
@@ -173,4 +172,5 @@
       </div>
     </div>
   </body>
+</BOUCLE_article_principal>
 </html>

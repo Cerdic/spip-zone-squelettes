@@ -81,13 +81,14 @@
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
               <br /><br />
+
               #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               Ou remplacement du logo par défaut par votre image qui doit être placée dans /squelettes/images/bandeau <br />
               Toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
               Avec Firefox, vous aurez même un aperçu de votre bandeau en direct !
               <br /><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
+                    ]<div class="choix">
 
 <script type="text/javascript">
       function descriptifOption(id, display, text){
@@ -109,13 +110,13 @@
                         ]
 
                         [(#CONFIG{escal/config/fondbandeau}|?{
-                          [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+                          [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{388})]
                           ,
                           [(#CONFIG{escal/config/fondbandeau2}|?{
-                            [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+                            [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}|balise_img{<:escal:bandeau:>}|image_reduire{388})]
                             ,
                             [(#CONFIG{escal/config/logobandeaunon}|=={oui}|non)
-                            [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+                            [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{388})]
                             ]
                             })]
                         })]
@@ -158,7 +159,14 @@
                              <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
                     </span>
 
-                    </span>
+
+              <br /><br />
+              Un bandeau en fonction du secteur ?<br />
+              Si votre dossier /squelettes/images/bandeau contient une image appelée rubriqueXX.jpg où XX est le numéro d'un secteur,
+              alors ce secteur, ses sous-rubriques et leurs articles afficheront ce bandeau.
+              Les autres afficheront le bandeau défini au-dessus ou sinon le logo d'Escal
+
+                    </div>
               <br />
             </div>
             </li>
