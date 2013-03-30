@@ -286,6 +286,18 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},11})]"  />
                     </span>
                     <br /><br />
+            #SET{name,nbrecol}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre de colonnes
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_un" value="1"
+                            [(#ENV{#GET{name}}|=={1}|oui)checked="checked"] /><label for="#GET{name}_date">Une</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_deux" value="2"
+                            [(#ENV{#GET{name}}|=={2}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_hasard">Deux</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_utrois" value="3"
+                            [(#ENV{#GET{name}}|=={3}|oui)checked="checked"] /><label for="#GET{name}_date">Trois</label>
+                    </span>
+                    <br /><br />
             #SET{name,ordrealaune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Ordre d'affichage
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -326,9 +338,9 @@
                     </span>
                     <br /><br />
             #SET{name,hauteurblocsune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Hauteur des cadres (en px)
+                    Hauteur des cadres en px <br />(à adapter en fonction de vos choix précédents)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
+                    ]<span class="choix" style="margin-left: 10px">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},70})]"  />
                     </span>
              </div>

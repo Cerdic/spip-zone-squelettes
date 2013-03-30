@@ -15,49 +15,67 @@
 	</BOUCLE_exclure_art_menu>
 
 
- <!-- affichage des autres rubriques -->
+<!-- affichage des autres rubriques -->
     <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons rubriques}>
 	   <li class="#EXPOSE">
-	   <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
+	   <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>
+     [(#TITRE)]
      <BOUCLE_test(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_test>
      </a>
-     
-      <B_articles_racine1>
-				<ul class="articles">
-					<BOUCLE_articles_racine1(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{inverse}{doublons articles}>
-					<li class="#EXPOSE">
-					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-					</li>
-					</BOUCLE_articles_racine1>
+
+      <B_articles_racine>
+				<ul>
+					<BOUCLE_articles_racine(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{inverse}{doublons articles}>
+  					<li class="#EXPOSE">
+  					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+  					</li>
+					</BOUCLE_articles_racine>
+					
+  				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+            <li class="#EXPOSE">
+    				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
+    						<BOUCLE_test2(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test2>
+    			    </a>
+
+                	<B_articles_rubrique>
+            				<ul class="articles">
+            					<BOUCLE_articles_rubrique(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
+            					<li class="#EXPOSE">
+            					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+            					</li>
+            					</BOUCLE_articles_rubrique>
+            				</ul>
+            			</B_articles_rubrique>
+            			
+            </li>
+    			</BOUCLE_rubriques>
 				</ul>
-			</B_articles_racine1>
+			</B_articles_racine>
+			
+  				<B_rubriques_si_vide>
+  				<ul>
+  				<BOUCLE_rubriques_si_vide(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+            <li class="#EXPOSE">
+    				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
+    						<BOUCLE_test3(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test3>
+    			    </a>
 
-
-
-  			<!-- affichage des sous-menus -->
-  			<B_rubriques>
-			  <ul>
-				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
-          <li class="#EXPOSE">
-				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
-						<BOUCLE_test2(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test2>
-			    </a>
-			<B_articles_rubrique>
-				<ul class="articles">
-					<BOUCLE_articles_rubrique(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
-					<li class="#EXPOSE">
-					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-					</li>
-					</BOUCLE_articles_rubrique>
-				</ul>
-			</B_articles_rubrique>
-				  
-
-			    <BOUCLE_sousmenu(boucle_rubriques)></BOUCLE_sousmenu>
-			    </li>
-				</BOUCLE_rubriques>
-			  </ul>
-				</B_rubriques>
+                	<B_articles_rubrique2>
+            				<ul class="articles">
+            					<BOUCLE_articles_rubrique2(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
+            					<li class="#EXPOSE">
+            					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+            					</li>
+            					</BOUCLE_articles_rubrique2>
+            				</ul>
+            			</B_articles_rubrique2>
+    			    
+    			  </li>
+    			</BOUCLE_rubriques_si_vide>
+    			</ul>
+    			</B_rubriques_si_vide>
+			
+			 <//B_articles_racine>
 
      </li>
 	</BOUCLE_secteur>
