@@ -7,7 +7,9 @@
 	<div class="texte">
 		<:sarkaspip:docu_commentaire:>&nbsp;:&nbsp;
 <BOUCLE_document(DOCUMENTS){id_forum}{", "}>
-		<a href="#URL_DOCUMENT">[(#FICHIER|basename)]</a>
+		#SET{classe, ''}
+		[(#EXTENSION|match{'^(gif|jpg|png)$'}|oui) #SET{classe, mediabox}]
+		<a href="#URL_DOCUMENT"[ class=(#GET{classe})]>[(#FICHIER|basename)]</a>
 </BOUCLE_document>
 	</div>
 </B_document>
