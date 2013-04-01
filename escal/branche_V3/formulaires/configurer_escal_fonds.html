@@ -132,7 +132,7 @@
 
           <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Couleur page</strong></label>
+                    <label><strong>Pages</strong></label>
                     <br />
             <div class="explication">
             #SET{name,couleurpage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -148,6 +148,63 @@
                     ]<div class="choix" style="background-color:<?php echo "$coulpage"; ?>">
                              <input type="texte" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$coulpage"; ?>" />
                              <input type="submit" name="reinitpage" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Blocs à la une</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleurune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coulune="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+            if(isset($_POST["reinitune"])) { $coulune="#336699"; }
+            if(isset($_POST["reinitF"])) { $coulune="#336699"; }
+            ?>
+                    (par défaut : #336699)<br />
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style="background-color:<?php echo "$coulune"; ?>">
+                             <input type="texte"  class="palette" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$coulune"; ?>" />
+                             <input type="submit" name="reinitune" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Onglets inactifs en une</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleuruneinact}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $couluneinact="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#82ADE2})]";
+            if(isset($_POST["reinituneinact"])) { $couluneinact="#82ADE2"; }
+            if(isset($_POST["reinitF"])) { $couluneinact="#82ADE2"; }
+            ?>
+                    (par défaut : #82ADE2)<br />
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style="background-color:<?php echo "$couluneinact"; ?>">
+                             <input type="texte"  class="palette" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$couluneinact"; ?>" />
+                             <input type="submit" name="reinituneinact" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Derniers articles en une</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleuruneart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $couluneart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DAE6F6})]";
+            if(isset($_POST["reinituneart"])) { $couluneart="#DAE6F6"; }
+            if(isset($_POST["reinitF"])) { $couluneart="#DAE6F6"; }
+            ?>
+                    (par défaut : #DAE6F6)<br />
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style="background-color:<?php echo "$couluneart"; ?>">
+                             <input type="texte"  class="palette" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$couluneart"; ?>" />
+                             <input type="submit" name="reinituneart" class="submit" value="Réinitialiser" />
                     </div>
             </li>
             
@@ -202,7 +259,7 @@
             if(isset($_POST["reinitF"])) { $coul3="#336699"; }
             ?>
                     (par défaut : #336699)<br />
-                    bandeau et menu horizontal, liens survolés du menu vertical déroulant à droite, bloc à la une et onglet actif, encart des entetes pour les rubriques et les articles, plan, forum
+                    menu horizontal, liens survolés du menu vertical déroulant à droite, encart des entetes pour les rubriques et les articles, plan, forum
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul3"; ?>">
@@ -242,7 +299,7 @@
             if(isset($_POST["reinitF"])) { $coul5="#82ADE2"; }
             ?>
                     (par défaut : #82ADE2)<br />
-                    menu vertical 2, titre et bords cadres latéraux, onglets à la une inactifs, entete tableaux, calendrier, évènements, ...
+                    menu vertical 2, titre et bords cadres latéraux, entete tableaux, calendrier, évènements, ...
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul5"; ?>">
@@ -302,7 +359,7 @@
             if(isset($_POST["reinitF"])) { $coul8="#DAE6F6"; }
             ?>
                     (par défaut : #DAE6F6)<br />
-                    texte des cadres latéraux, agenda
+                    texte des cadres latéraux
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul8"; ?>">
@@ -317,12 +374,12 @@
             <div class="explication">
             #SET{name,couleur9}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <?php
-            $coul9="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DAE6F6})]";
-            if(isset($_POST["reinit9"])) { $coul9="#DAE6F6"; }
-            if(isset($_POST["reinitF"])) { $coul9="#DAE6F6"; }
+            $coul9="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+            if(isset($_POST["reinit9"])) { $coul9="#336699"; }
+            if(isset($_POST["reinitF"])) { $coul9="#336699"; }
             ?>
-                    (par défaut : #DAE6F6)<br />
-                    articles bloc à la une
+                    (par défaut : #336699)<br />
+                    bandeau
                     </div>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix" style=" background-color:<?php echo "$coul9"; ?>">

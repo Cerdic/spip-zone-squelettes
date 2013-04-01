@@ -12,26 +12,28 @@
 <!------------------------------>
 <!-- Gérer l'image du bandeau -->
 <!------------------------------>
-            <div class="explication">Gérer l'image du bandeau</div>
 
      <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>choix de l'option</strong></label>
+                    <label><strong>choix de l'option pour l'image du bandeau</strong></label>
                     <br />
             <div class="explication">
               #SET{name,optionbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               <strong>Option 1</strong> : affichage du logo d'Escal (par défaut)<br />
               <strong>Option 2</strong> : affichage du logo du site<br />
               <strong>Option 3</strong> : affichage d'un bandeau personnalisé<br />
+              <strong>Option 4</strong> : aucune image<br />
               <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_option1" value="option1"
-                            [(#ENV{#GET{name}}|=={option1}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] /><label for="#GET{name}_oui">option 1</label>
+                            [(#ENV{#GET{name}}|=={option1}|oui)checked="checked"] /><label for="#GET{name}_oui">option 1</label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_option2" value="option2"
-                            [(#ENV{#GET{name}}|=={option2}|oui)checked="checked"] /><label for="#GET{name}_oui">option 2</label>
+                            [(#ENV{#GET{name}}|=={option2}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] /><label for="#GET{name}_oui">option 2</label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_option3" value="option3"
                             [(#ENV{#GET{name}}|=={option3}|oui)checked="checked"] /><label for="#GET{name}_oui">option 3</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_option4" value="option4"
+                            [(#ENV{#GET{name}}|=={option4}|oui)checked="checked"] /><label for="#GET{name}_oui">option 4</label>
                     </span>
               <br /><br /><br />
 
@@ -127,6 +129,8 @@
             </li>
             
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+              <label><strong>choix des textes du bandeau</strong></label>
+              <br />
             <div class="explication">
               #SET{name,nomsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
               Nom du site présent
