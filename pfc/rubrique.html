@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#INCLURE{fond=inclure/entete}
+	</head>
+	<body>
+		<div data-role="page" id="page1">
+			<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+			<div data-theme="a" data-role="header">
+				<h3>#TITRE</h3>
+			</div>
+			<div data-role="content">
+				<B_hierarchie>
+				<div id="hierarchie">
+				<BOUCLE_hierarchie(HIERARCHIE){id_rubrique}{", "}>
+					<a href="#URL_SITE_SPIP/#URL_RUBRIQUE">#TITRE</a>
+				</BOUCLE_hierarchie>
+				</div>
+				<br class="spacer"/>
+				</B_hierarchie>
+				<div>#TEXTE</div>
+				<ul data-role="listview" data-divider-theme="b" data-inset="true">
+					<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}>
+					<li data-theme="c"><a href="#URL_SITE_SPIP/#URL_ARTICLE" data-transition="slide" data-ajax="false">#TITRE</a></li>
+					</BOUCLE_articles>
+					<BOUCLE_sous-rubriques(RUBRIQUES){id_parent}{par num titre}>
+					<li data-theme="a"><a href="#URL_SITE_SPIP/#URL_RUBRIQUE" data-transition="slide" data-ajax="false">#TITRE</a></li>
+					</BOUCLE_sous-rubriques>
+				</ul>
+			</div>
+			#INCLURE{fond=inclure/pied}
+			</BOUCLE_rubrique>
+		</div>
+	</body>
+</html>
+
