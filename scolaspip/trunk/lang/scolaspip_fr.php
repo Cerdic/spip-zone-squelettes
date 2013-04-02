@@ -169,6 +169,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'logo_1' => 'Image (logo du site)',
     'logo_2' => 'Image (logo du site) + Titre + Slogan',
     'lien_externe'=>'Lien externe',
+    'liens'=>'Liens',
     'liens_utiles'=>'Liens utiles',
     'liens_deroulants'=>'Afficher les liens vers les sites dans un menu déroulant ?',
 
@@ -223,6 +224,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'sites_selectionnes'=>'Tous les sites sélectionnés',
     'styles_predefinis'=>'Styles prédéfinis (choix de palettes de couleurs)',
     'sur'=>'sur',
+    'sommaire'=>'Sommaire',
 
 // t
     'titre_page_configurer_scolaspip' => 'Réglages ScolaSPIP',
