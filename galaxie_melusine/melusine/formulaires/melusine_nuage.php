@@ -34,8 +34,8 @@ function formulaires_melusine_nuage_traiter(){
 	$texte="<tags>\n";
 	if($mots){
 		foreach ($mots as $value){
-			$tab_mot=explode(" ",$value[titre]);
-			$titre=str_replace($tab_mot[0],"",$value[titre]);
+			$tab_mot=explode(" ",$value['titre']);
+			$titre=str_replace($tab_mot[0],"",$value['titre']);
 			$pattern="/^( [0-9])\. /";
 			$titre=preg_replace($pattern,"",$titre);
 			$chemin_id="melusine_nuage/mot/".$tab_mot[0]."/id";
@@ -44,9 +44,9 @@ function formulaires_melusine_nuage_traiter(){
 			if ($titre){
 				ecrire_config($chemin_id,$tab_mot[0]);
 				ecrire_config($chemin_tit,$titre);
-				ecrire_config($chemin_taille,$value[taille]);
+				ecrire_config($chemin_taille,$value['taille']);
 				$couleur_mot=str_replace("#","0x",$couleur);
-				$texte.="<a href='spip.php?page=mot&id_mot=".$tab_mot[0]."'  rel='tag' style='font-size:".$value[taille]."px;' color='".$couleur_mot."' >".$titre."</a>\n";
+				$texte.="<a href='spip.php?page=mot&id_mot=".$tab_mot[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_mot."' >".$titre."</a>\n";
 			}
 		
 		};
@@ -54,8 +54,8 @@ function formulaires_melusine_nuage_traiter(){
 	$articles=_request('article',$tableau2);
 	if($articles){
 		foreach ($articles as $value){
-			$tab_article=explode(" ",$value[titre]);
-			$titre=str_replace($tab_article[0],"",$value[titre]);
+			$tab_article=explode(" ",$value['titre']);
+			$titre=str_replace($tab_article[0],"",$value['titre']);
 			$pattern="/^( [0-9])\. /";
 			$titre=preg_replace($pattern,"",$titre);
 			$chemin_id="melusine_nuage/article/".$tab_article[0]."/id";
@@ -64,9 +64,9 @@ function formulaires_melusine_nuage_traiter(){
 			if ($titre){
 				ecrire_config($chemin_id,$tab_article[0]);
 				ecrire_config($chemin_tit,$titre);
-				ecrire_config($chemin_taille,$value[taille]);
+				ecrire_config($chemin_taille,$value['taille']);
 				$couleur_article=str_replace("#","0x",$couleur);
-				$texte.="<a href='spip.php?page=article&id_article=".$tab_article[0]."'  rel='tag' style='font-size:".$value[taille]."px;' color='".$couleur_article."' >".$titre."</a>\n";
+				$texte.="<a href='spip.php?page=article&id_article=".$tab_article[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_article."' >".$titre."</a>\n";
 			}
 		};
 	};
