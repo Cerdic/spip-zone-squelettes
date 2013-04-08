@@ -66,16 +66,28 @@
 	</BOUCLE_perso2>
 
 	<B_perso3>
-	<div id="scrollup5">
-  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{!doublons special}{lang}>
-  <div class="headline5" >
-  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">#TITRE</a>
+    <p style="align:right">#PAGINATION</p>
+  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listetexte}|oui}{!doublons special}{lang}{par date}{inverse}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+  <div class="titre-article-cadre" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut)"]>#TITRE</a>
   <div class="intro">
   [(#INTRODUCTION|couper{80}|propre)]
   </div>
   </div>
   </BOUCLE_perso3>
+
+  
+  <B_perso4>
+	<div id="scrollup5">
+  <BOUCLE_perso4(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{!doublons special}{lang}{par date}{inverse}>
+  <div class="headline5" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})] [title="(#DESCRIPTIF|textebrut)"]">#TITRE</a>
+  <div class="intro">
+  [(#INTRODUCTION|couper{80}|propre)]
   </div>
-  </B_perso3>
+  </div>
+  </BOUCLE_perso4>
+  </div>
+  </B_perso4>
   
 	</div><!-- fin texte -->

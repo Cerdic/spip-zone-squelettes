@@ -656,16 +656,19 @@
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_date" value="listedateauteur"
-                            [(#ENV{#GET{name}}|=={listedateauteur}|oui)checked="checked"] /><label for="#GET{name}_date">Liste avec titre (et lien), date de publication et auteur</label>
+                            [(#ENV{#GET{name}}|=={listedateauteur}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_date">Liste avec titre (et lien), date de publication et auteur</label>
                             <br />
-                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="listesimple"
+                            <input type="radio" name="#GET{name}" id="#GET{name}_simple" value="listesimple"
                             [(#ENV{#GET{name}}|=={listesimple}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste avec titre (et lien) seul</label>
                             <br />
-                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="listedefilante"
-                            [(#ENV{#GET{name}}|=={listedefilante}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste défilante avec titre et début du texte</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_texte" value="listetexte"
+                            [(#ENV{#GET{name}}|=={listetexte}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste avec titre (et lien) et début du texte</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_defil" value="listedefilante"
+                            [(#ENV{#GET{name}}|=={listedefilante}|oui)checked="checked"] /><label for="#GET{name}_hasard">Liste défilante avec titre (et lien) et début du texte</label>
                     </span>
             <br /><br />
-            <strong>Pour les 2 premiers choix : </strong><br />
+            <strong>Pour les 3 premiers choix : </strong><br />
             #SET{name,nombreartperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -680,7 +683,7 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
             <br /><br />
-            <strong>Pour le troisième choix : </strong><br />
+            <strong>Pour le quatrième choix : </strong><br />
             #SET{name,tempoperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Temporisation entre chaque logo de site (en secondes)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
