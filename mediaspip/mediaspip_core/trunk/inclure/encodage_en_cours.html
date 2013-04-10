@@ -1,0 +1,67 @@
+[(#REM)
+
+	Afficher l'état de l'encodage du document
+	
+]
+#CACHE{0}
+[(#SET{a_encoder,0})]
+[(#SET{attente_avant,0})]
+[(#SET{id_a_encoder,#ARRAY})]
+[(#SET{formats_encodes,#ARRAY})]
+<B_encodages>
+	<BOUCLE_encodages(FACD_CONVERSIONS?){id_document}{statut != oui}{fusion extension}>
+		[(#SET{a_encoder,[(#GET{a_encoder}|plus{1})]})]
+		[(#STATUT|=={erreur}|oui)[(#SET{erreur,oui})]]
+		[(#SET{id_a_encoder,[(#GET{id_a_encoder}|push{#ID_FACD_CONVERSION})]})]
+	</BOUCLE_encodages>
+	[(#SET{premier_encoder,[(#GET{id_a_encoder}|min)]})]
+	<BOUCLE_attentes(FACD_CONVERSIONS?){id_facd_conversion < #GET{premier_encoder}}{statut !IN oui,erreur}> </BOUCLE_attentes>
+	[(#SET{attente_avant,#TOTAL_BOUCLE})]
+	</B_attentes>
+	<BOUCLE_doc_en_cours(FACD_CONVERSIONS?){id_document}{statut = en_cours}>
+	[(#SET{en_cours,oui})]
+	</BOUCLE_doc_en_cours>
+	[(#GET{a_encoder}|>{0}|oui)
+	[(#BOITE_OUVRIR{'',info_importante [(#GET{erreur}|?{erreur,notice})]})]
+		[(#GET{a_encoder}|=={1}|oui)<p><:spipmotion:info_document_encodage_en_cours_unique{nb=#GET{a_encoder}}:></p>]
+		[(#GET{a_encoder}|>{1}|oui)<p><:spipmotion:info_document_encodage_en_cours_plusieurs{nb=#GET{a_encoder}}:></p>]
+		[(#GET{erreur}|oui)
+			<p><:spipmotion:info_document_encodage_en_erreur:></p>
+			[(#AUTORISER{configurer}|oui)
+				#SET{url_configurer,#URL_PAGE{ms_config,ms_config=facd_file}}
+				<p><:spipmotion:info_document_encodage_en_erreur_relancer_url{url=#GET{url_configurer}}:></p>
+			]
+			[(#AUTORISER{configurer}|non|et{#AUTORISER{modifier,document,#ENV{id_document}}|oui}|oui)
+				<p><:spipmotion:info_document_encodage_en_erreur_contacter:></p>
+			]
+		][(#GET{erreur}|non)
+			[(#GET{en_cours}|non)
+			[(#GET{attente_avant}|>{1}|oui)<p><:spipmotion:info_document_encodage_en_cours_attente_avant{nb=#GET{attente_avant}}:>]
+			[(#GET{attente_avant}|<={1}|oui)<p><:spipmotion:info_document_encodage_en_cours_attente_avant_unique:>]]
+			[(#GET{en_cours}|oui)
+			<p><:facd:info_document_conversion:></p>]
+			<p><a href="[(#SELF|parametre_url{relance,''}|parametre_url{id_document,''}|parametre_url{id_rubrique,''}|parametre_url{hasard,[(#VAL{0}|rand{10000000000})]})]" id="facd_recharge_#ENV{id_document}" class="ajax"><:facd:lien_recharger:></a></p>
+		]
+	#BOITE_FERMER
+	<script type="text/javascript">
+		var refresh_#ENV{id_document} = function(){
+			jQuery('#facd_recharge_#ENV{id_document}').click();
+		}
+		clearTimeout(refresh_#ENV{id_document});
+		setTimeout(refresh_#ENV{id_document},90000);
+	</script>]
+</B_encodages>
+[(#REM)
+
+	Il n'y a plus d'encodage en cours pour cet article mais on a un hasard dans l'url, 
+	cela signifie que l'on vient du reload automatique.
+	
+	On affiche que tout est ok et que l'utilisateur peut recharger la page (avec un bouton présent) 
+	pour voir le contenu final. 
+][(#ENV{hasard}|oui)
+#BOITE_OUVRIR{'','notice info_importante'}
+	<p><:spipmotion:info_document_encodage_termine:></p>
+	<p><:spipmotion:info_document_encodage_termine_recharge:></p>
+#BOITE_FERMER]
+<//B_encodages>
+#FILTRE{trim}

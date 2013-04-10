@@ -1,0 +1,14 @@
+[(#REM)
+
+	Affiche une seconde hierarchie d'un article placé dans plusieurs rubriques
+	Utilisé lorsque le plugin polyhierarchie est présent
+
+]
+#CACHE{3600*100}
+<BOUCLE_art(ARTICLES){id_article}>
+<B_polyhier_art>
+<p id="polyhierarchie" class="hierarchie">[(#GRAND_TOTAL|singulier_ou_pluriel{<:polyhier:label_autre_parent:>,<:polyhier:label_autres_parents:>})] : 
+<BOUCLE_polyhier_art(RUBRIQUES){parents_indirects}{par titre}{', '}><a href="[(#URL_RUBRIQUE)]">[(#TITRE)]</a></BOUCLE_polyhier_art>
+</p>
+</B_polyhier_art>
+</BOUCLE_art>

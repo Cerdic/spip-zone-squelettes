@@ -1,0 +1,30 @@
+[(#REM)
+
+  Squelette Presentation d'un article dans une liste
+  (c) 2009 Zpip
+  Distribue sous licence GPL
+
+]
+<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+#SET{config_page_article,#CONFIG{mediaspip/medias,#ARRAY}}
+<li class="item hentry #ENV{class}"[ (#ENV{compte}|alterner{style="clear:both",''})]>
+	<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+	#SET{info-publi_cache,non}
+	[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|oui)
+	[(#VAL{info_auteur}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|oui)
+		#SET{info-publi_cache,oui}]]
+	[(#GET{info-publi_cache}|!={oui}|oui)
+	<p class="info-publi">#SET{info_publie,non}
+		[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|non)#SET{info_publie,oui}[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]][[[<span class="sep">,(#GET{info_publie}|=={oui}|oui)</span>]<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|table_valeur{infos_cachees_article}|sinon{#ARRAY})]}|non)]
+	</p>]
+	[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{300})</div>]
+	<div class="meta-publi">
+	<a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span></a>
+	<BOUCLE_nb_commentaires(FORUMS?){id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+		<span class="sep">|</span>
+		<a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>
+		]
+	<//B_nb_commentaires>
+	</div>
+</li>
+</BOUCLE_articles>

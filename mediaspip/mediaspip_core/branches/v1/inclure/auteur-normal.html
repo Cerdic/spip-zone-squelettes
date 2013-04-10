@@ -1,0 +1,88 @@
+[(#REM)
+	Contenu central d'une page auteur
+	vue par les autres visiteurs qu'ils soient identifiés
+	ou pas
+]
+
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tout}>
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><strong class="on">(#NOM|couper{80})</strong>]</p>
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">#NOM</h1>
+		</div>
+		[(#ENV{email_modif}|=={ok}|oui)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_ok"><:mediaspip_core:message_modif_email_ok:></p>
+		</div>]
+		[(#ENV{email_confirm}|oui)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur"><:form_auteur_envoi_mail_confirmation{email=#ENV{email_confirm}}:></p>
+		</div>]
+		<div class="infos_auteur">
+			[(#PLUGIN{inscription3}|oui)
+				#MODELE{fiche_utilisateur,id=#ID_AUTEUR,env}
+			]
+			[(#PLUGIN{inscription3}|non)
+				[<div class="#EDIT{qui} fn"><:mediaspip_core:auteur_nom:> (#NOM)</div>]
+				[<div class="texte statut"><:mediaspip_core:auteur_statut:> (#STATUT|ms_traduire_statut)</div>]
+				[<div class="#EDIT{bio} texte"><:mediaspip_core:auteur_bio:> (#BIO)</div>]
+				[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			]
+		</div>
+	</div>[(#REM) / vcard]
+
+	<BOUCLE_articles(ARTICLES) {id_auteur} {!par popularite} {id_secteur=#CONFIG{mediaspip/rubriques/medias}}> </BOUCLE_articles>
+	[(#SET{titre_liste,[<:mediaspip_core:articles_medias_auteur{login=#NOM}:> ((#GRAND_TOTAL))]})]
+	#INCLURE{fond=inclure/articles-medias_liste,env,titre_liste=#GET{titre_liste},couper=40,limite_pagination=3,ajax}
+	</B_articles>
+	<BOUCLE_articles_autres(ARTICLES){id_auteur}{id_secteur!=#CONFIG{mediaspip/rubriques/medias}}{par id_secteur}{0,1}>
+	</BOUCLE_articles_autres>
+	<div class="liste articles">
+		<h2 class="h2"><:mediaspip_core:articles_autres_auteur{login=#NOM}:></h2>
+		<BOUCLE_secteurs(RUBRIQUES){racine}{id_secteur!=#CONFIG{mediaspip/rubriques/medias}}{par id_secteur}>
+			<B_articles_secteurs>
+			<h3 class="h3">#_secteurs:TITRE</h3>
+			<ul class="liste-items">
+				<BOUCLE_articles_secteurs(ARTICLES){id_secteur}{id_auteur}{!par date} {par #ENV{tri,date}}{pagination 5}>
+				#INCLURE{fond=inclure/article-autres-secteurs,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette}
+				</BOUCLE_articles_secteurs>
+			</ul>
+			</B_articles_secteurs>
+		</BOUCLE_secteurs>
+		<B_articles_secteurs_zero>
+			<h3 class="h3"><:mediaspip_core:titre_secteur_zero:></h3>
+			<ul class="liste-items">
+				<BOUCLE_articles_secteurs_zero(ARTICLES){id_secteur=0}{id_auteur}{!par date} {par #ENV{tri,popularite}}{pagination 5}>
+				#INCLURE{fond=inclure/article-autres-secteurs,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette}
+				</BOUCLE_articles_secteurs_zero>
+			</ul>
+		</B_articles_secteurs_zero>
+		<br class="nettoyeur" />
+	</div>
+	</B_articles_autres>
+	<//B_articles_autres>
+	<BOUCLE_spipicious(CONDITION){si #PLUGINS{SPIPICIOUS}|et{#PLUGINS{NUAGE}}|oui}>
+		<B_tags>
+		<div class="liste tags">
+			<h2 class="h2"><:mediaspip_core:titre_auteur_tags{login=#NOM}:></h2>
+			<div>
+			<BOUCLE_tags(SPIPICIOUS){id_auteur}{0,1}>#MODELE{spipicious_nuage_auteur,id_auteur}</BOUCLE_tags>
+			</div>
+		</div>
+		</B_tags>
+	</BOUCLE_spipicious>
+</div>
+[<div class="auteur_contacter">
+	<h2 class="h2"><:mediaspip_core:auteur_contacter{login=#NOM}:></h2>
+	(#FORMULAIRE_ECRIRE_AUTEUR)
+</div>]
+</BOUCLE_contenu_auteur>

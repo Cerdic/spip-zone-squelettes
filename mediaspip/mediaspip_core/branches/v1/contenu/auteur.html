@@ -1,0 +1,11 @@
+[(#ENV{vue}|=={profil}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	<INCLURE{fond=inclure/auteur-profil_modifier}{env}>
+]
+
+[(#ENV{vue}|=={forums}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	<INCLURE{fond=inclure/auteur-forums_gerer,self=#SELF,env,ajax}>
+]
+
+[(#ENV{vue}|in_array{#ARRAY{0,profil,1,forums}}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|non)
+	<INCLURE{fond=inclure/auteur-normal}{env}>
+]

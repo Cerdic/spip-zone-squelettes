@@ -1,0 +1,30 @@
+[(#REM)
+
+	Squelette MediaSPIP Core
+	© 2010 kent1 
+	
+	La liste des autres auteurs appelée dans la navigation depuis une page auteur
+	-* On les affiche tous
+	-* On les appelle des visiteurs et non des auteurs
+	-* On exclu l'auteur sur lequel on se trouve
+	
+	Paramètres possibles du squelette :
+	-* id_auteur int : excluera un auteur de la liste (celui de la page auteur en cours par exemple)
+	-* titre string : le titre de la liste (sinon défaut)
+	-* pagination int : le nombre d'éléments de chaque pagination
+	-* pagination_type string : le type de modèle de pagination
+]
+<BOUCLE_extra_auteur(AUTEURS){id_auteur}{tout}>
+	<B_auteurs>
+	<div class="menu liste auteurs">
+		#ANCRE_PAGINATION
+		<h2 class="h2">[(#ENV{titre,<:mediaspip_core:info_utilisateurs:>})]</h2>
+		<ul class="liste-items">
+			<BOUCLE_auteurs(AUTEURS) {par nom}{exclus}{pagination #ENV{pagination,15}}{tout}>
+			<li class="item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
+			</BOUCLE_auteurs>
+		</ul>
+		[<p class="pagination">(#PAGINATION{#ENV{pagination_type,''}})</p>]
+	</div>
+	</B_auteurs>
+</BOUCLE_extra_auteur>

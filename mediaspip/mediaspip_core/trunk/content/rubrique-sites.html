@@ -1,0 +1,44 @@
+[(#REM)
+
+	Squelette spécifique à la rubriques des Sites
+	
+	Affiche une liste des sites 
+	Affiche la liste des articles syndiqués des sites
+	
+]
+<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
+
+<div class="content-principal">
+	<div class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[<p class="info-publi"><span class="published"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</span></p>]
+	</div>
+
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+	[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+</div>
+
+<B_sites>
+<div class="liste sites">
+	#ANCRE_PAGINATION
+	<h2 class="h2"><:mediaspip_core:titre_sites:></h2>
+	<ul class="liste-items">
+	<BOUCLE_sites(SITES) {id_secteur=#CONFIG{mediaspip/rubriques/sites}} {par num nom_site, nom_site}{pagination 10}>
+		<li class="item">
+			[(#SYNDICATION|=={oui}|oui)
+			<a href="[(#ID_SYNDIC|generer_url_entite{site})]" class="[(#EXPOSE) ]spip_in"[ title="(#DESCRIPTIF|attribut_html|couper{80})"]>[(#NOM_SITE|couper{80})]</a>]
+			[(#SYNDICATION|=={oui}|non)
+			<a href="#URL_SITE" class="[(#EXPOSE) ]spip_out"[ title="(#DESCRIPTIF|attribut_html|couper{80})"]>[(#NOM_SITE|couper{80})]</a>]
+			[<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
+		</li>
+	</BOUCLE_sites>
+	</ul>
+</div>
+</B_sites>
+
+[(#INCLURE{fond=inclure/sites_liste_articles,id_secteur=#ID_SECTEUR,titre=<:mediaspip_core:titre_articles_sites:>,env,ajax})]
+
+</BOUCLE_contenu_rubrique>

@@ -1,0 +1,61 @@
+[(#REM)
+	Partie de navigation concernant les sites syndiqués ou pas 
+	
+	On affiche les sites eux mêmes dans une liste (paginés par défaut par 5)
+	On affiche également une liste des articles syndiqués (paginés par défaut par 10)
+	
+	Les paginations sont modifiables via deux choses :
+	-* passer dans l'environnement "pagination_limite_site" et "pagination_limite_syndics"
+	-* définir dans un define _NB_SITES_NAV et _NB_SYNDICS_NAV dans un fichier d'options 
+	(dans un plugin ou thème par exemple)
+	
+	Les arguments suivants peuvent être passés au squelette :
+	-* id_syndic (int) : n'affichera que les articles syndiqués d'un site en particulier
+	-* id_secteur (int) : affichera les articles syndiqués des sites du secteur X
+	-* id_rubrique (int) : affichera les articles syndiqués des sites de la rubrique X
+	-* age_max int (int) : affichera les articles inférieurs au nombre de jour indiqué
+	-* pagination_limite_site (int) : paginera les articles en fonction de ce chiffre (5 par défaut)
+	-* recherche (string) : une locution de recherche
+	-* titre_sites (string) : le titre du bloc qui liste les sites
+	-* titre_syndics (string) : le titre du bloc qui liste les articles syndiqués
+	-* type_pagination (string) : le type de pagination désirée, "page" par défaut
+]
+
+#SET{pagination_sites,#VAL{_NB_SITES_NAV}|defined|?{#EVAL{_NB_SITES_NAV},#CONFIG{mediaspip/home/nb_sites_nav,5}}}
+#SET{pagination_syndics,#VAL{_NB_SYNDICS_NAV}|defined|?{#EVAL{_NB_SYNDICS_NAV},#CONFIG{mediaspip/home/nb_syndics_nav,10}}}
+<B_sites>
+<div class="liste sites">
+	[<h2 class="h2">(#ENV{titre_sites,<:mediaspip_core:titre_sites:>})</h2>]
+	<ul class="menu-liste">
+	<BOUCLE_sites(SITES){si #GET{pagination_sites}|=={0}|non}{id_secteur=#CONFIG{mediaspip/rubriques/sites}} {par num nom_site, nom_site}{pagination #ENV{pagination_limite_sites,#GET{pagination_sites}}}>
+		<li class="menu-entree">
+			[(#SYNDICATION|=={oui}|oui)
+			<a href="[(#ID_SYNDIC|generer_url_entite{site})]"[ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html|couper{80})"]>[(#NOM_SITE|couper{80})]</a>]
+			[(#SYNDICATION|=={oui}|non)
+			<a href="#URL_SITE"[ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html|couper{80})"]>[(#NOM_SITE|couper{80})]</a>]
+		</li>
+	</BOUCLE_sites>
+	</ul>
+</div>
+</B_sites>
+<BOUCLE_ss_syndics_compte(SYNDIC_ARTICLES){id_syndic?}{id_secteur?}{id_rubrique?}{recherche?}{age<#ENV{age_max,10000}} {par date}{inverse}{0,#ENV{limite,50}}{doublons syndic} />
+
+<BOUCLE_si_syndics(CONDITION){si #GET{pagination_syndics}|=={0}|non}>
+<B_ss_syndics>
+<div class="menu syndics">
+	[(#ANCRE_PAGINATION)]
+	[<h2 class="h2">(#ENV{titre_syndics,<:mediaspip_core:titre_sites_syndics:>})</h2>]
+	<ul class="menu-liste">
+		<BOUCLE_ss_syndics(SYNDIC_ARTICLES){id_syndic?}{id_secteur?}{id_rubrique?}{recherche?}{age<#ENV{age_max,10000}} {par date}{inverse}{!doublons syndic} {pagination #ENV{pagination_limite_syndics,#GET{pagination_syndics}}}>
+			<li class="item">
+				[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr> &ndash; ]
+				<a href="[(#ID_SYNDIC|generer_url_entite{site})]" class="spip_in">[(#NOM_SITE|couper{#ENV{couper,20}})</a> &ndash; ]
+				<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html|couper{80})"] class="spip_out">#TITRE</a>
+			</li>
+		</BOUCLE_ss_syndics>
+	</ul>
+	[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
+</div>
+</B_ss_syndics>
+</BOUCLE_si_syndics>
+#FILTRE{trim}

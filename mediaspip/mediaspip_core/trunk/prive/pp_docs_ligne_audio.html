@@ -1,0 +1,32 @@
+<BOUCLE_document(DOCUMENTS){id_document}{tout}>
+<tr>
+	<td class="id">
+		<strong>#ID_DOCUMENT</strong>
+	</td>
+	<td class="logo">
+		[(#LOGO_DOCUMENT{normal,250,100}|inserer_attribut{alt,[(#TITRE|couper{60}|texte_backend)]})]
+	</td>
+	<td class="exif">
+		[<strong class="extension">(#EXTENSION)</strong>]
+		[<div class="dimensions">(#LARGEUR|?{[(#LARGEUR)[ x (#HAUTEUR) pixels]],''})</div>]
+		[<div class="taille">(#TAILLE|taille_en_octets)</div>]
+		[<div class="date">(#DATE|affdate{d/m/Y})</div>]
+	</td>
+	<td class="descriptif">
+		[<strong class="titre #EDIT{titre}">(#TITRE|sinon{[<em>(#FICHIER|basename)</em>]})</strong>]
+		[<div class="descriptif #EDIT{descriptif}">(#DESCRIPTIF)</div>]
+		[<p class="credits #EDIT{credits}">(#CREDITS)</p>]
+		<B_encodages>
+		<p class="encodages">
+		<:spipmotion:info_document_encode_formats:>
+		<BOUCLE_encodages(DOCUMENTS){mode = conversion}{objet=document}{id_objet=#ID_DOCUMENT}{', '}{tout}>#EXTENSION</BOUCLE_encodages>
+		</p>
+		</B_encodages>
+	</td>
+	<BOUCLE_type_doc(TYPES_DOCUMENTS){extension}>
+	<td class="raccourcis">
+		[(#ID_DOCUMENT|pp_docs_raccourcis_doc{#_document:TITRE,#_document:DESCRIPTIF,embed,300,200,#_document:MODE,#_document:VU})]
+	</td>
+	</BOUCLE_type_doc>
+</tr>
+</BOUCLE_document>

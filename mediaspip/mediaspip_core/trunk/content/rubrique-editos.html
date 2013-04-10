@@ -1,0 +1,54 @@
+[(#REM)
+
+	Squelette spécifique à la rubriques des Editos
+	
+	Affiche le dernier éditorial complètement
+	Affiche la liste des autres éditos
+	
+]<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
+
+<div class="content-principal">
+	<div class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[<p class="info-publi"><span class="published"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</span></p>]
+	</div>
+
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+	[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+</div>
+<BOUCLE_dernier_edito(ARTICLES){id_rubrique}{!par date}{doublons editos}>
+<div class="edito">
+	[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+	<h2 class="h2 #EDIT{titre}">#TITRE</h2>
+	[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+
+	<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+
+	<div class="surlignable">
+		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{500,0})</div>]
+	</div>
+	[<p class="#EDIT{hyperlien} hyperlien"><:mediaspip_core:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+	[<div class="ps">
+		<h2 class="h2"><:info_ps:></h2>
+		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
+	</div>]
+</div>
+</BOUCLE_dernier_edito>
+<B_articles>
+<div class="liste articles">
+	#ANCRE_PAGINATION
+	<h2 class="h2"><:articles_rubrique:></h2>
+	<ul class="liste-items">
+		<BOUCLE_articles(ARTICLES){id_rubrique}{!par date} {pagination 5}{doublons editos}>
+		#INCLURE{fond=inclure/article-resume,id_article}
+		</BOUCLE_articles>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_articles>
+</BOUCLE_contenu_rubrique>

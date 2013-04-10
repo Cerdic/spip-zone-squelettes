@@ -1,0 +1,55 @@
+[(#REM)
+	
+	Plugin MediaSPIP Core
+	© kent1 - http://www.kent1.info - GNU/GPL v3
+	
+	Bloc contenu de la page sommaire du site
+
+]#SET{blocs_caches_home,#CONFIG{mediaspip/home/blocs_cachees,#ARRAY}}
+
+<div class="content-principal">
+	<div class="cartouche invisible">
+		<h1 class="h1 invisible">#NOM_SITE_SPIP</h1>
+	</div>
+	[(#VAL{info_description_site}|in_array{#GET{blocs_caches_home}}|non)
+	[<div id="descriptif_site_spip"[ class="(#EDIT{meta-descriptif_site})"]>(#DESCRIPTIF_SITE_SPIP)</div>]]
+	[(#CONFIG{mediaspip/home/exergue,off}|=={on}|oui)
+	<div id="contenu-exergue">
+		#INCLURE{fond=inclure/exergue,env,ajax}
+	</div>]
+</div>
+<BOUCLE_une_publication(ARTICLES){0,1}> </BOUCLE_une_publication>
+[(#REM)
+
+	On n'affiche pas les derniers médias si on a configuré dans la conf de les cacher
+	
+][(#VAL{info_featured}|in_array{#GET{blocs_caches_home}}|non)
+[(#INCLURE{fond=inclure/articles-medias_liste,env,ajax})]]
+
+[(#REM)
+
+	On n'affiche pas les éditos si on a configuré dans la conf de les cacher
+	
+][(#VAL{info_editos}|in_array{#GET{blocs_caches_home}}|non)
+[(#INCLURE{fond=inclure/articles-editos,debut_articles_editos,ajax,env})]]
+[(#REM)
+
+	On n'affiche pas les news si on a configuré dans la conf de les cacher
+	
+][(#VAL{info_news}|in_array{#GET{blocs_caches_home}}|non)
+[(#INCLURE{fond=inclure/articles-actu,debut_articles_actus,ajax})]]
+
+[(#REM)
+	
+	On n'affiche les tags que si :
+	-* on n'a pas désactivé leur affichage dans la conf;
+	-* on a le plugin spipicious;
+	-* on a le plugin nuage;
+	
+]
+[(#VAL{info_tags}|in_array{#GET{blocs_caches_home}}|non|et{#PLUGINS{spipicious}|oui}|et{#PLUGINS{nuage}|oui}|oui)
+	[(#INCLURE{fond=inclure/articles-tags,ajax})]
+]
+</B_une_publication>
+<INCLURE{fond=inclure/aides/webmestre_premier_publication} />
+<//B_une_publication>

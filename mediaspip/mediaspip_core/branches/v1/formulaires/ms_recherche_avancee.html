@@ -1,0 +1,107 @@
+<div class="formulaire_spip formulaire_#FORM" id="formulaire_#FORM">
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+<form method="post" action="#ENV{action}"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul>
+		<li class="editer_recherche">
+			<label for="recherche_texte"><:mediaspip_core:label_rechercher_texte:></label>
+			<input type="text" class="text" size="40" name="recherche" id="recherche_texte"[ value="(#ENV{recherche})"] accesskey="4" />
+		</li>
+		<li class="editer_dates[(#ENV**{erreurs}|table_valeur{date_debut}|ou{[(#ENV**{erreurs}|table_valeur{date_fin})]}|oui)erreur]">
+			<label><:mediaspip_core:label_rechercher_dates:></label>
+			<div class="choix">
+				<label for="date_debut"><:mediaspip_core:label_rechercher_date_debut:></label>
+				<input type="text" class="date text" size="10" maxlength="10" name="date_debut" id="date_debut"[ value="(#ENV{date_debut})"] />
+				[<p class='erreur_message'>(#ENV**{erreurs}|table_valeur{date_debut})</p>]
+			</div>
+			<div class="choix">
+				<label for="date_fin"><:mediaspip_core:label_rechercher_date_fin:></label>
+				<input type="text" class="date text" size="10" maxlength="10" name="date_fin" id="date_fin"[ value="(#ENV{date_fin})"] />
+				[<p class='erreur_message'>(#ENV**{erreurs}|table_valeur{date_fin})</p>]
+			</div>
+		</li>
+		<B_langues>
+		[(#TOTAL_BOUCLE|>{1}|oui)
+		<li class="editer_langue">
+			<label for="lang_forcee"><:mediaspip_core:label_rechercher_langue:></label>
+			<select name="lang_forcee" id="lang_forcee">
+				<option value=""> - </option>]
+			<BOUCLE_langues(ARTICLES){fusion lang}>
+			[(#TOTAL_BOUCLE|>{1}|oui)
+				<option value="#LANG"[(#LANG|=={#ENV{lang_forcee}}|oui)selected="selected"]>[(#LANG|traduire_nom_langue)]</option>]
+			</BOUCLE_langues>
+			[(#TOTAL_BOUCLE|>{1}|oui)
+			</select>
+		</li>]
+		</B_langues>
+		<B_types>
+		<li class="editer_em_type">
+			<label for="em_type"><:mediaspip_core:label_rechercher_em_type:></label>
+			<select name="em_type" id="em_type">
+				<option value=""> - </option>
+			<BOUCLE_types(ARTICLES){fusion em_type}>
+				[(#EM_TYPE|=={normal}|non)
+				<option value="#EM_TYPE"[(#EM_TYPE|=={#ENV{em_type}}|oui)selected="selected"]>#EM_TYPE</option>]
+			</BOUCLE_types>
+			</select>
+		</li>
+		</B_types>
+		<B_rubriques>
+		<li class="editer_id_rubrique">
+			<label for="id_rubrique"><:mediaspip_core:label_rechercher_categorie:></label>
+			<select id="id_rubrique" name="id_rubrique">
+				<option value=""> - </option>
+			<BOUCLE_rubriques(RUBRIQUES){id_parent=#CONFIG{mediaspip/rubriques/medias}} {par num titre, titre}>
+				<option value="#ID_RUBRIQUE"[(#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)selected="selected"]>[(#TITRE|supprimer_numero|couper{80})]</option>
+				<B_sous_rubriques>
+				<optgroup label=" ">
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<option value="#ID_RUBRIQUE"[(#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)selected="selected"]>[(#TITRE|supprimer_numero|couper{80})]</option>
+						<BOUCLE_re(BOUCLE_sous_rubriques)> </BOUCLE_re>
+					</BOUCLE_sous_rubriques>
+				</optgroup>
+				</B_sous_rubriques>
+			</BOUCLE_rubriques>
+			</select>
+		</li>
+		</B_rubriques>
+		<BOUCLE_si_licence(CONDITION){si #PLUGIN{licence}|oui}>
+		<B_licences>
+		<li class="editer_id_licence">
+			<label for="id_licence"><:mediaspip_core:label_rechercher_licence:></label>
+			<select id="id_licence" name="licence_nom">
+				<option value=""> - </option>
+				<BOUCLE_licences(ARTICLES){fusion id_licence}>
+				[(#ID_LICENCE|=={0}|oui)
+				<option value="ss_licence"[(#ENV{licence_nom}|=={ss_licence}|oui)selected="selected"]><:licence:sans_licence:></option>]
+				[(#ID_LICENCE|=={0}|non)
+				<option value="#ID_LICENCE"[(#ID_LICENCE|=={#ENV{licence_nom}}|oui)selected="selected"]>[(#ENV{licences}|table_valeur{#ID_LICENCE}|table_valeur{name})]</option>]
+				</BOUCLE_licences>
+			</select>
+		</li>
+		</B_licences>
+		</BOUCLE_si_licence>
+		<B_auteurs>
+		<li class="editer_auteur">
+			<label for="id_auteur"><:mediaspip_core:label_rechercher_auteur:></label>
+			<select id="id_auteur" name="id_auteur">
+				<option value=""> - </option>
+				<BOUCLE_auteurs(ARTICLES spip_auteurs_articles){fusion id_auteur}>
+					<option value="#ID_AUTEUR"[(#ID_AUTEUR|=={#ENV{id_auteur}}|oui)selected="selected"]>#INFO_NOM{auteurs,#ID_AUTEUR}</option>
+				</BOUCLE_auteurs>
+			</select>
+		</li>
+		</B_auteurs>
+	</ul>
+	<p class="boutons">
+		<input type="submit" class="submit" value="<:bouton_valider:>" title="<:info_rechercher:>" />
+	</p>
+	#SET{date_min,''}
+	<BOUCLE_date_debut(ARTICLES){par date}{0,1}>
+	#SET{date_min,#DATE|affdate{d/m/Y}}
+	</BOUCLE_date_debut>
+	[(#INCLURE{fond=formulaires/dateur/inc-dateur,startDate=#GET{date_min},endDate=[(#ENV{date}|affdate{d/m/Y})]})]
+</div>
+</form>
+</div>

@@ -1,0 +1,19 @@
+[(#REM)
+	On se connecte toujours dans le public
+	Contrairement à SPIP qui peut envoyer vers le privé
+	
+	On redirige sur l'url dans l'environnement ou sur la page ms-config
+]
+#SET{url,#ENV{url}}
+[(#ENV{url}|match{#EVAL{_DIR_RESTREINT_ABS}}|oui)[(#SET{url,#URL_PAGE{ms_config}})]]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>[<span class="sep"> &gt; </span><strong class="on">(#GET{prive}|?{<:login_acces_prive:>,<:lien_connecter:>})</strong>]</p>
+
+<div class="content-principal">
+	<div class="cartouche">
+		[<h1 class="h1">(#GET{prive}|?{<:login_acces_prive:>,<:lien_connecter:>})</h1>]
+		<p class="soustitre">#NOM_SITE_SPIP</p>
+	</div>
+
+	[(#FORMULAIRE_LOGIN{#GET{url}|sinon{#URL_PAGE{ms_config}}})]
+</div>

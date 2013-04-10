@@ -1,0 +1,57 @@
+[(#REM)
+	Squelette de présentation d'une collection dans une liste
+	
+	Les arguments suivants peuvent être passés au squelette :
+	- id_collection (int) : l'id_collection à montrer
+	- class (string) : la class qui sera appliquée au conteneur
+	- couper (int) : coupera les titres à la longueur souhaitée
+	- afficher_langue (oui|non) : Affiche la langue de l'article conteneur
+]
+<BOUCLE_collections(COLLECTIONS){notation}{id_collection}{statut ?}>
+#SET{largeur_vignette,#VAL{_TAILLE_LARGEUR_VIGNETTES_GRANDES}|defined|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_GRANDES},#CONFIG{mediaspip/squelettes/vignette_grande_largeur,186}}}
+#SET{hauteur_vignette,#VAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES}|defined|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES},#CONFIG{mediaspip/squelettes/vignette_grande_hauteur,137}}}
+<li class="item hentry[ (#ENV{class}) ]">
+	<div class="logo_document">
+		<a href="#URL_COLLECTION" title="[(#TITRE|couper{20}|attribut_html)]" rel="bookmark">
+			[(#LOGO_COLLECTION|image_passe_partout{#GET{largeur_vignette},#GET{hauteur_vignette}}|image_recadre{#GET{largeur_vignette},#GET{hauteur_vignette}}|inserer_attribut{alt,[(#TITRE|couper{20}|attribut_html)]})]
+		</a>
+	</div>
+	<h4 class="h4 entry-title">
+		<a href="#URL_COLLECTION" rel="bookmark">
+			[(#ENV{couper}|oui)[(#TITRE|couper{#ENV{couper}}|sinon{<:info_sans_titre:>})]]
+			[(#ENV{couper}|non)[(#TITRE|sinon{<:info_sans_titre:>})]]
+		</a>
+	</h4>
+	<div class="info-publi-vignette small">
+		<p class="date">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]
+		[(#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|oui)[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]</p>
+	</div>
+	[(#MAJ|strtotime|<{#DATE|strtotime|plus{3*3600}}|oui)
+	<div class="info-updated-vignette small">
+		<p class="maj">[<:collections:info_collection_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#MAJ|date_relative)</abbr>]</p>
+	</div>]
+	[(#EM_TYPE|oui)<div class="info-type-vignette small">
+		<p class="type"><:mediaspip_core:info_type_document:> [(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)]</p>
+	</div>]
+	<div class="meta-publi small">
+	<BOUCLE_nb_commentaires(FORUMS?){id_collection}{plat} />[(#TOTAL_BOUCLE|oui)
+		<p class="comments liste_comments"><a[ href="(#URL_COLLECTION|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a></p>
+		]
+	<//B_nb_commentaires>
+	<BOUCLE_nb_favs(FAVORIS?) {id_collection} /> [(#TOTAL_BOUCLE|oui)
+		#SET{total,#TOTAL_BOUCLE}
+		<p class="favs liste_gavs"><:mesfavoris:info_nombre_favoris_objet{nb=#GET{total}}:></p>
+		]
+	<//B_nb_favs>
+	<B_tags_media>
+		<p class="tags liste_tag">
+		<span class="title"><:mediaspip_core:tags:> </span>
+		<BOUCLE_tags_media(MOTS){id_collection}{exclus}{', '}>[<a href="#URL_MOT" title="[(#TITRE|attribut_html)]" rel="tag">(#TITRE)</a>]</BOUCLE_tags_media>
+		</p>
+	</B_tags_media>
+	[(#PLUGIN{NOTATION}|oui)
+		[(#NOTATION_ETOILE{#NOTATION_MOYENNE})]
+	]
+	</div>
+</li>
+</BOUCLE_collections>

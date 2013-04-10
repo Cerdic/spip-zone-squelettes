@@ -1,0 +1,42 @@
+[(#REM)
+
+	Page des collections d'un auteur
+	Accessible en passant le paramètre vue=profil sur sa propre page ou celle d'un auteur
+	que l'on a le droit de modifier (si on est admin par exemple) 
+	
+	On affiche sur cette page :
+	-* Un message explicant aux utilisateurs comment modifier leur logo (via crayons)
+	-* Le formulaire d'édition de l'auteur passé en paramètre
+	-* Un message si l'on n'a pas le droit de modifier l'auteur en question
+	
+	Paramètres possibles :
+	-* id_auteur int : l'identifiant numérique de l'auteur 
+	-* est_auteur string oui|non|'' : si == oui, signifie que l'on est sur la page de l'auteur connecté 
+	   (utilisé pour changer les titres entre ses et vos par exemple)
+	
+]
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tout}>
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><a href="[(#SELF|parametre_url{vue,''})]" class="spip_in on">(#NOM|couper{80})</a><span class="sep"></span>]</p>
+
+<div class="content-principal">
+	<div class="vcard">
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo} resize-#GET{largeur_logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|?{<:mediaspip_core:titre_collections_profil:>,<:mediaspip_core:titre_collections_auteur{nom=#NOM}:>})]
+			</h1>
+		</div>
+	</div>
+
+	[(#INCLURE{fond=liste/collections-vignette,
+		debut_collections,
+		id_auteur,
+		largeur=200,
+		hauteur=200,
+		ajax})]
+</div>
+</BOUCLE_contenu_auteur>
+#FILTRE{trim}

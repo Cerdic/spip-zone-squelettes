@@ -1,0 +1,26 @@
+<B_objets_exergue>
+<div class="exergue" id="exergue">
+	<ul>
+	<BOUCLE_objets_exergue(POUR){tableau #CONFIG{mediaspip/home/exergue_article,0}}>
+		[(#VALEUR|match{rubrique}|oui)
+			[(#SET{id_rubrique,[(#VALEUR|replace{'rubrique\|',''})]})]
+			[<li>(#INCLURE{fond=inclure/exergue-rubrique,id_rubrique=#GET{id_rubrique},env})</li>]
+		]
+		[(#VALEUR|match{rubrique}|non)
+		[<li>(#INCLURE{fond=inclure/exergue-article,id_article=#VALEUR,env,ajax})</li>]]
+	</BOUCLE_objets_exergue>
+	</ul>
+</div>
+</B_objets_exergue>
+<B_dernier_media>
+<div class="exergue" id="exergue">
+	<ul>
+	<BOUCLE_dernier_media(ARTICLES){id_secteur=#CONFIG{mediaspip/rubriques/medias}}{par date}{inverse}{0,1}>
+		[<li>
+			(#INCLURE{fond=inclure/exergue-article,id_article=#ID_ARTICLE,env,ajax})
+		</li>]
+	</BOUCLE_dernier_media>
+	</ul>
+</div>
+</B_dernier_media>
+<//B_objets_exergue>

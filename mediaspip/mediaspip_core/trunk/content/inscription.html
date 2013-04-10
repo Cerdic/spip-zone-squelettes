@@ -1,0 +1,25 @@
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><strong class="on"><:mediaspip_core:formulaire_inscription:></strong></p>
+
+<div class="content-principal">
+	<div class="cartouche">
+		<h2 class="h2"><:mediaspip_core:formulaire_inscription:></h2>
+	</div>
+
+	<div class="ajax">
+		[(#REM|tester_config|non)
+			#BOITE_OUVRIR{'',error}
+			<p><:mediaspip_core:erreur_inscription_desactivee:></p>
+			#BOITE_FERMER
+		]
+		[(#REM|tester_config|oui)
+			[(#SESSION{id_auteur}|oui)
+				#BOITE_OUVRIR{'',error}
+					<p><:mediaspip_core:erreur_inscription_session:></p>
+				#BOITE_FERMER]
+			[(#SESSION{id_auteur}|non)
+				#FORMULAIRE_INSCRIPTION
+			]
+		]
+	</div>
+</div>

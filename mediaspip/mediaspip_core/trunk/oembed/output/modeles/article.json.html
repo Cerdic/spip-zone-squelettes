@@ -1,0 +1,31 @@
+<BOUCLE_art(ARTICLES){id_article}>[(#EM_TYPE|!={normal}|oui) #SET{done,oui}
+#INCLURE{fond=oembed/output/modeles/media-#EM_TYPE.json,env}
+]<BOUCLE_docs(DOCUMENTS){si #EM_TYPE|=={normal}|oui}{id_article}> </BOUCLE_docs>
+#SET{total,#GRAND_TOTAL}
+<BOUCLE_doc(DOCUMENTS){si #GET{total}|=={1}|oui}{id_article}{0,1}>
+#SET{media,#MEDIA|=={file}|?{texte,#MEDIA}}
+#INCLURE{fond=oembed/output/modeles/media-#GET{media}.json,env}
+</BOUCLE_doc>
+</B_doc>
+[(#GET{done}|=={oui}|non)
+#SET{article_normal,oui}]
+<//B_doc>
+</B_docs>
+[(#GET{done}|=={oui}|non)
+#SET{article_normal,oui}]
+<//B_docs>
+[(#GET{article_normal}|=={oui}|oui)
+[(#ARRAY{
+version,1.0,
+type,rich,
+provider_name,[(#NOM_SITE_SPIP)],
+provider_url,[(#URL_SITE_SPIP)],
+title,[(#TITRE)],
+author_name,[(#LESAUTEURS|supprimer_tags)],
+width,[(#ENV{maxwidth,#CONFIG{oembed/maxwidth,480}})],
+height,[(#ENV{maxheight,#CONFIG{oembed/maxheight,295}})],
+url,[(#URL_ARTICLE|url_absolue)],
+html,[<h4 class='title'><a href='[(#URL_ARTICLE|url_absolue)]'>(#TITRE)</a></h4>[<blockquote class='spip'>(#INTRODUCTION)</blockquote>]]
+}|json_encode_html)]]
+</BOUCLE_art>
+#FILTRE{trim}

@@ -1,0 +1,39 @@
+<BOUCLE_article_head(ARTICLES) {id_article}>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+[(#PLUGIN{bigbrother}|oui)#ENREGISTRER_VISITE_AUTEUR]
+<!-- Oembed code -->
+[(#REM)
+	Metas spécifiques à facebook
+]
+[<meta property="og:site_name" content="(#NOM_SITE_SPIP|textebrut|attribut_html)" />]
+[<meta property="og:url" content="(#URL_ARTICLE|url_absolue)" />]
+[<meta property="og:title" content="(#TITRE|textebrut|attribut_html)" />]
+[<meta property="og:description" content="(#INTRODUCTION{150}|sinon{#DESCRIPTIF}|attribut_html)" />]
+<meta name="og:locale" content="#LANG" />
+<BOUCLE_doc(DOCUMENTS){id_article}{0,1}>
+[<meta property="og:image" content="(#LOGO_DOCUMENT|image_passe_partout{200,200}|image_recadre{200,200}|extraire_attribut{src}|url_absolue)" />]
+<BOUCLE_doc_media(DOCUMENTS){id_article}{media IN video,audio}>
+<BOUCLE_doc_converti(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{extension IN mp4,flv,mp3}{0,1}{tout}>
+[(#EXTENSION|=={mp3}|?{#SET{type,audio},#SET{type,video}})] 
+<meta name="medium" content="video" />
+<meta property="og:video" content="[(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]"/>
+[(#CHEMIN{flash/flowplayer.swf}|url_absolue|replace{http,https}|recuperer_page|oui)
+	<meta property="og:video:secure_url" content="[(#CHEMIN{flash/flowplayer.swf}|url_absolue|replace{http,https}|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]" />
+]<meta property="og:video:type" content="application/x-shockwave-flash" />
+[<meta property="og:video:width" content="(#LARGEUR|=={0}|?{400,#LARGEUR})" />]
+[<meta property="og:video:height" content="(#HAUTEUR|=={0}|?{50,#HAUTEUR})" />] 
+</BOUCLE_doc_converti>
+</B_doc_converti>
+[(#EXTENSION|in_array{#LISTE{flv,mp4,mp3}}|oui)
+<meta name="medium" content="video" />
+[<meta property="og:video:height" content="(#HAUTEUR|=={0}|?{50,#HAUTEUR})" />] 
+[<meta property="og:video:width" content="(#LARGEUR|=={0}|?{400,#LARGEUR})" />] 
+<meta property="og:video" content="[(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]"/> 
+<meta property="og:video:type" content="application/x-shockwave-flash" />]
+<//B_doc_converti>
+</BOUCLE_doc_media>
+</BOUCLE_doc>
+</BOUCLE_article_head>
+#FILTRE{trim}

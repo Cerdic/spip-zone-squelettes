@@ -1,0 +1,20 @@
+[(#REM)
+	
+	Page personnelle de l'auteur actuellement connecté
+	
+	On arrive sur cette page spécifique via le pipeline styliser utilisé dans le fichier
+	mediaspip_core_pipeline
+]
+[(#ENV{vue}|=={profil}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	<INCLURE{fond=inclure/auteur-profil_modifier}{env} />
+]
+[(#ENV{vue}|=={forums}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	<INCLURE{fond=inclure/auteur-forums_gerer,self=#SELF,env,ajax} />
+]
+
+[(#ENV{vue}|=={collections}|oui)
+	<INCLURE{fond=inclure/auteur-collections,self=#SELF,est_auteur=oui,env,ajax} />
+]
+[(#ENV{vue}|in_array{#LISTE{profil,forums,collections}}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|non)
+	<INCLURE{fond=inclure/auteur-profil_normal}{env} />
+]

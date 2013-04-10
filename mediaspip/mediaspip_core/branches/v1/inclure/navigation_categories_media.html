@@ -1,0 +1,26 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+<B_rubriques>
+<div class="menu rubriques">
+	<h2 class="h2"><:mediaspip_core:rubriques_categories:></h2>
+	<ul class="menu-liste">
+	<BOUCLE_rubriques(RUBRIQUES){id_parent=#CONFIG{mediaspip/rubriques/medias}} {par num titre, titre}>
+		<li class="menu-entree[ (#EXPOSE{ouverte,fermee})]">
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul class="menu-liste">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li class="menu-entree"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero|couper{80})]</a>
+					<BOUCLE_re(BOUCLE_sous_rubriques)> </BOUCLE_re>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+</div>
+</B_rubriques>

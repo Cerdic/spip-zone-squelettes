@@ -1,0 +1,30 @@
+[(#REM)
+	 
+	Inclusion affichant la liste des articles issus de la syndication
+	
+	Les arguments suivants peuvent être passés au squelette :
+	-* id_syndic (int) : n'affichera que les articles syndiqués d'un site en particulier
+	-* id_secteur (int) : affichera les articles syndiqués des sites du secteur X
+	-* id_rubrique (int) : affichera les articles syndiqués des sites de la rubrique X
+	-* age_max int (int) : affichera les articles < au nombre de jour indiqué
+	-* pagination_site (int) : paginera les articles en fonction de ce chiffre (5 par défaut)
+	-* recherche (string) : une locution de recherche
+	-* titre (string) : le titre du bloc
+]
+<B_articles>
+<div class="liste articles syndics">
+  #ANCRE_PAGINATION
+  <h2 class="h2">[(#ENV{titre,<:mediaspip_core:titre_articles_site:>})]</h2>
+  <ul class="liste-items">
+      <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic?}{id_secteur?}{id_rubrique?}{recherche?} {age<#ENV{age_max,180}} {par date}{inverse} {pagination #ENV{pagination_sites,5}}>
+      <li class="item">
+          <h3 class="h3">[(#ENV{id_syndic}|non)<a href="[(#ID_SYNDIC|generer_url_entite{site})]" class="spip_in">[(#NOM_SITE|couper{#ENV{couper,20}})</a>&nbsp;-&nbsp;]]<a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+          <div class="small">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][, <:par_auteur:> (#LESAUTEURS)][<span class="sep"> &mdash; </span><em>(#TAGS|afficher_tags)</em>]</div>
+          [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
+		  [<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+      </li>
+      </BOUCLE_articles>
+  </ul>
+  [<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_articles>

@@ -1,0 +1,23 @@
+#SET{self,#SELF|parametre_url{id_forum|email_auteur|ip|debut_id_forum|recherche,''}|parametre_url{auteur,''}}
+<BOUCLE_repart(ARTICLES){id_article}><a class='annule_filtre' href='[(#GET{self}|parametre_url{id_article,''})]' title="<:forum:tout_voir|attribut_html:>">[(#CHEMIN{img_pack/annuler-recherche.png}|balise_img|inserer_attribut{alt,<:forum:tout_voir:>})]</a>
+<:texte_messages_publics:><h1><a href='[(#URL_ARTICLE|ancre_url{forum#ID_FORUM})]'>#TITRE</a></h1>
+</BOUCLE_repart>
+[<h1><:resultats_recherche:> &#171;&nbsp;(#ENV{recherche})&nbsp;&#187;</h1>]
+#FORMULAIRE_RECHERCHE_ECRIRE{#GET{self}}
+[<div class="ajax">
+(#FORMULAIRE_GESTION_FORUM_AUTEUR{
+	#ENV{id_forum},
+	#ENV{id_rubrique},
+	#ENV{id_article},
+	#ENV{id_breve},
+	#ENV{id_syndic},
+	#ENV{id_message},
+	'',
+	#ENV{auteur},
+	#ENV{email_auteur},
+	#ENV{ip},
+	#ENV{objet},
+	#ENV{id_objet},
+	#ENV{auteur_voir}
+})
+</div>]

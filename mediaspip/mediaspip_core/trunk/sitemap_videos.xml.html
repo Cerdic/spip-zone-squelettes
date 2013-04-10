@@ -1,0 +1,34 @@
+[(#REM)
+
+	Ce sitemap affiche la liste des videos du site
+
+	(On pose un cache a zero pour echapper au test _IS_BOT)
+
+]#CACHE{0}
+#HTTP_HEADER{Content-Type: text/xml; charset=utf-8}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+<BOUCLE_videos_videotheque(ARTICLES spip_documents_liens spip_documents){id_secteur = #CONFIG{mediaspip/rubriques/medias,-1}}{id_document > 0}{documents.media = video}{0,5000}>[(#SET{compte,1})]
+<url>
+	<loc>[(#URL_ARTICLE|url_absolue)]</loc>
+	<video:video>
+		<video:title>[(#TITRE|texte_backend)] | [(#NOM_SITE_SPIP|texte_backend)]]</video:title>
+		[<video:description>(#INTRODUCTION{150}|texte_backend)</video:description>]
+		<BOUCLE_document_videotheque(DOCUMENTS){id_article}{media=video}{0,1}>[
+		<video:thumbnail_loc>(#LOGO_DOCUMENT|extraire_attribut{src}|url_absolue|texte_backend)</video:thumbnail_loc>][
+		<video:duration>(#DUREE|round)</video:duration>
+		[<video:publication_date>(#DATE|date_iso)</video:publication_date>]
+		]<BOUCLE_convmp4_videotheque(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{mode=conversion}{extension=mp4}{0,1}{tout}>
+		[<video:content_loc>(#URL_DOCUMENT|url_absolue)</video:content_loc>]
+		<video:player_loc allow_embed="yes">[(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]</video:player_loc></BOUCLE_convmp4_videotheque></B_convmp4_videotheque>[<video:content_loc>(#URL_DOCUMENT|url_absolue)</video:content_loc>]
+		<video:player_loc allow_embed="yes">[(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]</video:player_loc><//B_convmp4_videotheque></BOUCLE_document_videotheque>
+		<BOUCLE_auteurs_videotheque(AUTEURS){id_article}{0,1}><video:uploader info="[(#URL_AUTEUR|url_absolue)]">#NOM</video:uploader></BOUCLE_auteurs_videotheque>
+		<video:family_friendly>yes</video:family_friendly>
+		<BOUCLE_rubrique_videotheque(RUBRIQUES){id_rubrique}><video:gallery_loc title="[(#TITRE|attribut_html)]">[(#URL_RUBRIQUE|url_absolue)]</video:gallery_loc></BOUCLE_rubrique_videotheque>
+		<video:live>no</video:live>
+	</video:video>
+</url>
+</BOUCLE_videos_videotheque>
+</urlset>

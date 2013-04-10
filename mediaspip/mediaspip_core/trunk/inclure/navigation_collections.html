@@ -1,0 +1,32 @@
+[(#REM)
+
+	Menu de navigation des collections
+
+	Liste les collections sous la forme d'un menu (à mettre dans la colonne de navigation)
+	
+	Prend en paramètre :
+	-* titre : affichera dans le titre du H2 sinon on a un titre par défaut
+	-* id_collection : utilisé pour exposer la collection en cours
+	-* id_article : si on est sur une page d'article et que id_article est passé par exemple, on met en valeur 
+	les collections de l'article même si on n'est pas sur la page de la collection
+	
+]
+#SET{collections_article,#ARRAY}
+<BOUCLE_collections_article(COLLECTIONS){id_article}>
+#SET{collections_article,#GET{collections_article}|push{#ID_COLLECTION}}
+</BOUCLE_collections_article>
+<B_collections>
+<div class="menu collections">
+	<h2 class="h2">[(#ENV{titre,<:mediaspip_core:titre_menu_collections:>})]</h2>
+	<ul class="menu-liste">
+	<BOUCLE_collections(COLLECTIONS) {par num titre, titre}>
+		<li class="menu-entree[ (#EXPOSE)][(#ID_COLLECTION|in_array{#GET{collections_article}}|oui)on]">
+			<a href="#URL_COLLECTION"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero|couper{80})]</a>
+		</li>
+	</BOUCLE_collections>
+		<li class="menu-entree[(#ENV{page}|=={collections}|oui)on]">
+			<a href="#URL_PAGE{collections}"[ class="(#ENV{page}|=={collections}|oui)on"]><:collection:lien_toutes_collections:></a>
+		</li>
+	</ul>
+</div>
+</B_collections>

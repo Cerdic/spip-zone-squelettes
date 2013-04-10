@@ -1,0 +1,73 @@
+<B_documents>
+	<div class="entry-content">
+	<BOUCLE_documents(DOCUMENTS){id_article}{tout}>
+	</BOUCLE_documents>
+	#SET{largeur,#VAL{_TAILLE_LARGEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_LARGEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_largeur_maximale,640}}}
+	#SET{hauteur,#VAL{_TAILLE_HAUTEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_HAUTEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_hauteur_maximale,480}}}
+	#SET{total,#TOTAL_BOUCLE}
+	<BOUCLE_egal1(CONDITION){si #GET{total}|=={1}}>
+		<BOUCLE_doc(DOCUMENTS){id_article}>
+		[(#SET{doc2img_types,[(#CONFIG{doc2img/format_document,''}|explode{','})]})]
+		[(#VAL{tiff}|in_array{[(#GET{doc2img_types})]}|?{[(#SET{doc2img_types,[(#GET{doc2img_types}|push{tif})]})]})]
+		[(#PLUGIN{doc2img}|et{[(#EXTENSION|in_array{#GET{doc2img_types,#ARRAY}})]}|oui)
+			[(#MODELE{ms_slider_doc2img,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},env,ajax})]
+			#SET{done,true}
+		]
+		<BOUCLE_si_kml(CONDITION){si #EXTENSION|in_array{#ARRAY{0,kml,1,kmz}}|et{#PLUGIN{gis}}|oui}>
+			<BOUCLE_gis(GIS?){id_document}>
+			<div class="spip_documents">
+			#MODELE{carte_gis,largeur=#GET{largeur}px,hauteur=#GET{hauteur}px,kml=#ID_DOCUMENT,lat=#LAT,lon=#LON,zoom=#ZOOM,point=non,id_carte_gis=kml#ID_DOCUMENT}
+			</div>
+			</BOUCLE_gis>
+			</B_gis>
+			<div class="spip_documents">
+			#MODELE{carte_gis,largeur=#GET{largeur}px,hauteur=#GET{hauteur}px,kml=#ID_DOCUMENT,point=non,id_carte_gis=kml#ID_DOCUMENT}
+			</div>
+			<//B_gis>
+			#SET{done,true}
+		</BOUCLE_si_kml>
+		[(#GET{done}|=={true}|non)
+			[(#MIME_TYPE|match{audio/}|oui)
+				#SET{largeur,350}
+			]
+			[(#PLUGIN{legendes}|et{#EXTENSION|in_array{#ARRAY{0,jpg,1,png,2,gif}}}|oui)
+				<div class="actions-documents">
+				[(#PLUGIN{mediabox}|oui)
+				[<a class="mediabox em_image_zoom" title="[(#TITRE|sinon{[(#FICHIER|basename)]})]" href="(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})"><:mediaspip_core:lien_zoom_image:></a>]]
+				[(#AUTORISER{creerdans,legende,#ID_DOCUMENT}|oui)<a class="legende_add" title="<:legendes:ajouter_legende:>" href="#"><:legendes:ajouter_legende:></a>]
+				</div>
+				[(#MODELE{image_legendes,
+					id_document=#ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},bouton_ajouter=.legende_add,class=spip_documents spip_documents_center})]
+			]
+			[(#PLUGIN{legendes}|et{#EXTENSION|in_array{#ARRAY{0,jpg,1,png,2,gif}}}|non)
+				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#ARRAY{0,jpg,1,png,2,gif}}}|oui)
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,lien_class=mediabox,lien=[(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})],largeur=#GET{largeur},infos=non})]
+				]
+				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#ARRAY{0,jpg,1,png,2,gif}}}|non)
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,largeur=#GET{largeur},infos=non})]
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,largeur=#GET{largeur},infos=non}|non)
+					[(#LOGO_DOCUMENT|image_reduire{#GET{largeur},0})]
+					<p><:mediaspip_core:info_doc_non_visualisable{format=#EXTENSION}:></p>]
+				]
+			]
+		]
+		<INCLURE{fond=inclure/encodage_en_cours,id_document=#ID_DOCUMENT,ajax}>
+		</BOUCLE_doc>
+	</BOUCLE_egal1>
+	<BOUCLE_sup1(CONDITION){si #GET{total}|>{1}}>
+		<BOUCLE_document_orig(DOCUMENTS){id_article}{id_orig=0}>
+			<BOUCLE_documents_lisibles(DOCUMENTS){id_orig=#ID_DOCUMENT}{extension IN flv,mp3,ogg,mp4,ogv}>
+		 	</BOUCLE_documents_lisibles>
+				[(#MIME_TYPE|match{audio/}|oui)
+					#SET{largeur,''}
+				]
+				[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},autobuffer=oui,infos=non,env})]
+			</B_documents_lisibles>
+			[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},autobuffer=oui,infos=non,env})]
+			<//B_documents_lisibles>
+			<INCLURE{fond=inclure/encodage_en_cours,id_document=#ID_DOCUMENT,self=#SELF,ajax}>
+		</BOUCLE_document_orig>
+	</BOUCLE_sup1>
+	</div>
+</B_documents>
+<//B_documents>

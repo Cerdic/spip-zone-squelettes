@@ -1,0 +1,72 @@
+[(#REM)
+	
+	Medias de la même catégories
+	
+	Affiche la liste des médias paginés d'une catégorie excluant le média en cours
+	
+	Design :
+	-* La largeur des vignettes peut être définie par la constante _TAILLE_LARGEUR_VIGNETTES_NAV, sinon 
+	on prend la valeur de la conf du plugin et enfin 100 par défaut;
+	-* La hauteur des vignettes peut être définie par la constante _TAILLE_HAUTEUR_VIGNETTES_NAV, sinon 
+	on prend la valeur de la conf du plugin et enfin 75 par défaut;
+	
+	Pagination :
+	-* Le nombre d'éléments affichés est définit par la constante _NB_MEDIAS_RUBRIQUES_NAV sinon5 par défaut;
+	
+	Gestion des traductions :
+	
+	-* On crée un array des articles qui seront affichés;
+	-* On liste tout d'abord les articles originaux;
+	-* On vérifie qu'ils ne sont par l'article original de l'article en cours;
+	-* On vérifie ensuite s'il existe dans la langue de l'environnement (on affichera celui ci au cas où);
+	-* Sinon en dernier recours on affichera l'article dans la langue d'origine;
+	
+	NB : les trois constantes peut être définies dans un thème (via themes_options) ou dans un fichier d'options quelconque
+	cf : http://www.arscenic.tv/mediaspip/les-plugins-utilises-par-mediaspip/mediaspip-core-squelette-theme-et/article/mediaspip-core-la-configuration
+]
+[(#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_VIGNETTES_NAV}|defined|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_NAV},#CONFIG{mediaspip/squelettes/vignettes_nav_largeur,100}}})]
+[(#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_VIGNETTES_NAV}|defined|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_NAV},#CONFIG{mediaspip/squelettes/vignettes_nav_hauteur,75}}})]
+[(#SET{pagination_medias,#VAL{_NB_MEDIAS_RUBRIQUES_NAV}|defined|?{#EVAL{_NB_MEDIAS_RUBRIQUES_NAV},5}})]
+[(#SET{articles_rubriques,#ARRAY})]
+[(#SET{id_trad,0})]
+
+<BOUCLE_article_trad(ARTICLES){id_article}>[(#SET{id_trad,#ID_TRAD})]</BOUCLE_article_trad>
+<BOUCLE_articles_rubrique_origine(ARTICLES){id_article != #GET{id_trad}}{id_rubrique}{origine_traduction}{exclus}>
+<BOUCLE_articles_rubrique_langue_en_cours(ARTICLES){traduction}{lang}>
+[(#ENV{id_article}|=={#ID_ARTICLE}|ou{#ENV{id_article}|=={#ID_TRAD}}|non)#SET{articles_rubriques,#GET{articles_rubriques}|push{#ID_ARTICLE}}]
+</BOUCLE_articles_rubrique_langue_en_cours>
+#SET{articles_rubriques,#GET{articles_rubriques}|push{#ID_ARTICLE}}
+<//B_articles_rubrique_langue_en_cours>
+</BOUCLE_articles_rubrique_origine>
+
+<B_articles_rubrique>
+<div class="menu liste articles medias">
+	#ANCRE_PAGINATION
+	<h2 class="h2"><:mediaspip_core:meme_categorie:></h2>
+	<ul class="menu-liste"><BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{id_article IN #GET{articles_rubriques}} {par num titre,date}{inverse}{origine_traduction}{exclus}{pagination #GET{pagination_medias}}>
+		<li class="menu-entree">
+			<div class="media_infos"><BOUCLE_document(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{0,1}>[(#REM)
+					
+					Définir ce que sera réellement le logo :
+					-* Le fichier lui-même rétréci si c'est une image
+					-* Le logo du document si c'est autre chose qu'une image
+				
+				][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
+				][(#_articles_rubrique:EM_TYPE|oui)
+					[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
+						[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles_rubrique:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles_rubrique:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
+					})]
+				]<a class="media_logo_vignette" href="#URL_ARTICLE"[ class="(#EXPOSE)"]>
+					[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,[(#_articles_rubrique:TITRE|couper{20}|attribut_html)]})]
+				</a></BOUCLE_document>
+				<p><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|couper{40})]</a></p>
+				[<p class="auteur"><:par_auteur:> (#LESAUTEURS|couper{25})</p>]
+				[<p class="date"><abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>][(#EM_TYPE|et{#EM_TYPE|!={normal}}|oui)
+				<p class="type"><:mediaspip_core:info_type_document:> [(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)]</p>]
+			</div>
+		</li></BOUCLE_articles_rubrique>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_articles_rubrique>
+#FILTRE{trim}

@@ -1,0 +1,65 @@
+#CACHE{0}
+#SET{a_encoder,0}
+#SET{attente_avant,0}
+#SET{id_a_encoder,#ARRAY}
+#SET{formats_encodes,#ARRAY}
+<B_encodages>
+	<BOUCLE_encodages(SPIPMOTION_ATTENTES){id_document}{encode != oui}>
+		#SET{a_encoder,#GET{a_encoder}|plus{1}}
+		[(#ENCODE|=={erreur}|oui)
+		#SET{erreur,oui}
+		]
+		#SET{id_a_encoder,#GET{id_a_encoder}|push{#ID_SPIPMOTION_ATTENTE}}
+	</BOUCLE_encodages>
+	#SET{premier_encoder,#GET{id_a_encoder}|min}
+	<BOUCLE_attentes(SPIPMOTION_ATTENTES){id_spipmotion_attente < #GET{premier_encoder}}{encode !IN oui,erreur}>
+	</BOUCLE_attentes>
+	#SET{attente_avant,#TOTAL_BOUCLE}
+	</B_attentes>
+	<BOUCLE_doc_en_cours(SPIPMOTION_ATTENTES){id_document}{encode = en_cours}>
+	#SET{en_cours,oui}
+	</BOUCLE_doc_en_cours>
+	<BOUCLE_a_encoder(CONDITION){si #GET{a_encoder}|>{0}|oui}>
+	<div class="info_importante notice[(#GET{erreur}|oui)erreur]">#GET{attenter_avant}
+		[(#GET{a_encoder}|=={1}|oui)<p><:spipmotion:info_document_encodage_en_cours_unique{nb=#GET{a_encoder}}:></p>]
+		[(#GET{a_encoder}|>{1}|oui)<p><:spipmotion:info_document_encodage_en_cours_plusieurs{nb=#GET{a_encoder}}:></p>]
+		[(#GET{erreur}|oui)
+			<p><:spipmotion:info_document_encodage_en_erreur:></p>
+			[(#AUTORISER{configurer}|oui)
+				#SET{url_configurer,#URL_PAGE{ms_config,ms_config=spipmotion_file}}
+				<p><:spipmotion:info_document_encodage_en_erreur_relancer_url{url=#GET{url_configurer}}:></p>
+			]
+			[(#AUTORISER{configurer}|non|et{#AUTORISER{modifier,document,#ENV{id_document}}|oui}|oui)
+				<p><:spipmotion:info_document_encodage_en_erreur_contacter:></p>
+			]
+		][(#GET{erreur}|non)
+			[(#GET{en_cours}|non)
+			[(#GET{attente_avant}|>{1}|oui)<p><:spipmotion:info_document_encodage_en_cours_attente_avant{nb=#GET{attente_avant}}:>]
+			[(#GET{attente_avant}|<={1}|oui)<p><:spipmotion:info_document_encodage_en_cours_attente_avant_unique:>]]
+			[(#GET{en_cours}|oui)
+			<p><:spipmotion:info_document_encodage_en_cours:></p>]
+			<p><a href="[(#SELF|parametre_url{relance,''}|parametre_url{hasard,[(#VAL{0}|rand{10000000000})]})]" id="spipmotion_recharge_#ENV{id_document}" class="ajax"><:spipmotion:lien_recharger:></a></p>
+		]
+	</div>
+	<script type="text/javascript">
+		var refresh_#ENV{id_document} = function(){
+			jQuery('#spipmotion_recharge_#ENV{id_document}').click();
+		}
+		setTimeout(refresh_#ENV{id_document},90000);
+	</script>
+	</BOUCLE_a_encoder>
+</B_encodages>
+[(#REM)
+
+	Il n'y a plus d'encodage en cours pour cet article mais on a un hasard dans l'url, 
+	cela signifie que l'on vient du reload automatique.
+	
+	On affiche que tout est ok et que l'utilisateur peut recharger la page (avec un bouton présent) 
+	pour voir le contenu final. 
+]
+[(#ENV{hasard}|oui)
+<div class="info_importante notice ok">
+	<p><:spipmotion:info_document_encodage_termine:></p>
+	<p><:spipmotion:info_document_encodage_termine_recharge:></p>
+</div>]
+<//B_encodages>

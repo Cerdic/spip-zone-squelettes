@@ -1,0 +1,71 @@
+<B_documents>
+	#SET{largeur,#VAL{_TAILLE_LARGEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_LARGEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_largeur_maximale,640}}}
+	#SET{hauteur,#VAL{_TAILLE_HAUTEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_HAUTEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_hauteur_maximale,480}}}
+	#SET{total,#GRAND_TOTAL}
+	[(#PLUGIN{doc2img}|oui)
+	[(#SET{doc2img_types,[(#CONFIG{doc2img/format_document,''}|explode{','})]})]
+	[(#VAL{tiff}|in_array{[(#GET{doc2img_types})]}|?{[(#SET{doc2img_types,[(#GET{doc2img_types}|push{tif})]})]})]]
+	<div class="entry-content">
+	<BOUCLE_documents(DOCUMENTS){id_article}{tout}> </BOUCLE_documents>
+		<BOUCLE_doc(DOCUMENTS){si #GET{total}|=={1}}{id_article}>
+		<BOUCLE_si_doc2img(CONDITION){si #PLUGIN{doc2img}|et{#EXTENSION|in_array{#GET{doc2img_types,#ARRAY}}|oui}|oui}>
+			[(#MODELE{doc_img,id_document=#_doc:ID_DOCUMENT,largeur=#GET{largeur},debut_d2c,class=spip_documents_center,ajax})][(#SET{done,true})]
+		</BOUCLE_si_doc2img>
+		</B_si_doc2img>
+		<BOUCLE_si_kml(CONDITION){si #EXTENSION|in_array{#LISTE{kml,kmz}}|et{#PLUGIN{gis}}|oui}>
+			<BOUCLE_gis(GIS?){si #PLUGIN{gis}}{id_document}>
+			<div class="spip_documents">
+			#MODELE{carte_gis,largeur=100%,hauteur=#GET{hauteur}px,kml=#ID_DOCUMENT,lat=#LAT,lon=#LON,zoom=#ZOOM,point=non,id_carte_gis=kml#ID_DOCUMENT}
+			</div>
+			</BOUCLE_gis>
+			</B_gis>
+			<div class="spip_documents">
+			#MODELE{carte_gis,largeur=100%,hauteur=#GET{hauteur}px,kml=#ID_DOCUMENT,point=non,id_carte_gis=kml#ID_DOCUMENT}
+			</div>
+			<//B_gis>
+			#SET{done,true}
+		</BOUCLE_si_kml>
+		</B_si_doc2img>
+		[(#GET{done}|=={true}|non)
+			[(#MIME_TYPE|match{audio/}|oui)[(#SET{largeur,350})]]
+			[(#PLUGIN{legendes}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|oui)
+				<div class="actions-documents">
+				[(#PLUGIN{mediabox}|oui)
+				[<a class="mediabox em_image_zoom" title="[(#TITRE|sinon{[(#FICHIER|basename)]})]" href="(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})"><:mediaspip_core:lien_zoom_image:></a>]]
+				[(#AUTORISER{creerdans,legende,#ID_DOCUMENT}|oui)<a class="legende_add" title="<:legendes:ajouter_legende:>" href="#"><:legendes:ajouter_legende:></a>]
+				</div>
+				[(#MODELE{image_legendes,
+					id_document=#ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},bouton_ajouter=.legende_add,class=spip_documents spip_documents_center})]
+			]
+			[(#PLUGIN{legendes}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|non)
+				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|oui)
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,lien_class=mediabox,align=center,lien=[(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})],largeur=#GET{largeur},infos=non})]
+				]
+				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|non)[(#SET{modele_emb,non})]
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,largeur=#GET{largeur},align=center,infos=non}|trim) #SET{modele_emb,oui}]
+					[(#GET{modele_emb}|=={oui}|non)
+						[(#LOGO_DOCUMENT|image_reduire{#GET{largeur},0})]
+						#BOITE_OUVRIR{'',notice}
+							<:mediaspip_core:info_doc_non_visualisable{format=#EXTENSION}:></p>
+						#BOITE_FERMER
+					]
+				]
+			]
+		]
+		<INCLURE{fond=inclure/encodage_en_cours,id_document=#ID_DOCUMENT,ajax}>
+		</BOUCLE_doc>
+		</B_doc>
+			<BOUCLE_document_orig(DOCUMENTS){si #GET{total}|>{1}}{id_article}{mode !IN conversion,doc2img}>
+				<BOUCLE_documents_lisibles(DOCUMENTS){mode=conversion}{objet=document}{id_objet=#ID_DOCUMENT}{extension IN flv,mp3,ogg,mp4,ogv}> </BOUCLE_documents_lisibles>
+					[(#MIME_TYPE|match{audio/}|oui)[(#SET{largeur,''})]]
+					[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},autobuffer=oui,infos=non,moviesize=adapt,env})]
+				</B_documents_lisibles>
+				[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},autobuffer=oui,moviesize=adapt,infos=non,env})]
+				<//B_documents_lisibles>
+				<INCLURE{fond=inclure/encodage_en_cours,id_document=#ID_DOCUMENT,self=#SELF,ajax}>
+			</BOUCLE_document_orig>
+		<//B_doc>
+	</div>
+</B_documents>
+<//B_documents>
+#FILTRE{trim}

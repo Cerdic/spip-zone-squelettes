@@ -1,0 +1,26 @@
+[(#REM)
+	Squelette du formulaire FORMULAIRE_MS_TRI
+	Permet de changer le tri des éléments dans une boucle
+	en passant un paramètre dans l'url
+]
+
+<div class="formulaire_spip formulaire_menu_tri" id="formulaire_menu_tri_#ENV{boucle}">
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<label for="#ENV{nom}"><:mediaspip_core:label_ordre_tri:></label>
+		<select name="#ENV{nom}" id="#ENV{nom}" onchange="this.parentNode.parentNode.submit()">
+			<option value=""> - </option>
+			[(#ENV{page_en_cours}|=={recherche}|oui)
+				<option value="points"[(#ENV{defaut}|=={points}|oui)selected="selected"]><:mediaspip_core:option_tri_point:></option>
+			]
+			<option value="titre"[(#ENV{defaut}|=={titre}|oui)selected="selected"]><:mediaspip_core:option_tri_titre:></option>
+			<option value="date"[(#ENV{defaut}|=={date}|oui)selected="selected"]><:mediaspip_core:option_tri_date:></option>
+			<option value="popularite"[(#ENV{defaut}|=={popularite}|oui)selected="selected"]><:mediaspip_core:option_tri_popularite:></option>
+			[(#PLUGIN{NOTATION}|oui)
+				<option value="moyenne"[(#ENV{defaut}|=={moyenne}|oui)selected="selected"]><:mediaspip_core:option_tri_notation:></option>
+			]
+			<option value="maj"[(#ENV{defaut}|=={maj}|oui)selected="selected"]><:mediaspip_core:option_tri_maj:></option>
+		</select>
+		<noscript><p class="boutons"><input type="submit" class="submit" value="<:mediaspip_core:bouton_trier:>" /></p></noscript>
+	</div></form>
+</div>

@@ -1,0 +1,40 @@
+[(#REM)
+
+	Page de modification du profil de l'auteur
+	Accessible en passant le paramètre vue=profil sur sa propre page ou celle d'un auteur
+	que l'on a le droit de modifier (si on est admin par exemple) 
+	
+	On affiche sur cette page :
+	-* Un message explicant aux utilisateurs comment modifier leur logo (via crayons)
+	-* Le formulaire d'édition de l'auteur passé en paramètre
+	-* Un message si l'on n'a pas le droit de modifier l'auteur en question
+	
+	
+]#CACHE{0}
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tout}>
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><a href="[(#SELF|parametre_url{vue,''})]" class="spip_in on">(#NOM|couper{80})</a><span class="sep"></span>]</p>
+
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo} resize-#GET{largeur_logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<:mediaspip_core:titre_modifier_profil:>]
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|non)<:mediaspip_core:titre_modifier_auteur_nom{nom=#NOM}:>]
+			</h1>
+			[(#AUTORISER{modifier,auteur,#ID_AUTEUR,[(#SESSION|unserialize)],#ARRAY{champ,logo}}|oui)
+			<p class="explication"><:mediaspip_core:explication_modifier_logo_auteur:></p>]
+		</div>
+	</div>[(#REM) / vcard]
+
+	<div class="ajax">
+		[(#FORMULAIRE_EDITER_AUTEUR{#ID_AUTEUR,[(#SELF|parametre_url{vue,''})]})]
+	</div>
+</div>
+</BOUCLE_contenu_auteur>

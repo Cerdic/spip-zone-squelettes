@@ -1,0 +1,34 @@
+<BOUCLE_si_webmestre(CONDITION){si #AUTORISER{webmestre}|oui}>
+[(#BOITE_OUVRIR{'','success'})]
+<p><strong><:mediaspip_core:titre_bienvenue:></strong></p>
+<p><:mediaspip_core:message_webmestre_configuration_ok:></p>
+#SET{url_publier,#URL_PAGE{publier}}
+<p><:mediaspip_core:message_webmestre_commencer_publier{url=#GET{url_publier}}:></p>
+#SET{url_config,#URL_PAGE{ms_config}}
+<p><:mediaspip_core:message_webmestre_commencer_configurer{url=#GET{url_config}}:></p>
+<p><:mediaspip_core:message_webmestre_commencer_documentation{url=http://www.mediaspip.net}:></p>
+[(#BOITE_FERMER)]
+
+#CONFIG{emballe_medias/fichiers/publier_dans_secteur}
+<BOUCLE_diogene_medias(DIOGENES){si #CONFIG{emballe_medias/fichiers/publier_dans_secteur}|=={on}|non}{objet=emballe_media}{0,1}>
+<BOUCLE_rubriques(RUBRIQUES){id_secteur}> </BOUCLE_rubriques>
+</B_rubriques>
+<BOUCLE_diogene_categorie(DIOGENES){objet=rubrique}{id_secteur=#CONFIG{mediaspip/rubriques/medias}}>
+#SET{id_diogene,#ID_DIOGENE}
+#SET{url,#VAL{''}|generer_url_publier{rubrique,#ID_SECTEUR}}
+</BOUCLE_diogene_categorie>
+#BOITE_OUVRIR{'','notice'}
+<p><:emballe_medias:erreur_publier_media_sans_categorie:></p>
+#SET{secteur_existant,oui}
+[(#INFO_TITRE{rubrique,#ID_SECTEUR}|strlen|non)
+	#SET{secteur_existant,non}
+	<p><:diogene:erreur_secteur_diogene_inexistant:></p>
+]
+[(#GET{secteur_existant}|=={oui}|oui)
+	<p>[(#AUTORISER{creerrubriquedans,#ID_SECTEUR}|oui)<:emballe_medias:erreur_publier_categorie_avant{url=#GET{url}}:>]
+	[(#AUTORISER{creerrubriquedans,#ID_SECTEUR}|non)<:emballe_medias:erreur_publier_categorie_avant_demander_admin:>]</p>
+]
+#BOITE_FERMER
+<//B_rubriques>
+</BOUCLE_diogene_medias>
+</BOUCLE_si_webmestre>

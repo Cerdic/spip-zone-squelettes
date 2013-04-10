@@ -1,0 +1,148 @@
+<BOUCLE_contenu_article(ARTICLES){id_article}>
+#SET{config_page_medias,#CONFIG{mediaspip/medias,#ARRAY}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
+[(#PLUGIN{polyhier}|oui)
+	#INCLURE{fond=inclure/hierarchie_poly,id_article,id_rubrique}
+]
+<div class="contenu-principal hentry">
+	<div class="cartouche">
+		<div class="logo #EDIT{logo}">[(#LOGO_ARTICLE|image_reduire{200,200})]</div>
+		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+		<h1 class="h1 #EDIT{titre} entry-title">#TITRE</h1>
+		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+		[(#REM) Inclure le modele des liens de traductions ]
+		#MODELE{article_traductions}
+		[(#PLUGIN{suivant_precedent}|oui)
+			[(#ID_TRAD|>{0}|oui)#SET{id_article,#ID_TRAD}]
+			[(#ID_TRAD|>{0}|non)#SET{id_article,#ID_ARTICLE}]
+			[<div class="precedent_suivant">
+				(#INCLURE{fond=inclure/article_precedent_suivant,id_article=#GET{id_article},id_rubrique,lang#LANG})
+			</div>]
+		]
+	</div>
+	
+	#INCLURE{fond=inclure/document_media,env}
+	
+	[(#REM) Informations supplementaires sur le document]
+	<div id="infos_sup">
+		<h2 class="h2"><:mediaspip_core:media_a_propos:></h2>
+		<div class="infos_descriptif surlignable">
+			#INCLURE{fond=inclure/gis_mini_map,objet=article,id_objet=#ID_ARTICLE}
+			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>
+			[(#VAL{info_publie}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)<div class="info info-publi"><:mediaspip_core:info_publie_date:> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></div>]
+			[(#VAL{info_update}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)
+			[(#MAJ|strtotime|<{#DATE|strtotime|plus{3*3600}}|oui)
+			<div class="info info-updated">
+				[<:mediaspip_core:info_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#DATE|date_relative)</abbr>]
+			</div>]]
+			[(#VAL{info_auteur}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)[<div class="info info-auteur"><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></div>]]
+			[(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
+			[<div class="info info-langue">
+				<:mediaspip_core:info_langue:> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr>
+			</div>]]
+			[<div class="#EDIT{chapo} chapo info entry-summary">(#CHAPO|image_reduire{250,0})</div>]
+			[<div class="#EDIT{texte} texte info entry-content">(#TEXTE|image_reduire{250,0})</div>]
+			[<div class="ps">
+				<h4 class="h4"><:info_ps:></h2>
+				<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
+			</div>]
+			[<div class="notes surlignable"><h4 class="h4 pas_surlignable"><:info_notes:></h4>(#NOTES)</div>]
+			[(#PLUGIN{LICENCE}|oui)
+			[<div class="info info-licence #EDIT{id_licence}">
+				<span class="title"><:mediaspip_core:info_licence:> </span>
+				(#MODELE{licence,id_licence=#ID_LICENCE,nom_licence=oui,hauteur_logo=25,cacher_defaut=oui}|trim)
+			</div>]]
+			[<p class="#EDIT{hyperlien} hyperlien info"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[(#PLUGIN{SPIPICIOUS}|oui)
+				#INCLURE{fond=inc-tags,objet=article,id_objet=#ID_ARTICLE,message_aucun=non}
+				#FORMULAIRE_SPIPICIOUS_AJAX{#ID_ARTICLE,article}
+			]
+		</div>
+		<div class="infos_statistiques surlignable">
+			<h3 class="h3"><:mediaspip_core:info_statistiques:></h3>
+			[(#INCLURE{fond=inclure/infos_notations_article,env}|trim)]
+			[(#VAL{info_nb_vues}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)
+			[<div class="info info-visites">(#VISITES|sinon{1}) <:mediaspip_core:info_nb_vues:></div>]]
+			<BOUCLE_bigbrother_telecharger(CONDITION){si #PLUGIN{bigbrother}|et{#CONFIG{bigbrother/telecharger}|=={oui}}|oui}>
+			#SET{downloads,0}
+			<BOUCLE_documents_downloads(DOCUMENTS){id_article}{par extension}{tout}>
+			[(#EXTENSION|in_array{#ARRAY{0,flv,1,mp3,2,mp4}}|oui)
+				[(#EXTENSION|=={mp4}|et{#ID_ORIG|!={0}}|oui)
+					#SET{embed,#ID_DOCUMENT}
+				]
+				[(#EXTENSION|=={mp4}|non)
+					#SET{embed,#ID_DOCUMENT}
+				]
+			]
+			<BOUCLE_nb_downloads(JOURNAL?){action = telecharger}{id_objet=#ID_DOCUMENT}> </BOUCLE_nb_downloads>
+			#SET{downloads,#GET{downloads}|plus{#TOTAL_BOUCLE}}
+			</B_nb_downloads>
+			</BOUCLE_documents_downloads>
+			[<div class="info info-telechargements">(#GET{downloads}|>{0}|oui)<:mediaspip_core:info_nb_telechargements{nb=#GET{downloads}}:></div>]
+			</BOUCLE_bigbrother_telecharger>
+			</B_bigbrother_telecharger>
+			<BOUCLE_documents_embed(DOCUMENTS){id_article}{par extension}{tout}>
+			[(#EXTENSION|in_array{#ARRAY{0,flv,1,mp3,2,mp4}}|oui)
+				[(#EXTENSION|=={mp4}|et{#ID_ORIG|!={0}}|oui)
+					#SET{embed,#ID_DOCUMENT}
+				]
+				[(#EXTENSION|=={mp4}|non)
+					#SET{embed,#ID_DOCUMENT}
+				]
+			]
+			</BOUCLE_documents_embed>
+			<//B_bigbrother_telecharger>
+			<BOUCLE_coms(FORUMS) {id_article}{plat}> </BOUCLE_coms>
+			[(#VAL{info_nb_comments}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)
+			<div class="info info-comments">
+			[<a href="#forum">(#TOTAL_BOUCLE)
+				[(#TOTAL_BOUCLE|=={1}|ou{#TOTAL_BOUCLE|=={0}}|?{<:mediaspip_core:info_comment:>,<:mediaspip_core:info_comments:>})]</a>]
+			</div>]
+			</B_coms>
+			[(#VAL{info_nb_comments}|in_array{[(#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY})]}|non)
+			<div class="info info-comments">
+			[<a href="#forum">(#TOTAL_BOUCLE) <:mediaspip_core:info_comment:></a>]
+			</div>]
+			<//B_coms>
+			[(#PLUGIN{recommander}|oui)
+				[(#RECOMMANDER{#TITRE,#URL_ARTICLE,#INTRODUCTION})]
+			]
+			[(#GET{embed}|et{#CONFIG{mediaspip/squelettes/embed_code,on}|=={on}}|oui)
+			#MODELE{code_embed,id_document=#GET{embed}}]
+		</div>
+		[(#CONFIG{mediaspip/squelettes/autoriser_telecharger}|=={on}|oui)
+		<div class="info infos_documents" id="infos_documents">
+			[(#CONFIG{mediaspip/squelettes/autoriser_telecharger_que_logues}|=={on}|oui)
+				[(#SESSION{id_auteur}|>{0}|oui)
+					[(#INCLURE{fond=inclure/documents-medias,id_article,id_document,ajax})]
+				]
+				[(#SESSION{id_auteur}|>{0}|non)
+					<p class="info utilisateur_connecte"><:mediaspip_core:message_telechargement_seulement_logues:></p>
+				]
+			]
+			[(#CONFIG{mediaspip/squelettes/autoriser_telecharger_que_logues}|=={on}|non)
+				[(#INCLURE{fond=inclure/documents-medias,id_article,env,ajax})]
+			]
+		</div>]
+		
+		[<div class="info infos_documents" id="liens_documents">(#INCLURE{fond=inclure/documents-medias_links,id_article,env,ajax}|trim)</div>]
+		<br class="nettoyeur" />
+	</div>
+</div>
+
+[(#REM) Forum de l'article ]
+<a href="#forum" id="forum"></a>
+<INCLURE{fond=inclure/forum_medias,id_article} />
+
+<BOUCLE_forums_fermes(CONDITION){si #PARAMETRES_FORUM|non}>
+<BOUCLE_forums(FORUMS){id_article}{0,1}> </BOUCLE_forums>
+<h2 class="h2"><:mediaspip_core:poster_message:></h2>
+<:mediaspip_core:commentaires_fermes:>
+</B_forums>
+<//B_forums>
+</BOUCLE_forums_fermes>
+<h2 class="h2"><:mediaspip_core:poster_message:></h2>
+[(#FORMULAIRE_FORUM{#SELF})]
+<//B_forums_fermes>
+</BOUCLE_contenu_article>

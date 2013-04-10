@@ -1,0 +1,15 @@
+[(#SET{titre, [(#ENV*{titre,<:mediaspip_core:menu_titre_lien_configurer:>}|typo)]})]
+
+[(#ENV{appel_formulaire}|oui)
+	<div class="titre">#GET{titre}</div>
+	<div class="infos"><:mediaspip_core:menu_info_configurer:></div>
+]
+<BOUCLE_appel(CONDITION){si #ENV{appel_menu}|oui}>
+	[(#AUTORISER{configurer}|oui)
+		<li class="menu-entree item[ (#ENV{css})][(#ENV{env}|table_valeur{type}|=={page}|et{#ENV{env}|table_valeur{composition}|=={ms_config}}) on]">
+			<a href="[(#URL_PAGE{#ENV{page,ms_config}})]">
+				#GET{titre}
+			</a>
+		</li>
+	]
+</BOUCLE_appel>

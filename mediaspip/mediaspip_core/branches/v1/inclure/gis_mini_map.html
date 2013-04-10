@@ -1,0 +1,32 @@
+[(#REM)
+
+	Mini carte affiché sur les médias
+	
+	La div "geo" est un microformat : http://microformats.org/wiki/geo-fr
+]
+<B_point>
+<div class="info info_geoloc">
+	<h3 class="h3"><:mediaspip_core:info_localisation:></h3>
+	<BOUCLE_point(GIS?){objet}{id_objet}{0,1}>
+	#SET{lat,#LAT}
+	#SET{lon,#LON}
+	#SET{adresse,''}
+	
+	[(#LAT|et{#LON}|oui)
+	<div class="geo">
+		[<abbr class="latitude" title="(#GET{lat})">[[(#LAT|>{0}|?{'N','S'})] (#LAT|dec_to_dms)]</abbr> - ]
+		[<abbr class="longitude" title="(#GET{lon})">[[(#LON|>{0}|?{'E','W'})] (#LON|dec_to_dms)]</abbr>]
+	</div>]
+	
+	[(#ADRESSE|ou{#VILLE}|ou{#CODE_POSTAL}|ou{#PAYS}|ou{#REGION}|oui)
+	<div class="adr">
+		[<span class="address">(#ADRESSE)</span>][[, (#GET{adresse}|oui)]#SET{adresse,oui}
+		<span class="postal_code">(#CODE_POSTAL)</span>][[ (#GET{adresse}|oui)]#SET{adresse,oui}
+		<span class="locality">(#VILLE)</span>][[,(#GET{adresse}|oui)]#SET{adresse,oui}
+		<span class="region">(#REGION)</span>][[,(#GET{adresse}|oui)]#SET{adresse,oui}
+		<span class="country-name">(#PAYS)</span>]
+	</div>]
+	#MODELE{carte_gis,id_objet=#ENV{id_objet},objet=#ENV{objet},type=relief,height=180px,zoom=#ZOOM,lat=#LAT,lon=#LON,control_type=non}
+	</BOUCLE_point>
+</div>
+</B_point>

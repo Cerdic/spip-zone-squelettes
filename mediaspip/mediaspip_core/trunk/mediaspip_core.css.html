@@ -1,0 +1,64 @@
+[(#REM)
+
+	Ce squelette definit les styles du formulaire d'upload
+
+	Note: l'entete "Vary:" sert a repousser l'entete par
+	defaut "Vary: Cookie,Accept-Encoding", qui est (un peu)
+	genant en cas de "rotation du cookie de session" apres
+	un changement d'IP (effet de clignotement).
+
+	ATTENTION: il faut absolument le charset sinon Firefox croit que
+	c'est du text/html !
+]
+#CACHE{24*7*3600,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+#SET{claire,##ENV{couleur_claire,edf3fe}}
+#SET{foncee,##ENV{couleur_foncee,3874b0}}
+#SET{left,#ENV{ltr,left}|choixsiegal{left,left,right}}
+#SET{right,#ENV{ltr,left}|choixsiegal{left,right,left}}
+
+[(#REM)
+	Si pas de thème défini, on est dans le thème par défaut, 
+	on joue donc avec le background et la bannière
+]
+[(#VAL{_DIR_PLUGIN_THEME}|defined|non)
+	[(#LOGO_SITE_SPIP|extraire_attribut{width}|>{300}|oui)
+	#SET{logo,#LOGO_SITE_SPIP|image_passe_partout{20,20}|image_recadre{20,20}}
+	[(#GET{logo}|couleur_extraire{3,10}|couleur_extreme|=={000000}|oui)
+	#SET{banner_done,oui}
+	.has_banner .header .accueil #nom_site_spip a{
+		color:#fff;
+	}]
+	
+	[(#GET{logo}|couleur_extraire{3,18}|couleur_extreme|=={000000}|oui)
+	#SET{slogan_done,oui}
+	.has_banner .header #slogan_site_spip{
+		color:#fff;
+		font-size:1.3em;
+	}]
+	[(#GET{banner_done}|=={oui}|non)
+	.has_banner .header .accueil #nom_site_spip a{
+		color:#3E3E3E;
+	}][(#GET{slogan_done}|=={oui}|non)
+	.has_banner .header #slogan_site_spip{
+		color:#3E3E3E;
+		font-size:1.3em;
+	}]
+	]
+	
+	[(#LOGO_BACKGROUND{0}|oui)
+	body.has_background{
+		background : url('[(#LOGO_BACKGROUND{0}|image_passe_partout{1920,1000}|extraire_attribut{src}|url_absolue)]') repeat fixed center top transparent;
+	}]
+]
+
+[(#PLUGIN{forum}|oui)
+#INCLURE{fond=prive/style_prive_plugin_forum,env,left=#GET{left},right=#GET{right}}]
+
+.onglets_simple ul.statut{
+	border:none;
+	background:transparent;
+}
+#FILTRE{trim}

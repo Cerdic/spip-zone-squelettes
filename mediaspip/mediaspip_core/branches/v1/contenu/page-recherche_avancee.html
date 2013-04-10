@@ -1,0 +1,74 @@
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie" class="pas_surlignable"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><:mediaspip_core:info_recherche_avancee:></p>
+<div class="contenu-principal pas_surlignable">
+	[<div class="cartouche">
+		<div class="logo">
+		(#CHEMIN{images/logo_recherche_defaut.png}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+			|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+		</div>]
+		<h1 class="h1"><:mediaspip_core:info_recherche_avancee:></h1>
+	</div>
+	
+	<div class="noajax">
+	#FORMULAIRE_MS_RECHERCHE_AVANCEE
+	</div>
+	
+	[(#REM)
+		On ne lance une recherche que s'il y a réellement des choses à chercher
+	]
+	[(#ENV{licence_nom}|oui)
+		[(#ENV{licence_nom}|=={ss_licence}|?{[(#SET{id_licence,0})],[(#SET{id_licence,#ENV{licence_nom}})]})]
+	]
+	<BOUCLE_recherche_effectuee(CONDITION){si #ENV{recherche}|ou{#ENV{licence_nom}}|ou{#ENV{id_rubrique}}|ou{#ENV{date_debut}}|ou{#ENV{id_auteur}}|ou{#ENV{date_fin}}|ou{#ENV{em_type}}|ou{#ENV{lang_forcee}}|oui}>
+		[(#REM) Medias trouves ]
+		[(#SET{titre_liste,<:mediaspip_core:recherche_medias:>})]
+		
+		#INCLURE{fond=inclure/articles-medias_liste,titre_liste=#GET{titre_liste},tri_medias_forcer=points,toutes_langues=#ENV{lang_forcee}|?{non,oui},afficher_nombre=oui,id_licence=#GET{id_licence},env,ajax}
+	
+		[(#REM) autres articles trouves]
+		<B_articles>
+		<div class="liste resultats articles">
+			#ANCRE_PAGINATION
+			<h2 class="h2"><:mediaspip_core:recherche_articles_autres:> (#GRAND_TOTAL)</h2>
+			<ul class="liste-items">
+				<BOUCLE_articles(ARTICLES){!id_secteur=#CONFIG{mediaspip/rubriques/medias}}{recherche ?} {agenda date, periode, #ENV{date_debut,0000-01-01 00:00}|affdate{Y},#ENV{date_debut,0000-01-01 00:00}|affdate{m}, #ENV{date_debut,0000-01-01 00:00}|affdate{d},#ENV{date_fin,2050-12-31 00:00}|affdate{Y},#ENV{date_fin,2050-12-31 00:00}|affdate{m},#ENV{date_fin,2050-12-31 00:00}|affdate{d}}{id_licence=#GET{id_licence,.*}}{em_type ?}{id_auteur ?}{id_rubrique ?}{par points}{inverse}{pagination 3}>
+				<li class="item">
+					<h3 class="h3"><a href="#URL_ARTICLE" class="spip_in">#TITRE</a></h3>
+					<div class="small">[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</div>
+					[<div class="introduction">(#INTRODUCTION|image_reduire{300}|propre)</div>]
+				</li>
+				</BOUCLE_articles>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_articles>
+		
+		[(#REM)
+			
+			On ne recherche dans les articles syndiques que si les critères de la recherche le permettent
+			
+		]
+		<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|non}>
+		[(#REM) articles externes trouves ]
+		<B_syndic_articles>
+		<div class="liste resultats syndic_articles">
+			#ANCRE_PAGINATION
+			<h2 class="h2"><:mediaspip_core:recherche_articles_externes:> (#GRAND_TOTAL)</h2>
+			<ul class="liste-items">
+				<BOUCLE_syndic_articles(SYNDIC_ARTICLES) {agenda date, periode, #ENV{date_debut,0000-01-01 00:00}|affdate{Y}, #ENV{date_debut,0000-01-01 00:00}|affdate{m}, #ENV{date_debut,0000-01-01 00:00}|affdate{d}, #ENV{date_fin,2050-12-31 00:00}|affdate{Y},#ENV{date_fin,2050-12-31 00:00}|affdate{m},#ENV{date_fin,2050-12-31 00:00}|affdate{d}}{recherche ?}{id_rubrique ?}{par points}{inverse}{pagination 3}>
+				<li class="item">
+					<h3 class="h3"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+					[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+					<div class="small">[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</div>
+					[<div class="introduction">(#DESCRIPTIF|image_reduire{300}|propre)</div>]
+				</li>
+				</BOUCLE_syndic_articles>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_syndic_articles>
+		</BOUCLE_recherche_critere_syndic_ok>
+	</BOUCLE_recherche_effectuee>
+</div>

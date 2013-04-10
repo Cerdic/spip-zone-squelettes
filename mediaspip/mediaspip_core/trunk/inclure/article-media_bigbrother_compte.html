@@ -1,0 +1,13 @@
+<BOUCLE_documents_downloads(DOCUMENTS){si #PLUGIN{bigbrother}|et{#CONFIG{bigbrother/telecharger}|=={oui}}|oui}{id_article}{par extension}{tout}>
+#SET{downloads,0}
+<BOUCLE_documents_downloads_tous(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{tout}>
+<BOUCLE_nb_downloads_tous(JOURNAL?){id_objet=#ID_DOCUMENT}{action = telecharger}> </BOUCLE_nb_downloads_tous>
+#SET{downloads,#GET{downloads}|plus{#TOTAL_BOUCLE}}
+</B_nb_downloads_tous>
+</BOUCLE_documents_downloads_tous>
+<BOUCLE_nb_downloads(JOURNAL?){id_objet=#ID_DOCUMENT}{action = telecharger}> </BOUCLE_nb_downloads>
+#SET{downloads,#GET{downloads}|plus{#TOTAL_BOUCLE}}
+</B_nb_downloads>
+</BOUCLE_documents_downloads>
+[<div class="info_media info-telechargements">(#GET{downloads}|>{0}|oui)<:mediaspip_core:info_nb_telechargements{nb=#GET{downloads}}:></div>]
+</B_documents_downloads>

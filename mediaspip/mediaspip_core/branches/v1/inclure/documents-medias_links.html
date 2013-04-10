@@ -1,0 +1,74 @@
+[(#REM)
+	Liste de liens vers les documents
+	Configurable dans le formulaire de configuration de mediaspip_core
+]
+<BOUCLE_verif_liens_droits(CONDITION){si #CONFIG{mediaspip/squelettes/afficher_lien_direct}|=={on}|et{#CONFIG{mediaspip/squelettes/liens_limiter_acces,off}|!={on}|ou{#AUTORISER{msvoirliens}}}|oui}>
+<B_documents_orig_joints>
+	<h3 class="h3"><:mediaspip_core:info_documents_liens_directs:></h3>
+	<ul class="liste-items liste_docs_liens_directs" id="liste_docs_liens_directs">
+		<BOUCLE_documents_orig_joints(DOCUMENTS){id_article}{id_document !IN #GET{docs_exclus}}{id_orig=0}{par id_document}>
+			[(#GRAND_TOTAL|>{1}|oui)
+			<li class="item info">
+				<h4>[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
+			</li>]
+			[(#VAL{vignette}|in_array{#CONFIG{mediaspip/squelettes/liens_types,#ARRAY{0,copies,1,vignette}}}|oui)
+			[(#EXTENSION|in_array{#ARRAY{0,jpg,2,gif,3,png}}|et{#HAUTEUR|>{400}|ou{#LARGEUR|>{400}}}|oui)
+				[(#SET{vignette,[(#LOGO_DOCUMENT|image_reduire{400,400}|extraire_attribut{src}|url_absolue)]})]
+			]
+			[(#EXTENSION|in_array{#ARRAY{0,jpg,2,gif,3,png}}|non)
+				[(#SET{vignette,[(#LOGO_DOCUMENT|extraire_attribut{src}|url_absolue)]})]
+			]
+			[<li class="item info_lien">
+				<div class="formulaire_spip">
+				<label for="vignette_#ID_DOCUMENT"><:mediaspip_core:info_lien_vignette:></label>
+				<input type="text" class="text copypaste" id="vignette_#ID_DOCUMENT" value="(#GET{vignette})" readonly="readonly" size="50" />
+				</div>
+			</li>]
+			]
+			[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/liens_types,#ARRAY{0,copies,1,vignette}}}|oui)
+			<li class="item info_lien">
+				<div class="formulaire_spip">
+				<label for="original_#ID_DOCUMENT"><:mediaspip_core:document_version_originale:> (.#EXTENSION)</label>
+				<input type="text" class="text copypaste" id="original_#ID_DOCUMENT" value="[(#URL_DOCUMENT|url_absolue)]" readonly="readonly" size="50" />
+				</div>
+			</li>
+			]
+			<BOUCLE_copies(CONDITION){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/liens_types,#ARRAY{0,copies,1,vignette}}}|oui}>
+				<BOUCLE_documents_copies(DOCUMENTS){id_orig=#_documents_orig_joints:ID_DOCUMENT}>
+					<li class="item info_lien">
+						<div class="formulaire_spip">
+						<label for="copie_#ID_DOCUMENT_#EXTENSION"><:mediaspip_core:document_version{version=#EXTENSION}:></label>
+						<input type="text" class="text copypaste" id="copie_#ID_DOCUMENT_#EXTENSION" value="[(#URL_DOCUMENT|url_absolue)]" readonly="readonly" size="50" />
+						</div>
+					</li>
+				</BOUCLE_documents_copies>
+				<B_doc2img_copies>
+				</ul>
+				<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
+				#ANCRE_PAGINATION
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul class="liste-items liste_docs_liens_directs">
+				<BOUCLE_doc2img_copies(DOC2IMG){id_document=#_documents_orig_joints:ID_DOCUMENT}{par id_doc2img}{pagination 5}>
+					#SET{ul_ferme,oui}
+					#SET{fichier,#EVAL{_DIR_IMG}#FICHIER}
+					<li class="item info_lien">
+						<div class="formulaire_spip">
+						<label for="copie_#ID_DOC2IMG">
+							[(#GRAND_TOTAL|=={1}|oui)
+							<:mediaspip_core:document_conversion:>]
+							[(#GRAND_TOTAL|=={1}|non)
+							#SET{nb,#COMPTEUR_BOUCLE}
+							<:mediaspip_core:document_conversion_page{nb=#GET{nb}}:>]
+						</label>
+						<input type="text" class="text copypaste" id="copie_#ID_DOC2IMG" value="[(#GET{fichier}|url_absolue)]" readonly="readonly" size="50" />
+						</div>
+					</li>
+				</BOUCLE_doc2img_copies>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+				</B_doc2img_copies>
+			</BOUCLE_copies>
+		</BOUCLE_documents_orig_joints>
+	[(#GET{ul_ferme}|!={oui}|oui)</ul>]
+</B_documents_orig_joints>
+</BOUCLE_verif_liens_droits>

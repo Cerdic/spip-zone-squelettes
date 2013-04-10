@@ -1,0 +1,162 @@
+[(#REM)
+	
+	Plugin MediaSPIP Core
+	© kent1 - http://www.kent1.info - GNU/GPL v3
+	
+	Formulaire de configuration de la page d'accueil de MediaSPIP
+
+]
+[(#SET{explication_readonly,<span class="champ_readonly"><:mediaspip_core:explication_config_readonly:></span>})]
+[(#SET{explication_readonly_squelette,<span class="champ_readonly"><:mediaspip_core:explication_config_readonly_squelette:></span>})]
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<li class="fieldset">
+				<fieldset>
+					<legend><:mediaspip_core:legende_blocs_home:></legend>
+					<p class="explication"><:mediaspip_core:explication_blocs_home:></p>
+					<ul>
+						[(#SAISIE{checkbox, blocs_cachees,
+							label=<:mediaspip_core:label_home_blocs_caches:>,
+							explication=<:mediaspip_core:explication_home_blocs_caches:>,
+							defaut=#ARRAY,
+							datas=#ARRAY{
+								info_description_site,<:mediaspip_core:label_case_info_description_site:>,
+								info_editos,<:mediaspip_core:label_case_info_editos:>,
+								info_news,<:mediaspip_core:label_case_info_news:>,
+								info_featured,<:mediaspip_core:label_case_info_featured:>,
+								info_tags,<:mediaspip_core:label_case_info_tags:>}})]
+					</ul>
+				</fieldset>
+				<fieldset>
+					<legend><:mediaspip_core:legende_exergue:></legend>
+					<ul>
+						[(#EVAL{_MS_DESACTIVE_EXERGUE}|=={oui}|oui) #SET{desactive_exergue,oui} ]
+						[(#SAISIE{case, exergue,
+							label=<:mediaspip_core:label_exergue:>,
+							readonly=#GET{desactive_exergue},explication=#GET{desactive_exergue}|?{#GET{explication_readonly_squelette}},
+							disable=#GET{desactive_exergue},
+							class=[(#GET{desactive_exergue}|?{readonly,''})],
+							valeur_forcee=#GET{desactive_exergue},
+							label_case=<:mediaspip_core:label_exergue_choix:>})]
+						#SET{nb_articles_originaux,0}
+						#SET{size_originaux,5}
+						<BOUCLE_originaux(ARTICLES){origine_traduction}> </BOUCLE_originaux>
+						#SET{nb_articles_originaux,#TOTAL_BOUCLE}
+						</B_originaux>
+						[(#GET{nb_articles_originaux}|>{5}|?{[(#SET{size_originaux,#GET{nb_articles_originaux}})],''})]
+						[(#GET{nb_articles_originaux}|>{20}|?{[(#SET{size_originaux,20})],''})]
+						[(#GET{desactive_exergue}|=={oui}|non)
+						[(#CONFIG{mediaspip/home/exergue}|=={on}|oui)
+							[(#SAISIE{articles_originaux_et_rubriques,exergue_article,
+								label=<:mediaspip_core:label_exergue_article:>,
+								explication=<:mediaspip_core:explication_exergue_article:>,
+								id_rubrique=#CONFIG{mediaspip/rubriques/medias},
+								recursif=oui,
+								size=#GET{size_originaux},
+								multiple=oui})]
+							
+							#SET{hauteur_exergue_readonly,#VAL{_TAILLE_HAUTEUR_EXERGUE}|defined|?{'oui',''}}
+							#SET{largeur_exergue_readonly,#VAL{_TAILLE_LARGEUR_EXERGUE}|defined|?{'oui',''}}
+							[(#SAISIE{input,
+								document_largeur_maximale_exergue,
+								size=4,readonly=#GET{largeur_exergue_readonly},explication=#GET{largeur_exergue_readonly}|?{#GET{explication_readonly}},maxlength=4,
+								class=[(#GET{largeur_exergue_readonly}|?{readonly,''})],
+								valeur_forcee=[(#GET{largeur_exergue_readonly}|?{#EVAL{_TAILLE_LARGEUR_EXERGUE},''})],
+								label=<:mediaspip_core:label_document_largeur_maximale_exergue:>,
+								defaut=620})]
+							[(#SAISIE{input,
+								document_hauteur_maximale_exergue,
+								size=4,readonly=#GET{hauteur_exergue_readonly},explication=#GET{hauteur_exergue_readonly}|?{#GET{explication_readonly}},maxlength=4,
+								class=[(#GET{hauteur_exergue_readonly}|?{readonly,''})],
+								valeur_forcee=[(#GET{hauteur_exergue_readonly}|?{#EVAL{_TAILLE_HAUTEUR_EXERGUE},''})],
+								label=<:mediaspip_core:label_document_hauteur_maximale_exergue:>})]
+			
+							[(#SAISIE{case, exergue_introduction,
+								label=<:mediaspip_core:label_exergue_introduction:>,
+								label_case=<:mediaspip_core:label_exergue_choix_introduction:>})]
+						]]
+					</ul>
+				</fieldset>
+				<fieldset>
+					<legend><:mediaspip_core:legende_highlights:></legend>
+					<ul>
+						[(#EVAL{_MS_DESACTIVE_HIGHLIGHT}|=={oui}|oui) #SET{desactive_highlight,oui} ]
+						[(#SAISIE{input,
+							titre_highlights,
+							class=multilang,
+							label=<:mediaspip_core:label_titre_bloc:>})]
+						[(#SAISIE{case, choix_highlight,
+							label=<:mediaspip_core:label_highlights_choisir:>,
+							readonly=#GET{desactive_highlight},explication=#GET{desactive_highlight}|?{#GET{explication_readonly_squelette}},
+							class=[(#GET{desactive_highlight}|?{readonly,''})],
+							valeur_forcee=[(#GET{desactive_highlight}|?{#EVAL{_MS_DESACTIVE_HIGHLIGHT},''})],
+							disable=#GET{desactive_highlight},
+							label_case=<:mediaspip_core:label_highlights_choisir_choix:>})]
+							<BOUCLE_si_choisir(CONDITION){si #CONFIG{mediaspip/home/choix_highlight}|=={on}|et{#EVAL{_MS_DESACTIVE_HIGHLIGHT}|!={oui}}|oui}>
+								#SET{nb_articles_originaux_highlights,0}
+								#SET{size_originaux_highlights,5}
+								<BOUCLE_rubrique_media(RUBRIQUES){id_rubrique = #CONFIG{mediaspip/rubriques/medias}}>
+								<BOUCLE_originaux_highlights(ARTICLES){origine_traduction}{branche}> </BOUCLE_originaux_highlights>
+								#SET{nb_articles_originaux_highlights,#TOTAL_BOUCLE}
+								</B_originaux_highlights>
+								[(#GET{nb_articles_originaux_highlights}|>{5}|?{[(#SET{size_originaux_highlights,#GET{nb_articles_originaux_highlights}})],''})]
+								[(#GET{nb_articles_originaux_highlights}|>{20}|?{[(#SET{size_originaux_highlights,20})],''})]
+								</BOUCLE_rubrique_media>
+								[(#SAISIE{articles_originaux_et_rubriques,choix_highlight_article,
+									label=<:mediaspip_core:label_highlights_choisir_article:>,
+									explication=<:mediaspip_core:explication_highlights_choisir_article:>,
+									id_rubrique=#CONFIG{mediaspip/rubriques/medias},
+									recursif=oui,
+									size=#GET{size_originaux_highlights},
+									multiple=oui})]
+								[(#SET{tris_possibles,[(#ARRAY{titre,<:mediaspip_core:option_tri_titre:>,date,<:mediaspip_core:option_tri_date:>,popularite,<:mediaspip_core:option_tri_popularite:>})]})]
+								[(#PLUGIN{NOTATION}|oui)
+									[(#SET{tris_possibles,[(#GET{tris_possibles}|array_merge{[(#ARRAY{moyenne,<:mediaspip_core:option_tri_notation:>})]})]})]
+								]
+								[(#SAISIE{radio, highlights_choisir_tri,
+									label=<:mediaspip_core:label_highlights_choisir_tri:>,
+									defaut=titre,
+									datas=#GET{tris_possibles}})]
+							</BOUCLE_si_choisir>
+					</ul>
+				</fieldset>
+			</li>
+			<li class="fieldset">
+				<fieldset>
+					<legend><:mediaspip_core:legende_navigation:></legend>
+					<ul>
+						#SET{nb_sites_nav_readonly,#VAL{_NB_SITES_NAV}|defined|?{'oui',''}}
+						#SET{nb_syndics_nav_readonly,#VAL{_NB_SYNDICS_NAV}|defined|?{'oui',''}}
+						[(#SAISIE{input,
+							nb_sites_nav,maxlength=3,
+							size=3,readonly=#GET{nb_sites_nav_readonly},explication=#GET{nb_sites_nav_readonly}|?{#GET{explication_readonly}},
+							class=[(#GET{nb_sites_nav_readonly}|?{readonly,''})],
+							valeur_forcee=[(#GET{nb_sites_nav_readonly}|?{#EVAL{_NB_SITES_NAV},''})],
+							label=<:mediaspip_core:label_nb_sites_nav:>,
+							defaut=5})]
+						[(#SAISIE{input,
+							nb_syndics_nav,
+							maxlength=3,
+							size=3,readonly=#GET{nb_syndics_nav_readonly},explication=#GET{nb_syndics_nav_readonly}|?{#GET{explication_readonly}},
+							class=[(#GET{nb_syndics_nav_readonly}|?{readonly,''})],
+							valeur_forcee=[(#GET{nb_syndics_nav_readonly}|?{#EVAL{_NB_SYNDICS_NAV},''})],
+							label=<:mediaspip_core:label_nb_syndic_nav:>,
+							defaut=10})]
+					</ul>
+				</fieldset>
+			</li>
+		</ul>
+		<input type="hidden" name="_meta_casier" value="mediaspip/home" />
+		<p class="boutons">
+			<input type="submit" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</div>
+</form>
+</div>

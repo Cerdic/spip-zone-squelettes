@@ -1,0 +1,14 @@
+<BOUCLE_forums(FORUMS?){si #ENV{id_article}}{id_article}{statut !LIKE priv%}{plat}> </BOUCLE_forums>
+<li>
+	[(#AUTORISER{configurer}|oui)
+	<a href='[(#URL_PAGE{ms_config,ms_config=forums}|parametre_url{objet,article}|parametre_url{id_objet,#ID_ARTICLE}|parametre_url{retour,#SELF})]'>
+		<:mediaspip_core:lien_modifier_forum_publication:>[ ((#GRAND_TOTAL))]
+	</a>]
+	[(#AUTORISER{configurer}|non)
+		[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui)
+		<a href='[(#URL_AUTEUR{#SESSION{id_auteur}}|parametre_url{vue,forums}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{retour,#SELF})]'>
+			<:mediaspip_core:lien_modifier_forum_publication:>[ ((#GRAND_TOTAL))]
+		</a>]
+	]
+</li>
+</B_forums>

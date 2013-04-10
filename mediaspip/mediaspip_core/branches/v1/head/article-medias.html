@@ -1,0 +1,20 @@
+<BOUCLE_article_head(ARTICLES) {id_article}>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+<INCLURE{fond=inclure/head}> 
+[(#PLUGIN{bigbrother}|oui)#ENREGISTRER_VISITE_AUTEUR]
+</BOUCLE_article_head>
+<!-- Oembed code -->
+[(#SET{title,[(#TITRE|textebrut)]})]
+<BOUCLE_doc(DOCUMENTS){id_article}{extension IN 'mp3','flv'}{0,1}>[(#EXTENSION|=={mp3}|?{#SET{type,audio},#SET{type,video}})]
+[<meta property="og:title" content="(#GET{title}|attribut_html)" />]
+[<meta property="og:description" content="(#_article_head:INTRODUCTION{150}|sinon{#DESCRIPTIF}|attribut_html)" />] 
+[<meta property="og:image" content="(#LOGO_DOCUMENT|image_passe_partout{150,150}|image_recadre{150,150}|extraire_attribut{src}|url_absolue)" />]
+[<meta property="og:site_name" content="(#NOM_SITE_SPIP|textebrut)" />]
+[<meta property="og:video:height" content="(#HAUTEUR|=={0}|?{50,#HAUTEUR})" />] 
+[<meta property="og:video:width" content="(#LARGEUR|=={0}|?{400,#LARGEUR})" />] 
+<meta name="medium" content="video" />
+<meta property="og:video" content="[(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})]"/> 
+<meta property="og:video:type" content="application/x-shockwave-flash" />
+</BOUCLE_doc>

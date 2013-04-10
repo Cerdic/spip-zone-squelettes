@@ -1,0 +1,20 @@
+#CACHE{0}
+<li class="fieldset diogene_licence">
+	<fieldset>
+		<legend><:mediaspip_core:legende_auth_telecharger:></legend>
+		<ul>
+			[(#SET{defaut,#CONFIG{mediaspip/squelettes/autoriser_telecharger,on}|=={on}|?{<:item_oui:>,<:item_non:>}})]
+			[(#SET{option_defaut,#VAL{mediaspip_core:option_ms_auth_telecharger_defaut}|_T{#ARRAY{defaut,#GET{defaut}}}})]
+			[(#SAISIE{selection,ms_auth_telecharger,
+				label=<:mediaspip_core:label_ms_auth_telecharger:>,
+				explication=<:mediaspip_core:explication_ms_auth_telecharger:>,
+				cacher_option_intro=oui,
+				datas=#ARRAY{
+					defaut,#GET{option_defaut},
+					oui,<:item_oui:>,
+					non,<:item_non:>}})] 
+			[(#SAISIE{case,ms_auth_telecharger_loggues,
+				label_case=<:mediaspip_core:label_ms_auth_telecharger_loggues:>})]
+		</ul>
+	</fieldset>
+</li>

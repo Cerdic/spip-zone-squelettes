@@ -1,0 +1,14 @@
+[(#REM)
+	
+	Pied de page
+	
+	Insère les menus dont l'identifiant finit par "pied"
+	Il les trie par numéro de titre puis par titre
+	
+	Ajoute la balise PIWIK pour le cas où le plugin est activé
+
+]
+<BOUCLE_menus_pied(MENUS){identifiant LIKE %pied}{par num titre,titre}>
+#INCLURE{fond=inclure/menu,page,id_rubrique,id_article,id_mot,identifiant=#IDENTIFIANT}
+</BOUCLE_menus_pied>
+[(#PLUGIN{piwik}|oui)#PIWIK]

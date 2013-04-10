@@ -1,0 +1,38 @@
+[(#REM)
+
+	Page de modification du profil de l'auteur
+	Accessible en passant le parametre vue=profil sur sa propre page ou celle d'un auteur
+	que l'on a le droit de modifier (si on est admin par exemple) 
+	
+	On affiche sur cette page :
+	-* Un message explicant aux utilisateurs comment modifier leur logo (via crayons)
+	-* Le formulaire d'edition de l'auteur passe en parametre
+	-* Un message si l'on n'a pas le droit de modifier l'auteur en question
+	
+	
+]#CACHE{0}
+<BOUCLE_contenu_auteur(AUTEURS){si #AUTORISER{modifier,auteur,#ENV{id_auteur}}|oui}{id_auteur}{tout}>
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><a href="[(#SELF|parametre_url{vue,''})]" class="spip_in on">(#NOM|couper{80})</a><span class="sep"></span>]</p>
+
+<div class="content-principal auteur_gestion_forum">
+	<div class="cartouche">
+		[<div class="logo #EDIT{logo} resize-#GET{largeur_logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+		</div>]
+		<h1 class="h1">
+			[(#ENV{id_auteur}|=={#SESSION{id_auteur}}|?{<:mediaspip_core:titre_modifier_forums:>,<:mediaspip_core:titre_modifier_forums_auteur{nom=#NOM}:>})]
+		</h1>
+	</div>
+	<div class="auteurs_forums">
+	#SET{articles,#ARRAY}
+	<BOUCLE_articles_auteurs(ARTICLES){id_auteur}{tout}>
+	#SET{articles,#GET{articles}|push{#ID_ARTICLE}}
+	</BOUCLE_articles_auteurs>
+	[(#INCLURE{fond=prive/listes/controler_forum_cvt_auteurs,id_forum=#ENV{id_forum,#ENV{debut_id_forum}},id_article,objet,id_objet,type_message,recherche,articles=#GET{articles},statut=#ENV{statut},auteur_voir=#ENV{id_auteur}})]
+	</div>
+</div>
+</BOUCLE_contenu_auteur>
+#FILTRE{trim}

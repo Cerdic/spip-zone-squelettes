@@ -1,0 +1,52 @@
+<BOUCLE_article_exergue(ARTICLES){id_article}>
+<li>
+	<h2 class="h2 #EDIT{titre}">#TITRE</h2>
+	<BOUCLE_documents(DOCUMENTS){id_article}>
+	</BOUCLE_documents>
+	#SET{largeur,#VAL{_TAILLE_LARGEUR_VIGNETTES_GRANDES}|defined|?{#EVAL{_TAILLE_LARGEUR_EXERGUE},#CONFIG{mediaspip/home/document_largeur_maximale_exergue,620}}}
+	#SET{hauteur,#VAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES}|defined|?{#EVAL{_TAILLE_HAUTEUR_EXERGUE},#CONFIG{mediaspip/home/document_hauteur_maximale_exergue}}}
+	
+	#SET{total,#TOTAL_BOUCLE}
+	<BOUCLE_egal1(CONDITION){si #GET{total}|=={1}|oui}>
+		<BOUCLE_doc(DOCUMENTS){id_article}>
+		[(#EXTENSION|in_array{#ARRAY{0,flv,1,mp3}}|oui)
+			#SET{embed,#ID_DOCUMENT}
+		]
+		[(#PLUGIN{doc2img}|et{#EXTENSION|in_array{#CONFIG{doc2img/format_document,''}|explode{','}}}|oui)
+			[(#MODELE{ms_slider_doc2img,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},pagination=non,env})]
+		]
+		[(#PLUGIN{doc2img}|et{#EXTENSION|in_array{#CONFIG{doc2img/format_document,''}|explode{','}}}|non)
+			[(#MIME_TYPE|match{audio/}|oui)
+				#SET{largeur,350}
+			]
+			[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=non,largeur=#GET{largeur},hauteur=#GET{hauteur},infos=non,noresize=oui})]
+		]
+		</BOUCLE_doc>
+	</BOUCLE_egal1>
+	<BOUCLE_sup1(CONDITION){si #GET{total}|>{1}}>
+		<BOUCLE_document_orig(DOCUMENTS){id_article}{id_orig=0}>
+			[(#EXTENSION|in_array{#ARRAY{0,flv,1,mp3}}|oui)
+				#SET{embed,#ID_DOCUMENT}
+			]
+			<BOUCLE_documents_lisibles(DOCUMENTS){id_orig=#ID_DOCUMENT}{extension IN flv,mp3,ogg,mp4,ogv}>
+				[(#EXTENSION|in_array{#ARRAY{0,flv,1,mp3}}|oui)
+					#SET{embed,#ID_DOCUMENT}
+				]
+		 	</BOUCLE_documents_lisibles>
+				[(#MIME_TYPE|match{audio/}|oui)
+					#SET{largeur,''}
+				]
+				[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},autobuffer=non,noresize=oui,infos=non,env})]
+			</B_documents_lisibles>
+			[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},noresize=oui,autobuffer=non,infos=non,env})]
+			<//B_documents_lisibles>
+		</BOUCLE_document_orig>
+	</BOUCLE_sup1>
+	</B_documents>
+	<//B_documents>
+	[(#CONFIG{mediaspip/home/exergue_introduction}|=={on}|oui)
+	<div class="introduction #EDIT{introduction}">#INTRODUCTION</div>]
+	<p class="lire-la-suite"><a class="lire-la-suite" href="#URL_ARTICLE"><span class="lire-la-suite-titre"><em>#TITRE</em></span></a>[ <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+	<br class="nettoyeur" />
+</li>
+</BOUCLE_article_exergue>

@@ -1,0 +1,29 @@
+[(#REM)
+	Inclure affichant un formulaire de login dans la navigation droite
+
+	Ce formulaire ne s'affiche que si l'utilisateur n'est pas déjà identifié
+
+	Peut prendre en paramètre :
+	- redirect : correspond à l'adresse vers laquelle rediriger après l'inclure
+
+	La redirection du formulaire est calculée de la sorte :
+	- En priorité le redirect fourni par l'environnement
+	- On test si on est dans des pages qui nécessitent une redirection particulière
+	(spip_pass ...) et on redirige sur la home du site
+	- Sinon on redirige sur la page en cours
+
+	Si le formulaire a déjà été validé et est en erreur, on ajoute une class
+	"visible" sur son élément parent pour pouvoir cibler correctement dans les
+	cas où l'on cache le formulaire via javascript
+
+]
+#CACHE{0}
+[(#SESSION{statut}|non)
+	[(#SET{class,[(#VAL{formulaire_action}|_request|=={login}|oui)visible]})]
+	<div class="ms_login">
+		<h2 class="h2"><:mediaspip_core:titre_se_connecter:></h2>
+		<div[ class="(#GET{class})"]>
+			[(#FORMULAIRE_LOGIN{[(#ENV{page}|in_array{#ARRAY{0,spip_pass}}|?{[(#URL_SITE_SPIP|url_absolue)],#SELF})]})]
+		</div>
+	</div>
+]

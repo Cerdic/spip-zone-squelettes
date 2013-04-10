@@ -1,0 +1,41 @@
+<!-- autoriser=webmestre -->
+<!-- refus=<:cfg:refus_configuration_webmestre:> -->
+<!-- nom=mediaspip -->
+<!-- casier=medias -->
+
+[(#SET{explication_readonly,<span class="champ_readonly"><:mediaspip_core:explication_config_readonly:></span>})]
+[(#SET{explication_readonly_squelette,<span class="champ_readonly"><:mediaspip_core:explication_config_readonly_squelette:></span>})]
+<div class="formulaire_spip formulaire_config">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			[(#SAISIE{checkbox, infos_cachees,
+				label=<:mediaspip_core:label_infos_cachees:>,
+				explication=<:mediaspip_core:explication_infos_cachees:>,
+				defaut=#ARRAY,
+				datas=#ARRAY{
+					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
+					info_nb_vues,<:mediaspip_core:label_case_info_nb_vues:>,
+					info_publie,<:mediaspip_core:label_case_info_published:>,
+					info_update,<:mediaspip_core:label_case_info_update:>,
+					info_auteur,<:mediaspip_core:label_case_info_auteur:>}})]
+			[(#SAISIE{checkbox, infos_cachees_articles,
+				label=<:mediaspip_core:label_infos_cachees_articles:>,
+				explication=<:mediaspip_core:explication_infos_cachees_articles:>,
+				defaut=#ARRAY,
+				datas=#ARRAY{
+					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
+					info_publie,<:mediaspip_core:label_case_info_published:>,
+					info_auteur,<:mediaspip_core:label_case_info_auteur:>}})]
+		</ul>
+		<p class="boutons">
+			<input type="submit" name="_cfg_ok" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</div>
+</form>
+</div>

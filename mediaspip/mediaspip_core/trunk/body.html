@@ -1,0 +1,31 @@
+[(#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_largeur,900}}})][
+(#SET{hauteur_logo,[(#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_hauteur,500}})]})
+][(#SET{width,#LOGO_SITE_SPIP|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}|extraire_attribut{width}})][
+(#GET{width}|>{300}|oui)[(#SET{has_banner,has_banner})]]
+[(#LOGO_BACKGROUND|oui)[(#SET{has_background,has_background})]]
+<body[(#GET{has_banner}|ou{#GET{has_background}}|oui)class="[(#GET{has_banner})][ (#GET{has_background})]"]>
+	<div class="page[(#VAL{_MS_TYPE_SKEL}|defined|oui)#EVAL{_MS_TYPE_SKEL}]">
+		<div class="header" id="header">
+			<INCLURE{fond=header/#ENV{type-page},env} />
+		</div>
+		<div class="nav hornav clearfix" id="nav">
+			<INCLURE{fond=inclure/nav,env} />
+		</div>
+		<div class="container">
+			<div class="content" id="content">
+				<INCLURE{fond=content/#ENV{type-page},env} />
+			</div>
+	
+			<div class="extra1 col" id="extra1">
+				<INCLURE{fond=extra1/#ENV{type-page},env} />
+			</div>
+			<div class="extra2 col" id="extra2">
+				<INCLURE{fond=extra2/#ENV{type-page},env} />
+			</div>
+		</div>
+		<div class="footer" id="footer">
+			<INCLURE{fond=footer/#ENV{type-page},env} />
+		</div>
+	</div>
+</body>
+#FILTRE{trim}

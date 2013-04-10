@@ -1,0 +1,142 @@
+<div class="formulaire_spip formulaire_gestion_forum formulaire_gestion_forum_auteur noajax" id="formulaire_gestion_forum">
+[(#REM) pour IE qui sinon se perd dans l'ajax !, ne pas retirer]
+<!-- <br class='bugajaxie' /> -->
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+<a id="pagination_forum" class="noajax" name="pagination_forum"></a>
+<BOUCLE_si_editable(CONDITION){si #ENV{editable}|oui}>
+<form action="#ENV{action}#formulaire_forum" method="post" enctype="multipart/form-data"><div>
+[(#ACTION_FORMULAIRE{[(#ENV{action})]})]
+
+#SET{pagination,#ENV{pagination,10}}
+#SET{prive,#ENV{select_type,public}|=={interne}|?{'priv%','%'}}
+#SET{public,#ENV{select_type,public}|=={public}|?{'priv%',''}}
+
+<input type="hidden" name="id_forum" id="id_forum" value="#ENV{id_forum}" />
+<input type="hidden" name="id_rubrique" id="id_rubrique" value="#ENV{id_rubrique}" />
+<input type="hidden" name="id_article" id="id_article" value="#ENV{id_article}" />
+<input type="hidden" name="id_breve" id="id_breve" value="#ENV{id_breve}" />
+<input type="hidden" name="id_syndic" id="id_syndic" value="#ENV{id_syndic}" />
+<input type="hidden" name="id_message" id="id_message" value="#ENV{id_message}" />
+<input type="hidden" name="id_auteur" id="id_auteur" value="#ENV{id_auteur}" />
+<input type="hidden" name="id_objet" id="id_objet" value="#ENV{id_objet}" />
+<input type="hidden" name="objet" id="objet" value="#ENV{objet}" />
+<input type="hidden" name="auteur" id="auteur" value="#ENV{auteur}" />
+<input type="hidden" name="email_auteur" id="email_auteur" value="#ENV{email_auteur}" />
+<input type="hidden" name="ip" id="ip" value="#ENV{ip}" />
+
+<input type="hidden" name="debut_forum" id="debut_forum" value="#ENV{debut_forum}" />
+<input type="hidden" name="pagination_ancien" id="pagination_ancien" value="#ENV{pagination,10}" />
+
+<p class="boutons">
+	<input type="submit" class="submit" name="valider" value="<:forum:icone_valider_messages:>" />
+	<input type="submit" class="submit" name="bruler" value="<:forum:icone_bruler_messages:>" />
+	<input type="submit" class="submit" name="supprimer" value="<:forum:icone_supprimer_messages:>" />
+</p>
+#SET{articles,#ARRAY}
+<BOUCLE_articles_auteurs(ARTICLES){id_auteur=#ENV{auteur_voir}}> 
+[(#SET{articles,[(#GET{articles}|push{#ID_ARTICLE})]})]
+</BOUCLE_articles_auteurs>
+[(#ENV{id_article}|oui)
+	[(#ENV{id_article}|in_array{#GET{articles}}|oui)
+		#SET{articles,#ENV{id_article}}
+	]
+]
+[(#ENV{id_article}|non)
+	[(#ENV{objet}|=={article}|et{#ENV{id_objet}|intval}|oui)
+		[(#ENV{id_objet}|in_array{#GET{articles}}|oui)
+			#SET{articles,#ENV{id_objet}}
+		]
+	]
+]
+[(#REM) Vérifier si on a des forums internes]
+#SET{forums_internes,non}
+[(#CONFIG{forum_prive_objets}|=={oui}|ou{#CONFIG{forum_prive}|=={oui}}|ou{#CONFIG{forum_prive_admin}|=={oui}}|oui)[(#SET{forums_internes,oui})]]
+<BOUCLE_forums_interne(FORUMS){statut LIKE priv%}{0,1}>[(#SET{forums_internes,oui})]</BOUCLE_forums_interne>
+
+<ul>
+	<li class="gestion_forum boutons">
+		<BOUCLE_compte_forums_trouves(FORUMS){id_forum?}{objet ?}{id_objet ?}{id_rubrique ?}{id_article IN #GET{articles}}{id_breve ?}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{statut?}{statut LIKE #GET{prive}}{statut !LIKE #GET{public}}{recherche?}>
+		</BOUCLE_compte_forums_trouves>
+		<select id="select_statut" name="select_statut">
+			<option value=""><:forum:messages_tous:></option>
+			<BOUCLE_si_public(CONDITION){si #GET{public}|oui}>
+			<BOUCLE_statuts_publics(FORUMS){statut IN 'prop','spam','off','publie'}{id_forum?}{objet ?}{id_objet ?}{id_rubrique ?}{id_article IN #GET{articles}}{id_breve ?}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{recherche?}{fusion statut}{par statut}>
+			<option value="#STATUT"[(#ENV*{select_statut}|=={#STATUT}|oui) selected="selected"]>[(#VAL{forum:messages_}|concat{#STATUT}|_T)]</option>
+			</BOUCLE_statuts_publics>
+			</BOUCLE_si_public>
+			<BOUCLE_si_prive(CONDITION){si #GET{prive}|=={'priv%'}|oui}>
+			<BOUCLE_statuts_prives(FORUMS){statut IN 'prive','privrac','privadm','privoff'}{id_forum?}{objet ?}{id_objet ?}{id_rubrique ?}{id_article IN #GET{articles}}{id_breve ?}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{recherche?}{fusion statut}{par statut}>
+			<option value="#STATUT"[(#ENV*{select_statut}|=={#STATUT}|oui) selected="selected"]>[(#VAL{forum:messages_}|concat{#STATUT}|_T)]</option>
+			</BOUCLE_statuts_prives>
+			</BOUCLE_si_prive>
+		</select>
+		[(#COMPTEUR_BOUCLE|>{10}|oui)
+		<select id="pagination" name="pagination">
+			<option value="10"[(#ENV*{pagination}|=={10}|oui) selected="selected"]>10</option>
+			<option value="50"[(#ENV*{pagination}|=={50}|oui) selected="selected"]>50</option>
+			[(#COMPTEUR_BOUCLE|>{50}|oui)<option value="100"[(#ENV*{pagination}|=={100}|oui) selected="selected"]>100</option>]
+		</select>]
+	</li>
+	</B_compte_forums_trouves>
+	<p><:forum:aucun_message_forum:></p>
+	<//B_compte_forums_trouves>
+	<B_forums_trouves>
+	<li class="gestion_forum boutons">
+		<:forum:label_selectionner:>
+		<BOUCLE_forums_trouves(FORUMS){id_forum?}{objet ?}{id_objet ?}{id_rubrique ?}{id_article IN #GET{articles}}{id_breve ?}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{statut?}{statut LIKE #GET{prive}}{statut !LIKE #GET{public}}{recherche?}{0,1}>
+		<a href="#SELF" id="select_tous"><:forum:messages_tous:></a>
+		<a href="#SELF" id="select_aucun"><:forum:messages_aucun:></a>
+		<BOUCLE_forums_trouves_prop(FORUMS){id_forum?}{objet ?}{id_objet ?}{id_rubrique ?}{id_article IN #GET{articles}}{id_breve ?}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{statut?}{statut LIKE #GET{prive}}{statut !LIKE #GET{public}}{statut = 'prop'}{recherche?}{0,1}>
+		<a href="#SELF" id="select_prop"><:forum:messages_prop:></a>
+		</BOUCLE_forums_trouves_prop>
+		</BOUCLE_forums_trouves>
+	</li>
+	</B_forums_trouves>
+	<li class="fieldset">
+		<fieldset>
+			[(#INCLURE{fond=formulaires/inc-gestion_forum_liste_auteur}{statut=#ENV*{select_statut}}{prive=#GET{prive}}{public=#GET{public}}{pagination=#GET{pagination}}{env})]
+		</fieldset>
+	</li>
+</ul>
+
+<p class="boutons">
+	<input type="submit" class="submit" name="valider" value="<:forum:icone_valider_messages:>" />
+	<input type="submit" class="submit" name="bruler" value="<:forum:icone_bruler_messages:>" />
+	<input type="submit" class="submit" name="supprimer" value="<:forum:icone_supprimer_messages:>" />
+</p>
+
+</div></form></BOUCLE_si_editable>
+<script type="text/javascript">/*<!#EVAL{chr(91)}CDATA#EVAL{chr(91)}*/
+if (window.jQuery)(function($){
+	$("#select_tous").click(function(){
+		$("input.select_forum").attr("checked","checked");
+		return false;
+	});
+	$("#select_aucun").click(function(){
+		$("input.select_forum").attr("checked","");
+		return false;
+	});
+	$("#select_prop").click(function(){
+		$("input.select_forum").attr("checked","");
+		$("li.statut_prop input.select_forum").attr("checked","checked");
+		return false;
+	});
+	
+	$("#pagination, #select_type, #select_statut").change(function(){
+		$("#formulaire_gestion_forum form").submit();
+	});
+	
+	var limite = $("#formulaire_gestion_forum .boutons").offset().top ;
+	
+	$(window).scroll(function() {
+		if($(this).scrollTop() > limite)
+			var boutons_width = $("#formulaire_gestion_forum .boutons").width();
+			$("#formulaire_gestion_forum p.boutons").css({'border-bottom': '3px solid black' , 'position': 'fixed', 'top': 0, 'width': boutons_width+'px'});
+		if($(this).scrollTop() < limite)
+			$("#formulaire_gestion_forum p.boutons").css({'border-bottom': '0' , 'position': 'static', 'width': 'auto'});	
+	});
+}(jQuery));
+/*#EVAL{chr(93)}[(#EVAL{chr(93)})]>*/</script>
+</div>

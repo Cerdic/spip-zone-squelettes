@@ -1,0 +1,36 @@
+#CACHE{0}
+<BOUCLE_auteur(AUTEURS){id_auteur}{tout}>
+<BOUCLE_autoriser_modifier(CONDITION){si #AUTORISER{modifier,auteur,#ENV{id_auteur}}|et{#ENV{vu}|!={profil}}|oui}>
+<div class="menu liste important">
+	<h2 class="h2">
+		<:mediaspip_core:titre_modifier:>
+	</h2>
+	<ul class="menu-liste">
+		[(#SESSION{id_auteur}|=={#ENV{id_auteur}}|et{#SESSION{statut}|in_array{#ARRAY{0,0minirezo,1,1comite}}}|et{#VAL{spip_admin}|has_cookie_admin|non}|oui)
+		<li class="menu-entree">
+			[(#BOUTON_ACTION{<:icone_activer_cookie:>,[(#URL_ACTION_AUTEUR{cookie,rien&cookie_admin=@[(#SESSION{nom}|rawurlencode)]&url=#SELF,[(#SELF|parametre_url{id_article,''})]})]})]
+		</li>]
+		[(#ENV{vue}|=={profil}|non)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,profil})]">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<:mediaspip_core:titre_modifier_profil:>]
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|non)<:mediaspip_core:titre_modifier_auteur:>]
+			</a>
+		</li>]
+		[(#SESSION{id_auteur}|=={#ID_AUTEUR}|et{#ENV{vue}|!={forums}|oui}|oui)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,forums})]">
+				<:mediaspip_core:titre_modifier_forums:>
+			</a>
+		</li>]
+		[(#ENV{vue}|in_array{#ARRAY{0,profil,1,forums}}|oui)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,''})]">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<:mediaspip_core:titre_retour_profil:>]
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|non)<:mediaspip_core:titre_retour_auteur:>]
+			</a>
+		</li>]
+	</ul>
+</div>
+</BOUCLE_autoriser_modifier>
+</BOUCLE_auteur>

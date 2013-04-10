@@ -1,0 +1,224 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<li class="fieldset">
+				<fieldset>
+				<legend><:mediaspip_core:legende_blocs_recurrents:></legend>
+				<p class="explication"><:mediaspip_core:explication_blocs_recurrents:></p>
+				<ul>
+					[(#SAISIE{checkbox, blocs_recurrents_caches,
+						label=<:mediaspip_core:label_blocs_recurrents_caches:>,
+						explication=<:mediaspip_core:explication_blocs_recurrents_caches:>,
+						defaut=#ARRAY,
+						datas=#ARRAY{
+							info_titre_site,<:mediaspip_core:label_case_info_titre_site:>,
+							info_slogan,<:mediaspip_core:label_case_info_slogan:>,
+							info_login,<:mediaspip_core:label_case_info_login:>}})]
+					[(#SAISIE{radio, position_recherche,
+						label=<:mediaspip_core:label_position_recherche:>,
+						explication=<:mediaspip_core:explication_position_recherche:>,
+						defaut=bloc_navigation,
+						datas=#ARRAY{
+							bloc_entete,<:mediaspip_core:label_case_recherche_bloc_entete:>,
+							bloc_navigation,<:mediaspip_core:label_case_recherche_bloc_navigation:>,
+							sans,<:mediaspip_core:label_case_recherche_sans:>}})]
+				</ul>
+				</fieldset>
+			</li>
+			<li class="fieldset">
+				<fieldset>
+				<legend><:mediaspip_core:legende_configuration_syndication:></legend>
+				<p class="explication"><:mediaspip_core:explication_configuration_syndication:></p>
+				<ul>
+					[(#SAISIE{case,
+						syndic_desactiver,
+						label=<:mediaspip_core:label_syndic_desactiver:>})]
+				</ul>
+				</fieldset>
+			</li>
+			<li class="fieldset">
+				<fieldset>
+				<legend><:mediaspip_core:legende_configuration_logo_vignettes:></legend>
+				<p class="explication"><:mediaspip_core:explication_configuration_logo_vignettes:></p>
+				<ul>
+					[(#SET{explication_readonly,<span class="champ_readonly"><:mediaspip_core:explication_config_readonly:></span>})]
+					#SET{hauteur_logo_readonly,#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{'oui',''}}
+					#SET{largeur_logo_readonly,#VAL{_TAILLE_LARGEUR_LOGO_SITE}|defined|?{'oui',''}}
+					[(#SAISIE{input,
+						logo_largeur,
+						label=<:mediaspip_core:label_logo_largeur:>,
+						size=4,readonly=#GET{largeur_logo_readonly},explication=#GET{largeur_logo_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						class=[(#GET{largeur_logo_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{largeur_logo_readonly}|?{#EVAL{_TAILLE_LARGEUR_LOGO_SITE},''})]})]
+					[(#SAISIE{input,
+						logo_hauteur,
+						size=4,readonly=#GET{hauteur_logo_readonly},explication=#GET{hauteur_logo_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_logo_hauteur:>,
+						class=[(#GET{hauteur_logo_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{hauteur_logo_readonly}|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},''})]})]
+					
+					#SET{largeur_logo_objets_readonly,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{'oui',''}}
+					#SET{hauteur_logo_objets_readonly,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{'oui',''}}
+					[(#SAISIE{input,
+						logo_objets_largeur,
+						label=<:mediaspip_core:label_logo_objets_largeur:>,
+						explication=[(#GET{largeur_logo_objets_readonly}|?{#GET{explication_readonly},<:mediaspip_core:explication_logo_objets:>})],
+						class=[(#GET{largeur_logo_objets_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{largeur_logo_objets_readonly}|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},''})],
+						size=4,maxlength=4,readonly=#GET{largeur_logo_objets_readonly},defaut=80})]
+					[(#SAISIE{input,
+						logo_objets_hauteur,
+						label=<:mediaspip_core:label_logo_objets_hauteur:>,
+						explication=[(#GET{largeur_logo_objets_readonly}|?{#GET{explication_readonly},<:mediaspip_core:label_logo_objets_hauteur:>})],
+						class=[(#GET{hauteur_logo_objets_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{hauteur_logo_objets_readonly}|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},''})],
+						size=4,maxlength=4,readonly=#GET{hauteur_logo_objets_readonly},defaut=80})]
+
+					#SET{largeur_vignette_grande_readonly,#VAL{_TAILLE_LARGEUR_VIGNETTES_GRANDES}|defined|?{'oui',''}}
+					#SET{hauteur_vignette_grande_readonly,#VAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES}|defined|?{'oui',''}}
+					[(#SAISIE{input,
+						vignette_grande_largeur,
+						size=4,readonly=#GET{largeur_vignette_grande_readonly},explication=#GET{largeur_vignette_grande_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_vignette_grande_largeur:>,
+						class=[(#GET{largeur_vignette_grande_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{largeur_vignette_grande_readonly}|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_GRANDES},''})],
+						defaut=186})]
+					[(#SAISIE{input,
+						vignette_grande_hauteur,
+						size=4,readonly=#GET{hauteur_vignette_grande_readonly},explication=#GET{hauteur_vignette_grande_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_vignette_grande_hauteur:>,
+						class=[(#GET{hauteur_vignette_grande_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{hauteur_vignette_grande_readonly}|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES},''})],
+						defaut=137})]
+					
+					#SET{largeur_vignette_nav_readonly,#VAL{_TAILLE_LARGEUR_VIGNETTES_NAV}|defined|?{'oui',''}}
+					#SET{hauteur_vignette_nav_readonly,#VAL{_TAILLE_HAUTEUR_VIGNETTES_NAV}|defined|?{'oui',''}}
+					#SET{nb_vignette_nav_readonly,#VAL{_NB_MEDIAS_RUBRIQUES_NAV}|defined|?{'oui',''}}
+					[(#SAISIE{input,
+						vignettes_nav_largeur,
+						size=4,readonly=#GET{largeur_vignette_nav_readonly},explication=#GET{largeur_vignette_nav_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_vignette_nav_largeur:>,
+						class=[(#GET{largeur_vignette_nav_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{largeur_vignette_nav_readonly}|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_NAV},''})],
+						defaut=100})]
+					[(#SAISIE{input,
+						vignettes_nav_hauteur,
+						size=4,readonly=#GET{hauteur_vignette_nav_readonly},explication=#GET{hauteur_vignette_nav_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_vignette_nav_hauteur:>,
+						class=[(#GET{hauteur_vignette_nav_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{hauteur_vignette_nav_readonly}|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_NAV},''})],
+						defaut=75})]
+					[(#SAISIE{input,
+						vignettes_nav_nb,
+						size=3,readonly=#GET{nb_vignette_nav_readonly},explication=#GET{nb_vignette_nav_readonly}|?{#GET{explication_readonly}},maxlength=2,
+						label=<:mediaspip_core:label_vignette_nav_nb:>,
+						class=[(#GET{nb_vignette_nav_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{nb_vignette_nav_readonly}|?{#EVAL{_NB_MEDIAS_RUBRIQUES_NAV},''})],
+						defaut=5})]
+						
+					#SET{largeur_max_doc_readonly,#VAL{_TAILLE_LARGEUR_MAX_DOCUMENT}|defined|?{'oui',''}}
+					[(#SAISIE{input,
+						document_largeur_maximale,
+						size=4,readonly=#GET{largeur_max_doc_readonly},explication=#GET{largeur_max_doc_readonly}|?{#GET{explication_readonly}},maxlength=4,
+						label=<:mediaspip_core:label_document_largeur_maximale:>,
+						class=[(#GET{largeur_max_doc_readonly}|?{readonly,''})],
+						valeur_forcee=[(#GET{largeur_max_doc_readonly}|?{#EVAL{_TAILLE_LARGEUR_MAX_DOCUMENT},''})],
+						defaut=640})]
+				</ul>
+				</fieldset>
+			</li>
+			<li class="fieldset">
+				<fieldset>
+				<legend><:mediaspip_core:legende_configuration_fichiers:></legend>
+				<ul>
+					[(#PLUGIN{embed_code}|oui)
+					[(#SAISIE{oui_non,
+						embed_code,
+						defaut=oui,
+						explication=<:mediaspip_core:description_embed_code:>,
+						label=<:mediaspip_core:label_embed_code:>})]]
+						
+					[(#SAISIE{oui_non,
+						autoriser_telecharger,
+						explication=<:mediaspip_core:description_autoriser_telecharger:>,
+						label=<:mediaspip_core:label_autoriser_telecharger:>,
+						defaut=on})]
+					[(#CONFIG{mediaspip/squelettes/autoriser_telecharger}|=={on}|ou{#CONFIG{mediaspip/squelettes/autoriser_telecharger}|is_null}|oui)
+						[(#SAISIE{oui_non,
+							autoriser_telecharger_que_logues,
+							explication=<:mediaspip_core:description_autoriser_telecharger_que_logues:>,
+							label=<:mediaspip_core:label_autoriser_telecharger_que_logues:>,
+							defaut=on})]
+						[(#SAISIE{oui_non,
+							autoriser_telecharger_original,
+							label=<:mediaspip_core:label_autoriser_telecharger_original:>,
+							defaut=on})]
+						#SET{largeur_vignette_down_readonly,#VAL{_TAILLE_LARGEUR_VIGNETTES_DOWNLOAD}|defined|?{'oui',''}}
+						#SET{hauteur_vignette_down_readonly,#VAL{_TAILLE_HAUTEUR_VIGNETTES_DOWNLOAD}|defined|?{'oui',''}}
+						[(#SAISIE{input,
+							vignettes_download_largeur,
+							size=4,readonly=#GET{largeur_vignette_down_readonly},explication=#GET{largeur_vignette_down_readonly}|?{#GET{explication_readonly}},maxlength=4,
+							label=<:mediaspip_core:label_vignette_download_largeur:>,
+							class=[(#GET{largeur_vignette_down_readonly}|?{readonly,''})],
+							valeur_forcee=[(#GET{largeur_vignette_down_readonly}|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_DOWNLOAD},''})],
+							defaut=100})]
+						[(#SAISIE{input,
+							vignettes_download_hauteur,
+							size=4,readonly=#GET{hauteur_vignette_down_readonly},explication=#GET{hauteur_vignette_down_readonly}|?{#GET{explication_readonly}},maxlength=4,
+							label=<:mediaspip_core:label_vignette_download_hauteur:>,
+							class=[(#GET{hauteur_vignette_down_readonly}|?{readonly,''})],
+							valeur_forcee=[(#GET{hauteur_vignette_down_readonly}|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_DOWNLOAD},''})],
+							defaut=75})]
+						[(#PLUGIN{podcast}|oui)
+							[(#SAISIE{oui_non,
+								autoriser_podcast,
+								explication=<:mediaspip_core:description_autoriser_flux_podcast:>,
+								label=<:mediaspip_core:label_autoriser_flux_podcats:>,
+								defaut=on})]
+						]
+					]
+					[(#SAISIE{oui_non,
+						afficher_lien_direct,
+						explication=<:mediaspip_core:description_afficher_lien_direct:>,
+						label=<:mediaspip_core:label_afficher_liens_direct:>})]
+					[(#CONFIG{mediaspip/squelettes/afficher_lien_direct}|=={on}|oui)
+						[(#SAISIE{selection_multiple,liens_types,
+							label=<:mediaspip_core:label_afficher_liens_types:>,
+							cacher_option_intro=oui,
+							size=3,
+							datas=#ARRAY{
+								vignette,<:mediaspip_core:option_lien_types_vignette:>,
+								original,<:mediaspip_core:option_lien_types_original:>,
+								copies,<:mediaspip_core:option_lien_types_copies:>
+							},
+							defaut=#LISTE{vignette,copies}})]
+						[(#SAISIE{oui_non,
+							liens_limiter_acces,
+							explication=<:mediaspip_core:description_afficher_liens_limiter_acces:>,
+							label=<:mediaspip_core:label_afficher_liens_limiter_acces:>,
+							defaut=off})]
+						[(#CONFIG{mediaspip/squelettes/liens_limiter_acces}|=={on}|oui)
+							[(#SAISIE{statuts_auteurs,
+								liens_limiter_statuts,
+								cacher_option_intro=oui,
+								label=<:mediaspip_core:label_afficher_liens_limiter_statuts:>,
+								defaut=0minirezo})]
+						]
+					]
+				</ul>
+				</fieldset>
+			</li>
+		</ul>
+		<input type="hidden" name="_meta_casier" value="mediaspip/squelettes" />
+		<p class="boutons">
+			<input type="submit" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</div>
+</form>
+</div>

@@ -1,0 +1,41 @@
+#CACHE{0}
+<BOUCLE_auteur(AUTEURS){si #AUTORISER{modifier,auteur,#ENV{id_auteur}}|et{#ENV{vu}|!={profil}}|oui}{id_auteur}{tout}>
+<div class="menu liste important">
+	<h2 class="h2">
+		<:mediaspip_core:titre_modifier:>
+	</h2>
+	#SET{vues_possibles,#LISTE{profil,forums}}
+	<ul class="menu-liste">
+		[(#ENV{est_auteur}|=={oui}|et{#SESSION{statut}|in_array{#LISTE{0minirezo,1comite}}}|et{#VAL{spip_admin}|has_cookie_admin|non}|oui)
+		<li class="menu-entree">
+			[(#BOUTON_ACTION{<:icone_activer_cookie:>,[(#URL_ACTION_AUTEUR{cookie,rien&cookie_admin=@[(#SESSION{nom}|rawurlencode)]&url=#SELF,[(#SELF|parametre_url{id_article,''})]})]})]
+		</li>]
+		[(#ENV{vue}|=={profil}|non)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,profil})]">
+				[(#ENV{est_auteur}|=={oui}|?{<:mediaspip_core:titre_modifier_profil:>,<:mediaspip_core:titre_modifier_auteur:>})]
+			</a>
+		</li>]
+		[(#PLUGIN{collections}|oui)
+			#SET{vues_possibles,#GET{vues_possibles}|push{collections}}
+			[(#ENV{vue}|!={collections}|oui)
+			<li class="menu-entree">
+				<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,collections})]">
+					[(#ENV{est_auteur}|=={oui}|?{<:mediaspip_core:titre_collections_profil:>,<:mediaspip_core:titre_collections_profil_autre:>})]
+				</a>
+			</li>]]
+		[(#ENV{est_auteur}|=={oui}|et{#ENV{vue}|!={forums}|oui}|oui)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,forums})]">
+				<:mediaspip_core:titre_modifier_forums:>
+			</a>
+		</li>]
+		[(#ENV{vue}|in_array{#GET{vues_possibles}}|oui)
+		<li class="menu-entree">
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,''})]">
+				[(#ENV{est_auteur}|=={oui}|?{<:mediaspip_core:titre_retour_profil:>,<:mediaspip_core:titre_retour_auteur:>})]
+			</a>
+		</li>]
+	</ul>
+</div>
+</BOUCLE_auteur>

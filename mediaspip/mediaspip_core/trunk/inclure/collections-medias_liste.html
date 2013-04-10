@@ -1,0 +1,84 @@
+[(#REM)
+
+	Squelette affichant une liste des collections de médias
+	Les arguments suivants peuvent être passés au squelette :
+	
+		-* afficher_nombre (string) : si == oui, affiche le nombre de résultats dans le H2
+		-* couper (int) : coupera les titres des éléments à n caractères
+		-* id_auteur (int) : affichera les médias d'un auteur
+		-* id_mot (int) : affichera les collections liés à un tag en particulier
+		-* mesfavoris (string) oui|non|ignore : Utilisé que si le plugin mesfavoris est présent
+		-** si oui : affiche les favoris de l'auteur en cours;
+		-** si non : affiche les non favoris de l'auteur en cours;
+		-** si ignore (défaut) : désactive le critère 
+		-* date_debut (date XXXX-XX-XX) : limite minimale de la date de publication
+		-* date_fin (date XXXX-XX-XX) : limite maximale de la date de publication 
+		-* id_bloc (string) : l'id du bloc principal sinon liste_collections (est également utilisé pour le nom de la pagination)
+		-* limite : le nombre maximal total d'éléments à afficher
+		-* limite_pagination : nombre de résultats par pagination
+		-* limite_pagination_min : le pas minimal de pagination
+		-* limite_pagination_max : nombre maximal de résultats par pagination pour le formulaire de choix de pagination
+		-* type_pagination : le modèle de pagination à utiliser
+		-* recherche (string) : le contenu d'une recherche
+		-* statuts (array) : un array de statuts des éléments à afficher
+		-* titre_liste : modifie le titre de la liste (H2)
+		-* tri_collections_forcer (string) : changera l'ordre de tri
+		-* message_null (string non) : Si non, n'affichera pas qu'il n'y a pas de médias si c'est le cas 
+		
+]
+
+#SET{critere_inverse,#ARRAY|push{date}|push{''}|push{'collections.maj'}}
+#SET{limite,#ENV{limite_affichage,10000000000000000000000}}
+#SET{limite_pagination,#ENV{pagination#ENV{id_bloc,liste_collections},6}}
+#SET{limite_pagination_min,#ENV{limite_pagination_min,6}}
+#SET{limite_pagination_max,#ENV{limite_pagination_max,100}}
+#SET{tri_collections,#ENV{triliste_collections,#ENV{tri_collections_forcer,#GET{tri_defaut}|=={non}|?{'','date'}}}}
+#SET{tri_collections_toutes,#ENV{tri#ENV{id_bloc,liste_collections},#ENV{tri_collections_forcer,#GET{tri_defaut}|=={non}|?{'','date'}}}}
+[(#GET{tri_collections}|in_array{#LISTE{maj}}|oui)
+	#SET{tri_collections,collections.#GET{tri_collections}}
+]
+
+[(#GET{tri_collections_toutes}|in_array{#LISTE{maj}}|oui)
+	#SET{tri_collections_toutes,collections.#GET{tri_collections_toutes}}
+]
+
+#SET{date_debut,#ENV{date_debut,1970-01-02 00:00}}
+#SET{annee_debut,#GET{date_debut}|affdate{Y}}
+#SET{mois_debut,#GET{date_debut}|affdate{m}}
+#SET{jour_debut,#GET{date_debut}|affdate{d}}
+#SET{date_fin,#ENV{date_fin,2030-12-31 00:00}}
+#SET{annee_fin,#GET{date_fin}|affdate{Y}}
+#SET{mois_fin,#GET{date_fin}|affdate{m}}
+#SET{jour_fin,#GET{date_fin}|affdate{d}}
+
+<BOUCLE_collections_test_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{0,#GET{limite}}{doublons collections_tous}{tout} />
+<B_collections_tous>
+<div class="liste sommaire collections" id="#ENV{id_bloc,liste_collections}">
+	#ANCRE_PAGINATION
+	<h2 class="h2">[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
+	<div class="formulaires_tris">
+		[(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
+			[(#FORMULAIRE_MS_PAGINATION{#GRAND_TOTAL,liste_collections,select,#GET{limite_pagination_min,6},0,#GET{limite_pagination_max}})]
+		]
+	</div>
+	<div id="collections_#ENV{id_bloc}" class="liste_collections_vignettes">
+		<ul class="liste-items">
+			<BOUCLE_collections_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons collections_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_collections},#GET{limite_pagination,6}} #ENV{id_bloc,liste_collections}}{tout}>
+			#INCLURE{fond=inclure/collection-media_vignette,env,id_collection,compte=#COMPTEUR_BOUCLE,class=vignette}
+			</BOUCLE_collections_tous>
+		</ul>
+		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
+	</div>
+</div>
+</B_collections_tous>
+
+[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
+	[(#ENV{message_null}|=={non}|oui)
+	<p><:collection:message_aucune_collection_critere:></p>]
+]
+[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
+	[(#ENV{message_null}|=={non}|oui)
+	<p><:collection:message_aucune_collection_publiee:></p>]
+]
+<//B_collections_tous>
+#FILTRE{trim}

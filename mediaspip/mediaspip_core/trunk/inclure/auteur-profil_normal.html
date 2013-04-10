@@ -1,0 +1,122 @@
+[(#REM)
+
+	Page normal de l'auteur quand c'est l'auteur connecté
+	
+	Plusieurs modifications par rapport à l'accès à la même page par un autre utilisateur :
+	-* Remplacement des titres en utilisant "Vos articles" plutot que "Les article de cet auteur" par exemple
+	-* Accès aux articles que l'on n'a pas encore publié
+	-* 
+	
+	
+]<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tout}>
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><strong class="on">(#NOM|couper{80})</strong>]</p>
+
+<div class="content-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo} resize-#GET{largeur_logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">#NOM</h1>
+		</div>
+		[(#ENV{vue,''}|et{#ENV{vue}|in_array{#LISTE{profil,forums}}}|oui)
+			[(#AUTORISER{modifier,auteur,#ENV{id_auteur}}|non)
+				[(#SESSION{statut}|non)<div class="formulaire_spip">
+					<p class="reponse_formulaire reponse_formulaire_erreur"><:mediaspip_core:message_auteur_vue_connecte:></p>
+				</div>]
+				[(#SESSION{statut}|oui)<div class="formulaire_spip">
+					<p class="reponse_formulaire reponse_formulaire_erreur"><:mediaspip_core:message_auteur_vue_interdit:></p>
+				</div>]
+			]
+		]
+		[(#ENV{email_modif}|=={ok}|oui)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_ok"><:mediaspip_core:message_modif_email_ok:></p>
+		</div>]
+		[(#ENV{email_confirm}|oui)
+		<div class="formulaire_spip">
+			<p class="reponse_formulaire reponse_formulaire_erreur"><:form_auteur_envoi_mail_confirmation{email=#ENV{email_confirm}}:></p>
+		</div>]
+		<div class="infos_auteur">
+			<B_documents_video>
+			[(#REM)
+				Une vidéo de présentation de l'auteur?
+			]
+			<div class="document_auteur">
+			<BOUCLE_documents_video(DOCUMENTS){objet=auteur}{id_objet=#ID_AUTEUR}{media=video}{0,1}{tout}>
+			[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,largeur=100%,hauteur=240,infos=non})]
+			</BOUCLE_documents_video>
+			</div>
+			</B_documents_video>
+			[(#PLUGIN{inscription3}|oui)
+				#MODELE{fiche_utilisateur,id=#ID_AUTEUR,env}
+			]
+			[(#PLUGIN{inscription3}|non)
+				[<div class="#EDIT{qui} fn"><:mediaspip_core:auteur_nom:> (#NOM)</div>]
+				[<div class="texte statut"><:mediaspip_core:auteur_statut:> (#STATUT|ms_traduire_statut)</div>]
+				[<div class="#EDIT{bio} texte"><:entree_infos_perso:> : (#BIO|sinon{<:entree_biographie:>})</div>]
+				[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			]
+		</div>
+	</div>[(#REM) / vcard]
+
+	<BOUCLE_articles(ARTICLES){id_auteur}{id_secteur=#CONFIG{mediaspip/rubriques/medias}}{doublons medias} />
+	[(#SET{titre_liste,[<:mediaspip_core:profil_medias_auteur:> ((#GRAND_TOTAL))]})]
+	#INCLURE{fond=inclure/articles-medias_liste,env,titre_liste=#GET{titre_liste},couper=40,limite=3,page=auteur-profil,ajax}
+	<//B_articles>
+
+	<BOUCLE_articles_en_cours(ARTICLES){id_auteur}{id_secteur=#CONFIG{mediaspip/rubriques/medias}}{doublons medias}{statut IN prop,prepa} />
+	[(#SET{titre_liste,[<:mediaspip_core:profil_medias_auteur_en_cours:> ((#GRAND_TOTAL))]})]
+	[(#INCLURE{fond=inclure/articles-medias_liste,env,id_bloc=liste_medias_attente,titre_liste=#GET{titre_liste},statuts=[(#ARRAY|push{prop}|push{prepa})],toutes_langues=oui,couper=40,limite=3,page=auteur-profil,ajax})]
+	<//B_articles_en_cours>
+	
+	<BOUCLE_articles_autres(ARTICLES){id_auteur}{id_secteur!=#CONFIG{mediaspip/rubriques/medias}}{par id_secteur}{0,1}>
+	</BOUCLE_articles_autres>
+	<div class="liste articles">
+		<h2 class="h2"><:mediaspip_core:profils_autres_articles:></h2>
+		<BOUCLE_secteurs(RUBRIQUES){racine}{id_secteur!=#CONFIG{mediaspip/rubriques/medias}}{par id_secteur}>
+			<B_articles_secteurs>
+			<h3 class="h3">#_secteurs:TITRE</h3>
+			<ul class="liste-items">
+				<BOUCLE_articles_secteurs(ARTICLES){id_secteur}{id_auteur}{!par date} {par #ENV{tri,popularite}}{pagination 5}>
+				#INCLURE{fond=inclure/article-autres-secteurs,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette}
+				</BOUCLE_articles_secteurs>
+			</ul>
+			</B_articles_secteurs>
+		</BOUCLE_secteurs>
+		[(#REM)
+			Prendre également en compte les pages uniques
+		]
+		<B_articles_secteurs_zero>
+			<h3 class="h3"><:mediaspip_core:titre_secteur_zero:></h3>
+			<ul class="liste-items">
+				<BOUCLE_articles_secteurs_zero(ARTICLES){id_secteur=0}{id_auteur}{!par date} {par #ENV{tri,popularite}}{pagination 5}>
+				#INCLURE{fond=inclure/article-autres-secteurs,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette}
+				</BOUCLE_articles_secteurs_zero>
+			</ul>
+		</B_articles_secteurs_zero>
+		<br class="nettoyeur" />
+	</div>
+	</B_articles_autres>
+	<//B_articles_autres>
+	
+	<BOUCLE_collections(COLLECTIONS ?){si #PLUGIN{collections}|oui}{id_auteur} />
+	[(#SET{titre_liste,[<:mediaspip_core:profil_collections_auteur:> ((#GRAND_TOTAL))]})]
+	#INCLURE{fond=inclure/collections-medias_liste,env,titre_liste=#GET{titre_liste},couper=40,limite=3,page=auteur-profil,ajax}
+	<//B_collections>
+	
+	<BOUCLE_spipicious(CONDITION){si #PLUGIN{SPIPICIOUS}|et{#PLUGIN{NUAGE}}|oui}>
+		[<div class="liste tags">
+			<h2 class="h2"><:mediaspip_core:profils_vos_tags:></h2>
+			<div>
+			(#MODELE{spipicious_nuage_auteur,id_auteur}|trim)
+			</div>
+		</div>]
+	</BOUCLE_spipicious>
+</div>
+</BOUCLE_contenu_auteur>
