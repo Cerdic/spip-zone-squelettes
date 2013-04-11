@@ -1,0 +1,19 @@
+<B_articles>
+	#ANCRE_PAGINATION
+	<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot ?}{!par date}{pagination #ENV{nb,10}}>
+	<div class="entry">
+		[(#ENV{niveau_titre}|non)
+		<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>]
+		[(#ENV{niveau_titre}|=={3}|oui)
+		<h3><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>]
+		<div class="meta"><p>[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]</p></div>
+		[<div class="#EDIT{intro}">(#INTRODUCTION)</div>]
+		<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
+		<p class="meta"><a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|>{1}|?{<:comments:comments:>,<:comments:comment:>})]</a></p>
+		<//B_nb_commentaires>
+	</div>
+	</BOUCLE_articles>
+	<div id="footer-entry">
+		[<div class="pagination navigation">(#PAGINATION{page_precedent_suivant,label_precedent=&#8249;,label_suivant=&#8250;})</div>]
+	</div>
+</B_articles>
