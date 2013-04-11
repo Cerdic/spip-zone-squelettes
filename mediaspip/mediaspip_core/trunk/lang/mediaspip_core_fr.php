@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// Fichier source, a modifier dans http://svn.aires-de-confluxence.info/svn/MediaSPIP/plugins/mediaspip_core/lang/
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/mediaspip/mediaspip_core/trunk/lang/
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -25,13 +25,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'comments' => '@nb@ commentaires',
 
 	// D
+	'descriptif_page_inscription' => 'Inscription au site @site@',
 	'description_afficher_lien_direct' => 'Un cadre sera ajouté dans la page des médias affichant des liens directs vers les documents afin de pouvoir par exemple les utiliser dans un autre site. Si le téléchargement de document n\'est pas activé, rien ne sera affiché.',
 	'description_afficher_liens_limiter_acces' => 'Après validation, vous pourrez choisir le statut minimal requis.',
 	'description_autoriser_flux_podcast' => 'Le flux de podcast ne concernera que les médias du site. Seuls les documents de types MP3 et MP4 seront disponibles dans le flux.',
 	'description_autoriser_telecharger' => 'Sur la page des médias, on affiche les différentes version du document disponibles et on permet à l\'utilisateur de les télécharger.',
 	'description_autoriser_telecharger_que_logues' => 'N\'autoriser que les personnes identifiées à télécharger les documents disponibles.',
 	'description_embed_code' => 'Sur la page des médias, affiche un code d\'intégration (embed code) du média pour un site externe pour les formats possibles (flv et mp3).',
-	'descriptif_page_inscription' => 'Inscription au site @site@',
 	'document_conversion' => 'Conversion automatique',
 	'document_conversion_page' => 'Conversion automatique (page @nb@)',
 	'document_page' => 'Page numéro @page@',
@@ -224,12 +224,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_aucun_media_publie_categorie' => 'Aucun média n\'est encore publié dans cette rubrique.',
 	'message_aucun_plugins_supp_configurable' => 'Aucun plugin ne nécessitant une configuration particulière n\'est activé actuellement.',
 	'message_modif_email_ok' => 'Votre adresse email a correctement été modifiée.',
-	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier</a>.',
-	'message_webmestre_commencer_configurer' => 'Vous pouvez modifier <a href="@url@" class="spip_in">la configuration par défaut</a>.',
-	'message_webmestre_commencer_documentation' => 'N\'hésitez pas à consulter <a href="@url@" class="spip_out">la documentation en ligne</a>.',
-	'message_webmestre_configuration_ok' => 'Votre MediaSPIP a été correctement installé.',
 	'message_resultats_recherche_avancee' => 'Resultats de votre recherche avancée',
 	'message_telechargement_seulement_logues' => 'Seuls les utilisateurs identifiés peuvent télécharger les documents. Veuillez vous identifier ou créer un compte.',
+	'message_webmestre_commencer_configurer' => 'Vous pouvez modifier <a href="@url@" class="spip_in">la configuration par défaut</a>.',
+	'message_webmestre_commencer_documentation' => 'N\'hésitez pas à consulter <a href="@url@" class="spip_out">la documentation en ligne</a>.',
+	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier</a>.',
+	'message_webmestre_configuration_ok' => 'Votre MediaSPIP a été correctement installé.',
 	'modifier_rubriques' => 'Modifier les rubriques',
 	'mots_autres_mots' => 'Les autres tags',
 
@@ -291,9 +291,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_articles_sites' => 'Les articles publiés sur les sites',
 	'titre_auteur_tags' => 'Les tags utilisés par @login@',
 	'titre_bienvenue' => 'Bienvenue',
+	'titre_collections_auteur' => 'Les collections de @nom@',
 	'titre_collections_profil' => 'Vos collections',
 	'titre_collections_profil_autre' => 'Ses collections',
-	'titre_collections_auteur' => 'Les collections de @nom@',
 	'titre_derniers_commentaires' => 'Derniers commentaires',
 	'titre_exergue' => 'À la une',
 	'titre_flow_js' => '<span class="title"><a href="@url_article@" target="_blank">@titre@</a></span><span class="desc"> - Publié par : @noms@</span><span class="url"> - <a href="@url_site@" target="_blank">@nom_site@</a>',

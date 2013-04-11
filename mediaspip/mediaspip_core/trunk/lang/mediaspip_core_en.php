@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://trad.mediaspip.net/spip.php?page=tradlang
+// extrait automatiquement de http://trad.spip.net/tradlang_module/mediaspip_core?lang_cible=en
 // ** ne pas modifier le fichier **
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
@@ -21,11 +21,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_trier' => 'Sort',
 
 	// C
+	'collections_auteur' => 'Les collections de @login@', # NEW
 	'comment' => 'One comment',
 	'commentaires_fermes' => 'Comments are closed',
 	'comments' => '@nb@ comments',
 
 	// D
+	'descriptif_page_inscription' => 'Inscription au site @site@', # NEW
 	'description_afficher_lien_direct' => 'A frame will be added to the media page displaying direct links to documents in order to use them, for example, in an other website.',
 	'description_afficher_liens_limiter_acces' => 'After validation, you can choose the minimum status required.',
 	'description_autoriser_flux_podcast' => 'The podcast feed will concern only the medias of the site. Only MP3 and MP4 document types will be available in the feed. If you\'ve chosen not to release the original documents, this choice is respected.',
@@ -34,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_embed_code' => 'On a media page, show an embed code to embed the media in an other website  for the possible formats (flv and mp3).',
 	'document_conversion' => 'Automatic conversion',
 	'document_conversion_page' => 'Automatic conversion (page @nb@)',
+	'document_page' => 'Page numéro @page@', # NEW
 	'document_version' => '@version@ version',
 	'document_version_originale' => 'Original version',
 	'document_voir_infos' => 'Technical informations',
@@ -49,6 +52,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_verifier_form' => 'Check the contents of the form',
 	'exergue_lire_la_suite' => 'View the media',
 	'explication_blocs_home' => 'This part of the configuration allows you to manage the display of blocks visible on the homepage of the site.',
+	'explication_blocs_recurrents' => 'Certains blocs sont visibles sur toutes les pages du site. Cette partie de la configuration permet de chosir de les afficher ou non ou simplement de modifier leur placement.', # NEW
+	'explication_blocs_recurrents_caches' => 'Sélectionnez ici les blocs que vous ne souhaitez pas afficher du tout.', # NEW
 	'explication_config_readonly' => 'This option is disabled. It must be overridden by the theme you are using.',
 	'explication_config_readonly_squelette' => 'This option is disabled. It must be overridden by the skeleton you are using.',
 	'explication_configuration_logo_vignettes' => 'Depending on the graphic theme that you are using, the default size of documents may not correspond correctly to the graphic. This part of the configuration allows you to fine tune different sizes for images, documents and logos.',
@@ -60,7 +65,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_infos_cachees_articles' => 'The information below won\'t be displayed on articles pages if they are selected.',
 	'explication_logo_objets' => 'Visible on the authors pages, on the advanced search or on the tags pages for example.',
 	'explication_modifier_logo_auteur' => 'To edit the logo (on the left), just double click on it.',
+	'explication_ms_auth_telecharger' => 'Si cette option équivaut à "oui", les liens vers le document et ses différentes versions seront visibles sur la page du média. Il pourra donc être aisément téléchargé.', # NEW
 	'explication_notation_form_type' => 'This switch configures the visual form that will take the form of rating in the skeleton. Only the form is configured here. For a more detailed configuration, you can use the "Rating" plugin specific configuration page.',
+	'explication_position_recherche' => 'Choisissez ici où le formulaire de recherche sera affiché.', # NEW
 
 	// F
 	'formulaire_inscription' => 'Sign up',
@@ -85,6 +92,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_maj' => 'Updated:',
 	'info_metadonnees' => 'Metadatas:',
 	'info_nb_telechargements' => 'Downloaded @nb@ times',
+	'info_nb_vue' => '@nb@ vue', # NEW
 	'info_nb_vues' => 'viewed',
 	'info_nom_fichier' => 'File name:',
 	'info_poid_fichier' => 'Filesize:',
@@ -110,16 +118,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_autoriser_telecharger' => 'Enable the download of the documents',
 	'label_autoriser_telecharger_original' => 'Allow to download the original document',
 	'label_autoriser_telecharger_que_logues' => 'Only allow identified users to download documents',
+	'label_blocs_recurrents_caches' => 'Ne pas afficher certains blocs récurrents', # NEW
 	'label_case_info_auteur' => 'The authors names',
 	'label_case_info_description_site' => 'The description of the site',
 	'label_case_info_editos' => 'The editorials',
 	'label_case_info_featured' => 'The media',
+	'label_case_info_login' => 'Le bloc de login', # NEW
 	'label_case_info_nb_comments' => 'Comments number',
 	'label_case_info_nb_vues' => 'Views number',
 	'label_case_info_news' => 'The news',
 	'label_case_info_published' => 'Publication date',
+	'label_case_info_slogan' => 'Le slogan du site', # NEW
 	'label_case_info_tags' => 'Tags used on the site (requires "spip.icio.us" and "Nuage" plugins)',
+	'label_case_info_titre_site' => 'Le titre du site', # NEW
 	'label_case_info_update' => 'Updated date',
+	'label_case_recherche_bloc_entete' => 'dans le bloc d\'entête de chaque page', # NEW
+	'label_case_recherche_bloc_navigation' => 'dans le bloc de navigation de chaque page', # NEW
+	'label_case_recherche_sans' => 'ne pas afficher de formulaire de recherche', # NEW
 	'label_choix_rubrique_actus' => 'Main section containing news',
 	'label_choix_rubrique_editos' => 'Main section containing editorials',
 	'label_choix_rubrique_mag' => 'Main section containing common articles',
@@ -145,6 +160,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_logo_largeur' => 'Maximum width of the logo of the site (in px)',
 	'label_logo_objets_hauteur' => 'Maximum height of the logo of the pages (in px)',
 	'label_logo_objets_largeur' => 'Maximum width of the logo of the pages (in px)',
+	'label_ms_auth_telecharger' => 'Autoriser le téléchargement des fichiers', # NEW
+	'label_ms_auth_telecharger_loggues' => 'N\'autoriser que les utilisateurs identifiés', # NEW
 	'label_nb_sites_nav' => 'Number of external websites visible',
 	'label_nb_syndic_nav' => 'Number of syndicated links visibles',
 	'label_nombre_pagination' => 'Paginate by:',
@@ -153,6 +170,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_notation_form_type_jaime_jaimepas' => 'I like / I don\'t like',
 	'label_notation_form_type_notation' => 'Simple notation with stars',
 	'label_ordre_tri' => 'Sort by:',
+	'label_position_recherche' => 'Positionnement du formulaire de recherche', # NEW
 	'label_rechercher_auteur' => 'By a specific author',
 	'label_rechercher_categorie' => 'Choice of section',
 	'label_rechercher_date_debut' => 'Minimal date: ',
@@ -171,7 +189,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_nav_hauteur' => 'Maximum height of the thumbnails in the navigation (en px)',
 	'label_vignette_nav_largeur' => 'Maximum width of the thumbnails in the navigation (en px)',
 	'label_vignette_nav_nb' => 'Number of documents shown in the navigation',
+	'legende_auth_telecharger' => 'Téléchargements des fichiers', # NEW
 	'legende_blocs_home' => 'Blocks contained in the home page',
+	'legende_blocs_recurrents' => 'Affichage et placement de blocs récurrents', # NEW
 	'legende_configuration_fichiers' => 'Providing files',
 	'legende_configuration_logo_vignettes' => 'The website logo and thumbnails',
 	'legende_configuration_syndication' => 'Website\'s syndication',
@@ -208,6 +228,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_modif_email_ok' => 'Your email address has been properly modified.',
 	'message_resultats_recherche_avancee' => 'Results of your advanced search',
 	'message_telechargement_seulement_logues' => 'Only authenticated users can download the documents. Please login or create an account.',
+	'message_webmestre_commencer_configurer' => 'Vous pouvez modifier <a href="@url@" class="spip_in">la configuration par défaut</a>.', # NEW
+	'message_webmestre_commencer_documentation' => 'N\'hésitez pas à consulter <a href="@url@" class="spip_out">la documentation en ligne</a>.', # NEW
+	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier</a>.', # NEW
+	'message_webmestre_configuration_ok' => 'Votre MediaSPIP a été correctement installé.', # NEW
 	'modifier_rubriques' => 'Edit the sections',
 	'mots_autres_mots' => 'Other tags',
 
@@ -215,6 +239,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'option_lien_types_copies' => 'The copies (if possible) of the document',
 	'option_lien_types_original' => 'The original document',
 	'option_lien_types_vignette' => 'A main thumbnail of the document',
+	'option_ms_auth_telecharger_defaut' => 'Configuration par défaut du site ("@defaut@")', # NEW
 	'option_tri_date' => 'Date',
 	'option_tri_hasard' => 'Hasard',
 	'option_tri_maj' => 'Update date',
@@ -225,7 +250,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'pagination_tout_afficher' => 'Show all',
+	'par' => 'par', # NEW
 	'poster_message' => 'Post a comment',
+	'profil_collections_auteur' => 'Vos collections publiées', # NEW
 	'profil_medias_auteur' => 'Your published medias',
 	'profil_medias_auteur_en_cours' => 'Your medias pending validation',
 	'profils_autres_articles' => 'Your other articles',
@@ -245,10 +272,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_articles_autres' => 'Other articles',
 	'recherche_articles_externes' => 'On other websites',
 	'recherche_categories' => 'Sections',
+	'recherche_collections' => 'Collections', # NEW
 	'recherche_medias' => 'Medias',
 	'rubriques_categories' => 'Sections',
 
 	// S
+	'select_ms_auth_telecharger' => 'Autorisation de téléchargement de documents', # NEW
 	'statut_info_administrateurs' => 'administrator',
 	'statut_info_redacteurs' => 'editor',
 	'statut_info_visiteurs' => 'visitor',
@@ -263,8 +292,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_articles_site' => 'Articles published on the website',
 	'titre_articles_sites' => 'Articles published on the websites',
 	'titre_auteur_tags' => 'Tags used by @login@',
+	'titre_bienvenue' => 'Bienvenue', # NEW
+	'titre_collections_auteur' => 'Les collections de @nom@', # NEW
+	'titre_collections_profil' => 'Vos collections', # NEW
+	'titre_collections_profil_autre' => 'Ses collections', # NEW
 	'titre_derniers_commentaires' => 'Last comments',
 	'titre_exergue' => 'Highlight',
+	'titre_flow_js' => '<span class="title"><a href="@url_article@" target="_blank">@titre@</a></span><span class="desc"> - Publié par : @noms@</span><span class="url"> - <a href="@url_site@" target="_blank">@nom_site@</a>', # NEW
+	'titre_menu_collections' => 'Collections', # NEW
 	'titre_modifier' => 'Edit',
 	'titre_modifier_auteur' => 'Edit this user\'s profile',
 	'titre_modifier_auteur_nom' => 'Edit @nom@\'s profile',
@@ -278,6 +313,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_retour_profil' => 'Back to your page',
 	'titre_se_connecter' => 'Connect',
 	'titre_secteur_zero' => 'Specific pages',
+	'titre_site_mediaspip' => 'Mon MediaSPIP', # NEW
 	'titre_sites' => 'Links',
 	'titre_sites_syndics' => 'On other websites',
 	'titre_sommaire_actus' => 'News',
