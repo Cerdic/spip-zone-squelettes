@@ -308,7 +308,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_modifier_profil' => 'Edit your profile',
 	'titre_podcast' => 'Podcasts',
 	'titre_recherche_utilisateurs' => 'Users',
-	'titre_rechercher' => 'Search',
 	'titre_retour_auteur' => 'Back to the user\'s page',
 	'titre_retour_profil' => 'Back to your page',
 	'titre_se_connecter' => 'Connect',
