@@ -10,7 +10,7 @@
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
     <div id="cadre-rubrique">
-	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{50})] </div>
+	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,50}})] </div>
 	  				<div id="titre-rubrique">
 			  			<div class="#EDIT{titre}">[(#TITRE)]</div>
 			  			<div id="descriptif-rubrique" class="#EDIT{descriptif}">[(#DESCRIPTIF)]</div>
@@ -37,10 +37,11 @@
 <p style="align:right">#PAGINATION</p>
 [(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
 
+
   <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}>
     <div class="cadre-articles-rubrique">
       <div class="titre-articles-rubrique">
-        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{25})]
+        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,50}})]
         <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
       </div>
       <div class="introduction-articles-rubrique">
