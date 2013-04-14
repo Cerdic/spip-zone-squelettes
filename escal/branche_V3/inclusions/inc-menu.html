@@ -19,17 +19,25 @@
     <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons rubriques}>
      <li class="#EXPOSE">
      <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
-     <BOUCLE_test(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_test>
+     <BOUCLE_testrub1(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_testrub1>
      </a>
 
     <ul>
        <!-- affichage des articles du secteur -->
-      <BOUCLE_articles_racine(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{inverse}{doublons articles}>
+      <BOUCLE_testchrono(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+      <BOUCLE_articles_racineC(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+        <li class="#EXPOSE article">
+      	 <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+      	</li>
+      </BOUCLE_articles_racineC>
+      </BOUCLE_testchrono>
+      <BOUCLE_articles_racine(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
         <li class="#EXPOSE article">
       	 <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
       	</li>
       </BOUCLE_articles_racine>
-
+      <//B_testchrono>
+      
       <!-- affichage des sous-rubriques de niveau 1 -->
 			<BOUCLE_rubriques1(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
         <li class="#EXPOSE">
@@ -39,12 +47,20 @@
 
         <ul>
               <!-- affichage des articles des sous-rubriques de niveau 1 -->
+              <BOUCLE_testchrono1(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+              <BOUCLE_articles_rubrique1C(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+                <li class="#EXPOSE article">
+                  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                </li>
+              </BOUCLE_articles_rubrique1C>
+              </BOUCLE_testchrono1>
               <BOUCLE_articles_rubrique1(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
                 <li class="#EXPOSE article">
                   <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
                 </li>
               </BOUCLE_articles_rubrique1>
-
+              <//B_testchrono1>
+              
               <!-- affichage des sous-rubriques de niveau 2 -->
               <BOUCLE_rubriques2(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                 <li class="#EXPOSE">
@@ -54,12 +70,20 @@
 
 			              <ul>
                       <!-- affichage des articles des sous-rubriques de niveau 2 -->
+                      <BOUCLE_testchrono2(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                      <BOUCLE_articles_rubrique2C(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+                        <li class="#EXPOSE article">
+                          <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                        </li>
+                      </BOUCLE_articles_rubrique2C>
+                      </BOUCLE_testchrono2>
                       <BOUCLE_articles_rubrique2(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
                         <li class="#EXPOSE article">
                           <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
                         </li>
                       </BOUCLE_articles_rubrique2>
-
+                      <//B_testchrono2>
+                      
                       <!-- affichage des sous-rubriques de niveau 3 -->
                       <BOUCLE_rubriques3(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                       <li class="#EXPOSE">
@@ -69,14 +93,22 @@
 
               				    <ul>
                             <!-- affichage des articles des sous-rubriques de niveau 3 -->
-              					   <BOUCLE_articles_rubrique3(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
-              					     <li class="#EXPOSE article">
-              					       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-              					     </li>
-              					   </BOUCLE_articles_rubrique3>
-
-              					   <!-- affichage des sous-rubriques de niveau 4 -->
-              					   <BOUCLE_rubriques4(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                            <BOUCLE_testchrono3(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                            <BOUCLE_articles_rubrique3C(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+                              <li class="#EXPOSE article">
+                                <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                            </li>
+                            </BOUCLE_articles_rubrique3C>
+                            </BOUCLE_testchrono3>
+                            <BOUCLE_articles_rubrique3(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
+                              <li class="#EXPOSE article">
+                                <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                            </li>
+                            </BOUCLE_articles_rubrique3>
+                            <//B_testchrono3>
+                            
+                            <!-- affichage des sous-rubriques de niveau 4 -->
+                            <BOUCLE_rubriques4(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                             <li class="#EXPOSE">
                     				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
                     						<BOUCLE_testrub5(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub5>
@@ -84,14 +116,22 @@
 
                     				    <ul>
                                   <!-- affichage des articles des sous-rubriques de niveau 4 -->
-                    					   <BOUCLE_articles_rubrique4(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
-                    					     <li class="#EXPOSE article">
-                    					       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-                    					     </li>
-                    					   </BOUCLE_articles_rubrique4>
+                                  <BOUCLE_testchrono4(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                                  <BOUCLE_articles_rubrique4C(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+                                    <li class="#EXPOSE article">
+                                      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                                    </li>
+                                  </BOUCLE_articles_rubrique4C>
+                                  </BOUCLE_testchrono4>
+                                  <BOUCLE_articles_rubrique4(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
+                                    <li class="#EXPOSE article">
+                                      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                                    </li>
+                                  </BOUCLE_articles_rubrique4>
+                                  <//B_testchrono4>
 
-                    					   <!-- affichage des sous-rubriques de niveau 5 -->
-                    					   <BOUCLE_rubriques5(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                                  <!-- affichage des sous-rubriques de niveau 5 -->
+                                  <BOUCLE_rubriques5(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                                   <li class="#EXPOSE">
                           				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
                           						<BOUCLE_testrub6(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub6>
@@ -99,11 +139,19 @@
 
                           				    <ul>
                                         <!-- affichage des articles des sous-rubriques de niveau 5 -->
-                          					   <BOUCLE_articles_rubrique5(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
-                          					     <li class="#EXPOSE article">
-                          					       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
-                          					     </li>
-                          					   </BOUCLE_articles_rubrique5>
+                                        <BOUCLE_testchrono5(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                                        <BOUCLE_articles_rubrique5C(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+                                          <li class="#EXPOSE article">
+                                            <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                                          </li>
+                                        </BOUCLE_articles_rubrique5C>
+                                        </BOUCLE_testchrono5>
+                                        <BOUCLE_articles_rubrique5(ARTICLES){si #CONFIG{escal/config/articlesmenuH}|=={oui}|oui}{id_rubrique} {par num titre, titre}{doublons articles}>
+                                          <li class="#EXPOSE article">
+                                            <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
+                                          </li>
+                                        </BOUCLE_articles_rubrique5>
+                                        <//B_testchrono5>
                           					  </ul>
 
                                   </li>
