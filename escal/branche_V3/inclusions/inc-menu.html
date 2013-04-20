@@ -2,7 +2,11 @@
 <ul id="menu">
 
 	<li>
-	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>">
+     [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+     [(#CHEMIN{images/transparent2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,20})]
+     ]
+   <:escal:accueil:></a>
 	</li>
 
 	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
@@ -18,7 +22,12 @@
  <!-- affichage des secteurs-->
     <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons rubriques}>
      <li class="#EXPOSE">
-     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE)]
+     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut)"]>
+     [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+     [(#LOGO_RUBRIQUE|oui)[(#LOGO_RUBRIQUE|image_reduire{0,20})]]
+     [(#LOGO_RUBRIQUE|non)[(#CHEMIN{images/transparent2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,20})] ]
+     ]
+     [(#TITRE)]
      <BOUCLE_testrub1(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_testrub1>
      </a>
 
