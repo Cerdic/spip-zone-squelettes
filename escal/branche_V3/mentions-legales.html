@@ -9,19 +9,6 @@
       <link href="#CHEMIN{styles/alaune.css}" rel="stylesheet" type="text/css" />
     <INCLURE {fond=inclusions/inc-head}>
 
-[(#REM) javascript pour les articles a la une ]
-<script src="#CHEMIN{scripts/onglets.js}" type="text/javaScript"></script>
-<script src="#CHEMIN{scripts/jquery.tabs.pack.js}" type="text/javaScript"></script>
-<script type="text/javascript">
-	   	$(document).ready(function(){
-	    // La une
-	    $('.laune').tabs({
-	        fxSlide: true,
-	        fxFade: true,
-	        fxSpeed: 'slow'
-	        });
-	});
-</script>
   </head>
 
 <body onload="setHover('menu')" id="top">
@@ -39,8 +26,14 @@
             <INCLURE {fond=inclusions/inc-bandeau}>
 
             [(#CONFIG{escal/config/menuH}|=={non}|non)
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
-              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveau}{env}>]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|non)
+                [(#CONFIG{escal/config/articlesmenuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menuart}{env}>]
+                [(#CONFIG{escal/config/articlesmenuH}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu}{env}>]
+              ]
+              [(#CONFIG{escal/config/rubniveaudeux}|=={oui}|oui)
+                [(#CONFIG{escal/config/articlesmenuH}|=={oui}|oui)<INCLURE {fond=inclusions/inc-menu2eniveauart}{env}>]
+                [(#CONFIG{escal/config/articlesmenuH}|=={oui}|non)<INCLURE {fond=inclusions/inc-menu2eniveau}{env}>]
+              ]
             ]
 
           </div>
