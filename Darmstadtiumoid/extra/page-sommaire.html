@@ -1,0 +1,54 @@
+[(#SESSION{statut}|=={0minirezo}|non) #LOGIN_PUBLIC]
+
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+
+[(#REM) Liens des forums ]
+<B_forums_liens>
+<div class="liste forums">
+	<h2 class="h2"><:derniers_commentaires:></h2>
+	<ul class="liste-items">
+		<BOUCLE_forums_liens(FORUMS?) {plat} {par date}{inverse} {0,8}>
+		<li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
+		</BOUCLE_forums_liens>
+	</ul>
+</div>
+</B_forums_liens>
+
+
+<B_breves>
+	<div class="liste breves">
+		<h2 class="h2"><:dernieres_breves:></h2>
+		<ul class="liste-items">
+			<BOUCLE_breves(BREVES){tout}{par date}>
+				<li class="item"><a href="#URL_BREVE" rel="tag">[(#DATE|affdate_jourcourt) &ndash; ] #TITRE</a></li>
+			</BOUCLE_breves>
+		</ul>
+	</div>
+</B_breves>
+	<div class="liste breves">
+		<h2 class="h2"><:dernieres_breves:></h2>
+		<:aucune_breve:>
+	</div>
+<//B_breves>
+
+<div id="doublediv">
+	<div id="gauche">
+		<B_sites_ref>
+			<div class="liste sites-ref">
+				<h2 class="h2"><:sur_web:></h2>
+				<ul class="liste-items">
+					<BOUCLE_sites_ref(SITES){tout}>
+						<li class="item"><a href="#URL_SITE" rel="tag">#NOM_SITE</a></li>
+					</BOUCLE_sites_ref>
+				</ul>
+			</div>
+		</B_site_ref>
+	</div>
+	<div id="droite">
+	
+	</div>
+</div>
+</div>
+
+

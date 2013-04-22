@@ -1,0 +1,80 @@
+<div id="divPrincipSlider">
+	<div id="s3slider">
+		<ul id="s3sliderContent">
+			
+	[(#REM) Affiche les 5 articles les plus récents associés au mot-clé : slider]	
+			<BOUCLE_articles(ARTICLES) {titre_mot=slider} {!par date} {doublons} {0, 5}>
+				<li class="s3sliderImage" id="featured-#ID_ARTICLE">
+					<a href="#URL_ARTICLE">							
+						#SET{largeur,(#LOGO_ARTICLE_RUBRIQUE|largeur)}
+						#SET{hauteur,(#LOGO_ARTICLE_RUBRIQUE|hauteur)}								
+						#SET{l_slider,940}							
+						#SET{h_slider,250}
+						#SET{ratio_slider,#GET{l_slider}|div{#GET{h_slider}}}
+						#SET{ratio_logo,#GET{largeur}|div{#GET{hauteur}}}
+						#SET{ratio_logo_inv,#GET{hauteur}|div{#GET{largeur}}}
+						
+						#SET{new_h_logo,#GET{ratio_logo_inv}|mult{#GET{l_slider}}}
+						#SET{new_l_logo, #GET{ratio_logo}|mult{#GET{h_slider}}}
+						
+						[(#GET{largeur}|<{#GET{l_slider}}|ou{#GET{hauteur}|<{#GET{h_slider}}}|?{										
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|oui) [(#LOGO_ARTICLE_RUBRIQUE|inserer_attribut{style, width:940px; height:#GET{new_h_logo}px})]]
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|non) [(#LOGO_ARTICLE_RUBRIQUE|inserer_attribut{style, height:250px; width:#GET{new_l_logo}px})]]
+							,
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|oui) [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{9400,0}|image_recadre{940, 250, center})]]
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|non) [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{0,250}|image_recadre{940, 250, center})]]
+						})]
+	
+	
+					</a>
+				</li>
+			
+			</BOUCLE_articles>
+			
+						<!--
+			<!--Taille du logo pour affichage optimal : 940x250px
+	 					#LOGO_ARTICLE_RUBRIQUE 
+	-->
+		
+			</B_articles>
+			[(#REM) Sinon : Affiche les 5 articles les plus récents ]
+			<BOUCLE_articles_sec(ARTICLES) {!par date} {doublons} {0, 5}>
+				<li class="s3sliderImage" id="featured-#ID_ARTICLE">
+					<a href="#URL_ARTICLE">						
+								
+					#SET{largeur,(#LOGO_ARTICLE_RUBRIQUE|largeur)}
+						#SET{hauteur,(#LOGO_ARTICLE_RUBRIQUE|hauteur)}								
+						#SET{l_slider,940}							
+						#SET{h_slider,250}
+						#SET{ratio_slider,#GET{l_slider}|div{#GET{h_slider}}}
+						#SET{ratio_logo,#GET{largeur}|div{#GET{hauteur}}}
+						#SET{ratio_logo_inv,#GET{hauteur}|div{#GET{largeur}}}
+						
+						#SET{new_h_logo,#GET{ratio_logo_inv}|mult{#GET{l_slider}}}
+						#SET{new_l_logo, #GET{ratio_logo}|mult{#GET{h_slider}}}
+						
+						[(#GET{largeur}|<{#GET{l_slider}}|ou{#GET{hauteur}|<{#GET{h_slider}}}|?{										
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|oui) [(#LOGO_ARTICLE_RUBRIQUE|inserer_attribut{style, width:940px; height:#GET{new_h_logo}px})]]
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|non) [(#LOGO_ARTICLE_RUBRIQUE|inserer_attribut{style, height:250px; width:#GET{new_l_logo}px})]]
+							,
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|oui) [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{9400,0}|image_recadre{940, 250, center})]]
+							[(#GET{ratio_logo}|<={#GET{ratio_slider}}|non) [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{0,250}|image_recadre{940, 250, center})]]
+						})]
+	
+	
+					</a>
+				</li>
+				
+	</BOUCLE_articles_sec>
+			<//B_articles>
+		
+		</ul>
+		<a>
+			<img class="arrowslider" id="jqc-prev" src="#CHEMIN{img/arrow.png}" />
+		</a>
+		<a>
+			<img class="arrowslider" id="jqc-next"  src="#CHEMIN{img/arrow2.png}" />
+		</a>
+
+	</div>
+</div>
