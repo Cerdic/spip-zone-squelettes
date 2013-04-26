@@ -19,24 +19,24 @@
 	<p><:mediaspip_core:info_nom_fichier:> <strong><a href="[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT})]" title="<:bouton_telecharger:>" rel="nofollow">(#FICHIER|basename|couper{40})</a></strong></p>][
 	<p><:mediaspip_core:info_telechargements:> <strong>(#GET{downloads}|>{0}|?{#GET{downloads}})</strong></p>]
 	<p><:mediaspip_core:info_dimension_image:> <strong>#LARGEUR/#HAUTEUR px</strong></p>[
-	<p><:mediaspip_core:info_poid_fichier:> <strong>(#TAILLE|taille_en_octets)</strong></p>][
+	<p><:mediaspip_core:info_poid_fichier:> <strong itemprop="contentSize" content="#TAILLE">(#TAILLE|taille_en_octets)</strong></p>][
 	<p><:mediaspip_core:info_type_mime:> <strong>(#MIME_TYPE)</strong></p>][(#PLUGIN{photo_infos}|oui)
 	[(#INCLURE{fond=inclure/documents_infos_exif_iptc,fichier=[(#FICHIER|get_spip_doc)],id_document})]
 ]</div>]
-[(#EXTENSION|in_array{#LISTE{flv,mov,ogg,ogv,mp3,mp4,mpg,wmv,avi,mpg,wav,webm,3gp,flac,ts,mts,mkv,y4m,ac3}}|oui)
-<div id="doc_orig_#ID_DOCUMENT">
-	[<div class="spip_logo #_documents:EDIT{vignette} resize-50">(#GET{logo}|image_reduire{50,0})</div>]
-	[<p><:mediaspip_core:info_titre:> <strong class="#_documents:EDIT{titre}">(#TITRE)</strong></p>]
+[(#MEDIA|in_array{#LISTE{audio,video}}|oui)
+<div id="doc_orig_#ID_DOCUMENT"[(#MEDIA|=={video}|oui)itemscope itemtype="http://schema.org/VideoObject"][(#MEDIA|=={audio}|oui)itemscope itemtype="http://schema.org/AudioObject"]>
+	[<div class="spip_logo #_documents:EDIT{vignette} resize-50" itemprop="thumbnailurl" content="[(#GET{logo}|extraire_attribut{src})]">(#GET{logo}|image_reduire{50,0})</div>]
+	[<p><:mediaspip_core:info_titre:> <strong class="#_documents:EDIT{titre}" itemprop="name">(#TITRE|sinon{[(#FICHIER|basename)]})</strong></p>]
 	[<p><:mediaspip_core:info_document_id:> <strong>#(#ID_DOCUMENT)</strong></p>]
 	[<p><:spipmotion:info_nom_fichier:> <strong><a href="[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT})]" title="<:bouton_telecharger:>" rel="nofollow">(#FICHIER|basename|couper{40})</a></strong></p>][
 	<p><:mediaspip_core:info_telechargements:> <strong>(#GET{downloads}|>{0}|?{#GET{downloads}})</strong></p>][
-	<p><:mediaspip_core:info_poid_fichier:> <strong>(#TAILLE|taille_en_octets)</strong></p>][
+	<p><:mediaspip_core:info_poid_fichier:> <strong itemprop="contentSize" content="#TAILLE">(#TAILLE|taille_en_octets)</strong></p>][
 	<p><:spipmotion:info_mime:> <strong>(#MIME_TYPE)</strong></p>][
 	<p><:spipmotion:info_format:> <strong>(#LARGEUR|>{0}|oui)#LARGEUR/#HAUTEUR px</strong></p>][
-	<p><:spipmotion:info_duree:> <strong>[(#DUREE|spipmotion_duree)] ((#DUREE|floor) sec.)</strong></p>]
+	<p><:spipmotion:info_duree:> <strong itemprop="duration" content="#DUREE">[(#DUREE|spipmotion_duree)] ((#DUREE|floor) sec.)</strong></p>]
 	[(#BITRATE|>{0}|oui)[<p>
 		<:spipmotion:info_bitrate:>
-		<strong>(#BITRATE|<{1000}|?{#BITRATE,[(#BITRATE|div{1000}|floor)]}) kb/s.</strong>
+		<strong itemprop="bitrate" content="#BITRATE">(#BITRATE|<{1000}|?{#BITRATE,[(#BITRATE|div{1000}|floor)]}) kb/s.</strong>
 	</p>]][
 	<p><:spipmotion:info_framecount:> <strong>(#FRAMECOUNT|>{0}|oui)#FRAMECOUNT</strong></p>][
 	<p><:spipmotion:info_videocodec:> <strong>(#VIDEOCODEC|intval|?{[(#VIDEOCODEC|flv_video_codec_type_to_type)],#VIDEOCODEC})</strong></p>][
@@ -57,7 +57,7 @@
 	<p><:mediaspip_core:info_document_id:> <strong>#(#ID_DOCUMENT)</strong></p>][
 	<p><:mediaspip_core:info_nom_fichier:> <strong><a href="[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT})]" title="<:bouton_telecharger:>" rel="nofollow">(#FICHIER|basename|couper{40})</a></strong></p>][
 	<p><:mediaspip_core:info_telechargements:> <strong>(#GET{downloads}|>{0}|?{#GET{downloads}})</strong></p>][
-	<p><:mediaspip_core:info_poid_fichier:> <strong>(#TAILLE|taille_en_octets)</strong></p>][
+	<p><:mediaspip_core:info_poid_fichier:> <strong itemprop="contentSize" content="#TAILLE">(#TAILLE|taille_en_octets)</strong></p>][
 	<p><:mediaspip_core:info_type_mime:> <strong>(#MIME_TYPE)</strong></p>]<BOUCLE_nb_pages(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{mode=doc2img}{tout}> </BOUCLE_nb_pages>
 	[<p><:doc2img:info_nb_pages:> <strong>(#GRAND_TOTAL)</strong></p>]</B_nb_pages>
 </div>

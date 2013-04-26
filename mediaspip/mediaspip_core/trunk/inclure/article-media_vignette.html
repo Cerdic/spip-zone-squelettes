@@ -61,10 +61,8 @@
 	<div class="meta-publi small">
 	<BOUCLE_nb_commentaires(FORUMS?){id_article}{plat} />[(#TOTAL_BOUCLE|oui)
 		<p class="comments liste_comments"><a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a></p>]
-	<//B_nb_commentaires>
-	<BOUCLE_nb_favs(FAVORIS?) {id_article} /> [(#TOTAL_BOUCLE|oui)[(#SET{total,#TOTAL_BOUCLE})]
-		<p class="favs liste_gavs"><:mesfavoris:info_nombre_favoris_objet{nb=#GET{total}}:></p>]
-	<//B_nb_favs>
+	<//B_nb_commentaires>[(#PLUGIN{favoris}|oui)
+	[(#INCLURE{fond=inclure/article-favoris,id_article})]]
 	<B_tags_media>
 		<p class="tags liste_tag">
 			<span class="title"><:mediaspip_core:tags:> </span>

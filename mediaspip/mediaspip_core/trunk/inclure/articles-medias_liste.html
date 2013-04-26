@@ -32,15 +32,13 @@
 		-* message_null (string non) : Si non, n'affichera pas qu'il n'y a pas de médias si c'est le cas 
 		
 ]
-<BOUCLE_si_choix_manuel(CONDITION){si #ENV{composition}|=={sommaire}|et{#CONFIG{mediaspip/home/choix_highlight}|=={on}}|et{#CONFIG{mediaspip/home/choix_highlight_article}|is_array}|et{#ENV{triliste_medias}|non}|oui}>
+[(#ENV{composition}|=={sommaire}|et{#CONFIG{mediaspip/home/choix_highlight}|=={on}}|et{#CONFIG{mediaspip/home/choix_highlight_article}|is_array}|et{#ENV{triliste_medias}|non}|oui)
 #SET{articles,#CONFIG{mediaspip/home/choix_highlight_article}}
 #SET{tri_defaut,non}
-#SET{tri_articles_home,#CONFIG{mediaspip/home/highlights_choisir_tri}}
-</BOUCLE_si_choix_manuel>
+#SET{tri_articles_home,#CONFIG{mediaspip/home/highlights_choisir_tri}}]
 
 [(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
-#SET{afficher_langue,oui}
-]
+[(#SET{afficher_langue,oui})]]
 #SET{critere_inverse,#ARRAY|push{date}|push{''}|push{'articles.maj'}|push{popularite}|push{moyenne}}
 #SET{limite,#ENV{limite_affichage,10000000000000000000000}}
 #SET{limite_pagination,#ENV{pagination#ENV{id_bloc,liste_medias},6}}
@@ -51,8 +49,7 @@
 [(#GET{tri_medias}|in_array{#LISTE{maj}}|oui)[(#SET{tri_medias,articles.#GET{tri_medias}})]]
 
 [(#GET{tri_medias_tous}|in_array{#LISTE{maj}}|oui)
-	#SET{tri_medias_tous,articles.#GET{tri_medias_tous}}
-]
+	[(#SET{tri_medias_tous,articles.#GET{tri_medias_tous}})]]
 
 #SET{date_debut,#ENV{date_debut,1970-01-02 00:00}}
 #SET{annee_debut,#GET{date_debut}|affdate{Y}}
@@ -64,7 +61,7 @@
 #SET{jour_fin,#GET{date_fin}|affdate{d}}
 
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-#SET{articles_rubriques,#ARRAY}
+[(#SET{articles_rubriques,#ARRAY})]
 <BOUCLE_si_toutes_langues(CONDITION){si #ENV{toutes_langues}|=={oui}|non}>
 	<BOUCLE_articles_rubrique_origine(ARTICLES){id_secteur=#CONFIG{mediaspip/rubriques/medias}}{statut IN #ENV{statuts,publie}}{branche}{branche_complete}{mesfavoris #ENV{mesfavoris,ignore}}{origine_traduction}{doublons}>
 	<BOUCLE_articles_rubrique_langue_en_cours(ARTICLES){traduction}{statut IN #ENV{statuts,publie}}{lang = #ENV{lang_forcee,#ENV{lang}}}{doublons}>
@@ -96,7 +93,7 @@
 	<div id="medias" class="liste_medias_vignettes">
 		<ul class="liste-items">
 			<BOUCLE_medias(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{mesfavoris #ENV{mesfavoris,ignore}}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{id_auteur ?}{id_mot ?}{em_type ?}{recherche ?}{tri #GET{tri_medias,#GET{tri_articles_home}},#GET{tri_medias,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons medias}{pagination #ENV{pagination_#ENV{id_bloc,liste_medias},#GET{limite_pagination,6}} #ENV{id_bloc,liste_medias}}{tout}>
-			#INCLURE{fond=inclure/article-media_vignette,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non}}
+			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias>
 		</ul>
 		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
@@ -105,12 +102,10 @@
 </B_medias>
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:mediaspip_core:message_aucun_media_critere_categorie:></p>]
-]
+	<p><:mediaspip_core:message_aucun_media_critere_categorie:></p>]]
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:mediaspip_core:message_aucun_media_publie_categorie:></p>]
-]
+	<p><:mediaspip_core:message_aucun_media_publie_categorie:></p>]]
 <//B_medias>
 </BOUCLE_rubrique>
 </B_rubrique>
@@ -137,12 +132,11 @@
 	</BOUCLE_articles_origine_ttes_langues>
 <//B_si_toutes_langues_tout>
 [(#ENV{articles,#GET{articles}}|is_array|oui)
-	#SET{articles_rubriques,#ENV{articles,#GET{articles}}|array_intersect{#GET{articles_rubriques}}
-]
+	[(#SET{articles_rubriques,[(#ENV{articles,#GET{articles}}|array_intersect{[(#GET{articles_rubriques})]})]})]]
 <BOUCLE_medias_test_tous(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{em_type ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_medias_tous,#GET{tri_articles_home}},#GET{tri_medias_tous}|in_array{#GET{critere_inverse,#GET{tri_articles_home}}}|?{-1,1}}{0,#GET{limite}}{doublons medias_tous}{tout} />
 <B_medias_tous>
 <div class="liste articles sommaire medias" id="#ENV{id_bloc,liste_medias}">
-	#ANCRE_PAGINATION
+	[(#ANCRE_PAGINATION)]
 	<h2 class="h2">[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
 	<div class="formulaires_tris">[(#GRAND_TOTAL|>{1}|oui)
 		#FORMULAIRE_MS_TRI{#GET{tri_medias_tous},#ENV{id_bloc,liste_medias}}][(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
@@ -151,7 +145,7 @@
 	<div id="medias_#ENV{id_bloc}" class="liste_medias_vignettes">
 		<ul class="liste-items">
 			<BOUCLE_medias_tous(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{id_auteur ?}{id_mot ?}{em_type ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_medias_tous,#GET{tri_articles_home}},#GET{tri_medias_tous,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons medias_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_medias},#GET{limite_pagination,6}} #ENV{id_bloc,liste_medias}}{tout}>
-			#INCLURE{fond=inclure/article-media_vignette,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non}}
+			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias_tous>
 		</ul>
 		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
@@ -160,12 +154,10 @@
 </B_medias_tous>
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:mediaspip_core:message_aucun_media_critere:></p>]
-]
+	<p><:mediaspip_core:message_aucun_media_critere:></p>]]
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:mediaspip_core:message_aucun_media_publie:></p>]
-]
+	<p><:mediaspip_core:message_aucun_media_publie:></p>]]
 <//B_medias_tous>
 <//B_rubrique>
 #FILTRE{trim}
