@@ -14,6 +14,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 	'spipr_dist_description' => 'Squelettes Dist Z+BootStrap+HTML5',
-	'spipr_dist_slogan' => 'DEV ONLY.DO NOT USE IN PRODUCTION',
+	'spipr_dist_slogan' => 'Squelettes Dist Z+BootStrap+HTML5',
 );
 ?>
