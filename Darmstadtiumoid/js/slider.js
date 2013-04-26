@@ -37,6 +37,13 @@ $(document).ready(function (){
 		}
 	});
 
+	// Colorer les 3 derniers caractères d'une chaine de caractère
+	var i = $("#nom_site_spip a").text().length;
+	var text_debut = $("#nom_site_spip a").text().substring(0, i-3); 
+	var text_fin = $("#nom_site_spip a").text().substring(i-3, i);
+	$("#nom_site_spip a").html(text_debut+'<span class="fin-titre">'+text_fin+'</span>');
+	$(".fin-titre").css('color', '#A2A2A2');
 
+		
 
 })
