@@ -12,50 +12,39 @@
 <!-- on teste si le plugin Calendrier Mini est activé
 sinon, on renvoie une alerte -->
 [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|oui)
-     #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour},#URL_PAGE{calendrier_mini_escal.json}}
+  [(#CONFIG{escal/config/donneescalendrier}|non)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-art},#URL_PAGE{calendrier_mini_escal.json}}
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={articles}|oui)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-art},#URL_PAGE{calendrier_mini_escal.json}}
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={evenements}|oui)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-event},#URL_PAGE{calendrier_quete.json}}
+  ]
 ]
 [(#EVAL{defined('_DIR_PLUGIN_CALENDRIERMINI')}|non)
 Le calendrier ne s'affichera que lorsque vous aurez activé le <a href="http://contrib.spip.net/Calendrier-Mini-2-0">plugin "Mini Calendrier"</a>
 ]
 
-
-
-<!-- affichage de la liste des evenements -->
-[(#CONFIG{escal/config/listeeventscalendrier}|=={non}|oui) <!-- ]
-<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}{lang}>
-<BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
-</BOUCLE_selection_articles1>
-</BOUCLE_selection_rubrique>
-
-<BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{lang}{age_redac<=0}{doublons evenements}>
-</BOUCLE_selection_articles>
-
-#SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
-		<div id="entete-evenement">
-  <:escal:evenements:>
-		</div>
-    <B_agenda_global>
-      <p style="align:right">#PAGINATION</p>
-		<BOUCLE_agenda_global (ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpageventcalendrier}}>
-			<div class="liste-evenements">
-			[(#DATE_REDAC|jour)-][(#DATE_REDAC|mois):]
-			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
-			</div>
-		</BOUCLE_agenda_global>
-			<div class="liste-evenements">
-			<:escal:evenements_non:>
-			</div>
-		<//B_agenda_global>
-[(#CONFIG{escal/config/listeeventscalendrier}|=={non}|oui) --> ]
-
-[(#CONFIG{escal/config/liennouvelevent}|=={non}|oui) <!-- ]
-	<div id="nouvel-evenement">
-	 <BOUCLE_rubrique_agenda(RUBRIQUES){titre_mot=agenda}>
-        <a href="ecrire/?exec=article_edit&amp;id_rubrique=#ID_RUBRIQUE&amp;new=oui" title="R&eacute;serv&eacute; aux r&eacute;dacteurs">
-        <:escal:evenements_ajouter:></a>
-	 </BOUCLE_rubrique_agenda>
-	 </div>
-[(#CONFIG{escal/config/liennouvelevent}|=={non}|oui) --> ]
+[(#CONFIG{escal/config/listeeventscalendrier}|=={non}|non)
+  [(#CONFIG{escal/config/donneescalendrier}|non)
+    <INCLURE {fond=inclusions/inc-calendrier_art}{env}>
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={articles}|oui)
+    <INCLURE {fond=inclusions/inc-calendrier_art}{env}>
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={evenements}|oui)
+    <INCLURE {fond=inclusions/inc-calendrier_event}{env}>
+  ]
+]
+    <B_rubrique_agenda>
+    <div id="nouvel-evenement">
+    <BOUCLE_rubrique_agenda(RUBRIQUES){si #CONFIG{escal/config/liennouvelevent}|=={oui}|oui}{titre_mot=agenda}>
+      <a href="ecrire/?exec=article_edit&amp;id_rubrique=#ID_RUBRIQUE&amp;new=oui" title="R&eacute;serv&eacute; aux r&eacute;dacteurs">
+      <:escal:evenements_ajouter:></a>
+    </BOUCLE_rubrique_agenda>
+    </div>
+    </B_rubrique_agenda>
 
 
   </div><!-- fin texte -->

@@ -350,6 +350,22 @@
                              value="#ENV**{#GET{name}}"  />
                     </span>
             <br /><br />
+            #SET{name,donneescalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Dans tous les cas, ceci concerne les articles ayant le mot-clé "agenda"
+                    ou les articles de la rubrique ayant le même mot-clé "agenda".<br />
+                    Choix de l'affichage :<br />
+                    - les articles eux-mêmes en prenant en compte leur "date de rédaction antérieure"<br />
+                    - les évènements créés dans ces articles grâce au plugin Agenda
+                    <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="margin-left:30px">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_articles" value="articles"
+                            [(#ENV{#GET{name}}|=={evenements}|non)checked="checked"] /><label for="#GET{name}_oui"><:articles:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_evenements" value="evenements"
+                            [(#ENV{#GET{name}}|=={evenements}|oui)checked="checked"] /><label for="#GET{name}_evenements"><:agenda:evenements:></label>
+                    </span>
+            <br /><br />
             #SET{name,listeeventscalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Liste des évènement à venir en dessous
                     [<span class='erreur_message'>(#GET{erreurs})</span>
