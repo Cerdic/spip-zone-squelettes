@@ -1,0 +1,48 @@
+<BOUCLE_document(DOCUMENTS){id_document}>
+<BOUCLE_article(ARTICLES){id_document}{id_secteur=#CONFIG{mediaspip/rubriques/medias}}>
+#SET{titre,#TITRE}
+#SET{desc,#TEXTE}
+#SET{url,#URL_ARTICLE|url_absolue}
+</BOUCLE_article>
+</B_article>
+#SET{titre,#TITRE|sinon{#FICHIER|basename}}
+#SET{desc,#DESCRIPTION}
+#SET{url,#URL_DOCUMENT|url_absolue}
+<//B_article>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+    <title>[(#GET{titre})] - #NOM_SITE_SPIP</title>
+    <meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+    <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+    [<link rel="stylesheet" href="(#CHEMIN{css/embed_code.css})">]
+</head>
+<body id="document_#ID_DOCUMENT" class="document embed_document" dir="#LANG_DIR">
+<div class="infos_document">
+	[<div class="logo">(#LOGO_DOCUMENT{[(#GET{url})]}|image_reduire{100,100})</div>]
+	<div class="titre"><h1><a href="[(#GET{url})]">[(#GET{titre})]</a></h1></div>
+	[(#FICHIER|image_reduire{#ENV{width,10000},0})]
+	[<div class="texte">(#GET{desc})</div>]
+	[<div class="credits">(#CREDITS)</div>]
+</div>
+</body>
+</html>
+</BOUCLE_document>
+</B_document>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+    <title>#NOM_SITE_SPIP</title>
+    <meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+    [<link rel="stylesheet" href="(#CHEMIN{css/embed_code.css})">]
+</head>
+<body id="document_#ID_DOCUMENT" class="document embed_document" dir="#LANG_DIR">
+	<div class="infos_document">
+		<div class="error">
+			<p><:embed_code:message_document_inexistant{nom_site=#NOM_SITE_SPIP,url_site=#URL_SITE_SPIP}:></p>
+		</div>
+	</div>
+</body>
+</html>
+<//B_document>
+#FILTRE{trim}
