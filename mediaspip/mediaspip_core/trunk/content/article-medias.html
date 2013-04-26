@@ -1,11 +1,12 @@
 <BOUCLE_contenu_article(ARTICLES){id_article}>[(#SET{config_page_medias,#CONFIG{mediaspip/medias,#ARRAY}})]
 <p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
 [(#PLUGIN{polyhier}|oui)[(#INCLURE{fond=inclure/hierarchie_poly,id_article,id_rubrique})]]
-<div class="content-principal hentry">
+<BOUCLE_media_doc(DOCUMENTS){id_article}{0,1}>#SET{media_doc,#MEDIA}</BOUCLE_media_doc>
+<div class="content-principal hentry"[(#GET{media_doc}|=={video}|oui)itemscope itemtype="http://schema.org/VideoObject"][(#GET{media_doc}|=={audio}|oui)itemscope itemtype="http://schema.org/AudioObject"]>
 	<div class="cartouche">
 		[<div class="logo #EDIT{logo}">(#LOGO_ARTICLE|image_reduire{200,200})</div>][
 		<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>
-		]<h1 class="h1 #EDIT{titre} entry-title">#TITRE</h1>[
+		]<h1 class="h1 #EDIT{titre} entry-title" itemprop="name">#TITRE</h1>[
 		<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 		[(#REM) 
 			
@@ -29,32 +30,31 @@
 			[(#INCLURE{fond=inclure/gis_mini_map,objet=article,id_objet=#ID_ARTICLE})]]
 			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>[
 			(#VAL{info_publie}|in_array{#GET{infos_cachees_medias}}|non)<div class="info_media info-publi"><p><:mediaspip_core:info_publie_date:> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p></div>][
-			(#VAL{info_update}|in_array{#GET{infos_cachees_medias}}|non)[
-			(#MAJ|strtotime|<{#DATE|strtotime|plus{3*3600}}|oui)
+			(#VAL{info_update}|in_array{#GET{infos_cachees_medias}}|non)
 			<div class="info_media info-updated">
 				[<p><:mediaspip_core:info_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#DATE|date_relative)</abbr></p>]
-			</div>]][
+			</div>][
 			(#VAL{info_auteur}|in_array{#GET{infos_cachees_medias}}|non)[<div class="info_media info-auteur"><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></div>]]
 			[(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
 			[<div class="info_media info-langue">
 				<p><:mediaspip_core:info_langue:> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr></p>
-			</div>]]
-			[(#PLUGIN{collections}|oui)
+			</div>]][
+			(#PLUGIN{collections}|oui)
 				<INCLURE{fond=inclure/collections_liees_media,id_article,ajax} />
-				[(#FORMULAIRE_ASSOCIER_MEDIA_COLLECTION{#ID_ARTICLE})]]
-			[<div class="#EDIT{chapo} chapo info_media entry-summary">(#CHAPO|image_reduire{250,0})</div>]
-			[<div class="#EDIT{texte} texte info_media entry-content">(#TEXTE|image_reduire{250,0})</div>]
-			[<div class="ps">
+				[(#FORMULAIRE_ASSOCIER_MEDIA_COLLECTION{#ID_ARTICLE})]][
+			<div class="#EDIT{chapo} chapo info_media entry-summary" itemprop="headline">(#CHAPO|image_reduire{250,0})</div>][
+			<div class="#EDIT{texte} texte info_media entry-content" itemprop="description">(#TEXTE|image_reduire{250,0})</div>][
+			<div class="ps">
 				<h4 class="h4"><:info_ps:></h2>
 				<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
-			</div>]
-			[<div class="notes surlignable"><h4 class="h4 pas_surlignable"><:info_notes:></h4>(#NOTES)</div>]
+			</div>][
+			<div class="notes surlignable"><h4 class="h4 pas_surlignable"><:info_notes:></h4>(#NOTES)</div>]
 			[(#PLUGIN{LICENCE}|oui)
 			[<div class="info_media info-licence #EDIT{id_licence}">
 				<p><span class="title"><:mediaspip_core:info_licence:> </span>
 				(#MODELE{licence,id_licence=#ID_LICENCE,nom_licence=oui,hauteur_logo=25,cacher_defaut=oui}|trim)</p>
-			</div>]]
-			[<p class="info_media #EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			</div>]][
+			<p class="info_media #EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 			[(#PLUGIN{SPIPICIOUS}|oui)
 				<INCLURE{fond=inc-tags,objet=article,id_objet=#ID_ARTICLE,message_aucun=non} />
 				#FORMULAIRE_SPIPICIOUS_AJAX{#ID_ARTICLE,article}
@@ -78,13 +78,12 @@
 			<div class="info_media info-comments">
 			[<p><a href="#forum">(#TOTAL_BOUCLE) <:mediaspip_core:info_comment:></a></p>]
 			</div>]
-			<//B_coms>
-			[(#PLUGIN{signalement}|oui)<div class="info_media info-signalement ajouter_signalement">#FORMULAIRE_SIGNALEMENT</div>]
-			[(#PLUGIN{mesfavoris}|oui)<INCLURE{fond=inclure/favoris_article,id_article} />]
-			[(#PLUGIN{recommander}|oui)
+			<//B_coms>[
+			(#PLUGIN{signalement}|oui)<div class="info_media info-signalement ajouter_signalement">#FORMULAIRE_SIGNALEMENT</div>][
+			(#PLUGIN{mesfavoris}|oui)<INCLURE{fond=inclure/favoris_article,id_article} />][
+			(#PLUGIN{recommander}|oui)
 				[(#RECOMMANDER{#TITRE,#URL_ARTICLE,#INTRODUCTION})]
-			]
-			<BOUCLE_doc(DOCUMENTS){id_article}>
+			]<BOUCLE_doc(DOCUMENTS){id_article}>
 			[(#PLUGIN{embed_code}|et{#CONFIG{mediaspip/squelettes/embed_code,on}|=={on}}|oui)
 			[(#MODELE{code_embed,id_document=#ID_DOCUMENT})]]
 			</BOUCLE_doc>
