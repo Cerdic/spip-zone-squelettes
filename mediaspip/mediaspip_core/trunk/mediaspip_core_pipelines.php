@@ -127,7 +127,7 @@ function mediaspip_core_jquery_plugins($plugins){
 	if(!test_espace_prive()){
 		$plugins[] = "javascript/jquery.equalheight.js";
 		$plugins[] = "javascript/mediaspip_base.js";
-		$plugins[] = _DIR_LIB_SLIDER."js/easySlider1.7.js";
+		$plugins[] = "javascript/easySlider1.7.js";
 		$plugins[] = _DIR_LIB_SVG."jquery.svg.js";
 		if(!defined('_DIR_PLUGIN_DOCUMENTATION'))
 			$plugins[] = "javascript/mediaspip_menu_categories.js";

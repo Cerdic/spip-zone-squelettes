@@ -72,9 +72,11 @@ var mediaspip_hauteur_blocs = function(){
 		jQuery('.liste_medias_vignettes').each(function(){
 			jQuery(this).find('.vignette').equalHeights();
 		});
-		jQuery('#liste_actus,#liste_editos,.zengarden .liste_themes .theme').equalHeights();
-		if(jQuery('#exergue ul li').size() > 1)
-			jQuery('#exergue ul li').equalHeights();
+		jQuery('.zengarden .liste_themes .theme').equalHeights();
+		if(jQuery('#liste_editos').size() > 1)
+			jQuery('#liste_editos').equalHeights();
+		if(jQuery('#liste_actus').size() > 1)
+			jQuery('#liste_actus').equalHeights();
 	}
 }
 
@@ -83,8 +85,13 @@ var mediaspip_hauteur_blocs = function(){
  * si on a plusieurs éléments
  */
 var mediaspip_sliders = function(){
-	if(jQuery('#exergue ul li').size() > 1)
+	if(jQuery('#exergue ul li').size() > 1){
+		jQuery('#exergue ul li img').each(function(){
+			var width = $(this).width();
+			$(this).css({'width':width+'px'})
+		});
 		jQuery("#exergue").easySlider({numeric: true});
+	}
 }
 
 /**

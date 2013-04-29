@@ -14,7 +14,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 define('_ZENGARDEN_FILTRE_THEMES','mediaspip_core');
 
 define('_DIR_LIB_SVG',_DIR_RACINE.'lib/jquery.svg.package-1.4.4/');
-define('_DIR_LIB_SLIDER',_DIR_RACINE.'lib/easyslider1.7/easyslider1.7/');
 
 $GLOBALS['forcer_lang'] = true;
 

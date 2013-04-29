@@ -12,7 +12,7 @@
 		]
 		[(#PLUGIN{doc2img}|et{#EXTENSION|in_array{#CONFIG{doc2img/format_document,''}|explode{','}}}|non)
 			[(#MIME_TYPE|match{audio/}|oui)[(#SET{largeur,350})]]
-			[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=non,largeur=#GET{largeur},hauteur=#GET{hauteur},infos=non,noresize=oui,ajax})]
+			[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=non,largeur=#GET{largeur},hauteur=#GET{hauteur},infos=non,moviesize=adapt,ajax})]
 		]
 		</BOUCLE_doc>
 		<BOUCLE_document_orig(DOCUMENTS){si #GET{total}|>{1}}{id_article}{mode !IN doc2img,conversion}>
@@ -21,9 +21,9 @@
 				[(#EXTENSION|in_array{#LISTE{flv,mp3}}|oui)[(#SET{embed,#ID_DOCUMENT})]]
 		 	</BOUCLE_documents_lisibles>
 				[(#MIME_TYPE|match{audio/}|oui)[(#SET{largeur,''})]]
-				[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},autobuffer=non,noresize=oui,infos=non,env,ajax})]
+				[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},moviesize=adapt,autobuffer=non,infos=non,env,ajax})]
 			</B_documents_lisibles>
-			[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},noresize=oui,autobuffer=non,infos=non,env,ajax})]
+			[(#MODELE{emb,controls=oui,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},moviesize=adapt,autobuffer=non,infos=non,env,ajax})]
 			<//B_documents_lisibles>
 		</BOUCLE_document_orig>
 	</B_documents>
