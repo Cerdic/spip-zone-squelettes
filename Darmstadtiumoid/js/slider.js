@@ -7,11 +7,12 @@ $(document).ready(function (){
 
 	$("#divPrincipSlider").mouseenter(function (){
 		$(".arrowslider").fadeIn(400);
-	});
-	
+		$(".desc").slideDown(400);
+	});	
 	
 	$("#divPrincipSlider").mouseleave(function (){
 		$(".arrowslider").fadeOut(400);
+		$(".desc").slideUp(400);
 	});
 
 	$("#s3sliderContent").mouseleave(function (){
@@ -43,7 +44,5 @@ $(document).ready(function (){
 	var text_fin = $("#nom_site_spip a").text().substring(i-3, i);
 	$("#nom_site_spip a").html(text_debut+'<span class="fin-titre">'+text_fin+'</span>');
 	$(".fin-titre").css('color', '#A2A2A2');
-
-		
 
 })
