@@ -1,9 +1,10 @@
 $(document).ready(function (){
 	$("#s3sliderContent").cycle();
 
-	$("#s3slider").mouseenter(function (){
+	$("#divPrincipSlider").mouseenter(function (){
 		$("#s3sliderContent").cycle('pause');	
 	});
+	
 	$("#jqc-prev").mouseenter(function (){
 		$("#s3sliderContent").cycle('pause');	
 	});
@@ -36,10 +37,12 @@ $(document).ready(function (){
 
 	$("#jqc-prev").click(function (){
 		$("#s3sliderContent").cycle('prev');
+		$(".desc").slideUp(400);
 	});
 
 	$("#jqc-next").click(function (){
 		$("#s3sliderContent").cycle('next');
+		$(".desc").slideUp(400);
 	});
 	
 	// Effet sur les menus deroulants
