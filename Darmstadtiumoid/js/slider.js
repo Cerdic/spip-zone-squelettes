@@ -1,18 +1,33 @@
 $(document).ready(function (){
 	$("#s3sliderContent").cycle();
 
-	$("#s3sliderContent").mouseenter(function (){
+	$("#s3slider").mouseenter(function (){
+		$("#s3sliderContent").cycle('pause');	
+	});
+	$("#jqc-prev").mouseenter(function (){
+		$("#s3sliderContent").cycle('pause');	
+	});
+	$("#jqc-next").mouseenter(function (){
 		$("#s3sliderContent").cycle('pause');	
 	});
 
+	$(".s3sliderImage").each(function(index){
+		var n=index+1;
+		$(".slidercadre"+n).mouseenter(function (){
+			$(".desc"+n).slideDown(400);
+		});
+		
+		$("#s3slider").mouseleave(function (){
+			$(".desc"+n).slideUp(400);
+		});
+	});
+		
 	$("#divPrincipSlider").mouseenter(function (){
 		$(".arrowslider").fadeIn(400);
-		$(".desc").slideDown(400);
 	});	
 	
 	$("#divPrincipSlider").mouseleave(function (){
 		$(".arrowslider").fadeOut(400);
-		$(".desc").slideUp(400);
 	});
 
 	$("#s3sliderContent").mouseleave(function (){
@@ -27,6 +42,7 @@ $(document).ready(function (){
 		$("#s3sliderContent").cycle('next');
 	});
 	
+	// Effet sur les menus deroulants
 	jQuery('.menu-liste').superfish({
 		autoArrows: false,
 		hoverClass: 'hover',
@@ -38,7 +54,7 @@ $(document).ready(function (){
 		}
 	});
 
-	// Colorer les 3 derniers caractères d'une chaine de caractère
+	// Colorer les 3 derniers caracteres du titre du site
 	var i = $("#nom_site_spip a").text().length;
 	var text_debut = $("#nom_site_spip a").text().substring(0, i-3); 
 	var text_fin = $("#nom_site_spip a").text().substring(i-3, i);
