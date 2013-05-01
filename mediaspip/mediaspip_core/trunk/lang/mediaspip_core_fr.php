@@ -83,6 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_documents' => 'Les documents',
 	'info_documents_liens_directs' => 'Liens directs vers les documents',
 	'info_documents_liens_directs_doc2img' => 'Conversions automatiques',
+	'info_editorial_publi' => 'Édito du <abbr class="published" title="@date_iso@">@date@</abbr> par @auteurs@.',
 	'info_langue' => 'Langue :',
 	'info_licence' => 'Licence :',
 	'info_lien_vignette' => 'Une vignette',
@@ -199,6 +200,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_archives' => 'Archives',
 	'lien_archives_tout_mois' => 'Archives de tout le mois',
 	'lien_modifier_forum_publication' => 'Gérer les forums de cette publication',
+	'lien_page_tag' => 'Éléments liés au tag : @tag@', 
 	'lien_titre_accueil' => 'Accueil',
 	'lien_zoom_image' => 'Zoom',
 
