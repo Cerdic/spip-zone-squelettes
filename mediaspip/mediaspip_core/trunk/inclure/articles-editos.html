@@ -1,20 +1,11 @@
-<BOUCLE_rubeditos(RUBRIQUES){id_rubrique=#CONFIG{mediaspip/rubriques/editos}}>
-#SET{config_page_article,#CONFIG{mediaspip/medias,#ARRAY}}
 <B_articles_editos>
-<div id="liste_editos" class="liste articles sommaire editos">
-	#ANCRE_PAGINATION
-	<h2 class="h2"><:mediaspip_core:titre_sommaire_edito:></h2>
-	<div class="texte edito">
-		<BOUCLE_articles_editos(ARTICLES) {id_secteur}{par date}{inverse} {pagination 1}>
-		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
-		[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|non|et{[(#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|table_valeur{infos_cachees_article}|sinon{#ARRAY})]}|non)]})
-		<p class="info-publi">
-			[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|non)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>][(#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|table_valeur{infos_cachees_article}|sinon{#ARRAY})]}|non)[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
-		</p>]
-		[(#TEXTE|strlen|>{1100}|non)[<div class="#EDIT{texte} introduction entry-content">(#TEXTE)</div>]]
-		[(#TEXTE|strlen|>{1100}|oui)[<div class="#EDIT{introduction} introduction entry-content">(#INTRODUCTION{1100})</div>]]
-		</BOUCLE_articles_editos>
-	</div>
+<div id="edito" class="sommaire edito">
+	<BOUCLE_articles_editos(ARTICLES){id_secteur=#CONFIG{mediaspip/rubriques/editos}}{par date}{inverse}{0,1}>
+	<h2 class="h2 #EDIT{titre}">#TITRE</h2>
+	<p class="info-publi">[(#SET{auteurs,#LESAUTEURS})][(#SET{date_iso,#DATE|date_iso})][(#SET{date,[(#DATE|nom_jour) ][(#DATE|affdate)]})]
+		<:mediaspip_core:info_editorial_publi{auteurs=#GET{auteurs},date_iso=#GET{date_iso},date=#GET{date}}:>
+	</p>
+	[<div class="#EDIT{texte} texte entry-content">(#TEXTE)</div>]
+	</BOUCLE_articles_editos>
 </div>
 </B_articles_editos>
-</BOUCLE_rubeditos>

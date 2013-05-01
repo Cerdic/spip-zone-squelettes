@@ -13,6 +13,14 @@
 	</div>
 	[(#VAL{info_description_site}|in_array{#GET{blocs_caches_home}}|non)
 	[<div id="descriptif_site_spip"[ class="(#EDIT{meta-descriptif_site})"]>(#DESCRIPTIF_SITE_SPIP)</div>]]
+	
+	[(#REM)
+
+	On n'affiche pas les éditos si on a configuré dans la conf de les cacher
+	
+	][(#VAL{info_editos}|in_array{#GET{blocs_caches_home}}|non)
+	[(#INCLURE{fond=inclure/articles-editos,debut_articles_editos,ajax,env})]]
+	
 	[(#CONFIG{mediaspip/home/exergue,off}|=={on}|oui)
 	<div id="contenu-exergue">
 		#INCLURE{fond=inclure/exergue,env,ajax}
@@ -26,12 +34,6 @@
 ][(#VAL{info_featured}|in_array{#GET{blocs_caches_home}}|non)
 [(#INCLURE{fond=inclure/articles-medias_liste,env,ajax})]]
 
-[(#REM)
-
-	On n'affiche pas les éditos si on a configuré dans la conf de les cacher
-	
-][(#VAL{info_editos}|in_array{#GET{blocs_caches_home}}|non)
-[(#INCLURE{fond=inclure/articles-editos,debut_articles_editos,ajax,env})]]
 [(#REM)
 
 	On n'affiche pas les news si on a configuré dans la conf de les cacher
