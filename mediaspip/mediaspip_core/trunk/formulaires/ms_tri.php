@@ -5,7 +5,7 @@
  * Auteurs :
  * kent1 (http://www.kent1.info - kent1@arscenic.info)
  *
- * © 2010-2012 - Distribue sous licence GNU/GPL
+ * © 2010-2013 - Distribue sous licence GNU/GPL
  * 
  */
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -25,9 +25,10 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param string $defaut : le critère par défaut si rien dans l'environnement
  * @param string $ancre : l'ancre sur laquelle on pointe ensuite
  */
-function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre=''){
+function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre='',$recharger=false){
 	$tri_actuel = _request('tri'.$boucle) ? _request('tri'.$boucle) : $defaut;
 	$page = _request('page');
+	spip_log($recharger,'test.'._LOG_ERREUR);
 	return
 		array(
 			'action' => self(),
@@ -38,11 +39,17 @@ function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre=''){
 		);
 }
 
-function formulaires_ms_tri_traiter_dist($boucle,$defaut='',$ancre=''){
+function formulaires_ms_tri_traiter_dist($boucle,$defaut='',$ancre='',$recharger=false){
 	$lien = self();
 	$valeur = _request('champ_tri'.$boucle);
 	$lien_retour = parametre_url($lien,'tri'.$boucle,$valeur);
-	$res['redirect'] = $lien_retour.($ancre ? '#'.$ancre : '');
+	if($recharger){
+		$res['message_ok'] = '<script type="text/javascript">if (window.jQuery) jQuery("'.$recharger.'").ajaxReload({args:{tri'.$boucle.':"'.$valeur.'"},history:true});</script>';
+		set_request('tri'.$boucle,$valeur);
+	}else{
+		$res['redirect'] = $lien_retour.($ancre ? '#'.$ancre : '');
+	}
+	spip_log($res,'test.'._LOG_ERREUR);
 	return $res;
 }
 

@@ -73,11 +73,18 @@ function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancr
  * @param int $min : Le nombre minimal possible
  * @param int $max : Le nombre maximal possible de la pagination
  */
-function formulaires_ms_pagination_traiter_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30'){
+function formulaires_ms_pagination_traiter_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30',$recharger=false){
 	$lien = self();
 	$valeur = _request('champ_pagination'.$boucle);
 	$lien_retour = parametre_url(parametre_url($lien,'pagination'.$boucle,$valeur),'debut'.$boucle,'');
-	$res['redirect'] = $lien_retour.($ancre ? '#'.$ancre : '');
+	if($recharger){
+		$res['message_ok'] = '<script type="text/javascript">if (window.jQuery) jQuery("'.$recharger.'").ajaxReload({args:{pagination'.$boucle.':'.$valeur.',debut'.$boucle.':""},history:true});</script>';
+		set_request('pagination'.$boucle,$valeur);
+		set_request('debut'.$boucle,'');
+	}else{
+		$res['redirect'] = $lien_retour.($ancre ? '#'.$ancre : '');
+	}
+	
 	return $res;
 }
 
