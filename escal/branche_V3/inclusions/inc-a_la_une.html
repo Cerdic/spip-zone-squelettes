@@ -4,9 +4,17 @@
 <BOUCLE_titrealt(ARTICLES){par date}{inverse}{0,1}>
 #SET{titrealt,#TITRE}
 </BOUCLE_titrealt>
-<BOUCLE_titremonart(ARTICLES){titre_mot=mon-article}>
+
+
+<BOUCLE_titremonart(ARTICLES){si #CONFIG{escal/config/titremonart}|non}{titre_mot=mon-article}>
 #SET{titremonart,#TITRE}
 </BOUCLE_titremonart>
+
+[(#CONFIG{escal/config/titremonart}|oui)
+#SET{titremonart,#CONFIG{escal/config/titremonart}|propre|_T|PtoBR}
+]
+
+
 
 
 <BOUCLE_titrerub(RUBRIQUES){titre_mot=RubriqueOnglet}{0,1}>
