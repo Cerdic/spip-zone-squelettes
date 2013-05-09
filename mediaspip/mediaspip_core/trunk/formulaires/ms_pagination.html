@@ -11,14 +11,24 @@
 		<div>
 			#ACTION_FORMULAIRE{#ENV{action}}
 			<label for="#ENV{nom}"><:mediaspip_core:label_nombre_pagination:></label>
-			<B_test12><select name="#ENV{nom}" id="#ENV{nom}" onchange="jQuery(this).parents('form').submit()">
+			<B_test12><select name="#ENV{nom}" id="#ENV{nom}">
 				<option value=""> - </option><BOUCLE_test12(POUR){si #ENV{type_form}|=={select}|oui}{tableau #ENV{_tableau_pas}}>
 				<option value="#VALEUR"[(#ENV{defaut}|=={#VALEUR}|oui)selected="selected"]>#VALEUR</option></BOUCLE_test12>[(#ENV{afficher_tout}|oui)
 				<option value="#ENV{total}"[(#ENV{defaut}|=={#ENV{total}}|oui)selected="selected"]><:mediaspip_core:pagination_tout_afficher:></option>]
 			</select>
 			</B_test12>[(#ENV{type_form}|=={select}|oui|non)
 			<input type="text" class="text" name="#ENV{nom}" id="#ENV{nom}" size="5" />]<//B_test12>
-			<noscript><p class="boutons"><input type="submit" class="submit" value="&gt;&gt;" /></p></noscript>
+			<p class="boutons"><input type="submit" class="submit" value="&gt;&gt;" /></p>
 		</div>
 	</form>
+	<script type="text/javascript">
+		jQuery(function(){
+			(function ($) {
+				$("#formulaire_menu_pagination_[(#ENV{boucle}) ].boutons").hide();
+				$("#formulaire_menu_pagination_[(#ENV{boucle}) ]select#[(#ENV{nom})]").change(function(){
+					jQuery(this).parents('form').submit()
+				});
+			}(jQuery));
+		});
+	</script>
 </div>
