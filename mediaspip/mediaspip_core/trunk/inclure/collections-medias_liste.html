@@ -54,31 +54,27 @@
 <BOUCLE_collections_test_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{0,#GET{limite}}{doublons collections_tous}{tout} />
 <B_collections_tous>
 <div class="liste sommaire collections" id="#ENV{id_bloc,liste_collections}">
-	#ANCRE_PAGINATION
-	<h2 class="h2">[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
-	<div class="formulaires_tris">
-		[(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
-			[(#FORMULAIRE_MS_PAGINATION{#GRAND_TOTAL,liste_collections,select,#GET{limite_pagination_min,6},0,#GET{limite_pagination_max}})]
-		]
-	</div>
+	<h2 class="h2"[ id="(#ANCRE_PAGINATION|extraire_attribut{name})"]>[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
+	[(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
+	<div class="formulaires_tris">	
+		[(#FORMULAIRE_MS_PAGINATION{#GRAND_TOTAL,liste_collections,select,#GET{limite_pagination_min,6},0,#GET{limite_pagination_max}})]
+	</div>]
 	<div id="collections_#ENV{id_bloc}" class="liste_collections_vignettes">
-		<ul class="liste-items">
+		<ul class="liste-items liste_vignettes">
 			<BOUCLE_collections_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons collections_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_collections},#GET{limite_pagination,6}} #ENV{id_bloc,liste_collections}}{tout}>
 			#INCLURE{fond=inclure/collection-media_vignette,env,id_collection,compte=#COMPTEUR_BOUCLE,class=vignette}
 			</BOUCLE_collections_tous>
 		</ul>
-		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
+		[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
 	</div>
 </div>
 </B_collections_tous>
 
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:collection:message_aucune_collection_critere:></p>]
-]
+	<p><:collection:message_aucune_collection_critere:></p>]]
 [(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
 	[(#ENV{message_null}|=={non}|oui)
-	<p><:collection:message_aucune_collection_publiee:></p>]
-]
+	<p><:collection:message_aucune_collection_publiee:></p>]]
 <//B_collections_tous>
 #FILTRE{trim}

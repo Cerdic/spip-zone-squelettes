@@ -90,12 +90,12 @@
 		<div class="ajax">[(#FORMULAIRE_MS_PAGINATION{#GRAND_TOTAL,liste_medias,select,#GET{limite_pagination_min,6},0,#GET{limite_pagination_max},##ENV{id_bloc,liste_medias}})]</div>]
 	</div>
 	<div id="medias" class="liste_medias_vignettes">
-		<ul class="liste-items hfeed">
+		<ul class="liste-items hfeed liste_vignettes">
 			<BOUCLE_medias(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{mesfavoris #ENV{mesfavoris,ignore}}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{id_auteur ?}{id_mot ?}{em_type ?}{recherche ?}{tri #GET{tri_medias,#GET{tri_articles_home}},#GET{tri_medias,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons medias}{pagination #ENV{pagination_#ENV{id_bloc,liste_medias},#GET{limite_pagination,6}} #ENV{id_bloc,liste_medias}}{tout}>
 			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias>
 		</ul>
-		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
+		[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
 	</div>
 </div>
 </B_medias>
@@ -146,7 +146,7 @@
 			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias_tous>
 		</ul>
-		[<p class="pagination">(#PAGINATION{#ENV{type_pagination}})</p>]
+		[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
 	</div>
 </div>
 </B_medias_tous>

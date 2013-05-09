@@ -56,13 +56,10 @@
 					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
 				})]
 			]
-			<a href="[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})]"
-				class="media_logo_vignette" title="<:bouton_telecharger:>" rel="nofollow">
-				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,[(#MODE|in_array{#LISTE{conversion,doc2img}}|?{[(#MODE|=={doc2img}|?{<:mediaspip_core:document_page{page=#PAGE}:>,<:mediaspip_core:document_version{version=#EXTENSION}:>})],<:mediaspip_core:document_version_originale:>}|attribut_html)]})]
-			</a>
 			[<div class="media_infos">
 				<h4 class="#EDIT{titre}">
 					<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
+						[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
 						[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
 					</a>
 				</h4>
@@ -82,13 +79,11 @@
 				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
 					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
 				})]
-			]<a href="[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})]"
-				class="media_logo_vignette" title="<:bouton_telecharger:>" rel="nofollow">
-				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,[(#MODE|in_array{#LISTE{conversion,doc2img}}|?{[(#MODE|=={doc2img}|?{<:mediaspip_core:document_page{page=#PAGE}:>,<:mediaspip_core:document_version{version=#EXTENSION}:>})],<:mediaspip_core:document_version_originale:>}|attribut_html)]})]
-			</a>
+			]
 			[<div class="media_infos">
 				<h4 class="#EDIT{titre}">
 					<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
+						[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
 						[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
 					</a>
 				</h4>
@@ -110,15 +105,12 @@
 		<BOUCLE_documents_joints_doc2img(DOCUMENTS){mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
 		<li class="item info_media">[
 			(#SET{url,[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT}|parametre_url{file,#GET{fichier},'&'}|parametre_url{cle,[(#ID_DOCUMENT|concat{','}|concat{#GET{fichier}})],'&'})]})]
-			<a href="[(#GET{url})]" class="media_logo_vignette" title="<:bouton_telecharger:>" rel="nofollow">
-				[(#_articles:EM_TYPE|oui)
-				[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
-					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})],[(#SET{masque,[(#GET{masque}|extraire_attribut{'src'})]})]})]
-				][(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''}|inserer_attribut{class,'spip_logos'})]
-			</a>
 			[<div class="media_infos">
-				<h4>
-					<a href="(#GET{url})" title="<:bouton_telecharger:>" rel="nofollow">
+				<h4>[(#_articles:EM_TYPE|oui)
+					[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
+						[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})],[(#SET{masque,[(#GET{masque}|extraire_attribut{'src'})]})]})]
+					]<a href="(#GET{url})" title="<:bouton_telecharger:>" rel="nofollow">
+						[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''}|inserer_attribut{class,'spip_logos'})]
 						[(#GRAND_TOTAL|=={1}|?{<:mediaspip_core:document_conversion:>,<:mediaspip_core:document_conversion_page{nb=#PAGE}:>})]
 					</a>
 				</h4>
