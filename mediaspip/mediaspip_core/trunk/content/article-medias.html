@@ -29,19 +29,16 @@
 			[(#PLUGIN{gis}|oui)
 			[(#INCLURE{fond=inclure/gis_mini_map,objet=article,id_objet=#ID_ARTICLE})]]
 			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>[
-			(#VAL{info_publie}|in_array{#GET{infos_cachees_medias}}|non)<div class="info_media info-publi"><p><:mediaspip_core:info_publie_date:> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p></div>][
+			(#VAL{info_publie}|in_array{#GET{infos_cachees_medias}}|non)<div class="info_media info-publi"><p><span class="title"><:mediaspip_core:info_publie_date:></span> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p></div>][
 			(#VAL{info_update}|in_array{#GET{infos_cachees_medias}}|non)
 			<div class="info_media info-updated">
-				[<p><:mediaspip_core:info_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#DATE|date_relative)</abbr></p>]
+				[<p><span class="title"><:mediaspip_core:info_maj:></span> <abbr class="updated" title="[(#MAJ|date_iso)]">(#DATE|date_relative)</abbr></p>]
 			</div>][
-			(#VAL{info_auteur}|in_array{#GET{infos_cachees_medias}}|non)[<div class="info_media info-auteur"><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></div>]]
+			(#VAL{info_auteur}|in_array{#GET{infos_cachees_medias}}|non)[<div class="info_media info-auteur"><p><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></p></div>]]
 			[(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
 			[<div class="info_media info-langue">
-				<p><:mediaspip_core:info_langue:> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr></p>
+				<p><span class="title"><:mediaspip_core:info_langue:></span> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr></p>
 			</div>]][
-			(#PLUGIN{collections}|oui)
-				<INCLURE{fond=inclure/collections_liees_media,id_article,ajax} />
-				[(#FORMULAIRE_ASSOCIER_MEDIA_COLLECTION{#ID_ARTICLE})]][
 			<div class="#EDIT{chapo} chapo info_media entry-summary" itemprop="headline">(#CHAPO|image_reduire{250,0})</div>][
 			<div class="#EDIT{texte} texte info_media entry-content" itemprop="description">(#TEXTE|image_reduire{250,0})</div>][
 			<div class="ps">
@@ -54,11 +51,14 @@
 				<p><span class="title"><:mediaspip_core:info_licence:> </span>
 				(#MODELE{licence,id_licence=#ID_LICENCE,nom_licence=oui,hauteur_logo=25,cacher_defaut=oui}|trim)</p>
 			</div>]][
-			<p class="info_media #EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			<div class="info_media #EDIT{hyperlien} hyperlien"><p><span class="title"><:voir_en_ligne:> :</span> <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p></div>]
 			[(#PLUGIN{SPIPICIOUS}|oui)
 				<INCLURE{fond=inc-tags,objet=article,id_objet=#ID_ARTICLE,message_aucun=non} />
 				#FORMULAIRE_SPIPICIOUS_AJAX{#ID_ARTICLE,article}
-			]
+			][
+			(#PLUGIN{collections}|oui)
+				<INCLURE{fond=inclure/collections_liees_media,id_article,ajax} />
+				[(#FORMULAIRE_ASSOCIER_MEDIA_COLLECTION{#ID_ARTICLE})]]
 		</div>
 		<div class="infos_statistiques surlignable">
 			<h3 class="h3"><:mediaspip_core:info_statistiques:></h3>
