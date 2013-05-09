@@ -88,4 +88,29 @@ if (!function_exists('inc_vignette')){
 function has_cookie_admin(){
 	return isset($_COOKIE['spip_admin']) ? $_COOKIE['spip_admin'] : false;
 }
+
+/**
+ * Converti une durée en secondes en une durée affichable et lisible 
+ * hh:mm:ss ou mm:ss
+ * 
+ * @param int|float $temps_secondes 
+ * 		Le nombre de secondes
+ * @return string $str
+ * 		Le temps sous forme de chaîne de caractère
+ */
+function mediaspip_duree($temps_secondes){
+	$diff_hours = floor($temps_secondes/3600);
+	$temps_secondes -= $diff_hours * 3600;
+	$diff_hours = (($diff_hours >= 0) && ($diff_hours < 10)) ? '0'.$diff_hours : $diff_hours;
+
+	$diff_minutes = floor($temps_secondes/60);
+	$temps_secondes -= $diff_minutes * 60;
+	$diff_minutes = (($diff_minutes >= 0) && ($diff_minutes < 10)) ? '0'.$diff_minutes : $diff_minutes;
+
+	$temps_secondes = (($temps_secondes >= 0) && ($temps_secondes < 10)) ? '0'.floor($temps_secondes) : floor($temps_secondes);
+
+	$str = (($diff_hours > 0) ? $diff_hours.':':'').(($diff_minutes > 0) ? $diff_minutes:'00').':'.$temps_secondes;
+
+	return $str;
+}
 ?>
