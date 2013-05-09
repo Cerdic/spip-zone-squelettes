@@ -20,12 +20,15 @@
 			-* Le fichier lui-même rétréci si c'est une image
 			-* Le logo du document si c'est autre chose qu'une image
 		
-		][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,[(#FICHIER|balise_img|inserer_attribut{class,spip_logos})]})],[(#SET{logo,#LOGO_DOCUMENT})]})
+		][(#DUREE|>{0}|oui)[(#SET{masque_duree,[(#DUREE|mediaspip_duree|image_typo{police=swiss-bold.otf,taille=10,padding=4px,couleur=ffffff}|image_aplatir{png,000000})]})]]
+		[(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,[(#FICHIER|balise_img|inserer_attribut{class,spip_logos})]})],[(#SET{logo,#LOGO_DOCUMENT})]})
 		][(#_articles:EM_TYPE|oui)
-			[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
+			[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
 				[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
 			})]]
 		[(#SET{logo,[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]})]
+		[(#GET{masque_duree}|oui)
+		[(#SET{logo,[(#GET{logo}|image_masque{#GET{masque_duree},mode=normal,right=0px,bottom=0px})]})]]
 	</BOUCLE_docs>[(#_articles:EM_TYPE|oui)
 			[(#LOGO_ARTICLE|image_passe_partout{#GET{largeur_vignette},#GET{hauteur_vignette}}|image_recadre{#GET{largeur_vignette},#GET{hauteur_vignette}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
 				[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
