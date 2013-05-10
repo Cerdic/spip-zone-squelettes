@@ -8,6 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
+	'alt_logo_site' => 'Logo du site', # NEW
 	'articles_autres_auteur' => 'Other articles from @login@',
 	'articles_medias_auteur' => 'Medias from @login@',
 	'articles_medias_tag' => 'Medias linked to the tag @tag@',
