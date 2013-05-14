@@ -14,6 +14,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 	'spipr_doc_description' => 'Squelettes de Doc Z+BootStrap+HTML5',
-	'spipr_doc_slogan' => 'DEV ONLY.DO NOT USE IN PRODUCTION',
+	'spipr_doc_slogan' => 'Squelettes de Doc Z+BootStrap+HTML5',
 );
 ?>
