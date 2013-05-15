@@ -32,7 +32,8 @@ function formulaires_evainstall_traiter_dist(){
 	"mini-calendrier" => "Ajoute un rep&egrave;re dans le mini-calendrier",
 	"excluredusommaire" => "Supprime de la page de sommaire les &eacute;l&eacute;ments (articles, sites, ...) ayant ce mot cl&eacute;",
 	"excluredumenu" => "Supprime du menu de navigation les rubriques concern&eacute;es par ce mot cl&eacute;",
-	"exclureduplan" => "Supprime du plan du site les rubriques concern&eacute;es par ce mot cl&eacute;");
+	"exclureduplan" => "Supprime du plan du site les rubriques concern&eacute;es par ce mot cl&eacute;",
+	"exclure_des_flux_rss" => "Supprime des flux RSS du site les articles et br&egrave;ves concern&eacute;es par ce mot cl&eacute;");
 	$nbrgrpact = count($grp2_activites);
 	$nbrgrpaff = count($grp2_affichage);
 	$resultat_act2 = sql_select('id_groupe','spip_groupes_mots',"titre='activites' LIMIT 1");
