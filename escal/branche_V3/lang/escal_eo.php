@@ -171,6 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'Vizitoj entute: ',
 'traductions_article' => 'tradukoj de tiu artikolo :',
 // V
+'video' => 'Filmetoj',
 'visiteur' => 'vizitanto',
 'visiteurs' => 'vizitantoj',
 'votre_nom' => 'via nomo?',

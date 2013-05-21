@@ -192,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'total_visites' => 'Número total de visitas: ',
 'traductions_article' => 'Traducciones de este artículo:',
 // V
+'video' => 'Vídeo',
 'visites_jour' => 'visitas al día',
 'visiteur' => 'visitante',
 'visiteurs' => 'visitantes',

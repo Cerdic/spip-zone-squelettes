@@ -192,7 +192,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles'=> 'Popularakas raksti',	   
 'total_visites'=> 'Kopejais apmeklejumu skaits:',	   
 'traductions_article'=> 'Tulkojumi no šo rakstu:',	   
-// V	   
+// V
+'video' => 'Video',
 'visites_jour'=> 'apmekle dienas',	   
 'visiteur'=> 'apmekletajs',	   
 'visiteurs'=> 'apmekletaji',	   

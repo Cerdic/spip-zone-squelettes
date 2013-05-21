@@ -1,0 +1,25 @@
+  <h1 class="cadre video-accueil">
+  [(#CONFIG{escal/config/titrevideoaccueil}|oui)
+    [(#CONFIG{escal/config/titrevideoaccueil}|propre|_T|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titrevideoaccueil}|non)
+    <:escal:video:>
+  ]
+  </h1>
+
+  <div class="texte calendrier [(#CONFIG{escal/config/togglecalendrier}|=={oui}|oui)toggle]" >
+
+    <BOUCLE_article_video(ARTICLES){titre_mot=video-une}>
+
+    <B_video>
+
+    <BOUCLE_video(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}{pagination 1}>
+    [(#MODELE{doc_player_mini}{id_document=#ID_DOCUMENT})]
+    </BOUCLE_video>
+    [<p class="pagination" style="text-align:center">(#PAGINATION{page})</p>]
+    </B_video>
+
+    </BOUCLE_article_video>
+
+
+  </div><!-- fin texte -->
