@@ -85,7 +85,7 @@ var mediaspip_hauteur_blocs = function(){
  * si on a plusieurs éléments
  */
 var mediaspip_sliders = function(){
-	if(jQuery('#exergue ul li').size() > 1){
+	if(window.$.fn.easySlider && jQuery('#exergue ul li').size() > 1){
 		jQuery('#exergue ul li img').each(function(){
 			var width = $(this).width();
 			$(this).css({'width':width+'px'})
