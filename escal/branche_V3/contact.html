@@ -57,7 +57,7 @@
 <!-- Merci a Alain Sichel pour cette page contact -->
 
 <?php
-function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Sujet="",$Niveau="",$Message="",$Antispam="",$test="") {
+function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Sujet="",$Niveau="",$Message="",$Antispam="") {
 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">
@@ -147,52 +147,6 @@ function formulaire($Nom="",$Prenom="",$Email="",$Champsup1="",$Champsup2="",$Su
                     <input type="text" name="Antispam" value="<?php echo trim(htmlentities($_POST['Antispam'])) ?>" size="30" />
                   </li>
 
-<?php
-
-	if((isset($_POST["asa"]) && isset($_POST["asb"])) || (isset($_GET["asa"]) && isset($_GET["asb"])))
-	{
-		if(isset($_POST["asa"]))
-		{
-			$asa = $_POST["asa"];
-			$asb = $_POST["asb"];
-		}
-		else
-		{
-			$asa = $_GET["asa"];
-			$asb = $_GET["asb"];
-		}
-		$asc = explode("_", $asb);
-		if(((($asc[0] + $asc[2]) == $asa && $asc[1] == 0) || (($asc[0] - $asc[2]) == $asa && $asc[1] == 1)) && strlen($asa) != 0)
-		{
-      $test = "ok";
-		}
-		else
-		{
-      $test = "non";
-		}
-	}
-	else
-	{
-    $test = "non";
-	}
-
-echo $test;
-?>
-<li>
-Antispam: donnez le résultat du calcul ci-dessous<br />
-(le résultat peut-etre négatif)
-</li>
-<?php
-	$operateur = array("+", "-");
-	$alpha = rand(1, 10);
-	$op = rand(0, 1);
-	$beta = rand(1, 10);
-
-	echo $alpha."&nbsp;".$operateur[$op]."&nbsp;".$beta."&nbsp;=&nbsp;
-  <input type='text' name='asa' value='' size='10' maxlength='10' /><br />";
-	echo "<input type='hidden' name='asb' value='".$alpha."_".$op."_".$beta."' />";
-
-?>
 
 
                     <li><br /><:escal:contact_message:></li>
@@ -233,7 +187,6 @@ else {
 	$vChampsup2=trim(utf8_decode($_POST["Champsup2"]));
 	$vSujet=trim(utf8_decode($_POST["Sujet"]));
 	$vAntispam=trim(htmlentities($_POST["Antispam"]));
-  $vtest=trim(htmlentities($_POST["test"]));
   $destinataire="[(#CONFIG{escal/config/destinataire,#VAL{$email_webmaster}})]";
 	$titre="<:escal:page_contact2|html2unicode|unicode2charset:> $nom_site";
 
@@ -258,13 +211,13 @@ else {
 		$erreur=1;
 	}
 
-if (lire_config('escal/config/contactmail') != 'non') {
+if (lire_config('escal/config/contactmail') == 'oui') {
 	$message.="<:escal:envoi_mail_e_mail:> $vEmail\n\n";
 	if (empty($vEmail)) {
 		echo "<p class='alerte'><:escal:contact_alerte_mail1:></p>";
 		$erreur=1;
 	  }
-	elseif (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) ){
+	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
 		echo "<p class='alerte'><:escal:contact_alerte_mail2:></p>";
 		$erreur=1;
 	  }
@@ -306,14 +259,8 @@ if (lire_config('escal/config/checkbox') == 'oui') {
 		$erreur=1;
 	}
 
-		if ($vtest=="non") {
-		echo "<p class='alerte'>Résultat incorrect</p>";
-		$erreur=1;
-	}
-
-
 	if ($erreur==1) {
-		formulaire($Nom,$Prenom,$Email,$Sujet,$Champsup1,$Champsup2,$Niveau,$Message,$Antispam,$test);
+		formulaire($Nom,$Prenom,$Email,$Sujet,$Niveau,$Message,$Antispam);
 	}
 	else {
 //
@@ -346,7 +293,7 @@ if (lire_config('escal/config/checkbox') == 'oui') {
 
 
     if (!empty($vSujet)) {
-    echo '<p class="texte-retour2"><:escal:contact_motif:></p>';
+		echo '<p class="texte-retour2"><:escal:contact_motif:></p>';
 		echo '<p class="valeur2">'. $vSujet=utf8_encode(nl2br($vSujet)) .'</p>';
 		}
 
@@ -355,8 +302,6 @@ if (lire_config('escal/config/checkbox') == 'oui') {
 		for ($i=0; $i<count($_POST["Niveau"]); $i++)
 		echo '<p class="valeur2">'. $_POST["Niveau"][$i].'</p>';
 		}
-		
-
 
 		echo '<p class="texte-retour2"><:escal:contact_message:></p>';
 
