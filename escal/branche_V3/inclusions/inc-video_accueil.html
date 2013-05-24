@@ -12,12 +12,21 @@
     <BOUCLE_article_video(ARTICLES){titre_mot=video-une}>
 
     <B_video>
-
+    #ANCRE_PAGINATION
     <BOUCLE_video(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}{pagination 1}>
     [(#MODELE{doc_player_mini}{id_document=#ID_DOCUMENT})]
     </BOUCLE_video>
     [<p class="pagination" style="text-align:center">(#PAGINATION{page})</p>]
     </B_video>
+    
+    <B_playliste>
+    <ol>
+    <BOUCLE_playliste(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}>
+    <li>[(#TITRE|couper{25,''}|sinon{#FICHIER|basename|couper{20,''}})]</li>
+    </BOUCLE_playliste>
+    </0l>
+    </B_playliste>
+
 
     </BOUCLE_article_video>
 
