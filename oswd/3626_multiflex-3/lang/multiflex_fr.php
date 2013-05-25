@@ -57,6 +57,7 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'blocs' => 'Blocs',
 
 'coefficients_teinte' => 'Coefficients entre -1 et 1',
+'configurations' => 'Configurations',
 'configuration_multiflex' => 'Configuration du Squelette Multiflex',
 'configuration_principale' => 'Configuration principale',
 'complement_nom_site' => 'Compl&eacute;ment au nom du site (&eacute;crit en petit)',
