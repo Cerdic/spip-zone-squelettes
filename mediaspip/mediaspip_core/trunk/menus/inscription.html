@@ -5,8 +5,8 @@
 	<div class="infos"><:mediaspip_core:menu_info_inscription:></div>
 ]
 <BOUCLE_appel(CONDITION){si #ENV{appel_menu}|oui}>
-	[(#REM|tester_config|oui)
 	[(#SESSION{id_auteur}|non)
+		[(#AUTORISER{inscrireauteur,1comite}|ou{#AUTORISER{inscrireauteur,6forum}}|ou{#REM|tester_config}|oui)
 		<li class="menu-entree item[ (#ENV{css})][(#ENV{env}|table_valeur{type}|=={page}|et{#ENV{env}|table_valeur{composition}|=={inscription}}) on]">
 			<a href="[(#URL_PAGE{#ENV{page,inscription}})]">
 				#GET{titre}
