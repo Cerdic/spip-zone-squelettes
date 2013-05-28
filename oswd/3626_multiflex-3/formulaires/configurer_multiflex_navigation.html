@@ -1,0 +1,40 @@
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+<h3 class="titrem"><:multiflex:navigation:></h3>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+<form method="post" action="#ENV{action}">
+<div>
+#ACTION_FORMULAIRE{#ENV{action}}
+
+	<label for="mfx_apparence"><:multiflex:apparence_navigation:></label>
+	<select name="apparence" id="mfx_apparence" class="forml">
+		<option value="grid"[ selected="(#ENV{apparence}|=={grid}|?{selected})"]><:multiflex:grille:></option>
+		<option value="bullet"[ selected="(#ENV{apparence}|=={bullet}|?{selected})"]><:multiflex:puces:></option>
+		<option value="nobullet"[ selected="(#ENV{apparence}|=={nobullet}|?{selected})"]><:multiflex:sans_puces:></option>
+	</select><br />
+	
+	<label for="mfx_article_a_propos"><:multiflex:a_propos:></label>
+	<select name="article_a_propos" id="mfx_article_a_propos" class="forml">
+		<option value=""[ selected="(#ENV{article_a_propos}|=={''}|?{selected})"]></option>
+		<BOUCLE_article_a_propos(ARTICLES){lang}>
+		<option value="#ID_ARTICLE"[ selected="(#ENV{article_a_propos}|=={#ID_ARTICLE}|?{selected})"]>[(#TITRE|couper{40})]</option>
+		</BOUCLE_article_a_propos>
+	</select><br />
+	
+	<label for="mfx_article_contact"><:multiflex:contact:></label>
+	<select name="article_contact" id="mfx_article_contact" class="forml">
+		<option value=""[ selected="(#ENV{article_contact}|=={''}|?{selected})"]></option>
+		<BOUCLE_article_contact(ARTICLES){lang}>
+		<option value="#ID_ARTICLE"[ selected="(#ENV{article_contact}|=={#ID_ARTICLE}|?{selected})"]>[(#TITRE|couper{40})]</option>
+		</BOUCLE_article_contact>
+	</select>
+
+<input type="hidden" name="multiflex" value="navigation" />
+<input type="hidden" name="_meta_casier" value="multiflex/navigation" />
+<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+
+</div>
+</form>
+</div>
