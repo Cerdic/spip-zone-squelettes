@@ -124,8 +124,8 @@ function mediaspip_config_formulaire_traiter($flux){
 	 */
 	if(	$flux['args']['form'] == 'editer_logo'
 		OR (substr($flux['args']['form'],0,10) == 'configurer')){
-		$purger = charger_fonction('purger','action');
-		$purger('cache');
+		include_spip('inc/invalideur');
+		suivre_invalideur('1');
 	}
 	return $flux;
 }
