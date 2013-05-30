@@ -31,7 +31,23 @@
 			<strong class="on">
 				[(#CHEMIN{images/gravatar-64.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:gravatar:cfg_titre_gravatar:>
 			</strong>]
-		</li>]})]}|trim)]
+		</li>][(#PLUGIN{importateur_contacts}|oui)
+		<li class="menu-entree[(#ENV{cfg}|=={importateur_contacts}|oui)on]">[(#ENV{cfg}|=={importateur_contacts}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,importateur_contacts})]">
+				[(#CHEMIN{images/importateur_contacts-32.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:importateurcontacts:configurer_titre:>
+			</a>][(#ENV{cfg}|=={importateur_contacts}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/importateur_contacts-32.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:importateurcontacts:configurer_titre:>
+			</strong>]
+		</li>]})][(#PLUGIN{parrainage}|oui)
+		<li class="menu-entree[(#ENV{cfg}|=={parrainage}|oui)on]">[(#ENV{cfg}|=={parrainage}|non)
+			<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,''}|parametre_url{cfg,parrainage})]">
+				[(#CHEMIN{images/parrainage-48.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:parrainage:configuration_titre:>
+			</a>][(#ENV{cfg}|=={parrainage}|oui)
+			<strong class="on">
+				[(#CHEMIN{images/parrainage-48.png}|image_reduire{20,20}|inserer_attribut{alt,''})] <:parrainage:configuration_titre:>
+			</strong>]
+		</li>]}|trim)]
 		[(#PIPELINE{ms_config_nav,[(#ARRAY{args,[(#ENV*|unserialize|array_merge{#ARRAY{config_type,auteurs}})],data,#GET{flux_auteurs}})]}|trim)]
 	</ul>
 </div>
