@@ -8,18 +8,19 @@
 	Cette page spécifique est appelée via le pipeline styliser utilisé dans le fichier
 	mediaspip_core_pipeline
 ]
-
+#SET{vue_done,non}
 [(#ENV{vue}|=={profil}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-profil_modifier}{env}>
 ]
 [(#ENV{vue}|=={forums}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-forums_gerer,self=#SELF,env,ajax}>
 ]
-
-[(#ENV{vue}|=={collections}|oui)
+[(#ENV{vue}|=={collections}|et{#PLUGIN{collections}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-collections,self=#SELF,est_auteur=oui,env,ajax} />
 ]
-
-[(#ENV{vue}|in_array{#LISTE{profil,forums,collections}}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|non)
+[(#GET{vue_done}|=={oui}|non)
 	<INCLURE{fond=inclure/auteur-normal}{env}>
 ]

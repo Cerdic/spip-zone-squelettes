@@ -307,6 +307,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_modifier_forums' => 'Gérer les forums de vos objets',
 	'titre_modifier_forums_auteur' => 'Les forums des objets de @nom@',
 	'titre_modifier_profil' => 'Modifier votre profil',
+	'titre_parrainage_profil' => 'Vos parrainages',
 	'titre_podcast' => 'Podcasts',
 	'titre_recherche_utilisateurs' => 'Utilisateurs',
 	'titre_retour_auteur' => 'Retour à la page de l\'utilisateur',

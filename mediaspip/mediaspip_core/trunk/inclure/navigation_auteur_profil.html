@@ -16,6 +16,14 @@
 				[(#ENV{est_auteur}|=={oui}|?{<:mediaspip_core:titre_modifier_profil:>,<:mediaspip_core:titre_modifier_auteur:>})]
 			</a>
 		</li>]
+		[(#PLUGIN{parrainage}|et{#PLUGIN{importateur_contacts}}|oui)
+			#SET{vues_possibles,#GET{vues_possibles}|push{parrainer}}
+			[(#ENV{vue}|!={parrainer}|et{#ENV{est_auteur}|=={oui}|oui}|oui)
+			<li class="menu-entree">
+				<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,parrainer})]">
+					<:mediaspip_core:titre_parrainage_profil:>
+				</a>
+			</li>]]
 		[(#PLUGIN{collections}|oui)
 			#SET{vues_possibles,#GET{vues_possibles}|push{collections}}
 			[(#ENV{vue}|!={collections}|oui)

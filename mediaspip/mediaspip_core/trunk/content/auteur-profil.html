@@ -5,16 +5,24 @@
 	On arrive sur cette page spécifique via le pipeline styliser utilisé dans le fichier
 	mediaspip_core_pipeline
 ]
+#SET{vue_done,non}
+
 [(#ENV{vue}|=={profil}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-profil_modifier}{env} />
 ]
 [(#ENV{vue}|=={forums}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-forums_gerer,self=#SELF,env,ajax} />
 ]
-
-[(#ENV{vue}|=={collections}|oui)
+[(#ENV{vue}|=={parrainer}|et{#PLUGIN{parrainage}|oui}|et{#PLUGIN{importateur_contacts}|oui}|oui)
+	#SET{vue_done,oui}
+	<INCLURE{fond=inclure/auteur-parrainer,self=#SELF,env,ajax} />
+]
+[(#ENV{vue}|=={collections}|et{#PLUGIN{collections}}|oui)
+	#SET{vue_done,oui}
 	<INCLURE{fond=inclure/auteur-collections,self=#SELF,est_auteur=oui,env,ajax} />
 ]
-[(#ENV{vue}|in_array{#LISTE{profil,forums,collections}}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|non)
+[(#GET{vue_done}|=={oui}|non)
 	<INCLURE{fond=inclure/auteur-profil_normal}{env} />
 ]
