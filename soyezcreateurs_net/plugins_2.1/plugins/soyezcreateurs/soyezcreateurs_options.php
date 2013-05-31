@@ -25,6 +25,8 @@ define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
 define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
 define("_CLEVERMAIL_DISTANT", true); // Pour que CM calcule l'URL publique du squelette
 
+define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de sidr
+
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
 	Merci à ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
