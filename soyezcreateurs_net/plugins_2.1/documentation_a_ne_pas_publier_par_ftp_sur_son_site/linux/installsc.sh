@@ -81,6 +81,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette/branch
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna/branches/v1 ./sedna/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/selecteur_generique/branches/v1 ./selecteur_generique
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/skeleditor/skeleditor-2 ./skeleditor/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sidr
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/socialtags
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip2pdf
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/splickrbox
