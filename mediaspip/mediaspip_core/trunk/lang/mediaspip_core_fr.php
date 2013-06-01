@@ -231,8 +231,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_telechargement_seulement_logues' => 'Seuls les utilisateurs identifiés peuvent télécharger les documents. Veuillez vous identifier ou créer un compte.',
 	'message_webmestre_commencer_configurer' => 'Vous pouvez modifier <a href="@url@" class="spip_in">la configuration par défaut</a>.',
 	'message_webmestre_commencer_documentation' => 'N\'hésitez pas à consulter <a href="@url@" class="spip_out">la documentation en ligne</a>.',
-	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier</a>.',
-	'message_webmestre_configuration_ok' => 'Votre MediaSPIP a été correctement installé.',
+	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier vos médias</a>.',
+	'message_webmestre_configuration_ok' => 'Votre <a href="http://www.mediaspip.net" class="spip_out">MediaSPIP</a> a été correctement installé.',
 	'modifier_rubriques' => 'Modifier les rubriques',
 	'mots_autres_mots' => 'Les autres tags',
 
