@@ -69,6 +69,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_position_recherche' => 'Choisissez ici où le formulaire de recherche sera affiché.',
 
 	// F
+	'formulaire_contact' => 'Contact',
 	'formulaire_inscription' => 'Inscription',
 	'formule_bonjour' => 'Bonjour @nom@',
 
