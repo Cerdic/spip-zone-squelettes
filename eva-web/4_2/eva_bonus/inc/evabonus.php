@@ -26,6 +26,7 @@ array('menu_sites_horizontal','entete','Un menu horizontal d&eacute;pliable cont
 array('rubrique_site_complet','rubrique','Liste de la totalit&eacute; des sites r&eacute;f&eacute;renc&eacute;s dans une rubrique (sans pagination)','Olivier Gautier'),
 array('tweetnspip','sommaire rubrique article breve site auteur','Affiche le fil Tweeter issu du plugin <a href="http://contrib.spip.net/Tweet-n-Spip" target="_blank">Tweet\'N\'SPIP</a>','Olivier Gautier'),
 array('visiteurs_connectes','sommaire rubrique article breve site auteur','Affiche le nombre de visiteurs actuellement connect&eacute;s l\'espace public. N&eacute;cessite le plugin <b>Couteau Suisse</b> et l\'activation de la lame <i>Visiteurs connect&eacute;s</i>','Olivier Gautier'),
+array('eva_mini_calendrier','rubrique article breve site auteur','Affiche le mini-calendrier mensuel d\'EVA-web d&eacute;j&agrave; disponible en page de sommaire','Olivier Gautier'),
 );
 return $retour;
 }
