@@ -91,6 +91,18 @@ var mediaspip_sliders = function(){
 			$(this).css({'width':width+'px'})
 		});
 		jQuery("#exergue").easySlider({numeric: true});
+		/**
+		 * Changement de slide, on met en pause les vidéos et sons en lecture dans les autres slides
+		 */
+		jQuery("#exergue").parent().find("#controls li").click(function(){
+			if(!jQuery(this).is('.current')){
+			    jQuery("#exergue video,#exergue audio").each(function(){
+			    	media = jQuery(this)[0];
+			    	if(!media.paused && !media.ended && media.currentTime != 0)
+			    		jQuery(this)[0].pause();
+			    });
+			}
+		});
 	}
 }
 
