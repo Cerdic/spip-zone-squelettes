@@ -8,7 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'alt_logo_site' => 'Logo du site', # NEW
+	'alt_logo_site' => 'Site logo',
 	'articles_autres_auteur' => 'Other articles from @login@',
 	'articles_medias_auteur' => 'Medias from @login@',
 	'articles_medias_tag' => 'Medias linked to the tag @tag@',
@@ -22,13 +22,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_trier' => 'Sort',
 
 	// C
-	'collections_auteur' => 'Les collections de @login@', # NEW
+	'collections_auteur' => '@login@\'s collections', # MODIF
 	'comment' => 'One comment',
 	'commentaires_fermes' => 'Comments are closed',
 	'comments' => '@nb@ comments',
 
 	// D
-	'descriptif_page_inscription' => 'Inscription au site @site@', # NEW
+	'descriptif_page_inscription' => 'Subscription to the site @site@',
 	'description_afficher_lien_direct' => 'A frame will be added to the media page displaying direct links to documents in order to use them, for example, in an other website.',
 	'description_afficher_liens_limiter_acces' => 'After validation, you can choose the minimum status required.',
 	'description_autoriser_flux_podcast' => 'The podcast feed will concern only the medias of the site. Only MP3 and MP4 document types will be available in the feed. If you\'ve chosen not to release the original documents, this choice is respected.',
@@ -37,7 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_embed_code' => 'On a media page, show an embed code to embed the media in an other website  for the possible formats (flv and mp3).',
 	'document_conversion' => 'Automatic conversion',
 	'document_conversion_page' => 'Automatic conversion (page @nb@)',
-	'document_page' => 'Page numéro @page@', # NEW
+	'document_page' => 'Page number @page@',
 	'document_version' => '@version@ version',
 	'document_version_originale' => 'Original version',
 	'document_voir_infos' => 'Technical informations',
@@ -53,8 +53,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_verifier_form' => 'Check the contents of the form',
 	'exergue_lire_la_suite' => 'View the media',
 	'explication_blocs_home' => 'This part of the configuration allows you to manage the display of blocks visible on the homepage of the site.',
-	'explication_blocs_recurrents' => 'Certains blocs sont visibles sur toutes les pages du site. Cette partie de la configuration permet de chosir de les afficher ou non ou simplement de modifier leur placement.', # NEW
-	'explication_blocs_recurrents_caches' => 'Sélectionnez ici les blocs que vous ne souhaitez pas afficher du tout.', # NEW
+	'explication_blocs_recurrents' => 'Some blocks are visible on every page of the site. This part of the configuration allows you to choose whether to show them or not or to simply change their position.',
+	'explication_blocs_recurrents_caches' => 'Select here the blocks which you do not want to show at all',
 	'explication_config_readonly' => 'This option is disabled. It must be overridden by the theme you are using.',
 	'explication_config_readonly_squelette' => 'This option is disabled. It must be overridden by the skeleton you are using.',
 	'explication_configuration_logo_vignettes' => 'Depending on the graphic theme that you are using, the default size of documents may not correspond correctly to the graphic. This part of the configuration allows you to fine tune different sizes for images, documents and logos.',
@@ -66,12 +66,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_infos_cachees_articles' => 'The information below won\'t be displayed on articles pages if they are selected.',
 	'explication_logo_objets' => 'Visible on the authors pages, on the advanced search or on the tags pages for example.',
 	'explication_modifier_logo_auteur' => 'To edit the logo (on the left), just double click on it.',
-	'explication_ms_auth_telecharger' => 'Si cette option équivaut à "oui", les liens vers le document et ses différentes versions seront visibles sur la page du média. Il pourra donc être aisément téléchargé.', # NEW
+	'explication_ms_auth_telecharger' => 'If this option is "Yes", links for the document and its different versions will be visible on the media page. It can therefore be downloaded easily.',
 	'explication_notation_form_type' => 'This switch configures the visual form that will take the form of rating in the skeleton. Only the form is configured here. For a more detailed configuration, you can use the "Rating" plugin specific configuration page.',
-	'explication_position_recherche' => 'Choisissez ici où le formulaire de recherche sera affiché.', # NEW
+	'explication_position_recherche' => 'Choose here where the search box will be shown',
 
 	// F
-	'formulaire_contact' => 'Contact', # NEW
+	'formulaire_contact' => 'Contact',
 	'formulaire_inscription' => 'Sign up',
 	'formule_bonjour' => 'Hello @nom@',
 
