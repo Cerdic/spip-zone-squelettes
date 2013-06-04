@@ -6,7 +6,6 @@
 	Bloc contenu de la page sommaire du site
 
 ]#SET{blocs_caches_home,#CONFIG{mediaspip/home/blocs_cachees,#ARRAY}}
-
 <div class="content-principal">
 	<div class="cartouche invisible">
 		<h1 class="h1 invisible">#NOM_SITE_SPIP</h1>
@@ -42,16 +41,17 @@
 [(#INCLURE{fond=inclure/articles-actu,debut_articles_actus,ajax})]]
 
 [(#REM)
-	
 	On n'affiche les tags que si :
 	-* on n'a pas désactivé leur affichage dans la conf;
 	-* on a le plugin spipicious;
 	-* on a le plugin nuage;
-	
 ]
 [(#VAL{info_tags}|in_array{#GET{blocs_caches_home}}|non|et{#PLUGINS{spipicious}|oui}|et{#PLUGINS{nuage}|oui}|oui)
-	[(#INCLURE{fond=inclure/articles-tags,ajax})]
-]
+[(#INCLURE{fond=inclure/articles-tags,ajax})]]
 </B_une_publication>
-<INCLURE{fond=inclure/aides/webmestre_premier_publication} />
+[(#REM)
+	
+	Rien n'est publié, on va indiqué quelques éléments au webmestre
+	
+]<INCLURE{fond=inclure/aides/webmestre_premier_publication} />
 <//B_une_publication>
