@@ -312,13 +312,21 @@ function mediaspip_core_recuperer_fond($flux){
 
 /**
  * Insertion dans le pipeline insert_head_css (SPIP)
- * Ajoute des styles par défaut des plugins que l'on utilise :
- * -* Forum utilisé par la page de gestion de forum des utilisateurs
+ * 
+ * Ajout de 2 feuilles de styles :
+ * -* Celle, facultative, pour les thèmes ayant une css css/mediaspip.css
+ * -* Celle des styles par défaut des plugins que l'on utilise (mediaspip_core.css.html) :
+ * -** Forum utilisé par la page de gestion de forum des utilisateurs
  * 
  * @param string $flux le contenu textuel du pipeline
  * @return string $flux le contenu textuel modifié du pipeline
  */
 function mediaspip_core_insert_head_css($flux){
+	if($css = find_in_path('css/mediaspip.css')){
+		$flux .= '
+<link rel="stylesheet" href="'.direction_css($css).'" type="text/css" media="all" />
+';
+	}
 	$flux .= '
 <link rel="stylesheet" href="'.direction_css(parametre_url(generer_url_public('mediaspip_core.css'),'ltr','left')).'" type="text/css" media="all" />
 ';
