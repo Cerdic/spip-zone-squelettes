@@ -1,10 +1,10 @@
+#SET{largeur,#VAL{_TAILLE_LARGEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_LARGEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_largeur_maximale,640}}}
+#SET{hauteur,#VAL{_TAILLE_HAUTEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_HAUTEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_hauteur_maximale,480}}}
+[(#PLUGIN{doc2img}|oui)
+[(#SET{doc2img_types,[(#CONFIG{doc2img/format_document,''}|explode{','})]})]
+[(#VAL{tiff}|in_array{[(#GET{doc2img_types})]}|?{[(#SET{doc2img_types,[(#GET{doc2img_types}|push{tif})]})]})]]
 <B_documents>
-	#SET{largeur,#VAL{_TAILLE_LARGEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_LARGEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_largeur_maximale,640}}}
-	#SET{hauteur,#VAL{_TAILLE_HAUTEUR_MAX_DOCUMENT}|defined|?{#EVAL{_TAILLE_HAUTEUR_MAX_DOCUMENT},#CONFIG{mediaspip/squelettes/document_hauteur_maximale,480}}}
 	#SET{total,#GRAND_TOTAL}
-	[(#PLUGIN{doc2img}|oui)
-	[(#SET{doc2img_types,[(#CONFIG{doc2img/format_document,''}|explode{','})]})]
-	[(#VAL{tiff}|in_array{[(#GET{doc2img_types})]}|?{[(#SET{doc2img_types,[(#GET{doc2img_types}|push{tif})]})]})]]
 	<div class="document_media">
 	<BOUCLE_documents(DOCUMENTS){id_article}{tout}> </BOUCLE_documents>
 		<BOUCLE_doc(DOCUMENTS){si #GET{total}|=={1}}{id_article}>
@@ -38,14 +38,14 @@
 			]
 			[(#PLUGIN{legendes}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|non)
 				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|oui)
-					[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,lien_class=mediabox,align=center,lien=[(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})],largeur=#GET{largeur},infos=non})]
+					[(#MODELE{emb,id_document=#ID_DOCUMENT,lien_class=mediabox,align=center,lien=[(#FICHIER|image_reduire{1600,1200}|extraire_attribut{src})],largeur=#GET{largeur},infos=non})]
 				]
 				[(#PLUGIN{mediabox}|et{#EXTENSION|in_array{#LISTE{jpg,png,gif}}}|non)[(#SET{modele_emb,non})]
 					[[(#MEDIA|in_array{#LISTE{audio,video}}|oui)
 					[<meta itemprop="thumbnailURL" content="(#LOGO_DOCUMENT|extraire_attribut{src}|url_absolue|attribut_html)" />]
 					[<meta itemprop="embedURL" content="(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})" />]
 					[<meta itemprop="duration" content="(#DUREE)" />]]
-					(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=oui,align=center,largeur=100%,infos=non}|trim) #SET{modele_emb,oui}]
+					(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,moviesize=adapt,autobuffer=oui,align=center,largeur=100%,infos=non}|trim) #SET{modele_emb,oui}]
 					[(#GET{modele_emb}|=={oui}|non)
 						[(#LOGO_DOCUMENT|image_reduire{#GET{largeur},0})]
 						#BOITE_OUVRIR{'',notice}
