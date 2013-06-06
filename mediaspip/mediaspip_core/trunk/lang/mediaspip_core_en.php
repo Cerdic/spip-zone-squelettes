@@ -22,7 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bouton_trier' => 'Sort',
 
 	// C
-	'collections_auteur' => '@login@\'s collections', # MODIF
+	'collections_auteur' => '@login@\'s collections',
 	'comment' => 'One comment',
 	'commentaires_fermes' => 'Comments are closed',
 	'comments' => '@nb@ comments',
@@ -87,7 +87,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_documents' => 'The documents',
 	'info_documents_liens_directs' => 'Direct links to the documents',
 	'info_documents_liens_directs_doc2img' => 'Automatic conversions',
-	'info_editorial_publi' => 'Édito du <abbr class="published" title="@date_iso@">@date@</abbr> par @auteurs@.', # NEW
+	'info_editorial_publi' => 'Editorial on <abbr class="published" title="@date_iso@">@date@</abbr> by @auteurs@.',
 	'info_langue' => 'Language:',
 	'info_licence' => 'License:',
 	'info_lien_vignette' => 'A thumbnail',
@@ -95,7 +95,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_maj' => 'Updated:',
 	'info_metadonnees' => 'Metadatas:',
 	'info_nb_telechargements' => 'Downloaded @nb@ times',
-	'info_nb_vue' => '@nb@ vue', # NEW
+	'info_nb_vue' => '@nb@ view',
 	'info_nb_vues' => 'viewed',
 	'info_nom_fichier' => 'File name:',
 	'info_poid_fichier' => 'Filesize:',
@@ -121,23 +121,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_autoriser_telecharger' => 'Enable the download of the documents',
 	'label_autoriser_telecharger_original' => 'Allow to download the original document',
 	'label_autoriser_telecharger_que_logues' => 'Only allow identified users to download documents',
-	'label_blocs_recurrents_caches' => 'Ne pas afficher certains blocs récurrents', # NEW
+	'label_blocs_recurrents_caches' => 'Do not display some recurring blocks',
 	'label_case_info_auteur' => 'The authors names',
 	'label_case_info_description_site' => 'The description of the site',
 	'label_case_info_editos' => 'The editorials',
 	'label_case_info_featured' => 'The media',
-	'label_case_info_login' => 'Le bloc de login', # NEW
+	'label_case_info_login' => 'Login block',
 	'label_case_info_nb_comments' => 'Comments number',
 	'label_case_info_nb_vues' => 'Views number',
 	'label_case_info_news' => 'The news',
 	'label_case_info_published' => 'Publication date',
-	'label_case_info_slogan' => 'Le slogan du site', # NEW
+	'label_case_info_slogan' => 'Site slogan',
 	'label_case_info_tags' => 'Tags used on the site (requires "spip.icio.us" and "Nuage" plugins)',
-	'label_case_info_titre_site' => 'Le titre du site', # NEW
+	'label_case_info_titre_site' => 'Site title',
 	'label_case_info_update' => 'Updated date',
-	'label_case_recherche_bloc_entete' => 'dans le bloc d\'entête de chaque page', # NEW
-	'label_case_recherche_bloc_navigation' => 'dans le bloc de navigation de chaque page', # NEW
-	'label_case_recherche_sans' => 'ne pas afficher de formulaire de recherche', # NEW
+	'label_case_recherche_bloc_entete' => 'in the header block of each page',
+	'label_case_recherche_bloc_navigation' => 'in the navigation block of each page',
+	'label_case_recherche_sans' => 'do not display search form',
 	'label_choix_rubrique_actus' => 'Main section containing news',
 	'label_choix_rubrique_editos' => 'Main section containing editorials',
 	'label_choix_rubrique_mag' => 'Main section containing common articles',
@@ -163,8 +163,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_logo_largeur' => 'Maximum width of the logo of the site (in px)',
 	'label_logo_objets_hauteur' => 'Maximum height of the logo of the pages (in px)',
 	'label_logo_objets_largeur' => 'Maximum width of the logo of the pages (in px)',
-	'label_ms_auth_telecharger' => 'Autoriser le téléchargement des fichiers', # NEW
-	'label_ms_auth_telecharger_loggues' => 'N\'autoriser que les utilisateurs identifiés', # NEW
+	'label_ms_auth_telecharger' => 'Allow downloading files',
+	'label_ms_auth_telecharger_loggues' => 'Allow only logged in users',
 	'label_nb_sites_nav' => 'Number of external websites visible',
 	'label_nb_syndic_nav' => 'Number of syndicated links visibles',
 	'label_nombre_pagination' => 'Paginate by:',
@@ -173,7 +173,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_notation_form_type_jaime_jaimepas' => 'I like / I don\'t like',
 	'label_notation_form_type_notation' => 'Simple notation with stars',
 	'label_ordre_tri' => 'Sort by:',
-	'label_position_recherche' => 'Positionnement du formulaire de recherche', # NEW
+	'label_position_recherche' => 'Search form position',
 	'label_rechercher_auteur' => 'By a specific author',
 	'label_rechercher_categorie' => 'Choice of section',
 	'label_rechercher_date_debut' => 'Minimal date: ',
@@ -192,9 +192,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_nav_hauteur' => 'Maximum height of the thumbnails in the navigation (en px)',
 	'label_vignette_nav_largeur' => 'Maximum width of the thumbnails in the navigation (en px)',
 	'label_vignette_nav_nb' => 'Number of documents shown in the navigation',
-	'legende_auth_telecharger' => 'Téléchargements des fichiers', # NEW
+	'legende_auth_telecharger' => 'Files downloads',
 	'legende_blocs_home' => 'Blocks contained in the home page',
-	'legende_blocs_recurrents' => 'Affichage et placement de blocs récurrents', # NEW
+	'legende_blocs_recurrents' => ' Recurring blocks display and position',
 	'legende_configuration_fichiers' => 'Providing files',
 	'legende_configuration_logo_vignettes' => 'The website logo and thumbnails',
 	'legende_configuration_syndication' => 'Website\'s syndication',
@@ -204,7 +204,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_archives' => 'Archives',
 	'lien_archives_tout_mois' => 'Archives of the whole month',
 	'lien_modifier_forum_publication' => 'Manage the forums of this publication',
-	'lien_page_tag' => 'Éléments liés au tag : @tag@', # NEW
+	'lien_page_tag' => 'Elements related to the tag: @tag@',
 	'lien_titre_accueil' => 'Home',
 	'lien_zoom_image' => 'Zoom',
 
@@ -232,10 +232,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_modif_email_ok' => 'Your email address has been properly modified.',
 	'message_resultats_recherche_avancee' => 'Results of your advanced search',
 	'message_telechargement_seulement_logues' => 'Only authenticated users can download the documents. Please login or create an account.',
-	'message_webmestre_commencer_configurer' => 'Vous pouvez modifier <a href="@url@" class="spip_in">la configuration par défaut</a>.', # NEW
-	'message_webmestre_commencer_documentation' => 'N\'hésitez pas à consulter <a href="@url@" class="spip_out">la documentation en ligne</a>.', # NEW
-	'message_webmestre_commencer_publier' => 'Vous pouvez commencer à <a href="@url@" class="spip_in">publier</a>.', # NEW
-	'message_webmestre_configuration_ok' => 'Votre MediaSPIP a été correctement installé.', # NEW
+	'message_webmestre_commencer_configurer' => 'You can change <a href="@url@" class="spip_in">the default configuration</a>.',
+	'message_webmestre_commencer_documentation' => 'Donot hesitate to consult <a href="@url@" class="spip_out">the online documentation</a>.',
+	'message_webmestre_commencer_publier' => 'You can begin <a href="@url@" class="spip_in">to publish</a>.',
+	'message_webmestre_configuration_ok' => 'Your <a href="http://www.mediaspip.net" class="spip_out">MediaSPIP</a> has been properly installed.',
 	'modifier_rubriques' => 'Edit the sections',
 	'mots_autres_mots' => 'Other tags',
 
@@ -243,7 +243,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'option_lien_types_copies' => 'The copies (if possible) of the document',
 	'option_lien_types_original' => 'The original document',
 	'option_lien_types_vignette' => 'A main thumbnail of the document',
-	'option_ms_auth_telecharger_defaut' => 'Configuration par défaut du site ("@defaut@")', # NEW
+	'option_ms_auth_telecharger_defaut' => 'Default configuration of the site ("@defaut@")',
 	'option_tri_date' => 'Date',
 	'option_tri_hasard' => 'Hasard',
 	'option_tri_maj' => 'Update date',
@@ -254,9 +254,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'pagination_tout_afficher' => 'Show all',
-	'par' => 'par', # NEW
+	'par' => 'par',
 	'poster_message' => 'Post a comment',
-	'profil_collections_auteur' => 'Vos collections publiées', # NEW
+	'profil_collections_auteur' => 'Your published collections',
 	'profil_medias_auteur' => 'Your published medias',
 	'profil_medias_auteur_en_cours' => 'Your medias pending validation',
 	'profils_autres_articles' => 'Your other articles',
@@ -276,12 +276,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_articles_autres' => 'Other articles',
 	'recherche_articles_externes' => 'On other websites',
 	'recherche_categories' => 'Sections',
-	'recherche_collections' => 'Collections', # NEW
+	'recherche_collections' => 'Collections',
 	'recherche_medias' => 'Medias',
 	'rubriques_categories' => 'Sections',
 
 	// S
-	'select_ms_auth_telecharger' => 'Autorisation de téléchargement de documents', # NEW
+	'select_ms_auth_telecharger' => 'Document download authorization ',
 	'statut_info_administrateurs' => 'administrator',
 	'statut_info_redacteurs' => 'editor',
 	'statut_info_visiteurs' => 'visitor',
@@ -296,28 +296,28 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_articles_site' => 'Articles published on the website',
 	'titre_articles_sites' => 'Articles published on the websites',
 	'titre_auteur_tags' => 'Tags used by @login@',
-	'titre_bienvenue' => 'Bienvenue', # NEW
-	'titre_collections_auteur' => 'Les collections de @nom@', # NEW
-	'titre_collections_profil' => 'Vos collections', # NEW
-	'titre_collections_profil_autre' => 'Ses collections', # NEW
+	'titre_bienvenue' => 'Welcome',
+	'titre_collections_auteur' => 'Collections of @nom@',
+	'titre_collections_profil' => 'Your collections',
+	'titre_collections_profil_autre' => 'Its collections',
 	'titre_derniers_commentaires' => 'Last comments',
 	'titre_exergue' => 'Highlight',
-	'titre_flow_js' => '<span class="title"><a href="@url_article@" target="_blank">@titre@</a></span><span class="desc"> - Publié par : @noms@</span><span class="url"> - <a href="@url_site@" target="_blank">@nom_site@</a>', # NEW
-	'titre_menu_collections' => 'Collections', # NEW
+	'titre_flow_js' => '<span class="title"><a href="@url_article@" target="_blank">@titre@</a></span><span class="desc"> - Published by: @noms@</span><span class="url"> - <a href="@url_site@" target="_blank">@nom_site@</a>',
+	'titre_menu_collections' => 'Collections',
 	'titre_modifier' => 'Edit',
 	'titre_modifier_auteur' => 'Edit this user\'s profile',
 	'titre_modifier_auteur_nom' => 'Edit @nom@\'s profile',
 	'titre_modifier_forums' => 'Manage your objects forums',
 	'titre_modifier_forums_auteur' => 'Forums objects of @nom@',
 	'titre_modifier_profil' => 'Edit your profile',
-	'titre_parrainage_profil' => 'Vos parrainages', # NEW
+	'titre_parrainage_profil' => 'Your sponsorships',
 	'titre_podcast' => 'Podcasts',
 	'titre_recherche_utilisateurs' => 'Users',
 	'titre_retour_auteur' => 'Back to the user\'s page',
 	'titre_retour_profil' => 'Back to your page',
 	'titre_se_connecter' => 'Connect',
 	'titre_secteur_zero' => 'Specific pages',
-	'titre_site_mediaspip' => 'Mon MediaSPIP', # NEW
+	'titre_site_mediaspip' => 'My MediaSPIP',
 	'titre_sites' => 'Links',
 	'titre_sites_syndics' => 'On other websites',
 	'titre_sommaire_actus' => 'News',
