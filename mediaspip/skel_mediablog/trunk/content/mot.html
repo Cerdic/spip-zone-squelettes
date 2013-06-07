@@ -1,0 +1,62 @@
+<BOUCLE_principale(MOTS) {id_mot} {doublons}>
+#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
+#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}><span class="sep"> &gt; </span>[(#TITRE|couper{80})]</BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</p>
+
+<div class="content-principal">
+
+	<div class="cartouche">
+		[<div class="logo #EDIT{logo} resize-#GET{largeur_logo}">
+		(#LOGO_MOT|sinon{#CHEMIN{images/logo_mot_defaut.png}}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
+			|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+		</div>]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+	</div>
+
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+	[(#PLUGIN{spipicious}|oui)
+		#MODELE{spipicious_auteurs_tags,id_mot}
+	]
+
+	<INCLURE{fond=listes/medias-sommaire,id_mot=#ID_MOT,ajax,env} />
+
+  [(#REM) Rubriques liees au mot-cle ]
+  <B_rubriques>
+  <div class="liste rubriques">
+      <h2 class="h2"><:rubriques:></h2>
+      <ul class="liste-items">
+          <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
+          <li class="item"><a href="#URL_RUBRIQUE">#TITRE</a></li>
+          </BOUCLE_rubriques>
+      </ul>
+  </div>
+  </B_rubriques>
+
+  [(#REM) Liens des forums ]
+  <B_forums_liens>
+  <div class="liste forums">
+      <h2 class="h2"><:messages_forum:></h2>
+      <ul class="liste-items">
+          <BOUCLE_forums_liens(FORUMS) {id_mot} {plat} {par date}{inverse}>
+          <li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM">[(#TEXTE|couper{80})]</a></li>
+          </BOUCLE_forums_liens>
+      </ul>
+  </div>
+  </B_forums_liens>
+
+	[(#REM) Sites web lies au mot-cle ]
+	<B_sites>
+	<div class="liste sites">
+		<h2 class="h2"><:sites_web:></h2>
+		<ul class="liste-items">
+		<BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+			<li class="item"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+		</BOUCLE_sites>
+      </ul>
+	</div>
+	</B_sites>
+</div>
+
+[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+</BOUCLE_principale>

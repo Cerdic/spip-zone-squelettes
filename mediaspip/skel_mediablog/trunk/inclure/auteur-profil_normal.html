@@ -1,0 +1,37 @@
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tous}>
+
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><strong class="on">(#NOM|couper{80})</strong>]</p>
+
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{80,80}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">#NOM</h1>
+		</div>
+		<div class="infos_auteur">
+			[<div class="#EDIT{qui} fn"><:mediaspip_core:auteur_nom:> : (#NOM)</div>]
+			[<div class="texte statut"><:mediaspip_core:auteur_statut:> : (#STATUT|ms_traduire_statut)</div>]
+			[<div class="#EDIT{bio} texte"><:entree_infos_perso:> : (#BIO|sinon{<:entree_biographie:>})</div>]
+			[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+	</div>[(#REM) / vcard]
+</div>
+
+<INCLURE{fond=listes/medias-sommaire,id_auteur,ajax,env} />
+
+<BOUCLE_spipicious(CONDITION){si #PLUGIN{SPIPICIOUS}|et{#PLUGIN{NUAGE}}|oui}>
+	<B_tags>
+	<div class="liste tags">
+		<h2 class="h2"><:mediaspip_core:profils_vos_tags:></h2>
+		<div>
+		<BOUCLE_tags(SPIPICIOUS?){id_auteur}{0,1}>#MODELE{spipicious_nuage_auteur,id_auteur}</BOUCLE_tags>
+		</div>
+	</div>
+	</B_tags>
+</BOUCLE_spipicious>
+</BOUCLE_contenu_auteur>

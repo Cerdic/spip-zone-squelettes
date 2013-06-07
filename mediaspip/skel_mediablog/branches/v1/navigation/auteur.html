@@ -1,0 +1,38 @@
+[(#PLUGIN{CalendrierMini}|oui)
+[(#MODELE{rubrique_calendrier,self=#SELF,
+	lien_archive=#URL_PAGE{archive},
+	var_date=archives,
+	date=#ENV{archives,#DATE}})]]
+
+<INCLURE{fond=inclure/navigation_recherche,recherche}>
+
+<BOUCLE_article(AUTEURS){id_auteur}{tout}>
+<BOUCLE_autoriser_modifier(CONDITION){si #AUTORISER{modifier,auteur,#ENV{id_auteur}}|et{#ENV{vu}|!={profil}}|oui}>
+<div class="menu liste important">
+	<h2 class="h2">
+		<:mediaspip_core:titre_modifier:>
+	</h2>
+	<ul class="menu-liste">
+		<li class="menu-entree">
+			[(#ENV{vue}|=={profil}|non)
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,profil})]">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<:mediaspip_core:titre_modifier_profil:>]
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|non)<:mediaspip_core:titre_modifier_auteur:>]
+			</a>]
+			[(#ENV{vue}|=={profil}|oui)
+			<a href="[(#SELF|parametre_url{email_modif,''}|parametre_url{email_confirm,''}|parametre_url{vue,''})]">
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<:mediaspip_core:titre_retour_profil:>]
+				[(#SESSION{id_auteur}|=={#ID_AUTEUR}|non)<:mediaspip_core:titre_retour_auteur:>]
+			</a>]
+		</li>
+	</ul>
+</div>
+</BOUCLE_autoriser_modifier>
+</BOUCLE_article>
+<INCLURE{fond=inclure/navigation_categories_media,ajax}>
+
+<INCLURE{fond=inclure/navigation_commentaires,ajax}>
+
+<INCLURE{fond=inclure/navigation_tags}>
+
+<INCLURE{fond=inclure/navigation_archives,env,ajax}>

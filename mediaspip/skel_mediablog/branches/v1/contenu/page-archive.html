@@ -1,0 +1,16 @@
+<div class="contenu-principal">
+	<div class="cartouche">
+		<h1 class="h1"><:mediaspip_core:titre_archives:></h1>
+	</div>
+	
+	[(#ENV{archives}|non)
+		[(#INCLURE{fond=inclure/archives})]
+	][(#ENV{archives}|oui)
+		[(#ENV{archives}|nom_jour|non)
+			[(#INCLURE{fond=inclure/archives-mois,date=#ENV{archives},env})]
+		]
+		[(#ENV{archives}|nom_jour|oui)
+			[(#INCLURE{fond=inclure/archives-jour,date=#ENV{archives},env})]
+		]
+	]
+</div>

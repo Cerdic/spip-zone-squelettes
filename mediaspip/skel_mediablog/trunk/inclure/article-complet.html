@@ -1,0 +1,52 @@
+[(#REM)
+
+  Squelette Presentation d'un article dans une liste
+  (c) 2010-2013 MediaBlog
+  Distribue sous licence GPL
+
+]
+<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+#SET{secteur_media,#CONFIG{mediaspip/rubriques/medias,0}}
+[(#ID_SECTEUR|=={#GET{secteur_media}}|non)
+	#SET{config_page_article,#CONFIG{mediaspip/medias,#ARRAY}|table_valeur{infos_cachees_articles}}
+]
+[(#ID_SECTEUR|=={#GET{secteur_media}}|oui)
+	#SET{config_page_article,#CONFIG{mediaspip/medias,#ARRAY}|table_valeur{infos_cachees}}
+]
+<BOUCLE_media_doc(DOCUMENTS){id_article}{0,1}>#SET{media_doc,#MEDIA}</BOUCLE_media_doc>
+<li class="item hentry" itemscope[(#GET{media_doc}|=={video}|oui)[(#SET{done,oui})]itemtype="http://schema.org/VideoObject"][(#GET{media_doc}|=={audio}|oui)[(#SET{done,oui})]itemtype="http://schema.org/AudioObject"][(#GET{done}|=={oui}|non)itemtype="http://schema.org/MediaObject"]>
+	<h3 class="h3 entry-title #EDIT{titre}">
+		<a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{150,100})]#TITRE</a>
+	</h3>
+	<B_hierarchie>
+	<div class="categorie">
+	<BOUCLE_hierarchie(HIERARCHIE){id_article}{'<span class="sep">&nbsp;&gt;&nbsp;</span>'}><a href="#URL_RUBRIQUE" rel="category">#TITRE</a></BOUCLE_hierarchie>
+	</div>
+	</B_hierarchie>
+	#SET{info-publi_cache,non}
+	[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|sinon{#ARRAY})]}|oui)
+	[(#VAL{info_auteur}|in_array{[(#GET{config_page_article}|sinon{#ARRAY})]}|oui)
+		#SET{info-publi_cache,oui}]]
+	[(#GET{info-publi_cache}|!={oui}|oui)
+	<p class="info-publi">#SET{info_publie,non}
+		[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|sinon{#ARRAY})]}|non)#SET{info_publie,oui}[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]][[[<span class="sep">,(#GET{info_publie}|=={oui}|oui)</span>]<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|sinon{#ARRAY})]}|non)]
+	</p>]
+	#INCLURE{fond=inclure/document_media,env}
+	[<div class="#EDIT{introduction} introduction entry-content">(#TEXTE)</div>]
+	<div class="meta-publi">
+	<a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span></a>
+	<BOUCLE_nb_commentaires(FORUMS?){id_article}{plat} />
+	[(#VAL{info_nb_comments}|in_array{[(#GET{config_page_article}|sinon{#ARRAY})]}|non)
+	[(#TOTAL_BOUCLE|oui)
+		<span class="sep"> | </span>
+		<a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>
+	]
+	[(#TOTAL_BOUCLE|non)
+		<span class="sep"> | </span>
+		<a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">0 <:zpip:commentaire:></a>
+	]]
+	<//B_nb_commentaires>
+	</div>
+</li>
+</BOUCLE_articles>
+#FILTRE{trim}

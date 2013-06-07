@@ -1,0 +1,55 @@
+[(#REM)
+	Contenu central d'une page auteur
+	vue par les autres visiteurs qu'ils soient identifiés
+	ou pas
+]
+
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}{tout}>
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><span><:info_auteurs:></span>[<span class="sep"> &gt; </span><strong class="on">(#NOM|couper{80})</strong>]</p>
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+		<div class="cartouche">
+			[<div class="logo #EDIT{logo}">
+			(#LOGO_AUTEUR|sinon{#CHEMIN{images/logo_auteur_defaut.png}}|image_reduire{80,80}
+				|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
+			</div>]
+			<h1 class="h1">#NOM</h1>
+		</div>
+		<div class="infos_auteur">
+			[<div class="#EDIT{qui} fn"><:mediaspip_core:auteur_nom:> : (#NOM)</div>]
+			[<div class="texte statut"><:mediaspip_core:auteur_statut:> : (#STATUT|ms_traduire_statut)</div>]
+			[<div class="#EDIT{bio} texte">(#BIO)</div>]
+			[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+	</div>[(#REM) / vcard]
+</div>
+
+<B_articles_secteurs>
+<div class="liste articles">
+	#ANCRE_PAGINATION
+	<ul class="liste-items">
+		<BOUCLE_articles_secteurs(ARTICLES){id_auteur}{!par date} {par #ENV{tri,date}}{pagination 3}>
+		#INCLURE{fond=inclure/article-complet,env,id_article,compte=#COMPTEUR_BOUCLE,class=vignette}
+		</BOUCLE_articles_secteurs>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	<br class="nettoyeur" />
+</div>
+</B_articles_secteurs>
+<BOUCLE_spipicious(CONDITION){si #PLUGINS{SPIPICIOUS}|et{#PLUGINS{NUAGE}}|oui}>
+	<B_tags>
+	<div class="liste tags">
+		<h2 class="h2"><:mediaspip_core:titre_auteur_tags{login=#LOGIN}:></h2>
+		<div>
+		<BOUCLE_tags(SPIPICIOUS){id_auteur}{0,1}>#MODELE{spipicious_nuage_auteur,id_auteur}</BOUCLE_tags>
+		</div>
+	</div>
+	</B_tags>
+</BOUCLE_spipicious>
+[<div class="auteur_contacter">
+	<h2 class="h2"><:mediaspip_core:auteur_contacter{login=#LOGIN}:></h2>
+	(#FORMULAIRE_ECRIRE_AUTEUR)
+</div>]
+</BOUCLE_contenu_auteur>
