@@ -45,7 +45,7 @@
 					[<meta itemprop="thumbnailURL" content="(#LOGO_DOCUMENT|extraire_attribut{src}|url_absolue|attribut_html)" />]
 					[<meta itemprop="embedURL" content="(#CHEMIN{flash/flowplayer.swf}|url_absolue|parametre_url{config,[(#URL_PAGE{flowplayer_embed.js}|parametre_url{id_document,#ID_DOCUMENT,&}|url_absolue)]})" />]
 					[<meta itemprop="duration" content="(#DUREE)" />]]
-					(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,moviesize=adapt,autobuffer=oui,align=center,largeur=100%,infos=non}|trim) #SET{modele_emb,oui}]
+					(#MODELE{emb,id_document=#ID_DOCUMENT,controls=#ENV{controls,oui},moviesize=#ENV{moviesize,adapt},autobuffer=#ENV{autobuffer,#ENV{preload,oui}},align=center,largeur=100%,infos=non}|trim) #SET{modele_emb,oui}]
 					[(#GET{modele_emb}|=={oui}|non)
 						[(#LOGO_DOCUMENT|image_reduire{#GET{largeur},0})]
 						#BOITE_OUVRIR{'',notice}

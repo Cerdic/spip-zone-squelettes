@@ -172,6 +172,7 @@ jQuery(function(){
 	mediaspip_embed();
 	mediaspip_sous_menus();
 	mediaspip_sliders();
+	//jQuery(window).load(function(){mediaspip_sliders()});
 	mediaspip_supprimer_visu();
 	onAjaxLoad(mediaspip_ajaxload);
 });
