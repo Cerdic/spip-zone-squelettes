@@ -11,6 +11,10 @@
       <div id="ombre-droite">
         <div id="conteneur">
 
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
+
           <div id="entete">
 
             <INCLURE {fond=inclusions/inc-bandeau}>
@@ -28,16 +32,17 @@
 
           </div>
 
-          <div id="espace">
-          </div>
+          [(#CONFIG{escal/config/espacehaut}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
 
           <div id="page">
             <div id="contenu">
               <div id="cadre-article">
 
                 <div id="cadre-titre-article">
-                  <BOUCLE_auteur_principal(AUTEURS){id_auteur}{lang_select}>
-                    <div id="titre-article"><:escal:envoyer_message:><strong>#NOM</strong>
+                  <BOUCLE_auteur_principal(AUTEURS){id_auteur}>
+                    <div id="titre-article"><:escal:envoyer_message:><strong> #NOM</strong>
                     </div>
                     <!-- Affichage de la bio si elle existe -->
                     <div id="descriptif-article">			[(#BIO)] 			<br />

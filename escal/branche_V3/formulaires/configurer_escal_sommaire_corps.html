@@ -11,27 +11,7 @@
     
      <ul>
      
-<legend><strong>Identification</strong></legend>
-    
-<!-- identification light -->
-             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-identification_light" title="Voir la documentation"><strong>Identification "light"</strong></a></label>
-                    <br />
-             <div class="explication">
-             #SET{name,idlight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Identification simplifiée en haut à gauche.
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-             </div>
-             </li>
-
-<br />
 <legend><strong>Partie centrale</strong></legend>
 
             <div class="explication" style="margin:10px">
@@ -118,7 +98,14 @@
                     Le titre de l"article s'affiche dans l'onglet
                     <br /><br />
                     La <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-rubrique_accueil" title="Voir la documentation"><strong>Rubrique</strong></a> est celle qui a le mot-clé "RubriqueOnglet".
-                    Le titre de cette rubrique est affiché dans l'onglet et les articles de cette rubrique sont affichés dessous.
+                    Le titre de cette rubrique est affiché dans l'onglet et les articles de cette rubrique sont affichés dessous.<br />
+             #SET{name,pagrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Si vous utilisez cette option, vous pouvez définir le pas de pagination pour les articles de la rubrique :
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    
                     <br /><br />
                     L'<a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-article_archive" title="Voir la documentation"><strong>Article archive</strong></a> est un article pris au hasard dans la rubrique ayant le mot-clé "archive"
                     ou dans l'une de ses sous-rubriques. Le titre de l'onglet est "Souvenez-vous !" avec multilinguisme pris en charge

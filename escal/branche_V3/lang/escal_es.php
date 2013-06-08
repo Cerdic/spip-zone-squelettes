@@ -151,6 +151,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // R
 'rappel_discussion' => 'Recuerdo de la discusión',
 'recherche' => 'Búsqueda',
+'recherche_multi' => 'Multi-criterios<br />de búsqueda',
 'rechercher' => 'Buscar ...',
 'recherche_articles_non' => 'Ningún artículo encontrado para esta búsqueda',
 'recherche_resultat' => 'Resultado de la búsqueda para ',

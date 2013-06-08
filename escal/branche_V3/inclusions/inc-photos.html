@@ -21,17 +21,23 @@
   ]
   </h1>
 
-	<div class="texte [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
+	<div class="texte photos [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
 #SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
   <div id="scrollup2">
 <BOUCLE_articles(ARTICLES)>
       <BOUCLE_photo_une(DOCUMENTS){id_article}{!doublons photos}{0,#GET{nombrephotos}}{par hasard}>
       <div class="headline2">
+      
+      [(#CONFIG{escal/config/lienphotos}|=={non}|non)
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">
+      ]
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
                                  alt='[(#TITRE)]'
                                  title="[(#TITRE)]" />
-            </a>
+      [(#CONFIG{escal/config/lienphotos}|=={non}|non)
+      </a>
+      ]
+      
       </div>
       </BOUCLE_photo_une>
 </BOUCLE_articles>

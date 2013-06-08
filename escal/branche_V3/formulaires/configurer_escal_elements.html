@@ -53,6 +53,38 @@
                     <br /><br />
                     </div>
              </li>
+
+<!-- bloc "espace" -->
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Barre d'outils</strong></label>
+                    <br />
+                    <div class="explication">
+                    Place de la barre d'outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)
+            #SET{name,espace}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
+                            [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_haut">Au-dessus du bandeau</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
+                            [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_blanc">Sous le bandeau</label>
+
+                    </span>
+                    <br /><br /><br />
+            #SET{name,idlight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Formulaire d'identification simplifiée.
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+                    </div>
+             </li>
              
 <!-- formulaire de recherche -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">

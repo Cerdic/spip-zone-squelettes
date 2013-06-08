@@ -152,7 +152,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'puce'=> 'apakšteikums',	   
 // R	   
 'rappel_discussion'=> 'Atgadinajums par diskusiju',	   
-'recherche'=> 'Meklet',	   
+'recherche'=> 'Meklet',
+'recherche_multi' => 'Daudzkritēriju<br />meklēšana',
 'rechercher'=> 'Meklešana ...',	   
 'recherche_articles_non'=> 'Nav rakstu atrasts ar šo ierakstu',	   
 'recherche_resultat'=> 'Rezultats meklešanu',	   

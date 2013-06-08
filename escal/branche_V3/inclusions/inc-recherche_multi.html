@@ -3,11 +3,11 @@
     [(#CONFIG{escal/config/titrerecherchemulti}|propre|_T|PtoBR)]
   ]
 	[(#CONFIG{escal/config/titrerecherchemulti}|non)
-    Recherche multi-critères
+    <:escal:recherche_multi:>
   ]
 </h1>
 
-<div class="texte recherche-multi" >
+<div class="texte recherche-multi [(#CONFIG{escal/config/togglemulticritere}|=={oui}|oui)toggle]" >
 
 
     <BOUCLE_mots1(MOTS){type=#CONFIG{escal/config/recherchemulti1}}{doublons un}>
@@ -22,8 +22,10 @@
     <BOUCLE_mots4(MOTS){type=#CONFIG{escal/config/recherchemulti4}}{doublons quatre}>
     </BOUCLE_mots4>
 
-    <form action="#SELF" class="ajax">
-    [(#SELF|parametre_url{id1,id2,id3,id4}|form_hidden)]
+
+    <form action="#SELF" name="recherche_multi">
+    [(#ENV{recherche_multi}|form_hidden)]
+    
           <p>
              <div class="groupe-mots">#CONFIG{escal/config/recherchemulti1}</div>
              <select name="id1" id="idselect1" size="1">
@@ -75,6 +77,7 @@
           </p>
     </form>
 
+    
     <B_mots_multiples>
       <ul>
     <BOUCLE_mots_multiples(ARTICLES)

@@ -23,6 +23,10 @@
       <div id="ombre-droite">
         <div id="conteneur">
 
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_article}{env}>
+          ]
+          
           <div id="entete">
             <INCLURE {fond=inclusions/inc-bandeau}{env}>
 
@@ -39,38 +43,9 @@
 
           </div>
 
-          [(#REM) mise en place du formulaire recherche]
-          <div id="espace">
-            <BOUCLE_forum(RUBRIQUES){titre_mot=forum}{lang}>
-            <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
-            </BOUCLE_forum>
-
-          <!-- affichage du formulaire de recherche-->
-            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
-            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
-
-            <!-- menu langue pour la page article -->
-            <BOUCLE_contexte2(ARTICLES){id_article}>
-            <B_langues>
-              <div id="drapeau">
-                <div id="langue">
-                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
-                </div>
-            <BOUCLE_langues(ARTICLES){traduction}{par lang}{exclus} >
-              <span dir="#LANG_DIR" lang="#LANG" xml:dir="#LANG_DIR" lang="#LANG">
-                <a href="[(#URL_ARTICLE|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
-                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]" />
-                </a>
-              </span>
-            </BOUCLE_langues>
-              </div>
-            </B_langues>
-              <INCLURE {fond=inclusions/inc-menu_langues}>
-            <//B_langues>
-            
-            </BOUCLE_contexte2>
-
-          </div>
+          [(#CONFIG{escal/config/espacehaut}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espacearticle}{env}>
+          ]
 
 
           <BOUCLE_article_central(ARTICLES){id_article}{doublons}>

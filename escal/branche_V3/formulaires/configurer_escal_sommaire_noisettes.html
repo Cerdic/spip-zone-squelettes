@@ -34,6 +34,16 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
             <br /><br />
+            #SET{name,togglemulticritere}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Recherche multi-critères
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <br /><br />
             #SET{name,toggletop}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Articles les plus vus
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -333,7 +343,7 @@
                     Nombre d'images
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
                     </span>
                     <br /><br />
             #SET{name,tempophotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -343,7 +353,16 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},8})]"  />
                     </span>
                     <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
-
+                    <br /><br />
+            #SET{name,lienphotos}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien vers l'article source de la photo
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
             </div>
             </li>
 <!-- inc-video_accueil -->

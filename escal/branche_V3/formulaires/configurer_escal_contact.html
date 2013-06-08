@@ -17,6 +17,23 @@
 
 
      <ul>
+     
+<!-- texte d'accueil -->
+            #SET{name,contactbienvenue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    <strong>Texte à afficher en haut de page à la place de</strong><br />
+                    "Pour contacter le référent technique,<br />
+                    veuillez remplir tous les champs de ce formulaire."<br />
+                    (Pour ne rien afficher, entrez juste une espace)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+                    </div>
+             </li>
+
 <!-- mail -->
             #SET{name,contactmail}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">

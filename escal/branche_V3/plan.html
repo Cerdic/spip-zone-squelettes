@@ -16,6 +16,10 @@
         <div id="ombre-droite">
           <div id="conteneur">
 
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
+
           <div id="entete">
 
             <INCLURE {fond=inclusions/inc-bandeau}>
@@ -33,17 +37,9 @@
 
           </div>
 
-            <div id="espace">
-            <BOUCLE_forum(RUBRIQUES){titre_mot=forum}{lang}>
-            <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
-            </BOUCLE_forum>
-
-          <!-- affichage du formulaire de recherche-->
-            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
-            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
-            
-            <INCLURE {fond=inclusions/inc-menu_langues}>
-            </div>
+          [(#CONFIG{escal/config/espacehaut}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
 
             <div id="page">
               <div id="contenu">
