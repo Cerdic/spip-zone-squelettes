@@ -9,91 +9,10 @@
 
 <div class="texte recherche-multi [(#CONFIG{escal/config/togglemulticritere}|=={oui}|oui)toggle]" >
 
-
-    <BOUCLE_mots1(MOTS){type=#CONFIG{escal/config/recherchemulti1}}{doublons un}>
-    </BOUCLE_mots1>
+    <div class="ajax">
+    #FORMULAIRE_RECHERCHE_MULTI
+    </div>
     
-    <BOUCLE_mots2(MOTS){type=#CONFIG{escal/config/recherchemulti2}}{doublons deux}>
-    </BOUCLE_mots2>
-    
-    <BOUCLE_mots3(MOTS){type=#CONFIG{escal/config/recherchemulti3}}{doublons trois}>
-    </BOUCLE_mots3>
-    
-    <BOUCLE_mots4(MOTS){type=#CONFIG{escal/config/recherchemulti4}}{doublons quatre}>
-    </BOUCLE_mots4>
 
 
-    <form action="#SELF" name="recherche_multi">
-    [(#ENV{recherche_multi}|form_hidden)]
-    
-          <p>
-             <div class="groupe-mots">#CONFIG{escal/config/recherchemulti1}</div>
-             <select name="id1" id="idselect1" size="1">
-                      <option value="">#CONFIG{escal/config/recherchemulti1}</option>
-                 <BOUCLE_mot_critere1(MOTS){!doublons un}{par titre}>
-                     [<option value="#ID_MOT" [(#ENV{id1}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
-                 </BOUCLE_mot_critere1>
-             </select>
-             
-             [(#CONFIG{escal/config/recherchemulti2}|oui)
-             <div class="groupe-mots">#CONFIG{escal/config/recherchemulti2}</div>
-             <select name="id2" id="idselect2" size="1">
-                      <option value="">#CONFIG{escal/config/recherchemulti2}</option>
-             ]
-                 <BOUCLE_mot_critere2(MOTS){si #CONFIG{escal/config/recherchemulti2}|oui}{!doublons deux}{par titre}>
-                     [<option value="#ID_MOT" [(#ENV{id2}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
-                 </BOUCLE_mot_critere2>
-             [(#CONFIG{escal/config/recherchemulti2}|oui)
-             </select>
-             ]
-
-             [(#CONFIG{escal/config/recherchemulti3}|oui)
-             <div class="groupe-mots">#CONFIG{escal/config/recherchemulti3}</div>
-             <select name="id3" id="idselect3" size="1">
-                      <option value="">#CONFIG{escal/config/recherchemulti3}</option>
-             ]
-                 <BOUCLE_mot_critere3(MOTS){si #CONFIG{escal/config/recherchemulti3}|oui}{!doublons trois}{par titre}>
-                     [<option value="#ID_MOT" [(#ENV{id3}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
-                 </BOUCLE_mot_critere3>
-             [(#CONFIG{escal/config/recherchemulti3}|oui)
-             </select>
-             ]
-             
-             [(#CONFIG{escal/config/recherchemulti4}|oui)
-             <div class="groupe-mots">#CONFIG{escal/config/recherchemulti4}</div>
-             <select name="id4" id="idselect4" size="1">
-                      <option value="">#CONFIG{escal/config/recherchemulti4}</option>
-             ]
-                 <BOUCLE_mot_critere4(MOTS){si #CONFIG{escal/config/recherchemulti4}|oui}{!doublons quatre}{par titre}>
-                     [<option value="#ID_MOT" [(#ENV{id4}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
-                 </BOUCLE_mot_critere4>
-             [(#CONFIG{escal/config/recherchemulti4}|oui)
-             </select>
-             ]
-
-            <br /><br />
-            <button type="submit" >Afficher</button>
-            
-          </p>
-    </form>
-
-    
-    <B_mots_multiples>
-      <ul>
-    <BOUCLE_mots_multiples(ARTICLES)
-     {id_mot=#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4}}}}}
-     {id_mot=#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id1}}}}}
-     {id_mot=#ENV{id3,#ENV{id4,#ENV{id1,#ENV{id2}}}}}
-     {id_mot=#ENV{id4,#ENV{id1,#ENV{id2,#ENV{id3}}}}}
-    >
-      <li>
-    			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut)"]>
-    			[(#TITRE)]
-    			</a>
-      </li>
-    </BOUCLE_mots_multiples>
-      </ul>
-    </B_mots_multiples>
-      Aucun article ne correspond à votre recherche
-    <//B_mots_multiples>
 </div>
