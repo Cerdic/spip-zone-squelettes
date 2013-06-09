@@ -137,6 +137,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rappel_discussion' => 'Lasta diskuto',
 'recherche' => 'Serĉo',
 'recherche_multi' => 'Multi-kriterioj<br />serĉo',
+'recherche_multi_resultat' => 'Serĉu rezulto:',
 'rechercher' => 'Serĉi ...',
 'recherche_articles_non' => 'Neniu artikolo trovita per tiu serĉo',
 'recherche_resultat' => 'Rezulto de la serĉo per ',
