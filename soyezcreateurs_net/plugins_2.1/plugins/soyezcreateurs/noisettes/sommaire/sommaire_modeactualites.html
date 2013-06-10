@@ -92,7 +92,19 @@
 			[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<p><a href="#URL_PAGE{antichrono}"><:soyezcreateurs:tousarticlesantichrono:></a>.</p>]
 			</div>
 			</B_articles_QuoideNeuf>
-			[<h2><:derniers_commentaires:></h2>(#INCLURE{fond=inc-forum,lang})]
+
+			[(#REM) Liens des forums ]
+			<B_forums_liens>
+			<div class="fond">
+				<h2><:derniers_commentaires:></h2>
+				<ul>
+					<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,8}>
+					<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
+					</BOUCLE_forums_liens>
+				</ul>
+			</div>
+			</B_forums_liens>
+
 		</div><!-- /col2 -->
 
 	</div><!-- Fin de LeTexte -->
