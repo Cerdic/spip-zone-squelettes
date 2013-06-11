@@ -32,6 +32,42 @@
                     </span>
                     </div>
              </li>
+
+<!-- pointeur -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Pointeurs de souris</strong></label>
+                    <br />
+                    <div class="explication">
+                    Vous pouvez choisir ici le chemin de votre image de pointeur qui doit être au format .cur et ne pas dépasser 32x32 px.<br />
+                    Cette image doit se trouver dans le dossier /squelettes/images/pointeurs <br /><br />
+            #SET{name,pointeurbody}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Pointeur général
+                <select name="#GET{name}" class="select" id="imgbandeau">
+                      <option value="">Pointeur par défaut</option>
+                    <BOUCLE_choix_image1(DATA){source glob, ../squelettes/images/pointeurs/{*.cur,*.ani}}>
+										#SET{val1,#VALEUR|replace{../squelettes/}}
+  										<option
+                        style="background:url('#CHEMIN{#GET{val1}}') no-repeat; padding-left:30px; height:35px;"
+                        value="#GET{val1}"[(#ENV{#GET{name}}|=={#GET{val1}}|?{'selected="selected"',''})]>
+                      #VALEUR
+                      </option>
+									</BOUCLE_choix_image1>
+								</select>
+            #SET{name,pointeura}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Pointeur pour les liens
+                <select name="#GET{name}" class="select" id="imgbandeau">
+                      <option value="">Pointeur par défaut</option>
+                    <BOUCLE_choix_image2(DATA){source glob, ../squelettes/images/pointeurs/{*.cur,*.ani}}>
+										#SET{val2,#VALEUR|replace{../squelettes/}}
+  										<option
+                        style="background:url('#CHEMIN{#GET{val2}}') no-repeat; padding-left:30px; height:35px;"
+                        value="#GET{val2}"[(#ENV{#GET{name}}|=={#GET{val2}}|?{'selected="selected"',''})]>
+                      #VALEUR
+                      </option>
+									</BOUCLE_choix_image2>
+								</select>
+									</div>
+             </li>
              
 <!-- ombres laterales -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
