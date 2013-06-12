@@ -31,8 +31,15 @@
 			|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}
 			|image_masque{#GET{Masque}}
 			|image_masque{#GET{Cadre},mode=normal}
-			|image_reduire{[(#GET{LargeurCadre,[(#GET{Largeurcontent_central})]})],0})]}
+			|image_reduire{[(#GET{LargeurCadre,[(#GET{Largeurcontent_central})]})],0}
+			)]}
 		)]
+		[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk,transparent}|=={transparent}|non) 
+		[(#SET{ImageCadree,
+			[(#GET{ImageCadree}
+			|image_aplatir{jpg,[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk}|replace{#})],80,1})]}
+		)]
+		]
 		[<img src="(#GET{ImageCadree}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
 		</li>
 	</BOUCLE_articles_recentsAlaUne>

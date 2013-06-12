@@ -264,6 +264,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Nombre RSS',
 	'cfg_rss_label_ex' => 'Nombre de syndications affichées par flux RSS dans la navigation secondaire',
 	'cfg_scolaire' => 'Scolaire (de septembre à décembre de l\'année suivante)',
+	'cfg_slideshow' => 'Slideshow (mode communiquant)',
 	'cfg_sousmenulocaux' => 'Sous-menus locaux',
 	'cfg_sousmenulocaux_ex' => 'Modifie le menu principal pour éventuellement ne pas faire apparaître les sous-rubriques, sauf pour la branche en cours',
 	'cfg_sousmenulocaux_label' => 'Affichage des sous-rubriques dans le menu principal',
