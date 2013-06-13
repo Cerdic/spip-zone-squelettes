@@ -266,6 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Кількість RSS',
 	'cfg_rss_label_ex' => 'Кількість  синдикацій відображених потоком RSS у вторинній навігації',
 	'cfg_scolaire' => 'Школи (з вересня по грудень наступного року)',
+	'cfg_slideshow' => 'Slideshow (mode communiquant)', # NEW
 	'cfg_sousmenulocaux' => 'Місцеві підменю',
 	'cfg_sousmenulocaux_ex' => 'Змінює  головне меню, щоб  при бажанні не показувати під-рубрики, за винятком для поточної філії ( гілки )',
 	'cfg_sousmenulocaux_label' => 'Афішування ( показ )під-рубрик в головному меню',

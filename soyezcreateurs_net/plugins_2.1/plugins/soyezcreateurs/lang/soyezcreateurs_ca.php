@@ -266,6 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Número RSS',
 	'cfg_rss_label_ex' => 'Número de sindicacions visualitzades pel flux RSS a la navegació secundària',
 	'cfg_scolaire' => 'Escolar (de setembre a desembre de l\'any següent)',
+	'cfg_slideshow' => 'Slideshow (mode communiquant)', # NEW
 	'cfg_sousmenulocaux' => 'Submenú local',
 	'cfg_sousmenulocaux_ex' => 'Modifica el menú principal per, eventualment, no fer aparèixer les subseccions, excepte per la branca en curs',
 	'cfg_sousmenulocaux_label' => 'Visualització de subseccions al menú principal ',

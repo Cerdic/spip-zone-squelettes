@@ -266,6 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Číslo RSS',
 	'cfg_rss_label_ex' => 'Počet syndikovaných odkazov zobrazených na kanál RSS v rubrike druhotnej navigácie',
 	'cfg_scolaire' => 'Škola (od septembra do decembra nasledujúceho roka)',
+	'cfg_slideshow' => 'Slideshow (mode communiquant)', # NEW
 	'cfg_sousmenulocaux' => 'Preložené podmenu',
 	'cfg_sousmenulocaux_ex' => 'Zmeňte hlavné menu, aby sa nemuseli zobrazovať podrubriky mimo aktívnej vetvy',
 	'cfg_sousmenulocaux_label' => 'Podrubriky zobrazovať v hlavnom menu',

@@ -266,6 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Number of RSS items',
 	'cfg_rss_label_ex' => 'Number of syndication links displayed per RSS feed in the secondary navigation section',
 	'cfg_scolaire' => 'School (from September to December of the following year)',
+	'cfg_slideshow' => 'Slideshow (mode communiquant)', # NEW
 	'cfg_sousmenulocaux' => 'Localised sub-menus',
 	'cfg_sousmenulocaux_ex' => 'Modify the main menu to possibly not show the sub-sections except for the current branch',
 	'cfg_sousmenulocaux_label' => 'Display sub-sections in the main menu',
