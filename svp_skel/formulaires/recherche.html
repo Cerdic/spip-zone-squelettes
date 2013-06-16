@@ -1,0 +1,20 @@
+<div class="formulaire_spip formulaire_recherche" id="formulaire_recherche">
+	<form action="[(#ENV{action})]" method="get"><div>
+		[(#ENV{action}|form_hidden)]
+		[<input type="hidden" name="lang" value="(#ENV{lang})" />]
+
+		<label for="recherche"><:svpskel:info_rechercher_plugin:></label>
+		<input[ (#HTML5|?{type="search" class="search text",type="text" class="text"})] size="10" name="recherche" id="recherche"[ value="(#ENV{recherche})"] accesskey="1" />
+		<input type="submit" class="submit" value="&gt;&gt;" title="<:pluginspip:bulle_rechercher_plugin:>" />
+
+		<B_versions>
+		<label for="compatible_spip"><:svpskel:info_compatible:></label>
+		<select name="compatible_spip" id="compatible_spip">
+			<option value="*"[ (#ENV{compatible_spip, #EVAL{_SVPSKEL_BRANCHE_STABLE}}|=={*}|oui)selected="selected"]><:svpskel:toutes_versions_spip:></option>
+		<BOUCLE_versions(DATA){source table, #SVP_BRANCHES_SPIP}>
+			<option value="#VALEUR"[ (#ENV{compatible_spip, #EVAL{_SVPSKEL_BRANCHE_STABLE}}|=={#VALEUR}|oui)selected="selected"]">SPIP #VALEUR</option>
+		</BOUCLE_versions>
+		</select>
+		</B_versions>
+	</div></form>
+</div>
