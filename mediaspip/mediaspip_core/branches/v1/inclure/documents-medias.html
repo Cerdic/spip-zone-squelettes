@@ -25,7 +25,7 @@
 </BOUCLE_docs_exclus>
 <BOUCLE_documents_joints_nb(DOCUMENTS){id_article}{id_document !IN #GET{docs_exclus}}> </BOUCLE_documents_joints_nb>
 	#SET{total,#TOTAL_BOUCLE}
-	<BOUCLE_doc2img_article(DOC2IMG){id_document IN #GET{documents_orig}}> </BOUCLE_doc2img_article>
+	<BOUCLE_doc2img_article(DOC2IMG?){id_document IN #GET{documents_orig}}> </BOUCLE_doc2img_article>
 	#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}
 	</B_doc2img_article>
 	[<h3 class="h3">(#TOTAL_BOUCLE|singulier_ou_pluriel{<:mediaspip_core:info_document:>,<:mediaspip_core:info_documents:>})</h3>]
@@ -33,7 +33,7 @@
 	<ul class="liste-items"> #SET{ferme_ul,oui}
 </B_documents_joints_nb>
 
-	<BOUCLE_doc2img_article_defaut(DOC2IMG){id_document IN #GET{documents_orig}}> </BOUCLE_doc2img_article_defaut>
+	<BOUCLE_doc2img_article_defaut(DOC2IMG?){id_document IN #GET{documents_orig}}> </BOUCLE_doc2img_article_defaut>
 	#SET{total,#TOTAL_BOUCLE}
 	[<h3 class="h3">(#TOTAL_BOUCLE|singulier_ou_pluriel{<:mediaspip_core:info_document:>,<:mediaspip_core:info_documents:>})</h3>]
 	<div id="liste_docs_download">
@@ -41,7 +41,7 @@
 	</B_doc2img_article_defaut>
 <//B_documents_joints_nb>
 <B_documents_joints_orig>
-	<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{id_orig=0}{par num titre, date}>
+	<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{id_orig=0}{par num titre, date}{pagination}>
 	[(#GRAND_TOTAL|>{1}|oui)
 	<li class="item info">
 		<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
@@ -144,7 +144,7 @@
 			#ANCRE_PAGINATION
 			[<p class="pagination">(#PAGINATION)</p>]
 		</li>]
-	<BOUCLE_documents_joints_doc2img(DOC2IMG){id_document}{par id_doc2img}{pagination 5}>
+	<BOUCLE_documents_joints_doc2img(DOC2IMG?){id_document}{par id_doc2img}{pagination 5}>
 	#SET{fichier,#EVAL{_DIR_IMG}#FICHIER}
 	<li class="item info">
 		[(#SET{url,[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOC2IMG}|parametre_url{file,#GET{fichier},'&'}|parametre_url{cle,[(#ID_DOC2IMG|concat{','}|concat{#GET{fichier}})],'&'})]})]
@@ -152,8 +152,7 @@
 			class="media_logo_vignette" title="<:bouton_telecharger:>" rel="nofollow">
 			[(#_articles:EM_TYPE|oui)
 				[(#GET{fichier}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|oui)
-					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})]
-				]
+					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})]]
 				[(#SET{masque,[(#GET{masque}|extraire_attribut{'src'})]})]
 			]
 			[(#GET{fichier}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''}|inserer_attribut{class,'spip_logos'})]
