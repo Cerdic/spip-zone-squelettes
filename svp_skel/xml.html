@@ -1,3 +1,3 @@
 [(#SET{content,#INCLURE{#ENV{url}|copie_locale{modif}}})
-][(#HTTP_HEADER{[Content-Type: (#GET{content}|match{'<paquet'}|?{text/xml,text/plain}); charset=#CHARSET]})
-]#GET{content}
+][(#HTTP_HEADER{Content-Type: [(#PLUGIN{COLORATION_CODE}|?{text/html, text/plain})]; charset=#CHARSET})
+][(#GET{content}|appliquer_filtre{coloration_code_color, xml, code, span})]
