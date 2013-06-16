@@ -70,7 +70,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_necessite_plugins' => 'Nécessite les plugins',
 	'label_taille' => 'Taille',
 	'label_traductions' => 'Traductions',
-	'label_utilise_plugins' => 'Fonctions supplémentaires avec les plugins',
+	'label_utilise_plugins' => 'Compatible avec',
 
 // R
 	'resume_table_autres_contributions' => 'Liste des autres contributions',
