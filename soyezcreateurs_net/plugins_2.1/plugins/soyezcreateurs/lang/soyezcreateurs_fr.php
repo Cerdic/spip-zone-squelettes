@@ -112,6 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Affichage de la date de publication',
 	'cfg_datepublication_ex' => ' (si désactivé, cela peut être réactivé article par article avec le Mot-clef "DevoilerDate")',
 	'cfg_datepublication_label' => 'Afficher la date de publication des articles',
+	'cfg_datepublication_maj' => 'N\'afficher que la date de mise à jour',
 	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant',
 	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>',
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)',
