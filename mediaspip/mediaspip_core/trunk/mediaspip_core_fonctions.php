@@ -5,7 +5,7 @@
  * Auteurs :
  * kent1 (http://www.kent1.info - kent1@arscenic.info)
  *
- * © 2010-2012 - Distribue sous licence GNU/GPL
+ * © 2010-2013 - Distribue sous licence GNU/GPL
  * 
  * Fichier des fonctions spécifiques du plugin (utilisées à chaque calcul de pages)
  */
@@ -112,5 +112,24 @@ function mediaspip_duree($temps_secondes){
 	$str = (($diff_hours > 0) ? $diff_hours.':':'').(($diff_minutes > 0) ? $diff_minutes:'00').':'.$temps_secondes;
 
 	return $str;
+}
+
+/**
+ * Balise #SPIP_VERSION
+ * 
+ * On modifie le retour pour parler de MediaSPIP
+ */
+function balise_SPIP_VERSION($p) {
+	$p->code = "mediaspip_version()";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function mediaspip_version(){
+	$version = defined('_MEDIASPIP_VERSION') ? " v"._MEDIASPIP_VERSION : '';
+	if(!function_exists('spip_versions'))
+		include_spip('inc/filtres');
+	$spip_version = spip_version();
+	return _T('mediaspip_core:info_mediaspip_version',array('version'=>$version,'spip_version'=>spip_version()));
 }
 ?>
