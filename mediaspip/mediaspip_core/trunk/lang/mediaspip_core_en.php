@@ -93,6 +93,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_lien_vignette' => 'A thumbnail',
 	'info_localisation' => 'Location',
 	'info_maj' => 'Updated:',
+	'info_mediaspip_version' => 'MediaSPIP@version@ (basé sur SPIP v@spip_version@)', # NEW
 	'info_metadonnees' => 'Metadatas:',
 	'info_nb_telechargements' => 'Downloaded @nb@ times',
 	'info_nb_vue' => '@nb@ view',
