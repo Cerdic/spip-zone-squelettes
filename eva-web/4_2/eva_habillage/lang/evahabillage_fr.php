@@ -196,6 +196,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'image_entete_page' => "Ent&ecirc;te",
 'image_barre_entete' => "Barre des boutons",
 'image_barre_entete_arborescence' => "Barre d'arborescence",
+'image_entete_article' => "Secteur de surtitre, titre et sous-titre des articles",
 'image_barre_auteur' => "Secteur des auteurs et de date de publication",
 'image_titre_entete' => "Titres dans l'ent&ecirc;te",
 'image_pied' => "Pied de page",

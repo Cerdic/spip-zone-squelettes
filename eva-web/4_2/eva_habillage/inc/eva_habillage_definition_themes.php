@@ -21,13 +21,13 @@ function eva_habillage_definition_themes () {
    //Fond des titres de l'entête
     $eva_barres_entete_texte_background = array('div#entete h1 span','div#entete h2 span');
     //Fond du secteur de sur-titre, titre et sous-titre
-    $eva_fond_titre_article_background = array ('div .titre');
+    $eva_fond_titre_article_background = array ('.bloc .titre');
      //Pied de page
     $eva_pied_page_background = array('ul#pied');
     //Pied de page : barre des logos
     $eva_pied_logo_background = array('#logo-pied');
     //Fond des titre des blocs,du menu, des premiers éléments des tableaux générés par SPIP
-    $eva_fond_titres_background = array('h3','h3.titre','legend','.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
+    $eva_fond_titres_background = array('h3','h3.titre','legend','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
     $eva_fond_titres_background_color = array('#forum .bouton a','#forum .bouton a:hover');
     //Fonds du menu de navigation
     $eva_menu_fond_background_color = array('ul#sommaire', 'ul#sommaire li');
@@ -586,11 +586,12 @@ function EVA_div_images() {
     'image_entete_page' => array('div#entete'),
     'image_barre_entete' => array('div#entete ul.liens'),
     'image_barre_entete_arborescence' => array('div#arborescence'),
+	'image_entete_article' => array('.bloc#article_contenu .titre'),
     'image_barre_auteur' => array('.edito .titre div#auteursdates','#auteursdates','.bloc #auteursdates'),
     'image_titre_entete' => array('div#entete h1 span','div#entete h2 span'),
     'image_pied' => array('ul#pied'),
     'image_pied-logo' => array('#logo-pied'),
-    'image_titres' => array('h3','legend','.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
+    'image_titres' => array('h3','legend','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
     'image_menu' => array('ul#sommaire'),
     'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
     'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
