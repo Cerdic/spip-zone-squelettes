@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Displaying the publication date',
 	'cfg_datepublication_ex' => ' (if disabled, it can de enabled article per article withe the "DevoilerDate" keyword)',
 	'cfg_datepublication_label' => 'Display the publication date for articles',
+	'cfg_datepublication_maj' => 'N\'afficher que la date de mise à jour', # NEW
 	'cfg_datepublicationgoodies_ex' => 'In Communicating portal mode',
 	'cfg_datepublicationgoodies_label' => '<b>Goodies</b> publication date display',
 	'cfg_debut_contenu' => 'At the start of the content (float at the top right)', # Je ne suis pas certain de la traduction de "flottant"; c'est un peu difficile sans contexte

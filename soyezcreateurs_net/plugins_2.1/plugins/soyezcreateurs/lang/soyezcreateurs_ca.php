@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Visualització de la data de publicació',
 	'cfg_datepublication_ex' => ' (si està desactivat, es pot tornar a activar article per article amb le Paraula Clau "DevoilerDate")',
 	'cfg_datepublication_label' => 'Mostrar la data de publicació dels articles',
+	'cfg_datepublication_maj' => 'N\'afficher que la date de mise à jour', # NEW
 	'cfg_datepublicationgoodies_ex' => 'En mode Portail communiquant', # NEW
 	'cfg_datepublicationgoodies_label' => 'Affichage de la date de publication des <b>Goodies</b>', # NEW
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)', # NEW

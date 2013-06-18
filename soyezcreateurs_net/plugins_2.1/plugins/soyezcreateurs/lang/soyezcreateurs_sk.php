@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Zobraziť dátum publikovania',
 	'cfg_datepublication_ex' => ' (ak je deaktivovaný, dá sa aktivovať pri každom článku samostatne cez kľúčové slovo "DevoilerDate")',
 	'cfg_datepublication_label' => 'Zobraziť dátum publikovania článku',
+	'cfg_datepublication_maj' => 'N\'afficher que la date de mise à jour', # NEW
 	'cfg_datepublicationgoodies_ex' => 'V režime Komunikačný portál',
 	'cfg_datepublicationgoodies_label' => 'Zobrazenie dátumu publikovania <b>Goodies</b>',
 	'cfg_debut_contenu' => 'Na začiatku textu (niekde hore vpravo)',
