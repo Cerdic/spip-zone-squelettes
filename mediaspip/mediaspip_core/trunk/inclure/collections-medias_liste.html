@@ -51,7 +51,7 @@
 #SET{mois_fin,#GET{date_fin}|affdate{m}}
 #SET{jour_fin,#GET{date_fin}|affdate{d}}
 
-<BOUCLE_collections_test_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{0,#GET{limite}}{doublons collections_tous}{tout} />
+<BOUCLE_collections_test_tous(COLLECTIONS?){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{0,#GET{limite}}{doublons collections_tous}{tout} />
 <B_collections_tous>
 <div class="liste sommaire collections" id="#ENV{id_bloc,liste_collections}">
 	<h2 class="h2"[ id="(#ANCRE_PAGINATION|extraire_attribut{name})"]>[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
@@ -61,7 +61,7 @@
 	</div>]
 	<div id="collections_#ENV{id_bloc}" class="liste_collections_vignettes liste_vignettes">
 		<ul class="liste-items liste_vignettes">
-			<BOUCLE_collections_tous(COLLECTIONS){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons collections_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_collections},#GET{limite_pagination,6}} #ENV{id_bloc,liste_collections}}{tout}>
+			<BOUCLE_collections_tous(COLLECTIONS?){agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{id_auteur ?}{id_mot ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_collections_toutes},#GET{tri_collections_toutes}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons collections_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_collections},#GET{limite_pagination,6}} #ENV{id_bloc,liste_collections}}{tout}>
 			#INCLURE{fond=inclure/collection-media_vignette,env,id_collection,compte=#COMPTEUR_BOUCLE,class=vignette}
 			</BOUCLE_collections_tous>
 		</ul>
