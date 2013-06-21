@@ -62,7 +62,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/comments/commen
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact/branches/v0_7 ./contact/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contacts_et_organisations/branches/v1 ./contacts_et_organisations/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/coordonnees/branches/v1.4 ./coordonnees/
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots/branches/1.2.3 ./critere_mots
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots/branches/1 ./critere_mots
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/en_travaux/branches/v2 ./en_travaux/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/eva_freemind/eva_freemind_2_0
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/formidable/branches/v0 ./formidable
