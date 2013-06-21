@@ -1,0 +1,13 @@
+<B_langues>
+	<ul class="menu-langues">
+<BOUCLE_langues(DATA){source pregfiles, #EVAL{_DIR_PLUGINS}, lang/pluginspip_[\w{2,3}]+.php$, 100}{par valeur}>
+		#SET{nom_fichier, #VALEUR|basename{.php}}
+		#SET{nom_langue, #GET{nom_fichier}|replace{pluginspip_,''}}
+		[<li class="item-langue">
+			<a rel="alternate"[ href="(#URL_ACTION_AUTEUR{'converser',#GET{nom_langue}&var_lang=#GET{nom_langue},[(#SELF|parametre_url{lang,'','&'})]}|parametre_url{arg,''})"][ hreflang="(#GET{nom_langue})"][ (#GET{nom_langue}|=={#ENV{lang, fr}}|?{class=on})][ title="(#GET{nom_langue}|traduire_nom_langue)"]>
+				\[(#GET{nom_langue})\]
+			</a>
+		</li>]
+</BOUCLE_langues>
+	</ul>
+</B_langues>

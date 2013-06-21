@@ -9,4 +9,6 @@ if (!defined('_SVP_PAGES_OBJET_PUBLIQUES'))
 if (!defined('_SVPSKEL_BRANCHE_STABLE'))
 	define('_SVPSKEL_BRANCHE_STABLE', '3.0');
 
+// Forcer l'utilisation de langue du visiteur
+$GLOBALS['forcer_lang'] = true;
 ?>
