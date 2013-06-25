@@ -2,13 +2,14 @@
 #SET{hauteur,#VAL{_TAILLE_HAUTEUR_EXERGUE}|defined|?{#EVAL{_TAILLE_HAUTEUR_EXERGUE},#CONFIG{mediaspip/home/document_hauteur_maximale_exergue,500}}}
 <BOUCLE_article_exergue(ARTICLES){id_article}>
 	<h2 class="h2 #EDIT{titre}">#TITRE</h2>
-	<BOUCLE_documents(DOCUMENTS){id_article}{0,1}>[
+	<BOUCLE_documents(DOCUMENTS){id_article}{0,1}>
+	<div class="exergue_document">[
 		(#PLUGIN{doc2img}|et{#EXTENSION|in_array{#CONFIG{doc2img/format_document,''}|explode{','}}}|oui)
 			[(#MODELE{doc_img,id_document=#_document_orig:ID_DOCUMENT,largeur=#GET{largeur},hauteur=#GET{hauteur},pagination=non,debut_d2c,env,ajax})]
 		][(#PLUGIN{doc2img}|et{#EXTENSION|in_array{#CONFIG{doc2img/format_document,''}|explode{','}}}|non)
 			[(#MIME_TYPE|match{audio/}|oui)[(#SET{largeur,350})]]
 			[(#MODELE{emb,id_document=#ID_DOCUMENT,controls=oui,autobuffer=non,largeur=#GET{largeur},hauteur=#GET{hauteur},infos=non,moviesize=adapt,ajax})]
-	]</BOUCLE_documents>[(#CONFIG{mediaspip/home/exergue_introduction}|=={on}|oui)
+	]</div></BOUCLE_documents><div class="exergue_infos">[(#CONFIG{mediaspip/home/exergue_introduction}|=={on}|oui)
 	<div class="introduction #EDIT{introduction}">#INTRODUCTION</div>
-	]<p class="lire-la-suite"><a class="lire-la-suite" href="#URL_ARTICLE"><span class="lire-la-suite-titre"><em>#TITRE</em></span></a>[ <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+	]<p class="lire-la-suite"><a class="lire-la-suite" href="#URL_ARTICLE"><span class="lire-la-suite-titre"><em>#TITRE</em></span></a>[ <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p></div>
 </BOUCLE_article_exergue>
