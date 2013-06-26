@@ -44,12 +44,13 @@
 		<li class="item info_media">
 			<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
 		</li>][(#CONFIG{mediaspip/squelettes/autoriser_telecharger_original}|!={on}|non)
-		<li class="item info_media">[(#REM)
-				
+		[(#SET{expose,[(#GET{doc_unique}|=={oui}|non|et{#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non}|?{'','on'})]})]
+		<li class="item info_media[ (#GET{expose})]">[(#REM)
+
 				Définir ce que sera réellement le logo :
 				-* Le fichier lui-même rétréci si c'est une image
 				-* Le logo du document si c'est autre chose qu'une image
-			
+
 			][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
 			][(#_articles:EM_TYPE|oui)
 				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
@@ -63,17 +64,18 @@
 						[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
 					</a>
 				</h4>
-				<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non|et{#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non}|oui)
+				<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{expose}|=={on}|non)
 				<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
 			</div>]
 		</li>]
 		<BOUCLE_documents_joints(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
-		<li class="item info_media">[(#REM)
-				
+		[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
+		<li class="item info_media[ (#GET{expose})]">[(#REM)
+
 				Définir ce que sera réellement le logo :
 				-* Le fichier lui-même rétréci si c'est une image
 				-* Le logo du document si c'est autre chose qu'une image
-			
+
 			][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
 			][(#_articles:EM_TYPE|oui)
 				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
@@ -88,7 +90,7 @@
 					</a>
 				</h4>
 				<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
-				[(#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
+				[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
 			]</div>]
 		</li>
 		</BOUCLE_documents_joints>
@@ -103,7 +105,8 @@
 			[<p class="pagination">(#PAGINATION{page})</p>]
 		</li>]
 		<BOUCLE_documents_joints_doc2img(DOCUMENTS){mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
-		<li class="item info_media">[
+		[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
+		<li class="item info_media[ (#GET{expose})]">[
 			(#SET{url,[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT}|parametre_url{file,#GET{fichier},'&'}|parametre_url{cle,[(#ID_DOCUMENT|concat{','}|concat{#GET{fichier}})],'&'})]})]
 			[<div class="media_infos">
 				<h4>[(#_articles:EM_TYPE|oui)
@@ -115,7 +118,7 @@
 					</a>
 				</h4>
 				<p class="info_type"><span class="small">[(#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
-				[(#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]]
+				[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]]
 			</div>]
 		</li></BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
 		<li class="item">
