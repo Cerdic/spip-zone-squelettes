@@ -9,7 +9,8 @@
  *
  *	Built for jQuery library
  *	http://jquery.com
- *
+ *  
+ *  Forké par kent1 pour fonctionner avec MediaSPIP (www.mediaspip.net)
  */
  
 /*
@@ -53,24 +54,21 @@
 			continuous:		false, 
 			numeric: 		false,
 			numericId: 		'controls'
-		}; 
+		};
 
 		var options = $.extend(defaults, options);  
 
 		this.each(function() {
-			var obj = $(this);
-			var s = $("li", obj).length;
-			var w = $("li", obj).width(); 
-			var h = $("li", obj).height(); 
-			var clickable = true;
-			obj.width(w);
-			/**
-			 * Viré pour mediaSPIP
-			 */
-			//obj.height(h);
-			obj.css("overflow","hidden");
-			var ts = s-1;
-			var t = 0;
+			var obj = $(this),
+				s = $("li", obj).length,
+				w = $("li", obj).width(), 
+				h = $("li", obj).height(), 
+				clickable = true,
+				t = 0,
+				ts = s-1,
+				timeout;
+
+			obj.width(w).css("overflow","hidden");
 			$("ul", obj).css('width',s*w);
 
 			if(options.continuous){
@@ -204,7 +202,6 @@
 				};
 			};
 			// init
-			var timeout;
 			if(options.auto){;
 				timeout = setTimeout(function(){
 					animate("next",false);
@@ -213,10 +210,17 @@
 
 			if(options.numeric) setCurrent(0);
 
-			if(!options.continuous && options.controlsFade){
-				$("a","#"+options.prevId).hide();
-				$("a","#"+options.firstId).hide();
-			};
+			if(!options.continuous && options.controlsFade)
+				$("a","#"+options.prevId).add($("a","#"+options.firstId)).hide();
+
+			jQuery(window).resize(function(){
+				if(!options.vertical){
+					w = obj.parent().width();
+					$("ul", obj).css('width',s*w);
+					jQuery("li",obj).add(obj).width(w);
+					adjust();
+				}
+			});
 		});
 	};
 })(jQuery);
