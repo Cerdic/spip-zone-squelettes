@@ -74,7 +74,7 @@
 	[(#SET{titre_liste,[<:mediaspip_core:profil_medias_auteur_en_cours:> ((#GRAND_TOTAL))]})]
 	[(#INCLURE{fond=inclure/articles-medias_liste,env,id_bloc=liste_medias_attente,titre_liste=#GET{titre_liste},statuts=[(#ARRAY|push{prop}|push{prepa})],toutes_langues=oui,couper=40,limite=3,page=auteur-profil,ajax})]
 	<//B_articles_en_cours>
-	
+
 	<BOUCLE_articles_autres(ARTICLES){id_auteur}{id_secteur!=#CONFIG{mediaspip/rubriques/medias}}{par id_secteur}{0,1}>
 	</BOUCLE_articles_autres>
 	<div class="liste articles">
@@ -104,19 +104,18 @@
 	</div>
 	</B_articles_autres>
 	<//B_articles_autres>
-	
-	<BOUCLE_collections(COLLECTIONS ?){si #PLUGIN{collections}|oui}{id_auteur} />
+
+	<BOUCLE_collections(COLLECTIONS?){si #PLUGIN{collections}|oui}{id_auteur}> </BOUCLE_collections>
 	[(#SET{titre_liste,[<:mediaspip_core:profil_collections_auteur:> ((#GRAND_TOTAL))]})]
 	#INCLURE{fond=inclure/collections-medias_liste,env,titre_liste=#GET{titre_liste},couper=40,limite=3,page=auteur-profil,ajax}
-	<//B_collections>
-	
-	<BOUCLE_spipicious(CONDITION){si #PLUGIN{SPIPICIOUS}|et{#PLUGIN{NUAGE}}|oui}>
+	</B_collections>
+
+	[(#PLUGIN{spipicious}|et{#PLUGIN{nuage}}|oui)
 		[<div class="liste tags">
 			<h2 class="h2"><:mediaspip_core:profils_vos_tags:></h2>
 			<div>
 			(#MODELE{spipicious_nuage_auteur,id_auteur}|trim)
 			</div>
-		</div>]
-	</BOUCLE_spipicious>
+		</div>]]
 </div>
 </BOUCLE_contenu_auteur>
