@@ -24,19 +24,17 @@ function mediaspip_config_zengarden_activer_theme($flux){
  * @return array
  */
 function mediaspip_config_editer_contenu_objet($flux){
-	$args = $flux['args'];
-	$type = $args['type'];
-
 	/**
 	 * On ne modifie les formulaires que dans l'espace public
 	 */
 	if(!test_espace_prive()){
+		$args = $flux['args'];
+		$type = $args['type'];
 		/**
 		 * On vire les champs que l'on ne souhaite pas
 		 */
-		
 		$champs = array();
-		
+
 		/**
 		 * Si c'est un menu créé à l'initialisation, on enlève la possibilité de modifier l'identifiant
 		 */
@@ -68,14 +66,10 @@ function mediaspip_config_editer_contenu_objet($flux){
  */
 function mediaspip_config_formulaire_charger($flux){
 	if(!test_espace_prive()){
-		if($flux['args']['form'] == 'editer_menu'){
-			if(in_array($flux['data']['identifiant'],array('barrepied','barrelaterale','barrenav'))){
-				$flux['data']['_hidden'] .= '<input type="hidden" name="identifiant" value="'.$flux['data']['identifiant'].'" />';
-			}
-		}
-		if($flux['args']['form'] == 'editer_diogene'){
+		if(($flux['args']['form'] == 'editer_menu') && in_array($flux['data']['identifiant'],array('barrepied','barrelaterale','barrenav')))
+			$flux['data']['_hidden'] .= '<input type="hidden" name="identifiant" value="'.$flux['data']['identifiant'].'" />';
+		if($flux['args']['form'] == 'editer_diogene')
 			$flux['data']['_hidden'] .= '<input type="hidden" name="type" value="'.$flux['data']['type'].'" />';
-		}
 	}
 	return $flux;
 }
@@ -87,15 +81,11 @@ function mediaspip_config_formulaire_charger($flux){
  * @param array $flux Le contexte du formulaire
  */
 function mediaspip_config_formulaire_verifier($flux){
-	if($flux['args']['form'] == 'editer_auteur'){
-		if(_request('statut') != '5poubelle'){
-			if(!_request('email')){
-				$flux['data']['email'] = _T('info_obligatoire');
-			}
-			if (!_request('nom') OR (_request('nom') == _T('ecrire:item_nouvel_auteur'))){
-				$flux['data']['nom'] = _T('info_obligatoire');
-			}
-		}
+	if($flux['args']['form'] == 'editer_auteur' && (_request('statut') != '5poubelle')){
+		if(!_request('email'))
+			$flux['data']['email'] = _T('info_obligatoire');
+		if (!_request('nom') OR (_request('nom') == _T('ecrire:item_nouvel_auteur')))
+			$flux['data']['nom'] = _T('info_obligatoire');
 	}
 	return $flux;
 }
@@ -139,8 +129,7 @@ function mediaspip_config_formulaire_traiter($flux){
 function mediaspip_config_objets_extensibles($flux){
 	if(!test_espace_prive()){
 		foreach(array('breve','groupes_mot','mot') as $key){
-			if(isset($flux[$key]))
-				unset($flux[$key]);
+			if(isset($flux[$key])) unset($flux[$key]);
 		}
 	}
 	return $flux;
@@ -195,11 +184,9 @@ function mediaspip_config_post_edition($flux){
  *  @param array $flux Le contexte d'environnement du pipeline
  */
 function mediaspip_config_menus_lister_disponibles($flux){
-	unset($flux['data']['page_speciale_zajax']);
-	unset($flux['data']['groupe_mots']);
-	unset($flux['data']['mots']);
-	unset($flux['data']['secteurlangue']);
-	unset($flux['data']['espace_prive']);
+	foreach(array('page_speciale_zajax','groupe_mots','mots','secteurlangue','espace_prive') as $key){
+		if(isset($flux['data'][$key])) unset($flux['data'][$key]);
+	}
 	return $flux;
 }
 
@@ -229,16 +216,13 @@ function mediaspip_config_formulaire_admin($flux){
  * @return array
  */
 function mediaspip_config_recuperer_fond($flux){
-	global $visiteur_session;
-	if ($flux['args']['fond']=='formulaires/editer_auteur'){
-		if($flux['args']['contexte']['id_auteur'] != $visiteur_session['id_auteur']){
-			$flux['data']['texte'] = preg_replace(",(<li.*class=\"editer_nom.*>.*<p class=\'explication.*>)(.*)(<\/p>.*<\/li>),Uims","\\1"._T('mediaspip_config:explication_form_signature_auteur')."\\3",$flux['data']['texte'],1);
-			$flux['data']['texte'] = preg_replace(",(<li.*class=\'editer_identification.*\'>.*<h3.*class=\"legend.*>)(.*)(<\/h3>.*<\/li>),Uims","\\1"._T('mediaspip_config:legend_form_identification_auteur')."\\3",$flux['data']['texte'],1);
-			$flux['data']['texte'] = preg_replace(",(<label.*for=\"email\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_email_auteur')."\\3",$flux['data']['texte'],1);
-			$flux['data']['texte'] = preg_replace(",(<label.*for=\"bio\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_bio_auteur')."\\3",$flux['data']['texte'],1);
-			$flux['data']['texte'] = preg_replace(",(<label.*for=\"nom_site\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_nom_site_auteur')."\\3",$flux['data']['texte'],1);
-			$flux['data']['texte'] = preg_replace(",(<label.*for=\"url_site\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_url_site_auteur')."\\3",$flux['data']['texte'],1);
-		}
+	if ($flux['args']['fond']=='formulaires/editer_auteur' && ($flux['args']['contexte']['id_auteur'] != $GLOBALS['visiteur_session']['id_auteur'])){
+		$flux['data']['texte'] = preg_replace(",(<li.*class=\"editer_nom.*>.*<p class=\'explication.*>)(.*)(<\/p>.*<\/li>),Uims","\\1"._T('mediaspip_config:explication_form_signature_auteur')."\\3",$flux['data']['texte'],1);
+		$flux['data']['texte'] = preg_replace(",(<li.*class=\'editer_identification.*\'>.*<h3.*class=\"legend.*>)(.*)(<\/h3>.*<\/li>),Uims","\\1"._T('mediaspip_config:legend_form_identification_auteur')."\\3",$flux['data']['texte'],1);
+		$flux['data']['texte'] = preg_replace(",(<label.*for=\"email\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_email_auteur')."\\3",$flux['data']['texte'],1);
+		$flux['data']['texte'] = preg_replace(",(<label.*for=\"bio\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_bio_auteur')."\\3",$flux['data']['texte'],1);
+		$flux['data']['texte'] = preg_replace(",(<label.*for=\"nom_site\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_nom_site_auteur')."\\3",$flux['data']['texte'],1);
+		$flux['data']['texte'] = preg_replace(",(<label.*for=\"url_site\">)(.*)(<\/label>),Uims","\\1"._T('mediaspip_config:label_form_url_site_auteur')."\\3",$flux['data']['texte'],1);
 	}
 	return $flux;
 }
