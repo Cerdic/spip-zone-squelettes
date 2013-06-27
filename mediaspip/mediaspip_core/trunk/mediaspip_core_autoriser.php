@@ -46,14 +46,11 @@ function autoriser_msvoirliens_dist($faire, $type, $id, $qui, $opt) {
 	include_spip('inc/config');
 	$cfg = lire_config('mediaspip/squelettes',array());
 	if ($qui['statut'] =='0minirezo'){
-		if($cfg['afficher_lien_direct'] == 'on'){
-			return true;
-		}
+		if($cfg['afficher_lien_direct'] == 'on') return true;
 	}else{
 		if($cfg['afficher_lien_direct'] == 'on'){
-			if($cfg['liens_limiter_acces'] == 'on'){
+			if($cfg['liens_limiter_acces'] == 'on')
 				return $qui['statut'] && ($qui['statut'] <= ($cfg['liens_limiter_statuts'] ? $cfg['liens_limiter_statuts'] : '6forum'));
-			}
 			return true;
 		}
 	}
@@ -68,14 +65,11 @@ function autoriser_document_mstelecharger_dist($faire, $type, $id, $qui, $opt) {
 		if($ms_auths['ms_auth_telecharger'] == 'defaut'){
 			include_spip('inc/config');
 			$cfg = lire_config('mediaspip/squelettes',array());
-			if ($cfg['autoriser_telecharger'] != 'on'){
-				return false;
-			}else{
+			if ($cfg['autoriser_telecharger'] != 'on') return false;
+			else
 				return (($cfg['autoriser_telecharger_que_logues'] == 'on') && ($qui['id_auteur'] > 0)) OR ($ms_auths['autoriser_telecharger_que_logues'] != 'on');
-			}	
 		}else{
-			if($ms_auths['ms_auth_telecharger'] == 'non')
-				return false;
+			if($ms_auths['ms_auth_telecharger'] == 'non') return false;
 			else
 				return (($ms_auths['ms_auth_telecharger_loggues'] == 'on') && ($qui['id_auteur'] > 0)) OR ($ms_auths['ms_auth_telecharger_loggues'] != 'on');
 		}

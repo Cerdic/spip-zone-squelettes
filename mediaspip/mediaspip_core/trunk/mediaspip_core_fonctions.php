@@ -17,9 +17,8 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param string $statut
  */
 function ms_traduire_statut($statut){
-	if ($t = array_search($statut, $GLOBALS['liste_des_statuts'])){
+	if ($t = array_search($statut, $GLOBALS['liste_des_statuts']))
 		return _T('mediaspip_core:statut_'.$t);
-	}
 	return;
 }
 
@@ -54,11 +53,10 @@ if (!defined('_DIR_PLUGIN_LICENCE') && !function_exists('critere_id_licence_dist
 if (!function_exists('inc_vignette')){
 	function inc_vignette($ext, $size=true, $loop = true) {
 		if(test_espace_prive()){
-			$f = include_spip('inc/vignette');
+			include_spip('inc/vignette');
 			return inc_vignette_dist($ext, $size, $loop);
 		}
-		if (!$ext)
-			$ext = 'txt';
+		if (!$ext) $ext = 'txt';
 
 		// Chercher la vignette correspondant a ce type de document
 		// dans les vignettes persos, ou dans les vignettes standard
@@ -127,8 +125,7 @@ function balise_SPIP_VERSION($p) {
 
 function mediaspip_version(){
 	$version = defined('_MEDIASPIP_VERSION') ? " v"._MEDIASPIP_VERSION : '';
-	if(!function_exists('spip_versions'))
-		include_spip('inc/filtres');
+	if(!function_exists('spip_versions')) include_spip('inc/filtres');
 	$spip_version = spip_version();
 	return _T('mediaspip_core:info_mediaspip_version',array('version'=>$version,'spip_version'=>spip_version()));
 }

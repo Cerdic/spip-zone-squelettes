@@ -15,12 +15,10 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * Indiquer MediaSPIP dans les headers
  */
 define('_HEADER_COMPOSED_BY',"Composed-By: MediaSPIP v0.2 @ www.mediaspip.net + SPIP");
+define('_MEDIASPIP_VERSION','0.2');
 
 define('_ZENGARDEN_FILTRE_THEMES','mediaspip_core');
-
 define('_DIR_LIB_SVG',_DIR_RACINE.'lib/jquery.svg.package-1.4.4/');
-
-define('_MEDIASPIP_VERSION','0.2');
 
 $GLOBALS['forcer_lang'] = true;
 

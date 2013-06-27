@@ -132,7 +132,7 @@ function mediaspip_core_jquery_plugins($plugins){
 		if(!defined('_DIR_PLUGIN_DOCUMENTATION'))
 			$plugins[] = "javascript/mediaspip_menu_categories.js";
 	}
-	
+
 	return $plugins;
 }
 
@@ -144,15 +144,11 @@ function mediaspip_core_jquery_plugins($plugins){
  * @return array
  */
 function mediaspip_core_editer_contenu_objet($flux){
-	$args = $flux['args'];
-	$type = $args['type'];
-	if (in_array($type,array('auteur')) && !test_espace_prive()){
-		if (preg_match(",<li [^>]*class=[\"']editer editer_pgp.*<\/li>,Uims",$flux['data'],$regs)){
+	if (in_array($flux['args']['type'],array('auteur')) && !test_espace_prive()){
+		if (preg_match(",<li [^>]*class=[\"']editer editer_pgp.*<\/li>,Uims",$flux['data'],$regs))
 			$flux['data'] = preg_replace(",(<li [^>]*class=[\"']editer_pgp.*<\/li>),Uims","",$flux['data'],1);
-		}
-		if (preg_match(",<div [^>]*class=[\"']editer instituer_auteur.*<\/div>,Uims",$flux['data'],$regs)){
+		if (preg_match(",<div [^>]*class=[\"']editer instituer_auteur.*<\/div>,Uims",$flux['data'],$regs))
 			$flux['data'] = preg_replace(",(<div [^>]*class=[\"']instituer_auteur).*</div>(<\/li>),Uims","\\2",$flux['data'],1);
-		}
 	}
 	return $flux;
 }
@@ -166,10 +162,8 @@ function mediaspip_core_editer_contenu_objet($flux){
  * @return array $flux Le contexte d'environnement modifié
  */
 function mediaspip_core_formulaire_charger($flux){
-	$form = $flux['args']['form'];
-	if($form == 'inscription'){
+	if($flux['args']['form'] == 'inscription')
 		$flux['data']['_commentaire'] = '';
-	}
 	return $flux;
 }
 
@@ -182,30 +176,25 @@ function mediaspip_core_formulaire_charger($flux){
  * @return array $flux Le contexte d'environnement modifié
  */
 function mediaspip_core_formulaire_verifier($flux){
-	$form = $flux['args']['form'];
-	if($form == 'configurer_mediaspip_home'){
+	if($flux['args']['form'] == 'configurer_mediaspip_home'){
 		$numeriques = array('document_largeur_maximale_exergue','document_hauteur_maximale_exergue','nb_sites_nav','nb_syndics_nav');
 		foreach($numeriques as $numerique){
-			if(_request($numerique) && !ctype_digit(_request($numerique))){
+			if(_request($numerique) && !ctype_digit(_request($numerique)))
 				$flux['data'][$numerique] = _T('mediaspip_core:erreur_valeur_int');
-			}
 		}
-		
+
 		$inf_cents = array('nb_sites_nav','nb_syndics_nav');
 		foreach($inf_cents as $inf_cent){
-			if(!$flux['data'][$inf_cent] && _request($inf_cent) && (_request($inf_cent) > 100)){
+			if(!$flux['data'][$inf_cent] && _request($inf_cent) && (_request($inf_cent) > 100))
 				$flux['data'][$inf_cent] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'100'));
-			}
 		}
-		
 		$inf_milles = array('document_largeur_maximale_exergue','document_hauteur_maximale_exergue');
 		foreach($inf_milles as $inf_mille){
-			if(!$flux['data'][$inf_mille] && _request($inf_mille) && (_request($inf_mille) > 1000)){
+			if(!$flux['data'][$inf_mille] && _request($inf_mille) && (_request($inf_mille) > 1000))
 				$flux['data'][$inf_mille] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'1000'));
-			}
 		}
 	}
-	else if($form == 'configurer_mediaspip_squelettes'){
+	else if($flux['args']['form'] == 'configurer_mediaspip_squelettes'){
 		$numeriques = array(
 					'logo_largeur',
 					'logo_hauteur',
@@ -219,27 +208,24 @@ function mediaspip_core_formulaire_verifier($flux){
 					'vignettes_download_largeur',
 					'vignettes_download_hauteur'
 		);
-		
+
 		foreach($numeriques as $numerique){
-			if(_request($numerique) && !ctype_digit(_request($numerique))){
+			if(_request($numerique) && !ctype_digit(_request($numerique)))
 				$flux['data'][$numerique] = _T('mediaspip_core:erreur_valeur_int');
-			}
 		}
-		
+
 		$inf_30s = array('vignettes_nav_nb');
 		foreach($inf_30s as $inf_30){
-			if(!$flux['data'][$inf_30] && _request($inf_30) && (_request($inf_30) > 30)){
+			if(!$flux['data'][$inf_30] && _request($inf_30) && (_request($inf_30) > 30))
 				$flux['data'][$inf_30] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'30'));
-			}
 		}
-		
+
 		$inf_cents = array('nb_sites_nav','nb_syndics_nav');
 		foreach($inf_cents as $inf_cent){
-			if(!$flux['data'][$inf_cent] && _request($inf_cent) && (_request($inf_cent) > 100)){
+			if(!$flux['data'][$inf_cent] && _request($inf_cent) && (_request($inf_cent) > 100))
 				$flux['data'][$inf_cent] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'100'));
-			}
 		}
-		
+
 		$inf_milles = array(
 						'logo_hauteur',
 						'logo_objets_largeur',
@@ -252,16 +238,14 @@ function mediaspip_core_formulaire_verifier($flux){
 						'vignettes_download_hauteur'
 		);
 		foreach($inf_milles as $inf_mille){
-			if(!$flux['data'][$inf_mille] && _request($inf_mille) && (_request($inf_mille) > 1000)){
+			if(!$flux['data'][$inf_mille] && _request($inf_mille) && (_request($inf_mille) > 1000))
 				$flux['data'][$inf_mille] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'1000'));
-			}
 		}
-		
+
 		$inf_2milles = array('logo_largeur');
 		foreach($inf_2milles as $inf_2mille){
-			if(!$flux['data'][$inf_2mille] && _request($inf_2mille) && (_request($inf_2mille) > 2000)){
+			if(!$flux['data'][$inf_2mille] && _request($inf_2mille) && (_request($inf_2mille) > 2000))
 				$flux['data'][$inf_2mille] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'2000'));
-			}
 		}
 	}
 	return $flux;
@@ -293,19 +277,17 @@ function mediaspip_core_taches_generales_cron($taches_generales){
  * 		Le contexte du pipeline modifié
  */
 function mediaspip_core_recuperer_fond($flux){
-	if(!test_espace_prive() && is_string($flux['args']['fond'])){
-		if (preg_match(',inclure\/diogene_modifier_publication_,i',$flux['args']['fond'])){
-			if(isset($GLOBALS['visiteur_session']['statut'])){
-				$pos_ul = strripos($flux['data']['texte'], '</ul>');
-				/**
-				 * Si on n'a pas d'ul c'est que l'on n'est pas dans un diogène
-				 */
-				if($pos_ul){
-					$insert = recuperer_fond('inclure/diogene_modifier_ajouts',$flux['args']['contexte']);
-					$flux['data']['texte'] = substr_replace($flux['data']['texte'], $insert, $pos_ul, 0);
-				}
+	if(!test_espace_prive() 
+		&& isset($GLOBALS['visiteur_session']['statut']) 
+		&& is_string($flux['args']['fond'])
+		&& preg_match(',inclure\/diogene_modifier_publication_,i',$flux['args']['fond'])){
+			/**
+			 * Si on n'a pas d'ul c'est que l'on n'est pas dans un diogène
+			 */
+			if($pos_ul = strripos($flux['data']['texte'], '</ul>');){
+				$insert = recuperer_fond('inclure/diogene_modifier_ajouts',$flux['args']['contexte']);
+				$flux['data']['texte'] = substr_replace($flux['data']['texte'], $insert, $pos_ul, 0);
 			}
-		}
 	}
 	return $flux;
 }
@@ -341,8 +323,9 @@ function mediaspip_core_insert_head_css($flux){
  * @return array $flux le contenu textuel modifié du pipeline
  */
 function mediaspip_core_mediaspip_player_flowjs($flux){
-	if(isset($flux['args']['id_document']) && intval($flux['args']['id_document'])){
-		if(isset($flux['data']['plugins']['title']['html'])){
+	if(isset($flux['args']['id_document'])
+		&& intval($flux['args']['id_document'])
+		&& isset($flux['data']['plugins']['title']['html'])){
 			include_spip('inc/config');
 			spip_log($flux['data']['plugins']['title']['html'],'test');
 			$article = sql_fetsel('id_article,titre','spip_articles AS art left join spip_documents_liens AS doc_liens ON art.id_article = doc_liens.id_objet AND doc_liens.objet="article"','doc_liens.id_document='.intval($flux['args']['id_document']));
@@ -355,8 +338,6 @@ function mediaspip_core_mediaspip_player_flowjs($flux){
 				$flux['data']['plugins']['title']['html'] = _T('mediaspip_core:titre_flow_js',$infos_titre);
 				spip_log($flux['data']['plugins']['title']['html'],'test');
 			}
-		}
-			
 	}
 	return $flux;
 }
@@ -377,13 +358,13 @@ function mediaspip_core_declarer_tables_objets_sql($tables){
 		$tables['spip_mots']['editable'] = 'non';
 		$tables['spip_groupes_mots']['editable'] = 'non';
 	}
-	
+
 	$tables['spip_articles']['field']['ms_auth_telecharger'] = "VARCHAR(15) DEFAULT 'defaut' NOT NULL";
 	$tables['spip_articles']['field']['ms_auth_telecharger_loggues'] = "VARCHAR(15) DEFAULT '' NOT NULL";
 
 	$tables['spip_articles']['champs_editables'][] = 'ms_auth_telecharger';
 	$tables['spip_articles']['champs_editables'][] = 'ms_auth_telecharger_loggues';
-	
+
 	return $tables;
 }
 
@@ -394,9 +375,8 @@ function mediaspip_core_declarer_tables_objets_sql($tables){
  * @param array $flux Le contexte d'environnement
  */
 function mediaspip_core_diogene_ajouter_saisies($flux){
-	if(is_array(unserialize($flux['args']['champs_ajoutes'])) && in_array('ms_auth_telecharger',unserialize($flux['args']['champs_ajoutes']))){
+	if(is_array(unserialize($flux['args']['champs_ajoutes'])) && in_array('ms_auth_telecharger',unserialize($flux['args']['champs_ajoutes'])))
     	$flux['data'] .= recuperer_fond('formulaires/diogene_ajouter_medias_ms_auth_telecharger',$flux['args']['contexte']);
-	}
     return $flux;
 }
 
@@ -408,7 +388,6 @@ function mediaspip_core_diogene_ajouter_saisies($flux){
  */
 function mediaspip_core_diogene_verifier($flux){
 	$erreurs = &$flux['args']['erreurs'];
-
 	return $flux;
 }
 
@@ -419,8 +398,7 @@ function mediaspip_core_diogene_verifier($flux){
  * @param array $flux Le contexte d'environnement
  */
 function mediaspip_core_diogene_traiter($flux){
-	$id_objet = $flux['args']['id_objet'];
-	if(intval($id_objet) && ($ms_auth_telecharger = _request('ms_auth_telecharger'))){
+	if(intval($flux['args']['id_objet']) && ($ms_auth_telecharger = _request('ms_auth_telecharger'))){
 		$flux['data']['ms_auth_telecharger'] = $ms_auth_telecharger;
 		$flux['data']['ms_auth_telecharger_loggues'] = _request('ms_auth_telecharger_loggues');
 	}
