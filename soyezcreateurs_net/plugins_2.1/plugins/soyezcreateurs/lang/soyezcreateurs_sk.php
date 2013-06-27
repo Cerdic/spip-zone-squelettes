@@ -20,14 +20,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@ do  @fjour_l@ @fjour@ @fmois_l@ @fannee@ o @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ do @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Odoslať udalosť',
-	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je pravdepodobnejšie, jej publikovanie bude schválené.', # MODIF
+	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je väčšia šanca, že bude publikovaná.',
 	'agenda_proposer_evenement_title' => 'Informácie o udalosti môžete poslať administrátorovi stránky',
 	'agenda_sd' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ od @dheure@:@dminutes@ do @fheure@:@fminutes@',
 	'agenda_sd_h' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Prihlásiť sa na udalosť',
 	'agendamoisde' => 'Kalendár na',
-	'aidesc' => 'Pomocník pre SoyezCréateurs', # MODIF
+	'aidesc' => 'Pomocník modulu Buďte tvoriví',
 	'alaune' => 'V centre pozornosti',
 	'annuaire' => 'Adresár',
 	'annuaire_consulter' => 'Nahliadnuť do adresára',
@@ -53,7 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_plan_ex' => 'Tento odkaz pošle na stránku so všetkými článkami zoradenými zostupne</i>',
 	'cfg_affichage_plan_label' => 'Zobraziť odkaz na mapu v zostupnom poradí <i>Čo je nové?</i>',
 	'cfg_affichage_zone_bandeau' => 'Zobraziť v hornom pútači',
-	'cfg_affichage_zone_bandeau_annonce' => 'Affichage dans la zone du bandeau annonce', # NEW
+	'cfg_affichage_zone_bandeau_annonce' => 'Zobrazenie v zóne reklamného pútača',
 	'cfg_affichage_zone_principale' => 'Zobraziť v oblasti hlavného menu',
 	'cfg_affichage_zone_secondaire' => 'Zobraziť v oblasti druhého menu',
 	'cfg_affichagelistedocuments' => 'Zobraziť pripojené dokumenty',
@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Zoznam dokumentov pripojených k článku v  (hlavnom) zozname článkov',
 	'cfg_affichagelistedocuments_masquervus' => 'Nezobrazuje dokumenty vložené v obsahu',
 	'cfg_affichagelistedocuments_noicon' => 'V zoznamoch nezobrazovať ikonu dokumentu',
-	'cfg_affichagelistedocuments_nulpart' => 'Nikde (odznačí ďalšie možnosti!)', # MODIF
+	'cfg_affichagelistedocuments_nulpart' => 'Nikde (odznačiť ostatné vybrané možnosti!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Presmerovanie na dokument, ak je iba jeden aa ak v článku nie je žiaden text',
 	'cfg_afficher_titre_invisible' => 'Neviditeľný: Text je prepísaný pútačom',
 	'cfg_afficher_titre_label' => 'Zobrazenie názvu stránky',
@@ -114,7 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Zobraziť dátum publikovania',
 	'cfg_datepublication_ex' => ' (ak je deaktivovaný, dá sa aktivovať pri každom článku samostatne cez kľúčové slovo "DevoilerDate")',
 	'cfg_datepublication_label' => 'Zobraziť dátum publikovania článku',
-	'cfg_datepublication_maj' => 'N\'afficher que la date de mise à jour', # NEW
+	'cfg_datepublication_maj' => 'Zobraziť iba dátum aktualizácie',
 	'cfg_datepublicationgoodies_ex' => 'V režime Komunikačný portál',
 	'cfg_datepublicationgoodies_label' => 'Zobrazenie dátumu publikovania <b>Goodies</b>',
 	'cfg_debut_contenu' => 'Na začiatku textu (niekde hore vpravo)',
@@ -154,7 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Neindexovať stránku vyhľadávačmi',
 	'cfg_indexation_oui' => 'Indexovať stránku vo vyhľadávačoch',
 	'cfg_inf_rainette_ville' => 'Zobrazí podmienky a predpoveď počasia pre francúzske mesto cez kód, ktorý je dostupný na <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">na stránke weather.com®</a>.',
-	'cfg_info' => 'Nastavenie SoyezCreateurs', # MODIF
+	'cfg_info' => 'Nastavenia modulu Buďte tvoriví',
 	'cfg_largeur' => 'Šírka',
 	'cfg_largeur_colonnes_centrales' => 'Šírka každého z 3 hlavných stĺpcov',
 	'cfg_largeur_conteneur' => 'Šírka obalu',
@@ -267,7 +267,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rss_label' => 'Číslo RSS',
 	'cfg_rss_label_ex' => 'Počet syndikovaných odkazov zobrazených na kanál RSS v rubrike druhotnej navigácie',
 	'cfg_scolaire' => 'Škola (od septembra do decembra nasledujúceho roka)',
-	'cfg_slideshow' => 'Slideshow (mode communiquant)', # NEW
+	'cfg_slideshow' => 'Prezentácia (režim komunikácie)',
 	'cfg_sousmenulocaux' => 'Preložené podmenu',
 	'cfg_sousmenulocaux_ex' => 'Zmeňte hlavné menu, aby sa nemuseli zobrazovať podrubriky mimo aktívnej vetvy',
 	'cfg_sousmenulocaux_label' => 'Podrubriky zobrazovať v hlavnom menu',
@@ -310,13 +310,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Odhlásenie vykonané',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Na začiatok',
-	'configurersc' => 'Nastaviť SoyezCréateurs', # MODIF
+	'configurersc' => 'Nastaviť modul Buďte tvoriví',
 	'connexion' => 'Spojenie',
 	'connexiontitle' => 'Prístup do administračného rozhrania',
 	'copyright_cnil' => 'Č. deklarácie CNIL',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Autor: ',
-	'copyright_spip' => 'Táto stránka využíva šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštívte webovú stránku autora tejto šablóny\'>Pyrat.net,</a> ktorú prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštívte web SPIPU, systému na riadenie obsahu v súlade s licenciou GPL license\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'>modulu Buďte tvoriví</a> prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Odhlásenie',
@@ -357,7 +357,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'V rovnakej rubrike...',
-	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l\'économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded]', # MODIF
+	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l\'économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
 	'menu_replier' => 'Poskladať: ',
@@ -406,7 +406,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Dozvedieť sa viac o kritériu',
 	'sedna' => 'Sedna (agregátor RSS)',
 	'sommaire' => 'Zhrnutie',
-	'soyezcreateurs' => 'Buďte tvorcami',
+	'soyezcreateurs' => 'Buďte tvoriví',
 	'soyezcreateurs_couleurs' => 'Farby',
 	'soyezcreateurs_google' => 'Odkazovanie',
 	'soyezcreateurs_layout' => 'Umiestnenie',
@@ -444,7 +444,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jul' => 'Júl',
 	'wdcalendar_jun' => 'Jún',
 	'wdcalendar_loading_data' => 'Nahrávajú sa dáta...',
-	'wdcalendar_loading_fail' => 'Prepáčte, vaše dáta sa nedajú nahrať, ďakujeme, skúste to neskôr', # MODIF
+	'wdcalendar_loading_fail' => 'Prepáčte, vaše údaje sa nedajú nahrať; ďakujeme, skúste to neskôr',
 	'wdcalendar_location' => 'Miesto',
 	'wdcalendar_mar' => 'Mar',
 	'wdcalendar_may' => 'Máj',
