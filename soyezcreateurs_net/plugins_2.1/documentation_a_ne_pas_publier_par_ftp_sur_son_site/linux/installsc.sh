@@ -3,7 +3,7 @@
 svn checkout svn://trac.rezo.net/spip/branches/spip-2.1 ./
 #sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 #Si besoin de la mutualisation, decomenter la ligne suivante
-#sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation
+#sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation/branches/v0
 
 #Installation des extensions
 cd extensions
