@@ -325,7 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniereactualites' => 'Najnovšie novinky',
 	'dernieremaj' => 'Najnovšia aktualizácia stránky:',
 	'derniersarticlespublies' => 'Najnovší publikovaný článok',
-	'descriptif' => 'Popis',
+	'descriptif' => 'Opis',
 	'discus_en_cours' => 'Diskusia prebieha',
 	'docatelecharger' => 'Stiahnuť dokumenty',
 
