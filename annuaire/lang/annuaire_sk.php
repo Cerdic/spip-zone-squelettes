@@ -20,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil_requis' => 'Požiadavky na hladké fungovanie stránky',
 	'accueil_requis_1' => 'Na to, aby bola vaša stránka na internete dobre zaindexovaná, treba vytvoriť:
      <br />skupinu kľúčových slov "_META"
-     <br />kľúčové slová. "kľúčové slová" a "popis" a zadať vhodné informácie do týchto dvoch textových polí na zaindexovanie stránky
+     <br />kľúčové slová. "kľúčové slová" a "opis" a zadať vhodné informácie do týchto dvoch textových polí na zaindexovanie stránky
      <br />a ak nechcete, aby bola vaša stránka zaindexovaná, vytvorte kľúčové slovo "robots" s textom "noindex, nofollow", aby  roboty vyhľadávačov neindexovali vašu stránku',
 	'accueil_requis_2' => 'Na to, abz sa partneri webu zobrazili na stránke "Partneri", bude treba vytvoriť skupinu kľúčových slov s názvom "Affichage" a v nej kľúčové slovo "partenaire", a toto kľúčové slovo priradiť každej stránke, ktorú považujete za stránku s partnermi webu.',
 	'actuellement' => 'Aktuálne je',
@@ -227,15 +227,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// I
 	'info_abo' => 'Táto stránka zobrazuje distribučné zoznamy, t. j. zoznamy zdrojov noviniek',
-	'infos' => 'Zobraziť informačný panel pre všetky rubriky (ak chcete, aby sa odlišovali, použite pole popis).',
+	'infos' => 'Zobraziť informačný panel pre všetky rubriky (ak chcete, aby sa odlišovali, použite pole opis).',
 
 	// L
 	'le_mot' => 'Kľúčové slovo',
 	'le_site' => 'Na stránke je',
 	'lire_suite' => 'Čítať ďalej',
-	'longueur_descriptif' => 'Dĺžka popisu',
-	'longueur_descriptif_prems' => 'Dĺžka popisu prvej stránky',
-	'longueur_descriptif_suivants' => 'Dĺžka popisu ďalších stránok',
+	'longueur_descriptif' => 'Dĺžka opisu',
+	'longueur_descriptif_prems' => 'Dĺžka opisu prvej stránky',
+	'longueur_descriptif_suivants' => 'Dĺžka opisu ďalších stránok',
 
 	// M
 	'margin_left_fieldset' => 'Ľavý okraj rámu',
@@ -287,7 +287,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'partenaire' => 'partner',
 	'partenaires' => '@nb@ partnerov',
 	'pas_commentaire' => 'Ešte žiadne komentáre',
-	'pas_descriptif' => 'Pre túto stránku ešte nemáme popis – ak ste jej webmater, môžete nás kontaktovať a navrhnúť vhodný popis pre svoju stránku.',
+	'pas_descriptif' => 'Pre túto stránku ešte nemáme opis – ak ste jej webmater, môžete nás kontaktovať a navrhnúť vhodný opis pre svoju stránku.',
 	'pas_le_droit_ecrire' => 'Nemáte oprávnenie sem písať',
 	'pas_pagination' => 'Počet záznamov na slučku',
 	'pas_partenaire' => 'Ešte nemáme žiadnych partnerov – ak by ste chceli byť jedným z nich, prosím, kontaktujte nás.',
