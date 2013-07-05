@@ -9,6 +9,7 @@ define('_ALBUMS_INSERT_HEAD_CSS',false);
 
 function title2anchor($titre,$id_article=""){
 	include_spip("inc/charsets");
+	$titre = strip_tags($titre);
 	$titre = translitteration($titre);
 	$titre = supprimer_numero($titre);
 	$titre = preg_replace(",\W,","",$titre);
