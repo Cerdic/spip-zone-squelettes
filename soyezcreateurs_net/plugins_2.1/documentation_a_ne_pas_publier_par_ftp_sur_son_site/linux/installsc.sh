@@ -56,7 +56,7 @@ mkdir plugins
 cd plugins
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint/branches/v3 ./access_restreint/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/article_pdf
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite/branches/0.9 ./autorite
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite/trunk ./autorite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/branches/2.0.0 ./clevermail/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/comments/comments-200/ ./comments/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact/branches/v0_7 ./contact/
