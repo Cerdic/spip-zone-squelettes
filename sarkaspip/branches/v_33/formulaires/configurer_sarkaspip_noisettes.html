@@ -177,9 +177,10 @@
 						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_inc_position_2:></label>
 					</div>
 				</li>
-				<li class="fieldset suite" id="bloc_intro_commentaires"><fieldset>
+				<li class="fieldset suite" id="bloc_intro_commentaires">
+					<fieldset>
 						<ul>
-							#SET{name,max_commentaires}#SET{defaut,5}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							#SET{name,max_commentaires}#SET{defaut,50}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 								<label for="#GET{name}"><:sarkaspip:cfg_lbl_max_commentaires:></label>[
 								<span class='erreur_message'>(#GET{erreurs})</span>
@@ -191,6 +192,11 @@
 								<span class='erreur_message'>(#GET{erreurs})</span>
 								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 							</li>
+							<INCLURE{fond=formulaires/inc/cfg_pagination}
+								{defaut_pas=10}
+								{suffixe=_commentaires}
+								{choix=sans_position}
+								{env}>
 						</ul>
 					</fieldset>
 				</li>
@@ -222,9 +228,10 @@
 						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_inc_position_2:></label>
 					</div>
 				</li>
-				<li class="fieldset suite" id="bloc_intro_messages"><fieldset>
+				<li class="fieldset suite" id="bloc_intro_messages">
+					<fieldset>
 						<ul>
-							#SET{name,max_messages}#SET{defaut,5}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							#SET{name,max_messages}#SET{defaut,50}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 								<label for="#GET{name}"><:sarkaspip:cfg_lbl_max_messages:></label>[
 								<span class='erreur_message'>(#GET{erreurs})</span>
@@ -236,6 +243,11 @@
 								<span class='erreur_message'>(#GET{erreurs})</span>
 								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 							</li>
+							<INCLURE{fond=formulaires/inc/cfg_pagination}
+								{defaut_pas=10}
+								{suffixe=_messages}
+								{choix=sans_position}
+								{env}>
 						</ul>
 					</fieldset>
 				</li>
