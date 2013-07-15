@@ -590,7 +590,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				
 				$sitesdj = array();
 				$sitesdj['nom_site'] = "90. Flux RSS du site";
-				$sitesdj['url_site'] = "?page=backend";
+				$sitesdj['url_site'] = "./?page=backend";
 				$sitesdj['descriptif'] = 'Syndiquer tout le site';
 				$sitesdj['statut'] = 'publie';
 				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
