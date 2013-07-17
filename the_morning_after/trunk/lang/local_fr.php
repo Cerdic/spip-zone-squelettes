@@ -41,6 +41,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //F
 'featured_post' => 'S&eacute;lection',
 'for' => 'pour',
+'forum_ferme' => 'Forum ferm&eacute;',
+
+//L
+'laisser_message' => 'R&eacute;diger un commentaire',
 
 //O
 'oops' => 'Oups !',

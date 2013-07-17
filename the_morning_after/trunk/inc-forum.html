@@ -1,8 +1,8 @@
 <h2 class="post_comm ajax" id="#comments"><:discussion:></h2>
 
 [(#REM) Nombre total de messages ]
-<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />[<h3 class="mast5">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</h3>]<//B_decompte>
+<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}> </BOUCLE_decompte>[<h3 class="mast5">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})][ - (#PARAMETRES_FORUM|non)<:forum_ferme:>]</h3>]</B_decompte><h3 class="mast5">Pas de <:message:>[ - (#PARAMETRES_FORUM|non)<:forum_ferme:>]</h3><//B_decompte>
 
 [(#REM) Messages du forum ]
 <B_forums>
@@ -13,7 +13,7 @@
 	<li id="comment-#ID_FORUM">
 
 		<div class="commentcont">
-				<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+				<strong class="#EDIT{titre} forum-titre"><a href="#SELF#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
 				<div class="#EDIT{texte}">
 				[(#TEXTE|lignes_longues)]
 				</div>
@@ -27,9 +27,9 @@
 				})]
 				</BOUCLE_doc>
 
-				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
+				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#SELF#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
 				
-				<INCLURE{fond=repondre}{ajax}{env}{id_forum}>
+				[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}{id_forum}>]
 				
 				<B_forums_fils>
 		<ol>
@@ -38,7 +38,7 @@
 			<li id="comment-#ID_FORUM">
 
 		<div class="commentcont">
-				<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+				<strong class="#EDIT{titre} forum-titre"><a href="#SELF#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
 				<div class="#EDIT{texte}">
 				[(#TEXTE|lignes_longues)]
 				</div>
@@ -52,9 +52,9 @@
 				})]
 				</BOUCLE_doc2>
 
-				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
+				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#SELF#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
 				
-				<INCLURE{fond=repondre}{ajax}{env}{id_forum}>
+				[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}{id_forum}>]
 				
 				<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
 				
@@ -68,3 +68,5 @@
 
 </ol>
 </B_forums>
+[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}>]
+
