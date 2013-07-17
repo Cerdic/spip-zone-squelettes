@@ -1,8 +1,4 @@
-[(#REM) Cette balise (invisible) provoque le recalcul du forum
-la premiere fois qu'un message est poste (cf. inc/invalideur). ]
-[(#PARAMETRES_FORUM|?{''})]
-
-<h2 class="post_comm"><:discussion:></h2>
+<h2 class="post_comm ajax" id="#comments"><:discussion:></h2>
 
 [(#REM) Nombre total de messages ]
 <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />[<h3 class="mast5">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
@@ -33,7 +29,7 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 
 				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
 				
-				[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
+				<INCLURE{fond=repondre}{ajax}{env}{id_forum}>
 				
 				<B_forums_fils>
 		<ol>
@@ -58,7 +54,7 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 
 				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
 				
-				[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
+				<INCLURE{fond=repondre}{ajax}{env}{id_forum}>
 				
 				<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
 				
