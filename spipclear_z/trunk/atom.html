@@ -25,7 +25,15 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 				<updated>[(#DATE|date_iso)]</updated>
 				<id>[(#URL_ARTICLE|url_absolue)]</id>
 				<summary type="text">[(#INTRODUCTION|textebrut|entites_html|entites_unicode)]</summary>
-				<content type="html">[(#TEXTE|texte_backend)]</content>
+				[(#CONFIG{syndication_integrale}|=={oui}|oui)<content type="html">
+					[(#LOGO_ARTICLE{right}|image_reduire{150,150}|texte_backend)
+					][&lt;div class='atom_chapo'&gt;(#CHAPO|texte_backend)&lt;/div&gt;
+					][&lt;div class='atom_texte'&gt;(#TEXTE|
+							image_reduire{500,0}|texte_backend)&lt;/div&gt;
+					][&lt;hr /&gt;
+					&lt;div class='atom_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;
+					][&lt;div class='atom_ps'&gt;(#PS|texte_backend)&lt;/div&gt;]
+				</content>]
 				<author><name><BOUCLE23(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE23>Inconnu<//B23></name></author>
 			</entry>
 		</BOUCLE3>
