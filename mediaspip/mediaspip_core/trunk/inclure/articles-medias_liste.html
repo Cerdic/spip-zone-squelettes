@@ -83,7 +83,7 @@
 ]
 <BOUCLE_medias_test(ARTICLES){id_article IN #GET{articles_rubriques}}{notation}{mesfavoris #ENV{mesfavoris,ignore}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{id_auteur ?}{id_mot ?}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{em_type ?}{recherche ?}{tri #GET{tri_medias,#GET{tri_articles_home}},#GET{tri_medias,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{0,#GET{limite}}{doublons medias}{tout} />
 <B_medias>
-<div class="liste articles sommaire medias" id="#ENV{id_bloc,liste_medias}">
+<div class="liste articles sommaire medias clearfix" id="#ENV{id_bloc,liste_medias}">
 	<h2 class="h2"[ id="(#ANCRE_PAGINATION|extraire_attribut{id})"]>[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
 	<div class="formulaires_tris">[(#GRAND_TOTAL|>{1}|oui)
 		<div class="ajax">#FORMULAIRE_MS_TRI{#GET{tri_medias},liste_medias,##ENV{id_bloc,liste_medias}}</div>][(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
@@ -95,7 +95,7 @@
 			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias>
 		</ul>
-		[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
+		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 	</div>
 </div>
 </B_medias>
@@ -134,7 +134,7 @@
 	[(#SET{articles_rubriques,[(#ENV{articles,#GET{articles}}|array_intersect{[(#GET{articles_rubriques})]})]})]]
 <BOUCLE_medias_test_tous(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda date, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{id_auteur ?}{id_mot ?}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{em_type ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_medias_tous,#GET{tri_articles_home}},#GET{tri_medias_tous}|in_array{#GET{critere_inverse,#GET{tri_articles_home}}}|?{-1,1}}{0,#GET{limite}}{doublons medias_tous}{tout} />
 <B_medias_tous>
-<div class="liste articles sommaire medias" id="#ENV{id_bloc,liste_medias}">
+<div class="liste articles sommaire medias clearfix" id="#ENV{id_bloc,liste_medias}">
 	<h2 class="h2"[ id="(#ANCRE_PAGINATION|extraire_attribut{id})"]>[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
 	<div class="formulaires_tris">[(#GRAND_TOTAL|>{1}|oui)
 		<div class="ajax">[(#FORMULAIRE_MS_TRI{#GET{tri_medias_tous},#ENV{id_bloc,liste_medias},[#(#ENV{id_bloc,liste_medias})]})]</div>][(#GRAND_TOTAL|>={#GET{limite_pagination,6}}|oui)
@@ -146,7 +146,7 @@
 			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias_tous>
 		</ul>
-		[<p class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</p>]
+		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 	</div>
 </div>
 </B_medias_tous>

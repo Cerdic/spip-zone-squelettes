@@ -284,7 +284,7 @@ function mediaspip_core_recuperer_fond($flux){
 			/**
 			 * Si on n'a pas d'ul c'est que l'on n'est pas dans un diogène
 			 */
-			if($pos_ul = strripos($flux['data']['texte'], '</ul>');){
+			if($pos_ul = strripos($flux['data']['texte'], '</ul>')){
 				$insert = recuperer_fond('inclure/diogene_modifier_ajouts',$flux['args']['contexte']);
 				$flux['data']['texte'] = substr_replace($flux['data']['texte'], $insert, $pos_ul, 0);
 			}
@@ -304,7 +304,11 @@ function mediaspip_core_recuperer_fond($flux){
  * @return string $flux le contenu textuel modifié du pipeline
  */
 function mediaspip_core_insert_head_css($flux){
-	if($css = find_in_path('css/mediaspip.css')){
+	if(function_exists('lesscss_select_css'))
+		$css = lesscss_select_css('css/mediaspip.css');
+	else
+		$css = find_in_path('css/mediaspip.css');
+	if($css){
 		$flux .= '
 <link rel="stylesheet" href="'.direction_css($css).'" type="text/css" media="all" />
 ';
