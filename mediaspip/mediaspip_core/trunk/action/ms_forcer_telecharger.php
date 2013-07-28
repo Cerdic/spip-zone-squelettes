@@ -52,7 +52,7 @@ function action_ms_forcer_telecharger_dist() {
 	else if (!file_exists($file)
 		OR !is_readable($file)
 		OR (lire_config('mediaspip/squelettes/autoriser_telecharger') != 'on')
-		OR (!$GLOBALS['visiteur_session']['id_auteur']
+		OR (!isset($GLOBALS['visiteur_session']['id_auteur'])
 			&& (lire_config('mediaspip/squelettes/autoriser_telecharger_que_logues','') == 'on'))
 		)
 	{

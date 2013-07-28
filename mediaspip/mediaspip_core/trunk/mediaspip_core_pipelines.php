@@ -58,6 +58,7 @@ function mediaspip_core_styliser($flux){
 		&& ($flux['args']['contexte']['type-page'] == 'auteur')
 		&& substr($squelette,-strlen($fond))==$fond
 		&& isset($flux['args']['contexte']['id_auteur'])
+		&& isset($GLOBALS['visiteur_session']['id_auteur'])
 		&& ($flux['args']['contexte']['id_auteur'] == $GLOBALS['visiteur_session']['id_auteur'])
 		&& ($f=find_in_path($fond."-profil.".$ext))){
 			$flux['data'] = substr($f,0,-strlen(".$ext"));
@@ -144,7 +145,7 @@ function mediaspip_core_jquery_plugins($plugins){
  * @return array
  */
 function mediaspip_core_editer_contenu_objet($flux){
-	if (in_array($flux['args']['type'],array('auteur')) && !test_espace_prive()){
+	if (isset($flux['args']['type']) && in_array($flux['args']['type'],array('auteur')) && !test_espace_prive()){
 		if (preg_match(",<li [^>]*class=[\"']editer editer_pgp.*<\/li>,Uims",$flux['data'],$regs))
 			$flux['data'] = preg_replace(",(<li [^>]*class=[\"']editer_pgp.*<\/li>),Uims","",$flux['data'],1);
 		if (preg_match(",<div [^>]*class=[\"']editer instituer_auteur.*<\/div>,Uims",$flux['data'],$regs))
@@ -162,7 +163,7 @@ function mediaspip_core_editer_contenu_objet($flux){
  * @return array $flux Le contexte d'environnement modifié
  */
 function mediaspip_core_formulaire_charger($flux){
-	if($flux['args']['form'] == 'inscription')
+	if(isset($flux['args']['form']) && $flux['args']['form'] == 'inscription')
 		$flux['data']['_commentaire'] = '';
 	return $flux;
 }
@@ -176,7 +177,7 @@ function mediaspip_core_formulaire_charger($flux){
  * @return array $flux Le contexte d'environnement modifié
  */
 function mediaspip_core_formulaire_verifier($flux){
-	if($flux['args']['form'] == 'configurer_mediaspip_home'){
+	if(isset($flux['args']['form']) && $flux['args']['form'] == 'configurer_mediaspip_home'){
 		$numeriques = array('document_largeur_maximale_exergue','document_hauteur_maximale_exergue','nb_sites_nav','nb_syndics_nav');
 		foreach($numeriques as $numerique){
 			if(_request($numerique) && !ctype_digit(_request($numerique)))
@@ -194,7 +195,7 @@ function mediaspip_core_formulaire_verifier($flux){
 				$flux['data'][$inf_mille] = _T('mediaspip_core:erreur_valeur_int_inf',array('nb'=>'1000'));
 		}
 	}
-	else if($flux['args']['form'] == 'configurer_mediaspip_squelettes'){
+	else if(isset($flux['args']['form']) && $flux['args']['form'] == 'configurer_mediaspip_squelettes'){
 		$numeriques = array(
 					'logo_largeur',
 					'logo_hauteur',
