@@ -55,7 +55,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_liste_syndic_articles' => 'Vypíše zoznam všetkých syndikovaných článkov zo stránky v SPIPe alebo tých, ktoré sa nachádzajú v rovnakej alebo inej uvedenej rubrike.',
 	'description_mot-contenuprincipal' => 'Zobrazí meno, logo, typ, opis a text.',
 	'description_mot-documents' => '<strong>POZOR!</strong> Nepomýľte si tento oriešok s <em>dokumentami prepojenými cez kľúčové slovo.</em> Tu sú  dokumenty prepojené cez  <em>kľúčové slová príloh.</em><br />Podľa predvolených nastavení  nezobrazuje fotografie, zvyčajne sú zobrazené prostredníctvom portfólia. Zobrazenie si môžete vynútiť v prípade, ak nezobrazujete portfólio.',
-	'description_mot-documents_lies' => '<strong>ATTENTION :</strong> ne pas confondre cette noisette avec les <em>documents joints à ce mot-clé</em>. Il s\'agit ici des <em>documents liés</em> au mot-clé, c\'est-à-dire les documents portant ce mot-clé.', # NEW
+	'description_mot-documents_lies' => '<strong>POZOR!</strong> Nepomýľte si tento oriešok s <em>dokumentami pripojenými k tomuto kľúčovému slovu.</em> Toto sú <em>dokumenty pripojené</em> ku kľúčovému slovu, to znamená dokumenty priradené k tomuto kľúčovému slovu.',
 	'description_navigation_rubriques' => 'Zoznam rubrík a podrubrík (vo všetkých jazykoch) zoradených podľa názvu.',
 	'description_navigation_secteurs_langue' => 'Zoznam rubrík a podrubrík zotriedený podľa nadpisu, sektora aktuálneho jazyka. Použite iba na stránke, ktorá je rozdelená do  sektorov podľa jazyka (podľa zásady jazyk podľa sektora a sektor podľa jazyka).',
 	'description_page-filariane' => 'Zobrazenie mininavigácie vo forme 
@@ -87,7 +87,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_afficher_source_rss' => 'Má sa pri článkoch nahratých zásuvným modulom RSS v článku zobraziť zdroj, teda stránka, z ktorej bol článok skopírovaný?',
 	'explication_afficher_tri_alphabetique_nom' => 'Ak je zoznam zotriedený podľa názvu, zobrazenie abecedného registra umožňuje priamy prístup k prvkom, ktorých názov sa začína na požadované písmeno.',
 	'explication_afficher_tri_alphabetique_titre' => 'Ak zoznam zotriedite podľa nadpisu, zobrazí sa abecedný register, ktorý umožňuje priamy prístup k prvkom, ktorých nadpis sa začína na určité písmeno. <strong>POZOR:</strong> ak používate číslované nadpisy, nebude to fungovať správne.',
-	'explication_choix_logo_syndic_article' => 'Vous pouvez afficher le logo du site parent ou bien la première image trouvée dans le texte de l\'article syndiqué (à condition que vous syndiquiez le contenu complet au format HTML des articles).', # NEW
+	'explication_choix_logo_syndic_article' => 'Môžete zobraziť logo nadradenej stránky alebo prvý obrázok nájdený v texte syndikovaného článku (pod podmienkou, že syndikujete celý obsah článkov vo formáte HTML).',
 	'explication_choix_periode' => 'Pridá odkazy, ktoré umožnia návštevníkom zmeniť obdobie (minulé udalosti, aktuálne alebo nadchádzajúce udalosti). Odkazy sa zobrazia iba vtedy, ak je v danom období nejaká udalosť.',
 	'explication_choix_tri' => 'Ako na SPIP-Contrib, pridáva trvalé odkazy návštevníkom, aby mohli zmeniť zotriedenie zoznamu.',
 	'explication_formulaire_reponse_volant' => 'Reprodukuje funkciu SPIP-Contribu: keď návštevník klikne na tlačidlo "Odpovedať na správu", k správe sa zobrazí formulár na napísanie odpovede.',
@@ -98,7 +98,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_raccourcis_typo' => 'Môžete používať klávesové skratky SPIPu.',
 	'explication_restreindre_langue' => 'V prípade viacjazyčnej stránky môžete chcieť obmedziť zobrazenie na objekty v rovnakom jazyku.',
 	'explication_tri_recherche' => 'Podľa predvolených nastavení budú výsledky zotriedené podľa relevantnosti. Ak aktivujete triedenie podľa úprav, možnosť "podľa relevantnosti" bude pridaná automaticky.',
-	'explication_url_minical' => 'Page sur laquelle arrive le visiteur lorsqu\'il clique sur une date du mini-calendrier. Assurez-vous que cette page contient une noisette listant les mêmes objets que ceux du mini-calendrier.', # NEW
+	'explication_url_minical' => 'Stránka, na ktorú sa návštevník dostane, ak klikne na dátum v minikalendári. Uistite sa, že na tejto stránke je oriešok, ktorý má rovnaké objekty ako minikalendár.',
 	'explication_vignette_ajout_css' => 'Väčšina farebných motívov pre Zpip neberie do úvahy miniatúry autorov. Táto možnosť vám umožňuje znova pridať pevnú šablónu do niektorých štýlov CSS na vylepšenie zobrazenia. Neaktivujte túto možnosť, ak farebný motív podporuje miniatúry.',
 
 	// I
