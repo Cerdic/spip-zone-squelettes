@@ -36,7 +36,7 @@
 
 <BOUCLE_si_plugins_conseilles(CONDITION){si #VAL{plugins_conseilles}|in_array{#GET{notices}}|non}>
 <B_plugins_conseilles>
-[(#BOITE_OUVRIR{<h3>[(#VAL{mediaspip_config:titre_plugins_conseilles}|_T)]</h3>,notice})]
+[(#BOITE_OUVRIR{<h3>[(#VAL{mediaspip_config:titre_plugins_conseilles}|_T)]</h3>,notice warning})]
 	<p class="explication"><:mediaspip_config:explication_plugins_conseilles:></p>
 	<ul class="liste-items plugins">
 	<BOUCLE_plugins_conseilles(POUR){tableau #GET{plugins_conseils}}>
@@ -77,7 +77,7 @@
 	</BOUCLE_plugins_geo>
 	<B_plugins_geo_presents>
 	#SET{extensions_em_geo_string,#GET{extensions_em_geo}|implode{', '}}
-	[(#BOITE_OUVRIR{'',notice})]
+	[(#BOITE_OUVRIR{'',notice warning})]
 		<p><:mediaspip_config:message_formats_emballe_media_plugin{formats=#GET{extensions_em_geo_string}}:></p>
 		<ul>
 		<BOUCLE_plugins_geo_presents(PLUGINS){prefixe IN #GET{plugins_geo_non_presents}}>
@@ -102,7 +102,7 @@
 [(#GET{extensions_videos}|count|>{0}|ou{#GET{extensions_audios}|count|>{0}}|et{#VAL{extensions_spipmotion}|in_array{#GET{notices}}|non}|oui)
 	[(#SET{extensions_videos_string,[(#GET{extensions_videos}|implode{', '})]})]
 	[(#SET{extensions_audios_string,[(#GET{extensions_audios}|implode{', '})]})]
-	[(#BOITE_OUVRIR{'',notice})]
+	[(#BOITE_OUVRIR{'',notice warning})]
 		<p><:mediaspip_config:message_formats_spipmotion:></p>
 		<ul>
 		[(#GET{extensions_videos}|count|>{0}|oui)
@@ -128,7 +128,7 @@
 [(#SET{extensions_doc2img_possibles,[(#GET{extensions_doc2img}|array_intersect{#GET{extensions_em_doc2img}})]})]
 [(#SET{extensions_doc2img_inutilisees,[(#GET{extensions_doc2img_possibles}|array_diff{[(#VAL{trim}|array_map{[(#CONFIG{doc2img/format_document}|explode{','})]})]})]})]
 [(#GET{extensions_doc2img_inutilisees}|count|>{0}|oui)
-	[(#BOITE_OUVRIR{'',notice})]
+	[(#BOITE_OUVRIR{'',notice warning})]
 		<p><:mediaspip_config:message_formats_doc2img:></p>
 		[(#SET{extensions_doc2img_inutilisees_string,[(#GET{extensions_doc2img_inutilisees}|implode{', '})]})]
 		<ul>
