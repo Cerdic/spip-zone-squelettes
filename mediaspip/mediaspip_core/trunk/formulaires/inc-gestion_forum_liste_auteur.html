@@ -37,7 +37,7 @@
 </p>]
 [(#REM) désactiver l'ancre de pagination qui est déjà présente dans le squelette appelant ]
 #SET{virer_ancre,#ANCRE_PAGINATION}
-[<p class='pagination'>(#PAGINATION)</p>]
+[<div class='pagination'>(#PAGINATION{#ENV{type_pagination,page}})</div>]
 <ul class='liste_items forums'>
 	<BOUCLE_forum(FORUMS){id_forum?}{id_rubrique ?}{id_article IN #GET{articles}}{id_syndic ?}{id_message?}{id_auteur?}{auteur?}{email_auteur?}{ip?}{!par id_forum}{pagination #ENV{pagination}}{statut?}{statut LIKE #ENV{prive}}{statut !LIKE #ENV{public}}{recherche?}>
 	<li class="item forum statut_#STATUT[ (#COMPTEUR_BOUCLE|alterner{'','odd'})]" id='forum#ID_FORUM'>
@@ -84,5 +84,5 @@
 	</li>
 	</BOUCLE_forum>
 </ul>
-[<p class='pagination'>(#PAGINATION)</p>]
+[<div class='pagination'>(#PAGINATION{#ENV{type_pagination,page}})</div>]
 </B_forum>

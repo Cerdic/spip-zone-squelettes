@@ -1,7 +1,7 @@
 #SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
 #SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
 [(#REM) Fil d'Ariane ]
-<p id="hierarchie" class="pas_surlignable"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><:mediaspip_core:info_recherche_avancee:></p>
+<p id="hierarchie" class="pas_surlignable breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep divider"> &gt; </span><:mediaspip_core:info_recherche_avancee:></p>
 <div class="content-principal pas_surlignable">
 	[<div class="cartouche">
 		<div class="logo">
@@ -41,14 +41,14 @@
 				</li>
 				</BOUCLE_articles>
 			</ul>
-			[<p class="pagination">(#PAGINATION{page})</p>]
+			[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 		</div>
 		</B_articles>
-		
+
 		[(#REM)
-			
+
 			On ne recherche dans les articles syndiques que si les critères de la recherche le permettent
-			
+
 		]
 		<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|non}>
 		[(#REM) articles externes trouves ]
@@ -66,7 +66,7 @@
 				</li>
 				</BOUCLE_syndic_articles>
 			</ul>
-			[<p class="pagination">(#PAGINATION{page})</p>]
+			[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 		</div>
 		</B_syndic_articles>
 		</BOUCLE_recherche_critere_syndic_ok>

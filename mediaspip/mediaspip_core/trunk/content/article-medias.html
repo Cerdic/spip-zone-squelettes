@@ -1,5 +1,5 @@
 <BOUCLE_contenu_article(ARTICLES){id_article}>[(#SET{config_page_medias,#CONFIG{mediaspip/medias,#ARRAY}})]
-<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
+<p id="hierarchie" class="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep divider"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[<span class="sep divider"> &gt; </span><strong class="on active">(#TITRE|supprimer_numero|couper{80})</strong>]</p>
 [(#PLUGIN{polyhier}|oui)[(#INCLURE{fond=inclure/hierarchie_poly,id_article,id_rubrique})]]
 <BOUCLE_media_doc(DOCUMENTS){id_article}{0,1}>#SET{media_doc,#MEDIA}</BOUCLE_media_doc>
 <div class="content-principal hentry" itemscope[(#GET{media_doc}|=={video}|oui)[(#SET{done,oui})]itemtype="http://schema.org/VideoObject"][(#GET{media_doc}|=={audio}|oui)[(#SET{done,oui})]itemtype="http://schema.org/AudioObject"][(#GET{done}|=={oui}|non)itemtype="http://schema.org/MediaObject"]>
@@ -9,9 +9,7 @@
 		]<h1 class="h1 #EDIT{titre} entry-title" itemprop="name">#TITRE</h1>[
 		<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 		[(#REM) 
-			
 			Inclure le modele des liens de traductions
-			 
 		][(#MODELE{article_traductions})]
 		[(#PLUGIN{suivant_precedent}|oui)[(#ID_TRAD|>{0}|?{#SET{id_article,#ID_TRAD},#SET{id_article,#ID_ARTICLE}})]
 		[<div class="precedent_suivant">
@@ -20,12 +18,12 @@
 	</div>
 	[(#INCLURE{fond=inclure/document_media,env})]
 	[(#REM)
-	
+
 		Informations supplementaires sur le document
-		
-	]<div id="infos_sup">[(#SET{infos_cachees_medias,#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY}})]
-		<h2 class="h2"><:mediaspip_core:media_a_propos:></h2>
-		<div class="infos_descriptif surlignable">
+
+	]<div id="infos_sup" class="surlignable row">[(#SET{infos_cachees_medias,#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY}})]
+		<h2 class="h2 span8"><:mediaspip_core:media_a_propos:></h2>
+		<div class="infos_media_bloc infos_descriptif span4">
 			[(#PLUGIN{gis}|oui)
 			[(#INCLURE{fond=inclure/gis_mini_map,objet=article,id_objet=#ID_ARTICLE})]]
 			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>[
@@ -55,12 +53,11 @@
 			[(#PLUGIN{SPIPICIOUS}|oui)
 				<INCLURE{fond=inc-tags,objet=article,id_objet=#ID_ARTICLE,message_aucun=non} />
 				#FORMULAIRE_SPIPICIOUS_AJAX{#ID_ARTICLE,article}
-			][
-			(#PLUGIN{collections}|oui)
+			][(#PLUGIN{collections}|oui)
 				<INCLURE{fond=inclure/collections_liees_media,id_article,ajax} />
 				[(#FORMULAIRE_ASSOCIER_MEDIA_COLLECTION{#ID_ARTICLE})]]
 		</div>
-		<div class="infos_statistiques surlignable">
+		<div class="infos_media_bloc infos_statistiques span4">
 			<h3 class="h3"><:mediaspip_core:info_statistiques:></h3>
 			[(#INCLURE{fond=inclure/infos_notations_article,env}|trim)]
 			[(#VAL{info_nb_vues}|in_array{#GET{infos_cachees_medias}}|non)
