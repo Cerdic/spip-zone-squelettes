@@ -1,5 +1,240 @@
 <?php
 
+/**
+ * Plugin Escal
+ * Licence GNU/GPL
+ */
+
+if (!defined('_ECRIRE_INC_VERSION')) return;
+
+// =======================================================================================================================================
+// Paramétrage à l'installation d'Escal
+// Merci à Arnaud Bérard pour son aide précieuse
+// =======================================================================================================================================
+
+/**
+ * escal_configuration()
+ * teste et configure certaines options de spip pour escal
+*/
+
+function escal_configuration(){
+    include_spip('inc/config');
+    
+    // active l'utilsation des mots clefs
+    $articles_mots = lire_config('articles_mots');
+    if($articles_mots == 'non')
+        ecrire_meta('articles_mots','oui');
+  
+}
+
+
+/*
+ * function install_groupe_mot
+ * installe le groupe de mots techniques et ses mots clefs
+ */
+function install_groupe_mots() {
+    // Création du groupe de mot-clef : affichage
+    $groupe_affichage = sql_insertq('spip_groupes_mots',array(
+      'titre'=>'affichage',
+      'tables_liees'=>'articles,rubriques,syndic',
+      'minirezo'=>'oui',
+      'comite'=>'oui'
+      ));
+    
+    // Création des mots-clefs -----------
+
+    // Mot : pas_au_menu
+    $pas_au_menu = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$pas_au_menu,array(
+        'titre'=>'pas-au-menu',
+        'descriptif'=>'pour ne pas afficher une rubrique ou un article dans le menu horizontal'
+        )
+    );
+    
+    // Mot : pas_au_menu
+    $pas_au_menu_vertical = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$pas_au_menu_vertical,array(
+        'titre'=>'pas-au-menu-vertical',
+        'descriptif'=>'pour ne pas afficher une rubrique ou un article dans les menus verticaux'
+        )
+    );
+    
+    // Mot : chrono
+    $chrono = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$chrono,array(
+        'titre'=>'chrono',
+        'descriptif'=>'pour afficher les articles d&rsquo;une rubrique dans les menus en ordre ant&eacute;chronologique, comportement non transmis aux rubriques-filles'
+        )
+    );
+    
+    // Mot : pas-a-la-une
+    $pas_a_la_une = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$pas_a_la_une,array(
+        'titre'=>'pas-a-la-une',
+        'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "les derniers articles ..." de la page d&rsquo;accueil'
+        )
+    );
+    
+    // Mot : pas-au-plan
+    $pas_au_plan = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$pas_au_plan,array(
+        'titre'=>'pas-au-plan',
+        'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "Plan du site" de la page d&rsquo;accueil'
+        )
+    );
+    
+    // Mot : edito
+    $edito = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$edito,array(
+        'titre'=>'edito',
+        'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Edito" (noisette inc-edito)'
+        )
+    );
+    
+    // Mot : accueil
+    $accueil = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$accueil,array(
+        'titre'=>'accueil',
+        'descriptif'=>'pour choisir l&rsquo;article affich&eacute; en onglet d&rsquo;accueil (noisette inc-accueil)'
+        )
+    );
+    
+    // Mot : acces-direct
+    $acces_direct = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$acces_direct,array(
+        'titre'=>'acces-direct',
+        'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Acc&egrave;s direct" (noisette inc-acces_direct)'
+        )
+    );
+    
+    // Mot : annonce
+    $annonce = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$annonce,array(
+        'titre'=>'annonce',
+        'descriptif'=>'pour choisir l&rsquo;article dont le texte sera affich&eacute; dans le bloc "Annonce" de la page d&rsquo;accueil (noisette inc-annonce)'
+        )
+    );
+    
+    // Mot : annonce-defilant
+    $annonce_defilant = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$annonce_defilant,array(
+        'titre'=>'annonce-defilant',
+        'descriptif'=>'pour choisir les articles dont le texte sera affich&eacute; dans le bloc "Annonces d&eacute;filantes" de la page d&rsquo;accueil (noisette inc-annonce_defilant)'
+        )
+    );
+    
+    // Mot : agenda
+    $agenda = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$agenda,array(
+        'titre'=>'agenda',
+        'descriptif'=>'pour choisir les articles ou la ou les rubriques dont les articles seront affich&eacute;s dans l&rsquo;agenda'
+        )
+    );
+    
+    // Mot : actus
+    $actus = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$actus,array(
+        'titre'=>'actus',
+        'descriptif'=>'pour choisir les articles qui seront affich&eacute;s dans le bloc "Actus" (noisette inc-actus)'
+        )
+    );
+    
+    // Mot : photo-une
+    $photo_une = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$photo_une,array(
+        'titre'=>'photo-une',
+        'descriptif'=>'pour choisir les articles dont les images seront affich&eacute;es dans le bloc "Quelques images au hasard" (noisette inc-photos)'
+        )
+    );
+    
+    // Mot : video-une
+    $video_une = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$video_une,array(
+        'titre'=>'video-une',
+        'descriptif'=>'pour choisir les articles dont les vid&eacute;os seront affich&eacute;es dans le bloc "Vid&eacute;o" (noisette inc-video_accueil)'
+        )
+    );
+    
+    // Mot : favori
+    $favori = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$favori,array(
+        'titre'=>'favori',
+        'descriptif'=>'pour choisir les sites dont les vignettes seront affich&eacute;es dans le bloc "Sites favoris" (noisette inc-sites_favoris.html)'
+        )
+    );
+    
+    // Mot : site-exclus
+    $site_exclus = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$site_exclus,array(
+        'titre'=>'site-exclus',
+        'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)'
+        )
+    );
+    
+    // Mot : forum
+    $forum = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$forum,array(
+        'titre'=>'forum',
+        'descriptif'=>'pour choisir le secteur qui sera utilis&eacute; pour le forum du site'
+        )
+    );
+    
+    // Mot : annuaire
+    $annuaire = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$annuaire,array(
+        'titre'=>'annuaire',
+        'descriptif'=>'pour choisir l&rsquo;article qui sera utilis&eacute; par la page annuaire.html'
+        )
+    );
+    
+    // Mot : RubriqueOnglet
+    $RubriqueOnglet = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$RubriqueOnglet,array(
+        'titre'=>'RubriqueOnglet',
+        'descriptif'=>'pour choisir la rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil'
+        )
+    );
+    
+    // Mot : citations
+    $citations = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$citations,array(
+        'titre'=>'citations',
+        'descriptif'=>'pour choisir l&rsquo;article qui servira de r&eacute;servoir pour les citations dans le pied de page'
+        )
+    );
+    
+    $result = array(
+        'affichage'=>$groupe_affichage, 
+        'affichage_mots'=> array(
+            'pas_au_menu'=>$pas_au_menu,
+            'pas_au_menu_vertical'=>$pas_au_menu_vertical,
+            'chrono'=>$chrono,
+            'pas_a_la_une'=>$pas_a_la_une,
+            'pas_au_plan'=>$pas_au_plan,
+            'edito'=>$edito,
+            'accueil'=>$accueil,
+            'acces_direct'=>$acces_direct,
+            'annonce'=>$annonce,
+            'annonce_defilant'=>$annonce_defilant,
+            'agenda'=>$agenda,
+            'actus'=>$actus,
+            'photo_une'=>$photo_une,
+            'video_une'=>$video_une,
+            'favori'=>$favori,
+            'site_exclus'=>$site_exclus,
+            'forum'=>$forum,
+            'annuaire'=>$annuaire,
+            'RubriqueOnglet'=>$RubriqueOnglet,
+            'citations'=>$citations
+            )
+    );
+    
+    ecrire_config('escal/mots_techniques',$result);
+    
+    return $result;
+}
+
+
 
 // =======================================================================================================================================
    // pour gerer les classes des differents liens dans les articles
@@ -178,5 +413,8 @@ $GLOBALS['diapo_petit_h']=300;
 
 //diaporama : temps de pause en millisecondes :
 $GLOBALS['diapo_temps']=3000;
+
+
+
 
 ?>
