@@ -36,6 +36,7 @@ function install_groupe_mots() {
     // Création du groupe de mot-clef : affichage
     $groupe_affichage = sql_insertq('spip_groupes_mots',array(
       'titre'=>'affichage',
+      'descriptif'=>'Groupe de mots-cl&eacute;s techniques utilis&eacute;s dans Escal',
       'tables_liees'=>'articles,rubriques,syndic',
       'minirezo'=>'oui',
       'comite'=>'oui'
