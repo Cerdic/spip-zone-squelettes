@@ -204,6 +204,22 @@ function install_groupe_mots() {
         )
     );
     
+    // Mot : mon-article
+    $mon_article = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$mon_article,array(
+        'titre'=>'mon-article',
+        'descriptif'=>'pour choisir l&rsquo;article qui sera affiché dans un onglet du bloc central de la page d&rsquo;accueil'
+        )
+    );
+    
+    // Mot : special
+    $special = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$special,array(
+        'titre'=>'special',
+        'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affichés dans le bloc à personnaliser (noisette inc-perso.html)'
+        )
+    );
+    
     $result = array(
         'affichage'=>$groupe_affichage, 
         'affichage_mots'=> array(
@@ -226,7 +242,9 @@ function install_groupe_mots() {
             'forum'=>$forum,
             'annuaire'=>$annuaire,
             'RubriqueOnglet'=>$RubriqueOnglet,
-            'citations'=>$citations
+            'citations'=>$citations,
+            'mon_article'=>$mon_article,
+            'special'=>$special
             )
     );
     
