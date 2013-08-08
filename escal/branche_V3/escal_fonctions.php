@@ -216,7 +216,7 @@ function install_groupe_mots() {
     $special = objet_inserer('mot',$groupe_affichage);
     objet_modifier('mot',$special,array(
         'titre'=>'special',
-        'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affichés dans le bloc à personnaliser (noisette inc-perso.html)'
+        'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affich&eacute;s dans le bloc &agrave; personnaliser (noisette inc-perso.html)'
         )
     );
     
