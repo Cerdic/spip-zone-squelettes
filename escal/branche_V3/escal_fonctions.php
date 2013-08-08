@@ -164,10 +164,10 @@ function install_groupe_mots() {
         )
     );
     
-    // Mot : site-exclus
-    $site_exclus = objet_inserer('mot',$groupe_affichage);
-    objet_modifier('mot',$site_exclus,array(
-        'titre'=>'site-exclus',
+    // Mot : site-exclu
+    $site_exclu = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$site_exclu,array(
+        'titre'=>'site-exclu',
         'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)'
         )
     );
@@ -222,7 +222,7 @@ function install_groupe_mots() {
             'photo_une'=>$photo_une,
             'video_une'=>$video_une,
             'favori'=>$favori,
-            'site_exclus'=>$site_exclus,
+            'site_exclu'=>$site_exclu,
             'forum'=>$forum,
             'annuaire'=>$annuaire,
             'RubriqueOnglet'=>$RubriqueOnglet,
