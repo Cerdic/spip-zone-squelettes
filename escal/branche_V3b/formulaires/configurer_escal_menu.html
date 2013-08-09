@@ -1,0 +1,127 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmenu.png}|balise_img{'',cadre-icone})]Menus</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+	
+
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la présence ou l'absence d'un menu sur toutes les pages du site ----->
+<!-------------------------------------------------------------------------------->
+            <div class="explication">
+            Choisir la présence ou l'absence d'un menu sur toutes les pages du site.<br />
+            </div>
+
+     <ul>
+<!-- menu horizontal -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-menu" title="Voir la documentation">Menu horizontal</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,menuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Menu horizontal
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,articlesmenuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Avec affichage des articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,logorubmenu}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Avec affichage du logo de rubrique s'il existe
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,taillelogorubmenu}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Hauteur des logos de rubrique en pixels
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},20})]"  />
+                    </span>
+                    <br />Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie
+            </div>
+            </li>
+     </ul>
+            <div class="explication">
+            L'affichage ou non de l'un et/ou de l'autre menu vertical
+            se choisit dans les pages de configuration respectives mais il vous reste un choix à faire :
+            </div>
+     <ul>
+ 	<!-- menu vertical depliant -->
+ 	            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+ 	                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-menu_vertical" title="Voir la documentation"><strong>Menu vertical dépliant</strong></a></label>
+ 	                    <br />
+ 	            <div class="explication">
+ 	            #SET{name,articlesmenuV1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+ 	                    Avec affichage des articles
+ 	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+ 	                    ]<span class="choix" style="float: right">
+ 	                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+ 	                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+	 	                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+ 	                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+ 	                    </span>
+ 	            </div>
+ 	            </li>
+ 	<!-- menu vertical deroulant vers la droite-->
+ 	            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+	 	                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-menu_vertical2" title="Voir la documentation"><strong>Menu vertical déroulant à droite</strong></a></label>
+	 	                    <br />
+	 	            <div class="explication">
+	 	            #SET{name,articlesmenuV2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	 	                    Avec affichage des articles
+	 	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+	 	                    ]<span class="choix" style="float: right">
+	 	                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+	 	                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+	 	                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+	 	                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+	 	                    </span>
+	 	            </div>
+	 	            </li>
+
+	 	    </ul>
+
+
+
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
+    
+    

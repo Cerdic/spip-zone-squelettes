@@ -1,0 +1,28 @@
+	<h1 class="cadre sites-favoris">
+	[(#CONFIG{escal/config/titresitesfav}|oui)
+    [(#CONFIG{escal/config/titresitesfav}|propre|_T|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titresitesfav}|non)
+    <:escal:sites_favoris:>
+  ]
+  </h1>      
+
+	<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
+#SET{nbrsitesfav,#CONFIG{escal/config/nombresitesfav,10}}
+  <div id="scrollup4">
+
+      <BOUCLE_sites_favoris(SITES){titre_mot=favori}{0,#GET{nbrsitesfav}}>
+      <div class="headline4">
+        <a href="#URL_SITE" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris>
+      </B_sites_favoris>
+  Ici vous pouvez afficher les logos (ou à défaut une vignette "apercite" automatique) des sites avec le mot-clé "favori".<br /><br />
+  Et les images défilent.
+      <//B_sites_favoris>
+  
+	</div>
+  </div>

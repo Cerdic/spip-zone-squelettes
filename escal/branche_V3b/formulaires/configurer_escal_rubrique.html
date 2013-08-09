@@ -1,0 +1,391 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configrubrique.png}|balise_img{'',cadre-icone})]La page rubrique</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+     <ul>
+<legend><strong>Partie centrale</strong></legend>
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            #SET{name,nombreart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles affichés par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,paginhaut}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher la pagination en haut
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,paginbas}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher la pagination en bas
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            </div>
+            </li>
+
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Nombre de sites affichés par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    </div>
+             </li>
+             
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,taillelogorub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Taille des logos des rubriques et articles listés
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
+                    </span>
+                    </div>
+             </li>
+
+<legend><strong>Les blocs latéraux</strong></legend>
+
+            <div class="explication">
+            <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-acces_direct" title="Voir la documentation"><strong>Accès direct</strong></a>
+             : article avec le mot-clé "acces-direct" pour des liens internes. Le titre du bloc sera celui de l'article.<br />
+             
+            <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-derniers_articles" title="Voir la documentation"><strong>Derniers articles</strong></a>
+             : derniers articles de la rubrique en cours et de ses sous-rubriques.<br />
+             
+            <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-decouvrir_articles" title="Voir la documentation"><strong>A découvrir</strong></a>
+             : un choix d'articles du site ou bien de la rubrique en cours et de ses sous-rubriques.<br />
+             
+            <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-documents_rubrique" title="Voir la documentation"><strong>A télécharger</strong></a>
+             : liste les documents de la rubrique (pas de ses articles).<br />
+             
+            <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-perso" title="Voir la documentation"><strong>Noisette à personnaliser</strong></a>
+             : articles avec le mot-clé "special".
+                    Le paramétrage de cette noisette se fait dans l'onglet "Sommaire"<br />
+                    
+            </div>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Colonne "navigation" (par défaut à gauche)</strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Quatrième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Cinquième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavrub6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Sixième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] >Menu vertical dépliant</option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] >Menu vertical déroulant à droite</option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+
+
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Colonne "extra" (par défaut à droite)</strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Premier bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Deuxième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+             <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextrarub3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Troisième bloc
+                    <span class="choix" style="float: right">
+                            <select name="#GET{name}">
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] >Accès direct</option>
+                              <option value="derniers_articles" [(#ENV{#GET{name}}|=={derniers_articles}|?{'selected="selected"',''})] >Derniers articles</option>
+                              <option value="decouvrir_articles" [(#ENV{#GET{name}}|=={decouvrir_articles}|?{'selected="selected"',''})] >A découvrir</option>
+                              <option value="documents_rubrique" [(#ENV{#GET{name}}|=={documents_rubrique}|?{'selected="selected"',''})] >A télécharger</option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] >Noisette à personnaliser</option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>
+                            </select>
+                    </span>
+            </div>
+            </li>
+     </ul>
+              <div class="explication">
+              <p><strong>Titres des noisettes</strong></p>
+
+              <p>dans le cas d'un <strong>site multilingue</strong>, si vous voulez changer le titre d'une noisette
+              tout en conservant le multilinguisme, vous devez écrire ce titre en suivant cet exemple :</p>
+              <p> &lt;multi&gt; [fr]Exemple [en]Example [de]Beispiel [es]Ejemplo [it]Esempio &lt;/multi&gt;</p>
+              <p>En laissant la case vide, Escal utilisera le titre par défaut.</p>
+              </div>
+     <ul>
+<!-- inc-acces_direct -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-acces_direct" title="Voir la documentation"><strong>Accès direct</strong></a></label>
+                    <br />
+            <div class="explication">
+            Le titre de cette noisette est à définir dans la page de configuration du sommaire
+            </div>
+            </li>
+<!-- inc-derniers_articles -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-derniers_articles" title="Voir la documentation"><strong>Derniers articles</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
+             #SET{name,nombrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,togglederniersarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Noisette repliée et dépliable
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            </div>
+            </li>
+<!-- inc-decouvrir_articles -->
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-decouvrir_articles" title="Voir la documentation"><strong>A découvrir</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titredecouvrirarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
+             #SET{name,siteourub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Où prendre les articles ? <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_site" value="site"
+                            [(#ENV{#GET{name}}|=={site}|oui)checked="checked"] /><label for="#GET{name}_site">Dans tout le site</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_rub" value="rub"
+                            [(#ENV{#GET{name}}|=={rub}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_rub">Uniquement dans la rubrique en cours et ses sous-rubriques</label>
+                    </span>
+                    <br /><br /><br />
+             #SET{name,nombreartrecents}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles les plus récents
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br /><br />
+             #SET{name,nombrearthasard}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles pris au hasard
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br /><br />
+             #SET{name,nombreartplusvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles les plus visités
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br /><br />
+             #SET{name,nombreartmoinsvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles les moins visités
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,pagindecouvrir}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />
+             #SET{name,toggledecouvrirarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Noisette repliée et dépliable
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            </div>
+            </li>
+<!-- inc-documents_rubrique -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-documents_rubrique-et-inc" title="Voir la documentation"><strong>A télécharger</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titredocsrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            </div>
+            </li>
+     </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

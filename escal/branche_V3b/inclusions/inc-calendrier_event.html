@@ -1,0 +1,20 @@
+<!-- affichage de la liste des evènements -->
+
+
+    <B_evenements_agenda>
+      #SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+		  <div id="entete-evenement">
+        <:escal:evenements:>
+		  </div>
+
+      <p style="align:right">#PAGINATION</p>
+		<BOUCLE_evenements_agenda(EVENEMENTS){age<=0}{par date}{pagination #GET{nbrpageventcalendrier}}>
+			<div class="liste-evenements">
+			[(#DATE|jour)-][(#DATE|mois):]
+			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+			</div>
+		</BOUCLE_evenements_agenda>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+		<//B_evenements_agenda>

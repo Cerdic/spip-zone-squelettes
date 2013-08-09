@@ -1,0 +1,39 @@
+<div class="accueil">
+
+	<BOUCLE_accueil(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
+
+	  <div class="texte #EDIT{texte}" id="accueil">
+   [(#TEXTE|image_reduire{400})]
+	  </div>
+
+					<!-- et hop, un petit div pour récupérer le flux normal d'affichage
+						au cas où l'article se finisse par une image non centrée -->
+					<div class="nettoyeur"></div>
+	  [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+	  <div class="accueilforum">
+	  <hr />
+	  <INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	  </div>
+	  ]
+
+	</BOUCLE_accueil>
+	</B_accueil>
+
+	    <BOUCLE_alt(ARTICLES){lang}{par date}{inverse}{0,1}>
+
+	      <div class="texte #EDIT{texte}" id="accueil">
+       [(#TEXTE|image_reduire{400})]
+	      </div>
+        <div class="nettoyeur"></div>
+	      [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+	      <div class="accueilforum">
+	      <hr />
+	      <INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	      </div>
+	      ]
+
+	    </BOUCLE_alt>
+
+	<//B_accueil>
+
+	</div>

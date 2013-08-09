@@ -1,0 +1,289 @@
+<!-- Elements -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configelements.png}|balise_img{'',cadre-icone})]Éléments</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la présence ou l'absence d'un élément sur toutes les pages du site -->
+<!-------------------------------------------------------------------------------->
+            <div class="explication">Choisir la présence ou l'absence d'un élément sur toutes les pages du site</div>
+
+     <ul>
+<!-- favicon -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Favicon</strong></label>
+                    <br />
+                    <div class="explication">
+            #SET{name,favicon}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_favicon" value="favicon"
+                            [(#ENV{#GET{name}}|=={favicon}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_favicon">à partir du fichier favicon.ico <br />celui d'Escal ou le vôtre, mis dans le dossier "squelettes"</label>
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_logosite" value="logosite"
+                            [(#ENV{#GET{name}}|=={logosite}|oui)checked="checked"] /><label for="#GET{name}_logosite">à partir du logo de votre site<br />il sera automatiquement transformé (taille, format) par Escal </label>
+
+                    </span>
+                    </div>
+             </li>
+
+<!-- pointeur -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Pointeurs de souris</strong></label>
+                    <br />
+                    <div class="explication">
+                    Vous pouvez choisir ici le chemin de votre image de pointeur qui doit être au format .cur et ne pas dépasser 32x32 px.<br />
+                    Cette image doit se trouver dans le dossier /squelettes/images/pointeurs <br /><br />
+            #SET{name,pointeurbody}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Pointeur général
+                <select name="#GET{name}" class="select" id="imgbandeau">
+                      <option value="">Pointeur par défaut</option>
+                    <BOUCLE_choix_image1(DATA){source glob, ../squelettes/images/pointeurs/{*.cur,*.ani}}>
+										#SET{val1,#VALEUR|replace{../squelettes/}}
+  										<option
+                        style="background:url('#CHEMIN{#GET{val1}}') no-repeat; padding-left:30px; height:35px;"
+                        value="#GET{val1}"[(#ENV{#GET{name}}|=={#GET{val1}}|?{'selected="selected"',''})]>
+                      #VALEUR
+                      </option>
+									</BOUCLE_choix_image1>
+								</select>
+            #SET{name,pointeura}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Pointeur pour les liens
+                <select name="#GET{name}" class="select" id="imgbandeau">
+                      <option value="">Pointeur par défaut</option>
+                    <BOUCLE_choix_image2(DATA){source glob, ../squelettes/images/pointeurs/{*.cur,*.ani}}>
+										#SET{val2,#VALEUR|replace{../squelettes/}}
+  										<option
+                        style="background:url('#CHEMIN{#GET{val2}}') no-repeat; padding-left:30px; height:35px;"
+                        value="#GET{val2}"[(#ENV{#GET{name}}|=={#GET{val2}}|?{'selected="selected"',''})]>
+                      #VALEUR
+                      </option>
+									</BOUCLE_choix_image2>
+								</select>
+									</div>
+             </li>
+             
+<!-- ombres laterales -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Ombres latérales des pages</strong></label>
+                    <br />
+                    <div class="explication">
+            #SET{name,ombres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_gris" value="gris"
+                            [(#ENV{#GET{name}}|=={gris}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_gris"><img src="#CHEMIN{images/ombregris.png}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_blanc" value="blanc"
+                            [(#ENV{#GET{name}}|=={blanc}|oui)checked="checked"] /><label for="#GET{name}_blanc"><img src="#CHEMIN{images/ombreblanc.png}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">Aucune</label>
+                    </span>
+                    <br /><br />
+                    </div>
+             </li>
+
+<!-- bloc "espace" -->
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Barre d'outils</strong></label>
+                    <br />
+                    <div class="explication">
+                    Place de la barre d'outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)
+            #SET{name,espace}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
+                            [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_haut">Au-dessus du bandeau</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
+                            [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_blanc">Sous le bandeau</label>
+
+                    </span>
+                    <br /><br /><br />
+            #SET{name,idlight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Formulaire d'identification simplifiée.
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+                    </div>
+             </li>
+             
+<!-- formulaire de recherche -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Formulaire de recherche</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,formrecherche}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            Place du formulaire
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_espace" value="espace"
+                            [(#ENV{#GET{name}}|=={espace}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_espace">Sous le menu horizontal</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_colgauche" value="colgauche"
+                            [(#ENV{#GET{name}}|=={colgauche}|oui)checked="checked"] /><label for="#GET{name}_colgauche">Colonne de gauche</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_coldroite" value="coldroite"
+                            [(#ENV{#GET{name}}|=={coldroite}|oui)checked="checked"] /><label for="#GET{name}_coldroite">Colonne de droite</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_coldroite">Nulle part</label>
+                     </span>
+            <br /><br /><br /><br /><br />
+            </div>
+            </li>
+<!-- bord des cadres lateraux -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Cadres latéraux</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,bordcadres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Bord des cadres présents
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            </div>
+            </li>
+<!-- pied de page -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-pied" title="Voir la documentation"><strong>Pied de page</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,lienplan}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien vers le plan du site
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,liencontact}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien vers la page contact
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,lienecrire}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien vers l'espave privé
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,liensquelette}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Lien vers le squelette de la page
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,lienRSS}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Icône/Lien vers la page de flux RSS
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,lienXHTML}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Icône/Lien vers validateur XHTML
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,copyright}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage du copyright
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,hebergeur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage de l'hébergeur
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+              #SET{name,nomhebergeur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Nom de votre hébergeur
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
+                    <br />
+              #SET{name,urlhebergeur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              URL de votre hébergeur (si vous voulez un lien vers celui-ci)
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:380px" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
+            </div>
+            </li>
+
+    </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

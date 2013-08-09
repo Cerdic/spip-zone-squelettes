@@ -1,0 +1,55 @@
+<!-- Multilinguisme -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmultilingue.png}|balise_img{'',cadre-icone})]Multilinguisme</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+<a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/Escal-s-internationalise" title="Voir la documentation"><strong>Documentation sur le multilinguisme dans Escal</strong></a><br /><br />
+<!----------------------------------------------------->
+<!-- Afficher les rubriques de 1er ou de 2eme niveau -->
+<!----------------------------------------------------->
+            <div class="explication">
+            Par défaut, Escal affiche les rubriques de 1er niveau (=secteur) dans les menus.<br />
+            Si on veut avoir la même structure dans plusieurs langues, on va donc dupliquer
+            tous les secteurs dans toutes les langues. On se retrouve vite avec un grand nombre de secteurs.<br />
+            On peut donc préférer créer un secteur par langue mais dans ce cas, seul le secteur de langue apparait dans le menu.<br />
+            Cette option permet donc de faire apparaitre les rubriques de deuxième niveau dans les menus à la place des secteurs.
+            Option valable pour le menu horizontal mais aussi pour les 2 menus verticaux.
+            </div>
+
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,rubniveaudeux}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Menus avec rubriques de deuxième niveau
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"]  /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>
+            </div>
+             </li>
+    </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+
+  </div>
+  </form>
+  </div>

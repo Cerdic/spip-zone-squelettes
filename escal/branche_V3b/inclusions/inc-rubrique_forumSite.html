@@ -1,0 +1,111 @@
+#CACHE{0}
+
+<BOUCLE_rubBAI(RUBRIQUES){titre_mot=forum}{lang}>
+
+<div id="forum-site">
+    
+	<div id="ariane-forum">
+		<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+    <BOUCLE_ariane(HIERARCHIE){id_rubrique}{tout}>
+    <img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" />
+    #TITRE
+    </BOUCLE_ariane>
+	</div>
+
+	
+	<table class="forum">
+		<tr>
+			<th  colspan="2">Rubriques</th>
+			<th>Sujets</th>
+			<th>Messages</th>
+			<th>Derniers Messages</th>
+		</tr>
+
+		<!--Traitement des articles de la rubrique principale
+		Ces articles correspondent à des annonces , des règlements ou des post-it-->
+
+			<B_artRacine>
+			<!--Creation d'un titre-->
+			<tr class="rub-forum">
+      <td colspan="5">Avant de commencer</td>
+      </tr>
+			<!--listing des articles sous le titre-->
+			<BOUCLE_artRacine(ARTICLES){id_rubrique}{par titre}>
+			<tr class="art-forum">
+				<td style="width:40px">
+				[(#LOGO_ARTICLE||oui) [(#LOGO_ARTICLE||image_reduire{64})] ]
+				[(#LOGO_ARTICLE||non) <img src="#CHEMIN{images/forum_iconeEtoile.jpg}" alt="etoile" /> ]
+        </td>
+
+				<td class="titre-rub">
+					<a href="spip.php?page=forumSite-article&amp;id_article=#ID_ARTICLE">[(#TITRE)]</a>
+					#DESCRIPTIF
+        </td>
+
+				<td>
+					<BOUCLE_nbSujetRacine(FORUMS){id_article}{doublons}></BOUCLE_nbSujetRacine>
+					#TOTAL_BOUCLE
+					<//B_nbSujetRacine>
+        </td>
+
+				<td>
+					<BOUCLE_nbMessageRacine(FORUMS){id_article}{plat}{doublons}></BOUCLE_nbMessageRacine>
+					#TOTAL_BOUCLE
+					<//B_nbMessageRacine>
+        </td>
+
+				<td style="font-size:11px">
+					<BOUCLE_dernier_messageRacine(FORUMS){id_article}{plat}{par date}{inverse}{0,1}>
+						[(#NOM)]<br />
+						[(#DATE|affdate{'d/m/Y'})]<br />&agrave;  [(#DATE|affdate{'H:i:s'})]
+					</BOUCLE_dernier_messageRacine>
+        </td>
+
+			</tr>
+			</BOUCLE_artRacine>
+
+
+
+
+		<!--traitement des sous rubriques et de leurs articles-->
+		<BOUCLE_sousRub(RUBRIQUES){id_parent}{par titre}>
+			<tr class="rub-forum">
+      <td colspan="5">[(#TITRE)]</td>
+      </tr>
+			<BOUCLE_artSousRub(ARTICLES){id_rubrique}{par titre}>
+      <tr class="art-forum">
+        <td>
+        [(#LOGO_ARTICLE||oui) [(#LOGO_ARTICLE||image_reduire{64})] ]
+				[(#LOGO_ARTICLE||non) <img src="#CHEMIN{images/forum_iconeSujet.jpg}" alt="sujet" /> ]
+        </td>
+				<td class="titre-rub">
+					<a href="spip.php?page=forumSite-article&amp;id_article=#ID_ARTICLE">[(#TITRE)]</a>
+					#DESCRIPTIF
+        </td>
+				<td>
+					<BOUCLE_nbSujet(FORUMS){id_article}{doublons}></BOUCLE_nbSujet>
+					#TOTAL_BOUCLE
+					<//B_nbSujet>
+        </td>
+				<td>
+					<BOUCLE_nbMessage(FORUMS){id_article}{plat}{doublons}></BOUCLE_nbMessage>
+					#TOTAL_BOUCLE
+					<//B_nbMessage>
+        </td>
+				<td style="font-size:11px">
+					<BOUCLE_dernier_message(FORUMS){id_article}{plat}{par date}{inverse}{0,1}>
+							[(#NOM)]<br />
+							le [(#DATE|affdate{'d/m/Y'})]<br />&agrave; [(#DATE|affdate{'H:i:s'})]
+					</BOUCLE_dernier_message>
+        </td>
+			</tr>
+			</BOUCLE_artSousRub>
+		</BOUCLE_sousRub>
+
+	</table>
+		
+
+</div>
+
+
+</BOUCLE_rubBAI>

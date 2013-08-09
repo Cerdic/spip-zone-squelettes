@@ -1,0 +1,24 @@
+	<h1 class="cadre actus" >
+	[(#CONFIG{escal/config/titreactus}|oui)
+    [(#CONFIG{escal/config/titreactus}|propre|_T|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titreactus}|non)
+    <:escal:actus:>
+  ]
+  </h1>
+<div class="texte actus [(#CONFIG{escal/config/toggleactus}|=={oui}|oui)toggle]" >
+ <div id="scrollup">
+  <BOUCLE_actus(ARTICLES){titre_mot=actus}{lang}>
+  <div class="headline" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">#TITRE</a>
+  <div class="intro">
+  [(#INTRODUCTION|couper{80}|propre)]
+  </div>
+  </div>
+  </BOUCLE_actus>
+  </B_actus>
+  Ici vous pouvez afficher le titre (avec lien)) et le début du texte des articles avec le mot-clé "actus".<br /><br />
+  Et les actus défilent !
+  <//B_actus>
+  </div>
+</div>

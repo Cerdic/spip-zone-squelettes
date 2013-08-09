@@ -1,0 +1,403 @@
+#CACHE{0}
+#HTTP_HEADER{Content-Type: text/css;}
+
+/* ======================================================================
+                          LES ELEMENTS
+   ======================================================================*/
+[(#CONFIG{escal/config/pointeurbody}|oui)
+body {
+cursor: [url((#CHEMIN{#CONFIG{escal/config/pointeurbody}}))], auto;
+}]
+[(#CONFIG{escal/config/pointeura}|oui)
+a {
+cursor: [url((#CHEMIN{#CONFIG{escal/config/pointeura}}))], auto;
+}]
+
+[(#CONFIG{escal/config/ombres}|non)
+#ombre-droite {
+	background: [url((#CHEMIN{images/ombre-droitegris.png}))] repeat-y scroll right center;
+	width: 984px;
+}
+#ombre-gauche {
+	background: [url((#CHEMIN{images/ombre-gauchegris.png}))] repeat-y scroll left center;
+	margin: 0 auto;
+	width: 984px;
+}]
+
+[(#CONFIG{escal/config/ombres}|=={gris}|oui)
+#ombre-droite {
+	background: [url((#CHEMIN{images/ombre-droitegris.png}))] repeat-y scroll right center;
+	width: 984px;
+}
+#ombre-gauche {
+	background: [url((#CHEMIN{images/ombre-gauchegris.png}))] repeat-y scroll left center;
+	margin: 0 auto;
+	width: 984px;
+}]
+
+[(#CONFIG{escal/config/ombres}|=={blanc}|oui)
+#ombre-droite {
+	background: [url((#CHEMIN{images/ombre-droiteblanc.png}))] repeat-y scroll right center;
+	width: 984px;
+}
+#ombre-gauche {
+	background: [url((#CHEMIN{images/ombre-gaucheblanc.png}))] repeat-y scroll left center;
+	margin: 0 auto;
+	width: 984px;
+}]
+
+[(#CONFIG{escal/config/ombres}|=={non}|oui)
+#ombre-droite {
+	background: none;
+}
+#ombre-gauche {
+	background: none;
+}]
+
+
+
+div#bandeau {
+	text-align: [(#CONFIG{escal/config/alignbandeau, left})];
+}
+
+[(#CONFIG{escal/config/nomsite}|=={non}|oui)
+#nom-site-spip {
+  display:  none;
+}]
+
+#nom-site-spip {
+  font-size: [(#CONFIG{escal/config/nomsitetaille,50})]px;
+}
+[(#CONFIG{escal/config/slogansite}|=={non}|oui)
+#slogan-site-spip {
+  display:  none;
+}]
+#slogan-site-spip {
+  font-size: [(#CONFIG{escal/config/slogansitetaille,25})]px;
+}
+[(#CONFIG{escal/config/descriptifsite}|=={non}|oui)
+#descriptif-site-spip {
+  display:  none;
+}]
+#descriptif-site-spip {
+  font-size: [(#CONFIG{escal/config/descriptifsitetaille,12})]px;
+}
+[(#CONFIG{escal/config/nomsite}|=={non}|oui)
+  [(#CONFIG{escal/config/slogansite}|=={non}|oui)
+    [(#CONFIG{escal/config/descriptifsite}|=={non}|oui)
+#titrepage{
+  display:  none;
+  }]]]
+
+.laune ul.anchors li a {
+	height: [(#CONFIG{escal/config/hauteurblocsune,70})]px;
+}
+[(#CONFIG{escal/config/nbrecol}|non)
+.laune ul.anchors li {
+	width: 50%;
+}
+]
+[(#CONFIG{escal/config/nbrecol}|=={1}|oui)
+.laune ul.anchors li {
+	width: 100%;
+}
+]
+[(#CONFIG{escal/config/nbrecol}|=={2}|oui)
+.laune ul.anchors li {
+	width: 50%;
+}
+]
+[(#CONFIG{escal/config/nbrecol}|=={3}|oui)
+.laune ul.anchors li {
+	width: 33%;
+}
+]
+
+#scrollup3 {
+	height: [(#CONFIG{escal/config/hauteurannoncedefil,210})]px;
+}
+
+.annoncedefil {
+ height: [(#CONFIG{escal/config/hauteurannoncedefil,210}|moins{35})]px;
+}
+
+/* ======================================================================
+                          LES COULEURS   (pour tout le site)
+   ======================================================================*/
+
+/* les fonds */
+/*************/
+body {
+  background-color: [ (#CONFIG{escal/config/couleurfond,#DFDFDF})];
+  [(#CONFIG{escal/config/imagefond}|?{
+    background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]);
+    ,
+    [(#CONFIG{escal/config/imagefond2}|?{
+      background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+      ,
+      background-image: none;
+      })]
+  })]
+  [(#CONFIG{escal/config/imagefondunique}|=={oui})
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:center
+  -webkit-background-size: cover; /* pour Chrome et Safari */
+  -moz-background-size: cover; /* pour Firefox */
+  -o-background-size: cover; /* pour Opera */
+  background-size: cover; /* version standardisée */
+  ]
+}
+/* fond des pages */
+div#conteneur{
+ background-color: [(#CONFIG{escal/config/couleurpage,#FFFFFF})];
+ color:  [(#CONFIG{escal/config/couleurpage}|?{#[(#CONFIG{escal/config/couleur2}|couleur_extreme|couleur_inverser)],#000000})];
+
+}
+/* bloc a la une */
+ul.onglets li a.active, ul.onglets li a.active:hover, .laune, .laune .fragment a,
+.contenu_1, .contenu_2, .contenu_3, .contenu_4, .contenu_5, .contenu_6, .contenu_7, .contenu_8, .contenu_9, .contenu_10,
+#cadre-plan, #cadre-plan a, .texte#accueil{
+	background-color: [(#CONFIG{escal/config/couleurune,#336699})];
+	color:  [(#CONFIG{escal/config/couleurune}|?{#[(#CONFIG{escal/config/couleurune}|couleur_extreme|couleur_inverser)],#FFFFFF})];
+}
+/* onglets inactifs */
+ul.onglets li a{
+  background-color: [(#CONFIG{escal/config/couleuruneinact,#82ADE2})];
+  color:  [(#CONFIG{escal/config/couleuruneinact}|?{#[(#CONFIG{escal/config/couleuruneinact}|couleur_extreme|couleur_inverser)],#000000})];
+}
+/* articles en une */
+.laune ul.anchors li a {
+	background-color: [(#CONFIG{escal/config/couleuruneart,#DAE6F6})];
+	color:  [(#CONFIG{escal/config/couleuruneart}|?{#[(#CONFIG{escal/config/couleuruneart}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* gris */
+.calendar_not_this_month,
+#ariane-forum, table.forum tr.rub-forum,
+#forum-site .descriptif, #forum-site .texte {
+  background-color: [(#CONFIG{escal/config/couleur1,#DFDFDF})];
+  color:  [(#CONFIG{escal/config/couleur1}|?{#[(#CONFIG{escal/config/couleur1}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* blanc */
+.cadre-chemin, #cadre-article, .cadre-sous-rubrique, .cadre-articles-rubrique, .texte-insert,
+table #nav-agenda, .fc-content,
+.valeur2, .valeur3,
+table.forum, .forum-thread, .forum_reponse,
+.trombino, .entry-content, #mentions {
+ background-color: [(#CONFIG{escal/config/couleur2,#FFFFFF})];
+ color:  [(#CONFIG{escal/config/couleur2}|?{#[(#CONFIG{escal/config/couleur2}|couleur_extreme|couleur_inverser)],#000000})];
+
+}
+
+/* bleu fonce de base */
+#cadre-rubrique, #cadre-titre-article, #cadre-titre-article a,
+table.forum th,
+#menu, ul#menu ul, ul#menu li a,
+#menuV2 ul.menulist a:hover, #menuV2 ul.menulist li.smenu:hover,
+#menuV2 ul.menulist li.smenu>a:hover{
+	background-color: [(#CONFIG{escal/config/couleur3,#336699})];
+	color:  [(#CONFIG{escal/config/couleur3}|?{#[(#CONFIG{escal/config/couleur3}|couleur_extreme|couleur_inverser)],#FFFFFF})];
+}
+/* bleu tres fonce */
+.laune ul.anchors li a:hover, #menu li:hover > a, ul#menu ul li:hover {
+	background-color: [(#CONFIG{escal/config/couleur4,#224466})];
+	color:  [(#CONFIG{escal/config/couleur4}|?{#[(#CONFIG{escal/config/couleur4}|couleur_extreme|couleur_inverser)],#FFFFFF})];
+}
+/* bleu clair */
+.identification-light:hover, .formulaire_recherche input.text:hover,
+table.spip tr.row_first,
+#menuV2 ul.menulist, #menuV2 ul.menulist ul, #menuV2 ul.menulist a,
+.titre-message,
+#formulaire_forum div, .formulaire_spip.formulaire_forum, .small_mini,
+.calendar_head_mini, #entete-evenement, #nouvel-evenement{
+  background-color: [(#CONFIG{escal/config/couleur5,#82ADE2})];
+  color:  [(#CONFIG{escal/config/couleur5}|?{#[(#CONFIG{escal/config/couleur5}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* gris-bleu tres clair */
+.identification-light, .formulaire_recherche input.text,
+table.spip tr.row_even, table.forum tr.art-forum,
+#formulaire-contact,
+.calendar_this_month,
+#cadre-telechargement, #ps,
+.forum_reponse .titre-message, #formulaire_forum input.barre,
+#signatures li {
+	background-color: [(#CONFIG{escal/config/couleur6,#EFEFEF})];
+	color:  [(#CONFIG{escal/config/couleur6}|?{#[(#CONFIG{escal/config/couleur6}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* un autre bleu */
+ul#menu li .on, ul#menu li .on > a, #menu li:hover > a.on,  ul#menu ul li.on:hover,
+#formulaire_forum div#previsu, #formulaire_forum div#previsu .forum-message, #formulaire_forum div#previsu .forum-chapo,
+.calendar_this_day,
+table.spip tr.row_odd  {
+	background-color: [(#CONFIG{escal/config/couleur7,#BBCCDD})];
+	color:  [(#CONFIG{escal/config/couleur7}|?{#[(#CONFIG{escal/config/couleur7}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* couleur 8 réservée pour les cadres latéraux - voir plus bas  */
+
+/* bandeau */
+div#entete {
+	background-color: [(#CONFIG{escal/config/couleur9,#336699})];
+	color:  [(#CONFIG{escal/config/couleur9}|?{#[(#CONFIG{escal/config/couleur9}|couleur_extreme|couleur_inverser)],#FFFFFF})];
+}
+
+/* orange */
+.annonce,.annoncedefil, .headline3, .calendar_mini_event, .spip_surligne {
+	background-color: [(#CONFIG{escal/config/couleur10,#EC7942})];
+  color:  [(#CONFIG{escal/config/couleur10}|?{#[(#CONFIG{escal/config/couleur10}|couleur_extreme|couleur_inverser)],#FFFFFF})];
+}
+
+/* le pied */
+#pied {
+	background-color: [(#CONFIG{escal/config/couleur11,#BBCCDD})];
+	color:  [(#CONFIG{escal/config/couleur11}|?{#[(#CONFIG{escal/config/couleur11}|couleur_extreme|couleur_inverser)],#000000})];
+}
+
+/* les caracteres */
+/******************/
+
+
+a:link{
+	color: [(#CONFIG{escal/config/texte1,#000099})];
+}
+a:visited {
+	color: [(#CONFIG{escal/config/texte2,#000099})];
+}
+a:hover, ul.onglets li a:hover,
+#cadre-plan a:hover, table.forum a:hover {
+	color: [(#CONFIG{escal/config/texte3,#FF8000})];
+}
+#nom-site-spip, #slogan-site-spip, #descriptif-site-spip, .annoncedefil .caractencadre-spip {
+  color: [(#CONFIG{escal/config/texte01,#FFFFFF})];
+}
+
+#ariane-forum, #ariane-forum a,
+table.forum tr.rub-forum td, table.forum a, table.forum tr.art-forum td  {
+	color: [(#CONFIG{escal/config/texte4,#336699})];
+}
+
+.alerte {
+	color: [(#CONFIG{escal/config/texte5,#FF0000})];
+}
+
+
+/* les bordures */
+/****************/
+
+ul#menu li a, ul#menu ul {
+	border-color: [(#CONFIG{escal/config/bord1,#CCCCCC})];
+}
+ul.onglets li a {
+  border: 1px solid [(#CONFIG{escal/config/couleuruneinact,#82ADE2})];
+}
+ul.onglets li a.active {
+  border: 1px solid [(#CONFIG{escal/config/couleurune,#336699})];
+}
+.cadre-articles-rubrique, .cadre-sous-rubrique, #cadre-article, #cadre-telechargement,
+.forum-thread, .forum_reponse,
+#formulaire-contact, .valeur2, .valeur3,
+#signatures li, #signatures li p.message {
+	border-color: [(#CONFIG{escal/config/bord2,#CCCCCC})];
+}
+
+table.spip, table.spip td {
+	border-color: [(#CONFIG{escal/config/bord3,#FFFFFF})];
+}
+
+#menuV2 ul.menulist li {
+	border-color: [(#CONFIG{escal/config/bord4,#FFFFFF})];
+}
+.formulaire_recherche input.text,
+.identification-light,
+ul#menu li a:hover,
+.calendar_mini_event  {
+	border-color: [(#CONFIG{escal/config/bord5,#CCCCCC})];
+}
+
+#ariane-forum, table.forum {
+	border-color: [(#CONFIG{escal/config/bord6,#006699})];
+}
+/*********************************************/
+/*    Les arrondis                           */
+/*********************************************/
+ul#menu li a, ul#menu ul, ul#menu ul li {
+  border-radius: [(#CONFIG{escal/config/arrondi1,10px})];
+}
+#menuV2 ul.menulist, #menuV2 ul.menulist a {
+  border-radius: [(#CONFIG{escal/config/arrondi2,10px})];
+}
+ul.onglets li a {
+  border-radius: [(#CONFIG{escal/config/arrondi31,8px 8px 0px 0px})];
+}
+.laune ul.anchors li a {
+  border-radius: [(#CONFIG{escal/config/arrondi32,5px})];
+}
+h1.cadre {
+  border-radius: [(#CONFIG{escal/config/arrondi41,0px 50px 0px 0px})];
+}
+div.texte {
+  border-radius: [(#CONFIG{escal/config/arrondi42,0px 0px 0px 10px / 0px 0px 0px 100px})];
+}
+.identification-light, .formulaire_recherche input.text {
+  border-radius: [(#CONFIG{escal/config/arrondi5,10px})];
+}
+.annonce, .annoncedefil, .headline3 {
+  border-radius: [(#CONFIG{escal/config/arrondi6,15px})];
+}
+#entete-evenement, #nouvel-evenement {
+  border-radius: [(#CONFIG{escal/config/arrondi7,8px 8px 0 0})];
+}
+
+
+
+/*********************************************/
+/*    Les cadres latéraux                    */
+/*********************************************/
+
+div.cadre-couleur h1.cadre {
+  background-color: [(#CONFIG{escal/config/couleur5,#82ADE2})];
+  color:  [(#CONFIG{escal/config/couleur5}|?{#[(#CONFIG{escal/config/couleur5}|couleur_extreme|couleur_inverser)],#000000})];
+}
+div.cadre-couleur .texte {
+	background-color: [(#CONFIG{escal/config/couleur8,#DAE6F6})];
+	color:  [(#CONFIG{escal/config/couleur8}|?{#[(#CONFIG{escal/config/couleur8}|couleur_extreme|couleur_inverser)],#000000})];
+  border-color: [(#CONFIG{escal/config/couleur5,#82ADE2})];
+}
+[(#CONFIG{escal/config/bordcadres}|=={non}|oui)
+div.cadre-couleur .texte {
+  border: none;
+}]
+
+/*********************************************/
+/*    La page contact                        */
+/*********************************************/
+[(#CONFIG{escal/config/checkbox}|=={non}|oui)
+li#checkbox {
+  display: none;
+}
+]
+
+/***************************************/
+/* personnalisation du plugin galleria */
+/***************************************/
+.galleria-container {
+ background-color: [(#CONFIG{escal/config/galleriafond,#FFFFFF})];
+}
+.galleria-info-link, .galleria-info-text,
+.galleria-thumb-nav-left,  .galleria-thumb-nav-right {
+	background-color: [(#CONFIG{escal/config/galleriaencarts,#336699})];
+}
+.galleria-info-title, .galleria-info-description {
+	color: [(#CONFIG{escal/config/galleriacoulpolice,#FFFFFF})];
+}
+.galleria-info-title {
+	font-size: [(#CONFIG{escal/config/galleriatailletitre,14})]px;
+}
+.galleria-counter {
+  color: grey !important;
+  opacity: 100 !important;
+}

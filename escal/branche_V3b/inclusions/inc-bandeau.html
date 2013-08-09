@@ -1,0 +1,73 @@
+<div id="bandeau">
+
+
+[(#REM) affichage de l'image bandacad.jpg logo avec un lien vers la page d'accueil
+  (attention, cette image n'est pas libre de droit !)
+  ou affichage de l'image de son choix ]
+  
+[(#CONFIG{escal/config/optionbandeau}|non)
+[(#LOGO_SITE_SPIP|?{
+<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+[(#LOGO_SITE_SPIP|image_reduire{950})]
+</a>
+,
+<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+[(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+</a>
+})]
+]
+
+[(#CONFIG{escal/config/optionbandeau}|=={option1}|oui)
+<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+[(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+</a>
+]
+
+[(#CONFIG{escal/config/optionbandeau}|=={option2}|oui)
+<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+[(#LOGO_SITE_SPIP|image_reduire{950})]
+</a>
+]
+
+<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+#SET{num,#ID_SECTEUR}
+</BOUCLE_rub>
+<BOUCLE_art(ARTICLES){id_article}>
+#SET{num,#ID_SECTEUR}
+</BOUCLE_art>
+
+[(#CONFIG{escal/config/optionbandeau}|=={option3}|oui)
+<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|oui)
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+]
+
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|non)
+[(#CONFIG{escal/config/fondbandeau}|?{
+  [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+  ,
+    [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}|balise_img{<:escal:bandeau:>}|image_reduire{950})]
+})]
+]
+
+</a>
+]
+
+<div id="titrepage">
+  <div id="nom-site-spip">
+  [(#NOM_SITE_SPIP)]
+  </div>
+
+  <div id="slogan-site-spip">
+  [(#SLOGAN_SITE_SPIP|?{#SLOGAN_SITE_SPIP,Slogan du site})]
+  </div>
+
+  <div id="descriptif-site-spip">
+  [(#DESCRIPTIF_SITE_SPIP|?{#DESCRIPTIF_SITE_SPIP,Descriptif du site})]
+  </div>
+</div>
+
+</div>
+
+<div class="nettoyeur"></div>

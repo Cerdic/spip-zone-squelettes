@@ -1,0 +1,92 @@
+<div id="pied-gauche">
+
+<!-- citations -->
+[(#CONFIG{escal/config/citations}|=={non}|oui) <!--]
+<BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}>
+[(#TEXTE|citations)]
+</BOUCLE_citations>
+<br /><br />
+[(#CONFIG{escal/config/citations}|=={non}|oui) -->]
+
+[(#PLUGIN{FB_MODELES}|oui)
+    [(#MODELE{fb_like,send=#CONFIG{escal/config/sendfacebook,oui},layout=#CONFIG{escal/config/boutonfacebook,button_count},show_faces=non})]
+]
+
+</div>
+
+<div id="liens">
+
+[(#CONFIG{escal/config/lienplan}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<!-- un lien vers le plan du site -->
+<a href="[(#URL_PAGE{plan}|parametre_url{lang,#ENV{lang}})]" title="<:escal:plan_site:>"><:escal:plan_site:></a>
+]
+
+[(#CONFIG{escal/config/liencontact}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<!-- un lien vers la page contact -->
+<a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="<:escal:title_contact:>"><:escal:contact:></a>
+]
+
+[(#PLUGIN{SPIP_PROPRIO}|oui)
+[(#CONFIG{escal/config/mentions}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<!-- un lien vers la page des mentions legales -->
+<a href="[(#URL_PAGE{mentions-legales}|parametre_url{lang,#ENV{lang}})]" title="<:escal:title_mentions:>"><:escal:mentions:></a>
+]
+]
+
+[(#CONFIG{escal/config/lienecrire}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<!-- un lien vers l'espace privé de SPIP -->
+<a href="ecrire/" title="<:escal:title_espace_redacteurs:>"><:escal:espace_redacteurs:></a>
+]
+
+[(#CONFIG{escal/config/liensquelette}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<a href="#ENV{skel}" title="<:voir_squelette:>" rel="nofollow"><:squelette:></a>
+]
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+<br /><br />
+
+[(#CONFIG{escal/config/lienRSS}|=={non}|non)
+<!-- un lien vers la page de syndication -->
+<a href="#URL_PAGE{backend}">
+<img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
+</a>
+]
+[(#CONFIG{escal/config/lienXHTML}|=={non}|non)
+<a href="http://validator.w3.org/check?uri=referer">
+<img src="http://www.w3.org/Icons/valid-xhtml10-blue" alt="Valid XHTML 1.0 Strict" title="<:escal:title_w3c:>" height="20" width="60" />
+</a>
+]
+
+
+<br /><br />
+
+<!-- Copyright -->
+[(#CONFIG{escal/config/copyright}|=={non}|oui) <!-- ]
+<BOUCLE_copy(ARTICLES){par date}{0,1}>
+[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] ©   [(#NOM_SITE_SPIP)] - <BOUCLE_trad(ARTICLES){lang=#ENV{lang}}{0,1}><:escal:copyright:></BOUCLE_trad>
+</BOUCLE_copy>
+[(#CONFIG{escal/config/copyright}|=={non}|oui) --> ]
+</div>
+
+
+<!-- affichage du retour vers le haut de la page -->
+	<div id="haut2"><a href="#top" title="<:escal:title_haut_page:>"><:escal:haut_page:></a></div>
+
+<!-- realise avec -->
+<div id="credits">
+<:escal:site_realise_avec:> <a href="http://www.spip.net" title="<:ecrire:version:> #SPIP_VERSION">SPIP</a><br />
+<:escal:avec_le_squelette:> <a href="http://projetice.crdp.ac-lyon.fr/escal/" title="<:escal:title_escal:>" >ESCAL-V3</a><br />
+<:version:> #PLUGIN{escal, version}<br />
+[(#CONFIG{escal/config/hebergeur}|=={oui}|oui)
+  <:escal:hebergeur:>
+  [(#CONFIG{escal/config/urlhebergeur}|oui)<a href="#CONFIG{escal/config/urlhebergeur}" title="site de l'hébergeur">]
+    #CONFIG{escal/config/nomhebergeur}
+  [(#CONFIG{escal/config/urlhebergeur}|oui)</a>]
+]
+</div>
+
+<div class="nettoyeur"></div>
