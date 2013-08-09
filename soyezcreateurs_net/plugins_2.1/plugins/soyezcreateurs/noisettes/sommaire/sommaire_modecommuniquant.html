@@ -11,42 +11,7 @@
 
 <div id="communiquant_content_central">
 <a name="menusite"></a>
-<B_articles_recentsAlaUne>
-<div id="homeSpecialFeature">
-	<ul>
-	<BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang}>
-		<li id="hSFItem#COMPTEUR_BOUCLE" class="hSFItem">
-		<div class="postListItem">	
-			<h2 class="postListItemTitle #EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></h2>
-			<span class="hSFDecoSpan"></span>
-		</div><!-- .postListItem -->
-		[(#SET{Masque,[(#CHEMIN{images/hsf.png})]})]
-		[(#SET{LargeurMasque,[(#GET{Masque}|largeur)]})]
-		[(#SET{HauteurMasque,[(#GET{Masque}|hauteur)]})]
-		[(#SET{Cadre,[(#CHEMIN{images/hsf_over.png})]})]
-		[(#SET{LargeurCadre,[(#GET{Cadre}|largeur)]})]
-		[(#SET{HauteurCadre,[(#GET{Cadre}|hauteur)]})]
-		[(#SET{ImageCadree,
-			[(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMasque},0}
-			|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}
-			|image_masque{#GET{Masque}}
-			|image_masque{#GET{Cadre},mode=normal}
-			|image_reduire{[(#GET{LargeurCadre,[(#GET{Largeurcontent_central})]})],0}
-			)]}
-		)]
-		[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk,transparent}|=={transparent}|non) 
-		[(#SET{ImageCadree,
-			[(#GET{ImageCadree}
-			|image_aplatir{jpg,[(#CONFIG{soyezcreateurs_couleurs/slideshow_bk}|replace{#})],80,1})]}
-		)]
-		]
-		[<img src="(#GET{ImageCadree}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" class="hSFDecoImg" />]
-		</li>
-	</BOUCLE_articles_recentsAlaUne>
-	</ul>
-</div><!-- homeSpecialFeature -->
-</B_articles_recentsAlaUne>
-
+[(#INCLURE{fond=noisettes/sommaire/sommaire_modecommuniquant_slideshow_#CONFIG{soyezcreateurs/tri_slideshow_communiquant,parnum},Largeurcontent_central=#GET{Largeurcontent_central}})]
 <div id="homeSecondblock">
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
 <B_DessousBreves>
@@ -65,9 +30,10 @@
 </div><!-- homeDessousBreves -->
 </B_DessousBreves>
 
-<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
-<BOUCLE_Articles_Exclus(ARTICLES mots_rubriques mots){mots.titre=PasDansQuoiDeNeuf}{doublons} />
-<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
+<BOUCLE_articles_recentsAlaUne_Exclus(ARTICLES) {0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang} />
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{lang} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Articles_Exclus(ARTICLES mots_rubriques mots){mots.titre=PasDansQuoiDeNeuf}{doublons}{lang} />
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{lang} />
 <B_articles_QuoideNeuf>
 <div id="homequoideneuf">
 <h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:quoideneuf:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
