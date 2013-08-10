@@ -9,7 +9,7 @@ svn checkout svn://trac.rezo.net/spip/branches/spip-2.1 ./
 cd extensions
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
-sleep 15 && svn checkout http://svn.github.com/Cerdic/video_accessible.git ./video_accessible/
+sleep 15 && svn checkout https://github.com/Cerdic/video_accessible/trunk ./video_accessible/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/afficher_objets
