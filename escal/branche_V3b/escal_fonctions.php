@@ -140,6 +140,21 @@ function shema_escal(){
                 'titre'=>'citations',
                 'descriptif'=>'pour choisir l&rsquo;article qui servira de r&eacute;servoir pour les citations dans le pied de page',
                 'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'mon-article',
+                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'special',
+                'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affich&eacute;s dans le bloc &agrave; personnaliser (noisette inc-perso.html)',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'pas-a-decouvrir',
+                'descriptif'=>'pour choisir les rubriques et les articles &agrave; exclure de l&rsquo;affichage dans la noisette "A decouvrir" si on choisit "dans tout le site" (inc-decouvrir-articles-sites.html)',
+                'type'=>'affichage'
             )
             
         )
