@@ -11,21 +11,31 @@
 
 <div class="texte decouvrir-articles [(#CONFIG{escal/config/toggledecouvrirarticles}|=={oui}|oui)toggle]" >
 
+                <BOUCLE_exclusion_rubrique(RUBRIQUES){titre_mot=pas-a-decouvrir}{lang}>
+                  <BOUCLE_exclusion_articles1(ARTICLES){branche}{lang}{doublons exclus}>
+                  </BOUCLE_exclusion_articles1>
+                </BOUCLE_exclusion_rubrique>
+
+                <BOUCLE_exclusion_articles(ARTICLES){titre_mot=pas-a-decouvrir}{lang}{doublons exclus}>
+                </BOUCLE_exclusion_articles>
+
+
+
 #SET{nombrerecents,#CONFIG{escal/config/nombreartrecents,2}}
 #SET{nombrehasard,#CONFIG{escal/config/nombrearthasard,2}}
 #SET{nombreplusvus,#CONFIG{escal/config/nombreartplusvus,2}}
 #SET{nombremoinsvus,#CONFIG{escal/config/nombreartmoinsvus,2}}
 
-<BOUCLE_plus_recents(ARTICLES){lang=#ENV{lang}}{par date}{inverse}{0,#GET{nombrerecents}}{doublons}>
+<BOUCLE_plus_recents(ARTICLES){lang=#ENV{lang}}{par date}{inverse}{0,#GET{nombrerecents}}{doublons exclus}{doublons}>
 </BOUCLE_plus_recents>
 
-<BOUCLE_au_hasard(ARTICLES){lang=#ENV{lang}}{par hasard}{0,#GET{nombrehasard}}{doublons}>
+<BOUCLE_au_hasard(ARTICLES){lang=#ENV{lang}}{par hasard}{0,#GET{nombrehasard}}{doublons exclus}{doublons}>
 </BOUCLE_au_hasard>
 
-<BOUCLE_plus_lus(ARTICLES){lang=#ENV{lang}}{par visites}{inverse}{0,#GET{nombreplusvus}}{doublons}>
+<BOUCLE_plus_lus(ARTICLES){lang=#ENV{lang}}{par visites}{inverse}{0,#GET{nombreplusvus}}{doublons exclus}{doublons}>
 </BOUCLE_plus_lus>
 
-<BOUCLE_moins_lus(ARTICLES){lang=#ENV{lang}}{par visites}{0,#GET{nombremoinsvus}}{doublons}>
+<BOUCLE_moins_lus(ARTICLES){lang=#ENV{lang}}{par visites}{0,#GET{nombremoinsvus}}{doublons exclus}{doublons}>
 </BOUCLE_moins_lus>
 
 #SET{nbrpagarticles,#CONFIG{escal/config/pagindecouvrir,5}}
