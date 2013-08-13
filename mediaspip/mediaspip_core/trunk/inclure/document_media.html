@@ -8,11 +8,15 @@
 	<div class="document_media">
 	<BOUCLE_documents(DOCUMENTS){id_article}{tout}> </BOUCLE_documents>
 		<BOUCLE_doc(DOCUMENTS){si #GET{total}|=={1}}{id_article}>
-		<BOUCLE_si_doc2img(CONDITION){si #PLUGIN{doc2img}|et{#EXTENSION|in_array{#GET{doc2img_types,#ARRAY}}|oui}|oui}>
+		[(#EXTENSION|=={pdf}|et{#PLUGIN{pdfjs}}|et{#AUTORISER{mstelecharger,document,#ID_ARTICLE}}|et{#CONFIG{mediaspip/squelettes/autoriser_telecharger_original}|=={on}|oui}|oui)
+			[(#MODELE{lecteurpdf,id_document=#_doc:ID_DOCUMENT,largeur=#GET{largeur},ajax})]
+			[(#SET{done,true})]
+		]
+		<BOUCLE_si_doc2img(CONDITION){si #PLUGIN{doc2img}|et{#GET{done}|=={true}|non}|et{#EXTENSION|in_array{#GET{doc2img_types,#ARRAY}}|oui}|oui}>
 			[(#MODELE{doc_img,id_document=#_doc:ID_DOCUMENT,largeur=#GET{largeur},debut_d2c,class=spip_documents_center,ajax})][(#SET{done,true})]
 		</BOUCLE_si_doc2img>
 		</B_si_doc2img>
-		<BOUCLE_si_kml(CONDITION){si #EXTENSION|in_array{#LISTE{kml,kmz}}|et{#PLUGIN{gis}}|oui}>
+		<BOUCLE_si_kml(CONDITION){si #EXTENSION|in_array{#LISTE{kml,kmz}}|et{#PLUGIN{gis}}|et{#GET{done}|=={true}|non}|oui}>
 			<BOUCLE_gis(GIS?){si #PLUGIN{gis}}{id_document}>
 			<div class="spip_documents">
 			#MODELE{carte_gis,largeur=100%,hauteur=#GET{hauteur}px,kml=#ID_DOCUMENT,lat=#LAT,lon=#LON,zoom=#ZOOM,point=non,id_carte_gis=kml#ID_DOCUMENT}
