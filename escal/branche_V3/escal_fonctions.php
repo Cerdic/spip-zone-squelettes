@@ -220,6 +220,14 @@ function install_groupe_mots() {
         )
     );
     
+    // Mot : pas-a-decouvrir
+    $pas_a_decouvrir = objet_inserer('mot',$groupe_affichage);
+    objet_modifier('mot',$pas_a_decouvrir,array(
+        'titre'=>'pas-a-decouvrir',
+        'descriptif'=>'pour choisir les rubriques et les articles &agrave; exclure de l&rsquo;affichage dans la noisette "A decouvrir" si on choisit "dans tout le site" (inc-decouvrir-articles-sites.html)'
+        )
+    );
+    
     $result = array(
         'affichage'=>$groupe_affichage, 
         'affichage_mots'=> array(
@@ -244,7 +252,8 @@ function install_groupe_mots() {
             'RubriqueOnglet'=>$RubriqueOnglet,
             'citations'=>$citations,
             'mon_article'=>$mon_article,
-            'special'=>$special
+            'special'=>$special,
+            'pas_a_decouvrir'=>$pas_a_decouvrir
             )
     );
     
