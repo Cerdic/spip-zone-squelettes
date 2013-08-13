@@ -111,13 +111,13 @@ function action_ms_forcer_telecharger_dist() {
 		}
 
 		if($doc['mime_type'])
-			header("Content-Type: ". $doc['mime_type'].";\n");
+			header("Content-Type: ". $doc['mime_type']);
 
 		$f = basename($file);
 		// ce content-type est necessaire pour eviter des corruptions de zip dans ie6
 		//header('Content-Type: application/octet-stream');
 
-		header("Content-Disposition: attachment; filename=\"$f\";\n\n");
+		header("Content-Disposition: attachment; filename=\"$f\";");
 		//header("Content-Transfer-Encoding: binary");
 
 		// fix for IE catching or PHP bug issue
@@ -126,7 +126,7 @@ function action_ms_forcer_telecharger_dist() {
 		//header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
 		if ($cl = filesize($file)){
-			header("Content-Length:' $cl';\n");
+			header("Content-Length: ". $cl);
 		}
 
 		readfile($file);
