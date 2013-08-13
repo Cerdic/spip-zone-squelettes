@@ -67,7 +67,7 @@ function autoriser_document_mstelecharger_dist($faire, $type, $id, $qui, $opt) {
 			$cfg = lire_config('mediaspip/squelettes',array());
 			if ($cfg['autoriser_telecharger'] != 'on') return false;
 			else
-				return (($cfg['autoriser_telecharger_que_logues'] == 'on') && ($qui['id_auteur'] > 0)) OR ($ms_auths['autoriser_telecharger_que_logues'] != 'on');
+				return (($cfg['autoriser_telecharger_que_logues'] == 'on') && ($qui['id_auteur'] > 0)) OR ($cfg['autoriser_telecharger_que_logues'] != 'on');
 		}else{
 			if($ms_auths['ms_auth_telecharger'] == 'non') return false;
 			else
