@@ -28,10 +28,14 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
         array('ecrire_config', array('escal', array()))
     );
     
+    $maj['1.0.1'] =array(
+        array('update_groupe_mots') 
+    );
+    
     include_spip('base/upgrade');
     maj_plugin($nom_meta_base_version, $version_cible, $maj);
     ecrire_meta($nom_meta_base_version,$version_cible);
-    ecrire_meta();
+    //ecrire_meta();
 }
 
 
@@ -41,12 +45,9 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
  * - supprimer les tables et les champs créés par le plugin. 
 **/
 function escal_vider_tables($nom_meta_base_version) {
-
-    include_spip('inc/config');
-    $affichage = lire_config('escal/mots_techniques/affichage');
+    include_spip('escal_fonctions');
     
-    sql_delete('spip_groupes_mots', sql_in("id_groupe", array($affichage)));
-    sql_delete('spip_mots', sql_in("id_groupe", array($affichage)));
+    uninstal_escal();
     
     effacer_meta('escal');
     effacer_meta($nom_meta_base_version);
