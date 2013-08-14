@@ -117,7 +117,7 @@ function shema_escal(){
                 'type'=>'affichage'
             ),
             array(
-                'titre'=>'site-exclus',
+                'titre'=>'site-exclu',
                 'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)',
                 'type'=>'affichage'
             ),
