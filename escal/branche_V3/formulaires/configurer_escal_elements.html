@@ -96,7 +96,7 @@
                     <label><strong>Barre d'outils</strong></label>
                     <br />
                     <div class="explication">
-                    Place de la barre d'outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)
+                    Place de la barre d'outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)<br />
             #SET{name,espace}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
@@ -107,7 +107,18 @@
                             [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_blanc">Sous le bandeau</label>
 
                     </span>
-                    <br /><br /><br />
+                    <br /><br />
+                    Si vous avez choisi de placer la barre d'outils au-dessus du bandeau, voulez-vous la fixer en haut de la page ?<br />
+            #SET{name,fixespace}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
             #SET{name,idlight}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Formulaire d'identification simplifiée.
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -132,7 +143,7 @@
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_espace" value="espace"
-                            [(#ENV{#GET{name}}|=={espace}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_espace">Sous le menu horizontal</label>
+                            [(#ENV{#GET{name}}|=={espace}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_espace">Dans la barre d'outils</label>
                             <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_colgauche" value="colgauche"
                             [(#ENV{#GET{name}}|=={colgauche}|oui)checked="checked"] /><label for="#GET{name}_colgauche">Colonne de gauche</label>

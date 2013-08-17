@@ -1,18 +1,24 @@
-          <div id="espace">
-          <!-- affichage de la version simplifiee du bloc d'identification par defaut ou si selectionnee dans la page de configuration -->
-            [(#CONFIG{escal/config/idlight}|=={non}|non)<INCLURE {fond=inclusions/inc-identification_light}{env}>]
+<div id="espace">
+    <!-- affichage de la version simplifiee du bloc d'identification par defaut ou si selectionnee dans la page de configuration -->
+        [(#CONFIG{escal/config/idlight}|=={non}|non)<INCLURE {fond=inclusions/inc-identification_light}{env}>]
 
-          <!-- affichage du bouton d'accès au forum si une rubrique a la mot-cle "forum" -->
-            <BOUCLE_forum(RUBRIQUES){titre_mot=forum}{lang}>
+    <!-- affichage des icones socialtags si plugin Socialtags activé -->
+        [(#PLUGIN{SOCIALTAGS}|oui)
+        <div id="socialtags-outils"></div>
+        ]            
+
+    <!-- affichage du bouton d'accès au forum si une rubrique a la mot-cle "forum" -->
+        <BOUCLE_forum(RUBRIQUES){titre_mot=forum}{lang}>
             <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]"><img id="boutonForum" src="[(#CHEMIN{images/forum_bouton.png})]" alt="lien vers le forum" /></a>
-            </BOUCLE_forum>
+        </BOUCLE_forum>
 
-          <!-- affichage du formulaire de recherche-->
-            [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
-            [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
+    <!-- affichage du formulaire de recherche-->
+        [(#CONFIG{escal/config/formrecherche}|non)#FORMULAIRE_RECHERCHE]
+        [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
 
-          <!-- affichage du menu de langue pour page article -->
-            <BOUCLE_contexte2(ARTICLES){id_article}>
+
+    <!-- affichage du menu de langue pour page article -->
+        <BOUCLE_contexte2(ARTICLES){id_article}>
             <B_langues>
               <div id="drapeau">
                 <div id="langue">
@@ -42,6 +48,6 @@
                         </div>
                       </B_langues2>
             <//B_langues>
-
-            </BOUCLE_contexte2>
+        </BOUCLE_contexte2>
           </div>
+          
