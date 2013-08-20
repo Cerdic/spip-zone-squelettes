@@ -53,8 +53,8 @@ function formulaires_restauration_cfg_traiter_dist(){
 	$fond = end($dirs);
 	$ok = ecrire_config($fond, $tableau);
 	
-	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
-	if ($ok) $message['message_ok'] = _T('sarkaspip:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
+	if (!$ok) $message['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_nok');
+	if ($ok) $message['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
 	return $message;
 }
 ?>

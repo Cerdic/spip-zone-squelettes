@@ -47,12 +47,12 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
 	include_spip('inc/sarkaspip_filtres');
 	$ok = sauvegarder_fonds($fonds, $dir_cfg, 'maintenance');
 	
-	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_nok');
+	if (!$ok) $message['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_nok');
 	if ($ok) 
 		if ($mode == 'page')
-			$message['message_ok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_ok', array('nom_fichier' => $nom));
+			$message['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_ok', array('nom_fichier' => $nom));
 		else
-			$message['message_ok'] = _T('sarkaspip:cfg_msg_fichiers_sauvegardes_ok');
+			$message['message_ok'] = _T('sarkaspip_config:cfg_msg_fichiers_sauvegardes_ok');
 	return $message;
 }
 ?>

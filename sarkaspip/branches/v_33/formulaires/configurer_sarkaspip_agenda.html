@@ -1,41 +1,41 @@
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-	<h3 class="titrem"><:sarkaspip:cfg_boite_agenda:></h3>
+	<h3 class="titrem"><:sarkaspip_config:cfg_boite_agenda:></h3>
 
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_agenda_secteur:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_agenda_secteur:></legend>
 			<ul>
 				<INCLURE{fond=formulaires/inc/cfg_secteur_specialise}
-					{explication=<:sarkaspip:cfg_inf_agenda_id:>}
+					{explication=<:sarkaspip_config:cfg_inf_agenda_id:>}
 					{secteur=agenda}
 					{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_agenda_page:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_agenda_page:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_agenda_page:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_agenda_page:></p>
 				</li>
 			<INCLURE{fond=formulaires/inc/cfg_information_page}
 				{choix=titre_descriptif}
-				{label_titre=<:sarkaspip:cfg_lbl_agenda_titre:>}
-				{label_descriptif=<:sarkaspip:cfg_lbl_agenda_descriptif:>}
+				{label_titre=<:sarkaspip_config:cfg_lbl_agenda_titre:>}
+				{label_descriptif=<:sarkaspip_config:cfg_lbl_agenda_descriptif:>}
 				{defaut_titre=<:sarkaspip:agenda:>}
 				{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_agenda_modele:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_agenda_modele:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_agenda_modele:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_agenda_modele:></p>
 				</li>
 				#SET{name,type}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
@@ -45,21 +45,21 @@
 					#SET{val,1}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_agenda_modele_1:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_agenda_modele_1:></label>
 					</div>
 					#SET{val,2}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_agenda_modele_2:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_agenda_modele_2:></label>
 					</div>
 				</li>
 			</ul>
 			<li class="fieldset suite" id="bloc_saison"><fieldset>
-				<p class="explication"><:sarkaspip:cfg_inf_agenda_mois1:></p>
+				<p class="explication"><:sarkaspip_config:cfg_inf_agenda_mois1:></p>
 				<ul>
 					#SET{name,mois1}#SET{defaut,''}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-						<label for="#GET{name}"><:sarkaspip:cfg_lbl_agenda_mois1:></label>[
+						<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_agenda_mois1:></label>[
 						<span class='erreur_message'>(#GET{erreurs})</span>
 						]<select name="#GET{name}" class="select" id="#GET{name}">
 							<BOUCLE_mois(DATA){enum 2,12}>
@@ -70,15 +70,15 @@
 					</li>
 					#SET{name,format_pagination}#SET{defaut,'annee'}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-						<label for="#GET{name}"><:sarkaspip:cfg_lbl_pagination_format:></label>[
+						<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_pagination_format:></label>[
 						<span class='erreur_message'>(#GET{erreurs})</span>
 						]<select name="#GET{name}" class="select" id="#GET{name}">
 								#SET{val,annee}
-								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip:cfg_itm_pagination_format_1:></option>
+								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip_config:cfg_itm_pagination_format_1:></option>
 								#SET{val,periode}
-								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip:cfg_itm_pagination_format_2:></option>
+								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip_config:cfg_itm_pagination_format_2:></option>
 								#SET{val,periode_abregee}
-								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip:cfg_itm_pagination_format_3:></option>
+								<option value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)selected="selected"]><:sarkaspip_config:cfg_itm_pagination_format_3:></option>
 						</select>
 					</li>
 				</ul></fieldset>
@@ -86,10 +86,10 @@
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_agenda_tri:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_agenda_tri:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_agenda_sens_tri:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_agenda_sens_tri:></p>
 				</li>
 				#SET{name,sens_tri}#SET{defaut,normal}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
@@ -99,23 +99,23 @@
 					#SET{val,normal}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_tri_chrono:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_tri_chrono:></label>
 					</div>
 					#SET{val,inverse}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_tri_antichrono:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_tri_antichrono:></label>
 					</div>
 				</li>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_mini_agenda:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_mini_agenda:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_mini_agenda:></p>
-					<p class="explication"><:sarkaspip:cfg_inf_mini_agenda_mois:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_mini_agenda:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_mini_agenda_mois:></p>
 				</li>
 				#SET{name,affichage_hors_mois}#SET{defaut,oui}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
@@ -125,17 +125,17 @@
 					#SET{val,oui}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_horsmois_oui:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_horsmois_oui:></label>
 					</div>
 					#SET{val,non}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_horsmois_non:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_horsmois_non:></label>
 					</div>
 				</li>
 				#SET{name,jour1}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label for="#GET{name}"><:sarkaspip:cfg_lbl_mini_agenda_jour1:></label>[
+					<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_mini_agenda_jour1:></label>[
 					<span class='erreur_message'>(#GET{erreurs})</span>
 					]<select name="#GET{name}" class="select" id="#GET{name}">
 						<BOUCLE_jour(DATA){enum 1,7}>
@@ -145,52 +145,52 @@
 					</select>
 				</li>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_mini_agenda_resume_1:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_mini_agenda_resume_1:></p>
 				</li>
 				#SET{name,type_resume}#SET{defaut,oui}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label><:sarkaspip:cfg_inf_mini_agenda_resume_2:></label>[
+					<label><:sarkaspip_config:cfg_inf_mini_agenda_resume_2:></label>[
 					<span class='erreur_message'>(#GET{erreurs})</span>
 					]
 					#SET{val,oui}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_oui:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_oui:></label>
 					</div>
 					#SET{val,non}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_non:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_non:></label>
 					</div>
 				</li>
 				<li class="fieldset suite" id="bloc_taille_resume"><fieldset>
 					<ul>
 						#SET{name,max_mois_resume}#SET{defaut,6}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-							<label for="#GET{name}"><:sarkaspip:cfg_lbl_maxmois_resume:></label>[
+							<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_maxmois_resume:></label>[
 							<span class='erreur_message'>(#GET{erreurs})</span>
 							]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 						</li>
 						#SET{name,taille_resume}#SET{defaut,5}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-							<label for="#GET{name}"><:sarkaspip:cfg_lbl_taille_resume:></label>[
+							<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_taille_resume:></label>[
 							<span class='erreur_message'>(#GET{erreurs})</span>
 							]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 						</li>
 						#SET{name,format_resume}#SET{defaut,'d-m H:i'}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-							<label><:sarkaspip:cfg_inf_mini_agenda_format:></label>[
+							<label><:sarkaspip_config:cfg_inf_mini_agenda_format:></label>[
 							<span class='erreur_message'>(#GET{erreurs})</span>
 							]
 							#SET{val,d-m H:i}
 							<div class="choix">
 								<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_format_dmhi:></label>
+								<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_format_dmhi:></label>
 							</div>
 							#SET{val,d-m}
 							<div class="choix">
 								<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-								<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_format_dm:></label>
+								<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_format_dm:></label>
 							</div>
 						</li>
 					</ul></fieldset>
