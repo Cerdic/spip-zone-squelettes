@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_imprimer' => 'Print',
 'article_licence' => 'Licentie',
 'article_mise_en_ligne' => 'Artikel gepubliceerd de' ,
+'article_modifie' => 'laatst gewijzigd de' ,
 'article_trouve' => 'Artikel gevonden',
 'articles_trouves' => 'Artikelen gevonden',
 'article_une' => 'Zet dit artikel op de hoofdpagina',

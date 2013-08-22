@@ -19,7 +19,7 @@
 
   <B_meme_rubrique>
     <p style="align:right">#PAGINATION</p>
-	<BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
+	<BOUCLE_meme_rubrique(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|non}{id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
 	
 		<!-- 	affichage du titre avec lien vers l'article
 					de la date de publication
@@ -42,5 +42,31 @@
 		</div>
 		 
 	</BOUCLE_meme_rubrique>
+  
+  <B_meme_rubrique2>
+    <p style="align:right">#PAGINATION</p>
+	<BOUCLE_meme_rubrique2(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|oui}{id_rubrique}{exclus}{par hasard}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
+	
+		<!-- 	affichage du titre avec lien vers l'article
+					de la date de publication
+					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[<:escal:le:> (#DATE|affdate) ]
+			<BOUCLE_test2(AUTEURS){id_article}{lang_select}>
+		  </BOUCLE_test2>
+		  <br /><:par_auteur:>
+			<BOUCLE_auteurs2(AUTEURS){id_article}{",<br />"}{lang_select}>
+      [<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]
+      </BOUCLE_auteurs2>
+			</B_test2>
+		</div>
+		 
+	</BOUCLE_meme_rubrique2>
 
 </div>

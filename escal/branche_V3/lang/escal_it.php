@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_imprimer' => 'Stampare',
 'article_licence' => 'Licenza',
 'article_mise_en_ligne' => 'Articolo pubblicato online il' ,
+'article_modifie' => 'Ultima modifica il' ,
 'article_trouve' => 'articolo trovato',
 'articles_trouves' => 'articoli trovati',
 'article_une' => 'Mettere in prima pagina questo articolo',

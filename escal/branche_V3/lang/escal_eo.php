@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_imprimer' => 'Presi',
 'article_licence' => 'Permesilo',
 'article_mise_en_ligne' => 'Artikolo publikigita je' ,
+'article_modifie' => 'laste redaktita ' ,
 'article_trouve' => 'trovita artikolo',
 'articles_trouves' => 'trovitaj artikoloj',
 'article_une' => 'Artikolo publikigota sur la ĉefpaĝo',

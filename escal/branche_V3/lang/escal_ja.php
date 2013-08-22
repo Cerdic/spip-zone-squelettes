@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_imprimer' => '印刷',
 'article_licence' => 'ライセンス :',
 'article_mise_en_ligne' => '投稿日' ,
+'article_modifie' => '最後に更新され' ,
 'article_trouve' => '検索された記事',
 'articles_trouves' => '検索された記事一覧',
 'article_une' => 'このページを先頭に置く',
