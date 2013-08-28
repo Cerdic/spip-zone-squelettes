@@ -95,13 +95,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Meldung : ',
 'envoyer_message' => 'Meldung schicken an ',
 'erreur404' => '404 Fehler',
-'erreur404_message' => '<p>die von Ihnen gefragte Seite existiert nicht oder nicht mehr in dieser Website .
-                    </p>
-                    <p>denken Sie, es geht um einen Fehler in der Website ?
-                      <br />so können Sie dessen Webmaster mit dieser Seite
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]"  title="Kontaktseite">Kontakt</a>
-		                  auf dem Problem hinweisen.
-		                </p>',
+'erreur404_message' => 'die von Ihnen gefragte Seite existiert nicht oder nicht mehr in dieser Website .
+                    
+                    denken Sie, es geht um einen Fehler in der Website ?
+                    so können Sie dessen Webmaster mit dieser Seite [Kontakt|Kontaktseite->@url@] auf dem Problem hinweisen.',
 'espace_redacteurs' => 'Raum der Verfasser',
 'escal' => 'Escal',
 'escal_couleurs' => 'Escal : die Farben',

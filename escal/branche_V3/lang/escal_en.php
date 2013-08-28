@@ -94,14 +94,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Message: ',
 'envoyer_message' => 'Send a message to ',
 'erreur404' => 'Error 404',
-'erreur404_message' => '<p>The page you want does not exist, is no longer online or has moved.
-                    </p>
-                    <p>If you think this is wrong,
-                      <br />you can inform the webmaster using the 
-                      <br />by using the 
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
-                      page of this site.
-                    </p>',
+'erreur404_message' => 'The page you want does not exist, is no longer online or has moved.
+                    
+                    If you think this is wrong,
+                    you can inform the webmaster using the 
+                    by using the [Contact|Contact page->@url@] page of this site.',
 'espace_redacteurs' => 'Editors area',
 'escal' => 'Escal',
 'et' => 'and',

@@ -95,14 +95,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Bericht: ',
 'envoyer_message' => 'Zend een bericht naar',
 'erreur404' => 'Error 404',
-'erreur404_message' => '<p>De pagina die u opvraagt is onbestaand, niet meer online, of verplaatst.
-                    </p>
-                    <p>Als u denkt dat dit fout is,
-                      <br />kan u de webmaster contacteren 
-                      <br />met de 
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Contactpagina">Contact</a>
-                      pagina van deze site.
-                    </p>',
+'erreur404_message' => 'De pagina die u opvraagt is onbestaand, niet meer online, of verplaatst.
+                    
+                    Als u denkt dat dit fout is,
+                    kan u de webmaster contacteren 
+                    met de [Contact|Contactpagina->@url@] pagina van deze site.',
 'espace_redacteurs' => 'Editors area',
 'escal' => 'Escal',
 'et' => 'en',

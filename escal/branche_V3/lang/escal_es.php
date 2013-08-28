@@ -95,14 +95,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Mensaje: ',
 'envoyer_message' => 'Enviar un mensaje a',
 'erreur404' => 'Error 404',
-'erreur404_message' => '<p>La página que pide no existe más en el sitio o está en otra parte.
-                    </p>
-                    <p>Si usted piensa que es un error en el sitio,
-                      <br />puede escribir al responsable del sitio
-                      <br />utilizando la página
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contacto</a>
-                      de este sitio.
-                    </p>',
+'erreur404_message' => 'La página que pide no existe más en el sitio o está en otra parte.
+                    
+                    Si usted piensa que es un error en el sitio,
+                    puede escribir al responsable del sitio
+                    utilizando la página [Contacto|Página contacto->@url@] de este sitio.',
 'espace_redacteurs' => 'Espacio de redactores',
 'escal' => 'Escal',
 'et' => 'y',

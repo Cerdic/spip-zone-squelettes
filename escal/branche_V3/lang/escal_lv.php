@@ -95,14 +95,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message'=> 'Zina:',	   
 'envoyer_message'=> 'Nosutet zinu',	   
 'erreur404'=> 'Kluda 404',	   
-'erreur404_message'=> '<p> lapu velaties nav, vairs nav tiešsaiste vai ir parvietots.	   
-                    </p>	   
-                    <p>If you think this is wrong,	   
-                      <br />you can inform the webmaster using the 	   
-                      <br />by using the 	   
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>	   
-                      page of this site.	   
-                    </p>',	
+'erreur404_message'=> 'lapu velaties nav, vairs nav tiešsaiste vai ir parvietots.	   
+                    	   
+                      Ja jūs domājat, ka ir kļūda mājas lapā,
+                      Jūs varat ziņot ar problēmu webmaster
+                      izmantojot  [Kontakti|Page kontakts->@url@] no šīs vietnes',
 'espace_redacteurs'=> 'Redaktori plateba',	   
 'escal'=> 'Escal',	   
 'Escal : elements'=> 'Escal: krasas',	   

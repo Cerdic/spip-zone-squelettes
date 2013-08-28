@@ -87,14 +87,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'Mesaĝo: ',
 'envoyer_message' => 'Sendi mesaĝon al ',
 'erreur404' => 'Eraro 404',
-'erreur404_message' => '<p>Ne ekzistas la serĉita paĝo en la retejo.
-                    </p>
-                    <p>Se vi opinias, ke temas pri eraro en la retejo,
-                      <br />eblas sciigi la problemon al ties retejestro
-                      <br />per la paĝo
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Kontakto</a>
-                      de tiu retejo.
-                    </p>',
+'erreur404_message' => 'Ne ekzistas la serĉita paĝo en la retejo.
+                    
+                    Se vi opinias, ke temas pri eraro en la retejo,
+                    eblas sciigi la problemon al ties retejestro
+                    per la paĝo [Kontakto|Paĝo kontakto->@url@] de tiu retejo.',                      
 'espace_redacteurs' => 'Zono por redaktantoj',
 'escal' => 'Escal',
 'et' => 'kaj',
