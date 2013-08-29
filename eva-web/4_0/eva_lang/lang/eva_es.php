@@ -119,7 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_legales' => 'Menciones legales',
 	'mentions_liens_hypertexte_texte' => '<p>Este sitio contiene vínculos hipertextuales que dan paso a unos sitios que no son producidos por el responsable de este sitio.</p>
  <p>Por consiguiente el director de publicación no puede ser considerado como responsable del contenido de los sitios a los que el internauta podría acceder.</p>
- <p>Queda terminantemente prohibido recoger y utilizar las informaciones disponibles en el sitio con fines comerciales.</p>
+ <p>Queda terminantemente prohibido recoger y utilizar la información disponible en el sitio con fines comerciales.</p>
  <p>Esta prohibición se refiere, sin que el listado siguiente sea limitativo, a todos los elementos de redacción que se encuentran en el sitio, la presentación de las pantallas, los programas informáticos necesarios a la explotación, los logotipos, las imágenes, las fotografías, los gráficos, cualquiera sea su forma.</p>',
 	'mentions_liens_hypertexte_titre' => 'vínculos hipertexto :',
 	'mentions_liens_texte' => '<p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caractère illégal et/ou à caractère politique, religieux, pornographique, xénophobe, vous pouvez créer un lien hypertexte vers notre Site sur votre site.</p>
