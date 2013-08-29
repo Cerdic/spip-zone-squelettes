@@ -233,6 +233,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nombres_quoideneuf' => 'Els números que hi ha de nou',
 	'cfg_nombres_quoideneuf_lettres' => 'Els números què hi ha de nou per la NewsLetter',
 	'cfg_non_secondaire' => 'No, la publicació a sota de la navegació secundària',
+	'cfg_notfoundorg' => 'not Found.org', # NEW
+	'cfg_notfoundorg_explication' => 'Clef (key) à récupérer sur <a href="http://notfound.org/index.php?locale=fr_FR" target="_blank">not Found.org</a>', # NEW
+	'cfg_notfoundorg_key' => 'key', # NEW
 	'cfg_numero_cnil' => 'Publicació del número CNIL',
 	'cfg_numero_cnil_label' => 'Núm. d\'enregistrament CNIL',
 	'cfg_numero_xiti' => 'Núm. d\'inscripció Xiti',

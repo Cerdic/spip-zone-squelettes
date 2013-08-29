@@ -233,6 +233,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nombres_quoideneuf' => 'Кількість " Що нового?"',
 	'cfg_nombres_quoideneuf_lettres' => 'Les nombres quoi de neuf pour la NewsLetter', # NEW
 	'cfg_non_secondaire' => 'Ні, афішувати ( показати) його ( її) внизу  вторинної навігації',
+	'cfg_notfoundorg' => 'not Found.org', # NEW
+	'cfg_notfoundorg_explication' => 'Clef (key) à récupérer sur <a href="http://notfound.org/index.php?locale=fr_FR" target="_blank">not Found.org</a>', # NEW
+	'cfg_notfoundorg_key' => 'key', # NEW
 	'cfg_numero_cnil' => 'Афішування ( дисплей) номера CNIL',
 	'cfg_numero_cnil_label' => 'Номер регістрації CNIL',
 	'cfg_numero_xiti' => ' Nº реєстрації Xiti',

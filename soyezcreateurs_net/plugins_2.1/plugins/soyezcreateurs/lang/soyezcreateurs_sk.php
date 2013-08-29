@@ -233,6 +233,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nombres_quoideneuf' => 'Počty pre stránku Čo je nové',
 	'cfg_nombres_quoideneuf_lettres' => 'Čísla pre bulletin "Čo je nové"',
 	'cfg_non_secondaire' => 'Nie zobraziť v spodnej časti druhej navigácie',
+	'cfg_notfoundorg' => 'not Found.org', # NEW
+	'cfg_notfoundorg_explication' => 'Clef (key) à récupérer sur <a href="http://notfound.org/index.php?locale=fr_FR" target="_blank">not Found.org</a>', # NEW
+	'cfg_notfoundorg_key' => 'key', # NEW
 	'cfg_numero_cnil' => 'Zobrazenie čísla CNIL',
 	'cfg_numero_cnil_label' => 'Registračné číslo CNIL ',
 	'cfg_numero_xiti' => 'Registračné číslo Xiti',
