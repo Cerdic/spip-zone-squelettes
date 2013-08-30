@@ -288,7 +288,7 @@ function inc_lien($lien, $texte='', $class='', $title='', $hlang='', $rel='', $c
 	elseif (preg_match('/^<html>/',$lien)) # spip_url, spip_out pour les autres cas de figures
 		$class = "spip_url spip_out";
 	elseif (!$class) $class = "spip_out"; # spip_out pour les liens externes
-return inc_lien_dist($lien, $texte, $class, $titre, $hlang, $rel, $connect);
+return inc_lien_dist($lien, $texte, $class, $title, $hlang, $rel, $connect);
 }
 }
 // balises issues da la contrib  "Balises de comptage" de Franck
