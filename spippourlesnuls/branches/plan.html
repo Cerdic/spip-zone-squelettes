@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Plan - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="none" />
+<meta name="generator" content="SPIP #SPIP_VERSION" />
+<link rel="stylesheet" href="squelettes/styles/layout.css" type="text/css" />
+
+#INSERT_HEAD
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="header">
+    <!-- div id="topnav" -->
+      #INCLURE{fond=inc-topnav,env}
+  
+    <div id="logo">
+      <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+      <p>Apprendre SPIP en douceur</p>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+
+<div class="wrapper col2">
+  <div id="breadcrumb">
+   [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on">PLAN du SITE</strong></div>
+  </div>
+</div>
+<div class="wrapper col4">
+  <div id="container">
+    <div id="content">
+       <!-- ZONE A CONTENUR -->
+      <h1>  Plan du Site </h1>
+      <p>Vous préférez consulter l' <a href="#URL_PAGE{arbo}">Arborescence</a> du Site (seulement les RUBRIQUES).</p>
+      <BOUCLE_secteurs(RUBRIQUES) {racine}{par id_rubrique}>
+
+        <h2><a href="#URL_RUBRIQUE"  [ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a> 
+        [(#LOGO_RUBRIQUE_NORMAL||image_reduire{0,15})]
+        [- (#LOGO_RUBRIQUE_SURVOL||image_reduire{0,12})]
+        </h2>
+
+        [(#REM) Articles et sous-rubriques ]
+
+
+          <B_articles_racine>
+          <ul>
+            <BOUCLE_articles_racine(ARTICLES) {id_rubrique}>
+               <li> 
+                 <a href="#URL_ARTICLE"  [title="(#INTRODUCTION|supprimer_tags|attribut_html)"] > [(#TITRE|supprimer_numero|textebrut)]</a>
+                 [  (#LOGO_ARTICLE_NORMAL||image_reduire{0,15})]
+                 [ - (#LOGO_ARTICLE_SURVOL||image_reduire{0,12})]    
+                 [<small> &nbsp; - modifi&eacute; en (#DATE_MODIF|affdate_mois_annee)</small>].
+
+              </li>
+
+            </BOUCLE_articles_racine>
+          </ul>
+          </B_articles_racine>
+
+          <B_rubriques>
+          <ul>
+            <BOUCLE_rubriques(RUBRIQUES) {id_parent} {tout}>
+            <li>
+              <strong><a href="#URL_RUBRIQUE"  [ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a>
+                [(#LOGO_RUBRIQUE_NORMAL||image_reduire{0,15})]
+                [- (#LOGO_RUBRIQUE_SURVOL||image_reduire{0,12})]
+              </strong>
+              <B_articles>
+              <ul>
+                <BOUCLE_articles(ARTICLES) {id_rubrique}>
+                     <li>
+                        <a href="#URL_ARTICLE"  [title="(#INTRODUCTION|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a>
+                       [  (#LOGO_ARTICLE_NORMAL||image_reduire{0,15})]
+                       [ - (#LOGO_ARTICLE_SURVOL||image_reduire{0,12})]    
+                       [<small> &nbsp; - modifi&eacute; en (#DATE_MODIF|affdate_mois_annee)</small>].
+
+                    </li>
+                </BOUCLE_articles>
+              </ul>
+              </B_articles>
+
+              <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+            </li>
+            </BOUCLE_rubriques>
+
+          </ul>
+          </B_rubriques>
+
+                <p><i> Se limiter à  consulter l' <a href="#URL_PAGE{arbo}">Arborescence</a> du Site (seulement les RUBRIQUES)</i>.</p>
+
+
+        [(#REM) Breves ]
+        <B_breves>
+        <div class="breves">
+          <h3 class="menu-titre"><:breves:></h3>
+          <ul>
+            <BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
+            <li><a href="#URL_BREVE">#TITRE</a></li>
+            </BOUCLE_breves>
+          </ul>
+        </div>
+        </B_breves>
+        <br />
+        </BOUCLE_secteurs>
+
+     <!-----  FIN CONTENU CENTRAL -->
+        <div id="contenu">
+        </div contenu>
+        <div id="comments">
+    <!-- [<p>(#INCLURE{fond=noisettes/socialtags}{id_article})</p>] -->
+        </div>
+      </div content>
+  [(#REM) ----------------------------------------- ]
+  <div id="column">
+    #INCLURE{fond=attention} <br />
+
+    #INCLURE{fond=inclure/trouver} <br />
+      
+     #INCLURE{fond=inclure/motagsphere}   
+
+      #INCLURE{fond=inc-hits}
+    
+      #INCLURE{fond=extra/auteur}
+      <div class="clear"></div>
+
+    </div column>
+
+     <div class="clear"></div>
+
+</div>
+<div class="wrapper col5">
+  <INCLURE{fond=inc-pied}>
+    
+        
+    <br class="clear" />
+  </div>
+</div>
+<INCLURE{fond=inc-footer}>
+</html>

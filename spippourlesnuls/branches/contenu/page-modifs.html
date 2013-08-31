@@ -1,0 +1,52 @@
+<div id="content">
+	[(#AUTORISER{webmestre}|oui) <pre>#ENV{type} - #ENV{composition}</pre> ]
+       <!-- ZONE A CONTENUR -->
+      <h1> Dernières Modifications</h1>
+      <p>Si vous préférez consulter l' <a href="#URL_PAGE{arbo}">Arborescence</a> du Site (seulement les RUBRIQUES).</p>
+  
+     <B_newsarticles>
+        <ul><h2>Nouveaux Articles</h2>
+        <BOUCLE_newsarticles(ARTICLES){age<30}{0,10}{doublons arts}>
+                     <li>
+                        <a href="#URL_ARTICLE"  [title="(#INTRODUCTION|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a>
+                       [  (#LOGO_ARTICLE_NORMAL||image_reduire{0,15})]
+                       [ - (#LOGO_ARTICLE_SURVOL||image_reduire{0,12})]    
+                       [<small> &nbsp; - modifi&eacute; en (#DATE_MODIF|affdate_mois_annee)</small>].
+                    </li>
+        </BOUCLE_newsarticles>
+        </ul>
+     </B_newsarticles>
+    <h2><br />Dernières Modifications</h2>
+     <BOUCLE_secteurs(RUBRIQUES) {racine}{par id_rubrique}>
+        <B_articles>
+            <h3><a href="#URL_RUBRIQUE"  [ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a> 
+            [(#LOGO_RUBRIQUE_NORMAL||image_reduire{0,15})]
+            [- (#LOGO_RUBRIQUE_SURVOL||image_reduire{0,12})]
+            </h3>
+
+            [(#REM) Articles récents ]
+            <ul>
+           <BOUCLE_articles(ARTICLES) {branche}{0,10}{!par date_modif}{doublons arts}>
+               <li> 
+                 <a href="#URL_ARTICLE"  [title="(#INTRODUCTION|supprimer_tags|attribut_html)"] > [(#TITRE|supprimer_numero|textebrut)]</a>
+                 [  (#LOGO_ARTICLE_NORMAL||image_reduire{0,15})]
+                 [ - (#LOGO_ARTICLE_SURVOL||image_reduire{0,12})]    
+                 [<small> &nbsp; - modifi&eacute; en (#DATE_MODIF|affdate_mois_annee)</small>].
+              </li>
+           </BOUCLE_articles>
+            </ul>
+        </B_articles>
+
+         </BOUCLE_secteurs>
+          
+
+             <p><br /> &nbsp; &nbsp; Se limiter à  consulter l' <a href="#URL_PAGE{arbo}">Arborescence</a> du Site (seulement les RUBRIQUES),<br />
+               &nbsp; &nbsp; &nbsp; le <a href="#URL_PAGE{plan}">Plan</a> du Site, ou retour au <a href="#URL_SITE_SPIP">Sommaire</a>.</p>
+
+
+      
+        </B_secteurs>
+
+     <!-----  FIN CONTENU CENTRAL -->
+       </div content>
+ 

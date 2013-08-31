@@ -1,0 +1,50 @@
+[(#REM)   contenu GrNbMots ]
+
+<h2>Nombre d'Articles par Mot-cl&eacute; : </h2>
+<p>L'introduction des Mots-clés est en-cours sur les articles déjà rédigés.</p>
+Mais comme cette navigation n'avait pas été utilisée, ni mise-à-jour,<br />
+nous vous demandons un peu de patience,<br />
+le temps que tous les articles soient repris et indexés...</p>
+<p><small>(Notez qu'il s'agit d'une possibilité native de SPIP, définie par paramétrage..<br />
+  (Il suffit simplement d'activer les squelettes associés !)</small></p>
+
+<BOUCLE_tota(ARTICLES){tout}></BOUCLE_tota>
+  <h2>Pour #TOTAL_BOUCLE Articles consultables :</h2><//B_tota>
+<BOUCLE_grmots_fiches(GROUPES_MOTS){id_groupe?}{id_groupe<5}>
+    <h3><i>Groupe:</i> #ID_GROUPE. <a href="#URL_PAGE{groupmot,id_groupe=#ID_GROUPE}">#TITRE</a>. </h3> 
+  <p>[<small>(#DESCRIPTIF)</small>]</p>
+    <B_motf><ul>
+    <BOUCLE_motf(MOTS){id_groupe}{par num titre, titre}{" - &nbsp; "}>
+        #SET{total,0} 
+        <BOUCLE_articledesmotscles(ARTICLES){id_mot}>
+        </BOUCLE_articledesmotscles>
+        #SET{total,#GRAND_TOTAL}
+        </B_articledesmotscles>
+        <a href="#URL_MOT" title="#TYPE - #DESCRIPTIF">#TITRE </a> 
+        [(#GET{total}|choixsiegal{0, "", [ ((#GET{total}))]})]
+        </BOUCLE_motf>
+        </ul></B_motf>
+</BOUCLE_grmots_fiches>
+<//B_grmots_fiches>
+<hr/>
+
+ <!-- Comptage invalide sur les Rubriques ! id_groupe IN  } => RUBRIQUES -->
+<h2>Les Champs couverts pour les Rubriques</h2>        
+<BOUCLE_grmots(GROUPES_MOTS){id_groupe?}{tables_liees=rubriques}>
+    <h3>#ID_GROUPE. <i>Groupe:</i> <a href="#URL_PAGE{mots,id_groupe=#ID_GROUPE}">#TITRE</a>. </h3> 
+    <B_mot><ul>
+    <BOUCLE_mot(MOTS){id_groupe}{par num titre, titre}{" - &nbsp; "}>
+        #SET{total,0} 
+        <BOUCLE_desmotscles(RUBRIQUES){id_mot}>
+            #TITRE
+        </BOUCLE_desmotscles>
+        #SET{total,#GRAND_TOTAL}
+        </B_desmotscles>
+        <a href="#URL_MOT">#TITRE </a> 
+        [(#GET{total}|choixsiegal{0, "", [ ((#GET{total}))]})]
+        </BOUCLE_mot>
+        </ul></B_mot>
+</BOUCLE_grmots>
+<//B_grmots>
+
+
