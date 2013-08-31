@@ -1,0 +1,49 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<div class="wrapper col4">
+  <div id="container">
+    <div id="content">
+      [<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+        <h1 class="#EDIT{titre} entry-title">#TITRE</h1>
+     [<img class="imgr" src="(#LOGO_ARTICLE|image_reduire{125,125}|extraire_attribut{src})" alt=""  />]
+    <div class="surlignable">
+        
+        
+        [<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+      </div>
+      <div class="surlignable">
+        [<b><div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div></b>]
+      [<div class="#EDIT{texte} texte entry-content [(#CHAPO|?{'','small'})]">(#TEXTE|image_reduire{500,0})</div>]<br />
+      
+      </div> 
+
+      <div id="contenu">
+     <a name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Partager</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> 
+<iframe src="http://www.facebook.com/plugins/like.php?href=#URL_SITE_SPIP/#SELF&layout=standard&show_faces=true&width=450&action=like&colorscheme=light&height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+<i><p>Merci de nous
+  <a href="spip.php?auteur127">signaler</a> les coquilles ou erreurs qui figureraient dans cette page..</p></i>
+
+        <!-- [<p>(_INCLURE{fond=noisettes/socialtags}{id_article})</p>] -->
+      </div>
+      [<h5>Notes :</h5><div class="ps entry-content">(#NOTES|image_reduire{10,0})</div>]<br />
+      [(#SESSION{id_auteur}|?{ #INCLURE{fond=inc-arti-liens-ps}{env},
+                               "Liens visibles seulement pour les inscrits."})]
+      [(#SESSION{id_auteur}|?{ #INCLURE{fond=inc-article-docs}{env}})]
+
+      [(#INCLURE{fond=inclure/article_precedent_suivant,id_article,id_rubrique})] 
+      <div id="comments">        
+         <p>[<small>Modifi&eacute; en (#DATE_MODIF|affdate_mois_annee). </small>]</p>
+ 
+        
+       [(#REM) Forum de l'article ]
+    <a href="#forum" name="forum" id="forum"></a>
+    <INCLURE{fond=inc-forum}{id_article} />
+    [<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
+      </div>
+      
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+
+</BOUCLE_principale>

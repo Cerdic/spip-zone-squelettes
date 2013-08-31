@@ -1,0 +1,51 @@
+
+       <!-- ZONE A CONTENUR -->
+      <h1>  Arborescence du Site </h1>
+           <p> Si vous préférez, le <a href="#URL_PAGE{plan}">Plan détaillé du Site</a>, avec tous les titres d'Articles.</p>
+
+      <BOUCLE_secteurs(RUBRIQUES) {racine}{par id_rubrique}>
+
+        <h2><a href="#URL_RUBRIQUE"  [(#REM) [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] >]
+                
+                 title="<BOUCLE_articles_racine(ARTICLES) {id_rubrique}>
+                         [(#TITRE|supprimer_numero|textebrut)]<br />
+                       </BOUCLE_articles_racine>"> [(#REM) fin du <A]
+
+        [(#TITRE|supprimer_numero|textebrut)]</a> 
+         </h2>
+          <BOUCLE_ar_racine(ARTICLES){id_rubrique}></BOUCLE_ar_racine>
+            #TOTAL_BOUCLE Articles</B_ar_racine>
+        [(#REM) sous-rubriques ]
+  
+           <B_rubriques>
+          <ul>
+            <BOUCLE_rubriques(RUBRIQUES) {id_parent} {tout}>
+            <li>
+              <strong><a href="#URL_RUBRIQUE"  [ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a>
+                [(#LOGO_RUBRIQUE_NORMAL||image_reduire{0,15})]
+                [- (#LOGO_RUBRIQUE_SURVOL||image_reduire{0,12})]
+              </strong>
+              <B_articles>
+              <ul>
+                <BOUCLE_articles(ARTICLES) {id_rubrique}>
+                     [<li>(#REM)
+                        <a href="#URL_ARTICLE"  [title="(#INTRODUCTION|supprimer_tags|attribut_html)"] >[(#TITRE|supprimer_numero|textebrut)]</a>
+                    </li>]
+                </BOUCLE_articles>
+              </ul> 
+                  [<p style="text-align:right"><small>#TOTAL_BOUCLE pages articles à consulter....  modifications en (#_rubriques:DATE|affdate_mois_annee).</small></p>]  
+              </B_articles>
+
+              <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+            </li>
+            </BOUCLE_rubriques>
+
+          </ul>
+          </B_rubriques>
+
+        </BOUCLE_secteurs>
+
+     <p>        Vous préférerez peut-être voir la totalité des articles ?</p>
+     <p> Consultez alors le <a href="#URL_PAGE{plan}">Plan détaillé du Site</a>.</p>
+ 
