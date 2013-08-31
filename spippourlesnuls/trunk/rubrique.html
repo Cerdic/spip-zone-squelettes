@@ -1,0 +1,113 @@
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>[(#TITRE|textebrut|supprimer_numero) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="squelettes/styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="squelettes/perso.css" type="text/css" />
+#INSERT_HEAD
+</head>
+<body id="top">
+      <div class="wrapper col1">
+	    <div id="header">
+	    <!-- div id="topnav" -->
+	    #INCLURE{fond=inc-topnav,env}
+            <div id="logo">
+		  <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+		  <p>Apprendre SPIP en douceur</p>
+	    </div>
+	    <br class="clear" />
+	    </div>
+      </div><!-- .wrapper col1 -->
+      <div class="wrapper col2">
+	    <div id="breadcrumb">
+	    [(#REM) Fil d'Ariane ]
+	    <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80}|supprimer_numero)</strong>]</div>
+	    </div>
+      </div><!-- .wrapper col2 -->
+      
+      <div class="wrapper col4">
+	    <div id="container">
+		  <div id="content">
+		  [<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+		  [<h1 class="#EDIT{titre} entry-title">(#TITRE|supprimer_numero)</h1>]
+		  [<img class="imgr" src="(#LOGO_RUBRIQUE|image_reduire{125,125}|extraire_attribut{src})" alt=""  />]
+		  [<p class="#EDIT{texte} texte">(#TEXTE)</p>]
+      
+		 <div id="contenu">
+		  [<p style="text-align:right"><small><:dernier_ajout:> : (#DATE|affdate_jourcourt).</small><br /></p>]                       
+		  [(#REM) Articles de la rubrique ]
+		  <B_articles>
+			<div class="menu articles">
+			#ANCRE_PAGINATION
+			[(#REM) <h2><:articles_rubrique:></h2> ]
+			<p style="text-decoration:overline underline ;">
+			 &nbsp;Consultez d&eacute;j&agrave; les pages suivantes : un r&eacute;sum&eacute; s'affichera au survol de chaque titre&nbsp;</p>
+			      <ul>
+				  <BOUCLE_articles(ARTICLES) {id_rubrique} {par date} {pagination}>
+				  <li>
+				       <h4>
+					<a href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut)"]>#TITRE</a>
+					<br /><small>#SOUSTITRE</small>
+				       </h4>
+				  </li>
+				  </BOUCLE_articles>
+			      </ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+		  </B_articles>
+      
+		  <B_sous_rubriques>
+		  <div class="menu rubriques">
+		  <h2 style="text-decoration:overline underline ;">Et les <:sous_rubriques:></h2>
+		  <ul>
+			    <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+			    <li>
+				<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+      
+				[(#REM) Une boucle recursive pour le mini plan]
+				<B_miniplan>
+				<ul>
+				    <BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+				    <li>
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+					<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+				    </li>
+				    </BOUCLE_miniplan>
+				</ul>
+				</B_miniplan>
+			    </li>
+			    </BOUCLE_sous_rubriques>
+		  </ul>
+		  </div>
+		  </B_sous_rubriques>
+      
+		 [<p>(#INCLURE{fond=noisettes/socialtags, id_rubrique})</p>]
+      
+		 [<h5>Notes :</h5><div class="ps entry-content">(#NOTES|image_reduire{10,0})</div>]<br />
+		 
+		 </div>
+		 </div>
+		  [(#REM) ------------------    EXTRA ]
+		  <div id="column">
+			#INCLURE{fond=averti}<br />
+			  
+			#INCLURE{fond=inclure/trouver}
+			<!-- inc-subnav -->
+			#INCLURE{fond=inc-subnav,id_sect=#ID_SECTEUR}
+			<!-- inc-rubextra -->
+		  </div>
+		  </div><!-- .colum -->
+		 </div><!-- .content -->
+	    </div><!-- .container -->
+      </div><!-- .wrapper col4 -->
+<div class="wrapper col5">
+  <INCLURE{fond=inc-pied}>
+    <br class="clear" />
+  </div>
+</div>
+<INCLURE{fond=inc-footer}>
+
+</BOUCLE_principale>

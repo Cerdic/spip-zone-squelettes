@@ -1,0 +1,21 @@
+[(#REM)  menu latéral SUBNAV ]
+<B_subnav>
+  <div class="subnav">
+   <h2>Dans ce CHAPITRE</h2>
+     <ul>
+       <BOUCLE_subnav(RUBRIQUES){id_rubrique!=1}{id_rubrique=#ENV{id_sect} }> 
+            <li><a href="#URL_RUBRIQUE" title="#TITRE" 
+              [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a>
+             </li>
+          <ul>
+	     <BOUCLE_menu(RUBRIQUES){id_parent=#ID_RUBRIQUE}>
+		  <li><a href="#URL_RUBRIQUE" title="#TITRE"
+		    [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a>
+		   </li>
+	       <li><BOUCLE_rub(BOUCLE_menu)></BOUCLE_rub></li>
+	     </BOUCLE_menu>          
+	  </ul>
+       </BOUCLE_subnav>          
+     </ul>                      
+  </div>
+<//B_subnav>

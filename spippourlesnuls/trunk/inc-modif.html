@@ -1,0 +1,22 @@
+[ (#REM) inc-modif (derniers articles) menu DROITE ]  
+#CACHE{60}
+<!---  inc-modif --->
+<h2>Derni&egrave;res <a href="#URL_PAGE{modifs}" title="Les derniers articles complétés">Modifications </a>
+  /SPN <a href="#URL_PAGE{backmod}" title="Flux des 2 News + 10 modifications"><img src="squelettes/images/rss.gif" width="15" alt="Modifs" border="0" /></a></h2>
+ 
+   <div class="sub-nav"> 
+<ul>
+  <BOUCLE_artModif(ARTICLES){par date_modif}{age>2}{inverse}{id_rubrique>0}{0,3}{doublons modifs}>
+    <li>[(#DATE_MODIF|affdate_court) :]
+            <a href="#URL_ARTICLE" [title="(#CHAPO|attribut_html)"] >         [(#TITRE|couper{27,""})]</a></li>
+  </BOUCLE_artModif>
+  </ul><ul>
+    <BOUCLE_artAjout(ARTICLES){par date}{inverse}{id_rubrique>0}{0,1}{doublons modifs}>
+      <li><i>dernier ajout</i> : <br />[(#DATE|affdate_court) :] 
+        <a href="#URL_RUBRIQUE" [title="Parcourir le Chapitre &lt;br&gt;(#DESCRIPTIF|attribut_html)"] >         [(#TITRE|couper{33,""})]</a></li>
+  </BOUCLE_artAjout>
+      <li><a href="#URL_PAGE{plan}" title="Voir l'ensemble des Chapitres, rubriques et articles.">Plan du site</a></li>
+      [<li> pour <a href="./ecrire/"> Ecrire (#SESSION{auteur}) connecté</a>.</li>]
+    </ul>
+</div subnav>
+

@@ -1,0 +1,29 @@
+[ (#REM) inc-rubriqs menu Rubriques DROITE ]  <!--- inc-rubriqs --->
+<div id="menuCol">
+<BOUCLE_rubMenuG(RUBRIQUES){racine}{id_rubrique?}{tout}{id_rubrique >1}>
+[ (#REM) 
+  _rubMenuG: #ID_SECTEUR / #ID_RUBRIQUE <br /> ]
+   <div class="subnav">
+    <BOUCLE_secteur(RUBRIQUES) {id_rubrique=#ID_SECTEUR}>
+      <div class="menuGsecteur">
+          &nbsp; &nbsp; <a href="#URL_RUBRIQUE" class="menuGsecteur"
+            [title="(#DESCRIPTIF|attribut_html)"] > 
+         [ (#TITRE|couper{25}) ]</a></div>
+    <BOUCLE_rubriqs(RUBRIQUES) {id_parent=#_rubMenuG:ID_RUBRIQUE}{par titre}>
+         [ &nbsp; &nbsp; <a href="#URL_RUBRIQUE" style="color:#747879;"
+            [title="(#DESCRIPTIF|attribut_html)"] > 
+            (#TITRE) </a> #EXPOSE{ici} ]
+      </BOUCLE_rubriqs>
+  </BOUCLE_secteur>
+  </B_secteur> 
+     </div subnav>
+  </BOUCLE_rubMenuG>
+</B_rubMenuG> 
+      <div class="subnav">
+      <BOUCLE_Rubriq(RUBRIQUES){racine}>
+        <li>[<a href="#URL_RUBRIQUE" [alt="(#DESCRIPTIF|attribut_html)"]>
+          (#TITRE|attribut_html)</a>]</li>
+      </BOUCLE_Rubriq>
+      </div subnav>       
+<//B_rubMenuG>
+</div menuCol>
