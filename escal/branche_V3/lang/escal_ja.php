@@ -96,20 +96,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'erreur404' => 'Erreur 404',
 'erreur404_message' => '<p>要求されたページは存在しないか、すでにサイトから削除されています。
                     </p>
-                    <p>Si vous pensez qu\'il s\'agit d\'une erreur dans le site,
-                      <br />vous pouvez signaler le problème au responsable du site
-                      <br />en utilisant la page
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="Page contact">Contact</a>
-                      de ce site.
+                    <p>サイトのエラーが原因で目的のページが表示されない場合は、
+                      <br />恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。
+                      <br />
+                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="お問い合わせ">お問い合わせ</a>
                     </p>',
-'espace_redacteurs' => 'Espace rédacteurs',
+'espace_redacteurs' => '管理ページ',
 'escal' => 'Escal',
-'escal_couleurs' => 'Escal : les couleurs',
-'escal_elements' => 'Escal : les éléments',
-'et' => 'et',
-'evenements' => 'Évènements à venir',
-'evenements_ajouter' => 'Ajouter un évènement<br />(Accès réservé)',
-'evenements_non' => 'Pas d\'évènements à venir',
+'escal_couleurs' => 'Escal: カラー',
+'escal_elements' => 'Escal:アイテム',
+'et' => 'と',
+'evenements' => '今後\のイベント',
+'evenements_ajouter' => 'イベントを追加する<br />管理ページ',
+'evenements_non' => '今後のイベントはございません',
 // F
 'fleche' => '矢印',
 'fois' => '回',
