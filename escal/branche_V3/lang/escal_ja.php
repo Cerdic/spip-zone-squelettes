@@ -92,8 +92,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_motif' => '内容 :  ',
 'envoi_mail_niveau' => 'レベル :   ',
 'envoi_mail_message' => 'メッセージ :  ',
-'envoyer_message' => 'Envoyer un message à ',
-'erreur404' => 'Erreur 404',
+'envoyer_message' => 'へメッセージを送る',
+'erreur404' => '404 エラー',
 'erreur404_message' => '<p>要求されたページは存在しないか、すでにサイトから削除されています。
                     </p>
                     <p>サイトのエラーが原因で目的のページが表示されない場合は、
