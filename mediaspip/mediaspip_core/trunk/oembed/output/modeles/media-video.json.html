@@ -10,11 +10,11 @@ author_name,[(#LESAUTEURS|supprimer_tags)]})]})]
 <BOUCLE_auteurs(AUTEURS){id_article}>[(#TOTAL_BOUCLE|=={1}|oui)
 [(#SET{json,[(#GET{json}|array_merge{#ARRAY{author_url,[(#URL_AUTEUR|url_absolue)]}})]})]
 ]</BOUCLE_auteurs>
-<BOUCLE_doc(DOCUMENTS){id_article}{mode IN document}{0,1}>
+<BOUCLE_doc(DOCUMENTS){id_article}{media = video}{0,1}>
 [(#SET{thumbnail,[(#LOGO_DOCUMENT|image_reduire{[(#ENV{thumbnail_width,#ENV{maxwidth,#CONFIG{oembed/maxwidth,480}}})],[(#ENV{thumbnail_height,#ENV{maxwidth,#CONFIG{oembed/maxheight,295}}})]})]})]
 [(#SET{json,[(#GET{json}|array_merge{
 	[(#ARRAY{
-		html,[(#MODELE{embed_doc_player,download=non,buffer=10,id_document,largeur=#ENV{maxwidth,#CONFIG{oembed/maxwidth,480}},hauteur=#ENV{maxheight,#CONFIG{oembed/maxheight,295}},env}|liens_absolus|trim)],
+		html,[(#MODELE{embed_doc_player,objet=document,download=non,buffer=10,id_document,largeur=#ENV{maxwidth,#CONFIG{oembed/maxwidth,480}},hauteur=#ENV{maxheight,#CONFIG{oembed/maxheight,295}},env}|liens_absolus|trim)],
 		thumbnail_url,[(#GET{thumbnail}|extraire_attribut{src}|url_absolue)],
 		thumbnail_width,[(#GET{thumbnail}|extraire_attribut{width})],
 		thumbnail_height,[(#GET{thumbnail}|extraire_attribut{height})]})]})]})]
