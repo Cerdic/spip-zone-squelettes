@@ -248,7 +248,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 				$rubs_mediaspip['rubriques']['sites'] = insert_rubrique(0);
 				revisions_rubriques($rubs_mediaspip['rubriques']['sites'], array('titre' =>_T('mediaspip_init:titre_rubrique_sites')));
 			}
-
+			$rubs_mediaspip['squelettes']['telecharger_types'] = array('copies','original');
 			ecrire_meta('mediaspip',serialize($rubs_mediaspip));
 
 			/**
@@ -589,6 +589,15 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta("documents_objets", implode(',',array('spip_articles')));
 			
 			ecrire_meta($nom_meta_base_version,$current_version='0.3.0','non');
+		}
+		/**
+		 * On ajoute la conf de base de téléchargement des documents de MediaSPIP
+		 */
+		if(version_compare($current_version,'0.3.1','<')){
+			$conf_mediaspip = lire_config('mediaspip');
+			$conf_mediaspip['squelettes']['telecharger_types'] = array('copies','original');
+			ecrire_meta('mediaspip',serialize($conf_mediaspip));
+			ecrire_meta($nom_meta_base_version,$current_version='0.3.1','non');
 		}
 	}
 }
