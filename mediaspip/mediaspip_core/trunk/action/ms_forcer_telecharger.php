@@ -63,7 +63,7 @@ function action_ms_forcer_telecharger_dist() {
 
 		$doc = sql_fetsel("documents.id_document, documents.titre,documents.mode, documents.fichier, types.mime_type, types.inclus, documents.extension", "spip_documents AS documents LEFT JOIN spip_types_documents AS types ON documents.extension=types.extension",$where);
 		if (!$doc
-			OR ((lire_config('mediaspip/squelettes/autoriser_telecharger_original','off') != 'on')
+			OR (!in_array('original',lire_config('mediaspip/squelettes/telecharger_types',array()))
 				&& (in_array($doc['mode'],array('document','image')) == 0))
 		){
 			$status = 404;

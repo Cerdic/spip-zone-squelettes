@@ -52,7 +52,7 @@
 	ajouter par ex. {extension=mp3} pour limiter a un certain type de document.
 ]		
 		<BOUCLE_si_documents(CONDITION){si #CONFIG{mediaspip/squelettes/autoriser_telecharger}|=={on}|et{#CONFIG{mediaspip/squelettes/autoriser_telecharger_que_logues}|!={on}}|oui}>
-		<BOUCLE_si_pas_orig(CONDITION){si #CONFIG{mediaspip/squelettes/autoriser_telecharger_original}|!={on}|oui}>
+		<BOUCLE_si_pas_orig(CONDITION){si #VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non}>
 		<BOUCLE_documents_pas_orig(DOCUMENTS){id_article}{mode !IN doc2img,co,version}{mode=document}{doublons}>
 		<BOUCLES_docs_dl(DOCUMENTS){objet=document}{id_objet=#ID_DOCUMENT}{tout}>[
 		<enclosure url="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
@@ -68,6 +68,5 @@
 		</BOUCLE_documents>
 		<//B_si_pas_orig>
 		</BOUCLE_si_documents>
-
 	</item>
 </BOUCLE_un_article>

@@ -150,14 +150,18 @@
 						label=<:mediaspip_core:label_autoriser_telecharger:>,
 						defaut=on})]
 					[(#CONFIG{mediaspip/squelettes/autoriser_telecharger}|=={on}|ou{#CONFIG{mediaspip/squelettes/autoriser_telecharger}|is_null}|oui)
+						[(#SAISIE{selection_multiple,telecharger_types,
+								label=<:mediaspip_core:label_autoriser_telecharger_types:>,
+								cacher_option_intro=oui,
+								size=3,
+								datas=#ARRAY{
+									original,<:mediaspip_core:option_lien_types_original:>,
+									copies,<:mediaspip_core:option_lien_types_copies:>
+								}})]
 						[(#SAISIE{oui_non,
 							autoriser_telecharger_que_logues,
 							explication=<:mediaspip_core:description_autoriser_telecharger_que_logues:>,
 							label=<:mediaspip_core:label_autoriser_telecharger_que_logues:>,
-							defaut=on})]
-						[(#SAISIE{oui_non,
-							autoriser_telecharger_original,
-							label=<:mediaspip_core:label_autoriser_telecharger_original:>,
 							defaut=on})]
 						#SET{largeur_vignette_down_readonly,#VAL{_TAILLE_LARGEUR_VIGNETTES_DOWNLOAD}|defined|?{'oui',''}}
 						#SET{hauteur_vignette_down_readonly,#VAL{_TAILLE_HAUTEUR_VIGNETTES_DOWNLOAD}|defined|?{'oui',''}}
@@ -182,33 +186,33 @@
 								label=<:mediaspip_core:label_autoriser_flux_podcats:>,
 								defaut=on})]
 						]
-					]
-					[(#SAISIE{oui_non,
-						afficher_lien_direct,
-						explication=<:mediaspip_core:description_afficher_lien_direct:>,
-						label=<:mediaspip_core:label_afficher_liens_direct:>})]
-					[(#CONFIG{mediaspip/squelettes/afficher_lien_direct}|=={on}|oui)
-						[(#SAISIE{selection_multiple,liens_types,
-							label=<:mediaspip_core:label_afficher_liens_types:>,
-							cacher_option_intro=oui,
-							size=3,
-							datas=#ARRAY{
-								vignette,<:mediaspip_core:option_lien_types_vignette:>,
-								original,<:mediaspip_core:option_lien_types_original:>,
-								copies,<:mediaspip_core:option_lien_types_copies:>
-							},
-							defaut=#LISTE{vignette,copies}})]
 						[(#SAISIE{oui_non,
-							liens_limiter_acces,
-							explication=<:mediaspip_core:description_afficher_liens_limiter_acces:>,
-							label=<:mediaspip_core:label_afficher_liens_limiter_acces:>,
-							defaut=off})]
-						[(#CONFIG{mediaspip/squelettes/liens_limiter_acces}|=={on}|oui)
-							[(#SAISIE{statuts_auteurs,
-								liens_limiter_statuts,
+							afficher_lien_direct,
+							explication=<:mediaspip_core:description_afficher_lien_direct:>,
+							label=<:mediaspip_core:label_afficher_liens_direct:>})]
+						[(#CONFIG{mediaspip/squelettes/afficher_lien_direct}|=={on}|oui)
+							[(#SAISIE{selection_multiple,liens_types,
+								label=<:mediaspip_core:label_afficher_liens_types:>,
 								cacher_option_intro=oui,
-								label=<:mediaspip_core:label_afficher_liens_limiter_statuts:>,
-								defaut=0minirezo})]
+								size=3,
+								datas=#ARRAY{
+									vignette,<:mediaspip_core:option_lien_types_vignette:>,
+									original,<:mediaspip_core:option_lien_types_original:>,
+									copies,<:mediaspip_core:option_lien_types_copies:>
+								},
+								defaut=#LISTE{vignette,copies}})]
+							[(#SAISIE{oui_non,
+								liens_limiter_acces,
+								explication=<:mediaspip_core:description_afficher_liens_limiter_acces:>,
+								label=<:mediaspip_core:label_afficher_liens_limiter_acces:>,
+								defaut=off})]
+							[(#CONFIG{mediaspip/squelettes/liens_limiter_acces}|=={on}|oui)
+								[(#SAISIE{statuts_auteurs,
+									liens_limiter_statuts,
+									cacher_option_intro=oui,
+									label=<:mediaspip_core:label_afficher_liens_limiter_statuts:>,
+									defaut=0minirezo})]
+							]
 						]
 					]
 				</ul>
