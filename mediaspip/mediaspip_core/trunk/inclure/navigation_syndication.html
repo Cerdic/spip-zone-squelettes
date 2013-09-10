@@ -1,28 +1,33 @@
 [(#REM)
+
 	Squelette listant les flux de syndication possibles
 	concernant la page en cours
+
 	-* Un flux de l'ensemble du site
 	-* Un flux concernant un auteur en particulier sur la page auteur
 	-* Un flux concernant le tag en particulier sur la page tags
-]
-<BOUCLE_si_pas_desactive(CONDITION){si #CONFIG{mediaspip/squelettes/syndic_desactiver}|=={on}|non}>
+	
+	Si le plugin Podcast est disponible et que l'affichage de ses flux soit configuré dans la 
+	configuration de Mediaspip/squelettes (par défaut), on affiche également les liens vers les
+	flux de podcasts.
+
+]<BOUCLE_si_pas_desactive(CONDITION){si #CONFIG{mediaspip/squelettes/syndic_desactiver}|=={on}|non}>
 <div class="menu syndication">
 	<h2 class="h2"><:mediaspip_core:titre_syndication:></h2>
-	<ul class="menu-liste liste-items">
-		[(#ENV{id_auteur}|et{[(#ENV{type}|=={auteur})]}|oui)
+	<ul class="menu-liste liste-items">[(#ENV{id_auteur}|et{[(#ENV{type}|=={auteur})]}|oui)
 		<li class="item">
 			<a href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" rel="alternate" title="<:mediaspip_core:syndiquer_site_auteur:>">[(#CHEMIN{feed.png}|balise_img)]&nbsp;<:mediaspip_core:syndiquer_site_auteur:></a>
-		</li>]
-		<BOUCLE_rubmedias(RUBRIQUES){si #ENV{id_rubrique}|et{[(#ENV{type}|=={rubrique})]}|oui}{id_rubrique}>
+		</li>
+		]<BOUCLE_rubmedias(RUBRIQUES){si #ENV{id_rubrique}|et{[(#ENV{type}|=={rubrique})]}|oui}{id_rubrique}>
 		[(#ID_SECTEUR|=={#CONFIG{mediaspip/rubriques/medias}}|oui)
 		<li class="item">
 			<a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="alternate" title="<:mediaspip_core:syndiquer_site_categorie:>">[(#CHEMIN{feed.png}|balise_img)]&nbsp;<:mediaspip_core:syndiquer_site_categorie:></a>
-		</li>]
-		[(#ID_SECTEUR|=={#CONFIG{mediaspip/rubriques/medias}}|non)
+		</li>
+		][(#ID_SECTEUR|=={#CONFIG{mediaspip/rubriques/medias}}|non)
 		<li class="item">
 			<a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="alternate" title="<:mediaspip_core:syndiquer_site_rubrique:>">[(#CHEMIN{feed.png}|balise_img)]&nbsp;<:mediaspip_core:syndiquer_site_rubrique:></a>
-		</li>]
-		</BOUCLE_rubmedias>
+		</li>
+		]</BOUCLE_rubmedias>
 		[(#ENV{id_mot}|et{[(#ENV{type}|=={mot})]}|oui)
 		<li class="item">
 			<a href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" rel="alternate" title="<:mediaspip_core:syndiquer_site_mot:>">[(#CHEMIN{feed.png}|balise_img)]&nbsp;<:mediaspip_core:syndiquer_site_mot:></a>
@@ -33,7 +38,7 @@
 	</ul>
 </div>
 </BOUCLE_si_pas_desactive>
-[(#PLUGIN{podcast}|et{#CONFIG{mediaspip/squelettes/autoriser_podcast}|=={on}}|et{#CONFIG{podcast/podcast_types,#LISTE{itunes,miro}}|count|>{0}}|oui)<div class="menu syndication">
+[(#PLUGIN{podcast}|et{#CONFIG{mediaspip/squelettes/autoriser_podcast,on}|=={on}}|et{#CONFIG{podcast/podcast_types,#LISTE{itunes,miro}}|count|>{0}}|oui)<div class="menu syndication">
 	<h2 class="h2"><:mediaspip_core:titre_podcast:></h2>
 	[(#INCLURE{fond=inclure/podcasts_liens,podcast_types=#CONFIG{podcast/podcast_types,#LISTE{itunes,miro}}}|trim)]
 </div>]
