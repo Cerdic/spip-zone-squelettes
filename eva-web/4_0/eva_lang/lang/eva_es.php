@@ -122,10 +122,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  <p>Queda terminantemente prohibido recoger y utilizar la información disponible en el sitio con fines comerciales.</p>
  <p>Esta prohibición se refiere, sin que el listado siguiente sea limitativo, a todos los elementos de redacción que se encuentran en el sitio, la presentación de las pantallas, los programas informáticos necesarios a la explotación, los logotipos, las imágenes, las fotografías, los gráficos, cualquiera sea su forma.</p>',
 	'mentions_liens_hypertexte_titre' => 'vínculos hipertexto :',
-	'mentions_liens_texte' => '<p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caractère illégal et/ou à caractère politique, religieux, pornographique, xénophobe, vous pouvez créer un lien hypertexte vers notre Site sur votre site.</p>
-	<p>La mise en place de lien hypertexte n\'autorise en aucune façon la reproduction d\'éléments du Site ou la présentation sur des sites tiers d\'éléments du Site sous forme de Frame ou système apparenté.</p>
-	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune façon de proposer l\'envoi d\'un message pré-rédigé à une adresse mail liée au Site ou la mise en place d\'un système permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
-	<p>Tous les droits de reproduction sont réservés.</p>', # NEW
 	'mentions_liens_titre' => 'Vínculos hipertexto hacia este sitio :',
 	'mentions_logo_cddp74' => 'Sitio official del CDDP74',
 	'mentions_logo_citic' => 'Centro de Informática y de las TIC de Haute-Savoie (ex CRI74)',
@@ -136,18 +132,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_lois' => 'En virtud de la ley para la confianza en la economía numérica (LCEN) del 21 de junio de 2004, ahí tienen los datos del editor y el prestador de servicios que acoge el sitio :',
 	'mentions_prestataire' => 'Prestador de servicios que garantiza el almacenamiento directo y permanente :',
 	'mentions_qualite' => 'Calidad :',
-	'mentions_qui_texte' => '<p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
-	correspond à un projet de portail d\'Intranet d\'Établissement, installé sur 
-	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
-	<p>Cette version, légèrement adaptée, permet à une école ou à un établissement de mettre 
-	en place un site web collaboratif, en proposant différents modèles de publication 
-	(article, album photo, diaporama ...) </p>
-	<p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
-  	<a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
-	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribué sous Licence Publique Générale 
-	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
-	conçu pour fonctionner à partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
-	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>', # NEW
 	'mentions_qui_titre' => '¿ EVA, por quién, par quién ?',
 	'mentions_responsable_edition' => 'Director de la redacción :',
 	'mentions_site' => 'Sitio Internet de : ',
