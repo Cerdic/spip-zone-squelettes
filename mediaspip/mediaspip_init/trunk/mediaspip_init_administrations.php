@@ -101,7 +101,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 */
 			ecrire_meta("multi_articles", "oui");
 			ecrire_meta("gerer_trad", "oui");
-			ecrire_meta("langues_proposees","fr,en");
+			ecrire_meta("langues_proposees","fr,en,es");
 			$config_multilang = lire_config('multilang',array(
 									'siteconfig' => 'on',
 									'rubrique' => 'on',

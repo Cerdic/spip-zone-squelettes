@@ -12,6 +12,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS['codes_langues'] = array(
 	'en' => "English",
+	'es' => "Espa&#241;ol",
 	'fr' => "fran&#231;ais",
 );
 
