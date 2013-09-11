@@ -15,6 +15,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 /**
  * escal_configuration()
  * teste et configure certaines options de spip pour escal
+ * penser à incrementer la valeur de schema dans paquet.xml et celle de $maj dans escal_administrations.php en cas de mise à jour des mots cles
 */
 
 function escal_configuration(){
@@ -32,15 +33,49 @@ function escal_configuration(){
 function shema_escal(){
     $schema = array(
         'groupes' => array(
-            array(
+            array(  // creation du groupe affichage
                 'titre'=>'affichage',
                 'descriptif'=>'Groupe de mots-cl&eacute;s techniques utilis&eacute;s dans Escal',
                 'tables_liees'=>'articles,rubriques,syndic',
                 'minirezo'=>'oui',
                 'comite'=>'oui'
+            ),
+            array( // creation du groupe Agenda_couleur
+                'titre'=>'Agenda_couleur',
+                'descriptif'=>'Groupe de mots-cl&eacute;s pour la couleur des &eacute;v&egrave;nements de l\'agenda dans Escal',
+                'tables_liees'=>'evenements',
+                'minirezo'=>'oui',
+                'comite'=>'oui'
             )   
         ),
         'mots'=> array(
+            // Agenda_couleur
+            array(
+                'titre'=>'Noir',
+                'descriptif'=>'#000000',
+                'type'=>'Agenda_couleur'
+                ),
+            array(
+                'titre'=>'Rouge',
+                'descriptif'=>'red',
+                'type'=>'Agenda_couleur'
+                ),
+            array(
+                'titre'=>'Vert',
+                'descriptif'=>'green',
+                'type'=>'Agenda_couleur'
+                ),
+            array(
+                'titre'=>'Violet',
+                'descriptif'=>'#FF00FF',
+                'type'=>'Agenda_couleur'
+                ),
+            array(
+                'titre'=>'Marron',
+                'descriptif'=>'#7F3D00',
+                'type'=>'Agenda_couleur'
+                ),                                                   
+            // affichage
             array(
                 'titre'=>'pas-au-menu',
                 'descriptif'=>'pour ne pas afficher une rubrique ou un article dans le menu horizontal',
