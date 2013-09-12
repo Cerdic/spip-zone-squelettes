@@ -28,6 +28,18 @@
 							bloc_entete,<:mediaspip_core:label_case_recherche_bloc_entete:>,
 							bloc_navigation,<:mediaspip_core:label_case_recherche_bloc_navigation:>,
 							sans,<:mediaspip_core:label_case_recherche_sans:>}})]
+					#SET{groupes_mots, #ARRAY}
+					[(#SET{id_groupe_spipicious,#ENV{id_groupe_spipicious,#CONFIG{spipicious/groupe_mot,0}}})]
+					<BOUCLE_groupes_mots(GROUPES_MOTS){id_groupe!=#GET{id_groupe_spipicious,0}}>
+						[(#SET{groupes_mots,#GET{groupes_mots}|array_merge{#ARRAY{#TITRE,#ID_GROUPE}}})]
+					</BOUCLE_groupes_mots>
+						[(#SET{groupes_mots, #GET{groupes_mots}|array_flip})]
+						[(#SAISIE{selection_multiple,groupes_affiches,
+							label=<:mediaspip_core:label_lister_groupes_affiches:>,
+							cacher_option_intro=oui,
+							size=3,
+							datas=#GET{groupes_mots}})]
+					</B_groupes_mots>
 				</ul>
 				</fieldset>
 			</li>

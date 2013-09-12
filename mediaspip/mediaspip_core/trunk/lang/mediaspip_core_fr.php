@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_home_blocs_caches' => 'Ne pas afficher certains blocs sur la page d\'accueil',
 	'label_infos_cachees' => 'Informations non affichées sur les pages de médias',
 	'label_infos_cachees_articles' => 'Informations non affichées sur les pages d\'articles',
+	'label_lister_groupes_affiches' => 'Groupes de mots-clés à afficher',
 	'label_logo_hauteur' => 'Hauteur maximale du logo du site (en px)',
 	'label_logo_largeur' => 'Largeur maximale du logo du site (en px)',
 	'label_logo_objets_hauteur' => 'Hauteur maximale des logos des pages (en px)',
