@@ -199,6 +199,12 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta("auto_compress_css", "oui");
 
 			/**
+			 * Préconfiguration du plugin chosen
+			 */
+			$config_chosen = array('active' => 'on','selecteur_commun' => 'select[multiple]');
+			ecrire_meta('chosen' => serialize($config_chosen));
+			
+			/**
 			 * Création du menu
 			 * Nécessite le plugin Menu
 			 */
@@ -598,6 +604,14 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			$conf_mediaspip['squelettes']['telecharger_types'] = array('copies','original');
 			ecrire_meta('mediaspip',serialize($conf_mediaspip));
 			ecrire_meta($nom_meta_base_version,$current_version='0.3.1','non');
+		}
+		if(version_compare($current_version,'0.3.2','<')){
+			/**
+			 * Préconfiguration du plugin chosen
+			 */
+			$config_chosen = array('active' => 'on','selecteur_commun' => 'select[multiple]');
+			ecrire_meta('chosen' => serialize($config_chosen));
+			ecrire_meta($nom_meta_base_version,$current_version='0.3.2','non');
 		}
 	}
 }
