@@ -202,7 +202,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Préconfiguration du plugin chosen
 			 */
 			$config_chosen = array('active' => 'on','selecteur_commun' => 'select[multiple]');
-			ecrire_meta('chosen' => serialize($config_chosen));
+			ecrire_meta('chosen',serialize($config_chosen));
 			
 			/**
 			 * Création du menu
@@ -610,7 +610,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Préconfiguration du plugin chosen
 			 */
 			$config_chosen = array('active' => 'on','selecteur_commun' => 'select[multiple]');
-			ecrire_meta('chosen' => serialize($config_chosen));
+			ecrire_meta('chosen',serialize($config_chosen));
 			ecrire_meta($nom_meta_base_version,$current_version='0.3.2','non');
 		}
 	}
