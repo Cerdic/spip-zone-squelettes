@@ -1,4 +1,4 @@
-<!-- Noisettes  et layout -->
+
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
     <h3 class="titrem">[(#CHEMIN_IMAGE{configarticle.png}|balise_img{'',cadre-icone})]La page article</h3>
@@ -8,9 +8,31 @@
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
 
+<!-- Largeur des images -->
+     <ul>
+<legend><strong>Largeur des images dans les articles</strong></legend>
+
+            <div class="explication">
+            Vous pouvez définir ici la largeur maximum des images dans vos articles. <br /> 
+            Celle-ci est par défaut de 400px, ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page
+            </div>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+             #SET{name,largeurimage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Largeur maximum des images :
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},400})]"  /> px
+                    </span>
+            </div>
+            </li>
+
+     </ul>
+
+<!-- Noisettes -->
      <ul>
 <legend><strong>Les blocs latéraux</strong></legend>
-
 
             <div class="explication">
             <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-acces_direct" title="Voir la documentation"><strong>Accès direct</strong></a>
@@ -359,4 +381,4 @@
 	</p>
   </div>
     </form>
-    </div>
+    </div>  
