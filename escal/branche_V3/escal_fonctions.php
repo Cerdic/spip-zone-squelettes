@@ -77,45 +77,25 @@ function shema_escal(){
                 ),                                                   
             // affichage
             array(
-                'titre'=>'pas-au-menu',
-                'descriptif'=>'pour ne pas afficher une rubrique ou un article dans le menu horizontal',
-                'type'=>'affichage'
-                ),
-            array(
-                'titre'=>'pas-au-menu-vertical',
-                'descriptif'=>'Modification dans le descriptif !! pour ne pas afficher une rubrique ou un article dans les menus verticaux',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'chrono',
-                'descriptif'=>'pour afficher les articles d&rsquo;une rubrique dans les menus en ordre ant&eacute;chronologique, comportement non transmis aux rubriques-filles',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'pas-a-la-une',
-                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "les derniers articles ..." de la page d&rsquo;accueil',
-                'type'=>'affichage'
-                ),
-            array(
-                'titre'=>'pas-au-plan',
-                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "Plan du site" de la page d&rsquo;accueil',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'edito',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Edito" (noisette inc-edito)',
+                'titre'=>'acces-direct',
+                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Acc&egrave;s direct" (noisette inc-acces_direct)',
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'accueil',
                 'descriptif'=>'pour choisir l&rsquo;article affich&eacute; en onglet d&rsquo;accueil (noisette inc-accueil)',
                 'type'=>'affichage'
-            ),
+            ),            
             array(
-                'titre'=>'acces-direct',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Acc&egrave;s direct" (noisette inc-acces_direct)',
+                'titre'=>'actus',
+                'descriptif'=>'pour choisir les articles qui seront affich&eacute;s dans le bloc "Actus" (noisette inc-actus)',
                 'type'=>'affichage'
             ),
+            array(
+                'titre'=>'agenda',
+                'descriptif'=>'pour choisir les articles ou la ou les rubriques dont les articles seront affich&eacute;s dans l&rsquo;agenda',
+                'type'=>'affichage'
+            ),            
             array(
                 'titre'=>'annonce',
                 'descriptif'=>'pour choisir l&rsquo;article dont le texte sera affich&eacute; dans le bloc "Annonce" de la page d&rsquo;accueil (noisette inc-annonce)',
@@ -125,55 +105,40 @@ function shema_escal(){
                 'titre'=>'annonce-defilant',
                 'descriptif'=>'pour choisir les articles dont le texte sera affich&eacute; dans le bloc "Annonces d&eacute;filantes" de la page d&rsquo;accueil (noisette inc-annonce_defilant)',
                 'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'agenda',
-                'descriptif'=>'pour choisir les articles ou la ou les rubriques dont les articles seront affich&eacute;s dans l&rsquo;agenda',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'actus',
-                'descriptif'=>'pour choisir les articles qui seront affich&eacute;s dans le bloc "Actus" (noisette inc-actus)',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'photo-une',
-                'descriptif'=>'pour choisir les articles dont les images seront affich&eacute;es dans le bloc "Quelques images au hasard" (noisette inc-photos)',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'video-une',
-                'descriptif'=>'pour choisir les articles dont les vid&eacute;os seront affich&eacute;es dans le bloc "Vid&eacute;o" (noisette inc-video_accueil)',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'favori',
-                'descriptif'=>'pour choisir les sites dont les vignettes seront affich&eacute;es dans le bloc "Sites favoris" (noisette inc-sites_favoris.html)',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'site-exclu',
-                'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)',
-                'type'=>'affichage'
-            ),
-            array(
-                'titre'=>'forum',
-                'descriptif'=>'pour choisir le secteur qui sera utilis&eacute; pour le forum du site',
-                'type'=>'affichage'
-            ),
+            ),            
             array(
                 'titre'=>'annuaire',
                 'descriptif'=>'pour choisir l&rsquo;article qui sera utilis&eacute; par la page annuaire.html',
                 'type'=>'affichage'
             ),
             array(
-                'titre'=>'RubriqueOnglet',
-                'descriptif'=>'pour choisir la rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'titre'=>'archive',
+                'descriptif'=>'pour choisir la rubriqie dont un article pris au hasard sera affich&eacute; dans l\'onglet "Article archive" de la page d\'accueil',
+                'type'=>'affichage'
+            ),            
+            array(
+                'titre'=>'chrono',
+                'descriptif'=>'pour afficher les articles d&rsquo;une rubrique dans les menus en ordre ant&eacute;chronologique, comportement non transmis aux rubriques-filles',
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'citations',
                 'descriptif'=>'pour choisir l&rsquo;article qui servira de r&eacute;servoir pour les citations dans le pied de page',
+                'type'=>'affichage'
+            ),                        
+            array(
+                'titre'=>'edito',
+                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Edito" (noisette inc-edito)',
+                'type'=>'affichage'
+            ),            
+            array(
+                'titre'=>'favori',
+                'descriptif'=>'pour choisir les sites dont les vignettes seront affich&eacute;es dans le bloc "Sites favoris" (noisette inc-sites_favoris.html)',
+                'type'=>'affichage'
+            ),            
+            array(
+                'titre'=>'forum',
+                'descriptif'=>'pour choisir le secteur qui sera utilis&eacute; pour le forum du site',
                 'type'=>'affichage'
             ),
             array(
@@ -182,16 +147,55 @@ function shema_escal(){
                 'type'=>'affichage'
             ),
             array(
-                'titre'=>'special',
-                'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affich&eacute;s dans le bloc &agrave; personnaliser (noisette inc-perso.html)',
-                'type'=>'affichage'
-            ),
-            array(
                 'titre'=>'pas-a-decouvrir',
                 'descriptif'=>'pour choisir les rubriques et les articles &agrave; exclure de l&rsquo;affichage dans la noisette "A decouvrir" si on choisit "dans tout le site" (inc-decouvrir-articles-sites.html)',
                 'type'=>'affichage'
-            )
-            
+            ),
+            array(
+                'titre'=>'pas-a-la-une',
+                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "les derniers articles ..." de la page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'pas-au-menu',
+                'descriptif'=>'pour ne pas afficher une rubrique ou un article dans le menu horizontal',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'pas-au-menu-vertical',
+                'descriptif'=>'Modification dans le descriptif !! pour ne pas afficher une rubrique ou un article dans les menus verticaux',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'pas-au-plan',
+                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "Plan du site" de la page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'photo-une',
+                'descriptif'=>'pour choisir les articles dont les images seront affich&eacute;es dans le bloc "Quelques images au hasard" (noisette inc-photos)',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'RubriqueOnglet',
+                'descriptif'=>'pour choisir la rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),            
+            array(
+                'titre'=>'site-exclu',
+                'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'special',
+                'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affich&eacute;s dans le bloc &agrave; personnaliser (noisette inc-perso.html)',
+                'type'=>'affichage'
+            ),            
+            array(
+                'titre'=>'video-une',
+                'descriptif'=>'pour choisir les articles dont les vid&eacute;os seront affich&eacute;es dans le bloc "Vid&eacute;o" (noisette inc-video_accueil)',
+                'type'=>'affichage'
+            )           
         )
     );
     
