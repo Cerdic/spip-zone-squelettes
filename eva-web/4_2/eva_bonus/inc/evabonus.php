@@ -27,6 +27,8 @@ array('rubrique_site_complet','rubrique','Liste de la totalit&eacute; des sites 
 array('tweetnspip','sommaire rubrique article breve site auteur','Affiche le fil Tweeter issu du plugin <a href="http://contrib.spip.net/Tweet-n-Spip" target="_blank">Tweet\'N\'SPIP</a>','Olivier Gautier'),
 array('visiteurs_connectes','sommaire rubrique article breve site auteur','Affiche le nombre de visiteurs actuellement connect&eacute;s l\'espace public. N&eacute;cessite le plugin <b>Couteau Suisse</b> et l\'activation de la lame <i>Visiteurs connect&eacute;s</i>','Olivier Gautier'),
 array('eva_mini_calendrier','rubrique article breve site auteur','Affiche le mini-calendrier mensuel d\'EVA-web d&eacute;j&agrave; disponible en page de sommaire','Olivier Gautier'),
+array('widget_twitter_profil','sommaire rubrique article breve site auteur','Affiche le Widget de profil d&eacute;fini dans la configuration du plugin <a href="http://contrib.spip.net/Twitter-4393">Twitter</a>','Olivier Gautier'),
+array('widget_twitter_recherche','sommaire rubrique article breve site auteur','Affiche le Widget de recherche d&eacute;fini dans la configuration du plugin <a href="http://contrib.spip.net/Twitter-4393">Twitter</a>','Olivier Gautier'),
 );
 return $retour;
 }
