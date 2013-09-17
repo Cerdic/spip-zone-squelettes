@@ -9,7 +9,7 @@
 	<BOUCLE_documents(DOCUMENTS){id_article}{tout}> </BOUCLE_documents>
 		<BOUCLE_doc(DOCUMENTS){si #GET{total}|=={1}}{id_article}>
 		[(#EXTENSION|=={pdf}|et{#PLUGIN{pdfjs}}|et{#AUTORISER{mstelecharger,document,#ID_ARTICLE}}|et{#CONFIG{mediaspip/squelettes/autoriser_telecharger_original}|=={on}|oui}|oui)
-			[(#MODELE{lecteurpdf,id_document=#_doc:ID_DOCUMENT,largeur=#GET{largeur},ajax})]
+			[(#MODELE{lecteurpdf,id_document=#_doc:ID_DOCUMENT,largeur=100%,ajax})]
 			[(#SET{done,true})]
 		]
 		<BOUCLE_si_doc2img(CONDITION){si #PLUGIN{doc2img}|et{#GET{done}|=={true}|non}|et{#EXTENSION|in_array{#GET{doc2img_types,#ARRAY}}|oui}|oui}>
