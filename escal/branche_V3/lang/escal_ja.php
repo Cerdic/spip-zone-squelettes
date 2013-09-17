@@ -94,13 +94,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoi_mail_message' => 'メッセージ :  ',
 'envoyer_message' => 'へメッセージを送る',
 'erreur404' => '404 エラー',
-'erreur404_message' => '<p>要求されたページは存在しないか、すでにサイトから削除されています。
-                    </p>
-                    <p>サイトのエラーが原因で目的のページが表示されない場合は、
-                      <br />恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。
-                      <br />
-                      <a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="お問い合わせ">お問い合わせ</a>
-                    </p>',
+'erreur404_message' => '<p>恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。</p>
+                    <p>[お問い合わせ|お問い合わせページ->@url@] </p>',
 'espace_redacteurs' => '管理ページ',
 'escal' => 'Escal',
 'escal_couleurs' => 'Escal: カラー',
