@@ -29,6 +29,8 @@ array('visiteurs_connectes','sommaire rubrique article breve site auteur','Affic
 array('eva_mini_calendrier','rubrique article breve site auteur','Affiche le mini-calendrier mensuel d\'EVA-web d&eacute;j&agrave; disponible en page de sommaire','Olivier Gautier'),
 array('widget_twitter_profil','sommaire rubrique article breve site auteur','Affiche le Widget de profil d&eacute;fini dans la configuration du plugin <a href="http://contrib.spip.net/Twitter-4393">Twitter</a>','Olivier Gautier'),
 array('widget_twitter_recherche','sommaire rubrique article breve site auteur','Affiche le Widget de recherche d&eacute;fini dans la configuration du plugin <a href="http://contrib.spip.net/Twitter-4393">Twitter</a>','Olivier Gautier'),
+array('facebook-like','sommaire rubrique article breve site auteur','Affiche les boutons "J\'aime" et "Envoyer" li&eacute;s au r&eacute;seau social Facebook. N&eacute;cessite le plugin <a href="http://contrib.spip.net/Modeles-Facebook">Mod&egrave;le Facebook</a>','Olivier Gautier'),
+
 );
 return $retour;
 }
