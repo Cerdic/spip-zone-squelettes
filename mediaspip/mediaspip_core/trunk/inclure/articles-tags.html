@@ -10,6 +10,32 @@
 ]<B_tags>
 	<div id="liste_tags" class="liste tags sommaire medias">
 		[<h2 class="h2">(#ENV{titre,<:mediaspip_core:titre_sommaire_tags:>})</h2>]
-		<BOUCLE_tags(SPIPICIOUS?){objet=article}{0,1}>#MODELE{spipicious_nuage_auteur}</BOUCLE_tags>
+		<BOUCLE_tags(SPIPICIOUS?){objet=article}{0,1}>
+			[(#SESSION{id_auteur}|et{#CONFIG{mediaspip/home/nuage_choisir}|oui}|non)
+				#MODELE{spipicious_nuage_auteur}
+			]
+			[(#SESSION{id_auteur}|et{#CONFIG{mediaspip/home/nuage_choisir}|oui}|oui)
+				#SET{nuage,#ENV{nuage,#SESSION{nuage,tags}}}
+				<p>
+					[(#GET{nuage}|=={tags}|oui)
+						#SESSION_SET{nuage,tags}
+						<span class="on"><:mediaspip_core:lien_nuage_tags:></span>
+					]
+					[(#GET{nuage}|=={tags}|non)
+						<a href="[(#SELF|parametre_url{nuage,tags})]" class="ajax"><:mediaspip_core:lien_nuage_tags:></a>
+					]
+					<span class="sep"> | </span>
+					[(#GET{nuage}|=={mestags}|oui)
+						#SESSION_SET{nuage,mestags}
+						<span class="on"><:mediaspip_core:lien_nuage_mestags:></span>
+					]
+					[(#GET{nuage}|=={mestags}|non)
+						<a href="[(#SELF|parametre_url{nuage,mestags})]" class="ajax"><:mediaspip_core:lien_nuage_mestags:></a>
+					]
+				</p>
+				[(#GET{nuage}|=={tags}|oui)#MODELE{spipicious_nuage_auteur}]
+				[(#GET{nuage}|=={mestags}|oui)#MODELE{spipicious_nuage_auteur,id_auteur=#SESSION{id_auteur}}]
+			]
+		</BOUCLE_tags>
 	</div>
 </B_tags>
