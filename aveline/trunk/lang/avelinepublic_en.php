@@ -44,7 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'breves_les_plus_recentes' => 'Latest',
 
 	// C
-	'ca_discute_par_ici' => 'Here they\'re talking',
+	'ca_discute_par_ici' => 'Here they’re talking',
 	'categorie_deux_points' => 'Category',
 	'categories' => 'Categories',
 	'categories_deux_points' => 'Categories:',

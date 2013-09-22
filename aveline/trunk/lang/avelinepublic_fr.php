@@ -46,7 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Catégorie :',
 	'categories' => 'Catégories',
 	'categories_deux_points' => 'Catégories :',
-	'colon2' => '::',
+	'colon2' => ' ::',
 	'commentaires' => 'Commentaires',
 	'contributeurs' => 'Contributeurs',
 
@@ -97,7 +97,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	'par_date_croissante' => 'Par date croissante',
 	'par_date_decroissante' => 'Par date décroissante',
-	'par_nb_articles' => 'Par nombre d\'articles',
+	'par_nb_articles' => 'Par nombre d’articles',
 	'par_nom' => 'Par nom',
 	'par_rang' => 'Par rang',
 	'par_titre' => 'Par titre',
