@@ -7,7 +7,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'mediaspip_config_description' => 'Squelette de configuration pour les plateformes MediaSPIP.
-_ Permet d\'avoir une partie de configuration publique.',
+_ Permet d’avoir une partie de configuration publique.',
 	'mediaspip_config_nom' => 'MediaSPIP Configuration',
 	'mediaspip_config_slogan' => 'Configurer son MediaSPIP'
 );
