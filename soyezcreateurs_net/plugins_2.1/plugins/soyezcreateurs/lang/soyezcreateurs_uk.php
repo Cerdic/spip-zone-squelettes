@@ -65,7 +65,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_alaune_label' => 'Кількість перших сторінок',
 	'cfg_annuel' => 'Річний',
 	'cfg_anonymatglobal' => 'Глобальна анонімність',
-	'cfg_anonymatglobal_ex' => 'Дозволяє приховати ім\'я автора статті',
+	'cfg_anonymatglobal_ex' => 'Дозволяє приховати ім’я автора статті',
 	'cfg_anonymatglobal_label' => 'Глобальна анонімність (можуть бути відновлені стаття за статтею  з ключовим словом "Розкрити відомості про особу" ',
 	'cfg_apparence_header' => 'Вигляд верхньої частини сторінки',
 	'cfg_bandeau_annonce' => 'Афішування ( показ) банеру оголошення',
@@ -89,9 +89,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_colonne_nav' => 'Головна колонка( вище головної сторінки)',
 	'cfg_colonne_nav_liens' => 'Внизу зони головного меню',
 	'cfg_colonne_sec' => 'Афішування (показ ) внизу  зони  вторинного меню',
-	'cfg_connexion_public' => 'Посилання зв\'язку в громадських ...',
+	'cfg_connexion_public' => 'Посилання зв’язку в громадських ...',
 	'cfg_connexion_public_ex' => 'Афішувати ( показати ) посилання підключення громадськості для дозволу  використовувати пучки для громадськості, минаючи інтерфейс запису ',
-	'cfg_connexion_public_label' => 'Афішування ( показ) посилання зв\'язку',
+	'cfg_connexion_public_label' => 'Афішування ( показ) посилання зв’язку',
 	'cfg_contenu' => 'Зміст',
 	'cfg_couleurs_css' => 'Налаштування ( конфігурація)кольорів CSS ',
 	'cfg_couleurs_css_contenu' => 'Конфігурація кольорів CSS змісту',
@@ -177,8 +177,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_haut_label' => 'Режим ( засіб) відображення головного меню (якщо є)',
 	'cfg_mode_affichage_label' => 'Режим афішування ( дисплея)  головної сторінки сайту',
 	'cfg_mode_affichage_logo_label' => 'Засіб афішування ( дисплея )  логотипу  (якщо є)',
-	'cfg_mode_bandeau_contact_label' => 'Засіб афішування ( дисплея) банеру зв\'язку',
-	'cfg_mode_communiquant' => 'Афішування ( перегляд) порталу головної сторінки типу зв\'язку',
+	'cfg_mode_bandeau_contact_label' => 'Засіб афішування ( дисплея) банеру зв’язку',
+	'cfg_mode_communiquant' => 'Афішування ( перегляд) порталу головної сторінки типу зв’язку',
 	'cfg_mode_edito' => 'Афішування ( показ) передової',
 	'cfg_mode_evenementiel' => 'Афішування ( показ) порталу головної сторінки типу подій',
 	'cfg_mode_international' => 'Афіщування ( показ) порталу головної сторінки міжнародного типу',
@@ -255,7 +255,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Зона афішування ( показу) формуляру пошуку',
 	'chapitre_complet' => 'Ціла глава для друку',
 	'chapitre_complet_title' => 'Переглянути весь вміст рубрики :',
-	'chercheravecgoogle' => 'З Alt <a href=\'http://www.google.com/\'> <IMG SRC "http://www.google.com/logos/Logo_25wht.gif \'= = Назва" Google "= стилі" Google "= \'вертикального вирівнювання: середній, "ширина = \'75\' висота = \'32 \'/> </ A> пошук в Інтернеті!',
+	'chercheravecgoogle' => 'З Alt <a href=’http://www.google.com/’> <IMG SRC "http://www.google.com/logos/Logo_25wht.gif ’= = Назва" Google "= стилі" Google "= ’вертикального вирівнювання: середній, "ширина = ’75’ висота = ’32 ’/> </ A> пошук в Інтернеті!',
 	'clever_uns' => 'Відмова від підписки здійснена',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Для початку',
@@ -265,11 +265,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => ' Декларація CNIL N º',
 	'copyright_icra' => 'Мічені завдяки  <a href="http://www.icra.org/sitelabel"> ICRA </ A>',
 	'copyright_realisation' => 'Реалізація:',
-	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'> SoyezCreateurs </ A> на харчування від <HREF = \'http://www.spip. чистої "назва = \'/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </ A>', # MODIF
+	'copyright_spip' => 'Скелет <a href=’http://www.pyrat.net/’ title=’Відвідати сайт  творця цього скелету’> SoyezCreateurs </ A> на харчування від <HREF = ’http://www.spip. чистої "назва = ’/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </ A>', # MODIF
 
 	// D
-	'deconnexion' => 'Роз\'єднання',
-	'deconnexiontitle' => 'Ви виходите ( роз\'єднуєтесь)',
+	'deconnexion' => 'Роз’єднання',
+	'deconnexiontitle' => 'Ви виходите ( роз’єднуєтесь)',
 	'deposer_intention' => 'Надіслати наміри прохання ',
 	'derniereactualites' => 'Останні новини',
 	'dernieremaj' => 'Останнє оновлення сайту:',
@@ -291,7 +291,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_prenom' => 'Хто ви?',
 	'forum_repondre' => 'Додати ваше свідчення',
 	'forum_vosreponses' => 'Ваші свідчення',
-	'forum_votre_prenom' => 'Ваше ім\'я :',
+	'forum_votre_prenom' => 'Ваше ім’я :',
 
 	// L
 	'layout_accueil_title' => 'Специфічне розташування на головній сторінці',
@@ -303,7 +303,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'У цій же рубриці...',
-	'mentions_legales_obligatoires' => 'Юридичні вимоги обов\'язкові ([CNIL | Національна комісія з інформатики і свободи-> http://www.cnil.fr/] і [LCEN | Закон про впевненість в економіці Цифровий> http://www.legifrance.gouv. COM / WAspad / UnTexteDeJorf? numjo ECOX0200175L =]). Все, що потрібно знати-> http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов\'язань-> http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
+	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL | Національна комісія з інформатики і свободи-> http://www.cnil.fr/] і [LCEN | Закон про впевненість в економіці Цифровий> http://www.legifrance.gouv. COM / WAspad / UnTexteDeJorf? numjo ECOX0200175L =]). Все, що потрібно знати-> http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань-> http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
 	'menu_replier' => 'знову скласти: ',
@@ -354,7 +354,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'soyezcreateurs_couleurs' => 'Кольори',
 	'soyezcreateurs_google' => 'Забезпечення  списком літератури',
 	'soyezcreateurs_layout' => 'Позиціонування ( розміщення)',
-	'syndiquer_agenda' => 'Об\'єднати щоденник ',
+	'syndiquer_agenda' => 'Об’єднати щоденник ',
 
 	// T
 	'themes' => 'Теми',

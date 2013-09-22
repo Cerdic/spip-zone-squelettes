@@ -21,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd_notime' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Submit an event',
 	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.',
-	'agenda_proposer_evenement_title' => 'You may suggest an event to the site\'s administrator.',
+	'agenda_proposer_evenement_title' => 'You may suggest an event to the site’s administrator.',
 	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
 	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
@@ -48,7 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_impression_ex' => 'Provide a link at the top of the page enabling the display of all the contents of the branch (including articles) in print preview mode',
 	'cfg_affichage_impression_label' => 'Display entire section :',
 	'cfg_affichage_masquer' => 'Hide',
-	'cfg_affichage_nouveautes_ex' => 'Display a "What\'s new" block in the panel for each section, listing the new articles in the current branch',
+	'cfg_affichage_nouveautes_ex' => 'Display a "What’s new" block in the panel for each section, listing the new articles in the current branch',
 	'cfg_affichage_nouveautes_label' => 'Diplay the news by branch',
 	'cfg_affichage_plan_ex' => 'This link connects to a page listing all the articles on the site, sorted in reverse chronological order</i>',
 	'cfg_affichage_plan_label' => 'Dispay the link to the antichronological map in the cartridge <i>What news ?</i>',
@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_datepublication' => 'Displaying the publication date',
 	'cfg_datepublication_ex' => ' (if disabled, it can de enabled article per article withe the "DevoilerDate" keyword)',
 	'cfg_datepublication_label' => 'Display the publication date for articles',
+	'cfg_datepublication_maj' => 'Show only the date of update',
 	'cfg_datepublicationgoodies_ex' => 'In Communicating portal mode',
 	'cfg_datepublicationgoodies_label' => '<b>Goodies</b> publication date display',
 	'cfg_debut_contenu' => 'At the start of the content (float at the top right)', # Je ne suis pas certain de la traduction de "flottant"; c'est un peu difficile sans contexte
@@ -150,7 +151,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_identifiant_addthis' => 'Identifiant <a href="http://www.addthis.com/">AddThis</a>',
 	'cfg_indexation' => 'Indexing',
 	'cfg_indexation_info' => 'Site indexing by search engines',
-	'cfg_indexation_non' => 'Don\'t indexing the site by search engines',
+	'cfg_indexation_non' => 'Don’t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
 	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
 	'cfg_info' => 'Configuration of SoyezCreateurs',
@@ -229,8 +230,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nav_sec' => 'Secondary Navigation',
 	'cfg_navigationtransversale_label' => 'Transversale Navigation',
 	'cfg_navigationtransversalelocale' => 'Transverse local navigation',
-	'cfg_nombres_quoideneuf' => 'The what\'s new numbers',
-	'cfg_nombres_quoideneuf_lettres' => 'The what\'s new numbers for the NewsLetter', # Je ne suis pas du tout certain de la traduction ici
+	'cfg_nombres_quoideneuf' => 'The what’s new numbers',
+	'cfg_nombres_quoideneuf_lettres' => 'The what’s new numbers for the NewsLetter', # Je ne suis pas du tout certain de la traduction ici
 	'cfg_non_secondaire' => 'No, display on the bottom of the secondary navigation',
 	'cfg_numero_cnil' => 'Display of the CNIL number',
 	'cfg_numero_cnil_label' => 'CNIL Number',
@@ -259,7 +260,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_panier' => 'Position of the purchase basket',
 	'cfg_position_panier_label' => 'Display at the top of the column:',
 	'cfg_px' => 'in <b>px</b>',
-	'cfg_quoideneuf_label' => 'Number of "What\'s new" items',
+	'cfg_quoideneuf_label' => 'Number of "What’s new" items',
 	'cfg_rainette_ville' => 'Town Code (for the weather)',
 	'cfg_realisation' => 'Making',
 	'cfg_redirection_ancien_site' => 'Redirect to the old site',
@@ -289,6 +290,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titraille' => 'Title',
 	'cfg_titraille_ssniveaux' => 'Header section',
 	'cfg_tous_evenements' => 'All the events',
+	'cfg_tri_slideshow_communiquant_parnum' => 'Sort by title number',
 	'cfg_type_agenda_label' => 'Agenda type',
 	'cfg_url_feedflare' => 'FeedFlare URL',
 	'cfg_url_redirection' => 'Old site URL (for 301 redirection if the article is not)',
@@ -304,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Display area for search',
 	'chapitre_complet' => 'Display complete chapter for printing',
 	'chapitre_complet_title' => 'Display the entire section contents: ',
-	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
+	'chercheravecgoogle' => 'Search the Web with <a href=’http://www.google.com/’><img src=’http://www.google.com/logos/Logo_25wht.gif’ alt=’Google’ title=’Google’ style=’vertical-align:middle;’ width=’75’ height=’32’ /></a> !',
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
@@ -315,7 +317,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => '
-<a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
+<a href=’http://www.pyrat.net/’ title=’Visit the website of the creator of this skeleton’>SoyezCreateurs</a> made under <a href=’http://www.spip.net/’ title=’Visit the SPIP website, Content Management System in GPL license’>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Logout',
@@ -334,7 +336,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Error !',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
 	'erreur_excuses_404' => 'Sorry...',
-	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
+	'erreur_excuses_404_explications' => '<p>The page that you’re looking for couldn’t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
 	'forum' => 'Forum',
@@ -352,18 +354,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'liresuitede' => 'More to read about :',
 	'liresuiteeditorial' => 'Read the end of the editorial',
 	'liresuitesyndic' => 'Read more on the original site ...',
-	'listezones' => 'Hot spot\'s list',
+	'listezones' => 'Hot spot’s list',
 
 	// M
 	'memerubrique' => 'In the same section...',
-	'mentions_legales_obligatoires' => 'French compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l\'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'French compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
 	'menunavrwd' => 'Navigation menu',
 	'mot' => 'Word',
 	'mots' => 'Words',
-	'mots_title' => 'The site\'s keywords',
+	'mots_title' => 'The site’s keywords',
 	'motsgroupe' => 'Group of Words',
 	'multimedia' => 'Listen',
 	'multimedia_title' => 'Listen to or watch this clip (opens a new window)',
@@ -386,7 +388,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'publiele' => 'Published on',
 
 	// Q
-	'quoideneuf' => 'What\'s new?',
+	'quoideneuf' => 'What’s new?',
 
 	// R
 	'recherche_infructueuse' => 'Nothing found.',
@@ -409,7 +411,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'soyezcreateurs_couleurs' => 'Colors',
 	'soyezcreateurs_google' => 'Referencing',
 	'soyezcreateurs_layout' => 'Localization',
-	'syndiquer_agenda' => 'Syndiquer l\'agenda',
+	'syndiquer_agenda' => 'Syndiquer l’agenda',
 
 	// T
 	'themes' => 'Themes',
@@ -419,7 +421,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// V
 	'voirarticlespar' => 'See the articles by',
-	'voirdetailannee' => 'See the year\'s details',
+	'voirdetailannee' => 'See the year’s details',
 	'voirdetailmois' => 'See the details for the month of',
 	'voirimage' => 'See the image on its own',
 	'voirle' => 'See the',
