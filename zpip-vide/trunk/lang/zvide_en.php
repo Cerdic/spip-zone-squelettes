@@ -43,7 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_masquer_connexion' => 'Hide links to connect / disconnect?',
 	'explication_masquer_logo' => 'Hide the logo of the website ?',
 	'explication_masquer_plan' => 'Hide the link to access to the site map?',
-	'explication_masquer_rss' => 'Hide the link to the website\'s RSS feed?',
+	'explication_masquer_rss' => 'Hide the link to the website’s RSS feed?',
 	'explication_masquer_slogan' => 'Hide the slogan of the website ?',
 	'explication_menu_lang' => 'This option affects only multilingual sites.<br/>The option <em>Default</ em> reproduces the Zpip-dist function : a form of language choices is displayed on all pages. When a language is selected by the user, the page is reloaded by passing a parameter <code>lang</code>. This operation is suitable for multilingual sites using blocks (<code><multi></code>) in the editorial objects and having set the global variable with <code>forcer_lang</code> at <code>true</code>.<br/> <em>Home only</em> will display the language selection form only on the home page. <br/> <em>Back to Homepage</em> will display the form on all pages, but the choice of language will return to the home page in the selected language.<br/> Finally, the option <em>Links</em> corresponds to sites using translation links between articles. Form choice of language will be displayed on pages that do not correspond to an editorial object (homepage, site map, etc.).. On the pages of articles, the form will be displayed if translations are available and pointing to these translations. The operation will be equivalent to the pages of sections if the plugin <em>trad_rub</ em> is installed.',
 
