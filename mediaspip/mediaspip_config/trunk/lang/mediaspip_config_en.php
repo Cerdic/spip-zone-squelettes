@@ -70,8 +70,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// L
 	'label_form_bio_auteur' => 'Who is this person ?',
 	'label_form_email_auteur' => 'Email address',
-	'label_form_nom_site_auteur' => 'Site\'s name',
-	'label_form_url_site_auteur' => 'Site\'s URL',
+	'label_form_nom_site_auteur' => 'Site’s name',
+	'label_form_url_site_auteur' => 'Site’s URL',
 	'label_site_background' => 'Upload a new background image:',
 	'legend_form_identification_auteur' => 'Connection identifiers',
 	'lien_creer_auteur' => 'Create new user',
