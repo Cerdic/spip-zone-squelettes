@@ -103,14 +103,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'selection' => 'merken',
 	'selectionner_theme' => 'Cliquez pour sélectionner ce thême', # MODIF
 	'site_comment' => 'Site',
-	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).', # MODIF
+	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d’articles (page d’accueil, résultats de recherche, etc).', # MODIF
 	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)', # MODIF
 	'syndication' => 'Syndikation',
 
 	// T
 	'texte_erreur1' => 'Suche nach',
 	'texte_erreur2' => 'hat kein Ergebnis.',
-	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)', # MODIF
+	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l’icone d’un thème pour le sélectionner)', # MODIF
 	'titre_erreur' => 'Fehler:',
 	'trackback' => 'Trackback',
 	'trackbacks' => 'Trackbacks',
@@ -121,7 +121,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'un_seul_mot' => 'ein einziges Wort',
 
 	// V
-	'voir_capture' => 'Afficher la capture d\'écran' # MODIF
+	'voir_capture' => 'Afficher la capture d’écran' # MODIF
 );
 
 ?>

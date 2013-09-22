@@ -51,7 +51,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniers_commentaires' => 'Derniers commentaires',
 	'description_page-sommaire' => 'Les blocs de cette page seront ajoutés sur toutes les pages du site.',
 	'document_non_trouve' => 'Document non trouvé',
-	'document_non_trouve_explication' => 'Le document que vous cherchez n\'existe pas.',
+	'document_non_trouve_explication' => 'Le document que vous cherchez n’existe pas.',
 
 	// F
 	'fil_atom' => 'Fil Atom des billets',
@@ -84,7 +84,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'liens' => 'Liens',
 	'lire_la_suite' => 'Lire la suite',
 	'look_navigation' => 'Personnalisation du bloc de navigation',
-	'look_sommaire' => 'Personnalisation de la page d\'accueil',
+	'look_sommaire' => 'Personnalisation de la page d’accueil',
 
 	// M
 	'msg_erreur_v00' => 'Échec ',
@@ -96,10 +96,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisette_desc_calendrier' => 'Affiche un calendrier mensuel',
 	'noisette_desc_categories' => 'Liste des catégories',
 	'noisette_desc_contact' => 'Affiche un lien vers la page contact (plugin Contact)',
-	'noisette_desc_langs' => 'Permet de changer la langue d\'affichage du blog',
+	'noisette_desc_langs' => 'Permet de changer la langue d’affichage du blog',
 	'noisette_desc_lastcomments' => 'Liste des n derniers commentaires',
 	'noisette_desc_lastposts' => 'Liste des n derniers billets sous forme de résumé',
-	'noisette_desc_links' => 'Affiche la liste de l\'ensemble des sites',
+	'noisette_desc_links' => 'Affiche la liste de l’ensemble des sites',
 	'noisette_desc_navigation' => 'Affiche les liens de navigation (accueil, archives)',
 	'noisette_desc_subscribe' => 'Affiche les boutons rss et atom pour les billets et les comentaires',
 	'noisette_titre_bestof' => 'Billets sélectionnés',
@@ -112,7 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisette_titre_links' => 'Liste de sites',
 	'noisette_titre_navigation' => 'Liens de navigation',
 	'noisette_titre_search' => 'Moteur de recherche',
-	'noisette_titre_subscribe' => 'Liens d\'abonnement',
+	'noisette_titre_subscribe' => 'Liens d’abonnement',
 	'nom_page-sommaire' => 'Page par défaut de spipclear',
 
 	// O
@@ -130,15 +130,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rss_pour' => 'fil RSS des commentaires de',
 
 	// S
-	'sabonner' => 'S\'abonner',
+	'sabonner' => 'S’abonner',
 	'secteur_spipclear_aucun' => 'Aucun',
 	'secteurs_spipclear' => 'Secteurs SpipClear',
 	'selection' => 'À retenir',
 	'selectionner_theme' => 'Cliquez pour sélectionner ce thême',
 	'site_comment' => 'site',
-	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d\'articles (page d\'accueil, résultats de recherche, etc).',
+	'sommaire_afficher_tags' => 'Ne pas afficher les tags dans les listes d’articles (page d’accueil, résultats de recherche, etc).',
 	'sommaire_articles_entiers' => 'Afficher les articles en entier (par défaut, seule une introduction est affichée)',
-	'sommaire_spipclear' => 'Appliquer SpipClear sur la page d\'accueil du site (ne fonctionne que pour un secteur).',
+	'sommaire_spipclear' => 'Appliquer SpipClear sur la page d’accueil du site (ne fonctionne que pour un secteur).',
 	'syndication' => 'Syndication',
 
 	// T
@@ -146,8 +146,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tags' => 'Tags',
 	'texte_erreur1' => 'La recherche de',
 	'texte_erreur2' => 'ne donne aucun résultat.',
-	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l\'icone d\'un thème pour le sélectionner)',
-	'titre_erreur' => 'Erreur :',
+	'themes_installes' => '<strong>Les thèmes installés sur ce spip</strong> (cliquez sur un l’icone d’un thème pour le sélectionner)',
+	'titre_erreur' => 'Erreur :',
 	'trackback' => 'trackback',
 	'trackbacks' => 'trackbacks',
 	'trackbacks_fermes' => 'Les trackbacks pour ce billet sont fermés.',
@@ -157,7 +157,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'un_seul_mot' => 'un seul mot',
 
 	// V
-	'voir_capture' => 'Afficher la capture d\'écran',
+	'voir_capture' => 'Afficher la capture d’écran',
 	'votre_commentaire' => 'Votre commentaire'
 );
 

@@ -53,7 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniers_commentaires' => 'Last comments',
 	'description_page-sommaire' => 'The blocks of this page will be added on every page of the site.',
 	'document_non_trouve' => 'Document not found',
-	'document_non_trouve_explication' => 'The document you are looking for doesn\'t exist.',
+	'document_non_trouve_explication' => 'The document you are looking for doesn’t exist.',
 
 	// F
 	'fil_atom' => 'atom feed',
