@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'cache_titre' => 'Hide the title',
-	'cache_titre_news' => 'for the "what\'s new" loop',
+	'cache_titre_news' => 'for the "what’s new" loop',
 	'cache_titre_plus_votes_defaut' => 'for the "top voted" loop',
 	'cache_titre_plus_votes_vertical' => 'for the "top voted" loop (vertical panels)',
 	'cache_titre_zard' => 'for the "random" loop',
@@ -86,8 +86,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'configuration_colonne_pied' => 'configuration of the "column and the footer"',
 	'configuration_contact' => 'configuration of the "contact" page',
 	'configuration_erreur' => 'configuration of the "error" pages',
-	'configuration_forum' => 'configuration of the site\'s forums',
-	'configuration_general' => 'configuration of the site\'s general parameters',
+	'configuration_forum' => 'configuration of the site’s forums',
+	'configuration_general' => 'configuration of the site’s general parameters',
 	'configuration_herbier' => 'configuration of the "links" page',
 	'configuration_login_public' => 'configuration of the "public login" page',
 	'configuration_menu' => 'configuration of the menu links',
@@ -168,11 +168,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     <br />A page which combines all the general settings for the site.',
 	'descriptif_herbier' => '<h4>Herbarium settings</h4>
     <br />Set your style options for the links page.
-    <p />This is the page which displays the syndicated sites\' news',
+    <p />This is the page which displays the syndicated sites’ news',
 	'descriptif_login_public' => '<h4>Public login page settings</h4>
     <br />Set your style options for the public login page.',
 	'descriptif_menu' => '<h4>Menu settings</h4>
-    <br />Display or hide the links to the site\'s pages - this configuration affects the header menu and the page footer.',
+    <br />Display or hide the links to the site’s pages - this configuration affects the header menu and the page footer.',
 	'descriptif_mot' => '<h4>Keywords page settings</h4>
     <br />Set your loop and style options for the keywords page.',
 	'descriptif_partenaire' => '<h4>Partners page settings</h4>
@@ -216,13 +216,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'hasard' => 'Random sites',
 	'hebergement' => 'Specify the company or the person providing your hosting: (displayed in the lower right corner only if entered), allows for SPIP or HTML code.',
 	'hebergeur' => 'Site hosted by:',
-	'height_bandeau_expli' => 'Height of the site\'s banner',
+	'height_bandeau_expli' => 'Height of the site’s banner',
 	'height_fieldset' => 'Height of the frame',
 	'height_fieldset_prems' => 'Height of the first frame',
 	'height_fieldset_rubrique' => 'Height of the section information frame',
 	'height_fieldset_site' => 'Height of the site information frame',
 	'height_fieldset_suivants' => 'Height of the next frames',
-	'height_menu_site_expli' => 'Height of the site\'s menu',
+	'height_menu_site_expli' => 'Height of the site’s menu',
 	'height_pied_page_expli' => 'Height of the page footer',
 
 	// I
@@ -256,7 +256,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_lien_plan' => 'Link to the sitemap page',
 	'menu_lien_plan_complet' => 'Link to all of the sections',
 	'menu_lien_sommaire' => 'Link to the home page',
-	'menu_site' => 'the site\'s menu',
+	'menu_site' => 'the site’s menu',
 	'miniatures_par' => 'Thumbnails per',
 
 	// N
