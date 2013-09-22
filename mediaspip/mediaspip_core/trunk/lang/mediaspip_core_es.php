@@ -160,6 +160,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_home_blocs_caches' => 'No mostrar algunos bloques en la página de inicio',
 	'label_infos_cachees' => 'Información no mostrada en las páginas de medios',
 	'label_infos_cachees_articles' => 'Información no mostrada en las páginas de artículos',
+	'label_lister_groupes_affiches' => 'Grupos de palabras-claves a mostrar en las páginas públicas',
 	'label_logo_hauteur' => 'Altura máxima del logo del sitio (en px)',
 	'label_logo_largeur' => 'Anchura máxima del logo del sitio (en px)',
 	'label_logo_objets_hauteur' => 'Altura máxima de los logos de las páginas (en px)',
