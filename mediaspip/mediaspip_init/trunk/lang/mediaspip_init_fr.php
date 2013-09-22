@@ -15,8 +15,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'notif_texte_bonjour' => 'Bonjour @nom@',
-	'notif_texte_compte_cree' => 'votre compte a été automatiquement créé sur "@nouveau_site@" avec le même nom d\'utilisateur et email que sur "@site_maitre@".',
-	'notif_texte_compte_pass' => 'Vous devez redéfinir le mot de passe de ce compte pour qu\'il soit opérationnel, il suffit de le renouveler via le lien "Mot de passe oublié" dans le formulaire d\'autentification.',
+	'notif_texte_compte_cree' => 'votre compte a été automatiquement créé sur "@nouveau_site@" avec le même nom d’utilisateur et email que sur "@site_maitre@".',
+	'notif_texte_compte_pass' => 'Vous devez redéfinir le mot de passe de ce compte pour qu’il soit opérationnel, il suffit de le renouveler via le lien "Mot de passe oublié" dans le formulaire d’autentification.',
 	'notif_titre_recuperation_compte' => '[@nom_site_spip@] Votre compte a été créé',
 
 	// T
