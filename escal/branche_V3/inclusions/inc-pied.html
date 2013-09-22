@@ -1,12 +1,11 @@
 <div id="pied-gauche">
 
 <!-- citations -->
-[(#CONFIG{escal/config/citations}|=={non}|oui) <!--]
-<BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}>
+<BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}{si #CONFIG{escal/config/citations}|=={oui}|oui}>
 [(#TEXTE|citations)]
 </BOUCLE_citations>
 <br /><br />
-[(#CONFIG{escal/config/citations}|=={non}|oui) -->]
+
 
 [(#PLUGIN{FB_MODELES}|oui)
     [(#MODELE{fb_like,send=#CONFIG{escal/config/sendfacebook,oui},layout=#CONFIG{escal/config/boutonfacebook,button_count},show_faces=non})]
@@ -65,11 +64,12 @@
 <br /><br />
 
 <!-- Copyright -->
-[(#CONFIG{escal/config/copyright}|=={non}|oui) <!-- ]
-<BOUCLE_copy(ARTICLES){par date}{0,1}>
-[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] ©   [(#NOM_SITE_SPIP)] - <BOUCLE_trad(ARTICLES){lang=#ENV{lang}}{0,1}><:escal:copyright:></BOUCLE_trad>
+
+<BOUCLE_copy(ARTICLES){par date}{0,1}{si #CONFIG{escal/config/copyright}|=={oui}|oui}>
+[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] ©   [(#NOM_SITE_SPIP)] - 
+<BOUCLE_trad(ARTICLES){lang=#ENV{lang}}{0,1}><:escal:copyright:></BOUCLE_trad>
 </BOUCLE_copy>
-[(#CONFIG{escal/config/copyright}|=={non}|oui) --> ]
+
 </div>
 
 
