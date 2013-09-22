@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_suivant' => 'articolo seguente',
 	'article_suivant_dernier' => 'ultimo articolo',
 	'articles' => 'Articoli',
-	'aucun_evenement' => 'non ci sono eventi previsti questo mese nell\'ordine del giorno',
+	'aucun_evenement' => 'non ci sono eventi previsti questo mese nell’ordine del giorno',
 	'aucun_resultat_pour' => 'nessun risultati per',
 
 	// B
@@ -31,7 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_spip' => 'questo sito web ?® diretto da',
 
 	// D
-	'de_cet_auteur' => 'di quest\'autore',
+	'de_cet_auteur' => 'di quest’autore',
 	'deconnecter' => 'staccarsi',
 	'derniere_mise_a_jour' => 'ultimi aggiornamenti',
 	'dernieres_breves' => 'gli ultimi news',
@@ -49,11 +49,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'erreur_404' => 'Errore 404',
-	'evenement_aucun' => 'non ci sono eventi previsti questo mese nell\'ordine del giorno',
+	'evenement_aucun' => 'non ci sono eventi previsti questo mese nell’ordine del giorno',
 	'evenements_a_venir' => 'gli eventi previsti',
 	'evenements_du' => 'gli eventi di',
 	'evenements_passes' => 'eventi scorsi',
-	'evenements_passes_aucun' => 'non ci sono eventi scorsi questo mese nell\'ordine del giorno',
+	'evenements_passes_aucun' => 'non ci sono eventi scorsi questo mese nell’ordine del giorno',
 
 	// F
 	'fermer_fenetre' => 'chiudere la finestra',
@@ -67,7 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// I
 	'icone_eva' => 'Icona EVA-web 4',
 	'identifier' => 'siete autenticati',
-	'il_y_a' => 'c\'?®',
+	'il_y_a' => 'c’?®',
 	'il_y_a1' => 'firme per questa petizione',
 	'il_y_a2' => 'Ci ?® al totale',
 	'il_y_a3' => 'articoli.<br/> questo blocco in manifesto',
@@ -93,7 +93,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'lancer_diaporama' => 'lanciare il diaporama',
-	'lien_externe' => 'legame esterno al sito, si apre in un\'altra finestra',
+	'lien_externe' => 'legame esterno al sito, si apre in un’altra finestra',
 	'lire_suite' => 'leggere il seguito',
 
 	// M
@@ -113,31 +113,31 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Menzioni',
 	'mentions_adresse' => 'Indirizzo:',
 	'mentions_directeur_publication' => 'Direttore della pubblicazione:',
-	'mentions_droit_auteur_texte' => '<p>Questo sito è protetto dalla legge italiana ed internazionale sul diritto d\'autore e la proprietà intellettuale.</p>
+	'mentions_droit_auteur_texte' => '<p>Questo sito è protetto dalla legge italiana ed internazionale sul diritto d’autore e la proprietà intellettuale.</p>
  <p>Tutti i diritti di riproduzione sono riservati.</p>',
 	'mentions_droit_auteur_titre' => 'Diritti degli autori:',
 	'mentions_legales' => 'Menzioni legali',
-	'mentions_liens_hypertexte_texte' => '<p>Questo sito contiene dei link ipertestuali che consentono l\'accesso a siti non gestiti la responsabile di questo sito.</p>
+	'mentions_liens_hypertexte_texte' => '<p>Questo sito contiene dei link ipertestuali che consentono l’accesso a siti non gestiti la responsabile di questo sito.</p>
  <p>Di conseguenza il direttore della pubblicazione non potrà essere ritenuto responsabile del contenuto dei siti ai quali il navigatore avrà accesso.</p>
  <p>&Egrave; formalmente vietato raccogliere e utilizzare le informazioni disponibili sul sito a scopi commerciali.</p>
  <p>Questo divieto si estendo in particolare, senza che questa lista sia esaustiva, a tutti gli elementi redazionali esistenti sul sito, alla veste grafica delle schermate, ai software necessari alla pubblicazione, ai logo, immagini, foto, grafiche, di qualsiasi natura esse siano.</p>',
 	'mentions_liens_hypertexte_titre' => 'Link ipertestuali:',
 	'mentions_liens_texte' => '<p>Ad eccezione dei siti che diffondono informazioni e/o contenuti aventi un carattere illegale e/o politico, religioso, pornografico, xenofobo, puoi creare un link ipertestuale verso il nostro sito sul tuo sito.</p>
- <p>L\'inserimento di un link ipertestuale non autorizza in alcun modo la riproduzione di elementi del sito o la presentazione su siti terzi di elementi del sito sotto forma di Frame o simili.</p>
- <p>Infine, l\'inserimento di un link ipertestuale non autorizza in alcun modo di proporre per l\'invio un messaggio redatto automaticamente ad un indirizzo email legato al sito o la creazione di un sistema che permette l\'invio massivo di messaggi qualsiasi sia la loro natura.</p>
+ <p>L’inserimento di un link ipertestuale non autorizza in alcun modo la riproduzione di elementi del sito o la presentazione su siti terzi di elementi del sito sotto forma di Frame o simili.</p>
+ <p>Infine, l’inserimento di un link ipertestuale non autorizza in alcun modo di proporre per l’invio un messaggio redatto automaticamente ad un indirizzo email legato al sito o la creazione di un sistema che permette l’invio massivo di messaggi qualsiasi sia la loro natura.</p>
  <p>Tutti i diritti di riproduzione sono riservati.</p>',
 	'mentions_liens_titre' => 'Link ipertestuali verso questo sito:',
 	'mentions_logo_cddp74' => 'Sito ufficiale del CDDP74',
-	'mentions_logo_citic' => 'Centro per l\'informatica e per l\'ITC dell\'Alta Savoia (ex CRI74)',
-	'mentions_logo_edres' => 'Rete scolastica dell\'Alta Savia, progetto dipartimentale',
+	'mentions_logo_citic' => 'Centro per l’informatica e per l’ITC dell’Alta Savoia (ex CRI74)',
+	'mentions_logo_edres' => 'Rete scolastica dell’Alta Savia, progetto dipartimentale',
 	'mentions_logo_eva' => 'Sito ufficiale del progetto eva-web',
 	'mentions_logo_spip' => 'Sito ufficiale di SPIP',
 	'mentions_logo_spipedu' => 'Spip-edu, sito della comunità educativa',
-	'mentions_lois' => 'Ai sensi della legge sulla fiducia nell\'economia digitale (LCEN) del 21 giugno 2004, ecco le coordinate dell\'editore e del fornitore del servizio che ospita il sito:',
+	'mentions_lois' => 'Ai sensi della legge sulla fiducia nell’economia digitale (LCEN) del 21 giugno 2004, ecco le coordinate dell’editore e del fornitore del servizio che ospita il sito:',
 	'mentions_prestataire' => 'Fornitore del servizio che assicura la memorizzazione diretta e permanente:',
 	'mentions_qualite' => 'Qualità:',
 	'mentions_qui_texte' => '<p>In origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
-corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui 
+corrispondeva a un progetto di portale d’Intranet istituzionalem installato sui 
  server <a href="http://www.pingoo.org/">PingOO</a>.</p>
  <p>Questa versione, leggermente adattata, consente ad una scuola ou ad una istituzione di creare 
  un sito web collaborativo, proponendo diversi modelli di pubblicazione 
@@ -146,7 +146,7 @@ corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui
    <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
  <p><a href="http://eva-web.edres74.net">EVA-web</a> è un software libero distribuito sotto licenza pubblica generale 
  <a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html">GNU (GNU General Public License o GPL)</a>
- concepito per funzionare grazie all\'applicazione <a href="http://www.spip.net/">SPIP</a>.</p>
+ concepito per funzionare grazie all’applicazione <a href="http://www.spip.net/">SPIP</a>.</p>
  <div style="text-align:center;"><a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, di chi, per chi?',
 	'mentions_responsable_edition' => 'Responsabile di pubblicazione:',
@@ -158,7 +158,7 @@ corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui
 	'mis_a_jour' => 'aggiornamenti : ',
 	'mot_cle' => 'parole chiave',
 	'multilinguisme' => 'Pubblicare il frammento di linguaggio di Eva-web nelle pagine pubbliche?',
-	'multilinguisme_article' => 'Quest\'articolo in:',
+	'multilinguisme_article' => 'Quest’articolo in:',
 
 	// N
 	'notes' => 'Note',
@@ -206,7 +206,7 @@ corrispondeva a un progetto di portale d\'Intranet istituzionalem installato sui
 	'version_eva' => 'EVA-Web 4.2', # MODIF
 	'visites' => 'Visite',
 	'voir_en_ligne' => 'Vedere sul net :',
-	'voir_image' => 'Vedere l\'immagine in dimensione normale',
+	'voir_image' => 'Vedere l’immagine in dimensione normale',
 	'vous_etes_ici' => 'Siete qui :',
 
 	// Z
