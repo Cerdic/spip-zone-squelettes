@@ -25,15 +25,8 @@
 [<meta name="keywords" content="(#CONFIG{sarkaspip_header/keywords_site}|textebrut)" />]
 
 [(#REM) <!-- Feuilles de styles du squelette (ecran et impression) --> ]
-[(#SET{mode, ''})]
-[(#EVAL{_SARKASPIP_DEBUG_CSS}|=={oui}|oui)
-	[(#SET{mode, recalcul})]
-]
 [(#REM) <!-- Raz des styles --> ]
 <link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{css/raz.css})]" />
-
-[(#REM) Balise permettant aux plugins d'inserer des fichiers CSS ]
-#INSERT_HEAD_CSS
 
 [(#REM) <!-- Layout Gala choisi --> ]
 <link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{[css/layouts/layout(#CONFIG{sarkaspip_layout/numero_layout,13}).css]})]" />
@@ -46,28 +39,27 @@
 
 [(#REM) <!-- Styles du squelette par defaut --> ]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/base.css})" />]
-[(#REM) <!-- Layout Gala choisi --> ]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/layout.css})" />]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/bandeau.css})" />]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/noisettes.css})" />]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/elements.css})" />]
 [<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/ie.css})" />]
-[<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/perso.css})" />]
-
 
 [(#REM) <!--  Feuille de style CSS pour l'impression --> ]
 [<link rel="stylesheet" href="(#CSS{css/impression.css})" type="text/css" media="print" />]
 
-[(#CHEMIN{inc-theme-head.html}|oui)
-#INCLURE{fond=inc-theme-head,env}
-]
+[(#REM) <!--  Feuille de style du thème éventuel --> ]
+[(#CHEMIN{inc-theme-head.html}|oui)	#INCLURE{fond=inc-theme-head,env}]
+
+[(#REM) <!--  Feuille de style de personnalisation. A noter par defaut cette css n'existe pas --> ]
+[<link rel="stylesheet" type="text/css" media="all" href="(#CSS{css/perso.css})" />]
 
 [(#REM) <!-- Syndication du contenu du site. En option la syndication des rubriques --> ]
 [<link rel="alternate" type="application/rss+xml" title="<:sarkaspip:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
-
 
 [(#REM) <!-- Balise permettant aux plugins d'inserer des appels javascript ou css --> ]
 #INSERT_HEAD
 
 [(#REM) <!-- Favicon du site --> ]
-<link rel="shortcut icon" href="#CHEMIN{images/favicon.ico}" />
+[<link rel="icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />
+[<link rel="shortcut icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />]]
