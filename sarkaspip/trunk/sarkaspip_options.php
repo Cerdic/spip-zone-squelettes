@@ -6,7 +6,9 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
-$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer','breadcrumb');
+if (!isset($GLOBALS['z_blocs']))
+	$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer','breadcrumb');
+
 define('_ALBUMS_INSERT_HEAD_CSS',false);
 
 // Liste des rubriques specialisees standard du squelette
