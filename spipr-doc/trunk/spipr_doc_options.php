@@ -1,5 +1,6 @@
 <?php
-$GLOBALS['z_blocs'] = array('content','aside','head','head_js','header','footer');
+if (!isset($GLOBALS['z_blocs']))
+	$GLOBALS['z_blocs'] = array('content','aside','head','head_js','header','footer');
 
 if ($GLOBALS['visiteur_session']['statut']=='0minirezo')
 	$GLOBALS['marqueur'].=":minirezo";
