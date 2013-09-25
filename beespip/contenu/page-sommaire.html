@@ -1,3 +1,18 @@
+[(#REM) Exclusion des articles, brèves et sites ayant le mot clé "exclu" et des rubriques ]
+<BOUCLE_exclus_articles(ARTICLES){titre_mot=exclu}{doublons}{lang}><BOUCLE_exclus_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_articles_forum></BOUCLE_exclus_articles>
+<BOUCLE_exclus_breves(BREVES){titre_mot=exclu}{doublons}{lang}></BOUCLE_exclus_breves>
+<BOUCLE_exclus_sites(SITES){titre_mot=exclu}{doublons}><BOUCLE_exclus_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_articles_sites></BOUCLE_exclus_sites>
+<BOUCLE_exclus_rubriques(RUBRIQUES){titre_mot=exclu}{doublons}{lang}>
+	<BOUCLE_exclus_rub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_rub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_rub_articles_forum></BOUCLE_exclus_rub_articles>
+	<BOUCLE_exclus_rub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_rub_breves>
+	<BOUCLE_exclus_rub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_rub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_rub_articles_sites></BOUCLE_exclus_rub_sites>
+	<BOUCLE_exclus_sousrubriques(RUBRIQUES){id_parent}{doublons}{lang}>
+		<BOUCLE_exclus_sousrub_articles(ARTICLES){id_rubrique}{doublons}{lang}><BOUCLE_exclus_sousrub_articles_forum(FORUMS){id_article}{doublons}></BOUCLE_exclus_sousrub_articles_forum></BOUCLE_exclus_sousrub_articles>
+		<BOUCLE_exclus_sousrub_breves(BREVES){id_rubrique}{doublons}{lang}></BOUCLE_exclus_sousrub_breves>
+		<BOUCLE_exclus_sousrub_sites(SITES){id_rubrique}{doublons}><BOUCLE_exclus_sousrub_articles_sites(SYNDIC_ARTICLES) {id_syndic}{doublons}></BOUCLE_exclus_sousrub_articles_sites></BOUCLE_exclus_sousrub_sites>
+	</BOUCLE_exclus_sousrubriques>
+	<BOUCLE_recursive(BOUCLE_exclus_sousrubriques)></BOUCLE_recursive>
+</BOUCLE_exclus_rubriques>
 [(#CONFIG{BeeSpip/affichage/emplacement_recherche}|=={'bas'}|oui)#FORMULAIRE_RECHERCHE]
 <div id="contenu" class="grid_12">
 	#SET{nb_articles_une,#CONFIG{BeeSpip/configuration/nb_article_une}}
@@ -15,7 +30,7 @@
 	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)<div class="grid_8 alpha">]
 
 	[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)<div id="slider" style="margin-top:10px;"><ul>]
-	<BOUCLE_articles_actualites(ARTICLES){titre_mot=actualites_une}{!par date}{lang}{0,#GET{nb_articles_une}}{doublons}>
+	<BOUCLE_articles_actualites(ARTICLES){titre_mot=actualites_une}{!par date}{lang}{0,#GET{nb_articles_une}}{doublons actu}>
 		[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|oui)<INCLURE{fond=inclure/articles_une_slide,id_article,lang}{nb_articles_une_encours=#COMPTEUR_BOUCLE}>]
 		[(#CONFIG{BeeSpip/configuration/page_accueil}|match{'slide'}|non)<INCLURE{fond=inclure/articles_liste,id_article,lang}{bloc=pagination}{largeur=680}{tri=date}{ordre=1}>]
 	</BOUCLE_articles_actualites>
@@ -29,7 +44,7 @@
 	[(#CONFIG{BeeSpip/configuration/page_accueil}|=={'slide2'}|oui)</div><div class="grid_4 omega actucolonne2">#INCLURE{fond=inclure/articles_une_colonne_droite,lang,doublons}</div>]
 	<div class="clear">&nbsp;</div>
 			
-	<BOUCLE_article_sous_une(ARTICLES){titre_mot=actualites_sous_une}{!par date}{lang}{0,#GET{nb_articles_sousune}}>
+	<BOUCLE_article_sous_une(ARTICLES){titre_mot=actualites_sous_une}{!par date}{lang}{0,#GET{nb_articles_sousune}}{doublons actu}>
 	<div class="grid_4[(#COMPTEUR_BOUCLE|alterner{' alpha','',' omega'})]">
 	<h3 class="sommaire"><a href="#URL_ARTICLE" title="[(#TITRE|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a></h3>
 	[(#INCLURE{fond=inclure/infos_auteurs_dates}{id_article}{affichage=court})]

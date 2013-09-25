@@ -17,7 +17,7 @@
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[(#CONFIG{BeeSpip/affichage/dates_articles}|=={'oui'}|oui)[<p class="post-info"><:dernier_ajout:> | <abbr class="date" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr></p>]]
 	</div>
-	[<div class="#EDIT{texte} chapo">(#TEXTE)</div><div class="clear">&nbsp;</div>]
+	[<div class="#EDIT{texte} chapo">(#TEXTE|image_reduire{640,0})</div><div class="clear">&nbsp;</div>]
 
 	[(#REM) Gestion du portfolio et des documents ]
 	[(#INCLURE{fond=inclure/documents}{id_rubrique})]	
@@ -34,7 +34,7 @@
 	<B_groupes_mots_tri>
 	<BOUCLE_groupes_mots_tri(GROUPES_MOTS) {id_groupe}{titre==^~~}><p><:beespip:presentation_des:>
 	[(#REM) Compte et affiche le nombre total d'articles de la sélection]
-	<BOUCLE_compte_sites2(SITES){id_groupe}{id_rubrique}>
+	<BOUCLE_compte_sites2(SITES){id_mot}{id_rubrique}>
 	</BOUCLE_compte_sites2><span class="texterub">#TOTAL_BOUCLE</span></B_compte_sites2> <:beespip:sites_par:> <span class="texterub">[(#TITRE|replace{~~}|replace{'&nbsp;'})]</span>.</p>
 	</BOUCLE_groupes_mots_tri>
 
