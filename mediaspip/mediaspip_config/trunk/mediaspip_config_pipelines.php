@@ -112,8 +112,13 @@ function mediaspip_config_formulaire_traiter($flux){
 	/**
 	 * Purge des caches lors de la validation d'un formulaire de configuration ou d'édition de logo
 	 */
-	if(	$flux['args']['form'] == 'editer_logo'
-		OR (substr($flux['args']['form'],0,10) == 'configurer')){
+	if(	$flux['args']['form'] == 'configurer_theme'
+		OR $flux['args']['form'] == 'editer_logo'){
+		$purger = charger_fonction('purger','action');
+		$purger('cache');
+		$flux['data']['redirect'] = parametre_url(self(),'cache','vide','&');
+	}
+	else if(substr($flux['args']['form'],0,10) == 'configurer'){
 		include_spip('inc/invalideur');
 		suivre_invalideur('1');
 	}
