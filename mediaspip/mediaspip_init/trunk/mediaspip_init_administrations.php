@@ -201,7 +201,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			/**
 			 * Préconfiguration du plugin chosen
 			 */
-			$config_chosen = array('active' => 'on','selecteur_commun' => 'select[multiple]');
+			$config_chosen = array('active' => 'on','selecteur_commun' => 'select\[multiple\]');
 			ecrire_meta('chosen',serialize($config_chosen));
 			
 			/**
