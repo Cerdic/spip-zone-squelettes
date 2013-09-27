@@ -130,6 +130,8 @@ function mediaspip_core_jquery_plugins($plugins){
 		$plugins[] = "javascript/mediaspip_base.js";
 		$plugins[] = "javascript/easySlider1.7.js";
 		$plugins[] = _DIR_LIB_SVG."jquery.svg.js";
+		if(file_exists(_DIR_IMG."backgroundon0.jpg"))
+			$plugins[] = "javascript/jquery.backstretch.js";
 		if(!defined('_DIR_PLUGIN_DOCUMENTATION'))
 			$plugins[] = "javascript/mediaspip_menu_categories.js";
 	}
