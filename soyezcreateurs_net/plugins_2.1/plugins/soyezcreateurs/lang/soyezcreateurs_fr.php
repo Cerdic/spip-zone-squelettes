@@ -310,7 +310,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Zone d’affichage du formulaire de recherche',
 	'chapitre_complet' => 'Chapitre complet pour impression',
 	'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique : ',
-	'chercheravecgoogle' => 'Avec <a href=’http://www.google.com/’><img src=’http://www.google.com/logos/Logo_25wht.gif’ alt=’Google’ title=’Google’ style=’vertical-align:middle ;’ width=’75’ height=’32’ /></a> cherchez sur le Web !',
+	'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web !',
 	'clever_uns' => 'Desinscription accompli',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Pour bien commencer',
@@ -320,7 +320,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Déclaration CNIL nº',
 	'copyright_icra' => 'Étiqueté grâce à <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Réalisation : ',
-	'copyright_spip' => 'Squelette <a href=’http://www.pyrat.net/’ title=’Visiter le site du créateur de ce squelette’>SoyezCreateurs</a> propulsé par <a href=’http://www.spip.net/’ title=’Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL’>SPIP</a>',
+	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du créateur de ce squelette\'>SoyezCreateurs</a> propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'déconnexion',

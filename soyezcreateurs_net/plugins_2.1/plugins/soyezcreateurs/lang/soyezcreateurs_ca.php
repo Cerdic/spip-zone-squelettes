@@ -275,7 +275,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Zona de visualització del formulari de cerca',
 	'chapitre_complet' => 'Capítol complet per imprimir',
 	'chapitre_complet_title' => 'Mostrar completament el contingut de la secció: ',
-	'chercheravecgoogle' => 'Amb <a href=’http://www.google.com/’><img src=’http://www.google.com/logos/Logo_25wht.gif’ alt=’Google’ title=’Google’ style=’vertical-align:middle;’ width=’75’ height=’32’ /></a> cercar a la Web!',
+	'chercheravecgoogle' => 'Amb <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cercar a la Web!',
 	'clever_uns' => 'Anul·lació de la inscripció realitzada ',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Per començar bé',
@@ -285,7 +285,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Declaració CNIL nº ',
 	'copyright_icra' => 'Etiquetat gràcies a <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Realització: ',
-	'copyright_spip' => 'La plantilla <a href=’http://www.pyrat.net/’ title=’Visitar el lloc del creador d’aquest esquelet’>SigueuCreatiuss</a>  llançat per <a href=’http://www.spip.net/’ title=’Visitar el lloc d’SPIP, programari de gestió de continguts web amb llicència GPL’>SPIP</a>', # MODIF
+	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d’aquest esquelet\'>SigueuCreatiuss</a>  llançat per <a href=\'http://www.spip.net/\' title=\'Visitar el lloc d’SPIP, programari de gestió de continguts web amb llicència GPL\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'desconnexió',

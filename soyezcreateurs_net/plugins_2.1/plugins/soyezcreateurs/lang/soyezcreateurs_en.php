@@ -306,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Display area for search',
 	'chapitre_complet' => 'Display complete chapter for printing',
 	'chapitre_complet_title' => 'Display the entire section contents: ',
-	'chercheravecgoogle' => 'Search the Web with <a href=’http://www.google.com/’><img src=’http://www.google.com/logos/Logo_25wht.gif’ alt=’Google’ title=’Google’ style=’vertical-align:middle;’ width=’75’ height=’32’ /></a> !',
+	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
@@ -317,7 +317,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => '
-<a href=’http://www.pyrat.net/’ title=’Visit the website of the creator of this skeleton’>SoyezCreateurs</a> made under <a href=’http://www.spip.net/’ title=’Visit the SPIP website, Content Management System in GPL license’>SPIP</a>',
+<a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Logout',

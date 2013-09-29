@@ -306,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Zobrazovaná oblasť vyhľadávacieho formulára',
 	'chapitre_complet' => 'Zobraziť celú kapitolu na tlač',
 	'chapitre_complet_title' => 'Zobraziť celý obsah rubriky: ',
-	'chercheravecgoogle' => 'Prehľadať web s <a href=’http://www.google.com/’><img src=’http://www.google.com/logos/Logo_25wht.gif’ alt=’Google’ title=’Google’ style=’vertical-align:middle;’ width=’75’ height=’32’ /></a>!',
+	'chercheravecgoogle' => 'Prehľadať web s <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a>!',
 	'clever_uns' => 'Odhlásenie vykonané',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Na začiatok',
@@ -316,7 +316,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Č. deklarácie CNIL',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Autor: ',
-	'copyright_spip' => 'Šablónu <a href=’http://www.pyrat.net/’ title=’Navštíviť stránku autora tejto šablóny’>modulu Buďte tvoriví</a> prevádzkuje <a href=’http://www.spip.net/’ title=’Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL’>SPIP</a>',
+	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'>modulu Buďte tvoriví</a> prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Odhlásenie',

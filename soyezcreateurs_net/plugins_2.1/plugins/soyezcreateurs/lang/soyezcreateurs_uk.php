@@ -255,7 +255,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_recherche_label' => 'Зона афішування ( показу) формуляру пошуку',
 	'chapitre_complet' => 'Ціла глава для друку',
 	'chapitre_complet_title' => 'Переглянути весь вміст рубрики :',
-	'chercheravecgoogle' => 'З Alt <a href=’http://www.google.com/’> <IMG SRC "http://www.google.com/logos/Logo_25wht.gif ’= = Назва" Google "= стилі" Google "= ’вертикального вирівнювання: середній, "ширина = ’75’ висота = ’32 ’/> </ A> пошук в Інтернеті!',
+	'chercheravecgoogle' => 'З <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> пошук в Інтернеті!',
 	'clever_uns' => 'Відмова від підписки здійснена',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Для початку',
@@ -265,7 +265,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => ' Декларація CNIL N º',
 	'copyright_icra' => 'Мічені завдяки  <a href="http://www.icra.org/sitelabel"> ICRA </ A>',
 	'copyright_realisation' => 'Реалізація:',
-	'copyright_spip' => 'Скелет <a href=’http://www.pyrat.net/’ title=’Відвідати сайт  творця цього скелету’> SoyezCreateurs </ A> на харчування від <HREF = ’http://www.spip. чистої "назва = ’/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </ A>', # MODIF
+	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'> SoyezCreateurs </a> на харчування від <a href=’http://www.spip.net’ чистої "назва = ’/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </a>', # MODIF
 
 	// D
 	'deconnexion' => 'Роз’єднання',
