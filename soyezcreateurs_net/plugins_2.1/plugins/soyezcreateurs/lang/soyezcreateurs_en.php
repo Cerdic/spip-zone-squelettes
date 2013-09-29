@@ -233,6 +233,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nombres_quoideneuf' => 'The what’s new numbers',
 	'cfg_nombres_quoideneuf_lettres' => 'The what’s new numbers for the NewsLetter', # Je ne suis pas du tout certain de la traduction ici
 	'cfg_non_secondaire' => 'No, display on the bottom of the secondary navigation',
+	'cfg_notfoundorg' => 'not Found.org',
+	'cfg_notfoundorg_explication' => 'Get the Key on <a href="http://notfound.org/index.php?locale=en_US" target="_blank">not Found.org</a>',
+	'cfg_notfoundorg_key' => 'key',
 	'cfg_numero_cnil' => 'Display of the CNIL number',
 	'cfg_numero_cnil_label' => 'CNIL Number',
 	'cfg_numero_xiti' => 'Registartion number Xiti',

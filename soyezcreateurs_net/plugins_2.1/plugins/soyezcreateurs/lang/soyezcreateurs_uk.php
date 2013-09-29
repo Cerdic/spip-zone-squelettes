@@ -117,6 +117,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => 'Тільки в майбутньому',
 	'cfg_geolocalisation_label' => 'Афішувати ( показати ) геолокаціі нижче пошуку',
 	'cfg_globale' => 'Глобальна для всього сайту',
+	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_haut_footer' => 'Афішування ( показ, дисплей )  у верхній частині нижнього колонтитула',
 	'cfg_hauteur' => 'Висота',
 	'cfg_hauteur_videoaccueil' => 'Висота відео головної сторінки (0 для автоматичної висоти)',
@@ -126,7 +127,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Індексація сайту пошуковими системами',
 	'cfg_indexation_non' => 'Не індексувати сайт в пошукових системах',
 	'cfg_indexation_oui' => 'Індексувати сайт в пошукових системах',
-	'cfg_inf_rainette_ville' => 'Дозволяє відображати погодні умови і прогнози для французького міста, завдяки вільному коду: а href = "http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg"> <a "weather.com ® </ A>.',
+	'cfg_inf_rainette_ville' => 'Дозволяє відображати погодні умови і прогнози для французького міста, завдяки вільному коду: <а href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">weather.com ®</a>.',
 	'cfg_info' => 'Конфігурація скелету SoyezCreateurs', # MODIF
 	'cfg_largeur' => 'Ширина',
 	'cfg_largeur_colonnes_centrales' => 'Ширина кожної з трьох центральних колонок',
@@ -192,6 +193,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_navigationtransversalelocale' => 'Навігація місцева поперечна',
 	'cfg_nombres_quoideneuf' => 'Кількість " Що нового?"',
 	'cfg_non_secondaire' => 'Ні, афішувати ( показати) його ( її) внизу  вторинної навігації',
+	'cfg_notfoundorg' => 'not Found.org',
+	'cfg_notfoundorg_key' => 'key',
 	'cfg_numero_cnil' => 'Афішування ( дисплей) номера CNIL',
 	'cfg_numero_cnil_label' => 'Номер регістрації CNIL',
 	'cfg_numero_xiti' => ' Nº реєстрації Xiti',
@@ -265,7 +268,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => ' Декларація CNIL N º',
 	'copyright_icra' => 'Мічені завдяки  <a href="http://www.icra.org/sitelabel"> ICRA </ A>',
 	'copyright_realisation' => 'Реалізація:',
-	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'> SoyezCreateurs </a> на харчування від <a href=’http://www.spip.net’ чистої "назва = ’/ Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії "GPL SPIP </a>', # MODIF
+	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'>SoyezCreateurs</a> на харчування від <a href=\'http://www.spip.net/\' title=\'Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії GPL\'>SPIP</a>', # RELIRE
 
 	// D
 	'deconnexion' => 'Роз’єднання',
@@ -303,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'У цій же рубриці...',
-	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL | Національна комісія з інформатики і свободи-> http://www.cnil.fr/] і [LCEN | Закон про впевненість в економіці Цифровий> http://www.legifrance.gouv. COM / WAspad / UnTexteDeJorf? numjo ECOX0200175L =]). Все, що потрібно знати-> http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань-> http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
+	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL|Національна комісія з інформатики і свободи->http://www.cnil.fr/] і [LCEN|Закон про впевненість в економіці Цифровий->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Все, що потрібно знати->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
 	'menu_replier' => 'знову скласти: ',
