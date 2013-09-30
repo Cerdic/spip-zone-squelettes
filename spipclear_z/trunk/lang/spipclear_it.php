@@ -33,7 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'commentaires_fermes' => 'I commenti per questo messaggio sono chiusi',
 	'commentaires_pour' => 'commenti per',
 	'credits' => '<a href="http://www.spip.net/it">creato con SPIP</a>,
-<a href="http://www.spip-contrib.net/SpipClear">funziona con Spip.Clear</a>',
+<a href="http://contrib.spip.net/SpipClear">funziona con Spip.Clear</a>',
 
 	// D
 	'date_jour_abbr_1' => 'dom',
