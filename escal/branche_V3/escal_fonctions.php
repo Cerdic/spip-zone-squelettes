@@ -113,7 +113,32 @@ function shema_escal(){
             ),
             array(
                 'titre'=>'archive',
-                'descriptif'=>'pour choisir la rubriqie dont un article pris au hasard sera affich&eacute; dans l\'onglet "Article archive" de la page d\'accueil',
+                'descriptif'=>'pour choisir la rubrique dont un article pris au hasard sera affich&eacute; dans l\'onglet "Article archive" de la page d\'accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'article-libre1',
+                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 1"',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'article-libre2',
+                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 2"',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'article-libre3',
+                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 3"',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'article-libre4',
+                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 4"',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'article-libre5',
+                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 5"',
                 'type'=>'affichage'
             ),            
             array(
@@ -174,6 +199,11 @@ function shema_escal(){
             array(
                 'titre'=>'photo-une',
                 'descriptif'=>'pour choisir les articles dont les images seront affich&eacute;es dans le bloc "Quelques images au hasard" (noisette inc-photos)',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'pleinepage',
+                'descriptif'=>'pour choisir les articles qui seront affich&eacute;s en pleine page sans aucun bloc lat&eacute;ral',
                 'type'=>'affichage'
             ),
             array(

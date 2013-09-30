@@ -1,6 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG" >
 
+<BOUCLE_testarticle(ARTICLES){id_article}{titre_mot=pleinepage}>
+<INCLURE {fond=article_pleinepage}{env}>
+</BOUCLE_testarticle>
+</B_testarticle>
+
 <BOUCLE_article_principal(ARTICLES){id_article}>
 
   <head>
@@ -62,7 +67,7 @@
                   <!-- s'il n'y a en a pas, on affiche la noisette normale -->
                 [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-article}{env})]]
               </div>
-            </div>
+            </div> 
 
             [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
 
@@ -117,10 +122,15 @@
          [(#CONFIG{escal/config/blocextraart4}|oui) [(#CONFIG{escal/config/blocextraart4}|=={rien}|non)
            <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart4}}{id_rubrique}{env}{ajax}></div>
          ]]
-            
+         [(#CONFIG{escal/config/blocextraart5}|oui) [(#CONFIG{escal/config/blocextraart5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart5}}{id_rubrique}{env}{ajax}></div>
+         ]] 
+         [(#CONFIG{escal/config/blocextraart6}|oui) [(#CONFIG{escal/config/blocextraart6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart6}}{id_rubrique}{env}{ajax}></div>
+         ]]                    
               <//B_test2>
 
-            </div>
+            </div> 
 
           </BOUCLE_article_central>
           
@@ -157,3 +167,5 @@
 
 </html>
 </BOUCLE_article_principal>
+
+<//B_testarticle>
