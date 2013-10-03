@@ -24,29 +24,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'carte_monde' => 'Kaart van de wereld',
-	'cfg_affichage_impression_label' => 'Affichage rubrique complète :', # MODIF
-	'cfg_affichage_zone_principale' => 'Affichage dans la zone de menu principale', # MODIF
-	'cfg_afficher_titre_invisible' => 'Invisible : le texte est brulé dans le bandeau', # MODIF
-	'cfg_afficher_titre_visible' => 'Visible : bandeau sans texte brulé', # MODIF
-	'cfg_alaune_label' => 'Nombre à la une', # MODIF
-	'cfg_anonymatglobal' => 'Annonymat Global', # MODIF
-	'cfg_colonne_sec' => 'Affichage en bas de la colonne secondaire', # MODIF
-	'cfg_contenu' => 'Contenu :', # MODIF
-	'cfg_footer' => 'Footer :', # MODIF
-	'cfg_header' => 'Header :', # MODIF
-	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">sur le site de weather.com ®</a> .', # MODIF
-	'cfg_menu_haut' => 'Menu haut', # MODIF
-	'cfg_nav' => 'Navigation :', # MODIF
-	'cfg_police_nav' => 'Police de la navigation :', # MODIF
-	'cfg_police_texte' => 'Police de texte :', # MODIF
-	'cfg_position_flux_rss' => 'Position du Flux RSS', # MODIF
-	'cfg_quoideneuf_label' => 'Nombre quoi de neuf', # MODIF
-	'cfg_sousmenulocaux' => 'Sous-menu locaux', # MODIF
-	'cfg_sousmenulocaux_label' => 'Affichage des sous-menus systématiquement ou seulement si dans la rubrique en cours', # MODIF
-	'cfg_taille_logos_max' => 'Taille maximum des logos du menu haut et de la boite à outil', # MODIF
-	'cfg_textesiplanvide_label' => 'Texte dans le plan du site si le plan est vide de contenu :', # MODIF
-	'cfg_titraille' => 'Titraille', # MODIF
-	'cfg_vignettes' => 'Vignettes mode portail :', # MODIF
 	'chapitre_complet' => 'Volledig hoofdstuk voor printen',
 	'chapitre_complet_title' => 'In geheel de inhoud van de rubriek aangeven ',
 	'chercheravecgoogle' => 'Met <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> zoekt op het Web!',
