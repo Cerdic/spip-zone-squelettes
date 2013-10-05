@@ -391,33 +391,33 @@ function nettoyer_titre_sujet($titre, $resolu='') {
 }
 // FIN du Filtre : nettoyer_titre_sujet
 
-
-
-// =======================================================================================================================================
-// Filtre : afficher_config
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Affiche la meta de configuration demandee sous un format lisible (remplace #CFG_ARBO)
-// =======================================================================================================================================
-//
-function afficher_config($meta) {
-	$texte ='';
-
-	if (_SARKASPIP_DEBUG_CFG_ARBO == 'oui') {
-		if ($meta) {
-			include_spip('inc/config');
-			$f = chercher_filtre('foreach');
-			$config = $f(lire_config($meta));
-			$texte = '<div id="bloc_debug">'
-				   . '<p>Debug - Variables de configuration - Page ' . _T('sarkaspip:' . $meta) . '</p>'
-				   . $config
-				   . '</div>';
+// Cette fonction existe dans le plugin Dev.
+// Si ce plugin est déjà actif on ne la redéfinit pas !
+if (!function_exists('bel_env')) {
+	function bel_env($env) {
+		$env = str_replace(array('&quot;', '&#039;'), array('"', '\''), $env);
+		if (is_array($env_tab = @unserialize($env))) {
+			$env = $env_tab;
 		}
+		if (!is_array($env)) {
+			return '';
+		}
+		$style = " style='border:1px solid #ddd;'";
+		$res = "<table style='border-collapse:collapse;'>\n";
+		foreach ($env as $nom => $val) {
+			if (is_array($val) || is_array(@unserialize($val))) {
+				$val = bel_env($val);
+			}
+			else {
+				$val = entites_html($val);
+			}
+			$res .= "<tr>\n<td$style><strong>". entites_html($nom).
+					"&nbsp;:&nbsp;</strong></td><td$style>" .$val. "</td>\n</tr>\n";
+		}
+		$res .= "</table>";
+		return $res;
 	}
-
-	return $texte;
 }
-// FIN du Filtre : afficher_config
 
 
 function inscription_possible() {

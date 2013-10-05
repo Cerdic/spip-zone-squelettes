@@ -11,6 +11,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // B
 	'bouton_configurer' => 'Sarka-SPIP',
 	'bouton_effacer' => 'Effacer',
+	'bouton_afficher_debug' => 'Afficher',
+	'bouton_masquer_debug' => 'Masquer',
 	'bouton_valider' => 'Valider',
 	'bulle_bouton_valider' => 'Valider les saisies',
 	'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de départ',
@@ -710,5 +712,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sarkaspip_sommaire' => 'Sommaire',
 	'sarkaspip_styles' => 'Styles',
 
+// T
+	'titre_debug' => 'Debug Sarka-SPIP - Page «@cfg@»',
+	'titre_debug_meta' => 'Variables de configuration',
+	'titre_debug_env' => 'Variables d\'environnement',
 );
 ?>
