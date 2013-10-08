@@ -19,7 +19,7 @@ function inc_emballe_medias_install_dist(){
 						'fichiers_videos' => array('3gp','avi','dv','f4v','flv','m2p','m2ts','m4v','mkv','mpg','mov','mp4','mts','ogv','qt','ts','webm'),
 						'fichiers_audios' => array('3ga','aac','ac3','aifc','aiff','flac','m4a','mka','mp3','oga','ogg','wav','wma'),
 						'fichiers_images' => array('jpg','png','gif'),
-						'fichiers_textes' => array('doc','odt','pdf'),
+						'fichiers_textes' => array('doc','docx','odt','pdf'),
 						'file_size_limit' => @ini_get('upload_max_filesize') ? ((str_replace('M','',@ini_get('upload_max_filesize')) < str_replace('M','',@ini_get('post_max_size'))) ? str_replace('M','',@ini_get('upload_max_filesize')) : str_replace('M','',@ini_get('post_max_size'))) : '2',
 						'file_upload_limit' => '1',
 						'file_queue_limit' => '1',
