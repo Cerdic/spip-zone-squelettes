@@ -10,7 +10,7 @@
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
     <div id="cadre-rubrique">
-	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,50}})] </div>
+	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})] </div>
 	  				<div id="titre-rubrique">
 			  			<div class="#EDIT{titre}">[(#TITRE)]</div>
 			  			<div id="descriptif-rubrique" class="#EDIT{descriptif}">[(#DESCRIPTIF)]</div>
@@ -22,8 +22,9 @@
       ]
       ]
 	  				</div>
+    <div class="nettoyeur"></div>        
 		</div>
-
+    
 #SET{nbrpag,#CONFIG{escal/config/nombreart,5}}
 
 <B_articles_rubs>
@@ -41,7 +42,7 @@
   <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}>
     <div class="cadre-articles-rubrique">
       <div class="titre-articles-rubrique">
-        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,50}})]
+        <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
         <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
       </div>
       <div class="introduction-articles-rubrique">
@@ -59,7 +60,9 @@
               <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
           </B_test>
       </div>
+      <div class="nettoyeur"></div>
     </div>
+    
   </BOUCLE_articles_rubs>
 
 <!-- si plus de x articles, on pagine (x est defini plus haut avec {pagination x} ) -->

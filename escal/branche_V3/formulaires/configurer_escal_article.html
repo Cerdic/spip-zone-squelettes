@@ -8,12 +8,25 @@
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
 
-<!-- Largeur des images -->
-     <ul>
-<legend><strong>Affichage de l'auteur de l'article</strong></legend>
 
+     <ul>
+<legend><strong>Partie centrale</strong></legend>
+<!-- Taille du logo -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,taillelogoart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Taille du logo des articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]"  />
+                    </span>
+                    </div>
+             </li>
+
+<!-- Auteur de l'article -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
+            Affichage de l'auteur de l'article
              #SET{name,auteurart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                   [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
@@ -27,18 +40,13 @@
             </div>
             </li>
 
-     </ul>
-     
 <!-- Largeur des images -->
-     <ul>
-<legend><strong>Largeur des images dans les articles</strong></legend>
-
             <div class="explication">
             Vous pouvez définir ici la largeur maximum des images dans vos articles. <br /> 
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page, ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page
             </div>
 
-            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">            
             <div class="explication">
               #SET{name,largeurimage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Largeur maximum des images :
