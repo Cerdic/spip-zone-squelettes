@@ -48,4 +48,9 @@ if(!defined('_EM_PREVISU_HAUTEUR'))
 	define('_EM_PREVISU_HAUTEUR','400');
 if(!defined('_EM_PREVISU_LARGEUR'))
 	define('_EM_PREVISU_LARGEUR','400');
+
+if (!isset($GLOBALS['z_blocs'])) {
+	/* à faire : extra1 -> aside, extra2 -> extra */
+	$GLOBALS['z_blocs'] = array('content','extra1','extra2','head','head_js','header','footer','breadcrumb');
+}
 ?>
