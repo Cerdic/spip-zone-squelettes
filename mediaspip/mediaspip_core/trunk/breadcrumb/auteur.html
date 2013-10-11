@@ -1,1 +1,26 @@
-[(#REM) A faire]
+[(#REM)
+	
+	Page personnelle d'un auteur
+	
+	Si l'auteur demandant la page est connecté avec les identifiants de cette page d'auteur,
+	on doit arriver sur content/auteur-profil 
+	
+	Cette page spécifique est appelée via le pipeline styliser utilisé dans le fichier
+	mediaspip_core_pipeline
+]
+#SET{vue_done,non}
+[(#ENV{vue}|=={profil}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
+	<INCLURE{fond=inclure/auteur-breadcrumb-profil_modifier}{env}>
+]
+[(#ENV{vue}|=={forums}|et{#AUTORISER{modifier,auteur,#ENV{id_auteur}}}|oui)
+	#SET{vue_done,oui}
+	<INCLURE{fond=inclure/auteur-breadcrumb-forums_gerer,self=#SELF,env,ajax}>
+]
+[(#ENV{vue}|=={collections}|et{#PLUGIN{collections}}|oui)
+	#SET{vue_done,oui}
+	<INCLURE{fond=inclure/auteur-breadcrumb-collections,self=#SELF,est_auteur=oui,env,ajax} />
+]
+[(#GET{vue_done}|=={oui}|non)
+	<INCLURE{fond=inclure/auteur-breadcrumb-normal}{env}>
+]
