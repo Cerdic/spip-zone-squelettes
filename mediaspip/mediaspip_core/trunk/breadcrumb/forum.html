@@ -1,1 +1,44 @@
-[(#REM) Géré par zpip-dist]
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+
+    <BOUCLE_contexte_article(ARTICLES) {id_article}>
+    <BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+    <span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_ariane_article>
+    <span class="sep"> &gt; </span><a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_contexte_article>
+    </B_contexte_article>
+
+    <BOUCLE_contexte_breve(BREVES) {id_breve}>
+    <BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+    <span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_ariane_breve>
+    <span class="sep"> &gt; </span><a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_contexte_breve>
+
+    <BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+    <BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+    <span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_ariane_rubrique>
+    <span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_contexte_rubrique>
+
+    <BOUCLE_contexte_site(SITES) {id_syndic}>
+    <BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+    <span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+    </BOUCLE_ariane_site>
+    <span class="sep"> &gt; </span><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#TITRE|couper{80})]</a>
+    </BOUCLE_contexte_site>
+
+    <//B_contexte_site>
+    <//B_contexte_rubrique>
+    <//B_contexte_breve>
+    <//B_contexte_article>
+
+    <BOUCLE_contexte_forum(FORUMS) {id_forum}>
+    <span class="sep"> &gt; </span><a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+    </BOUCLE_contexte_forum>
+
+    <span class="sep"> &gt; </span><strong class="on"><:poster_message:></strong>
+    
+</p><!--#hierarchie-->
