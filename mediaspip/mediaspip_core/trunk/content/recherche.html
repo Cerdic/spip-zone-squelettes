@@ -1,17 +1,18 @@
 #SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
 #SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
 <div class="content-principal">
-	[<div class="cartouche pas_surlignable">
+	<div class="cartouche pas_surlignable">
 		[<div class="logo">
 		(#CHEMIN{images/logo_recherche_defaut.png}|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}
 			|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''})
 		</div>]
 		<h1 class="h1"><:resultats_recherche:></h1>
-		<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
-	</div>]
+		[<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>]
+	</div>
 
+	<BOUCLE_recherche(CONDITION){si #RECHERCHE|strlen|>{0}}>
 	[(#REM) Medias trouves ]
-	[(#INCLURE{fond=inclure/articles-medias_liste,titre_liste=<:mediaspip_core:recherche_medias:>,tri_medias_forcer=points,afficher_nombre=oui,env,ajax})]
+	[(#INCLURE{fond=inclure/articles-medias_liste,titre_liste=<:mediaspip_core:recherche_medias:>,tri_medias_forcer=points,afficher_nombre=oui,env,ajax})]]
 
 	[(#REM) autres articles trouves ]
 	<B_articles>
@@ -70,4 +71,10 @@
 		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 	</div>
 	</B_auteurs>
+	</BOUCLE_recherche>
+	</B_recherche>
+	#BOITE_OUVRIR{'',error}
+		<:mediaspip_core:erreur_recherche_vide:>
+	#BOITE_FERMER
+	<//B_recherche>
 </div>

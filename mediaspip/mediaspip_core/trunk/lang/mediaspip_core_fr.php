@@ -46,6 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_inscription_desactivee' => 'L’inscription est désactivée sur le site.',
 	'erreur_inscription_session' => 'Vous êtes déjà identifié sur le site',
 	'erreur_pass_deja_recupere' => 'Ce mot de passe a déjà été regénéré.',
+	'erreur_recherche_vide' => 'Votre recherche est vide.',
 	'erreur_valeur_int' => 'La valeur de ce champ doit ètre un nombre.',
 	'erreur_valeur_int_inf' => 'La valeur de ce champ doit être inférieure à @nb@.',
 	'erreur_verifier_form' => 'Vérifiez le contenu du formulaire',
