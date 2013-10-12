@@ -10,19 +10,48 @@
 	<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
 #SET{nbrsitesfav,#CONFIG{escal/config/nombresitesfav,10}}
   <div id="scrollup4">
-
-      <BOUCLE_sites_favoris(SITES){titre_mot=favori}{0,#GET{nbrsitesfav}}>
+<!-- affichage si aucun site -->
+      <BOUCLE_sites_favoris0(SITES){titre_mot=favori}{0,1}>   
+      </BOUCLE_sites_favoris0>
+  Ici vous pouvez afficher les logos (ou à défaut une vignette "apercite" automatique) des sites avec le mot-clé "favori".<br /><br />
+  Et les images défilent.
+      <//B_sites_favoris0>   
+<!-- affichage par défaut : par hasard -->
+      <BOUCLE_sites_favoris_defaut(SITES){si #CONFIG{escal/config/ordresitesfav}|non}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
       <div class="headline4">
         <a href="#URL_SITE" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
           <span class="titre-site">#NOM_SITE</span><br />
           [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
         </a>
       </div>
-      </BOUCLE_sites_favoris>
-      </B_sites_favoris>
-  Ici vous pouvez afficher les logos (ou à défaut une vignette "apercite" automatique) des sites avec le mot-clé "favori".<br /><br />
-  Et les images défilent.
-      <//B_sites_favoris>
-  
+      </BOUCLE_sites_favoris_defaut>  
+<!-- affichage par hasard -->
+      <BOUCLE_sites_favoris1(SITES){si #CONFIG{escal/config/ordresitesfav}|=={hasard}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
+      <div class="headline4">
+        <a href="#URL_SITE" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris1>
+<!-- affichage par date inverse -->      
+      <BOUCLE_sites_favoris2(SITES){si #CONFIG{escal/config/ordresitesfav}|=={date}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}>
+      <div class="headline4">
+        <a href="#URL_SITE" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris2>        
+<!-- affichage par date inverse -->      
+      <BOUCLE_sites_favoris3(SITES){si #CONFIG{escal/config/ordresitesfav}|=={dateinverse}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}{inverse}>
+      <div class="headline4">
+        <a href="#URL_SITE" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris3>    
+
 	</div>
   </div>

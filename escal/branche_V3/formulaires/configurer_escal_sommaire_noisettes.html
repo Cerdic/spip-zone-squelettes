@@ -449,6 +449,18 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
                     </span>
                     <br /><br />
+            #SET{name,ordresitesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Ordre d'affichage
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
+                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_hasard">Au hasard</label><br />                    
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] /><label for="#GET{name}_date">Ordre chronologique</label><br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_dateinverse" value="dateinverse"
+                            [(#ENV{#GET{name}}|=={dateinverse}|oui)checked="checked"] /><label for="#GET{name}_dateinverse">Ordre antéchronologique</label>
+                    </span>
+                    <br /><br /><br /><br />                                     
             #SET{name,tempositesfav}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Temporisation entre chaque logo de site (en secondes)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
