@@ -30,17 +30,18 @@
 </BOUCLE_initial_nom>
 </p>
 
+#SET{paginauteurs,#CONFIG{escal/config/paginauteurs,20}}
 <B_auteurs>
 #ANCRE_PAGINATION
 <ul class="auteurs">
-<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination 5}{", "}>
+<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination #GET{paginauteurs}}{", "}>
 [<li class="admin"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/admin">]
 [<li class="redacteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
 [<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [&nbsp;(#NOM|textebrut)]</a>
 </li>
 </BOUCLE_auteurs>
-</ul>[<p class="pagination-liste-auteurs">(#PAGINATION)</p>] 
+</ul>[<p class="pagination pagination-liste-auteurs">(#PAGINATION)</p>] 
 </B_auteurs>
 
 

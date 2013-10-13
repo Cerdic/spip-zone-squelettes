@@ -824,7 +824,7 @@
                     <br />
             <div class="explication">
             #SET{name,lien_trombino_auteurs}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage du lien vers le trombinoscope des auteurs
+                    Affichage du lien vers le trombino des auteurs
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -834,6 +834,54 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
                     <br /><br />
+            #SET{name,iconesauteurs}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage des icones
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <br /><br /> 
+            #SET{name,couleuradmin}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $couleuradmin="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FF0066})]";
+            ?>
+                    Couleur pour les admins (par défaut : #FF0066)                    
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                             <input type="texte" class="palette" style="width: 80px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$couleuradmin"; ?>"  />
+                    </span>
+            <br /><br />
+            #SET{name,couleurredacteur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $couleurredacteur="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#009933})]";
+            ?>
+                    Couleur pour les redacteurs (par défaut : #009933)                    
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                             <input type="texte" class="palette" style="width: 80px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$couleurredacteur"; ?>"  />
+                    </span>
+            <br /><br />
+            #SET{name,couleurvisiteur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $couleurvisiteur="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+            ?>
+                    Couleur pour les visiteurs (par défaut : #000000)                    
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                             <input type="texte" class="palette" style="width: 80px" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$couleurvisiteur"; ?>"  />
+                    </span>
+            <br /><br />                                                              
+            #SET{name,paginauteurs}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'auteurs par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},20})]"  />
+                    </span>                    
+            <br /><br />                    
             </div>
             </li>            
 <!-- inc-perso -->
