@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+
+<body class="pas_surlignable page_sommaire">
+<div class="page">
+
+	
+<INCLURE{fond=inclure/nav,env}{home=oui} />
+	
+	
+<div class="corps1">
+<div class="corps2">
+
+	
+<div class="main">
+	
+
+<B_articles_une>
+<div class="bloc_contenu2 cacher">
+<div class="menu menu_articles2" id="articles_recents">
+	#ANCRE_PAGINATION
+	<ul class="hentry clearfix">
+		<BOUCLE_articles_une(ARTICLES) {!par date} {pagination 1}{0,3}{doublons}>
+		<li>
+			[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_passe_partout{460,240}|image_recadre{460,240,top})]
+			<h1 class="une"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h1>
+			[<div class="#EDIT{intro} introduction2 entry-content">(#INTRODUCTION|couper{200,...}) 	<a href="#URL_ARTICLE" class="vert"><:lire_la_suite:> →</a></div>]
+			<hr class="une" />
+            <span class="info-publi small">
+			<span class="spip-icons">D</span> [(#DATE|affdate)] &nbsp; &nbsp; 
+			<span class="spip-icons">A</span> #LESAUTEURS &nbsp; &nbsp; 
+			<BOUCLE_combien(FORUMS) {id_article} {plat}></BOUCLE_combien>[ 
+			<span class="spip-icons">C</span> <strong>(#TOTAL_BOUCLE)</strong>] <:messages:><//B_combien>
+			</span>
+		</li>
+		</BOUCLE_articles_une>
+	</ul>
+	[<p class="pagination2" align="center">(#PAGINATION|{page})</p>]
+</div><!--#articles_recents-->
+</div>
+</B_articles_une>
+	
+
+	
+<div class="wrapper hfeed">
+<div class="content" id="content">
+
+		
+		
+<B_articles_recents>
+<div class="menu menu_articles articles_recents" >
+	#ANCRE_PAGINATION
+	<ul>
+		<BOUCLE_articles_recents(ARTICLES) {!par date} {pagination 3}{doublons}>
+		<li class="hentry clearfix">
+			<h1 class="h1 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h1>
+			[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|inserer_attribut{class, 'spip_logos_right'})]
+			[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{180,...})</div>]
+			<span class="la_suite"><a href="#URL_ARTICLE" class="blanc"><:lire_la_suite:> →</a></span>
+			<hr />
+            <span class="info-publi small">
+			<span class="spip-icons">D</span> [(#DATE|affdate)] &nbsp; &nbsp; 
+			<span class="spip-icons">A</span> #LESAUTEURS &nbsp; &nbsp; 
+			<BOUCLE_combien2(FORUMS) {id_article} {plat}></BOUCLE_combien2>[ 
+			<span class="spip-icons">C</span> <strong>(#TOTAL_BOUCLE)</strong>] <:messages:><//B_combien2>
+			</span>
+		</li>
+		</BOUCLE_articles_recents>
+	</ul>
+<div class="bloc_contenu">[<p class="pagination">(#PAGINATION|{page})</p>]</div>
+</div><!--#articles_recents_suite-->
+</B_articles_recents>
+		
+		
+</div><!--.content-->
+</div><!--.wrapper-->
+
+		
+<div class="aside">
+<INCLURE{fond=inclure/aside-content} />
+</div><!--.aside-->
+		
+		
+</div><!--.main-->
+
+	
+</div><!--.corps2-->
+</div><!--.corps1-->
+
+	
+<INCLURE{fond=inclure/footer,self=#SELF} />
+	
+
+</div><!--.page-->
+</body>
+</html>

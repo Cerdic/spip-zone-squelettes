@@ -1,0 +1,91 @@
+<div class="pied">
+<div class="pied2">
+
+<div class="footer clearfix">
+
+
+<div class="pied_gauche">
+	<div class="h4"><:articles_recents:></div>
+	
+	<B_recents>
+	#ANCRE_PAGINATION
+	<ul class="spip2 small">
+		<BOUCLE_recents(ARTICLES) {!par date} {pagination 8} {0,40}>
+		<li style="margin-bottom: 0.8em;">[(#DATE|affdate_jourcourt) &ndash; ]<strong><a href="#URL_ARTICLE" rel="bookmark" class="vert">#TITRE</a></strong></li>
+		</BOUCLE_recents>
+	</ul>
+	[<p class="pagination2" align="center">(#PAGINATION|{page})</p>]
+	</B_recents>
+   
+   </div>	
+
+
+
+<div class="pied_centre">
+<div class="h4"><:messages_recents:></div>
+	
+	<B_forums_liens>
+	#ANCRE_PAGINATION
+	<ul class="spip2 small">
+	<BOUCLE_forums_liens(FORUMS?) {plat} {!par date} {pagination 4} {0,20}>
+	[<li style="margin-bottom: 0.8em;"> <i>[(#DATE|date_relative),] </i> [(#NOM|sinon{<:anonyme:>})&nbsp;: ]<br /><strong><a href="#URL_FORUM" class="vert" [ title="(#TITRE|attribut_html|couper{80})"]>«&nbsp;(#TEXTE|couper{80})&nbsp;»</a></strong></li>]
+	</BOUCLE_forums_liens>
+	</ul>
+	[<p class="pagination2" align="center">(#PAGINATION|{page})</p>]
+	</B_forums_liens>
+	
+</div>	
+
+
+<div class="pied_droite">
+<div class="h4"><:nouveautes_web:></div>
+	
+	<B_syndic>
+	#ANCRE_PAGINATION
+	<ul class="spip2 small">
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {pagination 4}{0,20}{lang}>
+	<li style="margin-bottom: 0.8em;">[(#DATE|affdate_jourcourt),] <i>#NOM_SITE</i> &ndash; <strong><a href="#URL_ARTICLE" [ title="(#NOM_SITE|attribut_html|couper{80})"] class="vert spip_out">#TITRE</a></strong></li>
+	</BOUCLE_syndic>
+	</ul>
+	[<p class="pagination2" align="center">(#PAGINATION|{page})</p>]
+	</B_syndic>
+	
+	</div>
+
+
+
+	
+
+
+	<hr style="clear:both;" />
+
+	
+	
+	
+	
+	<p class="colophon">
+	<small>
+		<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee)]</BOUCLE_annee>-</B_annee>[(#DATE|annee) ]<b>#NOM_SITE_SPIP</b>
+		<br /><a rel="contents" href="#URL_PAGE{archives}"><:archives:></a>[
+		(#SESSION{id_auteur}|non) | <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][
+		(#AUTORISER{ecrire})| <a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>][
+		(#SESSION{id_auteur}|oui) | <a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>] | 
+		<a rel="nofollow" href="#URL_PAGE{contact}"><:contact:></a> 
+		
+	</small>
+	</p>
+	<small class="generator">
+	    <a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><img src="#CHEMIN{img/rss.png}" alt="RSS 2.0" class="image_opacity" /></a>
+		<img src="#CHEMIN{img/twitter.png}" alt="twitter" class="image_opacity" />
+		<img src="#CHEMIN{img/google.png}" alt="google" class="image_opacity" />
+		<img src="#CHEMIN{img/facebook.png}" alt="facebook" class="image_opacity" />
+		<img src="#CHEMIN{img/youtube.png}" alt="youtube" class="image_opacity" />
+	</small>
+</div>
+	
+<div id="remonter"><img src="#CHEMIN{img/remonter.png}" alt="" /></div>
+
+
+
+</div>
+</div>

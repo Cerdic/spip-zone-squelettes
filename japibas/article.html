@@ -1,0 +1,129 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_article">
+<div class="page">
+
+<INCLURE{fond=inclure/nav,env} />
+
+	
+	
+	<div class="corps1">
+	<div class="corps2">
+	
+	
+	<div class="arbo"><:vous_etes_ici:> : <a href="#URL_SITE_SPIP/" class="blanc"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article} > » <a href="#URL_RUBRIQUE" class="blanc">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[  »  <strong class="on2">(#TITRE|couper{80})</strong>]</div>
+	
+	
+	<div class="main">
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div class="wrapper hfeed">
+		<div class="content hentry" id="content">
+			
+	
+	        <div class="bloc_contenu">
+			
+			<div class="cartouche">
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h1 class="#EDIT{titre} surlignable h1">#TITRE</h1>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				<p class="info-publi small">
+			    <span class="spip-icons">D</span> [(#DATE|affdate)] &nbsp; &nbsp; 
+				<span class="spip-icons">H</span> [(#DATE|heures)][:(#DATE|minutes)] &nbsp; &nbsp; 
+			    <span class="spip-icons">A</span> #LESAUTEURS &nbsp; &nbsp; 
+			    <BOUCLE_combien(FORUMS) {id_article} {plat}></BOUCLE_combien>[ 
+			    <span class="spip-icons">C</span> <strong>(#TOTAL_BOUCLE)</strong>] <:messages:><//B_combien>
+			    </p>
+				<hr class="sep2"/>
+				
+				
+				[(#REM) Inclure le modele des liens de traductions ]
+				#MODELE{article_traductions}
+			</div>
+	
+				[<div class="bloc_logo_article">
+				(#LOGO_ARTICLE|inserer_attribut{class, 'spip_logos_right2'})
+				<div class="bloc_agrandir">
+				<a href="[(#LOGO_ARTICLE|extraire_attribut{src}|url_absolue)]" class="mediabox"><img src="#CHEMIN{img/agrandir.png}" class="icone_agrandir" alt="agrandir" /></a>
+				</div>
+				</div>]
+				
+				
+
+	
+			
+			
+			[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO)</div>]
+			[<div class="#EDIT{texte} texte surlignable">(#TEXTE)</div>]
+		
+			[<hr /><p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{ps} ps surlignable"><hr />(#PS)</div>]
+		
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents,id_article, env})]
+	
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+			
+			[<div class="notes"><hr />(#NOTES)</div>]
+			
+			</div><!--.bloc_contenu-->
+			
+			
+			[(#REM) Articles dans la meme rubrique ]
+			
+			<div class="bloc_contenu">
+			<h4><:meme_rubrique:></h4>
+				<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!par date} {0,5}>
+				<p class="texte">[(#DATE|affdate_jourcourt)] &ndash; <a href="#URL_ARTICLE" class="vert"><strong>#TITRE</strong></a></p>
+				</BOUCLE_articles_rubrique>
+			</div><!--.bloc_contenu-->
+			
+			
+			
+			
+			<div class="bloc_contenu">
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			<INCLURE{fond=inclure/forum,id_article} />
+			[<h5><:forum:form_pet_message_commentaire:></h5>
+			(#FORMULAIRE_FORUM)]
+			</div><!--.bloc_contenu-->
+	
+		</div><!--.content-->
+		</div><!--.wrapper-->
+	
+	
+		<div class="aside">
+		
+			<INCLURE{fond=inclure/aside-content} />
+	
+			
+			
+		</div><!--.aside-->
+	</div><!--.main-->
+	
+	</div><!--.corps2-->
+	</div><!--.corps1-->
+
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div><!--.page-->
+</body>
+</html>
+</BOUCLE_principale>
