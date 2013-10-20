@@ -1,7 +1,7 @@
 
 <!-- on selectionne les articles avec le mot-cle photo-une et on stocke dans doublons photos -->
     <BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}>
-      <BOUCLE_selection_docs2(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{doublons photos}>
+      <BOUCLE_selection_docs2(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{par hasard}{doublons photos}>
       </BOUCLE_selection_docs2>
     </BOUCLE_selection_articles2>
 
@@ -18,8 +18,8 @@
 	<div class="texte photos [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
 #SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
   <div id="scrollup2">
-<BOUCLE_articles(ARTICLES)>
-      <BOUCLE_photo_une(DOCUMENTS){id_article}{!doublons photos}{0,#GET{nombrephotos}}{par hasard}>
+
+      <BOUCLE_photo_une(DOCUMENTS){!doublons photos}{par hasard}{0,#GET{nombrephotos}}>
       <div class="headline2">
       
       [(#CONFIG{escal/config/lienphotos}|=={non}|non)
@@ -34,6 +34,6 @@
       
       </div>
       </BOUCLE_photo_une>
-</BOUCLE_articles>
+
 	</div>
   </div>
