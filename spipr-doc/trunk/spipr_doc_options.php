@@ -2,7 +2,7 @@
 if (!isset($GLOBALS['z_blocs']))
 	$GLOBALS['z_blocs'] = array('content','aside','head','head_js','header','footer');
 
-if ($GLOBALS['visiteur_session']['statut']=='0minirezo')
+if (isset($GLOBALS['visiteur_session']['statut']) AND $GLOBALS['visiteur_session']['statut']=='0minirezo')
 	$GLOBALS['marqueur'].=":minirezo";
 
 define('_ZENGARDEN_FILTRE_THEMES','spipr');
