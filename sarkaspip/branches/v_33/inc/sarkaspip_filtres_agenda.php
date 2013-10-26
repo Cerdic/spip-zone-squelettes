@@ -518,7 +518,7 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 
 	// Init de la chaine
 	$header = NULL;
-	$lien_vide = '<h2><a class="titre_bloc bord" rel="nofollow" href="#">&nbsp;</a></h2>';
+	$lien_vide = '<h2><a class="titre_bloc bord vide" rel="nofollow" href="#">&nbsp;</a></h2>';
 	// Debut de l'en-tete
 	// Ligne 1 : pagination par annee
 	$header .= ($annee_min < $annee_choisie)
