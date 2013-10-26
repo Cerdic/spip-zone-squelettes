@@ -298,6 +298,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_recherche_breve' => 'Brèves trouvées',
 	'cfg_inf_recherche_commentaire' => 'Commentaires trouvés',
 	'cfg_inf_recherche_information' => 'Les paramètres de cette page de configuration s\'appliquent aux pages «Mot» et «Recherche».',
+	'cfg_inf_recherche_message' => 'Messages de forum trouvés',
 	'cfg_inf_recherche_mot' => 'Mots trouvés',
 	'cfg_inf_recherche_rubrique' => 'Rubriques trouvées',
 	'cfg_inf_recherche_site' => 'Sites trouvés',
