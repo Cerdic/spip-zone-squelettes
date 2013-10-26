@@ -141,7 +141,6 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 */
 			$formats = lire_config('doc2img_imagick_extensions',false);
 			if(!is_array($formats) OR (count($formats) == 0) && class_exists('Imagick')){
-				include_spip('inc/metas');
 				$imagick = new Imagick();
 				$formats = $imagick->queryFormats();
 				ecrire_meta('doc2img_imagick_extensions',serialize($formats));
@@ -426,8 +425,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Dans le cas de l'activation future du plugin
 			 */
 			$formats = lire_config('doc2img_imagick_extensions',false);
-			if(!is_array($formats) OR (count($formats) == 0)){
-				include_spip('inc/metas');
+			if((!is_array($formats) OR (count($formats) == 0)) && class_exists('Imagick')){
 				$imagick = new Imagick();
 				$formats = $imagick->queryFormats();
 				ecrire_meta('doc2img_imagick_extensions',serialize($formats));
@@ -442,9 +440,9 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 				}
 				$extensions = array_map('strtolower',$extensions);
 				$config_doc2img['format_document'] = implode(',',$extensions);
-			}else{
+			}else
 				$config_doc2img['format_document'] = 'pdf,tiff,bmp,ai,svg,psd,eps,ps';
-			}
+
 			$config_doc2img['resolution'] = '150';
 			$config_doc2img['format_cible'] = 'png';
 			$config_doc2img['conversion_auto'] = 'on';
@@ -519,8 +517,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Dans le cas de l'activation future du plugin
 			 */
 			$formats = lire_config('doc2img_imagick_extensions',false);
-			if(!is_array($formats) OR (count($formats) == 0)){
-				include_spip('inc/metas');
+			if((!is_array($formats) OR (count($formats) == 0)) && class_exists('Imagick')){
 				$imagick = new Imagick();
 				$formats = $imagick->queryFormats();
 				ecrire_meta('doc2img_imagick_extensions',serialize($formats));
@@ -529,9 +526,8 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			if(is_array($formats) && (count($formats) > 1)){
 				$extensions = array();
 				foreach(array('PDF','TIFF','BMP','AI','SVG','PSD','EPS','PS') as $extension){
-					if(in_array($extension,$formats)){
+					if(in_array($extension,$formats))
 						$extensions[] = $extension;
-					}
 				}
 				$extensions = array_map('strtolower',$extensions);
 				$config_doc2img['format_document'] = implode(',',$extensions);
