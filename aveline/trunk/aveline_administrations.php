@@ -264,6 +264,14 @@ function aveline_maj_noisettes($noisettes, $current_version) {
 			}
 		}
 	}
+	if (version_compare($current_version,'0.4.2','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(substr($noisette['noisette'],-9)=='portfolio'){
+				if (isset($noisettes[$cle]['parametres']['vignettes_carrees']) AND $noisettes[$cle]['parametres']['vignettes_carrees']!='')
+					$noisettes[$cle]['parametres']['type_vignettes'] = 'carrees_pleines';
+			}
+		}
+	}
 	return $noisettes;
 }
 

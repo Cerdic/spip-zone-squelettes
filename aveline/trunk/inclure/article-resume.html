@@ -88,8 +88,33 @@
 		[<a name="tri_alphabetique_(#ENV{initiale})"></a>]
 		<dl class="article" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]>
 			<dt [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]><a href="#URL_ARTICLE" [(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
-				[(#ENV{vignette_utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
-				[(#ENV{vignette_utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}}|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]]
+				[(#SET{logo,[(#ENV{vignette_utiliser_logo_article_rubrique}
+					|?{#LOGO_ARTICLE_RUBRIQUE,#LOGO_ARTICLE}
+					|sinon{#INCLURE{fond=inclure/article-resume-image,env,seulement_fichier=oui}})]})]
+				[(#SET{vignette_taille_max_logo,#ENV{vignette_taille_max_logo,50}})]
+				[(#ENV{vignette_type_vignettes}|non)
+					[(#GET{logo}
+						|image_reduire{0,#GET{vignette_taille_max_logo}}
+						|inserer_attribut{class,spip_logos}
+						|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]
+				][(#ENV{vignette_type_vignettes}|=={carrees_pleines}|oui)
+					[(#GET{logo}
+						|image_passe_partout{#GET{vignette_taille_max_logo}}
+						|image_recadre{#GET{vignette_taille_max_logo},#GET{vignette_taille_max_logo}}
+						|inserer_attribut{class,spip_logos}
+						|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]
+				][(#ENV{vignette_type_vignettes}|=={carrees_marges}|oui)
+					[(#GET{logo}
+						|image_reduire{#GET{vignette_taille_max_logo}}
+						|image_recadre{#GET{vignette_taille_max_logo},#GET{vignette_taille_max_logo},center,'transparent'}
+						|inserer_attribut{class,spip_logos}
+						|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]
+				][(#ENV{vignette_type_vignettes}|=={rondes}|oui)
+					[(#GET{logo}
+						|image_masque{[(#CHEMIN{inclure/rond.png}|image_reduire{#GET{vignette_taille_max_logo}}|extraire_attribut{src})]}
+						|inserer_attribut{class,spip_logos}
+						|inserer_attribut{style,#ENV{vignette_ajout_css}|?{'float:none;',''}})<br />]
+				]
 			[<span class="#EDIT{titre}">(#TITRE|couper{#ENV{vignette_longueur_max_titres,30}})</span>]
 			</a>
 			[(#ENV{vignette_afficher_date}|oui)

@@ -196,6 +196,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_titre_texte' => 'le titre et le début du message',
 	'item_tout' => 'tous les éléments sans pagination',
 	'item_vignettes' => 'vignettes',
+	'item_vignettes_carrees_marges' => 'carrées (avec marges)',
+	'item_vignettes_carrees_pleines' => 'carrées (pleines et coupées)',
+	'item_vignettes_rectangles' => 'rectangulaires',
+	'item_vignettes_rondes' => 'rondes',
 	'item_visites' => 'nombre de visites',
 
 	// L
@@ -392,6 +396,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_titre_racine' => 'Titre de la racine :',
 	'label_toggle_controls' => 'Afficher les contrôles de navigation seulement au survol ?',
 	'label_tri' => 'Critère de tri :',
+	'label_type_vignettes' => 'Type de vignettes :',
 	'label_url_minical' => 'Page de destination du mini-calendrier',
 	'label_utiliser_image_article' => 'Utiliser une image de l’article comme logo si ni l’article ni la rubrique parente n’a de logo ?',
 	'label_utiliser_logo_article_rubrique' => 'Afficher le logo de la rubrique parente si l’article n’a pas de logo ?',
