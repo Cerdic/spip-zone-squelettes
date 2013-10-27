@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin MediaSPIP Init
- * © 2010-2012 kent1 (kent1@arscenic.info)
+ * © 2010-2013 kent1 (kent1@arscenic.info)
  * Distribué sous licence GNU/GPL v3
  * 
  * Fichier d'installation du plugin
@@ -140,7 +140,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Dans le cas de l'activation future du plugin
 			 */
 			$formats = lire_config('doc2img_imagick_extensions',false);
-			if(!is_array($formats) OR (count($formats) == 0) && class_exists('Imagick')){
+			if((!is_array($formats) OR (count($formats) == 0)) && class_exists('Imagick')){
 				$imagick = new Imagick();
 				$formats = $imagick->queryFormats();
 				ecrire_meta('doc2img_imagick_extensions',serialize($formats));
@@ -328,9 +328,9 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			/**
 			 * On ajoute la gestion des forums dans les diogènes d'articles
 			 */
-			$diogenes_articles = sql_select('*','spip_diogenes','objet IN ('.sql_quote('article').','.sql_quote('emballe_media').')');
+			$diogenes_articles = sql_allfetsel('*','spip_diogenes','objet IN ('.sql_quote('article').','.sql_quote('emballe_media').')');
 			include_spip('action/editer_diogene');
-			while($diogene = sql_fetch($diogenes_articles)){
+			foreach($diogenes_articles as $diogene){
 				$champs_ajoutes = @unserialize($diogene['champs_ajoutes']);
 				$champs_ajoutes[] = 'forum';
 				$diogene['champs_ajoutes'] = $champs_ajoutes;
@@ -341,9 +341,9 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			/**
 			 * On ajoute la gestion des forums dans les diogènes d'articles
 			 */
-			$diogenes = sql_select('*','spip_diogenes');
+			$diogenes = sql_allfetel('*','spip_diogenes');
 			include_spip('action/editer_diogene');
-			while($diogene = sql_fetch($diogenes)){
+			foreach($diogenes as $diogene){
 				if($diogene['type'] != 'media'){
 					$options_complements = is_array(@unserialize($diogene['options_complements'])) ? unserialize($diogene['options_complements']) : array();
 					$options_complements['polyhier_desactiver'] = 'on';
@@ -434,9 +434,8 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			if(is_array($formats) && (count($formats) > 1)){
 				$extensions = array();
 				foreach(array('PDF','TIFF','BMP','AI','SVG','PSD','EPS','PS') as $extension){
-					if(in_array($extension,$formats)){
+					if(in_array($extension,$formats))
 						$extensions[] = $extension;
-					}
 				}
 				$extensions = array_map('strtolower',$extensions);
 				$config_doc2img['format_document'] = implode(',',$extensions);
@@ -463,7 +462,6 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 															'jsselector' => '.infos_statistiques > div:last')
 			);
 			ecrire_meta("googleplus1",serialize($config_googleplus1));
-			
 			include_spip('inc/invalideur');
 			suivre_invalideur('meta');
 			ecrire_meta($nom_meta_base_version,$current_version='0.1.8','non');
@@ -476,7 +474,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			$config_notifications['prevenir_admins_restreints'] = 'on';
 			$config_notifications['prevenir_auteurs'] = 'on';
 			$config_notifications['thread_forum'] = 'on';
-			$email_auteur_1 = sql_getfetsel('email','spip_auteurs','id_auteur=1');
+			$email_auteur_1 = sql_getfetsel('email','spip_auteurs','statut = "0minirezo" AND webmestre="oui"');
 			$config_notifications['moderateurs_forum'] = $email_auteur_1;
 			$config_notifications['inscription'] = 'webmestres';
 			ecrire_meta("notifications",serialize($config_notifications));
@@ -506,7 +504,7 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 										'mapbox_lacquer',
 										'stamen_watercolor');
 			ecrire_meta('gis',serialize($config_gis),'oui');
-			
+
 			include_spip('inc/invalideur');
 			suivre_invalideur('meta');
 			ecrire_meta($nom_meta_base_version,$current_version='0.2.0','non');
@@ -531,9 +529,9 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 				}
 				$extensions = array_map('strtolower',$extensions);
 				$config_doc2img['format_document'] = implode(',',$extensions);
-			}else{
+			}else
 				$config_doc2img['format_document'] = 'pdf,tiff,bmp,ai,svg,psd,eps,ps';
-			}
+
 			$config_doc2img['resolution'] = '150';
 			$config_doc2img['format_cible'] = 'png';
 			$config_doc2img['conversion_auto'] = 'on';
@@ -563,7 +561,6 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 										'mapbox_lacquer',
 										'stamen_watercolor');
 			ecrire_meta('gis',serialize($config_gis),'oui');
-			
 			ecrire_meta($nom_meta_base_version,$current_version='0.2.2','non');
 		}
 		if(version_compare($current_version,'0.3.0','<')){
@@ -589,7 +586,6 @@ function mediaspip_init_upgrade($nom_meta_base_version,$version_cible){
 			 * Activation des documents sur les articles
 			 */
 			ecrire_meta("documents_objets", implode(',',array('spip_articles')));
-			
 			ecrire_meta($nom_meta_base_version,$current_version='0.3.0','non');
 		}
 		/**

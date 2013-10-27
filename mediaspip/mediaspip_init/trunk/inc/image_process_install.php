@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin MediaSPIP Init
- * © 2010-2012 kent1 (kent1@arscenic.info)
+ * © 2010-2013 kent1 (kent1@arscenic.info)
  * Distribué sous licence GNU/GPL v3
  * 
  */
@@ -20,27 +20,23 @@ function inc_image_process_install_dist(){
 	 * On teste les formats et on remplit les métas
 	 */
 	if (
-	function_exists('ImageGif')
-	OR function_exists('ImageJpeg')
-	OR function_exists('ImagePng')
-	) {	
+		function_exists('ImageGif')
+		OR function_exists('ImageJpeg')
+		OR function_exists('ImagePng')){
 		$url_gd1 = recuperer_page(generer_url_action("tester", "arg=gd1&time=".time(),true));
-		if (function_exists("ImageCreateTrueColor")) {
+		if (function_exists("ImageCreateTrueColor"))
 			$url_gd2 = recuperer_page(generer_url_action("tester", "arg=gd2&time=".time(),true));
-		}
 	}
 
-	if (_PNMSCALE_COMMAND!='') {
+	if (_PNMSCALE_COMMAND!='')
 		$url_netpbm = recuperer_page(generer_url_action("tester", "arg=netpbm&time=".time(),true));
-	}
 
-	if (function_exists('imagick_readimage')) {
+	if (function_exists('imagick_readimage'))
 		$url_imagick = recuperer_page(generer_url_action("tester", "arg=imagick&time=".time(),true));
-	}
 
-	if (_CONVERT_COMMAND!='') {
+	if (_CONVERT_COMMAND!='')
 		$url_convert = recuperer_page(generer_url_action("tester", "arg=convert&time=".time(),true));
-	}
+
 	/**
 	 * Activation de gd2 et des vignettes de documents
 	 */

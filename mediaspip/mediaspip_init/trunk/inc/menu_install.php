@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin MediaSPIP Init
- * © 2010-2012 kent1 (kent1@arscenic.info)
+ * © 2010-2013 kent1 (kent1@arscenic.info)
  * Distribué sous licence GNU/GPL v3
  * 
  */
@@ -27,7 +27,7 @@ function inc_menu_install_dist(){
 		if(intval($barre_nav)){
 			$infos_menu = array('id_menus_entree' => 0, 'titre' => filtrer_entites(_T('mediaspip_init:menu_principal')),'identifiant' => 'barrenav');
 			$err = menu_set($barre_nav, $infos_menu);
-			
+
 			$home_entree = sql_getfetsel('id_menus_entree','spip_menus_entrees','type_entree="accueil" AND id_menu='.intval($barre_nav));
 			if(!intval($home_entree)){
 				$entree = insert_menus_entree($barre_nav);
@@ -37,7 +37,7 @@ function inc_menu_install_dist(){
 				);
 				menus_entree_set($entree, $infos_entree);
 			}
-			
+
 			$mapage_entree = sql_getfetsel('id_menus_entree','spip_menus_entrees','type_entree="mapage" AND id_menu='.intval($barre_nav));
 			if(!intval($mapage_entree)){
 				$entree = insert_menus_entree($barre_nav);

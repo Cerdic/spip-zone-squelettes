@@ -41,21 +41,18 @@ function inc_mutu_install_dist(){
 			/**
 			 * Le nom du site
 			 */
-			if(isset($infos_mutus['infos'][0]['titre'])){
+			if(isset($infos_mutus['infos'][0]['titre']))
 				ecrire_meta("nom_site", $infos_mutus['infos'][0]['titre'][0]);
-			}
 			/**
 			 * Le descriptif du site
 			 */
-			if(isset($infos_mutus['infos'][0]['descriptif'][0])){
+			if(isset($infos_mutus['infos'][0]['descriptif'][0]))
 				ecrire_meta("descriptif_site", $infos_mutus['infos'][0]['descriptif'][0]);
-			}
 			/**
 			 * L'email du webmaster
 			 */
-			if(isset($infos_mutus['infos'][0]['email_webmaster'][0])){
+			if(isset($infos_mutus['infos'][0]['email_webmaster'][0]))
 				ecrire_meta("email_webmaster", $infos_mutus['infos'][0]['email_webmaster'][0]);
-			}
 			/**
 			 * Le logo du site
 			 */
@@ -110,9 +107,8 @@ function inc_mutu_install_dist(){
 					 * On notifie cet auteur qu'il va devoir récupérer son mot de passe via 
 					 * "Mot de passe oublié" pour pouvoir se connecter 
 					 */
-					if ($notifications = charger_fonction('notifications', 'inc')) {
+					if ($notifications = charger_fonction('notifications', 'inc'))
 						$notifications('mediaspip_recuperation_compte', $id_auteur);
-					}
 				}
 				/**
 				 * Si on a un logo, on l'ajoute à l'auteur
