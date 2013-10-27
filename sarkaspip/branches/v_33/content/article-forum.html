@@ -22,7 +22,8 @@
 			{self}
 			{ajax}>
 
-		[(#REM) <!-- Forumlaire de reponse --> ]
+		[(#REM) <!-- Formulaire de reponse --> ]
+		[(#_forum:TITRE|strstr{_verrouille_}|oui) #SET{verrou, lock}]
 		[(#GET{verrou}|non)
 			<div class="formulaire" id="formulaire_reponse">#FORMULAIRE_FORUM{#SELF}</div>
 		]
@@ -33,7 +34,7 @@
 				jQuery('#formulaire_forum .saisie_titre').hide();
 			});
 		//]]>
-</script>
+		</script>
 	</BOUCLE_article_forum>
 </BOUCLE_forum>
 
@@ -77,7 +78,7 @@
 				{ajax}>
 		</div>
 
-		[(#REM) <!-- Forumlaire de reponse --> ]
+		[(#REM) <!-- Formulaire de reponse --> ]
 		[(#GET{statut_forum}|=={ouvert}|oui)
 			<div class="formulaire" id="formulaire_sujet">#FORMULAIRE_FORUM{#SELF}</div>
 		]
