@@ -714,7 +714,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // T
 	'titre_debug' => 'Debug Sarka-SPIP - Page «@cfg@»',
-	'titre_debug_meta' => 'Variables de configuration',
+	'titre_debug_meta' => 'Variables de configuration «@meta@»',
 	'titre_debug_env' => 'Variables d\'environnement',
 );
 ?>
