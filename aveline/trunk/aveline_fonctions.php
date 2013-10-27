@@ -413,12 +413,13 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	} else $cle_rubrique = $boucle->id_table;
 	
 	$table = $boucle->id_table;
+	$primary = $boucle->primary;
 	
-	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['article_specifique'], \$Pile[0]['site_specifique'], \$Pile[0]['filtre_rub'], \$Pile[0]['filtre_art'])";
+	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, $primary, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['article_specifique'], \$Pile[0]['site_specifique'], \$Pile[0]['filtre_rub'], \$Pile[0]['filtre_art'])";
 	
 }
 
-function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique, $article_specifique, $site_specifique, $filtre_rub, $filtre_art) {
+function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,$cle_rubrique,$table, $primary, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique, $article_specifique, $site_specifique, $filtre_rub, $filtre_art) {
 	if ($filtre_rub) {
 		$branche = 'branche_specifique';
 		$branche_specifique = 'rubrique|'.$filtre_rub;
@@ -427,6 +428,19 @@ function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,
 		$branche = 'article_specifique';
 		$article_specifique = 'article|'.$filtre_art;
 	}
+	if ($branche =='meme_rubrique_indirects' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = '';
+	if ($branche =='meme_rubrique_complete' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = 'meme_rubrique';
+	if ($branche =='rubrique_specifique_indirects' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = '';
+	if ($branche =='rubrique_specifique_complete' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = 'rubrique_specifique';
+	if ($branche =='branche_complete' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = 'branche_actuelle';
+	if ($branche =='branche_specifique_complete' AND !defined('_DIR_PLUGIN_POLYHIER'))
+		$branche = 'branche_specifique';
+	$objet = objet_type($table);
 	switch ($table) {
 		case 'articles':
 			$cle_secteur = $table;
@@ -452,14 +466,58 @@ function aveline_calcul_branche($id_article,$id_syndic,$id_rubrique,$id_secteur,
 		case 'meme_rubrique':
 			return $id_rubrique ? array('=',"$cle_rubrique.id_rubrique",$id_rubrique) : array ();
 			break;
+		case 'meme_rubrique_complete':
+			$where1 = array('=',"$cle_rubrique.id_rubrique",$id_rubrique); // Enfants directs
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$id_rubrique)." AND objet='$objet'"); // Enfants indirects
+			$sous = array_map('reset',$sous);
+			$where2 = sql_in($table.'.'.$primary,$sous);
+			return $id_rubrique ? array('OR',$where1,$where2) : array();
+			break;
+		case 'meme_rubrique_indirects':
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$id_rubrique)." AND objet='$objet'"); // Enfants indirects
+			$sous = array_map('reset',$sous);
+			$where = sql_in($table.'.'.$primary,$sous);
+			return $id_rubrique ? $where : array();
+			break;
 		case 'rubrique_specifique':
 			return $rubrique_specifique ? sql_in("$cle_rubrique.id_rubrique",picker_selected($rubrique_specifique,'rubrique')) : array();
+			break;
+		case 'rubrique_specifique_indirects':
+			$r = picker_selected($rubrique_specifique,'rubrique');
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$r)." AND objet='$objet'"); // Enfants indirects
+			$sous = array_map('reset',$sous);
+			$where = sql_in($table.'.'.$primary,$sous);
+			return $rubrique_specifique ? $where : array();
+			break;
+		case 'rubrique_specifique_complete':
+			$r = picker_selected($rubrique_specifique,'rubrique');
+			$where1 = sql_in("$cle_rubrique.id_rubrique",$r); // Enfants directs
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$r)." AND objet='$objet'"); // Enfants indirects
+			$sous = array_map('reset',$sous);
+			$where2 = sql_in($table.'.'.$primary,$sous);
+			return $rubrique_specifique ? array('OR',$where1,$where2) : array();
 			break;
 		case 'branche_actuelle':
 			return $id_rubrique ? sql_in("$cle_rubrique.id_rubrique",calcul_branche_in($id_rubrique)) : array();
 			break;
+		case 'branche_complete':
+			$b = calcul_branche_polyhier_in($id_rubrique);
+			$where1 = sql_in("$cle_rubrique.id_rubrique",$b);
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$b)." AND objet='$objet'");
+			$sous = array_map('reset',$sous);
+			$where2 = sql_in($table.'.'.$primary,$sous);
+			return $id_rubrique ? array('OR',$where1,$where2) : array();
+			break;
 		case 'branche_specifique':
 			return $branche_specifique ? sql_in("$cle_rubrique.id_rubrique",calcul_branche_in(picker_selected($branche_specifique,'rubrique'))) : array();
+			break;
+		case 'branche_specifique_complete':
+			$b = calcul_branche_polyhier_in(picker_selected($branche_specifique,'rubrique'));
+			$where1 = sql_in("$cle_rubrique.id_rubrique",$b);
+			$sous = sql_allfetsel('rl.id_objet','spip_rubriques_liens as rl',sql_in('rl.id_parent',$b)." AND objet='$objet'");
+			$sous = array_map('reset',$sous);
+			$where2 = sql_in($table.'.'.$primary,$sous);
+			return $branche_specifique ? array('OR',$where1,$where2) : array();
 			break;
 		case 'meme_secteur':
 			return $id_secteur ? array('=',"$cle_secteur.$champ_secteur",$id_secteur) : array();
