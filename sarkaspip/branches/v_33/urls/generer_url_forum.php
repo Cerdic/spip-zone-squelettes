@@ -14,12 +14,19 @@ function urls_generer_url_forum($id_forum, $args='', $ancre='') {
 				$id_secteur = sql_getfetsel('id_secteur', 'spip_articles', 'id_article=' . sql_quote($post['id_objet']));
 				if ($secteur_forum	AND $id_secteur) {
 					include_spip('inc/utils');
+					$arguments = array();
 					if ($id_secteur == $secteur_forum) {
-						$url = generer_url_public('forum', array('id_article' => intval($post['id_objet']), 'id_forum' => intval($post['id_thread'])))
-							 . "#forum$id_forum";
+						$page = 'forum';
+						$arguments = array('id_article' => intval($post['id_objet']), 'id_forum' => intval($post['id_thread']));
 					}
 					elseif ($id_secteur == $secteur_galerie) {
-						$url = generer_url_public('album', array('id_article' => intval($post['id_objet'])))
+						$page = 'album';
+						$arguments = array('id_article' => intval($post['id_objet']));
+					}
+					if ($arguments) {
+						if ($args)
+							$arguments = is_array($args) ? array_merge($arguments, $args) : $arguments;
+						$url = generer_url_public($page, $arguments)
 							 . "#forum$id_forum";
 					}
 				}
