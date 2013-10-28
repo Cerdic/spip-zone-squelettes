@@ -524,7 +524,7 @@ $GLOBALS['diapo_vignette']=60;
 $GLOBALS['diapo_grand']=400;
 
 //largeur maxi de la grande image avec vignettes sur les côtés:
-$GLOBALS['diapo_petit']=300;
+$GLOBALS['diapo_petit']=300;  
 //hauteur maxi de la grande image avec vignettes sur les côtés :
 $GLOBALS['diapo_petit_h']=300;
 
