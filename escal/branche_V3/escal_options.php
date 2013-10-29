@@ -1,7 +1,16 @@
 <?php
 
-// Pour surligner les mots recherchés dans un article
-define('_SURLIGNE_RECHERCHE_REFERERS',true);
+// Liste des pages de configuration dans l'ordre de presentation
+// Librement inspiré du squellete Sarkaspip
+if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
+'accueil
+|G&eacute;n&eacute;ralit&eacute;s!meta:layout:elements:bandeau:menu:niveaumenu:pied
+|La page d\'accueil!sommaire_corps:sommaire_colonnes:sommaire_noisettes
+|Les pages internes!rubrique:article:contact:pages_noisettes
+|Un peu de style!fonds:textes:bords:arrondis
+|Des plugins dans Escal!galleria:rainette:mentions:licence:spip400:socialtags:facebook
+');
+
 
 // récupération de l'url du site
 // pour redéfinir la fonction inc_lien dans escal_options
@@ -14,8 +23,6 @@ $hote_el  = explode('.', $hote);
 $nb_el = count($hote_el);
 $domaine = $hote_el[$nb_el - 2] . '.' . $hote_el[$nb_el - 1];
 define('_DOMAINE_SITE', $domaine); // extrait dans l'url du site le nom du domaine pleinement qualifié sous la forme domaine.tld
-
-
 
 
 
