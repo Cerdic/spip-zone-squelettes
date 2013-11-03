@@ -15,7 +15,4 @@ if (!defined('_SVPSKEL_BRANCHE_STABLE'))
 
 // Forcer l'utilisation de langue du visiteur
 $GLOBALS['forcer_lang'] = true;
-
-// Définition des blocs Z utilisés par le squelette
-$GLOBALS['z_blocs'] = array('content','extra1','extra2','head','head_js','header','footer');
 ?>
