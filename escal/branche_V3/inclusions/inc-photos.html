@@ -20,10 +20,14 @@
   <div id="scrollup2">
 
       <BOUCLE_photo_une(DOCUMENTS){!doublons photos}{par hasard}{0,#GET{nombrephotos}}>
-      <div class="headline2">
+      <div class="headline2"> 
+     
+<BOUCLE_titre_article(ARTICLES){id_document}{0,1}> 
+#SET{lien,#URL_ARTICLE}
+</BOUCLE_titre_article>      
       
-      [(#CONFIG{escal/config/lienphotos}|=={non}|non)
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]">
+      [(#CONFIG{escal/config/lienphotos}|=={non}|non)      
+      <a href="[(#GET{lien}|parametre_url{lang,#ENV{lang}})]">      
       ]
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
                                  alt='[(#TITRE)]'
