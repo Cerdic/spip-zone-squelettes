@@ -5,7 +5,7 @@
  * Licence GNU/GPL
  */
 
-if (!defined('_ECRIRE_INC_VERSION')) return;
+if (!defined('_ECRIRE_INC_VERSION')) return; 
 
 // =======================================================================================================================================
 // Paramétrage à l'installation d'Escal
