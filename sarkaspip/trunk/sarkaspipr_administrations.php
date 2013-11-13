@@ -10,7 +10,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 /**
  * Fonction d'installation du plugin et de mise à jour.
 **/
-function sarkaspip_upgrade($nom_meta_base_version, $version_cible){
+function sarkaspipr_upgrade($nom_meta_base_version, $version_cible){
 	$maj = array();
 
 	include_spip('inc/config');
@@ -35,7 +35,7 @@ function sarkaspip_upgrade($nom_meta_base_version, $version_cible){
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
 
-function sarkaspip_upgrade_metas(){
+function sarkaspipr_upgrade_metas(){
 
 	include_spip("lire_config");
 	foreach (array_keys($GLOBALS['meta']) as $k){
@@ -64,7 +64,7 @@ function sarkaspip_upgrade_metas(){
 /**
  * Fonction de désinstallation du plugin.
 **/
-function sarkaspip_vider_tables($nom_meta_base_version) {
+function sarkaspipr_vider_tables($nom_meta_base_version) {
 
 
 	# suppression meta & config
