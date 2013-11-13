@@ -21,14 +21,14 @@ function sarkaspipr_upgrade($nom_meta_base_version, $version_cible){
 	# Premiere installation  creation des tables
 	$maj['create'] = array(
 		array('sql_updateq', 'spip_rubriques', array('composition' => 'forums'), 'id_rubrique= '.intval($secteur_forum)),
-		array('sarkaspip_upgrade_metas'),
+		array('sarkaspipr_upgrade_metas'),
 	);
 
 	$maj['0.1.1'] = array(
 		array('sql_updateq', 'spip_rubriques', array('composition' => 'forums'), 'id_rubrique= '.intval($secteur_forum)),
 	);
 	$maj['0.1.4'] = array(
-		array('sarkaspip_upgrade_metas'),
+		array('sarkaspipr_upgrade_metas'),
 	);
 
 	include_spip('base/upgrade');
@@ -48,10 +48,12 @@ function sarkaspipr_upgrade_metas(){
 	}
 
 	// une fois le tableau transite, reaffecter quelques config qui ont change de place
-	ecrire_config("sarkaspip/pied/position_badges",lire_config("sarkaspip/noisettes/position_badges",1));
+	if (!lire_config("sarkaspip/pied/position_badges",""))
+		ecrire_config("sarkaspip/pied/position_badges",lire_config("sarkaspip/noisettes/position_badges",1));
 	effacer_config("sarkaspip/noisettes/position_badges");
 
-	ecrire_config("sarkaspip/rubrique/court_circuit",lire_config("sarkaspip/menus/option_rubriques",0)==2);
+	if (!lire_config("sarkaspip/rubrique/court_circuit",""))
+		ecrire_config("sarkaspip/rubrique/court_circuit",lire_config("sarkaspip/menus/option_rubriques",0)==2);
 	effacer_config("sarkaspip/menus/option_rubriques");
 
 	// effacer les vieilles config qui ne serviront plus
