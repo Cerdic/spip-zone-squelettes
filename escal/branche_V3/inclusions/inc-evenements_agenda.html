@@ -35,10 +35,26 @@
       <article class="entry evenement vevent id_#ID_EVENEMENT"  itemscope itemtype="http://schema.org/Event">
       
 	    <div class="banner">
-        <span class="label label-inverse">
-        <b class="day">[(#DATE_DEBUT|jour)]</b>
-        <b class="month">[(#DATE_DEBUT|nom_mois)]</b>
-        <b class="year">[(#DATE_DEBUT|annee)]</b>
+
+         [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+          le [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{
+            [(#REM) memes heures ?]
+            [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+            [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+            [(#REM) pas memes heures ?]
+            [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+            [(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+            [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+            ,''})]
+            ,
+          du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{&agrave; partir de
+            [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
+            <br />au
+            [(#DATE_FIN|nom_jour)]
+            <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})] })]
         </span>
       </div>
 
