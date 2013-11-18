@@ -182,18 +182,20 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 2.1.9", "soyezcreateurs_install");
 			$mentions = array('titre' => 'Mentions légales', 'texte' => '');
 			$id_groupe = id_groupe("_InformationsLegales");
-			$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', "id_groupe=$id_groupe", '', 'num');
-			while($r = sql_fetch($row)){
-    			$mentions['texte'] .= '{{{'.supprimer_numero($r['titre']).'}}}'."\n";
-    			$mentions['texte'] .= "\n".$r['texte']."\n\n";
+			if ($id_groupe>0) {
+				$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', "id_groupe=$id_groupe", '', 'num');
+				while($r = sql_fetch($row)){
+					$mentions['texte'] .= '{{{'.supprimer_numero($r['titre']).'}}}'."\n";
+					$mentions['texte'] .= "\n".$r['texte']."\n\n";
+				}
+				$ex = "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])";
+				$ex .= "\n\n[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].";
+				create_article($mentions, "000. Fourre-tout");
+				create_mot("_Specialisation", "MentionsLegales", $ex, "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
+				create_article_mot($mentions['titre'], "000. Fourre-tout", "MentionsLegales", "_Specialisation");
+				sql_delete("spip_mots", "id_groupe=$id_groupe");
+				sql_delete("spip_groupes_mots", "id_groupe=$id_groupe");
 			}
-			$ex = "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])";
-			$ex .= "\n\n[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].";
-			create_article($mentions, "000. Fourre-tout");
-			create_mot("_Specialisation", "MentionsLegales", $ex, "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
-			create_article_mot($mentions['titre'], "000. Fourre-tout", "MentionsLegales", "_Specialisation");
-			sql_delete("spip_mots", "id_groupe=$id_groupe");
-			sql_delete("spip_groupes_mots", "id_groupe=$id_groupe");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
 		}
 		if (version_compare($current_version,'2.1.10','<')) {

@@ -456,6 +456,44 @@ Bonne navigation !
 EOF;
 		$contenu['PS'] = "{{NB}} : Ce texte a été librement repris et adapté depuis [son original->http://www.vie-publique.fr/information/politique-accessibilite.html] avec l'aimable autorisation de vie-publique.fr.";
 	}
+	/* Mentions légales */
+	if ($article == "Mentions légales") {
+		$contenu['titre'] = "Mentions légales";
+		$contenu['texte'] = <<<EOF
+{{{Propriétaire du site}}}
+
+
+
+{{{Hébergeur}}}
+
+[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + SoyezCreateurs
+
+{{{Liens vers ce site}}}
+
+Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.
+
+L'autorisation de mise en place d'un lien est valable pour tout support, à l'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.
+
+La reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Paternité-Partage des Conditions Initiales à l'Identique 2.0 France->http://creativecommons.org/licenses/by-sa/2.0/fr/] qui s'applique.
+
+{{{Traitement automatisé d'informations nominatives}}}
+
+Ce site ne collecte sur les visiteurs du site aucune autre information nominative ou personnelle que celles qui lui sont ouvertement et volontairement fournies en particulier par l'intermédiaire des adresses électroniques de ses correspondants.
+
+Nous vous rappelons que vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi "Informatique et Libertés" du 6 janvier 1978). 
+Pour exercer ce droit, contactez-nous.
+
+
+{{{Réalisation}}}
+
+Ce site a été réalisé par [Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] en utilisant l'outil [SPIP->http://www.spip.net/].
+
+[Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
+
+
+EOF;
+	}
+
 	/* Installation du site */
 	if ($article == 'Installation du site') {
 		$contenu['titre'] = $article;
