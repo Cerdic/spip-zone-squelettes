@@ -486,9 +486,9 @@ Pour exercer ce droit, contactez-nous.
 
 {{{Réalisation}}}
 
-Ce site a été réalisé par [Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] en utilisant l'outil [SPIP->http://www.spip.net/].
+Ce site a été réalisé par [PYRAT.net|Expert SPIP->http://www.pyrat.net/] en utilisant l'outil [SPIP->http://www.spip.net/].
 
-[Mantalo.net|Création de sites web->http://www.mantalo-conseil.fr/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
+[PYRAT.net|Expert SPIP->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
 
 
 EOF;
