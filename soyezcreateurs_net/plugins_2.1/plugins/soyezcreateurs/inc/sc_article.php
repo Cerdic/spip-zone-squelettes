@@ -462,7 +462,7 @@ EOF;
 		$contenu['texte'] = <<<EOF
 {{{Propriétaire du site}}}
 
-
+[->aut1].
 
 {{{Hébergeur}}}
 
@@ -474,22 +474,20 @@ Le site autorise tout site Internet ou tout autre support à le citer ou à mett
 
 L'autorisation de mise en place d'un lien est valable pour tout support, à l'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.
 
-La reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Paternité-Partage des Conditions Initiales à l'Identique 2.0 France->http://creativecommons.org/licenses/by-sa/2.0/fr/] qui s'applique.
+La reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Attribution - Partage dans les Mêmes Conditions 3.0 France->http://creativecommons.org/licenses/by-sa/3.0/fr/] qui s'applique.
 
 {{{Traitement automatisé d'informations nominatives}}}
 
 Ce site ne collecte sur les visiteurs du site aucune autre information nominative ou personnelle que celles qui lui sont ouvertement et volontairement fournies en particulier par l'intermédiaire des adresses électroniques de ses correspondants.
 
 Nous vous rappelons que vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi "Informatique et Libertés" du 6 janvier 1978). 
-Pour exercer ce droit, contactez-nous.
-
+_ Pour exercer ce droit, contactez-nous.
 
 {{{Réalisation}}}
 
 Ce site a été réalisé par [PYRAT.net|Expert SPIP->http://www.pyrat.net/] en utilisant l'outil [SPIP->http://www.spip.net/].
 
-[PYRAT.net|Expert SPIP->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
-
+[PYRAT.net|Expert SPIP->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/193] des sites web à tous.
 
 EOF;
 	}

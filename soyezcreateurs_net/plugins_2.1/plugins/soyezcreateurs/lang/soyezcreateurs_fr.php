@@ -155,7 +155,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 	'cfg_indexation_oui' => 'Indexer le site dans les moteurs de recherche',
 	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">sur le site de weather.com ®</a>.',
-	'cfg_info' => 'Configuration du squelette SoyezCreateurs',
+	'cfg_info' => 'Configuration du squelette SoyezCréateurs',
 	'cfg_largeur' => 'Largeur',
 	'cfg_largeur_colonnes_centrales' => 'Largeur de chacune des 3 colonnes centrales',
 	'cfg_largeur_conteneur' => 'Largeur du conteneur',
@@ -323,7 +323,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Déclaration CNIL nº',
 	'copyright_icra' => 'Étiqueté grâce à <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Réalisation : ',
-	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du créateur de ce squelette\'>SoyezCreateurs</a> propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
+	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du créateur de ce squelette\'>SoyezCréateurs</a> propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'déconnexion',
@@ -413,7 +413,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'En savoir plus sur le critère',
 	'sedna' => 'Sedna (Agrégateur de flux RSS)',
 	'sommaire' => 'Sommaire',
-	'soyezcreateurs' => 'Soyez Créateurs',
+	'soyezcreateurs' => 'SoyezCréateurs',
 	'soyezcreateurs_couleurs' => 'Couleurs',
 	'soyezcreateurs_google' => 'Référencement',
 	'soyezcreateurs_layout' => 'Positionnement',
