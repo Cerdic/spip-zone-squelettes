@@ -38,10 +38,7 @@
   </div>
   
   <div id="texte-article" class="surlignable">
-
-    
-      <article class="entry evenement vevent id_#ID_EVENEMENT"  itemscope itemtype="http://schema.org/Event">
-      
+     
 	    <div class="banner">
 
          [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
@@ -63,7 +60,7 @@
             [(#DATE_FIN|nom_jour)]
             <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
             [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})] })]
-        </span>
+
       </div>
 
         [<div class="location" itemprop="location">
@@ -78,24 +75,23 @@
       <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
 
 
-      <div class="entry-content">
-        #SET{intro,''}
-        <BOUCLE_art(ARTICLES){id_article}>#SET{intro,#INTRODUCTION{#ENV{coupe,300}}</BOUCLE_art>
-        [<div class="introduction #EDIT{descriptif}" itemprop="description">(#DESCRIPTIF|sinon{#GET{intro}})</div>]
-      </div>
+
+        [(#DESCRIPTIF|oui)#DESCRIPTIF]
+        <BOUCLE_art(ARTICLES){id_article}{si #DESCRIPTIF|non}>
+        [(#TEXTE)]
+        </BOUCLE_art>        
 
       <p class="meta-publi">
         [(#INSCRIPTION|?{' ',''})
         <hr />
         <span class="inscrits">#NB_INSCRITS</span> inscrits [pour <span class="inscrits">(#PLACES)</span> places]
-        <INCLURE {fond=inclusions/inc-evenements_inscription}{env}{id_evenement}>
+        <INCLURE {fond=inclusions/inc-evenements_inscription}{env}>
         ]
       
       #FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
 
 	    </p>
 
-      </article>
       
   </div>
 
