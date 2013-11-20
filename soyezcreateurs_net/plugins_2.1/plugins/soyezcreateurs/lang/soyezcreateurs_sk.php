@@ -154,7 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Neindexovať stránku vyhľadávačmi',
 	'cfg_indexation_oui' => 'Indexovať stránku vo vyhľadávačoch',
 	'cfg_inf_rainette_ville' => 'Zobrazí podmienky a predpoveď počasia pre francúzske mesto cez kód, ktorý je dostupný na <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">na stránke weather.com®</a>.',
-	'cfg_info' => 'Nastavenia modulu Buďte tvoriví',
+	'cfg_info' => 'Nastavenia modulu Buďte tvoriví', # MODIF
 	'cfg_largeur' => 'Šírka',
 	'cfg_largeur_colonnes_centrales' => 'Šírka každého z 3 hlavných stĺpcov',
 	'cfg_largeur_conteneur' => 'Šírka obalu',
@@ -318,7 +318,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Č. deklarácie CNIL',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Autor: ',
-	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'>modulu Buďte tvoriví</a> prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>',
+	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'>modulu Buďte tvoriví</a> prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'Odhlásenie',
@@ -408,7 +408,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Dozvedieť sa viac o kritériu',
 	'sedna' => 'Sedna (agregátor RSS)',
 	'sommaire' => 'Zhrnutie',
-	'soyezcreateurs' => 'Buďte tvoriví',
+	'soyezcreateurs' => 'Buďte tvoriví', # MODIF
 	'soyezcreateurs_couleurs' => 'Farby',
 	'soyezcreateurs_google' => 'Odkazovanie',
 	'soyezcreateurs_layout' => 'Umiestnenie',
