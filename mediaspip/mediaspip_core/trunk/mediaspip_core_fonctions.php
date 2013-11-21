@@ -50,6 +50,13 @@ if (!defined('_DIR_PLUGIN_LICENCE') && !function_exists('critere_id_licence_dist
 	function critere_id_licence_dist($idb, &$boucles, $crit){}
 }
 
+/**
+ * Définition du critère mots si le plugin critere_mots n'est pas dispo
+ */
+if (!function_exists('critere_mots_dist')){
+	function critere_mots_dist($idb, &$boucles, $crit){}
+}
+
 if (!function_exists('inc_vignette')){
 	function inc_vignette($ext, $size=true, $loop = true) {
 		if(test_espace_prive()){
@@ -81,13 +88,6 @@ if (!function_exists('inc_vignette')){
 
 		return array($v, $largeur, $hauteur);
 	}
-}
-
-/**
- * Définition du critère mots si le plugin critere_mots n'est pas dispo
- */
-if (!function_exists('critere_mots_dist')){
-	function critere_mots_dist($idb, &$boucles, $crit){}
 }
 
 function has_cookie_admin(){
