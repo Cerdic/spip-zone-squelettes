@@ -83,6 +83,13 @@ if (!function_exists('inc_vignette')){
 	}
 }
 
+/**
+ * Définition du critère mots si le plugin critere_mots n'est pas dispo
+ */
+if (!function_exists('critere_mots_dist')){
+	function critere_mots_dist($idb, &$boucles, $crit){}
+}
+
 function has_cookie_admin(){
 	return isset($_COOKIE['spip_admin']) ? $_COOKIE['spip_admin'] : false;
 }
