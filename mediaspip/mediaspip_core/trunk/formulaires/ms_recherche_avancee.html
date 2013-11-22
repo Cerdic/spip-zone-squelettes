@@ -20,6 +20,14 @@
 				<input type="text" class="date text" size="10" maxlength="10" name="date_fin" id="date_fin"[ value="(#ENV{date_fin})"] />
 				[<p class='erreur_message'>(#ENV**{erreurs}|table_valeur{date_fin})</p>]
 			</div>
+			<div class="choix">
+				<label for="type_date"><:mediaspip_core:label_rechercher_type_date:></label>
+				<select id="type_date" name="type_date">
+					<option value="date"[(#ENV{type_date}|=={date_redac}|ou{#ENV{type_date}|=={maj}}|non)selected="selected"]><:mediaspip_core:label_rechercher_date:></option>
+					<option value="date_redac"[(#ENV{type_date}|=={date_redac}|oui)selected="selected"]><:mediaspip_core:label_rechercher_date_redac:></option>
+					<option value="maj"[(#ENV{type_date}|=={maj}|oui)selected="selected"]><:mediaspip_core:label_rechercher_maj:></option>
+				</select>
+			</div>
 		</li>
 		<B_langues>
 		[(#TOTAL_BOUCLE|>{1}|oui)
