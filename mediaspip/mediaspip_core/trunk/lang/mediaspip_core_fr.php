@@ -189,6 +189,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_rechercher_langue' => 'Choix de la langue',
 	'label_rechercher_licence' => 'Choix de la licence de publication',
 	'label_rechercher_maj' => 'Date de la dernière modification',
+	'label_rechercher_mots' => 'Choix des mots-clés',
 	'label_rechercher_texte' => 'Recherche par mots clés',
 	'label_rechercher_type_date' => 'Type de date : ',
 	'label_syndic_desactiver' => 'Désactiver complètement la syndication externe de votre canal',

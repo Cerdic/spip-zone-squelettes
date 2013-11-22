@@ -24,7 +24,7 @@ function formulaires_ms_recherche_avancee_charger_dist($lien_filtre = NULL,$lien
 			'editable' => 'oui'
 		);
 		
-	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee') as $recherche){
+	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee','mots') as $recherche){
 		$valeurs[$recherche] = _request($recherche);
 		if(in_array($recherche,array('date_debut','date_fin')) && $valeurs[$recherche]){
 			if($valeurs[$recherche] == 0){
@@ -76,7 +76,7 @@ function formulaires_ms_recherche_avancee_traiter_dist($lien_filtre = NULL,$lien
 	$action = ($lien ? $lien : generer_url_public('recherche_avancee'));
 	$horaire = false;
 	
-	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee') as $recherche){
+	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee','mots') as $recherche){
 		if(($recherche == 'date_debut') && _request('date_debut')){
 			$date_debut = date('Y-m-d H:i:s',verifier_corriger_date_saisie('debut',$horaire,$erreurs));
 			$action = parametre_url($action,$recherche,$date_debut);
@@ -84,6 +84,11 @@ function formulaires_ms_recherche_avancee_traiter_dist($lien_filtre = NULL,$lien
 		else if(($recherche == 'date_fin') && _request('date_fin')){
 			$date_fin = date('Y-m-d H:i:s',verifier_corriger_date_saisie('fin',$horaire,$erreurs));
 			$action = parametre_url($action,$recherche,$date_fin);
+		}
+		else if(($recherche == 'mots') && _request('mots')){
+			foreach(_request('mots') as $id_mot){
+				$action = parametre_url($action,'mots[]',$id_mot);
+			}
 		}
 		else{
 			$action = parametre_url($action,$recherche,_request($recherche,''));

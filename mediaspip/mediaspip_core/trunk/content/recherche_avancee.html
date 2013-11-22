@@ -31,7 +31,7 @@
 			#ANCRE_PAGINATION
 			<h2 class="h2"><:mediaspip_core:recherche_articles_autres:> (#GRAND_TOTAL)</h2>
 			<ul class="liste-items">
-				<BOUCLE_articles(ARTICLES){!id_secteur=#CONFIG{mediaspip/rubriques/medias}}{recherche ?} {agenda #ENV{type_date,date}, periode, #ENV{date_debut,0000-01-01 00:00}|affdate{Y},#ENV{date_debut,0000-01-01 00:00}|affdate{m}, #ENV{date_debut,0000-01-01 00:00}|affdate{d},#ENV{date_fin,2050-12-31 00:00}|affdate{Y},#ENV{date_fin,2050-12-31 00:00}|affdate{m},#ENV{date_fin,2050-12-31 00:00}|affdate{d}}{id_licence=#GET{id_licence,.*}}{em_type ?}{id_auteur ?}{id_rubrique ?}{par points}{inverse}{pagination 3}>
+				<BOUCLE_articles(ARTICLES){!id_secteur=#CONFIG{mediaspip/rubriques/medias}}{recherche ?} {agenda #ENV{type_date,date}, periode, #ENV{date_debut,0000-01-01 00:00}|affdate{Y},#ENV{date_debut,0000-01-01 00:00}|affdate{m}, #ENV{date_debut,0000-01-01 00:00}|affdate{d},#ENV{date_fin,2050-12-31 00:00}|affdate{Y},#ENV{date_fin,2050-12-31 00:00}|affdate{m},#ENV{date_fin,2050-12-31 00:00}|affdate{d}}{mots ?}{id_licence=#GET{id_licence,.*}}{em_type ?}{id_auteur ?}{id_rubrique ?}{par points}{inverse}{pagination 3}>
 				<li class="item">
 					<h3 class="h3"><a href="#URL_ARTICLE" class="spip_in">#TITRE</a></h3>
 					<div class="small">[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</div>
@@ -48,7 +48,7 @@
 			On ne recherche dans les articles syndiques que si les critères de la recherche le permettent
 
 		]
-		<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|ou{#ENV{type_date}|=={date_redac}}|non}>
+		<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|ou{#ENV{type_date}|=={date_redac}}|ou{#ENV{mots}}|non}>
 		[(#REM) articles externes trouves ]
 		<B_syndic_articles>
 		<div class="liste resultats syndic_articles">
