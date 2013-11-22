@@ -57,6 +57,36 @@ if (!function_exists('critere_mots_dist')){
 	function critere_mots_dist($idb, &$boucles, $crit){}
 }
 
+/**
+ * Ajout d'une fonctionnalité au critère {agenda} : le premier argument,
+ * $date, peut maintenant venir d'un #SET, d'#ENV, etc.
+ * cf. la limitation décrite dans www.spip.net/fr_article3182.html
+ * La valeur peut être 'date' (défaut), 'date_redac' ou 'maj'
+ */
+if (!function_exists('critere_agenda')){
+	function critere_agenda($idb, &$boucles, $crit){
+		$params = $crit->param;
+
+		if (count($params)>1) {
+			$parent = $boucles[$idb]->id_parent;
+			
+			$date = array_shift($params);
+			$date = '\'. (in_array('.
+				calculer_liste($date, array(), $boucles, $parent).
+				', array(\'date\', \'date_redac\', \'maj\'))?'.
+				calculer_liste($date, array(), $boucles, $parent).
+				':\'date\').\'';
+
+			$texte = new Texte;
+			$texte->texte = $date;
+			
+			$crit->param[0][0] = $texte;
+		}
+		
+		critere_agenda_dist($idb, $boucles, $crit);
+	}
+}
+
 if (!function_exists('inc_vignette')){
 	function inc_vignette($ext, $size=true, $loop = true) {
 		if(test_espace_prive()){
