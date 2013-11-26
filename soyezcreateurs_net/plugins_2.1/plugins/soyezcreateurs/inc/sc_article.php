@@ -474,7 +474,7 @@ Le site autorise tout site Internet ou tout autre support à le citer ou à mett
 
 L'autorisation de mise en place d'un lien est valable pour tout support, à l'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.
 
-La reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Attribution - Partage dans les Mêmes Conditions 3.0 France->http://creativecommons.org/licenses/by-sa/3.0/fr/] qui s'applique.
+La reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Attribution - Partage dans les Mêmes Conditions 4.0 International (CC BY-SA 4.0)->https://creativecommons.org/licenses/by-sa/4.0/deed.fr] qui s'applique.
 
 {{{Traitement automatisé d'informations nominatives}}}
 
