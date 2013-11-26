@@ -19,11 +19,6 @@
 	//$GLOBALS['table_des_traitements']['CHAPO'][]= 'typo(abs_url(%s), "TYPO", $connect)';
 	//$GLOBALS['table_des_traitements']['DESCRIPTIF'][]= 'typo(abs_url(%s), "TYPO", $connect)';
 
-// connection noiZetier
-  define('_NOIZETIER_REPERTOIRE_PAGES','content/');
-	define('_NOIZETIER_LISTER_PAGES_SANS_XML',true);
-
-
 // Pousse toi d'là que j'mette mes nouveaux blocs Z !	
 	$GLOBALS['z_blocs'] = array(
 		'content',
@@ -35,11 +30,10 @@
 		'nav',
 		'footer',
 		'foot_js',
-		'social' //,
+		'social'
 	);
 	
-// Semantique on a dit !
-	// Titre (BTE PP)
+// Titre (BTE PP)
 	$GLOBALS['debut_intertitre'] = '<h2 class="h2">';
 	$GLOBALS['fin_intertitre'] = '</h2>';
 	$GLOBALS['debut_intertitre_2'] = '<h3 class="h3">';
@@ -51,8 +45,4 @@
 	$GLOBALS['debut_intertitre_5'] = '<h6 class="h6">';
 	$GLOBALS['fin_intertitre_5'] = '</h6>';
 	$GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true; 
-	// (CK)
-	$GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
-	$GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
-	$GLOBALS['toujours_paragrapher']=true;
 ?>

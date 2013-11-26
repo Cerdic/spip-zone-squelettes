@@ -51,8 +51,4 @@
 	$GLOBALS['debut_intertitre_5'] = '<h6 class="h6">';
 	$GLOBALS['fin_intertitre_5'] = '</h6>';
 	$GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true; 
-	// (CK)
-	$GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
-	$GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
-	$GLOBALS['toujours_paragrapher']=true;
 ?>
