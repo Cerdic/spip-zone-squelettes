@@ -256,6 +256,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'option_lien_types_vignette' => 'Une vignette principale du document',
 	'option_ms_auth_telecharger_defaut' => 'Configuration par défaut du site ("@defaut@")',
 	'option_tri_date' => 'Date',
+	'option_tri_date_redac' => 'Date de rédaction antérieure',
 	'option_tri_hasard' => 'Hasard',
 	'option_tri_maj' => 'Mise à jour',
 	'option_tri_notation' => 'Notes des visiteurs',
