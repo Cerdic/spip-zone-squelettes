@@ -63,20 +63,42 @@ if (!function_exists('critere_mots_dist')){
  * cf. la limitation décrite dans www.spip.net/fr_article3182.html
  * La valeur peut être 'date' (défaut), 'date_redac' ou 'maj'
  */
-if (!function_exists('critere_agenda')){
+if (!function_exists('critere_agenda') and $spip_version_branche < "3.1" ){
 	function critere_agenda($idb, &$boucles, $crit){
 		$params = $crit->param;
 
 		if (count($params)>=1) {
-			$parent = $boucles[$idb]->id_parent;
-			
-			$date = array_shift($params);
-			$date = '\'. (in_array('.
-				calculer_liste($date, array(), $boucles, $parent).
-				', array(\'date\', \'date_redac\', \'maj\'))?'.
-				calculer_liste($date, array(), $boucles, $parent).
-				':\'date\').\'';
+			/* Code copié de http://core.spip.org/projects/spip/repository/revisions/21002 pour la branche spip 3.0 */
+			$boucle = &$boucles[$idb];
+			$parent = $boucle->id_parent;
+			$fields = $boucle->show['field'];
 
+			$date = array_shift($params);
+			$type = array_shift($params);
+
+			// la valeur $type doit etre connue a la compilation
+			// donc etre forcement reduite a un litteral unique dans le source
+			$type = is_object($type[0]) ? $type[0]->texte : NULL;
+			
+			// La valeur date doit designer un champ de la table SQL.
+			// Si c'est un litteral unique dans le source, verifier a la compil,
+			// sinon synthetiser le test de verif pour execution ulterieure
+			// On prendra arbitrairement le premier champ si test negatif.
+			if ((count($date) == 1)  AND ($date[0]->type == 'texte')) {
+				$date = $date[0]->texte;
+				if (!isset($fields[$date])) {
+					return array('zbug_critere_inconnu', array('critere' => $crit->op . " " . $date));
+				}
+			} else {
+				$a = calculer_liste($date, array(), $boucles, $parent);
+				$noms = array_keys($fields);
+				$defaut = $noms[0];
+				$noms = join(" ", $noms);
+				# bien laisser 2 espaces avant $nom pour que strpos<>0
+				$cond = "(\$a=strval($a))AND\nstrpos(\"  $noms \",\" \$a \")";
+				$date = "'.(($cond)\n?\$a:\"$defaut\").'";
+			}
+			
 			$texte = new Texte;
 			$texte->texte = $date;
 			
