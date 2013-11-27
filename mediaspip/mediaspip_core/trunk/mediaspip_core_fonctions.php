@@ -67,7 +67,7 @@ if (!function_exists('critere_agenda')){
 	function critere_agenda($idb, &$boucles, $crit){
 		$params = $crit->param;
 
-		if (count($params)>1) {
+		if (count($params)>=1) {
 			$parent = $boucles[$idb]->id_parent;
 			
 			$date = array_shift($params);
