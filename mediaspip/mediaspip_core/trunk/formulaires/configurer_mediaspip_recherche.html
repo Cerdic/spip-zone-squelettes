@@ -1,0 +1,48 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul>
+			<li class="fieldset">
+				<fieldset>
+				<legend><:mediaspip_core:legende_recherche_avancee:></legend>
+				<p class="explication"><:mediaspip_core:explication_recherche_avancee:></p>
+				<ul>
+					#SET{liste_champs, #ARRAY{0,recherche,1,date}
+					<BOUCLE_langues(ARTICLES){fusion lang}> </BOUCLE_langues>
+						[(#TOTAL_BOUCLE|>{1}|oui) #SET{liste_champs, #GET{liste_champs}|push{lang}}]
+					</B_langues>
+					<BOUCLE_types_utilises(ARTICLES){fusion em_type}> </BOUCLE_types_utilises>
+						#SET{liste_champs, #GET{liste_champs}|push{em_type}}
+					</B_types_utilises>
+					<BOUCLE_rubriques(RUBRIQUES){id_parent=#CONFIG{mediaspip/rubriques/medias}}> </BOUCLE_rubriques>
+						#SET{liste_champs, #GET{liste_champs}|push{rubrique}}
+					</B_rubriques>
+					<BOUCLE_si_licence(ARTICLES){si #PLUGIN{licence}|oui}{fusion id_licence}> </BOUCLE_si_licence>
+						#SET{liste_champs, #GET{liste_champs}|push{licence}}
+					</B_si_licence>
+					<BOUCLE_auteurs(spip_auteurs_liens){objet=article}{fusion id_auteur}> </BOUCLE_auteurs>
+						#SET{liste_champs, #GET{liste_champs}|push{auteur}}
+					</B_auteurs>
+					<BOUCLE_groupes_mots(GROUPES_MOTS){par num titre}{si #PLUGIN{critere_mots}}> </BOUCLE_groupes_mots>
+						#SET{liste_champs, #GET{liste_champs}|push{mots}}
+					</B_groupes_mots>
+
+					[(#SAISIE{selection_multiple,liste_champs,
+						label=<:mediaspip_core:label_lister_champs_recherche_avancee:>,
+						datas=#GET{liste_champs}})]
+				</ul>
+				</fieldset>
+			</li>
+		</ul>
+		<input type="hidden" name="_meta_casier" value="mediaspip/recherche" />
+		<p class="boutons">
+			<input type="submit" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</div>
+</form>
+</div>
