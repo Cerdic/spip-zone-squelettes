@@ -41,7 +41,6 @@
 [(#CONFIG{mediaspip/home/choix_highlight_article}|is_array|et{#ENV{triliste_medias}|non}|oui)
 #SET{articles,#CONFIG{mediaspip/home/choix_highlight_article}}]]
 #SET{type_liste, #ENV{type_liste}|=={listview}|?{listview,thumbnail}}
-#SET{class, vignette #GET{type_liste}}
 
 [(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
 [(#SET{afficher_langue,oui})]]
@@ -99,7 +98,7 @@
 	<div id="medias" class="liste_medias_vignettes">
 		<ul class="liste-items hfeed liste_vignettes">
 			<BOUCLE_medias(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda #GET{type_date}, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{notation}{mesfavoris #ENV{mesfavoris,ignore}}{mots ?}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{id_auteur ?}{id_mot ?}{em_type ?}{recherche ?}{tri #GET{tri_medias,#GET{tri_articles_home}},#GET{tri_medias,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons medias}{pagination #ENV{pagination_#ENV{id_bloc,liste_medias},#GET{limite_pagination,6}} #ENV{id_bloc,liste_medias}}{tout}>
-			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=#GET{class},afficher_langue=#GET{afficher_langue,non},couper}
+			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,type_liste=#GET{type_liste},afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias>
 		</ul>
 		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
@@ -151,7 +150,7 @@
 	<div id="medias_#ENV{id_bloc}" class="liste_medias_vignettes liste_vignettes">
 		<ul class="liste-items hfeed">
 			<BOUCLE_medias_tous(ARTICLES){id_article IN #GET{articles_rubriques}}{agenda #GET{type_date}, periode, #GET{annee_debut},#GET{mois_debut},#GET{jour_debut},#GET{annee_fin},#GET{mois_fin},#GET{jour_fin}}{mesfavoris #ENV{mesfavoris,ignore}}{notation}{mots ?}{id_licence==(#ENV{id_licence}|=={ss_licence}|?{'0',#ENV{id_licence,'.*'}})}{id_auteur ?}{id_mot ?}{em_type ?}{recherche ?}{statut IN #ENV{statuts,publie}}{tri #GET{tri_medias_tous,#GET{tri_articles_home}},#GET{tri_medias_tous,#GET{tri_articles_home}}|in_array{#GET{critere_inverse}}|?{-1,1}}{!doublons medias_tous}{pagination #ENV{pagination_#ENV{id_bloc,liste_medias},#GET{limite_pagination,6}} #ENV{id_bloc,liste_medias}}{tout}>
-			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=#GET{class},afficher_langue=#GET{afficher_langue,non},couper}
+			#INCLURE{fond=inclure/article-media_vignette,id_article,compte=#COMPTEUR_BOUCLE,class=vignette,type_liste=#GET{type_liste},afficher_langue=#GET{afficher_langue,non},couper}
 			</BOUCLE_medias_tous>
 		</ul>
 		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
