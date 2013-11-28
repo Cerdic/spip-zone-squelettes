@@ -27,12 +27,14 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  */
 function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre='',$recharger=false){
 	$tri_actuel = _request('tri'.$boucle) ? _request('tri'.$boucle) : ($GLOBALS['visiteur_session']['tri'.$boucle] ? $GLOBALS['visiteur_session']['tri'.$boucle] : $defaut);
+	$exclus = lire_config('mediaspip/recherche/liste_criteres_exclus_tri',array());
 	$page = _request('page');
 	spip_log($recharger,'test.'._LOG_ERREUR);
 	return
 		array(
 			'action' => self(),
 			'defaut' => $tri_actuel,
+			'exclus' => $exclus,
 			'nom' => 'champ_tri'.$boucle,
 			'boucle' => $boucle,
 			'page_en_cours' => $page
