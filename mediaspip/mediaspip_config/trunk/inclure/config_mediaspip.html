@@ -3,8 +3,8 @@
 	<h1 class="grostitre"><:mediaspip_config:icone_mediaspip:></h1>
 	<div class="config_nav">
 		<ul class="menu-liste">
-			<li class="menu-entree[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|non)on]">
-				[(#ENV{cfg}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|?{<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,none})]" class="ajax"><:mediaspip_core:mediaspip_home:></a>,<strong><:mediaspip_core:mediaspip_home:></strong>})]
+			<li class="menu-entree[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs,recherche}}|non)on]">
+				[(#ENV{cfg}|in_array{#LISTE{squelettes,medias,plugins,secteurs,recherche}}|?{<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,none})]" class="ajax"><:mediaspip_core:mediaspip_home:></a>,<strong><:mediaspip_core:mediaspip_home:></strong>})]
 			</li>
 			<li class="menu-entree[(#ENV{cfg}|=={squelettes}|oui)on]">
 				[(#ENV{cfg}|=={squelettes}|?{<strong><:mediaspip_core:mediaspip_squelettes:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,squelettes})]" class="ajax"><:mediaspip_core:mediaspip_squelettes:></a>})]
@@ -18,10 +18,13 @@
 			<li class="menu-entree[(#ENV{cfg}|=={secteurs}|oui)on]">
 				[(#ENV{cfg}|=={secteurs}|?{<strong><:mediaspip_core:mediaspip_secteurs:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,secteurs})]" class="ajax"><:mediaspip_core:mediaspip_secteurs:></a>})]
 			</li>
+			<li class="menu-entree[(#ENV{cfg}|=={recherche}|oui)on]">
+				[(#ENV{cfg}|=={recherche}|?{<strong><:mediaspip_core:mediaspip_recherche:></strong>,<a href="[(#URL_PAGE{ms_config}|parametre_url{ms_config,mediaspip}|parametre_url{cfg,recherche})]" class="ajax"><:mediaspip_core:mediaspip_recherche:></a>})]
+			</li>
 		</ul>
 	</div>
 	<div class="configuration_contenu">
-		<div class="ajax">[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs}}|non)
+		<div class="ajax">[(#ENV{cfg,plouf}|in_array{#LISTE{squelettes,medias,plugins,secteurs,recherche}}|non)
 			#FORMULAIRE_CONFIGURER_MEDIASPIP_HOME
 		][(#ENV{cfg}|=={squelettes}|oui)
 			#FORMULAIRE_CONFIGURER_MEDIASPIP_SQUELETTES
@@ -31,6 +34,8 @@
 			#FORMULAIRE_CONFIGURER_MEDIASPIP_PLUGINS
 		][(#ENV{cfg}|=={secteurs}|oui)
 			#FORMULAIRE_CONFIGURER_MEDIASPIP_SECTEURS
+		][(#ENV{cfg}|=={recherche}|oui)
+			#FORMULAIRE_CONFIGURER_MEDIASPIP_RECHERCHE
 		]</div>
 	</div>
 </div>
