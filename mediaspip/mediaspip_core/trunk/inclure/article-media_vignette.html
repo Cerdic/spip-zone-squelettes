@@ -10,7 +10,7 @@
 	- niveau_titre (h2,h3,h4) : par défaut h3, donne le niveau des titres des blocs
 	- vue (thumbnail|listview) : par défaut thumbnail, affichage en blocs ou en lignes
 	
-]
+][(#SET{infos_cachees_vignette,#CONFIG{mediaspip/medias/infos_cachees_vignette,#ARRAY}})]
 <BOUCLE_articles(ARTICLES){notation}{id_article}{statut ?}>
 #SET{vue, #ENV{vue}|=={listview}|?{listview,thumbnail}}
 [(#GET{vue}|=={listview}|?{
@@ -43,44 +43,47 @@
 			})]]
 			[(#SET{logo,[(#LOGO_ARTICLE|sinon{#CHEMIN{images/media_sans_logo.png}}|image_passe_partout{#GET{largeur_vignette},#GET{hauteur_vignette}}|image_recadre{#GET{largeur_vignette},#GET{hauteur_vignette}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]})]
 	<//B_docs>
-	<div class="h3 entry-title logo">
+	[(#VAL{info_vignette}|in_array{#GET{infos_cachees_vignette}}|non)<div class="h3 entry-title logo">
 		<a href="#URL_ARTICLE" rel="bookmark">
 			[(#GET{logo})]
 		</a>
-	</div>
+	</div>]
 	<[(#ENV{niveau_titre,h3}) ]class="[(#ENV{niveau_titre,h3}) ] entry-title" itemprop="name">
 		<a href="#URL_ARTICLE" rel="bookmark">
 			[(#ENV{couper}|?{[(#TITRE|sinon{<:info_sans_titre:>}|couper{#ENV{couper}})],[(#TITRE|sinon{<:info_sans_titre:>})]})]
 		</a>
 	</[(#ENV{niveau_titre,h3})]>
-	<div class="info-publi-vignette small">
-		<p class="date">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|oui)]</p>
-	</div>
-	<div class="info-updated-vignette small">
+	[(#VAL{info_date}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-publi-vignette small">
+		<p class="date">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
+	</div>]
+	[(#VAL{info_date_redac}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-publi-vignette small">
+		<p class="date">[<abbr class="published" title="[(#DATE_REDAC|date_iso)]">(#DATE_REDAC|affdate_jourcourt)</abbr>][[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
+	</div>]
+	[(#VAL{info_maj}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-updated-vignette small">
 		<p class="maj">[<:mediaspip_core:info_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#MAJ|date_relative)</abbr>]</p>
-	</div>
+	</div>]
 	<meta itemprop="datePublished" content="[(#DATE|date_iso)]" />
 	<meta itemprop="dateModified" content="[(#MAJ|date_iso)]" />
-	[(#ENV{afficher_langue}|=={oui}|oui)
+	[(#ENV{afficher_langue}|=={oui}|et{#VAL{info_lang}|in_array{#GET{infos_cachees_vignette}}|non}|oui)
 	[<div class="info-langue-vignette small">
 		<p class="langue"><:mediaspip_core:info_langue:> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr></p>
 	</div>]]
 	<meta itemprop="inLanguage" content="#LANG" />
-	[(#EM_TYPE|oui)<div class="info-type-vignette small">
+	[(#EM_TYPE|et{#VAL{info_em_type}|in_array{#GET{infos_cachees_vignette}}|non}|oui)<div class="info-type-vignette small">
 		<p class="type"><:mediaspip_core:info_type_document:> [(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)]</p>
 	</div>]
 	<div class="meta-publi small">
-	<BOUCLE_nb_commentaires(FORUMS?){id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+	<BOUCLE_nb_commentaires(FORUMS?){id_article}{plat} />[(#TOTAL_BOUCLE|et{#VAL{info_nb_comments}|in_array{#GET{infos_cachees_vignette}}|non}|oui)
 		<p class="comments liste_comments"><a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a></p>]
 	<//B_nb_commentaires>[(#PLUGIN{favoris}|oui)
 	[(#INCLURE{fond=inclure/article-favoris,id_article})]]
 	<B_tags_media>
 		<p class="tags liste_tag">
 			<span class="title"><:mediaspip_core:tags:> </span>
-			<BOUCLE_tags_media(MOTS){id_article}{exclus}{', '}>[<a href="#URL_MOT" title="<:mediaspip_core:lien_page_tag{tag=#TITRE}|attribut_html|couper{80}:>" rel="tag">(#TITRE)</a>]</BOUCLE_tags_media>
+			<BOUCLE_tags_media(MOTS){id_article}{si #VAL{info_mots}|in_array{#GET{infos_cachees_vignette}}|non}{exclus}{', '}>[<a href="#URL_MOT" title="<:mediaspip_core:lien_page_tag{tag=#TITRE}|attribut_html|couper{80}:>" rel="tag">(#TITRE)</a>]</BOUCLE_tags_media>
 		</p>
 	</B_tags_media>
-	[(#PLUGIN{NOTATION}|oui)[(#NOTATION_ETOILE{#NOTATION_MOYENNE,'',''})]]
+	[(#PLUGIN{NOTATION}|et{#VAL{info_notation}|in_array{#GET{infos_cachees_vignette}}|non}|oui)[(#NOTATION_ETOILE{#NOTATION_MOYENNE,'',''})]]
 	</div>
 </li>
 </BOUCLE_articles>
