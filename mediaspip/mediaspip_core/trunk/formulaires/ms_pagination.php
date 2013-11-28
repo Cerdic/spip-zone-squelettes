@@ -32,7 +32,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30',$afficher_tout = false){
 	$afficher_tout = false;
 	$lien = self();
-	$pagination_actuelle = _request('pagination'.$boucle) ? _request('pagination'.$boucle) : $pas;
+	$pagination_actuelle = _request('pagination'.$boucle) ? _request('pagination'.$boucle) : ($GLOBALS['visiteur_session']['pagination'.$boucle] ? $GLOBALS['visiteur_session']['pagination'.$boucle] : $pas);
 	$max_new = (floor($total_elements/$pas) * $pas);
 	$tableau_pas = array();
 	$max_pas = 0;
@@ -74,8 +74,10 @@ function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancr
  * @param int $max : Le nombre maximal possible de la pagination
  */
 function formulaires_ms_pagination_traiter_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30',$recharger=false){
+	include_spip('inc/session');
 	$lien = self();
 	$valeur = _request('champ_pagination'.$boucle);
+	session_set('paginationliste_medias', $valeur);
 	$lien_retour = parametre_url(parametre_url($lien,'pagination'.$boucle,$valeur),'debut'.$boucle,'');
 	if($recharger){
 		$res['message_ok'] = '<script type="text/javascript">if (window.jQuery) jQuery("'.$recharger.'").ajaxReload({args:{pagination'.$boucle.':'.$valeur.',debut'.$boucle.':""},history:true});</script>';

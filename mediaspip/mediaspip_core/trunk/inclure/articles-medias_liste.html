@@ -40,17 +40,17 @@
 #SET{tri_articles_home,#CONFIG{mediaspip/home/highlights_choisir_tri}}
 [(#CONFIG{mediaspip/home/choix_highlight_article}|is_array|et{#ENV{triliste_medias}|non}|oui)
 #SET{articles,#CONFIG{mediaspip/home/choix_highlight_article}}]]
-#SET{vue, #ENV{vueliste_medias}|=={listview}|?{listview,thumbnail}}
+#SET{vue, #ENV{vueliste_medias}|=={listview}|?{listview,#SESSION{vueliste_medias}|sinon{thumbnail}}}
 
 [(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
 [(#SET{afficher_langue,oui})]]
 #SET{critere_inverse,#ARRAY|push{date}|push{''}|push{'articles.maj'}|push{popularite}|push{moyenne}|push{date_redac}}
 #SET{limite,#ENV{limite_affichage,10000000000000000000000}}
-#SET{limite_pagination,#ENV{pagination#ENV{id_bloc,liste_medias},6}}
+#SET{limite_pagination,#ENV{pagination#ENV{id_bloc,liste_medias},#SESSION{paginationliste_medias}|sinon{6}}}
 #SET{limite_pagination_min,#ENV{limite_pagination_min,6}}
 #SET{limite_pagination_max,#ENV{limite_pagination_max,100}}
-#SET{tri_medias,#ENV{triliste_medias,#ENV{tri_medias_forcer,#GET{tri_defaut}|=={non}|?{'','date'}}}}
-#SET{tri_medias_tous,#ENV{tri#ENV{id_bloc,liste_medias},#ENV{tri_medias_forcer,#GET{tri_defaut}|=={non}|?{'','date'}}}}
+#SET{tri_medias,#ENV{triliste_medias,#ENV{tri_medias_forcer,#GET{tri_defaut}|=={non}|?{'',#SESSION{triliste_medias}|sinon{'date'}}}}}
+#SET{tri_medias_tous,#ENV{tri#ENV{id_bloc,liste_medias},#ENV{tri_medias_forcer,#GET{tri_defaut}|=={non}|?{'',#SESSION{triliste_medias}|sinon{'date'}}}}}
 [(#GET{tri_medias}|in_array{#LISTE{maj}}|oui)[(#SET{tri_medias,articles.#GET{tri_medias}})]]
 
 [(#GET{tri_medias_tous}|in_array{#LISTE{maj}}|oui)
