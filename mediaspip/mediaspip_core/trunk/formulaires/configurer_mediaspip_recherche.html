@@ -12,29 +12,32 @@
 				<legend><:mediaspip_core:legende_recherche_avancee:></legend>
 				<p class="explication"><:mediaspip_core:explication_recherche_avancee:></p>
 				<ul>
-					#SET{liste_champs, #ARRAY{0,recherche,1,date}
+					#SET{exclus_rech, #ARRAY}
+					[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{recherche,<:mediaspip_core:label_rechercher_texte:>}}})]
+					[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{date,<:mediaspip_core:label_rechercher_date:>}}})]
 					<BOUCLE_langues(ARTICLES){fusion lang}> </BOUCLE_langues>
-						[(#TOTAL_BOUCLE|>{1}|oui) #SET{liste_champs, #GET{liste_champs}|push{lang}}]
+						[(#TOTAL_BOUCLE|>{1}|oui) [(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{lang,<:mediaspip_core:label_rechercher_lang:>}}})]]
 					</B_langues>
 					<BOUCLE_types_utilises(ARTICLES){fusion em_type}> </BOUCLE_types_utilises>
-						#SET{liste_champs, #GET{liste_champs}|push{em_type}}
+						[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{em_type,<:mediaspip_core:label_rechercher_em_type:>}}})]
 					</B_types_utilises>
 					<BOUCLE_rubriques(RUBRIQUES){id_parent=#CONFIG{mediaspip/rubriques/medias}}> </BOUCLE_rubriques>
-						#SET{liste_champs, #GET{liste_champs}|push{rubrique}}
+						[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{categorie,<:mediaspip_core:label_rechercher_categorie:>}}})]
 					</B_rubriques>
 					<BOUCLE_si_licence(ARTICLES){si #PLUGIN{licence}|oui}{fusion id_licence}> </BOUCLE_si_licence>
-						#SET{liste_champs, #GET{liste_champs}|push{licence}}
+						[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{licence,<:mediaspip_core:label_rechercher_licence:>}}})]
 					</B_si_licence>
 					<BOUCLE_auteurs(spip_auteurs_liens){objet=article}{fusion id_auteur}> </BOUCLE_auteurs>
-						#SET{liste_champs, #GET{liste_champs}|push{auteur}}
+						[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{auteur,<:mediaspip_core:label_rechercher_auteur:>}}})]
 					</B_auteurs>
 					<BOUCLE_groupes_mots(GROUPES_MOTS){par num titre}{si #PLUGIN{critere_mots}}> </BOUCLE_groupes_mots>
-						#SET{liste_champs, #GET{liste_champs}|push{mots}}
+						[(#SET{exclus_rech,#GET{exclus_rech}|array_merge{#ARRAY{mots,<:mediaspip_core:label_rechercher_mots:>}}})]
 					</B_groupes_mots>
 
-					[(#SAISIE{selection_multiple,liste_champs,
-						label=<:mediaspip_core:label_lister_champs_recherche_avancee:>,
-						datas=#GET{liste_champs}})]
+					[(#SAISIE{checkbox,liste_champs_exclus_recherche,
+						label=<:mediaspip_core:label_lister_champs_exclus_recherche:>,
+						defaut=#ARRAY,
+						datas=#GET{exclus_rech}})]
 
 					[(#SAISIE{checkbox,liste_criteres_exclus_tri,
 						label=<:mediaspip_core:label_lister_criteres_exclus_tri:>,
