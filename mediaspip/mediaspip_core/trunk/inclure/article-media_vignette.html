@@ -8,12 +8,12 @@
 	- couper (int) : coupera les titres à la longueur souhaitée
 	- afficher_langue (oui|non) : Affiche la langue de l'article conteneur
 	- niveau_titre (h2,h3,h4) : par défaut h3, donne le niveau des titres des blocs
-	- type_liste (thumbnail|listview) : par défaut thumbnail, affichage en blocs ou en lignes
+	- vue (thumbnail|listview) : par défaut thumbnail, affichage en blocs ou en lignes
 	
 ]
 <BOUCLE_articles(ARTICLES){notation}{id_article}{statut ?}>
-#SET{type_liste, #ENV{type_liste}|=={listview}|?{listview,thumbnail}}
-[(#GET{type_liste}|=={listview}|?{
+#SET{vue, #ENV{vue}|=={listview}|?{listview,thumbnail}}
+[(#GET{vue}|=={listview}|?{
 #SET{largeur_logo,#VAL{_TAILLE_LARGEUR_VIGNETTES_NAV}|defined|?{#EVAL{_TAILLE_LARGEUR_VIGNETTES_NAV},#CONFIG{mediaspip/squelettes/vignettes_nav_largeur,100}}}
 #SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_VIGNETTES_NAV}|defined|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_NAV},#CONFIG{mediaspip/squelettes/vignettes_nav_hauteur,75}}}
 ,
@@ -21,7 +21,7 @@
 #SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES}|defined|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_GRANDES},#CONFIG{mediaspip/squelettes/vignette_grande_hauteur,137}}}
 })]
 
-<li class="item hentry entry[ (#ENV{class}) ][ (#GET{type_liste}) ][vignette_(#ID_RUBRIQUE)] span3" itemscope itemtype="http://schema.org/MediaObject">
+<li class="item hentry entry[ (#ENV{class}) ][ (#GET{vue}) ][vignette_(#ID_RUBRIQUE)] span3" itemscope itemtype="http://schema.org/MediaObject">
 	<BOUCLE_docs(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{tout}{0,1}>[(#REM)
 			
 			Définir ce que sera réellement le logo :

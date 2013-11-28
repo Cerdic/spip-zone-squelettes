@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// B
 	'bigbrother_texte_telecharger' => 'Journaliser les téléchargements de fichiers',
 	'bouton_trier' => 'Trier',
+	'bouton_vue' => 'Changer la vue',
 
 	// C
 	'collections_auteur' => 'Les collections de @login@',
@@ -196,6 +197,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_rechercher_type_date' => 'Type de date : ',
 	'label_syndic_desactiver' => 'Désactiver complètement la syndication externe de votre canal',
 	'label_titre_bloc' => 'Titre personnalisé du bloc',
+	'label_vue' => 'Vue :',
 	'label_vignette_download_hauteur' => 'Hauteur des vignettes des documents à télécharger (en px)',
 	'label_vignette_download_largeur' => 'Largeur des vignettes des documents à télécharger (en px)',
 	'label_vignette_grande_hauteur' => 'Hauteur maximale des grandes vignettes de documents (en px)',
@@ -267,6 +269,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'option_tri_point' => 'Pertinence',
 	'option_tri_popularite' => 'Popularité',
 	'option_tri_titre' => 'Titre',
+	'option_vue_listview' => 'Liste',
+	'option_vue_thumbnail' => 'Vignettes',
 
 	// P
 	'pagination_tout_afficher' => 'Tout afficher',

@@ -1,0 +1,33 @@
+[(#REM)
+
+	Plugin MediaSPIP core
+	
+	Squelette du formulaire FORMULAIRE_MS_VUE
+	Permet de changer le type de vue pour la liste des medias
+	en passant un paramètre dans l'url
+	
+]
+[(#ENV**{message_ok})]
+<div class="formulaire_spip formulaire_menu_vue" id="formulaire_menu_vue_#ENV{boucle}">
+	<form method='post' action='#ENV{action}'>
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<label for="#ENV{nom}"><:mediaspip_core:label_vue:></label>
+			<select name="#ENV{nom}" id="#ENV{nom}">
+				<option value="thumbnail"[(#ENV{defaut}|=={listview}|non)selected="selected"]><:mediaspip_core:option_vue_thumbnail:></option>
+				<option value="listview"[(#ENV{defaut}|=={listview}|oui)selected="selected"]><:mediaspip_core:option_vue_listview:></option>
+			</select>
+			<p class="boutons"><input type="submit" class="submit" value="<:mediaspip_core:bouton_vue:>" /></p>
+		</div>
+	</form>
+	<script type="text/javascript">
+		jQuery(function(){
+			(function ($) {
+				$("#formulaire_menu_vue_[(#ENV{boucle}) ].boutons").hide();
+				$("#formulaire_menu_vue_[(#ENV{boucle}) ]select#[(#ENV{nom})]").change(function(){
+					jQuery(this).parents('form').submit()
+				});
+			}(jQuery));
+		});
+	</script>
+</div>
