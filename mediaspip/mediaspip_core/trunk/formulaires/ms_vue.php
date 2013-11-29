@@ -26,7 +26,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param string $ancre : l'ancre sur laquelle on pointe ensuite
  */
 function formulaires_ms_vue_charger_dist($boucle,$defaut='',$ancre='',$recharger=false){
-	$vue_actuelle = _request('vue'.$boucle) ? _request('vue'.$boucle) : ($GLOBALS['visiteur_session']['vue'.$boucle] ? $GLOBALS['visiteur_session']['vue'.$boucle] : $defaut);
+	$vue_actuelle = _request('vue'.$boucle) ? _request('vue'.$boucle) : $defaut;
 	$page = _request('page');
 	spip_log($recharger,'test.'._LOG_ERREUR);
 	return
@@ -40,10 +40,8 @@ function formulaires_ms_vue_charger_dist($boucle,$defaut='',$ancre='',$recharger
 }
 
 function formulaires_ms_vue_traiter_dist($boucle,$defaut='',$ancre='',$recharger=false){
-	include_spip('inc/session');
 	$lien = self();
 	$valeur = _request('champ_vue'.$boucle);
-	session_set('vueliste_medias', $valeur);
 	$lien_retour = parametre_url($lien,'vue'.$boucle,$valeur);
 	if($recharger){
 		$res['message_ok'] = '<script type="text/javascript">if (window.jQuery) jQuery("'.$recharger.'").ajaxReload({args:{vue'.$boucle.':"'.$valeur.'"},history:true});</script>';

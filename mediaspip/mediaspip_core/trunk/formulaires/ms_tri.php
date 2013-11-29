@@ -26,7 +26,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param string $ancre : l'ancre sur laquelle on pointe ensuite
  */
 function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre='',$recharger=false){
-	$tri_actuel = _request('tri'.$boucle) ? _request('tri'.$boucle) : ($GLOBALS['visiteur_session']['tri'.$boucle] ? $GLOBALS['visiteur_session']['tri'.$boucle] : $defaut);
+	$tri_actuel = _request('tri'.$boucle) ? _request('tri'.$boucle) : $defaut;
 	$exclus = lire_config('mediaspip/recherche/liste_criteres_exclus_tri',array());
 	$page = _request('page');
 	spip_log($recharger,'test.'._LOG_ERREUR);
@@ -42,10 +42,8 @@ function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre='',$recharger
 }
 
 function formulaires_ms_tri_traiter_dist($boucle,$defaut='',$ancre='',$recharger=false){
-	include_spip('inc/session');
 	$lien = self();
 	$valeur = _request('champ_tri'.$boucle);
-	session_set('triliste_medias', $valeur);
 	$lien_retour = parametre_url($lien,'tri'.$boucle,$valeur);
 	if($recharger){
 		$res['message_ok'] = '<script type="text/javascript">if (window.jQuery) jQuery("'.$recharger.'").ajaxReload({args:{tri'.$boucle.':"'.$valeur.'"},history:true});</script>';
