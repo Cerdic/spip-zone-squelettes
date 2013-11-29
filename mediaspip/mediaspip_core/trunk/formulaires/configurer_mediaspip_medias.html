@@ -27,11 +27,7 @@
 					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
 					info_publie,<:mediaspip_core:label_case_info_published:>,
 					info_auteur,<:mediaspip_core:label_case_info_auteur:>}})]
-			[(#SAISIE{checkbox, infos_cachees_vignette,
-				label=<:mediaspip_core:label_infos_cachees_vignette:>,
-				explication=<:mediaspip_core:explication_infos_cachees_vignette:>,
-				defaut=#ARRAY,
-				datas=#ARRAY{
+			[(#SET{infos_cachees_vignette, #ARRAY{
 					info_vignette,<:mediaspip_core:label_case_info_vignette:>,
 					info_auteur,<:mediaspip_core:label_case_info_auteur:>,
 					info_date,<:mediaspip_core:label_case_info_date:>,
@@ -40,9 +36,15 @@
 					info_lang,<:mediaspip_core:label_case_info_lang:>,
 					info_em_type,<:mediaspip_core:label_case_info_em_type:>,
 					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
-					info_mesfavoris,<:mediaspip_core:label_case_info_mesfavoris:>,
-					info_mots,<:mediaspip_core:label_case_info_mots:>,
-					info_notation,<:mediaspip_core:label_case_info_notation:>}})]
+					info_mots,<:mediaspip_core:label_case_info_mots:>
+				}})]
+			[(#PLUGIN{favoris}|oui)[(#SET{infos_cachees_vignette,#GET{infos_cachees_vignette}|array_merge{#ARRAY{info_mesfavoris,<:mediaspip_core:label_case_info_mesfavoris:>}}})]]
+			[(#PLUGIN{notation}|oui)[(#SET{infos_cachees_vignette,#GET{infos_cachees_vignette}|array_merge{#ARRAY{info_notation,<:mediaspip_core:label_case_info_notation:>}}})]]
+			[(#SAISIE{checkbox, infos_cachees_vignette,
+				label=<:mediaspip_core:label_infos_cachees_vignette:>,
+				explication=<:mediaspip_core:explication_infos_cachees_vignette:>,
+				defaut=#ARRAY,
+				datas=#GET{infos_cachees_vignette}})]
 		</ul>
 		<input type="hidden" name="_meta_casier" value="mediaspip/medias" />
 		<p class="boutons">
