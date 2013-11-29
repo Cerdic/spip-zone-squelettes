@@ -52,6 +52,17 @@
 						label=<:mediaspip_core:label_lister_criteres_exclus_tri:>,
 						defaut=#ARRAY,
 						datas=#GET{liste_criteres_tri}})]
+
+					<li class="editer editer_tri_defaut">
+						<label for="tri_defaut"><:mediaspip_core:label_critere_tri_par_defaut:></label>
+						<select name="tri_defaut" id="tri_defaut">
+							<BOUCLE_criteres(DATA){source table, #GET{liste_criteres_tri}}>
+								[(#CLE|in_array{#ENV{liste_criteres_exclus_tri}}|non)
+								<option value="#CLE"[(#CLE|=={#ENV{tri_defaut,'date'}}|oui)selected="selected"]>#VALEUR</option>]
+							</BOUCLE_criteres>
+						</select>
+					</li>
+
 				</ul>
 				</fieldset>
 			</li>

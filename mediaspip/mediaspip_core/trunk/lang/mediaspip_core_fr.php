@@ -156,6 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_choix_rubrique_mag' => 'Secteur contenant les articles normaux',
 	'label_choix_rubrique_medias' => 'Secteur contenant les médias',
 	'label_choix_rubrique_sites' => 'Secteur contenant les sites',
+	'label_critere_tri_par_defaut' => 'Critère de tri par défaut',
 	'label_document_hauteur_maximale_exergue' => 'Hauteur maximale de l’espace de visualisation du document en exergue (in px)',
 	'label_document_largeur_maximale' => 'Largeur maximale de l’espace de visualisation des documents (en px)',
 	'label_document_largeur_maximale_exergue' => 'Largeur maximale de l’espace de visualisation du document en exergue (en px)',
