@@ -193,6 +193,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_nuage_choisir' => 'Permettre de voir ses propres tags',
 	'label_nuage_choisir_choix' => 'Afficher un lien au dessus du nuage de tags pour voir seulement ses propres tags',
 	'label_ordre_tri' => 'Trier par :',
+	'label_pas_pagination_par_defaut' => 'Pas de pagination par défaut',
 	'label_position_recherche' => 'Positionnement du formulaire de recherche',
 	'label_rechercher_auteur' => 'Choix de l’auteur',
 	'label_rechercher_categorie' => 'Choix de la rubrique',

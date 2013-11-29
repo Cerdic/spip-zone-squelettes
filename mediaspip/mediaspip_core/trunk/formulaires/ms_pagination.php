@@ -29,7 +29,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param int $min : Le nombre minimal possible
  * @param int $max : Le nombre maximal possible de la pagination
  */
-function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30',$afficher_tout = false){
+function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='6',$min='1',$max='30',$afficher_tout = false){
 	$afficher_tout = false;
 	$lien = self();
 	$pagination_actuelle = _request('pagination'.$boucle) ? _request('pagination'.$boucle) : $pas;
@@ -73,7 +73,7 @@ function formulaires_ms_pagination_charger_dist($boucle,$total_elements='',$ancr
  * @param int $min : Le nombre minimal possible
  * @param int $max : Le nombre maximal possible de la pagination
  */
-function formulaires_ms_pagination_traiter_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='5',$min='1',$max='30',$recharger=false){
+function formulaires_ms_pagination_traiter_dist($boucle,$total_elements='',$ancre='',$type='select',$pas='6',$min='1',$max='30',$recharger=false){
 	$lien = self();
 	$valeur = _request('champ_pagination'.$boucle);
 	$lien_retour = parametre_url(parametre_url($lien,'pagination'.$boucle,$valeur),'debut'.$boucle,'');
