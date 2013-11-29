@@ -7,7 +7,7 @@
 		<li class="editer editer_recherche">
 			<label for="recherche_texte"><:mediaspip_core:label_rechercher_texte:></label>
 			<input type="text" class="text" size="40" name="recherche" id="recherche_texte"[ value="(#ENV{recherche})"] accesskey="4" />
-		</li>][(#VAL{date}|in_array{#GET{exclus}}|non)
+		</li>][(#VAL{date}|in_array{#GET{exclus}}|et{#VAL{date_redac}|in_array{#GET{exclus}}}|et{#VAL{maj}|in_array{#GET{exclus}}}|non)
 		<li class="editer editer_dates[(#ENV**{erreurs}|table_valeur{date_debut}|ou{[(#ENV**{erreurs}|table_valeur{date_fin})]}|oui)erreur]">
 			<label><:mediaspip_core:label_rechercher_dates:></label>
 			<div class="choix">
@@ -22,10 +22,10 @@
 			</div>
 			<div class="choix">
 				<label for="type_date"><:mediaspip_core:label_rechercher_type_date:></label>
-				<select id="type_date" name="type_date">
-					<option value="date"[(#ENV{type_date}|=={date_redac}|ou{#ENV{type_date}|=={maj}}|non)selected="selected"]><:mediaspip_core:label_rechercher_date:></option>
-					<option value="date_redac"[(#ENV{type_date}|=={date_redac}|oui)selected="selected"]><:mediaspip_core:label_rechercher_date_redac:></option>
-					<option value="maj"[(#ENV{type_date}|=={maj}|oui)selected="selected"]><:mediaspip_core:label_rechercher_maj:></option>
+				<select id="type_date" name="type_date">[(#VAL{date}|in_array{#GET{exclus}}|non)
+					<option value="date"[(#ENV{type_date}|=={date_redac}|ou{#ENV{type_date}|=={maj}}|non)selected="selected"]><:mediaspip_core:label_rechercher_date:></option>][(#VAL{date_redac}|in_array{#GET{exclus}}|non)
+					<option value="date_redac"[(#ENV{type_date}|=={date_redac}|oui)selected="selected"]><:mediaspip_core:label_rechercher_date_redac:></option>][(#VAL{maj}|in_array{#GET{exclus}}|non)
+					<option value="maj"[(#ENV{type_date}|=={maj}|oui)selected="selected"]><:mediaspip_core:label_rechercher_maj:></option>]
 				</select>
 			</div>
 		</li>]
