@@ -186,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_rechercher_em_type' => 'A specific media type',
 	'label_rechercher_langue' => 'In a specific language',
 	'label_rechercher_licence' => 'A specific license',
-	'label_rechercher_texte' => 'Search in the text',
+	'label_rechercher_texte' => 'Search in the text', # MODIF
 	'label_syndic_desactiver' => 'Completely disable external syndication of your channel',
 	'label_titre_bloc' => 'Custom title of the block',
 	'label_vignette_download_hauteur' => 'Height of the thumbnails for the documents to download (in px)',
@@ -236,7 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_aucun_media_publie_categorie' => 'No media has yet been published in this section.',
 	'message_aucun_plugins_supp_configurable' => 'No plugin which require special configuration is currently enabled.',
 	'message_modif_email_ok' => 'Your email address has been properly modified.',
-	'message_resultats_recherche_avancee' => 'Results of your advanced search',
+	'message_resultats_recherche_avancee' => 'Results of your advanced search', # MODIF
 	'message_telechargement_seulement_logues' => 'Only authenticated users can download the documents. Please login or create an account.',
 	'message_webmestre_commencer_configurer' => 'You can change <a href="@url@" class="spip_in">the default configuration</a>.',
 	'message_webmestre_commencer_documentation' => 'Donot hesitate to consult <a href="@url@" class="spip_out">the online documentation</a>.',

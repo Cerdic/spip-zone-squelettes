@@ -192,7 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_rechercher_licence' => 'Elección de la licencia de publicación',
 	'label_rechercher_maj' => 'Fecha de la última modificación',
 	'label_rechercher_mots' => 'Elegir las palabras-clave',
-	'label_rechercher_texte' => 'Búsqueda por palabras clave',
+	'label_rechercher_texte' => 'Búsqueda por palabras clave', # MODIF
 	'label_rechercher_type_date' => 'Tipo de fecha:',
 	'label_syndic_desactiver' => 'Desactivar completamente la sindicación externa de su canal',
 	'label_titre_bloc' => 'Título personalizado del bloque',
@@ -243,7 +243,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'message_aucun_media_publie_categorie' => 'Ningún medio se ha publicado todavía en esta sección.',
 	'message_aucun_plugins_supp_configurable' => 'Ningún plugin que requiera una configuración especial está activo actualmente.',
 	'message_modif_email_ok' => 'Su dirección de correo electrónico se ha modificado correctamente.',
-	'message_resultats_recherche_avancee' => 'Resultados de su búsqueda avanzada',
+	'message_resultats_recherche_avancee' => 'Resultados de su búsqueda avanzada', # MODIF
 	'message_telechargement_seulement_logues' => 'Sólo los usuarios identificados pueden descargar documentos. Identifíquese por favor o cree una cuenta.',
 	'message_webmestre_commencer_configurer' => 'Puede modificar <a href="@url@" class="spip_in">la configuración por defecto</a>.',
 	'message_webmestre_commencer_documentation' => 'No dude en consultar <a href="@url@" class="spip_out">la documentación en línea</a>.',
