@@ -58,7 +58,7 @@
 						<select name="tri_defaut" id="tri_defaut">
 							<BOUCLE_criteres(DATA){source table, #GET{liste_criteres_tri}}>
 								[(#CLE|in_array{#ENV{liste_criteres_exclus_tri}}|non)
-								<option value="#CLE"[(#CLE|=={#ENV{tri_defaut,'date'}}|oui)selected="selected"]>#VALEUR</option>]
+								<option value="#CLE"[ (#CLE|=={#ENV{tri_defaut,'date'}}|oui)selected="selected"]>#VALEUR</option>]
 							</BOUCLE_criteres>
 						</select>
 					</li>
@@ -66,6 +66,14 @@
 					[(#SAISIE{input,pas_pagination_defaut,
 						label=<:mediaspip_core:label_pas_pagination_par_defaut:>,
 						size=2,maxlength=2,defaut=6})]
+
+					<li class="editer editer_vue_defaut">
+						<label for="vue_defaut"><:mediaspip_core:label_vue_par_defaut:></label>
+						<select name="vue_defaut" id="vue_defaut">
+							<option value="thumbnail"[ (#ENV{vue_defaut}|=={listview}|non)selected="selected"]><:mediaspip_core:option_vue_thumbnail:></option>
+							<option value="listview"[ (#ENV{vue_defaut}|=={listview}|oui)selected="selected"]><:mediaspip_core:option_vue_listview:></option>
+						</select>
+					</li>
 
 				</ul>
 				</fieldset>

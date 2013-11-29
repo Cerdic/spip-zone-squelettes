@@ -219,6 +219,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vignette_nav_largeur' => 'Largeur maximale des vignettes dans la navigation (en px)',
 	'label_vignette_nav_nb' => 'Nombre de documents affichés dans la navigation',
 	'label_vue' => 'Vue :',
+	'label_vue_par_defaut' => 'Vue par défaut',
 	'legende_auth_telecharger' => 'Téléchargements des fichiers',
 	'legende_blocs_home' => 'Blocs de contenus de la page d’accueil',
 	'legende_blocs_recurrents' => 'Affichage et placement de blocs récurrents',
