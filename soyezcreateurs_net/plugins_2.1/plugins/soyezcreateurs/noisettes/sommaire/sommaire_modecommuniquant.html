@@ -59,6 +59,7 @@
 </ul>
 </div><!-- homecadre_outils -->
 </B_Outils>
+
 [(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
 </div><!-- communiquant_content_central -->
 
@@ -88,6 +89,22 @@
 </div><!-- espaceavant -->]
 ]
 [(#CONFIG{soyezcreateurs/affichage_ephemeride,non}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc}{env}>]
+
+[(#REM) Sur le Web ]
+<B_syndic>
+<div class="syndic">
+	<h2 class="menu-titre"><:nouveautes_web:></h2>
+<div class="fond">
+	<ul>
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {0,6}{!titre_mot=ReseauxSociaux}>
+		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[(#DATE|affdate_court) &ndash; ]<a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+	</BOUCLE_syndic>
+	</ul>
+</div>
+</div>
+</B_syndic>
+
+
 [(#CONFIG{soyezcreateurs/positionrecherche,navigation}|=={header}|non)[(#INCLURE{fond=noisettes/header/cadre_recherche}{env}{id_recherche=cadre_recherche})]]
 #INCLURE{fond=noisettes/extra/ousommesnous}
 [(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|!={masque}|oui)<div class="centrer_div rss_bottom">
@@ -97,4 +114,16 @@
 
 </div><!-- communiquant_content_extra -->
 <div class="clearing"></div>
+
+<B_Actualites>
+<div id="communiquant_actus">
+	<h2><:soyezcreateurs:derniereactualites:></h2>
+	<ul>
+	<BOUCLE_Actualites(BREVES){!par date}{0,5}{lang}>
+		<li><a href="#URL_BREVE" title="[(#TITRE|supprimer_tags|attribut_html)]">[(#TITRE)]</a> - le [(#DATE|affdate)]</li>
+	</BOUCLE_Actualites>
+	</ul>
+</div>
+</B_Actualites>
+
 </div><!-- communiquant_content -->
