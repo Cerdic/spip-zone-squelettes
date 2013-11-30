@@ -29,7 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'1_site_herbier' => 'site référencé',
 	'1_site_web' => 'Site Web',
 	'1_ticket' => 'ticket',
-	'1_visiteur_connecte' => 'visiteur actuellement connecté',
+	'1_visiteur_connecte' => '@nb@ visiteur actuellement connecté',
 // A
 	'acceder_espace_membre' => 'Se connecter comme membre du site',
 	'acceder_espace_prive' => 'Accéder à l\'espace privé',
@@ -955,7 +955,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'n_albums' => 'Albums photo',
 	'n_sites_herbier' => 'sites référencés',
 	'n_tickets' => 'tickets',
-	'n_visiteurs_connectes' => 'visiteurs actuellement connectés',
+	'n_visiteurs_connectes' => '@nb@ visiteurs actuellement connectés',
 	'navigation_bulle_recherche_motcle' => 'Rechercher tous les objets liés à ce mot-clé',
 	'navigation_bulle_vers_agenda' => 'Se rendre sur la page de l\'agenda annuel',
 	'navigation_bulle_vers_album' => 'Se rendre sur la page de cet album',
