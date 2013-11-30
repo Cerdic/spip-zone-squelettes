@@ -462,11 +462,11 @@ EOF;
 		$contenu['texte'] = <<<EOF
 {{{Propriétaire du site}}}
 
-[->aut1].
+[ToDo : nom du propriétaire du site, lien vers sa page de contact].
 
 {{{Hébergeur}}}
 
-[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + SoyezCreateurs
+[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + SoyezCréateurs
 
 {{{Liens vers ce site}}}
 
@@ -482,6 +482,13 @@ Ce site ne collecte sur les visiteurs du site aucune autre information nominativ
 
 Nous vous rappelons que vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi "Informatique et Libertés" du 6 janvier 1978). 
 _ Pour exercer ce droit, contactez-nous.
+
+{{{Cookies}}}
+
+Des cookies peuvent être utilisés par ce site :
+-* pour accéder à l'interface d'administration (mais SPIP sait aussi fonctionner sans)
+-* pour se souvenir de vous quand vous remplissez un formulaire (fonctionne aussi sans)
+-* par Google pour vous pister partout (mais ça devrait fonctionner sans)
 
 {{{Réalisation}}}
 
