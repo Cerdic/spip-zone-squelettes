@@ -601,6 +601,20 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			}			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.27','non');
 		}
+		if (version_compare($current_version,'3.0.28','<')) {
+			spip_log("SoyezCreateurs maj 3.0.28", "soyezcreateurs_install");
+			$id_rubrique = id_rubrique('000. Fourre-tout');
+			if ($id_rubrique >0) {
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "15. Google+";
+				$sitesdj['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
+				$sitesdj['descriptif'] = 'Retrouvez-nous sur Google+';
+				$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+				create_logo('documents/googleplus.png', $type='site', $id_site, 'png');
+				create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+			}			
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.28','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
