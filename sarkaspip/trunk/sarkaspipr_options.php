@@ -10,6 +10,7 @@ if (!isset($GLOBALS['z_blocs']))
 	$GLOBALS['z_blocs'] = array('content','aside','extra','head','head_js','header','footer','breadcrumb');
 
 define('_ALBUMS_INSERT_HEAD_CSS',false);
+define('_ZENGARDEN_FILTRE_THEMES','spipr');
 
 // Liste des rubriques specialisees standard du squelette
 // Pour ajouter des rubriques perso, definir de la meme facon les constantes _PERSO_XXX
