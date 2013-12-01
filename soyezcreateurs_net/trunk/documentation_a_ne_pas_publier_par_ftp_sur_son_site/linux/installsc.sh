@@ -48,7 +48,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/savecfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/yaml
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_2.1/plugins/soyezcreateurs
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs
 cd ../..
 
 #Installation des plugins
