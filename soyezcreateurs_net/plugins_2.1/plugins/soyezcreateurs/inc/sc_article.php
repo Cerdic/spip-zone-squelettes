@@ -13,9 +13,9 @@ include_spip("inc/charsets");
 
 function trouve_article_sc($article) {
 	$contenu = array();
-	/* Premiers pas dans le squelette SoyezCreateurs */
-	if ($article == "Premiers pas dans le squelette SoyezCreateurs") {
-		$contenu['titre'] = $article;
+	/* 10. Premiers pas dans le squelette SoyezCreateurs */
+	if ($article == "10. Premiers pas dans le squelette SoyezCreateurs") {
+		$contenu['titre'] = "10. Premiers pas dans le squelette SoyezCreateurs";
 		$contenu['texte'] = <<<EOF
 Bravo !!!!
 
@@ -42,7 +42,7 @@ EOF;
 		$contenu['nom_site'] = "Original de l'article";
 		$contenu['url_site'] = "http://www.spip-contrib.net/?article3075";
 	}
-	
+
 	/* Raccourcis Typographiques de SPIP, mode d'emploi */
 	if ($article == "Raccourcis Typographiques de SPIP, mode d'emploi") {
 		$contenu['surtitre'] = "Ceci est un surtitre";
@@ -382,14 +382,47 @@ EOF;
 		$contenu['descriptif'] = 'Victor Hugo';
 		$contenu['texte'] = "« Rien n'est plus puissant qu'une idée dont l'heure est venue. »";
 	}
+	/* Conseil n°1 */
+	if ($article == "Conseil n°1") {
+		$contenu['titre'] = "Conseil n°1";
+		$contenu['texte'] = <<<EOF
+[Écrivez pour vos lecteurs->http://www.pyrat.net/313], pas pour les moteurs de recherche.
+EOF;
+	}
+
+	/* Conseil n°2 */
+	if ($article == "Conseil n°2") {
+		$contenu['titre'] = "Conseil n°2";
+		$contenu['texte'] = <<<EOF
+Prenez le temps de lire la [documentation->http://www.pyrat.net/556]
+EOF;
+	}
+
+	/* Conseil n°3 */
+	if ($article == "Conseil n°3") {
+		$contenu['titre'] = "Conseil n°3";
+		$contenu['texte'] = <<<EOF
+3 types de citations :
+-* aphorismes pour transmettre vos valeurs
+-* pour faire de l'humour décalé
+-* pour donner des conseils (comme ici)
+EOF;
+	}
+
+	/* Conseil n°4 */
+	if ($article == "Conseil n°4") {
+		$contenu['titre'] = "Conseil n°4";
+		$contenu['texte'] = <<<EOF
+C'est [le sens qui est premier->http://www.pyrat.net/452] sur la forme.
+EOF;
+	}
+
 	/* Contact */
-	if ($article == 'Contact') {
-		$email_contact = find_auteur_email(1);
-		$id_auteur_contact = create_auteur('Nous contacter', $email_contact, "Adresse\n_ Code Postal – Ville\n_ Téléphone\nFax\n\nHoraires d'ouverture.\n\nLien Google Maps\n\nInformations juridiques (SIRET...)");
-		create_logo('documents/contact.jpg', 'aut', $id_auteur_contact, '.jpg');
-		$contenu['titre'] = $article;
-		$contenu['descriptif'] = 'Nous contacter';
-		$contenu['chapo'] = "=aut$id_auteur_contact";
+	if ($article == "Contact") {
+		$contenu['titre'] = "Contact";
+		$contenu['chapo'] = <<<EOF
+=aut2
+EOF;
 	}
 	/* Politique d'accessibilité du site */
 	if ($article == "Politique d'accessibilité du site") {
@@ -515,8 +548,33 @@ EOF;
 	if ($article == 'Versions de SPIP ') {
 		$contenu['titre'] = $article;
 		$contenu['descriptif'] = "Historique des versions de SPIP";
-		$contenu['texte'] = "[SPIP->http://www.spip.net/].";
+		$contenu['texte'] = "[SPIP->http://www.spip.net/fr_rubrique155.html].";
 	}
+	/* 10. Outil 1 */
+	if ($article == "10. Outil 1") {
+		$contenu['titre'] = "10. Outil 1";
+	}
+
+	/* 20. Outil 2 */
+	if ($article == "20. Outil 2") {
+		$contenu['titre'] = "20. Outil 2";
+	}
+
+	/* 30. Outil 3 */
+	if ($article == "30. Outil 3") {
+		$contenu['titre'] = "30. Outil 3";
+	}
+
+	/* 40. Outil 4 */
+	if ($article == "40. Outil 4") {
+		$contenu['titre'] = "40. Outil 4";
+	}
+
+	/* 50. Documentation */
+	if ($article == "50. Documentation") {
+		$contenu['titre'] = "50. Documentation";
+	}
+
 
 	return $contenu;
 }

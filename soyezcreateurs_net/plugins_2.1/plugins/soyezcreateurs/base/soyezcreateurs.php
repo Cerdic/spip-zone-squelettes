@@ -743,6 +743,14 @@ function soyezcreateurs_config_motsclefs() {
 		create_article($article5, '999. Citations');
 	$article5b = trouve_article_sc('Force');
 		create_article($article5b, '999. Citations');
+	$article5b = trouve_article_sc('Conseil n°1');
+		create_article($article5b, '999. Citations');
+	$article5b = trouve_article_sc('Conseil n°2');
+		create_article($article5b, '999. Citations');
+	$article5b = trouve_article_sc('Conseil n°3');
+		create_article($article5b, '999. Citations');
+	$article5b = trouve_article_sc('Conseil n°4');
+		create_article($article5b, '999. Citations');
 	$id_doc = create_document('documents/contact.jpg', 
 		null, 
 		'image',
