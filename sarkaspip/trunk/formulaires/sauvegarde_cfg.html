@@ -10,36 +10,19 @@
 			<legend><:sarkaspip:cfg_lgd_fond_sauvegarde:></legend>
 			<p class="explication"><:sarkaspip:cfg_inf_fond_sauvegarde:></p>
 			<ul>
-				#SET{name,fond_a_sauvegarder}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				#SET{name,config_a_sauvegarder}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_fonds">
 					<label for="#GET{name}"><:sarkaspip:cfg_lbl_fond_sauvegarde:></label>[
 					<span class='erreur_message'>(#GET{erreurs})</span>
 					]<select name="#GET{name}" class="select" id="#GET{name}">
-						<option value="--">Toutes les configurations</option>
-						#ENV*{_fonds}
+						<option value="--"><:sarkaspip:cfg_option_tout_sauvegarder:></option>
+						#ENV*{_configurations}
 					</select>
 				</li>
 			</ul>
 		</fieldset>
 
-		<INCLURE{fond=formulaires/inc/cfg_boutons}{choix=valider_seul}>
+		<INCLURE{fond=formulaires/inc/cfg_boutons,
+			choix=valider_seul}>
 	</div></form>
 </div>
-<script type="text/javascript">
-/*<![CDATA[*/
-	jQuery(document).ready(function() {
-		[(#ENV{mode, page}|=={tout}|oui)
-			jQuery("#bloc_fonds").hide();
-		]
-		jQuery("input[name='mode']").change(function() {
-			if (jQuery("input[name='mode']:checked").val() == 'page') {
-				jQuery("#bloc_fonds").show('fast');
-			}
-			else {
-				jQuery("#bloc_fonds").hide('fast');
-			}
-			jQuery(this).blur();
-		});
-	});
-/*]]>*/
-</script>

@@ -1,60 +1,69 @@
 <?php
 function formulaires_restauration_cfg_charger_dist(){
-	$fonds = array();
+	$configs = array();
 
 	$pages_cfg = array();
 	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
-	foreach ($sections as $section){
-		$section = explode("!",$section);
-		$section = end($section);
-		$pages_cfg = $pages_cfg + array_map('trim',explode(":",$section));
+	foreach ($sections as $_section){
+		$_section = explode("!",$_section);
+		$_section = end($_section);
+		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
 	}
 
-	foreach ($pages_cfg as $_page) {
-		if ($_page != 'maintenance') {
-			$fond = "sarkaspip_{$_page}";
-			$fonds[$fond] = _T("sarkaspip:$fond");
+	foreach ($pages_cfg as $_config) {
+		if ($_config != 'maintenance') {
+			$item = "sarkaspip_{$_config}";
+			$configs[$_config] = _T("sarkaspip:$item");
 		}
 	}
 
-	$dir = sous_repertoire(_DIR_TMP,"cfg");
-	$saves = preg_files($dir, implode('|', array_flip($fonds)));
+	$dir_cfg = sous_repertoire(_DIR_TMP,"sarkaspip");
+	$dir_cfg = sous_repertoire($dir_cfg,"config");
+	$sauvegardes = preg_files($dir_cfg, implode('|', array_flip($configs)));
 	$options = '';
-	$groupe = '';
-	foreach ($saves as $_fichier) {
-		$nom = basename($_fichier);
-		$_dir = end(explode('/', dirname($_fichier)));
-		if ($_dir != $groupe) {
-			if ($options) $options .= '</optgroup>';
-			$options .= '<optgroup style="font-weight: strong;" label="'.$fonds[$_dir].'">';
-			$groupe = $_dir;
-		}
-		$options .= '<option value="' . $_fichier . '">' . $nom . '</option>';
+	$erreur = '';
+	if (!$sauvegardes) {
+		$erreur = _T('sarkaspip:cfg_msg_aucune_sauvegarde');
 	}
-	if ($options) $options .= '</optgroup>';
-	$valeurs = array('_fichiers_sauvegardes' => $options);
+	else {
+		$groupe = '';
+		foreach ($sauvegardes as $_fichier) {
+			$nom = basename($_fichier);
+			$dirs = explode('/', dirname($_fichier));
+			$dir = end($dirs);
+			if ($dir != $groupe) {
+				if ($options) $options .= '</optgroup>';
+				$options .= '<optgroup style="font-weight: strong;" label="'.$configs[$dir].'">';
+				$groupe = $dir;
+			}
+			$options .= '<option value="' . $_fichier . '">' . $nom . '</option>';
+		}
+		if ($options) $options .= '</optgroup>';
+	}
+
+	$valeurs = array('_fichiers_sauvegardes' => $options, '_erreur_sauvegarde' => $erreur);
 
 	return $valeurs;
 }
 
-function formulaires_restauration_cfg_verifier_dist(){
-	return array();
-}
 
 function formulaires_restauration_cfg_traiter_dist(){
-	$message=array();
+	$retour=array();
 	
-	$fichier = _request('fichier_a_restaurer');
-	lire_fichier($fichier,$tableau);
+	$fichier = _request('config_a_restaurer');
+	lire_fichier($fichier, $contenu);
 
 	include_spip('inc/config');
-	$fond = end(explode('/', dirname($fichier)));
-	$fond = str_replace("sarkaspip_","sarkaspip/",$fond);
-	$ok = ecrire_config($fond, $tableau);
+	$dirs = explode('/', dirname($fichier));
+	$config = end($dirs);
+	$ok = ecrire_config("sarkaspip/$config", unserialize($contenu));
 	
-	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
-	if ($ok) $message['message_ok'] = _T('sarkaspip:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
-	return $message;
+	if (!$ok)
+		$retour['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
+	else
+		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
+
+	return $retour;
 }
 
 ?>

@@ -5,74 +5,70 @@ function formulaires_sauvegarde_cfg_charger_dist() {
 
 	$pages_cfg = array();
 	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
-	foreach ($sections as $section){
-		$section = explode("!",$section);
-		$section = end($section);
-		$pages_cfg = $pages_cfg + array_map('trim',explode(":",$section));
+	foreach ($sections as $_section){
+		$_section = explode("!",$_section);
+		$_section = end($_section);
+		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
 	}
 
-
-	foreach ($pages_cfg as $_page) {
-		if ($_page != 'maintenance') {
-			$fond = "sarkaspip_{$_page}";
-			$options .= '<option value="' . $fond . '">' . _T("sarkaspip:$fond") . '</option>';
+	foreach ($pages_cfg as $_config) {
+		if ($_config != 'maintenance') {
+			$item = "sarkaspip_{$_config}";
+			$options .= '<option value="' . $_config . '">' . _T("sarkaspip:$item") . '</option>';
 		}
 	}
 
-	$valeurs = array('_fonds' => $options);
+	$valeurs = array('_configurations' => $options);
 
 	return $valeurs;
 }
 
-function formulaires_sauvegarde_cfg_verifier_dist() {
-	return array();
-}
 
 function formulaires_sauvegarde_cfg_traiter_dist() {
-	$message=array();
+	$retour=array();
 	
-	$fonds = null;
-	$mode = _request('fond_a_sauvegarder');
+	$configs = array();
+	$mode = _request('config_a_sauvegarder');
 	if ($mode !== '--')
-		$fonds = array($mode);
+		$configs = array($mode);
 
-	$dir_cfg = sous_repertoire(_DIR_TMP,"cfg");
-	$ok = sauvegarder_fonds($fonds, $dir_cfg, 'maintenance');
+	$dir_cfg = sous_repertoire(_DIR_TMP,"sarkaspip");
+	$dir_cfg = sous_repertoire($dir_cfg,"config");
+	$ok = sauvegarder_configuration($configs, $dir_cfg);
 	
-	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_nok');
-	if ($ok) 
-		if ($mode == 'page')
-			$message['message_ok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_ok', array('nom_fichier' => $nom));
-		else
-			$message['message_ok'] = _T('sarkaspip:cfg_msg_fichiers_sauvegardes_ok');
-	return $message;
+	if (!$ok)
+		$retour['message_nok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_nok');
+	elseif ($mode !== '--')
+		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_ok');
+	else
+		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichiers_sauvegardes_ok');
+	return $retour;
 }
 
 
-// =======================================================================================================================================
-// Filtre : sauvegarder_fonds
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Cree les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne
-// =======================================================================================================================================
-//
-function sauvegarder_fonds($fonds, $ou) {
+/**
+ * Cree les sauvegardes d'une liste de fonds dans le repertoire temporaire tmp/cfg/
+ *
+ * @param $configs
+ * @param $ou
+ * @return bool
+ */
+function sauvegarder_configuration($configs, $ou) {
 	include_spip('inc/config');
 
 	// si pas de fond precise, on prend toutes les configs de la meta
-	if (is_null($fonds))
-		$fonds = array_keys(lire_config("sarkaspip"));
+	if (!$configs)
+		$configs = array_keys(lire_config("sarkaspip"));
 
 	$dir = $ou;
-	foreach ($fonds as $fond) {
-		$dir = sous_repertoire($ou, $fond);
-		$nom = $fond . "_" . date("Ymd_Hi") . ".txt";
-		$f = $dir . $nom;
-		$ok = ecrire_fichier($f, serialize(lire_config("sarkaspip/$fond")));
+	foreach ($configs as $_config) {
+		$dir = sous_repertoire($ou, $_config);
+		$nom = $_config . "_" . date("Ymd_Hi") . ".txt";
+		$fichier = $dir . $nom;
+		$ok = ecrire_fichier($fichier, serialize(lire_config("sarkaspip/$_config")));
 	}
 
 	return $ok;
 }
-// FIN du Filtre : sauvegarder_fonds
 
 ?>

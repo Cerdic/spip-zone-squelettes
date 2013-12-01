@@ -10,10 +10,11 @@
 			<legend><:sarkaspip:cfg_lgd_fond_restauration:></legend>
 			<p class="explication"><:sarkaspip:cfg_inf_fond_restauration:></p>
 			<ul>
-				#SET{name,fond_a_sauvegarder}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_fonds">
+				#SET{name,config_a_restaurer}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 					<label for="#GET{name}"><:sarkaspip:cfg_lbl_fond_restauration:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
+					<span class="erreur_message">(#GET{erreurs})</span>
+					][<span class="erreur_message">(#ENV{_erreur_sauvegarde})</span>
 					][<select name="#GET{name}" class="select" id="#GET{name}">
 					(#ENV*{_fichiers_sauvegardes})
 					</select>]
@@ -21,6 +22,7 @@
 			</ul>
 		</fieldset>
 
-		<INCLURE{fond=formulaires/inc/cfg_boutons}{choix=valider_seul}>
+		<INCLURE{fond=formulaires/inc/cfg_boutons,
+			choix=valider_seul}>
 	</div></form>
 </div>
