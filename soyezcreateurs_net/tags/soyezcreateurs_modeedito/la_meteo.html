@@ -1,0 +1,27 @@
+#CACHE{3600}
+#SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0076}, ville}}
+[(#SET{titre_meteo,#VAL{<:rainette:meteo_de:>}|replace{@ville@,#GET{nom_ville}}})]
+<INCLURE{fond=noisettes/header/header}
+	{title=#GET{titre_meteo}|attribut_html|texte_script}
+	{titretop=#GET{titre_meteo}|attribut_html|sc_nettoyer_marqueur|texte_script}
+>
+
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<li><:rainette:meteo_de{ville=#GET{nom_ville}}:></li>
+	</ul>
+	</div>
+
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1><:rainette:meteo_de{ville=#GET{nom_ville}}:></h1></div>
+</div>
+	<div id="letexte">
+		[(#MODELE{rainette_previsions, code=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0076})], type=x_jours, jour=5, sous_modele=previsions_24h})]
+	</div>
+</div><!-- Fin de .texte -->
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titre_meteo}|attribut_html|sc_nettoyer_marqueur|texte_script}
+>

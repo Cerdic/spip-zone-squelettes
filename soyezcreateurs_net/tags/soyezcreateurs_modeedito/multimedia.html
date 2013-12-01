@@ -1,0 +1,67 @@
+<BOUCLE_ArticleMultimedia(ARTICLES){id_document}>
+<BOUCLE_FichierMultimedia(DOCUMENTS){id_document}>
+[(#SET{id_article,#ID_ARTICLE})]
+[(#SET{id_rubrique,#ID_RUBRIQUE})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#TITRE|attribut_html|texte_script)}
+	{titretop=#GET{titretop}}
+	{id_article}
+	{id_rubrique}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_article}{!titre_mot=PasDansFildAriane}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+    <li><a href="#ARTICLE_URL"[ title="(#_ArticleMultimedia:DESCRIPTIF|attribut_html)"]>[(#_ArticleMultimedia:TITRE)]</a></li>
+	<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+
+
+
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><div><h1 class="titre-texte">[(#TITRE)]</h1></div></div>
+</div>
+	<div id="letexte">
+[<div class="chapo">(#DESCRIPTIF)</div>]
+<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" 
+  codebase="http://www.apple.com/qtactivex/qtplugin.cab" 
+  width="[(#LARGEUR|=={0}?{200,#LARGEUR})]" height="[(#HAUTEUR|=={0}?{50,#LARGEUR})]">
+  <param name="src" value="#URL_DOCUMENT" />
+  <param name="controller" value="true" />
+  <param name="autoplay" value="false" />
+  <!--[if !IE]>-->
+  <object type="video/quicktime" 
+    data="#URL_DOCUMENT" 
+    width="[(#LARGEUR|=={0}?{200,#LARGEUR})]" height="[(#HAUTEUR|=={0}?{50,#LARGEUR})]">
+    <param name="autoplay" value="false" />
+    <param name="controller" value="true" />
+  </object>
+  <!--<![endif]-->
+</object>
+
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+</BOUCLE_FichierMultimedia>
+
+
+
+</BOUCLE_ArticleMultimedia>
+</B_ArticleMultimedia>
+
+[(#SET{titretop,<:soyezcreateurs:erreur|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:erreur|texte_script:>}
+	{titretop=#GET{titretop}}
+>
+<:soyezcreateurs:erreur_documentexistepas:>
+<//B_ArticleMultimedia>
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{id_article=#GET{id_article}}
+	{id_rubrique=#GET{id_rubrique}}
+>
