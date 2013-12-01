@@ -28,10 +28,10 @@ if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS',
 // Liste des pages de configuration dans l'ordre de presentation
 if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 'accueil
-|Pages!sommaire:rubrique:article:auteur:breve:site:herbier:forum:agenda:galerie:album:plan:recherche
-|Elements Transverses!bandeau:menus:comments:formulaires:modeles:noisettes:pied
-|R&eacute;f&eacute;rencement!header:backend
-|Outils!plugins:maintenance');
+|pages!sommaire:rubrique:article:auteur:breve:site:herbier:forum:agenda:galerie:album:plan:recherche
+|elements_transverses!bandeau:menus:comments:formulaires:modeles:noisettes:pied
+|referencement!header:backend
+|outils!plugins:maintenance');
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
