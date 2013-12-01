@@ -24,7 +24,7 @@ function calcul_version_squelette() {
 	$version = NULL;
 
 	$informer = chercher_filtre('info_plugin');
-	$version = $informer('sarkaspip', 'version');
+	$version = $informer('sarkaspipr', 'version');
 
 	$revision = version_svn_courante(_DIR_PLUGIN_SARKASPIP);
 	if ($revision > 0)
