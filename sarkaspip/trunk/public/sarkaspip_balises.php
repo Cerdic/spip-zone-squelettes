@@ -230,10 +230,9 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 		}
 	}
 	else if ($type == 'config') {
-		if (function_exists('lire_config')) {
-			$valeur = lire_config($fond.'/rubrique_'.$mot);
-			if (($valeur != NULL) && ($valeur > 0)) $id_rubrique = $valeur;
-		}
+		include_spip('inc/config');
+		$valeur = lire_config($fond.'/rubrique_'.$mot);
+		if (($valeur != NULL) && ($valeur > 0)) $id_rubrique = $valeur;
 	}
 	
 	// Si on est en mode branche on retourne les rubriques de la branche, sinon uniquement le secteur recupere precedemment
