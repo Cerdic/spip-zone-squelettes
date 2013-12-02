@@ -74,6 +74,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// F
 	'filtre_auteur' => 'Auteur : ',
+	'filtre_date_debut' => 'Après le : ',
+	'filtre_date_fin' => 'Avant le : ',
 	'filtre_mot' => 'Mot : ',
 	'filtre_recherche' => 'Recherche : ',
 	'filtre_rubrique' => 'Rubrique : ',
