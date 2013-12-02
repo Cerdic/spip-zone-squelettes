@@ -13,13 +13,9 @@
 	#FORMULAIRE_MS_RECHERCHE_AVANCEE
 	</div>
 	
-	[(#REM)
-		On ne lance une recherche que s'il y a réellement des choses à chercher
-	]
 	[(#ENV{licence_nom}|oui)
 		[(#ENV{licence_nom}|=={ss_licence}|?{[(#SET{id_licence,0})],[(#SET{id_licence,#ENV{licence_nom}})]})]
 	]
-	<BOUCLE_recherche_effectuee(CONDITION){si #ENV{recherche}|ou{#ENV{licence_nom}}|ou{#ENV{id_rubrique}}|ou{#ENV{id_auteur}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|ou{#ENV{type_date}}|ou{#ENV{em_type}}|ou{#ENV{lang_forcee}}|oui}>
 		[(#REM) Medias trouves ]
 		[(#SET{titre_liste,<:mediaspip_core:recherche_medias:>})]
 		
@@ -68,5 +64,4 @@
 		</div>
 		</B_syndic_articles>
 		</BOUCLE_recherche_critere_syndic_ok>
-	</BOUCLE_recherche_effectuee>
 </div>
