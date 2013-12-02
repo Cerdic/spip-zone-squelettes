@@ -79,6 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_em_type' => 'Type : ',
 	'filtre_langue' => 'Langue : ',
 	'filtre_licence' => 'Licence : ',
+	'filtre_mesfavoris' => 'Mes favoris : ',
 	'filtre_mot' => 'Mot : ',
 	'filtre_recherche' => 'Recherche : ',
 	'filtre_rubrique' => 'Rubrique : ',
