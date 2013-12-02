@@ -19,6 +19,13 @@
 	<BOUCLE_mots(MOTS){id_mot IN #MOTS}>
 		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE})]
 	</BOUCLE_mots>
+	[(#REM) TODO : chaîne différente selon #TYPE_DATE ?]
 	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_debut,valeur=[(#DATE_DEBUT|affdate_jourcourt)]})]
 	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_fin,valeur=[(#DATE_FIN|affdate_jourcourt)]})]
+	[(#EM_TYPE|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_em_type,valeur=[(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)]})]]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_langue,valeur=[(#LANGUE_FORCEE|traduire_nom_langue)]})]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_licence,valeur=[(#MODELE{licence,id_licence,logo=non,lien=non})]})]
+	<BOUCLE_status(DATA){source table, #ENV{statuts}}>
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_statut,valeur=[(#VAL{texte_statut_#VALEUR}|_T)]})]
+	</BOUCLE_status>
 </div>
