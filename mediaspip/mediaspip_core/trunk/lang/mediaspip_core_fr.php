@@ -73,6 +73,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_avancee' => 'Configurez le formulaire de recherche avancée et le tri des médias',
 
 	// F
+	'filtre_auteur' => 'Auteur : ',
+	'filtre_mot' => 'Mot : ',
+	'filtre_recherche' => 'Recherche : ',
+	'filtre_rubrique' => 'Rubrique : ',
 	'formulaire_contact' => 'Contact',
 	'formulaire_inscription' => 'Inscription',
 	'formule_bonjour' => 'Bonjour @nom@',

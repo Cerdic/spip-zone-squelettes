@@ -1,0 +1,22 @@
+[(#REM)
+
+  Filtres de recherche actifs
+  (c) 2013 Mediaspip
+  Distribue sous licence GPL
+
+]
+<div class="filtres">
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE})]
+	<BOUCLE_auteur(AUTEURS){id_auteur}>
+		#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_auteur,valeur=#NOM}
+	</BOUCLE_auteur>
+	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+		#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_rubrique,valeur=#TITRE}
+	</BOUCLE_rubrique>
+	<BOUCLE_mot(MOTS){id_mot}>
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE})]
+	</BOUCLE_mot>
+	<BOUCLE_mots(MOTS){id_mot IN #MOTS}>
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE})]
+	</BOUCLE_mots>
+</div>
