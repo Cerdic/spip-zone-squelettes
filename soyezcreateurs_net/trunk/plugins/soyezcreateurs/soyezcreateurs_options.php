@@ -150,52 +150,6 @@ $spip_pipeline['insert_head'] = str_replace('|f_jQuery', '', $spip_pipeline['ins
 
 define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr:soft_scroller');
 
-######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
-// Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
-$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
-
-function cs_SoyezCreateurs() { return array(
-	// Installation des outils par défaut
-	'outils' =>
-		'boites_privees,
-		citations_bb,
-		typo_exposants,
-		guillemets,
-		mailcrypt,
-		insertions,
-		corbeille,
-		spip_ecran',
-
-	// Installation des variables par défaut
-	'variables' => array(
-		'expo_bofbof' => 1,
-		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
-span.surgris = background-color:#EAEAEC; padding:0px 2px;
-fluo = surfluo',
-		'pp_edition_decoration' => 1,
-		'pp_forum_decoration' => 1,
-		'spip_ecran' => 'large',
-		'insertions' => 'oeuf = &oelig;uf
-cceuil = ccueil
-(a priori) = {a priori}
-(([hH])uits) = $1uit
-/([cC]h?)oeur/ = $1&oelig;ur
-/oeuvre/ = &oelig;uvre
-(O[Ee]uvre([rs]?)) = &OElig;uvre$1
-/\\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\\b/ = $1onnaissa$2
-CO2 = <abbr title="CO2, Dioxyde de carbone, O=C=O">CO<sub>2</sub></abbr>
-oeil = &oelig;il
-(O[Ee]il) = &OElig;il',
-		'cs_rss' => 0,
-		'format_spip' => 0,
-		'stat_auteurs' => 1,
-		'qui_webmasters' => 1,
-		'bp_urls_propres' => 1,
-		'bp_tri_auteurs' => 1
-	)
-);
-}
-
 function balise_SECTEUR_PDF_dist($p) {
 	if (!is_array($p->param))
 		$p->param=array();

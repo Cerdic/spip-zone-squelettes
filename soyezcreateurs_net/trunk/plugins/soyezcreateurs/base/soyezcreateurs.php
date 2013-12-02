@@ -12,6 +12,52 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 include_spip("inc/lang");
 include_spip('inc/meta');
 
+######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
+// Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
+$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
+
+function cs_SoyezCreateurs() { return array(
+	// Installation des outils par défaut
+	'outils' =>
+		'boites_privees,
+		citations_bb,
+		typo_exposants,
+		guillemets,
+		mailcrypt,
+		insertions,
+		corbeille,
+		spip_ecran',
+
+	// Installation des variables par défaut
+	'variables' => array(
+		'expo_bofbof' => 1,
+		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
+span.surgris = background-color:#EAEAEC; padding:0px 2px;
+fluo = surfluo',
+		'pp_edition_decoration' => 1,
+		'pp_forum_decoration' => 1,
+		'spip_ecran' => 'large',
+		'insertions' => 'oeuf = &oelig;uf
+cceuil = ccueil
+(a priori) = {a priori}
+(([hH])uits) = $1uit
+/([cC]h?)oeur/ = $1&oelig;ur
+/oeuvre/ = &oelig;uvre
+(O[Ee]uvre([rs]?)) = &OElig;uvre$1
+/\\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\\b/ = $1onnaissa$2
+CO2 = <abbr title="CO2, Dioxyde de carbone, O=C=O">CO<sub>2</sub></abbr>
+oeil = &oelig;il
+(O[Ee]il) = &OElig;il',
+		'cs_rss' => 0,
+		'format_spip' => 0,
+		'stat_auteurs' => 1,
+		'qui_webmasters' => 1,
+		'bp_urls_propres' => 1,
+		'bp_tri_auteurs' => 1
+	)
+);
+}
+
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {	
 	ecrire_meta('activer_breves', 'non','non');
@@ -39,9 +85,48 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('documents_article', 'oui','non');
 	ecrire_meta('documents_rubrique', 'oui','non');
 	ecrire_meta('preview', ',0minirezo,1comite,','non');
-	ecrire_meta('btv2', 'a:1:{s:7:\"avancee\";s:3:\"Oui\";}','non');
+	ecrire_meta('image_process', 'gd2', 'non');
+	ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
+	ecrire_meta('gd_formats', 'gif,jpg,png', 'non');
+	ecrire_meta('formats_graphiques', 'gif,jpg,png', 'non');
+	ecrire_meta('btv2', 'a:1:{s:7:"avancee";s:3:"Oui";}', 'non');
+	ecrire_meta('bte', 'a:14:{s:5:"puces";s:3:"Oui";s:14:"titraille1open";s:17:"<h2 class="spip">";s:15:"titraille1close";s:5:"</h2>";s:14:"titraille2open";s:17:"<h3 class="spip">";s:15:"titraille2close";s:5:"</h3>";s:14:"titraille3open";s:17:"<h4 class="spip">";s:15:"titraille3close";s:5:"</h4>";s:14:"titraille4open";s:17:"<h5 class="spip">";s:15:"titraille4close";s:5:"</h5>";s:14:"titraille5open";s:17:"<h6 class="spip">";s:15:"titraille5close";s:5:"</h6>";s:9:"insertcss";s:3:"Non";s:17:"defaultbarrestyle";s:5:"close";s:14:"mode_titraille";N;}', 'non');
 	ecrire_meta('barre_typo_generalisee', 'a:6:{s:38:\"rubriques_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"groupesmots_texte_barre_typo_generalisee\";s:2:\"on\";s:33:\"mots_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"sites_description_barre_typo_generalisee\";s:2:\"on\";s:48:\"configuration_description_barre_typo_generalisee\";s:2:\"on\";s:42:\"auteurs_quietesvous_barre_typo_generalisee\";s:2:\"on\";}','non');
 	ecrire_meta('socialtags', 'a:5:{s:4:"tags";a:7:{i:0;s:0:"";i:1;s:9:"blogmarks";i:2;s:9:"delicious";i:3;s:4:"digg";i:4;s:6:"google";i:5;s:7:"twitter";i:6;s:6:"viadeo";}s:10:"jsselector";s:11:"#socialtags";s:5:"badge";s:0:"";s:7:"badgejs";s:0:"";s:9:"ifreferer";N;}','non');
+	ecrire_meta('ppp', 'a:5:{s:14:"descriptif_ppp";s:0:"";s:9:"chapo_ppp";s:2:"on";s:6:"ps_ppp";s:2:"on";s:29:"configuration_description_ppp";s:2:"on";s:23:"auteurs_quietesvous_ppp";s:2:"on";}', 'non');
+	// Activer les crayons dans ecrire, et la barre typo sur les crayons, réduire les images à 400 px de large (au cas où)
+	ecrire_config('crayons/barretypo','on');
+	ecrire_config('crayons/reduire_logo',400);
+	ecrire_config('crayons/espaceprive','on');
+	ecrire_config('crayons/exec_autorise','*');
+	//pré-configuration du plugin microblog
+	ecrire_config('microblog/evt_publierarticles', 'on');
+	ecrire_config('microblog/evt_publierarticlesfutur', 'publication');
+	//Le mode texte seul de bouton texte bug au retour dans la page avec MediaBox
+	ecrire_config('boutonstexte/txtOnly','_');
+	// Permettre aux webmestres d'éditer les forums (dans le privé et le public, avec les crayons).
+	ecrire_config('autorite/editer_forums',1);
+
+	$f = chercher_filtre('info_plugin');
+	if ($f('savecfg', 'est_actif')) {
+		include_spip('inc/sauvegarder_savecfg');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Violet','a:39:{s:7:"body_bk";s:7:"#a16e9e";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#664e3b";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#402816";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#664e3b";s:10:"navigation";s:7:"#013067";s:13:"navigation_bk";s:7:"#3fa3d7";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#a1856e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#013067";s:8:"extra_bk";s:7:"#3fa3d7";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#5599cd";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#66aade";s:13:"menu_a_active";s:7:"#5599cd";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#013067";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#3fa3d7";s:9:"container";s:7:"#013067";s:12:"container_bk";s:7:"#ffffff";s:9:"titraille";s:7:"#013067";s:12:"titraille_bk";s:7:"#a6cbec";s:4:"link";s:7:"#5599cd";s:7:"visited";s:7:"#66aade";s:5:"hover";s:7:"#a1856e";s:6:"active";s:7:"#402816";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Bleu & marron ','a:35:{s:7:"body_bk";s:7:"#d2e0eb";s:6:"header";s:4:"#fff";s:9:"header_bk";s:7:"#7c4617";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#7c4617";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#7c4617";s:10:"navigation";s:7:"#7c4617";s:13:"navigation_bk";s:7:"#d2e0eb";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#7c4617";s:8:"extra_bk";s:7:"#ffffff";s:6:"menu_a";s:7:"#7c4617";s:9:"menu_a_bk";s:7:"#d2e0eb";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#7c4617";s:13:"menu_a_active";s:7:"#7c4617";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#7c4617";s:16:"menu_a_strong_bk";s:7:"#b7cde1";s:9:"container";s:7:"#321d0b";s:12:"container_bk";s:7:"#ffffff";s:9:"titraille";s:7:"#7c4617";s:12:"titraille_bk";s:7:"#b7cde1";s:4:"link";s:7:"#273e54";s:7:"visited";s:7:"#321d0b";s:5:"hover";s:7:"#7c4617";s:6:"active";s:7:"#321d0b";s:15:"fontsnavigation";s:31:""Times New Roman", Times, serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.4";s:14:"fontsizefooter";s:3:"1.3";s:18:"fontsizenavigation";s:3:"1.5";s:15:"fontsizecontenu";s:3:"1.2";s:12:"vignettes_bk";s:7:"#9dba00";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Vert anis','a:54:{s:7:"body_bk";s:7:"#e5eacc";s:6:"header";s:7:"#005500";s:9:"header_bk";s:7:"#c5e41c";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#7d9a00";s:6:"footer";s:7:"#c5e41c";s:9:"footer_bk";s:7:"#7d9a00";s:10:"navigation";s:7:"#005500";s:13:"navigation_bk";s:7:"#c5e41c";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#005500";s:8:"extra_bk";s:7:"#c5e41c";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#7d9a00";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#9dba00";s:13:"menu_a_active";s:7:"#7d9a00";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#ff8800";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:9:"container";s:7:"#3e4d00";s:12:"container_bk";s:7:"#ffffff";s:9:"titraille";s:7:"#7d9a00";s:12:"titraille_bk";s:7:"#c5e41c";s:4:"link";s:7:"#7d9a00";s:7:"visited";s:7:"#9dba00";s:5:"hover";s:7:"#ff8c00";s:6:"active";s:7:"#b672a3";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:12:"vignettes_bk";s:7:"#9dba00";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:8:"menuhaut";s:7:"#005500";s:11:"menuhaut_bk";s:7:"#c5e41c";s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#7d9a00";s:22:"titraille_ssniveaux_bk";s:7:"#3e4d00";s:11:"cadrestexte";s:7:"#3e4d00";s:14:"cadrestexte_bk";s:7:"#c5e41c";s:13:"header_lettre";s:7:"#005500";s:16:"header_lettre_bk";s:7:"#c5e41c";s:16:"titraille_lettre";s:7:"#7d9a00";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Rouge bordeaux','a:54:{s:7:"body_bk";s:7:"#872D3F";s:6:"header";s:7:"#F8F2EC";s:9:"header_bk";s:7:"#872D3F";s:11:"datemajsite";s:7:"#872D3F";s:14:"datemajsite_bk";s:7:"#F8F2EC";s:6:"footer";s:7:"#F8F2EC";s:9:"footer_bk";s:7:"#872D3F";s:10:"navigation";s:7:"#F8F2EC";s:13:"navigation_bk";s:7:"#872D3F";s:8:"menuhaut";s:7:"#F8F2EC";s:11:"menuhaut_bk";s:11:"transparent";s:7:"logo_bk";s:7:"#872D3F";s:5:"extra";s:7:"#F8F2EC";s:8:"extra_bk";s:7:"#872D3F";s:6:"menu_a";s:7:"#F8F2EC";s:9:"menu_a_bk";s:7:"#872D3F";s:12:"menu_a_hover";s:7:"#8edbf6";s:15:"menu_a_hover_bk";s:7:"#872D3F";s:13:"menu_a_active";s:7:"#F8F2EC";s:16:"menu_a_active_bk";s:7:"#872D3F";s:13:"menu_a_strong";s:7:"#8edbf6";s:16:"menu_a_strong_bk";s:7:"#872D3F";s:12:"vignettes_bk";s:7:"#872D3F";s:9:"container";s:7:"#872D3F";s:12:"container_bk";s:7:"#F8F2EC";s:9:"titraille";s:7:"#6c3742";s:12:"titraille_bk";s:7:"#F8F2EC";s:4:"link";s:7:"#872D3F";s:7:"visited";s:7:"#6c3742";s:5:"hover";s:7:"#6c3742";s:6:"active";s:7:"#6c3742";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.0";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:3:"1.2";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#6c3742";s:22:"titraille_ssniveaux_bk";s:7:"#872D3F";s:11:"cadrestexte";s:7:"#872D3F";s:14:"cadrestexte_bk";s:7:"#F8F2EC";s:13:"header_lettre";s:7:"#F8F2EC";s:16:"header_lettre_bk";s:7:"#872D3F";s:16:"titraille_lettre";s:7:"#6c3742";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','(Par défaut)','a:54:{s:7:"body_bk";s:7:"#a1856e";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#664e3b";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#402816";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#664e3b";s:10:"navigation";s:7:"#013067";s:13:"navigation_bk";s:7:"#3fa3d7";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#a1856e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#013067";s:8:"extra_bk";s:7:"#3fa3d7";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#5599cd";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#66aade";s:13:"menu_a_active";s:7:"#5599cd";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#013067";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#3fa3d7";s:9:"container";s:7:"#013067";s:12:"container_bk";s:7:"#ffffff";s:9:"titraille";s:7:"#013067";s:12:"titraille_bk";s:7:"#a6cbec";s:4:"link";s:7:"#5599cd";s:7:"visited";s:7:"#66aade";s:5:"hover";s:7:"#a1856e";s:6:"active";s:7:"#402816";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#a6cbec";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#e4eff9";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#664e3b";s:16:"titraille_lettre";s:7:"#013067";s:18:"fontsizeartrecents";s:1:"1";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Bleu & orange','a:54:{s:7:"body_bk";s:7:"#6e73a1";s:6:"header";s:7:"#ffb014";s:9:"header_bk";s:7:"#3b4266";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#161e40";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#3b4066";s:10:"navigation";s:7:"#674d01";s:13:"navigation_bk";s:7:"#cda555";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#6e7aa1";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#674401";s:8:"extra_bk";s:7:"#cda555";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#d79c3f";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#deb566";s:13:"menu_a_active";s:7:"#cda955";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#674f01";s:16:"menu_a_strong_bk";s:7:"#d4dcf2";s:12:"vignettes_bk";s:7:"#d7b23f";s:9:"container";s:7:"#674701";s:12:"container_bk";s:7:"#e1e3f4";s:9:"titraille";s:7:"#674c01";s:12:"titraille_bk";s:7:"#eccea6";s:4:"link";s:7:"#cda355";s:7:"visited";s:7:"#deb566";s:5:"hover";s:7:"#6e79a1";s:6:"active";s:7:"#aa8a41";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#a6cbec";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f9f2e4";s:13:"header_lettre";s:7:"#ffb014";s:16:"header_lettre_bk";s:7:"#3b4266";s:16:"titraille_lettre";s:7:"#013067";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Bleu blanc rouge','a:54:{s:7:"body_bk";s:7:"#6e74a1";s:6:"header";s:7:"#000000";s:9:"header_bk";s:7:"#ffffff";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#ce6f69";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#3b3d66";s:10:"navigation";s:7:"#013067";s:13:"navigation_bk";s:7:"#f7eded";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#cf3c3a";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#013067";s:8:"extra_bk";s:7:"#f7eded";s:6:"menu_a";s:7:"#000000";s:9:"menu_a_bk";s:7:"#ffffff";s:12:"menu_a_hover";s:7:"#000000";s:15:"menu_a_hover_bk";s:7:"#de6c66";s:13:"menu_a_active";s:7:"#ffffff";s:16:"menu_a_active_bk";s:7:"#e5bdbd";s:13:"menu_a_strong";s:7:"#670301";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#3b3d66";s:9:"container";s:7:"#013067";s:12:"container_bk";s:7:"#7eb4ce";s:9:"titraille";s:7:"#013067";s:12:"titraille_bk";s:7:"#e9bdba";s:4:"link";s:7:"#cd5559";s:7:"visited";s:7:"#de666a";s:5:"hover";s:7:"#a16f6e";s:6:"active";s:7:"#6a2526";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#a6cbec";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#e4eff9";s:13:"header_lettre";s:7:"#000000";s:16:"header_lettre_bk";s:7:"#ffffff";s:16:"titraille_lettre";s:7:"#013067";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Gris & jaune','a:54:{s:7:"body_bk";s:7:"#828282";s:6:"header";s:7:"#e03838";s:9:"header_bk";s:7:"#504f4e";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#262626";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#504f4e";s:10:"navigation";s:7:"#676001";s:13:"navigation_bk";s:7:"#d7d13f";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#a19e6e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#675e01";s:8:"extra_bk";s:7:"#d7c63f";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#cdc655";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#ded766";s:13:"menu_a_active";s:7:"#8c8c87";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#2f2f2d";s:16:"menu_a_strong_bk";s:7:"#f5f3e0";s:12:"vignettes_bk";s:7:"#d7c93f";s:9:"container";s:7:"#383838";s:12:"container_bk";s:7:"#f5f3e0";s:9:"titraille";s:7:"#313335";s:12:"titraille_bk";s:7:"#ece7a6";s:4:"link";s:7:"#8f8f8f";s:7:"visited";s:7:"#9fa1a3";s:5:"hover";s:7:"#868483";s:6:"active";s:7:"#272726";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#c5cace";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#dadbdc";s:13:"header_lettre";s:7:"#e03838";s:16:"header_lettre_bk";s:7:"#504f4e";s:16:"titraille_lettre";s:7:"#013067";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Noir & blanc','a:54:{s:7:"body_bk";s:7:"#ffffff";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#312f2f";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#000000";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#000000";s:10:"navigation";s:7:"#000000";s:13:"navigation_bk";s:7:"#9e9a9b";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#000000";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#000000";s:8:"extra_bk";s:7:"#9e9a9b";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#000000";s:12:"menu_a_hover";s:7:"#000000";s:15:"menu_a_hover_bk";s:7:"#ffffff";s:13:"menu_a_active";s:7:"#000000";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#000000";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#000000";s:9:"container";s:7:"#000000";s:12:"container_bk";s:7:"#dedede";s:9:"titraille";s:7:"#000000";s:12:"titraille_bk";s:7:"#9e9a9b";s:4:"link";s:7:"#000000";s:7:"visited";s:7:"#9e9a9b";s:5:"hover";s:7:"#000000";s:6:"active";s:7:"#000000";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#000000";s:22:"titraille_ssniveaux_bk";s:7:"#ffffff";s:11:"cadrestexte";s:7:"#000000";s:14:"cadrestexte_bk";s:7:"#ffffff";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#000000";s:16:"titraille_lettre";s:7:"#000000";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Pastel bleu','a:54:{s:7:"body_bk";s:7:"#ffffff";s:6:"header";s:7:"#94abe0";s:9:"header_bk";s:7:"#ebe8e5";s:11:"datemajsite";s:7:"#96abe3";s:14:"datemajsite_bk";s:7:"#e3ddd9";s:6:"footer";s:7:"#9bb3df";s:9:"footer_bk";s:7:"#e9e5e2";s:10:"navigation";s:7:"#4a9cfc";s:13:"navigation_bk";s:7:"#d2e8f4";s:8:"menuhaut";s:7:"#9db2e1";s:11:"menuhaut_bk";s:7:"#ebe5e0";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#3e94f9";s:8:"extra_bk";s:7:"#c3e3f3";s:6:"menu_a";s:7:"#1a2d65";s:9:"menu_a_bk";s:7:"#d5e5f1";s:12:"menu_a_hover";s:7:"#293366";s:15:"menu_a_hover_bk";s:7:"#c1dcf0";s:13:"menu_a_active";s:7:"#83b4d8";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#3b95fc";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#bcdff1";s:9:"container";s:7:"#4d9cf9";s:12:"container_bk";s:7:"#ffffff";s:9:"titraille";s:7:"#5ba5fb";s:12:"titraille_bk";s:7:"#e6f0fa";s:4:"link";s:7:"#77add4";s:7:"visited";s:7:"#7db5e3";s:5:"hover";s:7:"#a18872";s:6:"active";s:7:"#cc8f61";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#a6cbec";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#e4eff9";s:13:"header_lettre";s:7:"#94abe0";s:16:"header_lettre_bk";s:7:"#ebe8e5";s:16:"titraille_lettre";s:7:"#013067";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Pastel ocre','a:54:{s:7:"body_bk";s:7:"#e4ba86";s:6:"header";s:7:"#e4ab72";s:9:"header_bk";s:7:"#664e3b";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#402816";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#664e3b";s:10:"navigation";s:7:"#e17b14";s:13:"navigation_bk";s:7:"#bea68e";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#a1856e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#e17b14";s:8:"extra_bk";s:7:"#bea68e";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#cd9a55";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#deb466";s:13:"menu_a_active";s:7:"#cd8f55";s:16:"menu_a_active_bk";s:7:"#eadecd";s:13:"menu_a_strong";s:7:"#000000";s:16:"menu_a_strong_bk";s:7:"#e9e1d3";s:12:"vignettes_bk";s:7:"#d78d3f";s:9:"container";s:7:"#673901";s:12:"container_bk";s:7:"#f9f3e4";s:9:"titraille";s:7:"#673601";s:12:"titraille_bk";s:7:"#ecd2a6";s:4:"link";s:7:"#cd9a55";s:7:"visited";s:7:"#dea466";s:5:"hover";s:7:"#a1926e";s:6:"active";s:7:"#403016";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#673f01";s:22:"titraille_ssniveaux_bk";s:7:"#eccea6";s:11:"cadrestexte";s:7:"#523000";s:14:"cadrestexte_bk";s:7:"#f9f3e4";s:13:"header_lettre";s:7:"#e4ab72";s:16:"header_lettre_bk";s:7:"#664e3b";s:16:"titraille_lettre";s:7:"#673601";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Rouge & jaune','a:54:{s:7:"body_bk";s:7:"#efca6c";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#a71716";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#881114";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#881114";s:10:"navigation";s:7:"#e3d98c";s:13:"navigation_bk";s:7:"#853839";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#853839";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#ffffff";s:8:"extra_bk";s:7:"#853839";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#cd7113";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#c1103b";s:13:"menu_a_active";s:7:"#000000";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#c32234";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#ffffff";s:9:"container";s:7:"#c32234";s:12:"container_bk";s:7:"#f7e8d9";s:9:"titraille";s:7:"#c32234";s:12:"titraille_bk";s:7:"#efca6c";s:4:"link";s:7:"#ec3927";s:7:"visited";s:7:"#ec3927";s:5:"hover";s:7:"#da552f";s:6:"active";s:7:"#a7432f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#674b01";s:22:"titraille_ssniveaux_bk";s:7:"#ecaaa6";s:11:"cadrestexte";s:7:"#523100";s:14:"cadrestexte_bk";s:7:"#f9e4e4";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#a71716";s:16:"titraille_lettre";s:7:"#c32234";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Vert été','a:54:{s:7:"body_bk";s:7:"#d0ef6c";s:6:"header";s:7:"#f1f7d9";s:9:"header_bk";s:7:"#25a716";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#1f8811";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#148811";s:10:"navigation";s:7:"#bce38c";s:13:"navigation_bk";s:7:"#3d8538";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#38853d";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#ffffff";s:8:"extra_bk";s:7:"#38853d";s:6:"menu_a";s:7:"#ffffff";s:9:"menu_a_bk";s:7:"#3d8538";s:12:"menu_a_hover";s:7:"#ffffff";s:15:"menu_a_hover_bk";s:7:"#12c110";s:13:"menu_a_active";s:7:"#000000";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#29c322";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#ffffff";s:9:"container";s:7:"#25c322";s:12:"container_bk";s:7:"#f1f7d9";s:9:"titraille";s:7:"#22c324";s:12:"titraille_bk";s:7:"#c4ef6c";s:4:"link";s:7:"#32ec27";s:7:"visited";s:7:"#27ec27";s:5:"hover";s:7:"#34da2f";s:6:"active";s:7:"#32a72f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#01673e";s:22:"titraille_ssniveaux_bk";s:7:"#a6eccd";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f6f9e4";s:13:"header_lettre";s:7:"#f1f7d9";s:16:"header_lettre_bk";s:7:"#25a716";s:16:"titraille_lettre";s:7:"#01673e";}');
+		sauvegarder_savecfg('soyezcreateurs_couleurs','Violet & vert','a:54:{s:7:"body_bk";s:7:"#9ed897";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#663b62";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#164017";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#663b64";s:10:"navigation";s:7:"#c982c2";s:13:"navigation_bk";s:7:"#69c975";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#70a16e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#8a0f81";s:8:"extra_bk";s:7:"#69c975";s:6:"menu_a";s:7:"#af12a2";s:9:"menu_a_bk";s:7:"#f6daf5";s:12:"menu_a_hover";s:7:"#a4569f";s:15:"menu_a_hover_bk";s:7:"#61b757";s:13:"menu_a_active";s:7:"#cd55c7";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#670165";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#663b62";s:9:"container";s:7:"#cc6cd0";s:12:"container_bk";s:7:"#c5f2d1";s:9:"titraille";s:7:"#670161";s:12:"titraille_bk";s:7:"#c08cd4";s:4:"link";s:7:"#c055cd";s:7:"visited";s:7:"#de66d4";s:5:"hover";s:7:"#a16ea0";s:6:"active";s:7:"#40163f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#eca6e6";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f9e4f4";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#663b62";s:16:"titraille_lettre";s:7:"#670161";}');
+	}
+
+
 	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') )
 		ecrire_meta('nom_site', 'Mon site SPIP <sub>Squelette SoyezCreateurs</sub>','non');
 	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", "soyezcreateurs_install");
@@ -51,19 +136,15 @@ function soyezcreateurs_config_site() {
 // fonction qui permet de trouver si un groupe de mots clés existe à partir du titre
 function find_groupe($titre) {
 	$titre = addslashes($titre);
-	spip_log("1. (find_groupe) recherche des occurences dans la table spip_groupes_mots de l'id de : $titre", "soyezcreateurs_install");
 	$count = sql_countsel("spip_groupes_mots", "titre='$titre'");
-	spip_log("2. (find_groupe) resultat de la recherche : $count occurences pour $titre", "soyezcreateurs_install");
 	return $count;
 }
 
 // fonction pour trouver l'id du groupe de mots clés à partir du titre du groupe
 function id_groupe($titre) {
 	$titre = addslashes($titre);
-	spip_log("1. (id_groupe) selection dans la table spip_groupes_mots de l'id de : $titre", "soyezcreateurs_install");
 	$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre='$titre'");
 	$resultat = $result['id_groupe'];
-	spip_log("2. (id_groupe) selection = $resultat pour $titre", "soyezcreateurs_install");
 	return $resultat;
 }
 
@@ -81,7 +162,6 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 		$tables_liees.='syndic,';
 	if ($evenements == 'oui') 
 		$tables_liees.='evenements,';
-	spip_log("1. (create_groupe) pret a creer groupe : titre = $groupe. retour de find_groupe = $id_groupe", "soyezcreateurs_install");
 	if ($id_groupe == 0) {
 		$id_insert = sql_insertq(
 			"spip_groupes_mots", array(
@@ -97,11 +177,9 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 				"forum" => $forum
 			)
 		);
-		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id__insert et titre = $groupe", "soyezcreateurs_install");
 	} 
 	else if ($id_groupe > 0) {
 		$id_insert = remplacer_groupe($groupe, $descriptif, $texte, $unseul, $obligatoire, $tables_liees, $minirezo, $comite, $forum);
-		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe... passage a remplacer_groupe", "soyezcreateurs_install");
 	}
 	return $id_insert;
 }
@@ -165,7 +243,6 @@ function find_mot($titre, $id_groupe) {
 
 //fonction qui permet de trouver l'id du mot clé à partir du titre et de l'id du groupe
 function id_mot($titre, $id_groupe) {
-	spip_log("1. (id_mot) debut de recherche de l'id de $titre avec $id_groupe", "soyezcreateurs_install");
 	$titre = addslashes($titre);
 	$result = sql_fetsel(
 		"id_mot", 
@@ -173,7 +250,6 @@ function id_mot($titre, $id_groupe) {
 		"titre='$titre' AND id_groupe = $id_groupe"
 	);
 	$id_mot = $result['id_mot'];
-	spip_log("2. (id_mot) retour de la fonction id_mot = $id_mot", "soyezcreateurs_install");
 	return $id_mot;
 }
 
@@ -182,7 +258,6 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	$id_groupe = id_groupe($groupe);
 	$find_mot = find_mot($mot, $id_groupe);
 	if ($find_mot == 0) {
-		spip_log("1. (create_mot) debut create_mot. mot inexistant donc creation : $id_groupe - $mot", "soyezcreateurs_install");
 		$id_mot = sql_insertq(
 			"spip_mots", array(
 				"id_mot" => '',
@@ -193,15 +268,12 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 				"type" => $groupe
 			)
 		);
-		spip_log("2. (create_mot) mot cle $mot insere sous l'id $motcle dans la table avec groupe = $id_groupe", "soyezcreateurs_install");
 	}
 	else if ($find_mot > 0) {
 		$id_mot = id_mot($mot, $id_groupe);
-		spip_log("1. (create_mot) mise a jour dans la table du mot cle : $mot", "soyezcreateurs_install");
 		remplacer_mot($id_mot, $descriptif, $texte, $id_groupe, $groupe);
 	}
 	else {
-		spip_log("insertion impossible ! debug : groupe = $groupe --- id_groupe = $id_groupe", "soyezcreateurs_install");
 	}
 	return $id_mot;
 }
@@ -236,7 +308,6 @@ function id_rubrique($titre) {
 		"titre='$titre'"
 	);
 	$resultat = $result['id_rubrique'];
-	spip_log("1. (id_rubrique) recherche de l'id_rubrique de $titre = $resultat", "soyezcreateurs_install");
 	return $resultat;
 }
 
@@ -249,7 +320,6 @@ function rename_rubrique($titre, $nouveau_titre) {
 				"titre" => $nouveau_titre
 			), "id_rubrique=$id_rubrique"
 		);
-		spip_log("rename_rubrique) renommage de $titre en $nouveau_titre", "soyezcreateurs_install");
 	}
 	return true;
 }
@@ -271,7 +341,6 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 				"id_secteur" => $id_rubrique
 			), "id_rubrique=$id_rubrique"
 		);
-		spip_log("1. (create_rubrique) rubrique cree : id = $id_rubrique, titre = $titre", "soyezcreateurs_install");
 	}
 	else if ($id_rubrique > 0) {
 		$id_rubrique = id_rubrique($titre);
@@ -310,7 +379,6 @@ function id_article($titre, $id_rubrique) {
 		"titre='$titre' AND id_rubrique = $id_rubrique"
 	);
 	$resultat = $result['id_article'];
-	spip_log("1. (id_article) recherche de l'id_article de $titre = $resultat", "soyezcreateurs_install");
 	return $resultat;
 }
 
@@ -319,7 +387,6 @@ function create_article($texte, $rubrique, $lang='fr') {
 	$id_rubrique = id_rubrique($rubrique);
 	$count_articles = find_article($texte['titre'], $id_rubrique);
 	if ($count_articles == 0) {
-		spip_log("1. (create_article) insertion d'un article : ".$texte['titre'], "soyezcreateurs_install");
 		$statut = 'publie';
 		$date = date("Y-m-d H:i:s");
 		$id_article = sql_insertq(
@@ -362,11 +429,9 @@ function create_article($texte, $rubrique, $lang='fr') {
 		include_spip('inc/rubriques');
 		calculer_rubriques();
 		propager_les_secteurs();
-		spip_log("2. (create_article) article insere : $id_article", "soyezcreateurs_install");
 	}
 	else if ($count_articles > 0) {
 		$id_article = id_article($texte['titre'], $id_rubrique);
-		spip_log("2. (create_article) maj de l'article : ".$texte['titre'], "soyezcreateurs_install");
 		remplacer_article($id_article, $id_rubrique, $texte);
 	}
 	return $id_article;
@@ -410,7 +475,6 @@ function find_article_mot($id_mot, $id_article) {
 
 //fonction qui permet de créer une relation entre un article et un mot clé
 function create_article_mot($article, $rubrique, $mot, $groupe) {
-	spip_log("1. (create_article_mot) demande de creation de liaison : $article avec $mot", "soyezcreateurs_install");
 	$id_rubrique = id_rubrique($rubrique);
 	$id_groupe = id_groupe($groupe);
 	$id_mot = id_mot($mot, $id_groupe);
@@ -424,10 +488,6 @@ function create_article_mot($article, $rubrique, $mot, $groupe) {
 				"id_article" => $id_article
 			)
 		);
-		spip_log("2. (create_article_mot) liaison mise en place (article = $id_article - mot = $id_mot)", "soyezcreateurs_install");
-	}
-	else {
-		spip_log("2. (create_article_mot) liaison deja existante ! (article = $id_article - mot = $id_mot)", "soyezcreateurs_install");
 	}
 }
 
@@ -445,7 +505,6 @@ function create_rubrique_mot($rubrique, $mot, $groupe) {
 	$id_rubrique = id_rubrique($rubrique);
 	$id_groupe = id_groupe($groupe);
 	$id_mot = id_mot($mot, $id_groupe);
-	spip_log("1. (create_rubrique_mot) creation : rubrique = $id_rubrique ($rubrique) - mot = $id_mot ($mot) - groupe = $id_groupe ($groupe)", "soyezcreateurs_install");
 	$count = find_rubrique_mot($id_mot, $id_rubrique);
 	if ($count == 0) {
 		sql_insertq(
@@ -485,7 +544,6 @@ function find_auteur($nom) {
 		"nom='$nom'"
 	);
 	$resultat = $result['id_auteur'];
-	spip_log("1. (id_auteur) recherche de l'id_auteur de $nom = $resultat", "soyezcreateurs_install");
 	return $resultat;
 }
 
@@ -497,7 +555,6 @@ function find_auteur_email($id_auteur) {
 		"id_auteur=$id_auteur"
 	);
 	$resultat = $result['email'];
-	spip_log("1. (email) recherche de l'email de $id_auteur = $resultat", "soyezcreateurs_install");
 	return $resultat;
 }
 
@@ -521,7 +578,6 @@ function create_auteur($nom, $email='', $bio='') {
 			)
 		);
 	}
-	spip_log("1. (create_auteur) auteur cree : id = $id_auteur, nom = $nom", "soyezcreateurs_install");
 	return $id_auteur;
 }
 
@@ -531,7 +587,6 @@ function create_document($chemin, $objet, $mode, $champs='non', $id_document='no
 	$chemin = find_in_path($chemin);
 	$type = $objet['type'];
 	$id_objet = $objet['id_objet'];
-	spip_log(array('tmp_name' => $chemin, 'name' => basename($chemin)), 'docusc');
 	if ($id_document = 'non' AND $chemin) {
 		$id_document = action_ajouter_un_document_dist('non', array('tmp_name' => $chemin, 'name' => basename($chemin)), $type, $id_objet, $mode);
 		if (is_array($champs))
@@ -603,7 +658,7 @@ function find_site_mot($id_mot, $id_syndic) {
 function create_site_mot($id_syndic, $mot, $groupe) {
 	$id_groupe = id_groupe($groupe);
 	$id_mot = id_mot($mot, $id_groupe);
-	$count = find_site_mot($id_mot, $id_rubrique);
+	$count = find_site_mot($id_mot, $id_syndic);
 	if ($count == 0) {
 		sql_insertq(
 			"spip_mots_syndic", array(
@@ -619,6 +674,11 @@ function create_site_mot($id_syndic, $mot, $groupe) {
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
 	create_rubrique('000. Fourre-tout', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
+	$id_rubrique = id_rubrique('000. Fourre-tout');
+	if ($id_rubrique >0) {
+		create_rubrique('10. NewsLetter', $id_rubrique, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
+	}
+	
 	create_rubrique('900. Agenda', '0');
 	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
 	//les groupes puis mots
@@ -630,6 +690,7 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
 		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
 		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
+	create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
 	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
@@ -682,6 +743,11 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_ModePortail", "2. Mot2", "", "");
 		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies.", "Ne pas oublier de mettre un logo (120×30) aux objet concernés.");
 		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S'applique aux :\n-* articles\n-* rubriques");
+		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "");
+		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
+		create_mot("_ModePortail", "CycloShow", "Affecter ce mot clef à la rubrique de SPIP dont les articles doivent apparaitre dans la zone du cycle d'images.\n\nIndiquer dans le texte du mot clef le nombre d'articles de la rubrique à prendre en compte.", "");
+		create_mot("_ModePortail", "Defilant", "Affecter ce mot clef à la rubrique de SPIP dont les brèves doivent apparaitre dans la zone de texte défilant en haut de la page.\n\n", "");
+		create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "");
 	create_groupe("_Specialisation", "Spécialisation d'un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l'article traitant de la politique d'accessibilité du site.", "Un fois l'article écrit, lui affecter ce mot clef pour qu'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d'accueil).");
 		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
@@ -692,35 +758,73 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_Specialisation", "EDITO_Restreint", "Pour un article d'Edito ne s'affichant qu'en mode restreint", "Permet donc d'avoir un Edito pour le grand public et un Edito pour la zone restreinte.\n\nMieux encore, avec 2 EDITO_Restreint, un en libre accès et un en zone restreinte, on pourra avoir :\n-* un Edito d'accueil après inscription au site\n-* Un Edito d'accueil après rattachement à une zone restreinte.");
 		create_mot("_Specialisation", "GraverSonNom", "Un article avec ce mot clef permettra aux visiteurs de laisser leur nom sur le site en tant que bulle d'aide sur l'image (Logo du mot) et de faire parvenir un texte aux administrateurs", "Il faut pour que ça fonctionne:\n\n-* un article\n-* un forum modéré a posteriori\n-* ce mot mot clef attaché à cet article\n-* un logo à ce mot clef\n\nÀ partir de là, l'article permet aux visiteurs de «graver leur nom» dans le site. Leur nom aparaitra en bulle d'aide sur une image (le logo de ce mot clef).");
 		create_mot("_Specialisation", "Livre d'Or", "Pour empécher que l'on puisse répondre à un forum", "Ce mot clef appliqué à un article ayant un forum fait que ce forum n'a qu'un niveau (pas possible de répondre à une intervention, seulement d'en rajouter)");
+		create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
 		create_mot("_Specialisation", "MENURACINE", "Doit s'afficher en dessous de Accueil", "Pour dire que l'article s'affiche en dessous de Accueil dans le menu de gauche avant les rubriques du site");
 		create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l'article s'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
 		create_mot("_Specialisation", "MENURACINEBAS_Systematique", "Affichage systématique dans le menu de gauche en bas", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en bas, que l'on soit dans un secteur avec MenuHaut ou non.");
 		create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l'on soit dans un secteur avec MenuHaut ou non.");
+		create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
 		create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
+		create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
 	create_groupe("_Specialisation_Rubrique", "Spécialisation d'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
 		create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu'une rubrique est dans l'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
 		create_mot("_Specialisation_Rubrique", "Citations", "Rubrique destinée à recevoir de courtes citations (une par article) affichées en haut à droite des pages du site de manière alléatoire (une nouvelle citation toutes les heures)", "Créer un article par citation avec :\n\n-* La citation dans le corps du texte (entourée de guillemets si nécessaires)\n-* L'auteur dans le sous-titre\n-* Le titre de l'article sert d'accroche pour le lecteur\n");
 		create_mot("_Specialisation_Rubrique", "DessousBreves", "Pour placer une rubrique et ses articles qui sont placés sous les brèves (dans la colonne de droite du site)", "[*Attention*] : une rubrique qui a ce mot clef ne doit pas avoir de sous-rubrique !\n\nLe titre de la rubrique sera affiché sur la droite et la liste de ses articles en dessous.\n\nSeuls les articles sont clicables pour accéder à leur contenu.");
 		create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
+		create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
 		create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
-		create_mot("_Specialisation_Rubrique", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site", "À affecter aux rubriques qui ne doivent pas être affichées dans le plan du site");
+		create_mot("_Specialisation_Rubrique", "PlanLocal", "Affecter ce mot clef aux rubriques où vous voulez afficher le plan local à la place de la liste des articles.");
 		create_mot("_Specialisation_Rubrique", "SecteurPasDansQuoiDeNeuf", "Pour interdire que les articles d'un secteur entier soit dans «Quoi de Neuf» sur la page d'accueil", "Un secteur, c'est une rubrique rattachée à la racine du site et toutes ses sous-rubriques");
+		create_mot("_Specialisation_Rubrique", "PasDansMenuExtra", "Pour interdire que la rubrique soit dans le menu des extra (menu droit)", "");
+		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
 	create_groupe("_Specialisation_Rubrique_ou_Article", "Spécialisation d'une rubrique ou d'un article", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n-* le comportement d'un article particulier", 'non', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l'article ou la rubrique soit dans «Quoi de Neuf» sur la page d'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
 		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l'article a un sommaire", "Un sommaire automatique sera placé en début d'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l'article.");
+		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site et des documents à télécharger.\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans le plan du site et dans la liste des documents à télécharger.");
+		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlanLocal", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) des plan locaux du site (ceux affichés quand une rubrique n'a ni texte, ni article, ni site).\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans les plan locaux du site.");
+		create_mot("_Specialisation_Rubrique_ou_Article", "Archives", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doivent être considérés comme archivés.", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
+		create_mot("_Specialisation_Rubrique_ou_Article", "GrosLogo", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doit afficher le logo de l'article ou de la rubrique en grand (flottant à gauche du texte de l'article).", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
+	create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+		create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
+		create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
+		create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
+		create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
+	create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+		create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
+		create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
+		create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
+		create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
+		create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
+	create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+		$id_mot = create_mot("_EnDirect", "00. Quoi de neuf ?", "", "");
+		create_logo('documents/newspaper.png', $type='mot', $id_mot, 'png'); // http://www.iconfinder.com/icondetails/8437/16/newspaper_icon
+	
 	// les liaisons entre rubriques et mot clé
 	create_rubrique_mot('000. Fourre-tout', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
+	create_rubrique_mot('000. Fourre-tout', 'PasDansFildAriane', "_Specialisation_Rubrique");
 	create_rubrique_mot('000. Fourre-tout', 'PasDansMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('000. Fourre-tout', 'PasDansPlan', "_Specialisation_Rubrique");
+	create_rubrique_mot('000. Fourre-tout', 'PasDansPlan', "_Specialisation_Rubrique_ou_Article");
 	create_rubrique_mot('900. Agenda', 'Agenda', "_Specialisation_Rubrique");
 	create_rubrique_mot('900. Agenda', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
 	create_rubrique_mot('900. Agenda', 'PasDansMenu', "_Specialisation_Rubrique");
 	create_rubrique_mot('999. Citations', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
 	create_rubrique_mot('999. Citations', 'PasDansMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('999. Citations', 'PasDansPlan', "_Specialisation_Rubrique");
+	create_rubrique_mot('999. Citations', 'PasDansPlan', "_Specialisation_Rubrique_ou_Article");
 	create_rubrique_mot('999. Citations', 'Citations', "_Specialisation_Rubrique");
+	create_rubrique_mot('999. Citations', 'PasDansFildAriane', "_Specialisation_Rubrique");
+	$id_rubrique = id_rubrique('000. Fourre-tout');
+	if ($id_rubrique >0) {
+		create_rubrique('05. Saint du jour', $id_rubrique, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "Nominis (Saint du jour)";
+		$sitesdj['url_site'] = "http://nominis.cef.fr/";
+		$sitesdj['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
+		$sitesdj['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
+		$id_site = create_site($sitesdj, '05. Saint du jour');
+		create_site_mot($id_site, 'SaintDuJour', '_Specialisation_Sites');
+	}
 	
 	include_spip('inc/sc_article');
 	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
@@ -760,7 +864,71 @@ function soyezcreateurs_config_motsclefs() {
 		$article6['texte'] = str_replace('<doc1', "<doc$id_doc>", $article6['texte']);
 		create_article($article6, "000. Fourre-tout");
 		create_article_mot($article6['titre'], "000. Fourre-tout", "ALaUne", "_Specialisation");
+	$article1 = trouve_article_sc("Politique d'accessibilité du site");
+		create_article($article1, "000. Fourre-tout");
+		create_article_mot($article1['titre'], "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
+		create_article_mot($article1['titre'], "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+	$id_rub_fourretout = id_rubrique("000. Fourre-tout");
+	$id_raccourcis_typo = id_article("Raccourcis Typographiques de SPIP, mode d'emploi", $id_rub_fourretout);
+	create_article_mot("Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+	create_logo('documents/casiertypo.png', $type='art', $id_raccourcis_typo, 'png');
+	// Menu de navigation haute
+	$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+	// Rubrique où placer les articles pour bien s'organiser
+	$id_rubrique = id_rubrique('000. Fourre-tout');
+	if ($id_rubrique >0) {
+		create_rubrique('10. Navigation haute', $id_rubrique, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot$id_mot] pour la documentation.");
+	}
+	create_rubrique_mot('000. Fourre-tout', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
+	create_rubrique_mot('10. Navigation haute', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
+	create_rubrique_mot('10. Navigation haute', 'PasDansFildAriane', "_Specialisation_Rubrique");
 	
+	create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site.\n\nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "");
+	$id_rubrique = id_rubrique('000. Fourre-tout');
+	if ($id_rubrique >0) {
+		create_rubrique('80. Réseaux sociaux', $id_rubrique, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "10. Facebook";
+		$sitesdj['url_site'] = "https://www.facebook.com/";
+		$sitesdj['descriptif'] = 'Retrouvez-nous sur Facebook';
+		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+		create_logo('documents/facebook.png', $type='site', $id_site, 'png');
+		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+		
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "20. Twitter";
+		$sitesdj['url_site'] = "https://fr.twitter.com/";
+		$sitesdj['descriptif'] = 'Retrouvez-nous sur Twitter';
+		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+		create_logo('documents/twitter.png', $type='site', $id_site, 'png');
+		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+		
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "30. Viadeo";
+		$sitesdj['url_site'] = "http://www.viadeo.com/fr/";
+		$sitesdj['descriptif'] = 'Retrouvez-nous sur Viadeo';
+		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+		create_logo('documents/viadeo.png', $type='site', $id_site, 'png');
+		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+		
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "90. Flux RSS du site";
+		$sitesdj['url_site'] = "./?page=backend";
+		$sitesdj['descriptif'] = 'Syndiquer tout le site';
+		$sitesdj['statut'] = 'publie';
+		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+		create_logo('images/rss.png', $type='site', $id_site, 'png');
+		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+
+		$sitesdj = array();
+		$sitesdj['nom_site'] = "15. Google+";
+		$sitesdj['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
+		$sitesdj['descriptif'] = 'Retrouvez-nous sur Google+';
+		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
+		create_logo('documents/googleplus.png', $type='site', $id_site, 'png');
+		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
+	}
+		
 	return true;
 }
 ?>
