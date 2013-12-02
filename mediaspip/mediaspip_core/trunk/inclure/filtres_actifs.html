@@ -4,30 +4,47 @@
   (c) 2013 Mediaspip
   Distribue sous licence GPL
 
-]
+][(#SI_PAGE{recherche_avancee}|oui) #SET{url,#SELF}]
+[(#SI_PAGE{recherche_avancee}|non)#SET{url, #URL_PAGE{recherche_avancee}
+	|parametre_url{recherche, #RECHERCHE}
+	|parametre_url{type_date, #TYPE_DATE}
+	|parametre_url{date_debut, #DATE_DEBUT}
+	|parametre_url{date_fin, #DATE_FIN}
+	|parametre_url{langue_forcee, #LANGUE_FORCEE}
+	|parametre_url{id_rubrique, #ID_RUBRIQUE}
+	|parametre_url{id_licence, #ID_LICENCE}
+	|parametre_url{id_auteur, #ID_AUTEUR}
+	|parametre_url{id_mot, #ID_MOT}
+	|parametre_url{mots, #MOTS}
+	|parametre_url{statuts, #STATUTS}
+	|parametre_url{mesfavoris, #MESFAVORIS}}]
 <div class="filtres">
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE})]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE,url=[(#GET{url}|parametre_url{recherche,''})]})]
 	[(#REM) TODO : chaîne différente selon #TYPE_DATE ?]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_debut,valeur=[(#DATE_DEBUT|affdate_jourcourt)]})]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_fin,valeur=[(#DATE_FIN|affdate_jourcourt)]})]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_langue,valeur=[(#LANGUE_FORCEE|traduire_nom_langue)]})]
-	[(#EM_TYPE|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_em_type,valeur=[(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)]})]]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_debut,valeur=[(#DATE_DEBUT|affdate_jourcourt)],url=[(#GET{url}|parametre_url{date_debut,''})]})]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_date_fin,valeur=[(#DATE_FIN|affdate_jourcourt)],url=[(#GET{url}|parametre_url{date_fin,''})]})]
+	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_langue,valeur=[(#LANGUE_FORCEE|traduire_nom_langue)],url=[(#GET{url}|parametre_url{langue_forcee,''})]})]
+	[(#EM_TYPE|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_em_type,valeur=[(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)],url=[(#GET{url}|parametre_url{em_type,''})]})]]
 	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-		#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_rubrique,valeur=#TITRE}
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_rubrique,valeur=#TITRE,url=[(#GET{url}|parametre_url{id_rubrique,''})]})]
 	</BOUCLE_rubrique>
-	[(#ID_LICENCE|intval|>={0}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_licence,valeur=[(#MODELE{licence,id_licence,logo=non,lien=non})]})]]
+	[(#ID_LICENCE|intval|>={0}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_licence,valeur=[(#MODELE{licence,id_licence,logo=non,lien=non})],url=[(#GET{url}|parametre_url{id_licence,''}|parametre_url{licence_nom,''})]})]]
 	<BOUCLE_auteur(AUTEURS){id_auteur}>
-		#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_auteur,valeur=#NOM}
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_auteur,valeur=#NOM,url=[(#GET{url}|parametre_url{id_auteur,''})]})]
 	</BOUCLE_auteur>
 	<BOUCLE_mot(MOTS){id_mot}>
-		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE})]
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE,url=[(#GET{url}|parametre_url{id_mot,''})]})]
 	</BOUCLE_mot>
 	<BOUCLE_mots(MOTS){id_mot IN #MOTS}>
-		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE})]
+		#SET{mots,#ARRAY}
+		<BOUCLE_mots_url(DATA){source table, #MOTS}{valeur!==#ID_MOT}>#SET{mots,#GET{mots}|push{#VALEUR}}</BOUCLE_mots_url>
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE,url=[(#GET{url}|parametre_url{mots,#ARRAY}|parametre_url{mots,#GET{mots}})]})]
 	</BOUCLE_mots>
-	<BOUCLE_status(DATA){source table, #ENV{statuts}}>
-		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_statut,valeur=[(#VAL{texte_statut_#VALEUR}|_T)]})]
-	</BOUCLE_status>
-	[(#MESFAVORIS|=={oui}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)]})]]
-	[(#MESFAVORIS|=={non}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)]})]]
+	<BOUCLE_statuts(DATA){source table, #STATUTS}>
+		#SET{statuts,#ARRAY}
+		<BOUCLE_statuts_url(DATA){source table, #STATUTS}{valeur!==#_statuts:VALEUR}>#SET{statuts,#GET{statuts}|push{#VALEUR}}</BOUCLE_statuts_url>
+		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_statut,valeur=[(#VAL{texte_statut_#VALEUR}|_T)],url=[(#GET{url}|parametre_url{statuts,''}|parametre_url{statuts,#GET{statuts}})]})]
+	</BOUCLE_statuts>
+	[(#MESFAVORIS|=={oui}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
+	[(#MESFAVORIS|=={non}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
 </div>

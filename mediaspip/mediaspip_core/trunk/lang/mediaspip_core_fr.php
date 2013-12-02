@@ -247,6 +247,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_nuage_mestags' => 'Mes tags',
 	'lien_nuage_tags' => 'Tous les tags',
 	'lien_page_tag' => 'Éléments liés au tag : @tag@',
+	'lien_supprimer_filtre' => 'Supprimer le filtre',
 	'lien_titre_accueil' => 'Accueil',
 	'lien_zoom_image' => 'Zoom',
 
