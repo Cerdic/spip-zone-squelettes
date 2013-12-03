@@ -4,8 +4,9 @@
   (c) 2013 Mediaspip
   Distribue sous licence GPL
 
-][(#SI_PAGE{recherche_avancee}|oui) #SET{url,#SELF}]
-[(#SI_PAGE{recherche_avancee}|non)#SET{url, #URL_PAGE{recherche_avancee}
+][(#SI_PAGE{recherche_avancee}|oui) #SET{url,#SELF}
+#SET{url_formulaire,#VAL{''}|ancre_url{formulaire_ms_recherche_avancee}}]
+[(#SI_PAGE{recherche_avancee}|non) #SET{url, #URL_PAGE{recherche_avancee}
 	|parametre_url{recherche, #RECHERCHE}
 	|parametre_url{type_date, #TYPE_DATE}
 	|parametre_url{date_debut, #DATE_DEBUT}
@@ -17,7 +18,8 @@
 	|parametre_url{id_mot, #ID_MOT}
 	|parametre_url{mots, #MOTS}
 	|parametre_url{statuts, #STATUTS}
-	|parametre_url{mesfavoris, #MESFAVORIS}}]
+	|parametre_url{mesfavoris, #MESFAVORIS}}
+#SET{url_formulaire,#GET{url}|ancre_url{formulaire_ms_recherche_avancee}}]
 <div class="filtres">
 	#SET{url,#GET{url}|ancre_url{#ENV{id_bloc,liste_medias}}}
 	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE,url=[(#GET{url}|parametre_url{recherche,''})]})]
@@ -48,4 +50,7 @@
 	</BOUCLE_statuts>
 	[(#MESFAVORIS|=={oui}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
 	[(#MESFAVORIS|=={non}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
+</div>
+<div class="lien_trier_finement">
+	<a href="#GET{url_formulaire}"><:mediaspip_core:lien_trier_finement:></a>
 </div>
