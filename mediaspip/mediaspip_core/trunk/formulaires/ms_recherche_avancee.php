@@ -16,7 +16,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip('inc/date_gestion');
 
-function formulaires_ms_recherche_avancee_charger_dist($lien_filtre = NULL,$lien_arg = NULL){
+function formulaires_ms_recherche_avancee_charger_dist($lien = NULL){
 	$valeurs = array(
 			'recherche' => _request('recherche'),
 			'editable' => 'oui'
@@ -42,7 +42,7 @@ function formulaires_ms_recherche_avancee_charger_dist($lien_filtre = NULL,$lien
 	return $valeurs;
 }
 
-function formulaires_ms_recherche_avancee_verifier_dist($lien_filtre = NULL,$lien_arg = NULL){
+function formulaires_ms_recherche_avancee_verifier_dist($lien = NULL){
 	$erreurs = array();
 	/**
 	 * On vérifie les dates ...
@@ -70,8 +70,7 @@ function formulaires_ms_recherche_avancee_verifier_dist($lien_filtre = NULL,$lie
 	return $erreurs;
 }
 
-function formulaires_ms_recherche_avancee_traiter_dist($lien_filtre = NULL,$lien_arg = NULL){
-	$lien = $lien_filtre ? $lien_filtre : $lien_arg;
+function formulaires_ms_recherche_avancee_traiter_dist($lien = NULL){
 	$action = ($lien ? $lien : generer_url_public('recherche_avancee'));
 	$horaire = false;
 	
