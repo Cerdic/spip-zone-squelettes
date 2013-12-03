@@ -21,8 +21,9 @@ function formulaires_ms_recherche_avancee_charger_dist($lien = NULL){
 			'recherche' => _request('recherche'),
 			'editable' => 'oui'
 		);
-		
-	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee','mots') as $recherche){
+	
+	/* A noter : on accepte en entrée le paramètre "id_mot", mais sans champ associé : il est fusionné au paramètre "mots", si le plugin critere_mots est installé */
+	foreach(array('recherche','id_auteur','date_debut','date_fin','type_date','em_type','id_rubrique','licence_nom','lang_forcee','mots','id_mot') as $recherche){
 		$valeurs[$recherche] = _request($recherche);
 		if(in_array($recherche,array('date_debut','date_fin')) && $valeurs[$recherche]){
 			if($valeurs[$recherche] == 0){
