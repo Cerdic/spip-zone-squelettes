@@ -9,8 +9,8 @@
 		<h1 class="h1"><:mediaspip_core:info_recherche_avancee:></h1>
 	</div>
 	
-	<div class="noajax[ (#ENV{cacher_formulaire}|=={oui}|oui)formulaire_cache]">
-	#FORMULAIRE_MS_RECHERCHE_AVANCEE
+	<div class="noajax">
+	[(#FORMULAIRE_MS_RECHERCHE_AVANCEE{#URL_PAGE{recherche_avancee}|ancre_url{resultats}})]
 	</div>
 	
 	[(#ENV{licence_nom}|oui)
@@ -18,7 +18,8 @@
 	]
 	[(#REM) Medias trouves ]
 	[(#SET{titre_liste,<:mediaspip_core:recherche_medias:>})]
-		
+
+	<a name="resultats"></a>
 	#INCLURE{fond=inclure/articles-medias_liste,titre_liste=#GET{titre_liste},tri_medias_forcer=#ENV{recherche}|?{points},toutes_langues=#ENV{lang_forcee}|?{non,oui},afficher_nombre=oui,id_licence=#GET{id_licence},env,ajax}
 	
 	[(#REM) autres articles trouves]
