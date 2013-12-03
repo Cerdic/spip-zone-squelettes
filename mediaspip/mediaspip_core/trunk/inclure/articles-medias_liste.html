@@ -106,12 +106,14 @@
 	</div>
 </div>
 </B_medias>
-[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
-	[(#ENV{message_null}|=={oui}|non)
-	<p><:mediaspip_core:message_aucun_media_critere_categorie:></p>]]
-[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
-	[(#ENV{message_null}|=={oui}|non)
-	<p><:mediaspip_core:message_aucun_media_publie_categorie:></p>]]
+[(#ENV{message_null}|=={oui}|non)
+<div class="liste articles sommaire medias clearfix" id="#ENV{id_bloc,liste_medias}">
+	<h2 class="h2">[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
+	[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|?{
+		#INCLURE{fond=inclure/filtres_actifs,env,ajax}
+		<p><:mediaspip_core:message_aucun_media_critere_categorie:></p>,
+		<p><:mediaspip_core:message_aucun_media_publie_categorie:></p>})]
+</div>]
 <//B_medias>
 </BOUCLE_rubrique>
 </B_rubrique>
@@ -160,12 +162,14 @@
 	</div>
 </div>
 </B_medias_tous>
-[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|oui)
-	[(#ENV{message_null}|=={oui}|non)
-	<p><:mediaspip_core:message_aucun_media_critere:></p>]]
-[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|non)
-	[(#ENV{message_null}|=={oui}|non)
-	<p><:mediaspip_core:message_aucun_media_publie:></p>]]
+[(#ENV{message_null}|=={oui}|non)
+<div class="liste articles sommaire medias clearfix" id="#ENV{id_bloc,liste_medias}">
+	<h2 class="h2">[(#ENV{titre_liste,#CONFIG{mediaspip/home/titre_highlights}|strlen|>{0}|?{#CONFIG{mediaspip/home/titre_highlights},<:mediaspip_core:titre_sommaire_une:>}})][(#ENV{afficher_nombre}|=={oui}|oui)&#40;#GRAND_TOTAL&#41;]</h2>
+	[(#ENV{id_auteur}|ou{#ENV{id_mot}}|ou{#ENV{recherche}}|ou{#ENV{em_type}}|ou{#ENV{mots}}|ou{#ENV{id_licence}}|ou{#ENV{id_licence}|=={0}}|ou{#ENV{date_debut}}|ou{#ENV{date_fin}}|?{
+		#INCLURE{fond=inclure/filtres_actifs,env,ajax}
+		<p><:mediaspip_core:message_aucun_media_critere:></p>,
+		<p><:mediaspip_core:message_aucun_media_publie:></p>})]
+</div>]
 <//B_medias_tous>
 <//B_rubrique>
 #FILTRE{trim}
