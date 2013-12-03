@@ -21,7 +21,6 @@
 	|parametre_url{mesfavoris, #MESFAVORIS}}
 #SET{url_formulaire,#GET{url}|ancre_url{formulaire_ms_recherche_avancee}}]
 <div class="filtres">
-	<a class="lien_filtrer" href="#GET{url_formulaire}"><:mediaspip_core:lien_filtrer:></a>
 	#SET{url,#GET{url}|ancre_url{#ENV{id_bloc,liste_medias}}}
 	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE,url=[(#GET{url}|parametre_url{recherche,''})]})]
 	[(#REM) TODO : chaîne différente selon #TYPE_DATE ?]
@@ -51,4 +50,5 @@
 	</BOUCLE_statuts>
 	[(#MESFAVORIS|=={oui}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
 	[(#MESFAVORIS|=={non}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)],url=[(#GET{url}|parametre_url{mesfavoris,''})]})]]
+	<a class="lien_filtrer" href="#GET{url_formulaire}"><:mediaspip_core:lien_filtrer:></a>
 </div>
