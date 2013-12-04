@@ -7,7 +7,12 @@
 		<li class="editer editer_recherche">
 			<label for="recherche_texte"><:mediaspip_core:label_rechercher_texte:></label>
 			<input type="text" class="text" size="40" name="recherche" id="recherche_texte"[ value="(#ENV{recherche})"] accesskey="4" />
-		</li>][(#VAL{date}|in_array{#GET{exclus}}|et{#VAL{date_redac}|in_array{#GET{exclus}}}|et{#VAL{maj}|in_array{#GET{exclus}}}|non)
+		</li>]
+		#SET{types_date, #ARRAY}
+		[(#VAL{date}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{date}}]
+		[(#VAL{date_redac}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{date_redac}}]
+		[(#VAL{maj}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{maj}}]
+		<BOUCLE_test_types_date(CONDITION){si #GET{types_date}|count|>{0}}>
 		<li class="editer editer_dates[(#ENV**{erreurs}|table_valeur{date_debut}|ou{[(#ENV**{erreurs}|table_valeur{date_fin})]}|oui)erreur]">
 			<label><:mediaspip_core:label_rechercher_dates:></label>
 			<div class="choix">
@@ -22,13 +27,19 @@
 			</div>
 			<div class="choix">
 				<label for="type_date"><:mediaspip_core:label_rechercher_type_date:></label>
-				<select id="type_date" name="type_date">[(#VAL{date}|in_array{#GET{exclus}}|non)
-					<option value="date"[(#ENV{type_date}|=={date_redac}|ou{#ENV{type_date}|=={maj}}|non)selected="selected"]><:mediaspip_core:label_rechercher_date:></option>][(#VAL{date_redac}|in_array{#GET{exclus}}|non)
-					<option value="date_redac"[(#ENV{type_date}|=={date_redac}|oui)selected="selected"]><:mediaspip_core:label_rechercher_date_redac:></option>][(#VAL{maj}|in_array{#GET{exclus}}|non)
-					<option value="maj"[(#ENV{type_date}|=={maj}|oui)selected="selected"]><:mediaspip_core:label_rechercher_maj:></option>]
+				<B_types_date>
+				<select id="type_date" name="type_date">
+				<BOUCLE_types_date(DATA){source table, #GET{types_date}}{si #GET{types_date}|count|>{1}}>
+					<option value="#VALEUR"[(#ENV{type_date}|=={#VALEUR}|oui)selected="selected"]>[(#VAL{mediaspip_core:label_rechercher_#VALEUR}|_T)]</option>
+				</BOUCLE_types_date>
 				</select>
+				</B_types_date>
+				[<span>(#VAL{mediaspip_core:label_rechercher_#GET{types_date}|table_valeur{0}}|_T)</span>]
+				[<input type="hidden" name="type_date" id="type_date" value="(#GET{types_date}|table_valeur{0})" />]
+				<//B_types_date>
 			</div>
-		</li>]
+		</li>
+		</BOUCLE_test_types_date>
 		<B_langues>
 		[(#TOTAL_BOUCLE|>{1}|oui)
 		<li class="editer editer_langue">
