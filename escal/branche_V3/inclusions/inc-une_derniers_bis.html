@@ -1,16 +1,3 @@
-<script src="#CHEMIN{scripts/jquery.tabs.pack.js}" type="text/javaScript"></script>
-
-<script type="text/javascript">
-	   	$(document).ready(function(){
-	    // La une
-	    $('.laune').tabs({
-	        fxSlide: true,
-	        fxFade: true,
-	        fxSpeed: 'slow'
-	        });
-	});
-</script>
-
 <div class="laune" >
 
 	<!-- 
@@ -30,15 +17,17 @@
 	</BOUCLE_exclure_art>
 
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
-#SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}
-<BOUCLE_selection(ARTICLES){lang}{par date}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection1}{doublons selection2}>
+#SET{nombrealaune,#CONFIG{escal/config/nombrealaune,20}}
+<BOUCLE_selection(ARTICLES){lang}{par date}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection}>
 </BOUCLE_selection>
 
 <!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par #CONFIG{escal/config/ordrealaune,date}}>
-    <div id="section-#ID_ARTICLE" class="fragment">
+<B_dernier_endate>
+#ANCRE_PAGINATION      
+  <BOUCLE_dernier_endate(ARTICLES){!doublons selection}{!par date}{pagination #CONFIG{escal/config/paginarticlesunebis,5}}{"<hr />"}>
+    <div class="fragment">
 
 <!-- affichage logo -->
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50})]
@@ -65,7 +54,7 @@
             <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a>
           </BOUCLE_auteurs_art>
         </div>
-      </B_test>   
+      </B_test>
 <!-- affichage rubrique -->
 			<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueune}|=={non}|non}>
 			<div class="rubrique #EDIT{titre}">
@@ -81,7 +70,7 @@
          <img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
          </BOUCLE_image_alt>
       <//B_image>
-      </div>
+      </div>     
 <!-- affichage descriptif -->
 		[(#CONFIG{escal/config/descriptifune}|=={non}|non)
 		<div class="descriptif-article #EDIT{descriptif}">[(#DESCRIPTIF)]</div>
@@ -99,59 +88,7 @@
       <div class="nettoyeur"></div>
     </div>
   </BOUCLE_dernier_endate>
-
-
-<hr />
-<!--  On affiche les 10 autres articles
-      celui sélectionné ne s'affiche pas
-      sauf au premier affichage de la page -->  
-  <B_autres_articles_une>
-    <ul class="anchors">
-	<BOUCLE_autres_articles_une (ARTICLES){!doublons selection2}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}>
-    <li>
-      <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>">
-
-<!-- affichage logo -->
-      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{40,40})]
-<!-- affichage titre -->
-			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
-<!-- affichage auteur -->
-      <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautres}|=={non}|non}>
-      </BOUCLE_testauteur>
-        <span class="rubrique-autres">
-          <:par_auteur:>
-          <BOUCLE_auteurs_art2(AUTEURS){id_article}{", "}{lang_select}>#NOM</BOUCLE_auteurs_art2><br />
-        </span>
-      </B_testauteur>
-<!-- affichage rubrique -->
-			<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubrique}|=={non}|non}>
-			 <span class="rubrique-autres">
-			 <:rubrique:> : #TITRE
-			 </span>
-			</BOUCLE_Rub_suite>
-			<br />
-
-
-<!-- affichage nombre de commentaires -->
-      <BOUCLE_comment(FORUMS){id_article}{0,1}{si #CONFIG{escal/config/affichcomm}|=={oui}|oui}>
-      
-      <BOUCLE_nbre_comm(FORUMS){id_article}{tout}>
-      </BOUCLE_nbre_comm>
-        <span class="commentaires">
-        #TOTAL_BOUCLE <:escal:commentaires:>
-        </span>
-      </B_nbre_comm>
-      
-      </BOUCLE_comment>
-      
-
-
-      </a>
-    </li>
-	</BOUCLE_autres_articles_une>
-    </ul> 
-  </B_autres_articles_une>
-
-
+<p class="pagination pagination-une">#PAGINATION{#CONFIG{escal/config/modelepaginarticlesunebis}}</p>
+</B_dernier_endate>
 
 </div><!-- fin laune -->
