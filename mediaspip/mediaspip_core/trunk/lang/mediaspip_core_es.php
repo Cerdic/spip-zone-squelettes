@@ -75,6 +75,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_avancee' => 'Configure el formulario de búsqueda avanzada y la clasificación de los medios.',
 
 	// F
+	'filtre_auteur' => 'Autor: ',
+	'filtre_date_debut' => 'Después del: ',
+	'filtre_date_fin' => 'Antes del: ',
+	'filtre_em_type' => 'Tipo: ',
+	'filtre_langue' => 'Idioma: ',
+	'filtre_licence' => 'Licencia: ',
+	'filtre_mesfavoris' => 'Mis favoritos: ',
+	'filtre_mot' => 'Tag: ',
+	'filtre_recherche' => 'Búsqueda: ',
+	'filtre_rubrique' => 'Sección: ',
+	'filtre_statut' => 'Estatus: ',
 	'formulaire_contact' => 'Contacto',
 	'formulaire_inscription' => 'Inscripción',
 	'formule_bonjour' => 'Buenos días @nom@',
@@ -129,7 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_blocs_recurrents_caches' => 'No mostrar algunos bloques recurrentes',
 	'label_case_info_auteur' => 'El nombre de los autores',
 	'label_case_info_date' => 'Fecha de publicación',
-	'label_case_info_date_redac' => 'Fecha de redacción anterior', # MODIF
+	'label_case_info_date_redac' => 'Fecha de redacción anterior',
 	'label_case_info_description_site' => 'La descripción del sitio',
 	'label_case_info_editos' => 'Las editoriales',
 	'label_case_info_em_type' => 'Tipo de medio',
@@ -238,6 +249,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_nuage_mestags' => 'Mis etiquetas',
 	'lien_nuage_tags' => 'Todas las etiquetas',
 	'lien_page_tag' => 'Elementos vinculados a la etiqueta: @tag@',
+	'lien_supprimer_filtre' => 'Borrar el filtro',
 	'lien_titre_accueil' => 'Inicio',
 	'lien_zoom_image' => 'Zoom',
 
