@@ -243,13 +243,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'legende_recherche_avancee' => 'Configuration de la recherche avancée et du tri',
 	'lien_archives' => 'Archives',
 	'lien_archives_tout_mois' => 'Archives de tout le mois',
+	'lien_filtrer' => 'Filtrer plus finement',
 	'lien_modifier_forum_publication' => 'Gérer les forums de cette publication',
 	'lien_nuage_mestags' => 'Mes tags',
 	'lien_nuage_tags' => 'Tous les tags',
 	'lien_page_tag' => 'Éléments liés au tag : @tag@',
 	'lien_supprimer_filtre' => 'Supprimer le filtre',
 	'lien_titre_accueil' => 'Accueil',
-	'lien_filtrer' => 'Filtrer plus finement',
 	'lien_zoom_image' => 'Zoom',
 
 	// M
