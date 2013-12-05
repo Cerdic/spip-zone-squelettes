@@ -22,15 +22,19 @@
 				explication=<:mediaspip_core:explication_infos_cachees:>,
 				defaut=#ARRAY,
 				datas=#GET{infos_cachees}})]
+
+			[(#SET{infos_cachees_articles, #PIPELINE{ms_config,#ARRAY{cle,mediaspip/medias/infos_cachees_articles,valeur,#ARRAY{
+					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
+					info_publie,<:mediaspip_core:label_case_info_published:>,
+					info_auteur,<:mediaspip_core:label_case_info_auteur:>}}}
+					|table_valeur{valeur}})]
 			[(#SAISIE{checkbox, infos_cachees_articles,
 				label=<:mediaspip_core:label_infos_cachees_articles:>,
 				explication=<:mediaspip_core:explication_infos_cachees_articles:>,
 				defaut=#ARRAY,
-				datas=#ARRAY{
-					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
-					info_publie,<:mediaspip_core:label_case_info_published:>,
-					info_auteur,<:mediaspip_core:label_case_info_auteur:>}})]
-			[(#SET{infos_cachees_vignette, #ARRAY{
+				datas=#GET{infos_cachees_articles}})]
+
+			[(#SET{infos_cachees_vignette, #PIPELINE{ms_config,#ARRAY{cle,mediaspip/medias/infos_cachees_vignette,valeur,#ARRAY{
 					info_vignette,<:mediaspip_core:label_case_info_vignette:>,
 					info_auteur,<:mediaspip_core:label_case_info_auteur:>,
 					info_date,<:mediaspip_core:label_case_info_date:>,
@@ -39,8 +43,8 @@
 					info_lang,<:mediaspip_core:label_case_info_lang:>,
 					info_em_type,<:mediaspip_core:label_case_info_em_type:>,
 					info_nb_comments,<:mediaspip_core:label_case_info_nb_comments:>,
-					info_mots,<:mediaspip_core:label_case_info_mots:>
-				}})]
+					info_mots,<:mediaspip_core:label_case_info_mots:>}}}
+					|table_valeur{valeur}})]
 			[(#PLUGIN{favoris}|oui)[(#SET{infos_cachees_vignette,#GET{infos_cachees_vignette}|array_merge{#ARRAY{info_mesfavoris,<:mediaspip_core:label_case_info_mesfavoris:>}}})]]
 			[(#PLUGIN{notation}|oui)[(#SET{infos_cachees_vignette,#GET{infos_cachees_vignette}|array_merge{#ARRAY{info_notation,<:mediaspip_core:label_case_info_notation:>}}})]]
 			[(#SAISIE{checkbox, infos_cachees_vignette,
