@@ -245,6 +245,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'legende_recherche_avancee' => 'Configuración de la búsqueda avanzada y de la clasificación',
 	'lien_archives' => 'Archivos',
 	'lien_archives_tout_mois' => 'Archivos de todo el mes',
+	'lien_filtrer' => 'Filtrar los resultados',
 	'lien_modifier_forum_publication' => 'Gestionar los foros de esta publicación',
 	'lien_nuage_mestags' => 'Mis etiquetas',
 	'lien_nuage_tags' => 'Todas las etiquetas',
