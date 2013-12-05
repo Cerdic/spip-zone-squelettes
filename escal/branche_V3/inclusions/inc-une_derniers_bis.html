@@ -16,17 +16,16 @@
 	<BOUCLE_exclure_art(ARTICLES){titre_mot=pas-a-la-une}{doublons}>
 	</BOUCLE_exclure_art>
 
-<!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
-#SET{nombrealaune,#CONFIG{escal/config/nombrealaune,20}}
-<BOUCLE_selection(ARTICLES){lang}{par date}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection}>
-</BOUCLE_selection>
+<!-- On selectionne les articles les + recents et on les stocke dans {doublons selection}-->
+#SET{nombrealaune,#CONFIG{escal/config/nombrearticlesunebis,50}}
+
 
 <!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
 <B_dernier_endate>
 #ANCRE_PAGINATION      
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection}{!par date}{pagination #CONFIG{escal/config/paginarticlesunebis,5}}{"<hr />"}>
+  <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{!par date}{0,#GET{nombrealaune}}{pagination #CONFIG{escal/config/paginarticlesunebis,5}}{"<hr />"}>
     <div class="fragment">
 
 <!-- affichage logo -->
@@ -80,12 +79,18 @@
       <div class="texte">
         [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteune}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
         [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteune}}|propre)] ]      
-			<br />
-  		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
 			</div>
       ]
-      
+            
       <div class="nettoyeur"></div>
+          
+      <div class="suite">
+  		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>
+      [(#CONFIG{escal/config/texteune}|=={non}|non)<:escal:lire_suite:>]
+      [(#CONFIG{escal/config/texteune}|=={non}|oui)<:escal:lire_article:>]
+      </strong></a>
+			</div>
+             
     </div>
   </BOUCLE_dernier_endate>
 <p class="pagination pagination-une">#PAGINATION{#CONFIG{escal/config/modelepaginarticlesunebis}}</p>
