@@ -6,10 +6,10 @@
 		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
-		
-		[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|non|et{[(#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|table_valeur{infos_cachees_article}|sinon{#ARRAY})]}|non)]})
+		[(#SET{infos_cachees_articles, #GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY}})]
+		[(#VAL{info_publie}|in_array{#GET{infos_cachees_articles}|non|et{[(#VAL{info_auteur}|in_array{#GET{infos_cachees_articles}}|non)]})
 		<p class="info-publi">
-			[(#VAL{info_publie}|in_array{[(#GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY})]}|non)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>][(#VAL{info_auteur}|in_array{[(#GET{infos_cachees_articles}|table_valeur{infos_cachees_article}|sinon{#ARRAY})]}|non)[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
+			[(#VAL{info_publie}|in_array{#GET{infos_cachees_articles}}|non)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>][(#VAL{info_auteur}|in_array{#GET{infos_cachees_articles}}|non)[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
 		</p>]
 		[(#REM) Inclure le modele des liens de traductions ]
 		#MODELE{article_traductions}
@@ -32,6 +32,8 @@
 		<h2 class="h2"><:info_ps:></h2>
 		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
 	</div>]
+
+[(#PIPELINE{ms_ajout_html, #ARRAY{args,#ARRAY{objet,article,id_objet,#ID_ARTICLE,squelette,content/article.html,infos_cachees_article,#GET{infos_cachees_articles}},data,''}})]
 
 [(#REM) Gestion du portfolio et des documents ]
 [(#INCLURE{fond=inclure/documents}{id_article})]
