@@ -92,6 +92,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_auteurs' => 'Les auteurs :',
 	'info_comment' => 'commentaire',
 	'info_comments' => 'commentaires',
+	'info_date_redac' => 'Date de création du média original :',
 	'info_descriptif' => 'Description',
 	'info_dimension_image' => 'Dimensions de l’image :',
 	'info_doc_non_visualisable' => 'Ce type de document (@format@) n’est pas visualisable en ligne.',
