@@ -23,15 +23,10 @@
 	]<div id="infos_sup" class="surlignable row">[(#SET{infos_cachees_medias,#GET{config_page_medias}|table_valeur{infos_cachees}|sinon{#ARRAY}})]
 		<h2 class="h2 span8"><:mediaspip_core:media_a_propos:></h2>
 		<div class="infos_media_bloc infos_descriptif span4">
+			[(#REM) Descriptif : infos éditables qui définissent le média]
 			[(#PLUGIN{gis}|oui)
 			[(#INCLURE{fond=inclure/gis_mini_map,objet=article,id_objet=#ID_ARTICLE})]]
-			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>[
-			(#VAL{info_publie}|in_array{#GET{infos_cachees_medias}}|non)<div class="info_media info-publi"><p><span class="title"><:mediaspip_core:info_publie_date:></span> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p></div>][
-			(#VAL{info_update}|in_array{#GET{infos_cachees_medias}}|non)
-			<div class="info_media info-updated">
-				[<p><span class="title"><:mediaspip_core:info_maj:></span> <abbr class="updated" title="[(#MAJ|date_iso)]">(#MAJ|date_relative)</abbr></p>]
-			</div>][
-			(#VAL{info_auteur}|in_array{#GET{infos_cachees_medias}}|non)[<div class="info_media info-auteur"><p><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></p></div>]]
+			<h3 class="h3"><:mediaspip_core:info_descriptif:></h3>
 			[(#CONFIG{langues_multilingue}|explode{','}|count|>{1}|oui)
 			[<div class="info_media info-langue">
 				<p><span class="title"><:mediaspip_core:info_langue:></span> <abbr class="entry-lang" title="#LANG">(#LANG|traduire_nom_langue)</abbr></p>
@@ -59,7 +54,14 @@
 			[(#PIPELINE{ms_ajout_html, #ARRAY{args,#ARRAY{objet,article,id_objet,#ID_ARTICLE,squelette,content/article-medias.html},data,''}})]			 
 		</div>
 		<div class="infos_media_bloc infos_statistiques span4">
-			<h3 class="h3"><:mediaspip_core:info_statistiques:></h3>
+			[(#REM) Statistiques : infos sur l'activité autour de ce média ]
+			<h3 class="h3"><:mediaspip_core:info_statistiques:></h3>[
+			(#VAL{info_publie}|in_array{#GET{infos_cachees_medias}}|non)<div class="info_media info-publi"><p><span class="title"><:mediaspip_core:info_publie_date:></span> <abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p></div>][
+			(#VAL{info_update}|in_array{#GET{infos_cachees_medias}}|non)
+			<div class="info_media info-updated">
+				[<p><span class="title"><:mediaspip_core:info_maj:></span> <abbr class="updated" title="[(#MAJ|date_iso)]">(#MAJ|date_relative)</abbr></p>]
+			</div>][
+			(#VAL{info_auteur}|in_array{#GET{infos_cachees_medias}}|non)[<div class="info_media info-auteur"><p><span class="title"><:mediaspip_core:info_auteurs:> </span><span class="auteurs">(#LESAUTEURS)</span></p></div>]]
 			[(#INCLURE{fond=inclure/infos_notations_article,env}|trim)]
 			[(#VAL{info_nb_vues}|in_array{#GET{infos_cachees_medias}}|non)
 			[<div class="info_media info-visites"><p>(#VISITES|sinon{1}|singulier_ou_pluriel{mediaspip_core:info_nb_vue,mediaspip_core:info_nb_vues})</p></div>]]
