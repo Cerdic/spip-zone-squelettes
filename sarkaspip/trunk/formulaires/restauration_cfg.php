@@ -23,7 +23,7 @@ function formulaires_restauration_cfg_charger_dist(){
 	$options = '';
 	$erreur = '';
 	if (!$sauvegardes) {
-		$erreur = _T('sarkaspip:cfg_msg_aucune_sauvegarde');
+		$erreur = _T('sarkaspip_config:cfg_msg_aucune_sauvegarde');
 	}
 	else {
 		$groupe = '';
@@ -59,9 +59,9 @@ function formulaires_restauration_cfg_traiter_dist(){
 	$ok = ecrire_config("sarkaspip/$config", unserialize($contenu));
 	
 	if (!$ok)
-		$retour['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
+		$retour['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_nok');
 	else
-		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
+		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $fichier));
 
 	return $retour;
 }

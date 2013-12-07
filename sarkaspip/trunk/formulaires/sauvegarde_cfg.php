@@ -37,11 +37,11 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
 	$ok = sauvegarder_configuration($configs, $dir_cfg);
 	
 	if (!$ok)
-		$retour['message_nok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_nok');
+		$retour['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_nok');
 	elseif ($mode !== '--')
-		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_ok');
+		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_ok');
 	else
-		$retour['message_ok'] = _T('sarkaspip:cfg_msg_fichiers_sauvegardes_ok');
+		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichiers_sauvegardes_ok');
 	return $retour;
 }
 

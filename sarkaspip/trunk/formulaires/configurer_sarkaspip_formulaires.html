@@ -1,6 +1,6 @@
 <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-	<h3 class="titrem"><:sarkaspip:cfg_boite_formulaires:></h3>
+	<h3 class="titrem"><:sarkaspip_config:cfg_boite_formulaires:></h3>
 
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -9,9 +9,9 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_contact:></legend>
-			<p class="explication"><:sarkaspip:cfg_inf_form_contact:></p>
-			<p class="explication"><:sarkaspip:cfg_inf_form_contact_plugin:></p>
+			<legend><:sarkaspip_config:cfg_lgd_form_contact:></legend>
+			<p class="explication"><:sarkaspip_config:cfg_inf_form_contact:></p>
+			<p class="explication"><:sarkaspip_config:cfg_inf_form_contact_plugin:></p>
 			<ul>
 				#SET{name,plugin_contact}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
@@ -21,16 +21,16 @@
 					#SET{val,1}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_contact_1:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_contact_1:></label>
 					</div>
 					#SET{val,0}
 					<div class="choix">
 						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
-						<label for="#GET{name}_#GET{val}"><:sarkaspip:cfg_lbl_contact_0:></label>
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_contact_0:></label>
 					</div>
 				</li>
 				<li class="fieldset suite" id="bloc_contact_0"><fieldset>
-					<p class="explication"><:sarkaspip:cfg_inf_form_contact_plugin_0:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_form_contact_plugin_0:></p>
 					[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|oui)
 						#SET{critere_statut, #ARRAY{0,0minirezo}}
 					]
@@ -43,7 +43,7 @@
 					<ul>
 						#SET{name,auteur_contact}#SET{defaut,0}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-							<label for="#GET{name}"><:sarkaspip:cfg_lbl_liste_contacts:></label>[
+							<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_liste_contacts:></label>[
 							<span class='erreur_message'>(#GET{erreurs})</span>
 							]<select name="#GET{name}" class="select" id="#GET{name}">
 								#SET{val,0}
@@ -67,100 +67,100 @@
 					</ul></fieldset>
 				</li>
 				<li class="fieldset suite" id="bloc_contact_1"><fieldset>
-					<p class="explication"><:sarkaspip:cfg_inf_form_contact_plugin_1:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_form_contact_plugin_1:></p>
 				</li>
 				<INCLURE{fond=formulaires/inc/cfg_information_page}
 					{suffixe=_contact}
 					{choix=titre_descriptif}
-					{label_titre=<:sarkaspip:cfg_lbl_form_titre:>}
-					{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+					{label_titre=<:sarkaspip_config:cfg_lbl_form_titre:>}
+					{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 					{defaut_titre=<:sarkaspip:contacter_site:>}
 					{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_lettre:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_form_lettre:></legend>
 			#SET{plugin,#REM|sarkaspip_detecter_plugin_newsletter}
 			[(#GET{plugin}|oui)
 				#SET{plugin,#PLUGIN{#GET{plugin},nom}|extraire_multi}
 				<p class="explication">
-					<:sarkaspip:cfg_inf_form_lettre:>
-					<:sarkaspip:cfg_inf_form_lettre_plugin{plugin=#GET{plugin}}:>
+					<:sarkaspip_config:cfg_inf_form_lettre:>
+					<:sarkaspip_config:cfg_inf_form_lettre_plugin{plugin=#GET{plugin}}:>
 				</p>
 				<ul>
 					<INCLURE{fond=formulaires/inc/cfg_information_page}
 						{suffixe=_lettre}
 						{choix=titre_descriptif}
-						{label_titre=<:sarkaspip:cfg_lbl_form_titre:>}
-						{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+						{label_titre=<:sarkaspip_config:cfg_lbl_form_titre:>}
+						{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 						{defaut_titre=<:sarkaspip:inscrire_a_newsletter:>}
 						{env}>
 				</ul>
 			]
 			[(#GET{plugin}|non)
 				#SET{plugins,'<b>Mailsubscribers</b>'}
-				<div class="notice"><:sarkaspip:cfg_inf_plugins_inactifs{lbl_plugins=#GET{plugins}}:></div>
+				<div class="notice"><:sarkaspip_config:cfg_inf_plugins_inactifs{lbl_plugins=#GET{plugins}}:></div>
 			]
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_inscription:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_form_inscription:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-				<p class="explication"><:sarkaspip:cfg_inf_form_inscription:></p>
+				<p class="explication"><:sarkaspip_config:cfg_inf_form_inscription:></p>
 				</li>
 			<INCLURE{fond=formulaires/inc/cfg_information_page}
 				{suffixe=_inscription}
 				{choix=titre_descriptif}
-				{label_titre=<:sarkaspip:cfg_lbl_form_titre:>}
-				{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+				{label_titre=<:sarkaspip_config:cfg_lbl_form_titre:>}
+				{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 				{defaut_titre=<:sarkaspip:inscrire_au_site:>}
 				{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_referencement:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_form_referencement:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_form_referencement:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_form_referencement:></p>
 				</li>
 			<INCLURE{fond=formulaires/inc/cfg_information_page}
 				{suffixe=_referencement}
 				{choix=descriptif}
-				{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+				{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 				{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_login1:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_form_login1:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_form_login1:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_form_login1:></p>
 				</li>
 			<INCLURE{fond=formulaires/inc/cfg_information_page}
 				{suffixe=_login1}
 				{choix=titre_descriptif}
-				{label_titre=<:sarkaspip:cfg_lbl_form_titre:>}
-				{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+				{label_titre=<:sarkaspip_config:cfg_lbl_form_titre:>}
+				{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 				{defaut_titre=<:sarkaspip:acceder_espace_membre:>}
 				{env}>
 			</ul>
 		</fieldset>
 
 		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_form_login2:></legend>
+			<legend><:sarkaspip_config:cfg_lgd_form_login2:></legend>
 			<ul>
 				<li class="editer pleine_largeur">
-					<p class="explication"><:sarkaspip:cfg_inf_form_login2:></p>
+					<p class="explication"><:sarkaspip_config:cfg_inf_form_login2:></p>
 				</li>
 			<INCLURE{fond=formulaires/inc/cfg_information_page}
 				{suffixe=_login2}
 				{choix=titre_descriptif}
-				{label_titre=<:sarkaspip:cfg_lbl_form_titre:>}
-				{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
+				{label_titre=<:sarkaspip_config:cfg_lbl_form_titre:>}
+				{label_descriptif=<:sarkaspip_config:cfg_lbl_form_descriptif:>}
 				{defaut_titre=<:sarkaspip:acceder_espace_prive:>}
 				{env}>
 			</ul>
