@@ -213,7 +213,7 @@
 					</div>
 					<div class="suite">
 						<ul>
-							#SET{name,max_commentaires}#SET{defaut,5}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							#SET{name,max_commentaires}#SET{defaut,50}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 								<label for="#GET{name}"><:sarkaspip:cfg_lbl_max_commentaires:></label>[
 								<span class='erreur_message'>(#GET{erreurs})</span>
@@ -222,6 +222,12 @@
 							#SET{name,intro_commentaire}#SET{defaut,100}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 								<label for="#GET{name}"><:sarkaspip:cfg_lbl_intro_commentaires:></label>[
+								<span class='erreur_message'>(#GET{erreurs})</span>
+								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+							</li>
+							#SET{name,pas_pagination_commentaires}#SET{defaut,10}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+								<label for="#GET{name}"><:sarkaspip:cfg_lbl_pas_pagination:></label>[
 								<span class='erreur_message'>(#GET{erreurs})</span>
 								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 							</li>
@@ -251,6 +257,12 @@
 							#SET{name,intro_message}#SET{defaut,100}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 								<label for="#GET{name}"><:sarkaspip:cfg_lbl_intro_messages:></label>[
+								<span class='erreur_message'>(#GET{erreurs})</span>
+								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
+							</li>
+							#SET{name,pas_pagination_messages}#SET{defaut,10}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+							<li class="editer long_label editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+								<label for="#GET{name}"><:sarkaspip:cfg_lbl_pas_pagination:></label>[
 								<span class='erreur_message'>(#GET{erreurs})</span>
 								]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 							</li>
@@ -356,7 +368,7 @@
 				[(#REM) <!-- statistiques  --> ]
 				#SET{name,position_stats_1}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
-					<label><:sarkaspip:cfg_inf_inc_statsite_pos:></label>[
+					[
 					<span class='erreur_message'>(#GET{erreurs})</span>
 					]
 					#SET{val,2}
