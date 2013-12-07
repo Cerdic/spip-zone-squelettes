@@ -233,21 +233,37 @@ function nettoyer_titre_sujet($titre, $resolu='') {
 
 
 // =======================================================================================================================================
-// Filtre : afficher_config
+// Filtre : afficher_env
 // =======================================================================================================================================
 // Auteur: Smellup
-// Fonction : Affiche la meta de configuration demandee sous un format lisible (remplace #CFG_ARBO)
+// Fonction : Affiche la meta de configuration demandee sous un format lisible
+//            Cette fonction existe déjà dans le plugin Dev sous le nom bel_env
 // =======================================================================================================================================
 //
-function afficher_config($meta) {
-	$texte ='';
-	if ($meta) {
-		$f = chercher_filtre('foreach');
-		$texte = $f(lire_config($meta));
+// Cette fonction existe dans le plugin Dev.
+// Si ce plugin est déjà actif on ne la redéfinit pas !
+function afficher_env($env) {
+	$env = str_replace(array('&quot;', '&#039;'), array('"', '\''), $env);
+	if (is_array($env_tab = @unserialize($env))) {
+		$env = $env_tab;
 	}
-	return $texte;
+	if (!is_array($env)) {
+		return '';
+	}
+	$style = " style='border:1px solid #ddd;'";
+	$res = "<table style='border-collapse:collapse;'>\n";
+	foreach ($env as $nom => $val) {
+		if (is_array($val) || is_array(@unserialize($val))) {
+			$val = bel_env($val);
+		}
+		else {
+			$val = entites_html($val);
+		}
+		$res .= "<tr>\n<td$style><strong>". entites_html($nom).
+				"&nbsp;:&nbsp;</strong></td><td$style>" .$val. "</td>\n</tr>\n";
+	}
+	$res .= "</table>";
+	return $res;
 }
-// FIN du Filtre : afficher_config
-
 
 ?>

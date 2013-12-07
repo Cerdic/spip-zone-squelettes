@@ -10,10 +10,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // B
 	'bouton_configurer' => 'Configurer Sarka-SPIP',
+	'bouton_afficher_debug' => 'Afficher',
+	'bouton_masquer_debug' => 'Masquer',
 	'bouton_effacer' => 'Effacer',
 	'bouton_valider' => 'Valider',
 	'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de départ',
 	'bulle_bouton_valider' => 'Valider les saisies',
+
 // C
 	'cfg_boite_accueil' => 'Accueil',
 	'cfg_boite_agenda' => 'Agenda',
@@ -706,6 +709,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_site' => 'Sarka-SPIP - Configuration de la page site',
 	'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
 	'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
+
 // S
 	'sarkaspip_accueil' => 'Accueil',
 	'sarkaspip_agenda' => 'Agenda',
@@ -734,6 +738,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sarkaspip_site' => 'Site',
 	'sarkaspip_sommaire' => 'Sommaire',
 	'sarkaspip_styles' => 'Styles',
+
+// T
+	'titre_debug' => 'Debug Sarka-SPIP - Page «@cfg@»',
+	'titre_debug_meta' => 'Variables de configuration «@meta@»',
+	'titre_debug_env' => 'Variables d\'environnement',
 
 );
 ?>
