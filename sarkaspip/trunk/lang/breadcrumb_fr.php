@@ -13,6 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mot' => 'Mots-clés',
 	'herbier' => 'Sites favoris',
 	'site' => 'Sur le web',
+	'401' => 'Page non autorisée',
 	'404' => 'Page introuvable',
 	'plan' => 'Plan du site',
 	'recherche' => 'Recherche',

@@ -280,6 +280,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'newsletter' => 'Lettre d\'information',
 	'nom' => 'Nom',
 // P
+	'page_restreinte_deconnecte' => 'Vous tentez d\'accéder à une une page restreinte à certains membres du site. Veuillez vous connecter au préalable en utilisant le formulaire ci-dessous.',
+	'page_restreinte_connecte' => 'Vous tentez d\'accéder à une une page qui ne vous est pas autorisée.',
 	'pagerank' => 'pagerank du site',
 	'par_auteur' => 'par ',
 	'photos' => 'photos',
