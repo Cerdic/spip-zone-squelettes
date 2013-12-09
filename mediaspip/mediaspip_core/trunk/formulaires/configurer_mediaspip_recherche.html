@@ -41,13 +41,14 @@
 						defaut=#ARRAY,
 						datas=#GET{exclus_rech}})]
 
-					[(#SET{liste_criteres_tri, #ARRAY{
-						points,<:mediaspip_core:option_tri_point:>,
-						titre,<:mediaspip_core:option_tri_titre:>,
-						date,<:mediaspip_core:option_tri_date:>,
-						date_redac,<:mediaspip_core:option_tri_date_redac:>,
-						popularite,<:mediaspip_core:option_tri_popularite:>,
-						maj,<:mediaspip_core:option_tri_maj:>}})]
+					[(#SET{liste_criteres_tri, #PIPELINE{ms_config,#ARRAY{cle,mediaspip/recherche/liste_criteres_exclus_tri,valeur,#ARRAY{
+							points,<:mediaspip_core:option_tri_point:>,
+							titre,<:mediaspip_core:option_tri_titre:>,
+							date,<:mediaspip_core:option_tri_date:>,
+							date_redac,<:mediaspip_core:option_tri_date_redac:>,
+							popularite,<:mediaspip_core:option_tri_popularite:>,
+							maj,<:mediaspip_core:option_tri_maj:>}}}
+						|table_valeur{valeur}})]
 					[(#PLUGIN{notation}|oui)[(#SET{liste_criteres_tri,#GET{liste_criteres_tri}|array_merge{#ARRAY{moyenne,<:mediaspip_core:option_tri_notation:>}}})]]
 
 					[(#SAISIE{checkbox,liste_criteres_exclus_tri,
