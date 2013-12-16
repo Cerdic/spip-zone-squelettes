@@ -69,7 +69,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_checkbox' => 'Vi ne precizigis vian nivelon.',
 'contact_alerte_message' => 'Vi skribis neniun mesaĝon  ! Malatente?',
 'contact_retour_bonjour' => 'Saluton, ',
-'contact_retour_commentaire' => 'Via mesaĝo ĵus estis sendita al retejestro, kiu respondos al vi kiel eble plej frue:',
+'contact_retour_commentaire1' => 'Via mesaĝo ĵus estis sendita al retejestro,',
+'contact_retour_commentaire2' => 'kiu respondos al vi kiel eble plej frue:', 
 'contact_retour_checkbox' => 'Via nivelo:',
 'contenu_site' => 'Ĉi-tiu retejo enhavas : ',
 // D

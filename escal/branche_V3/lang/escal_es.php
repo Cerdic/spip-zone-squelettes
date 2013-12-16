@@ -75,8 +75,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_checkbox' => 'Usted no precisó su nivel.',
 'contact_alerte_message' => '¡ Usted no compuso mensaje! ¿ Despistado?',
 'contact_retour_bonjour' => 'Buenos días, ',
-'contact_retour_commentaire' => 'Su mensaje ha sido enviado al webmestre del sitio 
-                                  que le responderá cuanto antes a esta dirección:',
+'contact_retour_commentaire1' => 'Su mensaje ha sido enviado al webmestre del sitio',
+'contact_retour_commentaire2' => 'que le responderá cuanto antes a esta dirección:',                                  
 'contact_retour_checkbox' => 'Su nivel:',
 'contenu_site' => 'Este sitio contiene: ',
 'copyright' => 'Reservados todos los derechos',
