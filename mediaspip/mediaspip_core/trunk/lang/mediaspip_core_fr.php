@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_avancee' => 'Configurez le formulaire de recherche avancée et le tri des médias',
 
 	// F
+	'filtre_annee' => 'Année : ',
 	'filtre_auteur' => 'Auteur : ',
 	'filtre_date_debut' => 'Après le : ',
 	'filtre_date_fin' => 'Avant le : ',
@@ -243,6 +244,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'legende_highlights' => 'La liste des médias',
 	'legende_navigation' => 'Navigation',
 	'legende_recherche_avancee' => 'Configuration de la recherche avancée et du tri',
+	'lien_ajouter_filtre' => 'Ajouter le filtre',
 	'lien_archives' => 'Archives',
 	'lien_archives_tout_mois' => 'Archives de tout le mois',
 	'lien_filtrer' => 'Filtrer plus finement',
@@ -353,6 +355,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_derniers_commentaires' => 'Derniers commentaires',
 	'titre_exergue' => 'À la une',
 	'titre_flow_js' => '<span class="title"><a href="@url_article@" target="_blank">@titre@</a></span><span class="desc"> - Publié par : @noms@</span><span class="url"> - <a href="@url_site@" target="_blank">@nom_site@</a>',
+	'titre_filtres_proposes' => 'Filtres proposés : ',
 	'titre_menu_collections' => 'Collections',
 	'titre_modifier' => 'Modifier',
 	'titre_modifier_auteur' => 'Modifier le profil de cet utilisateur',

@@ -188,4 +188,18 @@ function mediaspip_version(){
 	$spip_version = spip_version();
 	return _T('mediaspip_core:info_mediaspip_version',array('version'=>$version,'spip_version'=>spip_version()));
 }
+
+function extraire_annee($str){
+	$annee = '';
+	if (preg_match('/\d{4}/', $str, $match) == 1 
+			and $match[0] > 1970
+			and $match[0] < 2038) {
+		$annee = $match[0];
+	}
+	return $annee;
+}
+
+function supprimer_substr($str, $substr){
+	return preg_replace('/'.$substr.'/', '', $str, 1);
+}
 ?>
