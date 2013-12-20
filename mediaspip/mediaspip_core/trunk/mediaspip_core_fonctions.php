@@ -223,6 +223,7 @@ function supprimer_substr($str, $substr){
  *       'filtre' => 'id_mot',
  *       'valeur' => '15',
  *       'str' => ' 2013 test',
+ *       'score' => '26.427160...',
  *     ),
  * )
  * 
@@ -232,9 +233,26 @@ function supprimer_substr($str, $substr){
  */
 function proposer_filtres_recherche($str) {
 	$res = array();
+	// split the phrase by any number of commas or space characters,
+	// which include " ", \r, \t, \n and \f
+	$parts = preg_split("/[\s,]+/", $str);
+
 	if ($annee = extraire_annee($str)) {
 		$res[] = array('filtre'=>'annee', 'valeur'=>$annee, 'str'=>supprimer_substr($str,$annee));
 	}
+
+	/* Pour les mots-clés, on découpe d'abord la chaîne en "mots", pour
+	 * pour voir ensuite retirer le "mot" (ex: "pata" dans le cas du 
+	 * mot-clé "patate") */
+	include_spip('inc/rechercher');
+	foreach ($parts as $part) {
+		if ($rech_part = recherche_en_base($part, 'mot') and isset($rech_part['mot'])) {
+			foreach ($rech_part['mot'] as $k=>$v) {
+				$res[] = array('filtre'=>'id_mot', 'valeur'=>$k, 'str'=>supprimer_substr($str,$part), 'score'=>$v['score']);
+			}
+		}
+	}
+
 	return $res;
 }
 ?>

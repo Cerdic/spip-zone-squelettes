@@ -17,6 +17,14 @@
 		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
 		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}})]
 	]
+	[(#REM) TODO: ne pas montrer tous les mots trouvés, mais seulement les 3 premiers en fonction du score]
+	[(#REM) TODO: pas de résultat pour les mots de 3 caractères (ex: ONU)]
+	<BOUCLE_mots(MOTS){si #PLUGIN{critere_mots}}{si #VALEUR{filtre}|=={id_mot}}{id_mot=#VALEUR{valeur}}>
+		#SET{recherche, #VALEUR{str}}
+		#SET{mots, #ENV{mots, #ARRAY}|push{#ID_MOT}}
+		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{mots,#GET{mots}}}
+		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_mot,valeur=#TITRE,url=#GET{url}})]
+	</BOUCLE_mots>
 </BOUCLE_filtres_proposes>
 
 	[<a class="lien_filtrer" href="(#ENV{url_formulaire})"><:mediaspip_core:lien_filtrer:></a>]
