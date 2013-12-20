@@ -6,22 +6,18 @@
 
 ]
 <div class="filtres_proposes">
-	[(#URL|et{#RECHERCHE}|oui)
 
-	[(#REM) Trouver une année au format YYYY dans le texte de la recherche]
-	[(#SET{annee, #RECHERCHE|extraire_annee})]
-
-	[(#GET{annee}|oui)
-		<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
-		[(#GET{annee}|oui)
-			#SET{recherche, #RECHERCHE|supprimer_substr{#GET{annee}}}
-			#SET{date_debut,#GET{annee}-01-01}
-			#SET{date_fin,#GET{annee}-12-31}
-			#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
-			[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#GET{annee},url=#GET{url}})]
-		]
+<B_filtres_proposes>
+<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
+<BOUCLE_filtres_proposes(DATA){source table, #RECHERCHE|proposer_filtres_recherche}>
+	[(#VALEUR{filtre}|=={annee}|oui)
+		#SET{recherche, #VALEUR{str}}
+		#SET{date_debut,#VALEUR{valeur}-01-01}
+		#SET{date_fin,#VALEUR{valeur}-12-31}
+		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
+		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}})]
 	]
+</BOUCLE_filtres_proposes>
 
-	]
 	[<a class="lien_filtrer" href="(#ENV{url_formulaire})"><:mediaspip_core:lien_filtrer:></a>]
 </div>

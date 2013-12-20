@@ -202,4 +202,39 @@ function extraire_annee($str){
 function supprimer_substr($str, $substr){
 	return preg_replace('/'.$substr.'/', '', $str, 1);
 }
+
+/**
+ * Analyser une chaîne pour trouver des filtres de recherche
+ * 
+ * Typiquement, c'est pour analyser la chaîne de #RECHERCHE, et proposer
+ * d'autres filtres de recherche.
+ * 
+ * Par exemple, si la chaîne de recherche est "pata 2013 test", on 
+ * trouve l'année "2013", et le mot-clé 15 "patate".
+ * 
+ * Le tableau de retour sera:
+ * array(
+ *   0 => array(
+ *       'filtre' => 'annee',
+ *       'valeur' => '2013',
+ *       'str' => 'pata  test',
+ *     ),
+ *   1 => array(
+ *       'filtre' => 'id_mot',
+ *       'valeur' => '15',
+ *       'str' => ' 2013 test',
+ *     ),
+ * )
+ * 
+ * @param string $str chaîne à analyser
+ * 
+ * @return array tableau des critères trouvés
+ */
+function proposer_filtres_recherche($str) {
+	$res = array();
+	if ($annee = extraire_annee($str)) {
+		$res[] = array('filtre'=>'annee', 'valeur'=>$annee, 'str'=>supprimer_substr($str,$annee));
+	}
+	return $res;
+}
 ?>
