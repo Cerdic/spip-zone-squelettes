@@ -69,7 +69,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_recents' => 'Articles les plus récents',
 	'articles_rubrique' => 'Articles publiés dans cette rubrique',
 	'articles_syndiques_n_jours' => 'ces @nb_jour@ derniers jours ',
-	'aucun_article' => 'Il n\'y a pas d\'article à cette adresse',
 	'aujourdhui' => 'aujourd\'hui',
 	'auteurs' => 'Auteurs',
 // B
@@ -178,8 +177,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'Tous les articles syndiqués',
 	'filtre_titre' => 'Filtre',
 	'forum' => 'Forum',
-	'forum_completer_reponse' => 'Apporter un complément de réponse',
-	'forum_completer_reponse_dessous' => 'Compléter la réponse ci-dessous',
 	'forums_meme_groupe' => 'Forums du groupe',
 	'forum_sujet_reponses' => 'Réponses',
 	'fourni_par_weather_com' => 'par weather.com®',
@@ -193,8 +190,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'go_syndication' => 'Afficher le fichier de syndication du site',
 	'gravatar_de' => 'Gravatar de',
 // H
-	'habillage_concepteur' => 'Habillage visuel par',
-	'habillage_licence' => 'sous licence',
 	'herbier_contexte_global' => 'au total',
 	'herbier_contexte_secteur' => 'dans ce secteur',
 	'herbier_sites' => 'sites favoris',
@@ -203,12 +198,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // I
 	'indifferent' => 'Indifférent',
 	'info_afficher_album' => 'Consulter cet album',
-	'info_langues' => 'Langues du site',
 	'inscription' => 'Inscription',
 	'inscrire_a_newsletter' => 'S\'inscrire à la lettre d\'information',
 	'inscrire_au_site' => 'S\'inscrire sur le site',
 	'intitule_referencement' => 'Proposer de référencer un site dans la rubrique',
-	'item_choisir_langue' => 'Langue du site (espace privé)',
 // J
 	'jour_precedent' => 'Jour précédent',
 	'jour_suivant' => 'Jour suivant',
@@ -224,7 +217,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lire_aussi_article' => 'Lire aussi...',
 	'lire_breve' => 'lire la brève',
 	'lire_suite_article' => 'lire la suite de l\'article',
-	'liste_forum' => 'Liste des forums',
 	'liste_mot_1' => 'Choisir un premier mot (obligatoire)',
 	'liste_mot_2' => 'Choisir un deuxième mot (optionnel)',
 	'liste_mot_3' => 'Choisir un troisième mot (optionnel)',
