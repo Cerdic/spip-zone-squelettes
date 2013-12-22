@@ -27,6 +27,8 @@ define("_CLEVERMAIL_DISTANT", true); // Pour que CM calcule l'URL publique du sq
 
 define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de sidr
 
+define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
+
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
 	Merci à ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
