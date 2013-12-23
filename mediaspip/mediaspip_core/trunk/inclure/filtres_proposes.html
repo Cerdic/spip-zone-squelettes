@@ -7,25 +7,37 @@
 ]
 <div class="filtres_proposes">
 
-<B_filtres_proposes>
-<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
-<BOUCLE_filtres_proposes(DATA){source table, #RECHERCHE|proposer_filtres_recherche}>
-	[(#VALEUR{filtre}|=={annee}|oui)
-		#SET{recherche, #VALEUR{str}}
-		#SET{date_debut,#VALEUR{valeur}-01-01}
-		#SET{date_fin,#VALEUR{valeur}-12-31}
-		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
-		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}})]
-	]
+#SET{filtres_proposes, #RECHERCHE|proposer_filtres_recherche}
+#SET{titre_affiche,non}
+
+<B_filtres_proposes_annee>
+[(#GET{titre_affiche}|=={oui}|non)
+	<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
+	#SET{titre_affiche,oui}
+]
+<BOUCLE_filtres_proposes_annee(DATA){source table, #GET{filtres_proposes}}{filtre=annee}>
+	#SET{recherche, #VALEUR{str}}
+	#SET{date_debut,#VALEUR{valeur}-01-01}
+	#SET{date_fin,#VALEUR{valeur}-12-31}
+	#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
+	[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}})]
+</BOUCLE_filtres_proposes_annee>
+
+<B_filtres_proposes_id_mot>
+[(#GET{titre_affiche}|=={oui}|non)
+	<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
+	#SET{titre_affiche,oui}
+]
+<BOUCLE_filtres_proposes_id_mot(DATA){source table, #GET{filtres_proposes}}{filtre=id_mot}{!par score}{0,5}>
 	[(#REM) TODO: ne pas montrer tous les mots trouvés, mais seulement les 3 premiers en fonction du score]
 	[(#REM) TODO: pas de résultat pour les mots de 3 caractères (ex: ONU)]
-	<BOUCLE_mots(MOTS){si #PLUGIN{critere_mots}}{si #VALEUR{filtre}|=={id_mot}}{id_mot=#VALEUR{valeur}}>
+	<BOUCLE_mots(MOTS){si #PLUGIN{critere_mots}}{id_mot=#VALEUR{valeur}}>
 		#SET{recherche, #VALEUR{str}}
 		#SET{mots, #ENV{mots, #ARRAY}|push{#ID_MOT}}
 		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{mots,#GET{mots}}}
 		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_mot,valeur=#TITRE,url=#GET{url}})]
 	</BOUCLE_mots>
-</BOUCLE_filtres_proposes>
+</BOUCLE_filtres_proposes_id_mot>
 
 	[<a class="lien_filtrer" href="(#ENV{url_formulaire})"><:mediaspip_core:lien_filtrer:></a>]
 </div>
