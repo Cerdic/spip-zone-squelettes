@@ -200,7 +200,7 @@ function extraire_annee($str){
 }
 
 function supprimer_substr($str, $substr){
-	return preg_replace('/'.$substr.'/', '', $str, 1);
+	return trim(preg_replace('/'.$substr.'/', '', $str, 1));
 }
 
 /**
