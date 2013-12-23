@@ -20,7 +20,7 @@
 	#SET{date_debut,#VALEUR{valeur}-01-01}
 	#SET{date_fin,#VALEUR{valeur}-12-31}
 	#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
-	[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}})]
+	[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur}|concat{','},url=#GET{url}})]
 </BOUCLE_filtres_proposes_annee>
 
 <B_filtres_proposes_id_mot>
@@ -35,7 +35,7 @@
 		#SET{recherche, #VALEUR{str}}
 		#SET{mots, #ENV{mots, #ARRAY}|push{#ID_MOT}}
 		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{mots,#GET{mots}}}
-		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_mot,valeur=#TITRE,url=#GET{url}})]
+		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_mot,valeur=#TITRE|concat{','},url=#GET{url}})]
 	</BOUCLE_mots>
 </BOUCLE_filtres_proposes_id_mot>
 
