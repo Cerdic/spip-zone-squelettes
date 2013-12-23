@@ -33,8 +33,8 @@
 	[(#REM) TODO: pas de résultat pour les mots de 3 caractères (ex: ONU)]
 	<BOUCLE_mots(MOTS){si #PLUGIN{critere_mots}}{id_mot=#VALEUR{valeur}}>
 		#SET{recherche, #VALEUR{str}}
-		#SET{mots, #ENV{mots, #ARRAY}|push{#ID_MOT}}
-		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{mots,#GET{mots}}}
+		#SET{mots, #ENV{mots, #ARRAY}|push{#ID_MOT}|array_unique}
+		#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{mots,''}|parametre_url{mots,#GET{mots}}}
 		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_mot,valeur=#TITRE,url=#GET{url}}|concat{','})]
 	</BOUCLE_mots>
 </BOUCLE_filtres_proposes_id_mot>
