@@ -27,7 +27,7 @@ function formulaires_contact_verifier_dist(){
         $erreurs = array();
         
         // verifier que les champs obligatoires sont bien la :
-        foreach(array('nom','prenom','email','champsup1','champsup2','sujet','checkbox') as $obligatoire)
+        foreach(array('nom','prenom') as $obligatoire)
                 if (!_request($obligatoire)) $erreurs[$obligatoire] = _T('info_obligatoire_02'); 
        
         foreach(array('message') as $obligatoire)
