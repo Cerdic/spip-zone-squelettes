@@ -5,14 +5,14 @@
     <ul id="item">
         <li>
             <label>
-                <:escal:contact_nom:>
+                <:escal:contact_nom:> *
                 [<span class="alerte">(#ENV**{erreurs}|table_valeur{nom})</span>]
             </label>
             <input type="text" name="nom" size="30" value="#ENV{nom}" />
         </li>
         <li>
             <label>
-                <:escal:contact_prenom:>
+                <:escal:contact_prenom:> *
                 [<span class="alerte">(#ENV**{erreurs}|table_valeur{prenom})</span>]
             </label>
             <input type="text" name="prenom" value="#ENV{prenom}" size="30" />
@@ -21,7 +21,7 @@
         [(#CONFIG{escal/config/contactmail}|=={oui}|oui)
             <li>
                 <label>
-                    <:escal:contact_mail:>
+                    <:escal:contact_mail:> *
                     [<span class="alerte">(#ENV**{erreurs}|table_valeur{email})</span>]
                 </label>
                 <input type="text" name="email" value="#ENV{email}" size="30" />
@@ -31,7 +31,7 @@
 
         [(#CONFIG{escal/config/champsup1}|=={oui}|oui)
             <li>
-                <label>[(#CONFIG{escal/config/titrechampsup1}|_T_ou_typo)]&nbsp;:
+                <label>[(#CONFIG{escal/config/titrechampsup1}|_T_ou_typo)] :[(#CONFIG{escal/config/champsup1oblig}|=={oui}|oui)*]
                 [<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup1})</span>]
                 </label>
                 <input type="text" name="champsup1" value="#ENV{champsup1}" size="30" />
@@ -41,7 +41,7 @@
 
         [(#CONFIG{escal/config/champsup2}|=={oui}|oui)
             <li>
-                <label>[(#CONFIG{escal/config/titrechampsup2}|_T_ou_typo)]&nbsp;:
+                <label>[(#CONFIG{escal/config/titrechampsup2}|_T_ou_typo)] :[(#CONFIG{escal/config/champsup2oblig}|=={oui}|oui)*]
                 [<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup2})</span>]
                 </label>
                 <input type="text" name="champsup2" value="#ENV{champsup2}" size="30" />
@@ -51,7 +51,7 @@
 
 
         [(#CONFIG{escal/config/radio}|=={oui}|oui) 
-            <li><:escal:contact_motif:>
+            <li><:escal:contact_motif:> [(#CONFIG{escal/config/radiooblig}|=={oui}|oui)*]
             [<span class="alerte">(#ENV**{erreurs}|table_valeur{sujet})</span>]
               <ul>
                 <li><input type="radio" name="sujet" value="<:escal:contact_motif1:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif1:>}|oui)checked] /><:escal:contact_motif1:></li>
@@ -64,7 +64,7 @@
         ]
         
         <li id="checkbox">[(#CONFIG{escal/config/titrecheckbox}|oui)
-          <br />[(#CONFIG{escal/config/titrecheckbox}|_T_ou_typo)][<span class="alerte">(#ENV**{erreurs}|table_valeur{checkbox})</span>]<br />] 
+          <br />[(#CONFIG{escal/config/titrecheckbox}|_T_ou_typo)] :[(#CONFIG{escal/config/checkboxoblig}|=={oui}|oui)*][<span class="alerte">(#ENV**{erreurs}|table_valeur{checkbox})</span>]<br />] 
 
         [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)<ul><li>]
         
@@ -104,7 +104,7 @@
             <input type="text" name="Antispam" value="#ENV{Antispam}" size="30" />
         </li>
         <li>
-            <label style="width:100%" ><:escal:contact_message:>[<span class="alerte">(#ENV**{erreurs}|table_valeur{message})</span>]
+            <label style="width:100%" ><:escal:contact_message:> *[<span class="alerte">(#ENV**{erreurs}|table_valeur{message})</span>]
             <br /><span class="interdit"><:escal:contact_interdit:>[]%~#`$&|}{^>< </span>
             </label>
         </li>

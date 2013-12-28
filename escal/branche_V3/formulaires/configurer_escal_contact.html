@@ -1,4 +1,3 @@
-<!-- Elements -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
     <h3 class="titrem">[(#CHEMIN_IMAGE{configcontact.png}|balise_img{'',cadre-icone})]La page contact</h3>
@@ -13,6 +12,8 @@
             <div class="explication">
             Pour changer le texte d'un autre élément de la page Contact, utilisez les fichiers de langue.
             <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/Les-fichiers-de-langues?lang=fr">En savoir plus</a>
+            <br />Tous les champs de ce formulaire acceptent le multilinguisme avec la balise &lt;multi&gt; 
+            <br />exemple : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;
             </div>
 
 
@@ -67,6 +68,16 @@
                     ]<span class="choix">
                              <input type="texte" style="width:50%" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
+            #SET{name,champsup1oblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Champ obligatoire
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>                    
              </li>
              
 <!-- champ supplementaire 2 -->
@@ -88,6 +99,16 @@
                     ]<span class="choix">
                              <input type="texte" style="width:50%" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
+            #SET{name,champsup2oblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Champ obligatoire
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>                    
              </li>
              
 <!-- liste de choix -->
@@ -97,13 +118,22 @@
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span></div>
-             </li>
-             
+            #SET{name,radiooblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Champ obligatoire
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>             
+            </li>  
 <!-- checkbox -->
             #SET{name,checkbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
@@ -116,6 +146,16 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </div>
+            #SET{name,checkboxoblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">Champ obligatoire
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>                    
             #SET{name,checkboxliste}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">Présentation
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -138,31 +178,31 @@
                     <div class="explication" style="padding-left: 50px">Libellé case 1
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
+                             <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication" style="padding-left: 50px">Libellé case 2
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
+                             <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication" style="padding-left: 50px">Libellé case 3
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
+                             <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication" style="padding-left: 50px">Libellé case 4
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
+                             <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication" style="padding-left: 50px">Libellé case 5
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
+                             <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
 
              </li>
