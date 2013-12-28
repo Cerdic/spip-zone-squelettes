@@ -88,12 +88,12 @@ function formulaires_contact_traiter_dist(){
 
         
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= lire_config('escal/config/titrechampsup1')." :\n";
+            $message .= _T_ou_typo(lire_config('escal/config/titrechampsup1'))." :\n";
             $message .= clean($champs['champsup1'])."\n\n";
         }
         
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= lire_config('escal/config/titrechampsup2')." :\n";
+            $message.= _T_ou_typo(lire_config('escal/config/titrechampsup2'))." :\n";
             $message.= clean($champs['champsup2'])."\n\n";
         }
         
@@ -103,7 +103,7 @@ function formulaires_contact_traiter_dist(){
         }
         
         if (lire_config('escal/config/checkbox') == 'oui') {
-            $message .= lire_config('escal/config/titrecheckbox') ." :\n" ;
+            $message .= _T_ou_typo(lire_config('escal/config/titrecheckbox')) ." :\n" ;
             if (is_array($champs['checkbox'])) {
               $message .= implode(" - ",$champs['checkbox'])."\n\n";
             }
