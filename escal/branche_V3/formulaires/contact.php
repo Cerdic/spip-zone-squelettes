@@ -26,18 +26,16 @@ function formulaires_contact_verifier_dist(){
         
         $erreurs = array();
         
-        // verifier que les champs obligatoires sont bien la :
+        // verifier que les champs nom et prénom sont bien la :
         foreach(array('nom','prenom') as $obligatoire)
                 if (!_request($obligatoire)) $erreurs[$obligatoire] = _T('info_obligatoire_02'); 
        
-        foreach(array('message') as $obligatoire)
-                if (!_request($obligatoire)) $erreurs[$obligatoire] = _T('escal:contact_alerte_message');
 
                                         
         // Si le champ mail est activé dans la configuration de escal
         if(lire_config('escal/config/contactmail') == 'oui'){
             $email = _request('email');
-            // verifier que si un email a été saisi, il est bien valide :
+            // verifier si un email a été saisi
             if (!_request('email')) {
                     $erreurs['email'] = _T('info_obligatoire_02');       
             }
@@ -47,19 +45,29 @@ function formulaires_contact_verifier_dist(){
             }
         }
         
-	if (!_request('champsup1') AND lire_config('escal/config/champsup1') == 'oui' AND lire_config('escal/config/champsup1oblig') == 'oui' ) 
-        $erreurs['champsup1'] = _T('info_obligatoire_02');              
-	if (!_request('champsup2') AND lire_config('escal/config/champsup2') == 'oui' AND lire_config('escal/config/champsup2oblig') == 'oui' ) 
-        $erreurs['champsup2'] = _T('info_obligatoire_02'); 
-	if (!_request('sujet') AND lire_config('escal/config/radio') == 'oui' AND lire_config('escal/config/radiooblig') == 'oui' ) 
-        $erreurs['sujet'] = _T('info_obligatoire_02');
-	if (!_request('checkbox') AND lire_config('escal/config/checkbox') == 'oui' AND lire_config('escal/config/checkboxoblig') == 'oui' ) 
-        $erreurs['checkbox'] = _T('info_obligatoire_02');        
-                
+        // Si les autres champs sont activés dans la configuration de escal
+      	if (!_request('champsup1') AND lire_config('escal/config/champsup1') == 'oui' AND lire_config('escal/config/champsup1oblig') == 'oui' ) 
+              $erreurs['champsup1'] = _T('info_obligatoire_02');              
+      	if (!_request('champsup2') AND lire_config('escal/config/champsup2') == 'oui' AND lire_config('escal/config/champsup2oblig') == 'oui' ) 
+              $erreurs['champsup2'] = _T('info_obligatoire_02'); 
+      	if (!_request('sujet') AND lire_config('escal/config/radio') == 'oui' AND lire_config('escal/config/radiooblig') == 'oui' ) 
+              $erreurs['sujet'] = _T('info_obligatoire_02');
+      	if (!_request('checkbox') AND lire_config('escal/config/checkbox') == 'oui' AND lire_config('escal/config/checkboxoblig') == 'oui' ) 
+              $erreurs['checkbox'] = _T('info_obligatoire_02');        
+        
+        
+        // vérification du message        
         $test_message = nocode(_request('message'));
-        if($test_message==FALSE){
-        $erreurs['message']=_T('escal:contact_alerte_interdit').$test_message;
-        }
+            // verifier si un message a été saisi
+            if (!_request('message')) {
+                    $erreurs['message'] = _T('escal:contact_alerte_message');       
+            }
+            // Vérifier que c'est un message valide
+            else if($test_message==FALSE){
+                    $erreurs['message']=_T('escal:contact_alerte_interdit').$test_message;
+            }                    
+        
+        // message général si oubli ou erreur
         if (count($erreurs))
                 $erreurs['message_erreur'] = _T('escal:contact_alerte_entete');
                 
