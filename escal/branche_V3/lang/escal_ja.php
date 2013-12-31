@@ -75,11 +75,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // D
 'dans_site' => 'このサイトには ',
 // E
-'en_ligne' => '現在オンライン',
-'envoi_mail_nom' => '姓：',
-'envoi_mail_prenom' => '名 :',
-'envoi_mail_motif' => '内容 :  ',
-'envoi_mail_message' => 'メッセージ :  ',
+'en_ligne' => '現在オンライン : ',
+'envoi_mail_nom' => '姓' : ,
+'envoi_mail_prenom' => '名' : ,
+'envoi_mail_motif' => '内容' : ,
+'envoi_mail_message' => 'メッセージ' : ,
 'envoyer_message' => 'へメッセージを送る',
 'erreur404' => '404 エラー',
 'erreur404_message' => '<p>恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。</p>

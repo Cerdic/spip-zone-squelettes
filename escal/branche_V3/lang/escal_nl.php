@@ -76,7 +76,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // D
 'dans_site' => 'in deze site',
 // E
-'en_ligne' => 'Op dit moment on-line:',
+'en_ligne' => 'Op dit moment on-line: ',
 'envoi_mail_nom' => 'Naam: ',
 'envoi_mail_prenom' => 'Voornaam: ',
 'envoi_mail_motif' => 'Onderwep: ',

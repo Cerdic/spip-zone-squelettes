@@ -76,11 +76,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // D	   
 'dans_site'=> 'šaja vietne',	   
 // E	   
-'en_ligne'=> 'šobred tiešsaiste:',	   
-'envoi_mail_nom'=> 'Nosaukums:',	   
-'envoi_mail_prenom'=> 'Vards:',	   
-'envoi_mail_motif'=> 'Temats:',	   
-'envoi_mail_message'=> 'Zina:',	   
+'en_ligne'=> 'šobred tiešsaiste: ',	   
+'envoi_mail_nom'=> 'Nosaukums: ',	   
+'envoi_mail_prenom'=> 'Vards: ',	   
+'envoi_mail_motif'=> 'Temats: ',	   
+'envoi_mail_message'=> 'Zina: ',	   
 'envoyer_message'=> 'Nosutet zinu',	   
 'erreur404'=> 'Kluda 404',	   
 'erreur404_message'=> 'lapu velaties nav, vairs nav tiešsaiste vai ir parvietots.	   
