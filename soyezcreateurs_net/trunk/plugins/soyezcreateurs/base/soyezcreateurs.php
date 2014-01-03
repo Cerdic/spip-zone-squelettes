@@ -333,7 +333,8 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 			"spip_rubriques", array(
 				"titre" => $titre,
 				"id_parent" => $id_parent,
-				"descriptif" => $descriptif
+				"descriptif" => $descriptif,
+				"lang" => 'fr'
 			)
 		);
 		sql_updateq(
@@ -672,262 +673,370 @@ function create_site_mot($id_syndic, $mot, $groupe) {
 
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
-	//les rubriques
-	create_rubrique('000. Fourre-tout', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
-	$id_rubrique = id_rubrique('000. Fourre-tout');
-	if ($id_rubrique >0) {
-		create_rubrique('10. NewsLetter', $id_rubrique, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
-	}
-	
-	create_rubrique('900. Agenda', '0');
-	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
 	//les groupes puis mots
-	create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l'Agenda du site", "Un événement de l'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l'Agenda du site", "Un événement de l'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+
 	create_groupe("_AgendaStatut", "Statut d'un événement dans l'Agenda", "Permet de spécifier un statut d'un événement dans l'Agenda.\n\nL'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+
 	create_groupe("_ClasseRubriqueMenu", "Pour affecter une classe spécifique aux éléments du menu", "", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_ClasseRubriqueMenu", "separation", "Affecter ce mot clef aux rubriques qui doivent être affichée avec une séparation dans le menu.", "");
+		$id_mot = create_mot("_ClasseRubriqueMenu", "separation", "Affecter ce mot clef aux rubriques qui doivent être affichée avec une séparation dans le menu.", "");
+
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d'intelligible, un éventuel descriptif rapide sur l'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
-		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
-		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
-	create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
-	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
-		create_mot("_LayoutGala", "01. Three percentage columns", "", "");
-		create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
-		create_mot("_LayoutGala", "03. Three percentage columns (Right)", "", "");
-		create_mot("_LayoutGala", "04. Three percentage columns (Right InverseColor)", "", "");
-		create_mot("_LayoutGala", "05. Three percentage columns (Left)", "", "");
-		create_mot("_LayoutGala", "06. Three percentage columns (Left InverseColor)", "", "");
-		create_mot("_LayoutGala", "07. Three fixed columns", "", "");
-		create_mot("_LayoutGala", "08. Three fixed columns (InverseColor)", "", "");
-		create_mot("_LayoutGala", "09. Three fixed columns (Right)", "", "");
-		create_mot("_LayoutGala", "10. Three fixed columns (Right InverseColor)", "", "");
-		create_mot("_LayoutGala", "11. Three fixed columns (Left)", "", "");
-		create_mot("_LayoutGala", "12. Three fixed columns (Left InverseColor)", "", "");
-		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "");
-		create_mot("_LayoutGala", "14. Liquid, secondary columns fixed-width (InverseColor)", "", "");
-		create_mot("_LayoutGala", "15. Liquid, secondary columns fixed-width (Right)", "", "");
-		create_mot("_LayoutGala", "16. Liquid, secondary columns fixed-width (Right InverseColor)", "", "");
-		create_mot("_LayoutGala", "17. Liquid, secondary columns fixed-width (Left)", "", "");
-		create_mot("_LayoutGala", "18. Liquid, secondary columns fixed-width (Left InverseColor)", "", "");
-		create_mot("_LayoutGala", "19. Liquid, three columns, hybrid widths", "", "");
-		create_mot("_LayoutGala", "20. Liquid, three columns, hybrid widths (InverseColor)", "", "");
-		create_mot("_LayoutGala", "21. Liquid, three columns, hybrid widths (Right)", "", "");
-		create_mot("_LayoutGala", "22. Liquid, three columns, hybrid widths (Right InverseColor)", "", "");
-		create_mot("_LayoutGala", "23. Two columns liquid, side fixed", "", "");
-		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
-		create_mot("_LayoutGala", "25. Two percentage columns", "", "");
-		create_mot("_LayoutGala", "26. Two percentage columns", "", "");
-		create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
-		create_mot("_LayoutGala", "28. One column liquid and two halves (InverseColor)", "", "");
-		create_mot("_LayoutGala", "29. Two percentage columns and one larger", "", "");
-		create_mot("_LayoutGala", "30. Two percentage columns and one larger (Right)", "", "");
-		create_mot("_LayoutGala", "31. Two columns liquid, fixed side and large one", "", "");
-		create_mot("_LayoutGala", "32. Two columns liquid, fixed side and large one (Right)", "", "");
-		create_mot("_LayoutGala", "33. Two colums fixed (Right)", "", "");
-		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
-		create_mot("_LayoutGala", "35. Two colums fixed (ShortLeft)", "", "");
-		create_mot("_LayoutGala", "36. Two colums fixed (ShortRight)", "", "");
-		create_mot("_LayoutGala", "37. Two colums fixed (Right)", "", "");
-		create_mot("_LayoutGala", "38. Two colums fixed", "", "");
-		create_mot("_LayoutGala", "39. One column fixed and two halves (Right)", "", "");
-		create_mot("_LayoutGala", "40. One column fixed and two halves", "", "");
-	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 45.3393,1.06292)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "");
-		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
-	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s'affichent sur la page d'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_ModePortail", "1. Mot1", "", "");
-		create_mot("_ModePortail", "2. Mot2", "", "");
-		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies.", "Ne pas oublier de mettre un logo (120×30) aux objet concernés.");
-		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S'applique aux :\n-* articles\n-* rubriques");
-		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "");
-		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
-		create_mot("_ModePortail", "CycloShow", "Affecter ce mot clef à la rubrique de SPIP dont les articles doivent apparaitre dans la zone du cycle d'images.\n\nIndiquer dans le texte du mot clef le nombre d'articles de la rubrique à prendre en compte.", "");
-		create_mot("_ModePortail", "Defilant", "Affecter ce mot clef à la rubrique de SPIP dont les brèves doivent apparaitre dans la zone de texte défilant en haut de la page.\n\n", "");
-		create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "");
-	create_groupe("_Specialisation", "Spécialisation d'un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
-		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l'article traitant de la politique d'accessibilité du site.", "Un fois l'article écrit, lui affecter ce mot clef pour qu'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d'accueil).");
-		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
-		create_mot("_Specialisation", "Courrier_libre", "Affecter ce mot clef à l'article utilisé comme courrier libre.", "Concerne les articles qui servent à l'envoi de courriers libres");
-		create_mot("_Specialisation", "DevoilerDate", "Mettre ce mot clef à un article dont on veut afficher la date de publication.", "");
-		create_mot("_Specialisation", "DevoilerIdentite", "Mettre ce mot clef à un article dont on veut afficher le nom du ou des auteurs (au sens de SPIP)", "");
-		create_mot("_Specialisation", "EDITO", "Sert à dire que l'article est un éditorial.", "{{Attention}} : le site utilisera l'article le plus récent ayant ce mot clef pour l'afficher en tant qu'éditorial.\n\n[*Conséquence*] : ne changez pas le contenu d'un éditorial par le nouvel éditorial, créez un nouvel article éditorial!");
-		create_mot("_Specialisation", "EDITO_Restreint", "Pour un article d'Edito ne s'affichant qu'en mode restreint", "Permet donc d'avoir un Edito pour le grand public et un Edito pour la zone restreinte.\n\nMieux encore, avec 2 EDITO_Restreint, un en libre accès et un en zone restreinte, on pourra avoir :\n-* un Edito d'accueil après inscription au site\n-* Un Edito d'accueil après rattachement à une zone restreinte.");
-		create_mot("_Specialisation", "GraverSonNom", "Un article avec ce mot clef permettra aux visiteurs de laisser leur nom sur le site en tant que bulle d'aide sur l'image (Logo du mot) et de faire parvenir un texte aux administrateurs", "Il faut pour que ça fonctionne:\n\n-* un article\n-* un forum modéré a posteriori\n-* ce mot mot clef attaché à cet article\n-* un logo à ce mot clef\n\nÀ partir de là, l'article permet aux visiteurs de «graver leur nom» dans le site. Leur nom aparaitra en bulle d'aide sur une image (le logo de ce mot clef).");
-		create_mot("_Specialisation", "Livre d'Or", "Pour empécher que l'on puisse répondre à un forum", "Ce mot clef appliqué à un article ayant un forum fait que ce forum n'a qu'un niveau (pas possible de répondre à une intervention, seulement d'en rajouter)");
-		create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
-		create_mot("_Specialisation", "MENURACINE", "Doit s'afficher en dessous de Accueil", "Pour dire que l'article s'affiche en dessous de Accueil dans le menu de gauche avant les rubriques du site");
-		create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l'article s'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
-		create_mot("_Specialisation", "MENURACINEBAS_Systematique", "Affichage systématique dans le menu de gauche en bas", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en bas, que l'on soit dans un secteur avec MenuHaut ou non.");
-		create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l'on soit dans un secteur avec MenuHaut ou non.");
-		create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
-		create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
-		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
-		create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
-	create_groupe("_Specialisation_Rubrique", "Spécialisation d'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
-		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
-		create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu'une rubrique est dans l'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
-		create_mot("_Specialisation_Rubrique", "Citations", "Rubrique destinée à recevoir de courtes citations (une par article) affichées en haut à droite des pages du site de manière alléatoire (une nouvelle citation toutes les heures)", "Créer un article par citation avec :\n\n-* La citation dans le corps du texte (entourée de guillemets si nécessaires)\n-* L'auteur dans le sous-titre\n-* Le titre de l'article sert d'accroche pour le lecteur\n");
-		create_mot("_Specialisation_Rubrique", "DessousBreves", "Pour placer une rubrique et ses articles qui sont placés sous les brèves (dans la colonne de droite du site)", "[*Attention*] : une rubrique qui a ce mot clef ne doit pas avoir de sous-rubrique !\n\nLe titre de la rubrique sera affiché sur la droite et la liste de ses articles en dessous.\n\nSeuls les articles sont clicables pour accéder à leur contenu.");
-		create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
-		create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
-		create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
-		create_mot("_Specialisation_Rubrique", "PlanLocal", "Affecter ce mot clef aux rubriques où vous voulez afficher le plan local à la place de la liste des articles.");
-		create_mot("_Specialisation_Rubrique", "SecteurPasDansQuoiDeNeuf", "Pour interdire que les articles d'un secteur entier soit dans «Quoi de Neuf» sur la page d'accueil", "Un secteur, c'est une rubrique rattachée à la racine du site et toutes ses sous-rubriques");
-		create_mot("_Specialisation_Rubrique", "PasDansMenuExtra", "Pour interdire que la rubrique soit dans le menu des extra (menu droit)", "");
-		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
-	create_groupe("_Specialisation_Rubrique_ou_Article", "Spécialisation d'une rubrique ou d'un article", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n-* le comportement d'un article particulier", 'non', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
-		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l'article ou la rubrique soit dans «Quoi de Neuf» sur la page d'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
-		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l'article a un sommaire", "Un sommaire automatique sera placé en début d'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l'article.");
-		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site et des documents à télécharger.\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans le plan du site et dans la liste des documents à télécharger.");
-		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlanLocal", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) des plan locaux du site (ceux affichés quand une rubrique n'a ni texte, ni article, ni site).\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans les plan locaux du site.");
-		create_mot("_Specialisation_Rubrique_ou_Article", "Archives", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doivent être considérés comme archivés.", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
-		create_mot("_Specialisation_Rubrique_ou_Article", "GrosLogo", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doit afficher le logo de l'article ou de la rubrique en grand (flottant à gauche du texte de l'article).", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
-	create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
-		create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
-		create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
-		create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
-		create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
-	create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
-		create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
-		create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
-		create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
-		create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
+		$id_mot = create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
+		$id_mot = create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
+		$id_mot = create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
+
 	create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 		$id_mot = create_mot("_EnDirect", "00. Quoi de neuf ?", "", "");
-		create_logo('documents/newspaper.png', $type='mot', $id_mot, 'png'); // http://www.iconfinder.com/icondetails/8437/16/newspaper_icon
+			create_logo('documents/moton100.png', $type='mot', $id_mot, 'png');
+
+	create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_HeaderBanner", "Ban1", "", "");
+			create_logo('documents/moton110.jpg', $type='mot', $id_mot, 'jpg');
+		$id_mot = create_mot("_HeaderBanner", "Ban2", "", "");
+			create_logo('documents/moton111.jpg', $type='mot', $id_mot, 'jpg');
+		$id_mot = create_mot("_HeaderBanner", "Ban3", "", "");
+			create_logo('documents/moton112.jpg', $type='mot', $id_mot, 'jpg');
+		$id_mot = create_mot("_HeaderBanner", "Ban4", "", "");
+			create_logo('documents/moton113.jpg', $type='mot', $id_mot, 'jpg');
+		$id_mot = create_mot("_HeaderBanner", "Ban5", "", "");
+			create_logo('documents/moton114.jpg', $type='mot', $id_mot, 'jpg');
+
+	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
+
+	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_LayoutGala", "01. Three percentage columns", "", "");
+		$id_mot = create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "03. Three percentage columns (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "04. Three percentage columns (Right InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "05. Three percentage columns (Left)", "", "");
+		$id_mot = create_mot("_LayoutGala", "06. Three percentage columns (Left InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "07. Three fixed columns", "", "");
+		$id_mot = create_mot("_LayoutGala", "08. Three fixed columns (InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "09. Three fixed columns (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "10. Three fixed columns (Right InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "11. Three fixed columns (Left)", "", "");
+		$id_mot = create_mot("_LayoutGala", "12. Three fixed columns (Left InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "");
+		$id_mot = create_mot("_LayoutGala", "14. Liquid, secondary columns fixed-width (InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "15. Liquid, secondary columns fixed-width (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "16. Liquid, secondary columns fixed-width (Right InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "17. Liquid, secondary columns fixed-width (Left)", "", "");
+		$id_mot = create_mot("_LayoutGala", "18. Liquid, secondary columns fixed-width (Left InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "19. Liquid, three columns, hybrid widths", "", "");
+		$id_mot = create_mot("_LayoutGala", "20. Liquid, three columns, hybrid widths (InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "21. Liquid, three columns, hybrid widths (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "22. Liquid, three columns, hybrid widths (Right InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "23. Two columns liquid, side fixed", "", "");
+		$id_mot = create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
+		$id_mot = create_mot("_LayoutGala", "25. Two percentage columns", "", "");
+		$id_mot = create_mot("_LayoutGala", "26. Two percentage columns", "", "");
+		$id_mot = create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
+		$id_mot = create_mot("_LayoutGala", "28. One column liquid and two halves (InverseColor)", "", "");
+		$id_mot = create_mot("_LayoutGala", "29. Two percentage columns and one larger", "", "");
+		$id_mot = create_mot("_LayoutGala", "30. Two percentage columns and one larger (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "31. Two columns liquid, fixed side and large one", "", "");
+		$id_mot = create_mot("_LayoutGala", "32. Two columns liquid, fixed side and large one (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "33. Two colums fixed (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "34. Two colums fixed", "", "");
+		$id_mot = create_mot("_LayoutGala", "35. Two colums fixed (ShortLeft)", "", "");
+		$id_mot = create_mot("_LayoutGala", "36. Two colums fixed (ShortRight)", "", "");
+		$id_mot = create_mot("_LayoutGala", "37. Two colums fixed (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "38. Two colums fixed", "", "");
+		$id_mot = create_mot("_LayoutGala", "39. One column fixed and two halves (Right)", "", "");
+		$id_mot = create_mot("_LayoutGala", "40. One column fixed and two halves", "", "");
+
+	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+
+	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 45.3393,1.06292)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "48.876319,2.292313");
+		$id_mot = create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "L'amour, toujours, \"rêve\", été, ça marche™");
+
+	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s'affichent sur la page d'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_ModePortail", "1. Mot1", "", "");
+		$id_mot = create_mot("_ModePortail", "2. Mot2", "", "");
+		$id_mot = create_mot("_ModePortail", "CycloShow", "Affecter ce mot clef à la rubrique de SPIP dont les articles doivent apparaitre dans la zone du cycle d'images.\n\nIndiquer dans le texte du mot clef le nombre d'articles de la rubrique à prendre en compte.", "");
+		$id_mot = create_mot("_ModePortail", "Defilant", "Affecter ce mot clef à la rubrique de SPIP dont les brèves doivent apparaitre dans la zone de texte défilant en haut de la page.\n\n", "");
+		$id_mot = create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "");
+		$id_mot = create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
+		$id_mot = create_mot("_ModePortail", "ZoomSur2", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif)./n/nLe site prendra le dernier article ayant ce mot clef", "");
+
+	create_groupe("_Specialisation", "Spécialisation d'un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+		$id_mot = create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l'article traitant de la politique d'accessibilité du site.", "Un fois l'article écrit, lui affecter ce mot clef pour qu'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d'accueil).");
+		$id_mot = create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
+		$id_mot = create_mot("_Specialisation", "Courrier_libre", "Affecter ce mot clef à l'article utilisé comme courrier libre.", "Concerne les articles qui servent à l'envoi de courriers libres");
+		$id_mot = create_mot("_Specialisation", "DevoilerDate", "Mettre ce mot clef à un article dont on veut afficher la date de publication.", "");
+		$id_mot = create_mot("_Specialisation", "DevoilerIdentite", "Mettre ce mot clef à un article dont on veut afficher le nom du ou des auteurs (au sens de SPIP)", "");
+		$id_mot = create_mot("_Specialisation", "EDITO", "Sert à dire que l'article est un éditorial.", "{{Attention}} : le site utilisera l'article le plus récent ayant ce mot clef pour l'afficher en tant qu'éditorial.\n\n[*Conséquence*] : ne changez pas le contenu d'un éditorial par le nouvel éditorial, créez un nouvel article éditorial!");
+		$id_mot = create_mot("_Specialisation", "EDITO_Restreint", "Pour un article d'Edito ne s'affichant qu'en mode restreint", "Permet donc d'avoir un Edito pour le grand public et un Edito pour la zone restreinte.\n\nMieux encore, avec 2 EDITO_Restreint, un en libre accès et un en zone restreinte, on pourra avoir :\n-* un Edito d'accueil après inscription au site\n-* Un Edito d'accueil après rattachement à une zone restreinte.");
+		$id_mot = create_mot("_Specialisation", "GraverSonNom", "Un article avec ce mot clef permettra aux visiteurs de laisser leur nom sur le site en tant que bulle d'aide sur l'image (Logo du mot) et de faire parvenir un texte aux administrateurs", "Il faut pour que ça fonctionne:\n\n-* un article\n-* un forum modéré a posteriori\n-* ce mot mot clef attaché à cet article\n-* un logo à ce mot clef\n\nÀ partir de là, l'article permet aux visiteurs de «graver leur nom» dans le site. Leur nom aparaitra en bulle d'aide sur une image (le logo de ce mot clef).");
+		$id_mot = create_mot("_Specialisation", "Livre d'Or", "Pour empécher que l'on puisse répondre à un forum", "Ce mot clef appliqué à un article ayant un forum fait que ce forum n'a qu'un niveau (pas possible de répondre à une intervention, seulement d'en rajouter)");
+		$id_mot = create_mot("_Specialisation", "MentionsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu'[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Décryptage des obligations légales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].", "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
+		$id_mot = create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+		$id_mot = create_mot("_Specialisation", "MENURACINE", "Doit s'afficher en dessous de Accueil", "Pour dire que l'article s'affiche en dessous de Accueil dans le menu de gauche avant les rubriques du site");
+		$id_mot = create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l'article s'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
+		$id_mot = create_mot("_Specialisation", "MENURACINEBAS_Systematique", "Affichage systématique dans le menu de gauche en bas", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en bas, que l'on soit dans un secteur avec MenuHaut ou non.");
+		$id_mot = create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l'on soit dans un secteur avec MenuHaut ou non.");
+		$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+		$id_mot = create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
+		$id_mot = create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
+		$id_mot = create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
+		$id_mot = create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
+
+	create_groupe("_Specialisation_Rubrique", "Spécialisation d'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
+		$id_mot = create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
+		$id_mot = create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
+		$id_mot = create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu'une rubrique est dans l'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
+		$id_mot = create_mot("_Specialisation_Rubrique", "Citations", "Rubrique destinée à recevoir de courtes citations (une par article) affichées en haut à droite des pages du site de manière alléatoire (une nouvelle citation toutes les heures)", "Créer un article par citation avec :\n\n-* La citation dans le corps du texte (entourée de guillemets si nécessaires)\n-* L'auteur dans le sous-titre\n-* Le titre de l'article sert d'accroche pour le lecteur\n");
+		$id_mot = create_mot("_Specialisation_Rubrique", "DessousBreves", "Pour placer une rubrique et ses articles qui sont placés sous les brèves (dans la colonne de droite du site)", "[*Attention*] : une rubrique qui a ce mot clef ne doit pas avoir de sous-rubrique !\n\nLe titre de la rubrique sera affiché sur la droite et la liste de ses articles en dessous.\n\nSeuls les articles sont clicables pour accéder à leur contenu.");
+		$id_mot = create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
+		$id_mot = create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
+		$id_mot = create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
+		$id_mot = create_mot("_Specialisation_Rubrique", "PasDansMenuExtra", "Pour interdire que la rubrique soit dans le menu des extra (menu droit)", "");
+		$id_mot = create_mot("_Specialisation_Rubrique", "PlanLocal", "Affecter ce mot clef aux rubriques où vous voulez afficher le plan local à la place de la liste des articles.", "");
+		$id_mot = create_mot("_Specialisation_Rubrique", "SecteurPasDansQuoiDeNeuf", "Pour interdire que les articles d'un secteur entier soit dans «Quoi de Neuf» sur la page d'accueil", "Un secteur, c'est une rubrique rattachée à la racine du site et toutes ses sous-rubriques");
+
+	create_groupe("_Specialisation_Rubrique_ou_Article", "Spécialisation d'une rubrique ou d'un article", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n-* le comportement d'un article particulier", 'non', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "Archives", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doivent être considérés comme archivés.", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "GrosLogo", "Pour dire la rubrique ayant ce mot clef ou les articles de la rubrique doit afficher le logo de l'article ou de la rubrique en grand (flottant à gauche du texte de l'article).", "Affecter ce mot clef à chaque rubrique concernée ou à chaque article individuellement.");
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site et des documents à télécharger.\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans le plan du site et dans la liste des documents à télécharger.");
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlanLocal", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) des plan locaux du site (ceux affichés quand une rubrique n'a ni texte, ni article, ni site).\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans les plan locaux du site.");
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l'article ou la rubrique soit dans «Quoi de Neuf» sur la page d'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
+		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l'article a un sommaire", "Un sommaire automatique sera placé en début d'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l'article.");
+
+	create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
+		$id_mot = create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
+		$id_mot = create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
+		$id_mot = create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site.\n\nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "");
+		$id_mot = create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
+
+	create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+		$id_mot = create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
+		$id_mot = create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
+		$id_mot = create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
+		$id_mot = create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
+		$id_mot = create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
 	
-	// les liaisons entre rubriques et mot clé
-	create_rubrique_mot('000. Fourre-tout', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
-	create_rubrique_mot('000. Fourre-tout', 'PasDansFildAriane', "_Specialisation_Rubrique");
-	create_rubrique_mot('000. Fourre-tout', 'PasDansMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('000. Fourre-tout', 'PasDansPlan', "_Specialisation_Rubrique_ou_Article");
-	create_rubrique_mot('900. Agenda', 'Agenda', "_Specialisation_Rubrique");
-	create_rubrique_mot('900. Agenda', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
-	create_rubrique_mot('900. Agenda', 'PasDansMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('999. Citations', 'SecteurPasDansQuoiDeNeuf', "_Specialisation_Rubrique");
-	create_rubrique_mot('999. Citations', 'PasDansMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('999. Citations', 'PasDansPlan', "_Specialisation_Rubrique_ou_Article");
-	create_rubrique_mot('999. Citations', 'Citations', "_Specialisation_Rubrique");
-	create_rubrique_mot('999. Citations', 'PasDansFildAriane', "_Specialisation_Rubrique");
-	$id_rubrique = id_rubrique('000. Fourre-tout');
-	if ($id_rubrique >0) {
-		create_rubrique('05. Saint du jour', $id_rubrique, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "Nominis (Saint du jour)";
-		$sitesdj['url_site'] = "http://nominis.cef.fr/";
-		$sitesdj['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
-		$sitesdj['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
-		$id_site = create_site($sitesdj, '05. Saint du jour');
-		create_site_mot($id_site, 'SaintDuJour', '_Specialisation_Sites');
-	}
+	include_spip("inc/sc_article");
+	// Structure et contenu du site
+
+	$id_rubrique = create_rubrique("000. Fourre-tout", '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
+		create_rubrique_mot("000. Fourre-tout", "AfficherArticlesMenu", "_Specialisation_Rubrique");
+		create_rubrique_mot("000. Fourre-tout", "PasDansMenu", "_Specialisation_Rubrique");
+		create_rubrique_mot("000. Fourre-tout", "PasDansPlan", "_Specialisation_Rubrique_ou_Article");
+		create_rubrique_mot("000. Fourre-tout", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
+		create_rubrique_mot("000. Fourre-tout", "PasDansFildAriane", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Contact"), "000. Fourre-tout");
+			create_article_mot("Contact", "000. Fourre-tout", "MENURACINEBAS_Systematique", "_Specialisation");
+		$id_article = create_article(trouve_article_sc("Politique d'accessibilité du site"), "000. Fourre-tout");
+			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
+			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+		$id_article = create_article(trouve_article_sc("Mentions légales"), "000. Fourre-tout");
+			create_article_mot("Mentions légales", "000. Fourre-tout", "MentionsLegales", "_Specialisation");
+		$id_article = create_article(trouve_article_sc("10. Premiers pas dans le squelette SoyezCreateurs"), "000. Fourre-tout");
+			create_logo('documents/arton1.jpg', $type='art', $id_article, 'jpg');
+			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "ALaUne", "_Specialisation");
+			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
+		$id_article = create_article(trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi"), "000. Fourre-tout");
+			create_logo('documents/arton7.png', $type='art', $id_article, 'png');
+			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "ALaUne", "_Specialisation");
+			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Courrier_libre", "_Specialisation");
+			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+			$sites = array();
+			$sites['nom_site'] = "MàJ SoyezCréateurs";
+			$sites['url_site'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
+			$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
+			$sites['url_syndic'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
+			$id_site = create_site($sites, "000. Fourre-tout");
+			$sites = array();
+			$sites['nom_site'] = "SoyezCréateurs";
+			$sites['url_site'] = "http://contrib.spip.net/?rubrique1237";
+			$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
+			$sites['url_syndic'] = "http://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
+			$id_site = create_site($sites, "000. Fourre-tout");
 	
-	include_spip('inc/sc_article');
-	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
-		create_article($article1, "000. Fourre-tout");
-		create_article_mot($article1['titre'], "000. Fourre-tout", "EDITO", "_Specialisation");
-	$mentions = trouve_article_sc("Mentions légales");
-		create_article($mentions, "000. Fourre-tout");
-		$ex = "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])";
-		$ex .= "\n\n[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].";
-		create_mot("_Specialisation", "MentionsLegales", $ex, "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
-		create_article_mot($mentions['titre'], "000. Fourre-tout", "MentionsLegales", "_Specialisation");
-	$article2 = trouve_article_sc('Partage');
-		create_article($article2, '999. Citations');
-	$article3 = trouve_article_sc('Contact');
-		$id_article3 = create_article($article3, '000. Fourre-tout');
-		create_article_mot($article3['titre'], '000. Fourre-tout', "MENURACINEBAS_Systematique", "_Specialisation");
-	$article4 = trouve_article_sc('Économies');
-		create_article($article4, '999. Citations');
-	$article5 = trouve_article_sc('Concision');
-		create_article($article5, '999. Citations');
-	$article5b = trouve_article_sc('Force');
-		create_article($article5b, '999. Citations');
-	$article5b = trouve_article_sc('Conseil n°1');
-		create_article($article5b, '999. Citations');
-	$article5b = trouve_article_sc('Conseil n°2');
-		create_article($article5b, '999. Citations');
-	$article5b = trouve_article_sc('Conseil n°3');
-		create_article($article5b, '999. Citations');
-	$article5b = trouve_article_sc('Conseil n°4');
-		create_article($article5b, '999. Citations');
+	$id_parent = $id_rubrique;
+	
+		$id_rubrique = create_rubrique("05. Saint du jour", $id_parent, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
+				$sites = array();
+				$sites['nom_site'] = "Nominis (Saint du jour)";
+				$sites['url_site'] = "http://nominis.cef.fr/";
+				$sites['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
+				$sites['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
+				$id_site = create_site($sites, "05. Saint du jour");
+					create_site_mot(1, "SaintDuJour", "_Specialisation_Sites");
+	
+		$id_rubrique = create_rubrique("10. Navigation haute", $id_parent, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot106] pour la documentation.");
+			create_rubrique_mot("10. Navigation haute", "AfficherArticlesMenu", "_Specialisation_Rubrique");
+			create_rubrique_mot("10. Navigation haute", "PasDansFildAriane", "_Specialisation_Rubrique");
+	
+		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
+	
+		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
+			$id_article = create_article(trouve_article_sc("10. Outil 1"), "30. Outils");
+				create_logo('documents/arton13.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff13.jpg', $type='art', $id_article, 'jpg','off');
+				create_article_mot("10. Outil 1", "30. Outils", "Outils", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("20. Outil 2"), "30. Outils");
+				create_logo('documents/arton17.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff17.jpg', $type='art', $id_article, 'jpg','off');
+				create_article_mot("20. Outil 2", "30. Outils", "Outils", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("30. Outil 3"), "30. Outils");
+				create_logo('documents/arton18.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff18.jpg', $type='art', $id_article, 'jpg','off');
+				create_article_mot("30. Outil 3", "30. Outils", "Outils", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("40. Outil 4"), "30. Outils");
+				create_logo('documents/arton19.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff19.jpg', $type='art', $id_article, 'jpg','off');
+				create_article_mot("40. Outil 4", "30. Outils", "Outils", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("50. Documentation"), "30. Outils");
+				create_logo('documents/arton20.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff20.jpg', $type='art', $id_article, 'jpg','off');
+				create_article_mot("50. Documentation", "30. Outils", "Outils", "_Specialisation");
+	
+		$id_rubrique = create_rubrique("80. Réseaux sociaux", $id_parent, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
+				$sites = array();
+				$sites['nom_site'] = "10. Facebook";
+				$sites['url_site'] = "https://www.facebook.com/";
+				$sites['descriptif'] = "Retrouvez-nous sur Facebook";
+				$sites['url_syndic'] = "";
+				$id_site = create_site($sites, "80. Réseaux sociaux");
+					create_logo('documents/siteon2.png', $type='site', $id_site, 'png');
+					create_site_mot(2, "ReseauxSociaux", "_Specialisation_Sites");
+				$sites = array();
+				$sites['nom_site'] = "15. Google+";
+				$sites['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
+				$sites['descriptif'] = "Retrouvez-nous sur Google+";
+				$sites['url_syndic'] = "";
+				$id_site = create_site($sites, "80. Réseaux sociaux");
+					create_logo('documents/siteon9.png', $type='site', $id_site, 'png');
+					create_site_mot(9, "ReseauxSociaux", "_Specialisation_Sites");
+				$sites = array();
+				$sites['nom_site'] = "20. Twitter";
+				$sites['url_site'] = "https://fr.twitter.com/";
+				$sites['descriptif'] = "Retrouvez-nous sur Twitter";
+				$sites['url_syndic'] = "";
+				$id_site = create_site($sites, "80. Réseaux sociaux");
+					create_logo('documents/siteon3.png', $type='site', $id_site, 'png');
+					create_site_mot(3, "ReseauxSociaux", "_Specialisation_Sites");
+				$sites = array();
+				$sites['nom_site'] = "30. Viadeo";
+				$sites['url_site'] = "http://www.viadeo.com/fr/";
+				$sites['descriptif'] = "Retrouvez-nous sur Viadeo";
+				$sites['url_syndic'] = "";
+				$id_site = create_site($sites, "80. Réseaux sociaux");
+					create_logo('documents/siteon4.png', $type='site', $id_site, 'png');
+					create_site_mot(4, "ReseauxSociaux", "_Specialisation_Sites");
+				$sites = array();
+				$sites['nom_site'] = "90. Flux RSS du site";
+				$sites['url_site'] = "?page=backend";
+				$sites['descriptif'] = "Syndiquer tout le site";
+				$sites['url_syndic'] = "";
+				$id_site = create_site($sites, "80. Réseaux sociaux");
+					create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
+					create_site_mot(5, "ReseauxSociaux", "_Specialisation_Sites");
+	
+	
+
+	$id_rubrique = create_rubrique("100. Rubriques", '0', "Clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.");
+		create_rubrique_mot("100. Rubriques", "MenuHaut", "_Specialisation_Rubrique");
+	
+	$id_parent = $id_rubrique;
+	
+		$id_rubrique = create_rubrique("10. DessousBreves 1", $id_parent, "Avec le mot clef \"DessousBreves\".\n_ Affiche: titre, bulle d'aide, liste des article");
+			create_rubrique_mot("10. DessousBreves 1", "DessousBreves", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("20. Et prima post Osdroenam quam"), "10. DessousBreves 1");
+			$id_article = create_article(trouve_article_sc("30. Ideo urbs venerabilis"), "10. DessousBreves 1");
+	
+		$id_rubrique = create_rubrique("20. DessousBreves 2", $id_parent, "Sur 2 colonnes.\n_ non limité en nombre");
+			create_rubrique_mot("20. DessousBreves 2", "DessousBreves", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("10. Nos obsecuturos"), "20. DessousBreves 2");
+			$id_article = create_article(trouve_article_sc("20. Mensarum enim"), "20. DessousBreves 2");
+			$id_article = create_article(trouve_article_sc("30. Iamque non umbratis"), "20. DessousBreves 2");
+	
+	
+
+	$id_rubrique = create_rubrique("200. Avec le mot-clé", '0', "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni.");
+		create_rubrique_mot("200. Avec le mot-clé", "MenuHaut", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Le nombre d'article affiché est administrable"), "200. Avec le mot-clé");
+			create_logo('documents/arton33.jpg', $type='art', $id_article, 'jpg');
+			create_logo('documents/artoff33.jpg', $type='art', $id_article, 'jpg','off');
+		$id_article = create_article(trouve_article_sc("Un sourire peut changer une vie"), "200. Avec le mot-clé");
+			create_article_mot("Un sourire peut changer une vie", "200. Avec le mot-clé", "VideoALaUne", "_Specialisation");
+		$id_article = create_article(trouve_article_sc("30. Articles avec le Mot clef : \"ALaUne\""), "200. Avec le mot-clé");
+			create_logo('documents/arton22.jpg', $type='art', $id_article, 'jpg');
+			create_article_mot("30. Articles avec le Mot clef : \"ALaUne\"", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
+		$id_article = create_article(trouve_article_sc("40. Image = logo"), "200. Avec le mot-clé");
+			create_logo('documents/arton24.jpg', $type='art', $id_article, 'jpg');
+			create_article_mot("40. Image = logo", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
+	
+	
+
+	$id_rubrique = create_rubrique("300. MenuHaut", '0', "Libano monti Phoenice, regio plena gratiarum et venustatis");
+		create_rubrique_mot("300. MenuHaut", "MenuHaut", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Les derniers articles modifiés"), "300. MenuHaut");
+			create_logo('documents/arton32.jpg', $type='art', $id_article, 'jpg');
+			create_logo('documents/artoff32.jpg', $type='art', $id_article, 'jpg','off');
+		$id_article = create_article(trouve_article_sc("10. Urbibus decorata"), "300. MenuHaut");
+		$id_article = create_article(trouve_article_sc("20. Rogatus ad ultimum"), "300. MenuHaut");
+	
+	
+
+	$id_rubrique = create_rubrique("400. Classées par numéro de titre", '0', "Subsidiis patrimonii aut amicorum liberalitate sustentant hos perire patiemur.");
+		create_rubrique_mot("400. Classées par numéro de titre", "MenuHaut", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("10. Oportunum est"), "400. Classées par numéro de titre");
+		$id_article = create_article(trouve_article_sc("20. Quis enim"), "400. Classées par numéro de titre");
+		$id_article = create_article(trouve_article_sc("30. Altera sententia est"), "400. Classées par numéro de titre");
+	
+	
+
+	$id_rubrique = create_rubrique("800. Rubrique \"Goodies\"", '0', "Si post exsudatos labores itinerum longos congestosque adfatim.");
+		create_rubrique_mot("800. Rubrique \"Goodies\"", "Goodies", "_ModePortail");
+		create_rubrique_mot("800. Rubrique \"Goodies\"", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Logo de survol"), "800. Rubrique \"Goodies\"");
+			create_logo('documents/arton14.jpg', $type='art', $id_article, 'jpg');
+			create_logo('documents/artoff14.jpg', $type='art', $id_article, 'jpg','off');
+		$id_article = create_article(trouve_article_sc("Derniers articles"), "800. Rubrique \"Goodies\"");
+			create_logo('documents/arton30.jpg', $type='art', $id_article, 'jpg');
+			create_logo('documents/artoff30.jpg', $type='art', $id_article, 'jpg','off');
+		$id_article = create_article(trouve_article_sc("Titre de la rubrique"), "800. Rubrique \"Goodies\"");
+			create_logo('documents/arton31.jpg', $type='art', $id_article, 'jpg');
+			create_logo('documents/artoff31.jpg', $type='art', $id_article, 'jpg','off');
+	
+	
+
+	$id_rubrique = create_rubrique("900. Agenda", '0', "");
+		create_rubrique_mot("900. Agenda", "Agenda", "_Specialisation_Rubrique");
+		create_rubrique_mot("900. Agenda", "PasDansMenu", "_Specialisation_Rubrique");
+		create_rubrique_mot("900. Agenda", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
+	
+	
+
+	$id_rubrique = create_rubrique("999. Citations", '0', "Mettre dans cette rubrique une citation par article");
+		create_rubrique_mot("999. Citations", "Citations", "_Specialisation_Rubrique");
+		create_rubrique_mot("999. Citations", "PasDansMenu", "_Specialisation_Rubrique");
+		create_rubrique_mot("999. Citations", "PasDansPlan", "_Specialisation_Rubrique_ou_Article");
+		create_rubrique_mot("999. Citations", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
+		create_rubrique_mot("999. Citations", "PasDansFildAriane", "_Specialisation_Rubrique");
+		$id_article = create_article(trouve_article_sc("Conseil n°3"), "999. Citations");
+		$id_article = create_article(trouve_article_sc("Conseil n°2"), "999. Citations");
+		$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
+		$id_article = create_article(trouve_article_sc("Conseil n°4"), "999. Citations");
+
+/*
 	$id_doc = create_document('documents/contact.jpg', 
 		null, 
 		'image',
 		array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...')); 
-	$article6 = trouve_article_sc("Raccourcis Typographiques de SPIP, mode d'emploi");
+	$article6 = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
 		$article6['texte'] = str_replace('<img1', "<img$id_doc>", $article6['texte']);
 		$article6['texte'] = str_replace('<doc1', "<doc$id_doc>", $article6['texte']);
 		create_article($article6, "000. Fourre-tout");
 		create_article_mot($article6['titre'], "000. Fourre-tout", "ALaUne", "_Specialisation");
-	$article1 = trouve_article_sc("Politique d'accessibilité du site");
-		create_article($article1, "000. Fourre-tout");
-		create_article_mot($article1['titre'], "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
-		create_article_mot($article1['titre'], "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
-	$id_rub_fourretout = id_rubrique("000. Fourre-tout");
-	$id_raccourcis_typo = id_article("Raccourcis Typographiques de SPIP, mode d'emploi", $id_rub_fourretout);
-	create_article_mot("Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
-	create_logo('documents/casiertypo.png', $type='art', $id_raccourcis_typo, 'png');
-	// Menu de navigation haute
-	$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
-	// Rubrique où placer les articles pour bien s'organiser
-	$id_rubrique = id_rubrique('000. Fourre-tout');
-	if ($id_rubrique >0) {
-		create_rubrique('10. Navigation haute', $id_rubrique, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot$id_mot] pour la documentation.");
-	}
-	create_rubrique_mot('000. Fourre-tout', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('10. Navigation haute', 'AfficherArticlesMenu', "_Specialisation_Rubrique");
-	create_rubrique_mot('10. Navigation haute', 'PasDansFildAriane', "_Specialisation_Rubrique");
-	
-	create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site.\n\nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "");
-	$id_rubrique = id_rubrique('000. Fourre-tout');
-	if ($id_rubrique >0) {
-		create_rubrique('80. Réseaux sociaux', $id_rubrique, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "10. Facebook";
-		$sitesdj['url_site'] = "https://www.facebook.com/";
-		$sitesdj['descriptif'] = 'Retrouvez-nous sur Facebook';
-		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-		create_logo('documents/facebook.png', $type='site', $id_site, 'png');
-		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
-		
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "20. Twitter";
-		$sitesdj['url_site'] = "https://fr.twitter.com/";
-		$sitesdj['descriptif'] = 'Retrouvez-nous sur Twitter';
-		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-		create_logo('documents/twitter.png', $type='site', $id_site, 'png');
-		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
-		
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "30. Viadeo";
-		$sitesdj['url_site'] = "http://www.viadeo.com/fr/";
-		$sitesdj['descriptif'] = 'Retrouvez-nous sur Viadeo';
-		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-		create_logo('documents/viadeo.png', $type='site', $id_site, 'png');
-		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
-		
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "90. Flux RSS du site";
-		$sitesdj['url_site'] = "./?page=backend";
-		$sitesdj['descriptif'] = 'Syndiquer tout le site';
-		$sitesdj['statut'] = 'publie';
-		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-		create_logo('images/rss.png', $type='site', $id_site, 'png');
-		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
-
-		$sitesdj = array();
-		$sitesdj['nom_site'] = "15. Google+";
-		$sitesdj['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
-		$sitesdj['descriptif'] = 'Retrouvez-nous sur Google+';
-		$id_site = create_site($sitesdj, '80. Réseaux sociaux');
-		create_logo('documents/googleplus.png', $type='site', $id_site, 'png');
-		create_site_mot($id_site, 'ReseauxSociaux', '_Specialisation_Sites');
-	}
+*/
 		
 	return true;
 }

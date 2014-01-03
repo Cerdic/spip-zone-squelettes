@@ -1,6 +1,6 @@
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
-#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
-#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
 #SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}})}
 #SET{Largeurcontent_extra,(#GET{LargeurContaineur}|moins{#GET{Largeurcontent_central}})}
 <script type="text/javascript">
@@ -16,7 +16,7 @@
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
 <B_DessousBreves>
 <div id="homeDessousBreves">
-<BOUCLE_DessousBreves(RUBRIQUES){titre_mot = DessousBreves }{par num titre}{lang}><B_articles_recents>
+<BOUCLE_DessousBreves(RUBRIQUES){titre_mot=DessousBreves}{par num titre}{lang}><B_articles_recents>
 <div class="dessousbreves[ dessousbreves(#ID_RUBRIQUE) ][(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
 	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h2>
 	[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
@@ -30,7 +30,7 @@
 </div><!-- homeDessousBreves -->
 </B_DessousBreves>
 
-<BOUCLE_articles_recentsAlaUne_Exclus(ARTICLES) {0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang} />
+<BOUCLE_articles_recentsAlaUne_Exclus(ARTICLES) {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons}{lang} />
 <BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{lang} /></BOUCLE_Secteurs_Exclus>
 <BOUCLE_Articles_Exclus(ARTICLES mots_rubriques mots){mots.titre=PasDansQuoiDeNeuf}{doublons}{lang} />
 <BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}{lang} />
@@ -39,7 +39,7 @@
 <h2>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)<a href="#URL_PAGE{antichrono}" title="<:soyezcreateurs:tousarticlesantichrono|attribut_html:>">]<:soyezcreateurs:quoideneuf:>[(#CONFIG{soyezcreateurs/affichage_lien_antichrono,on}|=={on}|oui)</a>]</h2>
 <div class="fond">
 <ul>
-<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{lang}>
+<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{lang}>
 	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 </BOUCLE_articles_QuoideNeuf>
 </ul>
@@ -68,7 +68,7 @@
 <B_Goodies>
 <div class="goodies">
 <h2 class="#EDIT{titre}"><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}{lang}><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}{lang}><a href="#ARTICLE_URL"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a><//B_articles_unseul><//B_articles_plusdun></h2>
-<BOUCLE_Goodies(ARTICLES) {branche}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_goodies,3})}>
+<BOUCLE_Goodies(ARTICLES) {branche}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_goodies,5})}>
 <div class="goody">
 	[<div onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" style="cursor:pointer" class="#EDIT{titre} goody_ligne">[<img class="logo_goody" src="(#LOGO_ARTICLE_SURVOL|image_reduire{48,48}|image_format{png}|image_recadre{48,48,top center,transparent}|extraire_attribut{src})" width="48" height="48" alt="" />](#TITRE)[<br /> 
 	(#CONFIG{soyezcreateurs/aff_datepublicationgoodies,on}|=={on}|oui)[(#DATE|affdate)]]
@@ -83,7 +83,7 @@
 
 <INCLURE{fond=noisettes/navigation/frmabonnementlettre,env}>
 
-[(#CONFIG{soyezcreateurs_layout/positionliensnav,nav}|=={nav}|oui)
+[(#CONFIG{soyezcreateurs_layout/positionliensnav,menu_footer}|=={nav}|oui)
 [<div class="espaceavant">
 <ul>(#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})</ul>
 </div><!-- espaceavant -->]
