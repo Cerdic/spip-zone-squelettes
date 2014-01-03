@@ -10,17 +10,27 @@
 #SET{filtres_proposes, #RECHERCHE|proposer_filtres_recherche}
 #SET{titre_affiche,non}
 
+#SET{types_date, #ARRAY}
+#SET{exclus,#CONFIG{mediaspip/recherche/liste_champs_exclus_recherche,#ARRAY}}
+[(#VAL{date}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{date}}]
+[(#VAL{date_redac}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{date_redac}}]
+[(#VAL{maj}|in_array{#GET{exclus}}|non) #SET{types_date, #GET{types_date}|push{maj}}]
+
 <B_filtres_proposes_annee>
 [(#GET{titre_affiche}|=={oui}|non)
 	<span class="titre_filtres_proposes"><:mediaspip_core:titre_filtres_proposes:></span>
 	#SET{titre_affiche,oui}
 ]
 <BOUCLE_filtres_proposes_annee(DATA){source table, #GET{filtres_proposes}}{filtre=annee}>
+	#SET{annee, #VALEUR{valeur}}
 	#SET{recherche, #VALEUR{str}}
-	#SET{date_debut,#VALEUR{valeur}-01-01}
-	#SET{date_fin,#VALEUR{valeur}-12-31}
+	#SET{date_debut,#GET{annee}-01-01}
+	#SET{date_fin,#GET{annee}-12-31}
 	#SET{url,#URL|parametre_url{recherche,#GET{recherche}}|parametre_url{date_debut,#GET{date_debut}}|parametre_url{date_fin,#GET{date_fin}}}
-	[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee,valeur=#VALEUR{valeur},url=#GET{url}}|concat{','})]
+	<BOUCLE_types_date(DATA){source table, #GET{types_date}}>
+		#SET{url_type_date,#GET{url}|parametre_url{type_date,#VALEUR}}
+		[(#INCLURE{fond=inclure/filtre_propose,chaine_nom=filtre_annee_#VALEUR,valeur=#GET{annee},url=#GET{url_type_date}}|concat{','})]
+	</BOUCLE_types_date>
 </BOUCLE_filtres_proposes_annee>
 
 <B_filtres_proposes_id_mot>
