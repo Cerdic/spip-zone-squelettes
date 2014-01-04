@@ -57,15 +57,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			// Activer les lames du CouteauSuisse Special SoyezCreateurs
 			$f = chercher_filtre('info_plugin');
 			if ($f('couteau_suisse', 'est_actif')) {
-				include_spip('base/cout_install');
+				include_spip('couteau_suisse_administrations');
 				cout_install_pack('SoyezCreateurs');
-				ecrire_metas();
-				cs_initialisation(true);
-				include_spip('inc/invalideur');
-				suivre_invalideur('1'); # tout effacer
-				include_spip('inc/getdocument');
-				purger_repertoire(_DIR_SKELS);
-				purger_repertoire(_DIR_CACHE);
+				cout_exec_redirige(false);
 			}
 			spip_log("SoyezCreateurs maj 3.0.22 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');

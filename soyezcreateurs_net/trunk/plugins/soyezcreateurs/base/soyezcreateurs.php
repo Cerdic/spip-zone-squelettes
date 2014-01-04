@@ -827,7 +827,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "05. Saint du jour");
-					create_site_mot(1, "SaintDuJour", "_Specialisation_Sites");
+					create_site_mot($id_site, "SaintDuJour", "_Specialisation_Sites");
 	
 		$id_rubrique = create_rubrique("10. Navigation haute", $id_parent, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot106] pour la documentation.");
 			create_rubrique_mot("10. Navigation haute", "AfficherArticlesMenu", "_Specialisation_Rubrique");
@@ -866,7 +866,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon2.png', $type='site', $id_site, 'png');
-					create_site_mot(2, "ReseauxSociaux", "_Specialisation_Sites");
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "15. Google+";
 				$sites['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
@@ -875,7 +875,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon9.png', $type='site', $id_site, 'png');
-					create_site_mot(9, "ReseauxSociaux", "_Specialisation_Sites");
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "20. Twitter";
 				$sites['url_site'] = "https://fr.twitter.com/";
@@ -884,7 +884,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon3.png', $type='site', $id_site, 'png');
-					create_site_mot(3, "ReseauxSociaux", "_Specialisation_Sites");
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "30. Viadeo";
 				$sites['url_site'] = "http://www.viadeo.com/fr/";
@@ -893,7 +893,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon4.png', $type='site', $id_site, 'png');
-					create_site_mot(4, "ReseauxSociaux", "_Specialisation_Sites");
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "90. Flux RSS du site";
 				$sites['url_site'] = "?page=backend";
@@ -902,7 +902,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
-					create_site_mot(5, "ReseauxSociaux", "_Specialisation_Sites");
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 	
 	
 
