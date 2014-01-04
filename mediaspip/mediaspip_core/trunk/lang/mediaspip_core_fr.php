@@ -73,9 +73,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_avancee' => 'Configurez le formulaire de recherche avancée et le tri des médias',
 
 	// F
-	'filtre_annee_date' => 'Publié en  : ',
-	'filtre_annee_date_redac' => 'Rédigé en : ',
-	'filtre_annee_maj' => 'Mis à jour en : ',
+	'filtre_annee_date' => 'Publié en : ',
+	'filtre_annee_date_redac' => 'Rédigé en : ',
+	'filtre_annee_maj' => 'Mis à jour en : ',
 	'filtre_auteur' => 'Auteur : ',
 	'filtre_date_debut' => 'Publié après le : ',
 	'filtre_date_fin' => 'Publié avant le : ',
