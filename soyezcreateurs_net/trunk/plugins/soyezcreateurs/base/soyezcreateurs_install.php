@@ -45,9 +45,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->http://www.spip.net/fr_article3784.html]", '', 'non');
 					create_evenement("900. Agenda", "Démonstration Agenda", "Démonstration Agenda", '2017-12-13', '2017-12-13', "", '', 'non');
 				}
-
 			}
-
 			spip_log("SoyezCreateurs maj 3.0.20 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
@@ -59,10 +57,22 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			if ($f('couteau_suisse', 'est_actif')) {
 				include_spip('couteau_suisse_administrations');
 				cout_install_pack('SoyezCreateurs');
+				spip_log("SoyezCreateurs maj 3.0.22 Faite", "soyezcreateurs_install");
+				ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');
+				cout_exec_redirige();
+			}
+		}
+		if (version_compare($current_version,'3.0.23','<')) {
+			spip_log("SoyezCreateurs maj 3.0.23 Début", "soyezcreateurs_install");
+			// Activer les lames du CouteauSuisse Special SoyezCreateurs
+			$f = chercher_filtre('info_plugin');
+			if ($f('couteau_suisse', 'est_actif')) {
+				include_spip('couteau_suisse_administrations');
+				cout_install_pack('SoyezCreateurs');
 				cout_exec_redirige(false);
 			}
-			spip_log("SoyezCreateurs maj 3.0.22 Faite", "soyezcreateurs_install");
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');
+			spip_log("SoyezCreateurs maj 3.0.23 Faite", "soyezcreateurs_install");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.23','non');
 		}
 		if (version_compare($current_version,'3.0.24','<')) {
 			spip_log("SoyezCreateurs maj 3.0.24 Début", "soyezcreateurs_install");
