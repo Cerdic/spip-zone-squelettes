@@ -482,6 +482,24 @@ EOF;
 		$contenu['titre'] = "Démonstration Agenda";
 	}
 
+	/* Installation du site */
+	if ($article == "Installation du site") {
+		$contenu['titre'] = "Installation du site";
+		$contenu['texte'] = <<<EOF
+Cet événement est là pour vous montrer que vous pouvez utiliser un [agenda événementiel dans votre site->http://www.spip-contrib.net/Agenda-evenementiel-avec].
+EOF;
+	}
+
+	/* Événement exceptionnel */
+	if ($article == "Événement exceptionnel") {
+		$contenu['titre'] = "Événement exceptionnel";
+		$contenu['texte'] = <<<EOF
+Quand un événement ne se produit qu'une fois, il vaut mieux faire un article qui contienne un descriptif de l'événement et ne mettre dans l'événement lui-même que sa date. Le titre de l'événement devra alors être identique à celui de l'article.
+
+Il sera même possible de faire une galerie de photographies dans ce même article...
+EOF;
+	}
+
 	/* Conseil n°3 */
 	if ($article == "Conseil n°3") {
 		$contenu['titre'] = "Conseil n°3";
@@ -902,6 +920,15 @@ Nihil est enim virtute amabilius, nihil quod magis adliciat ad diligendum, quipp
 Quis autem est, qui Tarquinium Superbum, qui Sp. Cassium, Sp. Maelium non oderit? Cum duobus ducibus de imperio in Italia est decertatum, Pyrrho et Hannibale; ab altero propter probitatem eius non nimis alienos animos habemus, alterum propter crudelitatem semper haec civitas oderit.
 EOF;
 	}
+
+	/* Historique des versions de SPIP */
+	if ($article == "Historique des versions de SPIP") {
+		$contenu['titre'] = "Historique des versions de SPIP";
+		$contenu['texte'] = <<<EOF
+[SPIP->http://www.spip.net/fr_rubrique155.html].
+EOF;
+	}
+
 	return $contenu;
 }
 ?>

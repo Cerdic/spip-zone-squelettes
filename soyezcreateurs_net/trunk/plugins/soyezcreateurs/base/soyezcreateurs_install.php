@@ -37,22 +37,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				
 				$id_rubrique = id_rubrique('900. Agenda');
 				if ($id_rubrique >0) {
-					$article1 = trouve_article_sc("Installation du site");
-					create_article($article1, "900. Agenda");
 					$date = date('Y-m-d H:i:00');
 					create_evenement("900. Agenda", "Installation du site", "Installation du site", $date, $date, "Quand le titre de l'événement est identique au titre de l'article, il n'est pas affiché en plus", 'Votre serveur web.');
 					create_evenement("900. Agenda", "Installation du site", "Installé !", $date, $date, "Quand le titre de l'événement est différent du titre de l'article, alors, les 2 titres sont affichés.", '');
-					
-					$article1 = trouve_article_sc("Événement exceptionnel");
-					create_article($article1, "900. Agenda");
 					create_evenement("900. Agenda", "Événement exceptionnel", "Événement exceptionnel", date('Y-m-d 20:30:00'), date('Y-m-d 22:30:00'), "Quand l'heure de début est différente de l'heure de fin, c'est un événement avec une durée...", '');
-					
-					create_rubrique('10. SPIP', $id_rubrique);
-					create_rubrique('20. Linux', $id_rubrique);
-					$article1 = trouve_article_sc("Versions de SPIP ");
-					create_article($article1, "10. SPIP");
-					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->http://www.spip.net/fr_article4728.html]", '', 'non');
-					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->http://www.spip.net/fr_article3784.html]", '', 'non');
+					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->http://www.spip.net/fr_article4728.html]", '', 'non');
+					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->http://www.spip.net/fr_article3784.html]", '', 'non');
+					create_evenement("900. Agenda", "Démonstration Agenda", "Démonstration Agenda", '2017-12-13', '2017-12-13', "", '', 'non');
 				}
 
 			}
@@ -69,10 +60,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				include_spip('base/cout_install');
 				cout_install_pack('SoyezCreateurs');
 				ecrire_metas();
+				cs_initialisation(true);
 				include_spip('inc/invalideur');
 				suivre_invalideur('1'); # tout effacer
 				include_spip('inc/getdocument');
-				effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
+				purger_repertoire(_DIR_SKELS);
+				purger_repertoire(_DIR_CACHE);
 			}
 			spip_log("SoyezCreateurs maj 3.0.22 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.22','non');

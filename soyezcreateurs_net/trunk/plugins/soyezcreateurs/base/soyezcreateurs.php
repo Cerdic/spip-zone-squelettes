@@ -12,52 +12,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 include_spip("inc/lang");
 include_spip('inc/meta');
 
-######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
-// Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
-$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
-
-function cs_SoyezCreateurs() { return array(
-	// Installation des outils par défaut
-	'outils' =>
-		'boites_privees,
-		citations_bb,
-		typo_exposants,
-		guillemets,
-		mailcrypt,
-		insertions,
-		corbeille,
-		spip_ecran',
-
-	// Installation des variables par défaut
-	'variables' => array(
-		'expo_bofbof' => 1,
-		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
-span.surgris = background-color:#EAEAEC; padding:0px 2px;
-fluo = surfluo',
-		'pp_edition_decoration' => 1,
-		'pp_forum_decoration' => 1,
-		'spip_ecran' => 'large',
-		'insertions' => 'oeuf = &oelig;uf
-cceuil = ccueil
-(a priori) = {a priori}
-(([hH])uits) = $1uit
-/([cC]h?)oeur/ = $1&oelig;ur
-/oeuvre/ = &oelig;uvre
-(O[Ee]uvre([rs]?)) = &OElig;uvre$1
-/\\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\\b/ = $1onnaissa$2
-CO2 = <abbr title="CO2, Dioxyde de carbone, O=C=O">CO<sub>2</sub></abbr>
-oeil = &oelig;il
-(O[Ee]il) = &OElig;il',
-		'cs_rss' => 0,
-		'format_spip' => 0,
-		'stat_auteurs' => 1,
-		'qui_webmasters' => 1,
-		'bp_urls_propres' => 1,
-		'bp_tri_auteurs' => 1
-	)
-);
-}
-
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {	
 	ecrire_meta('activer_breves', 'non','non');
@@ -128,7 +82,11 @@ function soyezcreateurs_config_site() {
 
 
 	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') )
-		ecrire_meta('nom_site', 'Mon site SPIP <sub>Squelette SoyezCreateurs</sub>','non');
+		ecrire_meta('nom_site', 'Votre site SPIP','non');
+		ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
+		ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
+		ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
+		create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
 	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", "soyezcreateurs_install");
 	return true;
 }
@@ -849,12 +807,14 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 			$sites['url_site'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
 			$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
 			$sites['url_syndic'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
+			$sites['statut'] = 'publie';
 			$id_site = create_site($sites, "000. Fourre-tout");
 			$sites = array();
 			$sites['nom_site'] = "SoyezCréateurs";
 			$sites['url_site'] = "http://contrib.spip.net/?rubrique1237";
 			$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
 			$sites['url_syndic'] = "http://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
+			$sites['statut'] = 'publie';
 			$id_site = create_site($sites, "000. Fourre-tout");
 	
 	$id_parent = $id_rubrique;
@@ -865,6 +825,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "http://nominis.cef.fr/";
 				$sites['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
 				$sites['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
+				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "05. Saint du jour");
 					create_site_mot(1, "SaintDuJour", "_Specialisation_Sites");
 	
@@ -902,6 +863,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "https://www.facebook.com/";
 				$sites['descriptif'] = "Retrouvez-nous sur Facebook";
 				$sites['url_syndic'] = "";
+				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon2.png', $type='site', $id_site, 'png');
 					create_site_mot(2, "ReseauxSociaux", "_Specialisation_Sites");
@@ -910,6 +872,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
 				$sites['descriptif'] = "Retrouvez-nous sur Google+";
 				$sites['url_syndic'] = "";
+				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon9.png', $type='site', $id_site, 'png');
 					create_site_mot(9, "ReseauxSociaux", "_Specialisation_Sites");
@@ -918,6 +881,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "https://fr.twitter.com/";
 				$sites['descriptif'] = "Retrouvez-nous sur Twitter";
 				$sites['url_syndic'] = "";
+				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon3.png', $type='site', $id_site, 'png');
 					create_site_mot(3, "ReseauxSociaux", "_Specialisation_Sites");
@@ -926,6 +890,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "http://www.viadeo.com/fr/";
 				$sites['descriptif'] = "Retrouvez-nous sur Viadeo";
 				$sites['url_syndic'] = "";
+				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon4.png', $type='site', $id_site, 'png');
 					create_site_mot(4, "ReseauxSociaux", "_Specialisation_Sites");
@@ -934,6 +899,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				$sites['url_site'] = "?page=backend";
 				$sites['descriptif'] = "Syndiquer tout le site";
 				$sites['url_syndic'] = "";
+				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
 					create_site_mot(5, "ReseauxSociaux", "_Specialisation_Sites");
@@ -1012,6 +978,15 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 		create_rubrique_mot("900. Agenda", "PasDansMenu", "_Specialisation_Rubrique");
 		create_rubrique_mot("900. Agenda", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
 		$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
+		$id_article = create_article(trouve_article_sc("Installation du site"), "900. Agenda");
+		$id_article = create_article(trouve_article_sc("Événement exceptionnel"), "900. Agenda");
+	
+	$id_parent = $id_rubrique;
+	
+		$id_rubrique = create_rubrique("10. SPIP", $id_parent, "");
+			$id_article = create_article(trouve_article_sc("Historique des versions de SPIP"), "10. SPIP");
+	
+		$id_rubrique = create_rubrique("20. Linux", $id_parent, "");
 	
 	
 
