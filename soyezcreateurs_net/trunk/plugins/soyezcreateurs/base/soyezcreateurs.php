@@ -60,7 +60,6 @@ function soyezcreateurs_config_site() {
 	ecrire_config('boutonstexte/txtOnly','_');
 	// Permettre aux webmestres d'éditer les forums (dans le privé et le public, avec les crayons).
 	ecrire_config('autorite/editer_forums',1);
-	ecrire_config('soyezcreateurs/bandeau_contact','[Votre nom->3] -- Votre adresse -- 00000 Ville -- Tél. 00 00 00 00 00');
 
 	$f = chercher_filtre('info_plugin');
 	if ($f('savecfg', 'est_actif')) {
@@ -789,6 +788,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 		create_rubrique_mot("000. Fourre-tout", "PasDansFildAriane", "_Specialisation_Rubrique");
 		$id_article = create_article(trouve_article_sc("Contact"), "000. Fourre-tout");
 			create_article_mot("Contact", "000. Fourre-tout", "MENURACINEBAS_Systematique", "_Specialisation");
+			ecrire_config('soyezcreateurs/bandeau_contact',"[Votre nom->$id_article] -- Votre adresse -- 00000 Ville -- Tél. 00 00 00 00 00");
 		$id_article = create_article(trouve_article_sc("Politique d'accessibilité du site"), "000. Fourre-tout");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
