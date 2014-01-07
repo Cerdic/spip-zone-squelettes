@@ -96,6 +96,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'formule_bonjour' => 'Bonjour @nom@',
 
 	// I
+	'info_activite' => 'Activité',
 	'info_auteurs' => 'Les auteurs :',
 	'info_comment' => 'commentaire',
 	'info_comments' => 'commentaires',
