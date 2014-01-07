@@ -57,11 +57,11 @@ EOF;
 	if ($article == "20. Raccourcis Typographiques de SPIP, mode d'emploi") {
 		$contenu['titre'] = "20. Raccourcis Typographiques de SPIP, mode d'emploi";
 		$contenu['chapo'] = <<<EOF
-{{Un préalable important}} : &eacute; la mise en page d'un texte est au service du {{sens}} de celui-ci, pas du goût personnel de celui qui se trouve devant l'écran! Or, les raccourcis typographiques de SPIP portent en eux-mêmes du {{sens}}. Il est {{important}} d'avoir une correspondance entre le {{sens}} typographique et le {{sens}} du texte. Par exemple, un titre du point de vue du texte doit aussi l'être du point de vue typographique.
+{{Un préalable important}} : la mise en page d'un texte est au service du {{sens}} de celui-ci, pas du goût personnel de celui qui se trouve devant l'écran! Or, les raccourcis typographiques de SPIP portent en eux-mêmes du {{sens}}. Il est {{important}} d'avoir une correspondance entre le {{sens}} typographique et le {{sens}} du texte. Par exemple, un titre du point de vue du texte doit aussi l'être du point de vue typographique.
 
 N'oubliez pas non plus que votre site sera lu par des visiteurs pouvant être dans des résolutions d'écran différentes de la vôtre et qu'une «belle» mise en page chez vous pourrait être complètement différente pour le visiteur.
 
-Avant d'aller plus loin, vous pouvez lire avec profit : [->452].
+Avant d'aller plus loin, vous pouvez lire avec profit : [Raccourcis typographiques indispensables de SPIP->http://www.pyrat.net/452].
 EOF;
 		$contenu['texte'] = <<<EOF
 {{{Le texte préexiste à la mise en page}}}
@@ -94,9 +94,9 @@ Les attributs de paragraphe ne sont pas disponibles dans les champs de SPIP n'ay
 
 Les attributs de paragraphe sont :
 
--* les titres <code>{</code><code>{{</code>Paragraphe du titre<code>}}</code><code>}</code> et sous-titres <code>{n{</code>Texte du titre<code>}n}</code>, n variant de 2 à 5, la barre de raccourcis ne proposant que 2 et 3.
+-* les titres <code>{</code><code>{{</code>Paragraphe du titre<code>}}</code><code>}</code> et sous-titres <code>{</code><code>{{</code>*Texte du titre<code>}}</code><code>}</code>, avec un nombre d'* (étoiles) variant de 2 à 5, la barre de raccourcis ne proposant que 2 et 3.
 _ [*Attention*]: il est essentiel de respecter la {{hiérarchie}} de la titraille et de ne pas commencer par un élément sans qu'il soit précédé de son niveau supérieur (on ne doit pas commencer à 2 !). Voir les exemples de [titraille->#titraille]
-_ [*Remarque*] : <code>{</code><code>{{</code>Titre de premier niveau<code>}}</code><code>}</code> est strictement équivalent à <code>{</code><code>1{</code>Titre de premier niveau<code>}1</code><code>}</code>.
+_ [*Remarque*] : <code>{</code><code>{{</code>Titre de premier niveau<code>}}</code><code>}</code> est strictement équivalent à <code>{</code><code>{{*</code>Titre de premier niveau<code>}}</code><code>}</code>.
 
 -* centrer <code>[|</code>Paragraphe centré<code>|]</code> : à n'utiliser que de manière {{exceptionnelle}}[[J'avais mis ça en place à l'époque de la version 1.7 de SPIP qui gérait mal le centrage des images]] !
 
@@ -125,9 +125,22 @@ Ceci est du texte dans un cadre.
 Les retours à la ligne simples aussi !
 </cadre>
 
--* Citation <code><quote></code>Texte d'une citation<code></quote></code>
+{{{***Citation}}}
 
-<quote>C'est en forgeant que l'on devient forgeron.</quote>
+Soit à l'intérieur d'un paragraphe :<code><quote></code>Texte d'une citation<code></quote></code>
+
+Prover connu : <quote>C'est en forgeant que l'on devient forgeron.</quote>.
+
+Soit formant un bloc :
+
+<code><quote>
+L'amour naît d'un cœur déchiré tant il s'est agrandi.
+</quote></code>
+
+<quote>
+L'amour naît d'un cœur déchiré tant il s'est agrandi.
+</quote>
+
 
 {{{**Caractères}}}
 
@@ -224,7 +237,7 @@ Donnera :
 | Lait Bio | 3€ |
 | Choux Bio | 4€ |
 
-Notez les doubles <code>||</code> sur la première ligne du tableau !
+Notez les doubles <code>||</code>[[Le signe | se fait sous Windows avec la combinaison AltGR-6.]] sur la première ligne du tableau !
 
 [*Attention*]: les pièges classiques avec les tableaux sont :
 
@@ -316,29 +329,29 @@ _ Usage {{[*interdit*]}}: pour mettre plus d'espace vertical entre deux élémen
 
 {{{Placement des images}}}
 
-<img1>|left><code><img1>|left></code>
+<img1|left><code><img1|left></code>
 
 ----
 
-<img1>|center>
-<code><img1>|center></code>
+<img1|center>
+<code><img1|center></code>
 
 ----
 
-<img1>|right><code><img1>|right></code>
+<img1|right><code><img1|right></code>
 
 ----
 
-<doc1>|left><code><doc1>|left></code>
+<doc1|left><code><doc1|left></code>
 
 ----
 
-<doc1>|center>
-<code><doc1>|center></code>
+<doc1|center>
+<code><doc1|center></code>
 
 ----
 
-<doc1>|right><code><doc1>|right></code>
+<doc1|right><code><doc1|right></code>
 
 ----
 
@@ -357,7 +370,7 @@ _ Usage {{[*interdit*]}}: pour mettre plus d'espace vertical entre deux élémen
 
 EOF;
 		$contenu['ps'] = <<<EOF
-Une extension pour FireFox est très utile pour savoir rapidement si vous avez fait une erreur de raccourcis typographiques : [HTML VALIDATOR (based on Tidy)->http://users.skynet.be/mgueury/mozilla/]. Dans la version modifiée de SPIP que j'utilise, cette validité est aussi vérifiable dans l'interface d'administration de SPIP, et pas seulement du côté des visiteurs.
+Une extension pour FireFox est très utile pour savoir rapidement si vous avez fait une erreur de raccourcis typographiques : [HTML VALIDATOR (based on Tidy)->http://users.skynet.be/mgueury/mozilla/].
 
 Quant à l'écriture pour le Web, vous pouvez visiter l'excellent [Redaction.be|Le site des spécialistes de l'information en ligne->http://www.redaction.be/]
 EOF;

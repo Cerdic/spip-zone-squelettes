@@ -798,7 +798,27 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 			create_logo('documents/arton1.jpg', $type='art', $id_article, 'jpg');
 			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "ALaUne", "_Specialisation");
 			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
-		$id_article = create_article(trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi"), "000. Fourre-tout");
+		$id_doc = create_document('documents/contact.jpg', 
+			null, 
+			'image',
+			array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...'));
+		$article = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
+		$article['texte'] = str_replace('<img1', "<img$id_doc>", $article['texte']);
+		$article['texte'] = str_replace('<doc1', "<doc$id_doc>", $article['texte']);
+		$article['texte'] = str_replace('<emb1', "<emb$id_doc>", $article['texte']);
+		$id_article = create_article($article, "000. Fourre-tout");
+			$id_doc = create_document('documents/spip_decroche_la_lune.jpg', 
+				array('type' => 'article', 'id_objet' => $id_article), 
+				'document',
+				array('titre' => 'Décrochez la lune avec SPIP !', 'statut' => 'publie'));
+			$id_doc = create_document('documents/arton1.jpg', 
+				array('type' => 'article', 'id_objet' => $id_article), 
+				'document',
+				array('titre' => 'Arbre dans la lumière', 'statut' => 'publie'));
+			$id_doc = create_document('documents/arton7.png', 
+				array('type' => 'article', 'id_objet' => $id_article), 
+				'document',
+				array('titre' => 'Casier de typographe avec lettres au plomb', 'statut' => 'publie'));
 			create_logo('documents/arton7.png', $type='art', $id_article, 'png');
 			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "ALaUne", "_Specialisation");
 			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Courrier_libre", "_Specialisation");
