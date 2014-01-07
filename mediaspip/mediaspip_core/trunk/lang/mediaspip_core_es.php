@@ -75,12 +75,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_avancee' => 'Configure el formulario de búsqueda avanzada y la clasificación de los medios.',
 
 	// F
+	'filtre_annee_date' => 'Publicado en: ',
+	'filtre_annee_date_redac' => 'Redactado en: ',
+	'filtre_annee_maj' => 'Actualizado en: ',
 	'filtre_auteur' => 'Autor: ',
-	'filtre_date_debut' => 'Después del: ', # MODIF
-	'filtre_date_fin' => 'Antes del: ', # MODIF
+	'filtre_date_debut' => 'Publicado después del: ',
+	'filtre_date_fin' => 'Publicado antes del: ',
+	'filtre_date_redac_debut' => 'Redactado después del: ',
+	'filtre_date_redac_fin' => 'Redactado antes del: ',
 	'filtre_em_type' => 'Tipo: ',
 	'filtre_langue' => 'Idioma: ',
 	'filtre_licence' => 'Licencia: ',
+	'filtre_maj_debut' => 'Actualizado después del: ',
+	'filtre_maj_fin' => 'Actualizado antes del: ',
 	'filtre_mesfavoris' => 'Mis favoritos: ',
 	'filtre_mot' => 'Tag: ',
 	'filtre_recherche' => 'Búsqueda: ',
