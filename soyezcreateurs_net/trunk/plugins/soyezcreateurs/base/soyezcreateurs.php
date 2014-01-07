@@ -60,6 +60,7 @@ function soyezcreateurs_config_site() {
 	ecrire_config('boutonstexte/txtOnly','_');
 	// Permettre aux webmestres d'éditer les forums (dans le privé et le public, avec les crayons).
 	ecrire_config('autorite/editer_forums',1);
+	ecrire_config('soyezcreateurs/bandeau_contact','[Votre nom->3] -- Votre adresse -- 00000 Ville -- Tél. 00 00 00 00 00');
 
 	$f = chercher_filtre('info_plugin');
 	if ($f('savecfg', 'est_actif')) {
