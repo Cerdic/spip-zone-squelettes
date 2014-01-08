@@ -415,10 +415,8 @@ function remplacer_article($id_article, $id_rubrique, $texte) {
 
 function poubelle_article($titre_article, $titre_rubrique) {
 	$id_rubrique = id_rubrique($titre_rubrique);
-	echo "id_rubrique:$id_rubrique";
 	if ($id_rubrique) {
 		$id_article = id_article($titre_article, $id_rubrique);
-		echo " id_article:$id_article<br />";
 		if ($id_article) {
 			sql_updateq("spip_articles", array("statut" => "poubelle"),"id_article=$id_article");
 		}
