@@ -101,31 +101,31 @@ function formulaires_contact_traiter_dist(){
         
         $message =  "<b>"._T('escal:envoi_mail_nom')."</b>".clean($champs['nom'])."\n";
         $message .= "<b>"._T('escal:envoi_mail_prenom')."</b>".clean($champs['prenom'])."\n\n\n";
-
+         
         
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= _T_ou_typo(lire_config('escal/config/titrechampsup1'));
+            $message .= "<b>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."</b>";
             $message .= clean($champs['champsup1'])."\n\n";
         }
         
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= _T_ou_typo(lire_config('escal/config/titrechampsup2'));
+            $message.= "<b>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."</b>";
             $message.= clean($champs['champsup2'])."\n\n";
         }
         
         if (lire_config('escal/config/radio') == 'oui') {
-            $message.= _T('escal:envoi_mail_motif');
+            $message.= "<b>"._T('escal:envoi_mail_motif')."</b>";
             $message.= clean($champs['sujet'])."\n\n";
         }
         
         if (lire_config('escal/config/checkbox') == 'oui') {
-            $message .= _T_ou_typo(lire_config('escal/config/titrecheckbox')) ."\n" ;
+            $message .= "<b>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."</b>";
             if (is_array($champs['checkbox'])) {
               $message .= implode(" - ",$champs['checkbox'])."\n\n";
             }
         }
         
-        $message .= _T('escal:envoi_mail_message')."\n ".clean($champs['message'])."\n\n";
+        $message .= "<b>"._T('escal:envoi_mail_message')."</b>"."\n ".clean($champs['message'])."\n\n";
 
              
         if ($champs['antispam']=='' ){
@@ -133,7 +133,7 @@ function formulaires_contact_traiter_dist(){
             $corps = array(
                 'texte'=> supprimer_tags($message),
                 'from'=> $email_from,
-                'html'=> preg_replace('#([\n])+#','<br>',$message),
+                'html'=> preg_replace('#([\n])+#','<br />',$message),
                 );
             // http://code.spip.net/autodoc/tree/ecrire/inc/envoyer_mail.php.html#function_inc_envoyer_mail_dist
             $envoyer_mail($email_to,$sujet,$corps);

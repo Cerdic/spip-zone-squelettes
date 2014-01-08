@@ -60,13 +60,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_motif4' => 'サイトについての意見',
 'contact_motif5' => 'その他',
 'contact_message' => 'メッセージ',
-'contact_interdit' => 'Caractères interdits : ',
+'contact_interdit' => '無効な文字 ： ',
 'contact_envoyer' => '送信',
 'contact_alerte_entete' => '入力内容に間違いがあります。',
 'contact_alerte_mail' => 'Eメールアドレスが正しくありません。',
 'contact_alerte_domaine' => 'このドメイン名は有効ではありません',
 'contact_alerte_message' => ' メッセージに何も入力がありません ! メッセージを忘れずに記入して下さい。',
-'contact_alerte_interdit' => ' Votre message contient des caractères interdits',
+'contact_alerte_interdit' => ' あなたのメッセージは無効な文字が含まれています。',
 'contact_retour_commentaire' => 'メッセージは正常にサイトのウェブマスターに送信されました。
                                 <br />できるだけ早くこのアドレスに返信します :',
 
@@ -76,10 +76,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'dans_site' => 'このサイトには ',
 // E
 'en_ligne' => '現在オンライン : ',
-'envoi_mail_nom' => '姓' : ,
-'envoi_mail_prenom' => '名' : ,
-'envoi_mail_motif' => '内容' : ,
-'envoi_mail_message' => 'メッセージ' : ,
+'envoi_mail_nom' => '姓 : ',
+'envoi_mail_prenom' => '名 : ',
+'envoi_mail_motif' => '内容 : ',
+'envoi_mail_message' => 'メッセージ : ',
 'envoyer_message' => 'へメッセージを送る',
 'erreur404' => '404 エラー',
 'erreur404_message' => '<p>恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。</p>
