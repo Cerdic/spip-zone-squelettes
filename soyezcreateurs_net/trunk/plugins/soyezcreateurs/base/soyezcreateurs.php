@@ -1023,19 +1023,55 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 		$id_article = create_article(trouve_article_sc("Conseil n°2"), "999. Citations");
 		$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
 		$id_article = create_article(trouve_article_sc("Conseil n°4"), "999. Citations");
-
-/*
-	$id_doc = create_document('documents/contact.jpg', 
-		null, 
-		'image',
-		array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...')); 
-	$article6 = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
-		$article6['texte'] = str_replace('<img1', "<img$id_doc>", $article6['texte']);
-		$article6['texte'] = str_replace('<doc1', "<doc$id_doc>", $article6['texte']);
-		create_article($article6, "000. Fourre-tout");
-		create_article_mot($article6['titre'], "000. Fourre-tout", "ALaUne", "_Specialisation");
-*/
 		
 	return true;
+}
+
+function soyezcreateurs_vider($tout=false) {
+	poubelle_article("10. Premiers pas dans le squelette SoyezCreateurs","000. Fourre-tout");
+	#poubelle_article("Contact","000. Fourre-tout");
+	poubelle_article("20. Raccourcis Typographiques de SPIP, mode d'emploi","000. Fourre-tout");
+	#poubelle_article("Politique d'accessibilité du site","000. Fourre-tout");
+	#poubelle_article("Mentions légales","000. Fourre-tout");
+	poubelle_article("Installation du site","900. Agenda");
+	poubelle_article("Événement exceptionnel","900. Agenda");
+	poubelle_article("Démonstration Agenda","900. Agenda");
+	poubelle_article("Conseil n°3","999. Citations");
+	poubelle_article("Conseil n°4","999. Citations");
+	poubelle_article("Conseil n°2","999. Citations");
+	poubelle_article("Conseil n°1","999. Citations");
+	poubelle_article("50. Documentation","30. Outils");
+	poubelle_article("Logo de survol","800. Rubrique \"Goodies\"");
+	poubelle_article("Derniers articles","800. Rubrique \"Goodies\"");
+	poubelle_article("Titre de la rubrique","800. Rubrique \"Goodies\"");
+	poubelle_article("30. Articles avec le Mot clef : \"ALaUne\"","200. Avec le mot-clé");
+	poubelle_article("40. Image = logo","200. Avec le mot-clé");
+	poubelle_article("Le nombre d'article affiché est administrable","200. Avec le mot-clé");
+	poubelle_article("Un sourire peut changer une vie","200. Avec le mot-clé");
+	poubelle_article("20. Et prima post Osdroenam quam","10. DessousBreves 1");
+	poubelle_article("30. Ideo urbs venerabilis","10. DessousBreves 1");
+	poubelle_article("10. Nos obsecuturos","20. DessousBreves 2");
+	poubelle_article("20. Mensarum enim","20. DessousBreves 2");
+	poubelle_article("30. Iamque non umbratis","20. DessousBreves 2");
+	poubelle_article("Les derniers articles modifiés","300. MenuHaut");
+	poubelle_article("10. Urbibus decorata","300. MenuHaut");
+	poubelle_article("20. Rogatus ad ultimum","300. MenuHaut");
+	poubelle_article("10. Oportunum est","400. Classées par numéro de titre");
+	poubelle_article("20. Quis enim","400. Classées par numéro de titre");
+	poubelle_article("30. Altera sententia est","400. Classées par numéro de titre");
+	poubelle_article("Historique des versions de SPIP","10. SPIP");
+
+	if ($tout===true) {
+		poubelle_article("10. Outil 1","30. Outils");
+		poubelle_article("20. Outil 2","30. Outils");
+		poubelle_article("30. Outil 3","30. Outils");
+		poubelle_article("40. Outil 4","30. Outils");
+	}
+
+	// Au cas où : remttre au carré les id_secteur des articles et rubriques.
+	include_spip('inc/rubriques');
+	calculer_rubriques();
+	propager_les_secteurs();
+
 }
 ?>
