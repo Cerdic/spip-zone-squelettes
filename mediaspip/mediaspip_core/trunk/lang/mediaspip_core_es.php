@@ -98,6 +98,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'formule_bonjour' => 'Buenos días @nom@',
 
 	// I
+	'info_activite' => 'Actividad',
 	'info_auteurs' => 'Autores:',
 	'info_comment' => 'comentario',
 	'info_comments' => 'comentarios',
@@ -215,7 +216,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_nuage_choisir' => 'Permite ver sus propias etiquetas',
 	'label_nuage_choisir_choix' => 'Mostrar un enlace por encima de la nube de etiquetas para ver sólo sus propias etiquetas',
 	'label_ordre_tri' => 'Clasificar por:',
-	'label_pas_pagination_par_defaut' => 'Paso de paginación por omisión', # RELIRE
+	'label_pas_pagination_par_defaut' => 'Paso de paginación por omisión',
 	'label_position_recherche' => 'Posicionamiento del formulario de búsqueda',
 	'label_rechercher_auteur' => 'Elección del autor',
 	'label_rechercher_categorie' => 'Elección de la sección',
