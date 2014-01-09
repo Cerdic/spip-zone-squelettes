@@ -27,106 +27,107 @@
 	[(#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}})]
 	</B_convert_article>
 	<div class="info_media infos_documents" id="infos_documents">
-	[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
-	<div id="liste_docs_download">
-	<ul class="liste-items">[(#SET{ferme_ul,oui})]
+		[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
+		<div id="liste_docs_download">
+			<ul class="liste-items">[(#SET{ferme_ul,oui})]
 </B_documents_joints_nb>
 	<BOUCLE_convert_article_defaut(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode IN doc2img,conversion}{objet=document}{id_objet IN #GET{documents_orig}}{tout}> </BOUCLE_convert_article_defaut>
 	#SET{total,#TOTAL_BOUCLE}
 	<div class="info_media infos_documents" id="infos_documents">
-	[<h3 class="h3">(#TOTAL_BOUCLE|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
-	<div id="liste_docs_download">
-	<ul class="liste-items">[(#SET{ferme_ul,oui})]
+		[<h3 class="h3">(#TOTAL_BOUCLE|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
+		<div id="liste_docs_download">
+			<ul class="liste-items">[(#SET{ferme_ul,oui})]
 	</B_convert_article_defaut>
 <//B_documents_joints_nb>
 <B_documents_joints_orig>
 	<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>[(#GRAND_TOTAL|>{1}|oui)
-		<li class="item info_media">
-			<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
-		</li>][(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
-		[(#SET{expose,[(#GET{doc_unique}|=={oui}|non|et{#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non}|?{'','on'})]})]
-		<li class="item info_media[ (#GET{expose})]">[(#REM)
-
-				Définir ce que sera réellement le logo :
-				-* Le fichier lui-même rétréci si c'est une image
-				-* Le logo du document si c'est autre chose qu'une image
-
-			][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
-			][(#_articles:EM_TYPE|oui)
-				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
-					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
-				})]
-			][<div class="media_infos">
-				<h4 class="#EDIT{titre}">
-					<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
-						[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
-						[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
-					</a>
-				</h4>
-				<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{expose}|=={on}|non)
-				<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
-			</div>]
-		</li>]
-		<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
-		[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
-		<li class="item info_media[ (#GET{expose})]">[(#REM)
-
-				Définir ce que sera réellement le logo :
-				-* Le fichier lui-même rétréci si c'est une image
-				-* Le logo du document si c'est autre chose qu'une image
-
-			][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
-			][(#_articles:EM_TYPE|oui)
-				[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
-					[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
-				})]
-			]
-			[<div class="media_infos">
-				<h4 class="#EDIT{titre}">
-					<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
-						[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
-						[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
-					</a>
-				</h4>
-				<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
-				[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
-			]</div>]
-		</li>
+			<li class="item info_media">
+				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
+			</li>][(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+			[(#SET{expose,[(#GET{doc_unique}|=={oui}|non|et{#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|non}|?{'','on'})]})]
+			<li class="item info_media[ (#GET{expose})]">[(#REM)
+	
+					Définir ce que sera réellement le logo :
+					-* Le fichier lui-même rétréci si c'est une image
+					-* Le logo du document si c'est autre chose qu'une image
+	
+				][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
+				][(#_articles:EM_TYPE|oui)
+					[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
+						[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
+					})]
+				][<div class="media_infos">
+					<h4 class="#EDIT{titre}">
+						<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
+							[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
+							[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
+						</a>
+					</h4>
+					<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{expose}|=={on}|non)
+					<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
+				</div>]
+			</li>]
+			<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
+			[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
+			<li class="item info_media[ (#GET{expose})]">[(#REM)
+	
+					Définir ce que sera réellement le logo :
+					-* Le fichier lui-même rétréci si c'est une image
+					-* Le logo du document si c'est autre chose qu'une image
+	
+				][(#EXTENSION|in_array{#LISTE{jpg,gif,png}}|?{[(#SET{logo,#FICHIER})],[(#SET{logo,#LOGO_DOCUMENT})]})
+				][(#_articles:EM_TYPE|oui)
+					[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{3,3}|couleur_extreme|=={000000}|?{
+						[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif|extraire_attribut{'src'})]})],[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|extraire_attribut{'src'})]})]
+					})]
+				]
+				[<div class="media_infos">
+					<h4 class="#EDIT{titre}">
+						<a href="(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT&file=#FICHIER&cle=[(#ID_DOCUMENT|concat{','}|concat{#FICHIER})]})" title="<:bouton_telecharger:>" rel="nofollow">
+							[(#GET{logo}|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''})]
+							[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
+						</a>
+					</h4>
+					<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
+					[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
+				]</div>]
+			</li>
 		</BOUCLE_documents_joints>
 		</B_documents_joints>
 		<B_documents_joints_doc2img>
-	[(#GRAND_TOTAL|>{3}|oui)
-	</ul>
-	<ul class="liste-items">
-		<li class="item">
-			<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
-			#ANCRE_PAGINATION
-			[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
-		</li>]
-		<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
-		[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
-		<li class="item info_media[ (#GET{expose})]">[
-			(#SET{url,[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT}|parametre_url{file,#GET{fichier},'&'}|parametre_url{cle,[(#ID_DOCUMENT|concat{','}|concat{#GET{fichier}})],'&'})]})]
-			[<div class="media_infos">
-				<h4>[(#_articles:EM_TYPE|oui)
-					[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
-						[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})],[(#SET{masque,[(#GET{masque}|extraire_attribut{'src'})]})]})]
-					]<a href="(#GET{url})" title="<:bouton_telecharger:>" rel="nofollow">
-						[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''}|inserer_attribut{class,'spip_logos'})]
-						[(#GRAND_TOTAL|=={1}|?{<:mediaspip_core:document_conversion:>,<:mediaspip_core:document_conversion_page{nb=#PAGE}:>})]
-					</a>
-				</h4>
-				<p class="info_type"><span class="small">[(#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
-				[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]]
-			</div>]
-		</li></BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
-		<li class="item">
-			[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
-		</li>]
-	</B_documents_joints_doc2img>
-	</BOUCLE_documents_joints_orig>
-	</B_documents_joints_orig>[(#GET{ferme_ul}|=={oui}|oui)
-	</ul>
+		[(#GRAND_TOTAL|>{3}|oui)
+		</ul>
+		<ul class="liste-items">
+			<li class="item">
+				<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
+				#ANCRE_PAGINATION
+				[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
+			</li>]
+			<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
+			[(#SET{expose,#ID_DOCUMENT|=={#GET{id_document,#GET{documents}|table_valeur{0}}}|?{on,''}})]
+			<li class="item info_media[ (#GET{expose})]">[
+				(#SET{url,[(#URL_ACTION_AUTEUR{ms_forcer_telecharger,#ID_DOCUMENT}|parametre_url{file,#GET{fichier},'&'}|parametre_url{cle,[(#ID_DOCUMENT|concat{','}|concat{#GET{fichier}})],'&'})]})]
+				[<div class="media_infos">
+					<h4>[(#_articles:EM_TYPE|oui)
+						[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|couleur_extraire{1,1}|couleur_extreme|=={000000}|?{
+							[(#SET{masque,[(#CHEMIN{images/icones_medias/[(#_articles:EM_TYPE)].png}|image_passe_partout{24,24}|image_negatif)]})],[(#SET{masque,[(#GET{masque}|extraire_attribut{'src'})]})]})]
+						]<a href="(#GET{url})" title="<:bouton_telecharger:>" rel="nofollow">
+							[(#FICHIER|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo}}|image_masque{#GET{masque},mode=normal,left=5px,top=5px}|inserer_attribut{alt,''}|inserer_attribut{class,'spip_logos'})]
+							[(#GRAND_TOTAL|=={1}|?{<:mediaspip_core:document_conversion:>,<:mediaspip_core:document_conversion_page{nb=#PAGE}:>})]
+						</a>
+					</h4>
+					<p class="info_type"><span class="small">[(#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
+					[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]]
+				</div>]
+			</li></BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
+			<li class="item">
+				[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
+			</li>]
+		</B_documents_joints_doc2img>
+		</BOUCLE_documents_joints_orig>
+		</B_documents_joints_orig>[(#GET{ferme_ul}|=={oui}|oui)
+		</ul>
+	</div>
 </div>]
 [(#SET{id_document,[(#GET{id_document,[(#GET{documents}|table_valeur{0})]})]})]
 <B_doc>
@@ -138,7 +139,6 @@
 </BOUCLE_doc>
 </div>
 </B_doc>
-</div>
 [<div class="info_media infos_documents" id="liens_documents">(#INCLURE{fond=inclure/documents-medias_links,id_article,env,ajax}|trim)</div>]
 </BOUCLE_si_telecharge>
 #FILTRE{trim}
