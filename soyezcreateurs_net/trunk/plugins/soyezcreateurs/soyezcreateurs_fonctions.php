@@ -960,4 +960,10 @@ function dictionnaires_remplacer_abbr($mot, $definition){
 	*/
 }
 
+if (!function_exists('rainette_afficher_icone')) {
+	function rainette_afficher_icone($meteo, $taille='petit', $chemin='', $extension='png'){
+		return rainette_icone_meteo($meteo, $taille='petit', $chemin='', $extension='png');
+	}
+}
+
 ?>
