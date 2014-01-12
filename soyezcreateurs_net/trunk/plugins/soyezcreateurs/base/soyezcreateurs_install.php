@@ -144,6 +144,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			include_spip('inc/rubriques');
 			calculer_rubriques();
 			propager_les_secteurs();
+			effacer_meta("date_calcul_rubriques");
 			
 			spip_log("SoyezCreateurs maj 3.0.28 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.28','non');

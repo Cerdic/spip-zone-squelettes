@@ -269,6 +269,16 @@ function id_rubrique($titre) {
 	return $resultat;
 }
 
+// fonction qui permet de supprimer une rubrique à partir du titre
+function delete_rubrique($titre) {
+	$id_rubrique = id_rubrique($titre);
+	if ($id_rubrique>0) {
+		sql_delete("spip_rubriques", "id_rubrique=$id_rubrique");
+		sql_delete("spip_mots_rubriques", "id_rubrique=$id_rubrique");
+	}
+	return $id_rubrique;
+}
+
 // fonction qui permet de renommer une rubrique à partir du titre
 function rename_rubrique($titre, $nouveau_titre) {
 	$id_rubrique = id_rubrique($titre);
@@ -388,6 +398,7 @@ function create_article($texte, $rubrique, $lang='fr') {
 		include_spip('inc/rubriques');
 		calculer_rubriques();
 		propager_les_secteurs();
+		effacer_meta("date_calcul_rubriques");
 	}
 	else if ($count_articles > 0) {
 		$id_article = id_article($texte['titre'], $id_rubrique);
@@ -602,6 +613,7 @@ function create_site($site, $rubrique) {
 		include_spip('inc/rubriques');
 		calculer_rubriques();
 		propager_les_secteurs();
+		effacer_meta("date_calcul_rubriques");
 	}
 	return $id_site;
 }
@@ -1065,11 +1077,15 @@ function soyezcreateurs_vider($tout=false) {
 		poubelle_article("30. Outil 3","30. Outils");
 		poubelle_article("40. Outil 4","30. Outils");
 	}
+	
+	delete_rubrique("10. SPIP");
+	delete_rubrique("20. Linux");
 
 	// Au cas où : remttre au carré les id_secteur des articles et rubriques.
 	include_spip('inc/rubriques');
 	calculer_rubriques();
 	propager_les_secteurs();
+	effacer_meta("date_calcul_rubriques");
 
 }
 ?>
