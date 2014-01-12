@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'label_limite' => '',
-	'label_nom_theme' => 'Introduzca el nombre del tema personal (corresponde a xxxx del sub-repertorio esqueletos/temas/xxxx/)',
+	'label_nom_theme' => 'Introduzca el nombre del tema personal (corresponde a xxxx del sub-directorio esqueletos/temas/xxxx/)',
 	'label_theme_defaut' => 'Tema por defecto (tipo DotClear)',
 	'label_theme_perso' => 'Tema personal (definir a continuación)',
 	'langue' => 'Idioma',
