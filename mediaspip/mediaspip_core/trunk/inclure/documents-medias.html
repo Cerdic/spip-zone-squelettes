@@ -34,8 +34,7 @@
 		<ul class="liste-items">[(#SET{ferme_ul,oui})]
 ]
 
-<B_documents_joints_orig>
-	<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>[(#GRAND_TOTAL|>{1}|oui)
+<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>[(#GRAND_TOTAL|>{1}|oui)
 			<li class="item info_media">
 				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
 			</li>][(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
@@ -119,11 +118,13 @@
 				[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 			</li>]
 		</B_documents_joints_doc2img>
-		</BOUCLE_documents_joints_orig>
-		</B_documents_joints_orig>[(#GET{ferme_ul}|=={oui}|oui)
+</BOUCLE_documents_joints_orig>
+
+[(#GET{ferme_ul}|=={oui}|oui)
 		</ul>
 	</div>
 </div>]
+
 #SET{id_document,#GET{id_document,#GET{id_document_par_defaut}}}
 <B_doc>
 <div class="info_media infos_techniques">
