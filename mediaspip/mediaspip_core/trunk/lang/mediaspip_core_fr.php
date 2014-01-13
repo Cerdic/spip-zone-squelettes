@@ -108,6 +108,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_document_id' => 'Identifiant du document :',
 	'info_documents' => 'Les documents',
 	'info_documents_liens_directs' => 'Liens directs vers les documents',
+	'info_documents_liens_directs_conversions' => 'Conversions automatiques',
 	'info_documents_liens_directs_doc2img' => 'Conversions automatiques',
 	'info_editorial_publi' => 'Édito du <abbr class="published" title="@date_iso@">@date@</abbr> par @auteurs@.',
 	'info_langue' => 'Langue :',

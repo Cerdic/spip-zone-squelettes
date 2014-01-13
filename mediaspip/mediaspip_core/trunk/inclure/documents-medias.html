@@ -43,6 +43,7 @@
 
 				<B_documents_joints>
 				<div class="copies">
+					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_conversions:></h4>
 					<ul class="liste-items">
 					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{par num titre, date}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
@@ -53,11 +54,11 @@
 
 				<B_documents_joints_doc2img>
 				<div class="doc2img">
-					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
+					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h4>
 					#ANCRE_PAGINATION
 					[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 					<ul class="liste-items">
-					<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
+					<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode=doc2img}{par page}{pagination 5}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
 					</ul>
