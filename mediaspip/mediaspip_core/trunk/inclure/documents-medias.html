@@ -17,7 +17,9 @@
 		[(#SET{documents_copies,#GET{documents_copies}|push{#ID_DOCUMENT}})]
 	</BOUCLE_conversions>
 </BOUCLE_docs_exclus>
+#SET{total,#GET{documents_copies}|count}
 [(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+	#SET{total,#GET{total}|plus{#GET{documents_orig}|count}}
 	#SET{id_document_par_defaut, #GET{documents_orig}|table_valeur{0}}
 ]
 [(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non)
@@ -25,24 +27,13 @@
 	#SET{id_document_par_defaut, #GET{documents_copies}|table_valeur{0}}
 ]
 
-<BOUCLE_documents_joints_nb(DOCUMENTS){id_article}{id_document !IN #GET{docs_exclus}}> </BOUCLE_documents_joints_nb>
-	[(#SET{total,#TOTAL_BOUCLE})]
-	<BOUCLE_convert_article(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode IN doc2img,conversion}{objet=document}{id_objet IN #GET{documents_orig}}{tout}> </BOUCLE_convert_article>
-	[(#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}})]
-	</B_convert_article>
-	<div class="info_media infos_documents" id="infos_documents">
-		[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
-		<div id="liste_docs_download">
-			<ul class="liste-items">[(#SET{ferme_ul,oui})]
-</B_documents_joints_nb>
-	<BOUCLE_convert_article_defaut(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode IN doc2img,conversion}{objet=document}{id_objet IN #GET{documents_orig}}{tout}> </BOUCLE_convert_article_defaut>
-	#SET{total,#TOTAL_BOUCLE}
-	<div class="info_media infos_documents" id="infos_documents">
-		[<h3 class="h3">(#TOTAL_BOUCLE|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
-		<div id="liste_docs_download">
-			<ul class="liste-items">[(#SET{ferme_ul,oui})]
-	</B_convert_article_defaut>
-<//B_documents_joints_nb>
+[(#GET{total}|>{0}|oui)
+<div class="info_media infos_documents" id="infos_documents">
+	[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
+	<div id="liste_docs_download">
+		<ul class="liste-items">[(#SET{ferme_ul,oui})]
+]
+
 <B_documents_joints_orig>
 	<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>[(#GRAND_TOTAL|>{1}|oui)
 			<li class="item info_media">
