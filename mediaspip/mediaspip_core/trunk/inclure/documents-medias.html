@@ -38,7 +38,7 @@
 			<li class="item info_media">
 				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
 			</li>][(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
-			[(#SET{expose,[(#GET{doc_unique}|=={oui}|non|et{#ID_DOCUMENT|=={#GET{id_document,#GET{id_document_par_defaut}}}|non}|?{'','on'})]})]
+			[(#SET{expose,[(#ID_DOCUMENT|=={#GET{id_document,#GET{id_document_par_defaut}}}|?{'on',''})]})]
 			<li class="item info_media[ (#GET{expose})]">[(#REM)
 	
 					Définir ce que sera réellement le logo :
@@ -82,9 +82,9 @@
 							[(#TITRE|?{[(#TITRE)],[(#MODE|in_array{#LISTE{doc2img,conversion}}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,<:mediaspip_core:document_version_originale:>})]})]
 						</a>
 					</h4>
-					<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
+					<p class="info_type"><span class="small">#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span></p>
 					[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
-				]</div>]
+				</div>]
 			</li>
 		</BOUCLE_documents_joints>
 		</B_documents_joints>
@@ -110,8 +110,8 @@
 							[(#GRAND_TOTAL|=={1}|?{<:mediaspip_core:document_conversion:>,<:mediaspip_core:document_conversion_page{nb=#PAGE}:>})]
 						</a>
 					</h4>
-					<p class="info_type"><span class="small">[(#TAILLE|taille_en_octets)]</span></p>[(#GET{doc_unique}|=={oui}|non)
-					[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]]
+					<p class="info_type"><span class="small">[(#TAILLE|taille_en_octets)]</span></p>
+					[(#GET{expose}|=={on}|non)<p class="lien_infos_supp"><span class="small"><a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT})#liste_docs_download]" class="ajax"><:mediaspip_core:document_voir_infos:></a></span></p>]
 				</div>]
 			</li></BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
 			<li class="item">
