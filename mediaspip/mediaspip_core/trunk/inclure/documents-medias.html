@@ -3,23 +3,32 @@
 ]
 <BOUCLE_si_telecharge(CONDITION){si #AUTORISER{mstelecharger,document,#ID_ARTICLE}|oui}>
 [(#SET{documents_orig,#ARRAY})]
+[(#SET{documents_annexes,#ARRAY})]
 [(#SET{documents_copies,#ARRAY})]
 [(#REM) 
-	On compte les documents (original, conversions)
+	On compte les documents (original, annexes, conversions)
 ]
 <BOUCLE_docs_comptage(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
 	[(#SET{documents_orig,#GET{documents_orig}|push{#ID_DOCUMENT}})]
-	<BOUCLE_conversions(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{tout}>
+	<BOUCLE_annexes(DOCUMENTS){si #VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode IN annexe}{tout}>
+		[(#SET{documents_annexes,#GET{documents_annexes}|push{#ID_DOCUMENT}})]
+	</BOUCLE_annexes>
+	<BOUCLE_conversions(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN annexe}{tout}>
 		[(#SET{documents_copies,#GET{documents_copies}|push{#ID_DOCUMENT}})]
 	</BOUCLE_conversions>
 </BOUCLE_docs_comptage>
-#SET{total,#GET{documents_copies}|count}
+#SET{total,0}
 [(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
 	#SET{total,#GET{total}|plus{#GET{documents_orig}|count}}
 	#SET{id_document_par_defaut, #GET{documents_orig}|table_valeur{0}}
 ]
-[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non)
-	#SET{id_document_par_defaut, #GET{documents_copies}|table_valeur{0}}
+[(#VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+	#SET{total,#GET{total}|plus{#GET{documents_annexes}|count}}
+	#SET{id_document_par_defaut, #GET{id_document_par_defaut,#GET{documents_annexes}|table_valeur{0}}}
+]
+[(#VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+	#SET{total,#GET{total}|plus{#GET{documents_copies}|count}}
+	#SET{id_document_par_defaut, #GET{id_document_par_defaut,#GET{documents_copies}|table_valeur{0}}}
 ]
 #SET{id_document,#ENV{id_document,#GET{id_document_par_defaut,0}}}
 
@@ -40,6 +49,17 @@
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</ul>
 				</div>]
+
+				<B_documents_annexes>
+				<div class="annexes">
+					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_annexes:></h4>
+					<ul class="liste-items">
+					<BOUCLE_documents_annexes(DOCUMENTS){si #VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode IN annexe}{par num titre, date}{tout}>
+						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
+					</BOUCLE_documents_annexes>
+					</ul>
+				</div>
+				</B_documents_annexes>
 
 				<B_documents_joints>
 				<div class="copies">
