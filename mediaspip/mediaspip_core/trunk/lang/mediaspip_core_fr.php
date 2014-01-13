@@ -34,6 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_autoriser_telecharger' => 'Affiche les différentes versions du document disponibles et permet à l’utilisateur de les télécharger.',
 	'description_autoriser_telecharger_que_logues' => 'N’autoriser que les personnes identifiées à télécharger les documents disponibles.',
 	'description_embed_code' => 'Affiche un code d’intégration (embed code) du média pour un site externe pour les formats possibles.',
+	'document_annexe' => 'Annexe',
 	'document_conversion' => 'Conversion automatique',
 	'document_conversion_page' => 'Conversion automatique (page @nb@)',
 	'document_page' => 'Page numéro @page@',
@@ -96,6 +97,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'formule_bonjour' => 'Bonjour @nom@',
 
 	// I
+	'icone_creer_annexe' => 'Ajouter une annexe',
 	'info_activite' => 'Activité',
 	'info_auteurs' => 'Les auteurs :',
 	'info_comment' => 'commentaire',

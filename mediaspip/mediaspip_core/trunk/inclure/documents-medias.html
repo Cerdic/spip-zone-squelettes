@@ -50,22 +50,28 @@
 					</ul>
 				</div>]
 
-				<B_documents_annexes>
+				[(#VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui)
 				<div class="annexes">
 					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_annexes:></h4>
+				]
+
+				<B_documents_annexes>
 					<ul class="liste-items">
 					<BOUCLE_documents_annexes(DOCUMENTS){si #VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode IN annexe}{par num titre, date}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</BOUCLE_documents_annexes>
 					</ul>
-				</div>
 				</B_documents_annexes>
+				[(#VAL{annexes}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui)
+					[(#INCLURE{fond=inclure/ajouter-annexe, id_document=#_documents_joints_orig:ID_DOCUMENT, env, ajax})]
+				</div>
+				]
 
 				<B_documents_joints>
 				<div class="copies">
 					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_conversions:></h4>
 					<ul class="liste-items">
-					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{par num titre, date}{tout}>
+					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img,annexe}{par num titre, date}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</BOUCLE_documents_joints>
 					</ul>
