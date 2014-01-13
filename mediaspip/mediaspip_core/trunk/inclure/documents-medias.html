@@ -29,34 +29,44 @@
 <div class="info_media infos_documents" id="infos_documents">
 	[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
 	<div id="liste_docs_download">
-		<ul class="liste-items">[(#SET{ferme_ul,oui})]
+		<ul>[(#SET{ferme_ul,oui})]
 ]
 
-<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>[(#GRAND_TOTAL|>{1}|oui)
-			<li class="item info_media">
-				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>
-			</li>][(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
-			[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
-			]
-			<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
-			[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
-			</BOUCLE_documents_joints>
-		<B_documents_joints_doc2img>
-		[(#GRAND_TOTAL|>{3}|oui)
-		</ul>
-		<ul class="liste-items">
-			<li class="item">
-				<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
-				#ANCRE_PAGINATION
-				[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
-			</li>]
-			<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
-			[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
-			</BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
-			<li class="item">
-				[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
-			</li>]
-		</B_documents_joints_doc2img>
+<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>
+			<li>[(#GRAND_TOTAL|>{1}|oui)
+				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>]
+
+				[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+				<div class="original">
+					<ul class="liste-items">
+						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
+					</ul>
+				</div>]
+
+				<B_documents_joints>
+				<div class="copies">
+					<ul class="liste-items">
+					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
+						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
+					</BOUCLE_documents_joints>
+					</ul>
+				</div>
+				</B_documents_joints>
+
+				<B_documents_joints_doc2img>
+				<div class="doc2img">
+					<h4 class="h4"><:mediaspip_core:info_documents_liens_directs_doc2img:></h3>
+					#ANCRE_PAGINATION
+					[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
+					<ul class="liste-items">
+					<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{mode=doc2img}{objet=document}{id_objet=#ID_DOCUMENT}{par id_document}{pagination 5}{tout}>
+						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
+					</BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
+					</ul>
+					[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]]
+				</div>
+				</B_documents_joints_doc2img>
+			</li>
 </BOUCLE_documents_joints_orig>
 
 [(#GET{ferme_ul}|=={oui}|oui)
