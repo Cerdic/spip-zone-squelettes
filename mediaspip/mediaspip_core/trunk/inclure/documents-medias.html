@@ -2,25 +2,23 @@
 	Liste des documents joints
 ]
 <BOUCLE_si_telecharge(CONDITION){si #AUTORISER{mstelecharger,document,#ID_ARTICLE}|oui}>
-[(#SET{docs_exclus,#ARRAY})]
 [(#SET{documents_orig,#ARRAY})]
 [(#SET{documents_copies,#ARRAY})]
 [(#REM) 
-	On exclus les documents que l'on ne veut pas voir apparaitre dans les documents téléchargeables
+	On compte les documents (original, conversions)
 ]
-<BOUCLE_docs_exclus(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
+<BOUCLE_docs_comptage(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
 	[(#SET{documents_orig,#GET{documents_orig}|push{#ID_DOCUMENT}})]
 	<BOUCLE_conversions(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{tout}>
 		[(#SET{documents_copies,#GET{documents_copies}|push{#ID_DOCUMENT}})]
 	</BOUCLE_conversions>
-</BOUCLE_docs_exclus>
+</BOUCLE_docs_comptage>
 #SET{total,#GET{documents_copies}|count}
 [(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
 	#SET{total,#GET{total}|plus{#GET{documents_orig}|count}}
 	#SET{id_document_par_defaut, #GET{documents_orig}|table_valeur{0}}
 ]
 [(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non)
-	#SET{docs_exclus, #GET{documents_orig}}
 	#SET{id_document_par_defaut, #GET{documents_copies}|table_valeur{0}}
 ]
 #SET{id_document,#ENV{id_document,#GET{id_document_par_defaut,0}}}
@@ -32,7 +30,7 @@
 		<ul>[(#SET{ferme_ul,oui})]
 ]
 
-<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode !IN doc2img,conversion}{par num titre, date}>
+<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
 			<li>[(#GRAND_TOTAL|>{1}|oui)
 				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>]
 
@@ -46,7 +44,7 @@
 				<B_documents_joints>
 				<div class="copies">
 					<ul class="liste-items">
-					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{id_document !IN #GET{docs_exclus}}{par num titre, date}{tout}>
+					<BOUCLE_documents_joints(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY{original,copies}}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode !IN doc2img}{par num titre, date}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</BOUCLE_documents_joints>
 					</ul>
