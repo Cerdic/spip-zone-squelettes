@@ -296,6 +296,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_autres_mots' => 'Les autres tags',
 
 	// O
+	'option_lien_types_annexes' => 'Les annexes',
 	'option_lien_types_copies' => 'Les copies (si possible) du document',
 	'option_lien_types_original' => 'Le document original',
 	'option_lien_types_vignette' => 'Une vignette principale du document',
