@@ -6,22 +6,24 @@
 [(#SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_VIGNETTES_DOWNLOAD}|defined|?{#EVAL{_TAILLE_HAUTEUR_VIGNETTES_DOWNLOAD},#CONFIG{mediaspip/squelettes/vignettes_download_hauteur,75}}})]
 [(#SET{id_document,#ENV{id_document}})]
 [(#SET{docs_exclus,#ARRAY})]
-[(#SET{documents,#ARRAY})]
 [(#SET{documents_orig,#ARRAY})]
+[(#SET{documents_copies,#ARRAY})]
 [(#REM) 
 	On exclus les documents que l'on ne veut pas voir apparaitre dans les documents téléchargeables
 ]
 <BOUCLE_docs_exclus(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
 	[(#SET{documents_orig,#GET{documents_orig}|push{#ID_DOCUMENT}})]
-	[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non)
-		#SET{docs_exclus,#GET{docs_exclus}|push{#ID_DOCUMENT}}]
-	[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
-		#SET{documents,#GET{documents}|push{#ID_DOCUMENT}}]
 	<BOUCLE_conversions(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{tout}>
-		[(#SET{documents,#GET{documents}|push{#ID_DOCUMENT}})]
+		[(#SET{documents_copies,#GET{documents_copies}|push{#ID_DOCUMENT}})]
 	</BOUCLE_conversions>
 </BOUCLE_docs_exclus>
-#SET{id_document_par_defaut, #GET{documents}|table_valeur{0}}
+[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui)
+	#SET{id_document_par_defaut, #GET{documents_orig}|table_valeur{0}}
+]
+[(#VAL{original}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|non)
+	#SET{docs_exclus, #GET{documents_orig}}
+	#SET{id_document_par_defaut, #GET{documents_copies}|table_valeur{0}}
+]
 
 <BOUCLE_documents_joints_nb(DOCUMENTS){id_article}{id_document !IN #GET{docs_exclus}}> </BOUCLE_documents_joints_nb>
 	[(#SET{total,#TOTAL_BOUCLE})]
