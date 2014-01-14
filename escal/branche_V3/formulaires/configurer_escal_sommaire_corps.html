@@ -92,7 +92,14 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
                             [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard">Au hasard</label>
                     </span>
-                    <br /><br /><br /><br /><br />          
+                    <br /><br /><br /><br /><br />
+             #SET{name,tailletexteannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    On coupe le texte à
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},300})]"  />&nbsp;caractères
+                    </span>
+                    <br /><br />                             
             #SET{name,tempoannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Temporisation entre chaque annonce (en secondes)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
