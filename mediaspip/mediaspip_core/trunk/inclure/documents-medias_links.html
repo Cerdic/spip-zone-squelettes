@@ -28,8 +28,18 @@
 					</form>
 				</div>
 			</li>]
+			<BOUCLE_documents_annexes(DOCUMENTS){objet=document}{id_objet=#_documents_orig_joints:ID_DOCUMENT}{mode=annexe}{tout}>
+			<li class="item info_lien">
+				<div class="formulaire_spip">
+					<form>
+						<label for="annexe_#ID_DOCUMENT_#EXTENSION"><:mediaspip_core:document_annexe:></label>
+						<input type="text" class="text copypaste" id="annexe_#ID_DOCUMENT_#EXTENSION" name="annexe_#ID_DOCUMENT_#EXTENSION" value="[(#URL_DOCUMENT|url_absolue)]" readonly="readonly" size="50" />
+					</form>
+				</div>
+			</li>
+			</BOUCLE_documents_annexes>
 			<BOUCLE_copies(CONDITION){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/liens_types,#LISTE{copies,vignette}}}|oui}>
-				<BOUCLE_documents_copies(DOCUMENTS){objet=document}{id_objet=#_documents_orig_joints:ID_DOCUMENT}{mode != doc2img}{tout}>
+				<BOUCLE_documents_copies(DOCUMENTS){objet=document}{id_objet=#_documents_orig_joints:ID_DOCUMENT}{mode !IN doc2img,annexe}{tout}>
 				<li class="item info_lien">
 					<div class="formulaire_spip">
 						<form>
