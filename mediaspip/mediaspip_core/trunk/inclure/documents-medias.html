@@ -32,14 +32,12 @@
 ]
 #SET{id_document,#ENV{id_document,#GET{id_document_par_defaut,0}}}
 
-[(#GET{total}|>{0}|oui)
+<B_documents_joints_orig>
 <div class="info_media infos_documents" id="infos_documents">
 	[<h3 class="h3">(#GET{total}|singulier_ou_pluriel{mediaspip_core:info_document,mediaspip_core:info_documents})</h3>]
 	<div id="liste_docs_download">
-		<ul>[(#SET{ferme_ul,oui})]
-]
-
-<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode IN document,image}{par num titre, date}>
+		<ul>
+<BOUCLE_documents_joints_orig(DOCUMENTS){id_article}{mode IN document,image}{si #GET{total}|>{0}|oui}{par num titre, date}>
 			<li>[(#GRAND_TOTAL|>{1}|oui)
 				<h4 class="#EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename)]})]</h4>]
 
@@ -93,11 +91,10 @@
 				</B_documents_joints_doc2img>
 			</li>
 </BOUCLE_documents_joints_orig>
-
-[(#GET{ferme_ul}|=={oui}|oui)
 		</ul>
 	</div>
-</div>]
+</div>
+</B_documents_joints_orig>
 
 <B_doc>
 <div class="info_media infos_techniques">
