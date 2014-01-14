@@ -97,8 +97,12 @@
 	<B_doc>
 	<div class="info_media infos_techniques">
 	<BOUCLE_doc(DOCUMENTS){id_document=#GET{id_document}}{tout}>
-		[(#MODE|in_array{#LISTE{conversion,doc2img}}|?{[(#MODE|=={doc2img}|?{<h4 class="h4"><:mediaspip_core:document_page{page=#PAGE}:></h4>,<h4 class="h4"><:mediaspip_core:document_version{version=#EXTENSION}:></h4>})],
-		<h4 class="h4"><:mediaspip_core:document_version_originale:></h4>})]
+		[<h4 class="h4">(#TITRE|?{[(#TITRE)],
+			[(#MODE|=={conversion}|?{<:mediaspip_core:document_version{version=#EXTENSION}:>,
+				[(#MODE|=={doc2img}|?{<:mediaspip_core:document_page{page=#PAGE}:>,
+					[(#MODE|=={annexe}|?{<:mediaspip_core:document_annexe:>,
+						<:mediaspip_core:document_version_originale:>
+		})]})]})]})</h4>]
 		#INCLURE{fond=inclure/document-infos,id_document,ajax}
 	</BOUCLE_doc>
 	</div>
