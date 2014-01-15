@@ -81,12 +81,13 @@ function soyezcreateurs_config_site() {
 	}
 
 
-	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') )
+	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') ) {
 		ecrire_meta('nom_site', 'Votre site SPIP','non');
 		ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
 		ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
 		ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
 		create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
+	}
 	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", "soyezcreateurs_install");
 	return true;
 }
