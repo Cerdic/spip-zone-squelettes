@@ -80,14 +80,6 @@ function soyezcreateurs_config_site() {
 		sauvegarder_savecfg('soyezcreateurs_couleurs','Violet & vert','a:54:{s:7:"body_bk";s:7:"#9ed897";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#663b62";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#164017";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#663b64";s:10:"navigation";s:7:"#c982c2";s:13:"navigation_bk";s:7:"#69c975";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#70a16e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#8a0f81";s:8:"extra_bk";s:7:"#69c975";s:6:"menu_a";s:7:"#af12a2";s:9:"menu_a_bk";s:7:"#f6daf5";s:12:"menu_a_hover";s:7:"#a4569f";s:15:"menu_a_hover_bk";s:7:"#61b757";s:13:"menu_a_active";s:7:"#cd55c7";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#670165";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#663b62";s:9:"container";s:7:"#cc6cd0";s:12:"container_bk";s:7:"#c5f2d1";s:9:"titraille";s:7:"#670161";s:12:"titraille_bk";s:7:"#c08cd4";s:4:"link";s:7:"#c055cd";s:7:"visited";s:7:"#de66d4";s:5:"hover";s:7:"#a16ea0";s:6:"active";s:7:"#40163f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#eca6e6";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f9e4f4";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#663b62";s:16:"titraille_lettre";s:7:"#670161";}');
 	}
 
-
-	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') ) {
-		ecrire_meta('nom_site', 'Votre site SPIP','non');
-		ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
-		ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
-		ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
-		create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
-	}
 	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", "soyezcreateurs_install");
 	return true;
 }
@@ -792,6 +784,15 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 	
 	include_spip("inc/sc_article");
 	// Structure et contenu du site
+	$nouvelle_installation = false;
+	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') ) {
+		ecrire_meta('nom_site', 'Votre site SPIP','non');
+		ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
+		ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
+		ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
+		create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
+		$nouvelle_installation = true;
+	}
 
 	$id_rubrique = create_rubrique("000. Fourre-tout", '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 		create_rubrique_mot("000. Fourre-tout", "AfficherArticlesMenu", "_Specialisation_Rubrique");
@@ -836,22 +837,24 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "ALaUne", "_Specialisation");
 			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Courrier_libre", "_Specialisation");
 			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
-			$sites = array();
-			$sites['nom_site'] = "MàJ SoyezCréateurs";
-			$sites['url_site'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
-			$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
-			$sites['url_syndic'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
-			$sites['statut'] = 'publie';
-			$id_site = create_site($sites, "000. Fourre-tout");
-			$sites = array();
-			$sites['nom_site'] = "SoyezCréateurs";
-			$sites['url_site'] = "http://contrib.spip.net/?rubrique1237";
-			$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
-			$sites['url_syndic'] = "http://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
-			$sites['statut'] = 'publie';
-			$id_site = create_site($sites, "000. Fourre-tout");
+			if ($nouvelle_installation) {
+				$sites = array();
+				$sites['nom_site'] = "MàJ SoyezCréateurs";
+				$sites['url_site'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
+				$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
+				$sites['url_syndic'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
+				$sites['statut'] = 'publie';
+				$id_site = create_site($sites, "000. Fourre-tout");
+				$sites = array();
+				$sites['nom_site'] = "SoyezCréateurs";
+				$sites['url_site'] = "http://contrib.spip.net/?rubrique1237";
+				$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
+				$sites['url_syndic'] = "http://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
+				$sites['statut'] = 'publie';
+				$id_site = create_site($sites, "000. Fourre-tout");
+			}
 	
-	$id_parent = $id_rubrique;
+		$id_parent = $id_rubrique;
 	
 		$id_rubrique = create_rubrique("05. Saint du jour", $id_parent, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
 				$sites = array();
@@ -870,6 +873,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 	
 		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
+		if ($nouvelle_installation) {
 			$id_article = create_article(trouve_article_sc("10. Outil 1"), "30. Outils");
 				create_logo('documents/arton13.jpg', $type='art', $id_article, 'jpg');
 				create_logo('documents/artoff13.jpg', $type='art', $id_article, 'jpg','off');
@@ -890,6 +894,7 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 				create_logo('documents/arton20.jpg', $type='art', $id_article, 'jpg');
 				create_logo('documents/artoff20.jpg', $type='art', $id_article, 'jpg','off');
 				create_article_mot("50. Documentation", "30. Outils", "Outils", "_Specialisation");
+		}
 	
 		$id_rubrique = create_rubrique("80. Réseaux sociaux", $id_parent, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
 				$sites = array();
@@ -939,88 +944,90 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 	
 	
+	if ($nouvelle_installation) {
+		$id_rubrique = create_rubrique("100. Rubriques", '0', "Clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.");
+			create_rubrique_mot("100. Rubriques", "MenuHaut", "_Specialisation_Rubrique");
+		
+		$id_parent = $id_rubrique;
+		
+			$id_rubrique = create_rubrique("10. DessousBreves 1", $id_parent, "Avec le mot clef \"DessousBreves\".\n_ Affiche: titre, bulle d'aide, liste des article");
+				create_rubrique_mot("10. DessousBreves 1", "DessousBreves", "_Specialisation_Rubrique");
+				$id_article = create_article(trouve_article_sc("20. Et prima post Osdroenam quam"), "10. DessousBreves 1");
+				$id_article = create_article(trouve_article_sc("30. Ideo urbs venerabilis"), "10. DessousBreves 1");
+		
+			$id_rubrique = create_rubrique("20. DessousBreves 2", $id_parent, "Sur 2 colonnes.\n_ non limité en nombre");
+				create_rubrique_mot("20. DessousBreves 2", "DessousBreves", "_Specialisation_Rubrique");
+				$id_article = create_article(trouve_article_sc("10. Nos obsecuturos"), "20. DessousBreves 2");
+				$id_article = create_article(trouve_article_sc("20. Mensarum enim"), "20. DessousBreves 2");
+				$id_article = create_article(trouve_article_sc("30. Iamque non umbratis"), "20. DessousBreves 2");
+		
+		
 
-	$id_rubrique = create_rubrique("100. Rubriques", '0', "Clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.");
-		create_rubrique_mot("100. Rubriques", "MenuHaut", "_Specialisation_Rubrique");
-	
-	$id_parent = $id_rubrique;
-	
-		$id_rubrique = create_rubrique("10. DessousBreves 1", $id_parent, "Avec le mot clef \"DessousBreves\".\n_ Affiche: titre, bulle d'aide, liste des article");
-			create_rubrique_mot("10. DessousBreves 1", "DessousBreves", "_Specialisation_Rubrique");
-			$id_article = create_article(trouve_article_sc("20. Et prima post Osdroenam quam"), "10. DessousBreves 1");
-			$id_article = create_article(trouve_article_sc("30. Ideo urbs venerabilis"), "10. DessousBreves 1");
-	
-		$id_rubrique = create_rubrique("20. DessousBreves 2", $id_parent, "Sur 2 colonnes.\n_ non limité en nombre");
-			create_rubrique_mot("20. DessousBreves 2", "DessousBreves", "_Specialisation_Rubrique");
-			$id_article = create_article(trouve_article_sc("10. Nos obsecuturos"), "20. DessousBreves 2");
-			$id_article = create_article(trouve_article_sc("20. Mensarum enim"), "20. DessousBreves 2");
-			$id_article = create_article(trouve_article_sc("30. Iamque non umbratis"), "20. DessousBreves 2");
-	
-	
+		$id_rubrique = create_rubrique("200. Avec le mot-clé", '0', "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni.");
+			create_rubrique_mot("200. Avec le mot-clé", "MenuHaut", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("Le nombre d'article affiché est administrable"), "200. Avec le mot-clé");
+				create_logo('documents/arton33.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff33.jpg', $type='art', $id_article, 'jpg','off');
+			$id_article = create_article(trouve_article_sc("Un sourire peut changer une vie"), "200. Avec le mot-clé");
+				create_article_mot("Un sourire peut changer une vie", "200. Avec le mot-clé", "VideoALaUne", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("30. Articles avec le Mot clef : \"ALaUne\""), "200. Avec le mot-clé");
+				create_logo('documents/arton22.jpg', $type='art', $id_article, 'jpg');
+				create_article_mot("30. Articles avec le Mot clef : \"ALaUne\"", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
+			$id_article = create_article(trouve_article_sc("40. Image = logo"), "200. Avec le mot-clé");
+				create_logo('documents/arton24.jpg', $type='art', $id_article, 'jpg');
+				create_article_mot("40. Image = logo", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
+		
+		
 
-	$id_rubrique = create_rubrique("200. Avec le mot-clé", '0', "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni.");
-		create_rubrique_mot("200. Avec le mot-clé", "MenuHaut", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("Le nombre d'article affiché est administrable"), "200. Avec le mot-clé");
-			create_logo('documents/arton33.jpg', $type='art', $id_article, 'jpg');
-			create_logo('documents/artoff33.jpg', $type='art', $id_article, 'jpg','off');
-		$id_article = create_article(trouve_article_sc("Un sourire peut changer une vie"), "200. Avec le mot-clé");
-			create_article_mot("Un sourire peut changer une vie", "200. Avec le mot-clé", "VideoALaUne", "_Specialisation");
-		$id_article = create_article(trouve_article_sc("30. Articles avec le Mot clef : \"ALaUne\""), "200. Avec le mot-clé");
-			create_logo('documents/arton22.jpg', $type='art', $id_article, 'jpg');
-			create_article_mot("30. Articles avec le Mot clef : \"ALaUne\"", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
-		$id_article = create_article(trouve_article_sc("40. Image = logo"), "200. Avec le mot-clé");
-			create_logo('documents/arton24.jpg', $type='art', $id_article, 'jpg');
-			create_article_mot("40. Image = logo", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
-	
-	
+		$id_rubrique = create_rubrique("300. MenuHaut", '0', "Libano monti Phoenice, regio plena gratiarum et venustatis");
+			create_rubrique_mot("300. MenuHaut", "MenuHaut", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("Les derniers articles modifiés"), "300. MenuHaut");
+				create_logo('documents/arton32.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff32.jpg', $type='art', $id_article, 'jpg','off');
+			$id_article = create_article(trouve_article_sc("10. Urbibus decorata"), "300. MenuHaut");
+			$id_article = create_article(trouve_article_sc("20. Rogatus ad ultimum"), "300. MenuHaut");
+		
+		
 
-	$id_rubrique = create_rubrique("300. MenuHaut", '0', "Libano monti Phoenice, regio plena gratiarum et venustatis");
-		create_rubrique_mot("300. MenuHaut", "MenuHaut", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("Les derniers articles modifiés"), "300. MenuHaut");
-			create_logo('documents/arton32.jpg', $type='art', $id_article, 'jpg');
-			create_logo('documents/artoff32.jpg', $type='art', $id_article, 'jpg','off');
-		$id_article = create_article(trouve_article_sc("10. Urbibus decorata"), "300. MenuHaut");
-		$id_article = create_article(trouve_article_sc("20. Rogatus ad ultimum"), "300. MenuHaut");
-	
-	
+		$id_rubrique = create_rubrique("400. Classées par numéro de titre", '0', "Subsidiis patrimonii aut amicorum liberalitate sustentant hos perire patiemur.");
+			create_rubrique_mot("400. Classées par numéro de titre", "MenuHaut", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("10. Oportunum est"), "400. Classées par numéro de titre");
+			$id_article = create_article(trouve_article_sc("20. Quis enim"), "400. Classées par numéro de titre");
+			$id_article = create_article(trouve_article_sc("30. Altera sententia est"), "400. Classées par numéro de titre");
+		
+		
 
-	$id_rubrique = create_rubrique("400. Classées par numéro de titre", '0', "Subsidiis patrimonii aut amicorum liberalitate sustentant hos perire patiemur.");
-		create_rubrique_mot("400. Classées par numéro de titre", "MenuHaut", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("10. Oportunum est"), "400. Classées par numéro de titre");
-		$id_article = create_article(trouve_article_sc("20. Quis enim"), "400. Classées par numéro de titre");
-		$id_article = create_article(trouve_article_sc("30. Altera sententia est"), "400. Classées par numéro de titre");
-	
-	
-
-	$id_rubrique = create_rubrique("800. Rubrique \"Goodies\"", '0', "Si post exsudatos labores itinerum longos congestosque adfatim.");
-		create_rubrique_mot("800. Rubrique \"Goodies\"", "Goodies", "_ModePortail");
-		create_rubrique_mot("800. Rubrique \"Goodies\"", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("Logo de survol"), "800. Rubrique \"Goodies\"");
-			create_logo('documents/arton14.jpg', $type='art', $id_article, 'jpg');
-			create_logo('documents/artoff14.jpg', $type='art', $id_article, 'jpg','off');
-		$id_article = create_article(trouve_article_sc("Derniers articles"), "800. Rubrique \"Goodies\"");
-			create_logo('documents/arton30.jpg', $type='art', $id_article, 'jpg');
-			create_logo('documents/artoff30.jpg', $type='art', $id_article, 'jpg','off');
-		$id_article = create_article(trouve_article_sc("Titre de la rubrique"), "800. Rubrique \"Goodies\"");
-			create_logo('documents/arton31.jpg', $type='art', $id_article, 'jpg');
-			create_logo('documents/artoff31.jpg', $type='art', $id_article, 'jpg','off');
-	
+		$id_rubrique = create_rubrique("800. Rubrique \"Goodies\"", '0', "Si post exsudatos labores itinerum longos congestosque adfatim.");
+			create_rubrique_mot("800. Rubrique \"Goodies\"", "Goodies", "_ModePortail");
+			create_rubrique_mot("800. Rubrique \"Goodies\"", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
+			$id_article = create_article(trouve_article_sc("Logo de survol"), "800. Rubrique \"Goodies\"");
+				create_logo('documents/arton14.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff14.jpg', $type='art', $id_article, 'jpg','off');
+			$id_article = create_article(trouve_article_sc("Derniers articles"), "800. Rubrique \"Goodies\"");
+				create_logo('documents/arton30.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff30.jpg', $type='art', $id_article, 'jpg','off');
+			$id_article = create_article(trouve_article_sc("Titre de la rubrique"), "800. Rubrique \"Goodies\"");
+				create_logo('documents/arton31.jpg', $type='art', $id_article, 'jpg');
+				create_logo('documents/artoff31.jpg', $type='art', $id_article, 'jpg','off');
+	}
 	
 
 	$id_rubrique = create_rubrique("900. Agenda", '0', "");
 		create_rubrique_mot("900. Agenda", "Agenda", "_Specialisation_Rubrique");
 		create_rubrique_mot("900. Agenda", "PasDansMenu", "_Specialisation_Rubrique");
 		create_rubrique_mot("900. Agenda", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
-		$id_article = create_article(trouve_article_sc("Installation du site"), "900. Agenda");
-		$id_article = create_article(trouve_article_sc("Événement exceptionnel"), "900. Agenda");
-	
-	$id_parent = $id_rubrique;
-	
-		$id_rubrique = create_rubrique("10. SPIP", $id_parent, "");
-			$id_article = create_article(trouve_article_sc("Historique des versions de SPIP"), "10. SPIP");
-	
-		$id_rubrique = create_rubrique("20. Linux", $id_parent, "");
+		if ($nouvelle_installation) {
+			$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
+			$id_article = create_article(trouve_article_sc("Installation du site"), "900. Agenda");
+			$id_article = create_article(trouve_article_sc("Événement exceptionnel"), "900. Agenda");
+		
+			$id_parent = $id_rubrique;
+		
+			$id_rubrique = create_rubrique("10. SPIP", $id_parent, "");
+				$id_article = create_article(trouve_article_sc("Historique des versions de SPIP"), "10. SPIP");
+		
+			$id_rubrique = create_rubrique("20. Linux", $id_parent, "");
+		}
 	
 	
 
@@ -1030,10 +1037,12 @@ create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant
 		create_rubrique_mot("999. Citations", "PasDansPlan", "_Specialisation_Rubrique_ou_Article");
 		create_rubrique_mot("999. Citations", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
 		create_rubrique_mot("999. Citations", "PasDansFildAriane", "_Specialisation_Rubrique");
-		$id_article = create_article(trouve_article_sc("Conseil n°3"), "999. Citations");
-		$id_article = create_article(trouve_article_sc("Conseil n°2"), "999. Citations");
-		$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
-		$id_article = create_article(trouve_article_sc("Conseil n°4"), "999. Citations");
+		if ($nouvelle_installation) {
+			$id_article = create_article(trouve_article_sc("Conseil n°3"), "999. Citations");
+			$id_article = create_article(trouve_article_sc("Conseil n°2"), "999. Citations");
+			$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
+			$id_article = create_article(trouve_article_sc("Conseil n°4"), "999. Citations");
+		}
 		
 	return true;
 }
