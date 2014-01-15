@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_autoriser_telecharger' => 'Muestra las diferentes versiones disponibles del documento y se permite al usuario descargarlas.',
 	'description_autoriser_telecharger_que_logues' => 'Autorizar solamente a las personas identificadas la descarga los documentos disponibles.',
 	'description_embed_code' => 'Muestra un código de integración (embed code) del medio para un sitio externo para los formatos posibles.',
+	'document_annexe' => 'Anexo',
 	'document_conversion' => 'Conversión automática',
 	'document_conversion_page' => 'Conversión automática (página @nb@)',
 	'document_page' => 'Página número @page@',
@@ -98,6 +99,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'formule_bonjour' => 'Buenos días @nom@',
 
 	// I
+	'icone_creer_annexe' => 'Añadir un anexo',
 	'info_activite' => 'Actividad',
 	'info_auteurs' => 'Autores:',
 	'info_comment' => 'comentario',
@@ -110,6 +112,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_document_id' => 'Identificador del documento:',
 	'info_documents' => 'Documentos',
 	'info_documents_liens_directs' => 'Enlaces directos a los documentos',
+	'info_documents_liens_directs_annexes' => 'Anexos',
+	'info_documents_liens_directs_conversions' => 'Conversiones automáticas',
 	'info_documents_liens_directs_doc2img' => 'Conversiones automáticas',
 	'info_editorial_publi' => 'Editorial del <abbr class="published" title="@date_iso@">@date@</abbr> por @auteurs@.',
 	'info_langue' => 'Idioma:',
@@ -298,6 +302,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_autres_mots' => 'Las otras etiquetas',
 
 	// O
+	'option_lien_types_annexes' => 'Los anexos',
 	'option_lien_types_copies' => 'Las copias (si es posible) del documento',
 	'option_lien_types_original' => 'Documento original',
 	'option_lien_types_vignette' => 'Una miniatura principal del documento',
