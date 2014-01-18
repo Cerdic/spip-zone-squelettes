@@ -2,8 +2,8 @@
 [(#REM) Fil d'Ariane ]
 <nav id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</nav>
 
-<article class="content-principal">
-	<header class="cartouche">
+<article class="container">
+	<header class="page-header">
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[(#LOGO_RUBRIQUE_NORMAL
 			|sinon{[(#LOGO_SITE_SPIP_NORMAL|image_nb|image_alpha{90})]}
@@ -14,23 +14,14 @@
 		[(#INCLURE{fond=inclure/socialtags,env})]
 	</header>
 	[<section class="#EDIT{texte} texte">(#TEXTE|abs_url)</section>]
-	[<footer class="notes">(#NOTES|abs_url)</footer>]
+	[<footer class="wells">(#NOTES|abs_url)</footer>]
 </article>
-[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ]
 
 <BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
 	<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
 </BOUCLE_articles>
-[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ]
 </B_articles>
 
-[(#REM) Si aucun article, affiche un plan de la rubrique ]
-
-[(#REM) Non fonctionnel et je ne sais pas pourquoi ...
-	<bOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre}{!par date}{0,1}>
-		<iNCLURE{fond=liste/rubriques-resume-col,env,ajax,titre=<:sous_rubriques:>} />
-	</bOUCLE_sous_rubriques>
-]
 [(#REM) Alternative en attendant mieux...]	
 <B_sous_rubriques>
 <section class="liste resume rubriques">
@@ -43,17 +34,11 @@
 	</ul>
 	[<nav class="pagination">(#PAGINATION)</nav>]
 </section>
-[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ]
-</B_sous_rubriques>
-	
-	
-	
+</B_sous_rubriques>	
 <//B_articles>
 
 [(#REM) Gestion du portfolio et des documents ]
-[(#INCLURE{fond=inclure/documents,id_rubrique})
-	[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ] 
-]
+[(#INCLURE{fond=inclure/documents,id_rubrique})]
 
 [(#REM) Breves du secteur ]
 <B_breves>
@@ -67,13 +52,11 @@
 		</ul>
 		[<p class="pagination">(#PAGINATION)</p>]
 </aside>
-[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ]
 </B_breves>
 
 [(#REM) Sites de la rubrique ]
 <BOUCLE_sites(SITES) {id_rubrique} {0,1}>
 	<INCLURE{fond=liste/sites-resume,env,ajax} />
-[(#PLUGINS{skiplink}|oui) [<nav class="nettoyeur skiplink remonter">(#INCLURE{fond=inclure/remonter})</nav>] ]
 </BOUCLE_sites>
 
 </BOUCLE_content>
