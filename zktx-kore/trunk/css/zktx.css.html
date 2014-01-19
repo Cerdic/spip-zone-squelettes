@@ -28,7 +28,23 @@ body {padding-top:20px;}
 [(#REM) Site header ]
 .bs-header { 
   color: #cdbfe3;
-  background-color: #563d7c; 
+  background-color: [#(#ID_RUBRIQUE
+                      |couleur_rubrique
+                      |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
+                      |sinon{"EFEFEF"}
+                    )]; 
+  [background-image:url('(#LOGO_SITE_SPIP_SURVOL
+                            |image_sepia{ [(#ID_RUBRIQUE
+                                              |couleur_rubrique
+                                              |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
+                                              |sinon{"EFEFEF"}
+                                          )] }
+                            |image_gamma{-100}
+                            |extraire_attribut{src}
+                        )');
+  background-position:50% 50%;
+  background-repeat:no-repeat;]
+
 }
 /* Page headers */
 .bs-header {

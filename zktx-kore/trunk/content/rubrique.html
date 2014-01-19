@@ -4,27 +4,21 @@
 
 <article class="container">
 	<header class="page-header">
-		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
-		[(#LOGO_RUBRIQUE_NORMAL
-			|sinon{[(#LOGO_SITE_SPIP_NORMAL|image_nb|image_alpha{90})]}
-			|image_reduire{350,0}
-			|inserer_attribut{alt,#TITRE - #NOM_SITE_SPIP}
-		)]
-		[<div class="chapo #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
-		[(#INCLURE{fond=inclure/socialtags,env})]
+		[<div class="#EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
 	</header>
-	[<section class="#EDIT{texte} texte">(#TEXTE|abs_url)</section>]
-	[<footer class="wells">(#NOTES|abs_url)</footer>]
-</article>
 
-<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
-	<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
-</BOUCLE_articles>
-</B_articles>
+	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+		<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
+	</BOUCLE_articles>
+	</B_articles>
+
+	[<article class="#EDIT{texte} texte">(#TEXTE|abs_url)</article>]
+	[<footer class="well">(#NOTES|abs_url)</footer>]
+</article>
 
 [(#REM) Alternative en attendant mieux...]	
 <B_sous_rubriques>
-<section class="liste resume rubriques">
+<section class="container rubriques">
 	#ANCRE_PAGINATION
 	<h2 class="h2">[(#ENV{titre,<:sous_rubriques:>})]</h2>
 	<ul class="liste-items">
@@ -38,25 +32,6 @@
 <//B_articles>
 
 [(#REM) Gestion du portfolio et des documents ]
-[(#INCLURE{fond=inclure/documents,id_rubrique})]
-
-[(#REM) Breves du secteur ]
-<B_breves>
-<aside class="menu breves">
-		#ANCRE_PAGINATION
-		<h2 class="h2"><:breves:breves:></h2>
-		<ul class="liste-items">
-				<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
-				<li class="item">[<time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time><span class="sep"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
-				</BOUCLE_breves>
-		</ul>
-		[<p class="pagination">(#PAGINATION)</p>]
-</aside>
-</B_breves>
-
-[(#REM) Sites de la rubrique ]
-<BOUCLE_sites(SITES) {id_rubrique} {0,1}>
-	<INCLURE{fond=liste/sites-resume,env,ajax} />
-</BOUCLE_sites>
+[<section class="container">(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
 
 </BOUCLE_content>

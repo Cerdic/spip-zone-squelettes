@@ -1,29 +1,73 @@
-<BOUCLE_principale(MOTS) {id_mot} {doublons}>
-	[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
-  <B_mots_freres>
-  <div class="menu un-demi first mots">
-      #ANCRE_PAGINATION
-      [<h2 class="h2">(#_principale:TYPE)</h2>]
-      <ul class="liste-items">
-          <BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20}>
-          <li class="item"><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
-          </BOUCLE_mots_freres>
-      </ul>
-      [<p class="pagination">(#PAGINATION)</p>]
-  </div>
-  </B_mots_freres>
+<BOUCLE_extra1(MOTS) {id_mot} {doublons}>
+<section class="row">
+[(#REM) Articles lies au mot-cle ]
+  <B_articles>
+  <nav class="articles col-sm-6">
+    #ANCRE_PAGINATION
+    <h2 class="h2"><:articles:></h2>
+    <ul class="list-group">
+      <BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 50}>
+      <li class="list-group-item[ active (#EXPOSE)]">
+        <h4 class="h4 list-group-item-heading"><a href="#URL_ARTICLE">#TITRE</a></h4>
+        <p class="small">[<time pubdate class="published" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time>][, <:par_auteur:> (#LESAUTEURS)]</p>
+      </li>
+      </BOUCLE_articles>
+    </ul>
+    [<nav class="pagination">(#PAGINATION)</nav>]
+  </nav>
+  </B_articles>
 
-  [(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
-  <B_groupes_freres>
-  <div class="liste un-demi last groupes_mots">
-      <h2 class="h2"><:autres_groupes_mots_clefs:></h2>
-      <ul class="liste-items">
-          <BOUCLE_groupes_freres(GROUPES_MOTS) {!id_groupe} {par titre} {doublons}>
-          <BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
-          <li class="item"><a href="#URL_MOT">#TYPE</a></li>
-          </BOUCLE_mot_cousin>
-          </BOUCLE_groupes_freres>
-      </ul>
-  </div>
-  </B_groupes_freres>
-</BOUCLE_principale>
+  [(#REM) Rubriques liees au mot-cle ]
+  <B_rubriques>
+  <nav class="rubriques col-sm-6">
+    <h2 class="h2"><:rubriques:></h2>
+    <ul class="list-group">
+      <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre} {pagination 50}>
+      <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_RUBRIQUE">#TITRE</a></li>
+      </BOUCLE_rubriques>
+    </ul>
+    [<nav class="pagination">(#PAGINATION)</nav>]
+  </nav>
+  </B_rubriques>
+
+  [(#REM) Breves liees au mot-cle ]
+  <B_breves>
+  <nav class="breves col-sm-4">
+    <h2 class="h2"><:breves:breves:></h2>
+    <ul class="list-group">
+      <BOUCLE_breves(BREVES) {id_mot} {par titre} {pagination 50}>
+      <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_BREVE">#TITRE</a></li>
+      </BOUCLE_breves>
+    </ul>
+    [<nav class="pagination">(#PAGINATION)</nav>]
+  </nav>
+  </B_breves>
+  
+  [(#REM) Sites web lies au mot-cle ]
+  <B_sites>
+  <aside class="sites col-sm-4">
+    <h2 class="h2"><:sites_web:></h2>
+    <ul class="list-group">
+      <BOUCLE_sites(SITES) {id_mot} {par nom_site} {pagination 50}>
+      <li class="list-group-item[ active (#EXPOSE)]"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+      </BOUCLE_sites>
+    </ul>
+    [<nav class="pagination">(#PAGINATION)</nav>]
+  </aside>
+  </B_sites>
+
+  [(#REM) Liens des forums ]
+  <B_forums_liens>
+  <aside class="forums col-sm-4">
+    <h2 class="h2"><:messages_forum:></h2>
+    <ul class="list-group">
+      <BOUCLE_forums_liens(FORUMS) {id_mot} {plat} {par date}{inverse} {pagination 50}>
+      <li class="list-group-item[ active (#EXPOSE)]">[<time pubdate class="published" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time><span class="sep"> &ndash; </span>]<a href="#URL_FORUM">[(#TEXTE|couper{80}|abs_url)]</a></li>
+      </BOUCLE_forums_liens>
+    </ul>
+    [<nav class="pagination">(#PAGINATION)</nav>]
+  </aside>
+  </B_forums_liens>
+
+</section>
+</BOUCLE_extra1>
