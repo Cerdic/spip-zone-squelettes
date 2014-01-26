@@ -71,7 +71,7 @@ function sauvegarder_configuration($configs, $ou) {
 		$dir = sous_repertoire($ou, $_config);
 		$nom = $_config . "_" . date("Ymd_Hi") . ".txt";
 		$fichier = $dir . $nom;
-		$ok = ecrire_fichier($fichier, serialize(lire_config("sarkaspip/$_config")));
+		$ok = ecrire_fichier($fichier, serialize(lire_config("sarkaspip_$_config")));
 	}
 
 	return $ok;

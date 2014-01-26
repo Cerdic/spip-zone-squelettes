@@ -56,7 +56,7 @@ function formulaires_restauration_cfg_traiter_dist(){
 	include_spip('inc/config');
 	$dirs = explode('/', dirname($fichier));
 	$config = end($dirs);
-	$ok = ecrire_config("sarkaspip/$config", unserialize($contenu));
+	$ok = ecrire_config("sarkaspip_$config", unserialize($contenu));
 	
 	if (!$ok)
 		$retour['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_nok');
