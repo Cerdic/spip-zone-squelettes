@@ -69,8 +69,16 @@ div#content { margin: 0; width:#GET{LargeurContaineur}px; }
 #content img.logo_goody { float: left; margin-left: -56px; padding: 0; }
 
 /*************** HOME SPECIAL FEATURE */
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={large}|oui)
+#SET{ModeSlideShow,large}
+#SET{LargeurSlideShow,#GET{LargeurContaineur}
+]
+[(#CONFIG{soyezcreateurs/largeur_slideshow_communiquant,etroite}|=={etroite}|oui)
+#SET{ModeSlideShow,''}
+#SET{LargeurSlideShow,#GET{Largeurcontent_central}
+]
 #homeSpecialFeature img { padding:0; background-color: transparent; }
-#homeSpecialFeature {[ background: url('(#CHEMIN{images/hsf_over.png}|image_reduire{[(#GET{Largeurcontent_central})],0}|extraire_attribut{src})') top left no-repeat; ]position: relative; margin: 0 0 10px 0; width: #GET{Largeurcontent_central}px; padding-top: 10px; [min-height: (#CHEMIN{images/hsf.png}|image_reduire{[(#GET{Largeurcontent_central})],0}|hauteur)px;] height: auto; }
+#homeSpecialFeature {[ background: url('(#CHEMIN{images/hsf_over.png}|image_reduire{[(#GET{LargeurSlideShow})],0}|extraire_attribut{src})') top left no-repeat; ]position: relative; margin: 0 0 10px 0; width: #GET{LargeurSlideShow}px; padding-top: 10px; [min-height: (#CHEMIN{images/hsf#GET{ModeSlideShow}.png}|image_reduire{[(#GET{LargeurSlideShow})],0}|hauteur)px;] height: auto; }
 .hasJS #homeSpecialFeature .hSFItem { margin: 0 0 10px 10px; width: 209px; }
 #homeSpecialFeature .hSFItem .hSFDecoImg { display: block; }
 .hasJS #homeSpecialFeature .hSFItem .hSFDecoImg { position: absolute; top: 0; left: 0; z-index: 0; }
