@@ -1,16 +1,20 @@
 <BOUCLE_content(ARTICLES){id_article}>
 	[(#REM) Fil d'Ariane ]
 	<nav class="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</nav>
-	<article class="hentry">
-		<header class="page-header">
-			<p class="info-publi"><time pubdate class="published" datetime="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</time>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
-			[(#REM) Inclure le modele des liens de traductions ]#MODELE{article_traductions}
-			[<div class="#EDIT{chapo} surlignable">(#CHAPO|abs_url)</div>]
-		</header>
-		[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{465,0}|abs_url)</section>]
+	<article class="row hentry">
+		<div class="col-xs-12 col-sm-6 col-lg-8">
+			<header class="page-header">
+				<p class="info-publi"><time pubdate class="published" datetime="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</time>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+				[(#REM) Inclure le modele des liens de traductions ]#MODELE{article_traductions}
+				[<div class="#EDIT{chapo} surlignable">(#CHAPO|abs_url)</div>]
+			</header>
+			[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{465,0}|abs_url)</section>]
+		</div>
+		<div class=".col-xs-6 .col-lg-4">
 		[(#REM) Gestion du portfolio et des documents ]
-		[(#INCLURE{fond=inclure/documents}{id_article})]
-		[<footer class="well">(#NOTES|abs_url)</footer>]
+			[<aside class="well">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
+			[<footer class="well">(#NOTES|abs_url)</footer>]
+		</div>
 	</article>
 	
 	
