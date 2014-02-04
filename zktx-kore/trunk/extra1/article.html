@@ -2,29 +2,37 @@
 <BOUCLE_extra2_article(ARTICLES){id_article}>
 	[(#REM) Articles dans la meme rubrique ]
 	<B_articles_rubrique>
-	<div class="menu un-demi first articles">
-	[<h2 class="h2"><a href="#URL_RUBRIQUE">(#PLUGINS{couteau_suisse}|?{#_principale:TITRE_PARENT, <:articles_meme_rubrique:>})</a></h2>]
-		<ul class="liste-items">
+	<nav class="col-sm-4 articles">
+	[<div class="h2">(#TITRE_PARENT|sinon{<:articles_meme_rubrique:>})</div>]
+		<ul  class="list-group">
 			<BOUCLE_articles_rubrique(ARTICLES){id_rubrique} {par num titre}{inverse} {0,10}>
-			<li class="item"><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+			 <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
 			</BOUCLE_articles_rubrique>
 		</ul>
-	</div>
+	</nav>
 	</B_articles_rubrique>
 
   [(#REM) Menu de navigation mots-cles ]
   <B_mots>
-  <div class="menu un-demi last mots">
-      <h2 class="h2"><:mots_clefs:></h2>
-      <ul class="liste-items">
+  <nav class="col-sm-4 mots">
+      <div class="h2"><:mots_clefs:></div>
+      <ul class="list-group">
       <BOUCLE_mots(MOTS) {id_article} {par titre}>
-          <li class="item"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+           <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
       </BOUCLE_mots>
       </ul>
-  </div>
+  </nav>
 	</B_mots>
+	
+	<B_auteur>
+		<BOUCLE_auteur(AUTEURS){id_article}>
+		<aside class="col-sm-4 auteur">
+			<div class="h2"><:zktx:a_propos_auteur:></div>
+			[<h3 class="h3 #EDIT{qui}">(#NOM)</h2>]
+			[<p class="#EDIT{bio}">(#BIO|couper{200})</p>]
+		</aside>
+		</BOUCLE_auteur>
+	</B_auteur>
 
 </BOUCLE_extra2_article>
-[(#REM) Si pas de contenu dans la boucle, alors : ]
-<nav class="nettoyeur skiplink remonter"><a rel="nofollow" href="#header" title="Haut de page">Haut de page</a></nav>
 </B_extra2_article>
