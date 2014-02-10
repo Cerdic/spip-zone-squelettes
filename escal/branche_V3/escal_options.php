@@ -11,8 +11,8 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |Des plugins dans Escal!galleria:rainette:mentions:licence:spip400:socialtags:facebook
 ');
 
-// les images de plus de 900 pixels de largeur ou de hauteur ne seront pas enregistrées
-define('_IMG_MAX_WIDTH', 900);
+// les images de plus de 1050 pixels de largeur ou de 900px de hauteur ne seront pas enregistrées
+define('_IMG_MAX_WIDTH', 1050);
 define('_IMG_MAX_HEIGHT', 900);
 
 // récupération de l'url du site
