@@ -99,44 +99,38 @@ function formulaires_contact_traiter_dist(){
 
 
         
-        $message =  "<b>"._T('escal:envoi_mail_nom')."</b>".clean($champs['nom'])."\n";
-        $message .= "<b>"._T('escal:envoi_mail_prenom')."</b>".clean($champs['prenom'])."\n\n\n";
-         
+        $message =  clean(_T('escal:envoi_mail_nom')).clean($champs['nom'])."\n";
+        $message .= clean(_T('escal:envoi_mail_prenom')).clean($champs['prenom'])."\n\n\n";
+
         
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= "<b>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."</b>";
+            $message .= clean(_T_ou_typo(lire_config('escal/config/titrechampsup1')));
             $message .= clean($champs['champsup1'])."\n\n";
         }
         
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= "<b>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."</b>";
+            $message.= clean(_T_ou_typo(lire_config('escal/config/titrechampsup2')));
             $message.= clean($champs['champsup2'])."\n\n";
         }
         
         if (lire_config('escal/config/radio') == 'oui') {
-            $message.= "<b>"._T('escal:envoi_mail_motif')."</b>";
+            $message.= clean(_T('escal:envoi_mail_motif'));
             $message.= clean($champs['sujet'])."\n\n";
         }
         
         if (lire_config('escal/config/checkbox') == 'oui') {
-            $message .= "<b>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."</b>";
+            $message .= clean(_T_ou_typo(lire_config('escal/config/titrecheckbox')))."\n" ;
             if (is_array($champs['checkbox'])) {
               $message .= implode(" - ",$champs['checkbox'])."\n\n";
             }
         }
         
-        $message .= "<b>"._T('escal:envoi_mail_message')."</b>"."\n ".clean($champs['message'])."\n\n";
+        $message .= clean(_T('escal:envoi_mail_message'))."\n ".clean($champs['message'])."\n\n";
 
              
         if ($champs['antispam']=='' ){
             $envoyer_mail = charger_fonction('envoyer_mail','inc');
-            $corps = array(
-                'texte'=> supprimer_tags($message),
-                'from'=> $email_from,
-                'html'=> preg_replace('#([\n])+#','<br />',$message),
-                );
-            // http://code.spip.net/autodoc/tree/ecrire/inc/envoyer_mail.php.html#function_inc_envoyer_mail_dist
-            $envoyer_mail($email_to,$sujet,$corps);
+            $envoyer_mail($email_to,$sujet,utf8_encode($message),$email_from);
             return array(
                 'message_ok'=>_T('escal:contact_retour_commentaire')."\n"."<strong>". _request('email')."</strong>"
                 );
@@ -155,15 +149,10 @@ function nocode($text){
 }
 // Nettoyage minimal pour les champs textes input
 function clean($text){
-    $text = htmlentities(trim($text));
+    $text = htmlentities(trim(utf8_decode($text)));
     return $text;
 }
-// Présentation du message reçu
-function presente($txt){
-    $avant = "<span class=\"envoi-mail\"> " ;
-    $apres = "</span>" ;
-      $txt = $avant.$txt.$apres;
-    return $txt;
-}
+
+
 
 ?>
