@@ -454,6 +454,21 @@ function abonnement_possible($plugin) {
 	return $retour;
 }
 
+
+function lister_pages_configuration() {
+	$pages_cfg = array();
+
+	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
+	foreach ($sections as $_section){
+		$_section = explode("!",$_section);
+		$_section = end($_section);
+		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
+	}
+
+	return $pages_cfg;
+}
+
+
 // =======================================================================================================================================
 // Filtres : module AGENDA
 // =======================================================================================================================================

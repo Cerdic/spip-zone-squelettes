@@ -3,18 +3,12 @@ function formulaires_sauvegarde_cfg_charger_dist() {
 
 	$options = '';
 
-	$pages_cfg = array();
-	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
-	foreach ($sections as $_section){
-		$_section = explode("!",$_section);
-		$_section = end($_section);
-		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
-	}
+	$pages_cfg = lister_pages_configuration();
 
 	foreach ($pages_cfg as $_config) {
 		if ($_config != 'maintenance') {
 			$item = "sarkaspip_{$_config}";
-			$options .= '<option value="' . $_config . '">' . _T("sarkaspip:$item") . '</option>';
+			$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
 		}
 	}
 
