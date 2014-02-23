@@ -28,8 +28,6 @@
 #SET{document_a_afficher,oui}
 [(#GET{affichage}|=={image}|oui)
 	#SET{fichier,#URL_DOCUMENT}
-	#SET{width,#LARGEUR}
-	#SET{height,#HAUTEUR}
 	#SET{url,#ENV{lien}}
 	[(#CONFIG{sarkaspip_modeles/exclusif_doc, non}|=={oui}|oui)
 		#SET{document_a_afficher,non}
@@ -37,17 +35,20 @@
 ]
 [(#GET{affichage}|=={logo}|oui)
 	[(#SET{fichier,[(#LOGO_DOCUMENT|extraire_attribut{src})]})]
-	[(#SET{width,[(#LOGO_DOCUMENT|extraire_attribut{width})]})]
-	[(#SET{height,[(#LOGO_DOCUMENT|extraire_attribut{height})]})]
 	#SET{url,#ENV{lien,#URL_DOCUMENT}}
 ]
 
 [(#ENV{taille}|oui)
-	#SET{fichier,#GET{fichier}|image_reduire{#ENV{taille,0}}}
+	#SET{fichier,#GET{fichier}|image_reduire{#ENV{taille,#CONFIG{sarkaspip_modeles/max_vignette_doc,0}}}}
 	#SET{width,#GET{fichier}|largeur}
 	#SET{height,#GET{fichier}|hauteur}
-	#SET{fichier,#GET{fichier}|extraire_attribut{src}}
 ]
+[(#ENV{taille}|non)
+	#SET{fichier,#GET{fichier}|image_reduire{#CONFIG{sarkaspip_modeles/max_vignette_doc,0}}}
+	#SET{width,#GET{fichier}|largeur}
+	#SET{height,#GET{fichier}|hauteur}
+]
+#SET{fichier,#GET{fichier}|extraire_attribut{src}}
 
 [(#GET{document_a_afficher}|=={oui}|oui)
 <dl class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
