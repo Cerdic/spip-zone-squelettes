@@ -9,11 +9,13 @@
 [(#REM) <!-- Formulaire de configuration --> ]
 [(#SET{configurer, [(#ENV{type-page})_[(#ENV{cfg, accueil})]]})]
 [(#ENV{cfg, accueil}|=={maintenance}|non)
-	[<div[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|!={oui}|oui) class="ajax"]>(#FORMULAIRE_{#GET{configurer}})</div>]]
+	[<div[(#CONFIG{sarkaspip_maintenance/debug_arbo}|!={oui}|oui) class="ajax"]>(#FORMULAIRE_{#GET{configurer}})</div>]]
 [(#ENV{cfg, accueil}|=={maintenance}|oui)
 	[<div class="noajax">(#FORMULAIRE_SAUVEGARDE_CFG)</div>]
 	[<div class="ajax">(#FORMULAIRE_RESTAURATION_CFG)</div>]
-	[<div class="ajax">(#FORMULAIRE_RAZ_CFG)</div>]]
+	[<div class="ajax">(#FORMULAIRE_RAZ_CFG)</div>]
+	[<div class="noajax">(#FORMULAIRE_CONFIGURER_SARKASPIP_MAINTENANCE)</div>]
+]
 
 [(#REM) <!-- Boite d'information sur la page de configuration affichee --> ]
 [(#ENV{cfg, accueil}|=={accueil}|oui)

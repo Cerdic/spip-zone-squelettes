@@ -1,7 +1,7 @@
 <?php
 /**
  * Squelette SarkaSPIP v3.3
- * (c) 2005-2012 Licence GPL 3
+ * (c) 2005-2014 Licence GPL 3
  */
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -16,9 +16,6 @@ if (!defined('_SARKASPIP_TYPE_SECTEURS_SPECIALISES')) define('_SARKASPIP_TYPE_SE
 if (!defined('_SARKASPIP_FOND_SECTEURS_SPECIALISES')) define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galerie:sarkaspip_accueil:sarkaspip_forum');
 
 // Modes de debug du squelette
-if (!defined('_SARKASPIP_DEBUG_CSS')) define('_SARKASPIP_DEBUG_CSS', 'non');
-if (!defined('_SARKASPIP_DEBUG_CFG_ARBO')) define('_SARKASPIP_DEBUG_CFG_ARBO', 'non');
-if (!defined('_SARKASPIP_DEBUG_CFG_BOUTON')) define('_SARKASPIP_DEBUG_CFG_BOUTON', 'non');
 if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS', 'non');
 
 // Liste des pages de configuration dans l'ordre de presentation
