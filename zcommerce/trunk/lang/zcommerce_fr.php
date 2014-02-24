@@ -30,6 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 //L
+'les_abonnements' => 'Les abonnements',
 'les_produits'=>'Les produits',
 'les_articles_precieux'=>'Articles en vente',
 'les_documents_precieux' => 'Documents',
