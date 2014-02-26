@@ -12,7 +12,7 @@
      <ul>
      
 
-<legend><strong>Partie centrale</strong></legend>
+<legend><strong>Choix des blocs</strong></legend>
 
             <div class="explication" style="margin:10px">
             <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-annonce" title="Voir la documentation"><strong>Annonce</strong></a>
@@ -27,8 +27,6 @@
             </div>
             
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Choix des blocs</strong></label>
-                    <br />
             <div class="explication">
                     [<span class='erreur_message'>(#GET{erreurs})</span>]
              #SET{name,blocune1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -68,6 +66,7 @@
 
 
 <!-- inc-annonce_defilant -->
+<legend><strong>Le bloc des annonces défilantes</strong></legend>
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-annonce_defilant" title="Voir la documentation"><strong>Annonces défilantes</strong></a></label>
                     <br />
@@ -110,8 +109,9 @@
              </div>
              </li>
 <!-- inc-a_la_une -->
+<legend><strong>Le bloc "A la une"</strong></legend>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-            <label><strong>Les onglets du bloc central</strong></label>
+            <label><strong>Les onglets</strong></label>
                     [<span class='erreur_message'>(#GET{erreurs})</span>]
                     
             <div class="explication">
@@ -225,6 +225,8 @@
              </li>
              
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
+             <label style="width: 500px"><strong>L'article d'accueil et l'article archive</strong></label>
+             <br />
              <div class="explication">
              #SET{name,accueilforum}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Afficher le forum de l'article d'accueil
@@ -250,11 +252,18 @@
              </div>
              </li>
 <!-- inc-une_derniers -->
+  <!-- article en exergue -->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label style="width: 500px"><strong>Article en exergue ou articles pour "Derniers articles bis"</strong></label>
+                    <label style="width: 500px"><strong>Article en exergue de "Derniers articles" ou articles pour "Derniers articles bis"</strong></label>
                     <br />
              <div class="explication">
-
+            #SET{name,taillelogoartexergue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    Taille maxi du logo des articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]" /> px
+                    </span>
+                    <br /><br />                    
              #SET{name,surtitreune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Affichage du Surtitre
                   [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -338,9 +347,13 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
+             </div>       
+             </li>
+  <!-- articles de "Derniers articles bis" -->             
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">                    
+                    <label style="width: 500px"><strong>Uniquement pour les articles de "Derniers articles bis"</strong></label>
                     <br />
-                    <hr />
-              <strong>Uniquement pour les articles de "Derniers articles bis"</strong> <br /> <br />
+              <div class="explication">
               #SET{name,nombrearticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre total d'articles à afficher
                   [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -380,9 +393,9 @@
              </div>
              </li>
 
-
+  <!-- articles à la une de "Derniers articles" -->  
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Articles à la une</strong></label>
+                    <label style="width: 500px"><strong>Articles à la une de "Derniers articles"</strong></label>
                     <br />
              <div class="explication">
                     Affichage des derniers articles du site en page sommaire. <br />
@@ -415,6 +428,13 @@
                             [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard">Par hasard</label>
                     </span>
                     <br /><br />
+            #SET{name,taillelogoartune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    Taille maxi du logo des articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},40})]" /> px
+                    </span>
+                    <br /><br />                     
             #SET{name,nbrecaracttitre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre de caractères affichés pour le titre des articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
