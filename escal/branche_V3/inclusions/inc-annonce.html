@@ -1,4 +1,11 @@
-<BOUCLE_edito(ARTICLES){titre_mot=annonce}{par date}{inverse}{0,1}{lang}>
+<BOUCLE_selection(ARTICLES){si #CONFIG{escal/config/periodeaffichage}|=={oui}|non}
+{titre_mot=annonce}{par date}{inverse}{0,1}{lang}{doublons periodeaffichage}>
+</BOUCLE_selection>
+<BOUCLE_selection2(ARTICLES){si #CONFIG{escal/config/periodeaffichage}|=={oui}|oui}
+{titre_mot=annonce}{par date}{inverse}{0,1}{lang}{age>=0}{age_redac<=0}{doublons periodeaffichage}>
+</BOUCLE_selection2>
+
+<BOUCLE_annonce(ARTICLES){!doublons periodeaffichage}>
   <div class="annonce">
   <div class="annonce-titre #EDIT{titre}">#TITRE</div>
   <div class="#EDIT{texte}">   
@@ -7,4 +14,6 @@
   </div>
   <div class="nettoyeur"></div>
   </div>
-</BOUCLE_edito>
+</BOUCLE_annonce>
+
+
