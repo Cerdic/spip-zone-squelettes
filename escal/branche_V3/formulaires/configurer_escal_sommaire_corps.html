@@ -145,12 +145,26 @@
                     La <a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-rubrique_accueil" title="Voir la documentation"><strong>Rubrique</strong></a> est celle qui a le mot-clé "RubriqueOnglet".
                     Le titre de cette rubrique est affiché dans l'onglet et les articles de cette rubrique sont affichés dessous.<br />
                     Si vous utilisez cette option, vous pouvez définir le pas de pagination pour les articles de la rubrique :
-                    #SET{name,pagrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
-                    </span>                    
-                    <br /><br />
+                        
+                        #SET{name,pagrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                        [<span class='erreur_message'>(#GET{erreurs})</span>
+                        ]<span class="choix">
+                                 <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                        </span>                    
+                        <br />
+                  
+                    Afficher le descriptif de la rubrique    
+                        #SET{name,descriptifrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                        [<span class='erreur_message'>(#GET{erreurs})</span>
+                        ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>                        
+                        </span>                    
+                        <br /><br />
+                         
                     L'<a class="spip_out" href="http://projetice.crdp.ac-lyon.fr/escal/inc-article_archive" title="Voir la documentation"><strong>Article archive</strong></a> est un article pris au hasard dans la rubrique ayant le mot-clé "archive"
                     ou dans l'une de ses sous-rubriques. Le titre de l'onglet est "Souvenez-vous !" avec multilinguisme pris en charge
                     dans les langues disponibles avec Escal.                    
@@ -240,7 +254,18 @@
                               <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})]>Ne pas afficher cet onglet</option>
                             </select>
                     </span>
-                    <br /><br /><br />
+                    <br /><br /><br />                      
+            #SET{name,ancreonglet}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Remonter les onglets en haut de page au clic sur l'un deux
+                        [<span class='erreur_message'>(#GET{erreurs})</span>
+                        ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>                        
+                        </span>                    
+                        <br /><br />                    
               </div>
              </li>
              
