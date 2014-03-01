@@ -189,6 +189,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_css_couleurs_tableaux' => 'Choisissez les couleurs de fond des tableaux.',
 	'cfg_inf_css_couleurs_tableaux_forum' => 'Choisissez vos couleurs pour les tableaux des pages groupe de forums, forum et todos.',
 	'cfg_inf_css_couleurs_reponses_forum' => 'Choisissez vos couleurs pour le tableau des réponses à un sujet.',
+	'cfg_inf_css_couleurs_sommaire' => 'Choisissez vos couleurs pour le sommaire de vos articles inséré par le plugin @plugin@.',
 	'cfg_inf_css_couleurs_une' => 'Choisissez vos couleurs particulières pour l\'article en une.',
 	'cfg_inf_css_couleurs_vignette' => 'Choisissez vos couleurs pour la bordure de chaque vignette.',
 	'cfg_inf_css_description' => 'Vous pouvez modifier les attributs graphiques de la description, du portfolio et des documents joints de la page article ainsi que de l\'édito et de toutes les pages du même type comme Rubrique, Album, Auteur, Evenement, Bréve, Site.',
