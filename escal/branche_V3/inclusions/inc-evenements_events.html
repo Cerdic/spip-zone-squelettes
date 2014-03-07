@@ -1,0 +1,27 @@
+	<h1 class="cadre evenements">
+	[(#CONFIG{escal/config/titreevenements}|oui)
+    [(#CONFIG{escal/config/titreevenements}|propre|_T_ou_typo|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titreevenements}|non)
+    <:escal:evenements:>
+  ]
+  </h1>
+  
+  
+
+  <div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
+#SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+    <B_evenements_agenda>
+
+      <p class="pagination">#PAGINATION</p>
+		<BOUCLE_evenements_agenda(EVENEMENTS){age<=0}{par date}{pagination #GET{nbrpageventcalendrier}}>
+			<div class="liste-evenements">
+			[(#DATE_DEBUT|annee|=={#GET{annee-en-cours}}|?{[(#DATE_DEBUT|affdate{'d-m'})] :,[(#DATE_DEBUT|affdate{'d-m-Y'})] :})] 
+			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+			</div>
+		</BOUCLE_evenements_agenda>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+		<//B_evenements_agenda>
+  </div>
