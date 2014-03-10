@@ -51,35 +51,35 @@
 [(#REM) Breves du secteur ]
 <B_breves>
 <div class="liste breves">
-		#ANCRE_PAGINATION
-		<h2 class="h2"><:breves:breves:></h2>
-		<ul class="liste-items">
-				<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
-				<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
-				</BOUCLE_breves>
-		</ul>
-		[<p class="pagination">(#PAGINATION)</p>]
+	#ANCRE_PAGINATION
+	<h2 class="h2"><:breves:breves:></h2>
+	<ul class="liste-items">
+		<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
+		<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
+		</BOUCLE_breves>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
 </div>
 </B_breves>
 
 [(#REM) Sites de la rubrique ]
 <B_sites>
 <div class="liste sites">
-		<h2 class="h2"><:sur_web:></h2>
-		<ul class="liste-items">
-				<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-				<li class="item">
-	<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
-						<B_syndic>
-						<ul>
-								<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-								<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
-								</BOUCLE_syndic>
-						</ul>
-						</B_syndic>
-				</li>
-				</BOUCLE_sites>
-		</ul>
+	<h2 class="h2"><:sur_web:></h2>
+	<ul class="liste-items">
+		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+		<li class="item">
+			<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+			<B_syndic>
+			<ul>
+				<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+				<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+				</BOUCLE_syndic>
+			</ul>
+			</B_syndic>
+		</li>
+		</BOUCLE_sites>
+	</ul>
 </div>
 </B_sites>
 
