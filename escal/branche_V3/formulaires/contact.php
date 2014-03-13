@@ -1,8 +1,8 @@
 <?php
 
+// Un énorme merci à Arnaud Bérard pour son aide
+
 if (!defined("_ECRIRE_INC_VERSION")) return;
-
-
 
 function formulaires_contact_charger_dist(){
         $valeurs = array(
@@ -26,26 +26,26 @@ function formulaires_contact_verifier_dist(){
         
         $erreurs = array();
         
-        // verifier que les champs nom et prénom sont bien la :
+        // verifier que les champs nom et prenom sont bien la :
         foreach(array('nom','prenom') as $obligatoire)
                 if (!_request($obligatoire)) $erreurs[$obligatoire] = _T('info_obligatoire_02'); 
        
 
                                         
-        // Si le champ mail est activé dans la configuration de escal
+        // Si le champ mail est active dans la configuration de escal
         if(lire_config('escal/config/contactmail') == 'oui'){
             $email = _request('email');
-            // verifier si un email a été saisi
+            // verifier si un email a ete saisi
             if (!_request('email')) {
                     $erreurs['email'] = _T('info_obligatoire_02');       
             }
-            // Vérifier que c'est une adresse valide
+            // Verifier que c'est une adresse valide
             else if(!preg_match("#^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$#",$email)){
                     $erreurs['email'] = _T('escal:contact_alerte_mail');
             }
         }
         
-        // Si les autres champs sont activés dans la configuration de escal
+        // Si les autres champs sont actives dans la configuration de escal
       	if (!_request('champsup1') AND lire_config('escal/config/champsup1') == 'oui' AND lire_config('escal/config/champsup1oblig') == 'oui' ) 
               $erreurs['champsup1'] = _T('info_obligatoire_02');              
       	if (!_request('champsup2') AND lire_config('escal/config/champsup2') == 'oui' AND lire_config('escal/config/champsup2oblig') == 'oui' ) 
@@ -56,18 +56,18 @@ function formulaires_contact_verifier_dist(){
               $erreurs['checkbox'] = _T('info_obligatoire_02');        
         
         
-        // vérification du message        
+        // verification du message        
         $test_message = nocode(_request('message'));
-            // verifier si un message a été saisi
+            // verifier si un message a ete saisi
             if (!_request('message')) {
                     $erreurs['message'] = _T('escal:contact_alerte_message');       
             }
-            // Vérifier que c'est un message valide
+            // Verifier que c'est un message valide
             else if($test_message==FALSE){
                     $erreurs['message']=_T('escal:contact_alerte_interdit').$test_message;
             }                    
         
-        // message général si oubli ou erreur
+        // message general si oubli ou erreur
         if (count($erreurs))
                 $erreurs['message_erreur'] = _T('escal:contact_alerte_entete');
                 
@@ -94,65 +94,128 @@ function formulaires_contact_traiter_dist(){
         $nom_site = extraire_multi($GLOBALS['meta']["nom_site"]); 
         $email_webmaster = $GLOBALS['meta']['email_webmaster'];
         $email_to= lire_config('escal/config/destinataire').",".$email_webmaster;
-        $sujet = _T('escal:page_contact2')." : ".$nom_site;
+        $sujet = _T('escal:page_contact2')." ".$nom_site;
         $email_from = $champs['email'];
 
 
         
-        $message =  clean(_T('escal:envoi_mail_nom')).clean($champs['nom'])."\n";
-        $message .= clean(_T('escal:envoi_mail_prenom')).clean($champs['prenom'])."\n\n\n";
+        $message =  "<strong>"._T('escal:envoi_mail_nom')."</strong>".$champs['nom']."\n\n";
+        $message .= "<strong>"._T('escal:envoi_mail_prenom')."</strong>".$champs['prenom']."\n\n";
 
         
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= clean(_T_ou_typo(lire_config('escal/config/titrechampsup1')));
-            $message .= clean($champs['champsup1'])."\n\n";
+            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."</strong>";
+            $message .= $champs['champsup1']."\n\n";
         }
         
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= clean(_T_ou_typo(lire_config('escal/config/titrechampsup2')));
-            $message.= clean($champs['champsup2'])."\n\n";
+            $message.= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."</strong>";
+            $message.= $champs['champsup2']."\n\n";
         }
         
         if (lire_config('escal/config/radio') == 'oui') {
-            $message.= clean(_T('escal:envoi_mail_motif'));
-            $message.= clean($champs['sujet'])."\n\n";
+            $message.= "<strong>"._T('escal:envoi_mail_motif')."</strong>";
+            $message.= $champs['sujet']."\n\n";
         }
         
         if (lire_config('escal/config/checkbox') == 'oui') {
-            $message .= clean(_T_ou_typo(lire_config('escal/config/titrecheckbox')))."\n" ;
+            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."</strong>" ;
             if (is_array($champs['checkbox'])) {
               $message .= implode(" - ",$champs['checkbox'])."\n\n";
             }
         }
         
-        $message .= clean(_T('escal:envoi_mail_message'))."\n ".clean($champs['message'])."\n\n";
+        $message .= "<strong>"._T('escal:envoi_mail_message')."</strong>"."\n ".$champs['message'];
 
              
         if ($champs['antispam']=='' ){
-            $envoyer_mail = charger_fonction('envoyer_mail','inc');
-            $envoyer_mail($email_to,$sujet,utf8_encode($message),$email_from);
-            return array(
-                'message_ok'=>_T('escal:contact_retour_commentaire')."\n"."<strong>". _request('email')."</strong>"
+            if(send_email($email_to,$email_from,$email_webmaster,$sujet,$message)==true){
+                return array(
+                    'message_ok'=>_T('escal:contact_retour_commentaire')."\n"."<strong>". _request('email')."</strong>"
+                    );
+            }else{
+                return array(
+                'message_erreur'=>_T('pass_erreur_probleme_technique')
                 );
+            }
         }else{
             return array('message_erreur'=>'Pas de robots ici !!');
         }
 
         
 }
-// Vérification basique d'insertion de code pour la fonction vérifier
+// Verification basique d'insertion de code pour la fonction verifier
 function nocode($text){
     if(!preg_match("/[]%~#`$&|}{^[><]/",$text))
         return trim($text);
     else
         return FALSE;
 }
-// Nettoyage minimal pour les champs textes input
-function clean($text){
-    $text = htmlentities(trim(utf8_decode($text)));
-    return $text;
-}
 
+/*
+  Envoi de mail avec php 
+*/
+function send_email($destinataire,$email_from,$email_reply,$sujet,$message) {
+    //http://www.vulgarisation-informatique.com/mail.php
+
+  $message_texte=supprimer_tags($message); 
+  $message_html='<html> 
+    <head> 
+      <title>'.$sujet.'</title> 
+    </head> 
+    <body>
+      <div style="width:500px; margin:auto">
+        <div style="padding:10px; font-size:20px; font-weight:bold; background-color:#82ADE2">
+          '.$sujet.'
+        </div>
+        <div style="padding:10px; background-color:#DAE6F6">
+          '.nl2br($message).'
+        </div>
+      </div>
+    </body> 
+    </html>'; 
+
+     //----------------------------------------------- 
+     //GENERE LA FRONTIERE DU MAIL ENTRE TEXTE ET HTML 
+     //----------------------------------------------- 
+
+     $frontiere = '-----=' . md5(uniqid(mt_rand())); 
+
+     //----------------------------------------------- 
+     //HEADERS DU MAIL 
+     //----------------------------------------------- 
+
+     $headers = 'From: <'.$email_from.'>'."\n"; 
+     $headers .= 'Return-Path: <'.$email_reply.'>'."\n"; 
+     $headers .= 'MIME-Version: 1.0'."\n"; 
+     $headers .= 'Content-Type: multipart/alternative; boundary="'.$frontiere.'"'; 
+
+     //----------------------------------------------- 
+     //MESSAGE TEXTE 
+     //----------------------------------------------- 
+     $message = 'This is a multi-part message in MIME format.'."\n\n"; 
+
+     $message .= '--'.$frontiere."\n"; 
+     $message .= 'Content-Type: text/plain; charset="utf-8"'."\n"; 
+     $message .= 'Content-Transfer-Encoding: 8bit'."\n\n"; 
+     $message .= html_entity_decode($message_texte)."\n\n"; 
+
+     //----------------------------------------------- 
+     //MESSAGE HTML 
+     //----------------------------------------------- 
+     $message .= '--'.$frontiere."\n";
+     $message .= 'Content-Type: text/html; charset="utf-8"'."\n"; 
+     $message .= 'Content-Transfer-Encoding: 8bit'."\n\n"; 
+     $message .= $message_html."\n\n"; 
+
+     $message .= '--'.$frontiere."\n"; 
+
+     if(mail($destinataire,$sujet,$message,$headers)) { 
+          return true; 
+     } else { 
+          return false; 
+     } 
+}
 
 
 ?>

@@ -1,3 +1,4 @@
+<!-- titre de l'onglet  "Article d'accueil" -->
 <BOUCLE_titre(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
 #SET{titreart,#TITRE}
 [(#SET{titleart,[(#DESCRIPTIF|textebrut|entites_html)] })]
@@ -7,28 +8,28 @@
 [(#SET{titlealt,[(#DESCRIPTIF|textebrut|entites_html)] })]
 </BOUCLE_titrealt>
 
-
+<!-- titre de l'onglet  "Mon article" -->
 <BOUCLE_titremonart(ARTICLES){lang}{si #CONFIG{escal/config/titremonart}|non}{titre_mot=mon-article}>
 #SET{titremonart,#TITRE}
 </BOUCLE_titremonart>
-
 [(#CONFIG{escal/config/titremonart}|oui)
 #SET{titremonart,#CONFIG{escal/config/titremonart}|propre|_T_ou_typo|PtoBR}
 ]
 
-
-
-
+<!-- titre de l'onglet  "Rubrique" -->
 <BOUCLE_titrerub(RUBRIQUES){lang}{titre_mot=RubriqueOnglet}{0,1}>
 [(#SET{titrerub,<span class='entier'>#TITRE</span>})]
 [(#SET{titlerub,[(#DESCRIPTIF|textebrut|entites_html)] })]
 </BOUCLE_titrerub>
 
+<!-- titre de l'onglet  "Sur le web" -->
+#SET{titresitesaccueil,#CONFIG{escal/config/titresitesaccueil,Sur le web}|propre|_T_ou_typo|PtoBR}
 
+<!-- affichage des onglets -->
 <div class="cadre-une">
 [(#CONFIG{escal/config/ancreonglet}|=={non}|non)<a name="onglet"></a>]
   <ul class="onglets">
-<!-- onglet 1 -->
+<!-- onglet 1 --> 
     [(#CONFIG{escal/config/onglet1}|non)
     <li id="premier"><a href="#onglet" name="contenu_1" class="tab active" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
     ]
@@ -52,6 +53,9 @@
     ]
     [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
     <li id="premier"><a href="#onglet" name="contenu_1" class="tab active" title="Article à voir">#GET{titremonart}</a></li>
+    ]   
+    [(#CONFIG{escal/config/onglet1}|=={sites_accueil}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab active" title="Sur le web">#GET{titresitesaccueil}</a></li>
     ]
 <!-- onglet 2 -->
     [(#CONFIG{escal/config/onglet2}|=={derniersarticles}|oui)
@@ -78,6 +82,9 @@
     [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
     <li><a href="#onglet" name="contenu_2" class="tab" title="Article à voir">#GET{titremonart}</a></li>
     ]
+    [(#CONFIG{escal/config/onglet2}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab" title="Sur le web">#GET{titresitesaccueil}</a></li>
+    ]
 <!-- onglet 3 -->
     [(#CONFIG{escal/config/onglet3}|=={derniersarticles}|oui)
     <li><a href="#onglet" name="contenu_3" class="tab" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
@@ -99,6 +106,9 @@
     ]
     [(#CONFIG{escal/config/onglet3}|=={mon_article}|oui)
     <li><a href="#onglet" name="contenu_3" class="tab" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab" title="Sur le web">#GET{titresitesaccueil}</a></li>
     ]
 <!-- onglet 4 -->
     [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
@@ -122,6 +132,9 @@
     [(#CONFIG{escal/config/onglet4}|=={mon_article}|oui)
     <li><a href="#onglet" name="contenu_4" class="tab" title="Article à voir">#GET{titremonart}</a></li>
     ]
+    [(#CONFIG{escal/config/onglet4}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab" title="Sur le web">#GET{titresitesaccueil}</a></li>
+    ]
 <!-- onglet 5 -->
     [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
     <li><a href="#onglet" name="contenu_5" class="tab" title="<:escal:title_articles_derniers:>"><:escal:articles_derniers:></a></li>
@@ -144,9 +157,13 @@
     [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
     <li><a href="#onglet" name="contenu_5" class="tab" title="Article à voir">#GET{titremonart}</a></li>
     ]
+    [(#CONFIG{escal/config/onglet5}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab" title="Sur le web">#GET{titresitesaccueil}</a></li>
+    ]
   </ul>
 
-<!-- onglet 1 -->
+<!-- affichage du contenu des onglets -->
+<!-- onglet 1 --> 
     [(#CONFIG{escal/config/onglet1}|non)
   <div class="contenu_1 content">
     <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}>
@@ -185,6 +202,11 @@
     [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
   <div class="contenu_1 content">
     <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={sites_accueil}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
   </div>
     ]
 <!-- onglet 2 -->
@@ -226,6 +248,11 @@
     [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
   <div class="contenu_2 content">
     <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={sites_accueil}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
   </div>
     ]
 <!-- onglet 3 -->
@@ -269,6 +296,11 @@
     <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}>
   </div>
     ]
+    [(#CONFIG{escal/config/onglet3}|=={sites_accueil}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
 <!-- onglet 4 -->
     [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
   <div class="contenu_4 content">
@@ -305,6 +337,11 @@
     <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}>
   </div>
     ]
+    [(#CONFIG{escal/config/onglet4}|=={sites_accueil}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
 <!-- onglet 5 -->
     [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
   <div class="contenu_5 content">
@@ -339,6 +376,11 @@
     [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
   <div class="contenu_5 content">
     <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={sites_accueil}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
   </div>
     ]
 </div>  <!-- cadre-une -->
