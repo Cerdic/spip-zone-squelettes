@@ -69,6 +69,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			if ($f('couteau_suisse', 'est_actif')) {
 				include_spip('couteau_suisse_administrations');
 				cout_install_pack('SoyezCreateurs');
+				include_spip('outils/boites_privees');
+				tri_auteurs_verifie_table(true);
 				cout_exec_redirige(false);
 			}
 			spip_log("SoyezCreateurs maj 3.0.23 Faite", "soyezcreateurs_install");
