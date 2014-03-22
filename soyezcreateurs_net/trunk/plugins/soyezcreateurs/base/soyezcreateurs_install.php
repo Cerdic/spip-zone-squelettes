@@ -152,6 +152,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.28','non');
 		}
 		
+		if (version_compare($current_version,'3.0.29','<')) {
+			spip_log("SoyezCreateurs maj 3.0.29 Début", "soyezcreateurs_install");
+			create_groupe("_FondPage", "Images en fond de page :\n-* Créer autant de mots clefs que de fonds de page désirés\n-* Mettre un logo à ces mots clefs\n-* Possibilité de fixer un fond de page pour :\n-** Une rubrique (et la branche en dessous)\n-** Un type de page particulier (Sommaire, Plan)\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs]", "", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+			
+			spip_log("SoyezCreateurs maj 3.0.29 Faite", "soyezcreateurs_install");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.29','non');
+		}
+		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
