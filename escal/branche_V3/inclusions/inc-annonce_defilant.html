@@ -7,7 +7,9 @@
     #SET{total1, #TOTAL_BOUCLE|plus{1} }
     <div class="headline3" >
     <div class="annoncedefil">
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
     <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total1}</span>
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -19,9 +21,12 @@
     </div>
   </BOUCLE_annoncedefaut1>
   <BOUCLE_annoncedefaut2(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par num titre}{0,1}>
+    #SET{compteur1,#COMPTEUR_BOUCLE}
     <div class="headline3" >
     <div class="annoncedefil">
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total1}</span>
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+    [(#GET{total1}|?{<span class="compteur-annonce">#GET{compteur1}/#GET{total1}</span>,''})]
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -38,7 +43,9 @@
     #SET{total2, #TOTAL_BOUCLE|plus{1} }
     <div class="headline3" >
     <div class="annoncedefil">
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
     <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total2}</span>
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -50,9 +57,12 @@
     </div>
   </BOUCLE_annonce>
   <BOUCLE_annonce2(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={numtitre}|oui}{titre_mot=annonce-defilant}{lang}{par num titre}{0,1}>
+    #SET{compteur2,#COMPTEUR_BOUCLE}
     <div class="headline3" >
     <div class="annoncedefil">
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total2}</span>
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+    [(#GET{total2}|?{<span class="compteur-annonce">#GET{compteur2}/#GET{total2}</span>,''})]
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -69,7 +79,9 @@
     #SET{total3, #TOTAL_BOUCLE|plus{1} }
     <div class="headline3" >
     <div class="annoncedefil">
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
     <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total3}</span>
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -81,9 +93,12 @@
     </div>
   </BOUCLE_annonce3>  
   <BOUCLE_annonce4(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{0,1}>
+    #SET{compteur3,#COMPTEUR_BOUCLE}
     <div class="headline3" >
     <div class="annoncedefil">
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total3}</span>
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+    [(#GET{total3}|?{<span class="compteur-annonce">#GET{compteur3}/#GET{total3}</span>,''})]
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -97,10 +112,12 @@
 
 <!-- affichage selon la date inverse -->
   <BOUCLE_annonce5(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{1,n}>
-    #SET{total4, #TOTAL_BOUCLE|plus{1} }
+    #SET{total4,#TOTAL_BOUCLE|plus{1} }
     <div class="headline3" >
     <div class="annoncedefil">
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
     <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total4}</span>
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -112,9 +129,12 @@
     </div>
   </BOUCLE_annonce5>     
   <BOUCLE_annonce6(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{0,1}>
+    #SET{compteur4,#COMPTEUR_BOUCLE}
     <div class="headline3" >
     <div class="annoncedefil">
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total4}</span>
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+    [(#GET{total4}|?{<span class="compteur-annonce">#GET{compteur4}/#GET{total4}</span>,''})]
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
@@ -131,7 +151,9 @@
     #SET{total5, #TOTAL_BOUCLE }
     <div class="headline3" >
     <div class="annoncedefil">
+    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
     <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total5}</span>
+    ]
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
       <div class="annonce-titre #EDIT{titre}">#TITRE</div>
       <div class="#EDIT{texte}">
