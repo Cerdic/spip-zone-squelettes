@@ -54,7 +54,7 @@ cd ../..
 #Installation des plugins
 mkdir plugins
 cd plugins
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint/branches/v3 ./access_restreint/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint/branches/v3.3 ./access_restreint/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/article_pdf
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite/trunk ./autorite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/branches/2.0.0 ./clevermail/
