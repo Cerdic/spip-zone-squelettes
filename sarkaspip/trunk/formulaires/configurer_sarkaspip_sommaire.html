@@ -8,6 +8,17 @@
 		<input type="hidden" name="_meta_casier" value="sarkaspip/sommaire" />
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
+			<ul>
+				#SET{name,texte_accueil}#SET{defaut,''}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer pleine_largeur editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label for="#GET{name}"><:sarkaspip_config:cfg_inf_sommaire_texte_accueil:></label>[
+					<span class='erreur_message'>(#GET{erreurs})</span>
+					]<textarea name="#GET{name}" class="textarea" rows="5">
+#ENV*{#GET{name},#GET{defaut}}</textarea>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_edito:></legend>
 			<ul>
 			<INCLURE{fond=formulaires/inc/cfg_article_specialise}

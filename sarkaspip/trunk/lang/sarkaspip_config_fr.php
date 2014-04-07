@@ -320,6 +320,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles récents dans la page sommaire ? Si oui, vous pourrez ensuite ajuster quelques paramètres de cet affichage.',
 	'cfg_inf_sommaire_sans_logo' => 'Vous avez la possibilité de définir un logo pour chaque article (cf. la page d\'édition d\'un article). Mais si ce logo n\'est pas renseigné, le squelette a la possibilité d\'afficher le logo de la rubrique. Voulez-vous activer cette option dans les articles récents de la page sommaire ?',
 	'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
+	'cfg_inf_sommaire_texte_accueil' => 'Texte d\'accueil éventuel',
 	'cfg_inf_sommaire_une' => 'Pour le créer il suffit d’affecter à n\'importe quel article (hors secteurs spécialisés) le mot-clé « article_une » du groupe « squelette_habillage ». Si le mot-clé est affecté à plusieurs articles, c’est le plus récent qui sera exposé.',
 	'cfg_inf_squelette_id' => 'Certaines options de Sarka-SPIP ne sont accessibles qu\'au travers d\'un secteur spécialisé. C\'est le cas de l\'édito de bienvenue, des annonces... Tous les objets de ce secteur ne seront visibles qu\'au travers de ces options et ne seront jamais affichés comme un article, une rubrique, une brève...',
 	'cfg_inf_syndication_nbj' => 'Vous pouvez choisir le nombre de jours de syndication à afficher dans la page quelle soit complète ou filtrée sur un site donné.',
