@@ -4,24 +4,27 @@
 
 <article>
 	<header class="page-header">
-		[<div class="#EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
+		[<div class="well #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
+		<section class="row">
+			[<article class="#EDIT{texte} col-md-8">(#TEXTE|abs_url)</article>]
+			[<footer class="well col-md-4">(#NOTES|abs_url)</footer>]
+		</section>
 	</header>
 
 	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
 		<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
 	</BOUCLE_articles>
 	</B_articles>
-
-	[<article class="#EDIT{texte} texte">(#TEXTE|abs_url)</article>]
-	[<footer class="well">(#NOTES|abs_url)</footer>]
 </article>
+
+
 
 [(#REM) Alternative en attendant mieux...]	
 <B_sous_rubriques>
-<section class="rubriques">
+<nav class="col-md-4">
 	#ANCRE_PAGINATION
 	<h2 class="h2">[(#ENV{titre,<:sous_rubriques:>})]</h2>
-	<ul class="liste-items">
+	<ul class="list-group">
 		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre, titre} {pagination #ENV{nb,6}}>
 		#INCLURE{fond=inclure/rubrique-resume,id_rubrique}
 		</BOUCLE_sous_rubriques>
