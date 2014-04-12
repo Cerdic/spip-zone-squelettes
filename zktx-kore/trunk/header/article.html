@@ -1,16 +1,22 @@
 [(#PLUGINS{skiplink}|oui) #INCLURE{fond=raccourcis} ]
 <BOUCLE_header(ARTICLES){id_article}{id_rubrique}>
 	<div class="container">
-		[(#REM) cf: http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
+		[(#REM) 
+			Balise LOGO	: 
+				voir http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 
+
+			Bootstrap :
+				Pour les logos on peut passer un |inserer_attribut{class,""}  
+				avec, au choix, la class img-circle, img-square, ...
+				> voir http://getbootstrap.com/css/#images
+		]
 		[(#LOGO
-			|image_reduire{160,160}
-			|inserer_attribut{alt,#TITRE - #NOM_SITE_SPIP}
+			|image_recadre{160,160,center}
 			|inserer_attribut{alt,[(#TITRE|textebrut)]}
-			|inserer_attribut{class,"img-circle"}
 		)] 
 		[<p class="#EDIT{surtitre} small">(#SURTITRE)</p>]
-		<h1 class="h1">#TITRE</h1>
-		[<p[ class="(#EDIT{soustitre})"]>(#SOUSTITRE|PtoBR|abs_url)</p>]
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		[<p class="#EDIT{soustitre}">(#SOUSTITRE|PtoBR|abs_url)</p>]
 		[(#INCLURE{fond=inclure/socialtags,env})]
 	</div>
 </BOUCLE_header>
