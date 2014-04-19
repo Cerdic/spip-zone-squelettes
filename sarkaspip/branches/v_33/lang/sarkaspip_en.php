@@ -8,21 +8,28 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// 0
+	'0_album' => 'No photo album',
 	'0_article' => 'No article',
-	'0_auteur' => 'No auteur',
+	'0_auteur' => 'No author',
 	'0_breve' => 'No news item',
+	'0_commentaire' => 'no comment',
+	'0_photo' => 'no photo',
+	'0_signature' => 'no signature',
 	'0_site_web' => 'No site',
 
 	// 1
+	'1_album' => 'Photo Album',
 	'1_article' => 'Article',
 	'1_auteur' => 'Author',
 	'1_breve' => 'News item',
-	'1_site_web' => 'Web site',
+	'1_commentaire' => 'comment',
+	'1_site_web' => 'Website',
 
 	// A
-	'acceder_espace_membre' => 'Login as site member',
+	'acceder_espace_membre' => 'Sign in as a member',
 	'acceder_espace_prive' => 'Login to the private area',
 	'accueil_site' => 'Home page',
+	'afaire' => 'Roadmap',
 	'agenda' => 'Diary',
 	'album_une' => 'Top Album',
 	'albums_galerie' => 'Gallery',
@@ -42,6 +49,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'breves' => 'News items',
 
 	// C
+	'colonne_forum' => 'Forum',
+	'colonne_nombre_reponses' => 'Replies',
+	'commentaires' => 'comments',
+	'commentaires_article' => 'Comments',
 	'contact' => 'Contact',
 	'contacter_site' => 'Contact webmaster',
 	'copyright_site' => '©',
@@ -49,12 +60,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// D
 	'date' => 'Date',
 	'date_aujourdhui' => 'today',
+	'defiler_a_droite' => 'Next &gt;&gt;',
+	'defiler_a_gauche' => ' &lt;&lt; Previous',
 	'depuis_debut' => 'from the beginning',
 	'docu_article' => 'Documents associated with this article',
 
 	// E
 	'erreur' => 'error',
 	'espace_prive' => 'Private area',
+	'exif_appareil' => 'Camera',
+	'exif_fabricant' => 'Vendor',
+	'exif_fichier' => 'File',
+	'exif_taille_fichier' => 'Size',
 
 	// F
 	'forum' => 'Forum',
@@ -95,6 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'maj' => 'Latest update',
 	'message' => 'Message',
 	'message_bonjour' => 'Hello, dear',
+	'meteo' => 'Weather',
 	'mots_clefs' => 'Keywords',
 	'msg_0_article_publie' => 'No article published, yet',
 	'msg_0_evt_agenda' => 'No event defined in the diary, yet',
@@ -102,6 +120,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'msg_0_evt_saison' => 'No event belonging to this category for the season',
 
 	// N
+	'n_albums' => 'Photo Albums',
 	'newsletter' => 'Newsletter',
 	'nom' => 'Name',
 
