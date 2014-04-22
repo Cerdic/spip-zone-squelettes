@@ -95,9 +95,9 @@ function sc_sommaire_article($texte,$istxt=0)
 
 function sc_sommaire_ancre($texte)
 {	
-	$retoursommaire = _T('soyezcreateurs:retoursommaire');
+	$retoursommaire = "<a href='#SommaireAutomatique' title='"._T('soyezcreateurs:retoursommaire')."' class='retoursommaire'><img src='".chemin("images/spip_out.gif")."' width='".largeur(chemin("images/spip_out.gif"))."' height='".hauteur(chemin("images/spip_out.gif"))."' alt='"._T('soyezcreateurs:retoursommaire')."' /></a>";
 	
-	$texte = preg_replace("|(<h[23456][^>]*>)(.*)(<\/h[23456]>)|U","<p class='retoursommaire'><a href='#SommaireAutomatique'>".$retoursommaire."</a></p><a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\"></a>$1$2$3", $texte);
+	$texte = preg_replace("|(<h[23456])[^>]*>(.*)(<\/h[23456]>)|U","$1 id=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$retoursommaire$2$3", $texte);
 
 	$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $texte);
 	$res =count($array);
