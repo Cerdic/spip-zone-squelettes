@@ -1,9 +1,4 @@
 <?php
-/**
- * Squelette SarkaSPIP v4
- * (c) 2005-2012 Licence GPL 3
- */
-
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 // =======================================================================================================================================
@@ -251,6 +246,35 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 	}
 	
 	return $id_rubrique;
+}
+
+/**
+ * Generer les boutons d'admin des forum selon les droits du visiteur
+ *
+ * @param object $p
+ * @return object
+ */
+function balise_BOUTONS_ADMIN_FORUM_dist($p) {
+	if (($_id = interprete_argument_balise(1,$p))===NULL)
+		$_id = champ_sql('id_forum', $p);
+
+		$p->code = "
+'<'.'?php
+	if (isset(\$GLOBALS[\'visiteur_session\'][\'statut\'])
+	  AND \$GLOBALS[\'visiteur_session\'][\'statut\']==\'0minirezo\'
+		AND (\$id = '.intval($_id).')
+		AND	include_spip(\'inc/autoriser\')
+		AND autoriser(\'moderer\',\'forum\',\$id)) {
+			include_spip(\'inc/actions\');include_spip(\'inc/filtres\');
+			echo \"<div class=\'boutons spip-admin actions modererforum\'>\"
+			. bouton_action(_T(\'forum:icone_supprimer_message\'),generer_action_auteur(\'instituer_forum\',\$id.\'-off\',ancre_url(self(),\'forum\')),\'poubelle\')
+			. bouton_action(_T(\'forum:icone_bruler_message\'),generer_action_auteur(\'instituer_forum\',\$id.\'-spam\',ancre_url(self(),\'forum\')),\'spam\')
+			. \"</div>\";
+		}
+?'.'>'";
+
+	$p->interdire_scripts = false;
+	return $p;
 }
 
 ?>
