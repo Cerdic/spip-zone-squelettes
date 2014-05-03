@@ -323,7 +323,7 @@ Ret eo deoc’h, mar plij, en em gevreañ da gentañ, en ur ober gant an furmskr
 	'resume_discussions_forum' => 'Sujedoù ar forom',
 	'resume_epingles_forum' => 'Sujedoù war kentañ pajenn ar forom',
 	'resume_exif_photo' => 'Roadoù EXIF ar foto',
-	'resume_mini_agenda_body' => 'Mini deiziataer mizieg',
+	'resume_mini_agenda_body' => 'Mini deiziataer miziek',
 	'resume_mini_agenda_footer' => 'Listenn an darvoudoù da zont',
 
 	// S
