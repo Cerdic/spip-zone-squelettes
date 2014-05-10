@@ -1,6 +1,6 @@
 <?php
 /**
- * Squelette SarkaSPIP v3.3
+ * Squelette SarkaSPIP v3
  * (c) 2005-2014 Licence GPL 3
  */
 

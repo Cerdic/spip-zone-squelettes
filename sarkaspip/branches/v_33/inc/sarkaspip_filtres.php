@@ -1,6 +1,6 @@
 <?php
 /**
- * Squelette SarkaSPIP v3.3
+ * Squelette SarkaSPIP v3
  * (c) 2005-2012 Licence GPL 3
  */
 
@@ -15,9 +15,10 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 // Utilisation :                  
 // 	- pour le redacteur : [rouge]xxxxxx[/rouge]
 // 	- pour le webmaster : [(#TEXTE|typo_couleur)]
+// Néanmoins, par défaut ce filtre est appelé dans le pipeline post_propre
 // =======================================================================================================================================
 //
-function typo_couleur($texte) {
+function filtre_typo_couleur_dist($texte) {
 
 	// Variables personnalisables par l'utilisateur
 	// --> Activation (oui) ou desactivation (non) de la fonction

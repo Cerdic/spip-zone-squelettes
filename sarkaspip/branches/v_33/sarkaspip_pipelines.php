@@ -1,10 +1,24 @@
 <?php
 /**
- * Squelette SarkaSPIP v4
+ * Squelette SarkaSPIP v3
  * (c) 2005-2012 Licence GPL 3
  */
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
+
+/**
+ * Post-propre : appliquer le filtre des couleurs typo_couleur automatiquement
+ *
+ * @param string $texte
+ * @return mixed
+ */
+function sarkaspip_post_propre($texte){
+	$coloriser = charger_filtre('typo_couleur');
+
+	$texte = $coloriser($texte);
+	return $texte;
+}
+
 
 /**
  * Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers a sauvegarder dans le plugin Mes Fichiers 2
