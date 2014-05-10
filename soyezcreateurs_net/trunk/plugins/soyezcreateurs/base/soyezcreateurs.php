@@ -820,6 +820,13 @@ function soyezcreateurs_config_motsclefs() {
 		$article['texte'] = str_replace('<img1', "<img$id_doc", $article['texte']);
 		$article['texte'] = str_replace('<doc1', "<doc$id_doc", $article['texte']);
 		$article['texte'] = str_replace('<emb1', "<emb$id_doc", $article['texte']);
+		$id_doc2 = create_document('documents/arton1.jpg', 
+			null, 
+			'image',
+			array('titre' => 'Exemple d\'image', 'descriptif' => 'Avec un descriptif de l\'image en dessous.'));
+		$article['texte'] = str_replace("<img$id_doc|center", "<img$id_doc2|center", $article['texte']);
+		$article['texte'] = str_replace("<doc$id_doc|center", "<doc$id_doc2|center", $article['texte']);
+		$article['texte'] = str_replace("<emb$id_doc|center", "<emb$id_doc2|center", $article['texte']);			
 		$id_article = create_article($article, "000. Fourre-tout");
 			$id_doc = create_document('documents/spip_decroche_la_lune.jpg', 
 				array('type' => 'article', 'id_objet' => $id_article), 
