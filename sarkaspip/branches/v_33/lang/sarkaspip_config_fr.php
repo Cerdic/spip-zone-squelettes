@@ -131,6 +131,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_article_commente' => 'Voulez-vous afficher l’extrait de l’article à commenter ?',
 	'cfg_inf_article_notation' => 'L’activation du plugin  « Notation d’éléments SPIP » vous donne la possibilité d’insérer le formulaire de notation dans le cartouche ou à la fin du texte de l’article.',
 	'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularité de l’article dans le cartouche avec la date et l’auteur de l’article ?',
+	'cfg_inf_article_traduction' => 'Voulez-vous afficher, si elles existent, les traductions de l’article dans le cartouche ?',
 	'cfg_inf_article_sans_logo' => 'Vous avez la possibilité de définir un logo pour chaque article (cf. la page d’édition d’un article). Mais si ce logo n’est pas renseigné, le squelette a la possibilité d’afficher le logo de la rubrique. Voulez-vous activer cette option dans la page article ?',
 	'cfg_inf_article_socialtags' => 'L’activation du plugin  « Social Tags » (réseaux sociaux de partage de liens) vous donne la possibilité d’insérer un bloc de boutons dans le cartouche ou à la fin du texte de l’article.',
 	'cfg_inf_aucun_groupe_nuage' => 'La liste des groupes de mots-clés potentiellement affichables dans le nuage est un sous-ensemble des groupes utilisés dans le formulaire de la page mot. Veuillez donc configurer au préalable cette liste de groupes dans la page de configuration « Recherche ».',
