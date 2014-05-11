@@ -1,0 +1,62 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+	<h3 class="titrem"><:sarkaspip_config:cfg_boite_typo:></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<fieldset>
+			<legend><:sarkaspip_config:cfg_lgd_coloration:></legend>
+			<ul>
+				#SET{name,coloration_active}#SET{defaut,non}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+					<label><:sarkaspip_config:cfg_inf_coloration:></label>[
+					<span class="erreur_message">(#GET{erreurs})</span>
+					]
+					#SET{val,oui}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_oui:></label>
+					</div>
+					#SET{val,non}
+					<div class="choix">
+						<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_non:></label>
+					</div>
+				</li>
+				<li class="fieldset suite" id="couleurs"><fieldset>
+				<B_couleurs>
+					<ul>
+				<BOUCLE_couleurs(DATA){source table, #EVAL{$GLOBALS['couleurs_texte']}}>
+						<INCLURE{fond=formulaires/inclure/cfg_couleur_texte,
+							couleur=#CLE,
+							defaut=#VALEUR,
+							env} />
+				</BOUCLE_couleurs>
+					</ul>
+				</B_couleurs>
+				</li>
+
+			</ul>
+		</fieldset>
+
+		<INCLURE{fond=formulaires/inclure/cfg_boutons}>
+	</div></form>
+</div>
+
+<script type="text/javascript">/*<![CDATA[*/
+	jQuery(document).ready(function() {
+		[(#ENV{coloration_active, non}|=={non}|oui)
+			jQuery("#couleurs").hide();
+		]
+		jQuery("input[name='coloration_active']").change(function() {
+			if (jQuery("input[name='coloration_active']:checked").val() == 'oui')
+				jQuery("#couleurs").show('fast');
+			else {
+				jQuery("#couleurs").hide('fast');
+			}
+			jQuery(this).blur();
+		});
+	});
+/*]]>*/</script>

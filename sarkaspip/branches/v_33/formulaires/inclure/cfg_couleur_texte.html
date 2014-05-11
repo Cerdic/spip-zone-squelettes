@@ -1,0 +1,10 @@
+#SET{name,couleurs\[#ENV{couleur}\]}#SET{defaut,#ENV{defaut}}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+<li class="editer long_label editer_lien_texte editer_couleur_[(#ENV{couleur})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_couleur{couleur=#ENV{couleur}}:></label>[
+	<span class="erreur_message">(#GET{erreurs})</span>]
+	[(#SET{value,#ENV*{couleurs/#ENV{couleur},#GET{defaut}}})]
+	[(#SET{bg_color,[(#GET{value}|ajuster_couleur_input{background})]})]
+	[(#SET{color,[(#GET{value}|ajuster_couleur_input{color})]})]
+	<input type="text" name="#GET{name}" value="#GET{value}" id="couleur_#ENV{couleur}"[ (#HTML5|et{#GET{obli}})required="required"] class="text[ (#GET{value}|!={transparent}|?{palette})]"
+	style="background-color:#GET{bg_color};color:#GET{color};text-transform:lowercase;" />
+</li>

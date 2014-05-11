@@ -20,61 +20,30 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 //
 function filtre_typo_couleur_dist($texte) {
 
+	global $couleurs_texte;
+	include_spip('inc/config');
+
 	// Variables personnalisables par l'utilisateur
 	// --> Activation (oui) ou desactivation (non) de la fonction
-	$typo_couleur_active = 'oui';
+	$typo_couleur_active = (lire_config('sarkaspip_typo/coloration_active', 'non') == 'oui');
 	// --> Nuances personnalisables par l'utilisateur
-	$couleur = array(
-		'noir' => "#000000",
-		'blanc' => "#FFFFFF",
-	    'rouge' => "#FF0000",
-		'vert' => "#00FF00",
-		'bleu' => "#0000FF",
-		'jaune' => "#FFFF00",
-		'gris' => "#808080",
-		'marron' => "#800000",
-		'violet' => "#800080",
-		'rose' => "#FFC0CB",
-		'orange' => "#FFA500"
-	);
+	$couleurs_utilisees = lire_config('sarkaspip_typo/couleurs');
 
-	$recherche = array(
-		'noir' => "/(\[noir\])(.*?)(\[\/noir\])/",
-		'blanc' => "/(\[blanc\])(.*?)(\[\/blanc\])/",
-	    'rouge' => "/(\[rouge\])(.*?)(\[\/rouge\])/",
-		'vert' => "/(\[vert\])(.*?)(\[\/vert\])/",
-		'bleu' => "/(\[bleu\])(.*?)(\[\/bleu\])/",
-		'jaune' => "/(\[jaune\])(.*?)(\[\/jaune\])/",
-		'gris' => "/(\[gris\])(.*?)(\[\/gris\])/",
-		'marron' => "/(\[marron\])(.*?)(\[\/marron\])/",
-		'violet' => "/(\[violet\])(.*?)(\[\/violet\])/",
-		'rose' => "/(\[rose\])(.*?)(\[\/rose\])/",
-		'orange' => "/(\[orange\])(.*?)(\[\/orange\])/"
-	);
-
-	$remplace = array(
-		'noir' => "<span style=\"color:".$couleur['noir'].";\">\\2</span>",
-		'blanc' => "<span style=\"color:".$couleur['blanc'].";\">\\2</span>",
-	    'rouge' => "<span style=\"color:".$couleur['rouge'].";\">\\2</span>",
-		'vert' => "<span style=\"color:".$couleur['vert'].";\">\\2</span>",
-		'bleu' => "<span style=\"color:".$couleur['bleu'].";\">\\2</span>",
-		'jaune' => "<span style=\"color:".$couleur['jaune'].";\">\\2</span>",
-		'gris' => "<span style=\"color:".$couleur['gris'].";\">\\2</span>",
-		'marron' => "<span style=\"color:".$couleur['marron'].";\">\\2</span>",
-		'violet' => "<span style=\"color:".$couleur['violet'].";\">\\2</span>",
-		'rose' => "<span style=\"color:".$couleur['rose'].";\">\\2</span>",
-		'orange' => "<span style=\"color:".$couleur['orange'].";\">\\2</span>"
-	);
-
-	$supprime = "\\2";
-
-
-	if ($typo_couleur_active == 'non') {
-		$texte = preg_replace($recherche, $supprime, $texte);
+	$recherche = array();
+	$remplace = array();
+	foreach ($couleurs_texte as $_id_couleur => $_defaut_couleur) {
+		$recherche[$_id_couleur] = "/(\[${_id_couleur}\])(.*?)(\[\/${_id_couleur}\])/";
+		if ($typo_couleur_active)
+			$remplace[$_id_couleur] =
+				"<span style=\"color:" .
+				sinon($couleurs_utilisees[$_id_couleur], $_defaut_couleur) .
+				";\">\\2</span>";
 	}
-	else {
-		$texte = preg_replace($recherche, $remplace, $texte);
-	}
+	if (!$remplace)
+		$remplace = "\\2";
+
+	$texte = preg_replace($recherche, $remplace, $texte);
+
 	return $texte;
 }
 

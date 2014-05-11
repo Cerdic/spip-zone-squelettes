@@ -24,20 +24,4 @@ function lister_fonds($bidon, $image, $suffixe){
 }
 // FIN du Filtre : lister_fonds
 
-
-
-function ajuster_couleur_input($couleur, $type) {
-	include_spip('filtres/couleurs');
-	$transparent = ($type == 'background') ? '#ffffff' : '#000000';
-	if (strtolower($couleur) == 'transparent')
-		$couleur_calculee = $transparent;
-	else
-		if ($type == 'color')
-			$couleur_calculee = '#' . couleur_extreme(couleur_inverser($couleur));
-		else
-			$couleur_calculee = $couleur;
-
-	return $couleur_calculee;
-}
-
 ?>

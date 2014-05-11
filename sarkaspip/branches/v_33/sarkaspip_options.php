@@ -22,9 +22,24 @@ if (!defined('_SARKASPIP_DEBUG_CFG_FONDS')) define('_SARKASPIP_DEBUG_CFG_FONDS',
 if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 'accueil
 |contenu!sommaire:rubrique:article:auteur:breve:site:forum:plan:herbier:recherche:agenda:galerie:album:formulaires:modeles
-|apparence!layout:bandeau:menus:pied:noisettes:styles:coins
+|apparence!layout:bandeau:menus:pied:noisettes:styles:typo:coins
 |referencement!header:backend
 |outils!plugins:maintenance');
+
+// Liste des couleurs pouvant être utilisées pour coloriser les textes
+$GLOBALS['couleurs_texte'] = array(
+	'noir' => '#000000',
+	'blanc' => '#FFFFFF',
+    'rouge' => '#FF0000',
+	'vert' => '#00FF00',
+	'bleu' => '#0000FF',
+	'jaune' => '#FFFF00',
+	'gris' => '#808080',
+	'marron' => '#800000',
+	'violet' => '#800080',
+	'rose' => '#FFC0CB',
+	'orange' => '#FFA500'
+);
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
