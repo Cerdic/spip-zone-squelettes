@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/sarkaspip/branches/v_33/lang
+// Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/sarkaspip/branches/v_33/lang/
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -131,9 +131,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_article_commente' => 'Voulez-vous afficher l’extrait de l’article à commenter ?',
 	'cfg_inf_article_notation' => 'L’activation du plugin  « Notation d’éléments SPIP » vous donne la possibilité d’insérer le formulaire de notation dans le cartouche ou à la fin du texte de l’article.',
 	'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularité de l’article dans le cartouche avec la date et l’auteur de l’article ?',
-	'cfg_inf_article_traduction' => 'Voulez-vous afficher, si elles existent, les traductions de l’article dans le cartouche ?',
 	'cfg_inf_article_sans_logo' => 'Vous avez la possibilité de définir un logo pour chaque article (cf. la page d’édition d’un article). Mais si ce logo n’est pas renseigné, le squelette a la possibilité d’afficher le logo de la rubrique. Voulez-vous activer cette option dans la page article ?',
 	'cfg_inf_article_socialtags' => 'L’activation du plugin  « Social Tags » (réseaux sociaux de partage de liens) vous donne la possibilité d’insérer un bloc de boutons dans le cartouche ou à la fin du texte de l’article.',
+	'cfg_inf_article_traduction' => 'Voulez-vous afficher, si elles existent, les traductions de l’article dans le cartouche ?',
 	'cfg_inf_aucun_groupe_nuage' => 'La liste des groupes de mots-clés potentiellement affichables dans le nuage est un sous-ensemble des groupes utilisés dans le formulaire de la page mot. Veuillez donc configurer au préalable cette liste de groupes dans la page de configuration « Recherche ».',
 	'cfg_inf_auteur_albums' => 'Voulez-vous afficher la liste des albums publiés par l’auteur ? Si oui, vous pourrez ensuite ajuster quelques paramètres de cet affichage.',
 	'cfg_inf_auteur_albums_1_colonne' => 'Vous pouvez choisir de présenter la liste des albums sur une ou deux colonnes.',
