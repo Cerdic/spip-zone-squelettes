@@ -129,7 +129,7 @@ Les retours à la ligne simples aussi !
 
 Soit à l'intérieur d'un paragraphe :<code><quote></code>Texte d'une citation<code></quote></code>
 
-Prover connu : <quote>C'est en forgeant que l'on devient forgeron.</quote>.
+Proverbe connu : <quote>C'est en forgeant que l'on devient forgeron.</quote>
 
 Soit formant un bloc :
 
