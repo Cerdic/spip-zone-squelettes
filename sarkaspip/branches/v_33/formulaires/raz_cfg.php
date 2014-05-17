@@ -6,10 +6,8 @@ function formulaires_raz_cfg_charger_dist() {
 	$pages_cfg = lister_pages_configuration();
 
 	foreach ($pages_cfg as $_config) {
-		if ($_config != 'maintenance') {
-			$item = "sarkaspip_{$_config}";
-			$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
-		}
+		$item = "sarkaspip_{$_config}";
+		$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
 	}
 
 	$valeurs = array('_configurations' => $options);
@@ -26,8 +24,7 @@ function formulaires_raz_cfg_traiter_dist() {
 
 	include_spip('inc/config');
 	foreach($configs as $_config) {
-		if ($_config != 'maintenance')
-			effacer_config("sarkaspip_$_config");
+		effacer_config("sarkaspip_$_config");
 	}
 
 	if ($mode !== '--')

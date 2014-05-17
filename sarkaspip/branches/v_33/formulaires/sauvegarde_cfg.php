@@ -6,10 +6,8 @@ function formulaires_sauvegarde_cfg_charger_dist() {
 	$pages_cfg = lister_pages_configuration();
 
 	foreach ($pages_cfg as $_config) {
-		if ($_config != 'maintenance') {
-			$item = "sarkaspip_{$_config}";
-			$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
-		}
+		$item = "sarkaspip_{$_config}";
+		$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
 	}
 
 	$valeurs = array('_configurations' => $options);

@@ -99,5 +99,4 @@ if (!defined('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS')) define('_SARKASPIP_CONFIG_SOC
 define('_ZENGARDEN_FILTRE_THEMES', 'sarkaspip');
 
 
-
 ?>

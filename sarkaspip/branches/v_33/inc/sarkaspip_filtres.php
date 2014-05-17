@@ -309,6 +309,7 @@ function statut_forum($id_article) {
 function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
 	include_spip('inc/config');
 
+	$ok = true;
 	$dir = $ou;
 	foreach ($fonds as $_fond) {
 		if ($mode == 'maintenance') {

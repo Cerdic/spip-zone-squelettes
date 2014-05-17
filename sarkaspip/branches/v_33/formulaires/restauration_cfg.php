@@ -11,10 +11,8 @@ function formulaires_restauration_cfg_charger_dist(){
 	}
 
 	foreach ($pages_cfg as $_config) {
-		if ($_config != 'maintenance') {
-			$item = "sarkaspip_{$_config}";
-			$configs[$_config] = _T("sarkaspip_config:$item");
-		}
+		$item = "sarkaspip_{$_config}";
+		$configs[$_config] = _T("sarkaspip_config:$item");
 	}
 
 	$dir_cfg = sous_repertoire(_DIR_TMP,"sarkaspip");
