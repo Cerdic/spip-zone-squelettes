@@ -1,15 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>#NOM_SITE_SPIP</title>
+		<title>#INFO_TITRE{rubrique,#ID_RUBRIQUE} | #NOM_SITE_SPIP</title>
 		<meta name="viewport" content="width=1120,user-scalable=no" />
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-
-
-
-	      <INCLURE{fond=inclure/head}>
+		<INCLURE{fond=inclure/head}>
 	</head>
 	<body>
 
@@ -27,8 +24,8 @@
 					<!-- Thumb Items -->
 					<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_rubrique=#ENV{id_rubrique}}>#SET{rapport,#HAUTEUR|div{231}}
 						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
-							[<h2>(#TITRE|?{#TITRE,"Pas de titre"})</h2>]
-							<a href="#URL_DOCUMENT">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
+							[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,"Pas de titre"})</h2>]
+							<a href="[(#FICHIER|image_reduire{1024}|extraire_attribut{src})]">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
 						</article>
 					</BOUCLE_images>		
 
