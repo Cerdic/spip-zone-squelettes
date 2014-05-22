@@ -16,6 +16,7 @@ include_spip('inc/meta');
  * @param unknown_type $version_cible
  */
 function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
+	if (defined('_BYPASS_SC_INSTALL')) return;
 	include_spip('base/soyezcreateurs');
 	$current_version = 0.0;
 	if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
