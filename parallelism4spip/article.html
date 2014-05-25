@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<BOUCLE_article(ARTICLES){id_article}><!DOCTYPE HTML>
 <html>
 	<head>
 		<title>#INFO_TITRE{article,#ID_ARTICLE}&nbsp;|&nbsp;#NOM_SITE_SPIP</title>
@@ -20,14 +20,15 @@
 					<!-- Header Item -->
 					
 						<div id="header" class="item" data-width="400">
-							<h1>#INFO_TITRE{article,#ID_ARTICLE}</h1>
-							<p>#INFO_TEXTE{article,#ID_ARTICLE}</p>
+							<h1 class="#EDIT{titre}">#TITRE</h1>
+							[(#TEXTE|inserer_attribut{class,#EDIT{texte}})]
+							<a href="#URL_RUBRIQUE">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>
 						</div>
 					
 					<!-- Thumb Items -->
 					<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_article}{tout}>#SET{rapport,#HAUTEUR|div{231}}
 						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
-							[<h2>(#TITRE|?{#TITRE,"Pas de titre"})</h2>]
+							[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,"Pas de titre"})</h2>]
 							<a href="[(#FICHIER|image_reduire{1024}|extraire_attribut{src})]">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
 						</article>
 					</BOUCLE_images>		
@@ -41,9 +42,9 @@
 				</div>
 			</div>
 		
-		#INCLURE{fond=inc-pied}
+		#INCLURE{fond=inc-pied,env}
 
 		</div>
 
 	</body>
-</html>
+</html></BOUCLE_article>

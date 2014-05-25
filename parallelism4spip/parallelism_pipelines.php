@@ -5,13 +5,13 @@ function parallelism_insert_head($flux){
     $configjs = generer_url_public('config.js'); //calculer prefix en attendant mieux
     $skeljs = find_in_path('js/skel.js');
     $html5shiv = find_in_path('js/html5shiv.js'); 
-    // $css = find_in_path('css/style.css');
-    // Cette surcharge ne fonctionne pas
-    // $prefixcss = str_replace(".css", "", $css); 
+    $cssspipstyle = find_in_path('css/spip-style.css'); // mis ici pour passer après style.css !
+
     $flux .= '<!--[if lte IE 8]><script src="'.$html5shiv.'"></script>-->
     <script src="'.$poptroxjs.'"></script>
     <script src="'.$configjs.'"></script>
-    <script src="'.$skeljs.'"></script>'; // surcharge avec config { prefix: /$prefixcss } marche po
+    <script src="'.$skeljs.'"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="'.$cssspipstyle.'" />';// mis ici pour passer après style.css !
     return $flux;
     }
     
@@ -19,9 +19,7 @@ function parallelism_insert_head_css($flux) {
     $cssnoscript = find_in_path('css/skel-noscript.css');
     $cssstyle = find_in_path('css/style.css');
     $cssstyledesktop = find_in_path('css/style-desktop.css');
-    $cssstylenoscript = find_in_path('css/style-noscript.css');
-    $cssspipstyle = find_in_path('css/spip-style.css');
-    
+    $cssstylenoscript = find_in_path('css/style-noscript.css');    
 
     // générer une css au départ d'un squelette SPIP
     // $css_icones = generer_url_public('barre_outils_icones.css');
@@ -33,7 +31,6 @@ function parallelism_insert_head_css($flux) {
       <link rel='stylesheet' type='text/css' media='all' href='$cssstyledesktop' />
       <link rel='stylesheet' type='text/css' media='all' href='$cssstylenoscript' />
     </noscript>
-    <link rel='stylesheet' type='text/css' media='all' href='$cssspipstyle' />
     <!--[if lte IE 8]><link rel='stylesheet' href='css/ie8.css' /><![endif]-->";
     //. "<link rel='stylesheet' type='text/css' media='all' href='$css_icones' />";
     return $flux;

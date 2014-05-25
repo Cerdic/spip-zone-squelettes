@@ -2,11 +2,20 @@
 				<div class="left">
 					<p>#DESCRIPTIF_SITE_SPIP</p>
 					[(#REM) 5 derniers articles qui ont des images]
-					<ul><li class="articles"><a href="#URL_SITE_SPIP"><:accueil:></a></li>&nbsp;|&nbsp;
-					<BOUCLE_docs(DOCUMENTS)>
-					  <BOUCLE_art(ARTICLES){id_document}{" | "}{0,5}{par date}{inverse}{unique}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_art>
-					</BOUCLE_docs>
-					&nbsp;|&nbsp;<li class="articles"><a href="#URL_ARTICLE{5}">#INFO_TITRE{article,5}</a></li>
+					<ul><li class="articles"><a href="#URL_SITE_SPIP"><:accueil:></a></li>
+					<BOUCLE_sommaire(RUBRIQUES){si #SELF|=={./}}{id_parent=0}>
+					<li class="articles"><a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_sommaire>
+					</B_sommaire>
+					<BOUCLE_rub(RUBRIQUES){id_rubrique ?}>
+					<BOUCLE_art(ARTICLES){id_rubrique ?}{!par date}{0,5}>
+					  <BOUCLE_doc(DOCUMENTS){id_article}{extension==jpg|png|gif}{0,1}>
+					  <li class="articles"><a href="#URL_ARTICLE">#_art:TITRE</a></li>
+					  </BOUCLE_doc>
+					</BOUCLE_art>
+					</BOUCLE_rub>
+					<//B_sommaire>
+					<BOUCLE_pages(ARTICLES){page!=""}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_pages>
 					</ul>
 				</div>
 				<div class="right">
