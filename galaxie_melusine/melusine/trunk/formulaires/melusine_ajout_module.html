@@ -1,0 +1,25 @@
+#FILTRE{ŧrim}
+#SET{skel, #CONFIG{#ENV{reserve}/skel}|sinon{#ARRAY}}
+<BOUCLE_modules_pris(POUR){tableau #ENV{casiers_page}|explode{","}|sinon{#ARRAY}}>
+[(#SET{modules_pris,[(#GET{modules_pris}|sinon{#ARRAY}|array_merge{[(#CONFIG{#VALEUR}|sinon{#ARRAY})]})]}
+)]
+</BOUCLE_modules_pris>
+[(#SET{colonne,[(#GET{sommaireg}|array_merge{#GET{sommaired},#GET{droite},#GET{gauche}})]})]
+[(#SET{modules_en_reserve,[(#GET{skel}|array_diff{#GET{modules_pris}})]})]
+<div class="formulaire_spip formulaire_deplacer_module">
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	<form action="#ENV{action}" method="post"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul class="boutons editer_position obligatoire">
+<BOUCLE_dispos(POUR){tableau #GET{modules_en_reserve}}>
+			<li>
+
+				<input type='submit' title="Ajouter ce module"  name='nom_module' value="#VALEUR" />
+				[(#VALEUR|replace{"_"," "}|spip_ucfirst)]
+
+			</li>
+</BOUCLE_dispos>
+		</ul>
+	</div></form>
+</div>
