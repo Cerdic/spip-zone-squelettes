@@ -2,13 +2,20 @@
 #SET{sommairegauche, (#CONFIG{melusine_sommaire/x}|serialize)}
 #SET{sommairedroite, (#CONFIG{melusine_sommaire/y}|serialize)}
 
+[(#SET{admin_melusine,[(#SESSION{statut}
+				|=={0minirezo}
+				|oui)
+			oui]}
+)]
+
 <div class="sommairemulticol">
 	<div class="sommaire_gauche">
 		<BOUCLE_test(POUR){tableau #GET{sommairegauche}}>
 			 <BOUCLE_cond(CONDITION){si #VALEUR|=={aucun}}>
    
       			</BOUCLE_cond>
-				<div class="module">
+				<div class="module[(#GET{admin_melusine}|oui) admin_melusine]">
+					[(#GET{admin_melusine}|oui)#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#VALEUR,#CLE,"melusine_sommaire/x/",#ENV}]
    					<INCLURE{fond=modules/#VALEUR}>
 				</div>
       			<//B_cond>
