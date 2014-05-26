@@ -69,7 +69,7 @@ function formulaires_melusine_deplacer_module_verifier_dist($nom_module="aucun",
 
 	if ($action != "descendre"
 	AND $action != "monter"
-	AND $action("action") != "supprimer")
+	AND $action != "supprimer")
 		$erreurs["message_erreur"] = "l'action n'a pas été correctement définie";
 
 	return $erreurs;

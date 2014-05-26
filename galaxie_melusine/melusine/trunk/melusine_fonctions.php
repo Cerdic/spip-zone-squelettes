@@ -211,27 +211,30 @@ function melusine_colonne_pasvide($colonne){
  * @param text $objet est le type d'objet concerné
  * @param text $zone est le casier concerné
  * (et donc le suffixe de la table meta où seront stockées les données)
+ * @param text $casier le chemin complet du casier dans le meta s'il est fourni
+ * 	(supplante $objet et $zone)
  * 
- * @return
  *
 **/
 
 function melusine_rassembler($i,$objet="squelettes",$zone="effectifs",$casier=""){
 	$var=$i;
 	if ($casier) {
-		$chemin = $casier.$var;
+		$base_chemin = $casier;
 	} else {
-		// TODO à retirer dans le futur quand $zone ne sera plus utilisé
-		$chemin='melusine_'.$objet.'/'.$zone.'/'.$var;
+		// TODO à retirer quand les zones ne seront plus
+		// du tout utilisées (penser aussi à modifier l'arité)
+		$base_chemin = 'melusine_'.$objet.'/'.$zone.'/';
 	}
+	$chemin=$base_chemin.$var;
 	$j=$i+1;
 	$varplus=$j;
-	$chemin_bas='melusine_'.$objet.'/'.$zone.'/'.$varplus;
+	$chemin_bas=$base_chemin.$varplus;
 	$pos_bas=lire_config($chemin_bas);
 	ecrire_config($chemin,$pos_bas);
 	ecrire_config($chemin_bas,'aucun');
 	$i++;
-	if($i<12){melusine_rassembler($i,$objet,$zone);};
+	if($i<12){melusine_rassembler($i,$objet,$zone,$casier);};
 }
 /**
  * Retourne la liste des fichiers qui doivent être déplacés
