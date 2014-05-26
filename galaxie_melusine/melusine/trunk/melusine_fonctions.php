@@ -216,9 +216,14 @@ function melusine_colonne_pasvide($colonne){
  *
 **/
 
-function melusine_rassembler($i,$objet="squelettes",$zone="effectifs"){
+function melusine_rassembler($i,$objet="squelettes",$zone="effectifs",$casier=""){
 	$var=$i;
-	$chemin='melusine_'.$objet.'/'.$zone.'/'.$var;
+	if ($casier) {
+		$chemin = $casier.$var;
+	} else {
+		// TODO à retirer dans le futur quand $zone ne sera plus utilisé
+		$chemin='melusine_'.$objet.'/'.$zone.'/'.$var;
+	}
 	$j=$i+1;
 	$varplus=$j;
 	$chemin_bas='melusine_'.$objet.'/'.$zone.'/'.$varplus;

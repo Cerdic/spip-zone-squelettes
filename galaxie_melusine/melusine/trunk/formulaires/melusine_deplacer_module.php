@@ -135,7 +135,10 @@ function formulaires_melusine_deplacer_module_traiter_dist($nom_module="aucun", 
 	if($action=="supprimer"){
 		$chemin=$casier.$var;
 		ecrire_config($chemin,'aucun');
-		melusine_rassembler($var,"sommaire",$zone);
+		// On utilise que el derbier param qui définit le casier
+		// TODO changer l'arité de cette fonction quand
+		// les zones ne seront plus utilisées
+		melusine_rassembler($var,"","",$casier);
 	}
 
 		
