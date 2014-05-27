@@ -25,7 +25,7 @@
 </ul>
 
 <p class="interne">Annuaire:
-<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
+<BOUCLE_initial_nom(AUTEURS){statut!=nouveau}{par nom}>
 [ <a  class="ajax" rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|textebrut|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|textebrut|translitteration|couper{1}|lettre1|unique{titrelien})</a>]
 </BOUCLE_initial_nom>
 </p>
@@ -34,7 +34,7 @@
 <B_auteurs>
 #ANCRE_PAGINATION
 <div class="auteurs">
-<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination #GET{paginauteurs}}{", "}>
+<BOUCLE_auteurs(AUTEURS){statut!=nouveau}{par nom}{nom==^#ENV{lettre}}{pagination #GET{paginauteurs}}{", "}>
 [<span class="admin"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/admin">]
 [<span class="redacteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
 [<span class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
