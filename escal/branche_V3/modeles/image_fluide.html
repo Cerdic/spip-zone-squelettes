@@ -1,12 +1,19 @@
-<BOUCLE_image_fluide (DOCUMENTS){id_document=#ID}{extension==jpg|png|gif}> 
-    <dl class="image_fluide" style='max-width: #LARGEURpx;'>
+<BOUCLE_image_fluide (DOCUMENTS){id_document=#ID}{extension==jpg|png|gif}>
+
+#SET{taille1,#CONFIG{escal/config/largeurimage,400}}
+#SET{taille2,#LARGEUR}
+#SET{taillemax,#GET{taille1}|>{#GET{taille2}}|?{#GET{taille2},#GET{taille1} } }
+ 
+    <dl class="image_fluide" style='max-width:[(#GET{taillemax})]px'>
         <dt>
             <a href="#URL_DOCUMENT" class="mediabox">
-                <img style='max-width: #LARGEURpx;' src='#URL_DOCUMENT' 
+                <img
+                style='max-width:[(#GET{taillemax})]px'                 
+                src='#URL_DOCUMENT' 
                 alt="[(#TITRE|texte_backend)]"
                 [ title="(#TITRE|texte_backend)"]
                  />
             </a>
         </dt>
     </dl>
-</BOUCLE_image_fluide>   
+</BOUCLE_image_fluide> 
