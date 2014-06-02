@@ -24,8 +24,7 @@ function parallelism_insert_head_css($flux) {
     // générer une css au départ d'un squelette SPIP
     // $css_icones = generer_url_public('barre_outils_icones.css');
     
-    $flux .= "<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css' />
-    <noscript>
+    $flux .= "    <noscript>
       <link rel='stylesheet' type='text/css' media='all' href='$cssnoscript' />
       <link rel='stylesheet' type='text/css' media='all' href='$cssstyle' />
       <link rel='stylesheet' type='text/css' media='all' href='$cssstyledesktop' />

@@ -21,19 +21,31 @@
 					
 						<div id="header" class="item" data-width="400">
 							<h1>#TITRE</h1>
-							<BOUCLE_art(ARTICLES){id_rubrique}{" | "}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_art>
+							<BOUCLE_rub(RUBRIQUES){id_parent}{" | "}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_rub>
 						</div>
-					
-					<!-- Thumb Items -->
-					<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_rubrique=#ENV{id_rubrique}}>#SET{rapport,#HAUTEUR|div{231}}
+					#SET{publie,0}
+					<!-- Articles de la rubrique -->
+					<BOUCLE_artrub(ARTICLES){id_rubrique}{unique}>
+					<BOUCLE_images_art(DOCUMENTS){id_article}{extension==jpg|png|gif}{par hasard}{0,1}>#SET{rapport,#HAUTEUR|div{231}} #SET{publie,1}
 						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
-							[<h2>(#TITRE|?{#TITRE,"Pas de titre"})</h2>]
+							<h2><BOUCLE_titre_art(ARTICLES){id_document}><span class="lien" onclick="window.location.href='#URL_ARTICLE'">#TITRE</span></BOUCLE_titre_art></h2>
+							<a href="#URL_DOCUMENT">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
+						</article>
+					</BOUCLE_images_art>		
+					</BOUCLE_artrub>					
+					
+					<!-- Filler Thumb Items (just for demonstration purposes) -->
+					<BOUCLE_ss_rub(RUBRIQUES){id_parent}>
+						<BOUCLE_recursion(BOUCLE_artrub) />
+					</BOUCLE_ss_rub>	
+
+					<!-- Images de la rubrique -->
+					<BOUCLE_images(DOCUMENTS){si #GET{publie}|=={0}}{extension==jpg|png|gif}{par num titre, titre}{id_rubrique=#ENV{id_rubrique}}>#SET{rapport,#HAUTEUR|div{231}}
+						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
+							[<h2>(#TITRE|?{#TITRE,"  "})</h2>]
 							<a href="#URL_DOCUMENT">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
 						</article>
 					</BOUCLE_images>		
-
-					<!-- Filler Thumb Items (just for demonstration purposes) -->
-				      <BOUCLE_bis(BOUCLE_images)></BOUCLE_bis>
 
 
 				<!-- ******************************************************************************************** -->
