@@ -1,0 +1,42 @@
+[(#REM) Choix du type de layout]
+			#SET{style,#CONFIG{melusine_squelettes/style}}
+
+			<BOUCLE_yaml(DATA){source yaml, #CHEMIN{layouts/#GET{style}.yaml}}{datapath 0/classes} >
+			#SET{#CLE,#VALEUR}	
+			</BOUCLE_yaml>
+
+
+
+<body  dir="#LANG_DIR"  >
+	<div class="container">
+		<div  class="row">	
+<!-- 			header -->
+			<INCLURE{fond=inclusions/bandeau}>		
+			<INCLURE{fond=inclusions/bande-chemin}>
+		</div>
+<!-- 		coprs de page: extra+aside+content -->
+		<div class="row">
+<!-- 			content -->
+			<div class="#GET{content}">
+				<div class="row">	
+					<INCLURE{fond=content/#ENV{type-page},env} />
+				</div>
+			</div>
+<!-- 			aside -->
+			<div class="#GET{aside}">		
+				<INCLURE{fond=inclusions/bloc-gauche}>
+			</div>
+<!-- 			extra -->
+			<div  class="#GET{extra}">
+				<INCLURE{fond=inclusions/bloc-droite}{self=#SELF}>
+			</div>
+		</div>
+<!-- 		footer -->
+		<div id="footer" class="row">
+			<INCLURE{fond=inclusions/footer}>
+		</div>
+	<!-- fin de la classe container -->
+	</div>
+</body>
+
+#FILTRE{trim}
