@@ -14,21 +14,34 @@
 
 	<h3>Structure de toutes les pages  </h3> 
 	<fieldset>
-		<ul>	
-			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{style})</span>]			
-				
-			
-			<li><input type="radio" name="style"  value="layout1.css" [(#CONFIG{melusine_squelettes/style}=={layout1.css}|oui) checked="checked" ]/>3 colonnes #MELUSINEAIDE{195}</li>
-			<li><input type="radio" name="style"  value="layout11.css" [(#CONFIG{melusine_squelettes/style}=={layout11.css}|oui) checked="checked" ] />3 colonnes fixes #MELUSINEAIDE{196}</li>
-			<li><input type="radio" name="style"  value="layout2.css" [(#CONFIG{melusine_squelettes/style}=={layout2.css}|oui) checked="checked" ] />2 colonnes #MELUSINEAIDE{198}</li>
-			<li><input type="radio" name="style"  value="layout3.css" [(#CONFIG{melusine_squelettes/style}=={layout3.css}|oui) checked="checked" ] />2 colonnes inversées #MELUSINEAIDE{199}</li>		
-			<li><input type="radio" name="style"  value="layout4.css" [(#CONFIG{melusine_squelettes/style}=={layout4.css}|oui) checked="checked" ] />2 colonnes fixes #MELUSINEAIDE{197}</li>	
-			<li><input type="radio" name="style"  value="layout12.css" [(#CONFIG{melusine_squelettes/style}=={layout12.css}|oui) checked="checked" ] />2 colonnes fixes inversées#MELUSINEAIDE{197}</li>
-			<li><input type="radio" name="style"  value="layout5.css" [(#CONFIG{melusine_squelettes/style}=={layout5.css}|oui) checked="checked" ] />1 colonnes fixe #MELUSINEAIDE{200}</li>			
-			
-			
-			<input type='submit' name='ok' value='ok' />
-				
+		<legend>Largeur</legend>
+		
+		<ul>
+			<li><input type="radio" name="width"  value="container-fluid" [(#CONFIG{melusine_squelettes/width}=={container-fluid}|oui) checked="checked" ]/>Largeur fluide</li>
+			<li><input type="radio" name="width"  value="container" [(#CONFIG{melusine_squelettes/width}=={container}|oui) checked="checked" ] />largeur fixe</li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend>Layouts</legend>
+		<ul>
+			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{style})</span>]		
+			<BOUCLE_layouts(DATA){source glob, #CHEMIN{layouts}/*.yaml}>
+				<li>
+					<BOUCLE_yaml(DATA){source yaml, #VALEUR}>
+						<BOUCLE_yaml2(DATA){source table, #VALEUR}>
+							#SET{checked,'' }
+							[(#CONFIG{melusine_squelettes/style}=={#VALEUR.css}|oui) #SET{checked,'checked="checked"' }]
+							[(#CLE=={nom}|oui)  
+								<input type="radio" name="style"  value="#VALEUR.css" #GET{checked} />
+							]
+							[(#CLE=={descriptif}|oui) #VALEUR ]
+							[(#CLE=={logo}|oui) <img src=#CHEMIN{layouts}/#VALEUR > ]
+						
+						</BOUCLE_yaml2>
+					</BOUCLE_yaml>
+				</li>
+			</BOUCLE_layouts>
+			<input type='submit' name='ok' value='ok' />	
 		</ul>
 	</fieldset>
 

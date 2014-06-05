@@ -32,7 +32,9 @@ function formulaires_melusine_position_verifier(){
 
 function formulaires_melusine_position_traiter(){
 	$style=_request('style');
+	$width=_request('width');
 	ecrire_config("melusine_squelettes/style",$style);	
+	ecrire_config("melusine_squelettes/width",$width);
 	$position=_request('position');
 	if($position=='skels'){melusine_liste_noisettes_dispo();return false;}
 	$action=substr($position,0,1);
