@@ -1,0 +1,48 @@
+[(#REM)
+
+	Gestion générique des piles de modules (noisettes) pour
+	les blocs
+
+	L'appel du module prend des paramètres obligatoires:
+		casier_module (nom du casier dans lequel se trouve la liste des modules)
+		casiers_page (listes des casiers dans lesquels on doit vérifier la présence d'une autre module en cas d'unicité)
+		reserve_modules (liste des modules possibles)
+
+	optionnel:
+		nom_bloc (nom du bloc)
+
+
+
+
+]<BOUCLE_Casier(CONDITION){si #ENV{casier_module}|oui}>
+	[(#SET{casier_module,#ENV{casier_module}})]
+	[(#SET{admin_melusine,[(#SESSION{statut}
+				|=={0minirezo}
+				|oui)
+			oui]}
+	)]
+	#SET{contenu_casiers, (#CONFIG{#GET{casier_module}}|serialize)}
+
+	[(#GET{admin_melusine}|oui
+		<a href="[(#URL_PAGE{ajout_module_bloc,casier=#GET{casier_module}}
+				|parametre_url{'casiers_page',#ENV{casiers_page}}
+				|parametre_url{'reserve',#ENV{reserve_modules}}
+				|parametre_url{'nom_bloc',#ENV{nom_bloc,Bloc sans nom}}
+			)]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>
+			Ajouter un module dans ce bloc
+		</a>
+	]
+		<BOUCLE_liste_modules(POUR){tableau #GET{contenu_casiers}}>
+			 <BOUCLE_si_module(CONDITION){si #VALEUR|=={aucun}}>
+   
+      			</BOUCLE_si_module>
+				<div class="module_melusine[(#GET{admin_melusine}|oui) admin_melusine]">
+				[(#GET{admin_melusine}|oui)
+					#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#VALEUR,#CLE,#GET{casier_module},#ENV}
+				]
+   					<INCLURE{fond=modules/#VALEUR}>
+				</div>
+      			<//B_si_module>
+		</BOUCLE_liste_modules>
+</BOUCLE_Casier>
+#FILTRE{trim}
