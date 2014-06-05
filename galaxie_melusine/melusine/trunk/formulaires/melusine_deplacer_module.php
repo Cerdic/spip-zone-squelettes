@@ -61,6 +61,7 @@ function formulaires_melusine_deplacer_module_charger_dist($nom_module="aucun", 
  */
 function formulaires_melusine_deplacer_module_verifier_dist($nom_module="aucun", $position_module=0, $casier="", $env=array()){
 	$erreurs = array();
+	include_spip('inc/config');
 
 	if (!$casier OR !lire_config($casier))
 		$erreurs["message_erreur"] = "le bloc n'a pas été correctement défini";
