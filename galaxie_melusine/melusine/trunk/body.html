@@ -11,8 +11,9 @@
 	<div class="container">
 		<div  class="row">	
 <!-- 			header -->
-			<INCLURE{fond=inclusions/bandeau}>		
-			<INCLURE{fond=inclusions/bande-chemin}>
+			<INCLURE{fond=nav/#ENV{type-page},env}>
+			<INCLURE{fond=header/#ENV{type-page},env}> [(#REM) anciennement bandeau]
+			<INCLURE{fond=breadcrumb/#ENV{type-page},env}> [(#REM) anciennement bande-chemin]
 		</div>
 <!-- 		coprs de page: extra+aside+content -->
 		<div class="row">
@@ -23,19 +24,18 @@
 				</div>
 			</div>
 <!-- 			aside -->
-			<div class="#GET{aside}">		
-				<INCLURE{fond=inclusions/bloc-gauche}>
+			<div class="#GET{aside}">
+			<INCLURE{fond=aside/#ENV{type-page},env}> [(#REM) anciennement bloc-gauche]
 			</div>
 <!-- 			extra -->
 			<div  class="#GET{extra}">
-				<INCLURE{fond=inclusions/bloc-droite}{self=#SELF}>
+			<INCLURE{fond=extra/#ENV{type-page},env}> [(#REM) anciennement bloc-droite]
 			</div>
 		</div>
 <!-- 		footer -->
 		<div id="footer" class="row">
-			<INCLURE{fond=inclusions/footer}>
+			<INCLURE{fond=footer/#ENV{type-page},env}>
 		</div>
-	<!-- fin de la classe container -->
 	</div>
 </body>
 
