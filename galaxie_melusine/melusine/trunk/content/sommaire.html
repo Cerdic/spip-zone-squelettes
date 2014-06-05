@@ -18,13 +18,20 @@
 			oui]}
 )]
 	<div class="#GET{col1} ">
-		[(#GET{admin_melusine}|oui)<a href="[(#URL_PAGE{ajout_module_bloc,casier=melusine_sommaire/x/}|parametre_url{'casiers_page','melusine_squelettes/d/,melusine_squelettes/g/,melusine_sommaire/x/,melusine_sommaire/y/'}|parametre_url{'reserve','melusine_squelettes'}|parametre_url{'nom_bloc','Colonne de gauche du sommaire'})]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>Ajouter un module dans ce bloc</a>]
+		[(#GET{admin_melusine}|oui)
+			
+			[(#SET{casier_module,melusine_sommaire/x/})]
+		[(#SET{casiers_page,"'melusine_squelettes/d/,melusine_squelettes/g/,melusine_sommaire/x/,melusine_sommaire/y/'"})]
+			[(#SET{reserve_modules,'melusine_squelettes'})]
+			[(#SET{nom_bloc,'Colonne de gauche du sommaire'})]
+		<a href="[(#URL_PAGE{ajout_module_bloc,casier=#GET{casier_module}}|parametre_url{'casiers_page',#GET{casiers_page}}|parametre_url{'reserve',#GET{reserve_modules}}|parametre_url{'nom_bloc',#GET{nom_bloc}})]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>Ajouter un module dans ce bloc</a>
+		]
 		<BOUCLE_test(POUR){tableau #GET{sommairegauche}}>
 			 <BOUCLE_cond(CONDITION){si #VALEUR|=={aucun}}>
    
       			</BOUCLE_cond>
 				<div class="module_melusine[(#GET{admin_melusine}|oui) admin_melusine]">
-					[(#GET{admin_melusine}|oui)#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#VALEUR,#CLE,"melusine_sommaire/x/",#ENV}]
+					[(#GET{admin_melusine}|oui)#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#VALEUR,#CLE,#GET{casier_module},#ENV}]
    					<INCLURE{fond=modules/#VALEUR}>
 				</div>
       			<//B_cond>
