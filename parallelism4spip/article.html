@@ -28,8 +28,8 @@
 					<!-- Thumb Items -->
 					<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_article}{tout}>#SET{rapport,#HAUTEUR|div{231}}
 						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
-							[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,#MODELE{titre_img,env}})</h2>]
-							<a href="[(#FICHIER|image_reduire{1024}|extraire_attribut{src})]">[(#FICHIER|image_reduire{0,212}|inserer_attribut{width,""}|inserer_attribut{height,""})]</a>
+							#MODELE{titre_img,env}
+							<a href="[(#FICHIER|image_reduire{1024}|extraire_attribut{src})]">[(#FICHIER|image_reduire{0,212}|inserer_attribut{alt,[(#TITRE|?{#TITRE,<:parallelism:img_ss_titre:>})]})]</a>
 						</article>
 					</BOUCLE_images>		
 
