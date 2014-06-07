@@ -65,7 +65,15 @@
             <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a>
           </BOUCLE_auteurs_art>
         </div>
-      </B_test>   
+      </B_test>
+<!-- affichage date de publication -->
+      [(#CONFIG{escal/config/datepubune}|=={non}|non)
+      <div class="auteur-articles-rubrique">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+      ]
+<!-- affichage date derniere modification -->
+      [(#CONFIG{escal/config/datemodifune}|=={non}|non)
+      <div class="auteur-articles-rubrique">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div> 
+      ]        
 <!-- affichage rubrique -->
 			<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueune}|=={non}|non}>
 			<div class="rubrique #EDIT{titre}">
