@@ -6,6 +6,16 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
+function lister_couleurs_typo() {
+	$couleurs = array();
+
+	include_spip('base/sarkaspip_declarations');
+	$config_typo = sarkaspip_declarer_config_typo();
+	if (isset($config_typo['couleurs']))
+		$couleurs = $config_typo['couleurs'];
+
+	return $couleurs;
+}
 
 // =======================================================================================================================================
 // Filtre : typo_couleur
@@ -20,29 +30,35 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 //
 function filtre_typo_couleur_dist($texte) {
 
-	global $couleurs_texte;
 	include_spip('inc/config');
 
-	// Variables personnalisables par l'utilisateur
-	// --> Activation (oui) ou desactivation (non) de la fonction
-	$typo_couleur_active = (lire_config('sarkaspip_typo/coloration_active', 'non') == 'oui');
-	// --> Nuances personnalisables par l'utilisateur
-	$couleurs_utilisees = lire_config('sarkaspip_typo/couleurs');
+	// Acquérir les valeurs par défaut des couleurs typo
+	include_spip('base/sarkaspip_declarations');
+	$config_typo = sarkaspip_declarer_config_typo();
+	$couleurs_texte = $config_typo['couleurs'];
 
-	$recherche = array();
-	$remplace = array();
-	foreach ($couleurs_texte as $_id_couleur => $_defaut_couleur) {
-		$recherche[$_id_couleur] = "/(\[${_id_couleur}\])(.*?)(\[\/${_id_couleur}\])/";
-		if ($typo_couleur_active)
-			$remplace[$_id_couleur] =
-				"<span style=\"color:" .
-				sinon($couleurs_utilisees[$_id_couleur], $_defaut_couleur) .
-				";\">\\2</span>";
+	if ($couleurs_texte) {
+		// Variables personnalisables par l'utilisateur
+		// --> Activation (oui) ou desactivation (non) de la fonction
+		$typo_couleur_active = (lire_config('sarkaspip_typo/coloration_active', 'non') == 'oui');
+		// --> Nuances personnalisables par l'utilisateur
+		$couleurs_utilisees = lire_config('sarkaspip_typo/couleurs');
+
+		$recherche = array();
+		$remplace = array();
+		foreach ($couleurs_texte as $_id_couleur => $_defaut_couleur) {
+			$recherche[$_id_couleur] = "/(\[${_id_couleur}\])(.*?)(\[\/${_id_couleur}\])/";
+			if ($typo_couleur_active)
+				$remplace[$_id_couleur] =
+					"<span style=\"color:" .
+					sinon($couleurs_utilisees[$_id_couleur], $_defaut_couleur) .
+					";\">\\2</span>";
+		}
+		if (!$remplace)
+			$remplace = "\\2";
+
+		$texte = preg_replace($recherche, $remplace, $texte);
 	}
-	if (!$remplace)
-		$remplace = "\\2";
-
-	$texte = preg_replace($recherche, $remplace, $texte);
 
 	return $texte;
 }

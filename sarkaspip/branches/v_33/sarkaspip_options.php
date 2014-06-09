@@ -26,21 +26,6 @@ if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 |referencement!header:backend
 |outils!plugins:maintenance');
 
-// Liste des couleurs pouvant être utilisées pour coloriser les textes
-$GLOBALS['couleurs_texte'] = array(
-	'noir' => '#000000',
-	'blanc' => '#FFFFFF',
-    'rouge' => '#FF0000',
-	'vert' => '#00FF00',
-	'bleu' => '#0000FF',
-	'jaune' => '#FFFF00',
-	'gris' => '#808080',
-	'marron' => '#800000',
-	'violet' => '#800080',
-	'rose' => '#FFC0CB',
-	'orange' => '#FFA500'
-);
-
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
 if (!defined('_SARKASPIP_CONFIG_INTRO_META')) define('_SARKASPIP_CONFIG_INTRO_META', 150);
