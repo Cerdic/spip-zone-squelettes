@@ -8,6 +8,20 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
+// Les mêmes caches que pour le noizetier:
+
+include_spip('inc/filtres');
+$f = chercher_filtre('info_plugin');
+$noiz_actif = $f("noizetier","est_actif");
+
+// Si pas noizetier, on crée ls constantes
+if (!$noiz_actif) {
+	define('_CACHE_AJAX_NOISETTES', 'noisettes_ajax.php');
+	define('_CACHE_CONTEXTE_NOISETTES', 'noisettes_contextes.php');
+	define('_CACHE_DESCRIPTIONS_NOISETTES', 'noisettes_descriptions.php');
+	define('_CACHE_INCLUSIONS_NOISETTES', 'noisettes_inclusions.php');
+}
+
 
 /*
  * Un fichier de fonctions permet de definir des elements
@@ -299,5 +313,222 @@ function melusine_message_noisettes_a_deplacer($casier="melusine_perso_a_deplace
 	if ($return) $return = $message_info.wrap($return,"<ul class='liste'>");
 	return $return;
 
+}
+
+// Reprises de plusieurs fonctions du noizetier
+// TODO il faudra voir à converger vraiment
+// éventuellement en modificant le noizetier
+// pour que ses fonctions soient dist et
+// surchageables
+
+/**
+ * Obtenir les infos de toutes les noisettes disponibles dans les dossiers noisettes/
+ * C'est un GROS calcul lorsqu'il est a faire.
+ *
+ * Issu du Plugin noizetier et modifié pour Mélusine:
+ * + Prise en compte du répertoire modules
+ * 	et des éventuels sous répertoires
+ * 	Bilan: le calcul est encore plus lourd !
+ * + Prise en compte des noisettes sans yaml associé
+ *
+ * @return array
+ */
+function melusine_obtenir_infos_noisettes_direct(){
+
+	$liste_noisettes = array();
+	
+	// répertoires possibles pour Mélusine
+	// et necessité d'un examen récursif'
+	$liste_rep = array(
+			"noisettes/" => false,	// Compat noizetier
+			"modules/" => true	// Compat Mélusine
+		);
+		
+	$match = "[^-]*[.]html$";
+
+	// diff avec noizetier: dans plusieurs répertoires
+	// et récusrvivement
+	$liste= array();
+	foreach($liste_rep as $rep => $recurs) {
+		$liste = array_merge(
+				$liste,
+				find_all_in_path(
+					$rep,	// dans plusieurs rép
+					$match,
+					$recurs	// récusrvivement ou pas
+				)
+			);
+	}
+		
+	if (count($liste)){
+		foreach($liste as $squelette=>$chemin) {
+			$noisette = preg_replace(',[.]html$,i', '', $squelette);
+			$dossier = str_replace($squelette, '', $chemin);
+			// On ne garde que les squelettes ayant un fichier YAML de config
+			if (file_exists("$dossier$noisette.yaml")
+				AND ($infos_noisette = melusine_charger_infos_noisette_yaml($dossier.$noisette))
+			){
+				// diff avec noizetier:
+				// le sous-répertoire va être noté pour
+				// les inclusions... Il peut être dans
+				// modules ou noisettes
+				$sous_rep_pos = strrpos($dossier,"modules/");
+				if ($sous_rep_pos === false)
+					$sous_rep_pos = strrpos($dossier,"noisettes/");
+				$liste_noisettes[$noisette] = array_merge(
+						$infos_noisette,	// compat noizetier
+						array("repertoire" => substr($dossier,$sous_rep_pos))	// On note le sous-rép pour l'inclusion
+					);
+			} else {
+				// diff avec noizetier:
+				// Sans YAML, on garde la noisette
+				// avec des infos sommaires
+				$bloc = substr($dossier,strrpos($dossier,"modules/")+8,-1);
+				$liste_noisettes[$noisette] = array(
+						"nom" => spip_ucfirst(str_replace("_"," ",$noisette)),
+						"parametres" => array(),
+						"contexte" => array(),
+						"ajax" => "non",
+						"inclusion" => "statique",
+						"bloc" => $bloc,	// spécifique de Mélusine
+						"repertoire" => substr($dossier,strrpos($dossier,"modules/",-1))			// On note le sous-rép pour l'inclusion
+					);
+			}
+		}
+	}
+	
+	// supprimer de la liste les noisettes necissant un plugin qui n'est pas actif
+	foreach ($liste_noisettes as $noisette => $infos_noisette)
+		if (isset($infos_noisette['necessite']))
+			foreach ($infos_noisette['necessite'] as $plugin)
+				if (!defined('_DIR_PLUGIN_'.strtoupper($plugin)))
+					unset($liste_noisettes[$noisette]);
+
+	echo "<pre>";
+	print_r($liste_noisettes);
+	echo "</pre>";
+	
+	return $liste_noisettes;
+}
+/**
+ * Charger les informations contenues dans le YAML d'une noisette
+ * Issu du Plugin noizetier
+ *
+ * @param string $noisette
+ * @param string $info
+ * @return array
+ */
+function melusine_charger_infos_noisette_yaml($noisette, $info=""){
+		// on peut appeler avec le nom du squelette
+		$fichier = preg_replace(',[.]html$,i','',$noisette).".yaml";
+		include_spip('inc/yaml');
+		include_spip('inc/texte');
+		$infos_noisette = array();
+		if ($infos_noisette = yaml_charger_inclusions(yaml_decode_file($fichier))) {
+			if (isset($infos_noisette['nom']))
+				$infos_noisette['nom'] = _T_ou_typo($infos_noisette['nom']);
+			if (isset($infos_noisette['description']))
+				$infos_noisette['description'] = _T_ou_typo($infos_noisette['description']);
+			if (isset($infos_noisette['icon']))
+				$infos_noisette['icon'] = $infos_noisette['icon'];
+				
+			if (!isset($infos_noisette['parametres']))
+				$infos_noisette['parametres'] = array();
+				
+			// contexte
+			if (!isset($infos_noisette['contexte'])) {
+				$infos_noisette['contexte'] = array();
+			}
+			if (is_string($infos_noisette['contexte'])) {
+				$infos_noisette['contexte'] = array($infos_noisette['contexte']);
+			}
+			
+			// ajax
+			if (!isset($infos_noisette['ajax'])) {
+				$infos_noisette['ajax'] = 'oui';
+			}
+			// inclusion
+			if (!isset($infos_noisette['inclusion'])) {
+				$infos_noisette['inclusion'] = 'statique';
+			}
+		}
+
+		if (!$info)
+			return $infos_noisette;
+		else 
+			return isset($infos_noisette[$info]) ? $infos_noisette[$info] : "";
+}
+/**
+ * Lister les noisettes disponibles dans les dossiers noisettes/
+ * Issu du Plugin noizetier
+ *
+ * @staticvar array $liste_noisettes
+ * @param text $type renvoyer seulement un type de noisettes
+ * @param text $noisette renvoyer spécifiquement une noisette données
+ * @return array
+ */
+function melusine_lister_noisettes($type='tout'){
+	static $liste_noisettes = array();
+	if ($type == 'tout') {
+		return melusine_obtenir_infos_noisettes();
+	}
+	if (isset($liste_noisettes[$type])) {
+		return $liste_noisettes[$type];
+	}
+	
+	$noisettes = melusine_obtenir_infos_noisettes();
+	if ($type == '') {
+		$match = "^[^-]*$";
+	} else {
+		$match = $type."-[^-]*$";
+	}
+	
+	foreach($noisettes as $noisette => $description) {
+		if (preg_match("/$match/", $noisette)) {
+			$liste_noisettes[$type][$noisette] = $description;
+		}
+	}
+	
+	return $liste_noisettes[$type];
+}
+
+
+/**
+ * Renvoie les info d'une seule noisette
+ * Issu du Plugin noizetier
+ *
+ * @param text $noisette renvoyer spécifiquement une noisette données
+ * @return array
+ */
+function melusine_info_noisette($noisette) {
+	$noisettes = melusine_obtenir_infos_noisettes();
+	return $noisettes[$noisette];
+}
+
+/**
+ * Obtenir les infos de toutes les noisettes disponibles dans les dossiers noisettes/
+ * On utilise un cache php pour alleger le calcul.
+ * Issu du Plugin noizetier
+ *
+ * @param 
+ * @return 
+**/
+function melusine_obtenir_infos_noisettes() {
+	static $noisettes = false;
+	
+	// seulement 1 fois par appel, on lit ou calcule tous les contextes
+	if ($noisettes === false) {
+		// lire le cache des descriptions sauvees
+		lire_fichier_securise(_DIR_CACHE . _CACHE_DESCRIPTIONS_NOISETTES, $noisettes);
+		$noisettes = @unserialize($noisettes);
+		// s'il en mode recalcul, on recalcule toutes les descriptions des noisettes trouvees.
+		// ou si le cache est desactive
+		if (!$noisettes or (_request('var_mode') == 'recalcul') or (defined('_NO_CACHE') and _NO_CACHE!=0)) {
+			$noisettes = melusine_obtenir_infos_noisettes_direct();
+			ecrire_fichier_securise(_DIR_CACHE . _CACHE_DESCRIPTIONS_NOISETTES, serialize($noisettes));
+		}
+	}
+	
+	return $noisettes;
 }
 ?>

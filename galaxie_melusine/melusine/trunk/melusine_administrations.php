@@ -17,6 +17,12 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 **/
 function melusine_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
+	// On initialise le tableau des
+	// opération d'installation
+	$maj['create'] = array();
+
+	// Idem pour le schéma 1.1.0
+	$maj['1.1.0'] = array();
 	
 
 	// Mise en place des casiers dans la table meta
@@ -30,7 +36,7 @@ function melusine_upgrade($nom_meta_base_version, $version_cible) {
 	$chemin = _DIR_PLUGIN_MELUSINE;	
 	$chemin_conf = $chemin."config_melusine_par_defaut.txt";
 	$file = file($chemin_conf);
-	$maj['create'] = array();
+
 
 	include_spip('inc/config');
 	$compteur_lignes_fichier = 0;
@@ -65,30 +71,105 @@ function melusine_upgrade($nom_meta_base_version, $version_cible) {
 
 
 
+	// Manipulations de fichiers
+	array_push($maj['create'],array('melusine_preparation_fichiers',array()));
+
+	// Mélusine 2 utilise des tables du noizetier
+	// vérification de la présence du noizetier
+	include_spip('inc/filtres');
+	$f = chercher_filtre('info_plugin');
+	$noiz_actif = $f("noizetier","est_actif");
+
+	// Si pas noizetier, on vire la base...
+	if (!$noiz_actif) {
+		array_push($maj['create'],array('creer_base'));
+		array_push($maj['1.1.0'],array('creer_base'));
+	}
+
+	// Migration vers la base de Mélusine 2 qui gère les
+	// modules comme le noiztier gère les noisettes
+	array_push($maj['1.1.0'],array('melusine_migration_version_2', array()));
 
 
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# 
-	# $maj['create'] = array(array('creer_base'));
-	#
-	# include_spip('inc/config')
-	# $maj['create'] = array(
-	#	array('maj_tables', array('spip_xx', 'spip_xx_liens')),
-	#	array('ecrire_config', array('melusine', array('exemple' => "Texte de l'exemple")))
-	#);
-	#
-	# $maj['1.1.0']  = array(array('sql_alter','TABLE spip_xx RENAME TO spip_yy'));
-	# $maj['1.2.0']  = array(array('sql_alter','TABLE spip_xx DROP COLUMN id_auteur'));
-	# $maj['1.3.0']  = array(
-	#	array('sql_alter','TABLE spip_xx CHANGE numero numero int(11) default 0 NOT NULL'),
-	#	array('sql_alter','TABLE spip_xx CHANGE texte petit_texte mediumtext NOT NULL default \'\''),
-	# );
-	# ...
+	// en attendant une meilleure façon d'installer Mélusine 2
+	// On utilise l'ancienne façon (Mélusine 1), et on migre ensuite
+	// en Mélusine 2
+	array_push($maj['create'],array('melusine_migration_version_2', array()));
 
+	// On lance les opérations...
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 
+
+
+
+
+
+
+}
+
+
+/**
+ * Fonction de désinstallation du plugin.
+ * Vous devez :
+ * - nettoyer toutes les données ajoutées par le plugin et son utilisation
+ * - supprimer les tables et les champs créés par le plugin. 
+**/
+function melusine_vider_tables($nom_meta_base_version) {
+	# quelques exemples
+	# (que vous pouvez supprimer !)
+	# sql_drop_table("spip_xx");
+	# sql_drop_table("spip_xx_liens");
+
+	// vérification de la présence du noizetier
+	include_spip('inc/filtres');
+	$f = chercher_filtre('info_plugin');
+	$noiz_actif = $f("noizetier","est_actif");
+
+	// Si pas noizetier, on vire la base...
+	if (!$noiz_actif) {
+		sql_drop_table("spip_noisettes");
+
+		# Nettoyer les versionnages et forums
+		sql_delete("spip_versions",              sql_in("objet", array('noisette')));
+		sql_delete("spip_versions_fragments",    sql_in("objet", array('noisette')));
+		sql_delete("spip_forum",                 sql_in("objet", array('noisette')));
+	}
+
+
+	effacer_meta($nom_meta_base_version);
+}
+
+/**
+ * Fonction de recherche de l'ancien plugin DATICE
+ * 
+ * @param
+ * 
+ * @return text renvoie le chemin du plugin DATICE s'il est trouvé ou rien 
+**/
+function melusine_cherche_chemin_datice() {
+
+	$plugin_datice = "datice3/"; //Nom supposé du répertoire du plugin
+
+	//chemins supposés possibles
+	$chemins_possibles_datice = array(_DIR_PLUGINS_AUTO.$plugin_datice,_DIR_PLUGINS.$plugin_datice);
+
+	foreach ($chemins_possibles_datice as $chemin_plugin_datice) {
+		if (file_exists($chemin_plugin_datice."balise/daticeaide.php")) return $chemin_plugin_datice;
+	}
+	return ""; // pas trouvé...
+}
+/**
+ * Opérations sur les fichiers nécessaires à l'installation
+ * de Mélusne
+ * Notamment pour la MAJ depuis DATICE
+ * 
+ * @param
+ * 
+ * @return 
+**/
+function melusine_preparation_fichiers() {
+	include_spip('inc/config');
 
 	//si le fichier logo créteil n'existe pas (1ere install) => création
 	$chemin_IMG = "../"._NOM_PERMANENTS_ACCESSIBLES; //chemin vers IMG (y compris en mutualisation)
@@ -233,44 +314,113 @@ function melusine_upgrade($nom_meta_base_version, $version_cible) {
 		}
 	}
 	ecrire_config("melusine_perso_a_deplacer",$a_placer_dans_casier);
-
-
-}
-
-
-/**
- * Fonction de désinstallation du plugin.
- * Vous devez :
- * - nettoyer toutes les données ajoutées par le plugin et son utilisation
- * - supprimer les tables et les champs créés par le plugin. 
-**/
-function melusine_vider_tables($nom_meta_base_version) {
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# sql_drop_table("spip_xx");
-	# sql_drop_table("spip_xx_liens");
-
-
-	effacer_meta($nom_meta_base_version);
 }
 
 /**
- * Fonction de recherche de l'ancien plugin DATICE
+ * Migration de Mélusine 1 vers Mélusine 2
+ * (c'est à dire passage d'un système de module centré sur les métas
+ * à un système proche du noizetier, en base)
  * 
  * @param
  * 
- * @return text renvoie le chemin du plugin DATICE s'il est trouvé ou rien 
+ * @return 
 **/
-function melusine_cherche_chemin_datice() {
+function melusine_migration_version_2() {
+	include_spip('inc/config');
 
-	$plugin_datice = "datice3/"; //Nom supposé du répertoire du plugin
+	// Liste des blocs => casiers dans Mélusine 1
+	// en prenant en compte les colonnes
+	// et les types de pages
+	// modules[type_page][bloc(-col)?] = liste (array) de modules
+	// le suffixe -col2 ou -col3 concerne les colonnes des content
+	// pour une meilleure compat avec le noizetier la -col1 n'a pas
+	// de suffixe
 
-	//chemins supposés possibles
-	$chemins_possibles_datice = array(_DIR_PLUGINS_AUTO.$plugin_datice,_DIR_PLUGINS.$plugin_datice);
+	// On différencie les casier du futur bloc content
+	// (spécifiques d'un type de page)
+	// de ceux qui constitueront les autres bocs
+	// (qui devront être répercutés sur chaque type de page)
+	$liste_casiers__de_content = array('articles','mobil','rubriques','sommaire');
 
-	foreach ($chemins_possibles_datice as $chemin_plugin_datice) {
-		if (file_exists($chemin_plugin_datice."balise/daticeaide.php")) return $chemin_plugin_datice;
+	$correspondances_anciens_nouveaux_blocs = array (
+			'chemin/effectifs' => 'breadcrumb',
+			'footer/effectifs' => 'footer',
+			'squelettes/g' => 'aside',
+			'squelettes/d' => 'extra'
+		);
+	// Pour chaque type de page
+	$liste_futurs_types_page = array('article','rubrique','sommaire');
+	foreach($liste_futurs_types_page as $type_page) {
+		// blocs génériques qui n'existent pas dans Mélusie 1
+		$modules[$type_page]['nav']= array();
+		$modules[$type_page]['header']= array();
+
+		// On récupère les autres blocs génériques:
+		foreach($correspondances_anciens_nouveaux_blocs as $anciens => $nouveau) {
+			$modules[$type_page][$nouveau] = lire_config("melusine_".$anciens);
+			
+		}
+
+		// Passons au bloc content qui peut
+		// être découpé en colonnes
+		$effectis = array('effectifs' => '');
+		$nom_traitement = $type_page."s";
+
+		// Sommaire déroge à certaines règles:
+		// pas de s final
+		// et éventuellement, deux colonnes
+		if ($type_page == "sommaire") {
+			$nom_traitement = $type_page;
+			$effectis = array(
+				'x' => "", //pas de suffixe pour la premiere colonne
+				'y' => "-col2");
+		}
+
+		// Les modules du futur content
+		foreach($effectis as $cases => $suffixe_bloc) {
+			$modules[$type_page]['content'.$suffixe_bloc] = lire_config("melusine_".$nom_traitement."/".$cases);
+		}
+		
+		
+		
+	} // Fin de chaque type de page
+	
+
+	// On va chercher dans chaque casier de bloc
+	// les infos pour placer dans la BD
+	// rang, type, bloc, noisette
+	// et n place toutes les infos dans la BD
+	include_spip('action/editer_objet');
+
+	// Pour chaque type de page...
+	foreach($modules as $type_page => $blocs) {
+		// Pour chaque typppe de bloc...
+		foreach($blocs as $bloc => $liste_modules) {
+			// description des noisettes de ce bloc
+			$set = array(
+				"rang" => 0,
+				"type" => $type_page,
+				"bloc" => $bloc,
+				"noisette" => ""
+			);
+			//pour chaque noisette...
+			foreach($liste_modules as $module) {
+				$set['noisette'] = $module;
+				$set['rang']++;
+				
+				// insertion
+				$id_noisette = objet_inserer("noisette", $id_parent="",$set);
+				if (!$id_noisette)
+					spip_log("Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type_page. "au rang ".$rang);
+			}
+		}
+
+		
 	}
-	return ""; // pas trouvé...
+	return true;
+	
+	
 }
+
+
 ?>
