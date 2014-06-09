@@ -349,7 +349,7 @@ function melusine_migration_version_2() {
 			'squelettes/d' => 'extra'
 		);
 	// Pour chaque type de page
-	$liste_futurs_types_page = array('article','rubrique','sommaire');
+	$liste_futurs_types_page = array('article','rubrique','sommaire','mobil');
 	foreach($liste_futurs_types_page as $type_page) {
 		// blocs génériques qui n'existent pas dans Mélusie 1
 		$modules[$type_page]['nav']= array();
@@ -365,6 +365,13 @@ function melusine_migration_version_2() {
 		// être découpé en colonnes
 		$effectis = array('effectifs' => '');
 		$nom_traitement = $type_page."s";
+
+
+		// Mobil déroge à certaines règles:
+		// pas de s final
+
+		if ($type_page == "mobil")
+			$nom_traitement = $type_page;
 
 		// Sommaire déroge à certaines règles:
 		// pas de s final
@@ -395,6 +402,7 @@ function melusine_migration_version_2() {
 	$tableau_chemins_modules_content = array(
 		"article" => "modules/articles/",
 		"rubrique" => "modules/rubriques/",
+		"mobil" => "modules/mobil/",
 		"sommaire" => "modules/"
 		);
 	// Pour chaque type de page...
