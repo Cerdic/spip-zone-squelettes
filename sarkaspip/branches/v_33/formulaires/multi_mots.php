@@ -1,4 +1,7 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_multi_mots_charger_dist($mot){
 	// $mot vaut l'id du mot selectionne lorsque l'appel s'est fait a partir des noisettes des mots cles de la colonne extra
 	// $mot est nul lorsque l'appel se fait directement par le bouton mot-cle du menu inc_nav_raccourci, 

@@ -337,6 +337,7 @@ function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
 function restaurer_fonds($fichiers) {
 	include_spip('inc/config');
 
+	$ok = true;
 	foreach ($fichiers as $_fichier) {
 		lire_fichier($_fichier,$tableau);
 		$fond = basename($_fichier, '.txt');
@@ -362,32 +363,28 @@ function nettoyer_titre_sujet($titre, $resolu='') {
 }
 // FIN du Filtre : nettoyer_titre_sujet
 
-// Cette fonction existe dans le plugin Dev.
-// Si ce plugin est déjà actif on ne la redéfinit pas !
-if (!function_exists('bel_env')) {
-	function bel_env($env) {
-		$env = str_replace(array('&quot;', '&#039;'), array('"', '\''), $env);
-		if (is_array($env_tab = @unserialize($env))) {
-			$env = $env_tab;
-		}
-		if (!is_array($env)) {
-			return '';
-		}
-		$style = " style='border:1px solid #ddd;'";
-		$res = "<table style='border-collapse:collapse;'>\n";
-		foreach ($env as $nom => $val) {
-			if (is_array($val) || is_array(@unserialize($val))) {
-				$val = bel_env($val);
-			}
-			else {
-				$val = entites_html($val);
-			}
-			$res .= "<tr>\n<td$style><strong>". entites_html($nom).
-					"&nbsp;:&nbsp;</strong></td><td$style>" .$val. "</td>\n</tr>\n";
-		}
-		$res .= "</table>";
-		return $res;
+function afficher_meta($env) {
+	$env = str_replace(array('&quot;', '&#039;'), array('"', '\''), $env);
+	if (is_array($env_tab = @unserialize($env))) {
+		$env = $env_tab;
 	}
+	if (!is_array($env)) {
+		return '';
+	}
+	$style = " style='border:1px solid #ddd;'";
+	$res = "<table style='border-collapse:collapse;'>\n";
+	foreach ($env as $nom => $val) {
+		if (is_array($val) || is_array(@unserialize($val))) {
+			$val = afficher_meta($val);
+		}
+		else {
+			$val = entites_html($val);
+		}
+		$res .= "<tr>\n<td$style><strong>". entites_html($nom).
+				"&nbsp;:&nbsp;</strong></td><td$style>" .$val. "</td>\n</tr>\n";
+	}
+	$res .= "</table>";
+	return $res;
 }
 
 
@@ -423,20 +420,6 @@ function abonnement_possible($plugin) {
 	}
 
 	return $retour;
-}
-
-
-function lister_pages_configuration() {
-	$pages_cfg = array();
-
-	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
-	foreach ($sections as $_section){
-		$_section = explode("!",$_section);
-		$_section = end($_section);
-		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
-	}
-
-	return $pages_cfg;
 }
 
 

@@ -1,15 +1,11 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_sauvegarde_cfg_charger_dist() {
+	include_spip('inc/sarkaspip_configuration');
 
-	$options = '';
-
-	$pages_cfg = lister_pages_configuration();
-
-	foreach ($pages_cfg as $_config) {
-		$item = "sarkaspip_{$_config}";
-		$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
-	}
-
+	$options = creer_select_configurations();
 	$valeurs = array('_configurations' => $options);
 
 	return $valeurs;
@@ -20,9 +16,9 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
 	$retour=array();
 	
 	$configs = array();
-	$mode = _request('config_a_sauvegarder');
-	if ($mode !== '--')
-		$configs = array($mode);
+	$page = _request('config_a_sauvegarder');
+	if ($page !== '--')
+		$configs = array($page);
 
 	$dir_cfg = sous_repertoire(_DIR_TMP,"sarkaspip");
 	$dir_cfg = sous_repertoire($dir_cfg,"config");
@@ -30,8 +26,8 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
 	
 	if (!$ok)
 		$retour['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_nok');
-	elseif ($mode !== '--')
-		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_ok');
+	elseif ($page !== '--')
+		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichier_sauvegarde_ok', array('page' =>  _T("sarkaspip_config:sarkaspip_$page")));
 	else
 		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_fichiers_sauvegardes_ok');
 	return $retour;
@@ -47,6 +43,7 @@ function formulaires_sauvegarde_cfg_traiter_dist() {
  */
 function sauvegarder_configuration($configs, $ou) {
 	include_spip('inc/config');
+	$ok = true;
 
 	// si pas de fond precise, on prend toutes les configs
 	if (!$configs) {

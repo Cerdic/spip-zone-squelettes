@@ -1,4 +1,7 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_configurer_sarkaspip_plugins_traiter() {
 
 	// On simule le traitement normal du cvt configurer

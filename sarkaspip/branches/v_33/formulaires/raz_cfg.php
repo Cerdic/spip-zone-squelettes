@@ -1,15 +1,11 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_raz_cfg_charger_dist() {
+	include_spip('inc/sarkaspip_configuration');
 
-	$options = '';
-
-	$pages_cfg = lister_pages_configuration();
-
-	foreach ($pages_cfg as $_config) {
-		$item = "sarkaspip_{$_config}";
-		$options .= '<option value="' . $_config . '">' . _T("sarkaspip_config:$item") . '</option>';
-	}
-
+	$options = creer_select_configurations();
 	$valeurs = array('_configurations' => $options);
 
 	return $valeurs;
@@ -17,18 +13,17 @@ function formulaires_raz_cfg_charger_dist() {
 
 
 function formulaires_raz_cfg_traiter_dist() {
+	include_spip('inc/sarkaspip_configuration');
 	$retour=array();
 	
-	$mode = _request('config_a_raz');
-	$configs = ($mode !== '--') ? array($mode) : lister_pages_configuration();
+	$page = _request('config_a_raz');
+	$configs = ($page !== '--') ? array($page) : lister_pages_configuration();
 
-	include_spip('inc/config');
-	foreach($configs as $_config) {
-		effacer_config("sarkaspip_$_config");
-	}
+	include_spip('inc/sarkaspip_configuration');
+	creer_config($configs, 'effacement');
 
-	if ($mode !== '--')
-		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_configuration_raz_ok', array('page' =>  _T("sarkaspip_config:sarkaspip_$mode")));
+	if ($page !== '--')
+		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_configuration_raz_ok', array('page' =>  _T("sarkaspip_config:sarkaspip_$page")));
 	else
 		$retour['message_ok'] = _T('sarkaspip_config:cfg_msg_configurations_raz_ok');
 	return $retour;
