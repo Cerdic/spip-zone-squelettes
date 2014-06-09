@@ -364,34 +364,32 @@ function melusine_obtenir_infos_noisettes_direct(){
 		foreach($liste as $squelette=>$chemin) {
 			$noisette = preg_replace(',[.]html$,i', '', $squelette);
 			$dossier = str_replace($squelette, '', $chemin);
+			
+			// Position du module dans les osu-rép de Mélusine
+			$sous_rep_pos = strrpos($dossier,"modules/");
+			if ($sous_rep_pos === false)
+				$sous_rep_pos = ""; // compat noizetier: pas de chemin dans le nom de la noisette
+			
 			// On ne garde que les squelettes ayant un fichier YAML de config
 			if (file_exists("$dossier$noisette.yaml")
 				AND ($infos_noisette = melusine_charger_infos_noisette_yaml($dossier.$noisette))
 			){
 				// diff avec noizetier:
 				// le sous-répertoire va être noté pour
-				// les inclusions... Il peut être dans
-				// modules ou noisettes
-				$sous_rep_pos = strrpos($dossier,"modules/");
-				if ($sous_rep_pos === false)
-					$sous_rep_pos = strrpos($dossier,"noisettes/");
-				$liste_noisettes[$noisette] = array_merge(
-						$infos_noisette,	// compat noizetier
-						array("repertoire" => substr($dossier,$sous_rep_pos))	// On note le sous-rép pour l'inclusion
-					);
+				// les inclusions...
+				$liste_noisettes[substr($dossier,$sous_rep_pos).$noisette] = $infos_noisette;
 			} else {
 				// diff avec noizetier:
 				// Sans YAML, on garde la noisette
 				// avec des infos sommaires
-				$bloc = substr($dossier,strrpos($dossier,"modules/")+8,-1);
-				$liste_noisettes[$noisette] = array(
+				$bloc = substr($dossier,$sous_rep_pos+8,-1);
+				$liste_noisettes[substr($dossier,$sous_rep_pos).$noisette] = array(
 						"nom" => spip_ucfirst(str_replace("_"," ",$noisette)),
 						"parametres" => array(),
 						"contexte" => array(),
 						"ajax" => "non",
 						"inclusion" => "statique",
 						"bloc" => $bloc,	// spécifique de Mélusine
-						"repertoire" => substr($dossier,strrpos($dossier,"modules/",-1))			// On note le sous-rép pour l'inclusion
 					);
 			}
 		}

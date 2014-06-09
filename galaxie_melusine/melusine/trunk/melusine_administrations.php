@@ -392,6 +392,11 @@ function melusine_migration_version_2() {
 	// et n place toutes les infos dans la BD
 	include_spip('action/editer_objet');
 
+	$tableau_chemins_modules_content = array(
+		"article" => "modules/articles/",
+		"rubrique" => "modules/rubriques/",
+		"sommaire" => "modules/"
+		);
 	// Pour chaque type de page...
 	foreach($modules as $type_page => $blocs) {
 		// Pour chaque typppe de bloc...
@@ -405,13 +410,29 @@ function melusine_migration_version_2() {
 			);
 			//pour chaque noisette...
 			foreach($liste_modules as $module) {
-				$set['noisette'] = $module;
-				$set['rang']++;
-				
-				// insertion
-				$id_noisette = objet_inserer("noisette", $id_parent="",$set);
-				if (!$id_noisette)
-					spip_log("Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type_page. "au rang ".$rang);
+
+				// gestions des différents cas particuliers
+				// des sous-répertoires de Mélusine 1 et DATICE
+				$nom_module = "modules/".$module;
+				if ($bloc == "content")
+					$nom_module = $tableau_chemins_modules_content[$type_page].$module;
+				if ($bloc == "breadcrumb")
+					$nom_module = "modules/chemin/".$module;
+				if ($bloc == "footer")
+					$nom_module = "modules/footer/".$module;
+				if ($module == "aucun")
+					$nom_module ="";
+				echo "$nom_module - ";
+				// Si le module n'est pas vide:
+				if ($nom_module) {
+					$set['noisette'] = $nom_module;
+					$set['rang']++;
+
+					// insertion
+					$id_noisette = objet_inserer("noisette", $id_parent="",$set);
+					if (!$id_noisette)
+						spip_log("Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type_page. "au rang ".$rang);
+				}
 			}
 		}
 
