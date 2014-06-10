@@ -401,10 +401,6 @@ function melusine_obtenir_infos_noisettes_direct(){
 			foreach ($infos_noisette['necessite'] as $plugin)
 				if (!defined('_DIR_PLUGIN_'.strtoupper($plugin)))
 					unset($liste_noisettes[$noisette]);
-
-	echo "<pre>";
-	print_r($liste_noisettes);
-	echo "</pre>";
 	
 	return $liste_noisettes;
 }
