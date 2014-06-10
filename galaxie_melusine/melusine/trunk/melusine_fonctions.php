@@ -359,9 +359,10 @@ function melusine_obtenir_infos_noisettes_direct(){
 				)
 			);
 	}
-		
+
 	if (count($liste)){
 		foreach($liste as $squelette=>$chemin) {
+
 			$noisette = preg_replace(',[.]html$,i', '', $squelette);
 			$dossier = str_replace($squelette, '', $chemin);
 			
@@ -369,7 +370,6 @@ function melusine_obtenir_infos_noisettes_direct(){
 			$sous_rep_pos = strrpos($dossier,"modules/");
 			if ($sous_rep_pos === false)
 				$sous_rep_pos = ""; // compat noizetier: pas de chemin dans le nom de la noisette
-			
 			// On ne garde que les squelettes ayant un fichier YAML de config
 			if (file_exists("$dossier$noisette.yaml")
 				AND ($infos_noisette = melusine_charger_infos_noisette_yaml($dossier.$noisette))
@@ -524,5 +524,61 @@ function melusine_obtenir_infos_noisettes() {
 	}
 	
 	return $noisettes;
+}
+
+/**
+ * Fork du filtre table_valeur: pour pouvoir utiliser des clé avec des "/"
+ * permet de recuperer la valeur d'une cle donnee
+ * dans un tableau (ou un objet).
+ * 
+ * @param mixed $table
+ * 		Tableau ou objet
+ * 		(ou chaine serialisee de tableau, ce qui permet d'enchainer le filtre)
+ * 		
+ * @param string $cle
+ * 		Cle du tableau (ou parametre public de l'objet)
+ * 		Cette cle peut contenir des caracteres ! (et non /) pour selectionner
+ * 		des sous elements dans le tableau, tel que "sous.element.ici"
+ * 		pour obtenir la valeur de $tableau['sous']['element']['ici']
+ *
+ * @param mixed $defaut
+ * 		Valeur par defaut retournee si la cle demandee n'existe pas
+ * 
+ * @return mixed Valeur trouvee ou valeur par defaut.
+**/
+function table_valeur_cleslash($table, $cle, $defaut='') {
+	foreach (explode('!', $cle) as $k) {
+
+		$table = is_string($table) ? @unserialize($table) : $table;
+
+		if (is_object($table)) {
+			$table =  (($k !== "") and isset($table->$k)) ? $table->$k : $defaut;
+		} elseif (is_array($table)) {
+			$table = isset($table[$k]) ? $table[$k] : $defaut;
+		} else {
+			$table = $defaut;
+		}
+	}
+	return $table;
+}
+
+/**
+ * Retourne le joli nom d'un bloc passé en argument
+ *
+ * @param text $bloc nom abrégé du bloc
+ * 
+ * @return text joli nom du bloc
+ *
+**/
+
+function melusine_nombloc($bloc){
+	$fin_nom_col = strrpos($bloc,"-col");
+	if ($fin_nom_col === false)
+		return $GLOBALS['noms_z_blocs'][$bloc];
+	if (strripos($bloc,"3",$fin_nom_col))
+		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 3";
+	if (strripos($bloc,"2",$fin_nom_col))
+		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 2";
+	return "Pas de nom";
 }
 ?>
