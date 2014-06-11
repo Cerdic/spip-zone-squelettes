@@ -50,9 +50,6 @@ function formulaires_melusine_ajout_module_charger_dist($bloc,$type="rubrique"){
 function formulaires_melusine_ajout_module_verifier_dist($bloc,$type="rubrique"){
 	$erreurs = array();
 
-	if (!$casier OR !lire_config($casier))
-		$erreurs["message_erreur"] = "le bloc n'a pas été correctement défini";
-
 	return $erreurs;
 	
 }
@@ -62,35 +59,54 @@ function formulaires_melusine_ajout_module_verifier_dist($bloc,$type="rubrique")
  *
  * @uses formulaires_editer_objet_traiter()
  *
- * @param int|string $casier
- *     nom du casier correspondant au bloc dans lequel on veut ajouter un module
- * @param int|string $casiers_page
- *     liste des casiers de la page
- * @param int|string $reserve
- *     casier contenant la réserve de modules dédiée à la page
- *	(par défaut c'est "squelettes")
+ * @param string $bloc
+ *     nom du bloc à remplir
+ * @param string $type
+ *     type de page du bloc à remplir
  * @return array
  *     retour des traitements
  */
-function formulaires_melusine_ajout_module_traiter_dist($casier="", $casiers_page="", $reserve="squelettes"){
+function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 
 	$nom_module = _request("nom_module");
 
 	// On cherche une place libre dans le casier
 	// et on y met le module
-	$j=1;
-	while($valeur!='aucun'){
-		$chemin=$casier.$j;
-		$valeur=lire_config($chemin);
-		$j++;
-	}
-	if($j<11){
-		ecrire_config($chemin,$nom_module);
-		return array('message_ok'=>'enregistré');
-	} else {
-		return array("message_erreur" => "Plus de place dans ce bloc&nbsp;! Vous devez d'abord retirer un module...");
+	// Infos de la noisette:
+	include_spip('base/abstract_sql');
+	// infos sur le module le plus bas
+	// dans le bloc
+	$infos_module_bas= sql_fetsel(
+		array(
+			"rang",
+			),
+		"spip_noisettes",
+		"bloc = ".sql_quote($bloc)." AND type = ".sql_quote($type),
+		"",
+		"rang DESC"
+		);
+	// Pas de place...
+	if ($infos_module_bas['rang'] > 11) 
+		return array('message_erreur' => "Plus de place dans ce bloc&nbsp;! Vous devez d'abord retirer un module...");
+
+
+	// On met le module dans la base:
+	include_spip('action/editer_objet');
+	$set = array(
+		"rang" => $infos_module_bas['rang']+1,
+		"type" => $type,
+		"bloc" => $bloc,
+		"noisette" => $nom_module
+	);
+	$id_noisette = objet_inserer("noisette", $id_parent="",$set);
+		if (!$id_noisette)
+			return array("message_erreur" => "Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
+
 		
-	}
-	
+	// On invalide le cache
+	include_spip('inc/invalideur');
+	suivre_invalideur(1);
+
+	return array("message_ok" => "module inséré");
 }
 ?>
