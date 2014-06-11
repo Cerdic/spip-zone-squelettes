@@ -10,7 +10,6 @@
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
-include_spip('inc/config');
 
 /**
  * Chargement du formulaire d'ajout de modules
@@ -67,6 +66,8 @@ function formulaires_melusine_ajout_module_verifier_dist($bloc,$type="rubrique")
  *     retour des traitements
  */
 function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
+	// Pas d'ajax...
+	refuser_traiter_formulaire_ajax();
 
 	$nom_module = _request("nom_module");
 
@@ -88,7 +89,7 @@ function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 	// Pas de place...
 	if ($infos_module_bas['rang'] > 11) 
 		return array('message_erreur' => "Plus de place dans ce bloc&nbsp;! Vous devez d'abord retirer un module...");
-
+	
 
 	// On met le module dans la base:
 	include_spip('action/editer_objet');
@@ -99,14 +100,14 @@ function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 		"noisette" => $nom_module
 	);
 	$id_noisette = objet_inserer("noisette", $id_parent="",$set);
-		if (!$id_noisette)
-			return array("message_erreur" => "Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
+	if (!$id_noisette)
+		return array("message_erreur" => "Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
 
 		
 	// On invalide le cache
 	include_spip('inc/invalideur');
 	suivre_invalideur(1);
 
-	return array("message_ok" => "module inséré");
+	return array("message_ok" => "module &laquo;&nbsp;$module&nbsp;&raquo; inséré");
 }
 ?>
