@@ -1,22 +1,58 @@
 #FILTRE{ŧrim}
-#SET{skel, #CONFIG{#ENV{reserve}/skel}|sinon{#ARRAY}}
-<BOUCLE_modules_pris(POUR){tableau #ENV{casiers_page}|explode{","}|sinon{#ARRAY}}>
-[(#SET{modules_pris,[(#GET{modules_pris}|sinon{#ARRAY}|array_merge{[(#CONFIG{#VALEUR}|sinon{#ARRAY})]})]}
+[(#REM)
+
+
+
+
+	On récupère la liste des modules dispos, triés par unicité
+
+]
+[(#SET{modules_dispo,[(#BLOC|melusine_liste_modules_autorises{#TYPE}|sinon{#ARRAY})]})]
+[(#SET{modules_dispo_tries,[(#GET{modules_dispo}|melusine_trier_uniques)]}
 )]
+
+
+[(#REM)
+
+
+
+
+	On récupère la liste des modules déjà pris et qui sont
+	supposés être uniques
+
+]
+<BOUCLE_modules_pris(NOISETTES){bloc}{type}>
+[(#GET{modules_dispo_tries}|table_valeur_cleslash{uniques!#NOISETTE!unique}|=={oui}|oui)
+	[(#SET{modules_pris_uniques,[(#GET{modules_pris_uniques}|sinon{#ARRAY}|push{#NOISETTE})]}
+	)]
+]
 </BOUCLE_modules_pris>
-[(#SET{colonne,[(#GET{sommaireg}|array_merge{#GET{sommaired},#GET{droite},#GET{gauche}})]})]
-[(#SET{modules_en_reserve,[(#GET{skel}|array_diff{#GET{modules_pris}})]})]
+[(#REM)
+
+
+
+	Dans la pile des modules dipos, on
+	enlève ceux qui sont pris et uniques
+]
+[(#SET{modules_utilisables,[(#GET{modules_dispo}|sinon{#ARRAY}|array_diff_key{#GET{modules_pris_uniques}|array_flip})]})]
+[(#REM)
+
+
+
+	Et on affiche le formulaire avec la liste
+	des modules que l'on peu ajouter
+]
 <div class="formulaire_spip formulaire_deplacer_module">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	<form action="#ENV{action}" method="post"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul class="boutons editer_position obligatoire">
-<BOUCLE_dispos(POUR){tableau #GET{modules_en_reserve}}>
+<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}>
 			<li>
 
-				<input type='submit' title="Ajouter ce module"  name='nom_module' value="#VALEUR" />
-				[(#VALEUR|replace{"_"," "}|spip_ucfirst)]
+				<input type='submit' title="Ajouter ce module"  name='nom_module' value="[(#CLE|attribut_html)]" />
+				[(#VALEUR|table_valeur_cleslash{nom})]
 
 			</li>
 </BOUCLE_dispos>

@@ -620,4 +620,31 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 	
 	return $liste_finale;
 }
+/**
+ * Retourne la liste des modules passé en param triée en séprant
+ *  les modules "uniques" des autres
+ *
+ * @param text $liste_modules
+ * 	(liste de modules issue de melusine_lister_noisettes ou
+ * 	melusine_liste_modules_autorises)
+ * 
+ * @return array deux listes des modules (avec détails)
+ *	uniques => une liste, multiples => l'autre
+ *
+**/
+
+function melusine_trier_uniques($liste_modules){
+	$liste_finale = array("uniques" => array(),"multiples" => array());
+
+	// Pour chaque module...
+	foreach($liste_modules as $module => $infos_module) {
+			$unique_ou_non = "multiples";
+		if ($infos_module["unique"] == "oui")
+			$unique_ou_non = "uniques";
+		$liste_finale[$unique_ou_non][$module] = $infos_module;
+	}
+	
+	return $liste_finale;
+}
+
 ?>

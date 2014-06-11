@@ -17,22 +17,18 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *
  * @uses formulaires_editer_objet_charger()
  *
- * @param int|string $casier
- *     nom du casier correspondant au bloc dans lequel on veut ajouter un module
- * @param int|string $casiers_page
- *     liste des casiers de la page
- * @param int|string $reserve
- *     casier contenant la réserve de modules dédiée à la page
- *	(par défaut c'est "squelettes")
+ * @param string $bloc
+ *     nom du bloc à remplir
+ * @param string $type
+ *     type de page du bloc à remplir
  * @return array
  *     Environnement du formulaire
  */
-function formulaires_melusine_ajout_module_charger_dist($casier="", $casiers_page="", $reserve="squelettes"){
+function formulaires_melusine_ajout_module_charger_dist($bloc,$type="rubrique"){
 
 	$valeurs = array(
-		"casier" => $casier,
-		"casiers_page" => $casiers_page,
-		"reserve" => $reserve
+		"bloc" => $bloc,
+		"type" => $type
 	);
 
 	return $valeurs;
@@ -44,17 +40,14 @@ function formulaires_melusine_ajout_module_charger_dist($casier="", $casiers_pag
  *
  * @uses formulaires_editer_objet_verifier()
  *
- * @param int|string $casier
- *     nom du casier correspondant au bloc dans lequel on veut ajouter un module
- * @param int|string $casiers_page
- *     liste des casiers de la page
- * @param int|string $reserve
- *     casier contenant la réserve de modules dédiée à la page
- *	(par défaut c'est "squelettes")
+ * @param string $bloc
+ *     nom du bloc à remplir
+ * @param string $type
+ *     type de page du bloc à remplir
  * @return array
  *     Tableau des erreurs
  */
-function formulaires_melusine_ajout_module_verifier_dist($casier="", $casiers_page="", $reserve="squelettes"){
+function formulaires_melusine_ajout_module_verifier_dist($bloc,$type="rubrique"){
 	$erreurs = array();
 
 	if (!$casier OR !lire_config($casier))
