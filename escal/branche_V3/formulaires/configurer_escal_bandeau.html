@@ -38,12 +38,32 @@
                     </span>
               <br /><br /><br />
 
+              Pour l'<strong>option 2</strong> : <br />
+              Si votre image de bandeau n'occupe pas toute la largeur, vous pouvez choisir sa position.<br />
+              Attention néanmoins aux "effets de bords" si vous affichez le nom du  site, son slogan ou son descriptif.
+              <br /><br />
+              #SET{name,alignbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Position de l'image du bandeau <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_left" value="left"
+                            [(#ENV{#GET{name}}|=={left}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui">À gauche</label>
 
-              #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Pour l'<strong>option 3</strong> :
+                            <input type="radio" name="#GET{name}" id="#GET{name}_center" value="center"
+                            [(#ENV{#GET{name}}|=={center}|oui)checked="checked"] /><label for="#GET{name}_non">Au centre</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_right" value="right"
+                            [(#ENV{#GET{name}}|=={right}|oui)checked="checked"] /><label for="#GET{name}_non">À droite</label>
+                    </span>
+              <br /><br /><br />
+                    
+              #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}} 
+              Pour l'<strong>option 3</strong> : <br />
               - votre image doit être placée dans /squelettes/images/bandeau <br />
-              - Toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
-              - Avec Firefox, vous aurez même un aperçu de votre bandeau en direct !
+              - cette image s'adaptera à la largeur du site, prévoyez-la donc assez large <br />
+              - en revanche, cette image sera "responsive" si l'écran fait moins de 640px de large <br />
+              - toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
+              - avec Firefox, vous aurez même un aperçu de votre bandeau en direct !
               <br /><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix">
@@ -143,24 +163,6 @@
               Si votre dossier /squelettes/images/bandeau contient une image appelée rubriqueXX.jpg où XX est le numéro d'un secteur,
               alors ce secteur, ses sous-rubriques et leurs articles afficheront ce bandeau.
               Les autres afficheront le bandeau défini au-dessus.
-              
-              <br /><br />
-              Si votre image de bandeau n'occupe pas toute la largeur, vous pouvez choisir sa position.<br />
-              Attention néanmoins aux "effets de bords" si vous affichez le nom du  site, son slogan ou son descriptif.
-              <br /><br />
-              #SET{name,alignbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Position de l'image du bandeau <br />
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_left" value="left"
-                            [(#ENV{#GET{name}}|=={left}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui">À gauche</label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_center" value="center"
-                            [(#ENV{#GET{name}}|=={center}|oui)checked="checked"] /><label for="#GET{name}_non">Au centre</label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_right" value="right"
-                            [(#ENV{#GET{name}}|=={right}|oui)checked="checked"] /><label for="#GET{name}_non">À droite</label>
-                    </span>
 
                     </div>
               <br />
