@@ -609,13 +609,8 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 
 	// Pour chaque module...
 	foreach($liste_complete as $module => $infos_module) {
-		if (!is_array($infos_module)){
-			print_r($infos_module)."-";
+		if (!is_array($infos_module))
 			$infos_module = (array)$infos_module;
-		}
-		if (!is_array($infos_module["blocs_autorises"])){
-			$infos_module["blocs_autorises"]=array();
-			}
 			
 		// Si pas de bloc blocs_autorises
 		// alors, c'est autorisé partout
