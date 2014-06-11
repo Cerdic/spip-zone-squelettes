@@ -27,6 +27,7 @@
 	le bouton d'ajout, ou non
 
 ]
+
 <BOUCLE_Place_libre(NOISETTES)
 			{type=#ENV{type,#GET{type_par_defaut}}}
 			{bloc}
@@ -36,10 +37,10 @@
 </BOUCLE_Place_libre>
 <a href="[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
 		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>
+		|parametre_url{'nom_bloc',#GET{nom_bloc} }
+	)]" class='button mediabox boxIframe boxWidth-500px boxHeight-500px'>
 	Ajouter un module dans ce bloc
-</a>
+</a> 
 <//B_Place_libre>
 
 
@@ -60,7 +61,9 @@
 	#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#ID_NOISETTE}
 ]
 	[(#SET{fond,[(#NOISETTE|strrpos{"/"}|?{"","noisettes/"}|concat{#NOISETTE})]})]
-	<INCLURE{fond=#GET{fond},id_article,id_rubrique}>
+	
+		<INCLURE{fond=#GET{fond},id_article,id_rubrique}>
+	
 </div>
 </BOUCLE_modules>
 #FILTRE{trim}

@@ -369,7 +369,7 @@ function melusine_obtenir_infos_noisettes_direct(){
 			// Position du module dans les osu-rép de Mélusine
 			$sous_rep_pos = strrpos($dossier,"modules/");
 			if ($sous_rep_pos === false)
-				$sous_rep_pos = ""; // compat noizetier: pas de chemin dans le nom de la noisette
+				$sous_rep_pos = 0; // compat noizetier: pas de chemin dans le nom de la noisette
 			// On ne garde que les squelettes ayant un fichier YAML de config
 			if (file_exists("$dossier$noisette.yaml")
 				AND ($infos_noisette = melusine_charger_infos_noisette_yaml($dossier.$noisette))
@@ -595,6 +595,9 @@ function melusine_nombloc($bloc){
 **/
 
 function melusine_liste_modules_autorises($bloc,$type="rubrique"){
+	$colonne=strpos($bloc,"-col");
+	if($colonne>0)
+		$bloc=substr($bloc,0,$colonne);
 	$liste_finale = array();
 	$liste_complete = melusine_lister_noisettes();
 
@@ -606,8 +609,14 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 
 	// Pour chaque module...
 	foreach($liste_complete as $module => $infos_module) {
-		if (!is_array($infos_module))
+		if (!is_array($infos_module)){
+			print_r($infos_module)."-";
 			$infos_module = (array)$infos_module;
+		}
+		if (!is_array($infos_module["blocs_autorises"])){
+			$infos_module["blocs_autorises"]=array();
+			}
+			
 		// Si pas de bloc blocs_autorises
 		// alors, c'est autorisé partout
 		// (compat noizetier et Mélusine 1/DATICE)

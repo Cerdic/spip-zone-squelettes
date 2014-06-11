@@ -1,33 +1,4 @@
 #CACHE{3600*24*58}
 
-#SET{col,1}
-#SET{col1,"col-md-12"}
-#SET{col2,"col-md-0"}
-#SET{ajout,header-col2}
-<BOUCLE_modulecol2(NOISETTES){type=#ENV{type-page}}{bloc=content-col2}{0,1}> 
-#SET{col,2}
-#SET{col1,"col-md-6"}
-#SET{col2,"col-md-6"}
-#SET{ajout2,content-col3}
-#SET{ajout,0}
-</BOUCLE_modulecol2>
-<BOUCLE_modulecol3(NOISETTES){type=#ENV{type-page}}{bloc=content-col3}{0,1}> 
-#SET{col,3}
-#SET{col1,"col-md-4"}
-#SET{col2,"col-md-4"}
-#SET{col3,"col-md-4"}
-</BOUCLE_modulecol3>
 
-<div class="row">
-	<div class="#GET{col1} ">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=content}{type=#ENV{type-page}}>
-	</div>
-[(#GET{col}|>{1}|oui)  
-	<div class="#GET{col2}">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=content-col2,ajout=#GET{ajout2}}{type=#ENV{type-page}}>
-	</div>]
-[(#GET{col}|>{2}|oui)  
-	<div class="#GET{col3}">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=content-col3}{type=#ENV{type-page}}>
-	</div>]
-</div>
+<INCLURE{fond=inclure/inc_blocs_colonnes,type_bloc=content}{type=#ENV{type-page}}>

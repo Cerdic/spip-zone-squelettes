@@ -10,7 +10,7 @@
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
-
+include_spip('inc/config');
 
 /**
  * Chargement du formulaire d'ajout de modules

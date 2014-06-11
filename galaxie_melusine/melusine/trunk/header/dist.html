@@ -2,37 +2,4 @@
 #SET{remplissant, #CONFIG{melusine_bandeau/remplissant}}
 #SET{tbandeau, #CONFIG{melusine_bandeau/tbandeau}}
 
-
-#SET{col,1}
-#SET{col1,"col-md-12"}
-#SET{col2,"col-md-0"}
-#SET{ajout,header-col2}
-<BOUCLE_modulecol2(NOISETTES){type=#ENV{type-page}}{bloc=header-col2}{0,1}> 
-#SET{col,2}
-#SET{col1,"col-md-3"}
-#SET{col2,"col-md-9"}
-#SET{ajout2,header-col3}
-#SET{ajout,0}
-</BOUCLE_modulecol2>
-<BOUCLE_modulecol3(NOISETTES){type=#ENV{type-page}}{bloc=header-col3}{0,1}> 
-#SET{col,3}
-#SET{col1,"col-md-3"}
-#SET{col2,"col-md-6"}
-#SET{col3,"col-md-3"}
-</BOUCLE_modulecol3>
-
-
-	<div class="#GET{col1} ">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=header,ajout=#GET{ajout}}{type=#ENV{type-page}}>
-	</div>
-[(#GET{col}|>{1}|oui)  
-	<div class="#GET{col2}">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=header-col2,ajout=#GET{ajout2}}{type=#ENV{type-page}}>
-	</div>]
-[(#GET{col}|>{2}|oui)  
-	<div class="#GET{col3}">
-		<INCLURE{fond=inclure/inc_pile_modules,bloc=header-col3}{type=#ENV{type-page}}>
-	</div>]
-
-
-
+<INCLURE{fond=inclure/inc_blocs_colonnes,type_bloc=header}{type=#ENV{type-page}}>
