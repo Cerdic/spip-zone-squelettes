@@ -1,21 +1,22 @@
 #CACHE{3600*24*58}
-#SET{choixsom, #CONFIG{melusine_sommaire/choixsom} }
-#SET{sommairegauche, (#CONFIG{melusine_sommaire/x}|serialize)}
-#SET{sommairedroite, (#CONFIG{melusine_sommaire/y}|serialize)}
- [(#GET{choixsom}|=={1}|oui)  
-		 	#SET{col1,"col-md-12"}
-			#SET{col2,"col-md-0"}
-			
-]
-[(#GET{choixsom}|=={2}|oui)  
-		 	#SET{col1,"col-md-6"}
-			#SET{col2,"col-md-6"}
-			
-]
+
+#SET{col,1}
+#SET{col1,"col-md-12"}
+#SET{col2,"col-md-0"}
+<BOUCLE_module(NOISETTES){type=sommaire}{bloc=content-col2}> 
+#SET{col,2}
+#SET{col1,"col-md-6"}
+#SET{col2,"col-md-6"
+</BOUCLE_module>
+
+
+
+<div class="row">
 	<div class="#GET{col1} ">
 		<INCLURE{fond=inclure/inc_pile_modules,bloc=content}{type=#ENV{type-page}}>
 	</div>
-
+[(#GET{col}|=={2}|oui)  
 	<div class="#GET{col2}">
 		<INCLURE{fond=inclure/inc_pile_modules,bloc=content-col2}{type=#ENV{type-page}}>
-	</div>
+	</div>]
+</div>
