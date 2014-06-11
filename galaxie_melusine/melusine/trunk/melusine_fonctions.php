@@ -383,13 +383,16 @@ function melusine_obtenir_infos_noisettes_direct(){
 				// Sans YAML, on garde la noisette
 				// avec des infos sommaires
 				$bloc = substr($dossier,$sous_rep_pos+8,-1);
+				if ($bloc == "articles" OR $bloc == "rubriques")
+					$bloc = substr($bloc,0,-1);
+				if ($bloc) $bloc = array($bloc);
 				$liste_noisettes[substr($dossier,$sous_rep_pos).$noisette] = array(
 						"nom" => spip_ucfirst(str_replace("_"," ",$noisette)),
 						"parametres" => array(),
 						"contexte" => array(),
 						"ajax" => "non",
 						"inclusion" => "statique",
-						"bloc" => $bloc,	// spécifique de Mélusine
+						"blocs_autorises" => $bloc,	// spécifique de Mélusine
 					);
 			}
 		}
@@ -580,5 +583,41 @@ function melusine_nombloc($bloc){
 	if (strripos($bloc,"2",$fin_nom_col))
 		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 2";
 	return "Pas de nom";
+}
+/**
+ * Retourne la liste des modules qui sont autorisés pour un bloc donné
+ *
+ * @param text $bloc nom du bloc
+ * @param text $type type de page (par défaut: rubrique)
+ * 
+ * @return array liste des modules avec les infos attenantes
+ *
+**/
+
+function melusine_liste_modules_autorises($bloc,$type="rubrique"){
+	$liste_finale = array();
+	$liste_complete = melusine_lister_noisettes();
+
+	// Pour chaque module...
+	foreach($liste_complete as $module => $infos_module) {
+		// Si pas de bloc blocs_autorises
+		// alors, c'est autorisé partout
+		// (compat noizetier et Mélusine 1/DATICE)
+		if (count($infos_module["blocs_autorises"])==0) {
+			$liste_finale[$module] = $infos_module;
+		} elseif (in_array($bloc,$infos_module["blocs_autorises"])){
+			// Sinon on vérifie que le module est autorisé
+			$liste_finale[$module] = $infos_module;
+		} elseif (
+			$bloc=="content"
+			AND in_array($type,$infos_module["blocs_autorises"])
+			) {
+			// Cas des blocs "content" désignés directement par le type page
+			$liste_finale[$module] = $infos_module;
+		}
+		
+	}
+	
+	return $liste_finale;
 }
 ?>
