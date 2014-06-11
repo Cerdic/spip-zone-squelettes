@@ -598,6 +598,12 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 	$liste_finale = array();
 	$liste_complete = melusine_lister_noisettes();
 
+	// On nettoie bloc pour que ça marche quelle que
+	// soit la colonne
+	$colonne = strrpos($bloc,"-col");
+	if ($colonne > 0)
+		$bloc = substr($bloc,0,$colonne);
+
 	// Pour chaque module...
 	foreach($liste_complete as $module => $infos_module) {
 		if (!is_array($infos_module))
