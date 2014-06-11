@@ -21,19 +21,31 @@
 )]
 [(#SET{nom_bloc,[(#BLOC|melusine_nombloc) ([(#TYPE)])]})]
 [(#GET{admin_melusine}|oui)
+
 <a href="[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
 		|parametre_url{'type',#TYPE}
 		|parametre_url{'nom_bloc',#GET{nom_bloc}}
 	)]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>
 	Ajouter un module dans ce bloc
+</a>
+[(#ENV{ajout}>{0}|oui)  
+<a href="[(#URL_PAGE{ajout_module_bloc,bloc=#ENV{ajout}}
+		|parametre_url{'type',#TYPE}
+		|parametre_url{'nom_bloc',#GET{nom_bloc}}
+	)]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>
+	Ajouter dans une nouvelle colonne
 </a>]
+
+]
+
+
 <BOUCLE_modules(NOISETTES){type=#ENV{type,#GET{type_par_defaut}}}{bloc}{par rang}>
 <div class="module_melusine[(#GET{admin_melusine}|oui) admin_melusine][ (#ENV{id_noisette}|=={#ID_NOISETTE}|oui)on]">
 [(#GET{admin_melusine}|oui)
 	#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#ID_NOISETTE}
 ]
 	[(#SET{fond,[(#NOISETTE|strrpos{"/"}|?{"","noisettes/"}|concat{#NOISETTE})]})]
-	<INCLURE{fond=#GET{fond}}>
+	<INCLURE{fond=#GET{fond},id_article,id_rubrique}>
 </div>
 </BOUCLE_modules>
 #FILTRE{trim}
