@@ -600,6 +600,8 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 
 	// Pour chaque module...
 	foreach($liste_complete as $module => $infos_module) {
+		if (!is_array($infos_module))
+			$infos_module = (array)$infos_module;
 		// Si pas de bloc blocs_autorises
 		// alors, c'est autorisé partout
 		// (compat noizetier et Mélusine 1/DATICE)
