@@ -611,7 +611,7 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
 		// Si pas de bloc blocs_autorises
 		// alors, c'est autorisé partout
 		// (compat noizetier et Mélusine 1/DATICE)
-		if (count($infos_module["blocs_autorises"])==0) {
+		if (!$infos_module["blocs_autorises"]) {
 			$liste_finale[$module] = $infos_module;
 		} elseif (in_array($bloc,$infos_module["blocs_autorises"])){
 			// Sinon on vérifie que le module est autorisé
