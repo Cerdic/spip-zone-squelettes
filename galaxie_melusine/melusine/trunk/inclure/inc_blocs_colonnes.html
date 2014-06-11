@@ -1,0 +1,34 @@
+#SET{col,1}
+#SET{col1,"col-md-12"}
+#SET{col2,"col-md-0"}
+#SET{ajout,#ENV{type_bloc}-col2}
+<BOUCLE_modulecol2(NOISETTES){type=#ENV{type}}{bloc=#ENV{type_bloc}-col2}{0,1}> 
+#SET{col,2}
+
+#SET{col1,"col-md-6"}
+#SET{col2,"col-md-6"}
+#SET{ajout,0}
+#SET{ajout2,#ENV{type_bloc}-col3}
+</BOUCLE_modulecol2>
+<BOUCLE_modulecol3(NOISETTES){type=#ENV{type}}{bloc=#ENV{type_bloc}-col3}{0,1}> 
+#SET{col,3}
+
+#SET{col1,"col-md-4"}
+#SET{col2,"col-md-4"}
+#SET{col3,"col-md-4"}
+#SET{ajout2,0}
+#SET{ajout,0}
+</BOUCLE_modulecol3>
+
+
+	<div class="#GET{col1} ">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=#ENV{type_bloc},ajout=#GET{ajout}}{type=#ENV{type}}>
+	</div>
+[(#GET{col}|>{1}|oui)  
+	<div class="#GET{col2}">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=#ENV{type_bloc}-col2,ajout=#GET{ajout2}}{type=#ENV{type}}>
+	</div>]
+[(#GET{col}|>{2}|oui)  
+	<div class="#GET{col3}">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=#ENV{type_bloc}-col3}{type=#ENV{type}}>
+	</div>]
