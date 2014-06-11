@@ -2,31 +2,38 @@
 #SET{remplissant, #CONFIG{melusine_bandeau/remplissant}}
 #SET{tbandeau, #CONFIG{melusine_bandeau/tbandeau}}
 
-<div class="imagegauchelog">
-	#SET{positions, #CONFIG{melusine_boutons}}
-	<BOUCLE_logo(POUR){tableau #GET{positions}}>	
-		<BOUCLE_logo2(CONDITION){si (#CONFIG{melusine_boutons/#CLE/emplacement}|=={bandeau}|oui)}>
-			<a  style="border:0px;"  href="[(#CONFIG{melusine_boutons/#CLE/add})]" [(#CONFIG{melusine_boutons/#CLE/blanck}|=={blanck}?{target="blanck",}) ]>	
-				<BOUCLE_test4(CONDITION){si (#CONFIG{melusine_boutons/#CLE/boutonimage}|=={"aucun"}|oui)}>
-					<img src="#CHEMIN{'images/image1.png'}">
-				</BOUCLE_test4>			
-					[<img src="(#CONFIG{melusine_boutons/#CLE/boutonimage})" alt="#CONFIG{melusine_boutons/#CLE/alt}" />]									<//B_test4>
-				[<span class="logo-titre">(#CONFIG{melusine_boutons/#CLE/intit})</span> ]
-			</a> 
-		</BOUCLE_logo2> 
-   		</B_logo2>	
-	</BOUCLE_logo>
-</div>
 
-<div class="bandeau" style="width:100%;">
-	<a class="bandeau3" href="#URL_SITE_SPIP" title="<:accueil_site:>">[(#NOM_SITE_SPIP)]</a>			
-	<div  class="nouvim"  [(#GET{remplissant}|=={oui}|?{style="width:100%",""})]>		
- 		[<img  class="nouvimage" [(#GET{remplissant}|=={oui}|?{style="width:100%",""})] alt="" src="(#LOGO_SITE_SPIP||extraire_attribut{src})" />]
-		<BOUCLE_test2(CONDITION){si #GET{tbandeau}|=={non}} >
-		
-		</BOUCLE_test2>
-			#DEGRADE
-		<//B_test2>	
+#SET{col,1}
+#SET{col1,"col-md-12"}
+#SET{col2,"col-md-0"}
+#SET{ajout,header-col2}
+<BOUCLE_modulecol2(NOISETTES){type=#ENV{type-page}}{bloc=header-col2}{0,1}> 
+#SET{col,2}
+#SET{col1,"col-md-3"}
+#SET{col2,"col-md-9"}
+#SET{ajout2,header-col3}
+#SET{ajout,0}
+</BOUCLE_modulecol2>
+<BOUCLE_modulecol3(NOISETTES){type=#ENV{type-page}}{bloc=header-col3}{0,1}> 
+#SET{col,3}
+#SET{col1,"col-md-3"}
+#SET{col2,"col-md-6"}
+#SET{col3,"col-md-3"}
+
+</BOUCLE_modulecol3>
+
+
+	<div class="#GET{col1} ">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=header,ajout=#GET{ajout}}{type=#ENV{type-page}}>
 	</div>
-</div>
+[(#GET{col}|>{1}|oui)  
+	<div class="#GET{col2}">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=header-col2,ajout=#GET{ajout2}}{type=#ENV{type-page}}>
+	</div>]
+[(#GET{col}|>{2}|oui)  
+	<div class="#GET{col3}">
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=header-col3}{type=#ENV{type-page}}>
+	</div>]
+
+
 
