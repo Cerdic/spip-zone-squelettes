@@ -20,15 +20,31 @@
 		oui]}
 )]
 [(#SET{nom_bloc,[(#BLOC|melusine_nombloc) ([(#TYPE)])]})]
-[(#GET{admin_melusine}|oui)
 
+[(#REM)
+
+	On vérifie qu'il reste de la place libre pourr afficher
+	le bouton d'ajout, ou non
+
+]
+<BOUCLE_Place_libre(NOISETTES)
+			{type=#ENV{type,#GET{type_par_defaut}}}
+			{bloc}
+			{11,1}
+			{si #GET{admin_melusine}|oui}>
+<span class="info">Ce bloc est plein</span>
+</BOUCLE_Place_libre>
 <a href="[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
 		|parametre_url{'type',#TYPE}
 		|parametre_url{'nom_bloc',#GET{nom_bloc}}
 	)]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>
 	Ajouter un module dans ce bloc
 </a>
-[(#ENV{ajout}>{0}|oui)  
+<//B_Place_libre>
+
+
+
+[(#ENV{ajout}>{0}|et{#GET{admin_melusine}}|oui)  
 <a href="[(#URL_PAGE{ajout_module_bloc,bloc=#ENV{ajout}}
 		|parametre_url{'type',#TYPE}
 		|parametre_url{'nom_bloc',#GET{nom_bloc}}
@@ -36,7 +52,6 @@
 	Ajouter dans une nouvelle colonne
 </a>]
 
-]
 
 
 <BOUCLE_modules(NOISETTES){type=#ENV{type,#GET{type_par_defaut}}}{bloc}{par rang}>
