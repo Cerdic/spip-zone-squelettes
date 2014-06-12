@@ -45,10 +45,12 @@
 <div class="formulaire_spip formulaire_deplacer_module">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+<B_dispos>
 	<form action="#ENV{action}" method="post"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul class="boutons ajouter_module obligatoire">
-<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}{si #ENV{editable}|oui}>
+<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}
+		{si #ENV{editable}|et{#ID_NOISETTE|non}|oui}>
 			<li id="[(#CLE|attribut_html)]" class="deplier">
 				<div class="haut_module voisin_pliant">
 					<button type='submit' title="Ajouter ce module"  name='nom_module' value="[(#CLE|attribut_html)]">Ajouter</button>
@@ -65,4 +67,12 @@
 </BOUCLE_dispos>
 		</ul>
 	</div></form>
+</B_dispos>
 </div>
+[(#ENV{editable}|non)
+<script type="text/javascript">/* <!\[CDATA\[ */
+	$\(window\).load\(function\(\)\{
+		window.parent.$.modalboxclose\(\);
+\}\);
+/* \]\]> */</script>
+]

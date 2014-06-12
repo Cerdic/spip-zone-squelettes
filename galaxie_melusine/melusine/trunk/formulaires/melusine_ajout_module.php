@@ -101,13 +101,19 @@ function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 	);
 	$id_noisette = objet_inserer("noisette", $id_parent="",$set);
 	if (!$id_noisette)
-		return array("message_erreur" => "Impossible d'insérer le module ".$module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
+		return array("message_erreur" => "Impossible d'insérer le module ".$nom_module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
 
 		
 	// On invalide le cache
 	include_spip('inc/invalideur');
 	suivre_invalideur(1);
 
-	return array("message_ok" => "module &laquo;&nbsp;$module&nbsp;&raquo; inséré");
+	$retour = array(
+		"message_ok" => "module &laquo;&nbsp;$nom_module&nbsp;&raquo; inséré",
+		"editable" => false,
+		"id_noisette" => $id_noisette
+		);
+
+	return $retour;
 }
 ?>

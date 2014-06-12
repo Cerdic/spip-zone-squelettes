@@ -12,7 +12,7 @@ $(window).load(function(){
 			// Si on a des choses à charger
 		},
 		onClosed:function(){
-			$('#contenu_principal').fadeTo('slow',0.2);
+			$('body').fadeTo('slow',0.2);
 			window.location.reload();
 		}
 	});
