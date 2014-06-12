@@ -7,7 +7,7 @@
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 		[(#SET{infos_cachees_articles, #GET{config_page_article}|table_valeur{infos_cachees_articles}|sinon{#ARRAY}})]
-		[(#VAL{info_publie}|in_array{#GET{infos_cachees_articles}|non|et{[(#VAL{info_auteur}|in_array{#GET{infos_cachees_articles}}|non)]})
+		[(#VAL{info_publie}|in_array{#GET{infos_cachees_articles}}|non|et{[(#VAL{info_auteur}|in_array{#GET{infos_cachees_articles}}|non)]})
 		<p class="info-publi">
 			[(#VAL{info_publie}|in_array{#GET{infos_cachees_articles}}|non)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>][(#VAL{info_auteur}|in_array{#GET{infos_cachees_articles}}|non)[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
 		</p>]
@@ -17,7 +17,7 @@
 			[(#ID_TRAD|>{0}|oui)#SET{id_article,#ID_TRAD}]
 			[(#ID_TRAD|>{0}|non)#SET{id_article,#ID_ARTICLE}]
 			[<div class="precedent_suivant">
-				(#INCLURE{fond=inclure/article_precedent_suivant,id_article=#GET{id_article},id_rubrique,lang#LANG})
+				(#INCLURE{fond=inclure/article_precedent_suivant,id_article=#GET{id_article},id_rubrique,lang=#LANG})
 			</div>]
 		]
 	</div>
