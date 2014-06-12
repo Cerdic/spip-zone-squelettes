@@ -10,29 +10,11 @@
 
 <div class="sommairemulticol">
 	<div class="sommaire_gauche bloc_melusine">
-		[(#GET{admin_melusine}|oui)<a href="[(#URL_PAGE{ajout_module_bloc,casier=melusine_sommaire/x/}|parametre_url{'casiers_page','melusine_squelettes/d/,melusine_squelettes/g/,melusine_sommaire/x/,melusine_sommaire/y/'}|parametre_url{'reserve','melusine_squelettes'}|parametre_url{'nom_bloc','Colonne de gauche du sommaire'})]" class='mediabox boxIframe boxWidth-500px boxHeight-500px'>Ajouter un module dans ce bloc</a>]
-		<BOUCLE_test(POUR){tableau #GET{sommairegauche}}>
-			 <BOUCLE_cond(CONDITION){si #VALEUR|=={aucun}}>
-   
-      			</BOUCLE_cond>
-				<div class="module_melusine[(#GET{admin_melusine}|oui) admin_melusine]">
-					[(#GET{admin_melusine}|oui)#FORMULAIRE_MELUSINE_DEPLACER_MODULE{#VALEUR,#CLE,"melusine_sommaire/x/",#ENV}]
-   					<INCLURE{fond=modules/#VALEUR}>
-				</div>
-      			<//B_cond>
-		</BOUCLE_test>
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=content}{type=#ENV{type-page}}>
 	</div>
 
 	<div class="sommaire_droite">
-		<BOUCLE_test2(POUR){tableau #GET{sommairedroite}}>
-			<BOUCLE_cond2(CONDITION){si #VALEUR|=={aucun}}>
-   
-      			</BOUCLE_cond2>
-				<div class="module">
-   					<INCLURE{fond=modules/#VALEUR}>
-				</div>
-      			<//B_cond2>
-		</BOUCLE_test2>
+		<INCLURE{fond=inclure/inc_pile_modules,bloc=content-col2}{type=#ENV{type-page}}>
 	</div>
 <!-- fin de la classe sommairemulticol -->
 </div>
