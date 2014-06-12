@@ -377,16 +377,25 @@ function melusine_obtenir_infos_noisettes_direct(){
 				// diff avec noizetier:
 				// le sous-répertoire va être noté pour
 				// les inclusions...
-				$liste_noisettes[substr($dossier,$sous_rep_pos).$noisette] = $infos_noisette;
+				$bloc = substr($dossier,$sous_rep_pos).$noisette;
+				if ($sous_rep_pos === 0)
+					$bloc = $noisette; //Compat: pour les noisettes pas de chemin
+				$liste_noisettes[$bloc] = $infos_noisette;
 			} else {
 				// diff avec noizetier:
 				// Sans YAML, on garde la noisette
 				// avec des infos sommaires
 				$bloc = substr($dossier,$sous_rep_pos+8,-1);
+				$cle_bloc = substr($dossier,$sous_rep_pos).$noisette;
+				if ($sous_rep_pos === 0) {
+					//Compat: pour les noisettes pas de chemin
+					$cle_bloc = $noisette;
+					$bloc = "";
+				}
 				if ($bloc == "articles" OR $bloc == "rubriques")
 					$bloc = substr($bloc,0,-1);
 				if ($bloc) $bloc = array($bloc);
-				$liste_noisettes[substr($dossier,$sous_rep_pos).$noisette] = array(
+				$liste_noisettes[$cle_bloc] = array(
 						"nom" => spip_ucfirst(str_replace("_"," ",$noisette)),
 						"parametres" => array(),
 						"contexte" => array(),
