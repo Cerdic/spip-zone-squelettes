@@ -1,20 +1,7 @@
-
 #SET{rubrique,(#CONFIG{melusine_rubriques/effectifs}|serialize)}
 #SET{auteurs, #CONFIG{melusine_blocs/auteurs}}
 #SET{date_article, #CONFIG{melusine_blocs/date_article}}
 [(#CHEMIN{melusine_images/image2}|?{#SET{image2, #CHEMIN{melusine_images/image2}},#SET{image2,#CHEMIN{image2.png}}})]
 [(#CHEMIN{melusine_images/image3}|?{#SET{image3, #CHEMIN{melusine_images/image3}},#SET{image3,#CHEMIN{image3.png}}})]
 
-<div class="#ENV{col3}"	> 	
-	<BOUCLE_test(POUR){tableau #GET{rubrique}}>
-			 <BOUCLE_cond(CONDITION){si #VALEUR|=={aucun}}>
-   
-      			</BOUCLE_cond>
-				
-					
-   				<INCLURE{fond=modules/rubriques/#VALEUR}{id_rubrique}>
-				
-      			<//B_cond>
-
-	</BOUCLE_test>
-</div>
+<INCLURE{fond=inclure/inc_blocs_colonnes,bloc=content}{type=#ENV{type-page}}{id_rubrique=#ID_RUBRIQUE}>
