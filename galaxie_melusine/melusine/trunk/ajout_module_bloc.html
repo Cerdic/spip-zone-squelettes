@@ -1,43 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-<head>
-[(#REM) Fierement fabrique avec SPIP ]
-	<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	#INSERT_HEAD_CSS
-	[<link rel="stylesheet" href="(#CHEMIN{css/clear.css}|direction_css)" type="text/css" />]
-	[<link rel="stylesheet" href="(#CHEMIN{css/form.css}|direction_css)" type="text/css" />]
-	[<link rel="stylesheet" href="(#CHEMIN{css/ajout_module.css}|direction_css)" type="text/css" />]
-	#INSERT_HEAD
-	<script type="text/javascript">/* <![CDATA[ */
-		$(window).load(function(){
-			//Gestion des dépliements...
-			var texte_plie = "détails";
-			var texte_deplie = "Masquer";
-			$(".pliant:not(.actif)").hide();
-			$(".pliant:not(.actif)").prev().append("<span class='deplier'><a title='Afficher les détails'>"+texte_plie+"</a></span>");
-			// On utilise pas dircetement le .click
-			// pour éviter de s'éxécuter deux fois
-			// cf: http://stackoverflow.com/questions/8408826/bind-event-only-once
-			$(".deplier>a").off('click').on('click',function(event){
-				$(this).parents(".voisin_pliant").next('.pliant').slideToggle("fast",function(){
-					// éventuellement des JS à recharger
-				});
-				if ($(this).text()==texte_plie) {
-					$(this).text(texte_deplie);
-				} else {
-					$(this).text(texte_plie);
-				}
-			});
-			// On ne sexécute qu'une fois !
-			$(".pliant:not(.actif)").addClass("actif");
-			$('.formulaire_deplacer_module .reponse_formulaire_ok:not(:empty)').modalboxclose();
-		});
-	/* ]]> */</script>
-</head>
-<body>
+<INCLURE{fond=inclure/head_modales,env}>
 <h1>Ajouter un module dans le bloc&nbsp;: <span class="nom_bloc">#ENV{nom_bloc}</span></h1>
 <p class="indications">Choisissez un module dans la liste ci-dessous</p>
 #FORMULAIRE_MELUSINE_AJOUT_MODULE{#BLOC,#TYPE}
-</body>
-</html>
+<INCLURE{fond=inclure/end_modales,env}>
