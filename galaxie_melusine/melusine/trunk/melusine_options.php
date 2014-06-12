@@ -19,5 +19,11 @@
 if (!isset($GLOBALS['z_blocs']))
 	$GLOBALS['z_blocs'] = array_keys($GLOBALS['noms_z_blocs']);
 
+// Des noms pour les types de pages gérées
+	$GLOBALS['types_pages_melusine'] = array(
+		"rubrique" => "Page de catégorie de contenus",
+		"sommaire" => "Page d'accueil",
+		"article" => "Page du contenu"
+	);
 
 ?>

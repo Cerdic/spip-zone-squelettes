@@ -1,0 +1,24 @@
+<div class="formulaire_spip formulaire_uniformiser_bloc">
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	<form action="#ENV{action}" method="post"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul class="boutons uniformiser_bloc obligatoire">
+<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}{si #ENV{editable}|oui}>
+			<li id="[(#CLE|attribut_html)]" class="deplier">
+				<div class="haut_module voisin_pliant">
+					<button type='submit' title="Ajouter ce module"  name='nom_module' value="[(#CLE|attribut_html)]">Ajouter</button>
+					[(#CHEMIN{[(#VALEUR|table_valeur_cleslash{icon})]}
+							|balise_img{icône,icone_module}
+							|image_reduire{30,30}
+					)]
+					<span class="nom_module">[(#VALEUR|table_valeur_cleslash{nom}|spip_ucfirst)]</span>
+				</div>[
+				<div class="description_module pliant">
+					(#VALEUR|table_valeur_cleslash{description}|propre)
+				</div>]
+			</li>
+</BOUCLE_dispos>
+		</ul>
+	</div></form>
+</div>
