@@ -9,6 +9,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'abonnement_newsletter' => 'Abonnement',
 	'agenda' => 'Agenda',
+	'breve' => 'Brèves',
 	'galerie' => 'Galerie',
 	'mot' => 'Mots-clés',
 	'herbier' => 'Sites favoris',
@@ -17,5 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'404' => 'Page introuvable',
 	'plan' => 'Plan du site',
 	'recherche' => 'Recherche',
+	'newsletter-subscribe' => 'Inscription à la Newsletter',
 );
 ?>

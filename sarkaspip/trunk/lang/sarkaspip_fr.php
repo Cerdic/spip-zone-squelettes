@@ -80,6 +80,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'breves' => 'Brèves',
 	'breves_meme_rubrique' => 'Brèves de la rubrique',
 	'breves_toutes' => 'Toutes les brèves du site',
+	'breves_toutes_short' => 'Toutes les brèves',
 	'bulle_bouton_defiler_droite' => 'Faire défiler le carrousel vers la droite',
 	'bulle_bouton_defiler_gauche' => 'Faire défiler le carrousel vers la gauche',
 	'bulle_bouton_forum_deverrouiller' => 'Déverrouiller le sujet',
