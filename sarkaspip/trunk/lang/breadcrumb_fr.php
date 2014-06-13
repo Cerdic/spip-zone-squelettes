@@ -18,6 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'404' => 'Page introuvable',
 	'plan' => 'Plan du site',
 	'recherche' => 'Recherche',
-	'newsletter-subscribe' => 'Inscription à la Newsletter',
+	'newsletter_subscribe' => 'Inscription à la Newsletter',
 );
 ?>
