@@ -68,59 +68,54 @@ function formulaires_melusine_uniformiser_bloc_verifier_dist($bloc,$type="rubriq
  */
 function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubrique"){
 	// Pas d'ajax...
-	refuser_traiter_formulaire_ajax();
+	// refuser_traiter_formulaire_ajax();
 
-	$nom_module = _request("nom_module");
-	$valider = _request("valider");
-	$retour = array();
-	$retour['editable'] = true;
+	$gabarits = _request("gabarits");
+	$liste_pages = array();
+
+	// On fait la liste des pages concernées
+	foreach($gabarits as $gabarit)
+		$liste_pages = array_merge($liste_pages,melusine_pages_du_gabarit($gabarit));
 
 
-	// Si on a validé le formulaire
-	if ($valider == "valider") {
-		// On cherche une place libre dans le casier
-		// et on y met le module
-		// Infos de la noisette:
-		include_spip('base/abstract_sql');
-		// infos sur le module le plus bas
-		// dans le bloc
-		$infos_module_bas= sql_fetsel(
-			array(
-				"rang",
-				),
-			"spip_noisettes",
-			"bloc = ".sql_quote($bloc)." AND type = ".sql_quote($type),
-			"",
-			"rang DESC"
-			);
-		// Pas de place...
-		if ($infos_module_bas['rang'] > 11) 
-			return array('message_erreur' => "Plus de place dans ce bloc&nbsp;! Vous devez d'abord retirer un module...");
-		
-
-		// On met le module dans la base:
-		include_spip('action/editer_objet');
-		$set = array(
-			"rang" => $infos_module_bas['rang']+1,
-			"type" => $type,
-			"bloc" => $bloc,
-			"noisette" => $nom_module
+	// on récupère les blocs du gabarit à uniformiser
+	$infos_modules_bloc= sql_allfetsel(
+		array(
+			"id_noisette",
+			"rang",
+			"noisette",
+			"parametres",
+			"css",
+			),
+		"spip_noisettes",
+		"bloc = ".sql_quote($bloc)." AND type = ".sql_quote($type)
 		);
-		$id_noisette = objet_inserer("noisette", $id_parent="",$set);
-		if (!$id_noisette)
-			return array("message_erreur" => "Impossible d'insérer le module ".$nom_module." dans le bloc ".$bloc." de la page ".$type. "au rang ".$rang);
 
-			
-		// On invalide le cache
-		include_spip('inc/invalideur');
-		suivre_invalideur(1);
-
-		$retour = array(
-			"message_ok" => "module &laquo;&nbsp;$nom_module&nbsp;&raquo; inséré",
-			"editable" => false,
-			"id_noisette" => $id_noisette
+	// Pour chaque page,
+	// - On vide les noisettes existantes
+	// - On remplace par les noisettes à uniformiser
+	include_spip('base/abstract_sql');
+	include_spip('action/editer_objet');
+	foreach($liste_pages as $page) {
+		//On efface les modules du bloc pour cette page
+		$result = sql_delete(
+				"spip_noisettes",
+				"bloc=".sql_quote($bloc)." AND type=".sql_quote($page)
 			);
+		if ($result === false)
+			return array("message_erreur" => "Échec lors de la vidange du bloc $bloc de la page $type...");
+		// on crée une copie pour chaque page des gabarits selectionnés
+		foreach($infos_modules_bloc as $noisette_a_copier) {
+			$noisette_a_copier['bloc'] = $bloc;
+			$noisette_a_copier['type'] = $page;
+			unset($noisette_a_copier['id_noisette']);
+			$id_noisette = objet_inserer("noisette", $id_parent="",$noisette_a_copier);
+			if (!$id_noisette)
+				return array("message_erreur" => "Impossible d'insérer le module ".$noisette_a_copier['nom']." dans le bloc ".$bloc." de la page ".$page. "au rang ".$noisette_a_copier['rang']);
+		}
+		
 	}
-	return $retour;
+
+	return array("message_ok" => "Uniformisation du bloc réussie");
 }
 ?>
