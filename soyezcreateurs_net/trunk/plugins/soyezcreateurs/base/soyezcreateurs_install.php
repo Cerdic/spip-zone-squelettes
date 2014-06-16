@@ -149,6 +149,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.29','non');
 		}
 		
+		if (version_compare($current_version,'3.0.30','<')) {
+			spip_log("SoyezCreateurs maj 3.0.30 Début", "soyezcreateurs_install");
+			$id_mot = create_mot("_ModePortail", "ZoomSur2_Variante1", "Affecter ce mot clef à l’objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef.", "Variante sur 2 colonnes : \n-* Titre de la rubrique contenant l’article\n-* 1re colonne :\n-** Document joint (de type autre média, PowerPoint par exemple) affiché avec son logo\n-** Chapo de l'article en dessous (permet de faire un lien)\n-* 2e colonne :\n-** Logo de l’article\n-** faisant un lien vers l’article (et si c’est une redirection, ça peut conduire à une autre page");
+			spip_log("SoyezCreateurs maj 3.0.30 Faite", "soyezcreateurs_install");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.30','non');
+		}
+		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
