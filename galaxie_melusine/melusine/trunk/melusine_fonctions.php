@@ -613,7 +613,7 @@ function melusine_nombloc($bloc){
 }
 
 /**
- * Retourne le joli nom d'un layout passé en argument
+ * Retourne le joli nom d'un gabarit passé en argument
  *
  * @param text $bloc nom abrégé du bloc
  * 
@@ -621,12 +621,28 @@ function melusine_nombloc($bloc){
  *
 **/
 
-function melusine_nomgabarit($bloc){
+function melusine_nomgabarit($gabarit){
 	$return = "Pas de nom";
-	$glob = $GLOBALS['types_gabarits_melusine'][$bloc];
+	$glob = $GLOBALS['types_gabarits_melusine'][$gabarit];
 	if ($glob) $return = $glob;
 	return $return;
 }
+
+/**
+ * Retourne la liste des pages qui utilisent un layout passé en argument
+ *
+ * @param text $bloc nom abrégé du bloc
+ * 
+ * @return text joli nom du bloc
+ *
+**/
+
+function melusine_pages_du_gabarit($gabarit){
+	include_spip('inc/config');
+	return array_keys(lire_config('melusine_data/pages'),$gabarit);
+}
+
+
 /**
  * Retourne la liste des modules qui sont autorisés pour un bloc donné
  *
