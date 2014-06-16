@@ -615,9 +615,9 @@ function melusine_nombloc($bloc){
 /**
  * Retourne le joli nom d'un gabarit passé en argument
  *
- * @param text $bloc nom abrégé du bloc
+ * @param text $bloc nom abrégé du gabarit
  * 
- * @return text joli nom du bloc
+ * @return text joli nom du gabarit
  *
 **/
 
@@ -626,6 +626,17 @@ function melusine_nomgabarit($gabarit){
 	$glob = $GLOBALS['types_gabarits_melusine'][$gabarit];
 	if ($glob) $return = $glob;
 	return $return;
+}
+
+/**
+ * Retourne la liste des gabarits disponiobles
+ * 
+ * @return array
+ *
+**/
+
+function melusine_listegabarits(){
+	return $GLOBALS['types_gabarits_melusine'];
 }
 
 /**

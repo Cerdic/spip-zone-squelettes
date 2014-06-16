@@ -18,7 +18,7 @@
 		
 		<ul>
 			<li><input type="radio" name="width"  value="container-fluid" [(#CONFIG{melusine_squelettes/width}=={container-fluid}|oui) checked="checked" ]/>Largeur fluide</li>
-			<li><input type="radio" name="width"  value="container" [(#CONFIG{melusine_squelettes/width}=={container}|oui) checked="checked" ] />largeur fixe</li>
+			<li><input type="radio" name="width"  value="container" [(#CONFIG{melusine_data/width}=={container}|oui) checked="checked" ] />largeur fixe</li>
 		</ul>
 	</fieldset>
 	<fieldset>
@@ -30,7 +30,7 @@
 					<BOUCLE_yaml(DATA){source yaml, #VALEUR}>
 						<BOUCLE_yaml2(DATA){source table, #VALEUR}>
 							#SET{checked,'' }
-							[(#CONFIG{melusine_squelettes/style}=={#VALEUR.css}|oui) #SET{checked,'checked="checked"' }]
+							[(#CONFIG{melusine_data/gabarits/#ENV{gabarit}}=={#VALEUR.css}|oui) #SET{checked,'checked="checked"' }]
 							[(#CLE=={nom}|oui)  
 								<input type="radio" name="style"  value="#VALEUR.css" #GET{checked} />
 							]
@@ -41,6 +41,7 @@
 					</BOUCLE_yaml>
 				</li>
 			</BOUCLE_layouts>
+			<input type="hidden" name="gabarit"  value="#ENV{gabarit}" />
 			<input type='submit' name='ok' value='ok' />	
 		</ul>
 	</fieldset>
