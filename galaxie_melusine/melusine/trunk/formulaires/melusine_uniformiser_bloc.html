@@ -1,0 +1,24 @@
+<div class="formulaire_spip formulaire_uniformiser_bloc">
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	<form action="#ENV{action}" method="post"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<ul class="boutons uniformiser_bloc obligatoire">
+<BOUCLE_dispos(POUR){tableau #ENV{tableau_types}}{cle != #TYPE}{si #ENV{editable}|oui}>
+			<li id="[(#CLE|attribut_html)]" class="deplier">
+				<div class="choix">
+					<input
+						type='checkbox'
+						class="checkbox"
+						name='noms_blocs'
+						value='[(#CLE|attribut_html)]'
+						id='checkbox_#CLE' />
+					<label for='checkbox_#GET{id}'>
+						<span class="nom_module">[(#VALEUR|spip_ucfirst)]</span>
+					</label>
+				</div>
+			</li>
+</BOUCLE_dispos>
+		</ul>
+	</div></form>
+</div>
