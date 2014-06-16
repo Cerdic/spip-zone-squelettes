@@ -45,6 +45,20 @@
 <div class="formulaire_spip formulaire_ajouter_module">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+<B_liste_pris>
+	<div class="explication modules_reserves">
+		<p class="voisin_pliant">Certains modules réservés ne sont pas disponibles</p>
+		<div class="pliant liste_modules_reserves">
+			<p>Liste des modules réservés&nbsp;:</p>
+			<p>(déjà placés dans un autre bloc et qui ne peuvent être ajoutés qu'une seule fois dans la page)</p>
+			<ul>
+<BOUCLE_liste_pris(NOISETTES){noisette IN #GET{modules_pris_uniques}}{type}>
+				<li>[(#GET{modules_dispo}|table_valeur_cleslash{#NOISETTE!nom})][ (bloc &laquo;&nbsp;(#BLOC|melusine_nombloc)&nbsp;&raquo;)]</li>
+</BOUCLE_liste_pris>
+			</ul>
+		</div>
+	</div>
+</B_liste_pris>
 <B_dispos>
 	<form action="#ENV{action}" method="post"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
