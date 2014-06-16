@@ -22,7 +22,7 @@ function formulaires_melusine_position_verifier(){
 	// $style=_request('style');
 	// $gauche=lire_config("melusine_squelettes/g");
 	
-	//$droite=lire_config("melusine_squelettes/d");
+	
 	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) ){$erreurs['style'] ="<span style='color:red'>La colonne droite  doit &ecirc;tre vide</span>"	;};
 	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) ){$erreurs['style'] ="<span style='color:red'>La colonne gauche doit &ecirc;tre vide</span>"	;};
 	if (count($erreurs))
@@ -34,10 +34,10 @@ function formulaires_melusine_position_verifier(){
 function formulaires_melusine_position_traiter(){
 	$style=_request('style');
 	$gabarit=_request('gabarit');
-	$width=_request('width');
+	
 	$chemin_gabarit="melusine_data/gabarits/".$gabarit;
 	ecrire_config($chemin_gabarit,$style);	
-	ecrire_config("melusine_data/width",$width);
+
 	
 	
 	
