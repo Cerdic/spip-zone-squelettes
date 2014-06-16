@@ -83,14 +83,14 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 		array(
 			"id_noisette",
 			"rang",
+			"bloc",
 			"noisette",
 			"parametres",
 			"css",
 			),
 		"spip_noisettes",
-		"bloc = ".sql_quote($bloc)." AND type = ".sql_quote($type)
+		"bloc REGEXP '^".$bloc."' AND type = ".sql_quote($type)
 		);
-
 	// Pour chaque page,
 	// - On vide les noisettes existantes
 	// - On remplace par les noisettes à uniformiser
@@ -106,7 +106,6 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 			return array("message_erreur" => "Échec lors de la vidange du bloc $bloc de la page $type...");
 		// on crée une copie pour chaque page des gabarits selectionnés
 		foreach($infos_modules_bloc as $noisette_a_copier) {
-			$noisette_a_copier['bloc'] = $bloc;
 			$noisette_a_copier['type'] = $page;
 			unset($noisette_a_copier['id_noisette']);
 			$id_noisette = objet_inserer("noisette", $id_parent="",$noisette_a_copier);
@@ -116,6 +115,9 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 		
 	}
 
-	return array("message_ok" => "Uniformisation du bloc réussie");
+	return array(
+		"message_ok" => "Uniformisation du bloc réussie",
+		"editable" => false
+		);
 }
 ?>

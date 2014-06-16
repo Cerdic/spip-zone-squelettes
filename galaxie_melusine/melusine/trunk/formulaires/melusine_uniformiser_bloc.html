@@ -6,6 +6,7 @@
 <div class="formulaire_spip formulaire_uniformiser_bloc">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+<B_dispos>
 	<form action="#ENV{action}" method="post" onsubmit="[return confirm\('(#GET{text_confirm}|replace{"'","\'"}|attribut_html)'\);]"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul class="boutons uniformiser_bloc obligatoire">
@@ -29,13 +30,30 @@
 		</ul>
 		<input class="submit" type="submit" name="valider" value="Valider" />
 	</div></form>
+</B_dispos>
 </div>
+<B_blocs>
 <div class="infos config_bloc">
 	<p>Le bloc[ &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; ]de la page &laquo;&nbsp;#TYPE&nbsp;&raquo;[ (gabarit &laquo;&nbsp;(#GET{nom_gabarit})&nbsp;&raquo;)] contient actuellement les modules&nbsp;:</p>
-	<ol>
-<BOUCLE_blocs(NOISETTES){bloc}{type}{par rang}>
+	<ol class="colonne1">
+<BOUCLE_blocs(NOISETTES){bloc == ^#BLOC}{type}{par rang}>
+[(#BLOC|replace{#ENV{bloc},""}|unique|oui)
+	</ol>
+	<ol class="colonne[(#BLOC|substr{-1})]">
+]
 		<li>[(#GET{modules_dispo}|table_valeur_cleslash{#NOISETTE!nom})]</li>
 </BOUCLE_blocs>
 	</ol>
+	<hr class="clean" />
+</B_blocs>
+<div class="infos config_bloc">Attention, ce bloc est vide&nbsp;!</div>
+<//B_blocs>
 </div>
+[(#ENV{editable}|non)
+<script type="text/javascript">/* <!\[CDATA\[ */
+	$\(window\).load\(function\(\)\{
+		window.parent.$.modalboxclose\(\);
+\}\);
+/* \]\]> */</script>
+]
 #FILTRE{trim}
