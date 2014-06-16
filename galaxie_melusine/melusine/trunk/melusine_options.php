@@ -26,4 +26,5 @@ if (!isset($GLOBALS['z_blocs']))
 		"contenu" => "page du contenu"
 	);
 
+
 ?>

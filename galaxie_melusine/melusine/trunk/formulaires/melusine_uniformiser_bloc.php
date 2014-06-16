@@ -29,7 +29,7 @@ function formulaires_melusine_uniformiser_bloc_charger_dist($bloc,$type="rubriqu
 	$valeurs = array(
 		"bloc" => $bloc,
 		"type" => $type,
-		"tableau_types" => $GLOBALS['types_layouts_melusine']
+		"tableau_types" => $GLOBALS['types_gabarits_melusine']
 	);
 	return $valeurs;
 

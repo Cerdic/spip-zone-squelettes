@@ -23,6 +23,24 @@ if (!$noiz_actif) {
 }
 
 
+
+// Temporairement dans les fonctions:
+// définition des meta par défaut pour les
+// correspondances entre gabarits et types-pages
+// TODO: déplacer dans le YAML d'init quand il fonctionnera
+include_spip('inc/config');
+if (!lire_config('melusine_data/pages/sommaire')) {
+	ecrire_config('melusine_data/pages/sommaire','accueil');
+	ecrire_config('melusine_data/pages/rubrique','categorie');
+	ecrire_config('melusine_data/pages/article','contenu');
+	ecrire_config('melusine_data/pages/mot','categorie');
+	ecrire_config('melusine_data/pages/recherche','categorie');
+	ecrire_config('melusine_data/pages/plan','categorie');
+	ecrire_config('melusine_data/pages/site','contenu');
+	ecrire_config('melusine_data/pages/auteur','categorie');
+	// à compléter ?
+	}
+
 /*
  * Un fichier de fonctions permet de definir des elements
  * systematiquement charges lors du calcul des squelettes.
@@ -592,6 +610,22 @@ function melusine_nombloc($bloc){
 	if (strripos($bloc,"2",$fin_nom_col))
 		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 2";
 	return "Pas de nom";
+}
+
+/**
+ * Retourne le joli nom d'un layout passé en argument
+ *
+ * @param text $bloc nom abrégé du bloc
+ * 
+ * @return text joli nom du bloc
+ *
+**/
+
+function melusine_nomgabarit($bloc){
+	$return = "Pas de nom";
+	$glob = $GLOBALS['types_gabarits_melusine'][$bloc];
+	if ($glob) $return = $glob;
+	return $return;
 }
 /**
  * Retourne la liste des modules qui sont autorisés pour un bloc donné
