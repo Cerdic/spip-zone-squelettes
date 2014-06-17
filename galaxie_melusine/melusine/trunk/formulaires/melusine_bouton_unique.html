@@ -1,0 +1,35 @@
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+				
+<fieldset>
+		<label for="Intitulé">Intitulé</label>
+		<input type='text' name='intitule' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/intitule}" />
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</fieldset>
+<fieldset>						
+		<label for="URL">URL</label>
+		<input type='text' name='url' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/url}" />
+	
+		<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
+		<input type="checkbox" name="blanck"  value="blanck" [(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/blanck}=={"blanck"}|?{"checked", })]  />
+						
+</fieldset>
+<fieldset>	
+		<label for="Alt">Description de l'image : balise ALT</label>
+		<input type='text' name='alt' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/alt}" />
+</fieldset>
+<fieldset>
+		<label for="Image">Image</label>
+		<input type="file" name="image"  value="" size="30" /><br/>
+	
+		[(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}|?{[(#CHEMIN{#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}}|image_reduire{150})],[(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}||image_reduire{150})]} )]
+</fieldset>
+
+
+		<input type='submit' name='ok' value='ok' />
+		
+
+	</form>
+	
