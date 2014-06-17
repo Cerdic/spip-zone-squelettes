@@ -100,7 +100,7 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 		//On efface les modules du bloc pour cette page
 		$result = sql_delete(
 				"spip_noisettes",
-				"bloc=".sql_quote($bloc)." AND type=".sql_quote($page)
+				"bloc REGEXP '^".$bloc."' AND type=".sql_quote($page)
 			);
 		if ($result === false)
 			return array("message_erreur" => "Échec lors de la vidange du bloc $bloc de la page $type...");
@@ -114,6 +114,10 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 		}
 		
 	}
+		
+	// On invalide le cache
+	include_spip('inc/invalideur');
+	suivre_invalideur(1);
 
 	return array(
 		"message_ok" => "Uniformisation du bloc réussie",
