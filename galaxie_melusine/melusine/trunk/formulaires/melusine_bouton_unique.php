@@ -33,21 +33,24 @@ function formulaires_melusine_bouton_unique_verifier(){
 
 
 function formulaires_melusine_bouton_unique_traiter(){
+include_spip('action/editer_objet');
 
 	$id_noisette=_request('id_noisette');
-	effacer_config($chemin_intitule,$intitule);
+	
 	$casiers=array('intitule','url','blanck','alt');
+	$params=array();
 	foreach($casiers as $casier){
-
-		$chemin="melusine_data/boutons/b".$id_noisette."/".$casier;
 		$data=_request($casier);
 		if(!isset($data)){$data="none";};
-		ecrire_config($chemin,$data);
+		$params[$casier]=$data;
+		
+		
+		
 	}
 	$nf="image";
-	echo $nf;
-	echo $_FILES[$nf]['tmp_name'];
-		if($_FILES[$nf]['tmp_name']){
+	
+	
+		if(!empty($_FILES[$nf]['tmp_name'])){
 			
 			$chemin='melusine_data/boutons/b'.$id_noisette.'/image';
 			$nom_fichier= $_FILES[$nf]['tmp_name'];
@@ -61,10 +64,15 @@ function formulaires_melusine_bouton_unique_traiter(){
 				}
 				mkdir($chemin_destination_boutons,0777);
 			};
-			move_uploaded_file($nom_fichier, $nom_destination); 
-			ecrire_config($chemin,$nom_destination0);
+			move_uploaded_file($nom_fichier, $nom_destination);
+			$params['image'] =$nom_destination0;
+			
 		}
-	
+		elseif($image=_request('imageexiste')){
+			$params['image']=$image;
+		}
+	$set=array('parametres'=>serialize($params));
+	objet_modifier("noisette", $id_noisette, $set);
 	
 	return array('message_ok'=>'enregistré', 'id_noisette'=>$id);
 }

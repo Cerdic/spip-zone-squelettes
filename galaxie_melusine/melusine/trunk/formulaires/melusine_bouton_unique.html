@@ -1,3 +1,8 @@
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
 
 		#ACTION_FORMULAIRE{#ENV{action}}
@@ -5,26 +10,32 @@
 				
 <fieldset>
 		<label for="Intitulé">Intitulé</label>
-		<input type='text' name='intitule' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/intitule}" />
+		<input type='text' name='intitule' value="[(#GET{params}|table_valeur{intitule})]" />
 		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
 </fieldset>
 <fieldset>						
 		<label for="URL">URL</label>
-		<input type='text' name='url' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/url}" />
+		<input type='text' name='url' value="[(#GET{params}|table_valeur{url})]" />
 	
 		<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
-		<input type="checkbox" name="blanck"  value="blanck" [(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/blanck}=={"blanck"}|?{"checked", })]  />
+		<input type="checkbox" name="blanck"  value="blanck" [(#GET{params}|table_valeur{blanck}=={"blanck"}|?{"checked", })]  />
 						
 </fieldset>
 <fieldset>	
 		<label for="Alt">Description de l'image : balise ALT</label>
-		<input type='text' name='alt' value="#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/alt}" />
+		<input type='text' name='alt' value="[(#GET{params}|table_valeur{alt})]" />
 </fieldset>
+
+
 <fieldset>
 		<label for="Image">Image</label>
 		<input type="file" name="image"  value="" size="30" /><br/>
+		<input type="hidden" name="imageexiste"  value="[(#GET{params}|table_valeur{image})]" size="30" /><br/>
 	
-		[(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}|?{[(#CHEMIN{#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}}|image_reduire{150})],[(#CONFIG{melusine_data/boutons/b#ENV{id_noisette}/image}||image_reduire{150})]} )]
+		[(#GET{params}|table_valeur{image}|?{[(#CHEMIN{#GET{params}|table_valeur{image}}|image_reduire{150})],[(#GET{params}|table_valeur{image}||image_reduire{150})
+
+		]} 
+		)]
 </fieldset>
 
 

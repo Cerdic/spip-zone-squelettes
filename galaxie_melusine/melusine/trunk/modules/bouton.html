@@ -1,5 +1,7 @@
 
-
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
 [(#SET{admin_melusine,[(#SESSION{statut}
 			|=={0minirezo}
 			|oui)
@@ -13,10 +15,13 @@
 	<i class="fa fa-edit fa-2x"></i>
 </a>
 ]
-<a  href="#CONFIG{melusine_data/boutons/b#ID_NOISETTE/url}" [(#CONFIG{melusine_data/boutons/b#ID_NOISETTE/blanck}|=={blanck}?{target="_blank",}) )]>	
+<a  href="[(#GET{params}|table_valeur{url})]" [(#GET{params}|table_valeur{blanck}|=={blanck}?{target="_blank",}) )]>	
 						
-[(#CONFIG{melusine_data/boutons/b#ID_NOISETTE/image}|image_reduire{150}|inserer_attribut{'alt',#CONFIG{melusine_data/boutons/b#ID_NOISETTE/alt}})]
+[(#GET{params}|table_valeur{image}|image_reduire{150}|inserer_attribut{'alt',#GET{params}|table_valeur{alt}})]
 				
-[<span class="logo-titre">(#CONFIG{melusine_data/boutons/b#ID_NOISETTE/intitule})</span>] 
+[<span class="logo-titre">(#GET{params}|table_valeur{intitule})</span>] 
 </a>
+
+
+
 
