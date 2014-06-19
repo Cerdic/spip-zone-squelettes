@@ -444,11 +444,16 @@ function melusine_obtenir_infos_noisettes_direct(){
  */
 function melusine_charger_infos_noisette_yaml($noisette, $info=""){
 		// on peut appeler avec le nom du squelette
+		
 		$fichier = preg_replace(',[.]html$,i','',$noisette).".yaml";
+		
+		
 		include_spip('inc/yaml');
 		include_spip('inc/texte');
+
 		$infos_noisette = array();
 		if ($infos_noisette = yaml_charger_inclusions(yaml_decode_file($fichier))) {
+			
 			if (isset($infos_noisette['nom']))
 				$infos_noisette['nom'] = _T_ou_typo($infos_noisette['nom']);
 			if (isset($infos_noisette['description']))
@@ -476,10 +481,14 @@ function melusine_charger_infos_noisette_yaml($noisette, $info=""){
 				$infos_noisette['inclusion'] = 'statique';
 			}
 		}
+		
 
 		if (!$info)
 			return $infos_noisette;
 		else 
+			// echo "<pre>";
+			// print_r($infos_noisette);
+			// echo "</pre>";
 			return isset($infos_noisette[$info]) ? $infos_noisette[$info] : "";
 }
 /**
