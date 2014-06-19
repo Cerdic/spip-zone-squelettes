@@ -486,9 +486,6 @@ function melusine_charger_infos_noisette_yaml($noisette, $info=""){
 		if (!$info)
 			return $infos_noisette;
 		else 
-			// echo "<pre>";
-			// print_r($infos_noisette);
-			// echo "</pre>";
 			return isset($infos_noisette[$info]) ? $infos_noisette[$info] : "";
 }
 /**
