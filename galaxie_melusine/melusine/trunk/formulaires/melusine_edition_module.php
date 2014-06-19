@@ -50,9 +50,10 @@ include_spip('action/editer_objet');
 
 	$id_noisette=_request('id_noisette');
 	$param=_request('param');
+	//echo $param;
 	$casiers=array();
 	$params=unserialize($param);
-	
+	//print_r($params);
 	foreach($params as $p){
 		
 			// echo "<pre>";

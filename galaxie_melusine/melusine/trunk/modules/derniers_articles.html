@@ -1,5 +1,11 @@
 #CACHE{3600*24*62} 
 #SET{date_article, #CONFIG{melusine_blocs/date_article} }
+#SET{nb,5}
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+</BOUCLE_noisette>
+
+
 <!-- ************ Exclusion des articles portant le mot clé exclu, ainsi que les articles du forum et du blog **********************  -->
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
 <BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
@@ -17,11 +23,12 @@
 </BOUCLE_exclus50>
 
 <div class="dern-articles2">
+	
 	<div class="content" >
 		<span class="title"> Les derniers articles :</span> 
  		<div class="trait">&nbsp;</div>
 		<ul class="liste_der_plus">
-			<BOUCLE_article(ARTICLES) {doublons}  {par date} {inverse} {0,5}>
+			<BOUCLE_article(ARTICLES) {doublons}  {par date} {inverse} {0,#GET{nb}}>
              			<li class="titre">[<a class="titre" href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</li>
           			<BOUCLE_test(CONDITION){si #GET{date_article}|=={oui}}>
 					<li class="date"> [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
