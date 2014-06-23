@@ -91,6 +91,11 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 		"spip_noisettes",
 		"bloc REGEXP '^".$bloc."' AND type = ".sql_quote($type)
 		);
+	// On récupère les largeurs des colonnes configurées
+	// parmis les meta de la page
+	include_spip("inc/config");
+	$infos_melusine = lire_config("melusine_data/$type");
+
 	// Pour chaque page,
 	// - On vide les noisettes existantes
 	// - On remplace par les noisettes à uniformiser
@@ -112,7 +117,15 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 			if (!$id_noisette)
 				return array("message_erreur" => "Impossible d'insérer le module ".$noisette_a_copier['nom']." dans le bloc ".$bloc." de la page ".$page. "au rang ".$noisette_a_copier['rang']);
 		}
-		
+		// On copie les tailles des colonnes de chaque blocs
+		if ($infos_melusine[$bloc]["largeur"]) {
+			foreach(array($bloc,"$bloc-col2","$bloc-col3") as $bloc_dest){
+				$largeur = $infos_melusine[$bloc_dest]["largeur"];
+				$chemin_largeur="melusine_data/".$page."/".$bloc_dest."/largeur";
+				effacer_config($chemin_largeur);
+				ecrire_config($chemin_largeur,$largeur);
+			}
+		}
 	}
 		
 	// On invalide le cache
