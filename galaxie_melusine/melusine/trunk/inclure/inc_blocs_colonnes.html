@@ -42,9 +42,26 @@
 
 
 </BOUCLE_modulecol3>
-
+[(#SET{boutons,
+	[(#GET{admin_melusine}|oui)[<span class="nom_zbloc">(#GET{nom_bloc}|spip_ucfirst)</span>]]
+	[(#GET{admin_melusine}|et{[(#BLOC|in_array{#LISTE{content}}|non)]}|oui)
+	<a href="[(#URL_PAGE{uniformiser_bloc,bloc=#BLOC}
+			|parametre_url{'type',#TYPE}
+			|parametre_url{'nom_bloc',#GET{nom_bloc}}
+		)]" class='uniformiser_bloc config_melusine button mediabox boxIframe boxWidth-500px boxHeight-500px' title= "[Uniformiser le bloc &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; pour d'autres pages]">
+		<i class="fa fa-sign-in fa-x2"></i> Uniformiser
+	</a>]
+	[(#GET{admin_melusine}|et{#GET{col}|>{1}|oui}|oui)
+	 <a href="[(#URL_PAGE{largeur_blocs,bloc=#BLOC}
+			|parametre_url{'type',#TYPE}
+			|parametre_url{'nom_bloc',#GET{nom_bloc}}
+		)]" class='largeur_colonnes config_melusine button mediabox boxIframe boxWidth-500px boxHeight-500px' title= "[largeur des colonnes du bloc &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo;]">
+		<i class="fa fa-arrows-h  fa-x2"></i> Largeur des colonnes
+	</a>]
+})]
+[<div class="boutons admin_zbloc top">(#GET{boutons})</div>]
 	<div class="#GET{col1} ">
-		<INCLURE{fond=inclure/inc_pile_modules,env,bloc=#BLOC,ajout=#GET{ajout},id_article,id_rubrique}{type=#ENV{type}}>
+	<INCLURE{fond=inclure/inc_pile_modules,env,bloc=#BLOC,ajout=#GET{ajout},id_article,id_rubrique}{type=#ENV{type}}>
 	</div>
 [(#GET{col}|>{1}|oui)  
 	<div class="#GET{col2}">
@@ -54,21 +71,5 @@
 	<div class="#GET{col3}">
 		<INCLURE{fond=inclure/inc_pile_modules,env,bloc=#BLOC-col3,id_article,id_rubrique}{type=#ENV{type}}>
 	</div>]
-[(#GET{admin_melusine}|et{[(#BLOC|in_array{#LISTE{content}}|non)]}|oui)
-<a href="[(#URL_PAGE{uniformiser_bloc,bloc=#BLOC}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='uniformiser_bloc button mediabox boxIframe boxWidth-500px boxHeight-500px' title= "[Uniformiser le bloc &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; pour d'autres pages]">
-	<i class="fa fa-sign-in fa-x2"></i> Uniformiser
-</a>]
-
-[(#GET{admin_melusine}|et{#GET{col}|>{1}|oui}|oui)
-	<a href="[(#URL_PAGE{largeur_blocs,bloc=#BLOC}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='uniformiser_bloc button mediabox boxIframe boxWidth-500px boxHeight-500px' title= "[largeur des colonnes du bloc &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo;]">
-	<i class="fa fa-arrows-h  fa-x2"></i> Largeur des blocs
-</a>]
-
 
 #FILTRE{trim}

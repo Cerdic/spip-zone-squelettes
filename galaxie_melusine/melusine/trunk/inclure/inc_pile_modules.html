@@ -35,31 +35,29 @@
 			{bloc}
 			{11,1}
 			{si #GET{admin_melusine}|oui}>
-<span class="info">Ce bloc est plein</span>
+[(#SET{boutons,
+	<span class="info">Ce bloc est plein</span>
+})]
 </BOUCLE_Place_libre>
-[(#GET{admin_melusine}|oui)
-<a href="[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc} }
-	)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
-	<i class="fa fa-plus-circle fa-x2"></i> Ajouter un module ici
-</a> 
-
-
-
-]
+[(#SET{boutons,
+	[(#GET{admin_melusine}|oui)
+	<a href="[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
+			|parametre_url{'type',#TYPE}
+			|parametre_url{'nom_bloc',#GET{nom_bloc} }
+		)]" class='ajout_module button config_melusine mediabox boxIframe boxWidth-500px boxHeight-90%'>
+		<i class="fa fa-plus-circle fa-x2"></i> Ajouter un module ici
+	</a>]
+})]
 <//B_Place_libre>
-
-
-
-[(#ENV{ajout}>{0}|et{#GET{admin_melusine}}|oui)  
- <a href="[(#URL_PAGE{ajout_module_bloc,bloc=#ENV{ajout}}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
-	<i class="fa fa-plus-square fa-x2 fa-space"></i> Ajouter une colonne
-</a>]
-
+[(#SET{boutons,[(#GET{boutons})
+	[(#ENV{ajout}>{0}|et{#GET{admin_melusine}}|oui)  
+	<a href="[(#URL_PAGE{ajout_module_bloc,bloc=#ENV{ajout}}
+			|parametre_url{'type',#TYPE}
+			|parametre_url{'nom_bloc',#GET{nom_bloc}}
+		)]" class='ajout_module button config_melusine mediabox boxIframe boxWidth-500px boxHeight-90%'>
+		<i class="fa fa-plus-square fa-x2 fa-space"></i> Ajouter une colonne
+	</a>]
+]})]
 
 
 <BOUCLE_modules(NOISETTES){type=#ENV{type,#GET{type_par_defaut}}}{bloc}{par rang}>
@@ -75,4 +73,5 @@
 	
 </div>
 </BOUCLE_modules>
+[<div class="boutons admin_zbloc bottom">(#GET{boutons})</div>]
 #FILTRE{trim}

@@ -16,4 +16,16 @@ $(window).load(function(){
 			window.location.reload();
 		}
 	});
+	$(".zbloc").hover(
+		function() {
+			$( this ).addClass("admin_melusine");
+		}, function() {
+			$( this ).removeClass("admin_melusine");
+		})
+	$(".zbloc.admin_melusine .module_melusine.admin_melusine").hover(
+		function() {
+			$( this ).children(".formulaire_deplacer_module").slideToggle();
+		}, function() {
+			$( this ).children(".formulaire_deplacer_module").slideToggle();
+		})
 });
