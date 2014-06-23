@@ -44,7 +44,7 @@ function formulaires_melusine_global_traiter(){
 		$pages=melusine_pages_du_gabarit($key);
 		foreach($pages as $unepage){
 			$g=_request($unepage);
-			echo $g;
+			
 			$chemin="melusine_data/pages/".$unepage;
 			ecrire_config($chemin,$g);
 		}
