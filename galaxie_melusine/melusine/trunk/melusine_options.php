@@ -9,9 +9,11 @@
 		'head_js' => 'scripts javascript',
 		'header' => 'bandeau',
 		'footer' => 'pied de page',
+		'footer2' => 'deuxième pied de page',
 		'nav'	=> 'onglets',
 		'breadcrumb' => 'chemins',
-		'extra' => 'contenu connexe'
+		'extra' => 'contenu connexe',
+		'pre_content' => 'pré contenu'
 	);
 
 // Définition des blocs dispos pour Mélusine:
