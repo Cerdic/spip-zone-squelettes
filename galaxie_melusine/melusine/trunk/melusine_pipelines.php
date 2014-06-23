@@ -39,5 +39,16 @@ function melusine_affiche_milieu ($flux) {
     return $flux;
 }
 
+// Pipeline pour affiche le bouton d'admin de mélusine :
+// ajouter le mode voir=modules
+// tout est piké au noizetier
+// TODO sortir du fork pour devenir une vraie interface au noizetier
+function melusine_formulaire_admin($flux) {
+	if (autoriser('webmestre')) {
+		$btn = recuperer_fond('prive/bouton/voir_modules');
+		$flux['data'] = preg_replace('%(<!--extra-->)%is', $btn.'$1', $flux['data']);
+	}
+	return $flux;
+}
 
 ?>
