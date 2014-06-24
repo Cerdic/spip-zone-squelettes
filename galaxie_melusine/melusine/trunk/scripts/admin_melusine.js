@@ -19,8 +19,10 @@ $(window).load(function(){
 	$(".zbloc").hover(
 		function() {
 			$( this ).addClass("admin_melusine");
+			$( "body" ).addClass("admin_melusine_body")
 		}, function() {
 			$( this ).removeClass("admin_melusine");
+			$( "body" ).removeClass("admin_melusine_body");
 		})
 	$(".zbloc.admin_melusine .module_melusine.admin_melusine").hover(
 		function() {
