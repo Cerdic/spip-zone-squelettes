@@ -43,15 +43,18 @@
 
                 <div id="cadre-titre-article">
                   <BOUCLE_auteur_principal(AUTEURS){id_auteur}{tout}>
-[(#LANG|=={ja}|oui) <div id="titre-article"><strong>#NOM </strong> <:escal:envoyer_message:> ]
-[(#LANG|=={ja}|non) <div id="titre-article"><:escal:envoyer_message:><strong> #NOM</strong> ]                  
+[<div id=logoauteur>(#LOGO_AUTEUR|image_reduire{100,0})</div>]                  
+[(#LANG|=={ja}|oui) <div id="titre-article"><strong>#NOM </strong><br /><:escal:envoyer_message:> ]
+[(#LANG|=={ja}|non) <div id="titre-article"><:escal:envoyer_message:><br /><strong> #NOM</strong> ] 
+                
                     </div>
                     <!-- Affichage de la bio si elle existe -->
-                    <div id="descriptif-article">			[(#BIO)] 			<br />
-                      <!-- si l'auteur n'a pas donne d'adresse, on le signale
-                      		s'il l'a donne,  le formumaire s'affiche -->
+                    [<div id="descriptif-article">			(#BIO) 			<br />
+                      <!-- si l'auteur n'a pas donné d'adresse, on le signale
+                      		s'il l'a donnée,  le formumaire s'affiche -->
                       [(#EMAIL|non) <:escal:adresse_non:>]
-                    </div>
+                    </div>]
+                    <div class="nettoyeur"></div>
                 </div><!-- fin cadre-titre-article -->
                 
                 <div id="texte-article" >
