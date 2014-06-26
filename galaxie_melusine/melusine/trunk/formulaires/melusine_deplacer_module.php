@@ -157,6 +157,21 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 		$result = sql_delete("spip_noisettes","id_noisette =".intval($id_noisette));
 		if ($result === false)
 			return $retour['message_erreur'] = "Échec lors de la suppression du module...";
+		// Il faut boucher le trou si la suppression a créé un trou
+		$infos_modules_suivants = sql_allfetsel(
+			array(
+				"rang",
+				"id_noisette"
+			),
+			"spip_noisettes",
+			"type = '".$infos_module['type'].
+			"' AND bloc = '".$infos_module['bloc'].
+			"' AND rang > ".$rang
+		);
+		foreach($infos_modules_suivants as $info_module_suivant) {
+			$retour["message_erreur"] = $retour["message_erreur"].objet_modifier("noisette",$info_module_suivant['id_noisette'], array("rang" => $info_module_suivant['rang']-1));
+		}
+		
 	}
 
 		
