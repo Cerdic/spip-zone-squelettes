@@ -23,9 +23,9 @@ if (!isset($GLOBALS['z_blocs']))
 
 // Des noms pour les types de gabarits gérées
 	$GLOBALS['types_gabarits_melusine'] = array(
-		"categorie" => "page de catégorie de contenus",
-		"accueil" => "page d'accueil",
-		"contenu" => "page du contenu"
+		"categorie" => "gabarit de catégorie de contenus",
+		"accueil" => "gabarit d'accueil",
+		"contenu" => "gabarit du contenu"
 	);
 
 
