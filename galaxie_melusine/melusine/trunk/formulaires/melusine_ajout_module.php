@@ -67,7 +67,7 @@ function formulaires_melusine_ajout_module_verifier_dist($bloc,$type="rubrique")
  */
 function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 	// Pas d'ajax...
-	refuser_traiter_formulaire_ajax();
+	//refuser_traiter_formulaire_ajax();
 
 	$nom_module = _request("nom_module");
 

@@ -13,7 +13,7 @@ $(window).load(function(){
 		},
 		onClosed:function(){
 			$('body').fadeTo('slow',0.2);
-			window.location.reload();
+			window.location = window.location.href;
 		}
 	});
 	$(".zbloc").hover(
