@@ -16,7 +16,9 @@ $(window).load(function(){
 			window.location = window.location.href;
 		}
 	});
-	$(".zbloc").hover(
+	// Utiliser hoverintent ???
+	// http://cherne.net/brian/resources/jquery.hoverIntent.html
+	$(".zbloc").hoverIntent(
 		function() {
 			$( this ).addClass("admin_melusine");
 			$( "body" ).addClass("admin_melusine_body")
