@@ -8,13 +8,16 @@
 <BOUCLE_json(DATA){source json, http://rssbridge.org/b/Twitter/Json/u/#GET{compte}/}{0,#GET{nb}}>
 <li>
 
-	<p class='date'>
+	[<h3 class='date'>
+		(#VAL{Y-m-d H:i:s}|date{[(#VALEUR|table_valeur{timestamp})]}|affdate|unique)
+	</h3>]
+	[<span class='heures_minutes'>
 		<i class="fa fa-twitter"></i>
-		[(#VALEUR|table_valeur{timestamp})]
-	</p>
-	<p class="twitt">
+		(#VAL{Y-m-d H:i:s}|date{[(#VALEUR|table_valeur{timestamp})]}|heures_minutes)&nbsp;&mdash; 
+	</span>]
+	<span class="twitt">
 		[(#VALEUR|table_valeur{content})]
-	</p>
+	</span>
 </li>
 </BOUCLE_json>
 </ul>
