@@ -1,0 +1,20 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{compte,#PARAMETRES|unserialize|table_valeur{compte}}
+#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+</BOUCLE_noisette>
+
+<h2> Fil twitter #GET{compte}</h2>
+<ul>
+<BOUCLE_json(DATA){source json, http://rssbridge.org/b/Twitter/Json/u/#GET{compte}/}{0,#GET{nb}}>
+<li>
+
+	<p class='date'>
+		<i class="fa fa-twitter"></i>
+		[(#VALEUR|table_valeur{timestamp})]
+	</p>
+	<p class="twitt">
+		[(#VALEUR|table_valeur{content})]
+	</p>
+</li>
+</BOUCLE_json>
+</ul>
