@@ -3,9 +3,11 @@
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 </BOUCLE_noisette>
 
-<h2> Fil twitter #GET{compte}</h2>
+<h2> Fil twitter de <a href="http://twitter.com/#GET{compte}" title="Consulter le fil twitter">@#GET{compte}</a></h2>
+<B_json>
+#ANCRE_PAGINATION
 <ul>
-<BOUCLE_json(DATA){source json, http://rssbridge.org/b/Twitter/Json/u/#GET{compte}/}{0,#GET{nb}}>
+<BOUCLE_json(DATA){source json, http://rssbridge.org/b/Twitter/Json/u/#GET{compte}/}{pagination #GET{nb} #ENV{nom_pagination}|sinon{pagin_twitter_#ID_NOISETTE}}>
 <li>
 
 	[<h3 class='date'>
@@ -21,3 +23,5 @@
 </li>
 </BOUCLE_json>
 </ul>
+#PAGINATION
+</B_json>
