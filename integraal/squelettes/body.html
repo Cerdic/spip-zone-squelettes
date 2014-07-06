@@ -1,0 +1,55 @@
+<body>
+	<div class="page">
+		[(#REM) <!-- Navigation d'accès rapide : recherche, plan, contact, article d'accessibilité, etc --> ]
+		[<nav class="access" id="access">
+			<div class="container">
+				(#INCLURE{fond=inclure/access,env})
+			</div>
+		</nav>]
+		
+		[(#REM) <!-- Entête général du site --> ]
+		<header class="header" id="header">
+			<div class="container">
+				<INCLURE{fond=header/#ENV{type-page},env} />
+			</div>
+		</header>
+		
+		[(#REM) <!-- Navigation principale du site --> ]
+		[<nav class="firstnav" id="firstnav" role="navigation">
+			<div class="container">
+				(#INCLURE{fond=inclure/firstnav,env})
+			</div>
+		</nav>]
+		
+		[(#REM) <!-- Chemin hiérarchique --> ]
+		<nav id="breadcrumb">
+			<div class="container">
+				<INCLURE{fond=breadcrumb/#ENV{type-page},env} />
+			</div>
+		</nav>
+		
+		[(#REM) <!-- Contenu central du site = contenu principal + navigations secondaires --> ]
+		<div class="central">
+			<div class="container" id="container">
+				<div class="wrapper" id="wrapper">
+					<div class="content" role="main" id="content">
+						<INCLURE{fond=content/#ENV{type-page},env} />
+					</div>
+				</div>
+				<aside class="aside secondary" id="aside">
+					<INCLURE{fond=aside/#ENV{type-page},env} />
+				</aside>
+				<aside class="extra secondary" id="extra">
+					<INCLURE{fond=extra/#ENV{type-page},env} />
+				</aside>
+			</div>
+		</div>
+		
+		[(#REM) <!-- Pied de page --> ]
+		<footer class="footer" id="footer">
+			<div class="container">
+				<INCLURE{fond=footer/#ENV{type-page},env} />
+			</div>
+		</footer>
+	</div>
+</body>
