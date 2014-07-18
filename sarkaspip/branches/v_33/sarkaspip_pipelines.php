@@ -28,7 +28,7 @@ function sarkaspip_post_propre($texte){
  */
 function sarkaspip_mes_fichiers_a_sauver($flux){
 	$tmp_fonds = defined('_DIR_TMP') ? _DIR_TMP.'fonds/': _DIR_RACINE.'tmp/fonds/';
-	$tmp_styles = defined('_DIR_TMP') ? _DIR_TMP.'cfg/': _DIR_RACINE.'tmp/cfg/';
+	$tmp_styles = defined('_DIR_TMP') ? _DIR_TMP.'cfg/': _DIR_RACINE.'tmp/sarkaspip/config/';
 
 	// le repertoire des images de fonds pour les styles
 	if (@is_dir($tmp_fonds))
