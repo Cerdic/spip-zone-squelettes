@@ -55,67 +55,67 @@ function sarkaspipr_afficher_noisettes($define, $flux, $ajax=true){
 // -- Fonction d'insertion en debut de colonne extra
 function sarkaspipr_personnaliser_colonne_extra_debut($flux){
 	if (defined('_PERSO_COLONNE_EXTRA_DEBUT'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_COLONNE_EXTRA_DEBUT, $flux, true);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_COLONNE_EXTRA_DEBUT, $flux, true);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de colonne extra
 function sarkaspipr_personnaliser_colonne_extra_fin($flux){
 	if (defined('_PERSO_COLONNE_EXTRA_FIN')) 
-		$flux = sarkaspip_afficher_noisettes(_PERSO_COLONNE_EXTRA_FIN, $flux, true);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_COLONNE_EXTRA_FIN, $flux, true);
 	return $flux;
 }
 // -- Fonction d'insertion en debut de colonne navigation
 function sarkaspipr_personnaliser_colonne_navigation_debut($flux){
 	if (defined('_PERSO_COLONNE_NAVIGATION_DEBUT'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_COLONNE_NAVIGATION_DEBUT, $flux, true);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_COLONNE_NAVIGATION_DEBUT, $flux, true);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de colonne navigation
 function sarkaspipr_personnaliser_colonne_navigation_fin($flux){
 	if (defined('_PERSO_COLONNE_NAVIGATION_FIN'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_COLONNE_NAVIGATION_FIN, $flux, true);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_COLONNE_NAVIGATION_FIN, $flux, true);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de menu des pages speciales
 function sarkaspipr_personnaliser_menu_pages_speciales_fin($flux){
 	if (defined('_PERSO_MENU_PAGES_SPECIALES_FIN'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_MENU_PAGES_SPECIALES_FIN, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_MENU_PAGES_SPECIALES_FIN, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en debut de bandeau haut
 function sarkaspipr_personnaliser_bandeau_haut_debut($flux){
 	if (defined('_PERSO_BANDEAU_HAUT_DEBUT'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_BANDEAU_HAUT_DEBUT, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_BANDEAU_HAUT_DEBUT, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de bandeau haut
 function sarkaspipr_personnaliser_bandeau_haut_fin($flux){
 	if (defined('_PERSO_BANDEAU_HAUT_FIN'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_BANDEAU_HAUT_FIN, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_BANDEAU_HAUT_FIN, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en debut de bandeau bas
 function sarkaspipr_personnaliser_bandeau_bas_debut($flux){
 	if (defined('_PERSO_BANDEAU_BAS_DEBUT'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_BANDEAU_BAS_DEBUT, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_BANDEAU_BAS_DEBUT, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de bandeau bas
 function sarkaspipr_personnaliser_bandeau_bas_fin($flux){
 	if (defined('_PERSO_BANDEAU_BAS_FIN'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_BANDEAU_BAS_FIN, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_BANDEAU_BAS_FIN, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en debut de pied
 function sarkaspipr_personnaliser_pied_debut($flux){
 	if (defined('_PERSO_PIED_DEBUT'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_PIED_DEBUT, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_PIED_DEBUT, $flux, false);
 	return $flux;
 }
 // -- Fonction d'insertion en fin de pied
 function sarkaspipr_personnaliser_pied_fin($flux){
 	if (defined('_PERSO_PIED_FIN'))
-		$flux = sarkaspip_afficher_noisettes(_PERSO_PIED_FIN, $flux, false);
+		$flux = sarkaspipr_afficher_noisettes(_PERSO_PIED_FIN, $flux, false);
 	return $flux;
 }
 ?>
