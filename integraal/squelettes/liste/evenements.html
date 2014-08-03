@@ -1,0 +1,20 @@
+[(#SET{defaut_tri,#ARRAY{
+	num titre,1,
+	date_debut,#ENV{date_sens,1},
+	id_evenement,1,
+	points,-1
+}})
+]<B_evenements>
+	#ANCRE_PAGINATION
+	[<h2 class="h2">(#ENV{titre})</h2>]
+	<ul class="liste-items">
+		<BOUCLE_evenements(EVENEMENTS){id_rubrique?}{id_article?}{recherche?}{tri #ENV{par,#ENV{recherche}|?{points,date_debut}},#GET{defaut_tri}} {pagination #ENV{nb,5}}>
+		<li class="item">#INCLURE{fond=inclure/resume/evenement,id_evenement}</li>
+		</BOUCLE_evenements>
+	</ul>
+	[<div class="pagination">(#PAGINATION{page_precedent_suivant})</div>]
+</div>
+</B_evenements>
+[(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:agenda:info_aucun_evenement:>, #ENV{message_aucun}})]})]
+[<p>(#GET{message_aucun})</p>]
+<//B_evenements>
