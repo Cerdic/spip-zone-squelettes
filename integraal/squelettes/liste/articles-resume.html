@@ -1,10 +1,19 @@
-<B_articles>
+[(#SET{defaut_tri,#ARRAY{
+	num titre,1,
+	date,#ENV{date_sens,-1},
+	id_article,1,
+	points,-1
+}})
+]<B_articles>
 	#ANCRE_PAGINATION
-	<h2 class="h2">[(#ENV{titre,<:derniers_articles:>})]</h2>
+	[<h2>(#ENV{titre})</h2>]
 	<ul class="liste-items">
-		<BOUCLE_articles(ARTICLES){id_rubrique?} {!par date}{!id_article IN #ENV{articles_exclus,#ARRAY}} {pagination #ENV{nb,5}}>
+		<BOUCLE_articles(ARTICLES){id_article?}{id_rubrique?}{recherche?}{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}{!id_article IN #ENV{articles_exclus,#ARRAY}} {pagination #ENV{nb,5}}>
 		<li class="item">#INCLURE{fond=inclure/resume/article,id_article}</li>
 		</BOUCLE_articles>
 	</ul>
 	[<div class="pagination">(#PAGINATION)</div>]
 </B_articles>
+[(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:info_aucun_article:>, #ENV{message_aucun}})]})]
+[<p>(#GET{message_aucun})</p>]
+<//B_articles>
