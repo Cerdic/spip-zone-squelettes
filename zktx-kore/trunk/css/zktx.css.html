@@ -17,6 +17,8 @@ body {padding-top:20px;}
 	);
 }]
 
+h3, .h3 {margin-bottom:0.75em;}
+
 a:link, a:visited {
 	[color: #(#ID_RUBRIQUE
 		|couleur_rubrique
@@ -24,7 +26,7 @@ a:link, a:visited {
 		|sinon{"FF0000"}
 		|couleur_foncer
 	);]
-	text-decoration:underline;
+	[(#REM) text-decoration:underline; ]
 }
 
 a:active, a:hover, a:focus {
@@ -39,6 +41,13 @@ a:active, a:hover, a:focus {
 	text-shadow: 0px 0px 2px #111;
 }
 
+p {margin:0 0 1em 0;}
+
+[(#REM) Class Utilitaires Bootstrap ]
+[(#REM) .pull-left, .pull-right {margin-bottom:0.75em;} ]
+.pull-left {margin-right:1em;}
+.pull-right {margin-left:1em;}
+
 [(#REM) 
 	Wrapper pour le contenu de la page, permettant de fixer le footer en bas de l'écran
 	Commenter pour "libérer" le footer
@@ -46,9 +55,9 @@ a:active, a:hover, a:focus {
 #wrap {
   min-height: 100%;
   height: auto;
-  /* Negative indent footer by its height */
+  [(#REM) Negative indent footer by its height ]
   margin: 0 auto -60px;
-  /* Pad bottom by footer height */
+  [(#REM)  bottom by footer height ]
   padding: 0 0 60px;
 }
 
@@ -63,59 +72,83 @@ a:active, a:hover, a:focus {
 	); 
 }]
 
-[(#REM) Site header ]
-.bs-header { 
-  color: #cdbfe3;
-  background-color: [#(#ID_RUBRIQUE
-                      |couleur_rubrique
-                      |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                      |sinon{"EFEFEF"}
-                    )]; 
-  [background-image:url('(#LOGO_SITE_SPIP_SURVOL
-                            |image_sepia{ [(#ID_RUBRIQUE
-                                              |couleur_rubrique
-                                              |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                                              |sinon{"EFEFEF"}
-                                          )] }
-                            |image_gamma{-100}
-                            |extraire_attribut{src}
-                        )');
-  background-position:50% 50%;
-  background-repeat:no-repeat;]
+[(#REM) Header des pages ]
 
-}
-/* Page headers */
-.bs-header {
-  padding: 30px 15px 40px; /* side padding builds on .container 15px, so 30px */
-  font-size: 16px;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(0,0,0,.15);
-}
-.bs-header h1 {
-  color: #fff;
-}
-.bs-header p {
-  font-weight: 300;
-  line-height: 1.5;
-}
-.bs-header .container {
-  position: relative;
-}
-
-@media (min-width: 768px) {
   .bs-header {
-    font-size: 21px;
-    text-align: left;
+    color: #cdbfe3;
+    background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EFEFEF"})]; 
+    padding: 30px 15px 40px; /* side padding builds on .container 15px, so 30px */
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0,0,0,.15);
+    background-position:50% 50%;
+    background-repeat:no-repeat;
+    [background-image:url('(#LOGO_SITE_SPIP_SURVOL
+                              |image_sepia{ [(#ID_RUBRIQUE|couleur_site|sinon{"EFEFEF"})] }
+                              |image_gamma{-100}
+                              |extraire_attribut{src}
+                            )');]
   }
-  .bs-header h1 {
-    font-size: 60px;
-    line-height: 1;
-  }
-}
 
-@media (min-width: 992px) {
-  .bs-header h1,
-  .bs-header p {
-    margin-right: 380px;
+      [(#REM) Pages rubriques ]
+      <BOUCLE_rubrique_bs_header(RUBRIQUES){id_rubrique = #ENV{id_rubrique}}>
+        .bs-header { 
+          background-color: [#(#ID_RUBRIQUE
+                              |couleur_rubrique
+                              |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
+                              |sinon{"EFEFEF"}
+                            )]; 
+          [background-image:url('(#LOGO_RUBRIQUE_SURVOL
+                                    |sinon{#LOGO_SITE_SPIP_SURVOL}
+                                    |image_sepia{ [(#ID_RUBRIQUE
+                                                      |couleur_rubrique
+                                                      |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
+                                                      |sinon{"EFEFEF"}
+                                                  )] }
+                                    |image_gamma{-100}
+                                    |extraire_attribut{src}
+                                )');]
+
+        }
+      </BOUCLE_rubrique_bs_header>
+
+    [(#REM) Pages mots ]
+    <BOUCLE_mot_bs_header(MOTS){id_mot=#ENV{id_mot}}>
+      .bs-header { 
+        [background-image:url('(#LOGO_MOT
+                                  |sinon{ #LOGO_SITE_SPIP_SURVOL }
+                                  |image_sepia{ [(#ID_RUBRIQUE|couleur_site|sinon{"EFEFEF"})] }
+                                  |image_gamma{-100}
+                                  |extraire_attribut{src}
+                              )')!important;]
+      }
+    </BOUCLE_mot_bs_header>
+
+  .bs-header h1 {
+    color: #fff;
   }
-}
+  .bs-header p {
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .bs-header .container {
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .bs-header {
+      font-size: 21px;
+      text-align: left;
+    }
+    .bs-header h1 {
+      font-size: 60px;
+      line-height: 1;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .bs-header h1,
+    .bs-header p {
+      margin-right: 380px;
+    }
+  }

@@ -8,7 +8,7 @@
 	#ANCRE_PAGINATION
 	<div class="h2">[(#ENV{titre,<:derniers_articles:>})]</div>
 	
-		<BOUCLE_articles(ARTICLES){id_rubrique?} {!par date} {pagination #ENV{nb,6}}>
+		<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot?} {!par date} {pagination #ENV{nb,6}}>
 		
 		[(#REM) Affichage défaut : 3 colonnes ( .col-lg-4 )	]
 		
@@ -17,7 +17,7 @@
 			<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
 			[(#LOGO|image_passe_partout{102,102}|image_recadre{140,140,center}|inserer_attribut{class,img-circle}|inserer_attribut{data-src,holder.js/140x140})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
 			<div class="h2 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
-			<p class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+			<p class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr>][<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
 			[<section class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{160}|abs_url)</section>]
 			<p class="meta-publi">
 			<!-- a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span></a -->
