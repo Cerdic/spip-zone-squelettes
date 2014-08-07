@@ -41,6 +41,29 @@ a:active, a:hover, a:focus {
 	text-shadow: 0px 0px 2px #111;
 }
 
+[(#REM) Boutons]
+a.btn { text-decoration:none!important; }
+[(#SET{grad, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]})] })]
+[(#SET{grad_foncer, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]}|couleur_foncer)] })]
+[(#SET{grad_bordure, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]}|couleur_foncer|couleur_foncer)] })]
+
+.btn-primary {
+  background-image: -webkit-gradient(linear,left 0,left 100%,from(#GET{grad}),to(#GET{grad_foncer}));
+  background-image: -webkit-linear-gradient(top,#GET{grad} 0,#GET{grad_foncer} 100%);
+  background-image: -moz-linear-gradient(top,#GET{grad} 0,#GET{grad_foncer} 100%);
+  background-image: linear-gradient(to bottom,#GET{grad} 0,#GET{grad_foncer} 100%);
+  background-repeat: repeat-x;
+  border-color: #GET{grad_bordure};
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff#GET{grad}',endColorstr='#ff#GET{grad_foncer}',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+  color: #fff;
+  border-color: #GET{grad_bordure};
+  background-color: #GET{grad_foncer};
+  background-position: 0 -15px;
+}
+
 p {margin:0 0 1em 0;}
 
 [(#REM) Class Utilitaires Bootstrap ]
