@@ -254,6 +254,9 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
  * @param object $p
  * @return object
  */
+
+//permettre l'utilisation de comments et sarkaspip (meme si ce n'est pas souhaitable dans cette version de sarkaspip)
+if (!defined("_DIR_PLUGIN_COMMENTS")) {
 function balise_BOUTONS_ADMIN_FORUM_dist($p) {
 	if (($_id = interprete_argument_balise(1,$p))===NULL)
 		$_id = champ_sql('id_forum', $p);
@@ -276,5 +279,6 @@ function balise_BOUTONS_ADMIN_FORUM_dist($p) {
 	$p->interdire_scripts = false;
 	return $p;
 }
+}//Comments 
 
 ?>
