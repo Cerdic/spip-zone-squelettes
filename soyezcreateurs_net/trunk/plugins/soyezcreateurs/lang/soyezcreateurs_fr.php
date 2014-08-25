@@ -118,6 +118,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)',
 	'cfg_decalage_bas_label' => 'Décalage vers le bas du logo si présent dans l’en-tête (en pixel)',
 	'cfg_decalage_droite_label' => 'Décalage vers la droite du logo si présent dans l’en-tête (en pixel)',
+	'cfg_dessousbreves_communiquant_liens_label' => 'Liens sur les titres des rubriques "DessousBreves" en mode communiquant',
 	'cfg_em' => 'en <b>em</b>',
 	'cfg_entete_page' => 'En-tête de page',
 	'cfg_entravaux' => 'Annonce travaux',
