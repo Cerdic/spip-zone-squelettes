@@ -165,6 +165,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$id_mot = create_mot("_Specialisation_Rubrique", "GisSecteur", "Mettre ce mot clef à une rubrique où l'on veut afficher la carte Gis pour l'ensemble du Secteur (Rubrique racine de SPIP et toutes ses sous rubriques).", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.32','non');
 		}
+		if (version_compare($current_version,'3.0.33','<')) {
+			spip_log("SoyezCreateurs maj 3.0.33 Début", "soyezcreateurs_install");
+			$id_mot = create_mot("_Specialisation_Rubrique", "ClassementAlpha", "Mettre ce mot clef à la rubrique pour classer son contenu alphabétiquement.", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.33','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));

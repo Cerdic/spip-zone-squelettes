@@ -9,10 +9,14 @@
 <BOUCLE_PlusieursArticles(ARTICLES) {id_rubrique} {lang} {1,1}{!archive}>
 <BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
 [(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>#SET{div_artrecents,1}]
+#SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
+<BOUCLE_ClassementAlpha(RUBRIQUES){id_rubrique}{titre_mot=ClassementAlpha}>#SET{tri,titre}#SET{senstri,1}</BOUCLE_ClassementAlpha>
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>#SET{tri,num titre}#SET{senstri,1}</BOUCLE_test_numero>
+<//B_ClassementAlpha>
 		<B_articles_rubrique>
 		<h2 title="<:soyezcreateurs:memerubrique|replace{\.\.\.,''}:>: [(#INFO_TITRE{rubrique,#ID_RUBRIQUE}|supprimer_tags|attribut_html)]"><:soyezcreateurs:memerubrique:></h2>
 		<ul>
-		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {lang} {!archive}>
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {tri #GET{tri},#GET{senstri}} {lang} {!archive}>
 			<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_ARTICLE|!={#ENV{id_article}}|oui)<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#ID_ARTICLE|!={#ENV{id_article}}|?{'</a>'})]</li>
 		</BOUCLE_articles_rubrique>
 		</ul>
