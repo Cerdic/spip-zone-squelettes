@@ -6,7 +6,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 'accueil
 |G&eacute;n&eacute;ralit&eacute;s!meta:layout:elements:bandeau:menu:niveaumenu:pied
 |La page d\'accueil!sommaire_corps:sommaire_colonnes:sommaire_noisettes
-|Les pages internes!rubrique:article:contact:pages_noisettes
+|Les pages internes!rubrique:article:contact:pages_noisettes:forumsite
 |Un peu de style!fonds:textes:bords:arrondis
 |Des plugins dans Escal!galleria:rainette:mentions:licence:spip400:socialtags:facebook
 ');

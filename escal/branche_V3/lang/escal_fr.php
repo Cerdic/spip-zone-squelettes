@@ -52,6 +52,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_page_elements' => '&Eacute;léments',
 'cfg_page_facebook' => 'Facebook',
 'cfg_page_fonds' => 'Les fonds',
+'cfg_page_forumsite' => 'Le forum du site',
 'cfg_page_galleria' => 'Galleria',
 'cfg_page_layout' => 'Layout',
 'cfg_page_licence' => 'Licence',
