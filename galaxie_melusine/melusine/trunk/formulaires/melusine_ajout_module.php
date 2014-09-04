@@ -87,7 +87,7 @@ function formulaires_melusine_ajout_module_traiter_dist($bloc,$type="rubrique"){
 		"rang DESC"
 		);
 	// Pas de place...
-	if ($infos_module_bas['rang'] > 11) 
+	if ($infos_module_bas['rang'] > 20) 
 		return array('message_erreur' => "Plus de place dans ce bloc&nbsp;! Vous devez d'abord retirer un module...");
 	
 

@@ -101,7 +101,7 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 
 	// descendre d'une rangée
 	// 12 rangées maxi
-	if($action=="descendre" && $rang<20 ){
+	if($action=="descendre" && $rang<11 ){
 		// On regarde si on a un module en dessous
 		$infos_module_suivant= sql_fetsel(
 		array(
