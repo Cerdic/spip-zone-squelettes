@@ -36,7 +36,8 @@
     ]
 <!-- affichage titre -->
 			<div class="titre #EDIT{titre}">
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="<:par_auteur:><BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_auteurs> [(#LANG|=={ja}|non)<:escal:le:>] [(#DATE|affdate)]">
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" 
+      title="[(#LANG|=={ja}|non)<:par_auteur:>] <BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_auteurs> [(#LANG|=={ja}|oui)<:par_auteur:>] <:escal:le:> [(#DATE|affdate)]">
 			#TITRE
 			</a>
       </div>      
@@ -48,10 +49,11 @@
       <BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurune}|=={non}|non}>
       </BOUCLE_test>
         <div class="auteur-articles-rubrique">
-          <:par_auteur:>
+          [(#LANG|=={ja}|non)<:par_auteur:>]
           <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
             <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a>
           </BOUCLE_auteurs_art>
+          [(#LANG|=={ja}|oui)<:par_auteur:>]
         </div>
       </B_test>
 <!-- affichage rubrique -->

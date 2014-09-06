@@ -108,7 +108,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // J
 'jours' => '日',
 // L
-'le' => 'le',
+'le' => ' ',
 'lire_article' => '記事を読む ...',
 'lire_suite' => '続きを読む ...',
 // M
