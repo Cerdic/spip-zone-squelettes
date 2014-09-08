@@ -8,7 +8,9 @@
 					</BOUCLE_sommaire>
 					</B_sommaire>
 					[(#REM) les pages uniques (credits...)]
-					<BOUCLE_pages(ARTICLES){page!=""}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_pages>
+					<BOUCLE_pages(ARTICLES){id_rubrique=-1}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_pages>
+					      <li class="articles">[(#SESSION{id_auteur}|non)<a href="spip.php?page=login&url=spip.php">Connexion</a>][(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT{/}">Déconnexion</a>]</li>
+					      [<li class="articles">(#SESSION{statut}|=={0minirezo}|oui|ou{[(#SESSION{statut}|=={1comite}|oui)]})<a href="#URL_ECRIRE">Admin</a></li>]
 					</ul>
 				</div>
 				[(#REM) intégrer ici social_tags ?]

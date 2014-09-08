@@ -7,7 +7,7 @@ function parallelism_insert_head($flux){
     $html5shiv = find_in_path('js/html5shiv.js'); 
     $cssspipstyle = find_in_path('css/spip-style.css'); // mis ici pour passer après style.css !
 
-    $flux .= '<!--[if lte IE 8]><script src="'.$html5shiv.'"></script>-->
+    $flux .= '<!--[if lte IE 8]><script src="'.$html5shiv.'"></script><![endif]-->
     <script src="'.$poptroxjs.'"></script>
     <script src="'.$configjs.'"></script>
     <script src="'.$skeljs.'"></script>
@@ -25,10 +25,10 @@ function parallelism_insert_head_css($flux) {
     // $css_icones = generer_url_public('barre_outils_icones.css');
     
     $flux .= "    <noscript>
-      <link rel='stylesheet' type='text/css' media='all' href='$cssnoscript' />
-      <link rel='stylesheet' type='text/css' media='all' href='$cssstyle' />
-      <link rel='stylesheet' type='text/css' media='all' href='$cssstyledesktop' />
-      <link rel='stylesheet' type='text/css' media='all' href='$cssstylenoscript' />
+      <link rel='stylesheet' type='text/css' media='all' href='".$cssnoscript."' />
+      <link rel='stylesheet' type='text/css' media='all' href='".$cssstyle."' />
+      <link rel='stylesheet' type='text/css' media='all' href='".$cssstyledesktop."' />
+      <link rel='stylesheet' type='text/css' media='all' href='".$cssstylenoscript."' />
     </noscript>
     <!--[if lte IE 8]><link rel='stylesheet' href='css/ie8.css' /><![endif]-->";
     //. "<link rel='stylesheet' type='text/css' media='all' href='$css_icones' />";
