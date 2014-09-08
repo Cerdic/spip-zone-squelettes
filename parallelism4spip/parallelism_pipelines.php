@@ -24,14 +24,14 @@ function parallelism_insert_head_css($flux) {
     // générer une css au départ d'un squelette SPIP
     // $css_icones = generer_url_public('barre_outils_icones.css');
     
-    $flux .= "    <noscript>
-      <link rel='stylesheet' type='text/css' media='all' href='".$cssnoscript."' />
-      <link rel='stylesheet' type='text/css' media='all' href='".$cssstyle."' />
-      <link rel='stylesheet' type='text/css' media='all' href='".$cssstyledesktop."' />
-      <link rel='stylesheet' type='text/css' media='all' href='".$cssstylenoscript."' />
+    $flux .= '<noscript>
+      <link rel="stylesheet" type="text/css" media="all" href="'.$cssnoscript.'" />
+      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstyle.'" />
+      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstyledesktop.'" />
+      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstylenoscript.'" />
     </noscript>
-    <!--[if lte IE 8]><link rel='stylesheet' href='css/ie8.css' /><![endif]-->";
-    //. "<link rel='stylesheet' type='text/css' media='all' href='$css_icones' />";
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->';
+    //. "<link rel="stylesheet" type="text/css" media="all" href="$css_icones" />";
     return $flux;
     }
 
