@@ -13,25 +13,24 @@
 		[(#REM) Affichage défaut : 3 colonnes ( .col-lg-4 )	]
 		
 		
-		<article class="item hentry col-lg-4">
+		<article class="item hentry col-lg-4 text-center">
 			<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
-			[(#LOGO|image_passe_partout{102,102}|image_recadre{140,140,center}|inserer_attribut{class,img-circle}|inserer_attribut{data-src,holder.js/140x140})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
-			<div class="h2 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
-			<p class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr>][<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+			[(#LOGO|image_passe_partout{360,0}|inserer_attribut{class,img-responsive}|inserer_attribut{class,center-block})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
+			<div class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
 			[<section class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{160}|abs_url)</section>]
-			<p class="meta-publi">
-			<!-- a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span></a -->
-			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />	[(#TOTAL_BOUCLE|oui)
-				<span class="sep">|</span>
-				<a[ href="(#URL_ARTICLE|ancre_url{forum})"] class="nb_commentaires">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>
-				]
+			<p class="small">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr>][, <span class="author"><:par_auteur:> (#LESAUTEURS)</span>],<br/><span class="meta-publi">
+			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
+			[(#TOTAL_BOUCLE|oui)
+				| [(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]
+			]
 			<//B_nb_commentaires>
-			</p>
+			</span></p>
+			
 		</article>
 		
 		</BOUCLE_articles>
 
-	[<p class="pagination">(#PAGINATION)</p>]
+	[<nav class="center-block clearfix">(#PAGINATION{page_precedent_suivant})</nav>]
 </div>
 </section>
 </B_articles>
