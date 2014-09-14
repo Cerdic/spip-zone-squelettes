@@ -230,7 +230,7 @@
 				<li class="fieldset suite" id="bloc_liens"><fieldset>
 					<p class="explication"><:sarkaspip_config:cfg_inf_menu_perso_aide:></p>
 					<ul>
-						<BOUCLE_nb(DATA){enum 1,9}>
+						<BOUCLE_menu_perso(DATA){enum 1,#EVAL{_SARKASPIP_CONFIG_MAX_MENU_PERSO}}>
 						#SET{name,lien_texte_#VALEUR}#SET{defaut,''}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer editer_lien_texte editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 							<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_lien_texte:></label>[
@@ -243,7 +243,7 @@
 							<span class="erreur_message">(#GET{erreurs})</span>
 							]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 						</li>
-						</BOUCLE_nb>
+						</BOUCLE_menu_perso>
 					</ul></fieldset>
 				</li>
 			</ul>

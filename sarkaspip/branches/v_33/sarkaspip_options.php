@@ -28,6 +28,8 @@ if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
+if (!defined('_SARKASPIP_CONFIG_MAX_MENU_PERSO')) define('_SARKASPIP_CONFIG_MAX_MENU_PERSO', 9);
+// -- Pour les meta
 if (!defined('_SARKASPIP_CONFIG_INTRO_META')) define('_SARKASPIP_CONFIG_INTRO_META', 150);
 // -- Pour les documents joints et portfolio d'images
 if (!defined('_SARKASPIP_CONFIG_LARGEUR_DOCUMENT')) define('_SARKASPIP_CONFIG_LARGEUR_DOCUMENT', 52);
