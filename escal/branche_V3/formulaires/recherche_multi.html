@@ -12,6 +12,20 @@
     <BOUCLE_mots4(MOTS){type=#CONFIG{escal/config/recherchemulti4}}{doublons quatre}>
     </BOUCLE_mots4>
 
+    <BOUCLE_mots5(MOTS){type=#CONFIG{escal/config/recherchemulti5}}{doublons cinq}>
+    </BOUCLE_mots5>
+
+    <BOUCLE_mots6(MOTS){type=#CONFIG{escal/config/recherchemulti6}}{doublons six}>
+    </BOUCLE_mots6>
+    
+    <BOUCLE_mots7(MOTS){type=#CONFIG{escal/config/recherchemulti7}}{doublons sept}>
+    </BOUCLE_mots7>
+    
+    <BOUCLE_mots8(MOTS){type=#CONFIG{escal/config/recherchemulti8}}{doublons huit}>
+    </BOUCLE_mots8>
+    
+    <BOUCLE_mots9(MOTS){type=#CONFIG{escal/config/recherchemulti9}}{doublons neuf}>
+    </BOUCLE_mots9>
     
     <form action="#ENV{action}" method="post">
     <div>
@@ -62,6 +76,66 @@
              [(#CONFIG{escal/config/recherchemulti4}|oui)
              </select>
              ]
+             <br />
+             [(#CONFIG{escal/config/recherchemulti5}|oui)
+             <span class="groupe-mots">#CONFIG{escal/config/recherchemulti5}</span><br />
+             <select name="id5" id="idselect5" size="1">
+                      <option value=""></option>
+             ]             
+                 <BOUCLE_mot_critere5(MOTS){si #CONFIG{escal/config/recherchemulti5}|oui}{!doublons cinq}{par titre}>
+                     [<option value="#ID_MOT" [(#ENV{id5}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+                 </BOUCLE_mot_critere5>
+             [(#CONFIG{escal/config/recherchemulti5}|oui)
+             </select>
+             ]
+             <br />
+             [(#CONFIG{escal/config/recherchemulti6}|oui)
+             <span class="groupe-mots">#CONFIG{escal/config/recherchemulti6}</span><br />
+             <select name="id6" id="idselect6" size="1">
+                      <option value=""></option>
+             ]             
+                 <BOUCLE_mot_critere6(MOTS){si #CONFIG{escal/config/recherchemulti6}|oui}{!doublons six}{par titre}>
+                     [<option value="#ID_MOT" [(#ENV{id6}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+                 </BOUCLE_mot_critere6>
+             [(#CONFIG{escal/config/recherchemulti6}|oui)
+             </select>
+             ]
+             <br />
+             [(#CONFIG{escal/config/recherchemulti7}|oui)
+             <span class="groupe-mots">#CONFIG{escal/config/recherchemulti7}</span><br />
+             <select name="id7" id="idselect7" size="1">
+                      <option value=""></option>
+             ]             
+                 <BOUCLE_mot_critere7(MOTS){si #CONFIG{escal/config/recherchemulti7}|oui}{!doublons sept}{par titre}>
+                     [<option value="#ID_MOT" [(#ENV{id7}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+                 </BOUCLE_mot_critere7>
+             [(#CONFIG{escal/config/recherchemulti7}|oui)
+             </select>
+             ]             
+             <br />
+             [(#CONFIG{escal/config/recherchemulti8}|oui)
+             <span class="groupe-mots">#CONFIG{escal/config/recherchemulti8}</span><br />
+             <select name="id8" id="idselect8" size="1">
+                      <option value=""></option>
+             ]             
+                 <BOUCLE_mot_critere8(MOTS){si #CONFIG{escal/config/recherchemulti8}|oui}{!doublons huit}{par titre}>
+                     [<option value="#ID_MOT" [(#ENV{id8}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+                 </BOUCLE_mot_critere8>
+             [(#CONFIG{escal/config/recherchemulti8}|oui)
+             </select>
+             ]
+             <br />
+             [(#CONFIG{escal/config/recherchemulti9}|oui)
+             <span class="groupe-mots">#CONFIG{escal/config/recherchemulti9}</span><br />
+             <select name="id9" id="idselect9" size="1">
+                      <option value=""></option>
+             ]             
+                 <BOUCLE_mot_critere9(MOTS){si #CONFIG{escal/config/recherchemulti9}|oui}{!doublons neuf}{par titre}>
+                     [<option value="#ID_MOT" [(#ENV{id9}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+                 </BOUCLE_mot_critere9>
+             [(#CONFIG{escal/config/recherchemulti9}|oui)
+             </select>
+             ]                          
              
             <br /><br />
             <span class="boutons"><input type="submit" class="submit" value="<:escal:rechercher:>" /></span>
@@ -73,10 +147,15 @@
     <:escal:recherche_multi_resultat:>
       <ul>
     <BOUCLE_mots_multiples(ARTICLES)
-     {id_mot=#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4}}}}}
-     {id_mot=#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id1}}}}}
-     {id_mot=#ENV{id3,#ENV{id4,#ENV{id1,#ENV{id2}}}}}
-     {id_mot=#ENV{id4,#ENV{id1,#ENV{id2,#ENV{id3}}}}}
+     {id_mot=#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9}}}}}}}}}}
+     {id_mot=#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1}}}}}}}}}}
+     {id_mot=#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2}}}}}}}}}}
+     {id_mot=#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3}}}}}}}}}}
+     {id_mot=#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4}}}}}}}}}}
+     {id_mot=#ENV{id6,#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5}}}}}}}}}}
+     {id_mot=#ENV{id7,#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6}}}}}}}}}}
+     {id_mot=#ENV{id8,#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7}}}}}}}}}}
+     {id_mot=#ENV{id9,#ENV{id1,#ENV{id2,#ENV{id3,#ENV{id4,#ENV{id5,#ENV{id6,#ENV{id7,#ENV{id8}}}}}}}}}}
     >
       <li>
     			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
