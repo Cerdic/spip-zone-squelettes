@@ -429,7 +429,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Thèmes',
 	'tousarticlesantichrono' => 'Tous les articles par ordre antichronologique',
-	'tout' => 'Tout',
+	'tout' => '(Aucun filtre)',
 	'toutleplan' => 'Tout le site sur une page',
 
 	// V
