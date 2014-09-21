@@ -90,7 +90,7 @@ function balise_NBPAGES_VISITEES($p) {
 }
 
 // fonction pour l'affichage du nombre de visiteurs connectes
-// issue du plugin "Nombre de visiteurs connectèes"
+// issue du plugin "Nombre de visiteurs connectées"
 // http://contrib.spip.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
 function escal_visiteurs_connectes_compter(){

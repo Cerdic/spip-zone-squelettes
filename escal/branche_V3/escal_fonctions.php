@@ -8,7 +8,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return; 
 
 // =======================================================================================================================================
-// Paramètrage à l'installation d'Escal
+// Paramétrage à l'installation d'Escal
 // Merci à Arnaud Bérard pour son aide précieuse
 // =======================================================================================================================================
 
@@ -467,7 +467,7 @@ function balise_VAL_MAX_VISITES($p) {
 
 function citations($txt){
 $BDDArray = $txt;// Lecture de l'article
-$BDDArray = explode('<p>', $BDDArray); // couper é la  rencontre un p
+$BDDArray = explode('<p>', $BDDArray); // couper à la  rencontre un p
 $BDDArray = array_map('rtrim', $BDDArray); // Suppression des fins de lignes de chaque élément
 $BDDArray = array_filter($BDDArray); // Suppression de TOUTES les entrées vides
 

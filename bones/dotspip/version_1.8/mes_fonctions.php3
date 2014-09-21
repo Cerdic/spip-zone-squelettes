@@ -8,7 +8,7 @@ function titre_homogene($titre) {
   return casse_titre($titre);
 }
 
-// tronque un titre à 60 caractàres, sans coupure de mot
+// tronque un titre à 60 caractères, sans coupure de mot
 function tronquer_titre($texte) {
   return couper_texte($texte, 60);
 }

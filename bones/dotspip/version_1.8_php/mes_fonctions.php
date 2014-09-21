@@ -14,7 +14,7 @@ function tronquer_titre($texte) {
 }
 
 // coupe une chaîne à $limite caractères, sans coupure de mot
-// (un mot est considéré comme un groupe de caractères séparéar des espaces)
+// (un mot est considéré comme un groupe de caractères séparé par des espaces)
 function couper_texte($texte, $limite) {
   // la longueur du texte est <= $limite, on retourne le texte entier
   if (strlen($texte) <= $limite) return $texte;

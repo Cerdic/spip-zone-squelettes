@@ -11,13 +11,13 @@ Compatibilité : SPIP 2.0 ou plus recent
 La documentation de ce jeu de squelettes se trouve a :
 	http://edu.ca.edu/rubrique43.html
 
-Aussi réféncéur http://contrib.spip.net
+Aussi référencé http://contrib.spip.net
 	
 
 1. POUR INSTALLER LE JEU DE SQUELETTES AHUNTSIC
 ---------------------------------------------------
 
-AUTOMATIQUE (méthode préférée :
+AUTOMATIQUE (méthode préférée) :
 1. Créer à la racine de SPIP les dossiers /plugins/auto/
 2. Dans l'interface privé de SPIP, aller à :
   'Configuration > Gestion des plugins : Ajoutez des plugins'
