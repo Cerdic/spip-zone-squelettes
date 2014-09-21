@@ -8,7 +8,7 @@ Themes issus de http://yatil.de/s5/
 
 
 Adapté pour SPIP par Pierre Bourgeois, Emmanuel Saint-James, Fil
-http://www.spip-contrib.net/Squelette-S5-Slide-Show
+http://contrib.spip.net/Squelette-S5-Slide-Show
 
 Compatible avec le plugin Crayons !
 

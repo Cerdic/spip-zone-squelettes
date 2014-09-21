@@ -21,7 +21,7 @@
 
 ################ CONFIGURATION TITRAGE #######################
 
-// Dans le squelette AHUNTSIC, tous les #TITRE sont filtrés
+// Dans le squelette AHUNTSIC, tous les #TITRE sont filtrÃ©s
 // par #TITRE|supprimer_numero ; mais il est possible que nous
 // en ayons oublie ; on ne prend pas de chance, on les supprime
 // ici globalement ; ca s'appliquera aussi a tous les squelettes
@@ -33,7 +33,7 @@
 
 ############### CONFIGURATION COUTEAU SUISSE ################
 // Installation des outils par defaut
-// Voir : http://www.spip-contrib.net/Le-Couteau-Suisse-a-piloter
+// Voir : http://contrib.spip.net/Le-Couteau-Suisse-a-piloter
 $GLOBALS['cs_installer']['Ahuntsic']['outils'] = 
 	'decoupe|sommaire|soft_scroller|guillemets|pucesli|liens_orphelins';
 // Installation des variables par defaut

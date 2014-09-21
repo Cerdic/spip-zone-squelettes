@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum -- Este es un fichero módulo de SPIP-forum
+// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum -- Este es un fichero mÃ³dulo de SPIP-forum
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commentaires_pour' => 'comentarios para',
 'commentaires_fermes' => 'Los comentarios para esta anotaci&oacute;n est&aacute;n cerrados',
 'credits' => '<a href="http://www.spip.net/es">generado por SPIP</a>,
-<a href="http://www.spip-contrib.net/Spip-Clear">propulsado por Spip.Clear</a>',
+<a href="http://contrib.spip.net/Spip-Clear">propulsado por Spip.Clear</a>',
 
 //D
 'date_jour_abbr_1' => 'dom',

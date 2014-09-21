@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   /*********************\
    * moteur opensearch *
   \*********************/
@@ -18,7 +18,7 @@
   $sites = array(
     array("SPIP.NET","http://www.spip.net/opensearch.php?recherche={searchTerms}$critere_lang",10),
     array("FORUM.SPIP.ORG","http://forum.spip.org/opensearch.php?recherche={searchTerms}$critere_lang",10),
-    /*array("SPIP-CONTRIB","http://www.spip-contrib.net/opensearch.php?recherche={searchTerms}",10),*/
+    /*array("SPIP-CONTRIB","http://contrib.spip.net/opensearch.php?recherche={searchTerms}",10),*/
     array("SPIP-CONTRIB","http://www.spip.net/contrib/opensearch.php?recherche={searchTerms}$critere_lang",10)
   );
 

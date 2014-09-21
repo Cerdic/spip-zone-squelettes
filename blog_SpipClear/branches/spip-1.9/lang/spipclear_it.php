@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commentaires_pour' => 'commenti per',
 'commentaires_fermes' => 'I commenti per questo messaggio sono chiusi',
 'credits' => '<a href="http://www.spip.net/it">creato con SPIP</a>,
-<a href="http://www.spip-contrib.net/Spip-Clear">funziona con Spip.Clear</a>',
+<a href="http://contrib.spip.net/Spip-Clear">funziona con Spip.Clear</a>',
 
 //D
 'date_jour_abbr_1' => 'dom',
@@ -40,7 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //E
 'titre_erreur' => 'Errore :',
 'texte_erreur1' => 'La ricerca di',
-'texte_erreur2' => 'non dà nessun risultato.',
+'texte_erreur2' => 'non dÃ  nessun risultato.',
 
 //F
 'fil_rss' => 'feed rss',

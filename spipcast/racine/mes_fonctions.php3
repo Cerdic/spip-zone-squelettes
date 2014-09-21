@@ -12,7 +12,7 @@ $GLOBALS['dossier_squelettes'] = 'spipcast';
  *   +-------------------------------------+
  *  
  * Mise a jours et discution:
- * http://www.spip-contrib.net/Un-fil-RSS-2-et-un-fil-ATOM-3?var_recherche=rss2
+ * http://contrib.spip.net/Un-fil-RSS-2-et-un-fil-ATOM-3?var_recherche=rss2
 */
 
 function pasdecrochet($texte) {

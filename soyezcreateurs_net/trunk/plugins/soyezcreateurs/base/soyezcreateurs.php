@@ -877,7 +877,7 @@ function soyezcreateurs_config_motsclefs() {
 			create_rubrique_mot("10. Navigation haute", "AfficherArticlesMenu", "_Specialisation_Rubrique");
 			create_rubrique_mot("10. Navigation haute", "PasDansFildAriane", "_Specialisation_Rubrique");
 	
-		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://www.spip-contrib.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
+		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 	
 		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
 		if ($nouvelle_installation) {

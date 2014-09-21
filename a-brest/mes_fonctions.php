@@ -17,7 +17,7 @@
  *
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://www.spip-contrib.net/???
+ * http://contrib.spip.net/???
 */
 function opendocblank($str){
   $extensions = array("jpg","png","gif","doc","rtf","pdf","xls");
@@ -72,7 +72,7 @@ function cleaner($str){
 *
 * Pour toute suggestion, remarque, proposition d'ajout
 * reportez-vous au forum de l"article :
-* http://www.spip-contrib.net/Filtre-Licence
+* http://contrib.spip.net/Filtre-Licence
 */
 
 

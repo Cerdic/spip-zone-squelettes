@@ -26,7 +26,7 @@ function calcul_visiteurs_connectes() {
 // Nombre de visiteurs sur le site et historique
 // Auteur (fr): physiquark@free.fr
 // version 0.2
-// doc sur http://www.spip-contrib.net/Plugin-pour-des-balises-de
+// doc sur http://contrib.spip.net/Plugin-pour-des-balises-de
 // =======================================================================================================================================
 //
 
@@ -63,7 +63,7 @@ function vst_ip_live() {
 	$iplive = $_SERVER["REMOTE_ADDR"];
 	}
 	else { // sinon
-	$iplive = "IP cachée";
+	$iplive = "IP cachÃ©e";
 	}
 	return $iplive;
 }

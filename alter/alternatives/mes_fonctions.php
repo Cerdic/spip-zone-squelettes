@@ -2,7 +2,7 @@
 
 // Balise pour afficher la version de SPIP en cours sur votre site
 // Contrib de Scoty : http://www.koakidi.com/
-// voir : http://www.spip-contrib.net/Collection-de-Balises
+// voir : http://contrib.spip.net/Collection-de-Balises
 function balise_VERSION_SPIP_AFFICHEE($p) {
         $p->code = "'".$GLOBALS['spip_version_affichee']."'";
         $p->statut = 'php';
@@ -16,16 +16,16 @@ function balise_VERSION_SPIP_AFFICHEE($p) {
  *   +----------------------------------+
  *    Date : Vendredi 6 juin 2003
  *    Auteur :  Noplay (noplay@altern.org) 
- *              Aurélien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr                                     
+ *              AurÃ©lien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr                                     
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
  *      Cette modification permet d'afficher le sommaire de l'article 
- *      généré dynamiquement à partir des intertitres du texte de l'article. 
+ *      gÃ©nÃ©rÃ© dynamiquement Ã  partir des intertitres du texte de l'article. 
  *		Vous pouvez naviguer dans l'article en cliquant sur les intitres 
  *      du sommaire de l'article. 
  *
- *      Tout ce qui ce trouve entre {{{ et }}} est considéré comme un titre 
- *      à ajouter au sommaire de l'article.
+ *      Tout ce qui ce trouve entre {{{ et }}} est considÃ©rÃ© comme un titre 
+ *      Ã  ajouter au sommaire de l'article.
  *   +-------------------------------------+ 
  *  
  * 		Pour toute suggestion, remarque, proposition d'ajout
@@ -43,7 +43,7 @@ function sommaire_article($texte)
 	$i=0;
 	$texte="";
 	while($page[$i]){
-		// On ajoute une ancre aux intertitres "{{{ }}}" que l'on utilise pour créer le sommaire
+		// On ajoute une ancre aux intertitres "{{{ }}}" que l'on utilise pour crÃ©er le sommaire
 		preg_match_all("|\{\{\{(.*)\}\}\}|U",$page[$i], $regs);
 	 	$nb=1;
 		for($j=0;$j<count($regs[1]);$j++){
@@ -65,10 +65,10 @@ function sommaire_article($texte)
  *   +----------------------------------+
  *    Date : Vendredi 6 juin 2003
  *    Auteur :  "gpl"  : gpl@macplus.org  
- *              Aurélien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr
+ *              AurÃ©lien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *		Il sert a présenter un article sur plusieurs pages  
+ *		Il sert a prÃ©senter un article sur plusieurs pages  
  *   +-------------------------------------+ 
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
@@ -82,13 +82,13 @@ function decouper_en_page($texte,$id_article) {
 		
         if (empty($artsuite)) $artsuite = 0;
 	
-		// on divise la page (séparateur : "-----")        
+		// on divise la page (sÃ©parateur : "-----")        
         $page = split('-----', $texte);
         // Nombre total de pages
         $num_pages = count($page);
 
-        // Si une seule page ou numéro illégal, alors retourner tout le texte.
-        // Cas spécial : si var_recherche positionné, tout renvoyer pour permettre à la surbrillance de fonctionner correctement.
+        // Si une seule page ou numÃ©ro illÃ©gal, alors retourner tout le texte.
+        // Cas spÃ©cial : si var_recherche positionnÃ©, tout renvoyer pour permettre Ã  la surbrillance de fonctionner correctement.
         if ($num_pages == 1 || !empty($var_recherche) || $artsuite < 0 || $artsuite > $num_pages) {
 			// On place les ancres sur les intertitres
 			$texte = preg_replace("|\{\{\{(.*)\}\}\}|U","<a id=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\"></a>$0", $texte);
@@ -144,7 +144,7 @@ function decouper_en_page($texte,$id_article) {
 			}
         }
 
-        // Ici, on peut personnaliser la présentation
+        // Ici, on peut personnaliser la prÃ©sentation
         $resultat .= $page[$artsuite];
         $resultat .= "<div class='pagination' style='text-align:center'>pages : $precedent $milieu $suivant</div>";
         return $resultat;

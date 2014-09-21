@@ -51,7 +51,7 @@ function calculer_balise_KRVB($r,$v,$b,$kr,$kv,$kb){
 
 
 
-//http://www.spip-contrib.net/balise-TITRE-PARENT
+//http://contrib.spip.net/balise-TITRE-PARENT
 include_spip('public/balises');
 
 // Le filtre [(#ID_RUBRIQUE|titre_parent)]

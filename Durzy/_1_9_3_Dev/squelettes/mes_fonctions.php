@@ -11,7 +11,7 @@
 // =======================================================================================================================================
 // Balise : #TOTAL_VISITES, #VISITES_JOUR, #JOUR_MAX_VISITES, #VAL_MAX_VISITES, #MOYENNE_VISITES
 // =======================================================================================================================================
-// Auteur: Scoty & Frédéric TARAUD
+// Auteur: Scoty & FrÃ©dÃ©ric TARAUD
 // Fonction : retourne les statistiques de visites du site
 // http://www.koakidi.com/spip.php?article279  =======================================================================================================================================
 //
@@ -21,8 +21,8 @@ include_spip('public/stats_balises');
 // Balise : #EDT
 // =======================================================================================================================================
 // Auteur: Philippe Avi
-// Fonction : permet de visualiser la liste des emplois du temps créés par EDT
-// http://www.spip-contrib.net/Filtre-EDT-pour-site-lycee-ou  =======================================================================================================================================
+// Fonction : permet de visualiser la liste des emplois du temps crÃ©Ã©s par EDT
+// http://contrib.spip.net/Filtre-EDT-pour-site-lycee-ou  =======================================================================================================================================
 //
 include_spip('public/edt');
 

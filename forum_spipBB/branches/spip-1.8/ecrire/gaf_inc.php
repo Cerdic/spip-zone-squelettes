@@ -13,29 +13,29 @@
 include_ecrire("inc_abstract_sql.php3");
 include_ecrire('inc_filtres.php3');
 
-# petit paramËtrage laissÈ ‡ votre discrÈtion :
+# petit param√®trage laiss√© √† votre discr√©tion :
 # fixer le nombre de ligne des tableaux (-> tranches), dans Forums et Sujets.
 if (!$GLOBALS['fixlimit'])
 	{ $GLOBALS['fixlimit']=10; }
 
 # Trouve et fixe l'id du mot 'rub_gaforum' 
-# appliquÈ au(x) Secteur(s) forums
+# appliqu√© au(x) Secteur(s) forums
 if (!$GLOBALS['id_mot_rub_gaf'])
 	{
 	$res = spip_query("SELECT id_mot FROM spip_mots WHERE titre='rub_gaforum'");
 	$row = spip_fetch_array($res);
 	$GLOBALS['id_mot_rub_gaf'] = $row['id_mot'];
 	}
-# trouve fixe l'id du mot 'FermÈ'
-# appliquÈ par SPIPForum (spip vs phpbb) sur article
+# trouve fixe l'id du mot 'Ferm√©'
+# appliqu√© par SPIPForum (spip vs phpbb) sur article
 if (!$GLOBALS['id_mot_art_ferme'])
 	{
-	$res = spip_query("SELECT id_mot FROM spip_mots WHERE titre='FermÈ'");
+	$res = spip_query("SELECT id_mot FROM spip_mots WHERE titre='Ferm√©'");
 	$row = spip_fetch_array($res);
 	$GLOBALS['id_mot_art_ferme'] = $row['id_mot'];
 	}
 # trouve fixe l'id du mot 'annonce'
-# appliquÈ par SPIPForum (spip vs phpbb) sur sujet
+# appliqu√© par SPIPForum (spip vs phpbb) sur sujet
 if (!$GLOBALS['id_mot_annonce'])
 	{
 	$res = spip_query("SELECT id_mot FROM spip_mots WHERE titre='annonce'");
@@ -110,7 +110,7 @@ function signature_gaf()
 		echo "<b>"._T('phpbb:credits_bis1').$gaf_version."</b><br>";
 		echo "<a href='http://www.koakidi.com/'>Scoty, koakidi.com.</a><br>"._T('phpbb:credits_bis2')."<br><br>";
 		echo _T('phpbb:credits_bis3');
-		echo "<a href='http://www.spip-contrib.net/Un-squelette-de-forum-8-4-CSS'>SPIP Forum</a><br>";
+		echo "<a href='http://contrib.spip.net/Un-squelette-de-forum-8-4-CSS'>SPIP Forum</a><br>";
 		echo _T('phpbb:credits_bis4');
 	fin_boite_info();
 	}
@@ -156,7 +156,7 @@ if($res)
 // Fixe l'icone du statut d'un post
 function icone_statut_post($statut_post)
 	{
-		// icone Ètat du post
+		// icone √©tat du post
 		switch ($statut_post) {
 		case"off":
 		$aff_statut = "<div style='float:right;' title='"._T('phpbb:sujet_rejete')."'>
@@ -235,7 +235,7 @@ return $url_post;
 
 
 //
-// cet article est-il fermÈ, fermÈ maintenance ?
+// cet article est-il ferm√©, ferm√© maintenance ?
 //
 function verif_article_ferme($id_article)
 {
@@ -288,7 +288,7 @@ function alerte_maintenance()
 
 
 //
-// autoritÈ GAF pour un dÈplacement
+// autorit√© GAF pour un d√©placement
 //
 function auth_deplace_connecte()
 	{
@@ -322,7 +322,7 @@ function bouton_deplace_sujet($id_forum, $id_sujet)
 
 
 //
-// hierarchie sur ÈlÈment unique
+// hierarchie sur √©l√©ment unique
 //
 function aff_parents($id_rubrique, $id_article, $parents="")
 	{
@@ -456,7 +456,7 @@ while ($row=spip_fetch_array($req))
 
 
 // adaptation de la fonction 'smileys'
-// d'aprËs BoOz (booz.bloog@laposte.net)
+// d'apr√®s BoOz (booz.bloog@laposte.net)
 //
 function genere_list_smileys()
 	{
@@ -494,7 +494,7 @@ function smileys_in_texte($chaine)
 function tableau_smileys()
 	{
 	$listimag = genere_list_smileys();
-	// nombre de colonnes (2 par dÈfaut) (pas trop large pour GAF ! !!)
+	// nombre de colonnes (2 par d√©faut) (pas trop large pour GAF ! !!)
 	$nbcol=2;
 	$compte=0;
 	echo "<table width='100%' cellspacing='0' cellpadding='1' border='0'><tr>\n";
@@ -514,7 +514,7 @@ function tableau_smileys()
 
 
 
-// la barre de typo dupiquÈe pour l'occas'
+// la barre de typo dupiqu√©e pour l'occas'
 //
 function barre_forum_ingaf($texte)
 {
@@ -538,12 +538,12 @@ function barre_forum_ingaf($texte)
 
 
 // reprise de la fonction (issue de inc_messforum.php3)
-// ‡ modifier pour gafospip ... : ajout argument $id_thread ;
+// √† modifier pour gafospip ... : ajout argument $id_thread ;
 //
 function mail_auteurs($auteur, $email_auteur, $id_forum, $id_thread, $id_article, $texte, $titre, $statut) {
 	global $nom_site_forum, $url_site;
 	include('inc_texte.php3'); // on est dans ecrire : include'
-/*	include_ecrire('inc_filtres.php3'); // dÈj‡ inclus*/
+/*	include_ecrire('inc_filtres.php3'); // d√©j√† inclus*/
 	include('inc_mail.php3'); // on est dans ecrire : include'
 	// Gestionnaire d'URLs
 	if (@file_exists("inc-urls.php3"))
@@ -692,10 +692,10 @@ if($previsu=='1')
 		{ $ico_post="gaf_sujet.gif"; }
 	
 	// supprimer les <form> de la previsualisation
-	// (sinon on ne peut pas faire <cadre>...</cadre> dans les forums) .. code dÈgueu plutot !
+	// (sinon on ne peut pas faire <cadre>...</cadre> dans les forums) .. code d√©gueu plutot !
 	$affiche_texte = preg_replace("@<(/?)f(orm[>[:space:]])@ism", "<\\1no-f\\2", $affiche_texte);
 	
-	// affichage du prÈvisu
+	// affichage du pr√©visu
 	$avant_post="
 		<span class='verdana3'><b>"._T('phpbb:messages_verifier')."</b></span><br/><br/><span class='verdana2'> 
 		<table cellpadding='3' cellspacing='1' border='0' width='100%'>
@@ -838,7 +838,7 @@ global $REMOTE_ADDR, $_POST;
 	$statut = ($statut == 'non') ? 'off' : (($statut == 'pri') ? 'prop' : 'publie');
 
 
-// m‡j bdd
+// m√†j bdd
 	spip_query("UPDATE spip_forum
 	SET id_parent = $sujet,
 	id_rubrique = $id_rubrique,
@@ -859,8 +859,8 @@ global $REMOTE_ADDR, $_POST;
 	WHERE id_forum = $id_message
 	");
 
-	// Prevenir les auteurs de l'article, modifiÈ gaf
-	// faudrait vÈrifier le bon fonctionnement !!! // h. 2/10 ... mais Áa ‡ l'air d'etre ok !
+	// Prevenir les auteurs de l'article, modifi√© gaf
+	// faudrait v√©rifier le bon fonctionnement !!! // h. 2/10 ... mais √ßa √† l'air d'etre ok !
 	// -> fonction prevenir_auteur devenue : mail_auteur, pour gafospip (voir plus haut)
 	//
 	if (lire_meta("prevenir_auteurs") == "oui" AND ($afficher_texte != "non"))
@@ -868,7 +868,7 @@ global $REMOTE_ADDR, $_POST;
 		mail_auteurs($auteur, $email_auteur, $id_message, $id_thread, $forum, $texte, $titre, $statut);
 		}
 
-	// INVALIDATION DES CACHES LIES AUX FORUMS, modifiÈ gaf
+	// INVALIDATION DES CACHES LIES AUX FORUMS, modifi√© gaf
 	if ($statut == 'publie')
 		{		
 		include_ecrire('inc_invalideur.php3');

@@ -8,14 +8,14 @@
 if (!defined('_ECRIRE_INC_VERSION')) return; 
 
 // =======================================================================================================================================
-// ParamÈtrage ‡ l'installation d'Escal
-// Merci ‡ Arnaud BÈrard pour son aide prÈcieuse
+// Param√®trage √† l'installation d'Escal
+// Merci √† Arnaud B√©rard pour son aide pr√©cieuse
 // =======================================================================================================================================
 
 /**
  * escal_configuration()
  * teste et configure certaines options de spip pour escal
- * penser ‡ incrementer la valeur de schema dans paquet.xml et celle de $maj dans escal_administrations.php en cas de mise ‡ jour des mots cles
+ * penser √† incrementer la valeur de schema dans paquet.xml et celle de $maj dans escal_administrations.php en cas de mise √† jour des mots cles
 */
 
 function escal_configuration(){
@@ -243,20 +243,20 @@ function update_groupe_mots(){
     // si on a une meta escal_base_version, c'est qu'on est sur une version avec instalation auto
     $meta = lire_config('escal_base_version');
     
-    // si la meta est prÈsente
+    // si la meta est pr√©sente
     if($meta!=''){
         // Maj des groupes
         for ($i= 0 , $nbr_grp = count($schema['groupes']) ; $i < $nbr_grp ; ++$i){
             // test si le groupe existe
             $grp_titre = $schema['groupes'][$i]['titre'];
             $id_grp = sql_getfetsel("id_groupe","spip_groupes_mots","titre='$grp_titre'");
-            // si pas d'id retournÈe on inssËre
+            // si pas d'id retourn√©e on inss√®re
             if($id_grp!=''){
-                //echo "Update le groupe existe dÈja : ".$id_grp."=> ".$grp_titre."\n";
+                //echo "Update le groupe existe d√©ja : ".$id_grp."=> ".$grp_titre."\n";
                 sql_updateq('spip_groupes_mots', $schema['groupes'][$i], "id_groupe='$id_grp'");
             }//sinon on met a jour
             else{
-                //echo "Insert Le groupe n'Èxiste pas => ".$grp_titre."\n";
+                //echo "Insert Le groupe n'√©xiste pas => ".$grp_titre."\n";
                 $id = sql_insertq('spip_groupes_mots',$schema['groupes'][$i]);
             }
             
@@ -264,17 +264,17 @@ function update_groupe_mots(){
         
         //Maj des mots : on boucle sur le tableau mots
         for ($i= 0 , $nbr_mot = count($schema['mots']) ; $i < $nbr_mot ; ++$i){
-            // test la prÈsence du mot sur le champ titre
+            // test la pr√©sence du mot sur le champ titre
             $titre = $schema['mots'][$i]['titre'];
             $id_mot = sql_getfetsel("id_mot","spip_mots","titre='$titre'");
-            // le titre du mot est dÈj‡ prÈsent
+            // le titre du mot est d√©j√† pr√©sent
             if($id_mot!=''){
-                // echo "Update le mot clef existe dÈja : ".$id_mot."=> ".$titre."\n";
+                // echo "Update le mot clef existe d√©ja : ".$id_mot."=> ".$titre."\n";
                 $test = sql_updateq('spip_mots', $schema['mots'][$i], "titre='$titre'");
                 objet_modifier('mot',$id_mot,$schema['mots'][$i]);
             }else{
-                // echo "Insert Le mot clef n'Èxiste pas => ".$titre."\n";
-                // on extrait du array le groupe dont dÈpend le mot
+                // echo "Insert Le mot clef n'√©xiste pas => ".$titre."\n";
+                // on extrait du array le groupe dont d√©pend le mot
                 $grp_titre = $schema['mots'][$i]['type'];
                 $id_grp = sql_getfetsel("id_groupe","spip_groupes_mots","titre='$grp_titre'");
                 $id_mot = objet_inserer('mot',$id_grp);
@@ -303,7 +303,7 @@ function install_groupe_mots() {
     
     // installation des mots
     for ($i= 0 , $nbr_mot = count($schema['mots']) ; $i < $nbr_mot ; ++$i){
-        // on extrait du array le groupe dont dÈpend le mot
+        // on extrait du array le groupe dont d√©pend le mot
         $grp_titre = $schema['mots'][$i]['type'];
         $id_grp = sql_getfetsel("id_groupe","spip_groupes_mots","titre='$grp_titre'");
         if($id_grp!=''){
@@ -314,7 +314,7 @@ function install_groupe_mots() {
     
 }
 
-// Fonction de dÈsinstalation des groupes et mots de Escal
+// Fonction de d√©sinstalation des groupes et mots de Escal
 function uninstal_escal(){
     // chargement du array des groupe et mots
     $schema = shema_escal();
@@ -323,7 +323,7 @@ function uninstal_escal(){
     for ($i= 0 , $nbr_mot = count($schema['groupes']) ; $i < $nbr_mot ; ++$i){
         $grp_titre = $schema['groupes'][$i]['titre'];
         $id_grp = sql_getfetsel("id_groupe","spip_groupes_mots","titre='$grp_titre'");
-        // dÈsinstaller les mots correspondant a ce groupe
+        // d√©sinstaller les mots correspondant a ce groupe
         sql_delete("spip_mots","id_groupe='$id_grp'");
         sql_delete("spip_groupes_mots","id_groupe='$id_grp'");
     }
@@ -361,7 +361,7 @@ return inc_lien_dist($lien, $texte, $class, $title, $hlang, $rel, $connect);
 }
 }
 // balises issues da la contrib  "Balises de comptage" de Franck
-// http://www.spip-contrib.net/Balises-de-comptage 
+// http://contrib.spip.net/Balises-de-comptage 
 // =======================================================================================================================================
 // balise #TOTAL_VISITES
 // =======================================================================================================================================
@@ -398,10 +398,10 @@ function balise_NBPAGES_VISITEES($p) {
 // =======================================================================================================================================
 function moyenne_visites_par_jour() {
 // calcul de la moyenne de visites
-// PÈriode d'analyse couverte (nb de jours avant aujourd'hui)
+// P√©riode d'analyse couverte (nb de jours avant aujourd'hui)
 $periode = lire_config('escal/config/periodevisites', '365') ;
 
-// Sur tout le site, nombre de visites pendant la pÈriode
+// Sur tout le site, nombre de visites pendant la p√©riode
 $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
 		"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL $periode DAY) ORDER BY date";
 	$result=spip_query($query);
@@ -411,7 +411,7 @@ $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
                 $total_absolu = $total_absolu + $row['visites'];
                 $i++;
 	}
-// Nombre moyen de visites par jour sur la pÈriode
+// Nombre moyen de visites par jour sur la p√©riode
         $moyenne =  round($total_absolu / $periode );
         return $moyenne;
 }
@@ -423,8 +423,8 @@ function balise_MOY_VISITES($p) {
 // =======================================================================================================================================
 // fonction pour l'affichage du nombre de visiteurs connectes
 // =======================================================================================================================================
-// issue du plugin "Nombre de visiteurs connectÈes"
-// http://www.spip-contrib.net/Nombres-de-visiteurs-connectes
+// issue du plugin "Nombre de visiteurs connect√©es"
+// http://contrib.spip.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
 function escal_visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));
@@ -467,12 +467,12 @@ function balise_VAL_MAX_VISITES($p) {
 
 function citations($txt){
 $BDDArray = $txt;// Lecture de l'article
-$BDDArray = explode('<p>', $BDDArray); // couper ‡ la  rencontre un p
-$BDDArray = array_map('rtrim', $BDDArray); // Suppression des fins de lignes de chaque ÈlÈment
-$BDDArray = array_filter($BDDArray); // Suppression de TOUTES les entrÈes vides
+$BDDArray = explode('<p>', $BDDArray); // couper √© la  rencontre un p
+$BDDArray = array_map('rtrim', $BDDArray); // Suppression des fins de lignes de chaque √©l√©ment
+$BDDArray = array_filter($BDDArray); // Suppression de TOUTES les entr√©es vides
 
 $citation = $BDDArray[array_rand($BDDArray)]; // une phrase au hasard dans le tableau
-if(strlen($citation)<200) //on ne veut pas dÈpasser 200 caractËres
+if(strlen($citation)<200) //on ne veut pas d√©passer 200 caract√®res
 return strip_tags($citation); //on vire les tags html
 else citations($txt);
 }
@@ -484,8 +484,8 @@ else citations($txt);
  *    Auteur :  Posted by cerdic
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *   remplacement des caractËres accentuÈs
- *    exemple trouvÈ l‡: 
+ *   remplacement des caract√®res accentu√©s
+ *    exemple trouv√© l√†: 
  *    http://be.php.net/manual/fr/function.strtr.php#52098
  *   +-------------------------------------+ 
  *  
@@ -493,7 +493,7 @@ else citations($txt);
 
 
 function lettre1($texte) {
-	$texte = $texte{0}; // premiËre lettre
+	$texte = $texte{0}; // premi√®re lettre
 		$texte = 
 strtr($texte, "\xA1\xAA\xBA\xBF\xC0\xC1\xC2\xC3\xC5\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD8\xD9\xDA\xDB\xDD\xE0\xE1\xE2\xE3\xE5\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF8\xF9\xFA\xFB\xFD\xFF", "!ao?AAAAACEEEEIIIIDNOOOOOUUUYaaaaaceeeeiiiidnooooouuuyy");
 	$texte = strtr($texte, 
@@ -502,7 +502,7 @@ array("\xC4"=>"Ae", "\xC6"=>"AE", "\xD6"=>"Oe", "\xDC"=>"Ue", "\xDE"=>"TH", "\xD
 	return $texte;
 }
 // =======================================================================================================================================
-// Ajout de  nofollow sur les liens (pas mal ‡ utiliser  sur les commentaires pour Èviter le spam)
+// Ajout de  nofollow sur les liens (pas mal √† utiliser  sur les commentaires pour √©viter le spam)
 // =======================================================================================================================================
 
 function nofollow($texte){
@@ -511,7 +511,7 @@ function nofollow($texte){
 }
 
 // =======================================================================================================================================
-// paramËtres pour le plugin diapo
+// param√®tres pour le plugin diapo
 // =======================================================================================================================================
 
 //nombre de vignettes par page
@@ -523,9 +523,9 @@ $GLOBALS['diapo_vignette']=60;
 //largeur maxi de la grande image avec vignettes en haut :
 $GLOBALS['diapo_grand']=400;
 
-//largeur maxi de la grande image avec vignettes sur les cÙtÈs:
+//largeur maxi de la grande image avec vignettes sur les c√¥t√©s:
 $GLOBALS['diapo_petit']=300;  
-//hauteur maxi de la grande image avec vignettes sur les cÙtÈs :
+//hauteur maxi de la grande image avec vignettes sur les c√¥t√©s :
 $GLOBALS['diapo_petit_h']=300;
 
 //diaporama : temps de pause en millisecondes :
