@@ -427,7 +427,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Témy',
 	'tousarticlesantichrono' => 'Všetky články podľa dátumu',
-	'tout' => 'Všetko',
+	'tout' => 'Všetko', # MODIF
 	'toutleplan' => 'Celý web na jednej stránke',
 
 	// V

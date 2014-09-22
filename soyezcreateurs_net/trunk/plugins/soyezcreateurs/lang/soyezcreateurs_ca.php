@@ -382,7 +382,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Temes',
 	'tousarticlesantichrono' => 'Tots els articles per ordre anti-cronològic',
-	'tout' => 'Tot',
+	'tout' => 'Tot', # MODIF
 	'toutleplan' => 'Tot el lloc en una pàgina',
 
 	// V

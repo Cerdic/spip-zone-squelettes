@@ -111,7 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Thema’s',
 	'tousarticlesantichrono' => 'Alle artikelen in anti-chronologische volgorde',
-	'tout' => 'Alles',
+	'tout' => 'Alles', # MODIF
 	'toutleplan' => 'De hele website op een bladzijde',
 
 	// V

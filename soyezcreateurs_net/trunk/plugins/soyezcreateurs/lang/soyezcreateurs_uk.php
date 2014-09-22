@@ -362,7 +362,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Теми',
 	'tousarticlesantichrono' => 'Всі статты в зворотному хронологічному порядку',
-	'tout' => 'Все',
+	'tout' => 'Все', # MODIF
 	'toutleplan' => 'Весь сайт на одній сторінці',
 
 	// V
