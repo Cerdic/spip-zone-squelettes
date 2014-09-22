@@ -1,0 +1,33 @@
+<B_rubriques>
+<div class="liste rubriques rubriques-albums">
+	<ul class="liste-items">
+		<BOUCLE_rubriques(RUBRIQUES){id_rubrique?}{id_parent?}{par num titre,titre}>
+		<li class="item">
+			#SET{rubriques,#ID_RUBRIQUE|calcul_branche_in|explode{","}}
+			#SET{albums,#LISTE}
+			<BOUCLE_albums_branche(ALBUMS){id_rubrique IN #GET{rubriques}}>
+			#SET{albums,#GET{albums}|push{#ID_ALBUM}}
+			</BOUCLE_albums_branche>
+
+			<BOUCLE_vignette(DOCUMENTS){id_album IN #GET{albums}}{extension IN jpg,gif,png}{!par date}{0,1}>
+			[(#SET{vignette,[(#FICHIER
+				|image_passe_partout{300,200}
+				|image_recadre{300,200}
+				|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html)]}
+				|inserer_attribut{class,thumb round border})]})]
+			</BOUCLE_vignette>
+
+			<a href="#URL_RUBRIQUE">
+				#GET{vignette}
+			</a>
+			<strong class="titre">
+				<a href="#URL_RUBRIQUE">#TITRE</a>
+			</strong>
+			<small class="nb">
+				[(#GET{albums}|count|singulier_ou_pluriel{album:info_1_album,album:info_nb_albums})]
+			</small>
+		</li>
+		</BOUCLE_rubriques>
+	</ul>
+</div>
+</B_rubriques>

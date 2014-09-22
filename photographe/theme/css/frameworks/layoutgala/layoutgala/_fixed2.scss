@@ -1,0 +1,48 @@
+@import "compass/utilities/general/float";
+@import "base";
+
+@mixin layoutgala-fixed2 (
+	$content-side: left,
+	$container-width: 700px,
+	$content-width: 500px,
+	$aside2-style: aside1
+) {
+	#{$layoutgala-container-selector} {
+		width: $container-width;
+		margin: 0 auto;
+	}
+	#{$layoutgala-content-selector} {
+		@include float($content-side);
+		width: $content-width;
+	}
+	#{$layoutgala-aside1-selector} {
+		@include float(#{opposite-position($content-side)});
+		width: ($container-width - $content-width);
+	}
+	@if $aside2-style == aside1 {
+		#{$layoutgala-aside2-selector} {
+			@include float(#{opposite-position($content-side)});
+			clear: #{opposite-position($content-side)};
+			width: ($container-width - $content-width);
+		}
+		#{$layoutgala-footer-selector} {
+			clear: both;
+			width: 100%;
+		}
+	} @else if $aside2-style == content {
+		// TODO: extend $layoutgala-content-selector instead
+		#{$layoutgala-aside2-selector} {
+			@include float($content-side);
+			width: $content-width;
+		}
+		#{$layoutgala-footer-selector} {
+			clear: both;
+			width: 100%;
+		}
+	} @else if $aside2-style == container {
+		#{$layoutgala-aside2-selector} {
+			clear: both;
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+
+@mixin list-none() {
+	list-style:none;
+	margin-left:0;
+	
+	li:before{
+		content:'';
+	}
+}
+
+// On style les listes utilisées dans les trucs Z
+.liste-items{
+	@extend .list-none;
+}
+
+// Liste d'albums ou de rubriques d'albums
+.liste.albums, .liste.rubriques-albums{
+	@include row();
+	
+	.titre,.nb{
+		display:block;
+	}
+	.item{
+		@include span-columns(6);
+		@include omega(2n);
+		margin-bottom:1em;
+	}
+	
+	@include media($bp-medium-up){
+		.item{
+			@include span-columns(3);
+			@include omega-reset(2n);
+			@include omega(4n);
+		}
+	}
+}

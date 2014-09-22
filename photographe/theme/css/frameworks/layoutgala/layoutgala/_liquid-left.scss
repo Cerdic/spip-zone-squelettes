@@ -1,0 +1,64 @@
+@import "compass/utilities/general/float";
+@import "base";
+
+@mixin layoutgala-liquid-left (
+	$aside1-side: center,
+	$content-width: auto,
+	$aside1-width: 200px,
+	$aside2-width: 200px,
+	$spacer-left: 0,
+	$spacer-center-left: 0,
+	$spacer-center-right: 0,
+	$spacer-right: 0,
+	$content-padding-left: 0,
+	$content-padding-right: $content-padding-left,
+	$aside1-padding-left: $content-padding-left,
+	$aside1-padding-right: $content-padding-left,
+	$aside2-padding-left: $content-padding-left,
+	$aside2-padding-right: $content-padding-left
+) {
+	$container-width: if($content-width == auto,100%,$content-width + $aside1-width + $aside2-width);
+//	$content-width: if($content-width == auto,$container-width - $aside1-width - $aside2-width,$content-width);
+//	$content-innerwidth: $content-width - $content-padding-left - $content-padding-right;
+	$aside1-innerwidth: $aside1-width - $aside1-padding-left - $aside1-padding-right;
+	$aside2-innerwidth: $aside2-width - $aside2-padding-left - $aside2-padding-right;
+//	$aside2-side: #{opposite-position($aside1-side)};
+	$rounding-fix: if(unit($aside1-width) == "%", 0.1%, 0);
+	#{$layoutgala-wrapper-selector} {
+		@include float(left);
+		width: $container-width;
+	}
+	#{$layoutgala-content-selector} {
+		@include layoutgala-nonzero(margin-left, $spacer-left);
+		margin-right: ($aside1-width + $aside2-width);
+		@include layoutgala-nonzero(padding-left, $content-padding-left);
+		@include layoutgala-nonzero(padding-right, $content-padding-right);
+	}
+	#{$layoutgala-aside1-selector} {
+		@include float(left);
+		width: ($aside1-innerwidth - $spacer-center-right - $rounding-fix);
+		@if $aside1-side == center {
+			margin-left: -($aside1-width + $aside2-width - $spacer-center-left + $rounding-fix);
+		} @else {
+			margin-left: (-$aside1-innerwidth + $spacer-center-left - $aside1-padding-left - $aside1-padding-right);
+		}
+		@include layoutgala-nonzero(padding-left, $aside1-padding-left);
+		@include layoutgala-nonzero(padding-right, $aside1-padding-right);
+	}
+	#{$layoutgala-aside2-selector} {
+		@include float(left);
+		width: ($aside2-innerwidth - $spacer-center-right - $rounding-fix);
+		@if $aside1-side != center {
+//		@if $aside2-side == center {
+			margin-left: -($aside1-width + $aside2-width - $spacer-center-left + $rounding-fix);
+		} @else {
+			margin-left: (-$aside2-innerwidth + $spacer-center-left - $aside2-padding-left - $aside2-padding-right);
+		}
+		@include layoutgala-nonzero(padding-left, $aside2-padding-left);
+		@include layoutgala-nonzero(padding-right, $aside2-padding-right);
+	}
+	#{$layoutgala-footer-selector} {
+		clear: left;
+		width: 100%;
+	}
+}

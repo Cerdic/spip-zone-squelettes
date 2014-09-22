@@ -1,0 +1,31 @@
+<div class="container">
+	<B_albums_orphelins>
+	<div class="liste albums">
+		<ul class="liste-items">
+			<BOUCLE_albums_orphelins(ALBUMS){orphelins}{par num titre,titre}>
+			<li class="item">
+				<BOUCLE_vignette(DOCUMENTS){id_album}{extension IN jpg,gif,png}{!par date}{0,1}>
+				[(#SET{vignette,[(#FICHIER
+					|image_passe_partout{300,200}
+					|image_recadre{300,200}
+					|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html)]}
+					|inserer_attribut{class,thumb round border})]})]
+				</BOUCLE_vignette>
+
+				<a href="#URL_ALBUM">
+					#GET{vignette}
+				</a>
+				<strong class="titre">
+					<a href="#URL_ALBUM">#TITRE</a>
+				</strong>
+				<small class="nb">
+					<BOUCLE_nb(DOCUMENTS){id_album}/><:medias:des_images{nb=#TOTAL_BOUCLE}:><//B_nb>
+				</small>
+			</li>
+			</BOUCLE_albums_orphelins>
+		</ul>
+	</div>
+	</B_albums_orphelins>
+	
+	<INCLURE{fond=liste/rubriques-albums,id_parent=0}>
+</div>
