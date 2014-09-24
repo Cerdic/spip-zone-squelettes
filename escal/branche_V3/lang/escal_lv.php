@@ -35,7 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'a_telecharger' => 'Lejupielādēt',
 'a_decouvrir' => 'Atklāt',
 'aujourdhui'=> 'šodien:',	   
-'auteurs'=> 'Autori',	   
+'auteurs'=> 'autori',	   
 'avec'=> 'platums',	   
 'avec_le_squelette'=> 'ar veidni',	   
 // B	   

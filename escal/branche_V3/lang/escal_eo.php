@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'articles_trouves' => 'trovitaj artikoloj',
 'article_une' => 'Artikolo publikigota sur la ĉefpaĝo',
 'aujourdhui'  => 'Hodiaŭ : ',
-'auteurs' => 'Aŭtoroj',
+'auteurs' => 'aŭtoroj',
 'avec_le_squelette' => 'per la ŝablono',
 // B
 'bandeau' => 'Reklamrubando',
