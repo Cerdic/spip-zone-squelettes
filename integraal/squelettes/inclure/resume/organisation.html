@@ -1,0 +1,49 @@
+<BOUCLE_organisation(ORGANISATIONS){id_organisation=#ENV{id,#ENV{id_organisation}}}>
+<article class="entry organisation vevent id_#ID_ORGANISATION" itemscope itemtype="http://schema.org/Organization">
+	<a itemprop="url" href="[(#ID_ORGANISATION|generer_url_entite{organisation})]">
+		<strong class="nom #EDIT{nom}" itemprop="name">#NOM</strong>
+	</a>
+	
+	[(#REM) S'il y a des coordonnées directement attachées à l'organisation ]
+	<BOUCLE_adresse_organisation(ADRESSES?){id_organisation}{par num titre, titre}{0,1}>
+	<div class="adresse" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+		[<span class="voie #EDIT{voie}" itemprop="streetAddress">(#VOIE)</span>], 
+		<span class="code_postal #EDIT{code_postal}" itemprop="postalCode">#CODE_POSTAL</span>
+		<span class="ville #EDIT{ville}" itemprop="addressLocality">#VILLE</span>
+	</div>
+	</BOUCLE_adresse_organisation>
+	<BOUCLE_numeros_organisation(NUMEROS numeros_liens?){id_organisation}{par num titre, titre}>
+	<div class="numero[ (#TYPE)]">
+		[(#TYPE|coordonnees_lister_types_numeros) : ]<span class="#EDIT{numero}" itemprop="[(#TYPE|=={fax}|?{faxNumber,telephone})]">#NUMERO</span>
+	</div>
+	</BOUCLE_numeros_organisation>
+	<BOUCLE_emails_organisation(EMAILS emails_liens?){id_organisation}{par num titre, titre}>
+	<div class="email[ (#TYPE)]">
+		<a href="mailto:#EMAIL"><span class="#EDIT{email}" itemprop="email">#EMAIL</span></a>
+	</div>
+	</BOUCLE_emails_organisation>
+	
+	[(#REM) S'il y a des personnes physiques liées ]
+	<B_contacts>
+	<div class="contacts" itemprop="employees">
+		<BOUCLE_contacts(CONTACTS){id_organisation}{par num nom, nom}>
+		<div class="contact" itemscope itemtype="http://schema.org/Person">
+			<strong><span class="prenom #EDIT{prenom}" itemprop="givenName">#PRENOM</span>
+			<span class="nom #EDIT{nom}" itemprop="familyName">#NOM</span></strong>[,
+			<span class="fonction #EDIT{fonction}" itemprop="jobTitle">(#FONCTION)</span>]
+			<BOUCLE_numeros_contact(NUMEROS numeros_liens?){id_contact}{par num titre, titre}>
+			<div class="numero[ (#TYPE)]">
+				[(#TYPE|coordonnees_lister_types_numeros) : ]<span class="#EDIT{numero}" itemprop="[(#TYPE|=={fax}|?{faxNumber,telephone})]">#NUMERO</span>
+			</div>
+			</BOUCLE_numeros_contact>
+			<BOUCLE_emails_contact(EMAILS emails_liens?){id_contact}{par num titre, titre}>
+			<div class="email[ (#TYPE)]">
+				<a href="mailto:#EMAIL"><span class="#EDIT{email}" itemprop="email">#EMAIL</span></a>
+			</div>
+			</BOUCLE_emails_contact>
+		</div>
+		</BOUCLE_contacts>
+	</div>
+	</B_contacts>
+</article>
+</BOUCLE_organisation>
