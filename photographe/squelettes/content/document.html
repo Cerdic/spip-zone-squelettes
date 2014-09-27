@@ -1,7 +1,14 @@
 <BOUCLE_content(DOCUMENTS){id_document}>
 <article>
 	<div class="visionneuse">
-		[(#FICHIER|image_reduire{1200}|adaptive_images{1200})]
+		<div class="large">
+			[(#FICHIER|image_reduire{1200}|adaptive_images{1200})]
+		</div>
+		#SET{id_album,#ENV{id_album}}
+		<BOUCLE_chercher_album(ALBUMS){si #GET{id_album}|non}{id_document}{0,1}>
+		#SET{id_album,#ID_ALBUM}
+		</BOUCLE_chercher_album>
+		<INCLURE{fond=inclure/galerie/mini-album,ajax,id_album=#GET{id_album},id_document, debut_mini_album=@#ID_DOCUMENT}>
 	</div>
 	
 	<div class="container">
