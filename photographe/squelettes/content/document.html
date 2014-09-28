@@ -4,10 +4,25 @@
 		<div class="large">
 			[(#FICHIER|image_reduire{1200}|adaptive_images{1200})]
 		</div>
+		
 		#SET{id_album,#ENV{id_album}}
 		<BOUCLE_chercher_album(ALBUMS){si #GET{id_album}|non}{id_document}{0,1}>
 		#SET{id_album,#ID_ALBUM}
 		</BOUCLE_chercher_album>
+		
+		<div class="precedent_suivant">
+			<BOUCLE_precedent(DOCUMENTS){id_album=#GET{id_album}}{extension IN jpg,png,gif,svg}{!par date}{precedent}>
+			<a class="prev" href="#URL_DOCUMENT">Image précédente</a>
+			</BOUCLE_precedent>
+			<span class="prev disabled">Image précédente</span>
+			<//B_precedent>
+			<BOUCLE_suivant(DOCUMENTS){id_album=#GET{id_album}}{extension IN jpg,png,gif,svg}{!par date}{suivant}>
+			<a class="next" href="#URL_DOCUMENT">Image suivante</a>
+			</BOUCLE_suivant>
+			<span class="next disabled">Image suivante</span>
+			<//B_suivant>
+		</div>
+		
 		<INCLURE{fond=inclure/galerie/mini-album,ajax,id_album=#GET{id_album},id_document, debut_mini_album=@#ID_DOCUMENT}>
 	</div>
 	
