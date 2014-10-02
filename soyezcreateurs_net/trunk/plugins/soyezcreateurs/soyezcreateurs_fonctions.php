@@ -355,7 +355,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 			}
 		}
 	}
-	return $resultat;
+	return typo($resultat);
 }
 function sc_same_day ($debut, $fin) {
 	$start = mktime(0, 0, 0, $debut['mois'], $debut['jour'], $debut['annee']);
