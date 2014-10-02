@@ -1,0 +1,21 @@
+
+<!-- On récupère le nom choisi dans la liste dans SET{param} -->
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+#SET{param,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+<!-- On récupère le nom de la personne à joindre s'il a été choisi -->
+#SET{destinataire,(#GET{param}|table_valeur{personneajoindre})}
+
+<!-- Si il n'y a pas eu de choix dans la liste, on affiche un avertissement -->
+[(#GET{destinataire}|non)
+	<span class="erreur_message">A CONFIGURER !	</span>]
+<!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
+<BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{destinataire}}>
+		<a href="spip.php?page=contact2&id_auteur=#GET{destinataire}" target="_blank"> 
+			<p><span class="logo-titre">
+				<i class="fa fa-envelope"></i>
+				Nous écrire
+			</span></p>
+		</a>
+</BOUCLE_identifiantdudestinataire>

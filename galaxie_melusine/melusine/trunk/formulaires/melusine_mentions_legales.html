@@ -1,0 +1,54 @@
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+#ENV{directeurdepublication}	
+
+<!-- Liste déroulante des auteurs pour le directeur de publication -->		
+<fieldset>
+		<label for="directeurdepublication">Directeur(s) de publication</label>
+		<select name="directeurdepublication"  style="width:100px">
+			<option value=""> --- </option>
+			<BOUCLE_auteur1(AUTEURS){tout}{par NOM}>
+				<option value="#ID_AUTEUR" [(#GET{params}|table_valeur{directeurdepublication}=={#ID_AUTEUR}|?{"selected", })]>#NOM
+				</option>
+			</BOUCLE_auteur1>
+		</select>
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</fieldset>
+
+<!-- Liste déroulante des auteurs pour le secrétaire de rédaction -->
+<fieldset>						
+		<label for="secretairederedaction">Secrétaire(s) de rédaction</label>
+		<select name="secretairederedaction"  style="width:100px">
+			<option value=""> --- </option>
+			<BOUCLE_auteur2(AUTEURS){tout}{par nom}>
+				<option value="#ID_AUTEUR" [(#GET{params}|table_valeur{secretairederedaction}=={#ID_AUTEUR}|?{"selected", })]>#NOM
+				</option>
+			</BOUCLE_auteur2>
+		</select> 
+</fieldset>
+
+<!-- Champs textarea pour l'adresse -->
+<fieldset>	
+		<label for="adresse">Adresse</label>
+		<textarea name='adresse' value="[(#GET{params}|table_valeur{adresse})]"></textarea>
+</fieldset>
+
+<!-- Champs texte pour l'hébergement -->
+<fieldset>	
+		<label for="hebergement">Hébergement</label>
+		<input type='text' name='hebergement' value="[(#GET{params}|table_valeur{hebergement})]" />
+</fieldset>
+
+
+		<input type='submit' name='ok' value='ok' />
+		
+
+</form>
+	

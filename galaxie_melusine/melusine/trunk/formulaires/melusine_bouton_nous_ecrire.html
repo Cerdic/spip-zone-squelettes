@@ -1,0 +1,26 @@
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+#ACTION_FORMULAIRE{#ENV{action}}
+#ENV{personneajoindre}	
+
+<!-- Liste déroulante des auteurs pour choisir la personne à joindre -->	
+<fieldset>
+		<label for="personneajoindre">Nom du destinataire</label>
+		<select name="personneajoindre"  style="width:100px">
+			<!-- Première ligne vide pour la liste déroulante -->
+			<option value=""> --- </option>
+			<!-- Liste de tous les auteurs par ordre alphabétique -->
+			<BOUCLE_nom(AUTEURS){tout}{par NOM}>
+				<option value="#ID_AUTEUR" [(#GET{params}|table_valeur{personneajoindre}=={#ID_AUTEUR}|?{"selected", })]>#NOM
+				</option>
+			</BOUCLE_nom>
+		</select>
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</fieldset>
+		<input type='submit' name='ok' value='ok' />
+</form>
+	
