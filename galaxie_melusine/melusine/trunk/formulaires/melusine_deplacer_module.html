@@ -1,5 +1,7 @@
 <BOUCLE_module(NOISETTES){id_noisette}>
 [(#SET{info_noisette,[(#CHEMIN{#NOISETTE|concat{.html}}|melusine_charger_infos_noisette_yaml{parametres})]})]
+[(#SET{form_noisette,[(#CHEMIN{#NOISETTE|concat{.html}}|melusine_charger_infos_noisette_yaml{form})]})]
+
 <div class="formulaire_spip formulaire_deplacer_module">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
@@ -22,37 +24,30 @@
 			</button>
 						
 			</li>
+			[(#GET{form_noisette}|oui)
 			<li>
-				[(#GET{info_noisette}|oui)
+				
 
-				[(#GET{info_noisette}|table_valeur{saisie}|oui)]
-				<a href="[(#URL_PAGE{edition_module,id_noisette=#ID_NOISETTE}
+				[(#GET{form_noisette}|=={saisie}|oui)
+				<a href="[(#URL_PAGE{edition_module_yaml,id_noisette=#ID_NOISETTE}
 						|parametre_url{'type',#TYPE}
 						|parametre_url{'nom_bloc',#GET{nom_bloc}}
 					)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
 					<i class="fa fa-edit "></i>
 				</a>]
 
-			</li>
-
-			<li>
-				[(#NOISETTE|=={modules/bouton}|oui)
+			
+				[(#GET{form_noisette}|=={saisie}|non)
 				
-				<a  href="[(#URL_PAGE{ajout_bouton_unique,id_noisette=#ID_NOISETTE}
+				<a  href="[(#URL_PAGE{edition_module_form,id_noisette=#ID_NOISETTE}
 		|parametre_url{'type',#TYPE}
+		|parametre_url{'form',#GET{form_noisette}}
 		|parametre_url{'nom_bloc',#GET{nom_bloc}}
 	)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
 	<i class="fa fa-edit fa-2x"></i>
 				</a>]
-				[(#NOISETTE|=={modules/bouton_mail}|oui)
 				
-				<a  href="[(#URL_PAGE{ajout_bouton_mail,id_noisette=#ID_NOISETTE}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
-	<i class="fa fa-edit fa-2x"></i>
-				</a>]
-			</li>
+			</li>]
 		</ul>
 		<p class="nom_module">[Module &laquo;&nbsp;(#NOOP|melusine_lister_noisettes|table_valeur_cleslash{#NOISETTE!nom}|spip_ucfirst)&nbsp;&raquo;]</p>
 	</div></form>

@@ -8,18 +8,20 @@
 <B_json>
 #ANCRE_PAGINATION
 <ul>
-<BOUCLE_json(DATA){source json, http://rssbridge.org/b/Twitter/Json/u/#GET{compte}|sinon{#GET{par_defaut}}|concat{/}}{pagination #GET{nb} #ENV{nom_pagination}|sinon{pagin_twitter_#ID_NOISETTE}}>
+<BOUCLE_json(DATA){source rss, http://twitrss.me/twitter_user_to_rss/?user=#GET{compte}|sinon{#GET{par_defaut}}|concat{/}}{pagination #GET{nb} #ENV{nom_pagination}|sinon{pagin_twitter_#ID_NOISETTE}}>
 <li>
-
+<h3 class='date'>
 	[<h3 class='date'>
-		(#VAL{Y-m-d H:i:s}|date{[(#VALEUR|table_valeur{timestamp})]}|affdate|unique{#ID_NOISETTE})
+		(#VAL{Y-m-d H:i:s}|date{[(#VALEUR{date})]}|affdate|unique{#ID_NOISETTE})
 	</h3>]
-	[<span class='heures_minutes'>
+	</h3>
+	<span class='heures_minutes'>
 		<i class="fa fa-twitter"></i>
-		(#VAL{Y-m-d H:i:s}|date{[(#VALEUR|table_valeur{timestamp})]}|heures_minutes)&nbsp;&mdash; 
-	</span>]
+		
+	</span>
+	
 	<span class="twitt">
-		[(#VALEUR|table_valeur{content})]
+		[(#VALEUR{titre})]
 	</span>
 </li>
 </BOUCLE_json>

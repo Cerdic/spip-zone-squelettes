@@ -460,7 +460,17 @@ function melusine_charger_infos_noisette_yaml($noisette, $info=""){
 				$infos_noisette['description'] = _T_ou_typo($infos_noisette['description']);
 			if (isset($infos_noisette['icon']))
 				$infos_noisette['icon'] = $infos_noisette['icon'];
-				
+			
+			if (isset($infos_noisette['parametres'][0]['formulaire'])){
+				$infos_noisette['form'] =$infos_noisette['parametres'][0]['formulaire'];
+			}
+			elseif(isset($infos_noisette['parametres'][0]['saisie'])){
+				$infos_noisette['form'] ="saisie";
+			}	
+			else{
+				$infos_noisette['form'] =false;
+			}	
+		
 			if (!isset($infos_noisette['parametres']))
 				$infos_noisette['parametres'] = array();
 				

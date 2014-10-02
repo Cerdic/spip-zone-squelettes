@@ -1,5 +1,10 @@
-#CACHE{3600*24*50}
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+
+#SET{titre,#PARAMETRES|unserialize|table_valeur{titre_liste}}
+#SET{url,#PARAMETRES|unserialize|table_valeur{url_liste}}
+</BOUCLE_noisette>
+
 <div  id="sites_acad" class="breves">
-	<div class="en-tete" >#CONFIG{melusine_blocs/intit_script}</div>
-[(#CONFIG{melusine_blocs/add_script}|sinon{http://datice.ac-creteil.fr/liste_sites.php}|recuperer_page)]
+	<div class="en-tete" >#GET{titre}</div>
+[(#GET{url}|sinon{http://support_pole.crdp-creteil.fr/liste_sites.txt}|recuperer_page)]
 </div>
