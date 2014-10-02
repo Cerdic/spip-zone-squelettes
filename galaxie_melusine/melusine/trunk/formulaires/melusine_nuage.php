@@ -41,7 +41,14 @@ function formulaires_melusine_nuage_traiter(){
 			$params['mots'][$key]=$mot;
 		}
 	}
-	print_r($params['mots']);
+
+	$articles=_request('article');
+	foreach($articles as $key=>$article){
+		if(isset($article['titre'])){
+			$params['articles'][$key]=$article;
+		}
+	}
+	
 	// $chemin_couleur="melusine_nuage/couleur";
 	// ecrire_config($chemin_couleur,$couleur);
 	// $mots=_request('mot',$tableau);

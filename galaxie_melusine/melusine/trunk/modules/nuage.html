@@ -1,6 +1,8 @@
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
+#SET{articles,#PARAMETRES|unserialize|table_valeur{articles}}
+#SET{couleur,#PARAMETRES|unserialize|table_valeur{couleur}}
 </BOUCLE_noisette>
 
 [(#SET{admin_melusine,[(#SESSION{statut}
@@ -17,13 +19,12 @@
    		<span class="tag"  ><a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a></span>  
     	
 	</BOUCLE_test>
-	<!-- <BOUCLE_test2(POUR){tableau #GET{tags2}}>	
+	<BOUCLE_test2(POUR){tableau #GET{articles}}>	
 		#SET{id,#CLE}	
-		<BOUCLE_test000(POUR){tableau #VALEUR}>
-			[(#VALEUR|mult{2}|=={0}|oui|?{#SET{titre,#VALEUR},#SET{taille,#VALEUR}})]
-		</BOUCLE_test000>
-   		<span class="tag"><a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#CONFIG{melusine_nuage/couleur}">#GET{titre}</a></span>      	
-	</BOUCLE_test2> -->
+		#SET{titre,#VALEUR|table_valeur{titre}}	
+		#SET{taille,#VALEUR|table_valeur{taille}}
+   		<span class="tag"><a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#GET{couleur}">#GET{titre}</a></span>      	
+	</BOUCLE_test2>
 		
 </div>
 <div style="clear:both"></div>

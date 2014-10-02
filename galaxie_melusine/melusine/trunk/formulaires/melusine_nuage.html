@@ -1,5 +1,6 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
+#SET{articles,#PARAMETRES|unserialize|table_valeur{articles}}
 </BOUCLE_noisette>
 
 
@@ -27,12 +28,12 @@
 	
 			
 <a href='#'  class='mots'> Mots </a> | <a href='#'  class='articles' > Articles </a> 
-<div id="mots">
+<div id="mots" style="display:none;">
 	<fieldset>
 
 <BOUCLE_groupes(GROUPES_MOTS){par titre}>
 <div>
-<h2 class="gestion_bouton">#TITRE</H2><div class="vue_bouton"><input  class="voir"></div>	
+<h2 class="gestion_bouton"><i class="fa fa-edit"></i> #TITRE</H2><div class="vue_bouton">
 		<ul >
 		<BOUCLE_mots(MOTS){id_groupe}{par titre}>	
 		#SET{mot,#GET{mots}|table_valeur{#ID_MOT}}
@@ -54,11 +55,12 @@
 <div id="articles" style="display:none;">
 <fieldset>
 		<ul>		
-		<BOUCLE_art(ARTICLES){tous}>		
+		<BOUCLE_art(ARTICLES){tous}>	
+		#SET{article,#GET{articles}|table_valeur{#ID_ARTICLE}}	
 			<li>	
 			
-			<input type="checkbox" name="article[#ID_ARTICLE][titre]"  value="#ID_ARTICLE #TITRE" [(#CONFIG{melusine_nuage/article/#ID_ARTICLE/titre}|?{"checked", })] />#TITRE
-			<input type="text" name="article[#ID_ARTICLE][taille]" size="3" value="[(#CONFIG{melusine_nuage/article/#ID_ARTICLE/taille}|?{#CONFIG{melusine_nuage/article/#ID_ARTICLE/taille},12})]"  />px
+			<input type="checkbox" name="article[#ID_ARTICLE][titre]"  value="#TITRE" [(#GET{article}|table_valeur{titre}) checked ] />#TITRE
+			<input type="text" name="article[#ID_ARTICLE][taille]" size="3" value="[(#GET{article}|table_valeur{taille}|?{#GET{article}|table_valeur{taille},12})]"  />px
 			
 			</li>
 		</BOUCLE_art>	
