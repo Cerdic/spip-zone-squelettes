@@ -1,3 +1,8 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+#SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
+</BOUCLE_noisette>
+
+
 [<p class='formulaire_erreur'>(#ENV*{message_erreur})</p>]
 [<p class="formulaire_message">(#ENV*{message_ok})</p>]
 <script type='text/javascript' src=#CHEMIN{scripts/melusine_prive.js}></script>
@@ -10,9 +15,10 @@
 	<h3>Nuage de mots #MELUSINEAIDE{210} </h3> 
 <fieldset id="nuage">
 			
-<label>couleur</label> 
-			
-			<input type="text" name="couleur" class="palette" value="[(#CONFIG{melusine_nuage/couleur})]" />	
+<label>couleur </label> 
+			<!-- class="palette" -->
+			<input type="text" name="couleur"  value="[(#GET{params}|table_valeur{couleur})]" />	
+			<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
 			<input type='submit' name='ok' value='ok' />
 		
 	</fieldset>
@@ -27,11 +33,13 @@
 <BOUCLE_groupes(GROUPES_MOTS){par titre}>
 <div>
 <h2 class="gestion_bouton">#TITRE</H2><div class="vue_bouton"><input  class="voir"></div>	
-		<ul style="display:none">
-		<BOUCLE_mots(MOTS){id_groupe}{par titre}>		
+		<ul >
+		<BOUCLE_mots(MOTS){id_groupe}{par titre}>	
+		#SET{mot,#GET{mots}|table_valeur{#ID_MOT}}
+		
 			<li>	
-				<input type="checkbox" name="mot[#ID_MOT][titre]"  value="#ID_MOT #TITRE" [(#CONFIG{melusine_nuage/mot/#ID_MOT/titre}|?{"checked", })] />#TITRE
-				<input type="text" name="mot[#ID_MOT][taille]" size="3" value="[(#CONFIG{melusine_nuage/mot/#ID_MOT/taille}|?{#CONFIG{melusine_nuage/mot/#ID_MOT/taille},12})]"  />px
+				<input type="checkbox" name="mot[#ID_MOT][titre]"  value="#TITRE" [(#GET{mot}|table_valeur{titre}) checked ] />#TITRE
+				<input type="text" name="mot[#ID_MOT][taille]" size="3" value="[(#GET{mot}|table_valeur{taille}|?{#GET{mot}|table_valeur{taille},12})]"  />px
 			</li>
 
 		</BOUCLE_mots>	
@@ -43,7 +51,7 @@
 
 	</fieldset>
 </div>
-<div id="articles" style="display:none;">
+<!-- <div id="articles" style="display:none;">
 <fieldset>
 		<ul>		
 		<BOUCLE_art(ARTICLES){tous}>		
@@ -54,10 +62,11 @@
 			
 			</li>
 		</BOUCLE_art>	
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
 		<input type='submit' name='ok' value='ok' />
 				
 		</ul>
 	</fieldset>
-</div>		
+</div>		 -->
 </form>
 

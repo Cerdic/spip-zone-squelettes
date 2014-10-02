@@ -1,15 +1,30 @@
-<div id="flashcontent">This will be shown to users with no Flash or Javascript.</div>	
-	<script type="text/javascript">
-		var so = new SWFObject("#CHEMIN{images/tagcloud.swf}", "tagcloud", "200", "150", "7", "#ffffff");
-		// uncomment next line to enable transparency
-		so.addParam("wmode", "transparent");
-		so.addVariable("tcolor", "0x333333");
-		so.addVariable("tcolor2", "0x009900");
-		so.addVariable("hicolor", "0x000000");
-		so.addVariable("tspeed", "100");
-		so.addVariable("distr", "true");
-		so.addVariable("xmlpath", "IMG/nuage.txt");
-		so.write("flashcontent");
-	</script>
+#ID_NOISETTE
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+#SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
+</BOUCLE_noisette>
 
+[(#SET{admin_melusine,[(#SESSION{statut}
+			|=={0minirezo}
+			|oui)
+		oui]}
+)]
+
+<div class="nuage_stat">
+	<BOUCLE_test(POUR){tableau #GET{mots}}>
+		#SET{id,#CLE}	
+		#SET{titre,#VALEUR|table_valeur{titre}}	
+		#SET{taille,#VALEUR|table_valeur{taille}}	
+   		<span class="tag"  ><a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a></span>  
+    	
+	</BOUCLE_test>
+	<!-- <BOUCLE_test2(POUR){tableau #GET{tags2}}>	
+		#SET{id,#CLE}	
+		<BOUCLE_test000(POUR){tableau #VALEUR}>
+			[(#VALEUR|mult{2}|=={0}|oui|?{#SET{titre,#VALEUR},#SET{taille,#VALEUR}})]
+		</BOUCLE_test000>
+   		<span class="tag"><a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#CONFIG{melusine_nuage/couleur}">#GET{titre}</a></span>      	
+	</BOUCLE_test2> -->
+		
+</div>
+<div style="clear:both"></div>
 

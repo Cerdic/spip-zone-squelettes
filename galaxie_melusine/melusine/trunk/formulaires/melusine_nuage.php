@@ -1,8 +1,10 @@
 <?php 
 include_spip('inc/config');
-function formulaires_melusine_nuage_charger(){
-	$valeurs = array();
-	return $valeurs;
+function formulaires_melusine_nuage_charger($id_noisette){
+	$valeurs=array();
+	$valeurs['id_noisette'] = $id_noisette;
+  
+  return $valeurs;
 }
 
 function formulaires_melusine_nuage_verifier(){
@@ -26,59 +28,66 @@ function formulaires_melusine_nuage_verifier(){
 
 
 function formulaires_melusine_nuage_traiter(){
-	effacer_config(melusine_nuage);
-	$couleur=_request('couleur');	
-	$chemin_couleur="melusine_nuage/couleur";
-	ecrire_config($chemin_couleur,$couleur);
-	$mots=_request('mot',$tableau);
-	$texte="<tags>\n";
-	if($mots){
-		foreach ($mots as $value){
-			$tab_mot=explode(" ",$value['titre']);
-			$titre=str_replace($tab_mot[0],"",$value['titre']);
-			$pattern="/^( [0-9])\. /";
-			$titre=preg_replace($pattern,"",$titre);
-			$chemin_id="melusine_nuage/mot/".$tab_mot[0]."/id";
-			$chemin_tit="melusine_nuage/mot/".$tab_mot[0]."/titre";
-			$chemin_taille="melusine_nuage/mot/".$tab_mot[0]."/taille";
-			if ($titre){
-				ecrire_config($chemin_id,$tab_mot[0]);
-				ecrire_config($chemin_tit,$titre);
-				ecrire_config($chemin_taille,$value['taille']);
-				$couleur_mot=str_replace("#","0x",$couleur);
-				$texte.="<a href='spip.php?page=mot&id_mot=".$tab_mot[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_mot."' >".$titre."</a>\n";
-			}
+	include_spip('action/editer_objet');
+	$id_noisette=_request('id_noisette');
+
+	// effacer_config(melusine_nuage);
+	$params=array();
+	$params['couleur']=_request('couleur');	
+	$mots=_request('mot');
+	foreach($mots as $key=>$mot){
+		if(isset($mot['titre'])){
+			
+			$params['mots'][$key]=$mot;
+		}
+	}
+	print_r($params['mots']);
+	// $chemin_couleur="melusine_nuage/couleur";
+	// ecrire_config($chemin_couleur,$couleur);
+	// $mots=_request('mot',$tableau);
+	// $texte="<tags>\n";
+	// if($mots){
+	// 	foreach ($mots as $value){
+	// 		$tab_mot=explode(" ",$value['titre']);
+	// 		$titre=str_replace($tab_mot[0],"",$value['titre']);
+	// 		$pattern="/^( [0-9])\. /";
+	// 		$titre=preg_replace($pattern,"",$titre);
+	// 		$chemin_id="melusine_nuage/mot/".$tab_mot[0]."/id";
+	// 		$chemin_tit="melusine_nuage/mot/".$tab_mot[0]."/titre";
+	// 		$chemin_taille="melusine_nuage/mot/".$tab_mot[0]."/taille";
+	// 		if ($titre){
+	// 			ecrire_config($chemin_id,$tab_mot[0]);
+	// 			ecrire_config($chemin_tit,$titre);
+	// 			ecrire_config($chemin_taille,$value['taille']);
+	// 			$couleur_mot=str_replace("#","0x",$couleur);
+	// 			$texte.="<a href='spip.php?page=mot&id_mot=".$tab_mot[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_mot."' >".$titre."</a>\n";
+	// 		}
 		
-		};
-	};
-	$articles=_request('article',$tableau2);
-	if($articles){
-		foreach ($articles as $value){
-			$tab_article=explode(" ",$value['titre']);
-			$titre=str_replace($tab_article[0],"",$value['titre']);
-			$pattern="/^( [0-9])\. /";
-			$titre=preg_replace($pattern,"",$titre);
-			$chemin_id="melusine_nuage/article/".$tab_article[0]."/id";
-			$chemin_tit="melusine_nuage/article/".$tab_article[0]."/titre";
-			$chemin_taille="melusine_nuage/article/".$tab_article[0]."/taille";
-			if ($titre){
-				ecrire_config($chemin_id,$tab_article[0]);
-				ecrire_config($chemin_tit,$titre);
-				ecrire_config($chemin_taille,$value['taille']);
-				$couleur_article=str_replace("#","0x",$couleur);
-				$texte.="<a href='spip.php?page=article&id_article=".$tab_article[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_article."' >".$titre."</a>\n";
-			}
-		};
-	};
-	if(strpos($_SERVER['SCRIPT_FILENAME'],"/ecrire/")){$chem="../";}
-	else{$chem="";};
-	$chemin_nuage=$chem."IMG/nuage.txt";
-	$texte.="</tags>";
-	unlink($chemin_nuage);
-	$file=fopen($chemin_nuage,"a+");
-	fwrite($file,$texte);
-	fclose($file);
-	return false;	
+	// 	};
+	// };
+	// $articles=_request('article',$tableau2);
+	// if($articles){
+	// 	foreach ($articles as $value){
+	// 		$tab_article=explode(" ",$value['titre']);
+	// 		$titre=str_replace($tab_article[0],"",$value['titre']);
+	// 		$pattern="/^( [0-9])\. /";
+	// 		$titre=preg_replace($pattern,"",$titre);
+	// 		$chemin_id="melusine_nuage/article/".$tab_article[0]."/id";
+	// 		$chemin_tit="melusine_nuage/article/".$tab_article[0]."/titre";
+	// 		$chemin_taille="melusine_nuage/article/".$tab_article[0]."/taille";
+	// 		if ($titre){
+	// 			ecrire_config($chemin_id,$tab_article[0]);
+	// 			ecrire_config($chemin_tit,$titre);
+	// 			ecrire_config($chemin_taille,$value['taille']);
+	// 			$couleur_article=str_replace("#","0x",$couleur);
+	// 			$texte.="<a href='spip.php?page=article&id_article=".$tab_article[0]."'  rel='tag' style='font-size:".$value['taille']."px;' color='".$couleur_article."' >".$titre."</a>\n";
+	// 		}
+	// 	};
+	// };
+	$set=array('parametres'=>serialize($params));
+	objet_modifier("noisette", $id_noisette, $set);
+	
+	return array('message_ok'=>'enregistré', 'id_noisette'=>$id);
 	
 }
 
