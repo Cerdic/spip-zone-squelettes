@@ -54,16 +54,22 @@
 <!-- récupération de la largeur de l'image choisie -->
 #SET{largeurmaxbandeau,#CHEMIN{#CONFIG{escal/config/fondbandeau}}|balise_img|extraire_attribut{width}}
 #SET{largeurmaxbandeau2,#CHEMIN{#CONFIG{escal/config/fondbandeau2}}|balise_img|extraire_attribut{width}}
+[(#CONFIG{escal/config/layout}|=={layout_PMP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
+[(#CONFIG{escal/config/layout}|=={layout_MPP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
+[(#CONFIG{escal/config/layout}|=={layout_PPM}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
+[(#CONFIG{escal/config/layout}|=={layout_MP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
+[(#CONFIG{escal/config/layout}|=={layout_PM}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
+
 <!-- affichage de l'image choisie sans l'agrandir mais responsive -->
 [(#CONFIG{escal/config/fondbandeau}|?{
   [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}
   |balise_img{<:escal:bandeau:>}
-  |image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
+  |image_reduire{#GET{largeurreduite}}
   |inserer_attribut{style, max-width:#GET{largeurmaxbandeau}px })]
 ,
   [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}
   |balise_img{<:escal:bandeau:>}
-  |image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
+  |image_reduire{#GET{largeurreduite}}
   |inserer_attribut{style, max-width:#GET{largeurmaxbandeau2}px })]
 })]
 ]
