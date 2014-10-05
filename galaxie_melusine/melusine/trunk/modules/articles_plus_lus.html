@@ -2,12 +2,10 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
-#SET{desciptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
-#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 </BOUCLE_noisette>
  
-<!-- ************ Exclusion des articles portant le mot clé exclu, ainsi que les articles du forum et du blog **********************  -->
+
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
 <BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
 </BOUCLE_exclus40>
@@ -23,24 +21,10 @@
 <div class="module_content #GET{style}">
 <h2> [(#GET{titre}|sinon{"Articles les plus lus"})] </h2>
 
-
-
-<!-- Insertion des titres de 5 articles les plus populaires -->  
-<ul >
 <BOUCLE_hitparade(ARTICLES){par popularite} {inverse}{doublons} {0,#GET{nb}}>
- 				
-                <li class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</li>
-                [(#GET{logo}=={"oui"}|oui)<li> [(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{100}|largeur)]</li>]
-                [(#GET{desciptif}=={"oui"}|oui)<li> #INTRODUCTION</li>]
-
-
-
-
-
-
-                 
+		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
 </BOUCLE_hitparade>
-</ul>
+
 
 </div>
 
