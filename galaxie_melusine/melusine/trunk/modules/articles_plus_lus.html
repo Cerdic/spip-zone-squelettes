@@ -3,30 +3,37 @@
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
 </BOUCLE_noisette>
- 
-
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
 <BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
 </BOUCLE_exclus40>
 </BOUCLE_exclus4>
 
-
-
-
- 
-
-<!-- ************ le contenu principal **********************  -->
+<BOUCLE_exclus50(ARTICLES) {doublons}{titre_mot="focus"}>
+</BOUCLE_exclus50>
 
 <div class="module_content #GET{style}">
 <h2> [(#GET{titre}|sinon{"Articles les plus lus"})] </h2>
+[(#GET{disposition}|=={col-md-12}|non) 
+	<div class='row col1'>
+]
+			<BOUCLE_hitparade(ARTICLES){par popularite} {inverse}{doublons} {0,#GET{nb}}>
 
-<BOUCLE_hitparade(ARTICLES){par popularite} {inverse}{doublons} {0,#GET{nb}}>
-		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-</BOUCLE_hitparade>
-
+				[(#GET{disposition}|=={col-md-12}|oui)
+             		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+             	]
+             	[(#GET{disposition}|=={col-md-12}|non)
+             		[(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+             	]
+			</BOUCLE_hitparade>
+[(#GET{disposition}|=={col-md-12}|non) 
+	</div >
+]		
 
 </div>
+
+
 
  
 
