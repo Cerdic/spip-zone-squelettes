@@ -1,10 +1,12 @@
 <?php 
 include_spip('inc/config');
-function formulaires_melusine_boutons_charger(){
-	$valeurs = array('pos1','pos2','pos3','pos4','pos5','pos6');
-	
-	return $valeurs;
+function formulaires_melusine_boutons_charger($id_noisette){
+	$valeurs=array();
+	$valeurs['id_noisette'] = $id_noisette;
+  
+  return $valeurs;
 }
+
 
 function formulaires_melusine_boutons_verifier(){
 	$erreurs = array();
@@ -43,29 +45,50 @@ function melusine_rassembler_boutons($i){
 
 
 function formulaires_melusine_boutons_traiter(){
-	$req=_request('ok');
-	$cle=substr($req,2);
-	$ok=substr($req,0,2);
-	$nb=lire_config('melusine_boutons');
-	$total_boutons=count($nb);
-	$tab=array(intit,add,blanck,emplacement,boutonimage,alt);
-	if($ok==ok){	
-		$tab_post=array(intit,add,blanck,emplacement,alt);
-		foreach($tab_post as $value){
-			${$value}=$value.$cle;		
-			$r=_request(${$value});
-			$chemin='melusine_boutons/'.$cle.'/'.$value;
-			ecrire_config($chemin, $r);			
-		}
-		$nf="boutonimage".$cle;
-		if($_FILES[$nf]['tmp_name']){
-			$chemin='melusine_boutons/'.$cle.'/boutonimage';
+	include_spip('action/editer_objet');
+	$id_noisette=_request('id_noisette');
+	$params=unserialize(_request('parametres'));
+	$boutons=_request('bouton');
+	$action=_request('ok');
+	$position=_request('position');
+	$params['style']=_request('style');
+	$params['voir_images']=_request('voir_images');
+	$params['voir_intitule']=_request('voir_intitule');
+	$params['col']=_request('col');
+	$params['boutons']=$boutons;
+
+	if(strpos($position, "d")!== false ){
+		$cle=intval(str_replace("d","",$position));
+		$suivant=$cle+1;
+		$bouton_suivant=$boutons[$suivant];
+		$bouton_actif=$boutons[$cle];
+		$boutons[$cle]=$bouton_suivant;
+		$boutons[$suivant]=$bouton_actif;
+		$params['boutons']=$boutons;
+			
+
+			
+	}
+	if(strpos($position, "m")!== false ){
+		$cle=intval(str_replace("m","",$position));
+		$precedent=$cle-1;
+		$bouton_precedent=$boutons[$precedent];
+		$bouton_actif=$boutons[$cle];
+		$boutons[$cle]=$bouton_precedent;
+		$boutons[$precedent]=$bouton_actif;
+		$params['boutons']=$boutons;
+		
+			
+	}
+	if(strpos($action, "update")!== false ){
+		$cle=str_replace("update","",$action);
+		$nf="image".$cle;	
+		if(!empty($_FILES[$nf]['tmp_name'])){
+			$chemin='melusine_data/boutons/b'.$id_noisette.'/image';
 			$nom_fichier= $_FILES[$nf]['tmp_name'];
-			if(strpos($_SERVER['REQUEST_URI'],"/ecrire/")){$vers="../";}
-			else{$vers="";};
-			$chemin_destination_boutons=$vers."IMG/config/boutons";
-			$chemin_destination_config=$vers."IMG/config";
-			$nom_destination=$vers.'IMG/config/boutons/'.$_FILES[$nf]['name'];
+			$chemin_destination_boutons="IMG/config/boutons";
+			$chemin_destination_config="IMG/config";
+			$nom_destination='IMG/config/boutons/'.$_FILES[$nf]['name'];
 			$nom_destination0='IMG/config/boutons/'.$_FILES[$nf]['name'];
 			if(!is_dir("$chemin_destination_boutons")){
 				if(!is_dir($chemin_destination_config)){
@@ -73,65 +96,38 @@ function formulaires_melusine_boutons_traiter(){
 				}
 				mkdir($chemin_destination_boutons,0777);
 			};
-			move_uploaded_file($nom_fichier, $nom_destination); 
-			ecrire_config($chemin,$nom_destination0);
+			move_uploaded_file($nom_fichier, $nom_destination);
+			$boutons[$cle]['image'] =$nom_destination0;
+			$params['boutons']=$boutons;
 		}
-	
-	}
 
-	
-	$position=_request('position');
-	$action=substr($position,0,1);
-	$i=substr($position,1);
-	$var="pos".$i;
-	if($action=="d" && $i<$total_boutons){
-		$j=$i+1;
-		foreach($tab as $value){
-			$chemin='melusine_boutons/'.$i.'/'.$value;
-			$chemin_bas='melusine_boutons/'.$j.'/'.$value;
-			$pos=lire_config($chemin);
-			$pos_bas=lire_config($chemin_bas);
-			ecrire_config($chemin_bas, $pos);
-			ecrire_config($chemin,$pos_bas);	
-		}		
+		
+
+		
+
+			
 	}
-	if($action=="m" && $i>1 ){
-		$j=$i-1;		
-		foreach($tab as $value){
-			$chemin='melusine_boutons/'.$i.'/'.$value;
-			$chemin_haut='melusine_boutons/'.$j.'/'.$value;
-			$pos=lire_config($chemin);
-			$pos_haut=lire_config($chemin_haut);
-			ecrire_config($chemin_haut, $pos);
-			ecrire_config($chemin,$pos_haut);	
-		}		
-	}
-	if($action=="s"){
-		$chemin='melusine_boutons/'.$i;
-		effacer_config($chemin); 
-		$j=$i+1;
-		$chemin_bas='melusine_boutons/'.$j;
-		if(lire_config($chemin_bas)){melusine_rassembler_boutons($i);}
+	if(strpos($position, "s")!== false ){
+		$cle=intval(str_replace("s","",$position));
+		unset($boutons[$cle]);
+		$boutons=array_values($boutons);
+		$params['boutons']=$boutons;
+		
 		
 	}
 
-	if($action=="a"){
-		$cle_nv=$total_boutons+1;
-		$chemin='melusine_boutons/'.$cle_nv.'/intit';
-		ecrire_config($chemin,'Nouveau');					
+	if($action=="create"){
+		$casiers=array('intitule','url','blanck','alt','class');
+		foreach($casiers as $casier){
+			$param[$casier]='none';
+		}
+		$params['boutons'][]=$param;
+					
 	}
+	
 
-	if($action=="i"){
-		effacer_config('melusine_boutons');
-		$bouton1=array("Education nationale","http://www.education.gouv.fr/","blanck","bandeau","IMG/config/boutons/image4.png","Education nationale");
-		$clebouton=array("intit","add","blanck","emplacement","boutonimage","alt");
-		for ($i=0;$i<5;$i++){
-			
-			$chemin='melusine_boutons/1/'.$clebouton[$i];
-			
-			ecrire_config($chemin,$bouton1[$i]);
-		}			
-	}
+	$set=array('parametres'=>serialize($params));
+		objet_modifier("noisette", $id_noisette, $set);	
 	
 	return array('message_ok'=>'enregistré');
 }

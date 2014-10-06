@@ -1,0 +1,33 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE}>
+
+#SET{boutons,#PARAMETRES|unserialize|table_valeur{boutons}}
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+#SET{voir_images,#PARAMETRES|unserialize|table_valeur{voir_images}}
+#SET{voir_intitule,#PARAMETRES|unserialize|table_valeur{voir_intitule}}
+#SET{col,#PARAMETRES|unserialize|table_valeur{col}}
+</BOUCLE_noisette>
+
+	<div class="module_content [(#GET{style})]">
+		<div class="row">
+	<BOUCLE_test(POUR){tableau #GET{boutons}}>
+		 	[(#GET{col}|=={aucune}|non)<div class="#GET{col}">]
+		 [(#GET{voir_images}|=={oui}|oui)
+		 	[<div class="item item-logo">	
+				<a id="onglet#CLE" class="ong1" href="[(#VALEUR|table_valeur{url})]" [(#VALEUR|table_valeur{blank}|=={blank}|oui) target="_blank"] >	
+						(#VALEUR|table_valeur{image}|oui)
+							[(#CHEMIN{#VALEUR|table_valeur{image}}|image_reduire{150})
+						]			
+				</a>
+			</div>]
+			]
+		[(#GET{voir_intitule}|=={oui}|oui)
+			[<div class="item ">	
+				<a id="onglet#CLE" class="ong1" href="[(#VALEUR|table_valeur{url})]" [(#VALEUR|table_valeur{blank}|=={blank}|oui) target="_blank"] >	
+					<span class="img_onglet">(#VALEUR|table_valeur{intitule})</span>
+				</a>
+			</div>] 
+		]
+	[(#GET{col}|=={aucune}|non)</div>]
+	</BOUCLE_test>
+	</div>
+</div>

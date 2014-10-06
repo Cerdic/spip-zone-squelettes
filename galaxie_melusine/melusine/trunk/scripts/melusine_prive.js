@@ -1,3 +1,6 @@
+
+
+
 $(function(){ 
     $("#onglets .onglet").hide(); 
     $("#onglets .onglet:eq(0)").show(); 
@@ -159,7 +162,7 @@ $(function(){
 
 
 $(function(){ 
-	$(".vue_bouton input").click(
+	$(".voir").click(
 		function(){
 			var $this = $(this);
                 if( $this.is('.voir') ) {
@@ -392,5 +395,7 @@ $("#rechavancee input:submit").click(
 		}); 
 
 }); 
+
+
 
 	
