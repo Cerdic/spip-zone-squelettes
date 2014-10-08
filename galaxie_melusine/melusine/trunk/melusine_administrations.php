@@ -94,7 +94,9 @@ function melusine_upgrade($nom_meta_base_version, $version_cible) {
 	// en attendant une meilleure façon d'installer Mélusine 2
 	// On utilise l'ancienne façon (Mélusine 1), et on migre ensuite
 	// en Mélusine 2
-	array_push($maj['create'],array('melusine_migration_version_2', array()));
+	//array_push($maj['create'],array('melusine_migration_version_2', array()));
+	array_push($maj['create'],array('melusine_installation_version_2', array()));
+
 
 	// On lance les opérations...
 	include_spip('base/upgrade');
@@ -449,6 +451,27 @@ function melusine_migration_version_2() {
 	return true;
 	
 	
+}
+
+function melusine_installation_version_2(){
+	include_spip('action/editer_objet');
+	include_spip('ecrire/inc/xml');
+	$xml=spip_file_get_contents( "http://localhost/dan/IMG/svg.xml" );
+	
+	$arbre=spip_xml_parse( $xml);
+	print_r($arbre);
+	foreach ($arbre['configuration'][0]['noisettes'][0]['item'] as $feuille){
+		
+		$noeuds=array("rang","noisette","type","bloc");
+		
+		foreach($noeuds as $noeud){
+			$item[$noeud]=$feuille[$noeud][0];
+		}
+			
+			
+			$id_noisette = objet_inserer("noisette", $id_parent="",$item);
+
+	}
 }
 
 
