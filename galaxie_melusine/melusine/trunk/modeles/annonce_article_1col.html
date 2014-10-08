@@ -1,0 +1,28 @@
+#SET{taille,350}
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{desciptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
+#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+</BOUCLE_noisette>
+
+<BOUCLE_article(ARTICLES){id_article=#ID_ARTICLE}>
+<div class="#GET{disposition}">
+<div class="item ">
+		 		
+		 				
+    
+   
+        [(#GET{logo}=={"oui"}|oui)
+        	[<div >(#LOGO_ARTICLE|image_recadre{200 ,100,center})</div>]
+        ]
+        <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
+        [(#GET{desciptif}=={"oui"}|oui)
+        	 <div > #INTRODUCTION{#GET{taille}}</div>
+        ]
+        	
+        
+</div>
+		          
+</div>  
+</BOUCLE_article>
