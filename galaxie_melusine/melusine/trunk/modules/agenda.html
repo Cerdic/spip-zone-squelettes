@@ -1,9 +1,21 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+</BOUCLE_noisette>
+
 <h2>Agenda</h2>
 <ul>
-<BOUCLE_evenements(ARTICLES){titre_mot="agenda"}>  
-<li>
-	<p><i class="fa fa-calendar "></i> [(#DATE|affdate)]</p>
-	<p>#TITRE </p>
-</li> 
-</BOUCLE_evenements>
+	[(#GET{nb}|non)
+		<span class="erreur_message">A CONFIGURER !	</span>
+	]
+	<BOUCLE_evenements(ARTICLES){titre_mot="agenda"}{0,#GET{nb}}>  
+		<li>
+			[(#GET{nb}|oui)
+				<p><i class="fa fa-calendar "></i> [(#DATE|affdate)]</p>
+				<p>#TITRE</p>
+			]
+		</li> 
+	</BOUCLE_evenements>
 </ul>
+
+
