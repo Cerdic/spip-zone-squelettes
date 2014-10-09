@@ -172,19 +172,22 @@ function melusine_cherche_chemin_datice() {
 **/
 function melusine_preparation_fichiers() {
 	include_spip('inc/config');
+	$images=array("g86.png","g286.png");
+	//si les fichiers logos créteil n'existent pas (1ere install) => création
+	foreach($images as $image){
+		$chemin_IMG = "../"._NOM_PERMANENTS_ACCESSIBLES; //chemin vers IMG (y compris en mutualisation)
+		$logo_img=$chemin_IMG."config/boutons/".$image;
+		$logo_plugin=_DIR_PLUGIN_MELUSINE."images/".$image;
 
-	//si le fichier logo créteil n'existe pas (1ere install) => création
-	$chemin_IMG = "../"._NOM_PERMANENTS_ACCESSIBLES; //chemin vers IMG (y compris en mutualisation)
-	$logo_img=$chemin_IMG."config/boutons/image_b2.png";
-	$logo_plugin=_DIR_PLUGIN_MELUSINE."images/image_b2.png";
-
-	if (!file_exists($logo_img)){
-		$config=$chemin_IMG."config";
-		$boutons=$config."/boutons";
-		mkdir($config, _SPIP_CHMOD);
-		if(!is_dir($boutons)){mkdir($boutons, _SPIP_CHMOD);};
-		if (!copy($logo_plugin,$logo_img)) echo "erreur de copie de l'image";
+		if (!file_exists($logo_img)){
+			$config=$chemin_IMG."config";
+			$boutons=$config."/boutons";
+			mkdir($config, _SPIP_CHMOD);
+			if(!is_dir($boutons)){mkdir($boutons, _SPIP_CHMOD);};
+			if (!copy($logo_plugin,$logo_img)) echo "erreur de copie de l'image";
+		}
 	}
+	
 
 
 	// Récupération des noisettes déjà copiées dans Mélusine
