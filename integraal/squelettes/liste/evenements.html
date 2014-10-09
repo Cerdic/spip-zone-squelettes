@@ -1,19 +1,27 @@
 [(#SET{defaut_tri,#ARRAY{
+	titre,1
 	num titre,1,
 	date_debut,#ENV{date_sens,1},
 	id_evenement,1,
 	points,-1
-}})
-]<B_evenements>
+}})]
+
+<B_resultats>
 	#ANCRE_PAGINATION
-	[<h2>(#ENV{titre})</h2>]
+	[(#ENV{titre}|sinon{#GRAND_TOTAL|singulier_ou_pluriel{agenda:info_un_evenement, agenda:info_nombre_evenements}})]
 	<ul class="liste-items">
-		<BOUCLE_evenements(EVENEMENTS){id_rubrique?}{id_article?}{recherche?}{tri #ENV{par,#ENV{recherche}|?{points,date_debut}},#GET{defaut_tri}} {pagination #ENV{nb,5}}>
+		<BOUCLE_resultats(EVENEMENTS)
+			{id_rubrique?}
+			{id_article?}
+			{recherche?}
+			{tri #ENV{par,#ENV{recherche}|?{points,date_debut}},#GET{defaut_tri}}
+			{pagination #ENV{pagination,5}}
+		>
 		<li class="item">#INCLURE{fond=inclure/resume/evenement,id_evenement}</li>
-		</BOUCLE_evenements>
+		</BOUCLE_resultats>
 	</ul>
-	[<div class="pagination">(#PAGINATION{page_precedent_suivant})</div>]
-</B_evenements>
+	[(#ENV{masquer_pagination}|!={oui})[<div class="pagination">(#PAGINATION{page_precedent_suivant})</div>]]
+</B_resultats>
 [(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:agenda:info_aucun_evenement:>, #ENV{message_aucun}})]})]
 [<p>(#GET{message_aucun})</p>]
-<//B_evenements>
+<//B_resultats>
