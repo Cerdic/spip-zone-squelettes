@@ -456,7 +456,7 @@ function melusine_migration_version_2() {
 function melusine_installation_version_2(){
 	include_spip('action/editer_objet');
 	include_spip('ecrire/inc/xml');
-	$xml=spip_file_get_contents( "http://localhost/dan/IMG/svg.xml" );
+	$xml=spip_file_get_contents( _DIR_PLUGIN_MELUSINE."/base/melusine.xml" );
 	
 	$arbre=spip_xml_parse( $xml);
 	print_r($arbre);
