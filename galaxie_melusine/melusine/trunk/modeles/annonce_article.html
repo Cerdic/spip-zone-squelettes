@@ -3,6 +3,7 @@
 #SET{desciptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
 #SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 #SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+#SET{socialtag,#PARAMETRES|unserialize|table_valeur{socialtag}}
 </BOUCLE_noisette>
 [(#GET{taille}|<{200}|oui)#SET{hauteur,200}]
 [(#GET{taille}|>={200}|oui)#SET{hauteur,250}]
@@ -17,7 +18,9 @@
 			                	[(#GET{desciptif}=={"oui"}|non)
 				                	<div class=#GET{style}>
 					                	<div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-					                	[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					                	[(#GET{socialtag}=={"oui"}|oui)
+					                		[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					                	]
 					                
 				            		</div>
 				                ]
@@ -26,7 +29,9 @@
 				                [(#GET{desciptif}=={"oui"}|oui)
 				                <div class=#GET{style}>
 					                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-					                 [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					                [(#GET{socialtag}=={"oui"}|oui)
+					                 	[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					                 ]
 					                <div > #INTRODUCTION{#GET{taille}}</div>
 				            	</div>
 				                ]
@@ -38,7 +43,9 @@
 				                [(#GET{desciptif}=={"oui"}|oui)
 				               		<div class=#GET{style}>
 						                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-						                [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+						                [(#GET{socialtag}=={"oui"}|oui)
+						                	[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+						                ]
 						                <div class="#GET{style}"> #INTRODUCTION{#GET{taille}}</div>
 					            	</div>
 				            
@@ -46,8 +53,9 @@
 				                [(#GET{desciptif}=={"oui"}|non)
 				                	<div class=#GET{style}>
 						                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
+						                [(#GET{socialtag}=={"oui"}|oui)
 						                 [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-						               
+						               	]
 					            	</div>
 				                ]
 			                ]
