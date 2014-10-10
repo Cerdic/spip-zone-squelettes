@@ -1,4 +1,8 @@
 #SET{nb,5}
+#SET{titre,"Focus"}
+#SET{mot,"focus"}
+#SET{style,"bloc_visible"}
+#SET{disposition,"col-md-12"}
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
@@ -22,7 +26,7 @@
 [(#GET{disposition}|=={col-md-12}|non) 
 	<div class='row col1'>
 ]
-			<BOUCLE_article(ARTICLES) {titre_mot LIKE %#GET{mot}}{doublons}{par titre_mot}>
+			<BOUCLE_article(ARTICLES) {titre_mot LIKE %#GET{mot}}{doublons}{par titre_mot} {0,#GET{nb}}>
 				[(#GET{disposition}|=={col-md-12}|oui)
              		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
              	]

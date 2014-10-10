@@ -1,44 +1,40 @@
-#CACHE{3600*24*51}
-[(#CONFIG{melusine_images/image3}|?{#SET{image3, #CHEMIN{#CONFIG{melusine_images/image3}}},#SET{image3,#CHEMIN{images/image3.png}}} )]
-<BOUCLE_test(CONDITION){si #ID_RUBRIQUE|>{1} }>
-<B_sites2>
-<!-- Intitulé général pour la syndication de sites -->
-<div id="web" class="web" >
-<div class="en-tete" > <img alt=""  style="float:left" src="#GET{image3}" />En savoir plus</div>
 
-        <BOUCLE_sites2(SITES) {par num nom_site,nom_site}{id_rubrique}  >
-            <div class="site">
-                    <a class="nom-site" href="#URL_SITE">#NOM_SITE</a>
-			[<a href="#URL_SITE" >(#LOGO_SITE||image_reduire{120,0})</a>]
-			[<div class="descriptif">(#DESCRIPTIF)</div>]                              
-                    <BOUCLE_syndic2(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,5}>
-                          [<a class="article-synd" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a>] 
-                     </BOUCLE_syndic2>
-            </div>
-        </BOUCLE_sites2>
-    </div>
-</B_sites2>
+#SET{titre,"Sites Favoris"}
+#SET{style,"bloc_visible"}
+#SET{mot,""}
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+</BOUCLE_noisette>
+
+<div class="#GET{style}">
+<h2> #GET{titre}</h2>
+<BOUCLE_test(CONDITION){si #GET{mot}|non}>
+      <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
+              <BOUCLE_sites1(SITES) {par num nom_site,nom_site}>
+                           
+                         #MODELE{favoris}
+                
+              </BOUCLE_sites1>
 
 
+      </BOUCLE_sommaire>
+      <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
+              <BOUCLE_sites10(SITES) {par num nom_site,nom_site}{id_rubrique} >
+                      
+                         #MODELE{favoris}
+                
+              </BOUCLE_sites10>
+
+
+      </BOUCLE_rubrique>
 </BOUCLE_test>
+      <BOUCLE_sites3(SITES) {par num nom_site,nom_site}{titre_mot=#GET{mot}} >
 
-
-<B_sites>
-
-<div  id="web" class="web">
-	<div class="en-tete" ><:sur_web:></div>
-   
-        <BOUCLE_sites(SITES) {titre_mot=flux_sommaire}{par num nom_site,nom_site}{0,10}  >
-            <div class="site">
-           		     <a class="nom-site" href="#URL_SITE">#NOM_SITE</a>
-				[<a href="#URL_SITE" >(#LOGO_SITE||image_reduire{120,0})</a>]
-           			 [<div class="descriptif">(#DESCRIPTIF)</div>]                     	        
-					<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,5}>
-      	                  [<a class="article-synd" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a>]
-					</BOUCLE_syndic>
-	        </div>
-        </BOUCLE_sites>
-    </div>
-</B_sites>
-
+                        
+                         #MODELE{favoris}
+      </BOUCLE_sites3>
 <//B_test>
+
+  </div>
