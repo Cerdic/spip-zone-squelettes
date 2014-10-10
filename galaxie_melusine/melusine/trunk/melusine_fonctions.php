@@ -29,16 +29,23 @@ if (!$noiz_actif) {
 // correspondances entre gabarits et types-pages
 // TODO: déplacer dans le YAML d'init quand il fonctionnera
 include_spip('inc/config');
+
 if (!lire_config('melusine_data/pages/sommaire')) {
-	ecrire_config('melusine_data/pages/sommaire','accueil');
-	ecrire_config('melusine_data/pages/rubrique','categorie');
-	ecrire_config('melusine_data/pages/article','contenu');
-	ecrire_config('melusine_data/pages/mot','categorie');
-	ecrire_config('melusine_data/pages/recherche','categorie');
-	ecrire_config('melusine_data/pages/plan','categorie');
-	ecrire_config('melusine_data/pages/site','contenu');
-	ecrire_config('melusine_data/pages/auteur','categorie');
-	// à compléter ?
+
+	// ecrire_config('melusine_data/pages/sommaire','accueil');
+	// ecrire_config('melusine_data/pages/rubrique','categorie');
+	// ecrire_config('melusine_data/pages/article','contenu');
+	// ecrire_config('melusine_data/pages/mot','categorie');
+	// ecrire_config('melusine_data/pages/recherche','categorie');
+	// ecrire_config('melusine_data/pages/plan','categorie');
+	// ecrire_config('melusine_data/pages/site','contenu');
+	// ecrire_config('melusine_data/pages/auteur','categorie');
+	//à compléter ?
+
+
+	
+
+	
 	}
 
 /*

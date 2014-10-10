@@ -1,5 +1,9 @@
+<?php 
+ob_start();
+?>
 #HTTP_HEADER{Content-Type: text/xml}
 <configuration>
+	<config>#CONFIG{melusine_data}</config>
 	<noisettes>
 <BOUCLE_liste(noisettes){type != "mobil"} >
 <BOUCLE_une(noisettes){id_noisette=#ID_NOISETTE}>
@@ -13,3 +17,11 @@
 </BOUCLE_liste>
 </noisettes>
 </configuration>
+<?php
+$out = ob_get_contents();
+$fp=fopen("plugins/auto/melusine/base/melusine.xml",w);
+fwrite($fp, $out);
+fclose($fp);
+ob_end_clean();
+ ?>
+

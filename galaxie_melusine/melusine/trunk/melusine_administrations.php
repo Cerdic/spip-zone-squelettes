@@ -459,10 +459,11 @@ function melusine_migration_version_2() {
 function melusine_installation_version_2(){
 	include_spip('action/editer_objet');
 	include_spip('ecrire/inc/xml');
+	spip_log("config");
 	$xml=spip_file_get_contents( _DIR_PLUGIN_MELUSINE."/base/melusine.xml" );
 	
 	$arbre=spip_xml_parse( $xml);
-	print_r($arbre);
+	
 	foreach ($arbre['configuration'][0]['noisettes'][0]['item'] as $feuille){
 		
 		$noeuds=array("rang","noisette","type","bloc");
@@ -474,6 +475,34 @@ function melusine_installation_version_2(){
 			
 			$id_noisette = objet_inserer("noisette", $id_parent="",$item);
 
+	}
+	
+	if( $config=$arbre['configuration'][0]["config"][0]){
+		spip_log("config");
+	}
+	$config=unserialize($config);
+
+	$pages=$config['pages'];
+	$width=$config['width'];
+	$gabarits=$config['gabarits'];
+	$types=array("sommaire","categorie","contenu");
+	foreach($types as $type){
+		$untype=$config[$type];
+		foreach ($untype as $bloc=>$largeur){
+			
+			ecrire_config("melusine_data/".$type."/".$bloc,$largeur);
+		}
+		
+	}
+	
+	ecrire_config("melusine_data/width/",$width);
+	foreach($pages as $cle=>$page){
+		ecrire_config("melusine_data/pages/".$cle,$page);
+		
+	}
+	foreach($gabarits as $cle=>$gabarit){
+		ecrire_config("melusine_data/gabarits/".$cle,$gabarit);
+		
 	}
 }
 
