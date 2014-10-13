@@ -74,8 +74,10 @@ include_spip('action/editer_objet');
 	$param=_request('param');
 	
 	$casiers=array();
+	
 	$params=unserialize($param);
 	//print_r($params);
+
 	foreach($params as $p){
 		
 			// echo "<pre>";
@@ -111,11 +113,11 @@ include_spip('action/editer_objet');
 				$params[$casier]=$data;
 			}
 			elseif(isset($data)){
-				echo "bb".$casier."/".$data."<br>";
+				//echo "bb".$casier."/".$data."<br>";
 				$params[$casier]=$data;
 			}
 			else{$data=trouve_input_file_value($casier,$id_noisette);
-				echo $casier."/".$data."<br>";
+				//echo $casier."/".$data."<br>";
 				$params[$casier]=trouve_input_file_value($casier,$id_noisette);
 			}
 				

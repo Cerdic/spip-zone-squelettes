@@ -1,14 +1,17 @@
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
+[(#GET{mot}|non)#SET{mot,agenda}]
+[(#GET{style}|non)#SET{style,bloc_visible}]
+[(#GET{nb}|non)#SET{nb,5}]
 
 <h2>Agenda</h2>
 <ul>
-	[(#GET{nb}|non)
-		<span class="erreur_message">A CONFIGURER !	</span>
-	]
-	<BOUCLE_evenements(ARTICLES){titre_mot="agenda"}{0,#GET{nb}}>  
+	
+	<BOUCLE_evenements(ARTICLES){titre_mot=#GET{mot}}{0,#GET{nb}}>  
 		<li>
 			[(#GET{nb}|oui)
 				<p><i class="fa fa-calendar "></i> [(#DATE|affdate)]</p>
@@ -16,6 +19,8 @@
 			]
 		</li> 
 	</BOUCLE_evenements>
+		<span class="erreur_message">Aucun article lié au mot clé #GET{mot}	</span>
+	<//B_evenements>
 </ul>
 
 
