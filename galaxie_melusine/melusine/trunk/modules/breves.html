@@ -1,40 +1,43 @@
-#CACHE{3600*24*64}
+#SET{titre,"Sites Favoris"}
+#SET{style,"bloc_visible"}
+#SET{mot,""}
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 
-<BOUCLE_test(CONDITION){si #ID_RUBRIQUE|>{1} }>
+</BOUCLE_noisette>
 
-<B_breves>
-    <div id="breves" class="breves">
-        <div class="en-tete" ><:breves:></div>
-       <BOUCLE_breves(BREVES){id_rubrique}{par date}{inverse}>
-            <div class="contenu">
-                  <div class="nom-breve" >#TITRE</div>
-                <div class="date">[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</div>
-                <div class="texte"><a href="[(#LOGO_BREVE||extraire_attribut{src})]?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  class="mediabox">[(#LOGO_BREVE||image_reduire{120,0})]</a></div>
-                <div class="texte">[(#TEXTE|image_reduire{120,0})]</div>
-                [<div class="notes">(#NOTES)</div>]
-                [<div class="notes"><:sur_web:>&nbsp;:&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
-            </div>
-        </BOUCLE_breves>
-    </div>
-</B_breves>
+<div class="#GET{style}">
+<h2> #GET{titre}</h2>
 
+<BOUCLE_test(CONDITION){si #GET{mot}|non}>
+
+      <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
+              <BOUCLE_sites1(BREVES) {par date}>
+                          
+                         #MODELE{breve}
+                
+              </BOUCLE_sites1>
+
+
+      </BOUCLE_sommaire>
+      <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
+              <BOUCLE_sites10(BREVES) {par date}{id_rubrique} >
+                      
+                         #MODELE{breve}
+                
+              </BOUCLE_sites10>
+
+
+      </BOUCLE_rubrique>
 </BOUCLE_test>
+      <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
 
-<B_breves2>
-    <div id="breves" class="breves">
-        <div class="en-tete" ><:breves:></div>
-       <BOUCLE_breves2(BREVES){titre_mot=flux_sommaire}{par date}{inverse}>
-            <div class="contenu">
-                  <div class="nom-breve" >#TITRE</div>
-                <div class="date">[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</div>
-                <div class="texte"><a href="IMG/#LOGO_BREVE**?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  class="mediabox">[(#LOGO_BREVE||image_reduire{120,0})]</a></div>
-                <div class="texte">[(#TEXTE|image_reduire{120,0})]</div>
-                [<div class="notes">(#NOTES)</div>]
-                [<div class="notes"><:sur_web:>&nbsp;:&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
-            </div>
-        </BOUCLE_breves2>
-    </div>
-</B_breves2>
-
+                        
+                        #MODELE{breve}
+      </BOUCLE_sites3>
 <//B_test>
+
+  </div>
 
