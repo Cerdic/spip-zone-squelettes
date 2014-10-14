@@ -1,13 +1,21 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+    #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+    #SET{voirauteur,#PARAMETRES|unserialize|table_valeur{voirauteur}}
+    #SET{voirdate,#PARAMETRES|unserialize|table_valeur{voirdate}}
+    #SET{voirlogo,#PARAMETRES|unserialize|table_valeur{voirlogo}}
+     #SET{voirdocuments,#PARAMETRES|unserialize|table_valeur{voirdocuments}}
+</BOUCLE_noisette>
+[(#GET{style}|non)#SET{style,bloc_visible}]
+[(#GET{voirauteur}|non)#SET{voirauteur,oui}]
+[(#GET{voirdate}|non)#SET{voirdate,oui}]
+[(#GET{voirlogo}|non)#SET{voirlogo,oui}]
+[(#GET{voirdocuments}|non)#SET{voirdocuments,oui}]
 <BOUCLE_article_principal(ARTICLES){doublons} {id_article}>
 
-#SET{auteurs, #CONFIG{melusine_blocs/auteurs}}
-#SET{date_article, #CONFIG{melusine_blocs/date_article}}
-#SET{fondtexte2,#CONFIG{melusine_persoarticle/#ID_ARTICLE/fondtexte2}}
-#SET{bord2,#CONFIG{melusine_persoarticle/#ID_ARTICLE/bord2}}
-#SET{texte2,#CONFIG{melusine_persoarticle/#ID_ARTICLE/texte2}}
 
-<div class="module_content">
+<div class="module_content #GET{style}">
       
+     <BOUCLE_auteur(CONDITION){si #GET{voirauteur}|=={oui}|oui}>
 				<div class="imprimcontact">
 					<BOUCLE_auteurs(AUTEURS){id_article} >
 						
@@ -15,8 +23,11 @@
 
 					</BOUCLE_auteurs>
             				<!-- <a class="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:imprimer_article:>" target="blank"></a> -->
-      				</div>
-       
+      			</div>
+
+      </BOUCLE_auteur>
+    
+      <//B_auteur>
        				
 
 
@@ -28,35 +39,29 @@
 
 				<!-- <div class="content" style="background-color:#GET{fondtexte2};border-color:#GET{bord2};color:#GET{texte2}" > -->
 
-					#SET{bloc_droite, (#CONFIG{melusine_squelettes/d}|serialize)}
-					#SET{flag,1}
-            				<BOUCLE_test1(POUR){tableau #GET{bloc_droite}}>
-
-						<BOUCLE_cond(CONDITION){si #VALEUR|=={logo}}>
-							#SET{flag,0}
-      						</BOUCLE_cond>
-						
-      						<//B_cond>
-					</BOUCLE_test1>
-					[(#GET{flag}|=={1}|?{[(#LOGO_ARTICLE||image_reduire{150,150})],''})]
+					
+					[(#GET{voirlogo}|=={oui}|oui)
+						[(#LOGO_ARTICLE||image_reduire{150,150})]
+					]
 
 				<!-- ************ Insertion �ventuelle de la date et de l'auteur **********************  -->					
-					#SET{details, #GET{date_article}|concat{#GET{auteurs}}}
-					<div class="logtypeedi" style="background-color:#GET{fondtexte2} ;border-color:#GET{bord2}; ">
+					
+					[(#GET{voirdate}|=={oui}|oui)
 						<INCLURE{fond=inclusions/details}{id_article}>
- 						<H2 class="#EDIT{titre} titre" align="center" style="color:#GET{texte2}">[(#TITRE|supprimer_numero)] </H2>
+					]
+ 						<H2>[(#TITRE|supprimer_numero)] </H2>
 						
-						<BOUCLE_test(CONDITION){si #GET{auteurs}|=={oui}}>   
+					<BOUCLE_auteur2(CONDITION){si #GET{voirauteur}|=={oui}|oui}>
 							<span class="auteur">Par : 
                     					<BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
                         					<a href="#URL_AUTEUR">#NOM</a>
                     					</BOUCLE_auteurs-article>
 							</span> 
-						</BOUCLE_test>
-						<//B_test>
+					</BOUCLE_auteur2>
+					
 						
 						
-					</div> 
+					
 					<!-- ************ Insertion éventuelle du sous-titre **********************  -->	
     					[<div  class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
 
@@ -83,13 +88,19 @@
 						[<div class="notes">(#NOTES)</div>]             				  
     
 						<div style="clear:both">&nbsp;</div>
-					
+						
 					<!-- ************ fin de la classe texte **********************  -->        
 					
 				 </div>		
 
-       
+       			[(#GET{voirdocuments}|=={oui}|oui)
+       				[(#INCLURE{fond=inclure/documents,id_article, env})]
+       			]
 <!-- Liens vers les documents joints, à l'exclusion des images -->
-       
+       			[(#REM) Forum de l'article ]
+				<INCLURE{fond=inclure/forum,id_article} />
+				[<h2><:forum:form_pet_message_commentaire:></h2>
+				(#FORMULAIRE_FORUM)]
+	
 	</div>
 </BOUCLE_article_principal>
