@@ -16,26 +16,40 @@
 <!-- On récupère le nom du secrétaire de rédaction, s'il a été saisi -->
 #SET{sec,(#GET{params}|table_valeur{secretairederedaction})}
 
+
+
 <!-- Début de la classe contenu -->
-<div class="module_content">
+<div class="module_content bloc_visible [(#GET{dir}|non)info]">
+	[(#GET{dir}|non)Aucun directeur de publication sélectionné]
 
 <!-- On cherche dans les auteurs celui qui a l'identifiant du directeur de publication -->
 	<BOUCLE_directeurdepublication(AUTEURS){tous}{id_auteur=#GET{dir}}>
-		<div class="en-tete">Directeur de publication :</div>
-		<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{dir}" class="mediabox">#NOM</a>
+
+		 <div class="vcard">
+		<span class="title">Directeur de publication</span> :<br/>
+		<span class="fn">
+			<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{dir}" class="mediabox">#NOM</a>
+		</span>
+		</div>
 	</BOUCLE_directeurdepublication>
 
 <!-- On cherche dans les auteurs celui qui a l'identifiant du secrétaire de rédaction -->
 	<BOUCLE_secretairederedaction(AUTEURS){tous}{id_auteur=#GET{sec}}>
-		<div class="en-tete">Secrétaire de rédaction :</div>
-		<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{sec}" class="mediabox">#NOM</a>
+	<div class="vcard">
+		<span class="title">Secrétaire de rédaction</span> :<br/>
+		<span class="fn">
+			<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{sec}" class="mediabox">#NOM</a>
+		</span>
+	</div>
 	</BOUCLE_secretairederedaction>
+<div class="adr">
 
 <!-- On affiche l'adresse s'elle a été renseignée -->
-        [<div class="en-tete">Adresse : </br>(#GET{params}|table_valeur{adresse})</div>]
+        [<div class="street-address"> (#GET{params}|table_valeur{adresse})</div>]
 
 <!-- On affiche l'hébergement s'il a été renseigné -->
-        [<div class="en-tete">Hébergement : </br>(#GET{params}|table_valeur{hebergement})</div>]
+        [<div>Hébergement : <br/>(#GET{params}|table_valeur{hebergement})</div>]
+</div>
                       
 <!--  Fin de la classe contenu    -->	
 </div>
