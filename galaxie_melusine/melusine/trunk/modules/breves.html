@@ -1,43 +1,48 @@
-#SET{titre,"Sites Favoris"}
-#SET{style,"bloc_visible"}
-#SET{mot,""}
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
-#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-
+#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
+#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 </BOUCLE_noisette>
+
+[(#GET{titre}|non)#SET{titre,"Dernières brèves"}]
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+[(#GET{mot}|non)#SET{mot,""}]
+[(#GET{nb}|non)#SET{nb,5}]
 
 <div class="#GET{style}">
 <h2> #GET{titre}</h2>
+    <BOUCLE_test(CONDITION){si #GET{mot}|non}>
+        <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
+                <BOUCLE_sites1(BREVES) {par date}>
+                      [(#COMPTEUR_BOUCLE|<{#GET{nb}}|oui)                       
+                           #MODELE{breve}
+                      ]
+                </BOUCLE_sites1>
+        </BOUCLE_sommaire>
+        <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
+                <BOUCLE_sites10(BREVES) {par date}{id_rubrique} >
+                      [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui) 
+                           #MODELE{breve}
+                      ]
+                </BOUCLE_sites10>
+        </BOUCLE_rubrique>
+    </BOUCLE_test>
+    #SET{zerobreve1,1}
+        <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
+               [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)         
+                      #MODELE{breve}
+               ]
+        </BOUCLE_sites3>
+       #SET{zerobreve2,1}     
 
-<BOUCLE_test(CONDITION){si #GET{mot}|non}>
+    <//B_test>
 
-      <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
-              <BOUCLE_sites1(BREVES) {par date}>
-                          
-                         #MODELE{breve}
-                
-              </BOUCLE_sites1>
+    [(#GET{zerobreve1}|=={1}|oui)
+        [(#GET{zerobreve2}|=={1}|oui)]
+            <div class="module_content bloc_visible info">
+            Aucune brève à afficher</div>
+        ]
+       </div> 
 
-
-      </BOUCLE_sommaire>
-      <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
-              <BOUCLE_sites10(BREVES) {par date}{id_rubrique} >
-                      
-                         #MODELE{breve}
-                
-              </BOUCLE_sites10>
-
-
-      </BOUCLE_rubrique>
-</BOUCLE_test>
-      <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
-
-                        
-                        #MODELE{breve}
-      </BOUCLE_sites3>
-<//B_test>
-
-  </div>
 
