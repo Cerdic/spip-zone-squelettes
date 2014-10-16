@@ -1,0 +1,52 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
+</BOUCLE_noisette>
+
+<h2>Agenda 2</h2>
+#SET{tableau,#ARRAY}
+#SET{compteur,1}
+<ul>
+	[(#GET{nb}|non)
+		<span class="erreur_message">Agenda : Aucun mot clef saisi !</span>
+	]
+	<BOUCLE_danslesarticles(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
+		#SET{tableau, #GET{tableau}|push{|concat{#DATE,---a---,#ID_ARTICLE}}}
+	</BOUCLE_danslesarticles>
+	<BOUCLE_danslesbreves(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
+		#SET{tableau, #GET{tableau}|push{|concat{#DATE,---b---,#ID_BREVE}}}
+	</BOUCLE_danslesbreves>
+
+    <BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
+    	#SET{explo, #VALEUR|explode{','}}
+    	[(#GET{explo}|find{---a---}|oui)
+    		<p><i class="fa fa-calendar "></i>
+    		#SET{ouchercher,ARTICLES}
+    		#SET{quoichercher,id_article}
+		]
+		[(#GET{explo}|find{---b---}|oui)
+    		<p><i class="fa fa-newspaper-o "></i>
+    		#SET{ouchercher,BREVES}
+    		#SET{quoichercher,id_breve}
+		]
+		<BOUCLE_informations ((#GET{ouchercher})){(#GET{quoichercher})=(#GET{explo}|table_valeur{2})}>
+			[(#DATE|affdate)]</p>
+			<p>#TITRE</p>
+			toto
+
+		</BOUCLE_informations>
+				
+
+
+	
+
+
+    	<!--[(#GET{compteur}|<#GET(nb))
+    		<li>[(#GET{explo}|table_valeur{2})]</li>
+			#SET{compteur,#GET{compteur}|plus{1}}
+    	]-->
+    </BOUCLE_trierpardate>
+
+
+</ul>

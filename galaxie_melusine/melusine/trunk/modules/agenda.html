@@ -1,26 +1,50 @@
-
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
-#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
+#SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
-[(#GET{mot}|non)#SET{mot,agenda}]
-[(#GET{style}|non)#SET{style,bloc_visible}]
-[(#GET{nb}|non)#SET{nb,5}]
 
 <h2>Agenda</h2>
+<!-- On crée un tableau pour récupérer les résultats -->
+#SET{tableau,#ARRAY}
 <ul>
-	
-	<BOUCLE_evenements(ARTICLES){titre_mot=#GET{mot}}{0,#GET{nb}}>  
-		<li>
-			[(#GET{nb}|oui)
-				<p><i class="fa fa-calendar "></i> [(#DATE|affdate)]</p>
-				<p>#TITRE</p>
-			]
-		</li> 
-	</BOUCLE_evenements>
-		<span class="erreur_message">Aucun article lié au mot clé #GET{mot}	</span>
-	<//B_evenements>
+
+	<!-- On cherche dans nb articles, ceux qui ont le mot clef -->
+	<BOUCLE_danslesarticles(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
+		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève) et le titre -->
+		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,10,#TITRE}}}
+	</BOUCLE_danslesarticles>
+	<!-- Si aucun article n'a été trouvé -->
+	#SET{zeroarticle,1}
+	<//B_danslesarticles>
+
+	<!-- On cherche dans nb brèves, celles qui ont le mot clef -->
+	<BOUCLE_danslesbreves(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
+		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève) et le titre -->
+		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,20,#TITRE}}}
+	</BOUCLE_danslesbreves>
+	<!-- Si aucune brève n'a été trouvée -->
+	#SET{zerobreve,1}
+	<//B_danslesbreves>
+
+	<!-- On trie le tableau par date -->
+	<BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
+		<!-- On teste le compteur de la boucle pour ne pas dépasser le nombre d'articles/brèves à afficher en tout -->
+		[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+			<!-- Test pour l'icône - article -->
+    		[(#VALEUR{1}|=={10}|oui)
+    		<p><i class="fa fa-calendar "></i> ]
+    		<!-- Test pour l'icône - brève -->
+			[(#VALEUR{1}|=={20}|oui)
+    		<p><i class="fa fa-newspaper-o "></i> ]
+			[(#VALEUR{0}|affdate)]</p>
+			<!-- On affiche le titre -->
+			<p>#VALEUR{2}</p>	
+		]
+    </BOUCLE_trierpardate>
+    <!-- Si aucun article et aucune brève, on affiche une alerte -->
+    [(#GET{zeroarticle}|=={1}|oui)
+    	[(#GET{zerobreve}|=={1}|oui)]
+    	<span class="erreur_message">Aucune article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}</span>
+    ]
 </ul>
-
-

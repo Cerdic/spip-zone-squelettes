@@ -1,0 +1,50 @@
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+				
+<fieldset>
+		<label for="Intitulé">Intitulé</label>
+		<input type='text' name='intitule' value="[(#GET{params}|table_valeur{intitule})]" />
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</fieldset>
+<fieldset>						
+		<label for="URL">URL</label>
+		<input type='text' name='url' value="[(#GET{params}|table_valeur{url})]" />
+	
+		<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
+		<input type="checkbox" name="blanck"  value="blanck" [(#GET{params}|table_valeur{blanck}=={"blanck"}|?{"checked", })]  />
+						
+</fieldset>
+<fieldset>	
+		<label for="class">classe du bouton</label>
+		<input type='text' name='class' value="[(#GET{params}|table_valeur{class})]" />
+</fieldset>
+<fieldset>	
+		<label for="Alt">Description de l'image : balise ALT</label>
+		<input type='text' name='alt' value="[(#GET{params}|table_valeur{alt})]" />
+</fieldset>
+
+
+<fieldset>
+		<label for="Image">Image</label>
+		<input type="file" name="image"  value="" size="30" /><br/>
+		<input type="hidden" name="imageexiste"  value="[(#GET{params}|table_valeur{image})]" size="30" /><br/>
+	
+		[(#GET{params}|table_valeur{image}|?{[(#CHEMIN{#GET{params}|table_valeur{image}}|image_reduire{150})],[(#GET{params}|table_valeur{image}||image_reduire{150})
+
+		]} 
+		)]
+</fieldset>
+
+
+		<input type='submit' name='ok' value='ok' />
+		
+
+	</form>
+	
