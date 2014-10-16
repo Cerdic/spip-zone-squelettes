@@ -9,6 +9,12 @@
 #SET{tableau,#ARRAY}
 <ul>
 
+	[(#GET{nb}|<={0}|oui)
+    	<div class="module_content bloc_visible info">
+    	Erreur dans le nombre d'éléments à afficher</div>
+    	#SET{nb,3}
+    ]
+
 	<!-- On cherche dans nb articles, ceux qui ont le mot clef -->
 	<BOUCLE_danslesarticles(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
 		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève) et le titre -->
@@ -45,6 +51,8 @@
     <!-- Si aucun article et aucune brève, on affiche une alerte -->
     [(#GET{zeroarticle}|=={1}|oui)
     	[(#GET{zerobreve}|=={1}|oui)]
-    	<span class="erreur_message">Aucune article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}</span>
+    	<div class="module_content bloc_visible info">
+    	Aucun article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}</div>
     ]
+    
 </ul>
