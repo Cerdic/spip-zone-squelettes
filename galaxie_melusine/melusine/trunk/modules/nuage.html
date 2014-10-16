@@ -19,13 +19,21 @@
    		<span class="tag"  ><a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a></span>  
     	
 	</BOUCLE_test>
+	#SET{zeromot,1}
+	<//B_test>
 	<BOUCLE_test2(POUR){tableau #GET{articles}}>	
 		#SET{id,#CLE}	
 		#SET{titre,#VALEUR|table_valeur{titre}}	
 		#SET{taille,#VALEUR|table_valeur{taille}}
    		<span class="tag"><a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#GET{couleur}">#GET{titre}</a></span>      	
 	</BOUCLE_test2>
-		
+	#SET{zeroarticle,1}
+	<//B_test2>
+	<!-- Si aucun mot et aucun article, on affiche une alerte -->
+    [(#GET{zeromot}|=={1}|oui)
+    	[(#GET{zeroarticle}|=={1}|oui)]
+    	<span class="erreur_message">Aucun mot ni aucun article n'ont été sélectionnés</span>
+    ]
 </div>
 <div style="clear:both"></div>
 
