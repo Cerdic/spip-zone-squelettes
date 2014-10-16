@@ -1,13 +1,16 @@
-#SET{titre,"Articles les plus lus"}
-#SET{nb,5}
-#SET{style,"bloc_visible"}
-#SET{disposition,"col-md-12"}
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
 </BOUCLE_noisette>
+
+[(#GET{titre}|non)#SET{titre,"Articles les plus lus"}]
+[(#GET{nb}|non)#SET{nb,5}]
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
+
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
 <BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
 </BOUCLE_exclus40>
