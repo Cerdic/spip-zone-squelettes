@@ -1,0 +1,25 @@
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+        #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+</BOUCLE_noisette>
+<BOUCLE_exclus2(ARTICLES) {id_rubrique}{titre_mot="exclu"} {doublons}>
+</BOUCLE_exclus2>
+<BOUCLE_exclus3(ARTICLES) {id_rubrique}{titre_mot=edito_rub} {doublons}>
+</BOUCLE_exclus3>
+<!-- Boucle affichant toutes les intros des articles de la rubrique -->
+[(#GET{disposition}|=={col-md-12}|non)
+                <div class='row col1'>
+        ]
+<BOUCLE_art (ARTICLES){id_rubrique}{par num titre,titre}{par date}{inverse}>
+       
+                [(#GET{disposition}|=={col-md-12}|oui)
+            [(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+         ]
+         [(#GET{disposition}|=={col-md-12}|non)
+            [(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+         ]
+       
+</BOUCLE_art>
+[(#GET{disposition}|=={col-md-12}|non)
+                </div >
+        ]
+                       

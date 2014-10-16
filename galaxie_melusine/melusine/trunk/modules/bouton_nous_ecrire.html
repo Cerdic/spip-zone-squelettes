@@ -8,17 +8,16 @@
 #SET{destinataire,(#GET{param}|table_valeur{personneajoindre})}
 
 <!-- Si il n'y a pas eu de choix dans la liste, on affiche un avertissement -->
-
+[(#GET{destinataire}|non)
+<div class="module_content bloc_visible [(#GET{dir}|non)info]">
+	[(#GET{dir}|non)Aucun directeur de publication sélectionné]
 <!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
-
-<div class="module_content bloc_visible [(#GET{destinatire}|non) info]">
-	[(#GET{destinatire}|non)Aucun destinataire sélectionné]
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{destinataire}}>
-		<a href="spip.php?page=contact2&id_auteur=#GET{destinataire}" target="_blank" class="mediabox"> 
-			
-				<i class="fa fa-envelope"></i> Nous Ecrire
-				
-			
+		<a href="spip.php?page=contact2&id_auteur=#GET{destinataire}" target="_blank"> 
+			<p><span class="logo-titre">
+				<i class="fa fa-envelope"></i>
+				Nous écrire
+			</span></p>
 		</a>
 </BOUCLE_identifiantdudestinataire>
 </div>
