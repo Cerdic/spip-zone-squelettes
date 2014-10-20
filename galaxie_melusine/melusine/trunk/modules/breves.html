@@ -5,44 +5,67 @@
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 </BOUCLE_noisette>
 
+<!-- On attribue des valeurs par défaut -->
 [(#GET{titre}|non)#SET{titre,"Dernières brèves"}]
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
 [(#GET{mot}|non)#SET{mot,""}]
 [(#GET{nb}|non)#SET{nb,5}]
 
+<!-- On affecte le style choisi pour les blocs -->
 <div class="#GET{style}">
-<h2> #GET{titre}</h2>
+<!-- On affiche le titre -->
+<h2>#GET{titre}
+<!-- si on est sur une page liée à une rubrique -->
+[(#ID_RUBRIQUE|oui) de cette rubrique]  
+<!-- si la recherche est effectuée par mot clef -->
+[(#GET{mot}|oui)concernant #GET{mot}]
+</h2>
+
+<!-- si aucun mot clef renseigné -->
     <BOUCLE_test(CONDITION){si #GET{mot}|non}>
+    <!-- si la page n'est pas liée à une rubrique -->
         <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
-                <BOUCLE_sites1(BREVES) {par date}>
-                      [(#COMPTEUR_BOUCLE|<{#GET{nb}}|oui)                       
-                           #MODELE{breve}
-                      ]
-                </BOUCLE_sites1>
+            <!-- on boucle sur les brèves par date -->
+            <BOUCLE_sites1(BREVES) {par date}>
+                [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
+                    #MODELE{breve}
+                ]
+            </BOUCLE_sites1>
         </BOUCLE_sommaire>
+    <!-- si la page est liée à une rubrique -->
         <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
-                <BOUCLE_sites10(BREVES) {par date}{id_rubrique} >
+            <!-- on boucle sur la rubrique en cours -->
+            <BOUCLE_sites10(RUBRIQUES){id_rubrique}>
+                <!-- on boucle pour récuperer la rubrique parent -->
+               <BOUCLE_sites100(RUBRIQUES){id_enfant}>
+                   <!-- on boucle sur les brèves par date -->
+                   <BOUCLE_sites1000(BREVES){par date}{id_rubrique}>
                       [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui) 
                            #MODELE{breve}
                       ]
-                </BOUCLE_sites10>
+                    </BOUCLE_sites1000>
+                </BOUCLE_sites100>
+            </BOUCLE_sites10>
         </BOUCLE_rubrique>
     </BOUCLE_test>
+<!-- zerobreve1 si boucle_test vide -->
     #SET{zerobreve1,1}
-        <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
-               [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)         
-                      #MODELE{breve}
-               ]
-        </BOUCLE_sites3>
-       #SET{zerobreve2,1}     
-
-    <//B_test>
-
+<!-- si un mot clef a été renseigné -->
+      <!-- on boucle sur les brèves ayant ce mot clef par date -->
+      <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
+          [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)         
+             #MODELE{breve}
+          ]
+      </BOUCLE_sites3>
+<!-- zerobreve2 si boucle_sites3 vide -->
+    #SET{zerobreve2,1}     
+   <//B_test>
+<!-- si aucun résultat, on affiche un avertissement -->
     [(#GET{zerobreve1}|=={1}|oui)
         [(#GET{zerobreve2}|=={1}|oui)]
             <div class="module_content bloc_visible info">
             Aucune brève à afficher</div>
         ]
-       </div> 
+</div> 
 
 
