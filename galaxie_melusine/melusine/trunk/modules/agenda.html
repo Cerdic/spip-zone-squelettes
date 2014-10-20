@@ -17,8 +17,8 @@
 
 	<!-- On cherche dans nb articles, ceux qui ont le mot clef -->
 	<BOUCLE_danslesarticles(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
-		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève) et le titre -->
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,10,#TITRE}}}
+		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève), le titre et l'identité -->
+		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,10,#TITRE,#ID_ARTICLE}}}
 	</BOUCLE_danslesarticles>
 	<!-- Si aucun article n'a été trouvé -->
 	#SET{zeroarticle,1}
@@ -26,8 +26,8 @@
 
 	<!-- On cherche dans nb brèves, celles qui ont le mot clef -->
 	<BOUCLE_danslesbreves(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}>
-		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève) et le titre -->
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,20,#TITRE}}}
+		<!-- On ajoute au tableau comme valeur : une liste contenant la date, le type (10 pour article et 20 pour brève), le titre et l'identité -->
+		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,20,#TITRE,#ID_BREVE}}}
 	</BOUCLE_danslesbreves>
 	<!-- Si aucune brève n'a été trouvée -->
 	#SET{zerobreve,1}
@@ -39,10 +39,10 @@
 		[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
 			<!-- Test pour l'icône - article -->
     		[(#VALEUR{1}|=={10}|oui)
-    		<p><i class="fa fa-calendar "></i> ]
+    		<p><a href="spip.php?page=article&id_article=#VALEUR{3}" class="fa fa-calendar"></a>]
     		<!-- Test pour l'icône - brève -->
 			[(#VALEUR{1}|=={20}|oui)
-    		<p><i class="fa fa-newspaper-o "></i> ]
+    		<p><a href="spip.php?page=breve&id_breve=#VALEUR{3}" class="fa fa-newspaper-o"></a>]
 			[(#VALEUR{0}|affdate)]</p>
 			<!-- On affiche le titre -->
 			<p>#VALEUR{2}</p>	
