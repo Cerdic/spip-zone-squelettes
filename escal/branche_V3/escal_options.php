@@ -1,5 +1,14 @@
 <?php
 
+// Header prive
+$GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
+ 
+function header_prive_perso($flux) {
+    return $flux .= '  
+	<link rel="stylesheet" type="text/css" href="'.find_in_path('styles/prive_perso.css').'" media="all" />
+	';
+} 
+
 // Liste des pages de configuration dans l'ordre de presentation
 // Librement inspiré du squellete Sarkaspip
 if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
