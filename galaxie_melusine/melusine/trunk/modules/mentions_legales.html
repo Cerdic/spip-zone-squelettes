@@ -16,11 +16,18 @@
 <!-- On récupère le nom du secrétaire de rédaction, s'il a été saisi -->
 #SET{sec,(#GET{params}|table_valeur{secretairederedaction})}
 
+<BOUCLE_test(CONDITION){si #GET{dir}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
+		
 
 
 <!-- Début de la classe contenu -->
-<div class="module_content bloc_visible [(#GET{dir}|non)info]">
-	[(#GET{dir}|non)Aucun directeur de publication sélectionné]
+<div class="module_content bloc_visible 
+[(#SESSION{statut}|=={0minirezo}|oui)
+	[(#GET{dir}|non)info]
+]">
+	[(#SESSION{statut}|=={0minirezo}|oui)
+		[(#GET{dir}|non)Aucun directeur de publication sélectionné]
+	]
 
 <!-- On cherche dans les auteurs celui qui a l'identifiant du directeur de publication -->
 	<BOUCLE_directeurdepublication(AUTEURS){tous}{id_auteur=#GET{dir}}>
@@ -50,6 +57,7 @@
 <!-- On affiche l'hébergement s'il a été renseigné -->
         [<div>Hébergement : <br/>(#GET{params}|table_valeur{hebergement})</div>]
 </div>
-                      
+                
 <!--  Fin de la classe contenu    -->	
 </div>
+</BOUCLE_test>

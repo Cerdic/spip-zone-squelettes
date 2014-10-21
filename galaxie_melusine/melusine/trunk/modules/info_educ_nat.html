@@ -22,9 +22,17 @@
 #SET{col,#PARAMETRES|unserialize|table_valeur{disposition}}
 #SET{params,#PARAMETRES}
 </BOUCLE_noisette>
-<div class="module_content [(#GET{style})] [(#GET{params}|non) info]">
-	[(#GET{params}|non)Module à configurer]
+<BOUCLE_test(CONDITION){si #GET{params}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
+	
+	
 
+<div class="module_content [(#GET{style})] 
+[(#SESSION{statut}|=={0minirezo}|oui)
+	[(#GET{params}|non) info]
+]">
+	[(#SESSION{statut}|=={0minirezo}|oui)
+		[(#GET{params}|non)Module à configurer]
+	]
 	[<h2>(#GET{titre})</h2>]
 
 	<div class="row col1">
@@ -150,3 +158,4 @@
 		</div>]
 	</div>
 </div>
+</BOUCLE_test>

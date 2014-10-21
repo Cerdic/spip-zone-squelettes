@@ -6,12 +6,13 @@
 
 <!-- On récupère le nom de la personne à joindre s'il a été choisi -->
 #SET{destinataire,(#GET{param}|table_valeur{personneajoindre})}
-
+	[(#SESSION{statut}|=={0minirezo}|oui)
 <!-- Si il n'y a pas eu de choix dans la liste, on affiche un avertissement -->
-	[(#GET{destinataire}|non)
-		<div class="module_content bloc_visible [(#GET{ddestinataire}|non)info]">
-			Aucun webmestre sélectionné
-		</div>
+		[(#GET{destinataire}|non)
+			<div class="module_content bloc_visible [(#GET{ddestinataire}|non)info]">
+				Aucun webmestre sélectionné
+			</div>
+		]
 	]
 <!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{destinataire}}>
