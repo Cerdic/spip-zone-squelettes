@@ -12,15 +12,17 @@
 [(#GET{nb}|non)#SET{nb,5}]
 
 <!-- On affecte le style choisi pour les blocs -->
-<div class="#GET{style}">
+<!-- <div class="#GET{style}"> -->
 <!-- On affiche le titre -->
 <h2>#GET{titre}
 <!-- si on est sur une page liée à une rubrique -->
 [(#ID_RUBRIQUE|oui) de cette rubrique]  
 <!-- si la recherche est effectuée par mot clef -->
-[(#GET{mot}|oui)concernant #GET{mot}]
+[(#GET{mot}|oui) concernant #GET{mot}]
 </h2>
-
+<ul>
+<!-- Variable : OUI si aucun résultat, NON dès qu'on rentre dans une boucle -->
+#SET{vide,oui}
 <!-- si aucun mot clef renseigné -->
     <BOUCLE_test(CONDITION){si #GET{mot}|non}>
     <!-- si la page n'est pas liée à une rubrique -->
@@ -28,7 +30,10 @@
             <!-- on boucle sur les brèves par date -->
             <BOUCLE_sites1(BREVES) {par date}>
                 [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
-                    #MODELE{breve}
+            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
+                    <!-- On affiche la date et le titre -->
+                    [(#DATE|affdate)] #TITRE</p>
+                    #SET{vide,non}
                 ]
             </BOUCLE_sites1>
         </BOUCLE_sommaire>
@@ -40,32 +45,34 @@
                <BOUCLE_sites100(RUBRIQUES){id_enfant}>
                    <!-- on boucle sur les brèves par date -->
                    <BOUCLE_sites1000(BREVES){par date}{id_rubrique}>
-                      [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui) 
-                           #MODELE{breve}
+                      [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
+            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
+                          <!-- On affiche la date et le titre -->
+                         [(#DATE|affdate)] #TITRE</p>
+                         #SET{vide,non}
                       ]
                     </BOUCLE_sites1000>
                 </BOUCLE_sites100>
             </BOUCLE_sites10>
         </BOUCLE_rubrique>
     </BOUCLE_test>
-<!-- zerobreve1 si boucle_test vide -->
-    #SET{zerobreve1,1}
 <!-- si un mot clef a été renseigné -->
       <!-- on boucle sur les brèves ayant ce mot clef par date -->
       <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
-          [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)         
-             #MODELE{breve}
+          [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
+            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
+            <!-- On affiche la date et le titre -->
+            [(#DATE|affdate)] #TITRE</p>
+            #SET{vide,non}
           ]
-      </BOUCLE_sites3>
-<!-- zerobreve2 si boucle_sites3 vide -->
-    #SET{zerobreve2,1}     
+      </BOUCLE_sites3>   
    <//B_test>
 <!-- si aucun résultat, on affiche un avertissement -->
-    [(#GET{zerobreve1}|=={1}|oui)
-        [(#GET{zerobreve2}|=={1}|oui)]
+    [(#GET{vide}|=={oui}|oui)
             <div class="module_content bloc_visible info">
             Aucune brève à afficher</div>
         ]
-</div> 
+      </ul>
+<!-- </div>  -->
 
 
