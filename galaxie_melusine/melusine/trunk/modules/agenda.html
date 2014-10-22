@@ -4,7 +4,6 @@
 #SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
 
-<h2>Agenda</h2>
 <!-- On crée un tableau pour récupérer les résultats -->
 #SET{tableau,#ARRAY}
 <ul>
@@ -53,6 +52,9 @@
 		#SET{compteurpasse, #GET{compteurpasse}|plus{1}}
 	</BOUCLE_danslesbrevespassees>
 
+	<!-- Compteur total car l'affichage sera conditionné -->
+	#SET{total,#GET{compteurfutur}|plus{#GET{compteurpresent}}|plus{#GET{compteurpasse}}}
+
 		<!-- On initialise un compteur pour le nombre d'événements passés à afficher -->
 		#SET{nbpasse,0}
 		<!-- Si il n'y a pas assez d'événements datant du jour-->
@@ -70,8 +72,11 @@
 		<!-- On compte le nombre d'événements du passé à éliminer : numéro du premier élément à affcher -->
 		#SET{evts_passes_a_eliminer,#GET{compteurpasse}|moins{#GET{nbpasse}}}
 		<!-- On somme pour connaître le numéro du dernier élément à afficher -->
-		#SET{dernier_evt_a_afficher,#GET{nb}|plus{#GET{evts_passes_a_eliminer}}}		
+		#SET{dernier_evt_a_afficher,#GET{nb}|plus{#GET{evts_passes_a_eliminer}}}	
 
+<!-- Affichage public de l'agenda si il est non vide -->
+<BOUCLE_test_agenda_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_test_agenda_non_vide>
+	<h2>Agenda</h2>
 	<!-- On trie le tableau des résultats par date -->
 	<BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
 		<!-- On ne commence à afficher qu'à partir des événements passés à garder -->
@@ -90,11 +95,15 @@
 			]
 		]
     </BOUCLE_trierpardate>
-
+</B_test_agenda_non_vide>
+<!-- Si l'agenda est vide, seul l'admin le voit -->
+[(#SESSION{statut}|=={0minirezo}|oui)
+	<h2>Agenda</h2>
     <!-- Si aucun article et aucune brève, on affiche une alerte -->
     [(#GET{compteurfutur}|plus{#GET{compteurpresent}}|plus{#GET{compteurpasse}}|=={0}|oui)
     	<div class="module_content bloc_visible info">
     	Aucun article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}</div>
     ]
-    
+]
+<//B_test_agenda_non_vide>  
 </ul>
