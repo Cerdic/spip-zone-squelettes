@@ -1,3 +1,10 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
@@ -11,68 +18,111 @@
 [(#GET{mot}|non)#SET{mot,""}]
 [(#GET{nb}|non)#SET{nb,5}]
 
-<!-- On affecte le style choisi pour les blocs -->
-<!-- <div class="#GET{style}"> -->
-<!-- On affiche le titre -->
-<h2>#GET{titre}
-<!-- si on est sur une page liée à une rubrique -->
-[(#ID_RUBRIQUE|oui) de cette rubrique]  
-<!-- si la recherche est effectuée par mot clef -->
-[(#GET{mot}|oui) concernant #GET{mot}]
-</h2>
-<ul>
+
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On crée un tableau pour récupérer les résultats -->
+#SET{tableau,#ARRAY}  
 <!-- Variable : OUI si aucun résultat, NON dès qu'on rentre dans une boucle -->
 #SET{vide,oui}
-<!-- si aucun mot clef renseigné -->
-    <BOUCLE_test(CONDITION){si #GET{mot}|non}>
-    <!-- si la page n'est pas liée à une rubrique -->
-        <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
-            <!-- on boucle sur les brèves par date -->
-            <BOUCLE_sites1(BREVES) {par date}>
+<!-- Si aucun mot clef renseigné -->
+    <BOUCLE_sans_mot_clef(CONDITION){si #GET{mot}|non}>
+    <!-- Si la page n'est pas liée à une rubrique -->
+        <BOUCLE_sans_rubrique(CONDITION){si #ID_RUBRIQUE|non}>
+            <!-- On boucle sur les brèves futures par date -->
+            <BOUCLE_breves_futures_1(BREVES) {age<=0}{par date}>
                 [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
-            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
-                    <!-- On affiche la date et le titre -->
-                    [(#DATE|affdate)] #TITRE</p>
-                    #SET{vide,non}
-                ]
-            </BOUCLE_sites1>
-        </BOUCLE_sommaire>
-    <!-- si la page est liée à une rubrique -->
-        <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
-            <!-- on boucle sur la rubrique en cours -->
-            <BOUCLE_sites10(RUBRIQUES){id_rubrique}>
-                <!-- on boucle pour récuperer la rubrique parent -->
-               <BOUCLE_sites100(RUBRIQUES){id_enfant}>
-                   <!-- on boucle sur les brèves par date -->
-                   <BOUCLE_sites1000(BREVES){par date}{id_rubrique}>
-                      [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
-            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
-                          <!-- On affiche la date et le titre -->
-                         [(#DATE|affdate)] #TITRE</p>
-                         #SET{vide,non}
-                      ]
-                    </BOUCLE_sites1000>
-                </BOUCLE_sites100>
-            </BOUCLE_sites10>
-        </BOUCLE_rubrique>
-    </BOUCLE_test>
-<!-- si un mot clef a été renseigné -->
-      <!-- on boucle sur les brèves ayant ce mot clef par date -->
-      <BOUCLE_sites3(BREVES) {par date}{titre_mot=#GET{mot}} >
-          [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
-            <p><a href="spip.php?page=breve&id_breve=#ID_BREVE" class="fa fa-newspaper-o"></a>
-            <!-- On affiche la date et le titre -->
-            [(#DATE|affdate)] #TITRE</p>
+            #SET{tableau,#GET{tableau}|push{#LISTE{#DATE,#TITRE,#ID_BREVE}}}
             #SET{vide,non}
+                ]
+            </BOUCLE_breves_futures_1>
+        </BOUCLE_sans_rubrique>
+    <!-- Si la page est liée à une rubrique -->
+        <BOUCLE_avec_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
+            <!-- On boucle sur la rubrique en cours -->
+            <BOUCLE_id_rubrique(RUBRIQUES){id_rubrique}>
+                <!-- On boucle pour récuperer la rubrique parent -->
+             <BOUCLE_rubrique_parent(RUBRIQUES){id_enfant}>
+                <!-- On boucle sur les brèves futures par date -->
+                <BOUCLE_breves_futures_2(BREVES){age<=0}{par date}{id_rubrique}>
+                    [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
+                #SET{tableau,#GET{tableau}|push{#LISTE{#DATE,#TITRE,#ID_BREVE}}}
+                #SET{vide,non}
+                    ]
+                </BOUCLE_breves_futures_2>
+             </BOUCLE_rubrique_parent>
+            </BOUCLE_id_rubrique>
+        </BOUCLE_avec_rubrique>
+    </BOUCLE_sans_mot_clef>
+<!-- Si un mot clef a été renseigné -->
+      <!-- On boucle sur les brèves futures ayant ce mot clef par date -->
+      <BOUCLE_breves_futures_3(BREVES) {age<=0}{par date}{titre_mot=#GET{mot}} >
+          [(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)            
+       #SET{tableau,#GET{tableau}|push{#LISTE{#DATE,#TITRE,#ID_BREVE}}}
+       #SET{vide,non}
           ]
-      </BOUCLE_sites3>   
-   <//B_test>
-<!-- si aucun résultat, on affiche un avertissement -->
-    [(#GET{vide}|=={oui}|oui)
+      </BOUCLE_breves_futures_3>   
+   <//B_sans_mot_clef>
+
+
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+
+<!-- Affichage public des dernières brèves si la liste n'est pas vide -->
+<BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{vide}|!={oui}|oui)]</BOUCLE_non_vide>
+    <!-- On affecte le style choisi pour les blocs -->
+    <div class="#GET{style}">
+        <!-- On affiche le titre -->
+        <h2>
+            #GET{titre}
+            <!-- si on est sur une page liée à une rubrique -->
+            [(#ID_RUBRIQUE|oui) de cette rubrique]  
+            <!-- si la recherche est effectuée par mot clef -->
+            [(#GET{mot}|oui) concernant : #GET{mot}]
+        </h2>
+        <ul>
+        <!-- On trie le tableau des résultats par date -->
+        <BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
+            <p>
+                <a href="spip.php?page=breve&id_breve=#VALEUR{2}" 
+                class="fa fa-newspaper-o"></a>
+                [(#VALEUR{0}|affdate)]
+            </p>
+            <!-- On affiche le titre -->
+            <p>
+                #VALEUR{1}
+            </p>   
+        </BOUCLE_trierpardate>
+        </ul>   
+    </div>
+
+</B_non_vide>
+    <!-- Si aucune brève, seul l'admin le voit -->
+    [(#SESSION{statut}|=={0minirezo}|oui)
+        <!-- On affecte le style choisi pour les blocs -->
+        <div class="#GET{style}">
+            <!-- On affiche le titre -->
+            <h2>
+                #GET{titre}
+                <!-- si on est sur une page liée à une rubrique -->
+                [(#ID_RUBRIQUE|oui) de cette rubrique]  
+                <!-- si la recherche est effectuée par mot clef -->
+                [(#GET{mot}|oui) concernant : #GET{mot}]
+            </h2>
+            <!-- Si aucune brève, on affiche une alerte -->
             <div class="module_content bloc_visible info">
-            Aucune brève à afficher</div>
-        ]
-      </ul>
-<!-- </div>  -->
-
-
+                Aucune brève à afficher
+            </div>
+        </div>
+    ]
+<//B_non_vide>
