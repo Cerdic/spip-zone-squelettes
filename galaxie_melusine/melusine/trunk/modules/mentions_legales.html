@@ -1,63 +1,73 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE MENTIONS LEGALES *********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
+
 #CACHE{3600*24*40}
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
 #SET{params,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
-[(#SET{admin_melusine,[(#SESSION{statut}
-			|=={0minirezo}
-			|oui)
-		oui]}
-)]
-
-<!-- ON RECUPERE LES DONNEES SAISIES -->
 <!-- On récupère le nom du directeur de la publication, s'il a été saisi -->
-#SET{dir,(#GET{params}|table_valeur{directeurdepublication})}
+#SET{di,(#GET{params}|table_valeur{directeurdepublication})}
 <!-- On récupère le nom du secrétaire de rédaction, s'il a été saisi -->
 #SET{sec,(#GET{params}|table_valeur{secretairederedaction})}
 
-<BOUCLE_test(CONDITION){si #GET{dir}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
-		
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
 
 
-<!-- Début de la classe contenu -->
-<div class="module_content bloc_visible 
-[(#SESSION{statut}|=={0minirezo}|oui)
-	[(#GET{dir}|non)info]
-]">
+<BOUCLE_test(CONDITION){si #GET{di}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
+	<!-- Début de la classe contenu -->
+	<!-- conditionnée pour l'admin et pas de directeur sélecionné -->
+	<div class="module_content bloc_visible 
 	[(#SESSION{statut}|=={0minirezo}|oui)
-		[(#GET{dir}|non)Aucun directeur de publication sélectionné]
-	]
+		[(#GET{di}|non)info]
+	]">
+		<!-- Avertissement pour l'admin si pas de directeur sélecionné -->
+		[(#SESSION{statut}|=={0minirezo}|oui)
+			[(#GET{di}|non)Aucun directeur de publication sélectionné]
+		]
 
-<!-- On cherche dans les auteurs celui qui a l'identifiant du directeur de publication -->
-	<BOUCLE_directeurdepublication(AUTEURS){tous}{id_auteur=#GET{dir}}>
+		<!-- On cherche dans les auteurs celui qui a l'identifant -->
+		<!-- du directeur de publication -->
+		<BOUCLE_directeurdepublication(AUTEURS){tous}{id_auteur=#GET{di}}>
+			<div class="vcard">
+				<span class="title">Directeur de publication</span> :<br/>
+				<span class="fn">
+<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{di}" class="mediabox">#NOM</a>
+				</span>
+			</div>
+		</BOUCLE_directeurdepublication>
 
-		 <div class="vcard">
-		<span class="title">Directeur de publication</span> :<br/>
-		<span class="fn">
-			<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{dir}" class="mediabox">#NOM</a>
-		</span>
+		<!-- On cherche dans les auteurs celui qui a l'identifiant -->
+		<!-- du secrétaire de rédaction -->
+		<BOUCLE_secretairederedaction(AUTEURS){tous}{id_auteur=#GET{sec}}>
+		<div class="vcard">
+			<span class="title">Secrétaire de rédaction</span> :<br/>
+			<span class="fn">
+<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{sec}" class="mediabox">#NOM</a>
+			</span>
 		</div>
-	</BOUCLE_directeurdepublication>
+		</BOUCLE_secretairederedaction>
 
-<!-- On cherche dans les auteurs celui qui a l'identifiant du secrétaire de rédaction -->
-	<BOUCLE_secretairederedaction(AUTEURS){tous}{id_auteur=#GET{sec}}>
-	<div class="vcard">
-		<span class="title">Secrétaire de rédaction</span> :<br/>
-		<span class="fn">
-			<a  href="#URL_PAGE{contact2}&amp;id_auteur=#GET{sec}" class="mediabox">#NOM</a>
-		</span>
-	</div>
-	</BOUCLE_secretairederedaction>
-<div class="adr">
-
-<!-- On affiche l'adresse s'elle a été renseignée -->
-        [<div class="street-address"> (#GET{params}|table_valeur{adresse})</div>]
-
-<!-- On affiche l'hébergement s'il a été renseigné -->
-        [<div>Hébergement : <br/>(#GET{params}|table_valeur{hebergement})</div>]
-</div>
+		<div class="adr">
+			<!-- On affiche l'adresse si elle a été renseignée -->
+[<div class="street-address"> (#GET{params}|table_valeur{adresse})</div>]
+			<!-- On affiche l'hébergement si il a été renseigné -->
+[<div>Hébergement : <br/>(#GET{params}|table_valeur{hebergement})</div>]
+		</div>
                 
-<!--  Fin de la classe contenu    -->	
-</div>
+	<!--  Fin de la classe contenu    -->	
+	</div>
 </BOUCLE_test>

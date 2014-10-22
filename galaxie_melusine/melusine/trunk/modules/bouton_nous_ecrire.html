@@ -1,3 +1,14 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- BOUTON NOUS ECRIRE **************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
 
 <!-- On récupère le nom choisi dans la liste dans SET{param} -->
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
@@ -5,21 +16,31 @@
 </BOUCLE_noisette>
 
 <!-- On récupère le nom de la personne à joindre s'il a été choisi -->
-#SET{destinataire,(#GET{param}|table_valeur{personneajoindre})}
-	[(#SESSION{statut}|=={0minirezo}|oui)
-<!-- Si il n'y a pas eu de choix dans la liste, on affiche un avertissement -->
-		[(#GET{destinataire}|non)
-			<div class="module_content bloc_visible [(#GET{destinataire}|non)info]">
-				Aucun webmestre sélectionné
-			</div>
-		]
+#SET{dest,(#GET{param}|table_valeur{personneajoindre})}
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
+
+
+<!-- Si aucun choix n'a été effectué, avertissement pour l'admin -->
+[(#SESSION{statut}|=={0minirezo}|oui)
+	[(#GET{dest}|non)
+		<div class="module_content bloc_visible [(#GET{dest}|non)info]">
+			Aucun webmestre sélectionné.
+		</div>
 	]
+]
+
 <!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
-<BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{destinataire}}>
-		<a href="spip.php?page=contact2&id_auteur=#GET{destinataire}" target="_blank"> 
-			<p><span class="logo-titre">
+<BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
+	<a href="spip.php?page=contact2&id_auteur=#GET{dest}" target="_blank"> 
+		<p>
+			<span class="logo-titre">
 				<i class="fa fa-envelope"></i>
 				Nous écrire
-			</span></p>
-		</a>
+			</span>
+		</p>
+	</a>
 </BOUCLE_identifiantdudestinataire>

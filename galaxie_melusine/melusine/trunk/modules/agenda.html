@@ -1,109 +1,172 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE AGENDA********************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 #SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
 
+<!-- On attribue des valeurs par défaut -->
+[(#GET{nb}|non)#SET{nb,3}]
+[(#GET{motclef}|non)#SET{motclef,agenda}]
+
+<!-- On vérifie que le nombre d'éléments à afficher est positif -->
+[(#GET{nb}|<={0}|oui)
+    <div class="module_content bloc_visible info">
+    Erreur dans le nombre d'éléments à afficher</div>
+    #SET{nb,3}
+]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
+<!-- *********************************************************************** -->
+
+
 <!-- On crée un tableau pour récupérer les résultats -->
 #SET{tableau,#ARRAY}
-<ul>
-	<!-- On vérifie que le nombre d'éléments à afficher est bien supérieur à zéro -->
-	[(#GET{nb}|<={0}|oui)
-    	<div class="module_content bloc_visible info">
-    	Erreur dans le nombre d'éléments à afficher</div>
-    	#SET{nb,3}
-    ]
 
-	<!-- On initialise des compteurs d'événements dans le futur, dans le présent et dans le passé -->
-    #SET{compteurfutur,0}
-	#SET{compteurpresent,0}
-	#SET{compteurpasse,0}
+<!-- On initialise des compteurs d'événements -- >
+<!-- dans le futur, dans le présent et dans le passé -->
+#SET{cptfutur,0}
+#SET{cptpresent,0}
+#SET{cptpasse,0}
 
-	<!-- On crée une variable aujourd'hui pour effectuer une recherche sur la date du jour -->
-	[(#SET{aujourdhui,[(#DATE|affdate{'Y-m-d'})]})]
+<!-- On crée une variable aujourd'hui pour pouvoir effectuer -->
+<!-- une recherche sur la date du jour -->
+[(#SET{auj,[(#DATE|affdate{'Y-m-d'})]})]
 
-	<!-- On cherche dans nb articles futurs, présents et passés, ceux qui ont le mot clef -->
-	<!-- On ajoutera au tableau comme valeur : une liste contenant la date, le type (article ou brève), le titre, l'identité et le temps (f:futur,auj:présent,p:passé) -->
-	<BOUCLE_danslesarticlesfuturs(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}{age<=-1}{par date}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,f}}}
-		#SET{compteurfutur, #GET{compteurfutur}|plus{1}}
-	</BOUCLE_danslesarticlesfuturs>
-	<BOUCLE_danslesarticlesdujour(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}{date like #GET{aujourdhui}%}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,auj}}}
-		#SET{compteurpresent, #GET{compteurpresent}|plus{1}}
-	</BOUCLE_danslesarticlesdujour>
-	<BOUCLE_danslesarticlespasses(ARTICLES){titre_mot=#GET{motclef}}{0,#GET{nb}}{age>=1}{par date}{inverse}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,p}}}
-		#SET{compteurpasse, #GET{compteurpasse}|plus{1}}
-	</BOUCLE_danslesarticlespasses>
+<!-- On cherche dans nb articles futurs, présents et passés,-->
+<!-- ceux qui ont le mot clef -->
+<!-- On ajoutera au tableau comme valeur : une liste contenant -->
+<!-- la date, le type (article ou brève), le titre, l'identité et -->
+<!-- le temps (f:futur,auj:présent,p:passé) -->
+<BOUCLE_articlesfuturs(ARTICLES){titre_mot=#GET{motclef}}{age<=-1}{par date}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,f}}}
+#SET{cptfutur, #GET{cptfutur}|plus{1}}
+	]
+</BOUCLE_articlesfuturs>
+<BOUCLE_articlesdujour(ARTICLES){titre_mot=#GET{motclef}}{date like #GET{auj}%}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,auj}}}
+#SET{cptpresent, #GET{cptpresent}|plus{1}}
+	]
+</BOUCLE_articlesdujour>
+<BOUCLE_artpasses(ARTICLES){titre_mot=#GET{motclef}}{age>=1}{par date}{inverse}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,article,#TITRE,#ID_ARTICLE,p}}}
+#SET{cptpasse, #GET{cptpasse}|plus{1}}
+	]
+</BOUCLE_artpasses>
 
-	<!-- On cherche dans nb brèves futures, présentes et passées, celles qui ont le mot clef -->
-	<!-- On ajoute au tableau comme valeur : une liste contenant la date,le type (article ou brève), le titre, l'identité et le temps (f:futur,auj:présent,p:passé) -->	
-	<BOUCLE_danslesbrevesfutures(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}{age<=-1}{par date}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,f}}}
-		#SET{compteurfutur, #GET{compteurfutur}|plus{1}}
-	</BOUCLE_danslesbrevesfutures>
-	<BOUCLE_danslesbrevesdujour(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}{date like #GET{aujourdhui}%}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,auj}}}
-		#SET{compteurpresent, #GET{compteurpresent}|plus{1}}
-	</BOUCLE_danslesbrevesdujour>
-	<BOUCLE_danslesbrevespassees(BREVES){titre_mot=#GET{motclef}}{0,#GET{nb}}{age>=1}{par date}{inverse}>
-		#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,p}}}
-		#SET{compteurpasse, #GET{compteurpasse}|plus{1}}
-	</BOUCLE_danslesbrevespassees>
+<!-- On cherche dans nb brèves futures, présentes et passées,-->
+<!-- celles qui ont le mot clef -->
+<!-- On ajoute au tableau comme valeur : une liste contenant -->
+<!-- la date, le type (article ou brève), le titre, l'identité et -->
+<!-- le temps (f:futur,auj:présent,p:passé) -->	
+<BOUCLE_brevesfutures(BREVES){titre_mot=#GET{motclef}}{age<=-1}{par date}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,f}}}
+#SET{cptfutur, #GET{cptfutur}|plus{1}}
+	]
+</BOUCLE_brevesfutures>
+<BOUCLE_brevesdujour(BREVES){titre_mot=#GET{motclef}}{date like #GET{auj}%}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,auj}}}
+#SET{cptpresent, #GET{cptpresent}|plus{1}}
+	]
+</BOUCLE_brevesdujour>
+<BOUCLE_brevpassees(BREVES){titre_mot=#GET{motclef}}{age>=1}{par date}{inverse}>
+	[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)		
+#SET{tableau, #GET{tableau}|push{#LISTE{#DATE,breve,#TITRE,#ID_BREVE,p}}}
+#SET{cptpasse, #GET{cptpasse}|plus{1}}
+	]
+</BOUCLE_brevpassees>
 
-	<!-- Compteur total car l'affichage sera conditionné -->
-	#SET{total,#GET{compteurfutur}|plus{#GET{compteurpresent}}|plus{#GET{compteurpasse}}}
 
-		<!-- On initialise un compteur pour le nombre d'événements passés à afficher -->
-		#SET{nbpasse,0}
-		<!-- Si il n'y a pas assez d'événements datant du jour-->
-		[(#GET{compteurpresent}|<{#GET{nb}}|oui)
-			<!-- difference1 : nombre d'événements restants après ceux du jour -->
-			#SET{difference1,#GET{nb}|moins{#GET{compteurpresent}}}
-			<!-- difference2 : nombre d'événements restants après ceux du jour et ceux du futur -->
-			#SET{difference2,#GET{difference1}|moins{#GET{compteurfutur}}}
-			<!-- Si il n'y a pas assez d'événements dans le futur, on complète par des événements passés -->
-			[(#GET{compteurfutur}|<{#GET{difference1}}|oui)
-				#SET{nbpasse,#GET{difference2}}
-			]
-		]
+<!-- *********************************************************************** -->
+<!-- CALCUL DES CONDITIONS POUR L'AFFICHAGE********************************* -->
+<!-- *********************************************************************** -->
 
-		<!-- On compte le nombre d'événements du passé à éliminer : numéro du premier élément à affcher -->
-		#SET{evts_passes_a_eliminer,#GET{compteurpasse}|moins{#GET{nbpasse}}}
-		<!-- On somme pour connaître le numéro du dernier élément à afficher -->
-		#SET{dernier_evt_a_afficher,#GET{nb}|plus{#GET{evts_passes_a_eliminer}}}	
+
+<!-- Compteur total car l'affichage sera conditionné -->
+#SET{total,#GET{cptfutur}|plus{#GET{cptpresent}}|plus{#GET{cptpasse}}}
+
+<!-- On initialise un compteur pour le nombre d'événements passés à afficher -->
+#SET{nbpasse,0}
+<!-- Si il n'y a pas assez d'événements datant du jour-->
+[(#GET{cptpresent}|<{#GET{nb}}|oui)
+	<!-- difference1 : nombre d'événements restants après ceux du jour -->
+	#SET{difference1,#GET{nb}|moins{#GET{cptpresent}}}
+	<!-- difference2 : nombre d'événements restants après ceux du jour -->
+	<!-- et ceux du futur -->
+	#SET{difference2,#GET{difference1}|moins{#GET{cptfutur}}}
+	<!-- Si il n'y a pas assez d'événements dans le futur, on complète -->
+	<!-- par des événements passés -->
+	[(#GET{cptfutur}|<{#GET{difference1}}|oui)
+		#SET{nbpasse,#GET{difference2}}
+	]
+]
+
+<!-- On compte le nombre d'événements du passé à éliminer : -->
+<!-- numéro du premier élément à afficher -->
+#SET{evts_passes_a_eliminer,#GET{cptpasse}|moins{#GET{nbpasse}}}
+<!-- On somme pour connaître le numéro du dernier élément à afficher -->
+#SET{dernier_evt_a_afficher,#GET{nb}|plus{#GET{evts_passes_a_eliminer}}}	
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
+<!-- *********************************************************************** -->
+
 
 <!-- Affichage public de l'agenda si il est non vide -->
-<BOUCLE_test_agenda_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_test_agenda_non_vide>
+<BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_non_vide>
 	<h2>Agenda</h2>
 	<!-- On trie le tableau des résultats par date -->
 	<BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
-		<!-- On ne commence à afficher qu'à partir des événements passés à garder -->
+		<!-- On ne commence à afficher qu'à partir des evts passés à garder -->
 		[(#COMPTEUR_BOUCLE|>{#GET{evts_passes_a_eliminer}}|oui)
-			<!-- On affiche tant qu'on n'a pas dépassé le dernier événement à afficher -->
+			<!-- On affiche tant qu'on n'a pas atteint le dernier événement -->
 			[(#COMPTEUR_BOUCLE|<={#GET{dernier_evt_a_afficher}}|oui)
-				<!-- Test pour l'icône - article -->
-    			[(#VALEUR{1}|=={article}|oui)
-    			<p><a href="spip.php?page=article&id_article=#VALEUR{3}" class="fa fa-calendar"></a>]
-    			<!-- Test pour l'icône - brève -->
-				[(#VALEUR{1}|=={breve}|oui)
-    			<p><a href="spip.php?page=breve&id_breve=#VALEUR{3}" class="fa fa-newspaper-o"></a>]
-				[(#VALEUR{0}|affdate)]</p>
-				<!-- On affiche le titre -->
-				<p>#VALEUR{2}</p>		
+    			<ul>
+    				<p>
+    					<!-- Test pour l'icône - article -->
+    					[(#VALEUR{1}|=={article}|oui)
+<a href="spip.php?page=article&id_article=#VALEUR{3}"class="fa fa-calendar"></a>
+						]
+    					<!-- Test pour l'icône - brève -->
+						[(#VALEUR{1}|=={breve}|oui)
+<a href="spip.php?page=breve&id_breve=#VALEUR{3}" class="fa fa-newspaper-o"></a>
+						]
+						[(#VALEUR{0}|affdate)]
+					</p>
+					<!-- On affiche le titre -->
+					<p>#VALEUR{2}</p>
+				</ul>		
 			]
 		]
     </BOUCLE_trierpardate>
-</B_test_agenda_non_vide>
+</B_non_vide>
 <!-- Si l'agenda est vide, seul l'admin le voit -->
 [(#SESSION{statut}|=={0minirezo}|oui)
 	<h2>Agenda</h2>
     <!-- Si aucun article et aucune brève, on affiche une alerte -->
-    [(#GET{compteurfutur}|plus{#GET{compteurpresent}}|plus{#GET{compteurpasse}}|=={0}|oui)
+    [(#GET{cptfutur}|plus{#GET{cptpresent}}|plus{#GET{cptpasse}}|=={0}|oui)
     	<div class="module_content bloc_visible info">
-    	Aucun article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}</div>
+    	Aucun article ni aucune brève ne sont liés à ce mot clef : #GET{motclef}
+    	</div>
     ]
 ]
-<//B_test_agenda_non_vide>  
-</ul>
+<//B_non_vide>  

@@ -1,3 +1,14 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE NUAGE ********************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
@@ -5,36 +16,46 @@
 #SET{couleur,#PARAMETRES|unserialize|table_valeur{couleur}}
 </BOUCLE_noisette>
 
-[(#SET{admin_melusine,[(#SESSION{statut}
-			|=={0minirezo}
-			|oui)
-		oui]}
-)]
 
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS************************************* -->
+<!-- *********************************************************************** -->
+
+
+<!-- Variable pour après tester si l'on a bien trouvé des résultats -->
+#SET{vide,oui}
+
+<!-- Début du div du nuage -->
 <div class="nuage_stat">
-	<BOUCLE_test(POUR){tableau #GET{mots}}>
+	<!-- On boucle sur les mots cochés -->
+	<BOUCLE_surlesmots(POUR){tableau #GET{mots}}>
 		#SET{id,#CLE}
 		#SET{titre,#VALEUR|table_valeur{titre}}	
 		#SET{taille,#VALEUR|table_valeur{taille}}	
-   		<span class="tag"  ><a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a></span>  
-    	
-	</BOUCLE_test>
-	#SET{zeromot,1}
-	<//B_test>
-	<BOUCLE_test2(POUR){tableau #GET{articles}}>	
+   		<span class="tag">
+			<a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a>
+   		</span>  
+    	#SET{vide,non}
+	</BOUCLE_surlesmots>
+	<!-- On boucle sur les artciles cochés -->
+	<BOUCLE_surlesarticles(POUR){tableau #GET{articles}}>	
 		#SET{id,#CLE}	
 		#SET{titre,#VALEUR|table_valeur{titre}}	
 		#SET{taille,#VALEUR|table_valeur{taille}}
-   		<span class="tag"><a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#GET{couleur}">#GET{titre}</a></span>      	
-	</BOUCLE_test2>
-	#SET{zeroarticle,1}
-	<//B_test2>
-	<!-- Si aucun mot et aucun article, on affiche une alerte -->
-    [(#GET{zeromot}|=={1}|oui)
-    	[(#GET{zeroarticle}|=={1}|oui)]
-    	<div class="module_content bloc_visible info">
-    	Aucun mot ni aucun article n'ont été sélectionnés</div>
+   		<span class="tag">
+			<a href="spip.php?article#GET{id}" style="font-size:#GET{taille}px;color:#GET{couleur}">#GET{titre}</a>
+   		</span>    
+   		#SET{vide,non}  	
+	</BOUCLE_surlesarticles>
+
+	<!-- Si aucun mot et aucun article, on affiche une alerte pour l'admin -->
+    [(#GET{vide}|=={oui}|oui)
+    	[(#SESSION{statut}|=={0minirezo}|oui)
+    		<div class="module_content bloc_visible info">
+    			Aucun mot ni aucun article n'ont été sélectionnés.
+    		</div>
+    	]
     ]
+<!-- Fin du div du nuage -->
 </div>
 <div style="clear:both"></div>
-
