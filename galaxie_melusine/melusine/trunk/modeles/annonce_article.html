@@ -1,67 +1,116 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODELE ANNONCE ARTICLE ************************************************ -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{desciptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
 #SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 #SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
 #SET{socialtag,#PARAMETRES|unserialize|table_valeur{socialtag}}
 </BOUCLE_noisette>
+
 [(#GET{taille}|<{200}|oui)#SET{hauteur,200}]
 [(#GET{taille}|>={200}|oui)#SET{hauteur,250}]
+<!-- Pour les titres, on met le style à largeur 12 sur 12 -->
  #SET{style,col-md-12}
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE *********************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On boucle sur les articles -->
 <BOUCLE_article(ARTICLES){id_article=#ID_ARTICLE}>
-<div class="item">
-		 			<div >
-		 				
-		                
-		                <div class="row">
-			                [(#GET{logo}=={"oui"}|oui)
-			                	[(#GET{desciptif}=={"oui"}|non)
-				                	<div class=#GET{style}>
-					                	<div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-					                	[(#GET{socialtag}=={"oui"}|oui)
-					                		[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-					                	]
-					                
-				            		</div>
-				                ]
-				                [<div class="col-md-5">(#LOGO_ARTICLE|image_recadre{300 ,#GET{hauteur},center})</div>]
-				                [(#LOGO_ARTICLE|oui) #SET{style,col-md-7}]
-				                [(#GET{desciptif}=={"oui"}|oui)
-				                <div class=#GET{style}>
-					                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-					                [(#GET{socialtag}=={"oui"}|oui)
-					                 	[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-					                 ]
-					                <div > #INTRODUCTION{#GET{taille}}</div>
-				            	</div>
-				                ]
-				                
-
-			                ]
-			                [(#GET{logo}=={"oui"}|non)
-				                
-				                [(#GET{desciptif}=={"oui"}|oui)
-				               		<div class=#GET{style}>
-						                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-						                [(#GET{socialtag}=={"oui"}|oui)
-						                	[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-						                ]
-						                <div class="#GET{style}"> #INTRODUCTION{#GET{taille}}</div>
-					            	</div>
-				            
-				                ]
-				                [(#GET{desciptif}=={"oui"}|non)
-				                	<div class=#GET{style}>
-						                <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-						                [(#GET{socialtag}=={"oui"}|oui)
-						                 [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-						               	]
-					            	</div>
-				                ]
-			                ]
-
-			                
-		           		 </div>
-		            </div>
-</div>  
+	<div class="item">
+		<div>               
+		<div class="row">
+			<!-- Si le logo est à afficher -->
+			[(#GET{logo}=={"oui"}|oui)
+				<!-- Si descriptif pas à afficher, on ne met que le titre -->
+			    [(#GET{descriptif}=={"oui"}|non)
+				    <div class=#GET{style}>
+					    <div class="titre"> 
+					    <!-- On affiche le titre -->
+					    [<i class="fa fa-caret-right"></i> 
+						<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
+							(#TITRE|supprimer_numero)
+						</a> 
+						]
+						</div>
+						<!-- Si le socialtag est à afficher -->
+					    [(#GET{socialtag}=={"oui"}|oui)
+					       [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					    ]
+					</div>
+				]
+				<!-- Affichage du logo recadré ; largeur 5 sur 12-->
+				[	<div class="col-md-5">
+					(#LOGO_ARTICLE|image_recadre{300 ,#GET{hauteur},center})
+					</div>
+				]
+				<!-- Si le logo a été affiché, style devient largeur 7 sur 12-->
+				[(#LOGO_ARTICLE|oui) #SET{style,col-md-7}]
+				<!-- Si le descriptif est à afficher -->
+				[(#GET{descriptif}=={"oui"}|oui)
+				    <div class=#GET{style}>
+					    <div class="titre"> 
+					    [<i class="fa fa-caret-right"></i> 
+					    <a href="#URL_ARTICLE" title="<:lire_suite_article:>">
+					    	(#TITRE|supprimer_numero)
+					    </a> 
+					    ]
+						</div>
+					    [(#GET{socialtag}=={"oui"}|oui)
+					       [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+						]
+						<div> #INTRODUCTION{#GET{taille}}</div>
+				    </div>
+				]  
+			]
+			<!-- Si le logo n'est pas à afficher -->
+			[(#GET{logo}=={"oui"}|non)                
+				[(#GET{descriptif}=={"oui"}|oui)
+				    <div class=#GET{style}>
+						<div class="titre"> 
+						[<i class="fa fa-caret-right"></i> 
+						<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
+							(#TITRE|supprimer_numero)
+						</a> 
+						]
+						</div>
+						[(#GET{socialtag}=={"oui"}|oui)
+						   [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+						]
+						<div class="#GET{style}"> 
+							#INTRODUCTION{#GET{taille}}
+						</div>
+					</div>            
+				]
+				[(#GET{descriptif}=={"oui"}|non)
+				<div class=#GET{style}>
+					<div class="titre"> 
+					 	[<i class="fa fa-caret-right"></i> 
+					 	<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
+					 		(#TITRE|supprimer_numero)
+					 	</a> 
+					 	]
+					</div>
+					[(#GET{socialtag}=={"oui"}|oui)
+						[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					]
+				</div>
+				]
+			]
+		</div>
+		</div>
+	</div>  
 </BOUCLE_article>

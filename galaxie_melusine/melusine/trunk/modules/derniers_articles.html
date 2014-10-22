@@ -1,7 +1,15 @@
-#SET{nb,5}
-#SET{titre,"Derniers articles"}
-#SET{style,"bloc_visible"}
-#SET{disposition,"col-md-12"}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE DERNIERES ARTICLES ********************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
@@ -9,30 +17,62 @@
 #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
 </BOUCLE_noisette>
 
+<!-- On attribue des valeurs par défaut -->
+[(#GET{nb}|non)#SET{nb,5}]
+[(#GET{titre}|non)#SET{titre,"Derniers articles"}]
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
 
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
+<!-- *********************************************************************** -->
+
+
+<!-- On boucle sur les rubriques ayant comme mot clef : exclu -->
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
-<BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
-</BOUCLE_exclus40>
+	<!-- On boucle sur les articles de ces rubriques -->
+	<BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
+	</BOUCLE_exclus40>
 </BOUCLE_exclus4>
 
-<BOUCLE_exclus50(ARTICLES) {doublons}{titre_mot="focus"}>
+<!-- On boucle sur les articles ayany comme mot clef : focus -->
+<BOUCLE_exclus50(ARTICLES) {titre_mot="focus"} {doublons}>
 </BOUCLE_exclus50>
 
-<div class="module_content #GET{style}">
-<h2> [(#GET{titre}|sinon{"Derniers articles"})] </h2>
-[(#GET{disposition}|=={col-md-12}|non) 
-	<div class='row col1'>
-]
-			<BOUCLE_article(ARTICLES) {doublons}  {par date} {inverse} {0,#GET{nb}}>
-				[(#GET{disposition}|=={col-md-12}|oui)
-             		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             	]
-             	[(#GET{disposition}|=={col-md-12}|non)
-             		[(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             	]
-			</BOUCLE_article>
-[(#GET{disposition}|=={col-md-12}|non) 
-	</div >
-]		
 
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
+
+
+<!-- Choix de la class du div en fonction du choix de l'utilisateur -->
+<div class="module_content #GET{style}">
+	<!-- Affichage du titre -->
+	<h2> #GET{titre} </h2>
+	<ul>
+	<!-- Début d'un div conditionnel à la disposition choisie -->
+	[(#GET{disposition}|=={col-md-12}|non) 
+	<div class='row col1'>
+	]
+		<!-- On boucle sur les nb articles le plus récents -->
+		<BOUCLE_article(ARTICLES) {doublons}  {par date} {inverse} {0,#GET{nb}}>
+			<!-- Choix du modèle d'affichage en fonction de la disposition -->
+			[(#GET{disposition}|=={col-md-12}|oui)
+				[(#MODELE	{annonce_article}
+							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
+				]
+             ]
+             [(#GET{disposition}|=={col-md-12}|non)
+				[(#MODELE	{annonce_article_1col}
+							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
+				]
+             ]
+		</BOUCLE_article>
+	<!-- Fin du div conditionnel à la disposition choisie -->
+	[(#GET{disposition}|=={col-md-12}|non) 
+	</div >
+	]
+	</ul>		
 </div>
