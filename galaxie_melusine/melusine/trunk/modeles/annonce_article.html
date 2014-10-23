@@ -33,33 +33,32 @@
 	<div class="item">
 		<div>               
 		<div class="row">
-			<!-- Si le logo est à afficher -->
+			<!-- LOGO OUI & DESCRIPTIF NON                    -->
+			<!-- 12 ___ titre et (socialtag)                  -->
+			<!-- 05 ___ logo                                  -->
 			[(#GET{logo}=={"oui"}|oui)
-				<!-- Si descriptif pas à afficher, on ne met que le titre -->
 			    [(#GET{descriptif}=={"oui"}|non)
 				    <div class=#GET{style}>
 					    <div class="titre"> 
-					    <!-- On affiche le titre -->
 					    [<i class="fa fa-caret-right"></i> 
 						<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
 							(#TITRE|supprimer_numero)
 						</a> 
 						]
 						</div>
-						<!-- Si le socialtag est à afficher -->
 					    [(#GET{socialtag}=={"oui"}|oui)
 					       [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
 					    ]
 					</div>
 				]
-				<!-- Affichage du logo recadré ; largeur 5 sur 12-->
 				[	<div class="col-md-5">
 					(#LOGO_ARTICLE|image_recadre{300 ,#GET{hauteur},center})
 					</div>
 				]
-				<!-- Si le logo a été affiché, style devient largeur 7 sur 12-->
+			<!-- LOGO OUI & DESCRIPTIF OUI                   -->
+			<!-- 05 ___ logo & 07 __ titre et (socialtag)    -->
+			<!-- 05 ________ & 07 __ descriptif              -->
 				[(#LOGO_ARTICLE|oui) #SET{style,col-md-7}]
-				<!-- Si le descriptif est à afficher -->
 				[(#GET{descriptif}=={"oui"}|oui)
 				    <div class=#GET{style}>
 					    <div class="titre"> 
@@ -76,39 +75,27 @@
 				    </div>
 				]  
 			]
-			<!-- Si le logo n'est pas à afficher -->
-			[(#GET{logo}=={"oui"}|non)                
-				[(#GET{descriptif}=={"oui"}|oui)
-				    <div class=#GET{style}>
-						<div class="titre"> 
+			<!-- LOGO NON & (DESCRIPTIF)                        -->
+			<!-- 12 ___ titre et (socialtag)                    -->
+			<!-- 12 ___ (descriptif)                            -->
+			[(#GET{logo}=={"oui"}|non)
+				<div class=#GET{style}>
+					<div class="titre"> 
 						[<i class="fa fa-caret-right"></i> 
 						<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
 							(#TITRE|supprimer_numero)
 						</a> 
 						]
-						</div>
-						[(#GET{socialtag}=={"oui"}|oui)
-						   [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-						]
-						<div class="#GET{style}"> 
-							#INTRODUCTION{#GET{taille}}
-						</div>
-					</div>            
-				]
-				[(#GET{descriptif}=={"oui"}|non)
-				<div class=#GET{style}>
-					<div class="titre"> 
-					 	[<i class="fa fa-caret-right"></i> 
-					 	<a href="#URL_ARTICLE" title="<:lire_suite_article:>">
-					 		(#TITRE|supprimer_numero)
-					 	</a> 
-					 	]
 					</div>
 					[(#GET{socialtag}=={"oui"}|oui)
-						[(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
-					]
-				</div>
+						   [(#MODELE{socialtag}{titre=#TITRE|supprimer_numero})]
+					]              
+				[(#GET{descriptif}=={"oui"}|oui)
+					<div class="#GET{style}"> 
+						#INTRODUCTION{#GET{taille}}
+					</div>	            
 				]
+				</div>
 			]
 		</div>
 		</div>
