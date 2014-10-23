@@ -1,4 +1,15 @@
-#SET{taille,350}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODELE ANNONCE ARTICLE 1col ******************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION***************************** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
 #SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
@@ -6,23 +17,31 @@
 #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
 </BOUCLE_noisette>
 
+<!-- On attribue des valeurs par défaut -->
+[(#GET{taille}|non)#SET{taille,350}]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_article(ARTICLES){id_article=#ID_ARTICLE}>
-<div class="#GET{disposition}">
-<div class="item ">
-		 		
-		 				
-    
-   
-        [(#GET{logo}=={"oui"}|oui)
-        	[<div >(#LOGO_ARTICLE|image_recadre{200 ,100,center})</div>]
-        ]
-        <div class="titre"> [<i class="fa fa-caret-right"></i> <a href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a> ]</div>
-        [(#GET{descriptif}=={"oui"}|oui)
-        	 <div > #INTRODUCTION{#GET{taille}}</div>
-        ]
-        	
-        
-</div>
-		          
-</div>  
+    <div class="#GET{disposition}">
+        <div class="item ">
+            [(#GET{logo}=={"oui"}|oui)
+        	   [<div>(#LOGO_ARTICLE|image_recadre{200 ,100,center})</div>]
+            ]
+            <div class="titre"> 
+                [<i class="fa fa-caret-right"></i> 
+                <a href="#URL_ARTICLE" title="<:lire_suite_article:>">
+                    (#TITRE|supprimer_numero)
+                </a> 
+                ]
+            </div>
+            [(#GET{descriptif}=={"oui"}|oui)
+        	   <div> #INTRODUCTION{#GET{taille}}</div>
+            ]
+        </div>
+    </div>  
 </BOUCLE_article>
