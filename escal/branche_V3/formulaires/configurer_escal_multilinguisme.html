@@ -36,9 +36,44 @@
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </div>
             </div>
+            </li>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,arianeniveaudeux}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Supprimer aussi le secteur dans les fils d'Ariane
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"]  /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>
+            </div>
              </li>
     </ul>
+    
+            <div class="explication">
+            Par défaut, ce sont les codes de chaque langue utilisée qui s'affichent mais on peut les remplacer par de petits drapeaux <br />
+            Mais attention, l'anglais n'est pas parlé qu'au Royaume-Uni, l'espagnol n'est pas parlé qu'en Espagne, ... 
+            il est donc conseillé d'utiliser les codes de langue
+            </div>
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,affichelangue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Choix de l'affichage
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_code" value="code"
+                            [(#ENV{#GET{name}}|=={drapeau}|non)checked="checked"]  /><label for="#GET{name}_oui">Codes de langue</label>
 
+                            <input type="radio" name="#GET{name}" id="#GET{name}_drapeau" value="drapeau"
+                            [(#ENV{#GET{name}}|=={drapeau}|oui)checked="checked"] /><label for="#GET{name}_non">drapeau</label>
+                    </div>
+            </div>
+             </li>
+    </ul>
 
 <!-------------------------------------------------------------------------------->
 <!-- Stockage des donnees  ------------------------------------------------------->

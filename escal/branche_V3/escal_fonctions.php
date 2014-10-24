@@ -16,7 +16,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * escal_configuration()
  * teste et configure certaines options de spip pour escal
  * penser à incrementer la valeur de schema dans paquet.xml et celle de $maj dans escal_administrations.php en cas de mise à jour des mots cles
-*/
+*/  
+
 
 function escal_configuration(){
     include_spip('inc/config');
@@ -25,7 +26,12 @@ function escal_configuration(){
     $articles_mots = lire_config('articles_mots');
     if($articles_mots == 'non')
         ecrire_meta('articles_mots','oui');
-  
+
+    // activation du descriptif sur les rubriques et article
+    if(lire_config('rubriques_descriptif') == 'non')
+        ecrire_meta('rubriques_descriptif','oui') ;
+    if(lire_config('articles_descriptif') == 'non')
+       ecrire_meta('articles_descriptif','oui') ;  
 }
 
 
