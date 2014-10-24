@@ -24,7 +24,13 @@
 	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}>
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 	</BOUCLE_articles_recents>
-	</ul></B_articles_recents>
+	</ul></B_articles_recents>[(#REM) Pas d'articles ? On tente les sous-rubriques]
+	<B_SsRubriques><ul class="listeafficherimages">
+	<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></li>
+	</BOUCLE_SsRubriques>
+	</ul></B_SsRubriques>
+	<//B_articles_recents>
 </div><!-- dessousbreves -->
 </BOUCLE_DessousBreves>
 </div><!-- homeDessousBreves -->
