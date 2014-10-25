@@ -15,12 +15,22 @@
             <B_langues>
               <div id="drapeau">
                 <div id="langue">
+                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
                   <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
+                  <strong>&#91;#LANG&#93;</strong>
+                ]
                 </div>
             <BOUCLE_langues(RUBRIQUES){racine} {fusion lang}{par lang} {lang != #ENV{lang}} >
               <span lang="#LANG" xml:lang="#LANG">
-                <a href="[(#SELF|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
-                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]" />
+                <a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
+                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
+                  <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
+                  &#91;#LANG&#93;
+                ]
                 </a>
               </span>
             </BOUCLE_langues>

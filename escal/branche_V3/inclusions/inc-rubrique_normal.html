@@ -1,11 +1,12 @@
 	<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
 	<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
-	<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
-	<img src="#CHEMIN{images/fleche_droite.png}"  alt="<:escal:fleche:>" />
-	<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
-	</BOUCLE_chemin_rubriques>
-	</div>
+
+[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie}{env}>]
+[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie2eniveau}{env}>]
+
+
+  </div>
 
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
