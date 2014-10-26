@@ -8,7 +8,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Z
-	'zvide_description' => 'A Z skeleton whose entire contents are managed as hazelnuts configurable with noiZetier. This skeleton is therefore used in conjunction with noiZetier and a collection of hazelnuts.'
+	'zvide_description' => 'A Z skeleton whose entire contents are managed as hazelnuts configurable with noiZetier. This skeleton is therefore used in conjunction with noiZetier and a collection of hazelnuts.',
+	'zvide_slogan' => 'Empty Z skeleton to fill with hazelnuts'
 );
 
 ?>
