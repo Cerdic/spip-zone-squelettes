@@ -1,40 +1,54 @@
 <BOUCLE_content(ARTICLES){id_article}>
 	[(#REM) Fil d'Ariane ]
-	<nav class="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</nav>
+	<ol class="breadcrumb">
+		<li><a rel="home" href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
+		<BOUCLE_ariane(HIERARCHIE){id_article}>
+			<li><a href="[(#URL_RUBRIQUE|url_absolue)]">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_ariane>
+		[<li class="on active"><strong>(#TITRE|couper{80})</strong></li>]
+	</ol>
 	<article class="row hentry">
 		<div class="col-xs-12 col-sm-6 col-lg-8">
-			<header class="page-header">
-				<p class="info-publi"><time pubdate class="published" datetime="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</time>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
-				[(#REM) Inclure le modele des liens de traductions ]#MODELE{article_traductions}
-				[<div class="#EDIT{chapo} surlignable">(#CHAPO|abs_url)</div>]
-			</header>
+			[<header class="page-header #EDIT{chapo} surlignable">(#CHAPO|abs_url)</header>]
 			[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{465,0}|abs_url)</section>]
 		</div>
-		<div class="col-xs-6 col-lg-4">
-		[(#REM) Gestion du portfolio et des documents ]
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<aside class="well">
+				[(#REM) liens de traduction ]
+				#MODELE{article_traductions}
+				[(#REM) infos de publication ]
+				<section class="info-publi list-unstyled">
+					<p>
+						<span class="glyphicon glyphicon-time"></span> <:publie_le:> <time pubdate class="published" datetime="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</time>
+						[<br/><span class="glyphicon"></span> <:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time>]
+					</p>
+					[<p><span class="glyphicon glyphicon-user"></span> <:par_auteur:> <span class="authors">(#LESAUTEURS)</span></p>]
+					<p><span class="glyphicon glyphicon-comment"></span> <a href="#comments"><:zktx:jump2comments:></a></p>
+				</section>
+
+				[(#REM) Boutons de partage ]
+				[(#INCLURE{fond=inclure/socialtags}{id_article})]
+			</aside>
+			[(#REM) portfolio & documents ]
 			[<aside class="well">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
-			[<footer class="well">(#NOTES|abs_url)</footer>]
+			[<footer>(#NOTES|abs_url)</footer>]
 		</div>
 	</article>
 	
 	<B_auteur>
 	<BOUCLE_auteur(AUTEURS){id_article}>
 	<aside class="jumbotron auteur">
-		[<span class="#EDIT{qui} h2"><:par_auteur:>(#NOM)</span>]
-		[<p class="#EDIT{bio}">(#BIO|couper{240})</p>]
+		[<span class="#EDIT{qui} h3"><span class="glyphicon glyphicon-user"></span> (#NOM)</span>]
+		[<p class="#EDIT{bio}"><small>(#BIO|couper{240})</small></p>]
 		<a rel="author" class="btn btn-primary btn-lg" href="[(#URL_AUTEUR|url_absolue)]">En savoir +</a>
-
 	</aside>
 	</BOUCLE_auteur>
 	</B_auteur>
 	
-	[(#REM) Petition :
-	La petition ayant une PAGINATION il faut absolument {env}
-	et pourquoi pas ajax
-	][<section>(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} /></section>]
+	[(#REM) Petition ]
+	[<section class="ajax">(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} /></section>]
 	
-	
-	[(#REM) Forum de l'article ]	
+	[(#REM) Forum & comments ]	
 	<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)} />
 
 </BOUCLE_content>
