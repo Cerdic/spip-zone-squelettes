@@ -1,20 +1,26 @@
 [(#PLUGINS{skiplink}|oui) <nav class="sr-only">#INCLURE{fond=raccourcis}</nav> ]
 <BOUCLE_header(ARTICLES){id_article}{id_rubrique}>
-	<div class="container">
-		[(#REM) 
-			voir fichier /balises/logo	: 
-			et doc sur http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 
+<section class="container">
+	<div class="row">
+		<figure class="col-md-3">
+			[(#REM) 
+				voir fichier /balises/logo	: 
+				et doc sur http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 
 
-			Bootstrap :
-				Pour les logos on peut passer un |inserer_attribut{class,""}  
-				avec, au choix, la class img-circle, img-square, ...
-				Mobile: La class img-responsive est ici appliquée par défaut
-				> voir http://getbootstrap.com/css/#images
-		]
-		[(#LOGO|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]})] 
-		[<p class="#EDIT{surtitre} small">(#SURTITRE)</p>]
-		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
-		[<p class="#EDIT{soustitre}">(#SOUSTITRE|PtoBR|abs_url)</p>]
-		[(#INCLURE{fond=inclure/socialtags,env})]
+				Bootstrap :
+					Pour les logos on peut passer un |inserer_attribut{class,""}  
+					avec, au choix, la class img-circle, img-square, ...
+					Mobile: La class img-responsive est ici appliquée par défaut
+					> voir http://getbootstrap.com/css/#images
+			]
+			[(#LOGO|image_reduire{260,260}|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]})] 
+		</figure>
+		<section class="col-md-9">
+			[<p class="#EDIT{surtitre} small">(#SURTITRE)</p>]
+			<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+			[<p class="#EDIT{soustitre}">(#SOUSTITRE|PtoBR|abs_url)</p>]
+			[(#INCLURE{fond=inclure/socialtags,env})]
+		</section>
 	</div>
+</section>
 </BOUCLE_header>

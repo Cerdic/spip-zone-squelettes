@@ -1,6 +1,8 @@
 [(#PLUGINS{skiplink}|oui) <nav class="sr-only">#INCLURE{fond=raccourcis}</nav> ]
 <BOUCLE_header(MOTS){id_mot}>
-	<div class="container">
+<section class="container">
+<div class="row">
+	<figure class="col-md-3">
 		[(#REM) 
 			Logos & Bootstrap :
 				on peut passer un |inserer_attribut{class,""}  
@@ -10,12 +12,17 @@
 		]
 		[(#LOGO_MOT_NORMAL
 			|sinon{[(#LOGO_RUBRIQUE_NORMAL{0})]}
+			|image_reduire{260,260}
 			|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)][ (#TITRE|textebrut)]}
 			|inserer_attribut{class,"img-responsive"}
 		)]
+	</figure>
+	<section class="col-md-9">
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[<p class="#EDIT{soutitre}">(#SOUTITRE|PtoBR|abs_url)</p>]
 		<p><a href="#descriptif" class="btn btn-primary btn-lg" role="button">En savoir + ?</a></p>
 		[(#INCLURE{fond=inclure/socialtags,env})]
-	</div>
+	</section>
+</div>
+</section>
 </BOUCLE_header>
