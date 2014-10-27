@@ -8,10 +8,10 @@
 			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
 			{statut=publie}
 		>
-		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#_AgendaDerniersAjouts:EDIT{titre}">
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#_AgendaDerniersAjouts:EDIT{titre} clearfix"><BOUCLE_Film(ARTICLES){id_article=#_AgendaDerniersAjouts:ARTICLEFILM}>[<img class="spip_logos spip_documents_left" alt="" src="(#LOGO_ARTICLE_NORMAL|image_reduire{32,0}|extraire_attribut{src})" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{32,0}|extraire_attribut{height})]" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{32,0}|extraire_attribut{width})]" />]</BOUCLE_Film>
 		<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 			[<a href="(#ARTICLE_URL|ancre_url{'#evenement'#ID_EVENEMENT})"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|supprimer_tags|attribut_html)][&nbsp;: (#_AgendaDerniersAjouts:TITRE|supprimer_tags|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})],[(#TITRE|supprimer_tags|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'})]})"]>]
-				[(#_AgendaDerniersAjouts:TITRE|=={[(#TITRE)]}|?{[(#_AgendaDerniersAjouts:TITRE)],[(#TITRE)]&nbsp;: [(#_AgendaDerniersAjouts:TITRE)]})]
+				[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[<strong class="caractencadre-spip spip">(#TITRE)</strong>][&nbsp;: (#_AgendaDerniersAjouts:TITRE)]<br />[<i><small>(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_DEBUT,#HORAIRE,'skel'})</small></i>],[<strong class="caractencadre-spip spip">(#TITRE)</strong>]<br />[<i><small>(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_DEBUT,#HORAIRE,'skel'})</small></i>]})]
 			</a>
 		</BOUCLE_DernierEvenementArticle>
 		</li>
