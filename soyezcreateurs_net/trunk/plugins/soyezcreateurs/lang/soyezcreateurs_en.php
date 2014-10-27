@@ -17,13 +17,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil_site' => 'Back to Home of the site',
 	'agenda' => 'Calendar',
 	'agenda_exporter_ical' => 'Export in iCal format',
-	'agenda_fsd' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@', # MODIF
+	'agenda_fsd' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'From the @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Submit an event',
 	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.',
 	'agenda_proposer_evenement_title' => 'You may suggest an event to the site’s administrator.',
-	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@', # MODIF
-	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@', # MODIF
+	'agenda_sd' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
+	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agendamoisde' => 'Calendar for',
@@ -35,7 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire_vide' => 'The directory is empty.',
 	'archives' => 'Archives',
 	'archives_title' => 'View the archived articles',
-	'articlesconnexes' => 'Related articles', # MODIF
+	'articlesconnexes' => 'Related articles',
 	'articlesordreantichrono' => 'Articles in chronological order',
 	'auteur' => 'Author',
 	'auteurs_liste' => 'List of authors',
@@ -154,7 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_non' => 'Don’t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
 	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
-	'cfg_info' => 'Configuration of SoyezCreateurs', # MODIF
+	'cfg_info' => 'Configuration of SoyezCréateurs',
 	'cfg_largeur' => 'Width',
 	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
 	'cfg_largeur_conteneur' => 'Width of the container',
@@ -319,8 +319,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
-	'copyright_spip' => '
-<a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'Skeleton <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Logout',
@@ -410,7 +409,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Learn more about the criterion',
 	'sedna' => 'Sedna (RSS aggregator)',
 	'sommaire' => 'Summary',
-	'soyezcreateurs' => 'Be Creative', # MODIF
+	'soyezcreateurs' => 'SoyezCréateurs',
 	'soyezcreateurs_couleurs' => 'Colors',
 	'soyezcreateurs_google' => 'Referencing',
 	'soyezcreateurs_layout' => 'Localization',
@@ -419,7 +418,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'themes' => 'Themes',
 	'tousarticlesantichrono' => 'All articles by date',
-	'tout' => 'All', # MODIF
+	'tout' => '(no filter)',
 	'toutleplan' => 'The entire site on one page',
 
 	// V
