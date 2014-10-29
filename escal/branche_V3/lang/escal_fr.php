@@ -64,6 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_page_pied' => 'Pied de page',
 'cfg_page_rainette' => 'Rainette',
 'cfg_page_rubrique' => 'Les rubriques',
+'cfg_page_signalement' => 'Signalement',
 'cfg_page_socialtags' => 'Social Tags',
 'cfg_page_sommaire_colonnes' => 'Choix des blocs latéraux',
 'cfg_page_sommaire_corps' => 'Partie centrale',

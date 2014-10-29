@@ -17,7 +17,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |La page d\'accueil!sommaire_corps:sommaire_colonnes:sommaire_noisettes
 |Les pages internes!rubrique:article:contact:pages_noisettes:forumsite
 |Un peu de style!fonds:textes:bords:arrondis
-|Des plugins dans Escal!galleria:rainette:mentions:licence:spip400:socialtags:facebook
+|Des plugins dans Escal!galleria:rainette:mentions:licence:spip400:socialtags:facebook:signalement
 ');
 
 // les images de plus de 1050 pixels de largeur ou de 900px de hauteur ne seront pas enregistrées
