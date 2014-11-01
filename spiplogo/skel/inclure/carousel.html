@@ -2,20 +2,21 @@
 		Un carrousel directement intégré à Bootstrtap;
 		il est responsive mais ne se pilote pas au clavier;
 		du mal à intégrer les effets;
+		remonte quand on clique sur le 1er lien;
 ]
 [(#SET{id,[(#ENV{id_mot,1})]})]
 
 <div id="slider_#GET{id}" class="carousel carousel_#GET_id slide">
 
 	<ol class="carousel-indicators">
-	<BOUCLE_boutons(DOCUMENTS) {extension IN jpeg,png,gif} {doublons items} >
+	<BOUCLE_boutons(DOCUMENTS) {extension IN jpeg,png,gif} {!par date}>
 		<li data-target="#slider_#GET{id}"
 			data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class=(#COMPTEUR_BOUCLE|=={1}|oui)"active"]></li>
 	</BOUCLE_boutons>
 	</ol>
 
 	<div class="carousel-inner">
-	<BOUCLE_items(DOCUMENTS) {extension IN jpeg,png,gif} {doublons} {!par date}>
+	<BOUCLE_items(DOCUMENTS) {extension IN jpeg,png,gif} {!par date}>
 		<div class="item[ (#COMPTEUR_BOUCLE|=={1}|oui)active]">
 			[<a href="#FICHIER" class="spip_documents mediabox" rel="items_#GET{id}">(#FICHIER
 				|image_reduire{600,400}
