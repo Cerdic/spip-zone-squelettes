@@ -4,6 +4,7 @@
     #SET{voirdate,#PARAMETRES|unserialize|table_valeur{voirdate}}
     #SET{voirlogo,#PARAMETRES|unserialize|table_valeur{voirlogo}}
     #SET{voirdocuments,#PARAMETRES|unserialize|table_valeur{voirdocuments}}
+    #SET{stylelogo,#PARAMETRES|unserialize|table_valeur{stylelogo}}
 </BOUCLE_noisette>
 
 [(#GET{style}|non)#SET{style,bloc_visible}]
@@ -11,47 +12,63 @@
 [(#GET{voirdate}|non)#SET{voirdate,oui}]
 [(#GET{voirlogo}|non)#SET{voirlogo,oui}]
 [(#GET{voirdocuments}|non)#SET{voirdocuments,oui}]
+[(#GET{stylelogo}|non)#SET{stylelogo,vignette}]
+#SET{nom,""}
+ 
 
 <BOUCLE_article_principal(ARTICLES){doublons} {id_article}>
+[(#SET{nom,""})]
+<BOUCLE_auteurs(AUTEURS){id_article} >
+
+	[(#SET{nom,#GET{nom}|concat{" | "#NOM}})]
+	[(#SET{auteur,#ID_AUTEUR})]
+</BOUCLE_auteurs>
 <div class="module_content #GET{style}">
       
-     <BOUCLE_auteur(CONDITION){si #GET{voirauteur}|=={oui}|oui}>
-				<div class="imprimcontact">
-					<BOUCLE_auteurs(AUTEURS){id_article} >
-						
-						<a id="contacter" href="#URL_PAGE{contact2,id_auteur=#ID_AUTEUR}" class="mediabox" >
-								contact
-						</a>
-
-					</BOUCLE_auteurs>
-            				<!-- <a class="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:imprimer_article:>" target="blank"></a> -->
-      			</div>
-
-      </BOUCLE_auteur>
-    
-      <//B_auteur>
+     
        				
 
 				<!-- ************ le contenu principal **********************  -->
 
-				<!-- <div class="content" style="background-color:#GET{fondtexte2};border-color:#GET{bord2};color:#GET{texte2}" > -->
+				
 
 					
-					[(#GET{voirlogo}|=={oui}|oui)
-						[(#LOGO_ARTICLE||image_reduire{150,150})]
-					]
-
-				<!-- ************ Insertion éventuelle de la date et de l'auteur **********************  -->					
+									
 					
-					[(#GET{voirdate}|=={oui}|oui)
-						<INCLURE{fond=inclusions/details}{id_article}>
-					]
+					
+
  						<H2>[(#TITRE|supprimer_numero)] </H2>
-						
+ 						<div class="row">
+ 							<div class="col-md-8">
+		 						<div class="detail">
+			 						[(#GET{voirdate}|=={oui}|oui)
+			 						<span class="date_article ">
+									 <span class="j">[(#DATE|jour)]</span>  <span class="m">[(#DATE|nom_mois|couper{3})].</span>  <span class="a">[(#DATE|annee)]</span>
+									</span>
+									]
+									[(#GET{voirauteur}|=={oui}|oui)
+									<span class="auteur">	
+										
+										#GET{nom}
+									</span>	
+									]
+								</div>
+							</div>
+							<div class="col-md-4">
 					
+					[(#MODELE{socialtag}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE,id_auteur=#GET{auteur},titre=#TITRE})]
+							</div>
 					
-						
-						
+							
+						</div>
+					[<div class="logo_article">(#GET{voirlogo}|=={oui}|oui)
+						[(#GET{stylelogo}|=={large}|oui)
+							[(#LOGO_ARTICLE||image_recadre{0,300,center}|inserer_attribut{class, "img-responsive"})]
+						]
+						[(#GET{stylelogo}|=={vignette}|oui)
+							[(#LOGO_ARTICLE||image_reduire{200}|inserer_attribut{class, #GET{stylelogo}})]
+						]
+					</div> ]	
 					
 					<!-- ************ Insertion Ã©ventuelle du sous-titre **********************  -->	
     					[<div  class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
