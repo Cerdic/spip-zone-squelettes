@@ -37,7 +37,7 @@ include_spip('action/editer_objet');
 
 	$id_noisette=_request('id_noisette');
 	
-	$casiers=array('intitule','url','blanck','alt','class');
+	$casiers=array('style','intitule','url','blanck','alt','class');
 	$params=array();
 	foreach($casiers as $casier){
 		$data=_request($casier);
