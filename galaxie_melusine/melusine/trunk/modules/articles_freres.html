@@ -1,16 +1,37 @@
-<!-- On récupère les données du YAML -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE ARTICLES FRERES ************************************************ -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 </BOUCLE_noisette>
 
-<!-- On cherche la rubrique concernée -->
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
+<!-- *********************************************************************** -->
+
+
 <BOUCLE_article_courant(ARTICLES) 	{id_article=#ID_ARTICLE}
 									{par num titre,titre}
 									{par date}{inverse}{doublons}>
 	#SET{rubrique,#ID_RUBRIQUE}
 </BOUCLE_article_courant>
 
-<!-- On affiche le titre des articles de la même rubrique -->
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
+<!-- *********************************************************************** -->
+
+
 <B_article>
 	[(#GET{style}|=={bloc_visible}|oui)
 		<div class="module_content bloc_visible">
