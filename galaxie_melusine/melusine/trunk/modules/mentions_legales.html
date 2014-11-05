@@ -16,6 +16,8 @@
 #SET{params,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
+<!-- On récupère le style choisi, bloc visible ou invisible -->
+#SET{style,(#GET{params}|table_valeur{style})}
 <!-- On récupère le nom du directeur de la publication, s'il a été saisi -->
 #SET{di,(#GET{params}|table_valeur{directeurdepublication})}
 <!-- On récupère le nom du secrétaire de rédaction, s'il a été saisi -->
@@ -30,13 +32,15 @@
 <BOUCLE_test(CONDITION){si #GET{di}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
 	<!-- Début de la classe contenu -->
 	<!-- conditionnée pour l'admin et si pas de directeur sélecionné -->
-	<div class="module_content bloc_visible 
-	[(#SESSION{statut}|=={0minirezo}|oui)
-		[(#GET{di}|non)info]
-	]">
-		<!-- Avertissement pour l'admin si pas de directeur sélecionné -->
+[(#GET{style}|=={bloc_visible}|oui)
+	<div class="module_content bloc_visible">
+]
+		<!-- Avertissement pour l'admin si pas de directeur sélectionné -->
 		[(#SESSION{statut}|=={0minirezo}|oui)
-			[(#GET{di}|non)Aucun directeur de publication sélectionné]
+			[(#GET{di}|non)
+			<div class="module_content bloc_visible info">
+				Aucun directeur de publication sélectionné
+			</div>]
 		]
 
 		<!-- On cherche dans les auteurs celui qui a l'identifant -->
@@ -69,5 +73,7 @@
 		</div>
                 
 	<!--  Fin de la classe contenu    -->	
+[(#GET{style}|=={bloc_visible}|oui)
 	</div>
+]
 </BOUCLE_test>

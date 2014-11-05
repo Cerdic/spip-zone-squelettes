@@ -19,7 +19,8 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 		$id_noisette=_request('id_noisette');
 		/* On récupère l'auteur choisi dans la liste déroulante 
 		"personneajoindre" */
-		$casiers=array('personneajoindre');
+		$casiers=array('style','personneajoindre');
+
 		$params=array();
 		foreach($casiers as $casier)
 		{

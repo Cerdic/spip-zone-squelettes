@@ -17,6 +17,7 @@
 </BOUCLE_noisette>
 
 <!-- On attribue des valeurs par défaut -->
+[(#GET{style}|non)#SET{style,bloc_visible}]
 [(#GET{nb}|non)#SET{nb,3}]
 [(#GET{motclef}|non)#SET{motclef,agenda}]
 
@@ -130,7 +131,9 @@
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
 <!-- *********************************************************************** -->
 
-
+[(#GET{style}|=={bloc_visible}|oui)
+	<div class="module_content bloc_visible">
+]
 <!-- Affichage public de l'agenda si il est non vide -->
 <BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_non_vide>
 	<h2>Agenda</h2>
@@ -170,3 +173,6 @@
     ]
 ]
 <//B_non_vide>  
+[(#GET{style}|=={bloc_visible}|oui)
+	</div>
+]

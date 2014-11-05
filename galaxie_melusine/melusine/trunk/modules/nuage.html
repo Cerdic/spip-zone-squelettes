@@ -11,6 +11,7 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
 #SET{articles,#PARAMETRES|unserialize|table_valeur{articles}}
 #SET{couleur,#PARAMETRES|unserialize|table_valeur{couleur}}
@@ -25,6 +26,9 @@
 <!-- Variable pour après tester si l'on a bien trouvé des résultats -->
 #SET{vide,oui}
 
+[(#GET{style}|=={bloc_visible}|oui)
+	<div class="module_content bloc_visible">
+]
 <!-- Début du div du nuage -->
 <div class="nuage_stat">
 	<!-- On boucle sur les mots cochés -->
@@ -33,7 +37,9 @@
 		#SET{titre,#VALEUR|table_valeur{titre}}	
 		#SET{taille,#VALEUR|table_valeur{taille}}	
    		<span class="tag">
-			<a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">#GET{titre}</a>
+			<a href="spip.php?mot#GET{id}" style="font-size:#GET{taille}px;">
+				#GET{titre}
+			</a>
    		</span>  
     	#SET{vide,non}
 	</BOUCLE_surlesmots>
@@ -58,4 +64,7 @@
     ]
 <!-- Fin du div du nuage -->
 </div>
-<div style="clear:both"></div>
+[(#GET{style}|=={bloc_visible}|oui)
+	</div>
+]
+<!--<div style="clear:both"></div>-->

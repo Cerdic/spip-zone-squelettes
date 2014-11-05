@@ -17,7 +17,7 @@ function formulaires_melusine_mentions_legales_traiter()
 	{
 		include_spip('action/editer_objet');
 		$id_noisette=_request('id_noisette');
-		$casiers=array('directeurdepublication','secretairederedaction','adresse','hebergement');
+		$casiers=array('style','directeurdepublication','secretairederedaction','adresse','hebergement');
 		$params=array();
 		foreach($casiers as $casier)
 		{

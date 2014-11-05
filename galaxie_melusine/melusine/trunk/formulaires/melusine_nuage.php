@@ -33,6 +33,7 @@ function formulaires_melusine_nuage_traiter(){
 
 	// effacer_config(melusine_nuage);
 	$params=array();
+	$params['style']=_request('style');
 	$params['couleur']=_request('couleur');	
 	$mots=_request('mot');
 	foreach($mots as $key=>$mot){

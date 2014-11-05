@@ -15,6 +15,8 @@
 #SET{param,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
+<!-- On récupère le style choisi : bloc visible ou invisible -->
+#SET{style,(#GET{param}|table_valeur{style})}
 <!-- On récupère le nom de la personne à joindre s'il a été choisi -->
 #SET{dest,(#GET{param}|table_valeur{personneajoindre})}
 
@@ -35,12 +37,17 @@
 
 <!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
-	<a href="spip.php?page=contact2&id_auteur=#GET{dest}" target="_blank"> 
-		<p>
-			<span class="logo-titre">
-				<i class="fa fa-envelope"></i>
-				Nous écrire
-			</span>
-		</p>
-	</a>
+		
+[(#GET{style}|=={bloc_visible}|oui)
+	<div class="module_content bloc_visible">
+]
+		<a href="spip.php?page=contact2&id_auteur=#GET{dest}" target="_blank"> 
+				<span class="logo-titre">
+					<i class="fa fa-envelope"></i>
+					Nous écrire
+				</span>
+		</a>
+[(#GET{style}|=={bloc_visible}|oui)
+	</div>
+]
 </BOUCLE_identifiantdudestinataire>
