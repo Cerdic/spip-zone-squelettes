@@ -1,13 +1,27 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE BOUTON ********************************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
 
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On récupère les données saisies dans SET{param} -->
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
 #SET{params,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
-[(#SET{admin_melusine,[(#SESSION{statut}
-			|=={0minirezo}
-			|oui)
-		oui]}
-)]
 
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE ************************************************* -->
+<!-- *********************************************************************** -->
+
+
+<!-- Si aucune saisie n'a été effectuée, avertissement pour l'admin -->
 [(#SESSION{statut}|=={0minirezo}|oui)
 	[(#GET{params}|non)
 		<div class="module_content bloc_visible info">
@@ -16,13 +30,16 @@
 	]
 ]	
 
+
 <div class="bouton [(#GET{params}|table_valeur{style})]">
-<a  href="[(#GET{params}|table_valeur{url})]" [(#GET{params}|table_valeur{blanck}|=={blanck}?{target="_blank",})]>	
-						
-[(#GET{params}|table_valeur{image}|image_reduire{150}|inserer_attribut{'alt',#GET{params}|table_valeur{alt}})]
-				
-[<div class="logo-titre">(#GET{params}|table_valeur{intitule})</div>] 
-</a>
+	<a  href="[(#GET{params}|table_valeur{url})]" 
+		[(#GET{params}	|table_valeur{blanck}|=={blanck}?{target="_blank",})]>	
+		[(#GET{params}	|table_valeur{image}
+						|image_reduire{150}
+						|inserer_attribut{'alt',#GET{params}
+						|table_valeur{alt}})]
+	[<div class="logo-titre">(#GET{params}|table_valeur{intitule})</div>] 
+	</a>
 </div>
 
 
