@@ -23,15 +23,20 @@
 	<label for="style">Style : </label>
 		<select name="style"  >
 			<option value="bloc_invisible" 
-[(#GET{params}|table_valeur{style}|=={bloc_invisible}|oui) selected ]>
-bloc invisible
+				[(#GET{params}	|table_valeur{style}
+								|=={bloc_invisible}
+								|oui) selected ]>
+				bloc invisible
 			</option> 
 			<option value="bloc_visible"  
-[(#GET{params}|table_valeur{style}|=={bloc_visible}|oui) selected ]>
-bloc visible
+				[(#GET{params}	|table_valeur{style}
+								|=={bloc_visible}
+								|oui) selected ]>
+				bloc visible
 		</option>
 	</select>
 </fieldset>
+
 <!-- Liste déroulante des auteurs pour le directeur de publication -->		
 <fieldset>
 		<label for="directeurdepublication">Directeur(s) de publication</label>
@@ -39,8 +44,9 @@ bloc visible
 			<option value=""> --- </option>
 			<BOUCLE_auteur1(AUTEURS){tout}{par NOM}>
 				<option value="#ID_AUTEUR" 
-					[(#GET{params}|table_valeur{directeurdepublication}
-					=={#ID_AUTEUR}|?{"selected", })]>
+					[(#GET{params}	|table_valeur{directeurdepublication}
+									=={#ID_AUTEUR}
+									|?{"selected", })]>
 					#NOM
 				</option>
 			</BOUCLE_auteur1>
@@ -55,8 +61,9 @@ bloc visible
 			<option value=""> --- </option>
 			<BOUCLE_auteur2(AUTEURS){tout}{par nom}>
 				<option value="#ID_AUTEUR" 
-					[(#GET{params}|table_valeur{secretairederedaction}
-					=={#ID_AUTEUR}|?{"selected", })]>
+					[(#GET{params}	|table_valeur{secretairederedaction}
+									=={#ID_AUTEUR}
+									|?{"selected", })]>
 					#NOM
 				</option>
 			</BOUCLE_auteur2>
@@ -66,13 +73,16 @@ bloc visible
 <!-- Champs textarea pour l'adresse -->
 <fieldset>	
 		<label for="adresse">Adresse</label>
-		<textarea name='adresse'><?=$params[adresse];?></textarea>
+		<textarea name='adresse'>
+			[(#GET{params}|table_valeur{adresse})]
+		</textarea>
 </fieldset>
 
 <!-- Champs texte pour l'hébergement -->
 <fieldset>	
 		<label for="hebergement">Hébergement</label>
-		<input type='text' name='hebergement' 
+		<input 	type='text' 
+				name='hebergement' 
 				value="[(#GET{params}|table_valeur{hebergement})]" />
 </fieldset>
 

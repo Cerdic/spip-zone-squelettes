@@ -31,9 +31,6 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 			$set=array('parametres'=>serialize($params));
 		}
 		objet_modifier("noisette", $id_noisette, $set);
-		return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);
+	return array('message_ok'=>'Saisie enregistr&eacute;e','id_noisette'=>$id);
 	}
-
-
-
 ?>

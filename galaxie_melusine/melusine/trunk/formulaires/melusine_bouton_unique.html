@@ -5,60 +5,108 @@
 
 <!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
 </br>
-<!-- -->
 
-[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
-[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})
+</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})
+</p>]
+
+<!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
+#ACTION_FORMULAIRE{#ENV{action}}
 
-		#ACTION_FORMULAIRE{#ENV{action}}
-
-  <fieldset>
-		<label for="style">Style : </label>
-		<select name="style"  >
-			<option value="bloc_invisible" [(#GET{params}|table_valeur{style}|=={bloc_invisible}|oui) selected ]>bloc invisible</option> 
-			<option value="bloc_visible"  [(#GET{params}|table_valeur{style}|=={bloc_visible}|oui) selected ]>bloc visible</option>
-			
-		</select>
-	</fieldset>
-				
+<!-- Choix du style : bloc visible ou invisible -->
 <fieldset>
-		<label for="Intitulé">Intitulé</label>
-		<input type='text' name='intitule' value="[(#GET{params}|table_valeur{intitule})]" />
-		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+	<label for="style">Style : </label>
+		<select name="style"  >
+			<option value="bloc_invisible" 
+				[(#GET{params}|table_valeur{style}
+				|=={bloc_invisible}|oui) selected ]>
+				bloc invisible
+			</option> 
+			<option value="bloc_visible"  
+				[(#GET{params}|table_valeur{style}
+				|=={bloc_visible}|oui) selected ]>
+				bloc visible
+			</option>
+		</select>
 </fieldset>
-<fieldset>						
+
+<!-- Choix de l'intitulé du bouton -->				
+<fieldset>
+	<label for="Intitulé">Intitulé</label>
+		<input 	type='text' 
+				name='intitule' 
+				value="[(#GET{params}|table_valeur{intitule})]" />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</fieldset>
+
+<!-- Choix de l'URL et si ouverture vers un nouvel onglet -->	
+<fieldset>
 		<label for="URL">URL</label>
-		<input type='text' name='url' value="[(#GET{params}|table_valeur{url})]" />
-	
+		<input 	type='text' 
+				name='url' 
+				value="[(#GET{params}|table_valeur{url})]" />
 		<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
-		<input type="checkbox" name="blanck"  value="blanck" [(#GET{params}|table_valeur{blanck}=={"blanck"}|?{"checked", })]  />
-						
+		<input 	type="checkbox" 
+				name="blanck"  
+				value="blanck" 
+				[(#GET{params}|table_valeur{blanck}=={"blanck"}|?{"checked", })]
+	  	/>				
 </fieldset>
+
+<!-- Choix de la classe du bouton -->	
 <fieldset>	
 		<label for="class">classe du bouton</label>
-		<input type='text' name='class' value="[(#GET{params}|table_valeur{class})]" />
+		<input 	type='text' 
+				name='class' 
+				value="[(#GET{params}|table_valeur{class})]" 
+		/>
 </fieldset>
+
+<!-- Choix de la description pour l'image -->	
 <fieldset>	
 		<label for="Alt">Description de l'image : balise ALT</label>
-		<input type='text' name='alt' value="[(#GET{params}|table_valeur{alt})]" />
+		<input 	type='text' 
+				name='alt' 
+				value="[(#GET{params}|table_valeur{alt})]" 
+		/>
 </fieldset>
 
-
+<!-- Choix de l'image -->	
 <fieldset>
-		<label for="Image">Image</label>
-		<input type="file" name="image"  value="" size="30" /><br/>
-		<input type="hidden" name="imageexiste"  value="[(#GET{params}|table_valeur{image})]" size="30" /><br/>
+	<label for="Image">Image</label>
+	<input 	type="file" 
+			name="image"  
+			value="" 
+			size="30" 
+	/>
+	<br/>
+	<input 	type="hidden" 
+			name="imageexiste"  
+			value="[(#GET{params}|table_valeur{image})]" 
+			size="30" 
+	/>
+	<br/>
 	
-		[(#GET{params}|table_valeur{image}|?{[(#CHEMIN{#GET{params}|table_valeur{image}}|image_reduire{150})],[(#GET{params}|table_valeur{image}||image_reduire{150})
-
-		]} 
-		)]
+	[(#GET{params}	|table_valeur{image}
+					|?
+						{
+							[(#CHEMIN{#GET{params}	|table_valeur{image}}
+													|image_reduire{150})]
+							,
+							[(#GET{params}			|table_valeur{image}
+													||image_reduire{150})]
+						} 
+	)]
 </fieldset>
 
 
-		<input type='submit' name='ok' value='ok' />
+<input type='submit' name='ok' value='ok' />
 		
 
-	</form>
-	
+</form>
+<!-- Fin du formulaire -->

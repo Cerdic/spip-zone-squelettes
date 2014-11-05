@@ -11,21 +11,27 @@ function formulaires_melusine_bouton_unique_charger($id_noisette){
 function formulaires_melusine_bouton_unique_verifier(){
 	$erreurs = array();
 	
-	// verifier que les champs obligatoires sont bien la :
-	//foreach(array('pos1','pos2','pos3','pos4','pos5') as $obligatoire)
-	//	if (_request($style)) $erreurs[$obligatoire] = 'Ce champ est obligatoire';
+// verifier que les champs obligatoires sont bien la :
+//foreach(array('pos1','pos2','pos3','pos4','pos5') as $obligatoire)
+//	if (_request($style)) $erreurs[$obligatoire] = 'Ce champ est obligatoire';
 	
-	// verifier que si un email a été saisi, il est bien valide :
-	//include_spip('inc/filtres');
-	//if (_request('email') AND !email_valide(_request('email')))
-	//	$erreurs['email'] = 'Cet email n\'est pas valide';
+// verifier que si un email a été saisi, il est bien valide :
+//include_spip('inc/filtres');
+//if (_request('email') AND !email_valide(_request('email')))
+//	$erreurs['email'] = 'Cet email n\'est pas valide';
 
-	// $style=_request('style');
-	// $gauche=lire_config("melusine_squelettes/g");
+// $style=_request('style');
+// $gauche=lire_config("melusine_squelettes/g");
 	
-	//$droite=lire_config("melusine_squelettes/d");
-	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) ){$erreurs['style'] ="<span style='color:red'>La colonne droite  doit &ecirc;tre vide</span>"	;};
-	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) ){$erreurs['style'] ="<span style='color:red'>La colonne gauche doit &ecirc;tre vide</span>"	;};
+//$droite=lire_config("melusine_squelettes/d");
+// if($style=="layout2.css" and melusine_colonne_pasvide($droite) )
+// {$erreurs['style'] ="<span style='color:red'>
+// La colonne droite  doit &ecirc;tre vide</span>"	;};
+
+// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) )
+// {$erreurs['style'] ="<span style='color:red'>
+// La colonne gauche doit &ecirc;tre vide</span>"	;};
+	
 	if (count($erreurs))
 		$erreurs['message_erreur'] = 'Votre saisie contient des erreurs !';
 	return $erreurs;
@@ -43,10 +49,9 @@ include_spip('action/editer_objet');
 		$data=_request($casier);
 		if(!isset($data)){$data="none";};
 		$params[$casier]=$data;
-		
-		
-		
 	}
+
+
 	$nf="image";
 	
 	
@@ -74,9 +79,6 @@ include_spip('action/editer_objet');
 	$set=array('parametres'=>serialize($params));
 	objet_modifier("noisette", $id_noisette, $set);
 	
-	return array('message_ok'=>'enregistré', 'id_noisette'=>$id);
+	return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);
 }
-
-
-
 ?>

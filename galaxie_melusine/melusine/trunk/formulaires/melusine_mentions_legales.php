@@ -14,23 +14,24 @@ function formulaires_melusine_mentions_legales_verifier()
 
 
 function formulaires_melusine_mentions_legales_traiter()
+{
+	include_spip('action/editer_objet');
+	$id_noisette=_request('id_noisette');
+	$casiers=array(	'style',
+					'directeurdepublication',
+					'secretairederedaction',
+					'adresse',
+					'hebergement');
+	$params=array();
+	foreach($casiers as $casier)
 	{
-		include_spip('action/editer_objet');
-		$id_noisette=_request('id_noisette');
-		$casiers=array('style','directeurdepublication','secretairederedaction','adresse','hebergement');
-		$params=array();
-		foreach($casiers as $casier)
-		{
-			$data=_request($casier);
-			if(!isset($data))
-				{$data="none";};
-			$params[$casier]=$data;
-			$set=array('parametres'=>serialize($params));
-		}
-		objet_modifier("noisette", $id_noisette, $set);
-		return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);
+		$data=_request($casier);
+		if(!isset($data))
+			{$data="none";};
+		$params[$casier]=$data;
+		$set=array('parametres'=>serialize($params));
 	}
-
-
-
+	objet_modifier("noisette", $id_noisette, $set);
+	return array('message_ok'=>'Saisie enregistr&eacute;e','id_noisette'=>$id);
+}
 ?>
