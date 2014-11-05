@@ -88,7 +88,7 @@ function formulaires_melusine_rubriques_traiter(){
 		}			
 	}
 	
-	return array('message_ok'=>'enregistré');
+	return array('message_ok'=>'Saisie enregistr&eacute;e');
 }
 
 

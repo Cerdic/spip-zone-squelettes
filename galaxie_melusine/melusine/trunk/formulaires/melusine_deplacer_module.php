@@ -181,7 +181,7 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 
 	if (count($retour) < 1)
 		$retour = array(
-			'message_ok'=>'enregistré',
+			'message_ok'=>'Saisie enregistr&eacute;e',
 			'id_noisette' => $id_noisette
 		);
 

@@ -129,7 +129,7 @@ function formulaires_melusine_boutons_traiter(){
 	$set=array('parametres'=>serialize($params));
 		objet_modifier("noisette", $id_noisette, $set);	
 	
-	return array('message_ok'=>'enregistré');
+	return array('message_ok'=>'Saisie enregistr&eacute;e');
 }
 
 
