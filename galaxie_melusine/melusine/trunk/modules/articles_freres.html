@@ -1,13 +1,31 @@
+<!-- On récupère les données du YAML -->
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+</BOUCLE_noisette>
 
-<BOUCLE_article_courant(ARTICLES) {id_article=#ID_ARTICLE}{par num titre,titre}{par date}{inverse}{doublons}>
-#SET{rubrique,#ID_RUBRIQUE}
+<!-- On cherche la rubrique concernée -->
+<BOUCLE_article_courant(ARTICLES) 	{id_article=#ID_ARTICLE}
+									{par num titre,titre}
+									{par date}{inverse}{doublons}>
+	#SET{rubrique,#ID_RUBRIQUE}
 </BOUCLE_article_courant>
+
+<!-- On affiche le titre des articles de la même rubrique -->
 <B_article>
-<div class="module_content">
-<ul>
-<BOUCLE_article(ARTICLES) {id_rubrique=#GET{rubrique}}{par num titre,titre}{par date}{inverse}{doublons}>
-<li><i class="fa fa-caret-right "></i> <a href="#URL_ARTICLE">#TITRE</a></li>
-</BOUCLE_article>
-</ul>
-</div>
+	[(#GET{style}|=={bloc_visible}|oui)
+		<div class="module_content bloc_visible">
+	]
+		<ul>
+			<BOUCLE_article(ARTICLES) 	{id_rubrique=#GET{rubrique}}
+										{par num titre,titre}
+										{par date}{inverse}{doublons}>
+				<li>
+					<i class="fa fa-caret-right "></i> 
+					<a href="#URL_ARTICLE">#TITRE</a>
+				</li>
+			</BOUCLE_article>
+		</ul>
+	[(#GET{style}|=={bloc_visible}|oui)
+		</div>
+	]
 </B_article>
