@@ -36,6 +36,7 @@ function formulaires_melusine_nuage_traiter(){
 	$params['style']=_request('style');
 	$params['couleur']=_request('couleur');	
 	$mots=_request('mot');
+	
 	foreach($mots as $key=>$mot){
 		if(isset($mot['titre'])){
 			
@@ -93,6 +94,8 @@ function formulaires_melusine_nuage_traiter(){
 	// 	};
 	// };
 	$set=array('parametres'=>serialize($params));
+	
+
 	objet_modifier("noisette", $id_noisette, $set);
 	
 	return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);

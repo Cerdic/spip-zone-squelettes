@@ -22,11 +22,7 @@
 [(#GET{motclef}|non)#SET{motclef,agenda}]
 
 <!-- On vérifie que le nombre d'éléments à afficher est positif -->
-[(#GET{nb}|<={0}|oui)
-    <div class="module_content bloc_visible info">
-    Erreur dans le nombre d'éléments à afficher</div>
-    #SET{nb,3}
-]
+
 
 
 <!-- *********************************************************************** -->
@@ -131,8 +127,12 @@
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
 <!-- *********************************************************************** -->
 
-[(#GET{style}|=={bloc_visible}|oui)
-	<div class="module_content bloc_visible">
+<B_non_vide>
+	<div class="module_content #GET{style}">
+[(#GET{nb}|<={0}|oui)
+   
+    Erreur dans le nombre d'éléments à afficher</div>
+    #SET{nb,3}
 ]
 <!-- Affichage public de l'agenda si il est non vide -->
 <BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_non_vide>
@@ -161,10 +161,12 @@
 			]
 		]
     </BOUCLE_trierpardate>
+ </div>
 </B_non_vide>
 <!-- Si l'agenda est vide, seul l'admin le voit -->
+
 [(#SESSION{statut}|=={0minirezo}|oui)
-	<h2>Agenda</h2>
+	
     <!-- Si aucun article et aucune brève, on affiche une alerte -->
     [(#GET{cptfutur}|plus{#GET{cptpresent}}|plus{#GET{cptpasse}}|=={0}|oui)
     	<div class="module_content bloc_visible info">
@@ -173,6 +175,5 @@
     ]
 ]
 <//B_non_vide>  
-[(#GET{style}|=={bloc_visible}|oui)
-	</div>
-]
+
+
