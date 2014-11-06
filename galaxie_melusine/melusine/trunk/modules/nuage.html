@@ -14,7 +14,6 @@
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
 #SET{articles,#PARAMETRES|unserialize|table_valeur{articles}}
-#SET{couleur,#PARAMETRES|unserialize|table_valeur{couleur}}
 </BOUCLE_noisette>
 
 
@@ -25,9 +24,9 @@
 
 <!-- Variable pour après tester si l'on a bien trouvé des résultats -->
 #SET{vide,oui}
-
-[(#GET{style}|=={bloc_visible}|oui)
-	<div class="module_content bloc_visible">
+#SET{total,#GET{mots}|concat{#GET{articles}}}
+[(#GET{total}|oui)
+	<div class="module_content #GET{style}">
 ]
 <!-- Début du div du nuage -->
 <div class="nuage_stat">
@@ -55,16 +54,19 @@
 	</BOUCLE_surlesarticles>
 
 	<!-- Si aucun mot et aucun article, on affiche une alerte pour l'admin -->
-    [(#GET{vide}|=={oui}|oui)
+  
+  
+<!-- Fin du div du nuage -->
+[(#GET{total}|oui)
+
+</div>
+]
+</div>
+  [(#GET{vide}|=={oui}|oui)
     	[(#SESSION{statut}|=={0minirezo}|oui)
     		<div class="module_content bloc_visible info">
     			Aucun mot ni aucun article n'ont été sélectionnés.
     		</div>
     	]
     ]
-<!-- Fin du div du nuage -->
-</div>
-[(#GET{style}|=={bloc_visible}|oui)
-	</div>
-]
 <!--<div style="clear:both"></div>-->

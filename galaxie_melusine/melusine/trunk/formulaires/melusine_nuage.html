@@ -12,7 +12,23 @@
 
 
 	<h3>Nuage de mots #MELUSINEAIDE{210} </h3> 
-<fieldset id="nuage">
+
+<fieldset>
+	<label for="style">Style : </label>
+		<select name="style"  >
+			<option value="bloc_invisible" 
+				[(#GET{style}
+				|=={bloc_invisible}|oui) selected ]>
+				bloc invisible
+			</option> 
+			<option value="bloc_visible"  
+				[(#GET{style}
+				|=={bloc_visible}|oui) selected ]>
+				bloc visible
+			</option>
+		</select>
+		<input type='submit' name='ok' value='ok' />
+</fieldset>
 			
 
 
@@ -24,7 +40,7 @@
 
 <BOUCLE_groupes(GROUPES_MOTS){par titre}>
 <div>
-<h2 class="gestion_bouton">#TITRE</H2><div class="vue_bouton"><input  class="voir"></div>	
+<div class="vue_bouton"><input  type="checkbox" class="voir"/>#TITRE</div>	
 		<ul style="display:none">
 		<BOUCLE_mots(MOTS){id_groupe}{par titre}>	
 				[(#SET{mot,[(#GET{mots}|table_valeur{#ID_MOT})]})]
