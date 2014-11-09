@@ -2,8 +2,20 @@
 	Permet de simuler la page d'accueil su site spip.net avec un logo de 300x300
 ]
 
-<h2>Voir sur le site spip.net</h2>
-<h3>Fond du site combiné avec le logo du polatouche originel</h3>
+<h2>Fond du site combiné avec le logo du polatouche originel</h2>
+
+<h3>Superposition en CSS</h3>
+<div class="cadre">
+	<div class="fond">[(#CHEMIN{img/spip.net_960x660.png}|image_recadre{960,660})]</div>
+	<BOUCLE_logo(DOCUMENTS){id_document IN 97,84,100,112,170,161}{0,1}{par hasard}>
+	<div class="logo">[(#FICHIER|image_reduire{0,150}|image_recadre{450,150,'center','transparent'})]</div>
+	</BOUCLE_logo>
+</div>
+
+
+[(#CHEMIN{img/polatouche.png}|image_recadre{450,150})]
+
+<h3>Superposition avec |image_masque</h3>
 [(#CHEMIN{img/spip.net_960x660.png}
 	|image_recadre{960,660}
 	|image_masque{ [(#CHEMIN{img/polatouche.png}|image_recadre{960,660})] , mode=normal})]
