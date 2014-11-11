@@ -1,8 +1,7 @@
 <?php
 
-function squelette_californiumite_insertion_in_head($flux) {
+function squelette_californiumite_insert_head($flux) {
 	
-	//print_r($GLOBALS["page"]["texte"])
 	
     $flux .= "<script type=\"text/javascript\" src=\"" . find_in_path('js/jcarousellite.min.js') . "\"></script>
     ";
