@@ -1,60 +1,53 @@
 #SET{gabarits,#ARRAY}
 #SET{pages,#ARRAY}
 
-<!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
-</br>
-<!-- -->
-
 <form action='#ENV{action}' method='post'>
-
 	#ACTION_FORMULAIRE{#ENV{action}}
-
-
 	<h3>Structure Globale</h3> 
-
-<fieldset>
-	<table>
-	<tr>
-		<th></th>
-		
-	<BOUCLE_for0(POUR){tableau #NOOP|melusine_listegabarits}>
-	<th>#VALEUR  </th>
-	#SET{gabarits, #GET{gabarits}|push{#CLE}}
-	<BOUCLE_for2(POUR){tableau #CLE|melusine_pages_du_gabarit}>
-	#SET{pages, #GET{pages}|push{#VALEUR}}
-	</BOUCLE_for2>
-	</BOUCLE_for0>	
-</tr>
-
-	
-	
-		<BOUCLE_pages(POUR){tableau #GET{pages}}>
+	<fieldset>
+		<table>
+			<tr>
+				<th></th>
+				<BOUCLE_for0(POUR){tableau #NOOP|melusine_listegabarits}>
+					<th>#VALEUR  </th>
+					#SET{gabarits, #GET{gabarits}|push{#CLE}}
+					<BOUCLE_for2(POUR){tableau #CLE|melusine_pages_du_gabarit}>
+						#SET{pages, #GET{pages}|push{#VALEUR}}
+					</BOUCLE_for2>
+				</BOUCLE_for0>	
+			</tr>
+			<BOUCLE_pages(POUR){tableau #GET{pages}}>
 			#SET{lapage,#VALEUR}
 			<tr>
 				<td>#VALEUR</td>
 				<BOUCLE_gabarits(POUR){tableau #NOOP|melusine_listegabarits}>
 				<td>
-					<input type="radio" name="#GET{lapage}" value="#CLE" 
+					<input 	type="radio" 
+							name="#GET{lapage}" 
+							value="#CLE" 
 							[(#CONFIG{melusine_data/pages/#GET{lapage}}=={#CLE}|oui) checked=checked]
 					>
 				</td>
 				</BOUCLE_gabarits>
-				
 			</tr>
-		
-	</BOUCLE_pages>
-
-</table>
-</fieldset>
-<fieldset>
+			</BOUCLE_pages>
+		</table>
+	</fieldset>
+	<fieldset>
 		<legend>Largeur</legend>
-		
 		<ul>
-			<li><input type="radio" name="width"  value="container-fluid" [(#CONFIG{melusine_data/width}=={container-fluid}|oui) checked="checked" ]/>Largeur fluide</li>
-			<li><input type="radio" name="width"  value="container" [(#CONFIG{melusine_data/width}=={container}|oui) checked="checked" ] />largeur fixe</li>
+			<li>
+				<input 	type="radio" 
+						name="width"  
+						value="container-fluid" 
+						[(#CONFIG{melusine_data/width}=={container-fluid}|oui) checked="checked" ]/>
+				Largeur fluide
+			</li>
+			<li>
+				<input type="radio" name="width"  value="container" [(#CONFIG{melusine_data/width}=={container}|oui) checked="checked" ] />
+				Largeur fixe
+			</li>
 		</ul>
-</fieldset>
-
-<input type='submit' name='ok' value='ok' />
-
+	</fieldset>
+	<input type='submit' name='ok' value='ok' />
 </form>

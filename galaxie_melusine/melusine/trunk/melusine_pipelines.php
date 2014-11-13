@@ -46,7 +46,9 @@ function melusine_affiche_milieu ($flux) {
 function melusine_formulaire_admin($flux) {
 	if (autoriser('webmestre')) {
 		$btn = recuperer_fond('prive/bouton/voir_modules');
+		$btn2 = recuperer_fond('prive/bouton/voir_dispos');
 		$flux['data'] = preg_replace('%(<!--extra-->)%is', $btn.'$1', $flux['data']);
+		$flux['data'] = preg_replace('%(<!--extra-->)%is', $btn2.'$1', $flux['data']);
 	}
 	return $flux;
 }

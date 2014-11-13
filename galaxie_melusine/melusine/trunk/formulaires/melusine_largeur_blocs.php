@@ -64,8 +64,8 @@ function formulaires_melusine_largeur_blocs_traiter(){
 		ecrire_config($chemin_largeur,$largeur);	
 	}
 	
-	//$chemin_gabarit="melusine_data/gabarits/".$gabarit;
-	//ecrire_config($chemin_gabarit,$style);	
+	//$chemin_dispo="melusine_data/dispos/".$dispo;
+	//ecrire_config($chemin_dispo,$style);	
 
 	
 	

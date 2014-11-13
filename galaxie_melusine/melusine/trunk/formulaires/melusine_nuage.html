@@ -1,9 +1,14 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
-
 #SET{mots,#PARAMETRES|unserialize|table_valeur{mots}}
 #SET{articles,#PARAMETRES|unserialize|table_valeur{articles}}
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 </BOUCLE_noisette>
+
+<!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
+</br>
+<!-- -->
+
+[<p class='formulaire_erreur'>(#ENV*{message_erreur})</p>]
+[<p class="formulaire_message">(#ENV*{message_ok})</p>]
 <script type='text/javascript' src=#CHEMIN{scripts/melusine_prive.js}></script>
 
 <form action='#ENV{action}' method='post'>
@@ -11,44 +16,50 @@
 	#ACTION_FORMULAIRE{#ENV{action}}
 
 
-	<h3>Nuage de mots #MELUSINEAIDE{210} </h3> 
-
 <fieldset>
 	<label for="style">Style : </label>
 		<select name="style"  >
 			<option value="bloc_invisible" 
-				[(#GET{style}
-				|=={bloc_invisible}|oui) selected ]>
-				bloc invisible
+[(#GET{params}|table_valeur{style}|=={bloc_invisible}|oui) selected ]>
+bloc invisible
 			</option> 
 			<option value="bloc_visible"  
-				[(#GET{style}
-				|=={bloc_visible}|oui) selected ]>
-				bloc visible
+[(#GET{params}|table_valeur{style}|=={bloc_visible}|oui) selected ]>
+bloc visible
 			</option>
 		</select>
-		<input type='submit' name='ok' value='ok' />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+	<input type='submit' name='ok' value='ok' />
 </fieldset>
+
+	<h3>Nuage de mots #MELUSINEAIDE{210} </h3> 
+<fieldset id="nuage">
 			
+<label>couleur </label> 
+			<!-- class="palette" -->
+			<input type="text" name="couleur"  value="[(#GET{params}|table_valeur{couleur})]" />	
+			<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+			<input type='submit' name='ok' value='ok' />
+		
+	</fieldset>
 
 
 	
 			
 <a href='#'  class='mots'> Mots </a> | <a href='#'  class='articles' > Articles </a> 
-<div id="mots">
+<div id="mots" style="display:none;">
 	<fieldset>
 
 <BOUCLE_groupes(GROUPES_MOTS){par titre}>
 <div>
-<div class="vue_bouton"><input  type="checkbox" class="voir"/>#TITRE</div>	
-		<ul style="display:none">
+<h2 class="gestion_bouton"><i class="fa fa-edit"></i> #TITRE</H2><div class="vue_bouton">
+		<ul >
 		<BOUCLE_mots(MOTS){id_groupe}{par titre}>	
-				[(#SET{mot,[(#GET{mots}|table_valeur{#ID_MOT})]})]
-				[(#SET{flag,[(#GET{mot}|table_valeur{titre})]})]	
-			<li>
-				
-				<input type="checkbox" name="mot[#ID_MOT][titre]"  value="#TITRE" [(#GET{flag}|oui) checked ] />#TITRE
-				<input type="text" name="mot[#ID_MOT][taille]" size="3" value="[(#GET{mots}|table_valeur{#ID_MOT}|table_valeur{'taille'})]"  />px
+		#SET{mot,#GET{mots}|table_valeur{#ID_MOT}}
+		
+			<li>	
+				<input type="checkbox" name="mot[#ID_MOT][titre]"  value="#TITRE" [(#GET{mot}|table_valeur{titre}) checked ] />#TITRE
+				<input type="text" name="mot[#ID_MOT][taille]" size="3" value="[(#GET{mot}|table_valeur{taille}|?{#GET{mot}|table_valeur{taille},12})]"  />px
 			</li>
 
 		</BOUCLE_mots>	
@@ -64,16 +75,15 @@
 <fieldset>
 		<ul>		
 		<BOUCLE_art(ARTICLES){tous}>	
-			[(#SET{article,[(#GET{articles}|table_valeur{#ID_ARTICLE})]})]
-			[(#SET{flag,[(#GET{article}|table_valeur{titre})]})]	
+		#SET{article,#GET{articles}|table_valeur{#ID_ARTICLE}}	
 			<li>	
 			
-			<input type="checkbox" name="article[#ID_ARTICLE][titre]"  value="#TITRE" [(#GET{flag}|oui) checked ] />#TITRE
-			<input type="text" name="article[#ID_ARTICLE][taille]" size="3" value="[(#GET{articles}|table_valeur{#ID_ARTICLE}|table_valeur{'taille'})]"  />px
+			<input type="checkbox" name="article[#ID_ARTICLE][titre]"  value="#TITRE" [(#GET{article}|table_valeur{titre}) checked ] />#TITRE
+			<input type="text" name="article[#ID_ARTICLE][taille]" size="3" value="[(#GET{article}|table_valeur{taille}|?{#GET{article}|table_valeur{taille},12})]"  />px
 			
 			</li>
 		</BOUCLE_art>	
-		<input type="hidden" name="id_noisette" size="3" value="#ENV{id_noisette}" />
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
 		<input type='submit' name='ok' value='ok' />
 				
 		</ul>

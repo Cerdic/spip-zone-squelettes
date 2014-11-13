@@ -14,7 +14,7 @@ include_spip('inc/filtres');
 $f = chercher_filtre('info_plugin');
 $noiz_actif = $f("noizetier","est_actif");
 
-// Si pas noizetier, on crée ls constantes
+// Si pas noizetier, on crée les constantes
 if (!$noiz_actif) {
 	define('_CACHE_AJAX_NOISETTES', 'noisettes_ajax.php');
 	define('_CACHE_CONTEXTE_NOISETTES', 'noisettes_contextes.php');
@@ -205,7 +205,7 @@ function introduction ($type, $texte, $chapo='', $descriptif='') {
  *
  * TODO changer le nom du répertoire en noisettes (et réperctuer les changements)
 **/
-function melusine_liste_noisettes_dispo($type=""){
+function melusine_liste_noisettes_gabarit($type=""){
 	$type_casier = $type ? $type : "squelettes";
 	effacer_config("melusine_".$type_casier."/skel");
 	$sous_rep = $type ? $type."/" : "";
@@ -652,7 +652,7 @@ function melusine_nomgabarit($gabarit){
 }
 
 /**
- * Retourne la liste des gabarits disponiobles
+ * Retourne la liste des dispos disponibles
  * 
  * @return array
  *
@@ -660,6 +660,28 @@ function melusine_nomgabarit($gabarit){
 
 function melusine_listegabarits(){
 	return $GLOBALS['types_gabarits_melusine'];
+}
+
+/**
+ * Retourne la liste des dispositions disponibles
+ * 
+ * @return array
+ *
+**/
+
+function melusine_listedispositions(){
+	return $GLOBALS['types_dispositions_melusine'];
+}
+
+/**
+ * Retourne les adresses des images des dispositions disponibles
+ * 
+ * @return array
+ *
+**/
+
+function melusine_imagesdispositions(){
+	return $GLOBALS['images_dispositions_melusine'];
 }
 
 /**
@@ -674,6 +696,20 @@ function melusine_listegabarits(){
 function melusine_pages_du_gabarit($gabarit){
 	include_spip('inc/config');
 	return array_keys(lire_config('melusine_data/pages'),$gabarit);
+}
+
+/**
+ * Retourne la liste des pages qui utilisent la disposition passée en argument
+ *
+ * @param text $bloc nom abrégé du bloc
+ * 
+ * @return text joli nom du bloc
+ *
+**/
+
+function melusine_pages_avec_cette_dispo($dispo){
+	include_spip('inc/config');
+	return array_keys(lire_config('melusine_data/pages'),$dispo);
 }
 
 

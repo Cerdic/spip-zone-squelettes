@@ -29,7 +29,7 @@ function formulaires_melusine_uniformiser_bloc_charger_dist($bloc,$type="rubriqu
 	$valeurs = array(
 		"bloc" => $bloc,
 		"type" => $type,
-		"tableau_types" => $GLOBALS['types_gabarits_melusine']
+		"tableau_types" => $GLOBALS['types_dispos_melusine']
 	);
 	return $valeurs;
 
@@ -70,15 +70,15 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 	// Pas d'ajax...
 	// refuser_traiter_formulaire_ajax();
 
-	$gabarits = _request("gabarits");
+	$dispos = _request("dispos");
 	$liste_pages = array();
 
 	// On fait la liste des pages concernées
-	foreach($gabarits as $gabarit)
-		$liste_pages = array_merge($liste_pages,melusine_pages_du_gabarit($gabarit));
+	foreach($dispos as $dispo)
+		$liste_pages = array_merge($liste_pages,melusine_pages_du_dispo($dispo));
 
 
-	// on récupère les blocs du gabarit à uniformiser
+	// on récupère les blocs du dispo à uniformiser
 	$infos_modules_bloc= sql_allfetsel(
 		array(
 			"id_noisette",
@@ -109,7 +109,7 @@ function formulaires_melusine_uniformiser_bloc_traiter_dist($bloc,$type="rubriqu
 			);
 		if ($result === false)
 			return array("message_erreur" => "Échec lors de la vidange du bloc $bloc de la page $type...");
-		// on crée une copie pour chaque page des gabarits selectionnés
+		// on crée une copie pour chaque page des dispos selectionnés
 		foreach($infos_modules_bloc as $noisette_a_copier) {
 			$noisette_a_copier['type'] = $page;
 			unset($noisette_a_copier['id_noisette']);

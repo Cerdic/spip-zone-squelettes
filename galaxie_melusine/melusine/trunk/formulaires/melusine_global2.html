@@ -1,0 +1,109 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE POUR LE CHOIX DE LA DISPOSITION DE CHAQUE TYPE DE PAGE ******-->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- Création des variables ************************************************ -->
+#SET{gabarits,#ARRAY}
+#SET{pages,#ARRAY}
+
+<!-- Début du formulaire *************************************************** -->
+<form action='#ENV{action}' method='post'>
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+<!-- Titre ***************************************************************** -->
+	<h3>Structure Globale</h3> 
+
+<!-- *********************************************************************** -->
+<!-- Choix sur la largeur fluide ou fixe *********************************** -->
+<!-- *********************************************************************** -->
+
+	<fieldset>
+		<legend>Largeur</legend>
+		<ul>
+			<li>
+				<input 	type="radio" 
+						name="width"  
+						value="container-fluid" 
+						[(#CONFIG{melusine_data/width}=={container-fluid}|oui)
+						 checked="checked" ]/>
+				Largeur fluide
+			</li>
+			<li>
+				<input 	type="radio" 
+						name="width"  
+						value="container" 
+						[(#CONFIG{melusine_data/width}=={container}|oui) 
+						checked="checked" ] />
+				Largeur fixe
+			</li>
+		</ul>
+	</fieldset>
+
+<!-- *********************************************************************** -->
+<!-- Choix de la disposition pour chaque type de page ********************** -->
+<!-- *********************************************************************** -->
+
+	<fieldset>
+		<table>
+			<tr>
+				<th></th>
+<!-- Boucle pour récupérer toutes les dispositions possibles (en colonne) ** -->
+				<BOUCLE_for0(POUR){tableau #NOOP|melusine_listegabarits}>
+					#SET{nom_du_gabarit,#CLE}
+					#SET{descriptif_de_la_dispo,#VALEUR}
+<!-- Boucles pour récupérer l'adresse de l'image de cette disposition ****** -->
+					<BOUCLE_for1(POUR)
+						{tableau #CLE|melusine_listedispositions}>
+							[(#GET{descriptif_de_la_dispo}=={#VALEUR}|oui)
+								#SET{nom_de_la_dispo, #CLE}
+							]
+						<BOUCLE_for11(POUR)
+							{tableau #CLE|melusine_imagesdispositions}>
+								[(#GET{nom_de_la_dispo}=={#CLE}|oui)
+									#SET{adresse_im, #VALEUR}
+								]
+						</BOUCLE_for11>
+					</BOUCLE_for1>
+				<th>
+					<img 	src="#CHEMIN{#GET{adresse_im}}" 
+							border="0" align="center" 
+							width="75" height="75"
+							alt="#GET{descriptif_de_la_dispo}" 
+							title="#GET{descriptif_de_la_dispo}">
+				</th>
+				#SET{gabarits, #GET{gabarits}|push{#CLE}}
+<!-- Boucle pour récupérer toutes les pages ayant cette disposition ******** -->
+					<BOUCLE_for2(POUR)
+						{tableau #CLE|melusine_pages_du_gabarit}>
+							#SET{pages, #GET{pages}|push{#VALEUR}}
+					</BOUCLE_for2>
+				</BOUCLE_for0>	
+			</tr>
+
+<!-- Boucle pour récupérer tous les types de pages (en ligne) ************** -->
+			<BOUCLE_pages(POUR){tableau #GET{pages}}>
+				#SET{lapage,#VALEUR}
+				<tr>
+					<td>#VALEUR</td>
+<!-- Boucle pour savoir s'il faut cocher le bouton radio ******************* -->
+					<BOUCLE_dispos(POUR)
+						{tableau #NOOP|melusine_listegabarits}>
+						<td>
+							<input 	type="radio" 
+									name="#GET{lapage}" 
+									value="#CLE" 
+	[(#CONFIG{melusine_data/pages/#GET{lapage}}=={#CLE}|oui) checked=checked]
+							>
+						</td>
+					</BOUCLE_dispos>
+				</tr>
+			</BOUCLE_pages>
+		</table>
+	</fieldset>
+
+<!-- Fin du formulaire ***************************************************** -->
+	<input type='submit' name='ok' value='ok' />
+</form>
