@@ -1,55 +1,19 @@
 #CACHE{0}
-<a 	href=	"#URL_PAGE{edition_conf_globale}" 
-	class=	"spip-admin-boutons ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%"
-	id=		"melusine_voir_dispos">
-	Configurer la disposition
-</a>
-
 [(#PLUGIN{minibando}|non)
 	[(#SELF|match{voir=module}|non)
-		[	<a 	href=	"(#SELF	|parametre_url{voir,modules}
-								|parametre_url{var_mode,recalcul})" 
-				class=	"spip-admin-boutons" 
-				id=		"melusine_voir_modules">
-				Admin Mélusine
-			</a>
-		]
+		[<a href="(#SELF|parametre_url{voir,modules}|parametre_url{var_mode,recalcul})" class="spip-admin-boutons" id="melusine_voir_modules">Admin Mélusine</a>]
+	][(#SELF|match{voir=module}|oui)
+		[<a href="(#SELF|parametre_url{voir,''}|parametre_url{var_mode,recalcul})" class="spip-admin-boutons" id="melusine_voir_modules">Affichage public</a>]
 	]
-	[(#SELF|match{voir=module}|oui)
-		[	<a href=	"(#SELF	|parametre_url{voir,''}
-								|parametre_url{var_mode,recalcul})" 
-				class=	"spip-admin-boutons" 
-				id=		"melusine_voir_modules">
-				Affichage public
-			</a>
-		]
-	]
-]
-
-[(#PLUGIN{minibando}|oui)
+][(#PLUGIN{minibando}|oui)
 	<li id="minibando_noizetier">
 	[(#SELF|match{voir=module}|non)
-		[	<a 	href=	"(#SELF	|parametre_url{voir,modules}
-								|parametre_url{var_mode,recalcul})" 
-				id=		"melusine_voir_modules">
-				Admin Mélusine
-			</a>
-		]
-	]
-	[(#SELF|match{voir=module}|oui)
-		[	<a 	href=	"(#SELF	|parametre_url{voir,''}
-								|parametre_url{var_mode,recalcul})" 
-				id=		"melusine_voir_modules">
-				Affichage public
-			</a>
-		]
+		[<a href="(#SELF|parametre_url{voir,modules}|parametre_url{var_mode,recalcul})" id="melusine_voir_modules">Admin Mélusine</a>]
+	][(#SELF|match{voir=module}|oui)
+		[<a href="(#SELF|parametre_url{voir,''}|parametre_url{var_mode,recalcul})" id="melusine_voir_modules">Affichage public</a>]
 	]
 	<span> </span>
 	<ul>
-		<li>
-			<p>
-				[(#SELF|match{voir=modules}|?{Affichage public,Admin Mélusine})]
-			</p>
-		</li> 
+		<li><p>[(#SELF|match{voir=modules}|?{Affichage public,Admin Mélusine})]</p></li> 
 	</ul>
 ]
