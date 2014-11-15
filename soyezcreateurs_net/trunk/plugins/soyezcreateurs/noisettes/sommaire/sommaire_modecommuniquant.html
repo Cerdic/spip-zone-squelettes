@@ -53,6 +53,8 @@
 </div><!-- homequoideneuf -->
 </B_articles_QuoideNeuf>
 [(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)<INCLURE{fond=noisettes/agenda/homeagenda}>]]
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|!={extra}|oui)<INCLURE{fond=noisettes/sommaire/goodies}>]
+
 <div class="clearing"></div>
 </div><!-- homeSecondblock -->
 
@@ -70,21 +72,7 @@
 </div><!-- communiquant_content_central -->
 
 <div id="communiquant_content_extra">
-<BOUCLE_RubGoodies(RUBRIQUES){titre_mot=Goodies}{par num titre}>
-<B_Goodies>
-<div class="goodies">
-<h2 class="#EDIT{titre}"><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}{lang}><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}{lang}><a href="#ARTICLE_URL"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE"[ title="(#_RubGoodies:DESCRIPTIF|attribut_html)"]>#_RubGoodies:TITRE</a><//B_articles_unseul><//B_articles_plusdun></h2>
-<BOUCLE_Goodies(ARTICLES) {branche}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_goodies,5})}>
-<div class="goody">
-	[<div onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:>[ (#TITRE|attribut_html)]" style="cursor:pointer" class="#EDIT{titre} goody_ligne">[<img class="logo_goody" src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_reduire{48,48}|image_format{png}|image_recadre{48,48,top center,transparent}|extraire_attribut{src}|sinon{#CHEMIN{images/actualites.png}})" width="48" height="48" alt="" />](#TITRE)[<br /> 
-	(#CONFIG{soyezcreateurs/aff_datepublicationgoodies,on}|=={on}|oui)[(#DATE|affdate)]]
-	</div>]
-</div><!-- goody -->
-</BOUCLE_Goodies>
-</div><!-- goodies -->
-</B_Goodies>
-</BOUCLE_RubGoodies>
-
+[(#CONFIG{soyezcreateurs/positiongoodies,extra}|=={extra}|oui)[(#INCLURE{fond=noisettes/sommaire/goodies})]]
 [(#INCLURE{fond=noisettes/sommaire/video_alaune,largeurmax=[(#GET{Largeurcontent_extra}|moins{20})]})]
 
 <INCLURE{fond=noisettes/navigation/frmabonnementlettre,env}>
