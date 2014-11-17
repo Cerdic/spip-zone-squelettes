@@ -1,8 +1,4 @@
-#SET{nb,5}
-#SET{titre,"Focus"}
-#SET{mot,"focus"}
-#SET{style,"bloc_visible"}
-#SET{disposition,"col-md-12"}
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
@@ -11,6 +7,11 @@
 [(#PARAMETRES|unserialize|table_valeur{mot}|oui)#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}]
 [(#PARAMETRES|unserialize|table_valeur{mot}|non)#SET{mot,focus}]
 </BOUCLE_noisette>
+[(#GET{mot}|non)#SET{mot,focus}]
+[(#GET{nb}|non)#SET{nb,5}]
+[(#GET{titre}|non)#SET{titre,"Focus"}]
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
 
 
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
