@@ -1,0 +1,34 @@
+[(#REM)
+
+  Squelette Presentation resumee d'un article dans une liste
+  Distribue sous licence GPL
+
+]
+<BOUCLE_resume_article(ARTICLES) {id_article} {statut?}>
+#SET{titre,#TITRE}
+#SET{url,#URL_ARTICLE}
+<BOUCLE_resume_rubrique(RUBRIQUES){id_rubrique}{si #PLUGIN{article_accueil}}>
+[(#ID_ARTICLE_ACCUEIL|=={#_articles:ID_ARTICLE}|oui)
+	#SET{titre,#TITRE}
+	#SET{url,#URL_RUBRIQUE}
+]
+</BOUCLE_resume_rubrique>
+<article class="entry article hentry">
+	<strong class="entry-title">
+		<a href="#GET{url}" rel="bookmark">
+			[(#ENV{logo_rubrique,' '}|?{#LOGO_ARTICLE_RUBRIQUE,#LOGO_ARTICLE}|image_passe_partout{#ENV{largeur_logo,96},#ENV{hauteur_logo,96}}|image_recadre{#ENV{largeur_logo,96},#ENV{hauteur_logo,96}}|responsive_logo)]#GET{titre}
+		</a>
+	</strong>
+	<p class="publication">[<time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><i class="icon-calendar"></i> (#DATE|affdate_jourcourt)</time>]</p>
+	[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION{#ENV{coupe,200}})</div>]
+	<p class="postmeta">
+	<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+		<span class="comments">
+		<span class="sep">|</span>
+		<a[ href="(#URL_ARTICLE|ancre_url{comments})"] class="nb_commentaires" [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires}|attribut_html)"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+		</span>
+		]
+	<//B_nb_commentaires>
+	</p>
+</article>
+</BOUCLE_resume_article>
