@@ -10,7 +10,7 @@ cd extensions
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 sleep 15 && svn checkout https://github.com/Cerdic/video_accessible/trunk ./video_accessible/
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/player ./lecteur_multimedia/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/afficher_objets
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
@@ -87,6 +87,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip2pdf
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/splickrbox
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/thumbsites/branches/v0 ./thumbsites/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/twidget
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/horloge_flash
 cd ..
 
 #Création du dossier /lib et se placer dedans
@@ -118,6 +119,10 @@ rm kcfinder-2.51.zip
 wget https://github.com/downloads/brunob/mxn/mxn-gis-2.2.2.zip
 unzip mxn-gis-2.2.2.zip
 rm mxn-gis-2.2.2.zip
+# Pour le plugin Lecteur multimedia
+wget http://www.schillmania.com/projects/soundmanager2/download/soundmanagerv297a-20110123.zip
+unzip soundmanagerv297a-20110123.zip
+rm soundmanagerv297a-20110123.zip
 #retour à la racine
 cd ..
 
