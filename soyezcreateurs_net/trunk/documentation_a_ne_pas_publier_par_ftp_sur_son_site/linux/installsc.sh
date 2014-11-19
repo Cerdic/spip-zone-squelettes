@@ -10,7 +10,7 @@ cd extensions
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 sleep 15 && svn checkout https://github.com/Cerdic/video_accessible/trunk ./video_accessible/
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/player ./lecteur_multimedia/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/player/branches/lm_v2 ./lecteur_multimedia/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/afficher_objets
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
@@ -25,7 +25,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur/branche
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images/branches/v1 ./fonctions_images
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forum
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext/branches/v1 ./fulltext/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/iterateurs
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/job_queue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/jquery_ui
