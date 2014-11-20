@@ -2,7 +2,7 @@
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
-'eva_install_slogan' => 'Les mots-cl&#233; n&#233;cessaires &#224; l&#8217;utilisation d&#8217;eva-web',
+'eva_install_slogan' => 'Cr&#233;ation des mots cl&#233;s n&#233;cessaires &#224; l&#8217;utilisation d&#8217;Eva-web 4.2',
 'eva_install_description' => 'Permet de cr&#233;er les mots cl&#233;s n&#233;cessaires &agrave; l&#8217;utilisation du squelette eva-web
 et de g&#233;rer les informations li&#233;es &agrave; la page de mentions l&#233;gales.
 
