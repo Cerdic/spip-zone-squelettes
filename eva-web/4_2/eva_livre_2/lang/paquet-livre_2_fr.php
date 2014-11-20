@@ -4,7 +4,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'livre_2_slogan' => 'Publication d&#8217;une s&#233;rie d&#8217;articles sous forme de livre',
+'livre_2_slogan' => 'Une s&#233;rie d&#8217;articles sous forme de livre pour EVA-web 4.2',
 'livre_2_description' => '{{Int&#233;ret de ce plugin}}
 	
 - Publier les articles d&#8217;une rubrique sous forme de livre
