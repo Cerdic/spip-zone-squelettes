@@ -1,5 +1,6 @@
 <?php
 
+if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /*
  * #K_RVB{240,240,240,1,1,0.7}

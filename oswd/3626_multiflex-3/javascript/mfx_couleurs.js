@@ -94,9 +94,9 @@ function trouver_couleur(type, kr, kb, kv){
 	if (type=='dominante'){base = '#cccccc';}
 	if (type=='generale') {base = '#f6f6f6';}
 	
-	if (!kr && kr !== 0) {kr = parseFloat($("#mfx_coef_rouge").attr('value'));}
-	if (!kv && kv !== 0) {kv = parseFloat($("#mfx_coef_vert").attr('value'));}
-	if (!kb && kb !== 0) {kb = parseFloat($("#mfx_coef_bleu").attr('value'));}
+	if (!kr && kr !== 0) {kr = parseFloat($("#mfx_coef_rouge").prop('value'));}
+	if (!kv && kv !== 0) {kv = parseFloat($("#mfx_coef_vert").prop('value'));}
+	if (!kb && kb !== 0) {kb = parseFloat($("#mfx_coef_bleu").prop('value'));}
 	
 	
 	/*kv = parseFloat($("#mfx_coef_vert").attr('value'));
