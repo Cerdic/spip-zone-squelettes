@@ -11,14 +11,28 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 </BOUCLE_noisette>
+
+<!-- pas de défaut pour le titre afin de permettre une chaine vide -->
+[(#GET{nb}|non)#SET{nb,5}]
+[(#GET{style}|non)#SET{style,'bloc_visible'}]
+[(#GET{disposition}|non)#SET{disposition,'col-md-12'}]
+[(#GET{taille}|non)#SET{taille,50}]
+[(#GET{descriptif}|non)#SET{descriptif,"non"}]
+[(#GET{logo}|non)#SET{logo,"non"}]
+
 
 
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
 <!-- *********************************************************************** -->
-
 
 <BOUCLE_article_courant(ARTICLES) 	{id_article=#ID_ARTICLE}
 									{par num titre,titre}
@@ -27,26 +41,52 @@
 </BOUCLE_article_courant>
 
 
+
+
+
 <!-- *********************************************************************** -->
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
 <!-- *********************************************************************** -->
 
 
 <B_article>
-	[(#GET{style}|=={bloc_visible}|oui)
-		<div class="module_content bloc_visible">
+<div class="module_content #GET{style}">
+	[<h2> (#GET{titre}) </h2>]
+	[(#GET{disposition}|=={col-md-12}|non) 
+		<div class='row col1'>
 	]
-		<ul>
-			<BOUCLE_article(ARTICLES) 	{id_rubrique=#GET{rubrique}}
-										{par num titre,titre}
-										{par date}{inverse}{doublons}>
-				<li>
-					<i class="fa fa-caret-right "></i> 
-					<a href="#URL_ARTICLE">#TITRE</a>
-				</li>
-			</BOUCLE_article>
-		</ul>
-	[(#GET{style}|=={bloc_visible}|oui)
-		</div>
-	]
+<!--		<ul>
+-->
+	
+	<BOUCLE_article(ARTICLES) 	{id_rubrique=#GET{rubrique}}
+								{par num titre,titre}
+								{par date}{inverse}{doublons}>
+
+
+		[(#GET{disposition}|=={col-md-12}|oui)
+            [(#MODELE	{annonce_article}
+            			{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+        ]
+        [(#GET{disposition}|=={col-md-12}|non)
+        	[(#MODELE	{annonce_article_1col}
+        				{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+        ]
+
+<!--		<li>
+			<i class="fa fa-caret-right "></i>
+			<a href="#URL_ARTICLE">#TITRE</a>
+		</li>
+-->
+	</BOUCLE_article>
+
+
+
+
+
+<!--		</ul>
+-->
+	[(#GET{disposition}|=={col-md-12}|non) 
+		</div >
+	]		
+</div>
 </B_article>

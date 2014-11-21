@@ -6,30 +6,58 @@
 
 
 <!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{titre_docs,#PARAMETRES|unserialize|table_valeur{titre_docs}}
+	#SET{titre_imgs,#PARAMETRES|unserialize|table_valeur{titre_imgs}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+</BOUCLE_noisette>
+
+<!-- pas de défaut pour le titre_docs et titre_imgs afin de permettre une chaine vide -->
+[(#GET{style}|non)#SET{style,'bloc_visible'}]
+
+
+
+<!-- *********************************************************************** -->
 <!-- BOUCLE POUR RECUPERER ET AFFICHER LES DOCUMENTS LIES A L'ARTICLE ****** -->
 <!-- *********************************************************************** -->
 
 
 <B_documents_art>
-	<div class="module_content">
-		<h2> Documents</h2>        
+	<div class="module_content #GET{style}">
+	[<h2>(#GET{titre_docs})</h2>]
 <!-- Liens vers les documents joints, à l'exclusion des images ************* -->
 		<BOUCLE_documents_art(DOCUMENTS){id_article}
-						{extension !== jpg|png|gif}{mode=document}{doublons}>
+						{extension !== jpg|png|gif|tif|bmp}{mode=document}{doublons}>
 <!-- On affiche le logo, le titre, le descriptif, les crédits et la date *** -->
 <!-- Au clic, les documents sont téléchargés ******************************* -->
-			<ul>
-				<li>
-					<a href="#URL_DOCUMENT" >#LOGO_DOCUMENT</a>
-				</li>
-				[<li>  <a href="#URL_DOCUMENT">(#TITRE)</a></li>]
-				[<li>(#DESCRIPTIF)</li>]
-				[<li>(#CREDITS)</li>]
-				[<li>(#DATE|affdate)</li>]
-			</ul>
+			<div class="item">
+				<ul>
+					<li>
+						<a href="#URL_DOCUMENT">#LOGO_DOCUMENT</a>
+					</li>
+					[<li>  <a href="#URL_DOCUMENT">(#TITRE)</a></li>]
+					[<li>(#DESCRIPTIF|sinon{#FICHIER|basename})</li>]
+					[<li class="detail">(#CREDITS)</li>]
+					[<li class="detail">(#DATE|affdate)</li>]
+				</ul>
+			</div>
 		</BOUCLE_documents_art>
     </div>    
-</B_documents_art>                         
+</B_documents_art>
+	<!-- Si la liste est vide, seul l'admin voit un cadre spécial -->
+	<div class="module_content">
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Pas de documents joints à cet article.
+		</div>
+		]
+	</div>
+<//B_documents_art>
+
 
 
 <!-- *********************************************************************** -->
@@ -38,29 +66,40 @@
 
 
 <B_images_art>
-    <div class="module_content">
-		<h2> Images</h2>
+	<div class="module_content #GET{style}">
+	[<h2>(#GET{titre_imgs})</h2>]
 <!-- Liens vers les images jointes ***************************************** -->
         <BOUCLE_images_art(DOCUMENTS){id_article}
-        			{extension == jpg|png|gif}{mode=image}{doublons}>
+        			{extension == jpg|png|gif|tif|bmp}{mode=image}{doublons}>
 <!-- On affiche le logo, le titre, le descriptif, les crédits et la date *** -->
 <!-- Au clic, les images sont ouvertes dans une mediabox ******************* -->
-			<ul>
-				<li>
-					<a href="#URL_DOCUMENT" class="mediabox" title=#TITRE> 
-						#LOGO_DOCUMENT 
-					</a>
-				</li>
-				[<li>
-					<a href="#URL_DOCUMENT" class="mediabox" title=#TITRE> 
-						(#TITRE) 
-					</a>
-				</li>]
-				[<li>(#DESCRIPTIF)</li>]
-				[<li>(#CREDITS)</li>]
-				[<li>(#DATE|affdate)</li>]
-			</ul>
+			<div class="item">
+				<ul>
+					<li>
+						<a href="#URL_DOCUMENT" class="mediabox" title=#TITRE> 
+							#LOGO_DOCUMENT 
+						</a>
+					</li>
+					[<li>
+						<a href="#URL_DOCUMENT" class="mediabox" title=#TITRE> 
+							(#TITRE) 
+						</a>
+					</li>]
+					[<li>(#DESCRIPTIF|sinon{#FICHIER|basename})</li>]
+					[<li class="detail">(#CREDITS)</li>]
+					[<li class="detail">(#DATE|affdate)</li>]
+				</ul>
+			</div>
         </BOUCLE_images_art>
 <!-- Fin de la classe images *********************************************** -->
 	</div>
 </B_images_art>
+	<div class="module_content">
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Pas d'images jointes à cet article.
+		</div>
+		]
+	</div>
+<//B_images_art>
+

@@ -1,9 +1,32 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE FIL TWITTER **************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
 #SET{par_defaut,spip}
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{compte,#PARAMETRES|unserialize|table_valeur{compte}}
-#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+	#SET{compte,#PARAMETRES|unserialize|table_valeur{compte}}
+	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 </BOUCLE_noisette>
 
+[(#GET{nb}|non)#SET{nb,5}]
+[(#GET{style}|non)#SET{style,'bloc_visible'}]
+[(#GET{compte}|non)#SET{compte,'DANECreteil'}]
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE DES DONNEES ************************************************* -->
+<!-- *********************************************************************** -->
+
+<div class="module_content #GET{style}">
 [<h2> Fil twitter de <a href="http://twitter.com/#GET{compte}" title="Consulter le fil twitter">@(#GET{compte}|sinon{#GET{par_defaut}})</a></h2>]
 <B_json>
 #ANCRE_PAGINATION
@@ -29,3 +52,4 @@
 #PAGINATION
 </B_json>
 #FILTRE{trim}
+</div>

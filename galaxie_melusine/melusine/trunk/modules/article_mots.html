@@ -1,10 +1,43 @@
-<BOUCLE_article(ARTICLES){id_article=#ID_ARTICLE}>
-	#MODELE{article_mots}
-</BOUCLE_article>
-	<!-- Si la liste est vide, seul l'admin le voit -->
-	[(#SESSION{statut}|=={0minirezo}|oui)
-	<div class="module_content bloc_visible info">
-   		Cette page n'est pas reliée à un article.
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE FIL TWITTER **************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+</BOUCLE_noisette>
+
+[(#GET{titre}|non)#SET{titre,"Mots-clés"}]
+[(#GET{style}|non)#SET{style,'bloc_visible'}]
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE DES DONNEES ************************************************* -->
+<!-- *********************************************************************** -->
+
+
+<B_mots>
+	<div class="module_content article_mots #GET{style}">
+	[<h2>(#GET{titre})</h2>]
+		 <BOUCLE_mots(MOTS) {id_article} {par titre}>
+			<a href="#URL_MOT" rel="tag"> <img src=#CHEMIN{'images/tag.png'}>#TITRE  </a> 
+		</BOUCLE_mots>
 	</div>
-	]
-<//B_article>
+</B_mots>
+	<!-- Si la liste est vide, seul l'admin voit un cadre spécial -->
+	<div class="module_content">
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Pas de mot-clé lié à cet article.
+		</div>
+		]
+	</div>
+<//B_mots>
+
