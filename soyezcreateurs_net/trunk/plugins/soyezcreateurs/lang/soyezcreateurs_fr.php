@@ -62,6 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_label' => 'Zone d’affichage',
 	'cfg_goodies' => 'Goodies',
 	'cfg_videoalaune' => 'Video à la une',
+	'cfg_nouveautes' => 'Nouveautés',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Lister les documents joints à un articles dans les listes d’articles (centrales)',
 	'cfg_affichagelistedocuments_masquervus' => 'Ne pas afficher les documents insérés dans le contenu',
 	'cfg_affichagelistedocuments_noicon' => 'Ne pas afficher l’icone du document dans les listes',
