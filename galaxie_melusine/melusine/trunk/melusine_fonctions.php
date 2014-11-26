@@ -29,7 +29,7 @@ if (!$noiz_actif) {
 // correspondances entre gabarits et types-pages
 // TODO: déplacer dans le YAML d'init quand il fonctionnera
 include_spip('inc/config');
-ecrire_config('melusine_data/pages/breve','contenu');
+//ecrire_config('melusine_data/pages/breve','contenu');
 if (!lire_config('melusine_data/pages/sommaire')) {
 
 	// ecrire_config('melusine_data/pages/sommaire','accueil');
