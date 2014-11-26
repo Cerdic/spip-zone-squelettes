@@ -1,9 +1,9 @@
 #CACHE{0}
-
 #SET{blocs,#ARRAY}
+
 <BOUCLE_noisette(NOISETTES){bloc==^#BLOC}{type=#ENV{type}}>
-[(#BLOC|in_array{#GET{blocs}}|non)
- #SET{blocs, #GET{blocs}|push{#BLOC}}
+	[(#BLOC|in_array{#GET{blocs}}|non)
+ 		#SET{blocs, #GET{blocs}|push{#BLOC}}
 	]
 </BOUCLE_noisette>
 
@@ -11,26 +11,33 @@
 </br>
 <!-- -->
 
-[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
-	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 <form action='#ENV{action}' method='post'>
-
 		#ACTION_FORMULAIRE{#ENV{action}}
 
-
-<BOUCLE_blocs(DATA){source table,#GET{blocs}} {par valeur}	>
-<fieldset>	
-		<label for="#VALEUR">Largeur du bloc #VALEUR</label>
-		<input type='text' name='#VALEUR' value="#CONFIG{melusine_data/#ENV{type}/#VALEUR/largeur}" />
-</fieldset>
-</BOUCLE_blocs>
+	<p>La somme de vos largeurs doit être égale à 12.</p>
+	<BOUCLE_blocs(DATA){source table,#GET{blocs}} {par valeur}>
+		<fieldset>	
+			<!-- <label for="#VALEUR">Largeur du bloc #VALEUR</label> -->
+			Largeur de la colonne #COMPTEUR_BOUCLE -->
+			<input type='text' name='#VALEUR' 
+					value="#CONFIG{melusine_data/#ENV{type}/#VALEUR/largeur}" />
+		</fieldset>
+	</BOUCLE_blocs>
 	
 
-<input type='hidden' name='blocs' value=[(#GET{blocs}|serialize)] />
-<input type='hidden' name='bloc' value=[(#BLOC)] />
-<input type='hidden' name='type' value=[(#ENV{type})] />
+	<input type='hidden' name='blocs' value=[(#GET{blocs}|serialize)] />
+	<input type='hidden' name='bloc' value=[(#BLOC)] />
+	<input type='hidden' name='type' value=[(#ENV{type})] />
 
-		<input type='submit' name='ok' value='ok' />
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">
+		(#ENV**{message_ok})
+	</p>]
+
+	[<p class="reponse_formulaire reponse_formulaire_erreur">
+		(#ENV*{message_erreur})
+	</p>]
+
+	<input type='submit' name='ok' value='ok' />
 		
-
-	</form>
+</form>
