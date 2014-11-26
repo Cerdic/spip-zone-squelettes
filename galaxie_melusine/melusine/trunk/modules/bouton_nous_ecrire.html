@@ -12,7 +12,7 @@
 
 <!-- On récupère le nom choisi dans la liste dans SET{param} -->
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
-#SET{param,#PARAMETRES|unserialize}
+	#SET{param,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
 <!-- On récupère le style choisi : bloc visible ou invisible -->
@@ -37,18 +37,15 @@
 
 <!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
-
-		
-[(#GET{style}|=={bloc_visible}|oui)
-	<div class="module_content bloc_visible">
-]
-		<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
-				<span class="logo-titre">
-					<i class="fa fa-envelope"></i>
-					Nous écrire
-				</span>
-		</a>
-[(#GET{style}|=={bloc_visible}|oui)
-	</div>
-]
+	[(#GET{style}|=={bloc_visible}|oui)
+		<div class="module_content bloc_visible">
+	]
+			<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
+			<span class="logo-titre">
+				<i class="fa fa-envelope"> Nous écrire</i>
+			</span>
+			</a>
+	[(#GET{style}|=={bloc_visible}|oui)
+		</div>
+	]
 </BOUCLE_identifiantdudestinataire>
