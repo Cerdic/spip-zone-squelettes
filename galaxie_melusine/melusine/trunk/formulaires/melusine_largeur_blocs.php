@@ -16,11 +16,11 @@ function formulaires_melusine_largeur_blocs_verifier(){
 	$somme=0;
 
 	foreach($blocs as $bloc){
-		if(is_int($bloc))
+		if(is_numeric(_request($bloc)) && _request($bloc)==(int)_request($bloc))
 			{
 				$somme+=_request($bloc);
 			}
-		elseif(!is_int($bloc))
+		else
 			{	
 				$erreurs[]="pas nombre entier";
 				$txt_erreur ="Il faut des valeurs entières !";
@@ -40,26 +40,36 @@ function formulaires_melusine_largeur_blocs_verifier(){
 	// $gauche=lire_config("melusine_squelettes/g");
 	
 	
-	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) ){$erreurs['style'] ="<span style='color:red'>La colonne droite  doit &ecirc;tre vide</span>"	;};
-	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) ){$erreurs['style'] ="<span style='color:red'>La colonne gauche doit &ecirc;tre vide</span>"	;};
-	if (count($erreurs))
-		$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
-	return $erreurs;
+	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) )
+	//{$erreurs['style'] ="<span style='color:red'>La colonne droite  
+	//doit &ecirc;tre vide</span>"	;};
+	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) )
+	//{$erreurs['style'] ="<span style='color:red'>La colonne gauche 
+	//doit &ecirc;tre vide</span>"	;};
 
-	if($somme>12){
-		$erreurs[]=" somme > 12";
-		$txt_erreur =" La somme des colonnes est égale à ".$somme;
-		$txt_erreur.=" C'est supérieur au nombre autorisé : 12";
-	}
-	if($somme<12){
-		$erreurs[]=" somme > 12";
-		$txt_erreur =" La somme des colonnes est égale à ".$somme;
-		$txt_erreur.=" C'est inférieur au nombre autorisé : 12";
-	}
-
-	if (count($erreurs))
-		$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
+	if (count($erreurs)==0)
+		{
+			if($somme>12)
+				{
+					$erreurs[]=" somme > 12";
+					$txt_erreur =" La somme des colonnes est égale à ".$somme;
+					$txt_erreur.=" C'est supérieur au nombre autorisé : 12";
+				}
+			if($somme<12)
+				{
+					$erreurs[]=" somme > 12";
+					$txt_erreur =" La somme des colonnes est égale à ".$somme;
+					$txt_erreur.=" C'est inférieur au nombre autorisé : 12";
+					
+				}
+		}
+	$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
 	return $erreurs;
+	
+
+	//if (count($erreurs))
+	//	$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
+	//return $erreurs;
 }
 
 
