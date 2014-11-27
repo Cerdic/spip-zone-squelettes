@@ -14,20 +14,17 @@ function formulaires_melusine_largeur_blocs_verifier(){
 	$blocs=unserialize(_request('blocs'));
 	
 	$somme=0;
+
 	foreach($blocs as $bloc){
-		
-		$somme+=_request($bloc);
-	}
-	
-	if($somme>12){
-		$erreurs[]=" somme > 12";
-		$txt_erreur =" La somme des colonnes est égale à ".$somme;
-		$txt_erreur.=" C'est supérieur au nombre autorisé : 12";
-	}
-	if($somme<12){
-		$erreurs[]=" somme > 12";
-		$txt_erreur =" La somme des colonnes est égale à ".$somme;
-		$txt_erreur.=" C'est inférieur au nombre autorisé : 12";
+		if(is_int($bloc))
+			{
+				$somme+=_request($bloc);
+			}
+		elseif(!is_int($bloc))
+			{	
+				$erreurs[]="pas nombre entier";
+				$txt_erreur ="Il faut des valeurs entières !";
+			}
 	}
 
 	// verifier que les champs obligatoires sont bien la :
@@ -45,6 +42,21 @@ function formulaires_melusine_largeur_blocs_verifier(){
 	
 	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) ){$erreurs['style'] ="<span style='color:red'>La colonne droite  doit &ecirc;tre vide</span>"	;};
 	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) ){$erreurs['style'] ="<span style='color:red'>La colonne gauche doit &ecirc;tre vide</span>"	;};
+	if (count($erreurs))
+		$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
+	return $erreurs;
+
+	if($somme>12){
+		$erreurs[]=" somme > 12";
+		$txt_erreur =" La somme des colonnes est égale à ".$somme;
+		$txt_erreur.=" C'est supérieur au nombre autorisé : 12";
+	}
+	if($somme<12){
+		$erreurs[]=" somme > 12";
+		$txt_erreur =" La somme des colonnes est égale à ".$somme;
+		$txt_erreur.=" C'est inférieur au nombre autorisé : 12";
+	}
+
 	if (count($erreurs))
 		$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
 	return $erreurs;
