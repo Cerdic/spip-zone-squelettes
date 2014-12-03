@@ -24,28 +24,9 @@ function formulaires_melusine_largeur_blocs_verifier(){
 			{	
 				$erreurs[]="pas nombre entier";
 				$txt_erreur ="Il faut des valeurs entières !";
+				$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
 			}
 	}
-
-	// verifier que les champs obligatoires sont bien la :
-	//foreach(array('pos1','pos2','pos3','pos4','pos5') as $obligatoire)
-	//	if (_request($style)) $erreurs[$obligatoire] = 'Ce champ est obligatoire';
-	
-	// verifier que si un email a été saisi, il est bien valide :
-	//include_spip('inc/filtres');
-	//if (_request('email') AND !email_valide(_request('email')))
-	//	$erreurs['email'] = 'Cet email n\'est pas valide';
-
-	// $style=_request('style');
-	// $gauche=lire_config("melusine_squelettes/g");
-	
-	
-	// if($style=="layout2.css" and melusine_colonne_pasvide($droite) )
-	//{$erreurs['style'] ="<span style='color:red'>La colonne droite  
-	//doit &ecirc;tre vide</span>"	;};
-	// if($style=="layout3.css" and melusine_colonne_pasvide($gauche) )
-	//{$erreurs['style'] ="<span style='color:red'>La colonne gauche 
-	//doit &ecirc;tre vide</span>"	;};
 
 	if (count($erreurs)==0)
 		{
@@ -53,23 +34,20 @@ function formulaires_melusine_largeur_blocs_verifier(){
 				{
 					$erreurs[]=" somme > 12";
 					$txt_erreur =" La somme des colonnes est égale à ".$somme;
-					$txt_erreur.=" C'est supérieur au nombre autorisé : 12";
+					$txt_erreur.=". C'est supérieur au nombre autorisé : 12";
+					$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
 				}
-			if($somme<12)
+			elseif($somme<12)
 				{
 					$erreurs[]=" somme > 12";
 					$txt_erreur =" La somme des colonnes est égale à ".$somme;
-					$txt_erreur.=" C'est inférieur au nombre autorisé : 12";
-					
+					$txt_erreur.=". C'est inférieur au nombre autorisé : 12";
+					$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
 				}
 		}
-	$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
-	return $erreurs;
 	
+	return $erreurs;
 
-	//if (count($erreurs))
-	//	$erreurs['message_erreur'] = utf8_encode($txt_erreur) ;
-	//return $erreurs;
 }
 
 
