@@ -33,7 +33,7 @@ function urls_generer_url_article_dist($id, $args, $ancre){
 function placeholder($texte,$p=true){
 	if (!$texte
 		AND !strlen($texte)
-		AND $GLOBALS['visiteur_session']['statut']=='0minirezo'){
+		AND (isset($GLOBALS['visiteur_session']['statut']) AND $GLOBALS['visiteur_session']['statut']=='0minirezo')){
 		$texte = "<i class='mute' title='Inserer un texte'>¤</i>";
 		if ($p)
 			$texte = "<p class='placeholder muted'>$texte</p>";
