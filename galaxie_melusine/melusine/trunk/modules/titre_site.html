@@ -1,3 +1,33 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE TITRE DU SITE  ******************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+</BOUCLE_noisette>
+<!-- par défaut : fond invisible, centré dans sa noisette -->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+<!-- Un seul titre de site, donc pas d'item multibloc -->
+
 #CACHE{3600*24*50}
 
-<h1>#NOM_SITE_SPIP</h1>
+<div class="[(#GET{style})] [(#GET{alignement})]">
+	<h1>#NOM_SITE_SPIP</h1>
+</div>
+
+

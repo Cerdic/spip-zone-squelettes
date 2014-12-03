@@ -1,16 +1,42 @@
-#SET{logocreteil,oui}
-#SET{logoeducnat,oui}
-<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{logocreteil,#PARAMETRES|unserialize|table_valeur{logocreteil}}
-#SET{logoeducnat,#PARAMETRES|unserialize|table_valeur{logoeducnat}}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE LOGOS ACADEMIQUES  **************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
 
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+	#SET{logocreteil,#PARAMETRES|unserialize|table_valeur{logocreteil}}
+	#SET{logoeducnat,#PARAMETRES|unserialize|table_valeur{logoeducnat}}
 </BOUCLE_noisette>
-[(#GET{logoeducnat}|oui)
-<a   href="http://www.education.gouv.fr/" target=_"blank">	
-	<img src="IMG/config/boutons/g286.png">
-</a> ]
-[(#GET{logocreteil}|oui)
-<a  href="http://www.ac-creteil.fr" target=_"blank">	
-	<img src="IMG/config/boutons/g86.png">
-</a> ]
-		
+<!-- par défaut : fond invisible, logo centré dans sa noisette-->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+[(#GET{logocreteil}|non)#SET{logocreteil,'affiche'}]
+[(#GET{logoeducnat}|non)#SET{logoeducnat,'affiche'}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+
+<div class="[(#GET{style})]">
+	[(#GET{logoeducnat}|=={'affiche'}|oui)
+	<div class="[(#GET{style}|=={multibloc}|oui) item multibloc] bouton [(#GET{alignement})]">
+		<a href="http://www.education.gouv.fr" target=_"blank"><img src="IMG/config/boutons/g286.png"></a>
+	</div>
+	]
+
+	[(#GET{logocreteil}|=={'affiche'}|oui)
+	<div class="[(#GET{style}|=={multibloc}|oui) item multibloc] bouton [(#GET{alignement})]">
+		<a  href="http://www.ac-creteil.fr" target=_"blank"><img src="IMG/config/boutons/g86.png"></a>
+	</div>
+	]
+</div>

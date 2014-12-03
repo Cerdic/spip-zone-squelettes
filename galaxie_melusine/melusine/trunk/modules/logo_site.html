@@ -1,6 +1,28 @@
-<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
-#SET{params,#PARAMETRES|unserialize}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE LOGO DU SITE ********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
 </BOUCLE_noisette>
-<div class="bouton [(#GET{params}|table_valeur{style})]">
-[<a href="#URL_SITE_SPIP"> (#LOGO_SITE_SPIP||image_reduire{200,200}|)</a>]
+<!-- par défaut : fond invisible, logo centré dans sa noisette-->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+<!-- Un seul logo de site, donc pas d'item multibloc -->
+<div class="bouton [(#GET{style})] [(#GET{alignement})]">
+	[<a href="#URL_SITE_SPIP"> (#LOGO_SITE_SPIP||image_reduire{200,200}|)</a>]
 </div>
