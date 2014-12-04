@@ -966,4 +966,9 @@ if (!function_exists('rainette_afficher_icone')) {
 	}
 }
 
+function sc_rgb($couleurs) {
+	include_spip('inc/filtres_images_lib_mini'); // par precaution
+	$couleurs = _couleur_hex_to_dec($couleurs);
+	return $couleurs["red"] .", ". $couleurs["green"]  .", ". $couleurs["blue"];
+}
 ?>
