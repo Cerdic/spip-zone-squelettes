@@ -72,7 +72,8 @@ if (!lire_config('melusine_data/pages/sommaire')) {
 
 
 
-function hauteur_majoree($img) {
+function hauteur_majoree($img) 
+{
     if (!$img) return;
     include_spip('logos.php');
     list ($h,$l) = taille_image($img);
@@ -80,6 +81,9 @@ function hauteur_majoree($img) {
     return $h;
 }
 // FIN du Filtre : hauteur_majoree
+
+
+
 
 // ===================================================
 // Filtre : typo_couleur
@@ -92,8 +96,8 @@ function hauteur_majoree($img) {
 //  - pour le webmaster : [(#TEXTE|couleur)]
 // ===================================================
 //
-function typo_couleur($texte) {
-
+function typo_couleur($texte) 
+{
     // Variables personnalisables par l'utilisateur
     $typo_couleur_active = 'oui';
     // --> Activation ou désactivation de la fonction
@@ -143,14 +147,16 @@ function typo_couleur($texte) {
     $supprime = "\\2";
 
 
-    if ($typo_couleur_active == 'non') {
-        $texte = preg_replace($recherche, $supprime, $texte);
-    }
-    else {
-        $texte = preg_replace($recherche, $remplace, $texte);
-    }
+    if ($typo_couleur_active == 'non') 
+    	{	$texte = preg_replace($recherche, $supprime, $texte);    }
+    else 
+    	{	$texte = preg_replace($recherche, $remplace, $texte);    }
     return $texte;
 }
+
+
+
+
 
 // ===================================================
 // Balise : #INTRODUCTION (surcharge)
@@ -161,8 +167,8 @@ function typo_couleur($texte) {
 //                   taille en nombre de caractère
 // ===================================================
 //
-function introduction ($type, $texte, $chapo='', $descriptif='') {
-
+function introduction ($type, $texte, $chapo='', $descriptif='') 
+{
     // Personnalisable par l'utilisateur
     $taille_intro_article = 600;
     $taille_intro_breve = 300;
@@ -176,7 +182,7 @@ function introduction ($type, $texte, $chapo='', $descriptif='') {
             else if (substr($chapo, 0, 1) == '=')   // article virtuel
                 return '';
             else
-                return PtoBR(propre(supprimer_tags(couper_intro($chapo."\n\n\n".$texte, $taille_intro_article))));
+            	return PtoBR(propre(supprimer_tags(couper_intro($chapo."\n\n\n".$texte, $taille_intro_article))));
             break;
         case 'breves':
             return PtoBR(propre(supprimer_tags(couper_intro($texte, $taille_intro_breve))));
@@ -205,7 +211,8 @@ function introduction ($type, $texte, $chapo='', $descriptif='') {
  *
  * TODO changer le nom du répertoire en noisettes (et réperctuer les changements)
 **/
-function melusine_liste_noisettes_gabarit($type=""){
+function melusine_liste_noisettes_gabarit($type="")
+{
 	$type_casier = $type ? $type : "squelettes";
 	effacer_config("melusine_".$type_casier."/skel");
 	$sous_rep = $type ? $type."/" : "";
@@ -579,10 +586,13 @@ function melusine_obtenir_infos_noisettes() {
 	return $noisettes;
 }
 
+
+
+
+//****************************************************************************//
 /**
  * Fork du filtre table_valeur: pour pouvoir utiliser des clé avec des "/"
- * permet de recuperer la valeur d'une cle donnee
- * dans un tableau (ou un objet).
+ * permet de recuperer la valeur d'une cle donnee dans un tableau (ou un objet).
  * 
  * @param mixed $table
  * 		Tableau ou objet
@@ -599,22 +609,34 @@ function melusine_obtenir_infos_noisettes() {
  * 
  * @return mixed Valeur trouvee ou valeur par defaut.
 **/
-function table_valeur_cleslash($table, $cle, $defaut='') {
-	foreach (explode('!', $cle) as $k) {
+//****************************************************************************//
 
+function table_valeur_cleslash($table, $cle, $defaut='') 
+{
+	foreach (explode('!', $cle) as $k) 
+	{
 		$table = is_string($table) ? @unserialize($table) : $table;
 
-		if (is_object($table)) {
-			$table =  (($k !== "") and isset($table->$k)) ? $table->$k : $defaut;
-		} elseif (is_array($table)) {
-			$table = isset($table[$k]) ? $table[$k] : $defaut;
-		} else {
-			$table = $defaut;
-		}
+		if (is_object($table)) 
+			{
+		$table =  (($k !== "") and isset($table->$k)) ? $table->$k : $defaut;
+			} 
+		elseif (is_array($table)) 
+			{
+				$table = isset($table[$k]) ? $table[$k] : $defaut;
+			}
+		else 	
+			{
+				$table = $defaut;
+			}
 	}
 	return $table;
 }
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne le joli nom d'un bloc passé en argument
  *
@@ -623,18 +645,30 @@ function table_valeur_cleslash($table, $cle, $defaut='') {
  * @return text joli nom du bloc
  *
 **/
+//****************************************************************************//
 
-function melusine_nombloc($bloc){
+function melusine_nombloc($bloc)
+{
 	$fin_nom_col = strrpos($bloc,"-col");
 	if ($fin_nom_col === false)
-		return $GLOBALS['noms_z_blocs'][$bloc];
+		{
+			return $GLOBALS['noms_z_blocs'][$bloc];
+		}
 	if (strripos($bloc,"3",$fin_nom_col))
-		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 3";
+		{
+return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 3";
+		}
 	if (strripos($bloc,"2",$fin_nom_col))
-		return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 2";
+		{
+return $GLOBALS['noms_z_blocs'][substr($bloc,0,$fin_nom_col)]." colonne 2";
+		}
 	return "Pas de nom";
 }
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne le joli nom d'un gabarit passé en argument
  *
@@ -643,47 +677,66 @@ function melusine_nombloc($bloc){
  * @return text joli nom du gabarit
  *
 **/
+//****************************************************************************//
 
-function melusine_nomgabarit($gabarit){
+function melusine_nomgabarit($gabarit)
+{
 	$return = "Pas de nom";
 	$glob = $GLOBALS['types_gabarits_melusine'][$gabarit];
-	if ($glob) $return = $glob;
+	if ($glob) 
+		{	$return = $glob;	}
 	return $return;
 }
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne la liste des dispos disponibles
  * 
  * @return array
  *
 **/
+//****************************************************************************//
 
-function melusine_listegabarits(){
-	return $GLOBALS['types_gabarits_melusine'];
-}
+function melusine_listegabarits()
+{	return $GLOBALS['types_gabarits_melusine'];		}
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne la liste des dispositions disponibles
  * 
  * @return array
  *
 **/
+//****************************************************************************//
 
-function melusine_listedispositions(){
-	return $GLOBALS['types_dispositions_melusine'];
-}
+function melusine_listedispositions()
+{	return $GLOBALS['types_dispositions_melusine'];	}
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne les adresses des images des dispositions disponibles
  * 
  * @return array
  *
 **/
+//****************************************************************************//
 
-function melusine_imagesdispositions(){
-	return $GLOBALS['images_dispositions_melusine'];
-}
+function melusine_imagesdispositions()
+{	return $GLOBALS['images_dispositions_melusine'];	}
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne la liste des pages qui utilisent un layout passé en argument
  *
@@ -692,12 +745,18 @@ function melusine_imagesdispositions(){
  * @return text joli nom du bloc
  *
 **/
+//****************************************************************************//
 
-function melusine_pages_du_gabarit($gabarit){
+function melusine_pages_du_gabarit($gabarit)
+{
 	include_spip('inc/config');
 	return array_keys(lire_config('melusine_data/pages'),$gabarit);
 }
 
+
+
+
+//****************************************************************************//
 /**
  * Retourne la liste des pages qui utilisent la disposition passée en argument
  *
@@ -706,13 +765,18 @@ function melusine_pages_du_gabarit($gabarit){
  * @return text joli nom du bloc
  *
 **/
+//****************************************************************************//
 
-function melusine_pages_avec_cette_dispo($dispo){
+function melusine_pages_avec_cette_dispo($dispo)
+{
 	include_spip('inc/config');
 	return array_keys(lire_config('melusine_data/pages'),$dispo);
 }
 
 
+
+
+//****************************************************************************//
 /**
  * Retourne la liste des modules qui sont autorisés pour un bloc donné
  *
@@ -722,47 +786,139 @@ function melusine_pages_avec_cette_dispo($dispo){
  * @return array liste des modules avec les infos attenantes
  *
 **/
+//****************************************************************************//
 
-function melusine_liste_modules_autorises($bloc,$type="rubrique"){
-	$colonne=strpos($bloc,"-col");
-	if($colonne>0)
-		$bloc=substr($bloc,0,$colonne);
+function melusine_liste_modules_autorises($bloc,$type="rubrique")
+{
+	// On crée un tableau pour lister les résultats
 	$liste_finale = array();
+	// On liste tous les modules existants
 	$liste_complete = melusine_lister_noisettes();
 
-	// On nettoie bloc pour que ça marche quelle que
-	// soit la colonne
+	// On nettoie bloc pour que ça marche quelque soit la colonne
+	// $colonne = position de la chaîne de caractères -col dans $bloc
 	$colonne = strrpos($bloc,"-col");
+	// On ne garde que ce qui précède le -col
 	if ($colonne > 0)
-		$bloc = substr($bloc,0,$colonne);
+		{$bloc = substr($bloc,0,$colonne);}
 
-	// Pour chaque module...
-	foreach($liste_complete as $module => $infos_module) {
+	// Pour chaque module de la liste, on récupère les infos du YAML
+	foreach($liste_complete as $module => $infos_module) 
+	{
+		// Si $infos_modules ne l'est pas déjà, on le met sous forme de tableau
 		if (!is_array($infos_module))
 			$infos_module = (array)$infos_module;
 			
-		// Si pas de bloc blocs_autorises
-		// alors, c'est autorisé partout
+		// Si pas de bloc blocs_autorises alors, c'est autorisé partout
 		// (compat noizetier et Mélusine 1/DATICE)
-		if (!$infos_module["blocs_autorises"]) {
-			$liste_finale[$module] = $infos_module;
-		} elseif (in_array($bloc,$infos_module["blocs_autorises"])){
-			// Sinon on vérifie que le module est autorisé
-			$liste_finale[$module] = $infos_module;
-		} elseif (
-			$bloc=="content"
-			AND in_array($type,$infos_module["blocs_autorises"])
-			) {
-			// Cas des blocs "content" désignés directement par le type page
-			$liste_finale[$module] = $infos_module;
-		}
-		
+
+		// Si la liste des blocs autorisés est vide, 
+		// on ajoute le module à la liste finale
+		if (!$infos_module["blocs_autorises"]) 
+			{	$liste_finale[$module] = $infos_module;		} 
+
+		// Sinon on vérifie que le module est autorisé pour ce bloc avant 
+		// d'ajouter le module à la liste finale
+		elseif (in_array($bloc,$infos_module["blocs_autorises"]))
+			{	$liste_finale[$module] = $infos_module;		} 
+
+		// Cas des blocs "content" désignés directement par le type page
+		elseif ($bloc=="content" 
+				AND in_array($type,$infos_module["blocs_autorises"])) 
+			{	$liste_finale[$module] = $infos_module;		}
 	}
 	
+	// On retourne la liste des modules autorisés dans $bloc
 	return $liste_finale;
 }
+
+
+
+
+//****************************************************************************//
 /**
- * Retourne la liste des modules passé en param triée en séprant
+ * Retourne la liste des modules qui sont interdits pour un bloc donné
+ *
+ * @param text $bloc nom du bloc
+ * @param text $type type de page (par défaut: rubrique)
+ * 
+ * @return array liste des modules avec les infos attenantes
+ *
+**/
+//****************************************************************************//
+
+function melusine_liste_modules_interdits($bloc,$type="rubrique")
+{
+	// On crée un tableau pour lister les modules interdits
+	$liste_noire = array();
+	// On liste tous les modules existants
+	$liste_complete = melusine_lister_noisettes();
+	// On crée un tableau avec les modules autorisés
+	$liste_blanche = melusine_liste_modules_autorises($bloc,$type);
+
+	// On nettoie bloc pour que ça marche quelque soit la colonne
+	// $colonne = position de la chaîne de caractères -col dans $bloc
+	$colonne = strrpos($bloc,"-col");
+	// On ne garde que ce qui précède le -col
+	if ($colonne > 0)
+		{$bloc = substr($bloc,0,$colonne);}
+
+	// On isole que la première dimension du tableau liste_complete
+	foreach($liste_complete as $aV)
+		{	$aTmp1[] = $aV['nom'];	}
+	// On isole que la première dimension du tableau liste_blanche
+	foreach($liste_blanche as $aV)
+		{    $aTmp2[] = $aV['nom'];}
+	// liste noire = liste complète - liste blanche
+	// On soustrait les deux pour obtenir la liste noire
+	$new_array= array_diff($aTmp1,$aTmp2);
+	
+
+	//$liste_noire=array_diff($liste_complete,$liste_blanche);
+	//Pour chaque module de la liste, on récupère les infos du YAML
+	//foreach($liste_complete as $module => $infos_module) 
+		//{	
+			//$module_avec_crochets="[".$module."]";
+			//if (in_multi_array($infos_module['nom'], $new_array))
+	 		//{$liste_noire[$module] = $infos_module;}
+		//}
+	// On retourne la liste des modules interdits dans $bloc
+	return $new_array;
+
+}
+
+function in_multi_array($value, $array)
+{   
+    foreach ($array as $key => $item)
+    {       
+        // Item is not an array
+        if (!is_array($item))
+        {
+            // Is this item our value?
+            if ($item == $value) {return true;print_r(coucou);}
+        }
+        
+        // Item is an array
+        else
+        {
+            // See if the array name matches our value
+            //if ($key == $value) return true;
+            
+            // See if this array matches our value
+            if (in_array($value, $item)) {return true;print_r(coucou);}
+            
+            // Search this array
+            else if (in_multi_array($value, $item)) {return true;print_r(coucou);}
+        }
+    }
+    
+    // Couldn't find the value in array
+    return false;
+}
+
+//****************************************************************************//
+/**
+ * Retourne la liste des modules passé en paramètre triée en séparant
  *  les modules "uniques" des autres
  *
  * @param text $liste_modules
@@ -773,18 +929,28 @@ function melusine_liste_modules_autorises($bloc,$type="rubrique"){
  *	uniques => une liste, multiples => l'autre
  *
 **/
+//****************************************************************************//
 
-function melusine_trier_uniques($liste_modules){
+function melusine_trier_uniques($liste_modules)
+{	// On scinde la liste des modules en deux sous-tableaux
 	$liste_finale = array("uniques" => array(),"multiples" => array());
 
-	// Pour chaque module...
-	foreach($liste_modules as $module => $infos_module) {
+	// Pour chaque module de la liste, on récupère les infos du YAML
+	foreach($liste_modules as $module => $infos_module) 
+		{
+			// Par défaut, $unique_ou_non a comme valeur "multiples"
 			$unique_ou_non = "multiples";
-		if ($infos_module["unique"] == "oui")
-			$unique_ou_non = "uniques";
-		$liste_finale[$unique_ou_non][$module] = $infos_module;
-	}
+
+			// Si le module a été défini comme unique
+			if ($infos_module["unique"] == "oui")
+				// $unique_ou_non a pour nouvelle valeur "uniques"
+				{$unique_ou_non = "uniques";}
+			
+			// On met le module dans le bon sous-tableau
+			$liste_finale[$unique_ou_non][$module] = $infos_module;
+		}
 	
+	// On retourne la liste des modules triés : uniques et multiples
 	return $liste_finale;
 }
 

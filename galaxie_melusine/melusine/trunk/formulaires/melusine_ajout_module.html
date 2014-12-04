@@ -1,41 +1,40 @@
 #FILTRE{ŧrim}
-[(#REM)
-	On récupère la liste des modules dispos, triés par unicité
-]
 
+[(#REM) On récupère la liste des modules autorisés pour ce bloc]
 [(#SET{modules_dispo,
-	[(#BLOC|melusine_liste_modules_autorises{#TYPE}|sinon{#ARRAY})]})]
-	
+	[(#BLOC|melusine_liste_modules_autorises{#TYPE}|sinon{#ARRAY})]}
+)]
+
+[(#REM) On récupère la liste des modules interdits pour ce bloc]
+[(#SET{modules_interdits,
+	[(#BLOC|melusine_liste_modules_interdits{#TYPE}|sinon{#ARRAY})]}
+)]
+
+[(#REM) On trie les modules autorisés : unique ou multiple]
 [(#SET{modules_dispo_tries,
-	[(#GET{modules_dispo}|melusine_trier_uniques)]})]
+	[(#GET{modules_dispo}|melusine_trier_uniques)]}
+)]
 
 
-[(#REM)
-	On récupère la liste des modules déjà pris et qui sont
-	supposés être uniques
-]
-
+[(#REM) On boucle sur les noisettes déjà utilisées pour connaître celles qui 
+		sont déjà utilisées et dans la catégorie unique]
 <BOUCLE_modules_pris(NOISETTES){type}>
-[(#GET{modules_dispo_tries}|table_valeur_cleslash{uniques!#NOISETTE!unique}|=={oui}|oui)
-	[(#SET{modules_pris_uniques,
-		[(#GET{modules_pris_uniques}|sinon{#ARRAY}|push{#NOISETTE})]}
-	)]
-]
+	[(#GET{modules_dispo_tries}	|table_valeur_cleslash{uniques!#NOISETTE!unique}
+								|=={oui}|oui)
+		[(#SET{modules_pris_uniques,
+			[(#GET{modules_pris_uniques}|sinon{#ARRAY}|push{#NOISETTE})]}
+		)]
+	]
 </BOUCLE_modules_pris>
 
-[(#REM)
-	Dans la pile des modules dispos, on
-	enlève ceux qui sont pris et uniques
-]
-
+[(#REM) On crée la liste des modules utilisables, càd : disponibles sans
+		être uniques et déjà pris]
 [(#SET{modules_utilisables,
-	[(#GET{modules_dispo}|sinon{#ARRAY}|array_diff_key{#GET{modules_pris_uniques}|sinon{#ARRAY}|array_flip})]})]
+   [(#GET{modules_dispo}|sinon{#ARRAY}|array_diff_key{#GET{modules_pris_uniques}
+							    	  |sinon{#ARRAY}|array_flip})]})]
 
-[(#REM)
-	Et on affiche le formulaire avec la liste
-	des modules que l'on peut ajouter
-]
-
+[(#REM) Et on affiche le formulaire avec la liste des modules que l'on peut 
+ajouter]
 <div class="formulaire_spip formulaire_ajouter_module">
 	[<p class="reponse_formulaire reponse_formulaire_erreur">
 		(#ENV*{message_erreur})
@@ -43,43 +42,65 @@
 	[<p class="reponse_formulaire reponse_formulaire_ok">
 		(#ENV*{message_ok})
 	</p>]
-<B_liste_pris>
-	<div class="explication modules_reserves">
-		<p class="voisin_pliant">Certains modules réservés ne sont pas disponibles</p>
-		<div class="pliant liste_modules_reserves">
-			<p>Liste des modules réservés&nbsp;:</p>
-			<p>(déjà placés dans un autre bloc et qui ne peuvent être ajoutés qu'une seule fois dans la page)</p>
-			<ul>
-<BOUCLE_liste_pris(NOISETTES){noisette IN #GET{modules_pris_uniques}}{type}>
-				<li>[(#GET{modules_dispo}|table_valeur_cleslash{#NOISETTE!nom})][ (bloc &laquo;&nbsp;(#BLOC|melusine_nombloc)&nbsp;&raquo;)]</li>
-</BOUCLE_liste_pris>
-			</ul>
-		</div>
-	</div>
-</B_liste_pris>
 <B_dispos>
-	<form action="#ENV{action}" method="post"><div>
+	<form action="#ENV{action}" method="post">
+	<div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul class="boutons ajouter_module obligatoire">
-<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}
-		{si #ENV{editable}|et{#ID_NOISETTE|non}|oui}>
-			<li id="[(#VAL{"/"}|str_replace{"_",#CLE}|attribut_html)]" class="deplier">
-				<div class="haut_module voisin_pliant">
-					<button type='submit' title="Ajouter ce module"  name='nom_module' value="[(#CLE|attribut_html)]">Ajouter</button>
-					[(#CHEMIN{[(#VALEUR|table_valeur_cleslash{icon})]}
-							|balise_img{icône,icone_module}
-							|image_reduire{30,30}
-					)]
-					<span class="nom_module">[(#VALEUR|table_valeur_cleslash{nom}|spip_ucfirst)]</span>
-				</div>[
-				<div class="description_module pliant">
-					(#VALEUR|table_valeur_cleslash{description}|propre)
-				</div>]
-			</li>
-</BOUCLE_dispos>
+			<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}
+								{si #ENV{editable}|et{#ID_NOISETTE|non}|oui}>
+				<li id="[(#VAL{"/"}|str_replace{"_",#CLE}|attribut_html)]" 
+					class="deplier">
+					<div class="haut_module voisin_pliant">
+						<button type='submit' 
+								title="Ajouter ce module"  
+								name='nom_module' 
+								value="[(#CLE|attribut_html)]">
+								Ajouter
+						</button>
+						[(#CHEMIN{[(#VALEUR |table_valeur_cleslash{icon})]}
+											|balise_img{icône,icone_module}
+											|image_reduire{30,30}
+						)]
+						<span class="nom_module">
+							[(#VALEUR|table_valeur_cleslash{nom}|spip_ucfirst)]
+						</span>
+					</div>
+					[
+						<div class="description_module pliant">
+							(#VALEUR|table_valeur_cleslash{description}|propre)
+						</div>
+					]
+				</li>
+			</BOUCLE_dispos>
 		</ul>
-	</div></form>
+	</div>
+	</form>
 </B_dispos>
+<B_liste_pris>
+	<div class="explication modules_reserves">
+		<p>Liste des modules déjà utilisés dans un autre bloc et qui ne peuvent être ajoutés qu'une seule fois dans la page&nbsp;:</p>
+		<ul>
+			<BOUCLE_liste_pris(NOISETTES)
+			{noisette IN #GET{modules_pris_uniques}}{type}>
+				<li>
+					[(#GET{modules_dispo}|table_valeur_cleslash{#NOISETTE!nom})]
+					[ (bloc &laquo;&nbsp;(#BLOC|melusine_nombloc)&nbsp;&raquo;)]
+				</li>
+			</BOUCLE_liste_pris>
+		</ul>
+	</div>
+</B_liste_pris>
+
+	<div class="explication modules_reserves">
+		<p>Liste des modules interdits dans ce type de bloc&nbsp;:</p>
+		<ul>
+			<BOUCLE_for(DATA){source tableau,#GET{modules_interdits}}>
+				<li> #VALEUR </li>
+			</BOUCLE_for>
+		</ul>
+	</div>
+
 </div>
 [(#ENV{editable}|non)
 <script type="text/javascript">/* <!\[CDATA\[ */
