@@ -1,36 +1,50 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE PLAN DU SITE  ********************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- ***  RECUPERATION DES DONNEES ET INITIALISATION ET VERIFICATION ******* -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+    #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+    #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+</BOUCLE_noisette>
+
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{disposition}|non)#SET{disposition,'col-md-2'}]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
+<!-- *********************************************************************** -->
+
+<div class="module_content [(#GET{style})]">
+
 <BOUCLE_exclus(RUBRIQUES) {titre_mot=exclu} {doublons}{lang}>
 </BOUCLE_exclus>
 <BOUCLE_exclus2(ARTICLES) {titre_mot=exclu} {doublons}{lang} >
 </BOUCLE_exclus2>
 
+<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}{doublons}>
+    <div class="plan_rubrique [(#GET{disposition})]">
+    <div class="item[(#GET{style}|=={multibloc}|oui) multibloc]"> 
 
-        
-          
-        
-           
-        
-        
-        <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}{doublons}>
-        <div class="plan_rubrique col-md-2"> 
         <h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
-        
-       
-        
         <B_rubriques>
         <ul>
             <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
             <li><i class="fa fa-caret-right"></i>
                <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-                
-                
-                
-               
             </li>
             </BOUCLE_rubriques>
         </ul>
         </B_rubriques>
-        
-        
-        </div>
-        </BOUCLE_secteurs>
+    </div>
+    </div>
+</BOUCLE_secteurs>
 
+</div>
