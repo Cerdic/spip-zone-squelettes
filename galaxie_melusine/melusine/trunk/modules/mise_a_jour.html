@@ -1,13 +1,43 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE LOGO DU SITE ********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+</BOUCLE_noisette>
+<!-- par défaut : fond invisible, logo centré dans sa noisette-->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+<!-- Un seul logo de site, donc pas d'item multibloc -->
+
 #CACHE{3600*24}
+
+<div class="[(#GET{style})] [(#GET{alignement})]">
 <B_maj>
     <div id="maj" class="maj">
-    <strong><:maj:></strong>&nbsp;:<br/>
-    <BOUCLE_maj(ARTICLES){age>=0}{par date}{inverse}{0,1}>
-    [(#DATE|nom_jour)] [(#DATE|affdate)]
-    </BOUCLE_maj>
+	    <strong><:maj:></strong>&nbsp;:<br/>
+	    <BOUCLE_maj(ARTICLES){age>=0}{par date}{inverse}{0,1}>
+		    [(#DATE|nom_jour)] [(#DATE|affdate)]
+	    </BOUCLE_maj>
 </B_maj>
     <div id="maj" class="maj">
         <strong><:maj:></strong>&nbsp;:<br/>
         <:date_aujourdhui:>
 <//B_maj>  
+
+	</div>
 </div>
