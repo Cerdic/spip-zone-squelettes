@@ -1,7 +1,7 @@
 // Fonctions JS pour gérer l'adminsitration de Mélusine
 
 $(window).load(function(){
-	$('a.ajout_module, a.uniformiser_bloc').mediabox({
+	$('a.ajout_module, a.uniformiser_bloc, a.largeur_colonnes').mediabox({
 		transition:'elastic',
 		speed:500,
 		width:"500px",
