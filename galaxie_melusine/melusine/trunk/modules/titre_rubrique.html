@@ -1,22 +1,44 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- ***  MODULE TITRE DE RUBRIQUE  **************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
+<!-- *********************************************************************** -->
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
 </BOUCLE_noisette>
-[(#GET{style}|non)#SET{style,bloc_visible}]
-<div class="module_content #GET{style}">
+<!-- par défaut : fond invisible, centré dans sa noisette -->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+<!-- Un seul titre de rubrique, donc pas d'item multibloc -->
+
+<div class="module_content [(#GET{style})] [(#GET{alignement})]">
+
 	<BOUCLE_titre(RUBRIQUES){id_rubrique}>
 		<div class="row">
-					<div class="col-md-5">
-						[(#LOGO_RUBRIQUE|
-	    					|image_recadre{0,400,center}
-	    					|inserer_attribut{'class',"img-responsive"}
-	    					
-
-						)]
-					</div>
-					<div class="col-md-7">
-							<h1>#TITRE</h1>
-							#DESCRIPTIF
-					</div>
+			<div class="col-md-5">
+				[(#LOGO_RUBRIQUE|
+	    			|image_recadre{0,400,center}
+	    			|inserer_attribut{'class',"img-responsive"}
+				)]
+			</div>
+			<div class="col-md-7">
+				<h1>#TITRE</h1>
+				#DESCRIPTIF
+			</div>
 		</div>
 	</BOUCLE_titre>
+
 </div>
