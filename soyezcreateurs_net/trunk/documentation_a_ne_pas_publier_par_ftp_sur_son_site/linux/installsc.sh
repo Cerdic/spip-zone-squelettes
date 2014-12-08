@@ -23,9 +23,9 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/crayons
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/dictionnaires/branches/v0 ./dictionnaires/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur/branches/v1 ./facteur/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images/branches/v1 ./fonctions_images
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forum
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext/branches/v1 ./fulltext/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext/branches/v1 ./fulltext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/iterateurs
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/job_queue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/jquery_ui
@@ -42,7 +42,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_ext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/previsu_redaction
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/saisies
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/saisies/branches/v1 ./saisies
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/savecfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
