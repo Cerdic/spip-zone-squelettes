@@ -954,4 +954,75 @@ function melusine_trier_uniques($liste_modules)
 	return $liste_finale;
 }
 
+/* Filtre NORM_LIENS v2.0 - 29 juillet 2003 - Par Led
+
+   Permet de normaliser les liens lorsque ceux-ci sont orphelins (sans balise
+   HREF). Par exemple:
+   "http://www.url.com" deviendra "<a href="http://www.url.com">http://www.url.com</a>"
+
+   Le filtre s'utilise avec les balises #CHAPO, #TEXTE, #PS, #NOTES,
+   #INTRODUCTION, #DESCRIPTIF et #BIO.
+
+   SYNTAXE DANS LES SQUELETTES:
+   [(#TEXTE|norm_liens)]
+   [(#TEXTE|norm_liens{tag}]
+   Où tag doit avoir comme valeur blank, self, parent ou top.
+   Si aucun tag n'est spécifié la balise HREF n'aura pas de target.
+
+   ATTENTION: Si vous désirez utiliser ce filtre avec le filtre CIBLES_LIENS (du
+              21 juillet 2003 et écrit par moi-même) sur une même balise SPIP il
+              faut obligatoirement placer le filtre NORM_LIENS en premier.
+              Exemples: [(#TEXTE|norm_liens|cibles_liens)]
+                        [(#TEXTE|norm_liens{tag}|cibles_liens)]
+*/
+
+function norm_liens($texte, $target='') {
+//echo $target;
+    $target = '_'.$target;
+    if ( $target != "_" ) {
+    	
+    	 $texte = eregi_replace(' pic.twitter.com/([^ <]*)', ' <a href="http://pic.twitter.com/\\1" target="'.$target.'">pic.twitter.com</a>', $texte);
+    	 $texte = eregi_replace(' http://([^ <]*)', ' <a href="http://\\1" target="'.$target.'">lien</a>', $texte);
+        $texte = eregi_replace(' http://([^ <]*)', ' <a href="http://\\1" target="'.$target.'">lien</a>', $texte);
+        $texte = eregi_replace(' https://([^ <]*)', ' <a href="https://\\1" target="'.$target.'">lien</a>', $texte);
+        $texte = eregi_replace('^http://([^ <]*)', '<a href="http://\\1" target="'.$target.'">lien</a>', $texte);
+        $texte = eregi_replace('^https://([^ <]*)', '<a href="https://\\1" target="'.$target.'">lien</a>', $texte);
+
+        // $texte = eregi_replace(' ftp://([^ <]*)', ' <a href="ftp://\\1" target="'.$target.'">ftp://\\1</a>', $texte);
+        // $texte = eregi_replace(' www.([^ <]*)', ' <a href="http://www.\\1" target="'.$target.'">www.\\1</a>', $texte);
+        // $texte = eregi_replace(' ftp.([^ <]*)', ' <a href="ftp://ftp.\\1" target="'.$target.'">ftp.\\1</a>', $texte);
+        // $texte = eregi_replace('^http://([^ <]*)', '<a href="http://\\1" target="'.$target.'">http://\\1</a>', $texte);
+        // $texte = eregi_replace('^ftp://([^ <]*)', '<a href="ftp://\\1" target="'.$target.'">ftp://\\1</a>', $texte);
+        // $texte = eregi_replace('^www.([^ <]*)', '<a href="http://www.\\1" target="'.$target.'">www.\\1</a>', $texte);
+        // $texte = eregi_replace('^ftp.([^ <]*)', '<a href="ftp://ftp.\\1" target="'.$target.'">ftp.\\1</a>', $texte);
+        // $texte = eregi_replace('<p class="spip">http://([^ <]*)', '<p class="spip"><a href="http://\\1" target="'.$target.'">http://\\1</a>', $texte);
+        // $texte = eregi_replace('<p class="spip">ftp://([^ <]*)', '<p class="spip"><a href="ftp://\\1" target="'.$target.'">ftp://\\1</a>', $texte);
+        // $texte = eregi_replace('<p class="spip">www.([^ <]*)', '<p class="spip"><a href="http://www.\\1" target="'.$target.'">www.\\1</a>', $texte);
+        // $texte = eregi_replace('<p class="spip">ftp.([^ <]*)', '<p class="spip"><a href="ftp://ftp.\\1" target="'.$target.'">ftp.\\1</a>', $texte);
+        }
+    else {
+    	 $texte = eregi_replace(' pic.twitter.com/([^ <]*)', ' <a href="http://pic.twitter.com/\\1" target="'.$target.'">pic.twitter.com</a>', $texte);
+        $texte = eregi_replace(' http://([^ <]*)', ' <a href="http://\\1">lien</a>', $texte);
+         $texte = eregi_replace(' https://([^ <]*)', ' <a href="https://\\1">lien</a>', $texte);
+        $texte = eregi_replace(' ftp://([^ <]*)', ' <a href="ftp://\\1">ftp://\\1</a>', $texte);
+        $texte = eregi_replace(' www.([^ <]*)', ' <a href="http://www.\\1">www.\\1</a>', $texte);
+        $texte = eregi_replace(' ftp.([^ <]*)', ' <a href="ftp://ftp.\\1">ftp.\\1</a>', $texte);
+        $texte = eregi_replace('^http://([^ <]*)', '<a href="http://\\1">lien</a>', $texte);
+        $texte = eregi_replace('^https://([^ <]*)', '<a href="https://\\1">lien</a>', $texte);
+        $texte = eregi_replace('^ftp://([^ <]*)', '<a href="ftp://\\1">ftp://\\1</a>', $texte);
+        $texte = eregi_replace('^www.([^ <]*)', '<a href="http://www.\\1">www.\\1</a>', $texte);
+        $texte = eregi_replace('^ftp.([^ <]*)', '<a href="ftp://ftp.\\1">ftp.\\1</a>', $texte);
+        $texte = eregi_replace('<p class="spip">http://([^ <]*)', '<p class="spip"><a href="http://\\1">http://\\1</a>', $texte);
+        $texte = eregi_replace('<p class="spip">ftp://([^ <]*)', '<p class="spip"><a href="ftp://\\1">ftp://\\1</a>', $texte);
+        $texte = eregi_replace('<p class="spip">www.([^ <]*)', '<p class="spip"><a href="http://www.\\1">www.\\1</a>', $texte);
+        $texte = eregi_replace('<p class="spip">ftp.([^ <]*)', '<a href="ftp://ftp.\\1">ftp.\\1</a>', $texte);
+
+        }
+    $texte = eregi_replace('@([^ ,:!?&<]*)', ' <a href="https://twitter.com/\\1" target="'.$target.'">@\\1</a>', $texte);
+$texte = eregi_replace(' #([^ ,:!?&<]* )', ' <a href="https://twitter.com/hashtag/\\1" target="'.$target.'">#\\1</a>', $texte);
+    
+    // $texte=str_replace(" ", " ", $texte);
+    return $texte;
+}
+
 ?>
