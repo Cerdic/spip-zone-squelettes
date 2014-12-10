@@ -19,6 +19,12 @@
 #SET{style,(#GET{param}|table_valeur{style})}
 <!-- On récupère le nom de la personne à joindre s'il a été choisi -->
 #SET{dest,(#GET{param}|table_valeur{personneajoindre})}
+<!-- On récupère le texte saisi pour le bouton -->
+#SET{txt,(#GET{param}|table_valeur{textebouton})}
+
+<!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
+[(#GET{txt}|non)#SET{txt,"Nous écrire"}]
+
 
 
 <!-- *********************************************************************** -->
@@ -35,14 +41,14 @@
 	]
 ]
 
-<!-- Si il y a eu un choix dans la liste, on affiche "Nous écrire" -->
+<!-- Si il y a eu un choix dans la liste, on affiche le texte saisi -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
 	[(#GET{style}|=={bloc_visible}|oui)
 		<div class="module_content bloc_visible">
 	]
 			<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
 			<span class="logo-titre">
-				<i class="fa fa-envelope"> Nous écrire</i>
+				<i class="fa fa-envelope"> #GET{txt}</i>
 			</span>
 			</a>
 	[(#GET{style}|=={bloc_visible}|oui)

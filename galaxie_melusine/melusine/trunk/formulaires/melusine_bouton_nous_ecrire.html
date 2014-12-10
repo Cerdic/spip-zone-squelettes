@@ -14,6 +14,9 @@
 	(#ENV*{message_erreur})
 </p>]
 
+<!-- On récupère le texte saisi pour le bouton -->
+#SET{txt,(#GET{params}|table_valeur{textebouton})}
+[(#GET{txt}|non)#SET{txt,"Nous écrire"}]
 <!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
 #ACTION_FORMULAIRE{#ENV{action}}
@@ -55,9 +58,15 @@
 		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
 </fieldset>
 
+<!-- Champs texte pour changer le texte du bouton -->	
+<fieldset>
+
+		<label for="textebouton">Texte à afficher</label>
+		<input type="text" name="textebouton" value="#GET{txt}">
+</fieldset>
 
 <input type='submit' name='ok' value='Enregistrer les paramètres' />
-
+<input type='reset' name='ok' value='Effacer les paramètres' />
 
 </form>
 <!-- Fin du formulaire -->	
