@@ -1,0 +1,51 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE WIDGET PERSONNALISE********************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+#SET{par_defaut,spip}
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+	#SET{codewidget,#PARAMETRES|unserialize|table_valeur{codewidget}}
+</BOUCLE_noisette>
+
+<!-- par défaut : fond invisible, alignement centré-->
+[(#GET{style}|non)#SET{style,'bloc_invisible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+<!-- pas de défaut pour le titre afin de permettre une chaine vide -->
+<!-- pas de défaut pour le code source du widget-->
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE DES DONNEES ************************************************* -->
+<!-- *********************************************************************** -->
+
+#SET{vide,"rien"}
+
+<!-- Variable : OUI si aucun résultat, NON dès qu'on rentre dans une boucle -->
+[	<div class="module_content module_widget [(#GET{style})] [(#GET{alignement})]">
+	[<h2> (#GET{titre}) </h2>]
+(#GET{codewidget})
+	</div>
+	#SET{vide,"plein"}
+]
+
+[(#GET{vide}|=={"rien"}|oui)
+<!-- SINON -->
+	<div class="module_content">
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Pas de widget configuré.
+		</div>
+		]
+	</div>
+]
