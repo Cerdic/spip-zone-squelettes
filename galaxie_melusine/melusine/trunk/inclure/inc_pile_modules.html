@@ -23,12 +23,18 @@ L'appel du module prend un paramètre obligatoire:
 	]})
 ]
 
+<!-- Variable compteur pour vérifier que le bloc n'est pas vide -->
+<BOUCLE_nbmodule(NOISETTES)	{type=#ENV{type,#GET{type_par_defaut}}}{bloc}>
+	#SET{compteur,#TOTAL_BOUCLE}
+</BOUCLE_nbmodule>
+
 [(#REM)
 
 On vérifie qu'il reste de la place libre pour afficher le bouton d'ajout ou non
 
 ]
 
+<!-- On vérifie que le bloc n'est pas plein -->
 <BOUCLE_Place_libre(NOISETTES)	{type=#ENV{type,#GET{type_par_defaut}}}
 								{bloc}
 								{11,1}
@@ -37,6 +43,17 @@ On vérifie qu'il reste de la place libre pour afficher le bouton d'ajout ou non
 			<span class="info">Ce bloc est plein</span>
 	})]
 </BOUCLE_Place_libre>
+
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- BOUTON : AJOUTER MODULE EN DESSOUS ************************************ -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- Test sur le nombre de module déjà présent -->
+[(#GET{compteur}>{0}|?
+	{
+	<!-- Si au moins un module présent, bouton "Ajouter un module en dessous" -->
 	[(#SET{boutons,
 		[(#GET{admin_melusine}|oui)
 			<a 	href=	"[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
@@ -49,7 +66,33 @@ On vérifie qu'il reste de la place libre pour afficher le bouton d'ajout ou non
 			</a>
 		]
 	})]
+	,
+	<!-- Si aucun module présent, bouton "Ajouter un module" -->
+	[(#SET{boutons,
+		[(#GET{admin_melusine}|oui)
+			<a 	href=	"[(#URL_PAGE{ajout_module_bloc,bloc=#BLOC}
+							|parametre_url{'type',#TYPE}
+							|parametre_url{'nom_bloc',#GET{nom_bloc} }
+						)]" 
+				class=	'ajout_module button config_melusine mediabox boxIframe 		boxWidth-500px boxHeight-90%'>
+				<i class="fa fa-plus-circle fa-x2"></i> 
+				Ajouter un module
+			</a>
+		]
+	})]
+	}
+)]
 <//B_Place_libre>
+
+
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- BOUTON : AJOUTER MODULE A DROITE ************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- S'il y a déjà un module présent, on affiche "Ajouter un module à droite"-->
+[(#GET{compteur}>{0}|oui)
 	[(#SET{boutons,
 		[(#GET{boutons})
 			[(#ENV{ajout}>{0}|et{#GET{admin_melusine}}|oui)  
@@ -57,14 +100,14 @@ On vérifie qu'il reste de la place libre pour afficher le bouton d'ajout ou non
 								|parametre_url{'type',#TYPE}
 								|parametre_url{'nom_bloc',#GET{nom_bloc}})]" 
 					class=	'ajout_module button config_melusine mediabox 
-							boxIframe boxWidth-500px boxHeight-90%'>
+							boxIframe boxWidth-500px boxHeight-90%'>	
 					<i class="fa fa-plus-square fa-x2 fa-space"></i> 
 					Ajouter un module à droite
 				</a>
 			]
 		]
 	})]
-
+]
 
 <BOUCLE_modules(NOISETTES)	{type=#ENV{type,#GET{type_par_defaut}}}
 							{bloc}
