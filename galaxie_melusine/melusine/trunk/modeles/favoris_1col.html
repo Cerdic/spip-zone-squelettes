@@ -1,0 +1,21 @@
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+    #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+</BOUCLE_noisette>
+
+<BOUCLE_site(SITES){id_syndic=#ID_SYNDIC}>
+   	<div class="#GET{disposition}">
+		<div class="item">
+			<h3><a  href="#URL_SITE">#NOM_SITE</a></h3>
+        	[<a href="#URL_SITE" >(#LOGO_SITE||image_reduire{120,0})</a>]
+        	[<div class="descriptif">(#DESCRIPTIF)</div>]  
+     	</div> 
+     	<!-- favoris_1col -->
+		<BOUCLE_syndic20(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,5}>
+		<div class="item">
+			[<i class="fa fa-caret-right"></i><a class="article-synd" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a>] 
+		</div>
+		</BOUCLE_syndic20>
+	</div>
+</BOUCLE_site>
+
