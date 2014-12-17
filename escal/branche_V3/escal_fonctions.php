@@ -336,6 +336,91 @@ function uninstal_escal(){
 }
 
 // =======================================================================================================================================
+   // pour gerer les classes définies via les icones ajoutés à la barre du porte-plume
+   // merci à spipuser
+// =======================================================================================================================================
+
+define('_PROTEGE_BLOCS', ',<(html|code|cadre|frame|script|aide|important|avertissement|info)(\s[^>]*)?>(.*)</\1>,UimsS');
+
+function traiter_echap_aide($regs1) {
+        list(,,$att1,$corps1) = $regs1;
+        $echap1 = htmlspecialchars($corps1); // il ne faut pas passer dans entites_html, ne pas transformer les &#xxx; du code !
+        // ne pas mettre le <div...> s'il n'y a qu'une ligne
+        if (is_int(strpos($echap1,"\n"))) {
+            // supprimer les sauts de ligne debut/fin
+            // (mais pas les espaces => ascii art).
+            $echap1 = preg_replace("/^[\n\r]+|[\n\r]+$/s", "", $echap1);
+            $echap1 = nl2br($echap1);
+            $echap1 = "<div class='aide'>"
+            .$echap1."</div>";
+        } else {
+            $echap1 = "<span$att1 class='aide'>".$echap1."</span>";
+        }
+        $echap1 = str_replace("\t", "&nbsp; &nbsp; &nbsp; &nbsp; ", $echap1);
+        $echap1 = str_replace("  ", " &nbsp;", $echap1);
+        return $echap1;
+    }
+
+        
+function traiter_echap_important($regs2) {
+        list(,,$att2,$corps2) = $regs2;
+        $echap2 = htmlspecialchars($corps2); // il ne faut pas passer dans entites_html, ne pas transformer les &#xxx; du code !
+        // ne pas mettre le <div...> s'il n'y a qu'une ligne
+        if (is_int(strpos($echap2,"\n"))) {
+            // supprimer les sauts de ligne debut/fin
+            // (mais pas les espaces => ascii art).
+            $echap2 = preg_replace("/^[\n\r]+|[\n\r]+$/s", "", $echap2);
+            $echap2 = nl2br($echap2);
+            $echap2 = "<div class='important'>"
+            .$echap2."</div>";
+        } else {
+            $echap2 = "<span$att2 class='important'>".$echap2."</span>";
+        }
+        $echap2 = str_replace("\t", "&nbsp; &nbsp; &nbsp; &nbsp; ", $echap2);
+        $echap2 = str_replace("  ", " &nbsp;", $echap2);
+        return $echap2;
+    }
+        
+function traiter_echap_avertissement($regs3) {
+        list(,,$att3,$corps3) = $regs3;
+        $echap3 = htmlspecialchars($corps3); // il ne faut pas passer dans entites_html, ne pas transformer les &#xxx; du code !
+        // ne pas mettre le <div...> s'il n'y a qu'une ligne
+        if (is_int(strpos($echap3,"\n"))) {
+            // supprimer les sauts de ligne debut/fin
+            // (mais pas les espaces => ascii art).
+            $echap3 = preg_replace("/^[\n\r]+|[\n\r]+$/s", "", $echap3);
+            $echap3 = nl2br($echap3);
+            $echap3 = "<div class='avertissement'>"
+            .$echap3."</div>";
+        } else {
+            $echap3 = "<span$att3 class='avertissement'>".$echap3."</span>";
+        }
+        $echap3 = str_replace("\t", "&nbsp; &nbsp; &nbsp; &nbsp; ", $echap3);
+        $echap3 = str_replace("  ", " &nbsp;", $echap3);
+        return $echap3;
+    }
+
+function traiter_echap_info($regs4) {
+        list(,,$att4,$corps4) = $regs4;
+        $echap4 = htmlspecialchars($corps4); // il ne faut pas passer dans entites_html, ne pas transformer les &#xxx; du code !
+        // ne pas mettre le <div...> s'il n'y a qu'une ligne
+        if (is_int(strpos($echap4,"\n"))) {
+            // supprimer les sauts de ligne debut/fin
+            // (mais pas les espaces => ascii art).
+            $echap4 = preg_replace("/^[\n\r]+|[\n\r]+$/s", "", $echap4);
+            $echap4 = nl2br($echap4);
+            $echap4 = "<div class='info'>"
+            .$echap4."</div>";
+        } else {
+            $echap4 = "<span$att4 class='info'>".$echap4."</span>";
+        }
+        $echap4 = str_replace("\t", "&nbsp; &nbsp; &nbsp; &nbsp; ", $echap4);
+        $echap4 = str_replace("  ", " &nbsp;", $echap4);
+        return $echap4;
+    }
+
+
+// =======================================================================================================================================
    // pour gerer les classes des differents liens dans les articles
    // Un grand merci a l'auteur : bobof
 // =======================================================================================================================================
