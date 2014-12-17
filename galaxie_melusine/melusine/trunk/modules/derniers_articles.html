@@ -11,10 +11,11 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
-#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{postdate,#PARAMETRES|unserialize|table_valeur{postdate}}
 </BOUCLE_noisette>
 
 <!-- On attribue des valeurs par défaut -->
@@ -22,6 +23,7 @@
 [(#GET{titre}|non)#SET{titre,"Derniers articles"}]
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
 [(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
+[(#GET{postdate}|non)#SET{postdate,"oui"}]
 
 
 
@@ -54,25 +56,42 @@
 	<ul>
 	<!-- Début d'un div conditionnel à la disposition choisie -->
 	[(#GET{disposition}|=={col-md-12}|non) 
-	<div class='row col1'>
+		<div class='row col1'>
 	]
-		<!-- On boucle sur les nb articles le plus récents -->
-		<BOUCLE_article(ARTICLES) {doublons}  {par date} {inverse} {0,#GET{nb}}>
+		<!-- On boucle sur les nb articles le plus récents non postdatés -->
+		<BOUCLE_article(ARTICLES) 	{si #GET{postdate}|=={non}}	{age>=0}  
+								{doublons} {par date} {inverse} {0,#GET{nb}}>
+			<!-- Choix du modèle d'affichage en fonction de la disposition -->
+
+			[(#GET{disposition}|=={col-md-12}|oui)
+				[(#MODELE	{annonce_article}
+							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
+				]
+            ]
+            [(#GET{disposition}|=={col-md-12}|non)
+				[(#MODELE	{annonce_article_1col}
+							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
+				]	
+             ]
+		</BOUCLE_article>
+		<!-- On boucle sur les nb articles le plus récents même postdatés -->
+		<BOUCLE_article2(ARTICLES) 	{si #GET{postdate}|=={oui}}
+								{doublons} {par date} {inverse} {0,#GET{nb}}>
 			<!-- Choix du modèle d'affichage en fonction de la disposition -->
 			[(#GET{disposition}|=={col-md-12}|oui)
 				[(#MODELE	{annonce_article}
 							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
 				]
-             ]
-             [(#GET{disposition}|=={col-md-12}|non)
+            ]
+            [(#GET{disposition}|=={col-md-12}|non)
 				[(#MODELE	{annonce_article_1col}
 							{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})
-				]
-             ]
-		</BOUCLE_article>
+				]	
+            ]
+		</BOUCLE_article2>
 	<!-- Fin du div conditionnel à la disposition choisie -->
 	[(#GET{disposition}|=={col-md-12}|non) 
-	</div >
+		</div >
 	]
 	</ul>		
 </div>
