@@ -1,25 +1,49 @@
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-        #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+    #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
 </BOUCLE_noisette>
+
 <BOUCLE_exclus2(ARTICLES) {id_rubrique}{titre_mot="exclu"} {doublons}>
 </BOUCLE_exclus2>
-<BOUCLE_exclus3(ARTICLES) {id_rubrique}{titre_mot=edito_rub} {doublons}>
-</BOUCLE_exclus3>
-<!-- Boucle affichant toutes les intros des articles de la rubrique -->
+
+<!--<BOUCLE_exclus3(ARTICLES) {id_rubrique}{titre_mot="edito_rub"}{doublons}>-->
+<!--</BOUCLE_exclus3>-->
+
+
+
+<!-- Mise en page en fonction du nombre de colonnes - ouverture du DIV ***** -->
 [(#GET{disposition}|=={col-md-12}|non)
-                <div class='row col1'>
-        ]
-<BOUCLE_art (ARTICLES){id_rubrique}{par num titre,titre}{par date}{inverse}>
-       
-                [(#GET{disposition}|=={col-md-12}|oui)
-            [(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-         ]
-         [(#GET{disposition}|=={col-md-12}|non)
-            [(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-         ]
-       
+    <div class='row col1'>
+]
+
+<!-- Boucle affichant toutes les intros des articles de la rubrique ******** -->
+<!-- *********************************************************************** -->
+<!-- si la rubrique comporte plus d'un article ***************************** -->
+<!-- id est pas d'article avec le mot clef edito_rub *********************** -->
+<BOUCLE_art (ARTICLES)  {id_rubrique}           {!titre_mot="edito_rub"}
+                        {par num titre,titre}   {par date}{inverse}>
+<!-- Appel du modèle d'annonce d'un article pour une seule colonne ********* -->
+    [(#GET{disposition}|=={col-md-12}|oui)
+        [(#MODELE{annonce_article}
+                {id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+    ]
+<!-- Appel du modèle d'annonce d'un article pour plusieurs colonnes ******** -->
+    [(#GET{disposition}|=={col-md-12}|non)
+        [(#MODELE{annonce_article_1col}
+                {id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+    ]
 </BOUCLE_art>
+
+<!-- Boucle affichant le contenu du seul article de la rubrique ************ -->
+<!-- *********************************************************************** -->
+<!-- id est un article ayant comme clef edito_rub ************************** -->
+<BOUCLE_art2 (ARTICLES) {id_rubrique}           {titre_mot="edito_rub"}
+                        {par num titre,titre}   {par date}{inverse}>
+<!-- Redirection vers la page de l'article en question ********************* -->
+    <meta http-equiv="refresh" content="0;URL=#URL_ARTICLE">
+</BOUCLE_art2>
+
+<!-- Mise en page en fonction du nombre de colonnes - fermeture du DIV ***** -->
 [(#GET{disposition}|=={col-md-12}|non)
-                </div >
-        ]
-                       
+    </div >
+]        
