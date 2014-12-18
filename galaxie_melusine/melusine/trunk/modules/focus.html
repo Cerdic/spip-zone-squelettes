@@ -1,42 +1,60 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE FOCUS ********************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
-#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
-[(#PARAMETRES|unserialize|table_valeur{mot}|oui)#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}]
-[(#PARAMETRES|unserialize|table_valeur{mot}|non)#SET{mot,focus}]
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	[(#PARAMETRES|unserialize|table_valeur{mot}|oui)#SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}]
+	[(#PARAMETRES|unserialize|table_valeur{mot}|non)#SET{mot,focus}]
 </BOUCLE_noisette>
-[(#GET{mot}|non)#SET{mot,focus}]
-[(#GET{nb}|non)#SET{nb,5}]
-[(#GET{titre}|non)#SET{titre,"Focus"}]
-[(#GET{style}|non)#SET{style,"bloc_visible"}]
-[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
 
+	[(#GET{mot}|non)#SET{mot,focus}]
+	[(#GET{nb}|non)#SET{nb,5}]
+	[(#GET{titre}|non)#SET{titre,"Focus"}]
+	[(#GET{style}|non)#SET{style,"bloc_visible"}]
+	[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
+<!-- *********************************************************************** -->
 
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
-<BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
-</BOUCLE_exclus40>
+	<BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
+	</BOUCLE_exclus40>
 </BOUCLE_exclus4>
 
-<BOUCLE_exclus50(ARTICLES) {doublons}{titre_mot="focus"}>
-</BOUCLE_exclus50>
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
+<!-- *********************************************************************** -->
 
 <div class="module_content #GET{style}">
-[<h2> (#GET{titre}) </h2>]
-[(#GET{disposition}|=={col-md-12}|non) 
-	<div class='row col1'>
-]
-			<BOUCLE_article(ARTICLES) {titre_mot LIKE %#GET{mot}}{doublons}{par titre_mot} {0,#GET{nb}}>
-				[(#GET{disposition}|=={col-md-12}|oui)
-             		[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             	]
-             	[(#GET{disposition}|=={col-md-12}|non)
-             		[(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             	]
-			</BOUCLE_article>
-[(#GET{disposition}|=={col-md-12}|non) 
+	[<h2> (#GET{titre}) </h2>]
+	[(#GET{disposition}|=={col-md-12}|non) 
+		<div class='row col1'>
+	]
+		<BOUCLE_article(ARTICLES) {titre_mot LIKE %(#GET{mot})%}{doublons}
+		{par titre_mot} {0,#GET{nb}}>
+			[(#GET{disposition}|=={col-md-12}|oui)
+             	[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+             ]
+             [(#GET{disposition}|=={col-md-12}|non)
+             	[(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+             ]
+		</BOUCLE_article>
+	[(#GET{disposition}|=={col-md-12}|non) 
 	</div >
-]		
-
+	]		
 </div>
