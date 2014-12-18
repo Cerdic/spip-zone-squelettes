@@ -15,6 +15,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_accueil' => 'Renseignez ici l\'identifiant de la rubrique qui sera l\'accueil du site.',
 	'explication_backgroundcolor' => 'Le code hexadécimal d\'une couleur pour le fond de page.',
+	'explication_backgroundimagefixed' => 'Les logos de rubriques et d\'articles sont utilisés en image d\'arrière-plan. Si vous souhaitez fixer ces images dans la page, cochez la case ci-dessus.',
 	'explication_color' => 'Le code hexadécimal d\'une couleur pour le texte.',
 	'explication_colorlink' => 'Le code hexadécimal d\'une couleur pour les liens.',
 	'explication_colorlinkhover' => 'Le code hexadécimal d\'une couleur pour les liens au survol.',
@@ -26,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// L
 	'label_accueil' => 'Rubrique n° :',
 	'label_backgroundcolor' => 'Couleur de fond :',
+	'label_backgroundimagefixed' => 'Fixer les images d\'arrière-plan :',
 	'label_color' => 'Couleur du texte :',
 	'label_colorlink' => 'Couleur des liens :',
 	'label_colorlinkhover' => 'Couleur des liens au survol :',

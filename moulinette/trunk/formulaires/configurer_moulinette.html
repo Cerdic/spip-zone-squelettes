@@ -22,6 +22,16 @@
 			<input type="color" name="#GET{name}" class="palette" value="[(#ENV*{#GET{name}})]" id="#GET{name}" />
 			<p class="explication">[(#GET{cc}|concat{':explication_',#GET{name}}|_T)]</p>
 		</li>
+		#SET{name,backgroundimagefixed}
+		<li class="editer editer_[(#GET{name})]">
+			<label>[(#GET{cc}|concat{':label_',#GET{name}}|_T)]</label>
+			#SET{val,oui}
+			<div class="choix">
+				<input type="checkbox" name="#GET{name}" class="checkbox" id="#GET{name}_#GET{val}" value="#GET{val}"[(#GET{val}|=={#ENV{#GET{name}}}|oui)checked="checked"] />
+				<label for="#GET{name}_#GET{val}"><:oui:></label>
+				<p class="explication">[(#GET{cc}|concat{':explication_',#GET{name}}|_T)]</p>
+			</div>
+		</li>
 		#SET{name,color}
 		<li class="editer editer_[(#GET{name})]">
 			<label for="#GET{name}">[(#GET{cc}|concat{':label_',#GET{name}}|_T)]</label>
