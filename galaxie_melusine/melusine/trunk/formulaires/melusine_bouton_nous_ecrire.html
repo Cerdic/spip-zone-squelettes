@@ -17,6 +17,10 @@
 <!-- On récupère le texte saisi pour le bouton -->
 #SET{txt,(#GET{params}|table_valeur{textebouton})}
 [(#GET{txt}|non)#SET{txt,"Nous écrire"}]
+#SET{centrer,(#GET{params}|table_valeur{centrer})}
+
+
+<script type="text/javascript" src="#CHEMIN{scripts/calendrier.js}"></script>
 <!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
 #ACTION_FORMULAIRE{#ENV{action}}
@@ -38,10 +42,8 @@
 				bloc visible
 			</option>
 		</select>
-</fieldset>
-
+	<br />
 <!-- Liste déroulante des auteurs pour choisir la personne à joindre -->	
-<fieldset>
 		<label for="personneajoindre">Nom du destinataire</label>
 		<select name="personneajoindre"  style="width:100px">
 			<!-- Première ligne vide pour la liste déroulante -->
@@ -56,13 +58,15 @@
 			</BOUCLE_nom>
 		</select>
 		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
-</fieldset>
-
+	<br />		
 <!-- Champs texte pour changer le texte du bouton -->	
-<fieldset>
-
 		<label for="textebouton">Texte à afficher</label>
 		<input type="text" name="textebouton" value="#GET{txt}">
+	<br />
+		<label for="centrer">Centrer le bouton et le texte</label>
+		<input type="radio" name="centrer" value="oui" [(#GET{centrer}|=={oui}|oui) checked ]>Oui</input>
+		<input type="radio" name="centrer" value="non" [(#GET{centrer}|=={non}|oui) checked ]>Non</input>
+	<br />
 </fieldset>
 
 <input type='submit' name='ok' value='Enregistrer les paramètres' />

@@ -21,6 +21,8 @@
 #SET{dest,(#GET{param}|table_valeur{personneajoindre})}
 <!-- On récupère le texte saisi pour le bouton -->
 #SET{txt,(#GET{param}|table_valeur{textebouton})}
+<!-- On récupère le choix pour centrer oui ou non -->
+#SET{centrer,(#GET{param}|table_valeur{centrer})}
 
 <!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
 [(#GET{txt}|non)#SET{txt,"Nous écrire"}]
@@ -46,11 +48,17 @@
 	[(#GET{style}|=={bloc_visible}|oui)
 		<div class="module_content bloc_visible">
 	]
+		[(#GET{centrer}|=={oui}|oui)
+			<div class="alignecentre">
+		]
 			<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
 			<span class="logo-titre">
 				<i class="fa fa-envelope"> #GET{txt}</i>
 			</span>
 			</a>
+		[(#GET{centrer}|=={oui}|oui)
+			</div>
+		]
 	[(#GET{style}|=={bloc_visible}|oui)
 		</div>
 	]
