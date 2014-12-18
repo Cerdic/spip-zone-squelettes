@@ -1,20 +1,22 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
     #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-    #SET{voirauteur,#PARAMETRES|unserialize|table_valeur{voirauteur}}
     #SET{voirdate,#PARAMETRES|unserialize|table_valeur{voirdate}}
+    #SET{voirauteur,#PARAMETRES|unserialize|table_valeur{voirauteur}}
     #SET{voirlogo,#PARAMETRES|unserialize|table_valeur{voirlogo}}
-    #SET{voirdocuments,#PARAMETRES|unserialize|table_valeur{voirdocuments}}
     #SET{stylelogo,#PARAMETRES|unserialize|table_valeur{stylelogo}}
+    #SET{voirdocuments,#PARAMETRES|unserialize|table_valeur{voirdocuments}}
+    #SET{socialtag,#PARAMETRES|unserialize|table_valeur{socialtag}}
 </BOUCLE_noisette>
 
 [(#GET{style}|non)#SET{style,bloc_visible}]
-[(#GET{voirauteur}|non)#SET{voirauteur,oui}]
 [(#GET{voirdate}|non)#SET{voirdate,oui}]
+[(#GET{voirauteur}|non)#SET{voirauteur,oui}]
 [(#GET{voirlogo}|non)#SET{voirlogo,oui}]
-[(#GET{voirdocuments}|non)#SET{voirdocuments,oui}]
 [(#GET{stylelogo}|non)#SET{stylelogo,vignette}]
+[(#GET{voirdocuments}|non)#SET{voirdocuments,oui}]
+<!-- Pour socialtag, par défaut dans le modele/socialtag -->
 #SET{nom,""}
- 
+
 
 <BOUCLE_article_principal(ARTICLES){doublons} {id_article}>
 		[(#SET{nom,""})]
@@ -47,7 +49,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				[(#MODELE{socialtag}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE,id_auteur=#GET{auteur},titre=#TITRE})]
+					[(#MODELE{socialtag}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE,id_auteur=#ID_AUTEUR,titre=#TITRE})]
 			</div>
 		</div>
 		[<div class="logo_article">(#GET{voirlogo}|=={oui}|oui)
