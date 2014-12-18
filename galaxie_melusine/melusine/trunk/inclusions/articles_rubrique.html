@@ -1,26 +1,32 @@
-
+<!-- On va chercher les paramètres du YAML associé ************************* -->
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
     #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+    #SET{redirection,#PARAMETRES|unserialize|table_valeur{edito_rub}}
 </BOUCLE_noisette>
 
+<!-- Si aucun choix n'a été effectué pour la redirection en cas d'article ** -->
+<!-- unique alors on attribue par défaut la valeur NON ********************* -->
+[(#GET{redirection}|non)#SET{redirection,non}]
+
+<!-- On exclue les articles ayant le mot clef EXCLU ************************ -->
 <BOUCLE_exclus2(ARTICLES) {id_rubrique}{titre_mot="exclu"} {doublons}>
 </BOUCLE_exclus2>
 
-<!--<BOUCLE_exclus3(ARTICLES) {id_rubrique}{titre_mot="edito_rub"}{doublons}>-->
-<!--</BOUCLE_exclus3>-->
-
-
+<!-- On compte le nombre d'articles que l'on devra afficher **************** -->
+<BOUCLE_cpt(ARTICLES)  {id_rubrique}{par num titre,titre}{par date}{inverse}>
+    #SET{compteur,#TOTAL_BOUCLE}
+</BOUCLE_cpt>
 
 <!-- Mise en page en fonction du nombre de colonnes - ouverture du DIV ***** -->
 [(#GET{disposition}|=={col-md-12}|non)
     <div class='row col1'>
 ]
 
-<!-- Boucle affichant toutes les intros des articles de la rubrique ******** -->
+<!-- Boucle en cas de plusieurs articles *********************************** -->
 <!-- *********************************************************************** -->
 <!-- si la rubrique comporte plus d'un article ***************************** -->
-<!-- id est pas d'article avec le mot clef edito_rub *********************** -->
-<BOUCLE_art (ARTICLES)  {id_rubrique}           {!titre_mot="edito_rub"}
+<!-- id est si le compteur est strictement supérieur à 1 ******************* -->
+<BOUCLE_art (ARTICLES)  {id_rubrique}   {si #GET{compteur}|>{1}}
                         {par num titre,titre}   {par date}{inverse}>
 <!-- Appel du modèle d'annonce d'un article pour une seule colonne ********* -->
     [(#GET{disposition}|=={col-md-12}|oui)
@@ -34,13 +40,29 @@
     ]
 </BOUCLE_art>
 
-<!-- Boucle affichant le contenu du seul article de la rubrique ************ -->
+<!-- Boucle en cas d'article unique **************************************** -->
 <!-- *********************************************************************** -->
-<!-- id est un article ayant comme clef edito_rub ************************** -->
-<BOUCLE_art2 (ARTICLES) {id_rubrique}           {titre_mot="edito_rub"}
+<!-- id est si le compteur est inférieur ou égal à 1 *********************** -->
+<!-- ET si l'utilisateur a choisi cette option de redirection dans le YAML * -->
+<BOUCLE_art2 (ARTICLES) {id_rubrique}           {si #GET{compteur}|<={1}}
                         {par num titre,titre}   {par date}{inverse}>
-<!-- Redirection vers la page de l'article en question ********************* -->
-    <meta http-equiv="refresh" content="0;URL=#URL_ARTICLE">
+<!-- Redirection vers la page de l'article unique si OUI est sélectionné *** -->
+    [(#GET{redirection}|=={oui}|oui)
+        <meta http-equiv="refresh" content="0;URL=#URL_ARTICLE">
+    ]
+<!-- Affichage de l'annonce de l'article unique si NON est sélectionné ***** -->
+    [(#GET{redirection}|=={oui}|non)
+<!-- Appel du modèle d'annonce d'un article pour une seule colonne ********* -->
+        [(#GET{disposition}|=={col-md-12}|oui)
+            [(#MODELE{annonce_article}
+                {id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+        ]
+<!-- Appel du modèle d'annonce d'un article pour plusieurs colonnes ******** -->
+        [(#GET{disposition}|=={col-md-12}|non)
+            [(#MODELE{annonce_article_1col}
+                {id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+        ]
+    ]
 </BOUCLE_art2>
 
 <!-- Mise en page en fonction du nombre de colonnes - fermeture du DIV ***** -->
