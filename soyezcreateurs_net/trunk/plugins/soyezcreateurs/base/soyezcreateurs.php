@@ -611,6 +611,19 @@ function create_site($site, $rubrique) {
 	return $id_site;
 }
 
+function poubelle_site($titre_site, $titre_rubrique) {
+	$id_rubrique = id_rubrique($titre_rubrique);
+	if ($id_rubrique) {
+		$id_site = id_site($titre_site, $id_rubrique);
+		if ($id_site > 0) {
+			sql_updateq(
+				"spip_syndic", array(
+					"statut" => 'refuse',
+				), "id_syndic='$id_syndic'"
+			);			
+		}
+	}
+}
 //fonction qui permet de trouver des liaisons entre site et mot clé
 function find_site_mot($id_mot, $id_syndic) {
 	$count = sql_countsel(
@@ -1087,12 +1100,22 @@ function soyezcreateurs_vider($tout=false) {
 	poubelle_article("20. Quis enim","400. Classées par numéro de titre");
 	poubelle_article("30. Altera sententia est","400. Classées par numéro de titre");
 	poubelle_article("Historique des versions de SPIP","10. SPIP");
+	
+	poubelle_site("MàJ SoyezCréateurs", "000. Fourre-tout");
+	poubelle_site("SoyezCréateurs", "000. Fourre-tout");
 
 	if ($tout===true) {
 		poubelle_article("10. Outil 1","30. Outils");
 		poubelle_article("20. Outil 2","30. Outils");
 		poubelle_article("30. Outil 3","30. Outils");
 		poubelle_article("40. Outil 4","30. Outils");
+		delete_rubrique("100. Rubriques");
+		delete_rubrique("10. DessousBreves 1");
+		delete_rubrique("20. DessousBreves 2");
+		delete_rubrique("200. Avec le mot-clé");
+		delete_rubrique("300. MenuHaut");
+		delete_rubrique("400. Classées par numéro de titre");
+		delete_rubrique("800. Rubrique \"Goodies\"");
 	}
 	
 	delete_rubrique("10. SPIP");
