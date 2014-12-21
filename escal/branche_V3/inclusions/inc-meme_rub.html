@@ -3,6 +3,7 @@
 #SET{nombrememerub,#CONFIG{escal/config/nombrememerub,10}}
 #SET{nbrpagmemerub,#CONFIG{escal/config/paginmemerub,5}}
 
+  <B_meme_rubrique>
 
 <h1 class="cadre meme-rub a-droite" >
 	[(#CONFIG{escal/config/titrememerub}|oui)
@@ -14,9 +15,8 @@
 
 </h1>
 
-<div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >
-
-  <B_meme_rubrique>
+<div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >  
+  
     <p class="pagination">#PAGINATION</p>
 	<BOUCLE_meme_rubrique(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|non}{id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
 	
@@ -41,9 +41,26 @@
 		</div>
 		 
 	</BOUCLE_meme_rubrique>
-  
+</div>
+
+</B_meme_rubrique>
+
   <B_meme_rubrique2>
-    <p class="pagination">#PAGINATION</p>
+
+<h1 class="cadre meme-rub a-droite" >
+	[(#CONFIG{escal/config/titrememerub}|oui)
+    [(#CONFIG{escal/config/titrememerub}|propre|_T_ou_typo|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titrememerub}|non)
+    <:meme_rubrique:>
+  ]
+
+</h1>
+
+<div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >  
+  
+    <p class="pagination">#PAGINATION</p>  
+
 	<BOUCLE_meme_rubrique2(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|oui}{id_rubrique}{exclus}{par hasard}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
 	
 		<!-- 	affichage du titre avec lien vers l'article
@@ -70,3 +87,5 @@
 	</BOUCLE_meme_rubrique2>
 
 </div>
+
+</B_meme_rubrique2>
