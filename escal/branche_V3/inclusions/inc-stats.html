@@ -96,9 +96,19 @@
   </B_total_sites>
 </li>
 
+	<BOUCLE_exclure_rub1(RUBRIQUES){titre_mot IN pas-au-menu,pas-au-menu-vertical,pas-au-plan,pas-a-la-une}>
+	 <BOUCLE_extract1(ARTICLES){id_rubrique}{doublons}>
+	 </BOUCLE_extract1>
+  	<BOUCLE_exclure_rub_branche1(RUBRIQUES){branche}>
+  	 <BOUCLE_extract_branche1(ARTICLES){id_rubrique}{doublons}>
+  	 </BOUCLE_extract_branche1>	 
+  	</BOUCLE_exclure_rub_branche1>	 
+	</BOUCLE_exclure_rub1>
+
+    
 <B_dernier>
 <li>
-<BOUCLE_dernier(ARTICLES){si #CONFIG{escal/config/dernierarticleparu}|!={non}}{tout}{par date}{inverse}{0,1}>
+<BOUCLE_dernier(ARTICLES){si #CONFIG{escal/config/dernierarticleparu}|!={non}}{tout}{doublons}{par date}{inverse}{0,1}>
 <:escal:article_dernier:>
 <div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
 <div class="detail">"#TITRE"</div>
