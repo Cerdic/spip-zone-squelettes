@@ -1,56 +1,80 @@
 <BOUCLE_module(NOISETTES){id_noisette}>
-[(#SET{info_noisette,[(#CHEMIN{#NOISETTE|concat{.html}}|melusine_charger_infos_noisette_yaml{parametres})]})]
-[(#SET{form_noisette,[(#CHEMIN{#NOISETTE|concat{.html}}|melusine_charger_infos_noisette_yaml{form})]})]
+	[(#SET{info_noisette,
+		[(#CHEMIN{#NOISETTE|concat{.html}}
+						|melusine_charger_infos_noisette_yaml{parametres})]})]
+	[(#SET{form_noisette,
+		[(#CHEMIN{#NOISETTE|concat{.html}}
+						|melusine_charger_infos_noisette_yaml{form})]})]
 
 
-<div class="formulaire_spip formulaire_deplacer_module">
-	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
-	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
-	<form action="#ENV{action}" method="post"><div>
-		#ACTION_FORMULAIRE{#ENV{action}}
-		<ul class="boutons editer_position obligatoire">
-			<li>
-				<button type='submit' title="Vers le bas" class="module_melusine bas"  name='deplacement' value="descendre" />
-				  <i class="fa fa-arrow-circle-o-down "></i>
-				</button>
-			</li>
-			<li>
-				<button type='submit' title="Vers le haut" class="module_melusine haut" name='deplacement' value="monter" />
-				<i class="fa fa-arrow-circle-o-up fa-x2"></i>
-				</button>
-			</li>
-			<li>
-				<button type='submit' title="Supprimer" class="module_melusine sup" name='deplacement' value="supprimer" />
-				<i class="fa fa-times-circle-o fa-x2"></i>
-			</button>
-						
-			</li>
-			[(#GET{form_noisette}|oui)
-			<li>
-				
-
-				[(#GET{form_noisette}|=={saisie}|oui)
-				<a href="[(#URL_PAGE{edition_module_yaml,id_noisette=#ID_NOISETTE}
-						|parametre_url{'type',#TYPE}
-						|parametre_url{'nom_bloc',#GET{nom_bloc}}
-					)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
-					<i class="fa fa-edit "></i>
-				</a>]
-
-			
-				[(#GET{form_noisette}|=={saisie}|non)
-				
-				<a  href="[(#URL_PAGE{edition_module_form,id_noisette=#ID_NOISETTE}
-		|parametre_url{'type',#TYPE}
-		|parametre_url{'form',#GET{form_noisette}}
-		|parametre_url{'nom_bloc',#GET{nom_bloc}}
-	)]" class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
-	<i class="fa fa-edit fa-2x"></i>
-				</a>]
-				
-			</li>]
-		</ul>
-		<p class="nom_module">[Module &laquo;&nbsp;(#NOOP|melusine_lister_noisettes|table_valeur_cleslash{#NOISETTE!nom}|spip_ucfirst)&nbsp;&raquo;]</p>
-	</div></form>
-</div>
-</BOUCLE_module>
+	<div class="formulaire_spip formulaire_deplacer_module">
+		[<p class="reponse_formulaire reponse_formulaire_erreur">
+			(#ENV*{message_erreur})
+		</p>]
+		[<p class="reponse_formulaire reponse_formulaire_ok">
+			(#ENV*{message_ok})
+		</p>]
+		<form action="#ENV{action}" method="post">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			<ul class="boutons editer_position obligatoire">
+				<li>
+					<button type='submit' 
+							title="Vers le bas" 
+							class="module_melusine bas"  
+							name='deplacement' 
+							value="descendre" />
+						<i class="fa fa-arrow-circle-o-down "></i>
+					</button>
+				</li>
+				<li>
+					<button type='submit' 
+							title="Vers le haut" 
+							class="module_melusine haut" 
+							name='deplacement' 
+							value="monter" />
+						<i class="fa fa-arrow-circle-o-up fa-x2"></i>
+					</button>
+				</li>
+				<li>
+					<button type='submit' 
+							title="Supprimer" 
+							class="module_melusine sup" 
+							name='deplacement' 
+							value="supprimer" />
+						<i class="fa fa-times-circle-o fa-x2"></i>
+					</button>	
+				</li>
+				[(#GET{form_noisette}|oui)
+					<li>
+						[(#GET{form_noisette}|=={saisie}|oui)
+<a 	href="[(#URL_PAGE{edition_module_yaml,id_noisette=#ID_NOISETTE}
+							|parametre_url{'type',#TYPE}
+							|parametre_url{'nom_bloc',#GET{nom_bloc}})]" 
+	class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
+								<i class="fa fa-edit "></i>
+							</a>
+						]
+						[(#GET{form_noisette}|=={saisie}|non)
+<a  href="[(#URL_PAGE{edition_module_form,id_noisette=#ID_NOISETTE}
+							|parametre_url{'type',#TYPE}
+							|parametre_url{'form',#GET{form_noisette}}
+							|parametre_url{'nom_bloc',#GET{nom_bloc}})]" 
+	class='ajout_module button mediabox boxIframe boxWidth-500px boxHeight-90%'>
+								<i class="fa fa-edit fa-2x"></i>
+							</a>
+						]
+					</li>
+				]
+			</ul>
+			<p class="nom_module">
+				[Module &laquo;&nbsp;
+					(#NOOP	|melusine_lister_noisettes
+							|table_valeur_cleslash{#NOISETTE!nom}
+							|spip_ucfirst)
+				&nbsp;&raquo;]
+			</p>
+		</div>
+		</form>
+	</div>
+	</BOUCLE_module>

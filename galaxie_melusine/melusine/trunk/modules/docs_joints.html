@@ -16,7 +16,7 @@
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 </BOUCLE_noisette>
 
-<!-- pas de défaut pour titre_docs et titre_imgs afin d'autoriser une chaine vide -->
+<!-- pas de défaut pour titre_docs et _imgs afin d'autoriser une chaine vide -->
 [(#GET{style}|non)#SET{style,'bloc_visible'}]
 
 
@@ -31,7 +31,8 @@
 	[<h2>(#GET{titre_docs})</h2>]
 <!-- Liens vers les documents joints, à l'exclusion des images ************* -->
 		<BOUCLE_documents_art(DOCUMENTS){id_article}
-						{extension !== jpg|png|gif|tif|bmp}{mode=document}{doublons}>
+										{extension !== jpg|png|gif|tif|bmp}
+										{mode=document}{doublons}>
 <!-- On affiche le logo, le titre, le descriptif, les crédits et la date *** -->
 <!-- Au clic, les documents sont téléchargés ******************************* -->
 			<div class="item">
@@ -69,8 +70,9 @@
 	<div class="module_content #GET{style}">
 	[<h2>(#GET{titre_imgs})</h2>]
 <!-- Liens vers les images jointes ***************************************** -->
-        <BOUCLE_images_art(DOCUMENTS){id_article}
-        			{extension == jpg|png|gif|tif|bmp}{mode=image}{doublons}>
+        <BOUCLE_images_art(DOCUMENTS)	{id_article}
+        								{extension == jpg|png|gif|tif|bmp}
+        								{mode=image}{doublons}>
 <!-- On affiche le logo, le titre, le descriptif, les crédits et la date *** -->
 <!-- Au clic, les images sont ouvertes dans une mediabox ******************* -->
 			<div class="item">

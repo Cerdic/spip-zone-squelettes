@@ -11,30 +11,60 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
-#SET{params,#PARAMETRES|unserialize}
+	#SET{params,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
+<!-- On récupère l'intitulé du bouton -->
+#SET{intitule,(#GET{params}|table_valeur{intitule})}
+<!-- On récupère l'URL saisie -->
+#SET{url,(#GET{params}|table_valeur{url})}
+<!-- On récupère le choix pour l'ouverture dans un nouvel onglet -->
+#SET{onglet,(#GET{params}|table_valeur{onglet})}
+<!-- On récupère le choix pour le style : bloc visible ou invisible -->
+#SET{style,(#GET{params}|table_valeur{style})}
+<!-- On récupère l'image choisie -->
+#SET{image,(#GET{params}|table_valeur{image})}
+<!-- On récupère la classe du bouton -->
+#SET{class,(#GET{params}|table_valeur{class})}
+<!-- On récupère la description de l'image -->
+#SET{alt,(#GET{params}|table_valeur{alt})}
+<!-- On récupère le choix d'alignement -->
+#SET{centrer,(#GET{params}|table_valeur{centrer})}
 
 <!-- *********************************************************************** -->
 <!-- AFFICHAGE CONDITIONNE ************************************************* -->
 <!-- *********************************************************************** -->
 
 
-<!-- Si aucune saisie n'a été effectuée, avertissement pour l'admin -->
+<!-- Si il manque des saisies, avertissement pour l'admin -->
 [(#SESSION{statut}|=={0minirezo}|oui)
-	[(#GET{params}|non)
+	[(#GET{url}|non)
 		<div class="module_content bloc_visible info">
-	    	Bouton à configurer
+	    	URL à configurer
+	    </div>
+	]
+	[(#GET{image}|non)
+		<div class="module_content bloc_visible info">
+	    	Image à choisir
 	    </div>
 	]
 ]	
 
 
-<div class="bouton [(#GET{params}|table_valeur{style})]">
-<a  href="[(#GET{params}|table_valeur{url})]" [(#GET{params}|table_valeur{blanck}|=={blanck}?{target="_blank",})]>	
-						
-[(#GET{params}|table_valeur{image}||image_reduire{0,300}|inserer_attribut{'class',"img-responsive"}|inserer_attribut{'alt',#GET{params}|table_valeur{alt}})]
-				
-[<div class="logo-titre">(#GET{params}|table_valeur{intitule})</div>] 
-</a>
-</div>
+[(#GET{style}|=={visible}|oui)	<div class="module_content bloc_visible">]
+	<!-- Alignement conditionné par le choix de l'utilisateur -->
+	[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
+	[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
+	[(#GET{centrer}|=={droite}|oui)	<div class="alignedroite">]
+		<a  href="#GET{url}"
+			[(#GET{onglet}|=={oui}?{target="_blank",})]>	
+			[(#GET{image}	|image_reduire{0,300}
+							|inserer_attribut{'class',"img-responsive"}
+							|inserer_attribut{'alt',#GET{alt}})]
+			[<div class="logo-titre">(#GET{intitule})</div>] 
+		</a>
+	<!-- Fin alignement -->
+	[(#GET{centrer}|=={gauche}|oui)	</div>]
+	[(#GET{centrer}|=={centre}|oui)	</div>]
+	[(#GET{centrer}|=={droite}|oui)	</div>]
+[(#GET{style}|=={visible}|oui)	</div>]

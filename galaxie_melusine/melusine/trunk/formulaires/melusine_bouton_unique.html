@@ -1,6 +1,16 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE BOUTON UNIQUE CONFIGURABLE ********************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
-#SET{params,#PARAMETRES|unserialize}
+	#SET{params,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
 <!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
@@ -14,86 +24,96 @@
 	(#ENV*{message_erreur})
 </p>]
 
+<!-- On récupère les saisies de l'utilisateur -->
+<!-- On met une valeur par défaut si nécéssaire -->
+#SET{onglet,(#GET{params}|table_valeur{onglet})}
+[(#GET{onglet}|non)#SET{onglet,"oui"}]
+#SET{style,(#GET{params}|table_valeur{style})}
+[(#GET{style}|non)#SET{style,"visible"}]
+#SET{centrer,(#GET{params}|table_valeur{centrer})}
+[(#GET{centrer}|non)#SET{centrer,"centre"}]
+
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
 <!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
 #ACTION_FORMULAIRE{#ENV{action}}
 
-<!-- Choix du style : bloc visible ou invisible -->
-<fieldset>
-	<label for="style">Style : </label>
-		<select name="style"  >
-			<option value="bloc_invisible" 
-				[(#GET{params}|table_valeur{style}
-				|=={bloc_invisible}|oui) selected ]>
-				bloc invisible
-			</option> 
-			<option value="bloc_visible"  
-				[(#GET{params}|table_valeur{style}
-				|=={bloc_visible}|oui) selected ]>
-				bloc visible
-			</option>
-		</select>
-</fieldset>
+<!-- *********************************************************************** -->
+<!-- PARAMETRAGE *********************************************************** -->
+<!-- *********************************************************************** -->
 
-<!-- Choix de l'intitulé du bouton -->				
+
 <fieldset>
-	<label for="Intitulé">Intitulé</label>
+	<div class="123titre">--- Paramétrage ---</div>
+	<!-- Champ texte pour l'intitulé du bouton -->
+	<i class="fa fa-circle"></i>
+	<label for="Intitulé">Intitulé (facultatif)</label>
+	<br />
+	<div class="123alignecentre">
 		<input 	type='text' 
 				name='intitule' 
 				value="[(#GET{params}|table_valeur{intitule})]" />
-	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
-</fieldset>
-
-<!-- Choix de l'URL et si ouverture vers un nouvel onglet -->	
-<fieldset>
-		<label for="URL">URL</label>
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+	</div>
+	<!-- Champ texte pour saisie de l'URL -->	
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="URL">URL</label>
+	<br />
+	<div class="123alignecentre">
 		<input 	type='text' 
 				name='url' 
 				value="[(#GET{params}|table_valeur{url})]" />
-		<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
-		<input 	type="checkbox" 
-				name="blanck"  
-				value="blanck" 
-				[(#GET{params}|table_valeur{blanck}=={"blanck"}|?{"checked", })]
-	  	/>				
+	</div>
+	<!-- Bouton radio pour ouverture dans un nouvel onglet -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="Nouvelle fenêtre">Ouverture dans un nouvel onglet</label>
+	<br />
+	<div class="123alignecentre">
+		<input type="radio" name="onglet" value="oui" 
+			[(#GET{onglet}|=={oui}|oui) checked ]>Oui</input>
+		<input type="radio" name="onglet" value="non" 
+			[(#GET{onglet}|=={non}|oui) checked ]>Non</input>	
+	 </div>			
 </fieldset>
 
-<!-- Choix de la classe du bouton -->	
-<fieldset>	
-		<label for="class">classe du bouton</label>
-		<input 	type='text' 
-				name='class' 
-				value="[(#GET{params}|table_valeur{class})]" 
-		/>
-</fieldset>
 
-<!-- Choix de la description pour l'image -->	
-<fieldset>	
-		<label for="Alt">Description de l'image : balise ALT</label>
-		<input 	type='text' 
-				name='alt' 
-				value="[(#GET{params}|table_valeur{alt})]" 
-		/>
-</fieldset>
 
-<!-- Choix de l'image -->	
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+
 <fieldset>
+	<div class="123titre">--- Apparence ---</div>
+	<!-- Boutons radio pour choisir si le bloc est visible ou non -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="123alignecentre">
+		<input type="radio" name="style" value="visible" 
+			[(#GET{style}|=={visible}|oui) checked ]>Bloc visible</input>
+		<input type="radio" name="style" value="invisible" 
+			[(#GET{style}|=={invisible}|oui) checked ]>Bloc invisible</input>
+	</div>
+	<!-- Choix d'un fichier pour l'image -->	
+	<i class="fa fa-exclamation-circle"></i>
 	<label for="Image">Image</label>
-	<input 	type="file" 
-			name="image"  
-			value="" 
-			size="30" 
-	/>
-	<br/>
-	<input 	type="hidden" 
-			name="imageexiste"  
-			value="[(#GET{params}|table_valeur{image})]" 
-			size="30" 
-	/>
-	<br/>
-	
-	[(#GET{params}	|table_valeur{image}
-					|?
+	<br />	
+	<div class="123alignecentre">
+		<input 	type="file" 
+				name="image"  
+				value="[(#GET{params}|table_valeur{image})]" 
+				size="30" 
+		/>
+		<input 	type="hidden" 
+				name="imageexiste"  
+				value="[(#GET{params}|table_valeur{image})]" 
+				size="30" 
+		/>
+		[(#GET{params}	|table_valeur{image}
+						|?
 						{
 							[(#CHEMIN{#GET{params}	|table_valeur{image}}
 													|image_reduire{150})]
@@ -101,12 +121,48 @@
 							[(#GET{params}			|table_valeur{image}
 													||image_reduire{150})]
 						} 
-	)]
+		)]	
+	</div>
+	<!-- Champs texte pour la classe du bouton -->	
+	<i class="fa fa-circle"></i>
+	<label for="class">Classe du bouton (facultatif)</label>
+	<br />	
+	<div class="123alignecentre">
+		<input 	type='text' 
+				name='class' 
+				value="[(#GET{params}|table_valeur{class})]" 
+		/>
+	</div>
+	<!-- Choix de la description pour l'image -->	
+	<i class="fa fa-circle"></i>
+	<label for="Alt">Description de l'image : balise ALT (facultatif)</label>
+	<br />	
+	<div class="123alignecentre">
+		<input 	type='text' 
+				name='alt' 
+				value="[(#GET{params}|table_valeur{alt})]" 
+		/>
+	</div>	
+	<!-- Boutons radio pour choisir l'alignement -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="centrer">Alignement du bouton</label>
+	<div class="123alignecentre">
+		<input type="radio" name="centrer" value="gauche" 
+			[(#GET{centrer}|=={gauche}|oui) checked ]>A gauche</input>
+		<input type="radio" name="centrer" value="centre" 
+			[(#GET{centrer}|=={centre}|oui) checked ]>Au centre</input>
+		<input type="radio" name="centrer" value="droite" 
+			[(#GET{centrer}|=={droite}|oui) checked ]>A droite</input>
+	</div>
 </fieldset>
 
-
-<input type='submit' name='ok' value='Enregistrer les paramètres' />
+<!-- *********************************************************************** -->
+<!-- BOUTONS SUBMIT ******************************************************** -->
+<!-- *********************************************************************** -->
+<div class="123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer les paramètres' />
+	<input type='submit' name='reset' value='Effacer les paramètres' />
+</div>
 		
-
 </form>
 <!-- Fin du formulaire -->

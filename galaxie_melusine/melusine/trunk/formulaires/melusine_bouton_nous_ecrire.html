@@ -1,3 +1,13 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE BOUTON NOUS ECRIRE ***************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
 	#SET{params,#PARAMETRES|unserialize}
@@ -8,43 +18,39 @@
 
 <!-- Messages si validation OK ou non -->
 [<p class="reponse_formulaire reponse_formulaire_ok">
-	(#ENV**{message_ok})
-</p>]
+	(#ENV**{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">
-	(#ENV*{message_erreur})
-</p>]
+	(#ENV*{message_erreur})</p>]
 
-<!-- On récupère le texte saisi pour le bouton -->
+<!-- On récupère les saisies de l'utilisateur -->
+<!-- On met une valeur par défaut si nécéssaire -->
 #SET{txt,(#GET{params}|table_valeur{textebouton})}
 [(#GET{txt}|non)#SET{txt,"Nous écrire"}]
+#SET{style,(#GET{params}|table_valeur{style})}
+[(#GET{style}|non)#SET{style,"visible"}]
 #SET{centrer,(#GET{params}|table_valeur{centrer})}
+[(#GET{centrer}|non)#SET{centrer,"centre"}]
 
 
-<script type="text/javascript" src="#CHEMIN{scripts/calendrier.js}"></script>
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
 <!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
-#ACTION_FORMULAIRE{#ENV{action}}
-#ENV{personneajoindre}	
+	#ACTION_FORMULAIRE{#ENV{action}}
+	#ENV{personneajoindre}	
 
+<!-- *********************************************************************** -->
+<!-- PARAMETRAGE *********************************************************** -->
+<!-- *********************************************************************** -->
 <fieldset>
-	<label for="style">Style : </label>
-		<select name="style"  >
-			<option value="bloc_invisible" 
-				[(#GET{params}	|table_valeur{style}
-								|=={bloc_invisible}
-								|oui) selected]>
-				bloc invisible
-			</option> 
-			<option value="bloc_visible"
-				[(#GET{params}	|table_valeur{style}
-								|=={bloc_visible}
-								|oui) selected ]>
-				bloc visible
-			</option>
-		</select>
-	<br />
-<!-- Liste déroulante des auteurs pour choisir la personne à joindre -->	
-		<label for="personneajoindre">Nom du destinataire</label>
+	<div class="123titre">--- Paramétrage ---</div>
+	<!-- Liste déroulante des auteurs pour choisir la personne à joindre -->	
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="personneajoindre">Nom du destinataire</label>
+	<br />	
+	<div class="123alignecentre">
 		<select name="personneajoindre"  style="width:100px">
 			<!-- Première ligne vide pour la liste déroulante -->
 			<option value=""> --- </option>
@@ -57,20 +63,54 @@
 				</option>
 			</BOUCLE_nom>
 		</select>
+	</div>
 		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
-	<br />		
-<!-- Champs texte pour changer le texte du bouton -->	
-		<label for="textebouton">Texte à afficher</label>
-		<input type="text" name="textebouton" value="#GET{txt}">
-	<br />
-		<label for="centrer">Centrer le bouton et le texte</label>
-		<input type="radio" name="centrer" value="oui" [(#GET{centrer}|=={oui}|oui) checked ]>Oui</input>
-		<input type="radio" name="centrer" value="non" [(#GET{centrer}|=={non}|oui) checked ]>Non</input>
-	<br />
+	<br />	
 </fieldset>
 
-<input type='submit' name='ok' value='Enregistrer les paramètres' />
-<input type='reset' name='ok' value='Effacer les paramètres' />
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+<fieldset>
+	<div class="123titre">--- Apparence ---</div>
+	<!-- Champs texte pour changer le texte du bouton -->
+	<i class="fa fa-exclamation-circle"></i>	
+	<label for="textebouton">Texte à afficher</label>
+	<br />	
+	<div class="123alignecentre">
+		<input type="text" name="textebouton" value="#GET{txt}">
+	</div>
+	<!-- Boutons radio pour choisir si le bloc est visible ou non -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="123alignecentre">	
+		<input type="radio" name="style" value="visible" 
+			[(#GET{style}|=={visible}|oui) checked ]>Bloc visible</input>
+		<input type="radio" name="style" value="invisible" 
+			[(#GET{style}|=={invisible}|oui) checked ]>Bloc invisible</input>
+	</div>
+
+	<!-- Boutons radio pour choisir l'alignement du texte -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="centrer">Alignement du texte</label>
+	<div class="123alignecentre">
+		<input type="radio" name="centrer" value="gauche" 
+			[(#GET{centrer}|=={gauche}|oui) checked ]>A gauche</input>
+		<input type="radio" name="centrer" value="centre" 
+			[(#GET{centrer}|=={centre}|oui) checked ]>Au centre</input>
+		<input type="radio" name="centrer" value="droite" 
+			[(#GET{centrer}|=={droite}|oui) checked ]>A droite</input>
+	</div>
+</fieldset>
+
+<!-- *********************************************************************** -->
+<!-- BOUTONS SUBMIT ******************************************************** -->
+<!-- *********************************************************************** -->
+<div class="123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer les paramètres' />
+	<input type='submit' name='reset' value='Effacer les paramètres' />
+</div>
 
 </form>
 <!-- Fin du formulaire -->	

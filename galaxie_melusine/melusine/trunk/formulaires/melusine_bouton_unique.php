@@ -43,7 +43,15 @@ include_spip('action/editer_objet');
 
 	$id_noisette=_request('id_noisette');
 	
-	$casiers=array('style','intitule','url','blanck','alt','class');
+	if (isset($_POST['ok'])) 
+	{	/* On récupère les valeurs du formulaire */
+		$casiers=array('intitule','url','onglet','style','image','class','alt','centrer');
+	}
+	elseif (isset($_POST['reset'])) 
+	{	/* On initialise les valeurs du formulaire */
+		$casiers=array('','','oui','visible','','','','centre');
+	}
+
 	$params=array();
 	foreach($casiers as $casier){
 		$data=_request($casier);
@@ -51,34 +59,41 @@ include_spip('action/editer_objet');
 		$params[$casier]=$data;
 	}
 
-
 	$nf="image";
-	
-	
-		if(!empty($_FILES[$nf]['tmp_name'])){
+	if(!empty($_FILES[$nf]['tmp_name'])){
 			
-			$chemin='melusine_data/boutons/b'.$id_noisette.'/image';
-			$nom_fichier= $_FILES[$nf]['tmp_name'];
-			$chemin_destination_boutons="IMG/config/boutons";
-			$chemin_destination_config="IMG/config";
-			$nom_destination='IMG/config/boutons/'.$_FILES[$nf]['name'];
-			$nom_destination0='IMG/config/boutons/'.$_FILES[$nf]['name'];
-			if(!is_dir("$chemin_destination_boutons")){
-				if(!is_dir($chemin_destination_config)){
-					mkdir($chemin_destination_config,0777);
-				}
-				mkdir($chemin_destination_boutons,0777);
-			};
-			move_uploaded_file($nom_fichier, $nom_destination);
-			$params['image'] =$nom_destination0;
-			
-		}
-		elseif($image=_request('imageexiste')){
-			$params['image']=$image;
-		}
+		$chemin='melusine_data/boutons/b'.$id_noisette.'/image';
+		$nom_fichier= $_FILES[$nf]['tmp_name'];
+		$chemin_destination_boutons="IMG/config/boutons";
+		$chemin_destination_config="IMG/config";
+		$nom_destination='IMG/config/boutons/'.$_FILES[$nf]['name'];
+		$nom_destination0='IMG/config/boutons/'.$_FILES[$nf]['name'];
+		if(!is_dir("$chemin_destination_boutons")){
+			if(!is_dir($chemin_destination_config)){
+				mkdir($chemin_destination_config,0777);
+			}
+			mkdir($chemin_destination_boutons,0777);
+		};
+		move_uploaded_file($nom_fichier, $nom_destination);
+		$params['image'] =$nom_destination0;
+	}
+	elseif($image=_request('imageexiste')){
+		$params['image']=$image;
+	}
 	$set=array('parametres'=>serialize($params));
 	objet_modifier("noisette", $id_noisette, $set);
 	
+	if(isset($_POST['ok']) && $params['url']=='')
+	{	/* Si le bouton Enregistrer a été sélectionné sans URL */
+	return array('message_erreur'=>'Veuillez saisir une URL !', 'id_noisette'=>$id);	
+	}
+	elseif(isset($_POST['ok']) && $params['image']=='')
+	{	/* Si le bouton Enregistrer a été sélectionné sans IMAGE */
+	return array('message_erreur'=>'Veuillez choisir une image !', 'id_noisette'=>$id);	
+	}
+	elseif (isset($_POST['ok'])) 
+	{	/* Si le bouton Enregistrer a été sélectionné sans erreur */
 	return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);
+	}
 }
 ?>

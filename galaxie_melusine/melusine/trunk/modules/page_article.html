@@ -19,7 +19,7 @@
 
 
 <BOUCLE_article_principal(ARTICLES){doublons} {id_article}>
-		[(#SET{nom,""})]
+	[(#SET{nom,""})]
 
 	<BOUCLE_auteurs(AUTEURS){id_article} >
 		[(#SET{nom,#GET{nom}|concat{" | "#NOM}})]
@@ -27,9 +27,7 @@
 	</BOUCLE_auteurs>
 
 	<div class="module_content #GET{style}">
-	      
 	<!-- ************ le contenu principal **********************  -->
-
 	 	<H2>[(#TITRE|supprimer_numero)] </H2>
 	 	<div class="row">
 	 		<div class="col-md-8">
@@ -42,9 +40,7 @@
 						</span>
 					]
 					[(#GET{voirauteur}|=={oui}|oui)
-						<span class="auteur">	
-							#GET{nom}
-						</span>	
+						<span class="auteur">#GET{nom}</span>	
 					]
 				</div>
 			</div>
@@ -53,57 +49,57 @@
 			</div>
 		</div>
 		[<div class="logo_article">(#GET{voirlogo}|=={oui}|oui)
-							[(#GET{stylelogo}|=={large}|oui)
-								[(#LOGO_ARTICLE||image_recadre{0,300,center}|inserer_attribut{class, "img-responsive"})]
-							]
-							[(#GET{stylelogo}|=={vignette}|oui)
-								[(#LOGO_ARTICLE||image_reduire{200}|inserer_attribut{class, #GET{stylelogo}})]
-							]
-		</div> ]	
+			[(#GET{stylelogo}|=={large}|oui)
+				[(#LOGO_ARTICLE||image_recadre{0,300,center}
+				|inserer_attribut{class, "img-responsive"})]
+				]
+				[(#GET{stylelogo}|=={vignette}|oui)
+					[(#LOGO_ARTICLE||image_reduire{200}
+					|inserer_attribut{class, #GET{stylelogo}})]
+				]
+		</div>]	
 						
 
 	<!-- ************ Insertion éventuelle du sous-titre ******************  -->	
 	    [<div  class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-
 	           
-	<!-- ************ Insertion éventuelle du lien hypertexte *************  -->      
+	<!-- ************ Insertion éventuelle du lien hypertexte *************  -->    
 	    [<div class="chapo"><:sur_web:> <a href=#URL_SITE>(#NOM_SITE)</a></div>]
 				
-	<!-- **************** Insertion éventuelle du chapeau *****************  -->		
-	     [<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+	<!-- **************** Insertion éventuelle du chapeau *****************  -->		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
 
 	<!-- ************************ Insertion du texte **********************  -->
-	      
-	    <div class="#EDIT{texte} texte"  >
-							#TEXTE
-
+	    <div class="#EDIT{texte} texte">
+	    	#TEXTE
 
 	<!-- **************** Insertion éventuelle du post-sciptum ************  -->
-		[<div class="post-scriptum" style="background-color:#GET{fondtexte2} ;border-color:#GET{bord2};color:#GET{texte2}">
-				<div class="annonce" style="background-color:#GET{fondtexte2} ;border-color:#GET{bord2};color:#GET{texte2}"><:ps:> :
-				</div>
-				(#PS)
-		</div>]
+			[<div 	class="post-scriptum" 
+					style="background-color:#GET{fondtexte2} ;
+					border-color:#GET{bord2};
+					color:#GET{texte2}">
+					<div 	class="annonce" 
+							style="background-color:#GET{fondtexte2} ;
+							border-color:#GET{bord2};
+							color:#GET{texte2}"><:ps:> :
+					</div>
+					(#PS)
+			</div>]
 
 	<!-- **************** Insertion éventuelle des notes       ************  -->
-		
-		[<div class="notes">(#NOTES)</div>]             				  
-	    <div style="clear:both">&nbsp;</div>
+			[<div class="notes">(#NOTES)</div>]             				  
+	    	<div style="clear:both">&nbsp;</div>
 							
-	<!-- ************ fin de la classe texte **********************  -->        
-						
+	<!-- ************ fin de la classe texte **********************  -->        	
 		</div>		
 
-	       [(#GET{voirdocuments}|=={oui}|oui)
-	       		[(#INCLURE{fond=inclure/documents,id_article, env})]
-	       	]
+	[(#GET{voirdocuments}|=={oui}|oui)
+	    [(#INCLURE{fond=inclure/documents,id_article, env})]
+	]
 
-	<!-- Liens vers les documents joints, à l'exclusion des images -->
-	    
-	    [(#REM) Forum de l'article ]
-		<INCLURE{fond=inclure/forum,id_article} />
-			[<h2><:forum:form_pet_message_commentaire:></h2>
-			(#FORMULAIRE_FORUM)]
-		
+	<!-- Liens vers les documents joints, à l'exclusion des images -->   
+	[(#REM) Forum de l'article ]
+	<INCLURE{fond=inclure/forum,id_article} />
+		[<h2><:forum:form_pet_message_commentaire:></h2>
+		(#FORMULAIRE_FORUM)]
 	</div>
 </BOUCLE_article_principal>

@@ -14,23 +14,38 @@ function formulaires_melusine_bouton_nous_ecrire_verifier()
 
 
 function formulaires_melusine_bouton_nous_ecrire_traiter()
-	{
-		include_spip('action/editer_objet');
-		$id_noisette=_request('id_noisette');
-		/* On récupère l'auteur choisi dans la liste déroulante 
-		"personneajoindre" */
-		$casiers=array('style','personneajoindre','textebouton','centrer');
+{
+	include_spip('action/editer_objet');
+	$id_noisette=_request('id_noisette');
 
-		$params=array();
-		foreach($casiers as $casier)
-		{
-			$data=_request($casier);
-			if(!isset($data))
-				{$data="none";};
-			$params[$casier]=$data;
-			$set=array('parametres'=>serialize($params));
-		}
-		objet_modifier("noisette", $id_noisette, $set);
+	if (isset($_POST['ok'])) 
+	{	/* On récupère les valeurs du formulaire */
+		$casiers=array('personneajoindre','textebouton','style','centrer');
+	}
+	elseif (isset($_POST['reset'])) 
+	{	/* On initialise les valeurs du formulaire */
+		$casiers=array('','Nous écrire','visible','centre');
+	}
+
+	$params=array();
+	foreach($casiers as $casier)
+	{
+		$data=_request($casier);
+		if(!isset($data))
+			{$data="none";};
+		$params[$casier]=$data;
+		$set=array('parametres'=>serialize($params));
+	}
+	objet_modifier("noisette", $id_noisette, $set);
+
+	
+	if (isset($_POST['ok']) && $params['personneajoindre']=='') 
+	{	/* Si le bouton Enregistrer a été sélectionné sans destinataire */
+	return array('message_erreur'=>'Il faut choisir un destinataire !','id_noisette'=>$id);
+	}
+	elseif (isset($_POST['ok'])) 
+	{	/* Si le bouton Enregistrer a été sélectionné sans erreur */
 	return array('message_ok'=>'Saisie enregistr&eacute;e','id_noisette'=>$id);
 	}
+}
 ?>

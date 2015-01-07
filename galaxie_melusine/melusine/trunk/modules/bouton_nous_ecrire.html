@@ -15,13 +15,14 @@
 	#SET{param,#PARAMETRES|unserialize}
 </BOUCLE_noisette>
 
-<!-- On récupère le style choisi : bloc visible ou invisible -->
-#SET{style,(#GET{param}|table_valeur{style})}
+
 <!-- On récupère le nom de la personne à joindre s'il a été choisi -->
 #SET{dest,(#GET{param}|table_valeur{personneajoindre})}
 <!-- On récupère le texte saisi pour le bouton -->
 #SET{txt,(#GET{param}|table_valeur{textebouton})}
-<!-- On récupère le choix pour centrer oui ou non -->
+<!-- On récupère le style choisi : bloc visible ou invisible -->
+#SET{style,(#GET{param}|table_valeur{style})}
+<!-- On récupère le choix pour l'alignement gauche/centre/droite -->
 #SET{centrer,(#GET{param}|table_valeur{centrer})}
 
 <!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
@@ -34,7 +35,7 @@
 <!-- *********************************************************************** -->
 
 
-<!-- Si aucun choix n'a été effectué, avertissement pour l'admin -->
+<!-- Si aucun choix n'a été effectué, avertissement pour l'admin *********** -->
 [(#SESSION{statut}|=={0minirezo}|oui)
 	[(#GET{dest}|non)
 		<div class="module_content bloc_visible [(#GET{dest}|non)info]">
@@ -45,21 +46,29 @@
 
 <!-- Si il y a eu un choix dans la liste, on affiche le texte saisi -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
-	[(#GET{style}|=={bloc_visible}|oui)
+	<!-- Affichage du bloc conditionné par le choix de l'utilisateur -->
+	[(#GET{style}|=={visible}|oui)
 		<div class="module_content bloc_visible">
 	]
-		[(#GET{centrer}|=={oui}|oui)
-			<div class="alignecentre">
-		]
-			<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
+		<!-- Alignement conditionné par le choix de l'utilisateur -->
+		[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
+		[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
+		[(#GET{centrer}|=={droite}|oui)	<div class="alignedroite">]
+
+		<!-- Affichage du lien avec l'enveloppe et le texte -->
+		<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
 			<span class="logo-titre">
 				<i class="fa fa-envelope"> #GET{txt}</i>
 			</span>
-			</a>
-		[(#GET{centrer}|=={oui}|oui)
-			</div>
-		]
-	[(#GET{style}|=={bloc_visible}|oui)
+		</a>
+
+		<!-- Fin alignement -->
+		[(#GET{centrer}|=={gauche}|oui)	</div>]
+		[(#GET{centrer}|=={centre}|oui)	</div>]
+		[(#GET{centrer}|=={droite}|oui)	</div>]
+
+	<!-- Fin affichage du bloc -->
+	[(#GET{style}|=={visible}|oui)
 		</div>
 	]
 </BOUCLE_identifiantdudestinataire>
