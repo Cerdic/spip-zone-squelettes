@@ -21,7 +21,7 @@
       </BOUCLE_couleur_rubrique>
     </head>
 
-    <body id="top" onload="setHover('menu')" class="page-rubrique">
+    <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-rubrique">
       <div id="ombre-gauche">
         <div id="ombre-droite">
           <div id="conteneur">
@@ -60,12 +60,10 @@
                 <BOUCLE_type_rubrique(MOTS){id_rubrique}{type=type_rubrique}{0,1}>
                   #SET{type, #TITRE}
                 </BOUCLE_type_rubrique>
-                  <!-- on recupere le chemin de la noisette associee -->
-                  #SET{inclusion, (#CHEMIN{inclusions/inc-rubrique_(#GET{type}|concat{.html})})}
                   <!-- s'il y a une noisette associee, on l'affiche -->
-                  [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_[(#GET{type}|trim)]}{env})]]
+                  [(#GET{type}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_[(#GET{type}|trim)]}{env})]]
                   <!-- s'il n'y a en a pas, on affiche la noisette normale -->
-                  [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
+                  [(#GET{type}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
               </div>
             </div>
 

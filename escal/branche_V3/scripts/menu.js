@@ -13,6 +13,7 @@ function hover(obj){
 }
 
 function setHover(){
+    if(document.getElementById('menu') == null) return;
   LI = document.getElementById('menu').getElementsByTagName('li');
   nLI = LI.length;
   for(i=0; i < nLI; i++){
