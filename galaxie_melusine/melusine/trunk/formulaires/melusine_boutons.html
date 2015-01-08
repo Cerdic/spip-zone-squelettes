@@ -1,125 +1,216 @@
 <script type='text/javascript' src=#CHEMIN{scripts/melusine_prive.js}></script>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="#CHEMIN{css/style_config_skel.css}" rel="stylesheet">
+
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE LISTE BOUTONS ********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
-#SET{boutons_serialize,#PARAMETRES}
-#SET{boutons,#PARAMETRES|unserialize|table_valeur{boutons}}
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-#SET{voir_images,#PARAMETRES|unserialize|table_valeur{voir_images}}
-#SET{voir_intitule,#PARAMETRES|unserialize|table_valeur{voir_intitule}}
-#SET{col,#PARAMETRES|unserialize|table_valeur{col}}
+	#SET{boutons_serialize,#PARAMETRES}
+	#SET{boutons,#PARAMETRES|unserialize|table_valeur{boutons}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{voir_images,#PARAMETRES|unserialize|table_valeur{voir_images}}
+	#SET{voir_intitule,#PARAMETRES|unserialize|table_valeur{voir_intitule}}
+	#SET{col,#PARAMETRES|unserialize|table_valeur{col}}
 </BOUCLE_noisette>
+
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})</p>]
+
+[(#GET{style}|non)#SET{style,"en_ligne"}]
+[(#GET{col}|non)#SET{col,"aucune"}]
+[(#GET{voir_images}|non)#SET{voir_images,"oui"}]
+[(#GET{voir_intitule}|non)#SET{voir_intitule,"oui"}]
 
 <!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
 </br>
 <!-- -->
 
-	<form action='#ENV{action}' method='post' enctype="multipart/form-data" >
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
 
-		#ACTION_FORMULAIRE{#ENV{action}}
+<!-- Début du formulaire -->
+<form action='#ENV{action}' method='post' enctype="multipart/form-data" >
 
-	<h3 >Présentation</h3>
-	<fieldset>
-		<label for="style">Style : </label>
-		<select name="style"  >
-			<option value="en_ligne" [(#GET{style}|=={en_ligne}|oui) selected ]>En ligne</option> 
-			<option value="bloc_visible"  [(#GET{style}|=={bloc_visible}|oui) selected ]>blocs visibles</option>
-			<option value="multibloc"  [(#GET{style}|=={multibloc}|oui) selected ]>multibloc</option> 
-		</select>
-	</fieldset>
-	<fieldset>
-		<label for="Colonnes">Colonnes : </label>
-		<select name="col"  >
-			<option value="aucune" [(#GET{col}|=={aucune}|oui) selected ]>aucune</option> 
-			<option value="col-md-2"  [(#GET{col}|=={col-md-2}|oui) selected ]>2 colonnes</option>
-			<option value="col-md-4"  [(#GET{col}|=={col-md-4}|oui) selected ]>3 colonnes</option> 
-			<option value="col-md-3"  [(#GET{col}|=={col-md-3}|oui) selected ]>4 colonnes</option> 
-		</select>
-	</fieldset>
-	<fieldset>
-		<label for="images">Images : </label>
-		<input type="radio" name="voir_images" value="oui" [(#GET{voir_images}|=={oui}|oui) checked ]> Visibles
-		<input type="radio" name="voir_images" value="non" [(#GET{voir_images}|=={non}|oui) checked ]> Masquées
-	</fieldset>
-	<fieldset>
-		<label for="Intitulé">Intitulé : </label>
-		<input type="radio" name="voir_intitule" value="oui" [(#GET{voir_intitule}|=={oui}|oui) checked ]> Visibles
-		<input type="radio" name="voir_intitule" value="non" [(#GET{voir_intitule}|=={non}|oui) checked ]> Masquées
-	</fieldset>
-	<button type='submit' name='ok' value='presentation' class="ok_bouton submitb" ></button>
+	#ACTION_FORMULAIRE{#ENV{action}}
 
-	<h3>Boutons  </h3> 	
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
 
-		
+<fieldset>
+	<div class="z123titre">--- Apparence ---</div>
+	<!-- Boutons radio pour choisir le style du bloc -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="z123alignecentre">
+		<input type="radio" name="style" value="en_ligne" 
+		[(#GET{style}|=={en_ligne}|oui) checked ]>En ligne</input>
+		<input type="radio" name="style" value="bloc_visible" 
+		[(#GET{style}|=={bloc_visible}|oui) checked ]>Blocs visibles</input>
+		<input type="radio" name="style" value="multibloc" 
+		[(#GET{style}|=={multibloc}|oui) checked ]>Multiblocs</input>
+	</div>
+	<!-- Boutons radio pour choisir le nombre de colonnes -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="Colonnes">Nombre de colonnes</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="col" value="aucune" 
+		[(#GET{col}|=={aucune}|oui) checked ]>1</input>
+		<input type="radio" name="col" value="col-md-2" 
+		[(#GET{col}|=={col-md-2}|oui) checked ]>2</input>
+		<input type="radio" name="col" value="col-md-3" 
+		[(#GET{col}|=={col-md-4}|oui) checked ]>3</input>
+		<input type="radio" name="col" value="col-md-4" 
+		[(#GET{col}|=={col-md-3}|oui) checked ]>4</input>
+	</div>
+	<!-- Boutons radio pour choisir si les images apparaissent -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="Images">Images</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="voir_images" value="oui" 
+		[(#GET{voir_images}|=={oui}|oui) checked ]>Visibles</input>
+		<input type="radio" name="voir_images" value="non" 
+		[(#GET{voir_images}|=={non}|oui) checked ]>Masquées</input>	
+	</div>	
+	<!-- Boutons radio pour choisir si les intitulés apparaissent -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="Intitulé">Intitulés</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="voir_intitule" value="oui" 
+		[(#GET{voir_intitule}|=={oui}|oui) checked ]>Visibles</input>
+		<input type="radio" name="voir_intitule" value="non" 
+		[(#GET{voir_intitule}|=={non}|oui) checked ]>Masqués</input>		
+	</div>
+</fieldset>
 
-		
-		
-			<BOUCLE_test(POUR){tableau #GET{boutons}}>
-				
-				#SET{nb_boutons,#TOTAL_BOUCLE|moins{1}}
-				
-<div class="formulaire_spip formulaire_editer formulaire_editer_boutons ">
+<!-- *********************************************************************** -->
+<!-- BOUTON SUBMIT POUR APPARENCE ****************************************** -->
+<!-- *********************************************************************** -->
+	
+<div class="z123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer' />
+	<input type='submit' name='reset' value='Effacer' />
+</div>
+<br />
 
-<h2 class="gestion_bouton" >[(#VALEUR|table_valeur{intitule})]
+<!-- *********************************************************************** -->
+<!-- MODIFICATION DES BOUTONS ********************************************** -->
+<!-- *********************************************************************** -->
+
+<fieldset>
+	<div class="z123titre">--- Boutons ---</div>
+	<!-- Boucle de recherche des boutons existants -->
+	<BOUCLE_test(POUR){tableau #GET{boutons}}>
+		#SET{nb_boutons,#TOTAL_BOUCLE|moins{1}}
+	<div class="formulaire_spip formulaire_editer formulaire_editer_boutons ">
+	<h2 class="gestion_bouton" >
+		<!-- Si ce n'est pas le dernier bouton, on peut le descendre -->
 		[(#CLE|=={#GET{nb_boutons}}|non)
-		<button type='submit' class="bas submitb"  name='position' value="d#CLE" >
+<button type='submit' class="bas submitb" name='position' value="d#CLE">
 			<i class="fa fa-arrow-circle-o-down"></i>
-		</button>
+</button>
 		]
+		<!-- Si c'est le dernier bouton, on ne peut pas le descendre -->
+		[(#CLE|=={#GET{nb_boutons}}|oui)
+<button disabled type='submit' class="bas submitb" name='inactif' value="inactif">
+			<i class="fa fa-arrow-circle-o-down" style="color:#D3D3D3;"></i>
+</button>
+		]
+		<!-- Si ce n'est pas le premier bouton, on peut le monter -->
 		[(#CLE|=={0}|non)
-		<button type='submit' class="submitb haut" name='position' value=m#CLE >
+<button type='submit' class="submitb haut" name='position' value=m#CLE>
 			<i class="fa fa-arrow-circle-o-up"></i>
-		</button>
-
+</button>
 		]
-		<button type='submit' class="submitb sup" name='position' value=s#CLE >
+		<!-- Si c'est le premier bouton, on ne peut pas le monter -->
+		[(#CLE|=={0}|oui)
+<button disabled type='submit' class="submitb haut" name='inactif' value="inactif">
+			<i class="fa fa-arrow-circle-o-up" style="color:#D3D3D3;"></i>
+</button>
+		]
+		<!-- Pour supprimer le bouton -->
+<button type='submit' class="submitb sup" name='position' value=s#CLE>
 			<i class="fa fa-times-circle-o"></i>
-		</button>
-
-		<i class="voir fa fa-edit"></i></h2>
-					
-
-					<ul style="display:none">
-						<li>
-							<label for="Intitulé">Intitulé</label>
-							<input type='text' name=bouton[#CLE][intitule] value="[(#VALEUR|table_valeur{intitule})]" />
-						</li>
-						<li>
-							<label for="URL">URL</label>
-							<input type='text' name=bouton[#CLE][url] value="[(#VALEUR|table_valeur{url})]" />
-						</li>
-						<li>
-							<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
-							<input type="checkbox" name=bouton[#CLE][blank]  value="blank" [(#VALEUR|table_valeur{blank}|=={"blank"}|{oui}) checked]  /></li>
-						
-						<li>
-							<label for="Image">Image</label>
-							<input type="file" name='image#CLE' value=""  size="30" /><br/>
-							<input type="hidden" name=bouton[#CLE][image] value="[(#VALEUR|table_valeur{image})]"  size="30" /><br/>
-						
-							[(#VALEUR|table_valeur{image}|oui)
-							[(#CHEMIN{#VALEUR|table_valeur{image}}|image_reduire{150})]
-							]
-
-						</li>	
-						<li>
-							<label for="Alt">Description de l'image : balise ALT</label>
-							<input type='text' name=bouton[#CLE][alt] value="[(#VALEUR|table_valeur{alt})]" />
-						</li>						
-						<li >Enregistrer<input type='submit' name='ok' value='update#CLE' class="ok_bouton submitb" /></li>
-					</ul>
-</div>
-				
-			</BOUCLE_test>
-<div class="init">
-		<ul>
-			
-			<input type='hidden' name='id_noisette' value="#ID_NOISETTE" />
-			
-			<input type='hidden' name='parametres' value=#GET{boutons_serialize} />
-			 <li>Nouveau bouton<input type='submit' class="ok_bouton" name='ok' value="create" /></li> 
-			<!--<li>Initialiser <input type='submit' class="ajout"  name='position' value="i" /></li>-->
+</button>
+		<!-- Pour modifier le bouton -->
+<button type='button' class="voir">
+			<i class="fa fa-edit"></i>
+</button>
+		[(#VALEUR|table_valeur{intitule})]
+	</h2>
+		<!-- Formulaire de modification -->
+		<ul style="display:none">
+			<!-- Saisie de l'intitulé -->
+			<li>
+				<label for="Intitulé">Intitulé</label>
+				<input 	type='text' name=bouton[#CLE][intitule] 
+						value="[(#VALEUR|table_valeur{intitule})]" />
+			</li>
+			<!-- Saisie de l'URL -->
+			<li>
+				<label for="URL">URL</label>
+				<input 	type='text' name=bouton[#CLE][url] 
+						value="[(#VALEUR|table_valeur{url})]" />
+			</li>
+			<!-- Choix de l'ouverture dans un nouvel onglet -->
+			<li>
+				<label for="Nouvelle fenêtre">Nouvelle fenêtre</label>
+				<input 	type="checkbox" name=bouton[#CLE][blank]  
+				value="blank" 
+				[(#VALEUR|table_valeur{blank}|=={"blank"}|{oui}) checked]  />
+			</li>
+			<!-- Choix de l'image -->
+			<li>
+				<label for="Image">Image</label>
+				<input type="file" name='image#CLE' value=""  size="30" />
+				<br/>
+				<input 	type="hidden" name=bouton[#CLE][image] 
+						value="[(#VALEUR|table_valeur{image})]"  size="30" />
+				<br/>
+			<!-- Affichage de l'image choisie -->
+[(#VALEUR|table_valeur{image}|oui)
+[(#CHEMIN{#VALEUR|table_valeur{image}}|image_reduire{150})]]
+			</li>	
+			<!-- Saisie d'une description -->
+			<li>
+				<label for="Alt">Description de l'image : balise ALT</label>
+				<input 	type='text' name=bouton[#CLE][alt] 
+						value="[(#VALEUR|table_valeur{alt})]" />
+			</li>
+			<!-- Bouton d'enregistrement du formulaire -->						
+			<li >Enregistrer
+				<input 	type='submit' name='ok2' value='update#CLE' 
+						class="ok_bouton submitb" />
+			</li>
 		</ul>
-</div>
-	</form>
+	</div>
+	</BOUCLE_test>
+	<br />
+
+<!-- *********************************************************************** -->
+<!-- NOUVEAU BOUTON ******************************************************** -->
+<!-- *********************************************************************** -->
+	<div class="init">
+		<input 	type='hidden' name='id_noisette' value="#ID_NOISETTE" />
+		<input 	type='hidden' name='parametres' value=#GET{boutons_serialize} />
+	 	Nouveau bouton
+		<button type='submit' class="submitb sup" name='ok2' value="create">
+			<i class="fa fa-plus"></i>
+		</button>
+	</div>
+</fieldset>
+</form>
 	
