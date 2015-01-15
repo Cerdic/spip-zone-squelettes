@@ -27,6 +27,8 @@
 
 <!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
 [(#GET{txt}|non)#SET{txt,"Nous écrire"}]
+<!-- Si pas de fond choisi, on met "visible" par défaut -->
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
 
 
 
@@ -47,9 +49,8 @@
 <!-- Si il y a eu un choix dans la liste, on affiche le texte saisi -->
 <BOUCLE_identifiantdudestinataire(AUTEURS){tous}{id_auteur=#GET{dest}}>
 	<!-- Affichage du bloc conditionné par le choix de l'utilisateur -->
-	[(#GET{style}|=={visible}|oui)
-		<div class="module_content bloc_visible">
-	]
+	<div class="module_content [(#GET{style})]">
+
 		<!-- Alignement conditionné par le choix de l'utilisateur -->
 		[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
 		[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
@@ -68,7 +69,6 @@
 		[(#GET{centrer}|=={droite}|oui)	</div>]
 
 	<!-- Fin affichage du bloc -->
-	[(#GET{style}|=={visible}|oui)
-		</div>
-	]
+	</div>
+
 </BOUCLE_identifiantdudestinataire>
