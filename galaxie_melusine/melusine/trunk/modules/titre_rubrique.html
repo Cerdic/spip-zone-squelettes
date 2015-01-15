@@ -13,6 +13,7 @@
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
 </BOUCLE_noisette>
+
 <!-- par défaut : fond invisible, centré dans sa noisette -->
 [(#GET{style}|non)#SET{style,'bloc_invisible'}]
 [(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
@@ -27,18 +28,31 @@
 <div class="module_content [(#GET{style})] [(#GET{alignement})]">
 
 	<BOUCLE_titre(RUBRIQUES){id_rubrique}>
-		<div class="row">
-			<div class="col-md-5">
-				[(#LOGO_RUBRIQUE|
-	    			|image_recadre{0,400,center}
-	    			|inserer_attribut{'class',"img-responsive"}
-				)]
+		
+		[(#LOGO_RUBRIQUE|oui)
+			<div class="row">
+				<div class="col-md-5">
+					[(#LOGO_RUBRIQUE|
+	    							|image_recadre{0,400,center}
+	    							|inserer_attribut{'class',"img-responsive"}
+					)]
+				</div>
+				<div class="col-md-7">
+					<h1>#TITRE</h1>
+					#DESCRIPTIF
+				</div>
 			</div>
-			<div class="col-md-7">
-				<h1>#TITRE</h1>
-				#DESCRIPTIF
-			</div>
-		</div>
+		]
+
+		[(#LOGO_RUBRIQUE|non)
+			<!--<div class="row">-->
+				<!-- <div class="col-md-12"> -->
+					<h1>#TITRE</h1>
+					#DESCRIPTIF
+				<!-- </div> -->
+			<!--</div>-->
+		]
+
 	</BOUCLE_titre>
 
 </div>
