@@ -9,18 +9,18 @@
 <!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
 <!-- *********************************************************************** -->
 
-#SET{titre,"Sites Favoris"}
-#SET{style,"bloc_visible"}
-#SET{mot,""}
-
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
   #SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
-  #SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
   #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
   #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+  #SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
 
+[(#GET{titre}|non)#SET{titre,"Sites Favoris"}]
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
 [(#GET{disposition}|non)#SET{disposition,'col-md-12'}]
+[(#GET{mot}|non)#SET{mot,"favoris"}]
+
 
 <!-- *********************************************************************** -->
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
@@ -32,6 +32,7 @@
     <div class='row col1'>
   ]
   <BOUCLE_test(CONDITION){si #GET{mot}|non}>
+
       <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
           <BOUCLE_sites1(SITES) {par num nom_site,nom_site}>
             [(#GET{disposition}|=={col-md-12}|oui)
@@ -53,6 +54,7 @@
         </BOUCLE_sites10>
       </BOUCLE_rubrique>
   </BOUCLE_test>
+  
     <BOUCLE_sites3(SITES) {par num nom_site,nom_site}{titre_mot=#GET{mot}} >
           [(#GET{disposition}|=={col-md-12}|oui)
             [(#MODELE{favoris}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
