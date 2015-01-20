@@ -1,40 +1,45 @@
 <BOUCLE_content(RUBRIQUES){id_rubrique}>
-[(#REM) Fil d'Ariane ]
-<nav class="breadcrumb"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</nav>
+	[(#REM) Fil d'Ariane ]
+	<ol role="navigation" class="breadcrumb" prefix="v: http://rdf.data-vocabulary.org/#">
+		<li typeof="v:Breadcrumb"><a rel="home v:url" property="v:title" href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
+		<BOUCLE_ariane(HIERARCHIE){id_rubrique}>
+			<li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="[(#URL_RUBRIQUE|url_absolue)]">[<span itemprop="name">(#TITRE|couper{80})</span>]</a></li>
+		</BOUCLE_ariane>
+		[<li typeof="v:Breadcrumb" class="on active"><strong property="v:title">(#TITRE|couper{80})</strong></li>]
+	</ol>
 
-<article>
-	<header class="page-header">
-		[<div class="well #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
-		<section class="row">
-			[<article class="#EDIT{texte} col-md-8">(#TEXTE|abs_url)</article>]
-			[<footer class="well col-md-4">(#NOTES|abs_url)</footer>]
-		</section>
-	</header>
+		<header class="page-header">
+			[<div class="well #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
+		</header>
 
-	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
-		<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
-	</BOUCLE_articles>
-	</B_articles>
-</article>
+		<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+			<INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} />
+		</BOUCLE_articles>
+		</B_articles>
+
+	[(#REM) Alternative en attendant mieux...]	
+	<B_sous_rubriques>
+	<nav class="col-md-4">
+		#ANCRE_PAGINATION
+		<h2 class="h2">[(#ENV{titre,<:sous_rubriques:>})]</h2>
+		<ul class="list-group">
+			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre, titre} {pagination #ENV{nb,6}}>
+			#INCLURE{fond=inclure/rubrique-resume,id_rubrique}
+			</BOUCLE_sous_rubriques>
+		</ul>
+		[<nav class="pagination">(#PAGINATION)</nav>]
+	</section>
+	</B_sous_rubriques>	
+	<//B_articles>
+
+	<section class="row">
+		[<article class="#EDIT{texte} col-lg-8">(#TEXTE|abs_url)</article>]
+		[<footer class="well col-lg-4">(#NOTES|abs_url)</footer>]
+	</section>
+	
+	[(#REM) Gestion du portfolio et des documents ]
+	[<section>(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
 
 
-
-[(#REM) Alternative en attendant mieux...]	
-<B_sous_rubriques>
-<nav class="col-md-4">
-	#ANCRE_PAGINATION
-	<h2 class="h2">[(#ENV{titre,<:sous_rubriques:>})]</h2>
-	<ul class="list-group">
-		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent} {par num titre, titre} {pagination #ENV{nb,6}}>
-		#INCLURE{fond=inclure/rubrique-resume,id_rubrique}
-		</BOUCLE_sous_rubriques>
-	</ul>
-	[<nav class="pagination">(#PAGINATION)</nav>]
-</section>
-</B_sous_rubriques>	
-<//B_articles>
-
-[(#REM) Gestion du portfolio et des documents ]
-[<section>(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
 
 </BOUCLE_content>
