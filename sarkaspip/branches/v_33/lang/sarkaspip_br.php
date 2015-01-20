@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'albums_recents' => 'Nevezañ katalogoù ',
 	'ancre_haut_page' => 'D’an nec’h ↑',
 	'annonces' => 'kemennoù',
-	'articles' => 'Pennadoù-skrid',
+	'articles' => '@nb@Pennad-skrid',
 	'articles_aleatoires' => 'Evel ma teu',
 	'articles_auteur' => 'Pennadoù-skrid an aozer-mañ',
 	'articles_meme_rubrique' => 'Pennadoù-skrid ar rubrikenn',
@@ -71,7 +71,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_rubrique' => 'Pennadoù  bet embannet er rubrikenn-mañ',
 	'articles_syndiques_n_jours' => 'en @nb_jour@  devezh tremenet',
 	'aujourdhui' => 'hiziv',
-	'auteurs' => 'Aozerien',
+	'auteurs' => '@nb@ aozer',
 
 	// B
 	'bouton_configuration' => 'Kefluniadur',
@@ -269,7 +269,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'n_albums' => 'Albomoù foto',
 	'n_sites_herbier' => 'lec’hiennoù menegeret',
 	'n_tickets' => 'tikedennoù',
-	'n_visiteurs_connectes' => 'gweladennerien kevreet d’ar poent-mañ',
+	'n_visiteurs_connectes' => 'gweladenner_kevreet_d’ar poent-mañ',
 	'navigation_bulle_recherche_motcle' => 'Klask an holl pezhioù liammet gant ar ger-alc’hwez-mañ',
 	'navigation_bulle_vers_agenda' => 'Mont war bajenn an deiziataer bloaziek',
 	'navigation_bulle_vers_album' => 'Mont war bajenn an albom-mañ',
@@ -290,7 +290,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'page_restreinte_deconnecte' => 'Emaoc’h o klask mont war ur bajenn miret evit lod eus izili al lec’hienn.
 Ret eo deoc’h, mar plij, en em gevreañ da gentañ, en ur ober gant an furmskrid amañ dindan.',
 	'pagerank' => 'live-brud al lec’hienn',
-	'par_auteur' => 'dre',
+	'par_auteur' => 'gant',
 	'photos' => 'fotoioù',
 	'plan_site' => 'Tres al lec’hienn',
 	'plusieurs_evenements_jour' => 'degouezhoù an devezh-mañ',
