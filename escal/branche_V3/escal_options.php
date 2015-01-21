@@ -20,7 +20,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement
 ');
 
-// les images de plus de 1050 pixels de largeur ou de 900px de hauteur ne seront pas enregistrées
+// les images de plus de 1050 pixels de largeur ou de hauteur ne seront pas enregistrées
 define('_IMG_MAX_WIDTH', 1050);
 define('_IMG_MAX_HEIGHT', 1050); 
 

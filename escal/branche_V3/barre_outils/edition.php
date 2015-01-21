@@ -390,10 +390,10 @@ function barre_outils_edition(){
             // naide
 			array(
 				"id"          => 'escal_aide',
-				"name"        => 'aide',
+				"name"        => 'apporter <aide>une aide</aide>',
 				"key"         => "", 
 				"className"   => "outil_escal_aide", 
-				"openWith"    => "\n<aide>", 
+				"openWith"    => "\n<aide>",
 				"closeWith"   => "</aide>\n",
 				"display"     => true,
 				"selectionType" => "word",
@@ -401,10 +401,10 @@ function barre_outils_edition(){
 					// important
 					array(
 						"id"          => 'escal_important',
-				        "name"        => 'important',
-				        "key"         => "", 
-				        "className"   => "outil_escal_important", 
-				        "openWith"    => "\n<important>", 
+				        "name"        => 'une <important>remarque importante</important>',
+				        "key"         => "",
+				        "className"   => "outil_escal_important",
+				        "openWith"    => "\n<important>",
 				        "closeWith"   => "</important>\n",
 				        "display"     => true,
 				        "selectionType" => "word",
@@ -412,7 +412,7 @@ function barre_outils_edition(){
 					// avertissement
 					array(
 						"id"          => 'escal_avertissement',
-				        "name"        => 'avertissement',
+				        "name"        => 'une <avertissement>remarque moyennement importante</avertissement>',
 				        "key"         => "", 
 				        "className"   => "outil_escal_avertissement", 
 				        "openWith"    => "\n<avertissement>", 
@@ -423,14 +423,25 @@ function barre_outils_edition(){
 					// info
 					array(
 						"id"          => 'escal_info',
-				        "name"        => 'info',
+				        "name"        => 'une <info>information</info>',
 				        "key"         => "", 
 				        "className"   => "outil_escal_info", 
 				        "openWith"    => "\n<info>", 
 				        "closeWith"   => "</info>\n",
 				        "display"     => true,
 				        "selectionType" => "word",
-					),                    
+					),
+                    // info
+					array(
+						"id"          => 'escal_centrer',
+				        "name"        => '[|centrer|] le paragraphe',
+				        "key"         => "",
+				        "className"   => "outil_escal_centrer",
+				        "openWith"    => "\n[|",
+				        "closeWith"   => "|]\n",
+				        "display"     => true,
+				        "selectionType" => "word",
+					),
 				),
 			),
 
@@ -590,7 +601,8 @@ function barre_outils_edition_icones(){
 		'outil_escal_aide' => '../icones_barre/aide.png',
     		'outil_escal_important' => '../icones_barre/important.png',
             'outil_escal_avertissement' => '../icones_barre/avertissement.png',
-            'outil_escal_info' => '../icones_barre/info.png',      
+            'outil_escal_info' => '../icones_barre/info.png',
+            'outil_escal_centrer' => '../icones_barre/centrer.png',
      
 	);
 }
