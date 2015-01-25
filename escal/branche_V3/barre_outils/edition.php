@@ -386,59 +386,61 @@ function barre_outils_edition(){
 					),
 			),
 
-			// ajouts JC
-            // naide
+			// ajouts ESCAL
 			array(
-				"id"          => 'escal_aide',
-				"name"        => 'apporter <aide>une aide</aide>',
-				"key"         => "", 
-				"className"   => "outil_escal_aide", 
-				"openWith"    => "\n<aide>",
-				"closeWith"   => "</aide>\n",
+				"id"          => 'ajouts_escal',
+				"name"        => 'utiliser un outil d\'Escal',
+                "className"   => "outil_ajouts_escal",
 				"display"     => true,
-				"selectionType" => "word",
 				"dropMenu"    => array(
+                    // aide
+                    array(
+				        "id"          => 'escal_aide',
+				        "name"        => 'apporter <aide>une aide</aide>',
+				        "className"   => "outil_escal_aide",
+				        "openWith"    => "\n<aide>",
+				        "closeWith"   => "</aide>\n",
+				        "display"     => true,
+				        "selectionType" => "line",
+                    ),
 					// important
 					array(
 						"id"          => 'escal_important',
 				        "name"        => 'une <important>remarque importante</important>',
-				        "key"         => "",
 				        "className"   => "outil_escal_important",
 				        "openWith"    => "\n<important>",
 				        "closeWith"   => "</important>\n",
 				        "display"     => true,
-				        "selectionType" => "word",
+				        "selectionType" => "line",
 					),
 					// avertissement
 					array(
 						"id"          => 'escal_avertissement',
 				        "name"        => 'une <avertissement>remarque moyennement importante</avertissement>',
-				        "key"         => "", 
 				        "className"   => "outil_escal_avertissement", 
 				        "openWith"    => "\n<avertissement>", 
 				        "closeWith"   => "</avertissement>\n",
 				        "display"     => true,
-				        "selectionType" => "word",
+				        "selectionType" => "line",
 					),
 					// info
 					array(
 						"id"          => 'escal_info',
 				        "name"        => 'une <info>information</info>',
-				        "key"         => "", 
 				        "className"   => "outil_escal_info", 
 				        "openWith"    => "\n<info>", 
 				        "closeWith"   => "</info>\n",
 				        "display"     => true,
-				        "selectionType" => "word",
+				        "selectionType" => "line",
 					),
                     // info
 					array(
 						"id"          => 'escal_centrer',
-				        "name"        => '[|centrer|] le paragraphe',
-				        "key"         => "",
+				        "name"        => '<centrer>centrer</centrer> le paragraphe',
+				        "key"         => "E",
 				        "className"   => "outil_escal_centrer",
-				        "openWith"    => "\n[|",
-				        "closeWith"   => "|]\n",
+				        "openWith"    => "\n<centrer>",
+				        "closeWith"   => "</centrer>\n",
 				        "display"     => true,
 				        "selectionType" => "word",
 					),
@@ -598,7 +600,8 @@ function barre_outils_edition_icones(){
 		'outil_clean' => array('spt-v1.png','-10px -982px'), //'clean.png'
 		'outil_preview' => array('spt-v1.png','-10px -1018px'), //'eye.png'
         
-		'outil_escal_aide' => '../icones_barre/aide.png',
+		'outil_ajouts_escal' => '../icones_barre/escal16.png',
+            'outil_escal_aide' => '../icones_barre/aide.png',
     		'outil_escal_important' => '../icones_barre/important.png',
             'outil_escal_avertissement' => '../icones_barre/avertissement.png',
             'outil_escal_info' => '../icones_barre/info.png',
