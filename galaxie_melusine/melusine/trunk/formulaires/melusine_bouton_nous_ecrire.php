@@ -43,7 +43,7 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 			&& $params['personneajoindre']=='' 
 			&& $params['textebouton']=='') 
 		{	
-			return array('message_erreur'=>'Il fautun destinataire et un texte!'
+			return array('message_erreur'=>'Il faut un destinataire et un texte'
 			,'id_noisette'=>$id);
 		}
 /* Si le bouton Enregistrer a été sélectionné sans destinataire */
@@ -61,8 +61,7 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 /* Si le bouton Enregistrer a été sélectionné sans oubli de champs */
 	elseif (isset($_POST['ok'])) 
 		{	
-		echo($params['style']);
-		return array('message_ok'=>'Saisie enregistr&eacute;e'
+			return array('message_ok'=>'Saisie enregistr&eacute;e'
 			,'id_noisette'=>$id);
 		}
 }

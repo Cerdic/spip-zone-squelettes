@@ -2,155 +2,169 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
-#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
-#SET{annuaire,#PARAMETRES|unserialize|table_valeur{annuaire}}
-#SET{bo,#PARAMETRES|unserialize|table_valeur{bo}}
-#SET{calendrier,#PARAMETRES|unserialize|table_valeur{calendrier}}
-#SET{contact,#PARAMETRES|unserialize|table_valeur{contact}}
-#SET{dailymotion,#PARAMETRES|unserialize|table_valeur{dailymotion}}
-#SET{flickr,#PARAMETRES|unserialize|table_valeur{flickr}}
-#SET{facebook,#PARAMETRES|unserialize|table_valeur{facebook}}
-#SET{lettres,#PARAMETRES|unserialize|table_valeur{lettres}}
-#SET{mobile,#PARAMETRES|unserialize|table_valeur{mobile}}
-#SET{moteur,#PARAMETRES|unserialize|table_valeur{moteur}}
-#SET{pinterest,#PARAMETRES|unserialize|table_valeur{pinterest}}
-#SET{rss,#PARAMETRES|unserialize|table_valeur{rss}}
-#SET{storify,#PARAMETRES|unserialize|table_valeur{storify}}
-#SET{tumplr,#PARAMETRES|unserialize|table_valeur{tumblr}}
-#SET{twitter,#PARAMETRES|unserialize|table_valeur{twitter}}
-#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-#SET{col,#PARAMETRES|unserialize|table_valeur{disposition}}
-#SET{params,#PARAMETRES}
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{annuaire,#PARAMETRES|unserialize|table_valeur{annuaire}}
+	#SET{bo,#PARAMETRES|unserialize|table_valeur{bo}}
+	#SET{calendrier,#PARAMETRES|unserialize|table_valeur{calendrier}}
+	#SET{contact,#PARAMETRES|unserialize|table_valeur{contact}}
+	#SET{dailymotion,#PARAMETRES|unserialize|table_valeur{dailymotion}}
+	#SET{flickr,#PARAMETRES|unserialize|table_valeur{flickr}}
+	#SET{facebook,#PARAMETRES|unserialize|table_valeur{facebook}}
+	#SET{lettres,#PARAMETRES|unserialize|table_valeur{lettres}}
+	#SET{mobile,#PARAMETRES|unserialize|table_valeur{mobile}}
+	#SET{moteur,#PARAMETRES|unserialize|table_valeur{moteur}}
+	#SET{pinterest,#PARAMETRES|unserialize|table_valeur{pinterest}}
+	#SET{rss,#PARAMETRES|unserialize|table_valeur{rss}}
+	#SET{storify,#PARAMETRES|unserialize|table_valeur{storify}}
+	#SET{tumplr,#PARAMETRES|unserialize|table_valeur{tumblr}}
+	#SET{twitter,#PARAMETRES|unserialize|table_valeur{twitter}}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{col,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{params,#PARAMETRES}
+	#SET{annuaire_adr,#PARAMETRES|unserialize|table_valeur{annuaire_adr}}
+	#SET{bo_adr,#PARAMETRES|unserialize|table_valeur{bo_adr}}
+	#SET{calendrier_adr,#PARAMETRES|unserialize|table_valeur{calendrier_adr}}
+	#SET{contact_adr,#PARAMETRES|unserialize|table_valeur{contact_adr}}
+	#SET{dailymotion_adr,#PARAMETRES|unserialize|table_valeur{dailymotion_adr}}
+	#SET{flickr_adr,#PARAMETRES|unserialize|table_valeur{flickr_adr}}
+	#SET{facebook_adr,#PARAMETRES|unserialize|table_valeur{facebook_adr}}
+	#SET{lettres_adr,#PARAMETRES|unserialize|table_valeur{lettres_adr}}
+	#SET{mobile_adr,#PARAMETRES|unserialize|table_valeur{mobile_adr}}
+	#SET{moteur_adr,#PARAMETRES|unserialize|table_valeur{moteur_adr}}
+	#SET{pinterest_adr,#PARAMETRES|unserialize|table_valeur{pinterest_adr}}
+	#SET{rss_adr,#PARAMETRES|unserialize|table_valeur{rss_adr}}
+	#SET{storify_adr,#PARAMETRES|unserialize|table_valeur{storify_adr}}
+	#SET{tumblr_adr,#PARAMETRES|unserialize|table_valeur{tumblr_adr}}
+	#SET{twitter_adr,#PARAMETRES|unserialize|table_valeur{twitter_adr}}
 </BOUCLE_noisette>
+
 <BOUCLE_test(CONDITION){si #GET{params}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
 	
 	
 
 <div class="module_content [(#GET{style})] 
-[(#SESSION{statut}|=={0minirezo}|oui)
-	[(#GET{params}|non) info]
-]">
+[(#SESSION{statut}|=={0minirezo}|oui)[(#GET{params}|non) info]]">
 	[(#SESSION{statut}|=={0minirezo}|oui)
 		[(#GET{params}|non)Module à configurer]
 	]
 	[<h2>(#GET{titre})</h2>]
 
-	<div class="row col1">
-		[<div class="[(#GET{col})]">
+	<div class="row">
+		[<div class="#GET{col}">
 			<div class="item">
-			<a href="(#GET{annuaire})" target="_blank">
+			<a href="(#GET{annuaire}|=={oui}|oui)#GET{annuaire_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/51/9/logo_annuaire_189519.jpg" alt="" class="img-responsive">
 			<span>Annuaire</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{bo})" target="_blank">
+			<a href="(#GET{bo}|=={oui}|oui)#GET{bo_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/95/0/picto_bo_231950.jpg" alt="" class="img-responsive">
 			<span>B.O.</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{calendrier})" target="_blank">
+			<a href="(#GET{calendrier}|=={oui}|oui)#GET{calendrier_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/91/9/picto_carte_calendrier_scolaire_231919.jpg" alt="" class="img-responsive">
 			<span>Calendrier</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{contact})" target="_blank">
+			<a href="(#GET{contact}|=={oui}|oui)#GET{contact_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/52/5/logo_contact_189525.jpg" alt="" class="img-responsive">
 			<span>Contact</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{dailymotion})" target="_blank">
+			<a href="(#GET{dailymotion}|=={oui}|oui)#GET{dailymotion_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/52/8/logo_dailymotion_189528.jpg" alt="" class="img-responsive">
 			<span>Dailymotion</span>
 			</a>
 		</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{facebook})" target="_blank">
+			<a href="(#GET{facebook}|=={oui}|oui)#GET{facebook_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/53/1/logo_facebook_189531.jpg" alt="" class="img-responsive">
 			<span>Facebook</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{flickr})" target="_blank">
+			<a href="(#GET{flickr}|=={oui}|oui)#GET{flickr_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/64/0/Logo_flickr_323640.png" alt="" class="img-responsive">
 			<span>Flickr</span>
 		</a>
 		</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{lettres})" target="_blank">
+			<a href="(#GET{lettres}|=={oui}|oui)#GET{lettres_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/51/6/logo_actu_189516.jpg" alt="" class="img-responsive">
 			<span>Lettres</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{mobile})" target="_blank">
+			<a href="(#GET{mobile}|=={oui}|oui)#GET{mobile_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/53/4/logo_mobile_189534.jpg" alt="" class="img-responsive">
 			<span>Mobile</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{moteur})" target="_blank">
+			<a href="(#GET{moteur}|=={oui}|oui)#GET{moteur_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/53/7/logo_moteur_189537.jpg" alt="" class="img-responsive">
 			<span>Moteur</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{pinterest})" target="_blank">
+			<a href="(#GET{pinterest}|=={oui}|oui)#GET{pinterest_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/Services/01/5/logo_pinterest_240015.jpg" alt="" class="img-responsive">
 			<span>Pinterest</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{rss})" target="_blank">
+			<a href="(#GET{rss}|=={oui}|oui)#GET{rss_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/54/3/logo_rss_189543.jpg" alt="" class="img-responsive">
 			<span>RSS</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{storify})" target="_blank">
+			<a href="(#GET{storify}|=={oui}|oui)#GET{storify_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/Services/01/8/logo_storify_240018.jpg" alt="" class="img-responsive">
 			<span>Storify</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{tumblr})" target="_blank">
+			<a href="(#GET{tumblr}|=={oui}|oui)#GET{tumblr_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/Services/02/4/logo_tumblr_240024.jpg" alt="" class="img-responsive">
 			<span>Tumblr</span>
 			</a>
 			</div>
 		</div>]
-		[<div class="[(#GET{col})]">
+		[<div class="#GET{col}">
 		<div class="item">
-			<a href="(#GET{twitter})" target="_blank">
+			<a href="(#GET{twitter}|=={oui}|oui)#GET{twitter_adr}" target="_blank">
 			<img src="http://cache.media.education.gouv.fr/image/informer-rechercher-contacter/54/6/logo_twitter_189546.jpg" alt="" class="img-responsive">
 			<span>Twitter</span>
 			</a>
