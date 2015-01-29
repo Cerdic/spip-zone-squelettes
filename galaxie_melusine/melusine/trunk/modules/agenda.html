@@ -11,12 +11,14 @@
 
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
 #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 #SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
 </BOUCLE_noisette>
 
 <!-- On attribue des valeurs par défaut -->
+[(#GET{titre}|non)#SET{titre,Agenda}]
 [(#GET{style}|non)#SET{style,bloc_visible}]
 [(#GET{nb}|non)#SET{nb,3}]
 [(#GET{motclef}|non)#SET{motclef,agenda}]
@@ -136,7 +138,7 @@
 ]
 <!-- Affichage public de l'agenda si il est non vide -->
 <BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{total}|!={0}|oui)]</BOUCLE_non_vide>
-	<h2>Agenda</h2>
+	<h2>#GET{titre}</h2>
 	<!-- On trie le tableau des résultats par date -->
 	<BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
 		<!-- On ne commence à afficher qu'à partir des evts passés à garder -->
