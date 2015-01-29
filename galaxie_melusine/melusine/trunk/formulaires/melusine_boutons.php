@@ -65,7 +65,7 @@ function formulaires_melusine_boutons_traiter()
 	}
 	elseif (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
-		$params['style']="en_ligne";
+		$params['style']="multibloc";
 		$params['voir_images']="oui";
 		$params['voir_intitule']="oui";
 		$params['col']="col-md-12";
