@@ -68,7 +68,7 @@ function formulaires_melusine_boutons_traiter()
 		$params['style']="en_ligne";
 		$params['voir_images']="oui";
 		$params['voir_intitule']="oui";
-		$params['col']="aucune";
+		$params['col']="col-md-12";
 	}
 
 	$params['boutons']=$boutons;
