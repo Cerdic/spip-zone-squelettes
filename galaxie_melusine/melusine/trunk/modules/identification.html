@@ -1,0 +1,48 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE IDENTIFICATION ********************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On récupère le nom choisi dans la liste dans SET{param} -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+    #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+    #SET{connexion,#PARAMETRES|unserialize|table_valeur{connexion}}
+    #SET{deconnexion,#PARAMETRES|unserialize|table_valeur{deconnexion}}
+</BOUCLE_noisette>
+
+<!-- par défaut : fond invisible, centré dans sa noisette -->
+[(#GET{style}|non)#SET{style,'bloc_visible'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+<!-- par défaut : des labels pour la connexion-déconnexion -->
+[(#GET{connexion}|non)#SET{connexion,"Se connecter"}]
+[(#GET{deconnexion}|non)#SET{deconnexion,"Déconnecter "}]
+
+
+<!-- *********************************************************************** -->
+<!-- *** AFFICHAGE ********************************************************* -->
+<!-- *********************************************************************** -->
+
+
+<div class="module_content [(#GET{style})] [(#GET{alignement})]">
+
+	[(#SESSION{statut}|!={''}|oui) 
+	<a  href="[(#URL_LOGOUT{spip.php?page=sommaire})]">
+		<span class="logo-titre">[(#GET{deconnexion})] #SESSION{nom}</span>
+		<!-- mettre #SESSION{login} si on préfère l'identifiant du login -->
+	</a>]
+	
+	[(#SESSION{statut}|=={''}|oui)
+	<a id="contacter" href="#URL_PAGE{melusine_login}" class="mediabox" >
+		<span class="logo-titre">[(#GET{connexion})]</span>
+	</a>]
+</div>
+
