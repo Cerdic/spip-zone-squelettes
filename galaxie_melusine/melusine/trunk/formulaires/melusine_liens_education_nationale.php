@@ -34,57 +34,9 @@ function formulaires_melusine_liens_education_nationale_traiter()
 	/*$params=unserialize(_request('parametres'));*/
 
 /*----------------------------------------------------------------------------*/
-/* Adresses officielles par défaut - flèche retour arrière -------------------*/
-/*----------------------------------------------------------------------------*/
-	if(isset($_POST['annuaire_retour']))
-		{$params['annuaire_adr']=
-"http://www.education.gouv.fr/pid24301/annuaire-de-l-education.html";}
-	elseif(isset($POST['bo_retour']))
-		{$params['bo_adr']=
-"http://www.education.gouv.fr/pid285/le-bulletin-officiel.html";}
-	elseif(isset($POST['calendrier_retour']))
-		{$params['calendrier_adr']=
-"http://www.education.gouv.fr/pid25058/le-calendrier-scolaire.html";}
-	elseif(isset($POST['contact_retour']))
-		{$params['contact_adr']=
-"http://www.education.gouv.fr/cid2559/contacts.html";}
-	elseif(isset($POST['dailymotion_retour']))
-		{$params['dailymotion_adr']=
-"http://www.dailymotion.com/EducationFrance";}
-	elseif(isset($POST['facebook_retour']))
-		{$params['facebook_adr']=
-"http://www.facebook.com/EducationFrance";}
-	elseif(isset($POST['flickr_retour']))
-		{$params['flickr_adr']=
-"https://www.flickr.com/photos/educationfrance";}
-	elseif(isset($POST['lettres_retour']))
-		{$params['lettres_adr']=
-"http://www.education.gouv.fr/pid23920/kiosque-actu.html";}
-	elseif(isset($POST['mobileretour']))
-		{$params['mobile_adr']=
-"http://www.education.gouv.fr/cid49108/version-mobile.html";}
-	elseif(isset($POST['moteur_retour']))
-		{$params['moteur_adr']=
-"http://www.education.gouv.fr/cid50125/moteur-de-recherche.html";}
-	elseif(isset($POST['pinterest_retour']))
-		{$params['pinterest_adr']=
-"http://pinterest.com/educationfrance";}
-	elseif(isset($POST['rss_retour']))
-		{$params['rss_adr']=
-"http://www.education.gouv.fr/cid50705/les-flux-rss.html";}
-	elseif(isset($POST['storify_retour']))
-		{$params['storify_adr']=
-"http://storify.com/EducationFrance";}
-	elseif(isset($POST['tumblr_retour']))
-		{$params['tumblr_adr']=
-"http://educationfrance.tumblr.com/";}
-	elseif(isset($POST['twitter_retour']))
-		{$params['twitter_adr']=
-"http://twitter.com/EducationFrance";}
-/*----------------------------------------------------------------------------*/
 /* Si un des deux boutons OK pour l'apparence ou pour les boutons ------------*/
 /*----------------------------------------------------------------------------*/
-	elseif (isset($_POST['ok']) || isset($_POST['ok2'])) 
+	if (isset($_POST['ok']) || isset($_POST['ok2'])) 
 	{	/* On récupère les valeurs du formulaire sur l'apparence */
 		/* On récupère les valeurs du formulaire sur les boutons */
 		$params['style']=_request('style');
@@ -128,8 +80,8 @@ function formulaires_melusine_liens_education_nationale_traiter()
 	{	/* On initialise les valeurs du formulaire sur l'apparence */
 		/* mais on garde les choix sur les boutons */
 		$params['style']="multibloc";
-		$params['col']="col-md-12";
-		$params['titre']="Lien Education Nationale";
+		$params['col']="aucune";
+		$params['titre']="Liens Education Nationale";
 		$params['annuaire']=_request('annuaire');
 		$params['bo']=_request('bo');
 		$params['calendrier']=_request('calendrier');
@@ -217,10 +169,541 @@ function formulaires_melusine_liens_education_nationale_traiter()
 		"http://twitter.com/EducationFrance";	
 	}
 /*----------------------------------------------------------------------------*/
+/* Adresses officielles par défaut - flèche retour arrière -------------------*/
+/* On remet le ***_adr par défaut et on garde les autres choix ---------------*/
+/*----------------------------------------------------------------------------*/
+	elseif(isset($_POST['annuaire_retour']))
+		{$params['annuaire_adr']=
+"http://www.education.gouv.fr/pid24301/annuaire-de-l-education.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['bo_retour']))
+		{$params['bo_adr']=
+"http://www.education.gouv.fr/pid285/le-bulletin-officiel.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['calendrier_retour']))
+		{$params['calendrier_adr']=
+"http://www.education.gouv.fr/pid25058/le-calendrier-scolaire.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['contact_retour']))
+		{$params['contact_adr']=
+"http://www.education.gouv.fr/cid2559/contacts.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['dailymotion_retour']))
+		{$params['dailymotion_adr']=
+"http://www.dailymotion.com/EducationFrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['facebook_retour']))
+		{$params['facebook_adr']=
+"http://www.facebook.com/EducationFrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['flickr_retour']))
+		{$params['flickr_adr']=
+"https://www.flickr.com/photos/educationfrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['lettres_retour']))
+		{$params['lettres_adr']=
+"http://www.education.gouv.fr/pid23920/kiosque-actu.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['mobileretour']))
+		{$params['mobile_adr']=
+"http://www.education.gouv.fr/cid49108/version-mobile.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['moteur_retour']))
+		{$params['moteur_adr']=
+"http://www.education.gouv.fr/cid50125/moteur-de-recherche.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['pinterest_retour']))
+		{$params['pinterest_adr']=
+"http://pinterest.com/educationfrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['rss_retour']))
+		{$params['rss_adr']=
+"http://www.education.gouv.fr/cid50705/les-flux-rss.html";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['storify_retour']))
+		{$params['storify_adr']=
+"http://storify.com/EducationFrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['tumblr_retour']))
+		{$params['tumblr_adr']=
+"http://educationfrance.tumblr.com/";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['twitter_adr']=_request('twitter_adr');	}
+	elseif(isset($POST['twitter_retour']))
+		{$params['twitter_adr']=
+"http://twitter.com/EducationFrance";
+		$params['style']=_request('style');
+		$params['col']=_request('col');
+		$params['titre']=_request('titre');		
+		$params['annuaire']=_request('annuaire');
+		$params['bo']=_request('bo');
+		$params['calendrier']=_request('calendrier');
+		$params['contact']=_request('contact');
+		$params['dailymotion']=_request('dailymotion');
+		$params['facebook']=_request('facebook');
+		$params['flickr']=_request('flickr');
+		$params['lettres']=_request('lettres');
+		$params['mobile']=_request('mobile');
+		$params['moteur']=_request('moteur');
+		$params['pinterest']=_request('pinterest');
+		$params['rss']=_request('rss');
+		$params['storify']=_request('storify');
+		$params['tumblr']=_request('tumblr');
+		$params['twitter']=_request('twitter');	
+		$params['annuaire_adr']=_request('annuaire_adr');
+		$params['bo_adr']=_request('bo_adr');
+		$params['calendrier_adr']=_request('calendrier_adr');
+		$params['contact_adr']=_request('contact_adr');
+		$params['dailymotion_adr']=_request('dailymotion_adr');
+		$params['facebook_adr']=_request('facebook_adr');
+		$params['flickr_adr']=_request('flickr_adr');
+		$params['lettres_adr']=_request('lettres_adr');
+		$params['mobile_adr']=_request('mobile_adr');
+		$params['moteur_adr']=_request('moteur_adr');
+		$params['pinterest_adr']=_request('pinterest_adr');
+		$params['rss_adr']=_request('rss_adr');
+		$params['storify_adr']=_request('storify_adr');
+		$params['tumblr_adr']=_request('tumblr_adr');}
+		
+/*----------------------------------------------------------------------------*/
 /* Création du tableau des paramètres ----------------------------------------*/
 /*----------------------------------------------------------------------------*/
 	$set=array('parametres'=>serialize($params));
 	objet_modifier("noisette", $id_noisette, $set);
+	/*echo ($params['col']);*/
 /*----------------------------------------------------------------------------*/
 /* Message pour la validation ------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
