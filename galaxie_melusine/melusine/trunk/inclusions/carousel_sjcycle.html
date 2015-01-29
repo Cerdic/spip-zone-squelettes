@@ -1,9 +1,11 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
 #SET{hauteur_carousel,#PARAMETRES|unserialize|table_valeur{hauteur_carousel}}
 #SET{largeur_carousel,#PARAMETRES|unserialize|table_valeur{largeur_carousel}}
+#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
 </BOUCLE_noisette>
 [(#GET{hauteur_carousel}|non)#SET{hauteur_carousel,250}]
 [(#GET{largeur_carousel}|non)#SET{largeur_carousel,900}]
+[(#GET{motclef}|non)#SET{motclef,"diaporama"}]
 
 [(#REM)  L'appel depuis un article se fait par < sjcycleXX >, alors id_sjcycle=XX
 	ou par un modele  CROCHET(# MODELE{sjcycle}{id_sjcycle=XX})CROCHET , alors id_article=XX
@@ -92,7 +94,7 @@
 	[(#REM) Solution de denisb pour eviter de dupliquer le code Cf http://article.gmane.org/gmane.comp.web.spip.zone/18622 ]
 
   
-  <BOUCLE_articles (ARTICLES){titre_mot=diaporama}{!par date}>
+  <BOUCLE_articles (ARTICLES){titre_mot=#GET{motclef}}{!par date}>
   [(#REM) BOUCLE_articles (ARTICLES){!par date} ]
 
 	[(#LOGO_ARTICLE|oui)

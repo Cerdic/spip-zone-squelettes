@@ -1,15 +1,17 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
 #SET{hauteur_carousel,#PARAMETRES|unserialize|table_valeur{hauteur_carousel}}
 #SET{largeur_carousel,#PARAMETRES|unserialize|table_valeur{largeur_carousel}}
+#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
 </BOUCLE_noisette>
 [(#GET{hauteur_carousel}|non)#SET{hauteur_carousel,250}]
 [(#GET{largeur_carousel}|non)#SET{largeur_carousel,900}]
+[(#GET{motclef}|non)#SET{motclef,"diaporama"}]
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
      #SET{active,"active"}
-  <BOUCLE_indicators (ARTICLES){titre_mot=diaporama}{!par date}>
+  <BOUCLE_indicators (ARTICLES){titre_mot=#GET{motclef}}{!par date}>
 
     <li data-target="#carousel-example-generic" data-slide-to="#EVAL{#COMPTEUR_BOUCLE-1}" class="#GET{active}"></li>
     #SET{active,""}
@@ -21,7 +23,7 @@
   
 <div class="carousel-inner" role="listbox">
 	#SET{active,"active"}
-  <BOUCLE_articles (ARTICLES){titre_mot=diaporama}{!par date}>
+  <BOUCLE_articles (ARTICLES){titre_mot=#GET{motclef}}{!par date}>
   <div class="item #GET{active}">
   	#SET{active,""}
     <a href=#URL_ARTICLE>
