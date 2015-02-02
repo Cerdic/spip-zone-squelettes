@@ -9,14 +9,21 @@
 <!-- RECUPERATION ET INITIALISATION DES PARAMETRES ************************* -->
 <!-- *********************************************************************** -->
 
+
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+	#SET{titre_site,#PARAMETRES|unserialize|table_valeur{titre_site}}
+	#SET{titre_sous,#PARAMETRES|unserialize|table_valeur{titre_sous}}
 </BOUCLE_noisette>
+
+<!-- titre par défaut : le nom du site -->
+[(#GET{titre_site}|non)#SET{titre_site,#NOM_SITE_SPIP}]
+<!-- pas de défaut pour sous-titre afin d'autoriser une chaine vide -->
 <!-- par défaut : fond invisible, centré dans sa noisette -->
 [(#GET{style}|non)#SET{style,'bloc_invisible'}]
-[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
-
+[(#GET{alignement}|non)#SET{alignement,'aligncentre'}]
 
 <!-- *********************************************************************** -->
 <!-- *** AFFICHAGE ********************************************************* -->
@@ -27,7 +34,14 @@
 #CACHE{3600*24*50}
 
 <div class="module_content [(#GET{style})] [(#GET{alignement})]">
-	<h1>#NOM_SITE_SPIP</h1>
+		<!-- Alignement conditionné par le choix de l'utilisateur -->
+		[(#GET{alignement}|=={alignegauche}|oui) <div class="alignegauche">]
+		[(#GET{alignement}|=={alignecentre}|oui) <div class="alignecentre">]
+		[(#GET{alignement}|=={alignedroite}|oui) <div class="alignedroite">]
+		
+		[<h1>(#GET{titre_site})</h1>]
+		[(#GET{titre_sous})]
+		</div>
 </div>
 
 
