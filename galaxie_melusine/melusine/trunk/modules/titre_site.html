@@ -15,15 +15,18 @@
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
 	#SET{titre_site,#PARAMETRES|unserialize|table_valeur{titre_site}}
-	#SET{titre_sous,#PARAMETRES|unserialize|table_valeur{titre_sous}}
+	#SET{titre_slogan,#PARAMETRES|unserialize|table_valeur{titre_slogan}}
+	#SET{affich_slogan,#PARAMETRES|unserialize|table_valeur{affich_slogan}}
 </BOUCLE_noisette>
 
 <!-- titre par défaut : le nom du site -->
 [(#GET{titre_site}|non)#SET{titre_site,#NOM_SITE_SPIP}]
-<!-- pas de défaut pour sous-titre afin d'autoriser une chaine vide -->
+<!-- sous-titre par défaut : le slogan du site -->
+[(#GET{titre_slogan}|non)#SET{titre_slogan,#SLOGAN_SITE_SPIP}]
+[(#GET{affich_slogan}|non)#SET{affich_slogan,'non'}]
 <!-- par défaut : fond invisible, centré dans sa noisette -->
 [(#GET{style}|non)#SET{style,'bloc_invisible'}]
-[(#GET{alignement}|non)#SET{alignement,'aligncentre'}]
+[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
 
 <!-- *********************************************************************** -->
 <!-- *** AFFICHAGE ********************************************************* -->
@@ -40,7 +43,8 @@
 		[(#GET{alignement}|=={alignedroite}|oui) <div class="alignedroite">]
 		
 		[<h1>(#GET{titre_site})</h1>]
-		[(#GET{titre_sous})]
+
+		[(#GET{affich_slogan}|=={oui}|oui)#GET{titre_slogan}]
 		</div>
 </div>
 
