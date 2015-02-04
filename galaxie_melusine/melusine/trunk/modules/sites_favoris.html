@@ -1,6 +1,6 @@
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
-<!-- MODULE ARTICLES LES PLUS LUS ****************************************** -->
+<!-- MODULE SITES FAVORIS ****************************************** -->
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
 
@@ -14,12 +14,18 @@
   #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
   #SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
   #SET{mot,#PARAMETRES|unserialize|table_valeur{mot}}
+  #SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 </BOUCLE_noisette>
 
 [(#GET{titre}|non)#SET{titre,"Sites Favoris"}]
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
 [(#GET{disposition}|non)#SET{disposition,'col-md-12'}]
-[(#GET{mot}|non)#SET{mot,"favoris"}]
+[(#GET{nb}|non)#SET{nb,5}]
+<!-- important : pas de défaut pour le mot-clé --> 
+
+<!-- Si un mot-clé est défini , afficher les sites attachés avec ce mot-clé --> 
+<!-- Si un mot-clé n'est pas défini , afficher les sites associés à la rubrique en cours --> 
+<!-- Si un mot-clé n'est pas défini , afficher les sites de tout le site sur la page sommaire --> 
 
 
 <!-- *********************************************************************** -->
@@ -31,10 +37,11 @@
   [(#GET{disposition}|=={col-md-12}|non) 
     <div class='row col1'>
   ]
+<!-- Si un mot-clé n'est pas défini... --> 
   <BOUCLE_test(CONDITION){si #GET{mot}|non}>
-
+<!-- Si un mot-clé n'est pas défini , afficher tous les sites référencés si on est sur la page sommaire --> 
       <BOUCLE_sommaire(CONDITION){si #ID_RUBRIQUE|non}>
-          <BOUCLE_sites1(SITES) {par num nom_site,nom_site}>
+          <BOUCLE_sites1(SITES) {par num nom_site,nom_site}{0,#GET{nb}}>
             [(#GET{disposition}|=={col-md-12}|oui)
               [(#MODELE{favoris}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
             ]
@@ -43,8 +50,9 @@
             ]
           </BOUCLE_sites1>
       </BOUCLE_sommaire>
+<!-- Si un mot-clé n'est pas défini, afficher les sites référencés pour la rubrique --> 
       <BOUCLE_rubrique(CONDITION){si #ID_RUBRIQUE>0}>
-        <BOUCLE_sites10(SITES) {par num nom_site,nom_site}{id_rubrique} >
+        <BOUCLE_sites10(SITES) {par num nom_site,nom_site}{id_rubrique}{0,#GET{nb}}>
           [(#GET{disposition}|=={col-md-12}|oui)
             [(#MODELE{favoris}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
           ]
@@ -54,8 +62,8 @@
         </BOUCLE_sites10>
       </BOUCLE_rubrique>
   </BOUCLE_test>
-  
-    <BOUCLE_sites3(SITES) {par num nom_site,nom_site}{titre_mot=#GET{mot}} >
+  <!-- Si un mot-clé est défini, afficher les sites avec ce mot-clé (quelle que soit la rubrique)--> 
+    <BOUCLE_sites3(SITES) {par num nom_site,nom_site}{titre_mot=#GET{mot}}{0,#GET{nb}}>
           [(#GET{disposition}|=={col-md-12}|oui)
             [(#MODELE{favoris}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
           ]
