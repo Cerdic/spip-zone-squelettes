@@ -1,0 +1,87 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE BOUTON PLAN DU SITE **************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+	#SET{params,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})</p>]
+
+<!-- On récupère les saisies de l'utilisateur -->
+<!-- On met une valeur par défaut si nécéssaire -->
+#SET{txt,(#GET{params}|table_valeur{textebouton})}
+[(#GET{txt}|non)#SET{txt,"Plan du site"}]
+#SET{style,(#GET{params}|table_valeur{style})}
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+#SET{centrer,(#GET{params}|table_valeur{centrer})}
+[(#GET{centrer}|non)#SET{centrer,"gauche"}]
+
+
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
+<!-- Début du formulaire -->
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+<fieldset>
+	<legend>Apparence</legend>
+	<!-- Champs texte pour changer le texte du bouton -->
+	<i class="fa fa-exclamation-circle"></i>	
+	<label for="textebouton">Texte à afficher</label>
+	<br />	
+	<div class="z123alignecentre">
+		<input type="text" name="textebouton" value="#GET{txt}"></input>
+	</div>
+	<!-- Boutons radio pour choisir si le bloc est visible ou non -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="z123alignecentre">	
+		<input type="radio" name="style" value="bloc_visible" 
+			[(#GET{style}|=={bloc_visible}|oui)checked]>Bloc visible</input>
+		<input type="radio" name="style" value="bloc_invisible" 
+			[(#GET{style}|=={bloc_invisible}|oui)checked]>Bloc invisible</input>
+	</div>
+
+	<!-- Boutons radio pour choisir l'alignement du texte -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="centrer">Alignement du texte</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="centrer" value="gauche" 
+			[(#GET{centrer}|=={gauche}|oui) checked ]>A gauche</input>
+		<input type="radio" name="centrer" value="centre" 
+			[(#GET{centrer}|=={centre}|oui) checked ]>Au centre</input>
+		<input type="radio" name="centrer" value="droite" 
+			[(#GET{centrer}|=={droite}|oui) checked ]>A droite</input>
+	</div>
+</fieldset>
+
+<!-- *********************************************************************** -->
+<!-- BOUTONS SUBMIT ******************************************************** -->
+<!-- *********************************************************************** -->
+<div class="z123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer' />
+	<input type='submit' name='reset' value='Effacer' />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</div>
+
+</form>
+<!-- Fin du formulaire -->	

@@ -1,8 +1,63 @@
-#CACHE{3600*24*62} 
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE BOUTON PLAN DU SITE ******************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
 
-<a href="#URL_PAGE{plan}"> 
-	<span class="logo-titre">
-		<i class="fa fa-sitemap"></i>
-		Plan du site
-	</span>
-</a>   
+#CACHE{3600*24*62}
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On récupère le nom choisi dans la liste dans SET{param} -->
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+	#SET{param,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+
+<!-- On récupère le texte saisi pour le bouton -->
+#SET{txt,(#GET{param}|table_valeur{textebouton})}
+<!-- On récupère le style choisi : bloc visible ou invisible -->
+#SET{style,(#GET{param}|table_valeur{style})}
+<!-- On récupère le choix pour l'alignement gauche/centre/droite -->
+#SET{centrer,(#GET{param}|table_valeur{centrer})}
+
+<!-- Si pas de texte saisi pour le bouton, on met "Plan du site" par défaut -->
+[(#GET{txt}|non)#SET{txt,"Plan du site"}]
+<!-- Si pas de fond choisi, on met "visible" par défaut -->
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+<!-- Si pas de fond choisi, on met "visible" par défaut -->
+[(#GET{centrer}|non)#SET{centrer,"gauche"}]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
+
+<!-- Affichage du bloc conditionné par le choix de l'utilisateur -->
+<div class="module_content [(#GET{style})]">
+
+	<!-- Alignement conditionné par le choix de l'utilisateur -->
+	[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
+	[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
+	[(#GET{centrer}|=={droite}|oui)	<div class="alignedroite">]
+
+		<!-- Affichage du lien avec le logo et le texte -->
+		<a href="#URL_PAGE{plan}"> 
+			<span class="logo-titre">
+				<i class="fa fa-sitemap"></i>
+				 #GET{txt}
+			</span>
+		</a>
+		<!-- Fin alignement -->
+		
+	[(#GET{centrer}|=={gauche}|oui)	</div>]
+	[(#GET{centrer}|=={centre}|oui)	</div>]
+	[(#GET{centrer}|=={droite}|oui)	</div>]
+
+<!-- Fin affichage du bloc -->
+</div>
+
+ 
