@@ -1,3 +1,14 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE LISTE DE BOUTONS *********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE}>
 	#SET{boutons,#PARAMETRES|unserialize|table_valeur{boutons}}
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
@@ -6,6 +17,10 @@
 	#SET{col,#PARAMETRES|unserialize|table_valeur{col}}
 	#SET{params,#PARAMETRES}
 </BOUCLE_noisette>
+
+<!-- *********************************************************************** -->
+<!-- AVERTISSEMENT POUR L'AMDIN SI LE MODULE N'EST PAS CONFIGURE *********** -->
+<!-- *********************************************************************** -->
 
 <!-- Si aucun bouton n'a été créé, avertissement pour l'admin ************** -->
 [(#SESSION{statut}|=={0minirezo}|oui)
@@ -16,41 +31,67 @@
 	]
 ]
 
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE CONDITIONNE DE LA LISTE DES BOUTONS ************************* -->
+<!-- *********************************************************************** -->
+
+<!-- On affiche suivant le style : monobloc, multiblocs, fond invisible -->
 <div class="module_content [(#GET{style})]">
-	[(#GET{col}|=={en_lignedroite}|oui)<div class="module_content en_lignedroite">]
-	[(#GET{col}|=={en_lignegauche}|oui)<div class="module_content en_lignegauche">]
+
+<!-- Si "alignement" au lieu du nombre de colonnes, on met des flottants -->
+	[(#GET{col}|=={en_lignedroite}|oui)
+		<div class="en_lignedroite">]
+	[(#GET{col}|=={en_lignegauche}|oui)
+		<div class="en_lignegauche">]
+
+	<!-- On crée une ligne -->
 	<div class="row">
+		<!-- On cherche dans les boutons -->
 		<BOUCLE_test(POUR){tableau #GET{boutons}}>
-		 	[(#GET{col}|=={col-md-12}|non)
-		 		<div class=" col-xs-6 col-sm-4 #GET{col}">]
+			<!-- Si choix autre que 1 colonne, on appelle la classe concernée
+			et on affecte une ligne de 130px de haut si on affiche les images
+			(100px pour l'image et 30px pour l'intitulé du bouton) -->
+		 	[(#GET{col}|=={col-md-12}|non)[(#GET{col}|match{^(en_lignedroite|en_lignegauche)$}|non)
+		 		<div class="col-xs-6 col-sm-4 #GET{col}">]]
+		 	[(#GET{col}|match{^(col-md-12|en_lignedroite|en_lignegauche)$}|oui)
+		 		<div class="#GET{col}" >]
+		 	<!-- Si on affiche les images, -->
 		 	[(#GET{voir_images}|=={oui}|oui)
-		 		[<div class="item item-logo">	
-					<a id="onglet#CLE" class="ong1" 
-					href="[(#VALEUR|table_valeur{url})]" 
-					[	(#VALEUR|table_valeur{blank}|=={blank}|oui)target="_blank"]>	
-						(#VALEUR|table_valeur{image}|oui)
-						[(#CHEMIN{#VALEUR|table_valeur{image}}|image_reduire{100})
-					]			
+		 		[	<div class="item123 item123-logo">	
+					<a id="onglet#CLE" 	class="ong1" 
+										href="[(#VALEUR|table_valeur{url})]" 
+					[(#VALEUR|table_valeur{blank}|=={blank}|oui)target="_blank"]
+					>	
+					(#VALEUR|table_valeur{image}|oui)
+				<!-- On retaille les images maximum 100px sur 100px -->
+				[(#CHEMIN{#VALEUR|table_valeur{image}}|image_reduire{100,100})]			
 					</a>
-				</div>
+					</div>
 				]
 			]
+			<!-- Si on affiche les intitulés, -->
 			[(#GET{voir_intitule}|=={oui}|oui)
-				[<div class="item ">	
-					<a id="onglet#CLE" class="ong1" 
-					href="[(#VALEUR|table_valeur{url})]" 
-						[	(#VALEUR|table_valeur{blank}|=={blank}|oui) 
-							target="_blank"] >	
-							<span class="img_onglet">
-								(#VALEUR|table_valeur{intitule})
-							</span>
+				[<div class="item123 ">	
+					<a id="onglet#CLE" 	class="ong1" 
+										href="[(#VALEUR|table_valeur{url})]" 
+					[(#VALEUR|table_valeur{blank}|=={blank}|oui)target="_blank"]
+					>	
+						<span class="img_onglet">
+							(#VALEUR|table_valeur{intitule})
+						</span>
 					</a>
 				</div>
 				] 
 			]
-			[(#GET{col}|=={col-md-12}|non)</div>]
+			<!-- Fermeture du div, si choix autre que 1 colonne -->
+			</div>
 		</BOUCLE_test>
+	<!-- Fermeture du div de création de ligne -->
 	</div>
+
+	<!-- Fermeture du div, si alignement au lieu d'un nombre de colonnes -->
 	[(#GET{col}|=={en_lignedroite}|oui)</div>]
 	[(#GET{col}|=={en_lignegauche}|oui)</div>]
+
+<!-- Fermeture du div de module_content avec le style des blocs -->
 </div>

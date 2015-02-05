@@ -56,20 +56,21 @@ function formulaires_melusine_boutons_traiter()
 	$boutons=_request('bouton');
 	$action=_request('ok2');
 	$position=_request('position');
-	if (isset($_POST['ok'])) 
-	{	/* On récupère les valeurs du formulaire */
-		$params['style']=_request('style');
-		$params['voir_images']=_request('voir_images');
-		$params['voir_intitule']=_request('voir_intitule');
-		$params['col']=_request('col');
-	}
-	elseif (isset($_POST['reset'])) 
+	if (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
 		$params['style']="multibloc";
 		$params['voir_images']="oui";
 		$params['voir_intitule']="oui";
 		$params['col']="col-md-12";
 	}
+	else  
+	{	/* On récupère les valeurs du formulaire */
+		$params['style']=_request('style');
+		$params['voir_images']=_request('voir_images');
+		$params['voir_intitule']=_request('voir_intitule');
+		$params['col']=_request('col');
+	}
+	
 
 	$params['boutons']=$boutons;
 
