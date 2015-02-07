@@ -15,6 +15,7 @@ if (!isset($GLOBALS['meta']['puce_eva']) OR _request('var_mode')) {
 			$GLOBALS['meta']['puce_eva'] = $puce;
 		}
 	}
+	ecrire_meta('puce_eva',$GLOBALS['meta']['puce_eva']);
 }
 if ($GLOBALS['meta']['puce_eva']) {
 	$GLOBALS['puce'] = "<img src='" . _DIR_IMG . "eva_habillage/" . $GLOBALS['meta']['puce_eva'] . "' alt='-' align='top' border='0'>";
