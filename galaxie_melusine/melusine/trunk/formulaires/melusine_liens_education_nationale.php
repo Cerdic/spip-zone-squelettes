@@ -34,6 +34,8 @@ function formulaires_melusine_liens_education_nationale_traiter()
 	$params=array();
 	/*$params=unserialize(_request('parametres'));*/
 
+	/* Compteur pour le nombre de boutons à afficher */
+	$compteur=0;
 /*----------------------------------------------------------------------------*/
 /* Liste des boutons disponibles ---------------------------------------------*/
 /*----------------------------------------------------------------------------*/
@@ -93,7 +95,12 @@ function formulaires_melusine_liens_education_nationale_traiter()
 		foreach($boutons as $boutons)
 		{	$params[$boutons]=_request($boutons);
 			$params[$boutons."_adr"]=_request($boutons."_adr");
-		}		
+			/* On compte le nombre de boutons cochés */
+			if($params[$boutons]=='oui'){$compteur++;}
+		}
+		/* On ajoute aux paramètres le nombre de boutons cochés */
+		/* car si il est égal à zéro on n'affichera pas le module */
+		$params['cpt']=$compteur;		
 		echo $_POST['ok'];	
 	}
 /*----------------------------------------------------------------------------*/
@@ -147,6 +154,7 @@ function formulaires_melusine_liens_education_nationale_traiter()
 	 			}
 	 		}	
 	 	}
+	 	
 /*----------------------------------------------------------------------------*/
 /* Création du tableau des paramètres ----------------------------------------*/
 /*----------------------------------------------------------------------------*/

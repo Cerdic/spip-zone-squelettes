@@ -40,17 +40,25 @@
 	#SET{twitter_adr,#PARAMETRES|unserialize|table_valeur{twitter_adr}}
 	#SET{viadeo_adr,#PARAMETRES|unserialize|table_valeur{viadeo_adr}}
 	#SET{vine_adr,#PARAMETRES|unserialize|table_valeur{vine_adr}}
+	#SET{cpt,#PARAMETRES|unserialize|table_valeur{cpt}}
 </BOUCLE_noisette>
 
-<BOUCLE_test(CONDITION){si #GET{params}|oui|ou{#SESSION{statut}|=={0minirezo}|oui}}>
-	
-	
-
-<div class="module_content [(#GET{style})] 
-[(#SESSION{statut}|=={0minirezo}|oui)[(#GET{params}|non) info]]">
-	[(#SESSION{statut}|=={0minirezo}|oui)
-		[(#GET{params}|non)Module à configurer]
-	]
+<!-- Si on est administrateur, deux messages d erreur possibles -->
+<BOUCLE_test1(CONDITION){si #SESSION{statut}|=={0minirezo}|oui}>
+	<!-- Si le module n a pas encore été configuré -->
+	[(#GET{params}|non)
+		<div class="module_content [(#GET{style})] info">
+			Module à configurer.
+		</div>]
+		<!-- Si aucun bouton n a été choisi -->
+	[(#GET{cpt}|=={0}|oui)
+		<div class="module_content [(#GET{style})] info">
+			Vous n'avez choisi aucun bouton.
+		</div>]
+</BOUCLE_test1>
+<!-- Si on a choisi au moins un bouton et que le module a été paramétré -->
+<BOUCLE_test3(CONDITION){si #GET{cpt}|!={0}}{si #GET{params}|oui}>
+<div class="module_content [(#GET{style})]">
 	[<h2>(#GET{titre})</h2>]
 	<div class="row">
 		[[(#GET{col}|=={aucune}|non)<div class=" col-xs-6 col-sm-4 #GET{col}">]
@@ -199,4 +207,4 @@
 		[(#GET{col}|=={aucune}|non)</div>]]
 	</div>
 </div>
-</BOUCLE_test>
+</BOUCLE_test3>
