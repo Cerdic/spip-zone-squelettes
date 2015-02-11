@@ -24,7 +24,6 @@
 	[(#GET{style}|non)#SET{style,"bloc_visible"}]
 	[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
 
-
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
 <!-- *********************************************************************** -->
@@ -34,26 +33,47 @@
 	</BOUCLE_exclus40>
 </BOUCLE_exclus4>
 
+<!-- On crée un tableau pour récupérer les résultats -->
+#SET{tableau,#ARRAY}
+<!-- On crée un compteur pour le nombre de résultats -->
+#SET{compteur,0}
+
+<!-- On met dans un tableau tous les articles ayant ce mot clef ou approchant-->
+<BOUCLE_compterarticle(ARTICLES) {titre_mot LIKE %(#GET{mot})%}{doublons}
+		{par titre_mot} {0,#GET{nb}}>
+#SET{compteur,#TOTAL_BOUCLE}
+#SET{tableau, #GET{tableau}|push{#LISTE{#TITRE_MOT,#ID_ARTICLE,#ID_NOISETTE}}}
+</BOUCLE_compterarticle>
 
 <!-- *********************************************************************** -->
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
 <!-- *********************************************************************** -->
 
-<div class="module_content #GET{style}">
-	[<h2> (#GET{titre}) </h2>]
-	[(#GET{disposition}|=={col-md-12}|non) 
-		<div class='row col1'>
-	]
-		<BOUCLE_article(ARTICLES) {titre_mot LIKE %(#GET{mot})%}{doublons}
-		{par titre_mot} {0,#GET{nb}}>
-			[(#GET{disposition}|=={col-md-12}|oui)
-             	[(#MODELE{annonce_article}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             ]
-             [(#GET{disposition}|=={col-md-12}|non)
-             	[(#MODELE{annonce_article_1col}{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-             ]
-		</BOUCLE_article>
-	[(#GET{disposition}|=={col-md-12}|non) 
-	</div >
-	]		
-</div>
+<B_non_vide>
+	<div class="module_content #GET{style}">
+<!-- Affichage public du bloc FOCUS si il est non vide -->
+<BOUCLE_non_vide(ARTICLES){0,1}>[(#GET{compteur}|!={0}|oui)]</BOUCLE_non_vide>
+	<!-- Affichage du titre si il a été saisi dans le formulaire -->
+	[<h2>(#GET{titre})</h2>]
+	<!-- On trie le tableau des résultats par le titre du mot clef -->
+	<BOUCLE_trierpartitremot(DATA){source tableau, #GET{tableau}}{par valeur}>
+		<!-- On affiche avec le nombre de colonnes choisi -->
+		[(#GET{disposition}|=={col-md-12}|oui)
+[(#MODELE{annonce_article}{id_article=#VALEUR{1},id_noisette=#VALEUR{2}})]
+        ]
+        [(#GET{disposition}|=={col-md-12}|non)
+[(#MODELE{annonce_article_1col}{id_article=#VALEUR{1},id_noisette=#VALEUR{2}})]
+        ]
+    </BOUCLE_trierpartitremot>
+ </div>
+</B_non_vide>
+<!-- Si le bloc FOCUS est vide, seul l'admin le voit -->
+[(#SESSION{statut}|=={0minirezo}|oui)
+<!-- Si aucun article n'a le mot clef -->
+    [(#GET{compteur}|=={0}|oui)
+    	<div class="module_content bloc_visible info">
+    	Aucun article n'est lié à ce mot clef : #GET{mot}.
+    	</div>
+    ]
+]
+<//B_non_vide>  
