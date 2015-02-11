@@ -1,8 +1,15 @@
 
-[(#PLUGIN{contact}|?{' '})<a href="#URL_PAGE{contact}" title="<:contact:>"><:contact:></a><span class="sep"> | </span>
-][(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a><span class="sep"> | </span>][
-(#SESSION{id_auteur}|non)<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a><span class="sep"> | </span>][
-(#AUTORISER{ecrire})<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a><span class="sep"> | </span>]
+[(#PLUGIN{contact}|?{' '})<a href="#URL_PAGE{contact}" title="<:contact:>"><:contact:></a><span class="sep"> | </span>]<?php
+if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+?><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a><span class="sep"> | </span><?php
+	if (include_spip('inc/autoriser') AND autoriser('ecrire')){
+	?><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a><span class="sep"> | </span><?php
+	}
+}
+else {
+?><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a><span class="sep"> | </span><?php
+}
+?>
 <a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a><span class="sep"> | </span>
 <a href="#URL_PAGE{mentions}" title="<:scolaspip:titre_mentions:>"><:scolaspip:mentions:></a><span class="sep"> | </span>
 <a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">[(#CHEMIN{img/feed.png}|balise_img{<:icone_suivi_activite:>})]&nbsp;RSS&nbsp;2.0</a><span class="sep"> | </span>
