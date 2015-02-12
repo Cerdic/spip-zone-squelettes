@@ -92,16 +92,21 @@
          </BOUCLE_image_alt>
       <//B_image>
       </div>
+
+<!-- affichage descriptif -->
+    [(#CONFIG{escal/config/descriptifune}|=={non}|non)
+		<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
+	]
 <!-- affichage chapeau -->
     [(#CONFIG{escal/config/chapeauune}|=={non}|non)
 		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
-		]    
+	]
 <!-- affichage texte --> 
     [(#CONFIG{escal/config/texteune}|=={non}|non)
-      <div class="texte">
-      [(#INTRODUCTION{#CONFIG{escal/config/tailletexteune,300}})]
-			</div>
-      ]
+        <div class="texte #EDIT{texte}">
+            [(#TEXTE*|concat{#EVAL{_CS_SANS_SOMMAIRE}}|cs_traitements{TEXTE,articles}|couperpropre{#CONFIG{escal/config/tailletexteune,300}})]
+	   </div>
+    ]
             
       <div class="nettoyeur"></div>
           
