@@ -16,6 +16,9 @@
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
 	#SET{codewidget,#PARAMETRES|unserialize|table_valeur{codewidget}}
+	#SET{commentaire,#PARAMETRES|unserialize|table_valeur{commentaire}}
+	#SET{alignementcommentaire,#PARAMETRES|unserialize|table_valeur{alignementcommentaire}}
+	#SET{placecommentaire,#PARAMETRES|unserialize|table_valeur{placecommentaire}}
 </BOUCLE_noisette>
 
 <!-- par défaut : fond invisible, alignement centré-->
@@ -32,10 +35,15 @@
 #SET{vide,"rien"}
 
 <!-- Variable : OUI si aucun résultat, NON dès qu'on rentre dans une boucle -->
-[	<div class="module_content module_widget [(#GET{style})] [(#GET{alignement})]">
+[	
+<div class="module_content module_widget [(#GET{style})] [(#GET{alignement})]">
 	[<h2> (#GET{titre}) </h2>]
-(#GET{codewidget})
-	</div>
+	[(#GET{placecommentaire}|=={dessus}|oui)
+<div class="[(#GET{alignementcommentaire})]">[(#GET{commentaire})toto1]</div>]
+	(#GET{codewidget})
+	[ (#GET{placecommentaire}|=={dessous}|oui)
+<div class="[(#GET{alignementcommentaire})]">[(#GET{commentaire})toto2]</div>]
+</div>
 	#SET{vide,"plein"}
 ]
 
