@@ -36,7 +36,7 @@
 <!-- *********************************************************************** -->
 
 <!-- On affiche suivant le style : monobloc, multiblocs, fond invisible -->
-<div class="module_content [(#GET{style})]">
+[(#GET{boutons}|oui)<div class="module_content [(#GET{style})]">]
 
 <!-- Si "alignement" au lieu du nombre de colonnes, on met des flottants -->
 	[(#GET{col}|=={en_lignedroite}|oui)
@@ -45,16 +45,17 @@
 		<div class="en_lignegauche">]
 
 	<!-- On crée une ligne -->
-	<div class="row">
+	[(#GET{boutons}|oui)<div class="row">]
 		<!-- On cherche dans les boutons -->
 		<BOUCLE_test(POUR){tableau #GET{boutons}}>
 			<!-- Si choix autre que 1 colonne, on appelle la classe concernée
 			et on affecte une ligne de 130px de haut si on affiche les images
 			(100px pour l'image et 30px pour l'intitulé du bouton) -->
-		 	[(#GET{col}|=={col-md-12}|non)[(#GET{col}|match{^(en_lignedroite|en_lignegauche)$}|non)
-		 		<div class="col-xs-6 col-sm-4 #GET{col}">]]
+		 	[(#GET{col}|=={col-md-12}|non)
+		 		[(#GET{col}|match{^(en_lignedroite|en_lignegauche)$}|non)
+		 			<div class="col-xs-6 col-sm-4 #GET{col}">]]
 		 	[(#GET{col}|match{^(col-md-12|en_lignedroite|en_lignegauche)$}|oui)
-		 		<div class="#GET{col}" >]
+		 			<div class="#GET{col}">]
 		 	<!-- Si on affiche les images, -->
 		 	[(#GET{voir_images}|=={oui}|oui)
 		 		[	<div class="item123 item123-logo">	
@@ -87,11 +88,11 @@
 			</div>
 		</BOUCLE_test>
 	<!-- Fermeture du div de création de ligne -->
-	</div>
+	[(#GET{boutons}|oui)</div>]
 
 	<!-- Fermeture du div, si alignement au lieu d'un nombre de colonnes -->
 	[(#GET{col}|=={en_lignedroite}|oui)</div>]
 	[(#GET{col}|=={en_lignegauche}|oui)</div>]
 
 <!-- Fermeture du div de module_content avec le style des blocs -->
-</div>
+[(#GET{boutons}|oui)</div>]
