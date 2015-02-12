@@ -2,65 +2,91 @@
 [(#SET{nom_gabarit,[(#GET{gabarit}|melusine_nomgabarit)]})]
 [(#SET{nom_bloc,[(#BLOC|melusine_nombloc)]})]
 [(#SET{modules_gabarit,[(#NOOP|melusine_lister_noisettes|sinon{#ARRAY})]})]
-[(#SET{text_confirm,[Vous allez effacer la configuartion du bloc &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; pour les pages utilisant les gabarits que vous avez sélectionnés, pour la remplacer par celle de la page &laquo;&nbsp;#TYPE&nbsp;&raquo;[ (gabarit &laquo;&nbsp;(#GET{nom_gabarit})&nbsp;&raquo;)]. Êtes vous sûr·e ?]})]
+[(#SET{text_confirm,
+	[Vous allez effacer la configuartion du bloc 
+	&laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; 
+	pour les pages utilisant les gabarits que vous avez sélectionnés, 
+	pour la remplacer par celle de la page &laquo;&nbsp;#TYPE&nbsp;&raquo;
+	[ (gabarit &laquo;&nbsp;(#GET{nom_gabarit})&nbsp;&raquo;)]. 
+	Êtes vous sûr·e ?]})]
 
-<!-- Ajout d'un saut de ligne pour améliorer l'affichage -->
-</br>
-<!-- -->
 
 <div class="formulaire_spip formulaire_uniformiser_bloc">
-	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
-	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
-<B_gabarits>
-	<form action="#ENV{action}" method="post" onsubmit="[return confirm\('(#GET{text_confirm}|replace{"'","\'"}|attribut_html)'\);]"><div>
+
+	[<p class="reponse_formulaire reponse_formulaire_erreur">
+		(#ENV*{message_erreur})
+	</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">
+		(#ENV*{message_ok})
+	</p>]
+
+	<B_gabarits>
+		<form 	action="#ENV{action}" method="post" 
+				onsubmit="[return confirm\('(#GET{text_confirm}
+							|replace{"'","\'"}
+							|attribut_html)'\);]">
+		<div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul class="boutons uniformiser_bloc obligatoire">
-<BOUCLE_gabarits(POUR){tableau #ENV{tableau_types}}{si #ENV{editable}|oui}>[
-
-	(#SET{liste_pages,[(#CLE|melusine_pages_du_gabarit|implode{", "})]})
-]			<li id="[(#CLE|attribut_html)]" class="deplier">
-				<div class="choix">
-					<input
-						type='checkbox'
-						class="checkbox"
-						name='gabarits[]'
-						value='[(#CLE|attribut_html)]'
-						id='checkbox_#CLE' />
-					<label for='checkbox_#CLE'>
-						<span class="nom_module">[(#VALEUR|spip_ucfirst)]</span>[ <span class="pages_du_gabarit"> \(utilisé par&nbsp;: (#GET{liste_pages})\)</span>]
-					</label>
-				</div>
-			</li>
-</BOUCLE_gabarits>
+			<BOUCLE_gabarits(POUR)	{tableau #ENV{tableau_types}}
+									{si #ENV{editable}|oui}>
+		[(#SET{liste_pages,[(#CLE|melusine_pages_du_gabarit|implode{", "})]})]			
+				<li id="[(#CLE|attribut_html)]" class="deplier">
+					<div class="choix">
+						<input	type='checkbox'
+								class="checkbox"
+								name='gabarits[]'
+								value='[(#CLE|attribut_html)]'
+								id='checkbox_#CLE' />
+						<label for='checkbox_#CLE'>
+						<span class="nom_module">[(#VALEUR|spip_ucfirst)]</span>
+						[<span class="pages_du_gabarit"> 
+							\(utilisé par&nbsp;: (#GET{liste_pages})\)
+						</span>]
+						</label>
+					</div>
+				</li>
+			</BOUCLE_gabarits>
 		</ul>
 		<input class="submit" type="submit" name="valider" value="Valider" />
-	</div></form>
-</B_gabarits>
+		</div>
+		</form>
+	</B_gabarits>
 </div>
+
 <B_blocs>
-<div class="infos config_bloc">
-	<p>Le bloc[ &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; ]de la page &laquo;&nbsp;#TYPE&nbsp;&raquo;[ (gabarit &laquo;&nbsp;(#GET{nom_gabarit})&nbsp;&raquo;)] contient actuellement les modules&nbsp;:</p>
-	<ol class="colonne1" start="0">
-		[<li class="tete_colonne">taille&nbsp;: (#CONFIG{melusine_data}|table_valeur_cleslash{#TYPE!#BLOC!largeur})/12</li>]
-<BOUCLE_blocs(NOISETTES){bloc == ^#BLOC}{type}{par bloc}{par rang}>
-[(#BLOC|replace{#ENV{bloc},""}|unique|oui)
-	</ol>
-	<ol class="colonne[(#BLOC|substr{-1})]">
-		[<li class="tete_colonne">taille&nbsp;: (#CONFIG{melusine_data}|table_valeur_cleslash{#TYPE!#BLOC!largeur})/12</li>]
-]
-		<li>[(#GET{modules_gabarit}|table_valeur_cleslash{#NOISETTE!nom})]</li>
-</BOUCLE_blocs>
-	</ol>
-	<hr class="clean" />
+	<div class="infos config_bloc">
+		<p>Le bloc[ &laquo;&nbsp;(#GET{nom_bloc})&nbsp;&raquo; ]
+			de la page &laquo;&nbsp;#TYPE&nbsp;&raquo;
+			[ (gabarit &laquo;&nbsp;(#GET{nom_gabarit})&nbsp;&raquo;)] 
+			contient actuellement les modules&nbsp;:</p>
+		<ol class="colonne1" start="0">
+			[<li class="tete_colonne">taille&nbsp;: 
+		(#CONFIG{melusine_data}|table_valeur_cleslash{#TYPE!#BLOC!largeur})/12
+			</li>]
+			<BOUCLE_blocs(NOISETTES){bloc == ^#BLOC}{type}{par bloc}{par rang}>
+				[(#BLOC|replace{#ENV{bloc},""}|unique|oui)
+					</ol>
+					<ol class="colonne[(#BLOC|substr{-1})]">
+						[<li class="tete_colonne">taille&nbsp;: 
+		(#CONFIG{melusine_data}|table_valeur_cleslash{#TYPE!#BLOC!largeur})/12
+						</li>]
+				]
+				<li>
+				[(#GET{modules_gabarit}|table_valeur_cleslash{#NOISETTE!nom})]
+				</li>
+			</BOUCLE_blocs>
+		</ol>
+		<hr class="clean" />
 </B_blocs>
-<div class="infos config_bloc">Attention, ce bloc est vide&nbsp;!</div>
+	<div class="infos config_bloc">Attention, ce bloc est vide&nbsp;!</div>
 <//B_blocs>
-</div>
-[(#ENV{editable}|non)
-<script type="text/javascript">/* <!\[CDATA\[ */
-	$\(window\).load\(function\(\)\{
-		window.parent.$.modalboxclose\(\);
-\}\);
-/* \]\]> */</script>
+	</div>
+
+[(#ENV{editable}|non)	<script type="text/javascript">/* <!\[CDATA\[ */
+							$\(window\).load\(function\(\)\{
+							window.parent.$.modalboxclose\(\);
+							\}\);
+/* \]\]> */				</script>
 ]
 #FILTRE{trim}
