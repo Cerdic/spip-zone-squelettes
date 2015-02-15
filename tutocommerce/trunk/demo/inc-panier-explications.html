@@ -7,15 +7,7 @@
 On affiche le contenu du panier au moyen de <code class='balise'>\#FORMULAIRE_PANIER</code>. Sans paramètre, il s'agit du panier en cours, sinon on peut passer l'identifiant d'un panier donné (voir le code en ligne : [panier.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/formulaires/panier.php] et [panier.html->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/formulaires/panier.html]). Le formulaire permet de changer les quantités de chaque objet et de recalculer le total. Pour retirer un objet, passer la quantité à 0 et recalculer. L'identifiant du panier en cours peut être récupéré avec <code class='balise'>\#SESSION{id_panier}</code>.
 Un panier est réparti sur 2 tables : les infos de base sont contenues dans la table <code class='table'>spip_paniers</code>, les objets et leurs quantités se trouvent dans la table <code class='table'>spip_paniers_liens</code>.
 
-On peut supprimer le panier en cours au moyen du bouton d'action <code class='parametre'>supprimer_panier_encours</code>, ou un panier donné avec <code class='parametre'>supprimer_panier</code> (voir le code en ligne : [supprimer_panier_encours.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/action/supprimer_panier_encours.php] et [supprimer_panier.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/action/supprimer_panier.php]).
-
-<cadre class='spip'>[(\#BOUTON_ACTION{
-	\<:paniers:vider_le_panier:>,
-	\#URL_ACTION_AUTEUR{
-		supprimer_panier_encours,
-		'',
-		\#SELF}
-})]</cadre>
+{{{Valider le panier}}}
 
 On valide le panier au moyen du bouton d'action <code class='parametre'>commandes_paniers</code>. Le panier va être "transformé" en commande : celle-ci aura le statut «en cours», et le panier sera supprimé. A noter qu'il ne peut y avoir qu'une seule commande en cours à la fois par visiteur : toute nouvelle commande en cours créée écrasera une éventuelle ancienne commande avec le même statut. Le 2ème paramètre à passer à <code class='balise'>\#URL_ACTION_AUTEUR</code> est l'identifiant du panier, s'il n'est pas donné ce sera celui en cours (voir le code en ligne : [commandes_paniers.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/commandes_paniers/action/commandes_paniers.php]).
 
@@ -25,6 +17,18 @@ On valide le panier au moyen du bouton d'action <code class='parametre'>commande
 		commandes_paniers,
 		\#SESSION{id_panier},
 		\#URL_PAGE{paiement}}
+})]</cadre>
+
+{{{Vider le panier}}}
+
+On peut supprimer le panier en cours au moyen du bouton d'action <code class='parametre'>supprimer_panier_encours</code>, ou un panier donné avec <code class='parametre'>supprimer_panier</code> (voir le code en ligne : [supprimer_panier_encours.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/action/supprimer_panier_encours.php] et [supprimer_panier.php->http://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/action/supprimer_panier.php]).
+
+<cadre class='spip'>[(\#BOUTON_ACTION{
+	\<:paniers:vider_le_panier:>,
+	\#URL_ACTION_AUTEUR{
+		supprimer_panier_encours,
+		'',
+		\#SELF}
 })]</cadre>
 
 {{{Remarques complémentaires}}}
