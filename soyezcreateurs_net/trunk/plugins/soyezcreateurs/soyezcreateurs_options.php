@@ -2,6 +2,10 @@
 if (!defined('_ECRIRE_INC_VERSION')) return; 
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
+// Pour être vraiment sûr que ce define soit utilisable dans noisettes/header/header.html avec le #EVAL
+if (!defined('_DIR_LIB_SM'))
+	define('_DIR_LIB_SM', _DIR_RACINE . 'lib/soundmanagerv297a-20110123/');
+
 define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://contrib.spip.net/Astuces-SPIP 
 
 define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
