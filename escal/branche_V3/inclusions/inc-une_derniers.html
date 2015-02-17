@@ -101,13 +101,18 @@
     [(#CONFIG{escal/config/chapeauune}|=={non}|non)
 		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
 	]
-<!-- affichage texte --> 
+<!-- affichage texte -->
     [(#CONFIG{escal/config/texteune}|=={non}|non)
         <div class="texte #EDIT{texte}">
-            [(#TEXTE*|concat{#EVAL{_CS_SANS_SOMMAIRE}}|cs_traitements{TEXTE,articles}|couperpropre{#CONFIG{escal/config/tailletexteune,300}})]
+            [(#PLUGIN{COUTEAU_SUISSE}|non)
+            [(#TEXTE|couper{#CONFIG{escal/config/tailletexteune,300}})]
+            ]
+            [(#PLUGIN{COUTEAU_SUISSE}|oui)
+             [(#TEXTE*|cs_traitements{TEXTE,articles,sommaire_d_article}|couper{#CONFIG{escal/config/tailletexteune,300}})]
+            ]
 	   </div>
     ]
-            
+
       <div class="nettoyeur"></div>
           
       <div class="suite">
