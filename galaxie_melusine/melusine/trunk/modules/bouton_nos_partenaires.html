@@ -1,8 +1,79 @@
 #CACHE{3600*24*62} 
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE BOUTON NOS PARTENAIRES ***************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
 
-<a href="#URL_PAGE{nospartenaires}"> 
-	<span class="logo-titre">
-		<i class="fa fa-users"></i>
-		Nos partenaires
-	</span>
-</a>   
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- On récupère le nom choisi dans la liste dans SET{param} -->
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+	#SET{param,#PARAMETRES|unserialize}
+</BOUCLE_noisette>
+
+
+<!-- On récupère le nom de la personne à joindre s'il a été choisi -->
+#SET{art,(#GET{param}|table_valeur{article})}
+<!-- On récupère le texte saisi pour le bouton -->
+#SET{txt,(#GET{param}|table_valeur{textebouton})}
+<!-- On récupère le style choisi : bloc visible ou invisible -->
+#SET{style,(#GET{param}|table_valeur{style})}
+<!-- On récupère le choix pour l'alignement gauche/centre/droite -->
+#SET{centrer,(#GET{param}|table_valeur{centrer})}
+<!-- On récupère le choix pour l'icône -->
+#SET{icone,(#GET{param}|table_valeur{icone})}
+
+<!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
+[(#GET{txt}|non)#SET{txt,"Qui sommes-nous ?"}]
+<!-- Si pas de fond choisi, on met "visible" par défaut -->
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+<!-- Si pas d'icône choisi, on met "eye" par défaut -->
+[(#GET{icone}|non)#SET{icone,"users"}]
+
+
+<!-- *********************************************************************** -->
+<!-- BOUCLES DE RECHERCHE DES RESULTATS ET AFFICHAGE CONDITIONNE *********** -->
+<!-- *********************************************************************** -->
+
+
+<!-- Si aucun choix n'a été effectué, avertissement pour l'admin *********** -->
+[(#SESSION{statut}|=={0minirezo}|oui)
+	[(#GET{art}|non)
+		<div class="module_content bloc_visible [(#GET{art}|non)info]">
+			Aucun article sélectionné.
+		</div>
+	]
+]
+
+<!-- Si il y a eu un choix dans la liste, on affiche le texte saisi -->
+<BOUCLE_identifiantdelarticle(ARTICLES){tous}{id_article=#GET{art}}>
+	<!-- Affichage du bloc conditionné par le choix de l'utilisateur -->
+	<div class="module_content [(#GET{style})]">
+
+		<!-- Alignement conditionné par le choix de l'utilisateur -->
+		[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
+		[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
+		[(#GET{centrer}|=={droite}|oui)	<div class="alignedroite">]
+
+		<!-- Affichage du lien avec l'icone et le texte -->
+		<a href="spip.php?page=article&id_article=#GET{art}"> 
+			<span class="logo-titre">
+				[(#GET{icone}|=={aucun}|non)<i class="fa fa-#GET{icone}"></i>]
+				 #GET{txt}
+			</span>
+		</a>
+
+		<!-- Fin alignement -->
+		[(#GET{centrer}|=={gauche}|oui)	</div>]
+		[(#GET{centrer}|=={centre}|oui)	</div>]
+		[(#GET{centrer}|=={droite}|oui)	</div>]
+
+	<!-- Fin affichage du bloc -->
+	</div>
+
+</BOUCLE_identifiantdelarticle>    

@@ -24,12 +24,15 @@
 #SET{style,(#GET{param}|table_valeur{style})}
 <!-- On récupère le choix pour l'alignement gauche/centre/droite -->
 #SET{centrer,(#GET{param}|table_valeur{centrer})}
+<!-- On récupère le choix pour l'icône -->
+#SET{icone,(#GET{param}|table_valeur{icone})}
 
 <!-- Si pas de texte saisi pour le bouton, on met "Nous écrire" par défaut -->
 [(#GET{txt}|non)#SET{txt,"Nous écrire"}]
 <!-- Si pas de fond choisi, on met "visible" par défaut -->
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
-
+<!-- Si pas d'icône choisi, on met "envelope" par défaut -->
+[(#GET{icone}|non)#SET{icone,"envelope"}]
 
 
 <!-- *********************************************************************** -->
@@ -59,7 +62,8 @@
 		<!-- Affichage du lien avec l'enveloppe et le texte -->
 		<a href="spip.php?page=contact2&id_auteur=#GET{dest}" class="mediabox"> 
 			<span class="logo-titre">
-				<i class="fa fa-envelope"> #GET{txt}</i>
+				[(#GET{icone}|=={aucun}|non)<i class="fa fa-#GET{icone}"></i>]
+				 #GET{txt}
 			</span>
 		</a>
 

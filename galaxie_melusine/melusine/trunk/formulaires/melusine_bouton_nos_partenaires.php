@@ -1,30 +1,30 @@
 <?php 
 include_spip('inc/config');
 
-function formulaires_melusine_bouton_plan_du_site_charger($id_noisette)
+function formulaires_melusine_bouton_nos_partenaires_charger($id_noisette)
 {
 	$valeurs=array();
 	$valeurs['id_noisette'] = $id_noisette;
   	return $valeurs;
 }
 
-function formulaires_melusine_bouton_plan_du_site_verifier()
+function formulaires_melusine_bouton_nos_partenaires_verifier()
 {
 }
 
 
-function formulaires_melusine_bouton_plan_du_site_traiter()
+function formulaires_melusine_bouton_nos_partenaires_traiter()
 {
 	include_spip('action/editer_objet');
 	$id_noisette=_request('id_noisette');
 
 	if (isset($_POST['ok'])) 
 	{	/* On récupère les valeurs du formulaire */
-		$casiers=array('textebouton','style','centrer','icone');
+		$casiers=array('textebouton','style','centrer','icone','article');
 	}
 	elseif (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
-		$casiers=array('Plan du site','bloc_visible','gauche','sitemap');
+		$casiers=array('Nos partenaires','bloc_visible','gauche','users','');
 	}
 
 	$params=array();

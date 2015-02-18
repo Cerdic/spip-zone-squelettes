@@ -23,6 +23,8 @@
 #SET{style,(#GET{param}|table_valeur{style})}
 <!-- On récupère le choix pour l'alignement gauche/centre/droite -->
 #SET{centrer,(#GET{param}|table_valeur{centrer})}
+<!-- On récupère le choix pour l'icône -->
+#SET{icone,(#GET{param}|table_valeur{icone})}
 
 <!-- Si pas de texte saisi pour le bouton, on met "Plan du site" par défaut -->
 [(#GET{txt}|non)#SET{txt,"Plan du site"}]
@@ -30,6 +32,8 @@
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
 <!-- Si pas de fond choisi, on met "visible" par défaut -->
 [(#GET{centrer}|non)#SET{centrer,"gauche"}]
+<!-- Si pas d'icône choisi, on met "sitemap" par défaut -->
+[(#GET{icone}|non)#SET{icone,"sitemap"}]
 
 
 <!-- *********************************************************************** -->
@@ -47,7 +51,7 @@
 		<!-- Affichage du lien avec le logo et le texte -->
 		<a href="#URL_PAGE{plan}"> 
 			<span class="logo-titre">
-				<i class="fa fa-sitemap"></i>
+				[(#GET{icone}|=={aucun}|non)<i class="fa fa-#GET{icone}"></i>]
 				 #GET{txt}
 			</span>
 		</a>

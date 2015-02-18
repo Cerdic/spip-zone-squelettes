@@ -1,6 +1,6 @@
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
-<!-- FORMULAIRE BOUTON NOUS ECRIRE ***************************************** -->
+<!-- FORMULAIRE BOUTON QUI SOMMES NOUS ************************************* -->
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
 
@@ -24,14 +24,15 @@
 
 <!-- On récupère les saisies de l'utilisateur -->
 <!-- On met une valeur par défaut si nécéssaire -->
+#SET{art,(#GET{params}|table_valeur{article})}
 #SET{txt,(#GET{params}|table_valeur{textebouton})}
-[(#GET{txt}|non)#SET{txt,"Nous écrire"}]
+[(#GET{txt}|non)#SET{txt,"Qui sommes nous ?"}]
 #SET{style,(#GET{params}|table_valeur{style})}
 [(#GET{style}|non)#SET{style,"bloc_visible"}]
 #SET{centrer,(#GET{params}|table_valeur{centrer})}
 [(#GET{centrer}|non)#SET{centrer,"centre"}]
 #SET{icone,(#GET{params}|table_valeur{icone})}
-[(#GET{icone}|non)#SET{icone,"envelope"}]
+[(#GET{icone}|non)#SET{icone,"eye"}]
 
 <!-- *********************************************************************** -->
 <!-- FORMULAIRE ************************************************************ -->
@@ -40,27 +41,26 @@
 <!-- Début du formulaire -->
 <form action='#ENV{action}' method='post' enctype="multipart/form-data">
 	#ACTION_FORMULAIRE{#ENV{action}}
-	#ENV{personneajoindre}	
 
 <!-- *********************************************************************** -->
 <!-- PARAMETRAGE *********************************************************** -->
 <!-- *********************************************************************** -->
 <fieldset>
 	<legend>Paramétrage</legend>
-	<!-- Liste déroulante des auteurs pour choisir la personne à joindre -->	
+	<!-- Liste déroulante des artciles pour choisir la cible du lien -->	
 	<i class="fa fa-exclamation-circle"></i>
-	<label for="personneajoindre">Nom du destinataire</label>
+	<label for="article">Article lié</label>
 	<br />	
 	<div class="z123alignecentre">
-		<select name="personneajoindre"  style="width:100px">
+		<select name="article"  style="width:100px">
 			<!-- Première ligne vide pour la liste déroulante -->
 			<option value=""> --- </option>
 			<!-- Liste de tous les auteurs par ordre alphabétique -->
-			<BOUCLE_nom(AUTEURS){tout}{par NOM}>
-				<option 	value="#ID_AUTEUR" 
-					[(#GET{params}	|table_valeur{personneajoindre}
-									=={#ID_AUTEUR}|?{"selected", })]>
-					#NOM
+			<BOUCLE_nom(ARTICLES){tout}{par titre}>
+				<option 	value="#ID_ARTICLE" 
+					[(#GET{params}	|table_valeur{article}
+									=={#ID_ARTICLE}|?{"selected", })]>
+					#TITRE
 				</option>
 			</BOUCLE_nom>
 		</select>
@@ -108,100 +108,58 @@
 	<i class="fa fa-exclamation-circle"></i>
 	<label for="centrer">Icône</label>
 	<div class="z123alignecentre">
-		<input type="radio" name="icone" value="envelope" 
-			[(#GET{icone}|=={envelope}|oui) checked ]>
-				<i class="fa fa-envelope"></i>
+		<input type="radio" name="icone" value="eye" 
+			[(#GET{icone}|=={eye}|oui) checked ]>
+				<i class="fa fa-eye"></i>
 		</input>
-		<input type="radio" name="icone" value="wechat" 
-			[(#GET{icone}|=={wechat}|oui) checked ]>
-			<i class="fa fa-wechat"></i>
+		<input type="radio" name="icone" value="street-view" 
+			[(#GET{icone}|=={street-view}|oui) checked ]>
+			<i class="fa fa-street-view"></i>
 		</input>
-		<input type="radio" name="icone" value="at" 
-			[(#GET{icone}|=={at}|oui) checked ]>
-			<i class="fa fa-at"></i>
+		<input type="radio" name="icone" value="user-secret" 
+			[(#GET{icone}|=={user-secret}|oui) checked ]>
+			<i class="fa fa-user-secret"></i>
 		</input>
-		<input type="radio" name="icone" value="life-ring" 
-			[(#GET{icone}|=={life-ring}|oui) checked ]>
-			<i class="fa fa-life-ring"></i>
+		<input type="radio" name="icone" value="star" 
+			[(#GET{icone}|=={star}|oui) checked ]>
+			<i class="fa fa-star"></i>
 		</input>
-		<input type="radio" name="icone" value="mail-forward" 
-			[(#GET{icone}|=={mail-forward}|oui) checked ]>
-				<i class="fa fa-mail-forward"></i>
+		<input type="radio" name="icone" value="tag" 
+			[(#GET{icone}|=={tag}|oui) checked ]>
+				<i class="fa fa-tag"></i>
 		</input>
-		<input type="radio" name="icone" value="comment-o" 
-			[(#GET{icone}|=={comment-o}|oui) checked ]>
-			<i class="fa fa-comment-o"></i>
+		<input type="radio" name="icone" value="child" 
+			[(#GET{icone}|=={child}|oui) checked ]>
+			<i class="fa fa-child"></i>
 		</input>
-		<input type="radio" name="icone" value="inbox" 
-			[(#GET{icone}|=={inbox}|oui) checked ]>
-			<i class="fa fa-inbox"></i>
+		<input type="radio" name="icone" value="user" 
+			[(#GET{icone}|=={user}|oui) checked ]>
+			<i class="fa fa-user"></i>
 		</input>
 	</br>
-		<input type="radio" name="icone" value="leaf" 
-			[(#GET{icone}|=={leaf}|oui) checked ]>
-				<i class="fa fa-leaf"></i>
+		<input type="radio" name="icone" value="users" 
+			[(#GET{icone}|=={users}|oui) checked ]>
+				<i class="fa fa-users"></i>
 		</input>
-		<input type="radio" name="icone" value="pencil" 
-			[(#GET{icone}|=={pencil}|oui) checked ]>
-			<i class="fa fa-pencil"></i>
+		<input type="radio" name="icone" value="info" 
+			[(#GET{icone}|=={info}|oui) checked ]>
+			<i class="fa fa-info"></i>
 		</input>
-		<input type="radio" name="icone" value="comments" 
-			[(#GET{icone}|=={comments}|oui) checked ]>
-			<i class="fa fa-comments"></i>
+		<input type="radio" name="icone" value="smile-o" 
+			[(#GET{icone}|=={smile-o}|oui) checked ]>
+			<i class="fa fa-smile-o"></i>
 		</input>
-		<input type="radio" name="icone" value="edit" 
-			[(#GET{icone}|=={edit}|oui) checked ]>
-				<i class="fa fa-edit"></i>
+		<input type="radio" name="icone" value="info-circle" 
+			[(#GET{icone}|=={info-circle}|oui) checked ]>
+				<i class="fa fa-info-circle"></i>
 		</input>
-		<input type="radio" name="icone" value="envelope-o" 
-			[(#GET{icone}|=={envelope-o}|oui) checked ]>
-			<i class="fa fa-envelope-o"></i>
-		</input>
-		<input type="radio" name="icone" value="paper-plane" 
-			[(#GET{icone}|=={paper-plane}|oui) checked ]>
-			<i class="fa fa-paper-plane"></i>
-		</input>
-		<input type="radio" name="icone" value="pencil-square" 
-			[(#GET{icone}|=={pencil-square}|oui) checked ]>
-				<i class="fa fa-pencil-square"></i>
-		</input>
-		</br>
-		<input type="radio" name="icone" value="quote-right" 
-			[(#GET{icone}|=={quote-right}|oui) checked ]>
-			<i class="fa fa-quote-right"></i>
-		</input>
-		<input type="radio" name="icone" value="send" 
-			[(#GET{icone}|=={send}|oui) checked ]>
-			<i class="fa fa-send"></i>
-		</input>
-		<input type="radio" name="icone" value="sign-out" 
-			[(#GET{icone}|=={sign-out}|oui) checked ]>
-			<i class="fa fa-sign-out"></i>
-		</input>
-		<input type="radio" name="icone" value="comments-o" 
-			[(#GET{icone}|=={comments-o}|oui) checked ]>
-			<i class="fa fa-comments-o"></i>
-		</input>
-		<input type="radio" name="icone" value="envelope-square" 
-			[(#GET{icone}|=={envelope-square}|oui) checked ]>
-			<i class="fa fa-envelope-square"></i>
-		</input>
-		<input type="radio" name="icone" value="paper-plane-o" 
-			[(#GET{icone}|=={paper-plane-o}|oui) checked ]>
-			<i class="fa fa-paper-plane-o"></i>
-		</input>
-		<input type="radio" name="icone" value="pencil-square-o" 
-			[(#GET{icone}|=={pencil-square-o}|oui) checked ]>
-			<i class="fa fa-pencil-square-o"></i>
-		</input>
-		</br>
-		<input type="radio" name="icone" value="clipboard" 
-			[(#GET{icone}|=={clipboard}|oui) checked ]>
-			<i class="fa fa-clipboard"></i>
+		<input type="radio" name="icone" value="male" 
+			[(#GET{icone}|=={male}|oui) checked ]>
+			<i class="fa fa-male"></i>
 		</input>
 		<input type="radio" name="icone" value="aucun" 
-			[(#GET{icone}|=={aucun}|oui) checked ]>
-				Aucun
+			[(#GET{icone}|=={zucun}|oui) checked ]>
+			Aucun
 		</input>
 	</div>
 </fieldset>

@@ -20,11 +20,11 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 
 	if (isset($_POST['ok'])) 
 	{	/* On récupère les valeurs du formulaire */
-		$casiers=array('personneajoindre','textebouton','style','centrer');
+		$casiers=array('personneajoindre','textebouton','style','centrer','icone');
 	}
 	elseif (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
-		$casiers=array('','Nous écrire','bloc_visible','centre');
+		$casiers=array('','Nous écrire','bloc_visible','centre','envelope');
 	}
 
 	$params=array();
