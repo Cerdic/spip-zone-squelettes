@@ -175,7 +175,7 @@ function melusine_preparation_fichiers() {
 	$images=array("g86.png","g286.png");
 	//si les fichiers logos créteil n'existent pas (1ere install) => création
 	foreach($images as $image){
-		$chemin_IMG = "../"._NOM_PERMANENTS_ACCESSIBLES; //chemin vers IMG (y compris en mutualisation)
+		$chemin_IMG=_NOM_PERMANENTS_ACCESSIBLES; //chemin vers IMG (y compris en mutualisation)
 		$logo_img=$chemin_IMG."config/boutons/".$image;
 		$logo_plugin=_DIR_PLUGIN_MELUSINE."images/".$image;
 
