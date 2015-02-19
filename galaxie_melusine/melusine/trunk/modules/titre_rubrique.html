@@ -11,13 +11,25 @@
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
-	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{hauteur,#PARAMETRES|unserialize|table_valeur{hauteur}}
+	#SET{Llogo,#PARAMETRES|unserialize|table_valeur{Llogo}}
+	#SET{Plogo,#PARAMETRES|unserialize|table_valeur{Plogo}}
 </BOUCLE_noisette>
 
-<!-- par défaut : fond invisible, centré dans sa noisette -->
-[(#GET{style}|non)#SET{style,'bloc_invisible'}]
-[(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
+<!-- par défaut -->
+[(#GET{style}|non)#SET{style,"visible"}]
+[(#GET{logo}|non)#SET{logo,"oui"}]
+[(#GET{descriptif}|non)#SET{descriptif,"oui"}]
+[(#GET{titre}|non)#SET{titre,"alignecentre"}]
+[(#GET{hauteur}|non)#SET{hauteur,"1000"}]
+[(#GET{Llogo}|non)#SET{Llogo,"5"}]
+[(#GET{Plogo}|non)#SET{Plogo,"droite"}]
 
+#SET{Ltitre,"12"}
+#SET{Ltitre,#GET{Ltitre}|moins{#GET{Llogo}}}
 
 <!-- *********************************************************************** -->
 <!-- *** AFFICHAGE ********************************************************* -->
@@ -25,30 +37,39 @@
 
 <!-- Un seul titre de rubrique, donc pas d'item multibloc -->
 
-<div class="module_content [(#GET{style})] [(#GET{alignement})]">
+<div class="module_content [(#GET{style})] [(#GET{titre})]">
 
 	<BOUCLE_titre(RUBRIQUES){id_rubrique}>
-		
-		[(#LOGO_RUBRIQUE|oui)
+		[(#GET{logo}|=={oui}|oui)
 			<div class="row">
-				<div class="col-md-5">
+				[(#GET{Plogo}|=={gauche}|oui)
+				<div class="col-md-[(#GET{Llogo})]">
 					[(#LOGO_RUBRIQUE|
-	    							|image_recadre{0,400,center}
+	    							|image_reduire{0,#GET{hauteur},center}
 	    							|inserer_attribut{'class',"img-responsive"}
 					)]
-				</div>
-				<div class="col-md-7">
+				</div>]
+				
+				<div class="col-md-#GET{Ltitre}">
 					<h1>#TITRE</h1>
-					#DESCRIPTIF
+					[(#GET{descriptif}|=={oui}|oui)#DESCRIPTIF]
 				</div>
+
+				[(#GET{Plogo}|=={droite}|oui)
+				<div class="col-md-[(#GET{Llogo})]">
+					[(#LOGO_RUBRIQUE|
+	    							|image_reduire{0,#GET{hauteur},center}
+	    							|inserer_attribut{'class',"img-responsive"}
+					)]
+				</div>]
 			</div>
 		]
 
-		[(#LOGO_RUBRIQUE|non)
+		[(#GET{logo}|=={non}|oui)
 			<!--<div class="row">-->
 				<!-- <div class="col-md-12"> -->
 					<h1>#TITRE</h1>
-					#DESCRIPTIF
+					[(#GET{descriptif}|=={oui}|oui)#DESCRIPTIF]
 				<!-- </div> -->
 			<!--</div>-->
 		]

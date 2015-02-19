@@ -1,0 +1,143 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE TITRE RUBRIQUE ********************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+	#SET{params,#PARAMETRES|unserialize}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	#SET{titre,#PARAMETRES|unserialize|table_valeur{titre}}
+	#SET{hauteur,#PARAMETRES|unserialize|table_valeur{hauteur}}
+	#SET{Llogo,#PARAMETRES|unserialize|table_valeur{Llogo}}
+	#SET{Plogo,#PARAMETRES|unserialize|table_valeur{Plogo}}
+</BOUCLE_noisette>
+
+
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})
+</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})
+</p>]
+
+<!-- On récupère les saisies de l'utilisateur -->
+<!-- On met une valeur par défaut si nécéssaire -->
+[(#GET{style}|non)#SET{style,"visible"}]
+[(#GET{logo}|non)#SET{logo,"oui"}]
+[(#GET{descriptif}|non)#SET{descriptif,"oui"}]
+[(#GET{titre}|non)#SET{titre,"alignecentre"}]
+[(#GET{hauteur}|non)#SET{hauteur,"200"}]
+[(#GET{Llogo}|non)#SET{Llogo,"5"}]
+[(#GET{Plogo}|non)#SET{Plogo,"gauche"}]
+
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
+<!-- Début du formulaire -->
+<form action='#ENV{action}' method='post' enctype="multipart/form-data">
+#ACTION_FORMULAIRE{#ENV{action}}
+
+<!-- *********************************************************************** -->
+<!-- PARAMETRAGE *********************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<fieldset>
+	<legend>Paramétrage</legend>
+	<!-- Bouton radio pour affichage du logo -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="logo">Logo de la rubrique</label>
+	<br />
+	<div class="z123alignecentre">
+		<input type="radio" name="logo" value="oui" 
+			[(#GET{logo}|=={oui}|oui) checked ]>Affiché</input>
+		<input type="radio" name="logo" value="non" 
+			[(#GET{logo}|=={non}|oui) checked ]>Masqué</input>	
+	 </div>		
+	 <!-- Bouton radio pour affichage du descriptif -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="descriptif">Descriptif de la rubrique</label>
+	<br />
+	<div class="z123alignecentre">
+		<input type="radio" name="descriptif" value="oui" 
+			[(#GET{descriptif}|=={oui}|oui) checked ]>Affiché</input>
+		<input type="radio" name="descriptif" value="non" 
+			[(#GET{descriptif}|=={non}|oui) checked ]>Masqué</input>	
+	 </div>			
+</fieldset>
+
+
+
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+
+<fieldset>
+	<legend>Apparence</legend>
+	<!-- Boutons radio pour choisir si le bloc est visible ou non -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="z123alignecentre">
+		<input type="radio" name="style" value="visible" 
+			[(#GET{style}|=={visible}|oui) checked ]>Fond visible</input>
+		<input type="radio" name="style" value="invisible" 
+			[(#GET{style}|=={invisible}|oui) checked ]>Fond invisible</input>
+	</div>	
+	<!-- Boutons radio pour choisir l'alignement du titre -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="titre">Alignement du titre</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="titre" value="alignegauche" 
+			[(#GET{titre}|=={alignegauche}|oui) checked ]>A gauche</input>
+		<input type="radio" name="titre" value="alignecentre" 
+			[(#GET{titre}|=={alignecentre}|oui) checked ]>Au centre</input>
+		<input type="radio" name="titre" value="alignedroite" 
+			[(#GET{titre}|=={alignedroite}|oui) checked ]>A droite</input>
+	</div>
+	<!-- Boutons radio pour choisir la position du logo -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="Plogo">Position du logo</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="Plogo" value="gauche" 
+			[(#GET{Plogo}|=={gauche}|oui) checked ]>A gauche</input>
+		<input type="radio" name="Plogo" value="droite" 
+			[(#GET{Plogo}|=={droite}|oui) checked ]>A droite</input>
+	</div>
+	<!-- Champs texte pour choisir la hauteur du logo en pixels -->
+	<i class="fa fa-exclamation-circle"></i>	
+	<label for="hauteur">Hauteur maximale du logo en pixels</label>
+	<br />	
+	<div class="z123alignecentre">
+		<input type="text" name="hauteur" value="#GET{hauteur}">
+	</div>
+	<!-- Champs texte pour choisir la proportion du logo -->
+	<i class="fa fa-exclamation-circle"></i>	
+	<label for="Llogo">Proportion du logo (valeur entière inférieure à 12)</label>
+	<br />	
+	<div class="z123alignecentre">
+		<input type="text" name="Llogo" value="#GET{Llogo}"> sur 12
+	</div>
+</fieldset>
+
+<!-- *********************************************************************** -->
+<!-- BOUTONS SUBMIT ******************************************************** -->
+<!-- *********************************************************************** -->
+<div class="z123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer' />
+	<input type='submit' name='reset' value='Effacer' />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</div>
+		
+</form>
+<!-- Fin du formulaire -->
