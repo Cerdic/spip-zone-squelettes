@@ -1,11 +1,33 @@
-<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
-#SET{hauteur_carousel,#PARAMETRES|unserialize|table_valeur{hauteur_carousel}}
-#SET{largeur_carousel,#PARAMETRES|unserialize|table_valeur{largeur_carousel}}
-#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE CAROUSEL ******************************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+
+<BOUCLE_noisette(NOISETTES){id_noisette = #ENV{id_noisette}}>
+  #SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
+  #SET{largeur_carousel,#PARAMETRES|unserialize|table_valeur{largeur_carousel}}
+  #SET{hauteur_carousel,#PARAMETRES|unserialize|table_valeur{hauteur_carousel}}
+  #SET{titre_vertical,#PARAMETRES|unserialize|table_valeur{titre_vertical}}
+  #SET{titre_horizontal,#PARAMETRES|unserialize|table_valeur{titre_horizontal}}
+  #SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+  #SET{poignees,#PARAMETRES|unserialize|table_valeur{poignees}}
 </BOUCLE_noisette>
-[(#GET{hauteur_carousel}|non)#SET{hauteur_carousel,250}]
-[(#GET{largeur_carousel}|non)#SET{largeur_carousel,900}]
-[(#GET{motclef}|non)#SET{motclef,"diaporama"}]
+
+[(#GET{motclef}|non)#SET{motclef,"carousel"}]
+[(#GET{largeur_carousel}|non)#SET{largeur_carousel,800}]
+[(#GET{hauteur_carousel}|non)#SET{hauteur_carousel,300}]
+[(#GET{titre_vertical}|non)#SET{titre_vertical,"titredesc"}]
+[(#GET{titre_horizontal}|non)#SET{titre_horizontal,"droite40"}]
+[(#GET{taille}|non)#SET{taille,200}]
+[(#GET{poignees}|non)#SET{poignees,"oui"}]
+
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -15,35 +37,68 @@
 
     <li data-target="#carousel-example-generic" data-slide-to="#EVAL{#COMPTEUR_BOUCLE-1}" class="#GET{active}"></li>
     #SET{active,""}
-   
+    #SET{nb_articles_parcourus,#COMPTEUR_BOUCLE}
   </BOUCLE_indicators>
+
+  <BOUCLE_indicators2 (RUBRIQUES){titre_mot=#GET{motclef}}{!par date}>
+    
+    <li data-target="#carousel-example-generic" data-slide-to="#EVAL{#GET{nb_articles_parcourus}+#COMPTEUR_BOUCLE-1}" class="#GET{active}"></li>
+    #SET{active,""}
+   
+  </BOUCLE_indicators2>
   </ol>
 
   <!-- Wrapper for slides -->
   
-<div class="carousel-inner" role="listbox">
-	#SET{active,"active"}
-  <BOUCLE_articles (ARTICLES){titre_mot=#GET{motclef}}{!par date}>
-  <div class="item #GET{active}">
-  	#SET{active,""}
-    <a href=#URL_ARTICLE>
-      [(#LOGO_ARTICLE||image_recadre{#GET{largeur_carousel},#GET{hauteur_carousel}})]
-     </a> 
-       <div class="diapo_legende">
-            <div class="texte_diapo_legende"><h2>#TITRE</h2>
-              [(#DESCRIPTIF|couper{200})]
-              <div class="lire_la_suite">
-                <a href="#URL_ARTICLE">Lire la suite</a>
-              </div>
-            </div>
+  <div class="carousel-inner" role="listbox">
+  	#SET{active,"active"}
+    <BOUCLE_articles (ARTICLES){titre_mot=#GET{motclef}}{!par date}>
+      <div class="item #GET{active}">
+      	#SET{active,""}
+        <a href=#URL_ARTICLE>
+          [(#LOGO_ARTICLE|image_passe_partout{#GET{largeur_carousel},#GET{largeur_carousel}}|image_recadre{#GET{largeur_carousel},#GET{hauteur_carousel}})]
+        </a> 
+           <div class="diapo_legende 
+              [(#GET{titre_horizontal}=={"droite"}|oui) titre_droite ] 
+              [(#GET{titre_horizontal}=={"gauche40"}|oui) titre_bloc40 ] 
+              [(#GET{titre_horizontal}=={"droite40"}|oui) titre_bloc40 titre_droite ] 
+              [(#GET{titre_horizontal}=={"centre"}|oui) titre_centre ] 
+              [(#GET{titre_vertical}=={"titrebas"}|oui) titre_dessous ] 
+              [(#GET{titre_vertical}=={"aucun"}|oui) titre_aucun ]">
            
-       </div>
-  </div>
-    
-  </BOUCLE_articles>
-</div>
+                <div class="texte_diapo_legende"><h2>#TITRE</h2>
+                  [(#GET{titre_vertical}=={"titredesc"}|oui) #INTRODUCTION{#GET{taille}}] 
+                </div>
+           
+           </div>
+      </div>
+      
+    </BOUCLE_articles>
+    <BOUCLE_rubrique (RUBRIQUES){titre_mot=#GET{motclef}}{!par date}>
+      <div class="item #GET{active}">
+<!--        #SET{active,""} -->
+        <a href=#URL_RUBRIQUE>
+          [(#LOGO_RUBRIQUE|image_passe_partout{#GET{largeur_carousel},#GET{largeur_carousel}}|image_recadre{#GET{largeur_carousel},#GET{hauteur_carousel}})]
+        </a> 
+           <div class="diapo_legende 
+              [(#GET{titre_horizontal}=={"droite"}|oui) titre_droite ] 
+              [(#GET{titre_horizontal}=={"gauche40"}|oui) titre_bloc40 ] 
+              [(#GET{titre_horizontal}=={"droite40"}|oui) titre_bloc40 titre_droite ] 
+              [(#GET{titre_horizontal}=={"centre"}|oui) titre_centre ] 
+              [(#GET{titre_vertical}=={"titrebas"}|oui) titre_dessous ] 
+              [(#GET{titre_vertical}=={"aucun"}|oui) titre_aucun ]">
+           
+                <div class="texte_diapo_legende"><h2>#TITRE</h2>
+                  [(#GET{titre_vertical}=={"titredesc"}|oui) #INTRODUCTION{#GET{taille}}] 
+                </div>
+           
+           </div>
+      </div>
+    </BOUCLE_rubrique>
+   </div>
+ 
   <!-- Controls -->
-  <!--
+[(#GET{poignees}=={"oui"}|oui) 
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
     <span class="sr-only">Previous</span>
@@ -52,5 +107,5 @@
     <span class="glyphicon glyphicon-chevron-right"></span>
     <span class="sr-only" >Next</span>
   </a>
--->
+]
 </div>

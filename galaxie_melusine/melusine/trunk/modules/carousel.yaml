@@ -1,48 +1,87 @@
 nom: 'Carousel'
-description: "Carousel d’articles"
+description: "Carousel des articles / rubriques / sites à mettre en avant"
 contexte:
  - 'id_rubrique'
  - 'id_article'
 blocs_autorises:
- - 'nav'
  - 'header'
  - 'breadcrumb'
+ - 'pre_content'
+ - 'content'
  - 'extra'
  - 'aside'
  - 'footer'
- - 'pre_content'
 parametres:
  -
     saisie: 'selection'
     options:
       nom: 'squelette'
-      label: 'Type de carousel'
-      defaut: '0'
+      label: 'Moteur de carousel'
+      defaut: 'carousel_bs'
       cacher_option_intro: 'oui'
       datas:
-        'carousel_sjcycle': 'Carousel sjcycle'
         'carousel_bs': 'Carousel Bootstrap'
+        'carousel_sjcycle': 'Carousel sjcycle'
  -
     saisie: 'input'
     options:
       nom: 'motclef'
-      label: 'Mot clé pour sélectionner ce qui va apparaître dans le carousel'
-      defaut: 'diaporama'
-      obligatoire: 'oui'
-      size: 20
- -
-    saisie: 'input'
-    options:
-      nom: "hauteur_carousel"
-      label: "Hauteur du carousel"
-      defaut: "250"
+      label: 'Mot-clé de filtrage <br> pour inclure des contenus dans le carousel'
+      defaut: 'carousel'
       obligatoire: 'oui'
       size: 20
  -
     saisie: 'input'
     options:
       nom: "largeur_carousel"
-      label: "Largeur du carousel"
-      defaut: "900"
+      label: "Largeur *virtuelle* des images du carousel<br>(résolution maxi du recadrage horizontal)<br>"
+      defaut: "800"
       obligatoire: 'oui'
-      size: 20
+      size: 10
+ -
+    saisie: 'input'
+    options:
+      nom: "hauteur_carousel"
+      label: "Hauteur *virtuelle* des images du carousel<br>(fixe le ratio l/h du carousel)<br>"
+      defaut: "300"
+      obligatoire: 'oui'
+      size: 10
+ -
+    saisie: 'radio'
+    options:
+      nom: "titre_vertical"
+      label: "Position du texte"
+      datas: 
+        titredesc: "Titre et descriptif en haut de l’image"
+        titrehaut: "Titre seul en haut de l’image"
+        titrebas: "Titre seul en bas sous l’image"
+        aucun : "Aucun titre ni descriptif"
+      defaut: "titredesc"
+ -
+    saisie: 'radio'
+    options:
+      nom: "titre_horizontal"
+      label: "Alignement du texte"
+      datas: 
+        gauche: "coin gauche"
+        droite: "coin droite"
+        gauche40: "gauche largeur 40%"
+        droite40: "droite largeur 40%"
+        centre: "centré pleine largeur"
+      defaut: "droite40"
+ - 
+    saisie: 'input'
+    options:
+      nom: "taille"
+      label: "Longueur du descriptif (nombre de caractères)"
+      defaut: '200'
+      size: 5
+ -
+    saisie: 'radio'
+    options:
+      nom: "poignees"
+      label: "Poignées de défilement"
+      datas: 
+        oui: "oui"
+        non: "non"
+      defaut: "oui"

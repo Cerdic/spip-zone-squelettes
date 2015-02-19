@@ -1,8 +1,39 @@
-<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
-#SET{fond,#PARAMETRES|unserialize|table_valeur{squelette}}
-#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- MODULE CAROUSEL ******************************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES, INITIALISATION ET VERIFICATION ************** -->
+<!-- *********************************************************************** -->
+
+
+<BOUCLE_noisette(NOISETTES){id_noisette = #ENV{id_noisette}}>
+	#SET{fond,#PARAMETRES|unserialize|table_valeur{squelette}}
+	#SET{motclef,#PARAMETRES|unserialize|table_valeur{motclef}}
+	#SET{largeur_carousel,#PARAMETRES|unserialize|table_valeur{largeur_carousel}}
+	#SET{hauteur_carousel,#PARAMETRES|unserialize|table_valeur{hauteur_carousel}}
+	#SET{titre_vertical,#PARAMETRES|unserialize|table_valeur{titre_vertical}}
+	#SET{titre_horizontal,#PARAMETRES|unserialize|table_valeur{titre_horizontal}}
+	#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+	#SET{poignees,#PARAMETRES|unserialize|table_valeur{poignees}}
 </BOUCLE_noisette>
-[(#GET{fond}|non)#SET{fond,"carousel_sjcycle"}]
-[(#GET{motclef}|non)#SET{motclef,"diaporama"}]
+
+[(#GET{fond}|non)#SET{fond,"carousel_bs"}]
+[(#GET{motclef}|non)#SET{motclef,"carousel"}]
+[(#GET{largeur_carousel}|non)#SET{largeur_carousel,800}]
+[(#GET{hauteur_carousel}|non)#SET{hauteur_carousel,300}]
+[(#GET{titre_vertical}|non)#SET{titre_vertical,"titredesc"}]
+[(#GET{titre_horizontal}|non)#SET{titre_horizontal,"droite40"}]
+[(#GET{taille}|non)#SET{taille,200}]
+[(#GET{poignees}|non)#SET{poignees,"oui"}]
+
+
+<!-- *********************************************************************** -->
+<!-- LANCEMENT DU MOTEUR DE CAROUSEL BOOTSTRAP OU SJCYCLE ****************** -->
+<!-- *********************************************************************** -->
+
 [(#INCLURE{fond=inclusions/#GET{fond},id_noisette})]
 
