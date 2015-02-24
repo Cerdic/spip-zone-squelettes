@@ -24,6 +24,9 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 define('_IMG_MAX_WIDTH', 1050);
 define('_IMG_MAX_HEIGHT', 1050); 
 
+// Et pour éviter de faire planter GD2 :
+ define('_IMG_GD_MAX_PIXELS', 2000000);
+
 // récupération de l'url du site
 // pour redéfinir la fonction inc_lien dans escal_options
 // un grand merci à l'auteur : bobof
