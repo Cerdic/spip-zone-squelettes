@@ -16,7 +16,6 @@
 [(#CONFIG{soyezcreateurs/positionvideo,extra}|!={extra}|oui)[(#INCLURE{fond=noisettes/sommaire/video_alaune,largeurmax=[(#GET{Largeurcontent_central}|moins{20})]})]]
 [(#REM) afficher les rub & art qui ont le mot clef : ZoomSur ]
 <B_ZoomSur>
-<div id="homeDessousBreves">
 <BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!par date}{0,3}{lang}{doublons}>
 <div class="Edito ZoomSur[ ZoomSur(#ID_RUBRIQUE) ][(#_ZoomSur:COMPTEUR_BOUCLE|alterner{' oddZoomSur',''})]">
 	<h2 class="#EDIT{titre}"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h2>
@@ -26,12 +25,11 @@
 	</div>
 </div><!-- ZoomSur -->
 </BOUCLE_ZoomSur>
-[(#SET{homeDessousBreves,1})]
 </B_ZoomSur>
 
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
 <B_DessousBreves>
-[(#GET{homeDessousBreves}|non)<div id="homeDessousBreves">]
+<div id="homeDessousBreves">
 <BOUCLE_DessousBreves(RUBRIQUES){titre_mot=DessousBreves}{par num titre}>
 <div class="dessousbreves[ dessousbreves(#ID_RUBRIQUE) ][(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
 	<h2 class="#EDIT{titre}">[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_liens,on}|=={on}|?{<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>,[(#TITRE)]})]</h2>
@@ -49,9 +47,8 @@
 	<//B_articles_recents>
 </div><!-- dessousbreves -->
 </BOUCLE_DessousBreves>
-[(#SET{homeDessousBreves,1})]
+</div><!-- homeDessousBreves -->
 </B_DessousBreves>
-[(#GET{homeDessousBreves}|oui)</div><!-- homeDessousBreves -->]
 
 <BOUCLE_articles_recentsAlaUne_Exclus(ARTICLES) {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{doublons}{lang} />
 <BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}{lang} /></BOUCLE_Secteurs_Exclus>
