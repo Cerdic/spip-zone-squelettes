@@ -21,6 +21,7 @@
 </BOUCLE_noisette>
 
 <!-- pas de défaut pour le titre afin de permettre une chaine vide -->
+[(#GET{titre}|non)#SET{titre,"Dans la même rubrique"}]
 [(#GET{nb}|non)#SET{nb,5}]
 [(#GET{style}|non)#SET{style,'bloc_visible'}]
 [(#GET{disposition}|non)#SET{disposition,'col-md-12'}]
@@ -62,7 +63,7 @@
 								{par num titre,titre}
 								{par date}{inverse}{doublons}>
 
-
+		[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
 		[(#GET{disposition}|=={col-md-12}|oui)
             [(#MODELE	{annonce_article}
             			{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
@@ -71,7 +72,7 @@
         	[(#MODELE	{annonce_article_1col}
         				{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
         ]
-
+        ]
 <!--		<li>
 			<i class="fa fa-caret-right "></i>
 			<a href="#URL_ARTICLE">#TITRE</a>

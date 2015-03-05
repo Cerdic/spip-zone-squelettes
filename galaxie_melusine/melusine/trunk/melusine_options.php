@@ -28,5 +28,5 @@ if (!isset($GLOBALS['z_blocs']))
 		"contenu" => "gabarit du contenu"
 	);
 
-
+//$forcer_lang = true ; 
 ?>
