@@ -157,7 +157,7 @@ if (!function_exists('balise_LOAD_DOUBLONS')){
 if (!function_exists('balise_HASH_DOUBLONS')){
 	function balise_HASH_DOUBLONS($p) {
 	  #$p->code = "md5(serialize(\$GLOBALS['recherche_doublons'])) . vide(spip_log('#GET_DOUBLONS : ' . serialize(\$GLOBALS['recherche_doublons']) , 'spip_doublons'))";
-	  $p->code = "md5(serialize(\$GLOBALS['recherche_doublons']))";
+	  $p->code = "md5(serialize(isset(\$GLOBALS['recherche_doublons']) ? \$GLOBALS['recherche_doublons'] : array()))";
 
 	  return $p; 
 	}
