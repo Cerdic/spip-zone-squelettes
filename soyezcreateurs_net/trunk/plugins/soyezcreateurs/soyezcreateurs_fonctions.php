@@ -109,7 +109,7 @@ function sc_sommaire_ancre($texte)
 		$i++;
 	}
 	if ($i>1) {
-		$texte.="<p class='retoursommaire'><a href='#SommaireAutomatique'>".$retoursommaire."</a></p>";
+		$texte.="<p class='retoursommaire'>".$retoursommaire."</p>";
 	}
 	return $texte;
 }
