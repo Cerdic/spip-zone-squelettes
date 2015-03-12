@@ -23,26 +23,37 @@
 <!-- *********************************************************************** -->
 
 <div class="[(#GET{style})]">
-<div class="[(#GET{style}|=={multibloc}|oui) item multibloc] bouton [(#GET{alignement})]">
-
+<div class="[(#GET{alignement})]">
 #CACHE{3600*24*38}
 
 <!--Le logo de l'article-->
 #SET{testlog,0}
-
 <BOUCLE_logo0(ARTICLES){id_article}>
-    [<div class="image1" align="center"><a href="[(#LOGO_ARTICLE||extraire_attribut{src})]"  class="mediabox">(#LOGO_ARTICLE||image_reduire{150,0})</a></div>
-	#SET{testlog,1}]
+    [	<div class="image1">
+    		<a href="[(#LOGO_ARTICLE||extraire_attribut{src})]"  
+    		class="mediabox">
+    			(#LOGO_ARTICLE||image_reduire{150,0})
+    		</a>
+    	</div>
+		#SET{testlog,1}
+	]
 
-<!--Sinon, le logo de la rubrique -->
-<BOUCLE_test01(CONDITION){si #GET{testlog}|=={0}}>   
-	<BOUCLE_logo11(RUBRIQUES){id_rubrique}>
-    	[<div class="image1" align="center"><a href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  class="mediabox">(#LOGO_RUBRIQUE||image_reduire{150,0})</a></div>	
-		#SET{testlog, 1}]
-    </BOUCLE_logo11>
-</BOUCLE_test01> 
-<!--Sinon, spip parcourt recursivement les logo des rubriques-meres (code inutile) -->
-
+	<!--Sinon, le logo de la rubrique -->
+	<BOUCLE_test01(CONDITION){si #GET{testlog}|=={0}}>   
+		<BOUCLE_logo11(RUBRIQUES){id_rubrique}>
+    		[
+    			<div class="image1">
+    				<a href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
+    				class="mediabox">
+    					(#LOGO_RUBRIQUE||image_reduire{150,0})
+    				</a>
+    			</div>	
+				#SET{testlog, 1}
+			]
+    	</BOUCLE_logo11>
+	</BOUCLE_test01> 
+	<!--Sinon, spip parcourt recursivement les logo des rubriques-meres -->
+	<!-- (code inutile) -->
 </BOUCLE_logo0>
 
 </div>
