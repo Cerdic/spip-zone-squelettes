@@ -24,7 +24,7 @@ function formulaires_melusine_titre_rubrique_traiter()
 	}
 	elseif (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
-		$casiers=array('visible','oui','oui','alignecentre','200','5','gauche');
+		$casiers=array('bloc_visible','oui','oui','alignecentre','200','5','gauche');
 	}
 
 	$params=array();
