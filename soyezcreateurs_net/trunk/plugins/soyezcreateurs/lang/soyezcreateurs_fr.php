@@ -325,6 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone_forum_laisser_vide' => 'Laisser vide pour utiliser le texte par défaut.',
 	'cfg_zone_forum_titre' => 'Titre de l’espace Forum',
 	'cfg_zone_recherche_label' => 'Zone d’affichage du formulaire de recherche',
+	'cfg_zoomsur_label' => 'Nombre de "ZoomSur"',
 	'chapitre_complet' => 'Chapitre complet pour impression',
 	'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique : ',
 	'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web !',
