@@ -1,6 +1,6 @@
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
-<!-- ***  MODULE LOGO DU SITE ********************************************** -->
+<!-- ***  MODULE LOGO RUBRIQUE MERE **************************************** -->
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
 
@@ -28,32 +28,13 @@
 <div class="[(#GET{alignement})]">
 #CACHE{3600*24*38}
 
-    <!--Le logo de l'article-->
-    #SET{testlog,0}
+    
 
-
-  
-
-
-<BOUCLE_logo0(ARTICLES){id_article}>
-    [	<div class="image1">
-    	[(#GET{clic}|=={image}|oui)
-             <a  href="[(#LOGO_ARTICLE||extraire_attribut{src})]"  
-    		    class="mediabox">
-        ]
-        [(#GET{clic}|=={lien}|oui)
-             <a  href="#URL_ARTICLE">
-        ]
-    		  (#LOGO_ARTICLE||image_reduire{150,0})
-            </a>
-    	</div>
-		#SET{testlog,1}
-	]
-
-	<!--Sinon, le logo de la rubrique -->
-	<BOUCLE_test01(CONDITION){si #GET{testlog}|=={0}}>   
-		<BOUCLE_logo11(RUBRIQUES){id_rubrique}>
-    		[   <div class="image1">
+<!-- Si la page est celle d'un article, ************************************ --> 
+<!-- alors on affiche le logo de sa rubrique ******************************* -->
+<BOUCLE_test1(ARTICLES){id_article}>
+	<BOUCLE_rubrique1(RUBRIQUES){id_rubrique}>
+           [<div class="image1">
     			[(#GET{clic}|=={image}|oui)
                     <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
                         class="mediabox">
@@ -63,13 +44,33 @@
                 ]
     					(#LOGO_RUBRIQUE||image_reduire{150,0})
     				</a>
-    			</div>	
-				#SET{testlog,1}
-			]
-    	</BOUCLE_logo11>
-	</BOUCLE_test01> 
-	<!--Sinon, spip parcourt recursivement les logo des rubriques-meres -->
-	<!-- (code inutile) -->
-</BOUCLE_logo0>
+    		</div>	
+            ]
+	</BOUCLE_rubrique1> 
+</BOUCLE_test1>
+
+
+<!-- Si la page est celle d'une rubrique, ********************************** --> 
+<!-- alors on affiche le logo de la rubrique mère ************************** -->
+<BOUCLE_test2(CONDITION){si #ID_ARTICLE=={}}>   
+    <BOUCLE_rubrique2(RUBRIQUES) {id_rubrique=#ENV{id_rubrique}}>
+        <BOUCLE_rub_parent(RUBRIQUES) {id_enfant}>
+            [   <div class="image1">
+                [(#GET{clic}|=={image}|oui)
+                    <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
+                        class="mediabox">
+                ]
+                [(#GET{clic}|=={lien}|oui)
+                    <a  href="#URL_RUBRIQUE">
+                ]
+                        (#LOGO_RUBRIQUE||image_reduire{150,0})
+                    </a>
+                </div>  
+            ]
+        </BOUCLE_rub_parent>
+    </BOUCLE_rubrique2>
+</BOUCLE_test2>
+
+
 </div>
 </div>
