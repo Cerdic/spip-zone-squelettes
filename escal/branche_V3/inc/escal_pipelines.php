@@ -57,13 +57,13 @@ function escal_porte_plume_barre_pre_charger($barres){
 				        "display"     => true,
 				        "selectionType" => "line",
 					),
-                    // info
+                    // centrer
 					array(
 						"id"          => 'escal_centrer',
-				        "name"        => '[|centrer le paragraphe|]',
+				        "name"        => '<centrer>centrer le paragraphe</centrer>',
 				        "className"   => "outil_escal_centrer",
-				        "openWith"    => "\n[|",
-				        "closeWith"   => "|]\n",
+				        "openWith"    => "\n<centrer>",
+				        "closeWith"   => "</centrer>\n",
 				        "display"     => true,
 				        "selectionType" => "line",
 					),

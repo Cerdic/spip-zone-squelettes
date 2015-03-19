@@ -4,13 +4,30 @@
 <BOUCLE_selection2(ARTICLES){si #CONFIG{escal/config/periodeaffichage}|=={oui}|oui}
 {titre_mot=annonce}{par date}{inverse}{0,1}{lang}{age>=0}{age_redac<=0}{doublons periodeaffichage}>
 </BOUCLE_selection2>
+ <BOUCLE_selection3(ARTICLES){si #CONFIG{escal/config/periodeaffichage}|=={oui}|oui}
+{titre_mot=annonce}{par date}{inverse}{0,1}{lang}{age>=0}{date_redac=0000-00-00 00:00:00}{doublons periodeaffichage}>
+</BOUCLE_selection3>
+
 
 <BOUCLE_annonce(ARTICLES){!doublons periodeaffichage}>
   <div class="annonce">
   <div class="annonce-titre #EDIT{titre}">#TITRE</div>
   <div class="#EDIT{texte}">
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]]
+        [(#PLUGIN{COUTEAU_SUISSE}|oui)
+        [(#TEXTE*
+            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+            |replace{<centrer>,<div style="text-align:center;">}
+            |replace{</centrer>,</div>}
+            |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+        )]
+        ]
+        [(#PLUGIN{COUTEAU_SUISSE}|non)
+        [(#TEXTE
+            |replace{<centrer>,<div style="text-align:center;">}
+            |replace{</centrer>,</div>}
+            |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+        )]
+        ]
   </div>
   <div class="nettoyeur"></div>
   </div>
