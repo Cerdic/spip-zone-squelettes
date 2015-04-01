@@ -15,6 +15,7 @@
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 	#SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
+	#SET{chrono,#PARAMETRES|unserialize|table_valeur{chrono}}
 </BOUCLE_noisette>
 
 <!-- On attribue des valeurs par défaut -->
@@ -22,7 +23,7 @@
 [(#GET{style}|non)#SET{style,bloc_visible}]
 [(#GET{nb}|non)#SET{nb,3}]
 [(#GET{motclef}|non)#SET{motclef,agenda}]
-
+[(#GET{chrono}|non)#SET{chrono,chrono1}]
 
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
@@ -139,6 +140,8 @@
 	<h2>#GET{titre}</h2>
 	<!-- On trie le tableau des résultats par date -->
 	<BOUCLE_trierpardate(DATA){source tableau, #GET{tableau}}{par valeur}>
+		<!-- Si l'ordre chronologique a été choisi -->
+		[(#GET{chrono}|=={chrono1}|oui)
 		<!-- On ne commence à afficher qu'à partir des evts passés à garder -->
 		[(#COMPTEUR_BOUCLE|>{#GET{evts_passes_a_eliminer}}|oui)
 			<!-- On affiche tant qu'on n'a pas atteint le dernier événement -->
@@ -162,7 +165,41 @@
 				</ul>		
 			]
 		]
+		]
     </BOUCLE_trierpardate>
+    <BOUCLE_trierpardate2(DATA){source tableau, #GET{tableau}}{par valeur}{inverse}>
+		<!-- Si l'ordre chronologique a été choisi -->
+		[(#GET{chrono}|=={chrono2}|oui)
+		<!-- Comme le tableau contenant les articles et brèves va être -->
+		<!-- parcouru à l'envers, on crée de nouveaux marqueurs pour -->
+		<!-- le début et à la fin de sa lecture -->
+		#SET{debut,#GET{total}|moins{#GET{dernier_evt_a_afficher}}}
+		#SET{fin,#GET{total}|moins{#GET{evts_passes_a_eliminer}}}
+		<!-- On ne commence à afficher qu'à partir des evts passés à garder -->
+		[(#COMPTEUR_BOUCLE|>{#GET{debut}}|oui)
+			<!-- On affiche tant qu'on n'a pas atteint le dernier événement -->
+			[(#COMPTEUR_BOUCLE|<={#GET{fin}}|oui)
+    			<ul>
+    				<!-- <p> -->
+    					<!-- Test pour l'icône - article -->
+    					[(#VALEUR{1}|=={article}|oui)
+<a href="spip.php?page=article&id_article=#VALEUR{3}"class="fa fa-calendar"></a>
+						]
+    					<!-- Test pour l'icône - brève -->
+						[(#VALEUR{1}|=={breve}|oui)
+<a href="spip.php?page=breve&id_breve=#VALEUR{3}" class="fa fa-newspaper-o"></a>
+						]
+						<span class="j">[(#VALEUR{0}|affdate{d})] /</span>  
+						<span class="m">[(#VALEUR{0}|affdate{m})] /</span>  
+						<span class="a">[(#VALEUR{0}|affdate{Y})]</span>
+					<!-- </p> -->
+					<!-- On affiche le titre -->
+					<p>#VALEUR{2}</p>
+				</ul>		
+			]
+		]
+		]
+    </BOUCLE_trierpardate2>
  </div>
 </B_non_vide>
 <!-- Si l'agenda est vide, seul l'admin le voit -->
