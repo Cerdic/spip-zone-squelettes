@@ -16,6 +16,7 @@
 	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 	#SET{motclef,#PARAMETRES|unserialize|table_valeur{mot}}
 	#SET{chrono,#PARAMETRES|unserialize|table_valeur{chrono}}
+	#SET{hachure,#PARAMETRES|unserialize|table_valeur{hachure}}
 </BOUCLE_noisette>
 
 <!-- On attribue des valeurs par défaut -->
@@ -24,6 +25,7 @@
 [(#GET{nb}|non)#SET{nb,3}]
 [(#GET{motclef}|non)#SET{motclef,agenda}]
 [(#GET{chrono}|non)#SET{chrono,chrono1}]
+[(#GET{hachure}|non)#SET{hachure,non}]
 
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
@@ -146,9 +148,9 @@
 		[(#COMPTEUR_BOUCLE|>{#GET{evts_passes_a_eliminer}}|oui)
 			<!-- On affiche tant qu'on n'a pas atteint le dernier événement -->
 			[(#COMPTEUR_BOUCLE|<={#GET{dernier_evt_a_afficher}}|oui)
-    			<ul>
+<ul [(#GET{hachure}|=={oui}|oui)[(#VALEUR{4}|=={p}|oui)class="passe"]]>
     				<!-- <p> -->
-    					<!-- Test pour l'icône - article -->
+	   					<!-- Test pour l'icône - article -->
     					[(#VALEUR{1}|=={article}|oui)
 <a href="spip.php?page=article&id_article=#VALEUR{3}"class="fa fa-calendar"></a>
 						]
@@ -179,7 +181,7 @@
 		[(#COMPTEUR_BOUCLE|>{#GET{debut}}|oui)
 			<!-- On affiche tant qu'on n'a pas atteint le dernier événement -->
 			[(#COMPTEUR_BOUCLE|<={#GET{fin}}|oui)
-    			<ul>
+    <ul [(#GET{hachure}|=={oui}|oui)[(#VALEUR{4}|=={p}|oui)class="passe"]]>
     				<!-- <p> -->
     					<!-- Test pour l'icône - article -->
     					[(#VALEUR{1}|=={article}|oui)
