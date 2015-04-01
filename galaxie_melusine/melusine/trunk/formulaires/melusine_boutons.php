@@ -149,5 +149,11 @@ function formulaires_melusine_boutons_traiter()
 	{
 		return array('message_ok'=>'Saisie enregistr&eacute;e');
 	}
+	elseif (isset($_POST['reset'])) 
+		{	
+			return array
+			('message_ok'=>'R&eacute;glages r&eacute;initialis&eacute;s
+			 et enregistr&eacute;s','id_noisette'=>$id);
+		}
 }
 ?>

@@ -42,14 +42,30 @@ function formulaires_melusine_bouton_qui_sommes_nous_traiter()
 	if (isset($_POST['ok']) 
 			&& $params['textebouton']=='') 
 		{	
-			return array('message_erreur'=>'Il faut un texte pour le bouton'
-			,'id_noisette'=>$id);
+			return array
+			('message_erreur'=>'Il faut un texte pour le bouton.'
+				,'id_noisette'=>$id);
 		}
+/**/
+	elseif (isset($_POST['ok']) 
+			&& $params['article']=='') 
+		{	
+			return array
+			('message_erreur'=>'Il faut s&eacute;lectionner un article.'
+				,'id_noisette'=>$id);
+		}		
 /* Si le bouton Enregistrer a été sélectionné sans oubli de champs */
 	elseif (isset($_POST['ok'])) 
 		{	
-			return array('message_ok'=>'Saisie enregistr&eacute;e'
-			,'id_noisette'=>$id);
+			return array
+			('message_ok'=>'Saisie enregistr&eacute;e'
+				,'id_noisette'=>$id);
+		}
+	elseif (isset($_POST['reset'])) 
+		{	
+			return array
+			('message_ok'=>'R&eacute;glages r&eacute;initialis&eacute;s
+			 et enregistr&eacute;s','id_noisette'=>$id);
 		}
 }
 ?>
