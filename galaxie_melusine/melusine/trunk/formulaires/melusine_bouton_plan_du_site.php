@@ -53,8 +53,8 @@ function formulaires_melusine_bouton_plan_du_site_traiter()
 		}
 	elseif (isset($_POST['reset'])) 
 		{	
-			return array('message_ok'=>'R&eacute;glages r&eacute;initialis&eacute;s
-			 et enregistr&eacute;s'
+			return array('message_ok'=>'R&eacute;glages 
+			r&eacute;initialis&eacute;s et enregistr&eacute;s'
 			,'id_noisette'=>$id);
 		}
 }

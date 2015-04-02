@@ -20,7 +20,8 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 
 	if (isset($_POST['ok'])) 
 	{	/* On récupère les valeurs du formulaire */
-		$casiers=array('personneajoindre','textebouton','style','centrer','icone');
+		$casiers=array('personneajoindre','textebouton','style','centrer'
+			,'icone');
 	}
 	elseif (isset($_POST['reset'])) 
 	{	/* On initialise les valeurs du formulaire */
@@ -66,8 +67,8 @@ function formulaires_melusine_bouton_nous_ecrire_traiter()
 		}
 	elseif (isset($_POST['reset'])) 
 		{	
-			return array('message_ok'=>'R&eacute;glages r&eacute;initialis&eacute;s
-			 et enregistr&eacute;s'
+			return array('message_ok'=>'R&eacute;glages 
+				r&eacute;initialis&eacute;s et enregistr&eacute;s'
 			,'id_noisette'=>$id);
 		}
 }
