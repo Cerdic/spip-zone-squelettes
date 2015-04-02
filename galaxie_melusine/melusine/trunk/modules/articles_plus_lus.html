@@ -15,26 +15,31 @@
 	#SET{nb,#PARAMETRES|unserialize|table_valeur{nb}}
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 </BOUCLE_noisette>
 
 [(#GET{titre}|non)#SET{titre,"Articles les plus lus"}]
 [(#GET{nb}|non)#SET{nb,5}]
 [(#GET{style}|non)#SET{style,'bloc_visible'}]
 [(#GET{disposition}|non)#SET{disposition,'col-md-12'}]
-
+[(#GET{taille}|non)#SET{taille,50}]
+[(#GET{descriptif}|non)#SET{descriptif,non}]
+[(#GET{logo}|non)#SET{logo,non}]
 
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
 <!-- *********************************************************************** -->
 
+<!-- On exclut les articles des rubriques ayant le mot clef EXCLU -->
 <BOUCLE_exclus4(RUBRIQUES) {titre_mot="exclu"} {doublons}>
 	<BOUCLE_exclus40(ARTICLES) {id_rubrique} {doublons}>
 	</BOUCLE_exclus40>
 </BOUCLE_exclus4>
-
+<!-- On exclut les articles ayant le mot clef EXCLU -->
 <BOUCLE_exclus50(ARTICLES) {doublons}{titre_mot="focus"}>
 </BOUCLE_exclus50>
-
 
 
 <!-- *********************************************************************** -->
@@ -42,20 +47,25 @@
 <!-- *********************************************************************** -->
 
 <div class="module_content #GET{style}">
-	[<h2>(#GET{titre}|sinon{"Articles les plus lus"})</h2>]
+	[<h2>(#GET{titre})</h2>]
+	<!-- Début du DIV si l'affichage est demandé sur une colonne -->
 	[(#GET{disposition}|=={col-md-12}|non) 
 		<div class='row col1'>
 	]
+	<!-- On trie les articles par popularité -->
 	<BOUCLE_hitparade(ARTICLES){par popularite}{inverse}{doublons}{0,#GET{nb}}>
+		<!-- Affichage sur une colonne -->
 		[(#GET{disposition}|=={col-md-12}|oui)
             [(#MODELE	{annonce_article}
             			{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
         ]
+        <!-- Affichage sur plusieurs colonnes -->
         [(#GET{disposition}|=={col-md-12}|non)
         	[(#MODELE	{annonce_article_1col}
         				{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
         ]
 	</BOUCLE_hitparade>
+	<!-- fin du DIV si l'affichage est demandé sur une colonne -->
 	[(#GET{disposition}|=={col-md-12}|non) 
 		</div >
 	]		

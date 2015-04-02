@@ -35,22 +35,27 @@
 <!-- AFFICHAGE CONDITIONNE ************************************************* -->
 <!-- *********************************************************************** -->
 
+<!-- Savoir où il y a un manque au niveau des paramètres -->
+[(#GET{url}|non)#SET{erreur,1}]
+[(#GET{image}|non)#SET{erreur,2}]
 
 <!-- Si il manque des saisies, avertissement pour l'admin -->
 [(#SESSION{statut}|=={0minirezo}|oui)
-	[(#GET{url}|non)
-		<div class="module_content bloc_visible info">
+	[(#GET{erreur}|=={1}|ou{#GET{erreur}|=={2}})
+	<div class="module_content bloc_visible info">
+		Module - Bouton configurable -
+		[(#GET{url}|non)
 	    	URL à configurer
-	    </div>
-	]
-	[(#GET{image}|non)
-		<div class="module_content bloc_visible info">
+	    	[(#GET{erreur}|=={1}|oui)</div>]
+		]
+		[(#GET{image}|non)
 	    	Image à choisir
-	    </div>
+	    	[(#GET{erreur}|=={2}|oui)</div>]
+		]
 	]
 ]	
 
-
+<!-- Affichage du bloc suivant le style choisi -->
 [(#GET{style}|=={visible}|oui)	<div class="module_content bloc_visible">]
 	<!-- Alignement conditionné par le choix de l'utilisateur -->
 	[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
@@ -69,5 +74,5 @@
 	[(#GET{centrer}|=={gauche}|oui)	</div>]
 	[(#GET{centrer}|=={centre}|oui)	</div>]
 	[(#GET{centrer}|=={droite}|oui)	</div>]	
-
+<!-- Fin d'affichage du bloc suivant le style choisi -->
 [(#GET{style}|=={visible}|oui)	</div>]
