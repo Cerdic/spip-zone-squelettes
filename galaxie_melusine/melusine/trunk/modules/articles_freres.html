@@ -20,7 +20,7 @@
 	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
 </BOUCLE_noisette>
 
-<!-- pas de défaut pour le titre afin de permettre une chaine vide -->
+<!-- pas de défaut pour le titre afin de permettre une chaîne vide -->
 [(#GET{titre}|non)#SET{titre,"Dans la même rubrique"}]
 [(#GET{nb}|non)#SET{nb,5}]
 [(#GET{style}|non)#SET{style,'bloc_visible'}]
@@ -29,65 +29,78 @@
 [(#GET{descriptif}|non)#SET{descriptif,"non"}]
 [(#GET{logo}|non)#SET{logo,"non"}]
 
-
-
 <!-- *********************************************************************** -->
 <!-- BOUCLES DE RECHERCHE DES RESULTATS ************************************ -->
 <!-- *********************************************************************** -->
 
+<!-- Initialisation d'un compteur pour savoir si l'on est dans un article -->
+#SET{onestdansunarticle,"-1"}
+
 <BOUCLE_article_courant(ARTICLES) 	{id_article=#ID_ARTICLE}
-									{par num titre,titre}
-									{par date}{inverse}{doublons}>
+	{par num titre,titre}{par date}{inverse}{doublons}>
+	<!-- On récupère le numéro de la rubrique -->
 	#SET{rubrique,#ID_RUBRIQUE}
+	<!-- Si on rentre dans la boucle, c'est qu'on est bien dans un article -->
+	#SET{onestdansunarticle,#COMPTEUR_BOUCLE}
 </BOUCLE_article_courant>
-
-
-
-
 
 <!-- *********************************************************************** -->
 <!-- AFFICHAGE CONDITIONNE DES RESULTATS************************************ -->
 <!-- *********************************************************************** -->
 
-
+<!-- Pour que le titre apparaisse uniquement si la boucle n'est pas vide-->
 <B_article>
-<div class="module_content #GET{style}">
-	[<h2> (#GET{titre}) </h2>]
-	[(#GET{disposition}|=={col-md-12}|non) 
-		<div class='row col1'>
-	]
-<!--		<ul>
--->
+
+		<!-- Affichage selon le style choisi -->
+		<div class="module_content #GET{style}">
+		<!-- Affichage du titre si renseigné -->
+		[<h2> (#GET{titre}) </h2>]
+
+	<!-- Début du DIV si affichage sur plusieurs colonnes -->
+	[(#GET{disposition}|=={col-md-12}|non) 	<div class='row col1'>	]
 	
 	<BOUCLE_article(ARTICLES) 	{id_rubrique=#GET{rubrique}}
 								{par num titre,titre}
 								{par date}{inverse}{doublons}>
-
+		<!-- On affiche pas au delà du nombre nb choisi -->
 		[(#COMPTEUR_BOUCLE|<={#GET{nb}}|oui)
-		[(#GET{disposition}|=={col-md-12}|oui)
-            [(#MODELE	{annonce_article}
-            			{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-        ]
-        [(#GET{disposition}|=={col-md-12}|non)
-        	[(#MODELE	{annonce_article_1col}
-        				{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
-        ]
-        ]
-<!--		<li>
-			<i class="fa fa-caret-right "></i>
-			<a href="#URL_ARTICLE">#TITRE</a>
-		</li>
--->
+		<!-- Si affichage sur une seule colonne -->
+			[(#GET{disposition}|=={col-md-12}|oui)
+       			[(#MODELE	{annonce_article}
+            				{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+    		]
+   			<!-- Si affichage sur plusieurs colonnes -->
+    		[(#GET{disposition}|=={col-md-12}|non)
+       			[(#MODELE	{annonce_article_1col}
+        					{id_article=#ID_ARTICLE,id_noisette=#ID_NOISETTE})]
+    		]
+    	]
 	</BOUCLE_article>
 
+	<!-- Fin du DIV si affichage sur plusieurs colonnes -->
+	[(#GET{disposition}|=={col-md-12}|non) 	</div >	]		
 
+	[(#GET{onestdansunarticle}|>{0}|oui)	</div>]
 
-
-
-<!--		</ul>
--->
-	[(#GET{disposition}|=={col-md-12}|non) 
-		</div >
-	]		
-</div>
 </B_article>
+<!-- Message d'avertissement admin lorsqu'il n'y a pas d'autres articles -->
+[(#GET{onestdansunarticle}|=={-1}|non)
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Le module --Articles de la même rubrique-- existe dans ce gabarit 
+	   	mais n'apparaît pas ici car il n'y a pas d'autres articles dans cette 
+	   	rubrique.
+		</div>
+		]
+]
+<//B_article>
+
+<!-- Message d'avertissement admin lorsqu'on n'est pas dans une page article -->
+[(#GET{onestdansunarticle}|=={-1}|oui)
+		[(#SESSION{statut}|=={0minirezo}|oui)
+		<div class="module_content bloc_visible info">
+	   		Le module --Articles de la même rubrique-- existe dans ce gabarit 
+	   	mais n'apparaît pas ici car ce n'est pas une page d'article.
+		</div>
+		]
+]
