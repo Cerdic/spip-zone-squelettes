@@ -13,7 +13,14 @@
     <div id="cadre-rubrique">
 	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})] </div>
 	  				<div id="titre-rubrique">
-			  			<div class="#EDIT{titre}">[(#TITRE)]</div>
+                        [(#CONFIG{escal/config/fluxrssrub}|=={oui}|oui)
+                        <div class="fluxrss-rubrique">
+                            <a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
+                            <img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
+                            </a>
+                        </div>
+                        ]
+			  			<div class="#EDIT{titre} titre-rub">[(#TITRE)]</div>
 			  			<div id="descriptif-rubrique" class="#EDIT{descriptif}">
                           [(#DESCRIPTIF|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
                         </div>
@@ -83,6 +90,13 @@
 </div>
 		<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons}>
 			<div class="cadre-sous-rubrique">
+                        [(#CONFIG{escal/config/fluxrsssousrub}|=={oui}|oui)
+                        <div class="fluxrss-rubrique">
+                            <a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
+                            <img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
+                            </a>
+                        </div>
+                        ]
 				<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
         [(#LOGO_RUBRIQUE||image_reduire{36})]
 				<span class="titre-sous-rubrique">
