@@ -7,6 +7,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+	'archives' => 'Archives',
 	'articles_rubrique' => 'Dans cette catégorie',
 	'articles_auteur' => 'Billets de cet auteur',
 	'articles' => 'Billets',
