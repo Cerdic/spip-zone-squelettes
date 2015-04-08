@@ -61,6 +61,7 @@ function formulaires_melusine_bouton_qui_sommes_nous_traiter()
 			('message_ok'=>'Saisie enregistr&eacute;e'
 				,'id_noisette'=>$id);
 		}
+/* Si le bouton Annuler a été sélectionné */
 	elseif (isset($_POST['reset'])) 
 		{	
 			return array
