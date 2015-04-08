@@ -49,6 +49,7 @@ ajouter]
 		<ul class="boutons ajouter_module obligatoire">
 			<BOUCLE_dispos(POUR){tableau #GET{modules_utilisables}}
 								{si #ENV{editable}|et{#ID_NOISETTE|non}|oui}>
+				[(#CLE|match{modules}|oui)				
 				<li id="[(#VAL{"/"}|str_replace{"_",#CLE}|attribut_html)]" 
 					class="deplier">
 					<div class="haut_module voisin_pliant">
@@ -71,7 +72,7 @@ ajouter]
 							(#VALEUR|table_valeur_cleslash{description}|propre)
 						</div>
 					]
-				</li>
+				</li>]
 			</BOUCLE_dispos>
 		</ul>
 	</div>
@@ -79,7 +80,8 @@ ajouter]
 </B_dispos>
 <B_liste_pris>
 	<div class="explication modules_reserves">
-		<p>Liste des modules déjà utilisés dans un autre bloc et qui ne peuvent être ajoutés qu'une seule fois dans la page&nbsp;:</p>
+		<p>Liste des modules déjà utilisés dans un autre bloc et qui ne peuvent 
+			être ajoutés qu'une seule fois dans la page&nbsp;:</p>
 		<ul>
 			<BOUCLE_liste_pris(NOISETTES)
 			{noisette IN #GET{modules_pris_uniques}}{type}>
