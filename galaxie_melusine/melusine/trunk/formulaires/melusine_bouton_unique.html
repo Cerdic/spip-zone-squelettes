@@ -32,6 +32,9 @@
 [(#GET{style}|non)#SET{style,"visible"}]
 #SET{centrer,(#GET{params}|table_valeur{centrer})}
 [(#GET{centrer}|non)#SET{centrer,"centre"}]
+#SET{image,(#GET{params}|table_valeur{image})}
+[(#GET{image}|non)#SET{image,""}]
+#SET{chemindelimage,(#CHEMIN{#GET{params}|table_valeur{image}})}
 
 <!-- *********************************************************************** -->
 <!-- FORMULAIRE ************************************************************ -->
@@ -112,7 +115,17 @@
 				value="[(#GET{params}|table_valeur{image})]" 
 				size="30" 
 		/>
-		[(#GET{params}	|table_valeur{image}
+		<!-- Quand il n'y a pas d'image sélectionnée, par défaut le chemin est 
+			plugins-dist/textwheel/ -->
+		[(#GET{chemindelimage}|=={plugins-dist/textwheel/}|non)
+			[
+		<img 	src="(#CHEMIN{#GET{params}|table_valeur{image}})" 
+				width="150" height="150" 
+				class="img-responsive" alt="#GET{alt}">	]
+		]
+		<!-- Ne fonctionne pas avec des images don't le nom 
+		contient des caractères spéciaux -->
+		<!-- [(#GET{params}	|table_valeur{image}
 						|?
 						{
 							[(#CHEMIN{#GET{params}	|table_valeur{image}}
@@ -121,7 +134,7 @@
 							[(#GET{params}			|table_valeur{image}
 													||image_reduire{150})]
 						} 
-		)]	
+		)]	-->
 	</div>
 	<!-- Champs texte pour la classe du bouton -->	
 	<i class="fa fa-circle"></i>

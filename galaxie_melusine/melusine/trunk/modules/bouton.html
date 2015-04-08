@@ -61,13 +61,20 @@
 	[(#GET{centrer}|=={gauche}|oui)	<div class="alignegauche">]
 	[(#GET{centrer}|=={centre}|oui)	<div class="alignecentre">]
 	[(#GET{centrer}|=={droite}|oui)	<div class="alignedroite">]
-		<a  href="#GET{url}"
-			[(#GET{onglet}|=={oui}?{target="_blank",})]>
+		<a  href="#GET{url}" [(#GET{onglet}|=={oui}?{target="_blank",})]>
 			[(#GET{image}|!={none}|oui)
-			[(#GET{image}	|image_reduire{0,300}
-							|inserer_attribut{'class','img-responsive'}
-							|inserer_attribut{'alt',#GET{alt}})]
+			<img 	src="#GET{image}" width="450" height="300" 
+					class="img-responsive" alt="#GET{alt}">
 			]
+			<!-- Ne fonctionne pas avec des noms de fichier contenant des
+			caractères spéciaux -->
+			<!-- 
+			[(#GET{image}|!={none}|oui)
+				[(#GET{image}	|image_reduire{0,300}
+								|inserer_attribut{'class','img-responsive'}
+								|inserer_attribut{'alt',#GET{alt}})
+				]
+			]-->
 			[<div class="logo-titre">(#GET{intitule})</div>] 	
 		</a>
 	<!-- Fin alignement -->

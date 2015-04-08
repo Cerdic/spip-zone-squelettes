@@ -61,7 +61,6 @@ include_spip('action/editer_objet');
 
 	$nf="image";
 	if(!empty($_FILES[$nf]['tmp_name'])){
-			
 		$chemin='melusine_data/boutons/b'.$id_noisette.'/image';
 		$nom_fichier= $_FILES[$nf]['tmp_name'];
 		$chemin_destination_boutons="IMG/config/boutons";
@@ -77,24 +76,36 @@ include_spip('action/editer_objet');
 		move_uploaded_file($nom_fichier, $nom_destination);
 		$params['image'] =$nom_destination0;
 	}
-	elseif($image=_request('imageexiste')){
+	/* Le !isset est pour pouvoir effacer l'image quand on choisit Reset */
+	elseif($image=_request('imageexiste' && !isset($_POST['reset']))){
 		$params['image']=$image;
 	}
 	$set=array('parametres'=>serialize($params));
 	objet_modifier("noisette", $id_noisette, $set);
-	
+
+	/* Si le bouton Enregistrer a été sélectionné sans URL */
 	if(isset($_POST['ok']) && $params['url']=='')
-	{	/* Si le bouton Enregistrer a été sélectionné sans URL */
-	return array('message_erreur'=>'Veuillez saisir une URL !', 'id_noisette'=>$id);	
+	{	
+	return array(	'message_erreur'=>
+						'Veuillez saisir une URL !',
+					'id_noisette'=>$id);	
 	}
-	elseif(isset($_POST['ok']) && $params['image']=='')
-	{	/* Si le bouton Enregistrer a été sélectionné sans IMAGE */
-	return array('message_erreur'=>'Veuillez choisir une image !', 'id_noisette'=>$id);	
+	/* Si le bouton Enregistrer a été sélectionné sans IMAGE et sans INTITULE */
+	elseif(isset($_POST['ok']) 	&& $params['image']=='none' 
+								&& $params['intitule']=='')
+	{	
+	return array(	'message_erreur'=>
+						'Veuillez choisir une image  ou un intitul&eacute;',
+					'id_noisette'=>$id);	
 	}
+	/* Si le bouton Enregistrer a été sélectionné sans erreur */
 	elseif (isset($_POST['ok'])) 
-	{	/* Si le bouton Enregistrer a été sélectionné sans erreur */
-	return array('message_ok'=>'Saisie enregistr&eacute;e', 'id_noisette'=>$id);
+	{	
+	return array(	'message_ok'=>
+						'Saisie enregistr&eacute;e',
+					'id_noisette'=>$id);
 	}
+	/* Si le bouton Reset a été sélectionné */
 	elseif (isset($_POST['reset'])) 
 		{	
 			return array
