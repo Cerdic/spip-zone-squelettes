@@ -14,6 +14,7 @@
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
     #SET{clic,#PARAMETRES|unserialize|table_valeur{clic}}
 </BOUCLE_noisette>
+
 <!-- par défaut : fond invisible, logo centré dans sa noisette-->
 [(#GET{style}|non)#SET{style,'bloc_invisible'}]
 [(#GET{alignement}|non)#SET{alignement,'alignecentre'}]
@@ -27,11 +28,13 @@
 <div class="[(#GET{style})]">
 <div class="[(#GET{alignement})]">
 #CACHE{3600*24*38}
-
+<!-- On crée un compteur pour savoir si on rentre dans une boucle -->
+#SET{compteur_de_test,0}
     
 
 <!-- Si la page est celle d'un article, ************************************ --> 
 <!-- alors on affiche le logo de sa rubrique ******************************* -->
+<B_test1>
 <BOUCLE_test1(ARTICLES){id_article}>
 	<BOUCLE_rubrique1(RUBRIQUES){id_rubrique}>
            [<div class="image1">
@@ -48,13 +51,19 @@
             ]
 	</BOUCLE_rubrique1> 
 </BOUCLE_test1>
+</B_test1>
+<!-- On augmente de 10 le compteur si on ne rentre pas dans la boucle -->
+#SET{compteur_de_test, #GET{compteur_de_test}|plus{10}}
+<//B_test1>
 
 
 <!-- Si la page est celle d'une rubrique, ********************************** --> 
 <!-- alors on affiche le logo de la rubrique mère ************************** -->
 <BOUCLE_test2(CONDITION){si #ID_ARTICLE=={}}>   
     <BOUCLE_rubrique2(RUBRIQUES) {id_rubrique=#ENV{id_rubrique}}>
+        <B_rub_parent>
         <BOUCLE_rub_parent(RUBRIQUES) {id_enfant}>
+        tutu
             [   <div class="image1">
                 [(#GET{clic}|=={image}|oui)
                     <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
@@ -68,9 +77,21 @@
                 </div>  
             ]
         </BOUCLE_rub_parent>
+        </B_rub_parent>
+<!-- On augmente de 20 le compteur si on ne rentre pas dans la boucle -->
+            #SET{compteur_de_test, #GET{compteur_de_test}|plus{20}}
+        <//B_rub_parent>
     </BOUCLE_rubrique2>
 </BOUCLE_test2>
 
-
+ <!-- Si il n'y a eu aucun résultat dans les deux boucles -->
+[(#GET{compteur_de_test}|=={30}|oui)
+    [(#SESSION{statut}|=={0minirezo}|oui)
+        <div class="module_content bloc_visible info">
+        Le module -Logo de la rubrique mère- existe dans ce gabarit mais cette 
+        page n'a pas de rubrique mère.
+        </div>
+    ]
+]
 </div>
 </div>
