@@ -1,6 +1,6 @@
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
-<!-- ***  MODULE LOGO DU SITE ********************************************** -->
+<!-- ***  MODULE LOGO ARTICLE-RUBRIQUE ************************************* -->
 <!-- *********************************************************************** -->
 <!-- *********************************************************************** -->
 
@@ -31,9 +31,7 @@
     <!--Le logo de l'article-->
     #SET{testlog,0}
 
-
-  
-
+<!-- Si c'est une page article, on cherche son logo -->
 
 <BOUCLE_logo0(ARTICLES){id_article}>
     [	<div class="image1">
@@ -45,31 +43,39 @@
              <a  href="#URL_ARTICLE">
         ]
     		  (#LOGO_ARTICLE||image_reduire{150,0})
+              [(#LOGO_ARTICLE|non)#SET{testlog,1}]
             </a>
     	</div>
-		#SET{testlog,1}
 	]
-
-	<!--Sinon, le logo de la rubrique -->
-	<BOUCLE_test01(CONDITION){si #GET{testlog}|=={0}}>   
-		<BOUCLE_logo11(RUBRIQUES){id_rubrique}>
-    		[   <div class="image1">
-    			[(#GET{clic}|=={image}|oui)
-                    <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
-                        class="mediabox">
-                ]
-                [(#GET{clic}|=={lien}|oui)
-                    <a  href="#URL_RUBRIQUE">
-                ]
-    					(#LOGO_RUBRIQUE||image_reduire{150,0})
-    				</a>
-    			</div>	
-				#SET{testlog,1}
-			]
-    	</BOUCLE_logo11>
-	</BOUCLE_test01> 
-	<!--Sinon, spip parcourt recursivement les logo des rubriques-meres -->
-	<!-- (code inutile) -->
 </BOUCLE_logo0>
+
+
+<!-- Si c'est une page rubrique, on cherche son logo -->
+
+<BOUCLE_logo1(RUBRIQUES){id_rubrique}{id_parent=0}>
+    [   <div class="image1">
+        [(#GET{clic}|=={image}|oui)
+             <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
+                class="mediabox">
+        ]
+        [(#GET{clic}|=={lien}|oui)
+             <a  href="#URL_RUBRIQUE">
+        ]
+              (#LOGO_RUBRIQUE||image_reduire{150,0})
+              [(#LOGO_RUBRIQUE|non)#SET{testlog,2}]
+            </a>
+        </div>
+    ]
+</BOUCLE_logo1>
+
+<!-- Si on n'est rentré dans aucune boucle -->
+[(#GET{testlog}|=={0}|oui)
+    [(#SESSION{statut}|=={0minirezo}|oui)
+        <div class="module_content bloc_visible info">
+        Le module -Logo Article/Rubrique- existe dans ce gabarit mais sur cette
+         page, il n'y a rien à afficher.
+         </div>
+        ]
+]
 </div>
 </div>
