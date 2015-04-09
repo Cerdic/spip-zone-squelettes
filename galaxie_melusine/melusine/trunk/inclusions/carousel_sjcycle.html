@@ -156,6 +156,71 @@
 		</div>
 	 ]
   </BOUCLE_articles>
+
+  <BOUCLE_rubriques (RUBRIQUES){titre_mot=#GET{motclef}}{!par date}>
+  [(#REM) BOUCLE_articles (ARTICLES){!par date} ]
+
+	[(#LOGO_RUBRIQUE|oui)
+   	<div class="carousel" >
+      <div class="content_carousel" >
+   		[(#REM) Les effets de type turnLeft ne fonctionnent pas si ce div est en place. En attendant de corriger
+         rajout dans la doc de l'incompatibilite entre infobulles et ces effets. Du coup la bordure autour de l'image
+         ne se met pas en place non plus ]
+         #SET{fermer_a,non}
+         
+         [(#REM) Doit-on afficher les infobulles ET y a t'il quelque chose a afficher ?]
+         #SET{afficher_infobulle,non}
+         [(#CONFIG{sjcycle/tooltip}|=={on}|oui)
+         	[(#SET{texte_infobulle,[<h2>(#TITRE|supprimer_numero)</h2>][(#TITRE)<br />]})]
+            [(#CONFIG{sjcycle/tooltip_carac}|=={on}|oui)
+               [(#SET{texte_infobulle,[(#GET{texte_infobulle}|concat{<strong>Original :</strong> l. #LARGEUR x L. #HAUTEUR pixels, [(#TAILLE|taille_en_octets)]})]})]
+            ]
+            [(#SET{texte_infobulle,[(#GET{texte_infobulle}|trim)]})]
+            [(#GET{texte_infobulle}|strlen|!={0}|oui) #SET{afficher_infobulle,oui}]
+         ]
+
+         [(#GET{afficher_infobulle}|=={oui}|oui)
+        		<div class="infobulle" style="width:#GET{img_width}px;
+      										[(#GET{img_height}|>{0}|oui)height:#GET{img_height}px;]
+                                    padding:0px;
+                                    margin:[(#GET{img_bordure})]px;">
+         ]
+         [(#REM) Si un lien est demande vers une rubrique, on annule l'ouverture vers une box ]
+         
+            <a href="#URL_RUBRIQUE"[ title="(#TITRE)"]>
+            
+         
+                                   
+      
+         
+            [(#LOGO_RUBRIQUE
+                      |image_recadre{#GET{largeur_carousel},#GET{hauteur_carousel},center,'transparent'}
+                      |inserer_attribut{alt,[(#TITRE|supprimer_numero|attribut_html)]}
+                      |inserer_attribut{style,"display:block;"}
+                      |inserer_attribut{class,#GET{class}}
+                      |inserer_attribut{class,"img-responsive"})
+                      ]
+         
+        
+         	</a>
+       
+         
+        
+            [(#REM) La legende est cree a partir du titre de chaque image ]
+            <div class="diapo_legende" >
+            <div class="texte_diapo_legende"><h2>#TITRE</h2>
+              [(#DESCRIPTIF|couper{200})]
+              <div class="lire_la_suite">
+              	<a href="#URL_RUBRIQUE">Lire la suite </a>
+              </div>
+            </div>
+            </div>
+        </div>
+		</div>
+	 ]
+  </BOUCLE_rubriques>
+
+
 	</div><!-- sjcycle-->
 
    
