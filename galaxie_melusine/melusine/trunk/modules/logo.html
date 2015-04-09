@@ -12,7 +12,7 @@
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
 	#SET{alignement,#PARAMETRES|unserialize|table_valeur{alignement}}
-    #SET{clic,#PARAMETRES|unserialize|table_valeur{clic}}
+  #SET{clic,#PARAMETRES|unserialize|table_valeur{clic}}
 </BOUCLE_noisette>
 <!-- par défaut : fond invisible, logo centré dans sa noisette-->
 [(#GET{style}|non)#SET{style,'bloc_invisible'}]
@@ -28,8 +28,8 @@
 <div class="[(#GET{alignement})]">
 #CACHE{3600*24*38}
 
-    <!--Le logo de l'article-->
-    #SET{testlog,0}
+<!-- Variable pour savoir si on trouve des logos à afficher -->
+#SET{testlog,0}
 
 <!-- Si c'est une page article, on cherche son logo -->
 
@@ -42,8 +42,7 @@
         [(#GET{clic}|=={lien}|oui)
              <a  href="#URL_ARTICLE">
         ]
-    		  (#LOGO_ARTICLE||image_reduire{150,0})
-              [(#LOGO_ARTICLE|non)#SET{testlog,1}]
+    		  (#LOGO_ARTICLE||?{#LOGO_ARTICLE|image_reduire{150,0},#SET{testlog,1}})
             </a>
     	</div>
 	]
@@ -52,7 +51,7 @@
 
 <!-- Si c'est une page rubrique, on cherche son logo -->
 
-<BOUCLE_logo1(RUBRIQUES){id_rubrique}{id_parent=0}>
+<BOUCLE_logo1(RUBRIQUES){id_rubrique=#ID_RUBRIQUE}>
     [   <div class="image1">
         [(#GET{clic}|=={image}|oui)
              <a  href="[(#LOGO_RUBRIQUE||extraire_attribut{src})]"  
@@ -61,21 +60,29 @@
         [(#GET{clic}|=={lien}|oui)
              <a  href="#URL_RUBRIQUE">
         ]
-              (#LOGO_RUBRIQUE||image_reduire{150,0})
-              [(#LOGO_RUBRIQUE|non)#SET{testlog,2}]
+        (#LOGO_RUBRIQUE||?{#LOGO_RUBRIQUE|image_reduire{150,0},#SET{testlog,2}})
             </a>
         </div>
     ]
 </BOUCLE_logo1>
 
-<!-- Si on n'est rentré dans aucune boucle -->
-[(#GET{testlog}|=={0}|oui)
+
+</div>
+</div>
+<!-- Si on n'a pas trouvé de logo -->
+[(#GET{testlog}|=={1}|oui)
     [(#SESSION{statut}|=={0minirezo}|oui)
         <div class="module_content bloc_visible info">
-        Le module -Logo Article/Rubrique- existe dans ce gabarit mais sur cette
-         page, il n'y a rien à afficher.
+        Le module -Logo Article/Rubrique- existe dans ce gabarit mais il n'y a 
+        pas de logo pour cet article.
          </div>
         ]
 ]
-</div>
-</div>
+[(#GET{testlog}|=={2}|oui)
+    [(#SESSION{statut}|=={0minirezo}|oui)
+        <div class="module_content bloc_visible info">
+        Le module -Logo Article/Rubrique- existe dans ce gabarit mais il n'y a 
+        as pas de logo pour cette rubrique et ses rubriques mères.
+         </div>
+        ]
+]
