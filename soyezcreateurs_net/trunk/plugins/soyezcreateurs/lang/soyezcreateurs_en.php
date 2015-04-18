@@ -26,7 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_h' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
-	'agendamoisde' => 'Calendar for',
+	'agendamoisde' => 'Calendar for the month...',
 	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
 	'annuaire' => 'Directory',
@@ -55,7 +55,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_zone_bandeau' => 'Display in the top banner',
 	'cfg_affichage_zone_bandeau_annonce' => 'Display in the area of ​​the announcement banner',
 	'cfg_affichage_zone_principale' => 'Display in the main menu area',
-	'cfg_affichage_zone_secondaire' => 'Display in the secondary menu area', # MODIF
+	'cfg_affichage_zone_secondaire' => 'Display in the secondary menu area',
 	'cfg_affichagelistedocuments' => 'Dispaly attached documents',
 	'cfg_affichagelistedocuments_cartouche' => 'Underneath the area containing the articles and sections',
 	'cfg_affichagelistedocuments_enbas' => 'Under the articles and sections',
@@ -187,7 +187,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_menu_affichagelogo_label' => 'Logo display',
 	'cfg_menu_clic' => 'Menu click',
 	'cfg_menu_footer_liens' => 'In the page footer',
-	'cfg_menu_haut' => 'Top & bottom menus', # MODIF
+	'cfg_menu_haut' => 'Top menu',
 	'cfg_menu_haut_affichagelogo_deroulant' => 'Scrolling menus',
 	'cfg_menu_haut_affichagelogo_deroulant_non' => 'Only display the text',
 	'cfg_menu_haut_affichagelogo_logoonly' => 'Logo display only',
@@ -314,7 +314,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'CNIL declaration nº',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
-	'copyright_spip' => 'Skeleton <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCreateurs</a> made under <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
+	'copyright_spip' => 'Skeleton <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCréateurs</a> powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Logout',
