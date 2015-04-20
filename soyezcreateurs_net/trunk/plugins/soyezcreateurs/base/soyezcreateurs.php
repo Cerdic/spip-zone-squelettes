@@ -956,7 +956,7 @@ function soyezcreateurs_config_motsclefs() {
 				$sites = array();
 				$sites['nom_site'] = "90. Flux RSS du site";
 				$sites['url_site'] = "?page=backend";
-				$sites['descriptif'] = "Syndiquer tout le site";
+				$sites['descriptif'] = "public:syndiquer_site";
 				$sites['url_syndic'] = "";
 				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "80. Réseaux sociaux");
