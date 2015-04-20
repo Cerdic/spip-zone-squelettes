@@ -580,33 +580,35 @@ function id_site($titre, $id_rubrique) {
 
 function create_site($site, $rubrique) {
 	$id_rubrique = id_rubrique($rubrique);
-	$id_site = id_site($site['nom_site'], $id_rubrique);
-	if ($id_site > 0) {
-		sql_updateq(
-			"spip_syndic", array(
-				"url_site" => $site['url_site'],
-				"url_syndic" => $site['url_syndic'],
-				"descriptif" => $site['descriptif'],
-				"statut" => $site['statut'] ? $site['statut']:'prop',
-				"syndication" => $site['url_syndic'] ? 'oui':'non'
-			), "id_syndic='$id_syndic'"
-		);
-	} else {
-		$id_site = sql_insertq(
-			"spip_syndic", array(
-				"id_rubrique" => $id_rubrique,
-				"nom_site" => $site['nom_site'],
-				"url_site" => $site['url_site'],
-				"url_syndic" => $site['url_syndic'],
-				"descriptif" => $site['descriptif'],
-				"statut" => $site['statut'] ? $site['statut']:'prop',
-				"syndication" => $site['url_syndic'] ? 'oui':'non'
-			)
-		);
-		include_spip('inc/rubriques');
-		calculer_rubriques();
-		propager_les_secteurs();
-		effacer_meta("date_calcul_rubriques");
+	if ($id_rubrique > 0) {
+		$id_site = id_site($site['nom_site'], $id_rubrique);
+		if ($id_site > 0) {
+			sql_updateq(
+				"spip_syndic", array(
+					"url_site" => $site['url_site'],
+					"url_syndic" => $site['url_syndic'],
+					"descriptif" => $site['descriptif'],
+					"statut" => $site['statut'] ? $site['statut']:'prop',
+					"syndication" => $site['url_syndic'] ? 'oui':'non'
+				), "id_syndic=$id_site"
+			);
+		} else {
+			$id_site = sql_insertq(
+				"spip_syndic", array(
+					"id_rubrique" => $id_rubrique,
+					"nom_site" => $site['nom_site'],
+					"url_site" => $site['url_site'],
+					"url_syndic" => $site['url_syndic'],
+					"descriptif" => $site['descriptif'],
+					"statut" => $site['statut'] ? $site['statut']:'prop',
+					"syndication" => $site['url_syndic'] ? 'oui':'non'
+				)
+			);
+			include_spip('inc/rubriques');
+			calculer_rubriques();
+			propager_les_secteurs();
+			effacer_meta("date_calcul_rubriques");
+		}
 	}
 	return $id_site;
 }

@@ -179,8 +179,10 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$sites['url_syndic'] = "";
 			$sites['statut'] = 'publie';
 			$id_site = create_site($sites, "80. Réseaux sociaux");
-				create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
-				create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
+				if ($id_site > 0) {
+					create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
+					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
+				}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.34','non');
 		}
 		
