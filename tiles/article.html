@@ -1,0 +1,96 @@
+<BOUCLE_principale(ARTICLES) {id_article}><!DOCTYPE html>
+<html>
+<head>
+	<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+	[(#ENV{edit}|oui)
+	[<link rel="stylesheet" href="(#PRODUIRE{fond=prive/themes/spip/forms.css})" type="text/css" />]
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.css' type='text/css' />
+	]
+	[<link rel="stylesheet" href="(#CHEMIN{style.css})" type="text/css">]
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<style type="text/css"> 
+		html, body,#map { width: 100%; height: 100%; margin: 0; padding: 0; }
+		.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; }
+		.info h3, .info h4 { margin: 0 0 5px; color: #777; }
+		.legend { line-height: 18px; color: #555; }
+		.legend p { margin: 4px 0; }
+		.legend p img { vertical-align: middle; margin-right: 10px; }
+		.legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+		.info.properties { width: 400px; }
+		.leaflet-control-edit { background-image: url([(#CHEMIN{images/edit.png})]); }
+		.formulaire_editer_article { width: 80%; margin: 30px auto 10px; }
+		.formulaire_editer_article .editer_titre { margin-bottom: 15px; }
+		.formulaire_editer_article .editer_parent,
+		.formulaire_editer_article .editer_chapo label,
+		.formulaire_editer_article .editer_texte label { display: none; }
+		.formulaire_editer_article .boutons { text-align: right; }
+		.CodeMirror-scroll { height: auto; overflow-y: hidden; overflow-x: auto; }
+    </style>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	[(#ENV{edit}|oui)
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/mode/javascript/javascript.js"></script>]
+	[(#INSERT_HEAD)]
+	[(#CHAPO**)]
+</head>
+
+<body>
+	[(#ENV{edit}|non)
+	<div id="map"></div>
+	<script>
+		[(#TEXTE**)]
+		[(#PS|oui)var info = L.control();
+		info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info');
+			this._div.innerHTML = [(#PS|json_encode)];
+			return this._div;
+		};
+		info.addTo(map);]
+		[(#AUTORISER{modifier,article,#ID_ARTICLE}|oui)
+		var edit = new L.control({position: 'topleft'});
+		edit.onAdd = function (map) {
+			var div = new L.DomUtil.create('div', 'leaflet-control-zoom leaflet-bar leaflet-control');
+			div.innerHTML += '<a class="leaflet-bar-part leaflet-control-edit" href="[(#URL_ARTICLE|parametre_url{edit,oui})]"> </a>';
+			return div;
+		};
+		edit.addTo(map);]
+		map.attributionControl.addAttribution('<a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a>');
+	</script>]
+	[(#ENV{edit}|et{#AUTORISER{modifier,article,#ID_ARTICLE}}|oui)
+		#FORMULAIRE_EDITER_ARTICLE{#ID_ARTICLE,#ID_RURIQUE,#URL_ARTICLE}
+		<script type="text/javascript">
+		<!--
+		(function($){
+			$(function(){
+				/* un peu de coloration syntaxique */
+				var textarea = document.getElementById("text_area");
+				fabrique_coloriage(textarea, 'javascript');
+				function fabrique_coloriage(textarea, code) {
+					var cm_options = {
+						lineNumbers: true,
+						matchBrackets: true,
+						indentUnit: 8,
+						tabSize: 8,
+						indentWithTabs: true,
+						enterMode: "keep",
+						tabMode: "shift",
+						width: "95%",
+						minHeight: 60
+					};
+					if (code.length) {
+						cm_options.mode = code;
+					}
+					CodeMirror.fromTextArea(textarea, cm_options);
+				}
+			});
+		})(jQuery);
+		-->
+		</script>
+	]
+</body>
+</html>
+</BOUCLE_principale>[(#INCLURE{fond=404, erreur=<:aucun_article:>})]
+<//B_principale>
