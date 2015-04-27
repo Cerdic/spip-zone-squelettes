@@ -1,4 +1,7 @@
 <?php
+
+if (!defined('_ECRIRE_INC_VERSION')) return;
+
 if (!isset($GLOBALS['z_blocs']))
 	$GLOBALS['z_blocs'] = array('content','aside','head','head_js','header','footer');
 
@@ -25,7 +28,7 @@ function urls_generer_url_article_dist($id, $args, $ancre){
 	$row = sql_fetsel('id_rubrique,titre','spip_articles','id_article='.intval($id));
 	// si il y a bien une rubrique > 0 (on laisse passer les pages uniques)
 	if ($row['id_rubrique']>0)
-		return generer_url_entite($row['id_rubrique'],'rubrique','',title2anchor($row['titre'],$id),true);
+		return generer_url_entite($row['id_rubrique'],'rubrique',$args,title2anchor($row['titre'],$id),true);
 
 	return null;
 }
@@ -40,4 +43,3 @@ function placeholder($texte,$p=true){
 	}
 	return $texte;
 }
-?>
