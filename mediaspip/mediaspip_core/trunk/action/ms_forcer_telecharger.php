@@ -98,8 +98,8 @@ function action_ms_forcer_telecharger_dist() {
 	default:
 		$journal = charger_fonction('journal','inc',true);
 		if($journal && is_numeric($arg)){
-			$qui = $GLOBALS['visiteur_session']['nom'] ? $GLOBALS['visiteur_session']['nom'] : $GLOBALS['ip'];
-			$qui_ou_ip = $GLOBALS['visiteur_session']['id_auteur'] ? $GLOBALS['visiteur_session']['id_auteur'] : $GLOBALS['ip'];
+			$qui = isset($GLOBALS['visiteur_session']['nom']) ? $GLOBALS['visiteur_session']['nom'] : $GLOBALS['ip'];
+			$qui_ou_ip = isset($GLOBALS['visiteur_session']['id_auteur']) ? $GLOBALS['visiteur_session']['id_auteur'] : $GLOBALS['ip'];
 			$quoi = 'document';
 			$faire = 'telecharger';
 			$texte_infos = array('qui'=>$qui,'type'=> $quoi,'id'=>$arg);
@@ -132,7 +132,5 @@ function action_ms_forcer_telecharger_dist() {
 		readfile($file);
 		break;
 	}
-
 }
-
 ?>
