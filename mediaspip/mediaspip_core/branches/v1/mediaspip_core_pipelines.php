@@ -49,7 +49,7 @@ function mediaspip_core_styliser($flux){
 	}else if(
 		($flux['args']['contexte']['type'] == 'auteur')
 		AND substr($squelette,-strlen($fond))==$fond
-		&& ($flux['args']['contexte']['id_auteur'] == $GLOBALS['visiteur_session']['id_auteur'])
+		&& (isset($GLOBALS['visiteur_session']['id_auteur']) && ($flux['args']['contexte']['id_auteur'] == $GLOBALS['visiteur_session']['id_auteur']))
 		&& ($f=find_in_path($fond."-profil.".$ext))){
 			$flux['data'] = substr($f,0,-strlen(".$ext"));
 	}
