@@ -1,21 +1,26 @@
 <div id="bandeau">
+#SET{largeurmaxlogo,#LOGO_SITE_SPIP|balise_img|extraire_attribut{width}}
+#SET{largeurmaximage,#CHEMIN{images/bandacad.jpg}|balise_img|extraire_attribut{width}}
+
 
 
 <!-- par défaut : affichage du logo du site ou sinon de l'image bandacad.jpg (image non libre de droits) -->  
 [(#CONFIG{escal/config/optionbandeau}|non)
 [(#LOGO_SITE_SPIP|?{
-#SET{largeurmaxlogo,#LOGO_SITE_SPIP|balise_img|extraire_attribut{width}}
-<dl class="image_fluide"><dt>
+<dl class="image_fluide" style="max-width: #GET{largeurmaxlogo}px; float: #CONFIG{escal/config/alignbandeau};"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
 [(#LOGO_SITE_SPIP
-  |inserer_attribut{style, max-width:#GET{largeurmaxlogo}px }
+|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
 )]
 </a>
 </dt></dl>
 ,
-<dl class="image_fluide"><dt>
+<dl class="image_fluide"  style="max-width: #GET{largeurmaximage}px; float: #CONFIG{escal/config/alignbandeau};"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
-[(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}})]
+[(#CHEMIN{images/bandacad.jpg}
+|balise_img{<:escal:bandeau:>}
+|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
+)]
 </a>
 </dt></dl>
 })]
@@ -23,23 +28,21 @@
 
 <!-- option 1 : affichage de l'image bandacad.jpg (image non libre de droits) -->  
 [(#CONFIG{escal/config/optionbandeau}|=={option1}|oui)
-
-<dl class="image_fluide"><dt>
+<dl class="image_fluide"  style="max-width: #GET{largeurmaximage}px; float: #CONFIG{escal/config/alignbandeau};"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
 [(#CHEMIN{images/bandacad.jpg}
 |balise_img{<:escal:bandeau:>}
-|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}
-})]
+|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
+)]
 </a>
 </dt></dl>
 ]
 <!-- option 2 : affichage du logo du site --> 
 [(#CONFIG{escal/config/optionbandeau}|=={option2}|oui)
-#SET{largeurmaxlogo,#LOGO_SITE_SPIP|balise_img|extraire_attribut{width}}
-<dl class="image_fluide"><dt>
+<dl class="image_fluide" style="max-width: #GET{largeurmaxlogo}px; float: #CONFIG{escal/config/alignbandeau};"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
 [(#LOGO_SITE_SPIP
-  |inserer_attribut{style, max-width:#GET{largeurmaxlogo}px }
+|image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
 )]
 </a>
 </dt></dl>
