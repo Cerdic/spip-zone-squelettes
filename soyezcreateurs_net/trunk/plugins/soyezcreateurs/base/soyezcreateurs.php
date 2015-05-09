@@ -380,17 +380,16 @@ function create_article($texte, $rubrique, $lang='fr') {
 				"lang" => $lang,
 				"langue_choisie" => 'non',
 				"id_trad" => 0,
-				"extra" => 'NULL',
-				"id_version" => 0,
 				"nom_site" => $texte['nom_site'],
 				"url_site" => $texte['url_site'],
 				"virtuel" => $texte['virtuel']
 			)
 		);
 		sql_insertq(
-			"spip_auteurs_articles", array(
+			"spip_auteurs_liens", array(
 				"id_auteur" => 1,
-				"id_article" => $id_article
+				"id_objet" => $id_article,
+				objet => 'article'
 			)
 		);
 		include_spip('inc/rubriques');
