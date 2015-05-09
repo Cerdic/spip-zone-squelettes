@@ -33,9 +33,6 @@ define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de si
 
 define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
 
-// ajout SPIP 3
-include_spip('inc/config');
-
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
 	Merci à ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
