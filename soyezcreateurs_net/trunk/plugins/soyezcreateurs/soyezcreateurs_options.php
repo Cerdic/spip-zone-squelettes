@@ -149,6 +149,7 @@ define('_SUIVI_FORUM_THREAD', true);
 
 // Gere l'inscription aux evenements
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
+include_spip('inc/config');
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
 // http://www.weblog.eliaz.fr/article38.html Pour mettre une version plus récente de jQuery
