@@ -33,7 +33,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			// Installation d'exemples concernant l'agenda si le plugin est actif
 			if ($f('agenda', 'est_actif')) {
 				// Réserve le formulaire des événements aux seules rubriques d'Agenda (avec le plugin agenda 2 installé)
-				sql_update('spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique = spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot', array('spip_rubriques.agenda' => 1), 'spip_mots.titre='.sql_quote('Agenda'));
+				sql_update('spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique = spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_liens.id_mot=spip_mots.id_mot', array('spip_rubriques.agenda' => 1, 'spip_mots_liens.objet'=>'rubrique'), 'spip_mots.titre='.sql_quote('Agenda'));
 				include_spip('inc/sc_article');
 				
 				$id_rubrique = id_rubrique('900. Agenda');
@@ -143,7 +143,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		
 		if (version_compare($current_version,'3.0.29','<')) {
 			spip_log("SoyezCreateurs maj 3.0.29 Début", "soyezcreateurs_install");
-			create_groupe("_FondPage", "Images en fond de page :\n-* Créer autant de mots clefs que de fonds de page désirés\n-* Mettre un logo à ces mots clefs\n-* Possibilité de fixer un fond de page pour :\n-** Une rubrique (et la branche en dessous)\n-** Un type de page particulier (Sommaire, Plan)\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs]", "", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+			create_groupe("_FondPage", "Images en fond de page :\n-* Créer autant de mots clefs que de fonds de page désirés\n-* Mettre un logo à ces mots clefs\n-* Possibilité de fixer un fond de page pour :\n-** Une rubrique (et la branche en dessous)\n-** Un type de page particulier (Sommaire, Plan)\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs]", "", 'oui', 'non', 'rubriques', 'oui', 'non', 'non');
 			
 			spip_log("SoyezCreateurs maj 3.0.29 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.29','non');
@@ -193,7 +193,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		/*
 		#En attente
 		if (version_compare($current_version,'3.0.11','<')) {
-			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'articles', 'oui', 'non', 'non');
 				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef à chaque article de l'annuaire.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.11','non');
 		}
