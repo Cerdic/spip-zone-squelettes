@@ -1,0 +1,38 @@
+<BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+<BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>
+[(#SET{secteurencours,#ID_RUBRIQUE})]
+</BOUCLE_RacineMenuHaut>
+
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{title,[(#TITRE|attribut_html|texte_script)] (<:soyezcreateurs:chapitre_complet|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{secteurencours=#GET{secteurencours}}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+	{id_secteur}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<li>[<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">(#TITRE)</a> (<:soyezcreateurs:chapitre_complet:>)]</li>
+	</ul>
+	</div>
+<div class="texte">
+<!-- Contenu : Tous les mots -->
+<div class="cartouche">
+<div class="titrepage"><h1 class="titre-texte">[(#TITRE)][(#PLUGIN{ARTICLE_PDF}|oui)#SECTEUR_PDF]</h1></div>
+</div>
+	<div id="letexte">
+[(#INCLURE{fond=noisettes/aff_rub_complet_texte}{id_rubrique})]
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=noisettes/footer/footer}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+>
+</BOUCLE_secteurs>

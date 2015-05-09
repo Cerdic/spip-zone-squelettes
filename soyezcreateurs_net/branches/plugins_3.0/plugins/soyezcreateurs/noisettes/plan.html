@@ -1,0 +1,36 @@
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/plans})]]
+<div id="letexte">
+
+<B_Autres>
+<p><:soyezcreateurs:voirarticlespar:> <a href="#URL_PAGE{antichrono}"><:soyezcreateurs:ordreantichronologique:></a>.</p>
+<BOUCLE_Autres(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
+	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+		<B_articles_rubrique_Racine>
+		<ul>
+		<BOUCLE_articles_rubrique_Racine(ARTICLES) {id_rubrique} {!titre_mot=PasDansPlan} {par num titre}{!par date} {lang}>
+			<li class="#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		</BOUCLE_articles_rubrique_Racine>
+		</ul>
+		</B_articles_rubrique_Racine>
+
+	<B_Autres_Details>
+		<ul>
+		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{!titre_mot=PasDansPlan}{par num titre}>
+			<li  class="#EDIT{titre}" style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+			<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
+				<B_articles_rubrique>
+				<ul>
+				<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!titre_mot=PasDansPlan} {par num titre}{!par date} {lang}>
+					<li class="#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+				</BOUCLE_articles_rubrique>
+				</ul>
+				</B_articles_rubrique>
+			</li>
+		</BOUCLE_Autres_Details>
+		</ul>
+	</B_Autres_Details>
+</BOUCLE_Autres>
+[<div>(#CONFIG{soyezcreateurs/textesiplanvide}|propre)</div>]
+<//B_Autres>
+</div>
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/plans}{classe=artrecent_bas})]]

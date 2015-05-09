@@ -1,0 +1,159 @@
+<BOUCLE_mot_principal(MOTS){id_mot}>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{title,<:soyezcreateurs:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+		<li><a href="#URL_PAGE{mot}" title="<:soyezcreateurs:mots_title|attribut_html:>"><:soyezcreateurs:mots:></a></li>
+		<li><a href="[(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})]" title="<:soyezcreateurs:motsgroupe|attribut_html:>"><BOUCLE_TitreGroupe(GROUPES_MOTS){id_groupe}>#TITRE</BOUCLE_TitreGroupe></a></li>
+		<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/mots}{id_groupe}{id_mot})]]
+<div class="texte">
+<!-- Contenu : Le mot choisi -->
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[<img src="(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src})" class="logo_article" alt="" width="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />][(#TITRE)]</h1></div>
+</div>
+
+<div id="letexte">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+
+<B_RubriquesArticles>
+<!-- Articles de meme mot clef -->
+<h2><:articles:></h2>
+<BOUCLE_RubriquesArticles(RUBRIQUES){racine}><B_articles>
+	<h3 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h3>
+	<ul>
+	<BOUCLE_articles(ARTICLES) {id_mot}{id_secteur}>
+		<li><a href="#ARTICLE_URL" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_articles>
+	</ul>	
+</B_articles></BOUCLE_RubriquesArticles>
+
+<!-- Rubriques liees au mot-cle -->
+<B_rubriques>
+<h2><:rubriques:></h2>
+	<ul>
+<BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
+	<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_rubriques>
+	</ul>
+</B_rubriques>
+
+<!-- Breves liees au mot-cle -->
+<B_breves>
+<h2><:breves:></h2>
+	<ul>
+<BOUCLE_breves(BREVES) {id_mot} {par titre}>
+	<li><a href="#URL_BREVE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_breves>
+	</ul>
+</B_breves>
+
+<!-- Sites Web lies au mot-cle -->
+<B_sites>
+<h2><:sites_web:></h2>
+	<ul>
+<BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+	<li><a href="#URL_SITE" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a></li>
+</BOUCLE_sites>
+	</ul>
+</B_sites>
+
+[(#PLUGIN{AGENDA}|?{[(#INCLURE{fond=noisettes/agenda/evenements_mot}{id_mot})]})]
+
+
+
+
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/mots}{id_groupe}{id_mot}{classe=artrecent_bas})]]
+
+</BOUCLE_mot_principal>
+<BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{title,<:soyezcreateurs:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+		<li><a href="#URL_PAGE{mot}" title="<:soyezcreateurs:mots_title:>"><:soyezcreateurs:mots:></a></li>
+		<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+
+
+<div class="texte">
+<!-- Contenu : Tous les mots -->
+<div class="cartouche">
+
+<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[(#TITRE)]</h1></div>
+</div>
+<!-- Autres mots-clefs du meme groupe -->
+
+	<div id="letexte">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+
+<BOUCLE_motsdugroupeseul(MOTS){id_groupe}{par titre}>
+<h2><a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+[<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+</BOUCLE_motsdugroupeseul>
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+</BOUCLE_Groupe_principal>
+[(#SET{titretop,<:soyezcreateurs:mots_title|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:mots_title|texte_script:>}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+
+	<li><:soyezcreateurs:mots:></li>
+	</ul>
+
+	</div>
+<div class="texte">
+<!-- Contenu : Tous les mots -->
+<div class="cartouche">
+
+<div class="titrepage"><h1 class="titre-texte"><:soyezcreateurs:mots_title:></h1></div>
+</div>
+	<div id="letexte">
+
+<BOUCLE_groupes(GROUPES_MOTS){par titre}{titre==(#ENV{filtremot,'^[^_]'})}>
+<h2 style="clear:both;"><a href="[(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})]">[(#TITRE)]</a></h2>
+
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+
+<BOUCLE_mots(MOTS){id_groupe}{par titre}>
+<h3><a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h3>
+[<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+</BOUCLE_mots>
+</B_mots>
+
+</BOUCLE_groupes>
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+<//B_Groupe_principal>
+<//B_mot_principal>
+[(#FORMULAIRE_ADMIN)]
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{env}
+>

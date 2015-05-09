@@ -1,0 +1,29 @@
+<BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
+	</ul>
+[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
+
+	</div>
+[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche_ssrubriques,id_rubrique})]
+	<div class="texte">
+		<!-- Une : contenu de la rubrique -->
+		<div class="cartouche">
+		<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />][(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</h1></div>
+		[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
+		</div>
+		<div id="letexte" class="surlignable">
+			<div id="troiscolonnes">
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles,id_rubrique,lang})]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles_archives,id_rubrique,lang})]]
+			</div><!-- Fin de #troiscolonnes -->
+			<div class="clearing">&nbsp;</div>
+		</div><!-- Fin de #LeTexte -->
+	</div><!-- Fin de .texte -->
+		[(#FORMULAIRE_ADMIN)]
+</BOUCLE_secteurs>

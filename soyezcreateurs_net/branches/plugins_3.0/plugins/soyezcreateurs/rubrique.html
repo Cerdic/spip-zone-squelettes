@@ -1,0 +1,85 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}>[(#SET{id_rubrique,#ID_RUBRIQUE})]<BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{titrearchive,[(#ENV{archive}|?{[(#TITRE|attribut_html|texte_script)] (<:soyezcreateurs:archives:>),[(#TITRE|attribut_html|texte_script)]})]})]
+<INCLURE{fond=noisettes/header/header}
+	{id_rubrique}
+	{id_secteur}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{secteurencours=#GET{secteurencours}}
+	{metadescription=(#DESCRIPTIF|supprimer_tags|attribut_html)}
+	{title=#GET{titrearchive}}
+	{titretop=#GET{titretop}}
+>
+<BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
+[(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{mots}{id_mot})]]
+[(#CONFIG{soyezcreateurs/agendathematique,}|!={#ENV{calendrier,on}}|oui)
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|oui)
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
+	]
+]
+</BOUCLE_EstAgenda>
+
+<BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}{id_rubrique}>[(#CHEMIN{noisettes/rubriques/typerubrique_#TITRE.html}|oui)
+[(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE}{env})]
+]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
+	</ul>
+[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
+
+	</div>
+
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)
+[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
+][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique}{archive})]]
+[(#REM) Par contre, afficher les nouveautes si la config du site en décide
+][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents"[ class="(#ENV{classe})"]>(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
+]
+
+<div class="texte">
+[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable"><BOUCLE_GrosLogoRub(MOTS){id_rubrique}{titre = GrosLogo}> #SET{AfficherGrosLogo,1}</BOUCLE_GrosLogoRub>[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />]<//B_GrosLogoRub>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</h1>[(#FORMULAIRE_FAVORI)]</div>
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
+</div>
+	<div id="letexte" class="surlignable">
+[<div class="#EDIT{descriptif} descriptif">[(#GET{AfficherGrosLogo}|oui)[<img src="(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|extraire_attribut{src})" class="groslogo" alt="" width="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|largeur)]" height="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|hauteur)]" />]](#DESCRIPTIF|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,540},0})</div>]
+[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,540},0})</div>][(#TEXTE*|=={''}|oui)[(#LANG|!={#CONFIG{langue_site}}|?{[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique}{archive}{lang=#LANG})],[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique}{archive})]})]]
+[(#REM) Vérification de la présence du plugin GIS dans la rubrique et si oui on inclut la carte grace au modèle, qui est dans la page carte_gis.html]
+<BOUCLE_GisSecteur(RUBRIQUES){id_rubrique}{titre_mot=GisSecteur}>#SET{GisSecteur,1}</BOUCLE_GisSecteur>
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#GET{GisSecteur}|oui)[(#INCLURE{fond=json/gis_articles_plus_sites,id_secteur,limit=500}|oui)[(#INCLURE{fond=modeles/carte_gis,id_secteur,objets=articles_plus_sites,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisrubriques,400px}})]]][(#GET{GisSecteur}|non)[(#INCLURE{fond=json/gis_articles_plus_sites,id_rubrique,limit=500}|oui)[(#INCLURE{fond=modeles/carte_gis,id_rubrique,objets=articles_plus_sites,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisrubriques,400px}})]]]
+</div>]
+[<div class="notes">(#NOTES)</div>]
+[(#INCLURE{fond=noisettes/galerie}{ajax}{id_rubrique}{env})]
+[(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique})]
+]
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)
+[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
+][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique}{archive}{classe=artrecent_bas})]]
+[(#REM) Par contre, afficher les nouveautes si la config du site en décide
+][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents"[ class="(#ENV{classe})"]>(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}{classe=artrecent_bas}|trim)</div>]]]
+]
+[(#FORMULAIRE_ADMIN)]
+<//B_TypeRubrique>
+
+<//B_EstAgenda>
+</BOUCLE_rubrique_principal>
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{lang}
+	{titretop=#GET{titretop}}
+>
+</B_rubrique_principal><//B_rubrique_principal>

@@ -1,0 +1,55 @@
+#CACHE{1}
+<BOUCLE_FondPageRubrique(HIERARCHIE){tout}{id_rubrique}{type=_FondPage}{inverse}{0,1}>
+<BOUCLE_LogoPage(MOTS){id_rubrique}{type=_FondPage}{par hasard}{0,1}>
+<style type="text/css">
+/*<![CDATA[*/
+[html {
+	background-color:[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})];
+	background-image:url((#LOGO_MOT_NORMAL|image_reduire{1500,0}|extraire_attribut{src}|url_absolue));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}]
+/*]]>*/
+</style>
+</BOUCLE_LogoPage>
+</BOUCLE_FondPageRubrique>
+<BOUCLE_FondPageTemplate(MOTS){type=_FondPage}{descriptif!=''}{descriptif=#ENV{template}}{par hasard}{0,1}>
+<style type="text/css">
+/*<![CDATA[*/
+[html {
+	background-color:[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})];
+	background-image:url((#LOGO_MOT_NORMAL|image_reduire{1500,0}|extraire_attribut{src}|url_absolue));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}]
+/*]]>*/
+</style>
+</BOUCLE_FondPageTemplate>
+#SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES mots){type_mot=_FondPage}{fusion mots.id_mot}>#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}}</BOUCLE_ExclureBannieresRubriques>
+<BOUCLE_FondPage(MOTS){type=_FondPage}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}{par hasard}{0,1}>
+<style type="text/css">
+/*<![CDATA[*/
+[html {
+	background-color:[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})];
+	background-image:url((#LOGO_MOT_NORMAL|image_reduire{1500,0}|extraire_attribut{src}|url_absolue));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}]
+/*]]>*/
+</style>
+</BOUCLE_FondPage><//B_FondPageTemplate><//B_FondPageRubrique>

@@ -1,0 +1,20 @@
+<BOUCLE_AvecDesEnfants(RUBRIQUES){id_parent=#ENV{id_rubrique}}{0,1}><BOUCLE_themes(RUBRIQUES){id_rubrique=#ENV{id_rubrique}}>[(#SET{iconeracine,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique=#_themes:ID_RUBRIQUE}{mode=normal}|image_reduire{9,9}|extraire_attribut{src})]})]
+<div id="artrecents"[ class="(#ENV{classe})"]>
+<h2><:soyezcreateurs:themes:></h2>
+	<ul>
+		<li[ style="list-style-image: url(/(#GET{iconeracine}));"]>[(#TITRE)]
+<B_sous_rubriques1>
+			<ul>
+			<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
+				<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
+				[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
+				 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,#ENV{date_ev,''}}|parametre_url{'mots', #ENV{mots}}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
+				<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
+				</li>
+			</BOUCLE_sous_rubriques1>
+			</ul>
+</B_sous_rubriques1>
+		</li>
+	</ul>
+</div>
+</BOUCLE_themes></BOUCLE_AvecDesEnfants>

@@ -1,0 +1,74 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}{tous}>[(#SET{titretop,[(#NOM|attribut_html|sc_nettoyer_marqueur|texte_script)]})][(#SET{title,<:soyezcreateurs:auteur|texte_script:>: [(#NOM|attribut_html|texte_script)]})]<INCLURE{fond=noisettes/header/header}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<li><a href="#URL_PAGE{auteur}" title="<:soyezcreateurs:auteurs_liste|attribut_html:>"><:spip:icone_auteurs:></a></li>
+	<li>[(#NOM)]</li>
+	</ul>
+	</div>
+
+<div class="texte surlignable">
+<!-- Une : affichage de l'auteur -->
+<div class="titrepage"><h1 class="#EDIT{qui}">#NOM</h1></div>
+<div id="letexte">
+
+[<div class="#EDIT{bio}">[(#LOGO_AUTEUR|image_reduire{200,200}|inserer_attribut{'style','float:right;'})](#BIO)</div>]
+[<div class="#EDIT{hyperlien} ps"><a rel="me" href="(#URL_SITE)" title="">#NOM_SITE</a></div>]
+[<div class="notes">(#NOTES)</div>]
+
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_auteurs,id_auteur,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_auteur,objets=auteurs,autocenterandzoom=oui})]]
+</div>]
+
+[(#FORMULAIRE_ECRIRE_AUTEUR)]
+
+<B_articles>
+<!-- Articles de l'auteur -->
+<h2><:articles_auteur:> (#TOTAL_BOUCLE)</h2>
+<ul class="pas_surlignable">
+<BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+	<li><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+
+</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+
+
+</BOUCLE_auteur_principal>
+[(#SET{titretop,<:soyezcreateurs:auteurs_site|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:auteurs_site|texte_script:>}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<li><:soyezcreateurs:auteurs_site:></li>
+	</ul>
+	</div>
+<div class="texte">
+<!-- Contenu : Tous les auteurs -->
+<div class="titrepage"><h1><:soyezcreateurs:auteurs_site:></h1></div>
+	<div id="letexte">
+<ul>
+<BOUCLE_LesAuteurs(AUTEURS){par nom}>
+<li><a href="#URL_AUTEUR">[(#NOM)]</a> <BOUCLE_comptearticles(ARTICLES) {id_auteur}> </BOUCLE_comptearticles>[((#TOTAL_BOUCLE) articles)]</B_comptearticles></li>
+</BOUCLE_LesAuteurs>
+</ul>
+
+[<div id="carto">
+(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_auteurs,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,objets=auteurs,autocenterandzoom=oui})]]
+</div>]
+
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+<//B_auteur_principal>
+[(#FORMULAIRE_ADMIN)]
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+>

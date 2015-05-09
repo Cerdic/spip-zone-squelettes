@@ -1,0 +1,28 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre}">[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="" />][(#TITRE)]</h1></div>
+</div>
+
+	<div id="letexte" class="surlignable">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+[<div class="notes">(#NOTES)</div>]
+
+[(#INCLURE{fond=noisettes/plan_branche}{id_rubrique})]
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+</BOUCLE_rubrique_principal>

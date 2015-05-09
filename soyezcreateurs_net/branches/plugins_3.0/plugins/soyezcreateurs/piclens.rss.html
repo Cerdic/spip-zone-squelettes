@@ -1,0 +1,20 @@
+[(#HTTP_HEADER{Content-Type: application/rss+xml[; charset=(#CHARSET)]})]<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<generator>SPIP [(#SPIP_VERSION|textebrut|texte_backend)]</generator>
+		<title>[(#NOM_SITE_SPIP|textebrut|texte_backend)]</title>
+		<link>#URL_SITE_SPIP</link>
+		<description>[(#DESCRIPTIF_SITE_SPIP|textebrut|texte_backend)]</description>
+		<atom:link href="#URL_SITE_SPIP/#SELF" rel="self" type="application/rss+xml" />
+			<BOUCLE_Images(DOCUMENTS){id_article ?}{mode=document}{par num titre, date}{extension IN png,jpg,gif}>
+			<item>
+				<title>[(#TITRE|textebrut|texte_backend)]</title>[
+				<media:description>(#DESCRIPTIF|textebrut|texte_backend)</media:description>]
+				<link>[(#URL_DOCUMENT|url_absolue)]</link>
+				<guid isPermaLink="false">doc#ID_DOCUMENT</guid>
+				<media:thumbnail url="[(#FICHIER|copie_locale|image_reduire{200,130}|extraire_attribut{src}|url_absolue)]" />
+				<media:content url="[(#URL_DOCUMENT|url_absolue)]" type="#MIME_TYPE" />
+			</item>
+			</BOUCLE_Images>
+	</channel>
+</rss>
