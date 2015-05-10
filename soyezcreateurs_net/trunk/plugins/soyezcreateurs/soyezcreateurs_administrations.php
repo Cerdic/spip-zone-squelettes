@@ -27,8 +27,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			// Installation des index FullText si le plugin est présent
 			$f = chercher_filtre('info_plugin');
 			if($f('Fulltext', 'est_actif')) {
-				include_spip('inc/fulltext_exec');
-				Fulltext_creer_tous();
+				include_spip('inc/fulltext_creer_index');
+				fulltext_liste_creer_index('all');
 			}
 			// Installation d'exemples concernant l'agenda si le plugin est actif
 			if ($f('agenda', 'est_actif')) {
