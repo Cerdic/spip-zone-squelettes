@@ -8,100 +8,157 @@
 // pour la noisette inc-actus
 // **************************
 
- var headline_count;
- var headline_interval;
- var old_headline = 0;
- var current_headline = 0;
- var tempo1 = '#CONFIG{escal/config/tempoactus,5}' * 1000;
+var headline_count;
+var headline_interval;
+var old_headline = 0;
+var current_headline = 0;
+var tempo1 = '#CONFIG{escal/config/tempoactus,5}' * 1000;
  
- $(document).ready(function(){
-   headline_count = $("div.headline").size();
-   $("div.headline:eq("+current_headline+")").css('top','5px');
+$(document).ready(
+                  function()
+                  {
+                    headline_count = $("div.headline").length ;
+                    $("div.headline:eq("+current_headline+")").css('top','5px');
 
-   headline_interval = setInterval(headline_rotate,tempo1); //temps en millisecondes
-   $('#scrollup').hover(function() {
-     clearInterval(headline_interval);
-   }, function() {
-     headline_interval = setInterval(headline_rotate,tempo1); //temps en millisecondes
-     headline_rotate();
-   });
- });
+                    //temps en millisecondes
+                    headline_interval = setInterval(headline_rotate, tempo1);
 
- function headline_rotate() {
-   current_headline = (old_headline + 1) % headline_count;
-   $("div.headline:eq(" + old_headline + ")").animate({top: -205},"slow", function() {
-     $(this).css('top','210px');
-   });
-   $("div.headline:eq(" + current_headline + ")").show().animate({top: 5},"slow");
-   old_headline = current_headline;
- }
+                    $('#scrollup').hover(function()
+                                         {
+                                           clearInterval(headline_interval);
+                                         },
+					 function()
+					 {
+                                           // temps en millisecondes
+					   headline_interval = setInterval(headline_rotate,tempo1);
+					   headline_rotate();
+					 }
+                                        ) ;
+		  }
+		 ) ;
+
+function headline_rotate()
+{
+  current_headline = (old_headline + 1) % headline_count;
+  $("div.headline:eq(" + old_headline + ")").animate({top: -205},
+                                                     "slow",
+                                                     function()
+                                                     {
+                                                       $(this).css('top','210px') ;
+                                                     }
+                                                    ) ;
+  $("div.headline:eq(" + current_headline + ")").show().animate({top: 5},"slow") ;
+  old_headline = current_headline ;
+}
 
 
 // ***************************
 // pour la noisette inc-photos
 // ***************************
 
- var headline2_count;
- var headline2_interval;
- var old_headline2 = 0;
- var current_headline2 = 0; 
- var tempo2 = '#CONFIG{escal/config/tempophotos,8}' * 1000;
- var hauteur2 = '#CONFIG{escal/config/largeurimagenoisettes,170} - 5';
+var headline2_count;
+var headline2_interval;
+var old_headline2 = 0;
+var current_headline2 = 0; 
+var tempo2 = '#CONFIG{escal/config/tempophotos,8}' * 1000;
+var hauteur2 = '#CONFIG{escal/config/largeurimagenoisettes,170} - 5';
 
- $(document).ready(function(){
-   headline2_count = $("div.headline2").size();
-   $("div.headline2:eq("+current_headline2+")").css('top','5px');
+$(document).ready(function(){
+		    headline2_count = $("div.headline2").length ;
+		    $("div.headline2:eq("+current_headline2+")").css('top','5px');
 
-   headline2_interval = setInterval(headline2_rotate,tempo2); //temps en millisecondes
-   $('#scrollup2').hover(function() {
-     clearInterval(headline2_interval);
-   }, function() {
-     headline2_interval = setInterval(headline2_rotate,tempo2); //temps en millisecondes
-     headline2_rotate();
-   });
- });
+		    headline2_interval = setInterval(headline2_rotate,tempo2); //temps en millisecondes
+		    $('#scrollup2').hover(function() {
+					    clearInterval(headline2_interval);
+					  }, function() {
+					    headline2_interval = setInterval(headline2_rotate,tempo2); //temps en millisecondes
+					    headline2_rotate();
+					  });
+		  });
 
- function headline2_rotate() {
-   current_headline2 = (old_headline2 + 1) % headline2_count;
-   $("div.headline2:eq(" + old_headline2 + ")").animate({top: -hauteur2},"slow", function() {
-     $(this).css('top','[(#CONFIG{escal/config/largeurimagenoisettes,170})]px');
-   });
-   $("div.headline2:eq(" + current_headline2 + ")").show().animate({top: 5},"slow");
-   old_headline2 = current_headline2;
- }
+function headline2_rotate() {
+  current_headline2 = (old_headline2 + 1) % headline2_count;
+  $("div.headline2:eq(" + old_headline2 + ")").animate({top: -hauteur2},"slow", function() {
+							 $(this).css('top','[(#CONFIG{escal/config/largeurimagenoisettes,170})]px');
+						       });
+  $("div.headline2:eq(" + current_headline2 + ")").show().animate({top: 5},"slow");
+  old_headline2 = current_headline2;
+}
+
 
 // *************************************
 // pour la noisette inc-annonce_defilant
 // *************************************
 
- var headline3_count;
- var headline3_interval;
- var old_headline3 = 0;
- var current_headline3 = 0;
- var hauteur3 = '#CONFIG{escal/config/hauteurannoncedefil,210}' - 5;
- var tempo3 = '#CONFIG{escal/config/tempoannoncedefil,8}' * 1000;
+var headline3_count ;
+var headline3_interval ;
+var headline3_current ;
+var hauteur3 = '#CONFIG{escal/config/hauteurannoncedefil,210}' - 5 ;
+var tempo3 = '#CONFIG{escal/config/tempoannoncedefil, 8}' * 1000 ;
 
- $(document).ready(function(){
-   headline3_count = $("div.headline3").size();
-   $("div.headline3:eq("+current_headline3+")").css('top','0px');
+$(document).ready(
+  function()
+  {
+    headline3_count = $("div.headline3").length ;
+    // The div elements are organized as a stack, the 1st one below and the
+    // last one on the top. We need to hide elements 2..n to show the #1.
+    for (headline3_current = 1 ;
+         headline3_current < headline3_count ;
+         ++headline3_current)
+      $("div.headline3")
+        .eq(headline3_current)
+          .animate({top: -hauteur3},
+                   0,
+                   function()
+	           {
+	             $(this).css('top','[(#CONFIG{escal/config/hauteurannoncedefil,210})]px') ;
+	           }
+	          ) ;
+  headline3_current = 0 ;
+  console.log("document.ready headline3_count="+headline3_count+" headline3_current="+headline3_current) ;
 
-   headline3_interval = setInterval(headline3_rotate,tempo3); //temps en millisecondes
-   $('#scrollup3').hover(function() {
-     clearInterval(headline3_interval);
-   }, function() {
-     headline3_interval = setInterval(headline3_rotate,tempo3); //temps en millisecondes
-     headline3_rotate();
-   });
- });
+    //temps en millisecondes
+    headline3_interval = setInterval(headline3_rotate,tempo3) ;
+    $('#scrollup3').hover(
+      function()
+      {
+        clearInterval(headline3_interval) ;
+      },
+      function()
+      {
+        //temps en millisecondes
+        headline3_interval = setInterval(headline3_rotate, tempo3) ;
+        headline3_rotate() ;
+      }
+    ) ;
+  }
+) ;
 
- function headline3_rotate() {
-   current_headline3 = (old_headline3 + 1) % headline3_count;
-   $("div.headline3:eq(" + old_headline3 + ")").animate({top: -hauteur3},"slow", function() {
-     $(this).css('top','[(#CONFIG{escal/config/hauteurannoncedefil,210})]px');
-   });
-   $("div.headline3:eq(" + current_headline3 + ")").show().animate({top: 0},"slow");
-   old_headline3 = current_headline3;
- }
+
+function headline3_rotate()
+{
+  console.log("headline3_rotate : efface  headline3_count="+headline3_count+" headline3_current="+headline3_current) ;
+  $("div.headline3")
+    .eq(headline3_current)
+      .animate({top: -hauteur3},
+               "slow",
+               function()
+	       {
+		 $(this).css('top','[(#CONFIG{escal/config/hauteurannoncedefil,210})]px') ;
+	       }
+	      ) ;
+
+
+  // Next element : use an addition and a test rather than a modulo, it's
+  // faster to compute.
+  // To be noted : the test is >= rather than >. Indeed > should suit but >=
+  // acts as a goal-keeper just in case headline3_current would have an
+  // unattended value at entry.
+  if (++headline3_current >= headline3_count) headline3_current = 0 ;
+  console.log("headline3_rotate : affiche headline3_count="+headline3_count+" headline3_current="+headline3_current) ;
+  $("div.headline3").eq(headline3_current).show().animate({top: 0}, "slow") ;
+}
+
 
 // **********************************
 // pour la noisette inc-sites_favoris
@@ -114,7 +171,7 @@
  var tempo4 = '#CONFIG{escal/config/tempositesfav,8}' * 1000;
 
  $(document).ready(function(){
-   headline4_count = $("div.headline4").size();
+   headline4_count = $("div.headline4").length ;
    $("div.headline4:eq("+current_headline4+")").css('top','5px');
 
    headline4_interval = setInterval(headline4_rotate,tempo4); //temps en millisecondes
@@ -146,7 +203,7 @@
  var tempo5 = '#CONFIG{escal/config/tempoperso,5}' * 1000;
 
  $(document).ready(function(){
-   headline5_count = $("div.headline5").size();
+   headline5_count = $("div.headline5").length ;
    $("div.headline5:eq("+current_headline5+")").css('top','5px');
 
    headline5_interval = setInterval(headline5_rotate,tempo5); //temps en millisecondes

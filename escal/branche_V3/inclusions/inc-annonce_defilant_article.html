@@ -1,0 +1,34 @@
+[(#REM)
+  D'après la noisette inc-annonce_defilant.html de J.-C. Villeneuve dans le
+  squelette Escal v3.79.30.
+
+  Nom de la noisette : inc-annonce_defilant_article.html
+  Auteur             : Patrice Guerlais
+  Licence            : BSD Licence
+  Date               : 08 Mai 2015
+
+  Paramètres de cette noisette :
+   {id_article}{numéro de l'article}{nombre total d'articles}
+
+  Exemple (remplacer les no_ par #, et <crochet ouvrant> et <crochet fermant> par... devinez !) :
+<crochet ouvrant>(no_INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=no_COMPTEUR_BOUCLE}{total=no_TOTAL_BOUCLE})<crochet fermant>
+]
+
+<BOUCLE_inc_annonce_defilant_article(ARTICLES){id_article}>
+  <div class="headline3" >
+    <div class="annoncedefil">
+      [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+        <span class="compteur-annonce">#ENV{compteur}/#ENV{total}</span>
+      ]
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
+
+      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
+
+      <div class="#EDIT{texte}">
+        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
+        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
+        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
+      </div>
+    </div>
+  </div>
+</BOUCLE_inc_annonce_defilant_article>

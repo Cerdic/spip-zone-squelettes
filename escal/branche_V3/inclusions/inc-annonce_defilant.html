@@ -1,168 +1,46 @@
+[(#REM)
+  D'après la noisette inc-annonce_defilant.html de J.-C. Villeneuve dans le
+  squelette Escal v3.79.30.
+
+  Nom de la noisette : inc-annonce_defilant.html
+  Auteur             : Patrice Guerlais
+  Licence            : BSD Licence
+  Date               : 08 Mai 2015
+
+  Paramètres de cette noisette : aucun
+
+  Exemple (remplacer les no_ par #, et <crochet ouvrant> et <crochet fermant> par... devinez !) :
+<crochet ouvrant>(no_INCLURE{fond=inclusions/inc-annonce_defilant})<crochet fermant>
+]
+
 <BOUCLE_test(ARTICLES){titre_mot=annonce-defilant}{lang}>
 </BOUCLE_test>
   
 <div id="scrollup3">
 <!-- affichage par défaut selon le numéro du titre -->
-  <BOUCLE_annoncedefaut1(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par num titre}{1,n}>
-    #SET{total1, #TOTAL_BOUCLE|plus{1} }
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total1}</span>
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
+  <BOUCLE_annoncedefaut1(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par num titre}{0,n}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annoncedefaut1>
-  <BOUCLE_annoncedefaut2(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par num titre}{0,1}>
-    #SET{compteur1,#COMPTEUR_BOUCLE}
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    [(#GET{total1}|?{<span class="compteur-annonce">#GET{compteur1}/#GET{total1}</span>,''})]
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
-  </BOUCLE_annoncedefaut2>
 
 <!-- affichage selon le numéro du titre -->
-  <BOUCLE_annonce(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={numtitre}|oui}{titre_mot=annonce-defilant}{lang}{par num titre}{1,n}>
-    #SET{total2, #TOTAL_BOUCLE|plus{1} }
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total2}</span>
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
+  <BOUCLE_annonce(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={numtitre}|oui}{titre_mot=annonce-defilant}{lang}{par num titre}{0,n}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce>
-  <BOUCLE_annonce2(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={numtitre}|oui}{titre_mot=annonce-defilant}{lang}{par num titre}{0,1}>
-    #SET{compteur2,#COMPTEUR_BOUCLE}
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    [(#GET{total2}|?{<span class="compteur-annonce">#GET{compteur2}/#GET{total2}</span>,''})]
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
-  </BOUCLE_annonce2>
 
 <!-- affichage selon la date -->  
-  <BOUCLE_annonce3(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{1,n}>
-    #SET{total3, #TOTAL_BOUCLE|plus{1} }
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total3}</span>
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
+  <BOUCLE_annonce3(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{0,n}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce3>  
-  <BOUCLE_annonce4(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{0,1}>
-    #SET{compteur3,#COMPTEUR_BOUCLE}
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    [(#GET{total3}|?{<span class="compteur-annonce">#GET{compteur3}/#GET{total3}</span>,''})]
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
-  </BOUCLE_annonce4> 
 
 <!-- affichage selon la date inverse -->
-  <BOUCLE_annonce5(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{1,n}>
-    #SET{total4,#TOTAL_BOUCLE|plus{1} }
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total4}</span>
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
+  <BOUCLE_annonce5(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{0,n}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce5>     
-  <BOUCLE_annonce6(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{0,1}>
-    #SET{compteur4,#COMPTEUR_BOUCLE}
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    [(#GET{total4}|?{<span class="compteur-annonce">#GET{compteur4}/#GET{total4}</span>,''})]
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
-  </BOUCLE_annonce6>   
+
 
 <!-- affichage par hasard -->  
   <BOUCLE_annonce7(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={hasard}|oui}{titre_mot=annonce-defilant}{lang}{par hasard}>
-    #SET{total5, #TOTAL_BOUCLE }
-    <div class="headline3" >
-    <div class="annoncedefil">
-    [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-    <span class="compteur-annonce">#COMPTEUR_BOUCLE/#GET{total5}</span>
-    ]
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" class="suite" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_suite:></strong></a>
-      <div class="annonce-titre #EDIT{titre}">#TITRE</div>
-      <div class="#EDIT{texte}">
-        [(#TEXTE|extraire_balise{img}|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)[(#TEXTE*|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article})]]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)[(#TEXTE|couper{#CONFIG{escal/config/tailletexteannoncedefil,300}}|propre)] ]
-      </div>
-    </div>
-    </div>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce7>    
 </div>
 
