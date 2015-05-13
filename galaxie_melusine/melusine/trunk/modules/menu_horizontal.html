@@ -1,19 +1,15 @@
 <BOUCLE_exclus(RUBRIQUES) {titre_mot=exclu} {doublons}{lang}>
 </BOUCLE_exclus>
-<div  role="banner" class="navbar navbar-fixed-top navbar-default hidden-md hidden-lg hidden-sm">
- 
-
+<div  role="banner" 
+  class="navbar navbar-fixed-top navbar-default hidden-md hidden-lg hidden-sm">
     <div class="navbar-header ">
-
       <!-- <a href="#URL_SITE_SPIP/" class="home navbar-brand"><i class=" fa fa-home fa-2x"></i></a></li> -->
-      
-     
-      <span class="navbar-brand">#NOM_SITE_SPIP</span>
-    
-           
-      
+      <span class="navbar-brand">#NOM_SITE_SPIP</span>         
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button" 
+              class="navbar-toggle" 
+              data-toggle="collapse" 
+              data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -24,22 +20,35 @@
 
 <div class="navbar-conteneur">
   <ul class="nav navbar-nav menu-horizontal navbar-collapse collapse ">
-    <li ><a href="#URL_SITE_SPIP/" class="home"><i class="fa fa-home fa-2x"></i></a></li>
+    <li >
+        <a href="#URL_SITE_SPIP/" class="home">
+          <i class="fa fa-home fa-2x"></i>
+        </a>
+    </li>
+    <!-- On boucle sur les rubriques -->
     <BOUCLE_n1(RUBRIQUES){racine}{par titre}{doublons}>
-     #SET{enfants,''}
-      <BOUCLE_test(RUBRIQUES){id_parent}>
-      #SET{enfants,#ID_RUBRIQUE}
+      #SET{enfants,''}
+      <!-- On boucle sur les sous-rubriques -->
+      <BOUCLE_test(RUBRIQUES){id_parent}{par titre}>
+        #SET{enfants,#ID_RUBRIQUE}
       </BOUCLE_test>
-    
-       <li class="dropdown #EXPOSE">
-          <a  role="button" [(#GET{enfants}|oui)data-toggle="dropdown"]  href="[(#GET{enfants}|oui)#][(#GET{enfants}|non)#URL_RUBRIQUE]">#TITRE <b class="caret"></b></a>
-          <B_n2>
-            <ul class="dropdown-menu" role="menu">
-              <BOUCLE_n2(RUBRIQUES){id_parent}>
-                <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-              </BOUCLE_n2>
-            </ul>
-          </B_n2>
+  <!-- Nom de la rubrique cliquable pour accéder à sa page -->
+      <li class="dropdown #EXPOSE">
+        <a  role="button" href="#URL_RUBRIQUE"> #TITRE </a>
+  <!-- Si cette rubrique a des sous-rubriques, on a une flèche pour déplier -->
+        [(#GET{enfants}|oui)
+        <a  role="button" data-toggle="dropdown" href="#" class="flechebas">
+          <b class="caret"></b>
+        </a>
+        ]
+  <!-- Liste des sous-rubriques cliquables -->
+        <B_n2>
+          <ul class="dropdown-menu" role="menu">
+            <BOUCLE_n2(RUBRIQUES){id_parent}{par titre}>
+               <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+            </BOUCLE_n2>
+          </ul>
+        </B_n2>
       </li>
     </BOUCLE_n1>
   </ul>
