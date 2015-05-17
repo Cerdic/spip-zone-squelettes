@@ -1,0 +1,55 @@
+[(#REM)
+    Fil d'ariane:
+    Fichier général contenant tout les fils d'ariane de tout les fichiers et objets SPIP
+    A compléter avec les objets personnel.
+]
+<nav id="hierarchie" class="breadcrumbs">
+    <a href="#URL_SITE_SPIP/" [title="(#NOM_SITE_SPIP|attribut_html|couper{80})"] class="accueil">
+        <:accueil_site:>
+    </a>
+
+    [(#REM) Fil d'arianne des rubriques et des brèves ]
+    <BOUCLE_ariane_rubrique(HIERARCHIE)
+                                        {si #SI_PAGE{rubrique}|oui
+                                        |ou{#SI_PAGE{breve}|oui}}
+                                        {id_rubrique}>
+        <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
+            [(#TITRE|couper{30})]
+        </a>
+    </BOUCLE_ariane_rubrique>
+        [(#REM) Titre de la breve ]
+        <BOUCLE_titre_breve(BREVES){id_breve ?}>
+            [<a href="#" class="current">(#TITRE|couper{30})</a>]
+        </BOUCLE_titre_breve>
+    </B_ariane_rubrique>
+
+    [(#REM) Fil d'arianne des article ]
+    <BOUCLE_ariane_article(HIERARCHIE) {si #SI_PAGE{article}|oui} {id_article}>
+        <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
+            [(#TITRE|couper{30})]
+        </a>
+    </BOUCLE_ariane_article>
+        [(#REM) Titre d'article. ]
+        <BOUCLE_titre_article(ARTICLES){id_article ?}>
+            [<a href="#" class="current">(#TITRE|couper{30})</a>]
+        </BOUCLE_titre_article>
+    </B_ariane_article>
+
+
+    [(#REM) Titre de la rubrique en cour. ]
+    <BOUCLE_titre_rubrique(RUBRIQUES)
+                                    {si #SI_PAGE{rubrique}|oui}
+                                    {id_rubrique}>
+        [<a href="#" class="current">(#TITRE|couper{30})</a>]
+    </BOUCLE_titre_rubrique>
+
+    [(#REM) Erreur 404 ]
+    [(#SI_PAGE{404}|oui)
+        <a href="#" title="<:pass_erreur:>[ (#ENV{status})]"><:pass_erreur:> 404</a>
+    ]
+
+    [(#REM) Page de recherche ]
+    [(#SI_PAGE{recherche})
+        <a href="#" title="<:info_rechercher:>"><:info_rechercher:></a>
+    ]
+</nav>

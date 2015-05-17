@@ -1,0 +1,42 @@
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+
+  [(#REM) Selection du bloc-grid en fonction de la version de Foundation ]
+
+  [(#CONFIG{foundation/variante}|>={4}|?{
+    #SET{block, small-block-grid-2 large-block-grid-4},
+    #SET{block, block-grid 4-up mobile-two-up}
+  })]
+
+  <ul id="galerie" class="#GET{block}">
+    <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{vu=non}>
+      <li>
+	[<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE" rel="documents_portfolio[-a(#ID_ARTICLE)]" [ title="(#TITRE|attribut_html|couper{80})"]>
+	(#FICHIER
+	|image_passe_partout{200, 200}
+	|image_recadre{200,200,center}
+	|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})
+	</a>]
+      </li>
+    </BOUCLE_documents_portfolio>
+  </ul>
+</B_documents_portfolio>
+
+
+[(#REM)
+Liste des autres documents joints
+]
+<B_documents_joints>
+  <section class="liste documents documents_joints">
+    <h2 class="h2"><:medias:titre_documents_joints:></h2>
+    <ul class="liste-items">
+      <BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[
+	<li class="item">
+	  <strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:medias:info_document:>})]</a></strong>
+	  <span class="small">(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</span>
+	  #DESCRIPTIF
+	  ]</li>
+      </BOUCLE_documents_joints>
+    </ul>
+  </section>
+</B_documents_joints>
