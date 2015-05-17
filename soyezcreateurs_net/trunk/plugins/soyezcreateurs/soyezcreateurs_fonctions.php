@@ -407,7 +407,7 @@ function sc_agenda_mini($i) {
 		}
     }
 	$la_date = mktime(0, 0, 0, mois($une_date), 1, annee($une_date));
-    include_spip('inc/agenda');
+    include_spip('inc/sc_agenda');
     return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
 function sc_agenda_grand($i) {
@@ -425,7 +425,7 @@ function sc_agenda_grand($i) {
 		}
     }
 	$la_date = mktime(0, 0, 0, mois($une_date), 1, annee($une_date));
-    include_spip('inc/agenda');
+    include_spip('inc/sc_agenda');
     return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
 function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
