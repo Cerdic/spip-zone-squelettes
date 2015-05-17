@@ -7,7 +7,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @pipeline autoriser */
 function zoundation_autoriser(){}
 
-
 /**
 * Fonction d'autorisation pour tester si une personne est connectée ou non
 * On utilise ce système pour éviter de générer trop de cache sur les tests
@@ -22,6 +21,6 @@ function zoundation_autoriser(){}
 * @param mixed $opt
 * @access public
 */
-function zoundation_connecter_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_connecter_dist($faire, $type, $id, $qui, $opt) {
     return ($qui['id_auteur'] !== 0);
 }
