@@ -6,7 +6,7 @@ Créer une une topbar avec toutes la racine du site
   <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
 
     [(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
-    <li <BOUCLE_test_sous_rubriques(RUBRIQUES){id_parent}{0,1}>class="has-dropdown"</BOUCLE_test_sous_rubriques>>
+    <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
       <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
         [(#TITRE|couper{80})]
       </a>
@@ -14,7 +14,7 @@ Créer une une topbar avec toutes la racine du site
       <B_sous_rubrique>
         <ul class="dropdown">
           <BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
-            <li <BOUCLE_test_sous_rubriques_2(RUBRIQUES){id_parent}{0,1}>class="has-dropdown"</BOUCLE_test_sous_rubriques_2>>
+            <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
               <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>[(#TITRE|couper{80})]</a>
 
               [(#REM) On génère autant de dropdow qu'il faut ]
