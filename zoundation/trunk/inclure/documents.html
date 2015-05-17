@@ -11,12 +11,12 @@
   <ul id="galerie" class="#GET{block}">
     <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{vu=non}>
       <li>
-	[<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE" rel="documents_portfolio[-a(#ID_ARTICLE)]" [ title="(#TITRE|attribut_html|couper{80})"]>
-	(#FICHIER
-	|image_passe_partout{200, 200}
-	|image_recadre{200,200,center}
-	|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})
-	</a>]
+	      [<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE" rel="documents_portfolio[-a(#ID_ARTICLE)]" [ title="(#TITRE|attribut_html|couper{80})"]>
+        (#FICHIER
+        |image_passe_partout{200, 200}
+        |image_recadre{200,200,center}
+        |inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})
+        </a>]
       </li>
     </BOUCLE_documents_portfolio>
   </ul>
@@ -31,11 +31,11 @@ Liste des autres documents joints
     <h2 class="h2"><:medias:titre_documents_joints:></h2>
     <ul class="liste-items">
       <BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[
-	<li class="item">
-	  <strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:medias:info_document:>})]</a></strong>
-	  <span class="small">(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</span>
-	  #DESCRIPTIF
-	  ]</li>
+        <li class="item">
+          <strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:medias:info_document:>})]</a></strong>
+          <span class="small">(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</span>
+          #DESCRIPTIF
+          ]</li>
       </BOUCLE_documents_joints>
     </ul>
   </section>
