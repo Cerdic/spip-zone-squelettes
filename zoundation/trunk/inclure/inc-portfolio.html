@@ -1,0 +1,25 @@
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+
+  [(#REM) Selection du bloc-grid en fonction de la version de Foundation ]
+
+  [(#CONFIG{foundation/variante}|>={4}|?{
+    #SET{block, small-block-grid-2 large-block-grid-4},
+    #SET{block, block-grid 4-up mobile-two-up}
+  })]
+
+  #ANCRE_PAGINATION
+  <ul id="galerie" class="[(#GET{block})]">
+    <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{vu=non}{pagination 20}>
+      <li>
+        [<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE" rel="documents_portfolio[-a(#ID_ARTICLE)]"[ title="(#TITRE|attribut_html|couper{80})"]>
+        (#FICHIER
+        |image_passe_partout{200, 200}
+        |image_recadre{200,200,center}
+        |inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})
+        </a>]
+      </li>
+    </BOUCLE_documents_portfolio>
+  </ul>
+  [<p class="pagination">(#PAGINATION)</p>]
+</B_documents_portfolio>
