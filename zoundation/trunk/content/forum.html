@@ -8,10 +8,13 @@
     <h3><:en_reponse:></h2>
 
     <BOUCLE_forum_parent(FORUMS) {id_forum}>
-      <article>
-        <h3 class="h3"><a href="#URL_FORUM">#TITRE</a></h3>
-        <div class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)[&nbsp;(#DATE|heures)][:(#DATE|minutes)]</abbr>][<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#NOM)</span>]</div>
-        [<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+      <article class="comment comment-message">
+        <header class="comment-meta">
+          <INCLURE{fond=inclure/inc-header-forum, env, id_forum} />
+        </header>
+        <section class="comment-content">
+          <INCLURE{fond=inclure/inc-content-forum, env, id_forum} />
+        </section>
       </article>
     </BOUCLE_forum_parent>
 
