@@ -11,4 +11,4 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
- $GLOBALS['z_blocs'] = array('content','colonne_1','colonne_2','head','head_js','header','footer');
+$GLOBALS['z_blocs'] = array('content','colonne_1','colonne_2','head','head_js','header','footer');
