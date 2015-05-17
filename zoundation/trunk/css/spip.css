@@ -1,68 +1,106 @@
 /* --------------------------------------------------------------
 
-   spip.css.html
    Styles associes au code genere par SPIP
-   Cf.: http://www.spip-contrib.net/3821
 
 -------------------------------------------------------------- */
 
 /* Listes SPIP */
 ul.spip,
-ol.spip { margin-left: /*@text-indent*/50px/*/@*/; }
-ul.spip { list-style-type: disc; }
-li ul.spip { list-style-type: circle; }
+ol.spip { margin-left: 50px; }
+@media (max-width: 640px) {
+	ul.spip,
+	ol.spip { margin-left: 1.5em; }
+}
+ul.spip { list-style-type: square; }
+li ul.spip { list-style-type: disc; }
+li li ul.spip { list-style-type: circle; }
 ol.spip { list-style-type: decimal; }
 
 dl.spip dt,
-dl.spip dd { padding-left: /*@text-indent*/50px/*/@*/; }
+dl.spip dd { padding-left: 50px; }
 dl.spip dt { clear: both; }
 dl.spip dd {}
 
+/* Tableaux SPIP */
+table.spip { width: 100%; }
+table.spip caption {}
+table.spip tr.row_first th {}
+table.spip tr.odd td {}
+table.spip tr.even td {}
+
 /* Citations, code et poesie */
-blockquote.spip {}
-.spip_poesie {}
-.spip_poesie div { margin-left: /*@text-indent*/50px/*/@*/; text-indent: -/*@text-indent*/50px/*/@*/; }
+blockquote.spip { min-height: 40px; background: url(img/quote.png) no-repeat; }
+.spip_poesie { border-left: 1px solid; }
+.spip_poesie div { margin-left: 50px; text-indent: -50px; }
 .spip_code,
-.spip_cadre {font-family: /*@font-family-mono*/'andale mono','lucida console',monospace/*/@*/; font-size: 1em;}
-.spip_cadre {padding:/*@demi-margin-bottom*/0.75em/*/@*/;width: 100%;-webkit-box-sizing: border-box;-ms-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.spip_cadre { font-family: 'Courier New', Courier, monospace; font-size: 1em; }
 
 /* Enluminures typo V3 / Cf.: http://www.spip-contrib.net/3118 */
-sc { font-variant: small-caps; }
+sc, .sc { font-variant: small-caps; }
 .caractencadre-spip { background-color: #FFFFCC; color: purple; }
 .caractencadre2-spip { background-color: #FFFFCC; color: orange; }
-.texteencadre-spip { display: block; margin:/*@margin-bottom*/1.5em/*/@*/ /*@text-indent*/50px/*/@*/; padding: /*@demi-line-height*/0.75em/*/@*/; background: #EEE; }
+.texteencadre-spip { display: block; margin: 1.5em 50px; padding: 1.5em; background: #EEE; }
 
 /* Logos, documents et images */
-.spip_logos { float: left; margin: 0; margin-right: /*@margin-bottom*/1.5em/*/@*/; margin-bottom: /*@margin-bottom*/1.5em/*/@*/; padding: 0; border: none; }
+.spip_logos { float: left; margin: 0 10px 10px 0; padding: 0; border: none; }
 
-.spip_documents { margin-bottom: /*@margin-bottom*/1.5em/*/@*/; padding: 0; background: none; }
+.spip_documents { margin-bottom: 1.5em; padding: 0; background: none; }
 .spip_documents,
 .spip_documents_center,
 .spip_doc_titre,
 .spip_doc_descriptif { margin-right: auto; margin-left: auto; text-align: center; }
 .spip_documents_center { clear: both; display: block; width: 100%; }
-.spip_documents_left { float: left; margin-right: /*@margin-bottom*/1.5em/*/@*/; }
-.spip_documents_right { float: right; margin-left: /*@margin-bottom*/1.5em/*/@*/; }
+.spip_documents_left { float: left; margin-right: 1.5em; }
+.spip_documents_right { float: right; margin-left: 1.5em; }
 .spip_doc_titre {}
 .spip_doc_descriptif { clear: both; }
 
 /* Modeles par defaut */
-.spip_modele { float: right; display: block; width: 25%; border: 1px dotted #666; }
+.spip_modele { float: right; display: block; width: 25%; margin: 0 0 1.5em 1.5em; padding: 1.5em; background-color: #EEE; }
+
+/* Formulaires */
+.formulaire_spip {}
+.formulaire_spip li { clear: both; margin-bottom: 0.75em; }
+.formulaire_spip .boutons { clear: both; margin: 0; padding: 0; text-align: right; }
+.formulaire_spip .boutons input,
+.formulaire_spip .boutons button {}
+@media print {
+	.formulaire_spip { display: none; }
+}
+
+/* Barre typo */
+.markItUp .markItUpHeader ul .markItUpSeparator { display: none; }
+
+/* Previsu */
+.previsu { margin-bottom: 1.5em; padding: 0.75em; border: 2px dashed #F57900; }
+fieldset.previsu legend { color: #F57900; }
+
+/* Reponses */
+.reponse_formulaire { margin-bottom: 1.5em; padding: 0.75em; border: 2px solid #ddd; }
+.reponse_formulaire_ok { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.reponse_formulaire_erreur { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.reponse_formulaire_ok a { color: #264409; }
+.reponse_formulaire_erreur a { color: #8a1f11; }
+
+.erreur_message { color: red; }
+
+li.erreur input[type="text"], li.erreur input.text,
+li.erreur input[type="password"], li.erreur input.password,
+li.erreur textarea { background-color: #fbe3e4; border-color: #fbc2c4; }
 
 .spip_surligne { background-color: yellow; }
 
+/* Formulaire de recherche */
+.formulaire_recherche * { display: inline; }
+
 /* Paragraphes */
-div.spip, ul.spip, ol.spip, .spip_poesie, .spip_cadre, div.spip_code, .spip_documents.spip_documents_center { margin-bottom: /*@margin-bottom*/1.5em/*/@*/; }
+div.spip, ul.spip, ol.spip, .spip_poesie, .spip_cadre, div.spip_code, .spip_documents.spip_documents_center { margin-bottom: 1.5em; }
 
 /* Pagination */
 .pagination { clear: both; text-align: center; }
 @media print {
 	.pagination { display: none; }
 }
-
-/* Notes */
-.notes > div {padding-left: /*@text-indent*/50px/*/@*/; position: relative; }
-.notes .spip_note_ref { display:block;position:absolute;left:0;}
 
 /* Liens de SPIP */
 a.spip_note { font-weight: bold; } /* liens vers notes de bas de page */
@@ -75,9 +113,6 @@ a.spip_glossaire {} /* liens vers encyclopedie */
 	a.spip_out:after,
 	a.spip_url:after { content: " (" attr(href) ")"; }
 }
-
-/* Boutons action */
-.bouton_action_post,.bouton_action_post > div {display: inline;}
 
 /* Boutons d'admin */
 .ie6 .spip-admin,
