@@ -1,0 +1,17 @@
+<BOUCLE_forum_header(FORUMS){id_forum}>
+  [(#LOGO_AUTEUR|image_reduire{64,64})]
+  <a href="#forum#ID_FORUM" title="#ID_FORUM" class="ancre permalink comment-number">#</a>
+
+  <strong class="#EDIT{titre} comment-titre">
+    <a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a>
+  </strong>
+
+  [(#DATE|oui)
+  <p>
+    <abbr class="date"[ title="(#DATE|date_iso)"]>
+      [(#SET{date,[(#DATE|affdate_jourcourt)]})]
+      [(#SET{heure,[(#DATE|heures)][:(#DATE|minutes)]})]
+      <:zcore:date_forum{date=#GET{date},heure=#GET{heure}}:></abbr>]
+    [<span class="comment-author"><span class="sep">,</span> <:par_auteur:> <strong class="fn n #EDIT{qui}">(#NOM)</strong></span>
+  </p>]
+</BOUCLE_forum_header>
