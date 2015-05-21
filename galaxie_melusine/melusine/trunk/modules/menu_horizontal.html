@@ -1,52 +1,66 @@
+<!-- On exclut les rubriques ayany le mot clef EXCLU -->
 <BOUCLE_exclus(RUBRIQUES) {titre_mot=exclu} {doublons}{lang}>
 </BOUCLE_exclus>
+<!-- .................................. -->
+<!-- Cas d'un affichage sur petit écran -->
+<!-- .................................. -->
 <div  role="banner" 
   class="navbar navbar-fixed-top navbar-default hidden-md hidden-lg hidden-sm">
-    <div class="navbar-header ">
-      <!-- <a href="#URL_SITE_SPIP/" class="home navbar-brand"><i class=" fa fa-home fa-2x"></i></a></li> -->
-      <span class="navbar-brand">#NOM_SITE_SPIP</span>         
+     <div class="navbar-header ">
+      <!-- <a href="#URL_SITE_SPIP/" class="home navbar-brand"><i class=" fa fa-home fa-2x"></i></a></li> --> 
+        <span class="navbar-brand">#NOM_SITE_SPIP</span>
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" 
-              class="navbar-toggle" 
-              data-toggle="collapse" 
-              data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-</div>  
-
+        <button type="button" 
+                class="navbar-toggle" 
+                data-toggle="collapse" 
+                data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+</div> 
+<!-- .................................. --> 
+<!-- Cas pour un affichage classique    -->
+<!-- .................................. -->
 <div class="navbar-conteneur">
   <ul class="nav navbar-nav menu-horizontal navbar-collapse collapse ">
-    <li >
-        <a href="#URL_SITE_SPIP/" class="home">
-          <i class="fa fa-home fa-2x"></i>
-        </a>
+    <!-- Icone MAISON pour le retour à l'accueil -->
+    <li>
+      <a href="#URL_SITE_SPIP/" class="home">
+        <i class="fa fa-home fa-2x"></i>
+      </a>
     </li>
     <!-- On boucle sur les rubriques -->
     <BOUCLE_n1(RUBRIQUES){racine}{par titre}{doublons}>
       #SET{enfants,''}
+      <!-- On récupère le nom et l'URL de la rubrique mère -->
+      #SET{rub_mere,#TITRE}
+      #SET{url_mere,#URL_RUBRIQUE}
       <!-- On boucle sur les sous-rubriques -->
-      <BOUCLE_test(RUBRIQUES){id_parent}{par titre}>
+      <BOUCLE_test(RUBRIQUES){id_parent}>
         #SET{enfants,#ID_RUBRIQUE}
       </BOUCLE_test>
-  <!-- Nom de la rubrique cliquable pour accéder à sa page -->
+      <!-- Si les rubriques ont des sous-rubriques, on déplie la liste -->
       <li class="dropdown #EXPOSE">
-        <a  role="button" href="#URL_RUBRIQUE"> #TITRE </a>
-  <!-- Si cette rubrique a des sous-rubriques, on a une flèche pour déplier -->
-        [(#GET{enfants}|oui)
-        <a  role="button" data-toggle="dropdown" href="#" class="flechebas">
-          <b class="caret"></b>
+        <a  role="button" 
+            [(#GET{enfants}|oui)data-toggle="dropdown"]  
+            href="[(#GET{enfants}|oui)#][(#GET{enfants}|non)#URL_RUBRIQUE]">
+              #TITRE <b class="caret"></b>
         </a>
-        ]
-  <!-- Liste des sous-rubriques cliquables -->
         <B_n2>
           <ul class="dropdown-menu" role="menu">
-            <BOUCLE_n2(RUBRIQUES){id_parent}{par titre}>
-               <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-            </BOUCLE_n2>
+            <BOUCLE_n2(RUBRIQUES){id_parent}>
+              <!-- Sur la première ligne, on affiche le titre de la rubrique -->
+              [(#COMPTEUR_BOUCLE|=={1}|oui)
+              <li class="rub_mere"><a href="#GET{url_mere}">
+                    <i class="fa fa-caret-right"> #GET{rub_mere}</i>
+                  </a>
+              </li>]
+              <!-- Sur les autres lignes, on liste les sous-rubriques -->
+              <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+        </BOUCLE_n2>
           </ul>
         </B_n2>
       </li>
