@@ -114,7 +114,9 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 		"spip_noisettes",
 		"type = '".$infos_module['type'].
 		"' AND bloc = '".$infos_module['bloc'].
-		"' AND rang > ".$rang
+		"' AND rang > ".$rang,
+		"",//groupby (inutile)
+		"rang ASC" //orderby
 		);
 		if ($infos_module_suivant) {
 			// si oui, on intervertit les rangs
@@ -140,7 +142,9 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 		"spip_noisettes",
 		"type = '".$infos_module['type'].
 		"' AND bloc = '".$infos_module['bloc'].
-		"' AND rang < ".$rang
+		"' AND rang < ".$rang,
+		"",//groupby (inutile)
+		"rang DESC" //orderby
 		);
 		if ($infos_module_precedent) {
 			// si oui, on intervertit les rangs
@@ -179,11 +183,11 @@ function formulaires_melusine_deplacer_module_traiter_dist($id_noisette){
 	include_spip('inc/invalideur');
 	suivre_invalideur(1);
 
-	if (count($retour) < 1)
+	/*if (count($retour) < 1)
 		$retour = array(
 			'message_ok'=>'Saisie enregistr&eacute;e',
 			'id_noisette' => $id_noisette
-		);
+		);*/
 
 	return $retour;
 	
