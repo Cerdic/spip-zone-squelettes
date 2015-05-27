@@ -40,25 +40,26 @@
 	<!-- On boucle sur les brèves pour trouver celle en cours -->
 	<BOUCLE_breves(BREVES){id_breve=#ID_BREVE}>
 		<!-- On affiche la brève sélectionnée -->
-		<div class=" item">
+		<div class="item">
 			<!-- On affiche son titre -->
-			<div><i class="fa fa-caret-right"></i>#TITRE</div>
+			<div><h3><i class="fa fa-newspaper-o"></i> #TITRE</h3></div>
 			<!-- Affichage conditionnel de la date -->
 			[(#GET{voirdate}|=={oui}|oui)
 				<div class="date">[(#DATE|affdate{d/m/y})]</div>]
-			<!-- Affichage conditionnel du logo -->
-			[(#GET{voirlogo}|=={oui}|oui)
-				<!-- Si le logo est en style vignette -->
-				[(#GET{stylelogo}|=={vignette}|oui)
-				<a href="IMG/#LOGO_BREVE**?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  class="mediabox">
+				<!-- Affichage conditionnel du logo -->
+				[(#GET{voirlogo}|=={oui}|oui)
+					<!-- Si le logo est en style vignette -->
+					[(#GET{stylelogo}|=={vignette}|oui)
+<a href="IMG/#LOGO_BREVE**?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  
+					class="mediabox">
 					[(#LOGO_BREVE||image_reduire{120,0})]</a>
 					[(#TEXTE|image_reduire{120,0})]]
-				<!-- Si le logo est en style toute largeur -->
-				[(#GET{stylelogo}|=={large}|oui)
-					#LOGO_BREVE
-					#TEXTE
+					<!-- Si le logo est en style toute largeur -->
+					[(#GET{stylelogo}|=={large}|oui)
+						<div align=center>#LOGO_BREVE</div>
+						#TEXTE
+					]
 				]
-			]
 			<!-- Sans le logo, on n'affiche que le texte -->
 			[(#GET{voirlogo}|=={non}|oui)			
 					#TEXTE
