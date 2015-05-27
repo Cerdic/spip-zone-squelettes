@@ -1,5 +1,7 @@
 <?php
 
+define('_SURLIGNE_RECHERCHE_REFERERS',true);
+
 // Header prive
 $GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
  
