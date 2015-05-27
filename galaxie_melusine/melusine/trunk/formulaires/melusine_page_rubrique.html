@@ -1,0 +1,416 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE PAGE RUBRIQUE ********************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ENV{id_noisette}}>
+	#SET{params,#PARAMETRES|unserialize}
+	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	#SET{puce,#PARAMETRES|unserialize|table_valeur{puce}}
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
+	#SET{articles_ssrub,#PARAMETRES|unserialize|table_valeur{articles_ssrub}}
+	#SET{edito_rub,#PARAMETRES|unserialize|table_valeur{edito_rub}}
+</BOUCLE_noisette>
+
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})</p>]
+
+	[(#GET{style}|non)#SET{style,"bloc_visible"}]
+	[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
+	[(#GET{puce}|non)#SET{puce,"aucune"}]
+	[(#GET{descriptif}|non)#SET{descriptif,"oui"}]
+	[(#GET{taille}|non)#SET{taille,"200"}]
+	[(#GET{logo}|non)#SET{logo,"oui"}]
+	[(#GET{articles_ssrub}|non)#SET{articles_ssrub,"oui"}]
+	[(#GET{edito_rub}|non)#SET{edito_rub,"oui"}]
+	
+
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
+<!-- Début du formulaire -->
+<form action='#ENV{action}' method='post' enctype="multipart/form-data" >
+
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+<fieldset>
+	<legend>Apparence</legend>
+	<!-- Boutons radio pour choisir le style du bloc -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="style">Style</label>
+	<br />
+	<div class="z123alignecentre">
+		<input type="radio" name="style" value="bloc_visible" 
+		[(#GET{style}|=={bloc_visible}|oui) checked ]>Un seul bloc</input>
+		<input type="radio" name="style" value="multibloc" 
+		[(#GET{style}|=={multibloc}|oui) checked ]>Un bloc par item</input>
+		<input type="radio" name="style" value="bloc_invisible" 
+		[(#GET{style}|=={bloc_invisible}|oui) checked ]>Pas de bloc</input>
+	</div>
+
+	<!-- Boutons radio pour choisir le nombre de colonnes -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="disposition">Nombre de colonnes</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="disposition" value="col-md-12" 
+		[(#GET{disposition}|=={col-md-12}|oui) checked ]>1</input>
+		<input type="radio" name="disposition" value="col-md-6" 
+		[(#GET{disposition}|=={col-md-6}|oui) checked ]>2</input>
+		<input type="radio" name="disposition" value="col-md-4" 
+		[(#GET{disposition}|=={col-md-4}|oui) checked ]>3</input>
+		<input type="radio" name="disposition" value="col-md-3" 
+		[(#GET{disposition}|=={col-md-3}|oui) checked ]>4</input>
+		<input type="radio" name="disposition" value="col-md-2" 
+		[(#GET{disposition}|=={col-md-2}|oui) checked ]>6</input>
+	</div>
+
+	<!-- Boutons radio pour choisir l'icône -->
+	<i class="fa fa-exclamation-circle"></i>
+	<label for="puce">Choix d'une puce pour la liste</label>
+	<div class="z123alignecentre">
+		<input type="radio" name="puce" value="aucune" 
+			[(#GET{puce}|=={aucune}|oui) checked ]>
+				Aucune puce
+		</input>
+	</br>
+		<input type="radio" name="puce" value="neuter" width="13px;"
+			[(#GET{puce}|=={neuter}|oui) checked ]>
+				<i class="fa fa-neuter" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="adjust" width="13px;"
+			[(#GET{puce}|=={adjust}|oui) checked ]>
+			<i class="fa fa-adjust" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="sun-o" width="13px;"
+			[(#GET{puce}|=={sun-o}|oui) checked ]>
+			<i class="fa fa-sun-o" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="certificate" width="13px;"
+			[(#GET{puce}|=={certificate}|oui) checked ]>
+			<i class="fa fa-certificate" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="bullseye" width="13px;"
+			[(#GET{puce}|=={bullseye}|oui) checked ]>
+				<i class="fa fa-bullseye" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="ge" width="13px;"
+			[(#GET{puce}|=={ge}|oui) checked ]>
+				<i class="fa fa-ge" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="gittip" width="13px;"
+			[(#GET{puce}|=={gittip}|oui) checked ]>
+			<i class="fa fa-gittip" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="crosshairs" width="13px;"
+			[(#GET{puce}|=={crosshairs}|oui) checked ]>
+				<i class="fa fa-crosshairs" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="dot-circle-o" width="13px;"
+			[(#GET{puce}|=={dot-circle-o}|oui) checked ]>
+			<i class="fa fa-dot-circle-o" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="check-circle" width="13px;"
+			[(#GET{puce}|=={check-circle}|oui) checked ]>
+				<i class="fa fa-check-circle" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="circle-thin" width="13px;"
+			[(#GET{puce}|=={dot-circle-thin}|oui) checked ]>
+			<i class="fa fa-circle-thin" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="circle" width="13px;"
+			[(#GET{puce}|=={circle}|oui) checked ]>
+			<i class="fa fa-circle" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="circle-o" width="13px;"
+			[(#GET{puce}|=={circle-o}|oui) checked ]>
+			<i class="fa fa-circle-o" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="check-circle-o" width="13px;"
+			[(#GET{puce}|=={check-circle-o}|oui) checked ]>
+				<i class="fa fa-check-circle-o" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="mail-forward" width="13px;"
+			[(#GET{puce}|=={mail-forward}|oui) checked ]>
+				<i class="fa fa-mail-forward" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="share-square" width="13px;"
+			[(#GET{puce}|=={share-square}|oui) checked ]>
+			<i class="fa fa-share-square" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="caret-square-o-right" width="13px;"
+			[(#GET{puce}|=={caret-square-o-right}|oui) checked ]>
+			<i class="fa fa-caret-square-o-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="angle-double-right" width="13px;"
+			[(#GET{puce}|=={angle-double-right}|oui) checked ]>
+			<i class="fa fa-angle-double-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="arrow-circle-o-right" width="13px;"
+			[(#GET{puce}|=={arrow-circle-o-right}|oui) checked ]>
+			<i class="fa fa-arrow-circle-o-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="arrow-circle-right" width="13px;"
+			[(#GET{puce}|=={arrow-circle-right}|oui) checked ]>
+			<i class="fa fa-arrow-circle-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="chevron-circle-right" width="13px;"
+			[(#GET{puce}|=={chevron-circle-right}|oui) checked ]>
+			<i class="fa fa-chevron-circle-right" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="angle-right" width="13px;"
+			[(#GET{puce}|=={angle-right}|oui) checked ]>
+				<i class="fa fa-angle-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="arrow-right" width="13px;"
+			[(#GET{puce}|=={arrow-right}|oui) checked ]>
+			<i class="fa fa-arrow-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="caret-right" width="13px;"
+			[(#GET{puce}|=={caret-right}|oui) checked ]>
+				<i class="fa fa-caret-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="chevron-right" width="13px;"
+			[(#GET{puce}|=={chevron-right}|oui) checked ]>
+			<i class="fa fa-chevron-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="long-arrow-right" width="13px;"
+			[(#GET{puce}|=={long-arrow-right}|oui) checked ]>
+			<i class="fa fa-long-arrow-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="forward" width="13px;"
+			[(#GET{puce}|=={forward}|oui) checked ]>
+			<i class="fa fa-forward" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="step-forward" width="13px;"
+			[(#GET{puce}|=={step-forward}|oui) checked ]>
+			<i class="fa fa-step-forward" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="check-square-o" width="13px;"
+			[(#GET{puce}|=={check-square-o}|oui) checked ]>
+			<i class="fa fa-check-square-o" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="square" width="13px;"
+			[(#GET{puce}|=={square}|oui) checked ]>
+			<i class="fa fa-square" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="square-o" width="13px;"
+			[(#GET{puce}|=={square-o}|oui) checked ]>
+			<i class="fa fa-square-o" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="reorder" width="13px;"
+			[(#GET{puce}|=={reorder}|oui) checked ]>
+			<i class="fa fa-reorder" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="th-large" width="13px;"
+			[(#GET{puce}|=={th-large}|oui) checked ]>
+				<i class="fa fa-th-large" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="th" width="13px;"
+			[(#GET{puce}|=={th}|oui) checked ]>
+			<i class="fa fa-th" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="stack-exchange" width="13px;"
+			[(#GET{puce}|=={stack-exchange}|oui) checked ]>
+			<i class="fa fa-stack-exchange" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="bookmark" width="13px;"
+			[(#GET{puce}|=={bookmark}|oui) checked ]>
+			<i class="fa fa-bookmark" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="folder" width="13px;"
+			[(#GET{puce}|=={folder}|oui) checked ]>
+			<i class="fa fa-folder" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="tasks" width="13px;"
+			[(#GET{puce}|=={tasks}|oui) checked ]>
+				<i class="fa fa-tasks" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="pencil-square" width="13px;"
+			[(#GET{puce}|=={pencil-square}|oui) checked ]>
+			<i class="fa fa-pencil-square" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="folder-open" width="13px;"
+			[(#GET{puce}|=={folder-open}|oui) checked ]>
+			<i class="fa fa-folder-open" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="book" width="13px;"
+			[(#GET{puce}|=={book}|oui) checked ]>
+			<i class="fa fa-book" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="archive" width="13px;"
+			[(#GET{puce}|=={archive}|oui) checked ]>
+			<i class="fa fa-archive" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="star" width="13px;"
+			[(#GET{puce}|=={star}|oui) checked ]>
+			<i class="fa fa-star" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="puzzle-piece" width="13px;"
+			[(#GET{puce}|=={puzzle-piece}|oui) checked ]>
+				<i class="fa fa-puzzle-piece" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="star-o" width="13px;"
+			[(#GET{puce}|=={star-o}|oui) checked ]>
+			<i class="fa fa-star-o" min-width="17px;"></i>
+		</input>	
+		<input type="radio" name="puce" value="tint" width="13px;"
+			[(#GET{puce}|=={tint}|oui) checked ]>
+			<i class="fa fa-tint" min-width="17px;"></i>
+		</input>	
+		<input type="radio" name="puce" value="paper-plane" width="13px;"
+			[(#GET{puce}|=={paper-plane}|oui) checked ]>
+				<i class="fa fa-paper-plane" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="flag" width="13px;"
+			[(#GET{puce}|=={flag}|oui) checked ]>
+				<i class="fa fa-flag" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="hand-o-right" width="13px;" 
+			[(#GET{puce}|=={hand-o-right}|oui) checked ]>
+				<i class="fa fa-hand-o-right" min-width="17px;"></i>
+		</input>
+	</br>
+		<input type="radio" name="puce" value="genderless" width="13px;"
+			[(#GET{puce}|=={genderless}|oui) checked ]>
+			<i class="fa fa-genderless" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="cog" width="13px;"
+			[(#GET{puce}|=={cog}|oui) checked ]>
+			<i class="fa fa-cog" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="asterisk" width="13px;"
+			[(#GET{puce}|=={asterisk}|oui) checked ]>
+			<i class="fa fa-asterisk" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="toggle-right" width="13px;"
+			[(#GET{puce}|=={toggle-right}|oui) checked ]>
+			<i class="fa fa-toggle-right" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="cube" width="13px;"
+			[(#GET{puce}|=={cube}|oui) checked ]>
+			<i class="fa fa-cube" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="sign-out" width="13px;"
+			[(#GET{puce}|=={sign-out}|oui) checked ]>
+				<i class="fa fa-sign-out" min-width="17px;"></i>
+		</input>
+		<input type="radio" name="puce" value="quote-right" width="13px;"
+			[(#GET{puce}|=={quote-right}|oui) checked ]>
+			<i class="fa fa-quote-right" min-width="17px;"></i>
+		</input>
+	</div>
+
+
+<!-- *********************************************************************** -->
+<!-- BOUTON SUBMIT POUR APPARENCE ****************************************** -->
+<!-- *********************************************************************** -->
+	
+<div class="z123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer' />
+	<input type='submit' name='reset' value='Effacer' />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</div>
+</fieldset>
+<!-- *********************************************************************** -->
+<!-- PARAMETRAGE *********************************************************** -->
+<!-- *********************************************************************** -->
+
+<fieldset>
+	<legend>Paramétrage</legend>
+		<!-- Boutons radio pour afficher les descriptifs ou non -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="descriptif">Afficher les descriptifs</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="descriptif" value="oui" 
+				[(#GET{descriptif}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="descriptif" value="non" 
+				[(#GET{descriptif}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+
+		<!-- Champs texte pour changer le texte du bouton -->
+		<i class="fa fa-exclamation-circle"></i>	
+		<label for="taille">Longueur du descriptif 
+			(en nombre de caractères)</label>
+		<br />	
+		<div class="z123alignecentre">
+			<input type="text" name="taille" value="#GET{taille}">
+		</div>
+
+		<!-- Boutons radio pour afficher les logos ou non -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="logo">Afficher les logos</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="logo" value="oui" 
+				[(#GET{logo}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="logo" value="non" 
+				[(#GET{logo}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+	
+		<!-- Boutons radio pour afficher les articles des sous-rubriques -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="articles_ssrub">Afficher les articles des sous-rubriques
+		</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="articles_ssrub" value="oui" 
+				[(#GET{articles_ssrub}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="articles_ssrub" value="non" 
+				[(#GET{articles_ssrub}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+
+		<!-- Boutons radio pour la redirection automatique en cas d'1 article-->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="edito_rub">Redirection automatique si un seul article
+		dans la rubrique</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="edito_rub" value="oui" 
+				[(#GET{edito_rub}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="edito_rub" value="non" 
+				[(#GET{edito_rub}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+	<br />
+
+<!-- *********************************************************************** -->
+<!-- BOUTON SUBMIT POUR LES BOUTONS A AFFICHER ***************************** -->
+<!-- *********************************************************************** -->
+	<div class="z123alignecentre">
+		<input type='submit' name='ok2' value='Enregistrer' />
+		<input type='submit' name='reset2' value='Effacer' />
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+	</div>
+</fieldset>
+</form>
+	

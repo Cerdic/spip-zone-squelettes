@@ -1,15 +1,76 @@
-<div  class="module_content bloc_visible"> 	
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- PAGE BREVE ************************************************************ -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	<!-- Fond visible ou invisible -->
+    #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+    <!-- Afficher la date oui-non -->
+    #SET{voirdate,#PARAMETRES|unserialize|table_valeur{voirdate}}
+    <!-- Afficher le logo oui-non -->
+    #SET{voirlogo,#PARAMETRES|unserialize|table_valeur{voirlogo}}
+    <!-- Logo en toute largeur ou vignette -->
+    #SET{stylelogo,#PARAMETRES|unserialize|table_valeur{stylelogo}}
+    <!-- Afficher le lien hypertexte -->
+    #SET{voirurl,#PARAMETRES|unserialize|table_valeur{voirurl}}
+</BOUCLE_noisette>
+
+<!-- On attribue des valeurs par défaut -->
+[(#GET{style}|non)#SET{style,bloc_visible}]
+[(#GET{voirdate}|non)#SET{voirdate,oui}]
+[(#GET{voirlogo}|non)#SET{voirlogo,oui}]
+[(#GET{stylelogo}|non)#SET{stylelogo,vignette}]
+[(#GET{voirurl}|non)#SET{voirurl,oui}]
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE DE LA BREVE ************************************************* -->
+<!-- *********************************************************************** -->
+
+
+<!-- Affichage du style choisi fond visible ou pas -->
+<div  class="module_content #GET{style}"> 	
+	<!-- On boucle sur les brèves pour trouver celle en cours -->
 	<BOUCLE_breves(BREVES){id_breve=#ID_BREVE}>
-
+		<!-- On affiche la brève sélectionnée -->
 		<div class=" item">
+			<!-- On affiche son titre -->
 			<div><i class="fa fa-caret-right"></i>#TITRE</div>
-			<div class="date">[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</div>
-			<a href="IMG/#LOGO_BREVE**?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  class="mediabox">[(#LOGO_BREVE||image_reduire{120,0})]</a>
-			[(#TEXTE|image_reduire{120,0})]
-			[<div class="notes">(#NOTES)</div>]
-			[<div><:sur_web:>&nbsp;:&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
+			<!-- Affichage conditionnel de la date -->
+			[(#GET{voirdate}|=={oui}|oui)
+				<div class="date">[(#DATE|affdate{d/m/y})]</div>]
+			<!-- Affichage conditionnel du logo -->
+			[(#GET{voirlogo}|=={oui}|oui)
+				<!-- Si le logo est en style vignette -->
+				[(#GET{stylelogo}|=={vignette}|oui)
+				<a href="IMG/#LOGO_BREVE**?keepThis=true&amp;TB_iframe=true&amp;height=500&amp;width=500"  class="mediabox">
+					[(#LOGO_BREVE||image_reduire{120,0})]</a>
+					[(#TEXTE|image_reduire{120,0})]]
+				<!-- Si le logo est en style toute largeur -->
+				[(#GET{stylelogo}|=={large}|oui)
+					#LOGO_BREVE
+					#TEXTE
+				]
+			]
+			<!-- Sans le logo, on n'affiche que le texte -->
+			[(#GET{voirlogo}|=={non}|oui)			
+					#TEXTE
+			]
+			<!-- Affichage conditionnel du lien hypertexte -->
+			[(#GET{voirurl}|=={oui}|oui)
+				[<div>
+					<:sur_web:>
+					&nbsp;:&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a>
+				</div>]
+			]
 		</div>
-
 	</BOUCLE_breves>
 </div>
 	

@@ -1,0 +1,153 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE PAGE BREVE ************************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
+
+<BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }{parametres!=""}>
+	<!-- Fond visible ou invisible -->
+    #SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+    <!-- Afficher la date oui-non -->
+    #SET{voirdate,#PARAMETRES|unserialize|table_valeur{voirdate}}
+    <!-- Afficher le logo oui-non -->
+    #SET{voirlogo,#PARAMETRES|unserialize|table_valeur{voirlogo}}
+    <!-- Logo en toute largeur ou vignette -->
+    #SET{stylelogo,#PARAMETRES|unserialize|table_valeur{stylelogo}}
+    <!-- Afficher le lien hypertexte -->
+    #SET{voirurl,#PARAMETRES|unserialize|table_valeur{voirurl}}
+</BOUCLE_noisette>
+
+<!-- On attribue des valeurs par défaut -->
+[(#GET{style}|non)#SET{style,bloc_visible}]
+[(#GET{voirdate}|non)#SET{voirdate,oui}]
+[(#GET{voirlogo}|non)#SET{voirlogo,oui}]
+[(#GET{stylelogo}|non)#SET{stylelogo,vignette}]
+[(#GET{voirurl}|non)#SET{voirurl,oui}]
+
+
+<!-- *********************************************************************** -->
+<!-- ENREGISTREMENT ******************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- Messages si validation OK ou non -->
+[<p class="reponse_formulaire reponse_formulaire_ok">
+	(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">
+	(#ENV*{message_erreur})</p>]
+
+
+<!-- *********************************************************************** -->
+<!-- FORMULAIRE ************************************************************ -->
+<!-- *********************************************************************** -->
+
+<!-- Début du formulaire -->
+<form action='#ENV{action}' method='post' enctype="multipart/form-data" >
+
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+<!-- *********************************************************************** -->
+<!-- APPARENCE ************************************************************* -->
+<!-- *********************************************************************** -->
+<fieldset>
+	<legend>Apparence</legend>
+
+		<!-- Boutons radio pour choisir le style -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="style">Choix du style</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="style" value="bloc_visible" 
+				[(#GET{style}|=={bloc_visible}|oui)checked]>Fond visible
+			</input>
+			<input type="radio" name="style" value="bloc_invisible" 
+				[(#GET{style}|=={bloc_invisible}|oui)checked]>Fond invisible
+			</input>
+		</div>
+
+		<!-- Boutons radio pour choisir si on affiche le logo -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="voirlogo">Affichage du logo</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="voirlogo" value="oui" 
+				[(#GET{voirlogo}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="voirlogo" value="non" 
+				[(#GET{voirlogo}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+
+		<!-- Boutons radio pour choisir le style du logo -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="stylelogo">Style du logo</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="stylelogo" value="vignette" 
+				[(#GET{stylelogo}|=={vignette}|oui)checked]>Vignette
+			</input>
+			<input type="radio" name="stylelogo" value="large" 
+				[(#GET{stylelogo}|=={large}|oui)checked]>Toute largeur
+			</input>
+		</div>
+
+<!-- *********************************************************************** -->
+<!-- BOUTON SUBMIT POUR APPARENCE ****************************************** -->
+<!-- *********************************************************************** -->
+	
+<div class="z123alignecentre">
+	<input type='submit' name='ok' value='Enregistrer' />
+	<input type='submit' name='reset' value='Effacer' />
+	<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+</div>
+</fieldset>
+
+<!-- *********************************************************************** -->
+<!-- PARAMETRAGE *********************************************************** -->
+<!-- *********************************************************************** -->
+
+<fieldset>
+	<legend>Paramétrage</legend>
+		
+		<!-- Boutons radio pour choisir si on affiche la date -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="voirdate">Affichage de la date</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="voirdate" value="oui" 
+				[(#GET{voirdate}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="voirdate" value="non" 
+				[(#GET{voirdate}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+
+		<!-- Boutons radio pour choisir si on affiche le lien hypertexte -->
+		<i class="fa fa-exclamation-circle"></i>
+		<label for="voirurl">Affichage du lien hypertexte</label>
+		<br />
+		<div class="z123alignecentre">	
+			<input type="radio" name="voirurl" value="oui" 
+				[(#GET{voirurl}|=={oui}|oui)checked]>Oui
+			</input>
+			<input type="radio" name="voirurl" value="non" 
+				[(#GET{voirurl}|=={non}|oui)checked]>Non
+			</input>
+		</div>
+
+<!-- *********************************************************************** -->
+<!-- BOUTON SUBMIT POUR LES BOUTONS A AFFICHER ***************************** -->
+<!-- *********************************************************************** -->
+
+	<div class="z123alignecentre">
+		<input type='submit' name='ok2' value='Enregistrer' />
+		<input type='submit' name='reset2' value='Effacer' />
+		<input type='hidden' name='id_noisette' value="#ENV{id_noisette}" />
+	</div>
+</fieldset>
+</form>
+	
