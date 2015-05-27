@@ -1,34 +1,96 @@
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- PAGE RUBRIQUE ********************************************************* -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+
+<!-- *********************************************************************** -->
+<!-- RECUPERATION DES DONNEES ET INITIALISATION **************************** -->
+<!-- *********************************************************************** -->
 
 <BOUCLE_noisette(NOISETTES){id_noisette =#ID_NOISETTE }>
+	<!-- Style de blocs -->
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	<!-- Disposition en colonnes -->
+	#SET{disposition,#PARAMETRES|unserialize|table_valeur{disposition}}
+	<!-- Choix de la puce -->
+	#SET{puce,#PARAMETRES|unserialize|table_valeur{puce}}
+	<!-- Affichage du descriptif oui-non -->
+	#SET{descriptif,#PARAMETRES|unserialize|table_valeur{descriptif}}
+	<!-- Longueur du descriptif -->
+	#SET{taille,#PARAMETRES|unserialize|table_valeur{taille}}
+	<!-- Affichage des logos oui-non -->
+	#SET{logo,#PARAMETRES|unserialize|table_valeur{logo}}
+	<!-- Afficher la liste des articles -->
 	#SET{articles,#PARAMETRES|unserialize|table_valeur{articles_ssrub}}
+	<!-- Redirection en cas d'un seul article oui-non -->
+	#SET{edito_rub,#PARAMETRES|unserialize|table_valeur{edito_rub}}
 </BOUCLE_noisette>
 
+<!-- On attribue des valeurs par défaut -->
+[(#GET{style}|non)#SET{style,"bloc_visible"}]
+[(#GET{disposition}|non)#SET{disposition,"col-md-12"}]
+[(#GET{puce}|non)#SET{puce,"aucune"}]
+[(#GET{descriptif}|non)#SET{descriptif,"oui"}]
+[(#GET{taille}|non)#SET{taille,"200"}]
+[(#GET{logo}|non)#SET{logo,"oui"}]
+[(#GET{articles_ssrub}|non)#SET{articles_ssrub,"oui"}]
+[(#GET{edito_rub}|non)#SET{edito_rub,"oui"}]
+
+
+<!-- *********************************************************************** -->
+<!-- AFFICHAGE DE LA PAGE RUBRIQUE ***************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- On boucle sur la rubrique en cours -->
 <BOUCLE_larubrique(RUBRIQUES){id_rubrique}>
+
+	<!-- On récupère le style dans les paramètres -->
 	<div class="module_content #GET{style}" >
-		<INCLURE{fond=inclusions/articles_rubrique}{id_rubrique,id_noisette}>
-<!-- ********* Liens vers les rubriques filles   ****  -->
+
+		<!-- Si redirection en cas d'un seul article -->
+		[(#GET{edito_rub}|oui)
+			<INCLURE{fond=inclusions/articles_rubrique}
+					{id_rubrique,id_noisette}>]
+
+		<!-- Affichage des rubriques filles -->
 		<div class="rurub">
-			<!-- ****   Exclusion des rubriques dont le mot clé est exclu  *********************  -->
-			<BOUCLE_exclus(RUBRIQUES) {id_parent} {titre_mot="exclu"} {doublons}>
+
+			<!-- Exclusion des rubriques filles dont le mot clé est exclu -->
+			<BOUCLE_exclus(RUBRIQUES){id_parent}{titre_mot="exclu"}{doublons}>
 			</BOUCLE_exclus>
+
 			<div class="filles">
-				
-				<BOUCLE_rubriques_filles(RUBRIQUES){id_parent}{par titre}{doublons}>
-					<!-- *** Insertion des blocs (en 2 parties) correspondant aux rubriques filles =  -->
+				<!-- On boucle sur les rubriques filles -->
+				<BOUCLE_rubriques_filles(RUBRIQUES){id_parent}{par titre}
+										{doublons}>
 					<div class="bloc_rub3">
 						<div class="ensemrub">
-							<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
-							#MODELE{logo_rubrique}
-							#DESCRIPTIF
+							<!-- Affichage du titre de la rubrique fille -->
+							<h2>
+								<!-- Si une puce a été choisie -->
+								[(#GET{puce}|=={aucune}|non)
+									<i class="fa fa-#GET{puce}"></i>]
+								<!-- Lien vers la rubrique -->
+								<a href="#URL_RUBRIQUE">
+									[(#TITRE|supprimer_numero)]</a>
+							</h2>
+							<!-- Si le logo est à afficher -->
+							[(#GET{logo}|oui)
+								#MODELE{logo_rubrique}]
+							<!-- Si le descriptif est à afficher -->
+							[(#GET{descriptif}|oui)
+								<!-- Descriptif coupé -->
+								[(#DESCRIPTIF|couper{#GET{taille}})]]
 							<div style="clear:both;"></div>
-								<!--  fin de la classe ensemrub ****************************** -->
 						</div>
 
 						<!--  liste des ss rubriques et articles ****** -->
-						<INCLURE{fond=inclusions/liste-rubriques}{id_rubrique,id_noisette}>
+						[(#GET{articles}|oui)
+						<INCLURE{fond=inclusions/liste-rubriques}
+							{id_rubrique,id_noisette}>]
 
-					<!--  fin de la classe bloc_rub ****************************** -->
 					<BR>
 					</div>
 				</BOUCLE_rubriques_filles>
