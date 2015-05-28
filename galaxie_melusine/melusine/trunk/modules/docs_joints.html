@@ -14,12 +14,14 @@
 	#SET{titre_docs,#PARAMETRES|unserialize|table_valeur{titre_docs}}
 	#SET{titre_imgs,#PARAMETRES|unserialize|table_valeur{titre_imgs}}
 	#SET{style,#PARAMETRES|unserialize|table_valeur{style}}
+	#SET{voirimg,#PARAMETRES|unserialize|table_valeur{voirimg}}
 </BOUCLE_noisette>
 
 <!-- pas de défaut pour titre_docs et _imgs afin d'autoriser une chaine vide -->
 [(#GET{style}|non)#SET{style,'bloc_visible'}]
 [(#GET{titre_docs}|non)#SET{titre_docs,"Documents"}]
 [(#GET{titre_imgs}|non)#SET{titre_imgs,"Images"}]
+[(#GET{voirimg}|non)#SET{titre_imgs,"oui"}]
 
 
 
@@ -73,14 +75,19 @@
 
 
 <B_images_art>
-	<div class="module_content #GET{style}">
-	[<h2>(#GET{titre_imgs})</h2>]
+	<!-- Ouverture du DIV pour la partie des images si on les affiche -->
+	[(#GET{voirimg}|=={oui}|oui)
+		<div class="module_content #GET{style}">
+			[<h2>(#GET{titre_imgs})</h2>]
+	]
 <!-- Liens vers les images jointes ***************************************** -->
         <BOUCLE_images_art(DOCUMENTS)	{id_article}
         								{extension == jpg|png|gif|tif|bmp}
         								{mode=image}{doublons}>
 <!-- On affiche le logo, le titre, le descriptif, les crédits et la date *** -->
 <!-- Au clic, les images sont ouvertes dans une mediabox ******************* -->
+<!-- Test pour savoir si on affiche la liste des images jointes ************ -->
+			[(#GET{voirimg}|=={oui}|oui)
 			<div class="item">
 				<ul>
 					<li>
@@ -102,9 +109,13 @@
 					</li>
 				</ul>
 			</div>
+			]
         </BOUCLE_images_art>
 <!-- Fin de la classe images *********************************************** -->
+<!-- Fermeture du DIV pour la partie des images si on les affiche -->
+	[(#GET{voirimg}|=={oui}|oui)
 	</div>
+	]
 </B_images_art>
 	<div class="module_content">
 		[(#SESSION{statut}|=={0minirezo}|oui)
