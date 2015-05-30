@@ -20,12 +20,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * http://contrib.spip.net/spip.php?article76
 */
 
-include_spip('plugins/installer'); // spip_version_compare dans SPIP 3.x 
-include_spip('inc/plugin'); // spip_version_compare dans SPIP 2.x 
-if (function_exists(spip_version_compare)) { // gerer son absence dans les branche precedente a SPIP 2.x et à l'activation du plugin
-	if (spip_version_compare($GLOBALS['spip_version_branche'], '3.0.0', '>=')) 
-		if (!defined('_SPIP3')) define('_SPIP3', true);
-}		
+if (!defined('_SPIP3')) define('_SPIP3', true);
+
 
 function sc_sommaire_article($texte,$istxt=0)
 {
@@ -800,12 +796,7 @@ function balise_ARTICLE_URL_dist($p) {
 
 // ajoute le critere {archive x}
 function critere_archive_dist($idb, &$boucles, $crit) {
-	static $id_mot;
-	static $liste_rubriques;
-	static $liste_articles;
 	$boucle = &$boucles[$idb];
-	$id_table = $boucle->id_table;
-	$marchive = $id_table .'.archive';
 
 	$boucle->modificateur['criteres']['archive'] = true;
 	$not = $crit->not;
@@ -813,121 +804,119 @@ function critere_archive_dist($idb, &$boucles, $crit) {
 	// Cas de la boucle ARTICLES
 	if ($boucle->type_requete == 'articles') {
 		$art = $boucle->id_table . '.id_article';
-		if (defined('_SPIP3')) {
-			$boucle->from['zzzma'] =  'spip_mots_liens';
-		} else {
-			$boucle->from['zzzma'] =  'spip_mots_articles';
-			$boucle->join['zzzma'] = array("'articles'","'id_article'");
-		}
-		$boucle->from['zzzm'] =  'spip_mots';
-		$boucle->join['zzzm'] = array("'zzzma'","'id_mot'");
 		if ($not) {
-			$boucle->where[] = array("'NOT'", 
-				array("'IN'", "'articles.id_article'", 
-				array("'SELF'", "'articles.id_article'", 
-				array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"))));
-			
-			$boucle->where[] = masquer_articles_accessibles_where($art,'NOT ');
+			$boucle->where[] = masquer_objets_where($art, 'article','NOT'); # par mot-clef
+			$boucle->where[] = masquer_articles_accessibles_where($art,'NOT'); # par branche
 		} else {
-			$boucle->where[] = array("''",
-					array("'IN'", "'articles.id_article'", 
-					array("'SELF'", "'articles.id_article'", 
-					array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"))),
-					array("'OR'",
-						masquer_articles_accessibles_where($art,'')));
+			$boucle->where[] = masquer_objets_where($art, 'article', ''); # par mot-clef
+			#$boucle->where[] = masquer_articles_accessibles_where($art, ''); # par branche
 		}
 	}	
 }
 
 /**
- * Renvoyer le code de la condition where pour la liste des rubriques masquées
+ * liste des objets directement masques par mot-clef
  *
- * @param string $primary
- * @return string
- */
-function masquer_rubriques_where($primary, $_publique=''){
-	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	if (defined('_SPIP3')) {
-		return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_objet','spip_mots_liens as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzr.objet='rubrique' AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
-	} else {
-	return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
-}
-}
-
-/**
- * Renvoyer le code de la condition where pour la liste des rubriques accessibles
- *
- * @param string $primary
- * @return string
- */
-function masquer_rubriques_accessibles_where($primary,$not='NOT', $_publique=''){
-	return "sql_in('$primary','".implode(',', masquer_liste_rubriques($_publique))."', '$not')";
-}
-
-/**
- * liste des rubriques masquer, directement ou par heritage.
- *
- * @param int/string $id_zone
  * @return array
  */
-function masquer_liste_rubriques($publique=true){
+function masquer_liste_objets_direct($objet){
+	static $liste = array();
+	if(isset($liste[$objet]))
+		return $liste[$objet];
+	// liste des objets directement masques
+	include_spip('base/abstract_sql');
+	$tmp = sql_allfetsel('id_objet',"spip_mots_liens AS ml INNER JOIN spip_mots AS m ON (ml.id_mot=m.id_mot AND ml.objet='$objet')", 'm.titre='.sql_quote(_MOT_MASQUER));
+	// remontee d'un niveau
+	$tmp = array_map('reset', $tmp);
+	return $liste[$objet] = array_unique($tmp);
+}
+
+/**
+ * liste des articles masquees, directement par mot-clef ou par branche.
+ *
+ * @param bool $publie
+ * @return array
+ */
+function masquer_liste_articles($publie=false){
+	// cache static
+	static $liste_articles = array();
+	if(isset($liste_articles[$publie])) 
+		return $liste_articles[$publie];
+	// liste des articles contenus dans des rubriques masquees
+	include_spip('base/abstract_sql');
+	$tmp = sql_allfetsel('id_article', 'spip_articles as ma', ($publie?"ma.statut='publie' AND ":'') . sql_in('ma.id_rubrique', masquer_liste_rubriques($publie)));
+	if (!count($tmp))
+		return $liste_articles[$publie] = masquer_liste_objets_direct('article');
+	$tmp = array_map('reset', $tmp);
+	$tmp = array_unique(array_merge($tmp, masquer_liste_objets_direct('article')));
+	return $liste_articles[$publie] = $tmp;
+}
+
+/**
+ * liste des rubriques masquees, directement par mot-clef ou par heritage.
+ *
+ * @param bool $publie
+ * @return array
+ */
+function masquer_liste_rubriques($publie=false){
 	// cache static
 	static $liste_rubriques = array();
+	if(isset($liste_rubriques[$publie])) 
+		return $liste_rubriques[$publie];
+	$tmp = masquer_liste_objets_direct('rubrique');
+	if (!count($tmp))
+		return $liste_rubriques[$publie] = array();
 	include_spip('inc/rubriques');
-	$liste_rubriques = masquer_liste_rub_direct();
-	if (!count($liste_rubriques))
-		return $liste_rubriques;
-	$liste_rubriques = calcul_branche_in(join(',',$liste_rubriques));
-	if (!strlen($liste_rubriques))
-		return array();
-	$liste_rubriques = explode(',',$liste_rubriques);
-	return $liste_rubriques;
+	$tmp = calcul_branche_in(join(',', $tmp));
+	if (!strlen($tmp))
+		return $liste_rubriques[$publie] = array();
+	if($publie) {
+		$tmp = sql_allfetsel('id_rubrique', 'spip_rubriques as mr', "mr.statut='publie' AND " . sql_in('mr.id_rubrique', $tmp));
+		return $liste_rubriques[$publie] = array_map('reset', $tmp);
+	}
+	return $liste_rubriques[$publie] = explode(',', $tmp);
 }
 
 /**
- * liste des rubriques masquer directement.
+ * Renvoyer le code de la condition where pour la liste des objets masques par mot-clef
  *
+ * @param string $primary
+ * @return string
+ */
+function masquer_objets_where($primary, $objet, $not='NOT', $_publique=''){
+	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
+	return "sql_in('$primary',sql_get_select('zzzl.id_objet','spip_mots_liens as zzzl INNER JOIN spip_mots as zzzm ON (zzzl.id_mot=zzzm.id_mot AND zzzl.objet=\'$objet\')',\"zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect), '$not')";
+}
+
+/**
+ * Renvoyer le code de la condition where pour la liste des rubriques masquees, directement par mot-clef ou par heritage.
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_rubriques_where($primary, $not='NOT', $_publique=''){
+	return "sql_in('$primary','".implode(',', masquer_liste_rubriques())."', '$not')";
+}
+
+/**
+ * Renvoyer la condition where pour la liste des articles dont la rubrique est masquee
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_articles_accessibles_where($primary, $not='NOT', $_publique=''){
+	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
+	return "sql_in('$primary',sql_get_select('zzza.id_article','spip_articles as zzza',".masquer_rubriques_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect), '$not')";
+}
+
+/**
+ * Renvoyer la condition where pour la liste de tous les articles masques, directement par mot-cle pour apartenant a une rubrique masquee
+ *
+ * @param string $primary
  * @return array
  */
-function masquer_liste_rub_direct(){
-	$liste_rubriques=array();
-	// liste des rubriques directement masquer
-	$where = array();
-	include_spip('base/abstract_sql');
-	if (defined('_SPIP3')) {
-		$liste_rubriques = sql_allfetsel('id_objet','spip_mots_liens AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot',array('m.titre='.sql_quote(_MOT_MASQUER),'mr.objet="rubrique"'));
-	} else {
-	$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
-	}
-	$liste_rubriques = array_map('reset',$liste_rubriques);
-	$liste_rubriques = array_unique($liste_rubriques);
-	return $liste_rubriques;
-}
-
-/**
- * Renvoyer la condition where pour la liste des articles masquer
- *
- * @param string $primary
- * @return string
- */
-function masquer_articles_accessibles_where($primary, $critnot='', $_publique=''){
-	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	return "array('$critnot IN','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
-}
-
-/**
- * Renvoyer la condition where pour la liste des articles masquer
- *
- * @param string $primary
- * @return string
- */
 function masquer_articles_where($primary, $_publique=''){
-	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	if (defined('_SPIP3')) {
-		return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_liens as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
-	} else {
-	return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
-}
+	return "array('AND', ".masquer_objets_where($primary, 'article').', '.masquer_articles_accessibles_where($primary).')';
 }
 
 /** Plugin Dictionnaires **/
