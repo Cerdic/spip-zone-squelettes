@@ -4,7 +4,7 @@
 		(dans le cartouche qui n'est visible que s'il y a un texte dans la rubrique) 
 		dans une rubrique que si les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu).
 ][(#SET{div_artrecents,0})]
-[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives}{id_article}{id_rubrique}{lang})#SET{div_artrecents,1}]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives}{id_article}{id_rubrique}{lang}{classe})#SET{div_artrecents,1}]]
 <BOUCLE_AuMoinsUnArticle(ARTICLES) {id_rubrique} {lang} {0,1}{!archive}>
 <BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
 #SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
@@ -28,6 +28,6 @@
 <//B_AfficherArticlesMenu>
 </BOUCLE_AuMoinsUnArticle>
 [(#GET{div_artrecents}|oui)</div>]
-[(#GET{div_artrecents}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche_ssrubriques}{id_rubrique})]]
+[(#GET{div_artrecents}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche_ssrubriques}{id_rubrique}{classe})]]
 	<//B_AuMoinsUnArticle>
 </BOUCLE_rubrique_principal>
