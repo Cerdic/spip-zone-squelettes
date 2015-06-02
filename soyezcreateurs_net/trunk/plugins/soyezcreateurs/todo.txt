@@ -59,51 +59,73 @@ Passage à SPIP 3 :
 - [ ] Rajouter define('_SURLIGNE_RECHERCHE_REFERERS',true); dans mes_options.php (cf http://permalink.gmane.org/gmane.comp.web.spip.zone/29009)
 - [ ] le champ "chapo" est devenu "virtuel" : cf http://forum.spip.net/fr_246367.html#forum246406 
 - [ ] Critère {archive} et {!archive} afin de les optimiser, il faudrait réussir à coder ces requêtes (c'est le SELECT en IN ou NOT IN qui serait la partie générée par le critère) :
-SELECT DISTINCT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+Première version en connaissant l'id du mot clef d'archivage
+SELECT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
 FROM spip_articles AS `articles` 
-
 WHERE (articles.statut = 'publie')
 	AND (articles.id_rubrique = 14)
 	AND (articles.lang = 'fr')
-	AND (articles.id_article IN (
+	AND NOT /* {!archive} | enlever le NOT pour {archive} */ (
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_mots_liens AS mots_liens_articles 
+						ON (articlesin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article')
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_liens_articles.id_mot=92)
+			)
+		)
+		OR 
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_rubriques AS rubriques 
+						ON (articlesin.id_rubrique = rubriques.id_rubrique)
+					INNER JOIN spip_mots_liens AS mots_liens_rubriques 
+						ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_liens_rubriques.id_mot=92)	
 
-SELECT DISTINCT articlesnotin.id_article
-FROM spip_articles AS `articlesnotin`
-	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article') 
-	INNER JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
-	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
-WHERE (articlesnotin.statut = articles.statut)
-	AND (articlesnotin.id_rubrique = articles.id_rubrique)
-	AND (articlesnotin.lang = articles.lang)
-	AND ((mots_liens_articles.id_mot=92) 
-		OR (mots_liens_rubriques.id_mot=92))	
+			)
+		)	
 	
-	))
-	
+	)	
 ORDER BY num, articles.date_modif DESC
 
 
-et
+Deuxième version en ne connaissant que le titre du mot d'archivage :
 
-SELECT DISTINCT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+SELECT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
 FROM spip_articles AS `articles` 
-
 WHERE (articles.statut = 'publie')
 	AND (articles.id_rubrique = 14)
 	AND (articles.lang = 'fr')
-	AND (articles.id_article NOT IN (
-
-SELECT DISTINCT articlesnotin.id_article
-FROM spip_articles AS `articlesnotin`
-	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article') 
-	INNER JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
-	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
-WHERE (articlesnotin.statut = articles.statut)
-	AND (articlesnotin.id_rubrique = articles.id_rubrique)
-	AND (articlesnotin.lang = articles.lang)
-	AND ((mots_liens_articles.id_mot=92) 
-		OR (mots_liens_rubriques.id_mot=92))	
+	AND NOT /* {!archive} | enlever le NOT pour {archive} */ (
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_mots_liens AS mots_liens_articles 
+						ON (articlesin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article')
+					INNER JOIN spip_mots AS mots_articles ON 
+							(mots_liens_articles.id_mot=mots_articles.id_mot)
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_articles.titre='Archives')
+			)
+		)
+		OR 
+		(articles.id_article IN (
+			SELECT articlesin.id_article
+				FROM spip_articles AS `articlesin`
+					INNER JOIN spip_rubriques AS rubriques 
+						ON (articlesin.id_rubrique = rubriques.id_rubrique)
+					INNER JOIN spip_mots_liens AS mots_liens_rubriques 
+						ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article')
+					INNER JOIN spip_mots AS mots_articles ON 
+						(mots_liens_rubriques.id_mot=mots_articles.id_mot)
+				WHERE (articlesin.id_article = articles.id_article)
+					AND (mots_articles.titre='Archives')	
+			)
+		)	
 	
-	))
-	
+	)	
 ORDER BY num, articles.date_modif DESC
