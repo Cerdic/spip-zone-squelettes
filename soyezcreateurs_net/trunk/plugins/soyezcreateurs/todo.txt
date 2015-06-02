@@ -69,14 +69,14 @@ WHERE (articles.statut = 'publie')
 
 SELECT DISTINCT articlesnotin.id_article
 FROM spip_articles AS `articlesnotin`
-	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet) 
-	LEFT JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
-	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet) 
-WHERE (articlesnotin.statut = 'publie')
-	AND (articlesnotin.id_rubrique = 14)
-	AND (articlesnotin.lang = 'fr')
-	AND ((mots_liens_articles.id_mot=92 AND mots_liens_articles.objet='article') 
-		OR (mots_liens_rubriques.id_mot=92 AND mots_liens_rubriques.objet='article'))	
+	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article') 
+	INNER JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
+	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
+WHERE (articlesnotin.statut = articles.statut)
+	AND (articlesnotin.id_rubrique = articles.id_rubrique)
+	AND (articlesnotin.lang = articles.lang)
+	AND ((mots_liens_articles.id_mot=92) 
+		OR (mots_liens_rubriques.id_mot=92))	
 	
 	))
 	
@@ -95,14 +95,14 @@ WHERE (articles.statut = 'publie')
 
 SELECT DISTINCT articlesnotin.id_article
 FROM spip_articles AS `articlesnotin`
-	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet) 
-	LEFT JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
-	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet) 
-WHERE (articlesnotin.statut = 'publie')
-	AND (articlesnotin.id_rubrique = 14)
-	AND (articlesnotin.lang = 'fr')
-	AND ((mots_liens_articles.id_mot=92 AND mots_liens_articles.objet='article') 
-		OR (mots_liens_rubriques.id_mot=92 AND mots_liens_rubriques.objet='article'))	
+	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet AND mots_liens_articles.objet='article') 
+	INNER JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
+	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet='article') 
+WHERE (articlesnotin.statut = articles.statut)
+	AND (articlesnotin.id_rubrique = articles.id_rubrique)
+	AND (articlesnotin.lang = articles.lang)
+	AND ((mots_liens_articles.id_mot=92) 
+		OR (mots_liens_rubriques.id_mot=92))	
 	
 	))
 	
