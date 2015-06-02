@@ -58,3 +58,52 @@ Passage à SPIP 3 :
 - [ ] Tenir compte de http://www.spip.net/fr_article2128.html#spip3 pour les chaines de langue
 - [ ] Rajouter define('_SURLIGNE_RECHERCHE_REFERERS',true); dans mes_options.php (cf http://permalink.gmane.org/gmane.comp.web.spip.zone/29009)
 - [ ] le champ "chapo" est devenu "virtuel" : cf http://forum.spip.net/fr_246367.html#forum246406 
+- [ ] Critère {archive} et {!archive} afin de les optimiser, il faudrait réussir à coder ces requêtes (c'est le SELECT en IN ou NOT IN qui serait la partie générée par le critère) :
+SELECT DISTINCT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+FROM spip_articles AS `articles` 
+
+WHERE (articles.statut = 'publie')
+	AND (articles.id_rubrique = 14)
+	AND (articles.lang = 'fr')
+	AND (articles.id_article IN (
+
+SELECT DISTINCT articlesnotin.id_article
+FROM spip_articles AS `articlesnotin`
+	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet) 
+	LEFT JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
+	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet) 
+WHERE (articlesnotin.statut = 'publie')
+	AND (articlesnotin.id_rubrique = 14)
+	AND (articlesnotin.lang = 'fr')
+	AND ((mots_liens_articles.id_mot=92 AND mots_liens_articles.objet='article') 
+		OR (mots_liens_rubriques.id_mot=92 AND mots_liens_rubriques.objet='article'))	
+	
+	))
+	
+ORDER BY num, articles.date_modif DESC
+
+
+et
+
+SELECT DISTINCT 0+articles.titre AS num, articles.id_article, articles.descriptif, articles.titre, articles.lang
+FROM spip_articles AS `articles` 
+
+WHERE (articles.statut = 'publie')
+	AND (articles.id_rubrique = 14)
+	AND (articles.lang = 'fr')
+	AND (articles.id_article NOT IN (
+
+SELECT DISTINCT articlesnotin.id_article
+FROM spip_articles AS `articlesnotin`
+	LEFT JOIN spip_mots_liens AS mots_liens_articles ON (articlesnotin.id_article = mots_liens_articles.id_objet) 
+	LEFT JOIN spip_rubriques AS rubriques ON (articlesnotin.id_rubrique = rubriques.id_rubrique)
+	LEFT JOIN spip_mots_liens AS mots_liens_rubriques ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet) 
+WHERE (articlesnotin.statut = 'publie')
+	AND (articlesnotin.id_rubrique = 14)
+	AND (articlesnotin.lang = 'fr')
+	AND ((mots_liens_articles.id_mot=92 AND mots_liens_articles.objet='article') 
+		OR (mots_liens_rubriques.id_mot=92 AND mots_liens_rubriques.objet='article'))	
+	
+	))
+	
+ORDER BY num, articles.date_modif DESC
