@@ -37,9 +37,9 @@
 	</div>
 
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)
-[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche d�j� la liste des articles avec un extrait � la place du texte
+[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
 ][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique}{archive})]]
-[(#REM) Par contre, afficher les nouveautes si la config du site en d�cide
+[(#REM) Par contre, afficher les nouveautes si la config du site en décide
 ][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents"[ class="(#ENV{classe})"]>(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
 ]
 
@@ -52,7 +52,7 @@
 	<div id="letexte" class="surlignable">
 [<div class="#EDIT{descriptif} descriptif">[(#GET{AfficherGrosLogo}|oui)[<img src="(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|extraire_attribut{src})" class="groslogo" alt="" width="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|largeur)]" height="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|hauteur)]" />]](#DESCRIPTIF|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,540},0})</div>]
 [<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,540},0})</div>][(#TEXTE*|=={''}|oui)[(#LANG|!={#CONFIG{langue_site}}|?{[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique}{archive}{lang=#LANG})],[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique}{archive})]})]]
-[(#REM) V�rification de la pr�sence du plugin GIS dans la rubrique et si oui on inclut la carte grace au mod�le, qui est dans la page carte_gis.html]
+[(#REM) Vérification de la présence du plugin GIS dans la rubrique et si oui on inclut la carte grace au modèle, qui est dans la page carte_gis.html]
 <BOUCLE_GisSecteur(RUBRIQUES){id_rubrique}{titre_mot=GisSecteur}>#SET{GisSecteur,1}</BOUCLE_GisSecteur>
 [<div id="carto">
 (#PLUGIN{GIS}|oui)[(#GET{GisSecteur}|oui)[(#INCLURE{fond=json/gis_articles_plus_sites,id_secteur,limit=500}|oui)[(#INCLURE{fond=modeles/carte_gis,id_secteur,objets=articles_plus_sites,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisrubriques,400px}})]]][(#GET{GisSecteur}|non)[(#INCLURE{fond=json/gis_articles_plus_sites,id_rubrique,limit=500}|oui)[(#INCLURE{fond=modeles/carte_gis,id_rubrique,objets=articles_plus_sites,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisrubriques,400px}})]]]
@@ -65,9 +65,9 @@
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)
-[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche d�j� la liste des articles avec un extrait � la place du texte
+[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
 ][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique}{archive}{classe=artrecent_bas})]]
-[(#REM) Par contre, afficher les nouveautes si la config du site en d�cide
+[(#REM) Par contre, afficher les nouveautes si la config du site en décide
 ][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents" class="artrecent_bas">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}{classe=artrecent_bas}|trim)</div>]]]
 ]
 [(#FORMULAIRE_ADMIN)]
