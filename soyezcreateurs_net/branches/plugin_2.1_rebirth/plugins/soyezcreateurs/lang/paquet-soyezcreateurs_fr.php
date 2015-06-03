@@ -2,17 +2,17 @@
 
 // Ceci est un fichier langue de SPIP -- This is a SPIP language file
 
-///  Fichier produit par PlugOnet
+// Fichier produit par PlugOnet
 // Module: paquet-soyezcreateurs
 // Langue: fr
-// Date: 31-10-2012 20:42:57
+// Date: 09-05-2015 11:39:52
 // Items: 2
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// S
+	// S
 	'soyezcreateurs_description' => 'Ce plugin active ou désactive le squelette {{SoyezCréateurs}}.
 	
 Un squelette
