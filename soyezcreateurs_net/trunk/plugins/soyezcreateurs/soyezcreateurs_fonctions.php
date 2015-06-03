@@ -794,7 +794,10 @@ function balise_ARTICLE_URL_dist($p) {
 
 @define('_MOT_MASQUER', 'Archives');
 
-// ajoute le critere {archive x}
+// ajoute le critere {archive} et {!archive}
+// {archive} n'affiche que les articles ayant le mot clef _MOT_MASQUER ou dont la rubrique a ce mot clef
+// {!archive} n'affiche que les articles n'ayant pas ce mot clef et dont la rubrique ne l'a pas non plus
+// /!\ Pas de notion d'héritage sur une branche /!\
 function critere_archive_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$not = $crit->not?"NOT":"";
@@ -864,4 +867,3 @@ function sc_rgb($couleurs) {
 	$couleurs = _couleur_hex_to_dec($couleurs);
 	return $couleurs["red"] .", ". $couleurs["green"]  .", ". $couleurs["blue"];
 }
-?>
