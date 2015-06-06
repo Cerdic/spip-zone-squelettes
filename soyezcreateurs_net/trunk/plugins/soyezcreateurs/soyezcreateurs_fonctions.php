@@ -89,9 +89,9 @@ function sc_sommaire_article($texte,$istxt=0)
 	return $texte;
 }
 
-function sc_sommaire_ancre($texte)
-{	
-	$retoursommaire = "<a href='#SommaireAutomatique' title='"._T('soyezcreateurs:retoursommaire')."' class='retoursommaire'><img src='".chemin("images/spip_out.gif")."' width='".largeur(chemin("images/spip_out.gif"))."' height='".hauteur(chemin("images/spip_out.gif"))."' alt='"._T('soyezcreateurs:retoursommaire')."' /></a>";
+function sc_sommaire_ancre($texte) {
+	
+	$retoursommaire = "<a href='#SommaireAutomatique' title='"._T('soyezcreateurs:retoursommaire')."' class='retoursommaire'><img src='".find_in_path("images/spip_out.gif")."' width='".largeur(find_in_path("images/spip_out.gif"))."' height='".hauteur(find_in_path("images/spip_out.gif"))."' alt='"._T('soyezcreateurs:retoursommaire')."' /></a>";
 	
 	$texte = preg_replace("|(<h[23456])[^>]*>(.*)(<\/h[23456]>)|U","$1 id=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$retoursommaire$2$3", $texte);
 
