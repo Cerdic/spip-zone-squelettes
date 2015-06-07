@@ -509,6 +509,7 @@ function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $
 						"descriptif" => $descriptif,
 						"lieu" => $lieu,
 						"horaire" => $horaire,
+						"statut" => 'publie',
 					));
 		}
 	}
