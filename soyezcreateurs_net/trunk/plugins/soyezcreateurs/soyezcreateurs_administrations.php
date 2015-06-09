@@ -160,11 +160,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$id_mot = create_mot("_ModePortail", "ZoomSur2_Variante2", "Affecter ce mot clef à l’objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef.", "Variante sur 2 colonnes : \n-* Titre de la rubrique contenant l’article\n-* 1re colonne :\n-** Fonctionne comme le Cycloshow avec les articles de la sous rubriques de la rubrique de l'article\n-* 2e colonne :\n-** Logo de l’article\n-** faisant un lien vers l’article (et si c’est une redirection, ça peut conduire à une autre page");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.31','non');
 		}
-		if (version_compare($current_version,'3.0.32','<')) {
-			spip_log("SoyezCreateurs maj 3.0.32 Début", "soyezcreateurs_install");
-			$id_mot = create_mot("_Specialisation_Rubrique", "GisSecteur", "Mettre ce mot clef à une rubrique où l'on veut afficher la carte Gis pour l'ensemble du Secteur (Rubrique racine de SPIP et toutes ses sous rubriques).", "");
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.32','non');
-		}
 		if (version_compare($current_version,'3.0.33','<')) {
 			spip_log("SoyezCreateurs maj 3.0.33 Début", "soyezcreateurs_install");
 			$id_mot = create_mot("_Specialisation_Rubrique", "ClassementAlpha", "Mettre ce mot clef à la rubrique pour classer son contenu alphabétiquement.", "");
@@ -184,6 +179,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.34','non');
+		}
+		if (version_compare($current_version,'3.0.35','<')) {
+			spip_log("SoyezCreateurs maj 3.0.35 Début", "soyezcreateurs_install");
+			supprimer_mot_groupe("_Specialisation_Rubrique", "GisSecteur");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.35','non');
 		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
