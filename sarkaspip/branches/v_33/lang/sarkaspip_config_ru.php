@@ -48,33 +48,50 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_boite_sommaire' => 'Резюме',
 	'cfg_boite_styles' => 'Настройка стилей',
 	'cfg_boite_typo' => 'Типографские опции',
-	'cfg_descr_accueil' => 'Добро пожаловать в конфигурационное пространство Sarka-SPIP. Вы можете получить доступ к различным страницам настроек,  переходя по ссылкам в меню.',
+	'cfg_descr_accueil' => 'Добро пожаловать в конфигурационное пространство Sarka-SPIP. Вы можете  получить доступ к 
+различным страницам настроек,  переходя по ссылкам в меню.',
 	'cfg_descr_agenda' => 'Повестка дня в Sarka-SPIP отображает ежегодный перечень и месячный мини-календарь. Характеристики этих двух экранов настраиваются на этой странице.',
-	'cfg_descr_album' => 'Страница альбома показывает несколько блоков информации: описание, фотографии с несколькими моделями представления, вложения и комментарии посетителей. Эта страница позволяет настроить отображение всех блоков.',
+	'cfg_descr_album' => 'Страница альбома показывает несколько блоков информации: описание, фотографии с несколькими 
+моделями представления, вложения и комментарии посетителей. Эта страница позволяет настроить 
+отображение всех блоков.',
 	'cfg_descr_article' => 'Страница статьи показывает несколько блоков информации: описание, сопроводительные документы и изображения и комментарии, размещенные посетителями. Эта страница позволяет настроить отображение всех блоков.',
-	'cfg_descr_auteur' => 'Страница авторских прав показывает дополнительную информацию блока: биографию, опубликованные автором статьи и контактную форму. Эта страница позволяет настроить отображение всех блоков.',
+	'cfg_descr_auteur' => 'Страница авторских прав показывает дополнительную информацию блока: биографию, опубликованные 
+автором статьи и контактную форму. Эта страница позволяет настроить отображение всех блоков.',
 	'cfg_descr_backend' => 'Базовая страница RSS,представленных на сайте. Sarka-SPIP через эту страницу настроек позволяет выбрать элементы, которые будут отображаться.',
-	'cfg_descr_bandeau' => 'Баннер на каждой странице состоит из нескольких конфигурируемых блоков. Эта страница настроек позволяет вам выбрать функции.',
+	'cfg_descr_bandeau' => 'Баннер на каждой странице состоит из нескольких конфигурируемых блоков. Эта страница настроек 
+позволяет вам выбрать функции.',
 	'cfg_descr_breve' => 'Отображение кратких новостей и списка всех новостей сайта. Эта страница позволяет настроить поиск и отображение списка.',
 	'cfg_descr_coins' => 'Скругление углов блоков, которые окружают столбцы в группах, окнах или панели навигации',
 	'cfg_descr_formulaires' => 'Некоторые страницы макета отображают формы. Эта страница настроек позволяет вам выбрать функции.',
-	'cfg_descr_forum' => 'Sarka-SPIP предлагает возможности создать форум и управлять им. Раздел Форум и характеристики его страниц настраиваются на этой вкладке.',
+	'cfg_descr_forum' => 'Sarka-SPIP предлагает возможности создать форум и управлять им. Раздел Форум и характеристики 
+его страниц настраиваются на этой вкладке.',
 	'cfg_descr_galerie' => 'Настройки страницы галереи со списком альбомов, декорированной или в эскизах. Эта страница отображается в двух моделях: контактный список (описание и эскиз) или хронологический список (не доступно). Эта страница настроек позволяет выбрать характеристики каждой модели в галерее.',
-	'cfg_descr_header' => 'Большинство мета-тегов сайта автоматически рассчитывается на основе информации о конфигурации сайта и о текущей странице. Здесь вы можете указать имя автора, ключевые слова и задать период между двуми визитами роботов.',
+	'cfg_descr_header' => 'Большинство мета-тегов сайта автоматически рассчитывается на основе информации о конфигурации 
+сайта и о текущей странице. Здесь вы можете указать имя автора, ключевые слова и задать 
+период между двуми визитами роботов.',
 	'cfg_descr_herbier' => 'Настройки вывода избранных сайтов: постраничный список сайтов и эскизы. Эта страница отображается в двух моделях: список (описание и эскиз) и только миниатюры. Эта страница настроек позволяет выбрать характеристики каждой модели.',
-	'cfg_descr_layout' => 'Шаблон Sarka-SPIP eоснован на макетах Gala от Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>), которые позволяют выбирать позиции навигационной колонки, в центре и вовне. Эта страница позволяет выбрать макет, который подходит именно Вам.',
+	'cfg_descr_layout' => 'Шаблон Sarka-SPIP eоснован на макетах Gala от Alessandro Fulciniti (<a href=\\"http://blog.
+html.it/layoutgala/\\">Layout Gala</a>), которые позволяют выбирать позиции навигационной 
+колонки, в центре и вовне. Эта страница позволяет выбрать макет, который подходит именно Вам.',
 	'cfg_descr_maintenance' => 'Эта страница позволяет сохранять, восстанавливать или удалять конфигураций макета.',
-	'cfg_descr_menus' => 'Каркасные меню для удобной навигации в пределах сайта. Они включены либо в колонке навигации, либо в полосе. Эта страница позволяет выбрать модель и позиционирование.',
+	'cfg_descr_menus' => 'Каркасные меню для удобной навигации в пределах сайта. Они включены либо в колонке навигации, 
+либо в полосе. Эта страница позволяет выбрать модель и позиционирование.',
 	'cfg_descr_modeles' => 'Эта страница позволяет настроить некоторые глобальные параметры img, doc и emb.',
-	'cfg_descr_noisettes' => 'Области навигации и дополнительные колонки. Эта страница позволяет вам выбрать отображение области навигации, её модель или свою позицию. Меню не задаются на этой странице.',
+	'cfg_descr_noisettes' => 'Области навигации и дополнительные колонки. Эта страница позволяет вам выбрать отображение 
+области навигации, её модель или свою позицию. Меню не задаются на этой странице.',
 	'cfg_descr_pied' => 'Подвал состоит из нескольких настраиваемых элементов. Эта страница настроек позволяет выбрать элементы для отображения.',
-	'cfg_descr_plan' => 'На главной странице сайта отображается список статей, опубликованных на сайте. Этот список может быть отсортирован по категориям, авторам или датам. Эта страница настроек позволяет выбрать характеристики сортировки.',
+	'cfg_descr_plan' => 'На главной странице сайта отображается список статей, опубликованных на сайте. Этот список 
+может быть отсортирован по категориям, авторам или датам. Эта страница настроек позволяет 
+выбрать характеристики сортировки.',
 	'cfg_descr_plugins' => 'Эта страница позволяет настроить конфигурацию некоторых плагинов Spip интегрированных в макет кнопок в виде текста, Socialtags ... Надо применять эти настройки Sarka-SPIP для достижения желаемых эффектов в макет. Тем не менее, можно вернуться к настройкам плагина по умолчанию, если вы не используете макет.',
-	'cfg_descr_recherche' => 'Страницы поиска слов отображают результаты исследования, проведенного поиском SPIP через форму или по ключевым словам. Эта вкладка позволяет настроить нумерацию страниц результатов.',
+	'cfg_descr_recherche' => 'Страницы поиска слов отображают результаты исследования, проведенного поиском SPIP через 
+форму или по ключевым словам. Эта вкладка позволяет настроить нумерацию страниц результатов.',
 	'cfg_descr_rubrique' => 'Страницы категорий (рубрик) отображают несколько блоков информации: описание, категории (рубрики) , подкатегории и статьи, опубликованные в разделах документов и изображений. Эта страница позволяет настроить отображение всех блоков.',
-	'cfg_descr_site' => 'На странице сайта отображается текущий сайт и список всех сайтов, указанных ссылками. Эта страница позволяет настроить список поиска.',
+	'cfg_descr_site' => 'На странице сайта отображается текущий сайт и список всех сайтов, указанных ссылками. Эта 
+страница позволяет настроить список поиска.',
 	'cfg_descr_sommaire' => 'На этих основных страницах отображается несколько блоков информации: редакционная, список разделов и недавно опубликованных статей. Эта страница позволяет настроить отображение последних двух блоков.',
-	'cfg_descr_styles' => 'Эта страница позволяет настроить некоторые элементы, общие для всех страниц макета: цвета страниц и фона, гиперссылки, рамки ...',
+	'cfg_descr_styles' => 'Эта страница позволяет настроить некоторые элементы, общие для всех страниц макета: цвета 
+страниц и фона, гиперссылки, рамки ...',
 	'cfg_descr_typo' => 'Sarka-SPIP предлагает варианты для улучшения типографии вашего сайта без использования дополнительных плагинов. В частности, можно раскрасить части текстов на сайте, используя метки, предусмотренные для этой цели.',
 	'cfg_groupe_accueil' => 'Главная',
 	'cfg_groupe_apparence' => 'Внешний вид',
@@ -109,11 +126,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_accueil_bulle_sommaire' => 'Выбор компонентов страницы резюме (sommaire)*',
 	'cfg_inf_accueil_bulle_styles' => 'Настройка стилей, которые определяют визуальное оформление сайта (цвета, шрифты ...)',
 	'cfg_inf_agenda_id' => 'Повестка дня размещается в секторе (корневом разделе сайта); Статьи в этом разделе считаются событиями. Так что выбирайте, какой сектор станет вашей повесткой дня.',
+	'cfg_inf_agenda_modele' => 'Выберите тип повестки дня: либо на календарный год, либо на сезон. Если вы выберете сезон, то 
+сможете настроить первый месяц сезона и формат пагинации (постраничного вывода).',
 	'cfg_inf_agenda_page' => 'Вы можете  ввести название и описание для страницы повестки дня.',
 	'cfg_inf_agenda_pagination_2' => 'Vous pouvez changer le séparateur des items de la pagination et le nom de l’ancre de pagination. Toutefois, il est recommandé de conserver ces valeurs par défaut.',
-	'cfg_inf_agenda_sens_tri' => 'Vous pouvez présenter les événements de l’agenda annuel soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
+	'cfg_inf_agenda_sens_tri' => 'Вы можете  представить годовой календарь событий либо в хронологическом порядке, либо в 
+обратном хронологическом порядке.',
 	'cfg_inf_album_carrousel_hover' => 'Хотите отобразить несколько увеличенный эскиз изображения?',
-	'cfg_inf_album_carrousel_modele' => 'La liste des vignettes peut être affichée sous la forme d’un carrousel à défilement horizontal ou d’une liste paginée.',
+	'cfg_inf_album_carrousel_modele' => 'Список миниатюр может отображаться как прокрутка карусели (по горизонтали) или как список.',
 	'cfg_inf_album_carrousel_position' => 'Вы можете  просмотреть список миниатюр выше или ниже фото и выбрать увеличение.',
 	'cfg_inf_album_commentaires' => 'Si vous avez autorisé les forums sur vos albums les commentaires postés sont affichés en bas de la page sous la forme d’une liste paginée. Vous pouvez choisir la présentation de cette liste et sa pagination.',
 	'cfg_inf_album_notation' => 'L’activation du plugin  « Notation d’éléments SPIP » vous donne la possibilité d’insérer le formulaire de notation dans le cartouche ou à la fin du texte de l’album.',
@@ -267,7 +287,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_lire_suite' => 'Отобразить ссылку вида «Подробнее» в конце введения статьи?',
 	'cfg_inf_logo_reduit' => 'Позволить шаблону автоматически уменьшать размер логотипа сайта?',
 	'cfg_inf_menu_formulaires' => 'В какой части макета сайта расположить меню с формами для Входа и Регистрации?',
-	'cfg_inf_menu_langues' => 'Выберите, какая часть макета сайта vous souhaitez insérer le menu des langues (ce menu vous permet de choisir la langue courante d’affichage du site) ?',
+	'cfg_inf_menu_langues' => 'В какой части макета сайта вставить меню выбора языка (это меню позволяет выбрать текущий 
+язык отображения на сайте)?',
 	'cfg_inf_menu_modele_rubriques' => 'Выберите шаблон меню рубрик из предложенных ниже.',
 	'cfg_inf_menu_option1' => 'Pour le menu sélectionné, vous avez la possibilité de choisir une des options proposée ci-dessous.',
 	'cfg_inf_menu_pages_speciales' => 'Выберите, какая часть макета сайта vous souhaitez insérer le menu des pages spéciales comme Agenda, Galerie, Mots-clés... ?',
@@ -284,16 +305,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_mode_commentaires_classique' => 'Présentation continue des commentaires',
 	'cfg_inf_mode_commentaires_hierarchique' => 'Présentation par fils de discussion',
 	'cfg_inf_outils_perso' => 'Vous pouvez ajouter des informations personnelles dans le bloc des liens du pied de page. Elle s’afficheront avant le lien permettant de remonter en haut de la page (laissez vide pour ne rien afficher) .',
-	'cfg_inf_pagination_1' => 'Choisissez le modèle de pagination, le nombre d’éléments affichés dans chaque page et la position de la bande de pagination.',
 	'cfg_inf_pagination_2' => 'Choisissez le modèle de pagination et le nombre d’éléments affichés dans chaque page.',
 	'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 	'cfg_inf_petition' => 'Si vous avez autorisé les petitions sur vos articles les signatures sont affichées en bas de la page sous la forme d’un tableau paginé.',
 	'cfg_inf_pied_affichage' => 'Отобразить подвал (footer)?',
-	'cfg_inf_plan_pagination' => 'La page Plan du site est composée de trois onglets assimilables à une bande de pagination. Les onglets permettent de présenter la liste des articles soit par date, soit par rubrique, soit par auteur. Les articles sont donc triés alphabétiquemet ou/et chronologiquement. Le tri alphabétique est toujours croissant, par contre, le sens du tri chronologique peut être choisi. La position de la bande d’onglets est aussi paramétrable.',
 	'cfg_inf_plan_sens_tri' => 'Choisissez l’ordre de tri des dates.',
 	'cfg_inf_plugin_inactif' => 'Cette fonction n’est disponible que si le plugin « @lbl_plugin@ » est activé.',
-	'cfg_inf_plugins_0' => 'Vous n’utilisez aucun plugin SPIP pour le moment. Vous n’avez aucune Настройка à cохранить sur cette page',
-	'cfg_inf_plugins_1' => 'Vous utilisez un plugin SPIP. Veuillez cохранить la Настройка Sarka-SPIP de ce plugin (les valeurs Sarka-SPIP de Настройка des plugins sont définies dans sarkaspip_options.php)',
+	'cfg_inf_plugins_0' => 'Vous n’utilisez aucun plugin SPIP pour le moment. Vous n’avez aucune Настройка à cохранить sur cette page', # RELIRE
+	'cfg_inf_plugins_1' => 'Vous utilisez un plugin SPIP. Veuillez cохранить la Настройка Sarka-SPIP de ce plugin (les valeurs Sarka-SPIP de Настройка des plugins sont définies dans sarkaspip_options.php)', # RELIRE
 	'cfg_inf_plugins_config' => 'Choissisez le mode de Настройка du plugin',
 	'cfg_inf_plugins_n' => 'Vous utilisez plusieurs plugins SPIP. Veuillez cохранить la Настройка Sarka-SPIP de ces plugins (les valeurs Sarka-SPIP de Настройка des plugins sont définies dans sarkaspip_options.php)',
 	'cfg_inf_presentation_commentaires' => 'Choisissez une présentation classique avec des commentaires affichés à la suite les uns des autres, ou une présentation hiérarchique par fils de discussion.',
@@ -305,7 +324,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_recherche_mot' => 'Найденные слова',
 	'cfg_inf_recherche_rubrique' => 'Найденные рубрики',
 	'cfg_inf_recherche_site' => 'Найденные сайты',
-	'cfg_inf_rss_albums' => 'Включить опубликованные альбомы в RSS-каналы? Если да, то можете выбрать критерии отбора альбомов (сочетание максимального возраста и максимального числа альбомов без ограничения возраста).',
+	'cfg_inf_rss_albums' => 'Включить опубликованные альбомы в RSS-каналы? Если да, то вы можете выбрать критерии отбора 
+альбомов (сочетание максимального возраста и максимальное число альбомов без ограничения 
+возраста).',
 	'cfg_inf_rss_articles' => 'Voulez-vous inclure les articles publiés dans votre flux rss. Si oui, vous pourrez choisir les critères de sélection des articles (union de l’age maximal et du nombre maximal d’articles sans limite d’age).',
 	'cfg_inf_rss_evenements' => 'Voulez-vous inclure les évènements publiés dans votre flux rss. Si oui, vous pourrez choisir les critères de sélection des évènements (union de l’age maximal et du nombre maximal d’évènements sans limite d’age).',
 	'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publiés dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques paramètres de cet affichage.',
@@ -325,7 +346,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_version_sarka' => 'Désirez vous afficher la version de Sarka-SPIP installée ?',
 	'cfg_inf_version_spip' => 'Désirez vous afficher la version de SPIP installée ?',
 	'cfg_inf_versions' => 'Vous utilisez actuellement :',
-	'cfg_inf_vignette_doc' => 'Si vous inscrustez un document dans article avec le modèle doc la vignette sera affichée par défaut avec la taille maximale de cette vignette. Néanmoins, il est possible de la réduire en utilisant au cas par cas le paramètre taille dans le modèle doc ou en utilisant une réduction automatique dont vous pouvez choisir la taille ci-dessous.',
 	'cfg_itm_pagination_format_1' => 'Год (2014)',
 	'cfg_itm_pagination_format_2' => 'Период (2014-2015)',
 	'cfg_itm_pagination_format_3' => 'Период кратко (14-15)',
@@ -339,7 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_agenda_titre' => 'Заголовок страницы Порядка дня',
 	'cfg_lbl_align_centre' => 'В центре',
 	'cfg_lbl_align_gauche' => 'Слева',
-	'cfg_lbl_appliquer_padding' => 'Сделать отступ между внешними краями навигации и нижней частью окна браузера?',
+	'cfg_lbl_appliquer_padding' => 'Хотите сделать отступ между внешними краями меню навигации и нижней части окна браузера?',
 	'cfg_lbl_badge_perso_infobulle' => 'Infobulle associée au badge perso :',
 	'cfg_lbl_badge_perso_lien' => 'Lien associé au badge perso :',
 	'cfg_lbl_bande_pos_1' => 'En haut de la page',
@@ -421,7 +441,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_css_tb_shead_forum' => 'подзаголовки',
 	'cfg_lbl_css_td' => 'Оформление при наведении @lbl_ho_complement@',
 	'cfg_lbl_debug_arbo' => 'Отобразить список конфигурационных переменных в нижней части каждой страницы?',
-	'cfg_lbl_debug_bouton' => 'Voulez-vous afficher un bouton menant à la Настройка dans le menu des pages formulaires ?',
+	'cfg_lbl_debug_bouton' => 'Хотите ли вы отобразить  un bouton menant à la Настройка dans le menu des pages formulaires ?',
 	'cfg_lbl_effet_aucun' => 'Нет эффекта',
 	'cfg_lbl_effet_mediabox' => 'MediaBox-эффект «кадр за кадром» (требуется MediaBox плагин)',
 	'cfg_lbl_effet_mediabox_diapo' => 'MediaBox-эффект «слайд-шоу» (требуется MediaBox плагин)',
@@ -429,17 +449,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_fond_raz' => 'Очистить настройки',
 	'cfg_lbl_fond_restauration' => 'Восстановить настройки',
 	'cfg_lbl_fond_sauvegarde' => 'Сохранить настройки',
-	'cfg_lbl_form_descriptif' => 'Вы можете написать краткое описание для формы. Этот текст может быть написан с использованием стандартных ярлыки SPIP.',
+	'cfg_lbl_form_descriptif' => 'Вы можете написать краткое описание для формы. Этот текст может быть написан с использованием 
+стандартных ярлыков SPIP.',
 	'cfg_lbl_form_titre' => 'Заголовок страницы, содержащей форму',
 	'cfg_lbl_format_dm' => 'Только дата',
 	'cfg_lbl_format_dmhi' => 'Дата и время',
-	'cfg_lbl_galerie_descriptif' => 'Vous pouvez rédiger un descriptif succinct pour présenter votre galerie (composition, mots-clés...). Ce texte peut être écrit en utilisant les raccourcis classiques de SPIP.',
+	'cfg_lbl_galerie_descriptif' => 'Вы можете написать краткое описание для галереи (состав, ключевые слова...). Этот текст может 
+быть написан с использованием стандартных ярлыков SPIP.',
 	'cfg_lbl_galerie_titre' => 'Заголовок страницы галереи',
 	'cfg_lbl_gif' => 'gif',
 	'cfg_lbl_groupes_mots' => 'Группы ключевых слов, отображаемых в облаке (множественный выбор)',
-	'cfg_lbl_groupes_mots_recherche' => 'Groupes de mots-clés pouvant être affichés dans le formulaire de recherche par mots-clés (choix multiple)',
+	'cfg_lbl_groupes_mots_recherche' => 'Группы ключевых слов, отображаемых в форме поиска по ключевым словам (множественный выбор)',
 	'cfg_lbl_hauteur_minimale' => 'Минимальная высота этой части',
-	'cfg_lbl_herbier_descriptif' => 'Vous pouvez rédiger un descriptif succinct pour présenter votre page des sites favoris (composition, mots-clés...). Ce texte peut être écrit en utilisant les raccourcis classiques de SPIP.',
+	'cfg_lbl_herbier_descriptif' => 'Вы можете написать краткое описание для страницы избранных сайтов (состав, ключевые 
+слова ...). Этот текст может быть написан с использованием стандартных ярлыков SPIP.',
 	'cfg_lbl_herbier_modele_1' => 'Модель список',
 	'cfg_lbl_herbier_modele_2' => 'Модель панорама',
 	'cfg_lbl_herbier_titre' => 'Заголовок страницы Избранных сайтов',
@@ -484,9 +507,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_intro_messages' => 'Максимальный размер введения к сообщению',
 	'cfg_lbl_jpg' => 'jpg',
 	'cfg_lbl_largeur_item' => 'Ширина каждого элемента в пикселях: ',
-	'cfg_lbl_largeur_menu' => 'Общая ширина меню в пикселях: ',
+	'cfg_lbl_largeur_menu' => 'Общая ширина меню в пикселях:',
 	'cfg_lbl_largeur_padding' => 'Ширина этого поля:',
-	'cfg_lbl_largeur_site' => 'Укажите общую ширину вашего сайта: ',
+	'cfg_lbl_largeur_site' => 'Укажите общую ширину вашего сайта:',
 	'cfg_lbl_layout_07' => 'Layout #7 (3 колонки: navigation, centre, extra)',
 	'cfg_lbl_layout_08' => 'Layout #8 (3 колонки: extra, centre, navigation)',
 	'cfg_lbl_layout_09' => 'Layout #9 (3 колонки: centre, navigation, extra)',
@@ -518,7 +541,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_maxmois_resume' => 'Nombre maximal de mois &agrave considérer pour le résumé',
 	'cfg_lbl_menu_option1_1' => 'Не отображать дополнительную опцию',
 	'cfg_lbl_menu_option1_2' => 'Просмотреть список статей в каждой категории',
-	'cfg_lbl_menu_option1_3' => 'Если рубрика содержит только одну статью и любой подзаголовок или вложение, указать название этой рубрики на странице статьи (Si la rubrique ne contient qu’un seul article et aucune sous-rubrique ni document joint, faire pointer le titre de cette rubrique vers la page de l’article)',
+	'cfg_lbl_menu_option1_3' => 'Если рубрика содержит только одну статью и любой подзаголовок или вложение, указать название 
+этой рубрики на странице статьи (Si la rubrique ne contient qu’un seul article et aucune sous-
+rubrique ni document joint, faire pointer le titre de cette rubrique vers la page de 
+l’article)',
 	'cfg_lbl_meta_auteur' => 'Имя автора сайта (тег author)',
 	'cfg_lbl_meta_robot' => 'Время (дни) между двумя визитами робота (тег revisit-after)',
 	'cfg_lbl_mini_agenda_jour1' => 'Первый день недели',
@@ -538,7 +564,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_rainette_ville' => 'Введите код города:',
 	'cfg_lbl_rss_age' => 'Максимальный возраст для части RSS-потока (в днях)',
 	'cfg_lbl_rss_nombre' => 'Максимальное количество элементов в RSS-потоке, независимо от возраста',
-	'cfg_lbl_slogan' => 'Слоган сайта: ',
+	'cfg_lbl_slogan' => 'Слоган сайта:',
 	'cfg_lbl_stathit_max_hasard' => 'Максимальное количество случайно выбранных пунктов',
 	'cfg_lbl_stathit_max_top' => 'Максимальное количество популярных статей',
 	'cfg_lbl_taille_arrondi' => 'Размер обрамления (Taille de l’arrondi)',
@@ -659,7 +685,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lgd_sommaire_albums' => 'Список недавних альбомов',
 	'cfg_lgd_sommaire_articles' => 'Список недавних статей',
 	'cfg_lgd_sommaire_secteurs' => 'Список разделов',
-	'cfg_lgd_sommaire_une' => 'Статья в ',
+	'cfg_lgd_sommaire_une' => 'Статья в',
 	'cfg_lgd_syndication' => 'Список  articles syndiqués',
 	'cfg_msg_aucune_sauvegarde' => 'Резервное копирование сейчас не доступно',
 	'cfg_msg_configuration_raz_ok' => 'Конфигурация @page@ удалена.',
