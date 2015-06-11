@@ -13,17 +13,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// S
-	'soyezcreateurs_description' => 'Ce plugin active ou désactive le squelette {{SoyezCréateurs}}.
-	
-Un squelette
--* conforme aux bonnes pratiques en matière d\'accessibilité,
--* à destination des
--** associations,
--** collectivités,
--** entreprises,
--** particuliers 
-
-Pour disposer d\'un site SPIP incluant des fonctions génériques, largement configurable et adaptable.',
-	'soyezcreateurs_slogan' => 'Largement configurable et adaptable, générique, conforme aux normes d\'accessibilité et RWD',
+	'soyezcreateurs_installateur_description' => 'Une fois que ce plugin a téléchargé tous les plugins utilisables avec SoyezCréateurs, il ne vous reste plus qu''à désactiver les plugins qui ne vous serons pas utiles.',
+	'soyezcreateurs_installateur_slogan' => 'Plugin utilitaire pour télécharger les plugins facultatifs de SoyezCréateurs',
 );
 ?>
