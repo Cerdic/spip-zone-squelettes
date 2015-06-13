@@ -9,11 +9,9 @@
 	<form method="post" action="#ENV{action}">
 		<div>
 			#ACTION_FORMULAIRE{#ENV{action}}
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_mode_affichage:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,mode_affichage,
 								label=<:soyezcreateurs:cfg_mode_affichage_label:>,
 								datas=#ARRAY{
@@ -86,14 +84,12 @@
 								label_case=<:ecrire:item_oui:>,
 								defaut=}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
 				[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={communiquant}|oui)
-				<li class="fieldset">
 					<fieldset>
-						 <h3 class="legend"><:soyezcreateurs:cfg_affichagelistedocuments_label_bloc:></h3>	     
-						<ul>
+						<h3 class="legend"><:soyezcreateurs:cfg_affichagelistedocuments_label_bloc:></h3>	     
+						<div class="editer-groupe">
 							[(#SAISIE{radio,positiongoodies,
 								label=<:soyezcreateurs:cfg_goodies:>,
 								datas=#ARRAY{
@@ -118,20 +114,15 @@
 								},
 								defaut=extra}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
 				]
-				
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_position_flux_rss:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,positionfluxrss,
 								label=<:soyezcreateurs:cfg_position_flux_rss_label:>,
 								datas=#ARRAY{
@@ -147,10 +138,8 @@
 								defaut=0,
 								explication=<:soyezcreateurs:cfg_rss_label_ex:>}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_apparence_header:></h3>
 							<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{0,1}>[(#SET{headerbanner,[(#LOGO_MOT_NORMAL|image_reduire{300,0})]})]</BOUCLE_HeaderBanner>
@@ -159,7 +148,7 @@
 								[(#SET{bandeg,<:soyezcreateurs:cfg_banniere_degrade:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];">&nbsp;</span>})]
 								[(#SET{banmet,<:soyezcreateurs:cfg_banniere_metal:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];">&nbsp;</span>})]
 								[(#SET{banlen,<:soyezcreateurs:cfg_banniere_lentilles:><span style="display:block; [height: [(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|hauteur)]px; background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat right;]">&nbsp;</span>})]
-								[<ul>(#SAISIE{radio,default_banniere,
+								[<div class="editer-groupe">(#SAISIE{radio,default_banniere,
 									label=<:soyezcreateurs:cfg_choix_banniere_label:>,
 									datas=#ARRAY{
 										degrade,#GET{bandeg},
@@ -167,9 +156,9 @@
 										lentilles,#GET{banlen},
 									},
 									defaut=lentilles}
-								)</ul>]
+								)</div>]
 							]
-						<ul>
+						<div class="editer-groupe">
 							[(#LOGO_SITE_SPIP_SURVOL|oui|ou{#GET{headerbanner}|oui})
 							[(#SAISIE{radio,afficher_titre,
 								label=<:soyezcreateurs:cfg_afficher_titre_label:>,
@@ -211,13 +200,11 @@
 								size=3,
 								defaut=20}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_menuderoulant:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,menuhautheader,
 								label=<:soyezcreateurs:cfg_mode_affichage_haut_label:>,
 								datas=#ARRAY{
@@ -237,18 +224,14 @@
 								defaut=deroulant,
 								cacher_option_intro=oui}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_sousmenulocaux:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,sousmenulocaux,
 								label=<:soyezcreateurs:cfg_sousmenulocaux_label:>,
 								datas=#ARRAY{
@@ -259,13 +242,11 @@
 								cacher_option_intro=oui,
 								explication=<:soyezcreateurs:cfg_sousmenulocaux_ex:>}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_nombres_quoideneuf:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{input,nombres_alanune,
 								label=<:soyezcreateurs:cfg_alaune_label:>,
 								size=2,
@@ -310,13 +291,11 @@
 								defaut=,
 								explication=<:soyezcreateurs:cfg_affichage_nouveautes_ex:>}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_navigationtransversalelocale:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,navigationtransversalelocale,
 								label=<:soyezcreateurs:cfg_navigationtransversale_label:>,
 								datas=#ARRAY{
@@ -326,18 +305,14 @@
 								defaut=locale,
 								cacher_option_intro=oui}
 							)]	
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_affichagelistedocuments:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{checkbox,affichagelistedocuments,
 								label=<:soyezcreateurs:cfg_affichagelistedocuments_label:>,
 								datas=#ARRAY{
@@ -351,13 +326,11 @@
 								},
 								defaut=enbas}
 							)]	
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_formulaire_recherche:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,geolocalisation,
 								label=<:soyezcreateurs:cfg_geolocalisation_label:>,
 								datas=#ARRAY{
@@ -375,13 +348,11 @@
 								},
 								defaut=header}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_ephemeride:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,affichage_ephemeride,
 								label=<:soyezcreateurs:cfg_ephemeride_label:>,
 								datas=#ARRAY{
@@ -395,31 +366,25 @@
 								defaut=FRXX0076,
 								explication=<:soyezcreateurs:cfg_inf_rainette_ville:>}
 							)]]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_bandeau_annonce:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{textarea,bandeau_annonce,
 								label=<:soyezcreateurs:cfg_texte_bandeau_annonce:>,
 								rows=3,
 								cols=40,
 								class=inserer_barre_edition}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_bandeau_contact:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{textarea,bandeau_contact,
 								label=<:soyezcreateurs:cfg_texte_bandeau_label:>,
 								rows=3,
@@ -435,41 +400,34 @@
 								},
 								defaut=bas}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				[</ul>(#PLUGIN{ACCESRESTREINT}|oui)<p class="boutons">
+				[(#PLUGIN{ACCESRESTREINT}|oui)<p class="boutons">
 					<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 				</p>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_explicationslogin:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{textarea,explicationslogin,
 								label=<:soyezcreateurs:cfg_texte_explicationslogin:>,
 								rows=10,
 								cols=40,
 								class=inserer_barre_edition}
 							)]
-						</ul>
-					</fieldset>
-				</li>
-				<ul>]
-				<li class="fieldset">
+						</div>
+					</fieldset>]
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_numero_cnil:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{input,numero_cnil,
 								label=<:soyezcreateurs:cfg_numero_cnil_label:>,
 								size=20}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_datepublication:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,aff_datepublication,
 								label=<:soyezcreateurs:cfg_datepublication_label:>,
 								explication=<:soyezcreateurs:cfg_datepublication_ex:>,
@@ -480,25 +438,19 @@
 								},
 								defaut=oui}
 							)]
-						</ul>
-						<ul>
 							[(#SAISIE{oui_non,aff_datepublicationgoodies,
 								label=<:soyezcreateurs:cfg_datepublicationgoodies_label:>,
 								explication=<:soyezcreateurs:cfg_datepublicationgoodies_ex:>,
 								defaut=on}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_miniagenda:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,miniagenda,
 								label=<:soyezcreateurs:cfg_miniagenda_label:>,
 								defaut=on}
@@ -513,24 +465,20 @@
 								size=2,
 								defaut=5}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_agendathematique:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,agendathematique,
 								label=<:soyezcreateurs:cfg_agendathematique_label:>,
 								defaut=}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_agenda_futurseul:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,agendafuturseul,
 								label=<:soyezcreateurs:cfg_evenements_label:>,
 								datas=#ARRAY{
@@ -539,13 +487,11 @@
 								},
 								defaut=non}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_agendascolaire:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{radio,agendascolaire,
 								label=<:soyezcreateurs:cfg_type_agenda_label:>,
 								datas=#ARRAY{
@@ -554,82 +500,66 @@
 								},
 								defaut=annuel}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_agenda_inscription:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,agenda_inscription,
 								label=<:soyezcreateurs:cfg_agenda_inscription_label:>,
 								defaut=''}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_agenda_ical_masque:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,agenda_ical_masque,
 								label=<:soyezcreateurs:cfg_agenda_ical_masque_label:>,
 								defaut=''}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_anonymatglobal:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,anonymatglobal,
 								label=<:soyezcreateurs:cfg_anonymatglobal_label:>,
 								defaut=on,
 								explication=<:soyezcreateurs:cfg_anonymatglobal_ex:>}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_textesiplanvide:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{textarea,textesiplanvide,
 								label=<:soyezcreateurs:cfg_textesiplanvide_label:>,
 								rows=3,
 								cols=40,
 								class=inserer_barre_edition}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_affichage_impression:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{oui_non,aff_complet_pour_impression,
 								label=<:soyezcreateurs:cfg_affichage_impression_label:>,
 								defaut=,
 								explication=<:soyezcreateurs:cfg_affichage_impression_ex:>}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 			</p>
-			<ul>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_realisation:></h3>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{textarea,realisation,
 								label=<:soyezcreateurs:cfg_realisation:>,
 								rows=3,
@@ -637,14 +567,12 @@
 								defaut='&#91;Pyrat.net|Visiter le site du créateur de ce squelette->http://www.pyrat.net/&#93;',
 								class=inserer_barre_edition}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_zone_forum:></h3>
 						<p><:soyezcreateurs:cfg_zone_forum_laisser_vide:></p>
-						<ul>
+						<div class="editer-groupe">
 							[(#SAISIE{input,zone_forum_titre,
 								label=<:soyezcreateurs:cfg_zone_forum_titre:>,
 								defaut='',
@@ -655,10 +583,8 @@
 								defaut='',
 								explication=(<:soyezcreateurs:forum_repondre:>)}
 							)]
-						</ul>
+						</div>
 					</fieldset>
-				</li>
-			</ul>
 			<p class="boutons">
 				<input type="submit" name="_cfg_ok" value="<:cfg:bouton_mettre_a_jour:>" />
 				<input type="submit" name="_cfg_delete" value="<:cfg:supprimer:>" />
