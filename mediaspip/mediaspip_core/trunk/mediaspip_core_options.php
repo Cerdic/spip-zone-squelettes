@@ -5,7 +5,7 @@
  * Auteurs :
  * kent1 (http://www.kent1.info - kent1@arscenic.info)
  *
- * © 2010-2013 - Distribue sous licence GNU/GPL
+ * © 2010-2015 - Distribue sous licence GNU/GPL
  * 
  * Fichier des options spécifiques du plugin (utilisées à chaque hit)
  */
@@ -27,7 +27,7 @@ define('_STATUT_AUTEUR_CREATION', '6forum');
 if (
 	( // on est en mode apercu
 		(isset($_COOKIE['spip_zengarden_theme']) AND $t = $_COOKIE['spip_zengarden_theme'])
-        // ou avec le cookie du switcher
+		// ou avec le cookie du switcher
 		OR
 		// ou un theme est vraiment selectionne
 		(isset($GLOBALS['meta']['zengarden_theme']) AND $t = $GLOBALS['meta']['zengarden_theme']))
