@@ -70,7 +70,7 @@ var mediaspip_sous_menus = function(){
 var mediaspip_hauteur_blocs = function(){
 	if(typeof(jQuery.fn.equalHeights) ==  'function'){
 		jQuery('.liste_medias_vignettes').each(function(){
-			jQuery(this).find('.vignette').equalHeights();
+			jQuery(this).find('.thumbnail').equalHeights();
 		});
 		jQuery('.zengarden .liste_themes .theme').equalHeights();
 		if(jQuery('#liste_editos').size() > 1)
