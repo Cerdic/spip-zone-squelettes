@@ -6,13 +6,13 @@
 
 ]
 #SET{type_date,#ENV{type_date,date}}
+[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE,url=[(#URL|parametre_url{recherche,''})]})]
+[(#REM) TODO : chaîne différente selon #TYPE_DATE ?]
+[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_#GET{type_date}_debut,valeur=[(#DATE_DEBUT|affdate_jourcourt)],url=[(#URL|parametre_url{date_debut,''})]})]
+[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_#GET{type_date}_fin,valeur=[(#DATE_FIN|affdate_jourcourt)],url=[(#URL|parametre_url{date_fin,''})]})]
+[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_langue,valeur=[(#LANG_FORCEE|traduire_nom_langue)],url=[(#URL|parametre_url{lang_forcee,''})]})]
+[(#EM_TYPE|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_em_type,valeur=[(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)],url=[(#URL|parametre_url{em_type,''})]})]]
 <div class="filtres_actifs">
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_recherche,valeur=#RECHERCHE,url=[(#URL|parametre_url{recherche,''})]})]
-	[(#REM) TODO : chaîne différente selon #TYPE_DATE ?]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_#GET{type_date}_debut,valeur=[(#DATE_DEBUT|affdate_jourcourt)],url=[(#URL|parametre_url{date_debut,''})]})]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_#GET{type_date}_fin,valeur=[(#DATE_FIN|affdate_jourcourt)],url=[(#URL|parametre_url{date_fin,''})]})]
-	[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_langue,valeur=[(#LANG_FORCEE|traduire_nom_langue)],url=[(#URL|parametre_url{lang_forcee,''})]})]
-	[(#EM_TYPE|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_em_type,valeur=[(#VAL{emballe_medias:type_[(#EM_TYPE)]}|_T)],url=[(#URL|parametre_url{em_type,''})]})]]
 	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_rubrique,valeur=#TITRE,url=[(#URL|parametre_url{id_rubrique,''})]})]
 	</BOUCLE_rubrique>
@@ -23,16 +23,15 @@
 	<BOUCLE_mot(MOTS){id_mot}>
 		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE,url=[(#URL|parametre_url{id_mot,''})]})]
 	</BOUCLE_mot>
-	<BOUCLE_mots(MOTS){id_mot IN #MOTS}>
-		#SET{mots,#ARRAY}
+	<BOUCLE_mots(MOTS){id_mot IN #MOTS}>#SET{mots,#ARRAY}
 		<BOUCLE_mots_url(DATA){source table, #MOTS}{valeur!==#ID_MOT}>#SET{mots,#GET{mots}|push{#VALEUR}}</BOUCLE_mots_url>
 		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mot,valeur=[(#TYPE|supprimer_numero)/]#TITRE,url=[(#URL|parametre_url{mots,#ARRAY}|parametre_url{mots,#GET{mots}})]})]
 	</BOUCLE_mots>
-	<BOUCLE_statuts(DATA){source table, #STATUTS}>
-		#SET{statuts,#ARRAY}
+	<BOUCLE_statuts(DATA){source table, #STATUTS}>#SET{statuts,#ARRAY}
 		<BOUCLE_statuts_url(DATA){source table, #STATUTS}{valeur!==#_statuts:VALEUR}>#SET{statuts,#GET{statuts}|push{#VALEUR}}</BOUCLE_statuts_url>
 		[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_statut,valeur=[(#VAL{article}|statut_titre{#VALEUR})],url=[(#URL|parametre_url{statuts,''}|parametre_url{statuts,#GET{statuts}})]})]
 	</BOUCLE_statuts>
-	[(#MESFAVORIS|=={oui}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)],url=[(#URL|parametre_url{mesfavoris,''})]})]]
-	[(#MESFAVORIS|=={non}|oui) [(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)],url=[(#URL|parametre_url{mesfavoris,''})]})]]
+	[(#MESFAVORIS|=={oui}|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_oui}|_T)],url=[(#URL|parametre_url{mesfavoris,''})]})]]
+	[(#MESFAVORIS|=={non}|oui)[(#INCLURE{fond=inclure/filtre_actif,chaine_nom=filtre_mesfavoris,valeur=[(#VAL{item_non}|_T)],url=[(#URL|parametre_url{mesfavoris,''})]})]]
 </div>
+#FILTRE{trim}
