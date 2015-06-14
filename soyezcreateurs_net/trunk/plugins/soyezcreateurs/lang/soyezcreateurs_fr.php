@@ -156,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Indexation du site par les moteurs de recherche',
 	'cfg_indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 	'cfg_indexation_oui' => 'Indexer le site dans les moteurs de recherche',
-	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">sur le site de weather.com ®</a>.',
+	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://fr.weather.com/conditions_actuelles/">sur le site de weather.com ®</a>.<br />Une fois la ville trouvée, copier/coller ci-dessous la partie de l\'URL de type FRXX0000.',
 	'cfg_info' => 'Configuration du squelette SoyezCréateurs',
 	'cfg_largeur' => 'Largeur',
 	'cfg_largeur_colonnes_centrales' => 'Largeur de chacune des 3 colonnes centrales',
