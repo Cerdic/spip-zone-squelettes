@@ -1,7 +1,10 @@
-[(#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_largeur,900}}})][
-(#SET{hauteur_logo,[(#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_hauteur,500}})]})
-][(#SET{width,#LOGO_SITE_SPIP|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}|extraire_attribut{width}})][
-(#GET{width}|>{300}|oui)[(#SET{has_banner,has_banner})]]
+[(#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_largeur,900}}})]
+[(#SET{hauteur_logo,[(#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_hauteur,500}})]})]
+[(#SET{logo_resize,#LOGO_SITE_SPIP|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}})]
+[(#VAL{_TAILLE_LOGO_SITE_FORCER}|defined|et{#EVAL{_TAILLE_LOGO_SITE_FORCER}|=={oui}}|oui)
+[(#SET{logo_resize,#GET{logo_resize}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo},center}})]]
+[(#SET{width,#GET{logo_resize}|extraire_attribut{width}})]
+[(#GET{width}|>{300}|oui)[(#SET{has_banner,has_banner})]]
 [(#LOGO_BACKGROUND|oui)[(#SET{has_background,has_background})]]
 <body[(#GET{has_banner}|ou{#GET{has_background}}|oui)class="[(#GET{has_banner})][ (#GET{has_background})]"]>
 	<div class="page[(#VAL{_MS_TYPE_SKEL}|defined|oui)#EVAL{_MS_TYPE_SKEL}]">
