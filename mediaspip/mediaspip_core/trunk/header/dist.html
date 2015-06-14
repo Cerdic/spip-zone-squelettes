@@ -1,8 +1,13 @@
 [(#SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_largeur,900}}})][
-(#SET{hauteur_logo,[(#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_hauteur,500}})]})
-]<div class="accueil">
-	[(#LOGO_SITE_SPIP|image_reduire{#GET{largeur_logo},#GET{hauteur_logo}}|inserer_attribut{alt,<:mediaspip_core:alt_logo_site:>})][
-	(#LOGO_SITE_SPIP|non)&nbsp;
+(#SET{hauteur_logo,[(#VAL{_TAILLE_HAUTEUR_LOGO_SITE}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGO_SITE},#CONFIG{mediaspip/squelettes/logo_hauteur,400}})]})
+]
+[(#LOGO_SITE_SPIP|oui)
+[(#SET{logo_resize,#LOGO_SITE_SPIP|image_passe_partout{#GET{largeur_logo},#GET{hauteur_logo}}|inserer_attribut{alt,<:mediaspip_core:alt_logo_site:>}})]
+[(#VAL{_TAILLE_LOGO_SITE_FORCER}|defined|et{#EVAL{_TAILLE_LOGO_SITE_FORCER}|=={oui}}|oui)
+[(#SET{logo_resize,#GET{logo_resize}|image_recadre{#GET{largeur_logo},#GET{hauteur_logo},center}|inserer_attribut{alt,<:mediaspip_core:alt_logo_site:>}})]]]
+<div class="accueil">
+	[(#GET{logo_resize})][
+	(#LOGO_SITE_SPIP|non)
 	][(#VAL{info_titre_site}|in_array{#CONFIG{mediaspip/squelettes/blocs_recurrents_caches,#ARRAY}}|non)<strong id="nom_site_spip" class="h1 #EDIT{meta-nom_site}">[(#SI_PAGE{sommaire}|non)<a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">]#NOM_SITE_SPIP[(#SI_PAGE{sommaire}|non)</a>]</strong>]
 	[(#VAL{info_slogan}|in_array{#CONFIG{mediaspip/squelettes/blocs_recurrents_caches,#ARRAY}}|non)[<div id="slogan_site_spip" class="#EDIT{meta-slogan_site}">(#SLOGAN_SITE_SPIP|PtoBR)</div>]]
 </div>
@@ -12,3 +17,5 @@
 	#FORMULAIRE_RECHERCHE
 	<p><a href="#URL_PAGE{recherche_avancee}"><:mediaspip_core:info_recherche_avancee:></a></p>
 </div>]
+
+#FILTRE{trim}
