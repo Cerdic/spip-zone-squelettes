@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Mediaspip Core
+ * Formulaire de changement de vue des listes de medias
  * 
- * Auteurs :
- * kent1 (http://www.kent1.info - kent1@arscenic.info)
- *
- * © 2010-2013 - Distribue sous licence GNU/GPL
+ * © 2010-2015 - Distribue sous licence GNU/GPL
+ * @author kent1 <kent1@arscenic.info>
  * 
  */
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -28,7 +27,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function formulaires_ms_vue_charger_dist($boucle,$defaut='',$ancre='',$recharger=false){
 	$vue_actuelle = _request('vue'.$boucle) ? _request('vue'.$boucle) : $defaut;
 	$page = _request('page');
-	spip_log($recharger,'test.'._LOG_ERREUR);
 	return
 		array(
 			'action' => self(),

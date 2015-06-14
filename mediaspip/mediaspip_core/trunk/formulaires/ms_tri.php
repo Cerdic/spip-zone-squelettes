@@ -1,12 +1,10 @@
 <?php
 /**
  * Plugin Mediaspip Core
- * 
- * Auteurs :
- * kent1 (http://www.kent1.info - kent1@arscenic.info)
+ * Formulaire de changement de tri des listes de medias
  *
- * © 2010-2013 - Distribue sous licence GNU/GPL
- * 
+ * © 2010-2015 - Distribue sous licence GNU/GPL
+ * @author kent1 <kent1@arscenic.info>
  */
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
@@ -29,7 +27,6 @@ function formulaires_ms_tri_charger_dist($boucle,$defaut='',$ancre='',$recharger
 	$tri_actuel = _request('tri'.$boucle) ? _request('tri'.$boucle) : $defaut;
 	$exclus = lire_config('mediaspip/recherche/liste_criteres_exclus_tri',array());
 	$page = _request('page');
-	spip_log($recharger,'test.'._LOG_ERREUR);
 	return
 		array(
 			'action' => self(),
@@ -51,7 +48,6 @@ function formulaires_ms_tri_traiter_dist($boucle,$defaut='',$ancre='',$recharger
 	}else{
 		$res['redirect'] = $lien_retour.($ancre ? '#'.$ancre : '');
 	}
-	spip_log($res,'test.'._LOG_ERREUR);
 	return $res;
 }
 
