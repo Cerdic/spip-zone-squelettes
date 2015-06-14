@@ -1,5 +1,8 @@
 #SET{largeur_logo,#VAL{_TAILLE_LARGEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_LARGEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_largeur,80}}}
 #SET{hauteur_logo,#VAL{_TAILLE_HAUTEUR_LOGOS_OBJETS}|defined|?{#EVAL{_TAILLE_HAUTEUR_LOGOS_OBJETS},#CONFIG{mediaspip/squelettes/logo_objets_hauteur,80}}}
+[(#ENV{licence_nom}|oui)[(#ENV{licence_nom}|=={ss_licence}|?{[(#SET{id_licence,0})],[(#SET{id_licence,#ENV{licence_nom}})]})]]
+[(#REM) Medias trouves ]
+[(#SET{titre_liste,<:mediaspip_core:recherche_medias:>})]
 <div class="content-principal pas_surlignable">
 	[<div class="cartouche">
 		<div class="logo">
@@ -12,13 +15,6 @@
 	<div class="noajax">
 	[(#FORMULAIRE_MS_RECHERCHE_AVANCEE{#URL_PAGE{recherche_avancee}|ancre_url{resultats}})]
 	</div>
-	
-	[(#ENV{licence_nom}|oui)
-		[(#ENV{licence_nom}|=={ss_licence}|?{[(#SET{id_licence,0})],[(#SET{id_licence,#ENV{licence_nom}})]})]
-	]
-	[(#REM) Medias trouves ]
-	[(#SET{titre_liste,<:mediaspip_core:recherche_medias:>})]
-
 	<a name="resultats"></a>
 	#INCLURE{fond=inclure/articles-medias_liste,titre_liste=#GET{titre_liste},tri_medias_forcer=#ENV{recherche}|?{points},toutes_langues=#ENV{lang_forcee}|?{non,oui},afficher_nombre=oui,afficher_filtres=oui,id_licence=#GET{id_licence},env,ajax}
 	
@@ -39,13 +35,11 @@
 		[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 	</div>
 	</B_articles>
-
 	[(#REM)
 
 		On ne recherche dans les articles syndiques que si les critères de la recherche le permettent
 
-	]
-	<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|ou{#ENV{type_date}|=={date_redac}}|ou{#ENV{mots}}|non}>
+	]<BOUCLE_recherche_critere_syndic_ok(CONDITION){si #ENV{id_auteur}|ou{#ENV{licence_nom}}|ou{#ENV{em_type}}|ou{#ENV{type_date}|=={date_redac}}|ou{#ENV{mots}}|non}>
 	[(#REM) articles externes trouves ]
 	<B_syndic_articles>
 	<div class="liste resultats syndic_articles">
@@ -66,3 +60,4 @@
 	</B_syndic_articles>
 	</BOUCLE_recherche_critere_syndic_ok>
 </div>
+#FILTRE{trim}
