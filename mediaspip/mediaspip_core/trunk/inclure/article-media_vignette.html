@@ -54,10 +54,10 @@
 		</a>
 	</[(#ENV{niveau_titre,h3})]>
 	[(#VAL{info_date}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-publi-vignette small">
-		<p class="date">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
+		<p class="date">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][[#SET{auteur_affiche,affiche}<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
 	</div>]
 	[(#VAL{info_date_redac}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-publi-vignette small">
-		<p class="date">[<abbr class="published" title="[(#DATE_REDAC|date_iso)]">(#DATE_REDAC|affdate_jourcourt)</abbr>][[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
+		<p class="date">[<abbr class="published" title="[(#DATE_REDAC|date_iso)]">(#DATE_REDAC|affdate_jourcourt)</abbr>][[(#GET{auteur_affiche}|=={affiche}|non)[#SET{auteur_affiche,affiche}<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]](#ENV{type}|!={auteur-profil}|et{#ENV{type}|!={auteur}}|et{#VAL{info_auteur}|in_array{#GET{infos_cachees_vignette}}|non}|oui)]</p>
 	</div>]
 	[(#VAL{info_maj}|in_array{#GET{infos_cachees_vignette}}|non)<div class="info-updated-vignette small">
 		<p class="maj">[<:mediaspip_core:info_maj:> <abbr class="updated" title="[(#MAJ|date_iso)]">(#MAJ|date_relative)</abbr>]</p>
