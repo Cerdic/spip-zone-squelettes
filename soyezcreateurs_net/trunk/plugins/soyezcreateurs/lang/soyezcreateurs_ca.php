@@ -140,7 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Indexació del lloc pels motors de cerca',
 	'cfg_indexation_non' => 'No indexar el lloc als motors de cerca',
 	'cfg_indexation_oui' => 'Indexar el lloc als motors de cerca',
-	'cfg_inf_rainette_ville' => 'Permet mostrar les condicions i les previsions meteorològiques d’una vila francesa gràcies a un codi disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">al lloc weather.com ®</a> .',
+	'cfg_inf_rainette_ville' => 'Permet mostrar les condicions i les previsions meteorològiques d’una vila francesa gràcies a un codi disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">al lloc weather.com ®</a> .', # MODIF
 	'cfg_info' => 'Configuració de la plantilla SigueuCreatius', # MODIF
 	'cfg_largeur' => 'Amplada',
 	'cfg_largeur_colonnes_centrales' => 'Amplada de cadascuna de les 3 columnes centrals',

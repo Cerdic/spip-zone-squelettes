@@ -124,7 +124,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Індексація сайту пошуковими системами',
 	'cfg_indexation_non' => 'Не індексувати сайт в пошукових системах',
 	'cfg_indexation_oui' => 'Індексувати сайт в пошукових системах',
-	'cfg_inf_rainette_ville' => 'Дозволяє відображати погодні умови і прогнози для французького міста, завдяки вільному коду: <а href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">weather.com ®</a>.',
+	'cfg_inf_rainette_ville' => 'Дозволяє відображати погодні умови і прогнози для французького міста, завдяки вільному коду: <а href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">weather.com ®</a>.', # MODIF
 	'cfg_info' => 'Конфігурація скелету SoyezCreateurs', # MODIF
 	'cfg_largeur' => 'Ширина',
 	'cfg_largeur_colonnes_centrales' => 'Ширина кожної з трьох центральних колонок',

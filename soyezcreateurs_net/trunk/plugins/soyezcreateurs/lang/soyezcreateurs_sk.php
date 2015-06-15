@@ -153,7 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Zaindexovanie stránky vyhľadávačmi',
 	'cfg_indexation_non' => 'Neindexovať stránku vyhľadávačmi',
 	'cfg_indexation_oui' => 'Indexovať stránku vo vyhľadávačoch',
-	'cfg_inf_rainette_ville' => 'Zobrazí podmienky a predpoveď počasia pre francúzske mesto cez kód, ktorý je dostupný na <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">na stránke weather.com®</a>.',
+	'cfg_inf_rainette_ville' => 'Zobrazí podmienky a predpoveď počasia pre francúzske mesto cez kód, ktorý je dostupný na <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">na stránke weather.com®</a>.', # MODIF
 	'cfg_info' => 'Nastavenia šablóny Buďte tvoriví',
 	'cfg_largeur' => 'Šírka',
 	'cfg_largeur_colonnes_centrales' => 'Šírka každého z 3 hlavných stĺpcov',

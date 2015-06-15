@@ -150,7 +150,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Site indexing by search engines',
 	'cfg_indexation_non' => 'Don’t indexing the site by search engines',
 	'cfg_indexation_oui' => 'Index the site in search engines',
-	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .',
+	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com ® site</a> .', # MODIF
 	'cfg_info' => 'Configuration of SoyezCréateurs',
 	'cfg_largeur' => 'Width',
 	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
