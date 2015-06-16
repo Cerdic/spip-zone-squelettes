@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // C
 	'cfg_boite_accueil' => 'Accueil',
+	'cfg_boite_apparence' => 'Configuration',
 	'cfg_boite_agenda' => 'Agenda',
 	'cfg_boite_album' => 'Album',
 	'cfg_boite_article' => 'Article',
@@ -49,6 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_boite_styles' => 'Configuration des styles',
 	'cfg_descr_accueil' => 'Vous êtes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
 	'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caractéristiques de ces deux affichages sont configurables dans cette page.',
+	'cfg_descr_apparence' => 'Vous pouvez configurer ici les différentes couleurs, polices de caractères, tailles etc. qui servent à la mise en forme du site public. Vos réglages sont écrits dans le fichier <tt>squelettes/css/variables.less</tt> que vous pouvez supprimer manuellement en cas de problème.',
 	'cfg_descr_album' => 'Le corps de la page album permet d\'afficher plusieurs blocs d\'information : la description, les photos avec plusieurs modèles de présentation, les documents joints et les commentaires postés par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 	'cfg_descr_article' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires postés par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 	'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publiés par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
@@ -684,6 +686,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_msg_webmestre_nok' => 'Seuls les webmestres du site sont autorisés à modifier ces paramètres.',
 	'cfg_option_tout_sauvegarder' => 'Toutes les configurations',
 	'cfg_titre_accueil' => 'Sarka-SPIP - Configuration du squelette',
+	'cfg_titre_apparence' => 'Sarka-SPIP - Configuration de l\'apparence du site',
 	'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 	'cfg_titre_album' => 'Sarka-SPIP - Configuration de la page Album',
 	'cfg_titre_article' => 'Sarka-SPIP - Configuration de la page article',
@@ -714,6 +717,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // S
 	'sarkaspip_accueil' => 'Accueil',
 	'sarkaspip_agenda' => 'Agenda',
+	'sarkaspip_apparence' => 'Apparence',
 	'sarkaspip_album' => 'Album',
 	'sarkaspip_article' => 'Article',
 	'sarkaspip_auteur' => 'Auteur',

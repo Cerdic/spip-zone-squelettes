@@ -31,7 +31,7 @@ if (!defined('_SARKASPIP_PAGES_CONFIG')) define('_SARKASPIP_PAGES_CONFIG',
 |pages!sommaire:rubrique:article:auteur:breve:site:herbier:forum:agenda:galerie:album:plan:recherche
 |elements_transverses!bandeau:menus:comments:formulaires:modeles:noisettes:pied
 |referencement!header:backend
-|outils!plugins:maintenance');
+|outils!apparence:plugins:maintenance');
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta
