@@ -37,6 +37,9 @@ function formulaires_configurer_sarkaspip_apparence_traiter_dist(){
 		if (file_exists($f=_DIR_RACINE."squelettes/css/variables.less")){
 			@rename($f,"$f.sav");
 			spip_unlink($f);
+			// invalider le cache less
+			include_spip('inc/invalideur');
+			purger_repertoire(_DIR_VAR."cache-less");
 		}
 	}
 	else {
@@ -54,7 +57,10 @@ function formulaires_configurer_sarkaspip_apparence_traiter_dist(){
 			$res['message_ok'] = _T('config_info_enregistree')
 				. "<br /><a href=\"".parametre_url($GLOBALS['meta']['adresse_site'],'var_mode','calcul')
 				."\" target=\"_blank\">"._T('icone_voir_en_ligne')."</a>";
-			;
+			if (autoriser('webmestre')){
+				$res['message_ok'] .= " | <a href=\"". parametre_url(generer_url_public('demo/bootstrap','',false,false),'var_mode','calcul')
+				."\" target=\"_blank\">"._L('Page de démonstration de la charte de style')."</a>";
+			}
 		}
 	}
 	return $res;
