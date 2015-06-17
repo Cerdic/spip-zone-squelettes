@@ -40,7 +40,7 @@ function formulaires_contact_verifier_dist(){
                     $erreurs['email'] = _T('info_obligatoire_02');       
             }
             // Verifier que c'est une adresse valide
-            else if(!preg_match("#^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$#",$email)){
+            else if(!preg_match("#^[0-9A-Za-z]([-_.]?[0-9A-Za-z])*@[0-9A-Za-z]([-_.]?[0-9A-Za-z])*\\.[A-Za-z]{2,4}$#",$email)){
                     $erreurs['email'] = _T('escal:contact_alerte_mail');
             }
         }
@@ -104,12 +104,12 @@ function formulaires_contact_traiter_dist(){
 
         
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."</strong>";
+            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."&nbsp"."</strong>";
             $message .= $champs['champsup1']."\n\n";
         }
         
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."</strong>";
+            $message.= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."&nbsp"."</strong>";
             $message.= $champs['champsup2']."\n\n";
         }
         
@@ -131,6 +131,7 @@ function formulaires_contact_traiter_dist(){
         if ($champs['antispam']=='' ){
             if(send_email($email_to,$email_from,$email_webmaster,$sujet,$message)==true){
                 return array(
+                    'editable' => false,
                     'message_ok'=>_T('escal:contact_retour_commentaire')."\n"."<strong>". _request('email')."</strong>"
                     );
             }else{
