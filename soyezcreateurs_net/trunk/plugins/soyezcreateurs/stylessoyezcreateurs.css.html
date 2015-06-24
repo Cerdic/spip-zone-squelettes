@@ -1,10 +1,7 @@
 #CACHE{24*3600,cache-client}
-#FASTCACHE
 #HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
 #HTTP_HEADER{Vary: Accept-Encoding}
-[(#REM) Recuperation des CSS par defaut de SPIP ]
-[(#INCLURE{#CHEMIN{spip_style.css}|url_absolue_css}|compacte{css})]
-[(#INCLURE{#CHEMIN{spip_formulaires.css}|url_absolue_css}|compacte{css})]
+
 [(#REM) Recuperation des CSS par defaut du plugin Comments s'il est installé ]
 [(#PLUGIN{comments}|oui)[(#INCLURE{#CHEMIN{comments.css}|url_absolue_css}|compacte{css})]]
 
@@ -104,6 +101,7 @@ acronym, abbr { border-bottom: .1em dotted; cursor: help; }
 iframe  { border: none; }
 
 /*************** FORMS */
+/*
 .forml { width: 96%; }
 .searchfield { width: 70%; }
 input, textarea, select { padding: 1px; border: 1px solid [ #(#GET{c_cadrestexte_bk}|couleur_foncerluminosite)]; border-bottom-color: [ #(#GET{c_cadrestexte_bk}|couleur_eclaircirluminosite)]; border-right-color: [ #(#GET{c_cadrestexte_bk}|couleur_eclaircirluminosite)]; font-family: #GET{f_content}; vertical-align: middle; }
@@ -114,16 +112,18 @@ input, textarea, select { padding: 1px; border: 1px solid [ #(#GET{c_cadrestexte
 	background-color:[ #(#GET{c_cadrestexte_bk}|=={transparent}|?{#ddddff,#GET{c_cadrestexte_bk}}|couleur_inverserluminosite{80,true})];
 	color:[ #(#GET{c_cadrestexte_bk}|=={transparent}|?{#ddddff,#GET{c_cadrestexte_bk}}|couleur_inverserluminosite{80,true}|couleur_inverser|couleur_extreme)];
 }
-.searchfrm label { overflow: hidden !important; position: absolute !important; top: -2000px !important; left: -2000px !important; height: 0 !important; width: 0 !important; }
 input.submit, input.form_submit, input[type="submit"] { cursor:pointer; }
 /* spip forms */
+/*
 .spip_forms { padding: 0; border-left: none; color: inherit; font-family: inherit; }
 #content .spip_forms ul.choix_mots, #content .spip_forms ul.spip_form_choix_multiple, #content .spip_forms ul.spip_form_choix_unique {  color: #GET{c_container}; float: left; width: 45%; padding-left: 5px; list-style: none none outside; }
 .spip_forms fieldset, #content .formulaire_spip fieldset { border: 1px solid #GET{c_titraille_bk}; }
 .spip_forms legend, #content .formulaire_spip legend { border: 1px solid #GET{c_titraille_bk}; }
 #content .formulaire_spip ul { padding-left:5px; list-style: none none outside; }
 .formulaire_spip ul { list-style-type:none; } 
-#content .formulaire_spip label {  color: #GET{c_container}; float: left; width: 23%; margin: 0.5em 2% 0.5em 0; text-align: right; }
+*/
+#content .formulaire_spip label {  color: #GET{c_container}; /* float: left; width: 23%; margin: 0.5em 2% 0.5em 0; text-align: right; */ }
+/*
 #content .formulaire_spip input.text, 
 	#content .formulaire_spip textarea, 
 	#content .formulaire_spip select, 
@@ -141,6 +141,7 @@ input.submit, input.form_submit, input[type="submit"] { cursor:pointer; }
 #content .formulaire_spip em.attention {  color: #GET{c_container}; display: block; }
 #content .erreur { background-color: [(#GET{c_cadrestexte_bk})]; }
 .reponse_formulaire_ok, .reponse_formulaire_erreur, .erreur_message { padding: 0.5em; background-color: #fff; }
+*/
 
 /**************** Recherche par mot clef */
 #mots_filtres { padding: 8px; }
@@ -211,6 +212,8 @@ a:active { color: #GET{c_active}; }
 	]
 	<//B_HeaderBanner>
 }
+/* Label de la recherche masqué */
+.searchfrm label { overflow: hidden !important; position: absolute !important; top: -2000px !important; left: -2000px !important; height: 0 !important; width: 0 !important; }
 /* cadre recherche dans le header */
 #header .cadre_recherche { text-align:right; bottom:.5em; right:1em; clear:right; float: right; margin-top: 1em; padding-bottom: .5em;}
 #header .cadre_recherche #form_rech { padding:4px; }

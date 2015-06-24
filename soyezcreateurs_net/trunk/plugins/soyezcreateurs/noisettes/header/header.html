@@ -37,7 +37,26 @@
 [(#PLUGIN{AGENDA}|oui)<link rel="alternate" type="application/rss+xml" title="<:soyezcreateurs:syndiquer_agenda:> : [(#_SyndicationRubriqueAgenda:TITRE|attribut_html)]" href="[(#URL_PAGE{backendagenda,id_rubrique=#_SyndicationRubriqueAgenda:ID_RUBRIQUE}|url_absolue)]" />]
 </BOUCLE_EstAgenda></BOUCLE_SyndicationRubriqueAgenda>
 <BOUCLE_PicLensUtile(DOCUMENTS){id_article ?}{mode=document}{extension IN png,jpg,gif}{0,1}><link rel="alternate" href="[(#URL_PAGE{piclens.rss}|parametre_url{id_article,#ID_ARTICLE}|url_absolue)]" type="application/rss+xml" title="" id="gallery" /></BOUCLE_PicLensUtile>
+
+[(#REM) 
+      On appelle les feuilles de style 
+      dans l'ordre de la methode daisy http://daisy.tetue.net/img/daisy-nomenclature.png   
+
+      1. Base CSS http://tinytypo.tetue.net/ ]   
+[<link rel="stylesheet" href="(#CHEMIN{css/reset.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/clear.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/font.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/links.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/typo.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/media.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/form.css}|direction_css)" type="text/css" />]
+[<link rel="stylesheet" href="(#CHEMIN{css/grid.css}|direction_css)" type="text/css" />]
+[(#REM)[<link rel="stylesheet" href="(#CHEMIN{css/layout.css}|direction_css)" type="text/css" />]]
+
+[(#REM) 2. Style SPIP et ses plugins ]
+[<link rel="stylesheet" href="(#CHEMIN{css/spip.css}|direction_css)" type="text/css" />]
 #INSERT_HEAD_CSS
+
 [(#PLUGIN{agenda}|oui)[<link rel="stylesheet" type="text/css" href="(#PRODUIRE{fond=style_public_plugin_agenda,couleur_claire=[(#CONFIG{soyezcreateurs_couleurs/link,#017ca5}|replace{#,''})],format=css}|direction_css|compacte)" media="all" />]]
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
