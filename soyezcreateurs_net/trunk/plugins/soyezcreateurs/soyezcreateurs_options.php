@@ -147,22 +147,11 @@ function cs_SoyezCreateurs() { return array(
 	// Installation des outils par défaut
 	'outils' =>
 		'boites_privees,
-		citations_bb,
-		typo_exposants,
-		guillemets,
-		mailcrypt,
 		insertions,
-		corbeille,
 		spip_ecran',
 
 	// Installation des variables par défaut
 	'variables' => array(
-		'expo_bofbof' => 1,
-		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
-span.surgris = background-color:#EAEAEC; padding:0px 2px;
-fluo = surfluo',
-		'pp_edition_decoration' => 1,
-		'pp_forum_decoration' => 1,
 		'spip_ecran' => 'large',
 		'insertions' => 'oeuf = &oelig;uf
 cceuil = ccueil
