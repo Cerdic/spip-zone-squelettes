@@ -714,7 +714,7 @@ EOF;
 	if ($article == "Un sourire peut changer une vie") {
 		$contenu['titre'] = "Un sourire peut changer une vie";
 		$contenu['chapo'] = <<<EOF
-<iframe width="344" height="260" src="//www.youtube-nocookie.com/embed/Cbk980jV7Ao?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="344" height="260" src="//www.youtube-nocookie.com/embed/Cbk980jV7Ao?rel=0" allowfullscreen></iframe>
 EOF;
 	}
 

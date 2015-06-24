@@ -68,7 +68,7 @@ function sc_sommaire_article($texte,$istxt=0)
 		}
 		
 		if ($nb>1) {
-			$texte="<a name='SommaireAutomatique'></a>".$texte;
+			$texte="<a id='SommaireAutomatique'></a>".$texte;
 		}
 		
 	} else {
