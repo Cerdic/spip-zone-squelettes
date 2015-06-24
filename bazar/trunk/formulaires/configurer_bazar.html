@@ -1,0 +1,100 @@
+<div class="formulaire_spip formulaire_cfg formulaire_#FORM">
+	[<p class='reponse_formulaire reponse_formulaire_erreur'>(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	
+	<form method="post" action="#ENV{action}">
+		#ACTION_FORMULAIRE{#ENV{action}}
+		
+		
+		<h3 class="legend"><:bazar:configurer_accueil:></h3>
+		
+		#SET{cc,bazar}
+		
+		<ul class="editer-groupe">
+			<li class="editer editer_nomsrows">
+				<label for="nomsrows">[(#GET{cc}|concat{':label_',nomsrows}|_T)]</label>
+				<input type="text" name="nomsrows" class="text" value="[(#ENV*{nomsrows})]" id="nomsrows" />
+				<p class="explication">[(#GET{cc}|concat{':explication_',nomsrows}|_T)]</p>
+			</li>
+			
+			#SET{rows,#CONFIG{bazar/nomsrows}|explode{','}}
+			[(#CONFIG{bazar/nomsrows}|=={''}|oui) #SET{rows,''}]
+			<BOUCLE_nomsrows(DATA){source table, #GET{rows}}>
+			<li class="fieldset">
+			<fieldset>
+			<legend>#VALEUR</legend>
+			<ul class="[(#VALEUR|=={''}|oui) none]editer-groupe">
+				<li class="editer editer_rubrique_[(#VALEUR)]">
+				
+					<label for="rubrique_#VALEUR">[(#GET{cc}|concat{':label_',rubrique}|_T)]</label>
+					<select name="rubrique_#VALEUR" class="select" id="rubrique_#VALEUR">
+						<option value="">aucune</option>
+						<BOUCLE_rubriquepanel5(RUBRIQUES){racine}>
+						#SET{val,#ID_RUBRIQUE}
+						<option value="#GET{val}"[(#ENV{rubrique_#VALEUR}|=={#GET{val}}|oui)selected="selected"] class="racine">#TITRE</option>
+
+							<BOUCLE_rubriques5(RUBRIQUES) {id_parent} {par num titre, titre}>
+							#SET{val,#ID_RUBRIQUE}
+							<option value="#GET{val}"[(#ENV{rubrique_#VALEUR}|=={#GET{val}}|oui)selected="selected"]>#TITRE</option>
+								<BOUCLE_sous_rubriques5(RUBRIQUES) {id_parent} {par num titre}{!par date}>
+								#SET{val,#ID_RUBRIQUE}
+								<option value="#GET{val}"[(#ENV{rubrique_#VALEUR}|=={#GET{val}}|oui)selected="selected"]>#TITRE</option>
+								<BOUCLE_re5(BOUCLE_sous_rubriques5)></BOUCLE_re5>
+								</BOUCLE_sous_rubriques5>
+							</BOUCLE_rubriques5>
+						
+						</BOUCLE_rubriquepanel5>
+					</select>
+				</li>
+				<li class="editer editer_nb_[(#VALEUR)]">
+					<label for="nb_#VALEUR">[(#GET{cc}|concat{':label_',nb_d_article}|_T)]</label>
+					<select name="nb_#VALEUR" class="select" id="nb_#VALEUR">
+						<option value="1"[(#ENV{nb_#VALEUR}|=={1}|oui)selected="selected"]>1</option>
+						<option value="2"[(#ENV{nb_#VALEUR}|=={2}|oui)selected="selected"]>2</option>
+						<option value="3"[(#ENV{nb_#VALEUR}|=={3}|oui)selected="selected"]>3</option>
+						<option value="4"[(#ENV{nb_#VALEUR}|=={4}|oui)selected="selected"]>4</option>
+						<option value="5"[(#ENV{nb_#VALEUR}|=={5}|oui)selected="selected"]>5</option>
+					</select>
+				</li>
+				<li class="editer editer_doc_[(#VALEUR)]">
+					<label for="doc_#VALEUR">[(#GET{cc}|concat{':label_',doc}|_T)]</label>
+					<div class="choix">
+						<input type="radio" name="doc_#VALEUR" class="checkbox" value="logo"[ id="doc_(#VALEUR)_logo"][(#ENV{doc_#VALEUR}|=={logo}|oui)checked="checked"] />
+						[<label for="doc_(#VALEUR)_logo">[(#GET{cc}|concat{':label_',doc_logo}|_T)]</label>]
+					</div>
+					<div class="choix">
+						<input type="radio" name="doc_#VALEUR" class="checkbox" value="bkg"[ id="doc_(#VALEUR)_bkg"][(#ENV{doc_#VALEUR}|=={bkg}|oui)checked="checked"] />
+						[<label for="doc_(#VALEUR)_bkg">[(#GET{cc}|concat{':label_',doc_bkg}|_T)]</label>]
+					</div>
+					<p class="explication">[(#GET{cc}|concat{':explication_',doc}|_T)]</p>
+				</li>
+				<li class="editer editer_intro_[(#VALEUR)]">
+					<label for="intro_#VALEUR">[(#GET{cc}|concat{':label_',afficher_l_introduction}|_T)]</label>
+					<div class="choix">
+						<input type="checkbox" name="intro_#VALEUR" class="checkbox" value="oui" id="intro_#VALEUR"[(#ENV{intro_#VALEUR}|=={oui}|oui)checked="checked"] />
+						<label for="intro_#VALEUR"><:oui:></label>
+					</div>
+				</li>
+				<li class="editer editer_couper_[(#VALEUR)]">
+					<label for="couper_#VALEUR">[(#GET{cc}|concat{':label_',longueur_de_l_introduction}|_T)]</label>
+						<input type="texte" name="couper_#VALEUR" class="text" value="[(#ENV*{couper_#VALEUR})]" id="couper_#VALEUR" />
+					<p class="explication">[(#GET{cc}|concat{':explication_',couper}|_T)]</p>
+				</li>
+			</ul>
+			</fieldset>
+			</li>
+			</BOUCLE_nomsrows>
+		</ul>
+	
+		<p class="boutons">
+			<input type="submit" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</form>
+</div>
+
+
+<style type="text/css">
+option.racine { border-top:1px solid #000; }
+</style>
+
+
