@@ -1,0 +1,70 @@
+<div class="formulaire_spip formulaire_#FORM">
+	[<p class='reponse_formulaire reponse_formulaire_erreur'>(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	
+	<form method="post" action="#ENV{action}">
+		#ACTION_FORMULAIRE{#ENV{action}}
+		
+		<h3 class="legend"><:spiplogo_skel:voir_un_logo_en_situation:></h3>
+		
+		<div class="editer-groupe">
+			<div class="editer editer_choixlogo">
+				<label for="choixlogo"><:spiplogo_skel:label_choixlogo:></label>
+				<BOUCLE_logo(DOCUMENTS){id_mot IN 27,28}{par titre}>
+				<div class="choix">
+					<input type="radio" name="choixlogo" class="checkbox" value="#ID_DOCUMENT" id="choixlogo_#ID_DOCUMENT"[ (#ENV{choixlogo}|=={#ID_DOCUMENT}|oui)checked="checked"] />
+					[<label for="choixlogo_#ID_DOCUMENT">(#LOGO_DOCUMENT|image_reduire{60})</label>]
+				</div>
+				</BOUCLE_logo>
+<!-- 				<p class="explication"><:spiplogo_skel:explication_choixlogo:></p> -->
+			</div>
+			<div class="editer none"><input type="text" name="bobo" /></div>
+		</div>
+	
+		<p class="boutons">
+			<input type="submit" value="<:bouton_valider:>" class="submit" />
+		</p>
+	</form>
+</div>
+
+<BOUCLE_logotexte(DOCUMENTS){id_document=#ENV{choixlogo}}{id_mot=28}>
+<div class="insitu spipnet">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+<div class="insitu spipnet1">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+<div class="insitu programmer">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+</BOUCLE_logotexte>
+
+<BOUCLE_logosanstexte(DOCUMENTS){id_document=#ENV{choixlogo}}{id_mot=27}>
+<div class="insitu contrib">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+<div class="insitu plugins">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+<div class="insitu code">
+	[<div class="logo">(#FICHIER|image_reduire{400,120})</div>]
+</div>
+</BOUCLE_logosanstexte>
+
+
+[(#REM)
+<h3>Superposition avec |image_masque</h3>
+[(#CHEMIN{img/spip.net_960x660.png}
+	|image_recadre{960,660}
+	|image_masque{ [(#CHEMIN{img/polatouche.png}|image_recadre{960,660})] , mode=normal})]
+
+<h3>Fond du site sans logo</h3>
+[(#CHEMIN{img/spip.net_960x660.png}|balise_img)]
+
+<h2>Voir sur le site plugins.spip.net</h2>
+[(#CHEMIN{img/plugins.spip.net_9960x660.png}|balise_img)]
+
+<h2>Voir sur le site contrib.spip.net</h2>
+[(#CHEMIN{img/contrib.spip.net_960x660.png}|balise_img)]
+
+]

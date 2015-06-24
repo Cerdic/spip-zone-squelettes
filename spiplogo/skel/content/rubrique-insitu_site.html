@@ -1,30 +1,13 @@
 [(#REM)
 	Permet de simuler la page d'accueil su site spip.net avec un logo de 300x300
 ]
-
+[(#REM) les explications sont maintenant dans le texte de l'article de la rubrique, avec l'appelle du formulaire]
+<!-- 
 <h2>Fond du site combiné dynamiquement avec un des logos proposés</h2>
 <p>Recalculer la page pour visualiser les fonds avec un autre logo.</p>
-<p>Les logos sont pris au hasard parmi la liste suivante : 97,84,100,112,170,161</p>
+<p>Les logos sont pris au hasard parmi la liste suivante : 97,84,100,112,170,161</p>-->
 
-<BOUCLE_logo(DOCUMENTS){id_document IN 97,84,100,112,170,161}{0,1}{par hasard}>
+<BOUCLE_article(ARTICLES){id_rubrique}{!par date}{0,1}>
+#TEXTE
+</BOUCLE_article>
 
-<h3>Superposition en CSS[ (logo (#ID_DOCUMENT))]</h3>
-<div class="cadre">
-	<div class="fond">[(#CHEMIN{img/spip.net_960x660.png}|image_recadre{960,660})]</div>
-	<div class="logo">[(#FICHIER|image_reduire{0,150}|image_recadre{450,150,'center','transparent'})]</div>
-</div>
-</BOUCLE_logo>
-
-<h3>Superposition avec |image_masque</h3>
-[(#CHEMIN{img/spip.net_960x660.png}
-	|image_recadre{960,660}
-	|image_masque{ [(#CHEMIN{img/polatouche.png}|image_recadre{960,660})] , mode=normal})]
-
-<h3>Fond du site sans logo</h3>
-[(#CHEMIN{img/spip.net_960x660.png}|balise_img)]
-
-<h2>Voir sur le site plugins.spip.net</h2>
-[(#CHEMIN{img/plugins.spip.net_9960x660.png}|balise_img)]
-
-<h2>Voir sur le site contrib.spip.net</h2>
-[(#CHEMIN{img/contrib.spip.net_960x660.png}|balise_img)]
