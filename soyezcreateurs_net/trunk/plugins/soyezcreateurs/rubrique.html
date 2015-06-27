@@ -24,17 +24,16 @@
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type_mot=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}{id_rubrique}>[(#CHEMIN{noisettes/rubriques/typerubrique_#TITRE.html}|oui)
 [(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE}{env})]
 ]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
-	<div id="miettesdepain">
-	<ul>
-	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
-	<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
-	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-	</BOUCLE_plan>
-	<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
-	</ul>
-[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
-
-	</div>
+	<nav id="miettesdepain">
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
+			<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+			</BOUCLE_plan>
+			<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
+		</ul>
+		[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
+	</nav>
 
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
