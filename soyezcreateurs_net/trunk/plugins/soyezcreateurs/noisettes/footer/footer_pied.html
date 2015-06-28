@@ -1,8 +1,9 @@
 	<footer><div id="footer" class="clearbottom clearfix">
+	<h1 class="nocontent offscreen">Pied de page</h1>
 [(#SET{div_menufooter,0})]
-		<B_MenuFooter><nav><div id="menufooter"><ul>[(#SET{div_menufooter,1})]<BOUCLE_MenuFooter(ARTICLES){titre_mot=MenuFooter}{par num titre}{" "}><li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenufooter,oui}|=={oui}|oui)[<img class="menu_footer_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenufooter,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenufooter,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li></BOUCLE_MenuFooter></B_MenuFooter>
+		<B_MenuFooter><nav><div id="menufooter"><h2 class="nocontent offscreen">Menu transversal secondaire</h2><ul>[(#SET{div_menufooter,1})]<BOUCLE_MenuFooter(ARTICLES){titre_mot=MenuFooter}{par num titre}{" "}><li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#ARTICLE_URL)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#CONFIG{soyezcreateurs_layout/logomenufooter,oui}|=={oui}|oui)[<img class="menu_footer_logo" src="(#LOGO_ARTICLE|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogomenufooter,16},#CONFIG{soyezcreateurs_layout/hauteurlogomenufooter,16}}|extraire_attribut{src})" alt="" />]][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li></BOUCLE_MenuFooter></B_MenuFooter>
 [(#CONFIG{soyezcreateurs_layout/positionliensnav,menu_footer}|=={menu_footer}|oui)
-[[(#GET{div_menufooter}|non)<nav><div id="menufooter"><ul>][(#SET{div_menufooter,1})](#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})]
+[[(#GET{div_menufooter}|non)<nav><div id="menufooter"><h2 class="nocontent offscreen">Menu transversal secondaire</h2><ul>][(#SET{div_menufooter,1})](#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})]
 ]
 		[(#GET{div_menufooter}|oui)</ul></div></nav>]
 		[(#PLUGIN{nuage}|oui)[(#CONFIG{soyezcreateurs_layout/positionnuage,footer}|=={footer}|oui)<div id="nuage"><INCLURE{fond=noisettes/navigation/nuagedemotcle,env}></div>]]

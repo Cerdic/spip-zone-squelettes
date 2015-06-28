@@ -25,6 +25,7 @@
 [(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE}{env})]
 ]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
 	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
 		<ul>
 			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
 			<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
@@ -44,6 +45,7 @@
 
 <div class="texte">
 [(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+<main id="main">
 <div class="cartouche">
 <div class="titrepage"><h1 class="#EDIT{titre} surlignable"><BOUCLE_GrosLogoRub(MOTS){id_rubrique}{titre = GrosLogo}> #SET{AfficherGrosLogo,1}</BOUCLE_GrosLogoRub>[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}|hauteur)]" />]<//B_GrosLogoRub>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</h1>[(#FORMULAIRE_FAVORI)]</div>
 [(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
@@ -61,6 +63,7 @@
 [(#INCLURE{fond=modeles/documentsjoints}{id_rubrique})]
 ]
 	</div><!-- Fin de #LeTexte -->
+</main>
 </div><!-- Fin de .texte -->
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
