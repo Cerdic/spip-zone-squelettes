@@ -185,6 +185,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			supprimer_mot_groupe("_Specialisation_Rubrique", "GisSecteur");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.35','non');
 		}
+		if (version_compare($current_version,'3.0.36','<')) {
+			spip_log("SoyezCreateurs maj 3.0.36 Début", "soyezcreateurs_install");
+			ecrire_config('boutonstexte/skin','soyezcreateurs');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.36','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
