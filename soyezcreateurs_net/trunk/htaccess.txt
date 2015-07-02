@@ -19,9 +19,15 @@ RewriteEngine On
 ################ CONFIGURATION ######################
 
 ### Configuration sous-repertoire
-# Chez la plupart des hebergeurs il faut indiquer "RewriteBase /"
-# sinon modifiez cette ligne
 
+# Calcule automatiquememt le RewriteBase (qui permet de faire fonctionner
+# les belles URLs). De la sorte, un meme site peut etre affiche en racine
+# ou dans un sous repertoire sans devoir modifier la ligne RewriteBase.
+#RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+#RewriteRule ^(.*) - [E=BASE:%1]
+
+# En alternative aux 2 lignes precedentes (a commenter dans ce cas),
+# vous pouvez indiquer un RewriteBase specifique
 RewriteBase /
 
 
@@ -92,6 +98,15 @@ RewriteRule ^([1-9][0-9]*)$     spip.php?action=redirect&type=article&status=301
 #
 ###
 
+###
+# APIs
+# http://site/xmlrpc.api
+# http://site/atom.api/articles/1234
+
+RewriteRule ^([\w]+)\.api(/(.*))?$ spip.php?action=api_$1&arg=$3 [QSA,L]
+
+# Fin des APIs
+###
 
 ###
 # URLs "propres", "propres2", "libres", "arbo"
@@ -104,8 +119,8 @@ RewriteRule ^[^\.]+(\.html)?$		spip.php [QSA,E=url_propre:$0,L]
 ###
 # Divers
 
-# bloquer les acces aux repertoires .svn/ (SPIP, plugins, squelettes...)
-RewriteRule ^(.*/)?\.svn/ - [F]
+# bloquer les acces aux fichiers caches (.svn, .git, etc)
+RewriteRule /\\..*(/.*|$) - [F]
 
 ###
 # Fichiers "standards" (si absents de la racine)
@@ -115,6 +130,7 @@ RewriteRule ^favicon[.]ico$      spip.php?page=favicon.ico [QSA,L]
 RewriteRule ^sitemap[.]xml$      spip.php?page=sitemap.xml [QSA,L]
 ##
 
+
 # expirer les images (pour contourner gros bug MSIE sur le cache)
 # note : a decommenter si vous voulez tester
 #<IfModule mod_expires.c>
@@ -123,6 +139,11 @@ RewriteRule ^sitemap[.]xml$      spip.php?page=sitemap.xml [QSA,L]
 # ExpiresByType image/jpeg A3600
 # ExpiresByType image/png A3600
 #</IfModule>
+
+
+<IfModule mod_expires.c>
+	ExpiresByType text/html  "access plus 0 seconds"
+</IfModule>
 
 #################################
 # gestion des erreurs 404
