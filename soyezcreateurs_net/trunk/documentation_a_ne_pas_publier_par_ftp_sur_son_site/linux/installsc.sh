@@ -2,11 +2,8 @@
 #Installation de SPIP 3.1 beta
 svn checkout svn://trac.rezo.net/spip/spip ./
 #sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
-#Si besoin de la mutualisation, decomenter les ligne suivante
-#mkdir mutualisation
-#cd mutualisation
-#sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation/trunk ./
-#cd ..
+#Si besoin de la mutualisation, decomenter la ligne suivante
+#sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation/trunk ./mutualisation/
 
 #Installation des extensions
 cd plugins-dist
@@ -107,7 +104,8 @@ rm kcfinder-2.51.zip
 #retour à la racine
 cd ..
 
-sleep 2 && svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs/htaccess.txt ./.htaccess
+svn export svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/htaccess.txt ./.htaccess
+
 #Creer le dossier squelettes au besoin
 mkdir squelettes
 
