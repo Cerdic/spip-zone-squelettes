@@ -33,7 +33,7 @@
 	<div class="container menu rubriques">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-			<h2><:moulinette:plan_des_rubriques:></h2>
+			<h2><:moulinette:plan_du_site:></h2>
 			<B_plan>
 				<ul class="list-group">
 					<BOUCLE_plan(RUBRIQUES){racine}{par num titre, titre}{!par date}>
@@ -41,7 +41,8 @@
 						<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
 					,
 						<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
-					})][(#REM) Une boucle recursive pour le mini plan]
+					})]<INCLURE{fond=liste/articles-titre,id_rubrique} />
+						[(#REM) Une boucle recursive pour le mini plan]
 						<B_miniplan>
 						<ul class="list-group">
 							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
@@ -49,7 +50,8 @@
 									<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
 								,
 									<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
-								})]<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+								})]<INCLURE{fond=liste/articles-titre,id_rubrique} />
+								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
 							</li>
 							</BOUCLE_miniplan>
 						</ul>
