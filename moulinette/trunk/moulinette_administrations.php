@@ -21,5 +21,3 @@ function moulinette_vider_tables($nom_meta_version_base){
 	effacer_meta('moulinette');
 	effacer_meta($nom_meta_version_base);
 }
-
-?>
