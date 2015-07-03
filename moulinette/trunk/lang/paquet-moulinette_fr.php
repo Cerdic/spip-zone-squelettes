@@ -6,9 +6,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
-	'moulinette_description' => 'Moulinette : squelette pour SPIP',
+	'moulinette_description' => 'Moulinette : squelette en une page',
 	'moulinette_slogan' => 'Un squelette qui monte et qui descend !',
 	'moulinette_nom' => 'Moulinette',
 	
 );
-?>
