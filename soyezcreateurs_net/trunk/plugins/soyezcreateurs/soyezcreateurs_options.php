@@ -17,6 +17,9 @@ if (!defined('_LARGEUR_MODE_IMAGE'))
 if (!defined('_TITRER_DOCUMENTS'))
 	define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
 
+// Pour forcer le mode écran large
+$GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
+
 $GLOBALS['toujours_paragrapher'] = true;
 $GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 if (!defined('_AUTOBR'))
