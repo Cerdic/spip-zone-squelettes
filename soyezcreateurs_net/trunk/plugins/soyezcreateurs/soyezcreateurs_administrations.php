@@ -51,20 +51,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
 
-		if (version_compare($current_version,'3.0.23','<')) {
-			spip_log("SoyezCreateurs maj 3.0.23 Début", "soyezcreateurs_install");
-			// Activer les lames du CouteauSuisse Special SoyezCreateurs
-			$f = chercher_filtre('info_plugin');
-			if ($f('couteau_suisse', 'est_actif')) {
-				include_spip('couteau_suisse_administrations');
-				cout_install_pack('SoyezCreateurs');
-				include_spip('outils/boites_privees');
-				tri_auteurs_verifie_table(true);
-				cout_exec_redirige(false);
-			}
-			spip_log("SoyezCreateurs maj 3.0.23 Faite", "soyezcreateurs_install");
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.23','non');
-		}
 		if (version_compare($current_version,'3.0.24','<')) {
 			spip_log("SoyezCreateurs maj 3.0.24 Début", "soyezcreateurs_install");
 			// Initialisation Sigles du dictionnaire
@@ -189,6 +175,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 3.0.36 Début", "soyezcreateurs_install");
 			ecrire_config('boutonstexte/skin','soyezcreateurs');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.36','non');
+		}
+		if (version_compare($current_version,'3.0.37','<')) {
+			spip_log("SoyezCreateurs maj 3.0.37 Début", "soyezcreateurs_install");
+			ecrire_meta('orthotypo',"oeuf = œuf\ncceuil = ccueil\n(a priori) = {a priori}\n(([hH])uits) = $1uit\n/([cC]h?)oeur/ = $1œur\n/oeuvre/ = œuvre\n(O[Ee]uvre([rs]?)) = Œuvre$1\n/\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\b/ = $1onnaissa$2\nCO2 = <abbr title=\"CO2, Dioxyde de carbone, O=C=O\">CO<sub>2</sub></abbr>\noeil = œil\n(O[Ee]il) = Œil", 'non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.37','non');
 		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {

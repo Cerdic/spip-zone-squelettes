@@ -141,38 +141,3 @@ if ($plugins_actifs = liste_plugin_actifs() AND empty($plugins_actifs[strtoupper
 		return true;
 	}
 }
-
-######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
-// Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
-$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
-
-function cs_SoyezCreateurs() { return array(
-	// Installation des outils par défaut
-	'outils' =>
-		'boites_privees,
-		insertions,
-		spip_ecran',
-
-	// Installation des variables par défaut
-	'variables' => array(
-		'spip_ecran' => 'large',
-		'insertions' => 'oeuf = &oelig;uf
-cceuil = ccueil
-(a priori) = {a priori}
-(([hH])uits) = $1uit
-/([cC]h?)oeur/ = $1&oelig;ur
-/oeuvre/ = &oelig;uvre
-(O[Ee]uvre([rs]?)) = &OElig;uvre$1
-/\\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\\b/ = $1onnaissa$2
-CO2 = <abbr title="CO2, Dioxyde de carbone, O=C=O">CO<sub>2</sub></abbr>
-oeil = &oelig;il
-(O[Ee]il) = &OElig;il',
-		'cs_rss' => 0,
-		'format_spip' => 0,
-		'stat_auteurs' => 1,
-		'qui_webmasters' => 1,
-		'bp_urls_propres' => 1,
-		'bp_tri_auteurs' => 1
-	)
-);
-}
