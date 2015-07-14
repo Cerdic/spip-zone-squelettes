@@ -2,22 +2,25 @@
 <BOUCLE_HeaderBannerRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_HeaderBanner}{inverse}{0,1}>
 <BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_HeaderBanner}{par hasard}{0,1}>
 #SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
 </BOUCLE_LogoHeader>
 </BOUCLE_HeaderBannerRubrique>
 <BOUCLE_HeaderBannerTemplate(MOTS){type=_HeaderBanner}{descriptif!=''}{descriptif=#ENV{template}}{par hasard}{0,1}>
 #SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
 </BOUCLE_HeaderBannerTemplate>
 #SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_HeaderBanner}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
 <BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}{par hasard}{0,1}>
 #SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
 </BOUCLE_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
 [<style type="text/css">
 /*<!\[CDATA\[*/
 #header { position: relative; }
 #header:before {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAE0lEQVQIW2NkYGD4D8SMjEACDAAOKQEDKKNmJgAAAABJRU5ErkJggg==), url((#GET{labanniere}|extraire_attribut{src}|url_absolue));
-	background-repeat: repeat, no-repeat;
-	background-size: initial, cover;
+	background-image: [url((#GET{lefondhachures}|extraire_attribut{src}|url_absolue)), #SET{hachures,1}]url((#GET{labanniere}|extraire_attribut{src}|url_absolue));
+	background-repeat: [(#GET{hachures}|?{repeat, })]no-repeat;
+	background-size: [(#GET{hachures}|?{initial, })]cover;
 	display: block;
 	content: "";
 	width: 100%;
