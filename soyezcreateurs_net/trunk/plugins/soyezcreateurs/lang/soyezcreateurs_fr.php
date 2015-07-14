@@ -259,6 +259,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_polices_affichage' => 'Configuration des polices d’affichage',
 	'cfg_polices_tailles' => 'Configuration de la taille des polices',
 	'cfg_position_cartouche' => 'Position du cartouche de navigation',
+	'cfg_position_datemajsite' => 'Position de la date de mise à jour du site',
 	'cfg_position_flux_rss' => 'Flux RSS',
 	'cfg_position_flux_rss_label' => 'Position de l’icone de flux RSS',
 	'cfg_position_liens_nav' => 'Liens de navigation génériques (position et affichage)',
