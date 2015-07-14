@@ -13,11 +13,27 @@
 </BOUCLE_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
 [<style type="text/css">
 /*<!\[CDATA\[*/
-#header {
+#header { position: relative; }
+#header:before {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAE0lEQVQIW2NkYGD4D8SMjEACDAAOKQEDKKNmJgAAAABJRU5ErkJggg==), url((#GET{labanniere}|extraire_attribut{src}|url_absolue));
+	background-repeat: repeat, no-repeat;
+	background-size: initial, cover;
+	display: block;
+	content: "";
+	width: 100%;
+	padding-top: [(#GET{labanniere}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]%;
+}
+#headerbackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#header_inner { 
+	position: relative; 
+	margin-top: [-(#GET{labanniere}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]%; 
 	min-height: [(#GET{labanniere}|hauteur)]px;
-	_height: [(#GET{labanniere}|hauteur)]px;
-	background-image: url((#GET{labanniere}|extraire_attribut{src}|url_absolue));
-	background-repeat: no-repeat;
 }
 [(#CONFIG{soyezcreateurs/afficher_titre,visible}|=={invisible}|oui)
 #header h1 { position:absolute !important; overflow:hidden !important; top:-2000px !important; left:-2000px !important; height:0 !important; width:0 !important; }
