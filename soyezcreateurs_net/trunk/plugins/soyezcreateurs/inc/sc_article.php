@@ -48,9 +48,8 @@ EOF;
 	/* Contact */
 	if ($article == "Contact") {
 		$contenu['titre'] = "Contact";
-		$contenu['chapo'] = <<<EOF
-=aut2
-EOF;
+		$contenu['virtuel'] = "aut1";
+		$contenu['descriptif'] = "Prenez contact avec nous";
 	}
 
 	/* 20. Raccourcis Typographiques de SPIP, mode d'emploi */
