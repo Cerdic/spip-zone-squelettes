@@ -1,3 +1,5 @@
+#SET{utilisergraver, non}
+
 <div class="formulaire_spip formulaire_forum ajax" id="formulaire_forum">
 
 [<p class="reponse_formulaire reponse_formulaire_ok success">(#ENV*{message_ok})</p>]
@@ -6,7 +8,9 @@
 [(#ENV{login_forum_abo})
 <INCLURE{fond=formulaires/inc-login_forum_abo, env} />
 ]
-
+<BOUCLE_GraverSonNom(ARTICLES){id_article=#EVAL{_request(id_article)}}{titre_mot=GraverSonNom}>
+#SET{utilisergraver, oui}
+</BOUCLE_GraverSonNom>
 [(#ENV{editable})
 
 
@@ -39,7 +43,14 @@
 		<p class="explication">(#ENV{modere})<:forum:forum_info_modere:></p>
 	</fieldset>]
 
-	<INCLURE{fond=formulaires/inc-login_forum, env} />
+	<INCLURE{fond=formulaires/inc-login_forum, env, lalegend=<:soyezcreateurs:forum_prenom:>, lelabel=<:soyezcreateurs:forum_votre_prenom:>} />
+
+[(#GET{utilisergraver}|=={oui}|oui)
+<INCLURE{fond=formulaires/inc-graver-nom}{env} />
+]
+
+[(#GET{utilisergraver}|=={oui}|non)
+
 
 	<fieldset>
 	<legend><:forum:forum_message:></legend>[
@@ -121,6 +132,7 @@
 	]
 	<p class="boutons"><input type="submit" class="submit" name="previsualiser_message" value="<:forum:forum_voir_avant:>" />[
 	(#ENV{forcer_previsu}|=={non}|et{#ENV*{erreurs}|table_valeur{previsu}|non}|oui)<input type="submit" class="submit" name="envoyer_message" value="<:forum:forum_envoyer:>" />]</p>
+]
 </div>
 </form>
 
