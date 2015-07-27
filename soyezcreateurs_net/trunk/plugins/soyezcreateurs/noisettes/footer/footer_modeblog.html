@@ -11,25 +11,7 @@
 			<li id="menu_lien_accueil">[(#ENV{template}|=={Sommaire}|?{'<strong>',''})]<a id="menusite" href="./" title="<:accueil_site:>"><:soyezcreateurs:accueil_menu:></a>[(#ENV{template}|=={Sommaire}|?{'</strong>',''})]</li>
 		</ul>
 
-		<B_Forums>
-		<h2 class="forums_liens"><:soyezcreateurs:discus_en_cours:></h2>
-		<ul>
-			<li>
-				<BOUCLE_Forums(FORUMS){plat} {par date}{inverse} {0,10}>
-				<div class="forum">
-					<div class="forum-chapo">
-						<span class="#EDIT{qui} forum-auteur-blog">#NOM :</span>
-					</div>
-					<div class="#EDIT{texte} forum-item-blog">
-						<a href="#URL_FORUM"[ title="(#TEXTE|couper{80}|attribut_html)"]><BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_Forums:TITRE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
-						[(#_Forums:TITRE)]
-						<//B_PasdeSiteDansSsForums></a>
-					</div>
-				</div>
-				</BOUCLE_Forums>
-			</li>
-		</ul>
-		</B_Forums>
+<INCLURE{fond=noisettes/forums/forum_sommaire}>
 	</div>
 
 [(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc}{env}>]
