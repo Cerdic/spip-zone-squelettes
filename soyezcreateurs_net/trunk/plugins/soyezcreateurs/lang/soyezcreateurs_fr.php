@@ -343,7 +343,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Dernière mise à jour du site :',
 	'derniersarticlespublies' => 'Les derniers articles publiés',
 	'descriptif' => 'Descriptif',
-	'discus_en_cours' => 'Discussion en cours',
+	'discus_en_cours' => 'Discussions en cours',
 	'docatelecharger' => 'Documents à télécharger',
 
 	// E
