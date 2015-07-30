@@ -11,12 +11,12 @@
 	{titretop=#GET{titretop}}
 >
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
-[(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{mots}{id_mot})]]
+[(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{env})]]
 [(#CONFIG{soyezcreateurs/agendathematique,}|!={#ENV{calendrier,on}}|oui)
-	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{env})]]
 	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|oui)
-		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
-		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{mots}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{env})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{env})]]
 	]
 ]
 </BOUCLE_EstAgenda>
