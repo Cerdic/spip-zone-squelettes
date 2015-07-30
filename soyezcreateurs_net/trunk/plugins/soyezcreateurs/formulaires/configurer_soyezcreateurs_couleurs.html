@@ -252,6 +252,34 @@
 				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
 			</p>
 			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_ombres:></h3>
+				<p><:soyezcreateursprive:cfg_ombres_explications:></p>
+				<table style="width:100%;">
+					<tbody>
+							<th><:soyezcreateursprive:cfg_zone:></th>
+							<th><:soyezcreateursprive:cfg_couleur:></th>
+							<th><:soyezcreateursprive:cfg_transparence:></th>
+							<th><:soyezcreateursprive:cfg_parametres:></th>
+							<th style="width:50%"><:soyezcreateurs:cfg_exemple_rendu:></th>
+							<th><:soyezcreateursprive:cfg_ombrenon:></th>
+						</tr>
+						<tr>#SET{valeur,#ENV{ombrepagenon}|is_null|?{on,#ENV{ombrepagenon}}}
+							<th><:soyezcreateurs:cfg_page:></th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrepagecouleur,#aaaaaa},nobk=oui,nosample=oui,
+								name=ombrepagecouleur}>
+							<td><input type="text" name="ombrepagetransparence" value="#ENV{ombrepagetransparence,1}" id="sc_ombrepagetransparence" size="4" class="fondl" /></td>
+							<td><input type="text" name="ombrepageparametres" value="#ENV{ombrepageparametres,0px 0px 10px 0px}" id="sc_ombrepageparametres" size="20" class="fondl" /></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="height:3em;[color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});]margin: 1em; [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]"><:soyezcreateurs:cfg_exemple:> #ENV{transparencecontent,1}</div></td>
+							<td><div class="choix"><input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:ecrire:item_non:></label></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
 				<h3 class="legend"><:soyezcreateurs:cfg_couleurs_css_lettre:></h3>
 				<table style="width:100%;">
 					<tbody>
