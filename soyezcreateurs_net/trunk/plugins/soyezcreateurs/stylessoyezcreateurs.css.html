@@ -188,7 +188,7 @@ a:active { color: #GET{c_active}; }
 .retourtop { clear: both; padding: 1.5em 1em 2em; font-style: italic; text-align: right; }
 
 /*************** STRUCTURE - GENERAL */
-#shadow { margin: 3em 0; -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 1); -moz-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 1); box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 1); }
+#shadow { margin: 3em 0; -webkit-box-shadow: 0px 0px 10px #aaa; -moz-box-shadow: 0px 0px 10px #aaa; box-shadow: 0px 0px 10px #aaa; }
 #container { background-color: #GET{c_container_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});] color: #GET{c_container}; }
 #clearbottom { height: 0; }
 /* tooltip */
@@ -325,12 +325,38 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 
 /*************** STRUCTURE - CONTENT */
 #content { clear:both; position: relative; padding:0; margin: 0; background-color: transparent; }
+/* Astuce : https://www.fourfront.us/blog/css-shadow-borders-with-curved-box-shadows */
+#content { position:relative; overflow:hidden; }
+#content:before {
+  content: " "; 
+  position:absolute;
+  z-index: 1; 
+  width:100%;  
+  top: -10px; 
+  height: 10px; 
+  right: 0%; 
+  border-radius: 5px / 100px; 
+  box-shadow:0 0 13px rgba(0,0,0,0.6); 
+}
+
+#content:after {
+  content: " "; 
+  position:absolute;
+  z-index: 1; 
+  width:100%;  
+  bottom: -10px; 
+  height: 10px; 
+  right: 0%; 
+  border-radius: 5px / 100px; 
+  box-shadow:0 0 13px rgba(0,0,0,0.6); 
+}
+
 .clearing { clear: both; height: 0; line-height:0; }
 
 /*************** STRUCTURE - MAIN SIDEBAR */
 #navigation { color: #GET{c_navigation}; background-color: #GET{c_navigation_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencenavigation,1}|!={1}|oui)background-color: rgba([(#GET{c_navigation_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencenavigation,1});]font-size: #CONFIG{soyezcreateurs_couleurs/fontsizenavigation,1.4}em; }
 #navigation ul, #navigation li, #extra ul, #extra li { list-style-image: none; }
-#menu { overflow: hidden; width: #GET{LargeurMenuGauche}px; background-color: transparent; }
+#menu { margin-top: 6em; overflow: hidden; width: #GET{LargeurMenuGauche}px; background-color: transparent; }
 #menu ul img.menu_plus, #menu ul img.menu_minus { float: left; position: absolute; z-index: 100; width: 9px; height: 9px; margin: .7em 0 0; margin-right:0; margin-left:5px; border: 0; background-repeat: no-repeat; }
 #menu ul ul img.menu_plus, #menu ul ul img.menu_minus { margin: .3em 0 0; margin-right:0; margin-left:5px;}
 #menu img.menu_plus { background-image: url([(#CHEMIN{images/menu_plus.gif}|url_absolue)]); }
