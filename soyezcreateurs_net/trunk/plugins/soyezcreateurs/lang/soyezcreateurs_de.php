@@ -288,7 +288,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Letztes Update der Website:',
 	'derniersarticlespublies' => 'Die neuesten Artikel veröffentlicht',
 	'descriptif' => 'Übersicht',
-	'discus_en_cours' => 'Die aktuelle Diskussion',
+	'discus_en_cours' => 'Die aktuelle Diskussion', # MODIF
 	'docatelecharger' => 'Dokumente zum Herunterladen',
 
 	// E
