@@ -16,6 +16,9 @@
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{inverse}{type_mot=_TypeRubrique}{0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>[(#CHEMIN{noisettes/articles/typearticle_#TITRE.html}|oui)
 [(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article=#_article_principal:ID_ARTICLE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
 ]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+<BOUCLE_TypeArticle(MOTS){id_article}{type=_TypeArticle}{0,1}>[(#CHEMIN{noisettes/articles/typearticle_#TITRE.html}|oui)
+[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#ID_RUBRIQUE})]
+]</BOUCLE_TypeArticle>
 
 
 	<nav id="miettesdepain">
@@ -157,7 +160,7 @@
 <//B_GraverSonNom>
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{archive}{lang}{classe=artrecent_bas})]]
 [(#FORMULAIRE_ADMIN)]
-<//B_TypeRubrique>
+<//B_TypeArticle><//B_TypeRubrique>
 [<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#ARTICLE_URL|url_absolue)]" type="text/javascript" charset="utf-8"></script>]
 <INCLURE{fond=noisettes/footer/footer}
 	{rubriqueencours=#ID_RUBRIQUE}
