@@ -11,7 +11,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_transparence' => 'Transparence',
 	'cfg_parametres' => 'Paramètres',
 	'cfg_ombrenon' => 'Ombre',
-	'cfg_couleur' => 'Couleur'
+	'cfg_couleur' => 'Couleur',
+	'cfg_contenu_rien' => 'Non',
+	'cfg_contenu_gauche' => 'Gauche',
+	'cfg_contenu_haut' => 'Haut',
+	'cfg_contenu_droit' => 'Droite',
+	'cfg_contenu_bas' => 'Bas'
 
 );
 

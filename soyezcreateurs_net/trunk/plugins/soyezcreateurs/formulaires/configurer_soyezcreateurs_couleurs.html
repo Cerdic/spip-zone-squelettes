@@ -254,6 +254,48 @@
 			<fieldset>
 				<h3 class="legend"><:soyezcreateursprive:cfg_ombres:></h3>
 				<p><:soyezcreateursprive:cfg_ombres_explications:></p>
+				<style>#cfgsccontent { position:relative; overflow:hidden; }
+[(#ENV{ombrecontentbefore,none}!={none}|oui)
+  #cfgsccontent:before {
+  content: " "; position:absolute; z-index: 1; 
+[(#ENV{ombrecontentbefore,none}|=={left}|oui)
+  top: 0; height:100%; left: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentbefore,none}|=={top}|oui)
+  left: 0; width:100%; top: -10px; height: 10px; border-radius: 100px / 5px;
+]
+[(#ENV{ombrecontentbefore,none}|=={right}|oui)
+  top: 0; height:100%; right: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentbefore,none}|=={bottom}|oui)
+  left: 0; width:100%; bottom: -10px; height: 10px; border-radius: 100px / 5px;
+]
+  -webkit-box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+  -moz-box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+  box-shadow: [(#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentbeforecouleur,#000000}|sc_rgb)], #ENV{ombrecontentbeforetransparence,0.6});
+}
+]
+[(#ENV{ombrecontentafter,none}!={none}|oui)
+  #cfgsccontent:after {
+  content: " "; position:absolute; z-index: 1; 
+[(#ENV{ombrecontentafter,none}|=={left}|oui)
+  top: 0; height:100%; left: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentafter,none}|=={top}|oui)
+  left: 0; width:100%; top: -10px; height: 10px; border-radius: 100px / 5px;
+]
+[(#ENV{ombrecontentafter,none}|=={right}|oui)
+  top: 0; height:100%; right: -10px; width: 10px; border-radius: 5px / 100px;
+]
+[(#ENV{ombrecontentafter,none}|=={bottom}|oui)
+  left: 0; width:100%; bottom: -10px; height: 10px; border-radius: 100px / 5px;
+]
+  -webkit-box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+  -moz-box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+  box-shadow: [(#ENV{ombrecontentafterparametres,0px 0px 13px 0px})] rgba([(#ENV{ombrecontentaftercouleur,#000000}|sc_rgb)], #ENV{ombrecontentaftertransparence,0.6});
+}
+]
+				</style>
 				<table style="width:100%;">
 					<tbody>
 							<th><:soyezcreateursprive:cfg_zone:></th>
@@ -261,17 +303,61 @@
 							<th><:soyezcreateursprive:cfg_transparence:></th>
 							<th><:soyezcreateursprive:cfg_parametres:></th>
 							<th style="width:50%"><:soyezcreateurs:cfg_exemple_rendu:></th>
-							<th><:soyezcreateursprive:cfg_ombrenon:></th>
 						</tr>
 						<tr>#SET{valeur,#ENV{ombrepagenon}|is_null|?{on,#ENV{ombrepagenon}}}
-							<th><:soyezcreateurs:cfg_page:></th>
+							<th><:soyezcreateurs:cfg_page:><div class="choix"><input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:ecrire:item_non:></label></div></th>
 							<INCLURE{fond=formulaires/inc/config_couleurs,
 								color=#ENV{ombrepagecouleur,#aaaaaa},nobk=oui,nosample=oui,
 								name=ombrepagecouleur}>
 							<td><input type="text" name="ombrepagetransparence" value="#ENV{ombrepagetransparence,1}" id="sc_ombrepagetransparence" size="4" class="fondl" /></td>
 							<td><input type="text" name="ombrepageparametres" value="#ENV{ombrepageparametres,0px 0px 10px 0px}" id="sc_ombrepageparametres" size="20" class="fondl" /></td>
-							<td style="[background-color:(#ENV{body_bk,#eceded});]"><div style="height:3em;[color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});]margin: 1em; [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]"><:soyezcreateurs:cfg_exemple:> #ENV{transparencecontent,1}</div></td>
-							<td><div class="choix"><input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:ecrire:item_non:></label></div></td>
+							<td style="[background-color:(#ENV{body_bk,#eceded});]" rowspan="3"><table style="height:12em; width:2em; [color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});]margin: 1em; [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]">
+								<tr><td></td></tr>
+								<tr><td id="cfgsccontent"><:soyezcreateurs:cfg_exemple:> #ENV{transparencecontent,1}</td></tr>
+								<tr><td></td></tr>
+								</table></td>
+						</tr>
+						<tr>
+							<th>
+								[(#SAISIE{radio,ombrecontentbefore,
+									label=<:soyezcreateurs:cfg_contenu:>,
+									datas=#ARRAY{
+										none,<:soyezcreateursprive:cfg_contenu_rien:>,
+										left,<:soyezcreateursprive:cfg_contenu_gauche:>,
+										top,<:soyezcreateursprive:cfg_contenu_haut:>,
+										right,<:soyezcreateursprive:cfg_contenu_droit:>,
+										bottom,<:soyezcreateursprive:cfg_contenu_bas:>,
+									},
+									defaut=none,
+									cacher_option_intro=oui}
+								)]
+							</th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentbeforecouleur,#000000},nobk=oui,nosample=oui,
+								name=ombrecontentbeforecouleur}>
+							<td><input type="text" name="ombrecontentbeforetransparence" value="#ENV{ombrecontentbeforetransparence,0.6}" id="sc_ombrecontentbeforetransparence" size="4" class="fondl" /></td>
+							<td><input type="text" name="ombrecontentbeforeparametres" value="#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px}" id="sc_ombrecontentbeforeparametres" size="20" class="fondl" /></td>
+						</tr>
+						<tr>
+							<th>
+								[(#SAISIE{radio,ombrecontentafter,
+									label=<:soyezcreateurs:cfg_contenu:>,
+									datas=#ARRAY{
+										none,<:soyezcreateursprive:cfg_contenu_rien:>,
+										left,<:soyezcreateursprive:cfg_contenu_gauche:>,
+										top,<:soyezcreateursprive:cfg_contenu_haut:>,
+										right,<:soyezcreateursprive:cfg_contenu_droit:>,
+										bottom,<:soyezcreateursprive:cfg_contenu_bas:>,
+									},
+									defaut=none,
+									cacher_option_intro=oui}
+								)]
+							</th>
+							<INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentaftercouleur,#000000},nobk=oui,nosample=oui,
+								name=ombrecontentaftercouleur}>
+							<td><input type="text" name="ombrecontentaftertransparence" value="#ENV{ombrecontentaftertransparence,0.6}" id="sc_ombrecontentaftertransparence" size="4" class="fondl" /></td>
+							<td><input type="text" name="ombrecontentafterparametres" value="#ENV{ombrecontentafterparametres,0px 0px 13px 0px}" id="sc_ombrecontentafterparametres" size="20" class="fondl" /></td>
 						</tr>
 					</tbody>
 				</table>
