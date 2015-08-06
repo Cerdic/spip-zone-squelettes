@@ -296,26 +296,26 @@
 }
 ]
 				</style>
+				<div style="[background-color:(#ENV{body_bk,#eceded});] height: auto;padding:1em;box-sizing:border-box;"><table style="box-sizing:border-box; height:100%; width:100%; [color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});] [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]">
+					<tr><td><:soyezcreateurs:cfg_exemple_rendu:></td></tr>
+					<tr><td id="cfgsccontent"><:soyezcreateurs:cfg_exemple:> #ENV{transparencecontent,1}</td></tr>
+					<tr><td></td></tr>
+					</table>
+				</div>
 				<table style="width:100%;">
 					<tbody>
 							<th><:soyezcreateursprive:cfg_zone:></th>
-							<th><:soyezcreateursprive:cfg_couleur:></th>
-							<th><:soyezcreateursprive:cfg_transparence:></th>
-							<th><:soyezcreateursprive:cfg_parametres:></th>
-							<th style="width:50%"><:soyezcreateurs:cfg_exemple_rendu:></th>
+							<th><:soyezcreateursprive:cfg_couleur:> / <:soyezcreateursprive:cfg_transparence:> /<:soyezcreateursprive:cfg_parametres:> </th>
 						</tr>
 						<tr>#SET{valeur,#ENV{ombrepagenon}|is_null|?{on,#ENV{ombrepagenon}}}
-							<th><:soyezcreateurs:cfg_page:><div class="choix"><input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:ecrire:item_non:></label></div></th>
-							<INCLURE{fond=formulaires/inc/config_couleurs,
-								color=#ENV{ombrepagecouleur,#aaaaaa},nobk=oui,nosample=oui,
+							<th><input type="hidden" name="ombrepagenon" value="" /><input type="checkbox" name="ombrepagenon" class="checkbox" id='champ_ombrepagenon'[ (#GET{valeur}|=={on}|oui)checked='checked'] value='on' /><label for="champ_ombrepagenon"><:soyezcreateurs:cfg_page:> <:ecrire:item_non:></label></th>
+							
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrepagecouleur,#aaaaaa},nobk=oui,nosample=oui,nocell=oui,
 								name=ombrepagecouleur}>
-							<td><input type="text" name="ombrepagetransparence" value="#ENV{ombrepagetransparence,1}" id="sc_ombrepagetransparence" size="4" class="fondl" /></td>
-							<td><input type="text" name="ombrepageparametres" value="#ENV{ombrepageparametres,0px 0px 10px 0px}" id="sc_ombrepageparametres" size="20" class="fondl" /></td>
-							<td style="[background-color:(#ENV{body_bk,#eceded});]" rowspan="3"><table style="height:12em; width:2em; [color:(#ENV{container,#02265a});][background-color:(#ENV{container_bk,#f6f6f6});][(#ENV{transparencecontent,1}|!={1}|oui)background-color: rgba([(#ENV{container_bk,#f6f6f6}|sc_rgb)], #ENV{transparencecontent,1});]margin: 1em; [(#GET{valeur}|=={on}|non)-webkit-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); -moz-box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1}); box-shadow: [(#ENV{ombrepageparametres,0px 0px 10px 0px})] rgba([(#ENV{ombrepagecouleur,#aaaaaa}|sc_rgb)], #ENV{ombrepagetransparence,1});]">
-								<tr><td></td></tr>
-								<tr><td id="cfgsccontent"><:soyezcreateurs:cfg_exemple:> #ENV{transparencecontent,1}</td></tr>
-								<tr><td></td></tr>
-								</table></td>
+								<input type="text" name="ombrepagetransparence" value="#ENV{ombrepagetransparence,1}" id="sc_ombrepagetransparence" size="4" class="fondl" />
+								<input type="text" name="ombrepageparametres" value="#ENV{ombrepageparametres,0px 0px 10px 0px}" id="sc_ombrepageparametres" size="20" class="fondl" />
+							</td>
 						</tr>
 						<tr>
 							<th>
@@ -332,11 +332,12 @@
 									cacher_option_intro=oui}
 								)]
 							</th>
-							<INCLURE{fond=formulaires/inc/config_couleurs,
-								color=#ENV{ombrecontentbeforecouleur,#000000},nobk=oui,nosample=oui,
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentbeforecouleur,#000000},nobk=oui,nosample=oui,nocell=oui,
 								name=ombrecontentbeforecouleur}>
-							<td><input type="text" name="ombrecontentbeforetransparence" value="#ENV{ombrecontentbeforetransparence,0.6}" id="sc_ombrecontentbeforetransparence" size="4" class="fondl" /></td>
-							<td><input type="text" name="ombrecontentbeforeparametres" value="#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px}" id="sc_ombrecontentbeforeparametres" size="20" class="fondl" /></td>
+								<input type="text" name="ombrecontentbeforetransparence" value="#ENV{ombrecontentbeforetransparence,0.6}" id="sc_ombrecontentbeforetransparence" size="4" class="fondl" />
+								<input type="text" name="ombrecontentbeforeparametres" value="#ENV{ombrecontentbeforeparametres,0px 0px 13px 0px}" id="sc_ombrecontentbeforeparametres" size="20" class="fondl" />
+							</td>
 						</tr>
 						<tr>
 							<th>
@@ -353,11 +354,12 @@
 									cacher_option_intro=oui}
 								)]
 							</th>
-							<INCLURE{fond=formulaires/inc/config_couleurs,
-								color=#ENV{ombrecontentaftercouleur,#000000},nobk=oui,nosample=oui,
+							<td><INCLURE{fond=formulaires/inc/config_couleurs,
+								color=#ENV{ombrecontentaftercouleur,#000000},nobk=oui,nosample=oui,nocell=oui,
 								name=ombrecontentaftercouleur}>
-							<td><input type="text" name="ombrecontentaftertransparence" value="#ENV{ombrecontentaftertransparence,0.6}" id="sc_ombrecontentaftertransparence" size="4" class="fondl" /></td>
-							<td><input type="text" name="ombrecontentafterparametres" value="#ENV{ombrecontentafterparametres,0px 0px 13px 0px}" id="sc_ombrecontentafterparametres" size="20" class="fondl" /></td>
+								<input type="text" name="ombrecontentaftertransparence" value="#ENV{ombrecontentaftertransparence,0.6}" id="sc_ombrecontentaftertransparence" size="4" class="fondl" />
+								<input type="text" name="ombrecontentafterparametres" value="#ENV{ombrecontentafterparametres,0px 0px 13px 0px}" id="sc_ombrecontentafterparametres" size="20" class="fondl" />
+							</td>
 						</tr>
 					</tbody>
 				</table>
