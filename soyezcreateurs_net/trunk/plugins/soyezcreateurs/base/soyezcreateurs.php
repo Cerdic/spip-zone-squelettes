@@ -15,7 +15,6 @@ define('_LOG_INSTALL', "soyezcreateurs_install");
 
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {	
-	ecrire_meta('activer_breves', 'non','non');
 	ecrire_meta('activer_logos_survol', 'oui','non');
 	ecrire_meta('config_precise_groupes', 'oui','non');
 	ecrire_meta('articles_surtitre', 'oui','non');
