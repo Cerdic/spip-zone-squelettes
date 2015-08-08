@@ -36,8 +36,7 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('messagerie_agenda', 'non','non');
 	ecrire_meta('articles_versions', 'oui','non');
 	ecrire_meta('activer_statistiques', 'oui','non');
-	ecrire_meta('documents_article', 'oui','non');
-	ecrire_meta('documents_rubrique', 'oui','non');
+	ecrire_meta('documents_objets', 'spip_articles,spip_rubriques,','non');
 	ecrire_meta('preview', ',0minirezo,1comite,','non');
 	ecrire_meta('image_process', 'gd2', 'non');
 	ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
