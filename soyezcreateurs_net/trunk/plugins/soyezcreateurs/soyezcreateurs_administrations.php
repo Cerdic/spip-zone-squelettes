@@ -155,7 +155,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.0.34','<')) {
 			spip_log("SoyezCreateurs maj 3.0.34 Début", "soyezcreateurs_install");
 			$sites['nom_site'] = "90. Flux RSS du site";
-			$sites['url_site'] = "?page=backend";
+			$sites['url_site'] = "/?page=backend";
 			$sites['descriptif'] = "public:syndiquer_site";
 			$sites['url_syndic'] = "";
 			$sites['statut'] = 'publie';
