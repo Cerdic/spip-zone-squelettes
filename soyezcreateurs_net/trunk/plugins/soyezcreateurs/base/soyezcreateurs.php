@@ -751,7 +751,6 @@ function soyezcreateurs_config_motsclefs() {
 			create_logo('documents/moton114.jpg', $type='mot', $id_mot, 'jpg');
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', '', 'oui', 'non', 'non');
-		$id_mot = create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
 
 	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'articles,breves,rubriques,syndic', 'oui', 'non', 'non');
 		$id_mot = create_mot("_LayoutGala", "01. Three percentage columns", "", "");

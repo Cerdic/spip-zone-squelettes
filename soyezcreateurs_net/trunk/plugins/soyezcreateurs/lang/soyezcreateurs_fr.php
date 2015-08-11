@@ -331,7 +331,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => 'Connexion',
 	'connexiontitle' => 'Accéder à l’espace réservé',
 	'copyright_cnil' => 'Déclaration CNIL nº',
-	'copyright_icra' => 'Étiqueté grâce à <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Réalisation : ',
 	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du créateur de ce squelette\'>SoyezCréateurs</a> propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 

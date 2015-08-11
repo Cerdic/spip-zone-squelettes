@@ -186,19 +186,23 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.40','non');
 		}
 		if (version_compare($current_version,'3.0.41','<')) {
-				ecrire_meta('version_html_max', 'html5', 'non');
-				ecrire_meta('auto_compress_css', 'oui', 'non');
-				ecrire_meta('auto_compress_js', 'oui', 'non');
-				ecrire_meta('forum_prive', 'non', 'non');
-				ecrire_meta('forum_prive_objets', 'spip_articles,spip_auteurs,spip_breves,spip_dictionnaires,spip_definitions,spip_rubriques,spip_syndic,', 'non');
-				ecrire_meta('objets_versions', 'a:10:{i:0;s:13:"spip_articles";i:1;s:12:"spip_auteurs";i:2;s:14:"spip_rubriques";i:3;s:9:"spip_mots";i:4;s:17:"spip_groupes_mots";i:5;s:11:"spip_syndic";i:6;s:16:"spip_definitions";i:7;s:11:"spip_breves";i:8;s:14:"spip_documents";i:9;s:15:"spip_evenements";}', 'non');
-				ecrire_meta('urls_activer_controle', 'oui', 'non');
-				ecrire_meta('facteur_filtre_iso_8859', '0', 'non');
-				ecrire_meta('calendriermini', 'a:4:{s:11:"format_jour";s:8:"initiale";s:19:"affichage_hors_mois";s:1:"1";s:17:"changement_rapide";s:1:"1";s:5:"jour1";s:1:"1";}', 'non');
-				ecrire_meta('inserer_modeles', 'a:1:{s:6:"objets";a:2:{i:0;s:13:"spip_articles";i:1;s:0:"";}}', 'non');
-				ecrire_meta('notifications', 'a:19:{s:17:"limiter_rubriques";s:0:"";s:17:"moderateurs_forum";s:0:"";s:24:"forums_limiter_rubriques";s:0:"";s:12:"forums_liste";s:0:"";s:23:"moderateurs_forum_prive";s:0:"";s:22:"moderateurs_signatures";s:0:"";s:11:"inscription";s:10:"webmestres";s:5:"suivi";s:1:"1";s:25:"prevenir_auteurs_articles";s:2:"on";s:31:"prevenir_auteurs_articles_refus";s:2:"on";s:21:"pas_prevenir_publieur";s:2:"on";s:26:"prevenir_admins_restreints";s:2:"on";s:16:"prevenir_auteurs";s:2:"on";s:12:"thread_forum";s:2:"on";s:13:"forum_article";s:2:"on";s:24:"forums_admins_restreints";s:2:"on";s:22:"prevenir_auteurs_prive";s:2:"on";s:18:"thread_forum_prive";s:2:"on";s:10:"messagerie";s:2:"on";}', 'non');
-				ecrire_config('uploadhtml5/max_file_size','32');
+			ecrire_meta('version_html_max', 'html5', 'non');
+			ecrire_meta('auto_compress_css', 'oui', 'non');
+			ecrire_meta('auto_compress_js', 'oui', 'non');
+			ecrire_meta('forum_prive', 'non', 'non');
+			ecrire_meta('forum_prive_objets', 'spip_articles,spip_auteurs,spip_breves,spip_dictionnaires,spip_definitions,spip_rubriques,spip_syndic,', 'non');
+			ecrire_meta('objets_versions', 'a:10:{i:0;s:13:"spip_articles";i:1;s:12:"spip_auteurs";i:2;s:14:"spip_rubriques";i:3;s:9:"spip_mots";i:4;s:17:"spip_groupes_mots";i:5;s:11:"spip_syndic";i:6;s:16:"spip_definitions";i:7;s:11:"spip_breves";i:8;s:14:"spip_documents";i:9;s:15:"spip_evenements";}', 'non');
+			ecrire_meta('urls_activer_controle', 'oui', 'non');
+			ecrire_meta('facteur_filtre_iso_8859', '0', 'non');
+			ecrire_meta('calendriermini', 'a:4:{s:11:"format_jour";s:8:"initiale";s:19:"affichage_hors_mois";s:1:"1";s:17:"changement_rapide";s:1:"1";s:5:"jour1";s:1:"1";}', 'non');
+			ecrire_meta('inserer_modeles', 'a:1:{s:6:"objets";a:2:{i:0;s:13:"spip_articles";i:1;s:0:"";}}', 'non');
+			ecrire_meta('notifications', 'a:19:{s:17:"limiter_rubriques";s:0:"";s:17:"moderateurs_forum";s:0:"";s:24:"forums_limiter_rubriques";s:0:"";s:12:"forums_liste";s:0:"";s:23:"moderateurs_forum_prive";s:0:"";s:22:"moderateurs_signatures";s:0:"";s:11:"inscription";s:10:"webmestres";s:5:"suivi";s:1:"1";s:25:"prevenir_auteurs_articles";s:2:"on";s:31:"prevenir_auteurs_articles_refus";s:2:"on";s:21:"pas_prevenir_publieur";s:2:"on";s:26:"prevenir_admins_restreints";s:2:"on";s:16:"prevenir_auteurs";s:2:"on";s:12:"thread_forum";s:2:"on";s:13:"forum_article";s:2:"on";s:24:"forums_admins_restreints";s:2:"on";s:22:"prevenir_auteurs_prive";s:2:"on";s:18:"thread_forum_prive";s:2:"on";s:10:"messagerie";s:2:"on";}', 'non');
+			ecrire_config('uploadhtml5/max_file_size','32');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.41','non');
+		}
+		if (version_compare($current_version,'3.0.42','<')) {
+			supprimer_mot_groupe('_HTTP-EQUIV','pics-label')
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.42','non');
 		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
