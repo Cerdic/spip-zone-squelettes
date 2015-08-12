@@ -312,7 +312,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',
-	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
 	'copyright_spip' => 'Skeleton <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this skeleton\'>SoyezCréateurs</a> powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
