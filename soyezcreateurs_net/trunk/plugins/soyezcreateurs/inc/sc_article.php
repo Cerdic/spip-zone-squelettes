@@ -93,9 +93,9 @@ Les attributs de paragraphe ne sont pas disponibles dans les champs de SPIP n'ay
 
 Les attributs de paragraphe sont :
 
--* les titres <code>{</code><code>{{</code>Paragraphe du titre<code>}}</code><code>}</code> et sous-titres <code>{</code><code>{{</code>*Texte du titre<code>}}</code><code>}</code>, avec un nombre d'* (étoiles) variant de 2 à 5, la barre de raccourcis ne proposant que 2 et 3.
+-* les titres <code>{{{</code>Paragraphe du titre<code>}}}</code> et sous-titres <code>{{{*</code>Texte du titre<code>}}}</code>, avec un nombre d'* (étoiles) variant de 2 à 5, la barre de raccourcis ne proposant que 2 et 3.
 _ [*Attention*]: il est essentiel de respecter la {{hiérarchie}} de la titraille et de ne pas commencer par un élément sans qu'il soit précédé de son niveau supérieur (on ne doit pas commencer à 2 !). Voir les exemples de [titraille->#titraille]
-_ [*Remarque*] : <code>{</code><code>{{</code>Titre de premier niveau<code>}}</code><code>}</code> est strictement équivalent à <code>{</code><code>{{*</code>Titre de premier niveau<code>}}</code><code>}</code>.
+_ [*Remarque*] : <code>{{{</code>Titre de premier niveau<code>}}}</code> est strictement équivalent à <code>{{{*</code>Titre de premier niveau<code>}}}</code>.
 
 -* centrer <code>[|</code>Paragraphe centré<code>|]</code> : à n'utiliser que de manière {{exceptionnelle}}[[J'avais mis ça en place à l'époque de la version 1.7 de SPIP qui gérait mal le centrage des images]] !
 
@@ -308,23 +308,23 @@ _ Usage {{[*interdit*]}}: pour mettre plus d'espace vertical entre deux élémen
 
 {{{Exemples de titraille : Titre principal}}}
 
-<code>{</code><code>{{</code>Exemples de titraille : Titre principal<code>}}</code><code>}</code>
+<code>{{{</code>Exemples de titraille : Titre principal<code>}}}</code>
 
 {{{**Titre niveau deux}}}
 
-<code>{</code><code>{{**</code>Titre niveau deux<code>}}</code><code>}</code>
+<code>{{{**</code>Titre niveau deux<code>}}}</code>
 
 {{{***Titre niveau trois}}}
 
-<code>{</code><code>{{***</code>Titre niveau trois<code>}}</code><code>}</code>
+<code>{{{***</code>Titre niveau trois<code>}}}</code>
 
 {{{****Titre niveau quatre}}}
 
-<code>{</code><code>{{****</code>Titre niveau quatre<code>}}</code><code>}</code>
+<code>{{{****</code>Titre niveau quatre<code>}}}</code>
 
 {{{*****Titre niveau cinq}}}
 
-<code>{</code><code>{{*****</code>Titre niveau cinq<code>}}</code><code>}</code>
+<code>{{{*****</code>Titre niveau cinq<code>}}}</code>
 
 {{{Placement des images}}}
 
