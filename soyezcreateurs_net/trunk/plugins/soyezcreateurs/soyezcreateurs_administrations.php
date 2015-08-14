@@ -201,7 +201,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.41','non');
 		}
 		if (version_compare($current_version,'3.0.42','<')) {
-			supprimer_mot_groupe('_HTTP-EQUIV','pics-label')
+			supprimer_mot_groupe('_HTTP-EQUIV','pics-label');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.42','non');
 		}
 		
