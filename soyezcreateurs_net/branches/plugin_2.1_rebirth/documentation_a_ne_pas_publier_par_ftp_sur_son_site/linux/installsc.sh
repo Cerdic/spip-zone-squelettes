@@ -43,7 +43,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_ext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/previsu_redaction
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/saisies/branches/v1 ./saisies
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/savecfg
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/savecfg/branches/v1 ./savecfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/verifier
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/yaml

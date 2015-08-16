@@ -34,7 +34,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/orthotypo/trunk orthot
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/changement_langue changement_langue
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout porteplumepartout
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/saisies/trunk saisies
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/savecfg savecfg
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/savecfg/trunk savecfg
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs soyezcreateurs
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-3 spip_bonux
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/enluminures_typographiques_v3 typoenluminee
