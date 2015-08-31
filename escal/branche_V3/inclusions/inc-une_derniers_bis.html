@@ -20,9 +20,6 @@
 #SET{nombrealaune,#CONFIG{escal/config/nombrearticlesunebis,50}}
 
 
-<!--  On affiche les 11 articles selectionnes
-      et seul le premier est affiche
-      les autres sont masques par un javascript -->
 <B_dernier_endate>
 #ANCRE_PAGINATION      
   <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{!par date}{0,#GET{nombrealaune}}{pagination #CONFIG{escal/config/paginarticlesunebis,5}}{"<hr />"}>
@@ -56,6 +53,14 @@
           [(#LANG|=={ja}|oui)<:par_auteur:>]
         </div>
       </B_test>
+<!-- affichage date de publication -->
+      [(#CONFIG{escal/config/datepubune}|=={non}|non)
+      <div class="auteur-articles-rubrique">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+      ]
+<!-- affichage date derniere modification -->
+      [(#CONFIG{escal/config/datemodifune}|=={non}|non)
+      <div class="auteur-articles-rubrique">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+      ]
 <!-- affichage rubrique -->
 			<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueune}|=={non}|non}>
 			<div class="rubrique #EDIT{titre}">
