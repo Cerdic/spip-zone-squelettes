@@ -156,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Indexation du site par les moteurs de recherche',
 	'cfg_indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 	'cfg_indexation_oui' => 'Indexer le site dans les moteurs de recherche',
-	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">sur le site de weather.com ®</a>.',
+	'cfg_inf_rainette_ville' => 'Permet d’afficher les conditions et les prévisions météorologiques d’une ville française grâce à un code disponible <a href="http://fr.weather.com/conditions_actuelles/">sur le site de weather.com ®</a>.<br />Une fois la ville trouvée, copier/coller ci-dessous la partie de l’URL de type FRXX0000.',
 	'cfg_info' => 'Configuration du squelette SoyezCréateurs',
 	'cfg_largeur' => 'Largeur',
 	'cfg_largeur_colonnes_centrales' => 'Largeur de chacune des 3 colonnes centrales',
@@ -262,6 +262,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_polices_affichage' => 'Configuration des polices d’affichage',
 	'cfg_polices_tailles' => 'Configuration de la taille des polices',
 	'cfg_position_cartouche' => 'Position du cartouche de navigation',
+	'cfg_position_datemajsite' => 'Position de la date de mise à jour du site',
 	'cfg_position_flux_rss' => 'Flux RSS',
 	'cfg_position_flux_rss_label' => 'Position de l’icone de flux RSS',
 	'cfg_position_liens_nav' => 'Liens de navigation génériques (position et affichage)',
@@ -345,7 +346,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Dernière mise à jour du site :',
 	'derniersarticlespublies' => 'Les derniers articles publiés',
 	'descriptif' => 'Descriptif',
-	'discus_en_cours' => 'Discussion en cours',
+	'discus_en_cours' => 'Discussions en cours',
 	'docatelecharger' => 'Documents à télécharger',
 
 	// E
