@@ -39,13 +39,13 @@
 			[(#SET{largeur#ID_ARTICLE,#FICHIER|image_reduire{2000,2000}|extraire_attribut{width}})]
 			[(#SET{hauteur#ID_ARTICLE,#FICHIER|image_reduire{2000,2000}|extraire_attribut{height}})]
 			</BOUCLE_doclogo>
-			<a class="tile" style="[(#CONFIG{bazar/doc_#VALEUR}|=={bkg}|oui)[background-image:url('(#GET{logo#ID_ARTICLE})');]][background-color:(#COULEUR);][color:#(#COULEUR|sinon{#ffffff}|couleur_inverser);]" href="#URL_ARTICLE">[(#REM)http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element]
+			<a class="tile" style="[(#CONFIG{bazar/bkg_#VALEUR}|=={oui}|oui)[background-image:url('(#GET{logo#ID_ARTICLE})');]][background-color:(#COULEUR);][color:#(#COULEUR|sinon{#ffffff}|couleur_inverser);]" href="#URL_ARTICLE">[(#REM)http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element]
 				<section class="clearfix">
 				<h2 class="h1">#TITRE</h2>
-				[(#CONFIG{bazar/doc_#VALEUR}|=={logo}|oui)[<img src="(#GET{logo#ID_ARTICLE})" alt="logo #TITRE" class="img_article" width="#GET{largeur}" height="#GET{hauteur}" style="max-width:#GET{largeur#ID_ARTICLE}px !important;" />]]
+				[(#CONFIG{bazar/logo_#VALEUR}|=={oui}|oui)[<img src="(#GET{logo#ID_ARTICLE})" alt="logo #TITRE" class="img_article" width="#GET{largeur}" height="#GET{hauteur}" style="max-width:#GET{largeur#ID_ARTICLE}px !important;" />]]
 				[(#CONFIG{bazar/intro_#VALEUR}|=={oui}|oui)
 				[(#SET{couper,#CONFIG{bazar/couper_#VALEUR}|sinon{600}})]
-				[<div class="introduction">(#INTRODUCTION|couper{#GET{couper}})</div>]]
+				[<div class="introduction">(#INTRODUCTION{#GET{couper}})</div>]]
 				</section>
 			</a>
 		</BOUCLE_article>

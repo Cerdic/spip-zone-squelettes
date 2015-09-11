@@ -17,8 +17,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_nomsrows' => 'Renseignez ici le nom de chaque ligne (séparé par une virgule, sans accents et sans espace, pas de doublon) que vous voulez ajouter sur la page d\'accueil. Vous pouvez en créer autant que nécessaire.
 	Exemple : "presentation,actualites,articles" ou plus simplement : "ligne1,ligne2,ligne3".',
 	'explication_doc' => 'Utilisez le premier document associé à l\'article de format jpg, gif ou png, par ordre chronologique ou par numéro du titre :
-	<br />- soit pour l\'afficher sous le titre, comme un logo.
-	<br />- soit pour l\'utiliser en arrière-plan.',
+	<br />- pour l\'afficher sous le titre, comme un logo.
+	<br />- et/ou pour l\'utiliser en arrière-plan.',
 	
 	// L
 // 	'label_panel1' => 'Afficher un texte dans le premier bloc',
