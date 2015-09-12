@@ -148,4 +148,3 @@ function exec_agenda_upgrade() {
 	echo "<h1>Migration termin&eacute;</h1><p>Vous pouvez revenir &agrave; l'<a href='./'>administration du site</a></p>";
 	install_fin_html();
 }
-?>

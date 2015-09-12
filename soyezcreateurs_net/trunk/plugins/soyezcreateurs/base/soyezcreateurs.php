@@ -1200,4 +1200,3 @@ function soyezcreateurs_vider($tout=false) {
 
 	return true;
 }
-?>

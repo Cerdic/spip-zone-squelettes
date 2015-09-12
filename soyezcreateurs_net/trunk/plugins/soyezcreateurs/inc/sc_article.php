@@ -943,4 +943,3 @@ EOF;
 
 	return $contenu;
 }
-?>

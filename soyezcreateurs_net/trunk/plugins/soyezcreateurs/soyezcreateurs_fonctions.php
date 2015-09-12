@@ -863,3 +863,9 @@ function sc_rgb($couleurs) {
 	$couleurs = _couleur_hex_to_dec($couleurs);
 	return $couleurs["red"] .", ". $couleurs["green"]  .", ". $couleurs["blue"];
 }
+
+function mini_html($texte) {
+	$texte = preg_replace(",\n[\t\ ]*,", "\n", $texte);
+	$texte = preg_replace(",\n+,", "\n", $texte);
+	return $texte;
+}

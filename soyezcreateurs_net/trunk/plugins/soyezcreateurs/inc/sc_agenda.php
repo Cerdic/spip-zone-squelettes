@@ -1635,5 +1635,3 @@ function quete_calendrier_agenda ($annee, $mois) {
 	}
 	return $rv;
 }
-
-?>
