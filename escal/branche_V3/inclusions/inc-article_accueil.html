@@ -1,10 +1,22 @@
-<div class="accueil">
+<div id="texte-article" class="accueil">
 
 	<BOUCLE_accueil(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
 
-	  <div class="texte #EDIT{texte}" id="accueil">
-   [(#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-	  </div>
+	      [<div class="texte #EDIT{texte}" id="accueil">
+                (#TEXTE
+                |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+                |replace{<aide>,<div class="aide">}
+                |replace{</aide>,</div>}
+                |replace{<important>,<div class="important">}
+                |replace{</important>,</div>}
+                |replace{<avertissement>,<div class="avertissement">}
+                |replace{</avertissement>,</div>}
+                |replace{<info>,<div class="info">}
+                |replace{</info>,</div>}
+                |replace{<centrer>,<div style="text-align:center;">}
+                |replace{</centrer>,</div>}
+                )
+	      </div>]
 
 					<!-- et hop, un petit div pour récupérer le flux normal d'affichage
 						au cas où l'article se finisse par une image non centrée -->
@@ -22,7 +34,19 @@
 	    <BOUCLE_alt(ARTICLES){lang}{par date}{inverse}{0,1}>
 
 	      [<div class="texte #EDIT{texte}" id="accueil">
-       (#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})
+                (#TEXTE
+                |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+                |replace{<aide>,<div class="aide">}
+                |replace{</aide>,</div>}
+                |replace{<important>,<div class="important">}
+                |replace{</important>,</div>}
+                |replace{<avertissement>,<div class="avertissement">}
+                |replace{</avertissement>,</div>}
+                |replace{<info>,<div class="info">}
+                |replace{</info>,</div>}
+                |replace{<centrer>,<div style="text-align:center;">}
+                |replace{</centrer>,</div>}
+                )
 	      </div>]
         <div class="nettoyeur"></div>
 	      [(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
