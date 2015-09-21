@@ -12,6 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_auteur' => 'Billets de cet auteur',
 	'articles' => 'Billets',
 	'categories' => 'Catégories',
+	'contenu_rubrique' => 'Billets dans cette categorie',
 	'derniers_articles' => 'Derniers billets',
 	);
 
