@@ -14,5 +14,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categories' => 'Categories',
 	'contenu_rubrique' => 'Posts in this category',
 	'derniers_articles' => 'Last posts',
+	'voir_derniers_articles' => 'Show all posts from ',
 	);
 ?>
