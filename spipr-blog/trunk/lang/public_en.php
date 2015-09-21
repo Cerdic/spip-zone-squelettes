@@ -12,7 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_auteur' => 'Posts by this author',
 	'articles' => 'Posts',
 	'categories' => 'Categories',
+	'contenu_rubrique' => 'Posts in this category',
 	'derniers_articles' => 'Last posts',
 	);
-
 ?>
