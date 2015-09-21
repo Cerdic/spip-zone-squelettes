@@ -187,7 +187,7 @@ function myInitPages() {
 	if (jQuery('#homeSpecialFeature').size() > 0) { 
 		if (jQuery('.hSFItem').size()>1) { initMyHomeSpecialFeature = myHomeSpecialFeature("#homeSpecialFeature",'hSFItem','hSFDecoImg','hSFDecoSpan'); }
 	}
-	if (jQuery('#menuh').size() > 0) { 
+	if (jQuery('#menuh').size() > 0) {
 		$(document).ready(function(){ 
 		  $("#menuh").attr('role','navigation')/*.supersubs({ 
             minWidth:    12,   // minimum width of sub-menus in em units 
@@ -212,6 +212,22 @@ function myInitPages() {
 	// Surligner l'evenement en cours
 	var id_anchor  = location.hash.substr(1); //Get the word after the hash from the url
 	if (id_anchor) $('#'+id_anchor).parent().addClass('highlight_anchor'); // ajoute la classe highlight_anchor à l'element autour de l'ancre
+;
+[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
+	$(function() {
+		$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area, strong.agendastatut').tooltip({ 
+			track: false, 
+			delay: 1000, 
+			showURL: false, 
+			showBody: " - ", 
+			fade: 250 
+		});
+	});
+]
+	$(".escapelinks a").focus( function() { $(".escapelinks").removeClass("escapelinks"); } );
+}
+;
+function myInitLayout() {
 	if (CanceladjustLayout != true) {
 		adjustLayout();
 		$("body").resize(
@@ -229,18 +245,6 @@ function myInitPages() {
 		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
 	}
 ;
-[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
-	$(function() {
-		$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area, strong.agendastatut').tooltip({ 
-			track: false, 
-			delay: 1000, 
-			showURL: false, 
-			showBody: " - ", 
-			fade: 250 
-		});
-	});
-]
-	$(".escapelinks a").focus( function() { $(".escapelinks").removeClass("escapelinks"); } );
 }
 ;
 /* BLACK TRANSPARENT BACKGROUNDS */
@@ -807,6 +811,10 @@ function prop(n) {
 
 $(document).ready(function() {
 	myInitPages();
+	// Ceci devrait régler le problème de l'ajustement des colonne pas toujours fait
+	$(window).load(function() {
+		myInitLayout();
+	});
 });
 
 [(#CHEMIN{images/sc_javascript_perso.js.html}|?{'/* Complément personnalisé du JS */'})
