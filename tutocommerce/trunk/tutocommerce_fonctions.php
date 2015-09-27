@@ -1,53 +1,55 @@
 <?php
 /*
- * Paiement Bancaire
- * module de paiement bancaire multi prestataires
- * stockage des transactions
- *
- * Auteurs :
- * Cedric Morin, Nursit.com
- * (c) 2012-2015 - Distribue sous licence GNU/GPL
- *
+ * @plugin     Tuto-commerce
+ * @copyright  2015
+ * @author     tcharlss
+ * @licence    GNU/GPL
+ * @package    SPIP\Tuto-commerce\fonctions
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 /**
  * Test sur le plugin Bank (Paiements en ligne)
- * Il y a t-il au moins 1 prestataire actif ?
+ * envoyer le tableau du ou des prestataires sélectionnés
  *
- * @return bool
+ * @return array
  */
 function tutocommerce_prestas_actif(){
-	$compteur_presta = 0;
 	$prestas = lire_config('bank_paiement');
 	foreach ($prestas as $key => $value) {
 		$prestas = preg_match('/^config/i', $key, $result);
 		if (is_array($result) && count($result) > 0) {
-			$meta_actif = 'bank_paiement/'.$key.'/actif';
-			if (lire_config($meta_actif) == 1 ) $compteur_presta ++;
+			$meta_prestas = 'bank_paiement/'.$key.'/presta';
+			$val_presta = lire_config($meta_prestas);
+			$quels_prestas[] = $val_presta;
 		}
 	}
-	if ($compteur_presta > 0) return true;
-	else return false;
+	return $quels_prestas;
 }
 
 /**
  * Test sur le plugin Bank (Paiements en ligne)
- * Parmi les prestataires actifs, il y en a t-il au moins 1 pour lequel de mode Test a été activé ?
+ * Parmi les prestataires sélectionnés, vérifier qu'il y en a qui sont actif ET en mode test
+ * pour ceux qui n'ont pas de mode Test, on vérifie que _SIMU_BANK_ALLOWED a été défini.
  *
- * @return bool
+ * @return int
  */
-function tutocommmerce_mode_test(){
+function tutocommmerce_tout_en_ordre(){
 	$compteur_mode_test = 0;
 	$prestas = lire_config('bank_paiement');
 	foreach ($prestas as $key => $value) {
 		$prestas = preg_match('/^config/i', $key, $result);
 		if (is_array($result) && count($result) > 0) {
+
+			$meta_actif = 'bank_paiement/'.$key.'/actif';
 			$meta_mode_test = 'bank_paiement/'.$key.'/mode_test';
-			if (lire_config($meta_mode_test) == 1 ) $compteur_mode_test ++;
+			$val_test = lire_config($meta_mode_test);
+			if (is_null($val_test)) {
+				defined("_SIMU_BANK_ALLOWED") ? $val_test = '1' : $val_test = '0';
+			}
+			if (lire_config($meta_actif) == 1 && $val_test == 1) $compteur_mode_test ++;
 		}
 	}
-	if ($compteur_mode_test > 0) return true;
-	else return false;
+	return $compteur_mode_test;
 }
