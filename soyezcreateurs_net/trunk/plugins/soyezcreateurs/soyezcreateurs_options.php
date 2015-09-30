@@ -2,15 +2,15 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 // Optimisation du chargement des JS (SPIP 3.1 requis, cf https://core.spip.net/issues/3497)
-//define('_JS_ASYNC_LOAD',true); 
-// Ne marche pas pour l'instant : Uncaught TypeError: Cannot set property 'hoverIntent' of undefined 
+//define('_JS_ASYNC_LOAD',true);
+// Ne marche pas pour l'instant : Uncaught TypeError: Cannot set property 'hoverIntent' of undefined
 
 // Pour être vraiment sûr que ce define soit utilisable dans noisettes/header/header.html avec le #EVAL
 if (!defined('_DIR_LIB_SM'))
 	define('_DIR_LIB_SM', _DIR_RACINE . 'lib/soundmanagerv297a-20110123/');
 
 if (!defined('_IMG_GD_QUALITE'))
-	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://contrib.spip.net/Astuces-SPIP 
+	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://contrib.spip.net/Astuces-SPIP
 
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
@@ -36,7 +36,7 @@ if (!defined('_TRI_GROUPES_MOTS'))
 if (!defined('_DUREE_CACHE_DEFAUT'))
 	define('_DUREE_CACHE_DEFAUT', 12*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 if (!defined('_URLS_PROPRES_MAX'))
-	define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
+	define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346
 # FBI : si on trie sur les titre puis sur les dates, les dates ne classent que ceux qui ont le même titre ==> inutile
 # TODO later : quand les rang seront gérés, 'rang, date DESC' fonctionnera
 #define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
@@ -126,11 +126,11 @@ function balise_SECTEUR_PDF_dist($p) {
 	return $f($p);
 }
 
-function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, $opt = NULL){ 
-	if (isset($opt['contexte']['id_article'])) 
-		return autoriser('creerevenementdans','article',$opt['contexte']['id_article'],$qui); 
-	return false; 
-} 
+function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, $opt = NULL){
+	if (isset($opt['contexte']['id_article']))
+		return autoriser('creerevenementdans','article',$opt['contexte']['id_article'],$qui);
+	return false;
+}
 
 include_spip('inc/plugin');
 
