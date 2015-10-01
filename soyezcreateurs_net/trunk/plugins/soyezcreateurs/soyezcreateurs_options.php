@@ -2,7 +2,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 // Optimisation du chargement des JS (SPIP 3.1 requis, cf https://core.spip.net/issues/3497)
-//define('_JS_ASYNC_LOAD',true);
+define('_JS_ASYNC_LOAD',true);
 // Ne marche pas pour l'instant : Uncaught TypeError: Cannot set property 'hoverIntent' of undefined
 
 // Pour être vraiment sûr que ce define soit utilisable dans noisettes/header/header.html avec le #EVAL
