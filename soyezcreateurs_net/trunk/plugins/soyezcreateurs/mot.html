@@ -26,12 +26,22 @@
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
 [<div class="#EDIT{texte}">(#TEXTE)</div>]
 
+<!-- Auteurs lies au mot-cle -->
+<B_Auteurs>
+<h2><:auteurs|ucfirst:></h2>
+	<ul class="spip">
+<BOUCLE_Auteurs(AUTEURS) {id_mot} {par nom}>
+	<li><a href="[(#URL_AUTEUR)]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM)]</a></li>
+</BOUCLE_Auteurs>
+	</ul>
+</B_Auteurs>
+
 <B_RubriquesArticles>
 <!-- Articles de meme mot clef -->
 <h2><:articles:></h2>
 <BOUCLE_RubriquesArticles(RUBRIQUES){racine}><B_articles>
 	<h3 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h3>
-	<ul>
+	<ul class="spip">
 	<BOUCLE_articles(ARTICLES) {id_mot}{id_secteur}>
 		<li><a href="#ARTICLE_URL" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_articles>
@@ -41,7 +51,7 @@
 <!-- Rubriques liees au mot-cle -->
 <B_rubriques>
 <h2><:rubriques:></h2>
-	<ul>
+	<ul class="spip">
 <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
 	<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 </BOUCLE_rubriques>
@@ -51,7 +61,7 @@
 <!-- Breves liees au mot-cle -->
 <B_breves>
 <h2><:breves:breves:></h2>
-	<ul>
+	<ul class="spip">
 <BOUCLE_breves(BREVES) {id_mot} {par titre}>
 	<li><a href="#URL_BREVE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 </BOUCLE_breves>
@@ -61,7 +71,7 @@
 <!-- Sites Web lies au mot-cle -->
 <B_sites>
 <h2><:sites_web:></h2>
-	<ul>
+	<ul class="spip">
 <BOUCLE_sites(SITES) {id_mot} {par nom_site}>
 	<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a></li>
 </BOUCLE_sites>
