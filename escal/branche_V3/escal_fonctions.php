@@ -174,7 +174,17 @@ function shema_escal(){
             ),
             array(
                 'titre'=>'mon-article',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'descriptif'=>'pour choisir un article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'mon-article2',
+                'descriptif'=>'pour choisir un 2e article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'mon-article3',
+                'descriptif'=>'pour choisir un 3e article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
                 'type'=>'affichage'
             ),
             array(
