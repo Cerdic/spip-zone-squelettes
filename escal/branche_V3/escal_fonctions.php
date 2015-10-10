@@ -146,7 +146,12 @@ function shema_escal(){
                 'titre'=>'article-libre5',
                 'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 5"',
                 'type'=>'affichage'
-            ),            
+            ),
+            array(
+                'titre'=>'article-sans-date',
+                'descriptif'=>'pour supprimer l\'affichage des dates de publication et de modification d\'un article ',
+                'type'=>'affichage'
+            ),
             array(
                 'titre'=>'chrono',
                 'descriptif'=>'pour afficher les articles d&rsquo;une rubrique dans les menus en ordre ant&eacute;chronologique, comportement non transmis aux rubriques-filles',

@@ -25,8 +25,12 @@
 		<div id="soustitre-article" class="#EDIT{soustitre}">[(#SOUSTITRE)]</div>
 		<div id="descriptif-article">[(#DESCRIPTIF)]</div>
 		<div id="auteur-article">  
-      <div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
-      <div  id="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+<BOUCLE_date(ARTICLES){id_article}{titre_mot=article-sans-date}>
+</BOUCLE_date>
+<div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+<div  id="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+<//B_date>
+
 		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurart}|=={non}|non}>
 		</BOUCLE_test>
 	   <br />[(#LANG|=={ja}|non)<:par_auteur:>]
