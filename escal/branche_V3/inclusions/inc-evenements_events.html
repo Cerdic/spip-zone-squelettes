@@ -6,15 +6,16 @@
     <:escal:evenements:>
   ]
   </h1>
-  
-  
+
+<BOUCLE_exclusion(EVENEMENTS){titre_mot=event-exclus}{doublons}
+</BOUCLE_exclusion>
 
   <div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
-#SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+#SET{nbrpagevent,#CONFIG{escal/config/paginevenements,5}}
     <B_evenements_agenda>
 
       <p class="pagination">#PAGINATION</p>
-		<BOUCLE_evenements_agenda(EVENEMENTS){age<=0}{par date}{pagination #GET{nbrpageventcalendrier}}>
+		<BOUCLE_evenements_agenda(EVENEMENTS){doublons}{age<=0}{par date}{pagination #GET{nbrpagevent}}>
 			<div class="liste-evenements">
 			[(#DATE_DEBUT|annee|=={#GET{annee-en-cours}}|?{[(#DATE_DEBUT|affdate{'d-m'})] :,[(#DATE_DEBUT|affdate{'d-m-Y'})] :})] 
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>

@@ -29,6 +29,10 @@ define('_IMG_MAX_HEIGHT', 1050);
 // Et pour éviter de faire planter GD2 :
  define('_IMG_GD_MAX_PIXELS', 2000000);
 
+
+// forcer l'écran large dans l'espace privé
+$GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
+
 // récupération de l'url du site
 // pour redéfinir la fonction inc_lien dans escal_options
 // un grand merci à l'auteur : bobof
