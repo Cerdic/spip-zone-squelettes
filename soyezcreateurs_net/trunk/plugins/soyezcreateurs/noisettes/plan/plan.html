@@ -1,21 +1,33 @@
 <div id="letexte">
-<B_Autres>
-<p><:soyezcreateurs:voirarticlespar:> <a href="#URL_PAGE{antichrono}"><:soyezcreateurs:ordreantichronologique:></a>.</p>
-<BOUCLE_Autres(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
-	<h2 class="#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
-		[(#INCLURE{fond=noisettes/plan/inc_plan_articles_liste}{id_rubrique=#ID_RUBRIQUE})]
-		<B_Autres_Details>
-		<ul class="spip">
-		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{!titre_mot=PasDansPlan}{par num titre}>
-			<li  class="#EDIT{titre}" style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
-			<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
-				[(#INCLURE{fond=noisettes/plan/inc_plan_articles_liste}{id_rubrique=#ID_RUBRIQUE})]
+	<B_Autres>
+	<p><:soyezcreateurs:voirarticlespar:> <a href="#URL_PAGE{antichrono}"><:soyezcreateurs:ordreantichronologique:></a>.</p>
+	<BOUCLE_Min50Articles(ARTICLES){49,1}>#SET{Min50Articles,1}</BOUCLE_Min50Articles>
+	<B_Sommaire>
+	<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
+		<ul>
+		<BOUCLE_Sommaire(RUBRIQUES){si #GET{Min50Articles}}{id_parent}{!titre_mot=PasDansPlan}{par num titre}>
+			<li><a href="#rubrique#ID_RUBRIQUE">#TITRE</a>
+				<BOUCLE_SommaireRecurssion(BOUCLE_Sommaire) />
 			</li>
-		</BOUCLE_Autres_Details>
+		</BOUCLE_Sommaire>
 		</ul>
-		</B_Autres_Details>
-</BOUCLE_Autres>
-[<div>(#CONFIG{soyezcreateurs/textesiplanvide}|propre)</div>]
-<//B_Autres>
+	</div>
+	</B_Sommaire>
+	<BOUCLE_Autres(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
+		<h2 class="#EDIT{titre}" id="rubrique#ID_RUBRIQUE"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+			[(#INCLURE{fond=noisettes/plan/inc_plan_articles_liste}{id_rubrique=#ID_RUBRIQUE})]
+			<B_Autres_Details>
+			<ul class="spip">
+			<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{!titre_mot=PasDansPlan}{par num titre}>
+				<li class="#EDIT{titre}" style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});" id="rubrique#ID_RUBRIQUE"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+				<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
+					[(#INCLURE{fond=noisettes/plan/inc_plan_articles_liste}{id_rubrique=#ID_RUBRIQUE})]
+				</li>
+			</BOUCLE_Autres_Details>
+			</ul>
+			</B_Autres_Details>
+	</BOUCLE_Autres>
+	[<div>(#CONFIG{soyezcreateurs/textesiplanvide}|propre)</div>]
+	<//B_Autres>
 </div>
 #FILTRE{mini_html}
