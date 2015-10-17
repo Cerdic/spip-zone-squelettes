@@ -1,18 +1,19 @@
 <div id="letexte">
 	<B_Autres>
 	<p><:soyezcreateurs:voirarticlespar:> <a href="#URL_PAGE{antichrono}"><:soyezcreateurs:ordreantichronologique:></a>.</p>
-	<BOUCLE_Min50Articles(ARTICLES){49,1}>#SET{Min50Articles,1}</BOUCLE_Min50Articles>
-	<B_Sommaire>
+	<BOUCLE_Min50Articles(ARTICLES){1,1}> </BOUCLE_Min50Articles>
 	<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
+		<B_Sommaire>
 		<ul>
-		<BOUCLE_Sommaire(RUBRIQUES){si #GET{Min50Articles}}{id_parent}{!titre_mot=PasDansPlan}{par num titre}>
+		<BOUCLE_Sommaire(RUBRIQUES){id_parent}{!titre_mot=PasDansPlan}{par num titre}>
 			<li><a href="#rubrique#ID_RUBRIQUE">#TITRE</a>
 				<BOUCLE_SommaireRecurssion(BOUCLE_Sommaire) />
 			</li>
 		</BOUCLE_Sommaire>
 		</ul>
+		</B_Sommaire>
 	</div>
-	</B_Sommaire>
+	</B_Min50Articles>
 	<BOUCLE_Autres(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
 		<h2 class="#EDIT{titre}" id="rubrique#ID_RUBRIQUE"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
 			[(#INCLURE{fond=noisettes/plan/inc_plan_articles_liste}{id_rubrique=#ID_RUBRIQUE})]
