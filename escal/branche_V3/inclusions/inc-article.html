@@ -25,19 +25,22 @@
 		<div id="soustitre-article" class="#EDIT{soustitre}">[(#SOUSTITRE)]</div>
 		<div id="descriptif-article">[(#DESCRIPTIF)]</div>
 		<div id="auteur-article">  
-<BOUCLE_date(ARTICLES){id_article}{titre_mot=article-sans-date}>
-</BOUCLE_date>
-<div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
-<div  id="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
-<//B_date>
+
+        <BOUCLE_date(ARTICLES){id_article}{titre_mot=article-sans-date}>
+        </BOUCLE_date>
+        [(#CONFIG{escal/config/dateart}|=={non}|non)
+            <div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+            <div id="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+        ]
+        <//B_date>
 
 		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurart}|=={non}|non}>
 		</BOUCLE_test>
-	   <br />[(#LANG|=={ja}|non)<:par_auteur:>]
-			<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
-			<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
-	    [(#LANG|=={ja}|oui)<:par_auteur:>]
-    </B_test>
+	       <br />[(#LANG|=={ja}|non)<:par_auteur:>]
+			 <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+			 <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+	       [(#LANG|=={ja}|oui)<:par_auteur:>]
+        </B_test>
     </div>
 <div class="nettoyeur"></div>    
 </div> <!-- fin cadre-titre-article -->
