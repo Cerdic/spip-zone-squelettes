@@ -12,7 +12,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_recherche' => 'Перейти до пошуку',
 	'accessibilite_texte' => 'Перейти до тексту',
 	'accueil' => 'головна',
-	'accueil_menu' => 'Головна сторінка',
 	'agenda' => 'Події',
 	'agenda_exporter_ical' => 'Експорт в ICAL',
 	'agenda_fsd' => 'З @dдня_l@ @dдня@ @місяця_l@ @року@ о @годині@:@хвилин@ au @fдня_l@ @fдня@ @fмісяця_l@ @fроку@ à @fгодин@:@fхвилин@', # MODIF
@@ -338,7 +337,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_title_ok' => 'Почати пошук',
 	'recherche_total' => 'Загальна кількість знайдених елементів',
 	'recherche_value' => 'Пошук?',
-	'retouraccueil' => 'Повернутися на головну сторінку',
 	'retoursommaire' => 'Назад Головна',
 	'retourtop' => 'Повернутися до початку',
 

@@ -12,7 +12,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_recherche' => 'Zoeken naar',
 	'accessibilite_texte' => 'Aan de tekst gaan',
 	'accueil' => 'Welkom',
-	'accueil_menu' => 'Welkom menu',
 	'agenda' => 'Agenda',
 	'agendamoisde' => 'Agenda van de maand ... ',
 	'alaune' => 'Top info',
@@ -97,7 +96,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_title_ok' => 'Het onderzoek lanceren',
 	'recherche_total' => 'Totaal aantal gevonden elementen',
 	'recherche_value' => 'Zoeken ?',
-	'retouraccueil' => 'Aan de Welkom bladzijde van de website terugkomen',
 	'retourtop' => 'In top terugkomen',
 
 	// S
