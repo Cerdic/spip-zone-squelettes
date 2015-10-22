@@ -28,14 +28,17 @@ function sc_sommaire_article($texte,$istxt=0)
 	// Conversion des intertitres d'enluminures type {ß{titre}ß}
 	// ou ß est un nombre en intertitres avec des étoiles type {{{* (avec ß étoiles)
 	// {1{ sera converti en {{{* ; {2{ sera converti en {{{** ; etc.
+	// Obsolète !
+	/*
 	$texte=preg_replace_callback ("/(\{(\d)\{)(.*?)(\}\\2\})/",
 					create_function (
 						'$matches',
 						'return "{{{".str_repeat("*",$matches[2]).$matches[3]."}}}";'
 						),
 					$texte);
-
-	preg_match_all("|\{\{\{([*]*?)(.*)(\}\}\})|U", $texte, $regs);
+	*/
+	
+	preg_match_all("|(?!<code>)\{\{\{([*]*?)(?!<\/code>)(.*)(?!<code>)(\}\}\})(?!<\/code>)|U", $texte, $regs);
 
 
 	$nb=1;
@@ -89,7 +92,7 @@ function sc_sommaire_ancre($texte) {
 	
 	$retoursommaire = "<a href='#sommaire' title='"._T('soyezcreateurs:retoursommaire')."' class='retoursommaire'><img src='".supprimer_timestamp(find_in_path("images/spip_out.gif"))."' width='".largeur(find_in_path("images/spip_out.gif"))."' height='".hauteur(find_in_path("images/spip_out.gif"))."' alt='"._T('soyezcreateurs:retoursommaire')."' /></a>";
 	
-	$texte = preg_replace("|(<h[23456])[^>]*>(.*)(<\/h[23456]>)|U","$1 id=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$retoursommaire$2$3", $texte);
+	$texte = preg_replace("|(<h[23456])[^>]*>(.*)(<\/h[23456]>)|U","$retoursommaire$1 id=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$2$3", $texte);
 
 	$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $texte);
 	$res =count($array);
