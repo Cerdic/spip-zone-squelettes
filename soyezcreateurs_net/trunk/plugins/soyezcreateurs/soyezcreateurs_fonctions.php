@@ -861,13 +861,6 @@ if (!function_exists('rainette_afficher_icone')) {
 	}
 }
 
-if (!function_exists('supprimer_timestamp')) {
-	function supprimer_timestamp($url){
-		if (strpos($url,"?")===false) return $url;
-		return preg_replace(",\?[[:digit:]]+$,","",$url);
-	}
-}
-
 function sc_rgb($couleurs) {
 	include_spip('inc/filtres_images_lib_mini'); // par precaution
 	$couleurs = _couleur_hex_to_dec($couleurs);
