@@ -17,7 +17,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/trunk bou
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/calendrier_mini/trunk calendriermini
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/citations_bien_balisees citations_bien_balisees
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/corbeille/trunk corbeille
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse couteau_suisse
+#sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse couteau_suisse
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/crayons crayons
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/dictionnaires/trunk dictionnaires
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/facteur/trunk facteur
