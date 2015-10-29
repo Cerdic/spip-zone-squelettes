@@ -1,0 +1,35 @@
+[(#SET{titretop,<:soyezcreateurs:newsletter_recevoir|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=inscription_infolettre}
+	{title=<:soyezcreateurs:newsletter_recevoir|texte_script:>}
+	{titretop=#GET{titretop}}
+>
+	<nav id="miettesdepain">
+		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
+			<li><:soyezcreateurs:newsletter_recevoir:></li>
+		</ul>
+	</nav>
+<div class="texte">
+<main id="main" role="main">
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:newsletter_recevoir:></h1></div>
+</div>
+	<div id="letexte">
+		[(#PLUGIN{CLEVERMAIL}|oui)
+			[(#FORMULAIRE_CLEVERMAIL{0,html})]
+			<p><a href="#URL_PAGE{liste_mail}" title="<:soyezcreateurs:newsletter:>"><:soyezcreateurs:newsletter:></a></p>
+		]
+		[(#PLUGIN{MAILSUBSCRIBERS}|oui)[(#INCLURE{fond=noisettes/navigation/inc_frmabonnement_mailsubscriber})]]
+	</div>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=inscription_infolettre}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}
