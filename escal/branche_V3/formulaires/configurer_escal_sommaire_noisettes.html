@@ -985,6 +985,18 @@
                              <input type="texte" style="width:97%" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},Ma noisette})]"  />
                     </span>
             <br /><br />
+            #SET{name,ordreperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <strong>Choix de l'ordre d'affichage</strong><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_date">Antéchronologique</label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_simple" value="num titre"
+                            [(#ENV{#GET{name}}|=={num titre}|oui)checked="checked"] /><label for="#GET{name}_hasard">Par numéro du titre</label>
+                    </span>
+
+            <br /><br />
             #SET{name,choixperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <strong>Choix de l'affichage</strong><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -1003,7 +1015,7 @@
                     </span>
 
             <br /><br />
-            <strong>Pour les 3 premiers choix : </strong><br />
+            <strong>Pour les 3 premiers choix d'affichage : </strong><br />
             #SET{name,nombreartperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre d'articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -1018,7 +1030,7 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
             <br /><br />
-            <strong>Pour les 2 derniers choix : </strong><br />
+            <strong>Pour les 2 derniers choix d'affichage : </strong><br />
             #SET{name,couperperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Nombre de caractères affichés pour le texte du/des articles
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -1026,7 +1038,7 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},80})]"  />
                     </span>
             <br /><br />
-            <strong>Pour le quatrième choix : </strong><br />
+            <strong>Pour le quatrième choix d'affichage : </strong><br />
             #SET{name,tempoperso}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Temporisation entre chaque logo de site (en secondes)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
