@@ -17,14 +17,18 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 function tutocommerce_prestas_actif(){
 	$prestas = lire_config('bank_paiement');
-	foreach ($prestas as $key => $value) {
-		$prestas = preg_match('/^config/i', $key, $result);
-		if (is_array($result) && count($result) > 0) {
-			$meta_prestas = 'bank_paiement/'.$key.'/presta';
-			$val_presta = lire_config($meta_prestas);
-			$quels_prestas[] = $val_presta;
+
+	if (!is_null($prestas) AND is_array($prestas)) {
+		foreach ($prestas as $key => $value) {
+			$prestas = preg_match('/^config/i', $key, $result);
+			if (is_array($result) && count($result) > 0) {
+				$meta_prestas = 'bank_paiement/'.$key.'/presta';
+				$val_presta = lire_config($meta_prestas);
+				$quels_prestas[] = $val_presta;
+			}
 		}
 	}
+	
 	return $quels_prestas;
 }
 
@@ -38,17 +42,19 @@ function tutocommerce_prestas_actif(){
 function tutocommmerce_tout_en_ordre(){
 	$compteur_mode_test = 0;
 	$prestas = lire_config('bank_paiement');
-	foreach ($prestas as $key => $value) {
-		$prestas = preg_match('/^config/i', $key, $result);
-		if (is_array($result) && count($result) > 0) {
+	if (!is_null($prestas) AND is_array($prestas)) {
+		foreach ($prestas as $key => $value) {
+			$prestas = preg_match('/^config/i', $key, $result);
+			if (is_array($result) && count($result) > 0) {
 
-			$meta_actif = 'bank_paiement/'.$key.'/actif';
-			$meta_mode_test = 'bank_paiement/'.$key.'/mode_test';
-			$val_test = lire_config($meta_mode_test);
-			if (is_null($val_test)) {
-				defined("_SIMU_BANK_ALLOWED") ? $val_test = '1' : $val_test = '0';
+				$meta_actif = 'bank_paiement/'.$key.'/actif';
+				$meta_mode_test = 'bank_paiement/'.$key.'/mode_test';
+				$val_test = lire_config($meta_mode_test);
+				if (is_null($val_test)) {
+					defined("_SIMU_BANK_ALLOWED") ? $val_test = '1' : $val_test = '0';
+				}
+				if (lire_config($meta_actif) == 1 && $val_test == 1) $compteur_mode_test ++;
 			}
-			if (lire_config($meta_actif) == 1 && $val_test == 1) $compteur_mode_test ++;
 		}
 	}
 	return $compteur_mode_test;
