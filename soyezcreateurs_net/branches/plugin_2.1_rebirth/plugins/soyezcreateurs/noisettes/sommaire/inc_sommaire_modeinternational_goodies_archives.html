@@ -1,7 +1,7 @@
-			<BOUCLE_MemoGoodies(ARTICLES){titre_mot=Goodies}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})} />
-			<BOUCLE_MemoGoodiesRubrique(ARTICLES rubriques mots_rubriques){titre_mot=Goodies}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})} />
-			<BOUCLE_MemoGoodiesArchives(ARTICLES){titre_mot=Goodies}{doublons goodies}{archive} />
-			<BOUCLE_MemoGoodiesRubriqueArchives(ARTICLES rubriques mots_rubriques){titre_mot=Goodies}{doublons goodies}{archive} />
+			<BOUCLE_MemoGoodies(ARTICLES){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})} />
+			<BOUCLE_MemoGoodiesRubrique(ARTICLES rubriques mots_rubriques){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{age>=(#CONFIG{soyezcreateurs/age_goodies,30})} />
+			<BOUCLE_MemoGoodiesArchives(ARTICLES){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{archive} />
+			<BOUCLE_MemoGoodiesRubriqueArchives(ARTICLES rubriques mots_rubriques){titre_mot=#ENV{mc,Goodies}}{doublons goodies}{archive} />
 			<B_Goodies>
 			<div id="info" class="outerbox hauteur2">
 				<div class="box simple">
@@ -10,7 +10,7 @@
 					<b class="tr"></b>
 				</b>
 				<div class="inner">
-					<div class="hd bam h1"><BOUCLE_TitreGoodies(MOTS){type=_ModePortail}{titre=Goodies}{0,1}>[(#TEXTE|ptobr)]</BOUCLE_TitreGoodies><:soyezcreateurs:plus_loin:><//B_TitreGoodies> (<:soyezcreateurs:archives:>)</div>
+					<div class="hd bam h1"><BOUCLE_TitreGoodies(MOTS){type=_ModePortail}{titre=#ENV{mc,Goodies}}{0,1}>[(#TEXTE|ptobr)]</BOUCLE_TitreGoodies><:soyezcreateurs:plus_loin:><//B_TitreGoodies> (<:soyezcreateurs:archives:>)</div>
 					<div class="bd">
 						<dl>
 						<BOUCLE_Goodies(ARTICLES){!doublons goodies}{!par date}{pagination 6}>
@@ -19,7 +19,7 @@
 						</dl>
 						<p class="pagination">#PAGINATION{page}</p>
 					</div>
-					<div class="hd bam archives"><a href="[(#SELF|parametre_url{goodies,''}|parametre_url{debut_Goodies,''})]"><:spip:retour:></a></div>
+					<div class="hd bam archives"><a href="[(#SELF|parametre_url{#ENV{mc,Goodies},''}|parametre_url{debut_Goodies,''})]"><:spip:retour:></a></div>
 				</div>
 				<b class="bottom">
 					<b class="bl"></b>

@@ -185,6 +185,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.34','non');
 		}
+		if (version_compare($current_version,'3.0.35','<')) {
+			spip_log("SoyezCreateurs maj 3.0.33 Début", "soyezcreateurs_install");
+			$id_mot = create_mot("_ModePortail", "Goodies2", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en mode international, sous la Une).", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.35','non');
+		}
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));

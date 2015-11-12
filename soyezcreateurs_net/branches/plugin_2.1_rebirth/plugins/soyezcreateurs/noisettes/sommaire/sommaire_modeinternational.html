@@ -31,9 +31,14 @@
 #INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_newsticker}
 <div class="outerinternational">
 		<div id="block1" class="troistiers">
+[(#SET{CartoucheGoodies2,[(#ENV{Goodies2}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies_archives,Goodies2,mc=Goodies2,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies,mc=Goodies2,env}
+})]})]
+[(#SET{HauteurALaUne,[(#GET{CartoucheGoodies2}|?{hauteur1,hauteur5})]})]
 [(#ENV{alaune}|=={archives}|?{
-#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune_archives,env,ajax},
-#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune,env}
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune_archives,HauteurALaUne=#GET{HauteurALaUne},env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune,HauteurALaUne=#GET{HauteurALaUne},env}
 })]
 			<BOUCLE_AgendaEvenementsFuturs(EVENEMENTS)
 			{branche}
@@ -80,6 +85,8 @@
 				</div>
 			</div>
 			</B_ZoomSur2>
+			
+			#GET{CartoucheGoodies2}
 
 
 		</div>
@@ -185,8 +192,8 @@
 					</b>
 				</div>
 			</div>
-[(#ENV{goodies}|=={archives}|?{
-#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies_archives,env,ajax},
+[(#ENV{Goodies}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies_archives,Goodies,env,ajax},
 #INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_goodies,env}
 })]
 		</div>
