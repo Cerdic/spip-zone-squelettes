@@ -158,26 +158,26 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.34','non');
 		}
-		if (version_compare($current_version,'3.0.35','<')) {
-			spip_log("SoyezCreateurs maj 3.0.35 Début", "soyezcreateurs_install");
+		if (version_compare($current_version,'3.1.35','<')) {
+			spip_log("SoyezCreateurs maj 3.1.35 Début", "soyezcreateurs_install");
 			supprimer_mot_groupe("_Specialisation_Rubrique", "GisSecteur");
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.35','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.35','non');
 		}
-		if (version_compare($current_version,'3.0.36','<')) {
-			spip_log("SoyezCreateurs maj 3.0.36 Début", "soyezcreateurs_install");
+		if (version_compare($current_version,'3.1.36','<')) {
+			spip_log("SoyezCreateurs maj 3.1.36 Début", "soyezcreateurs_install");
 			ecrire_config('boutonstexte/skin','soyezcreateurs');
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.36','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.36','non');
 		}
-		if (version_compare($current_version,'3.0.39','<')) {
-			spip_log("SoyezCreateurs maj 3.0.39 Début", "soyezcreateurs_install");
+		if (version_compare($current_version,'3.1.39','<')) {
+			spip_log("SoyezCreateurs maj 3.1.39 Début", "soyezcreateurs_install");
 			ecrire_meta('orthotypo',"a:7:{s:10:\"guillemets\";s:1:\"1\";s:9:\"exposants\";s:1:\"1\";s:4:\"mois\";s:1:\"1\";s:4:\"caps\";s:1:\"1\";s:5:\"fines\";s:1:\"1\";s:11:\"corrections\";s:1:\"1\";s:18:\"corrections_regles\";s:319:\"oeuf = œuf\ncceuil = ccueil\n(a priori) = {a priori}\n(([hH])uits) = $1uit\n/([cC]h?)oeur/ = $1œur\n/oeuvre/ = œuvre\n(O[Ee]uvre([rs]?)) = Œuvre$1\n/\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\b/ = $1onnaissa$2\nCO2 = <abbr title=\"CO2, Dioxyde de carbone, O=C=O\">CO<sub>2</sub></abbr>\noeil = œil\n(O[Ee]il) = Œil\";}", 'non');
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.39','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.39','non');
 		}
-		if (version_compare($current_version,'3.0.40','<')) {
+		if (version_compare($current_version,'3.1.40','<')) {
 			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'articles', 'oui', 'non', 'non');
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.40','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.40','non');
 		}
-		if (version_compare($current_version,'3.0.41','<')) {
+		if (version_compare($current_version,'3.1.41','<')) {
 			ecrire_meta('version_html_max', 'html5', 'non');
 			ecrire_meta('auto_compress_css', 'oui', 'non');
 			ecrire_meta('auto_compress_js', 'oui', 'non');
@@ -190,18 +190,23 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta('inserer_modeles', 'a:1:{s:6:"objets";a:2:{i:0;s:13:"spip_articles";i:1;s:0:"";}}', 'non');
 			ecrire_meta('notifications', 'a:19:{s:17:"limiter_rubriques";s:0:"";s:17:"moderateurs_forum";s:0:"";s:24:"forums_limiter_rubriques";s:0:"";s:12:"forums_liste";s:0:"";s:23:"moderateurs_forum_prive";s:0:"";s:22:"moderateurs_signatures";s:0:"";s:11:"inscription";s:10:"webmestres";s:5:"suivi";s:1:"1";s:25:"prevenir_auteurs_articles";s:2:"on";s:31:"prevenir_auteurs_articles_refus";s:2:"on";s:21:"pas_prevenir_publieur";s:2:"on";s:26:"prevenir_admins_restreints";s:2:"on";s:16:"prevenir_auteurs";s:2:"on";s:12:"thread_forum";s:2:"on";s:13:"forum_article";s:2:"on";s:24:"forums_admins_restreints";s:2:"on";s:22:"prevenir_auteurs_prive";s:2:"on";s:18:"thread_forum_prive";s:2:"on";s:10:"messagerie";s:2:"on";}', 'non');
 			ecrire_config('uploadhtml5/max_file_size','32');
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.41','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.41','non');
 		}
-		if (version_compare($current_version,'3.0.42','<')) {
+		if (version_compare($current_version,'3.1.42','<')) {
 			supprimer_mot_groupe('_HTTP-EQUIV','pics-label');
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.42','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.42','non');
 		}
-		if (version_compare($current_version,'3.0.43','<')) {
-			spip_log("SoyezCreateurs maj 3.0.43 Début", "soyezcreateurs_install");
+		if (version_compare($current_version,'3.1.43','<')) {
+			spip_log("SoyezCreateurs maj 3.1.43 Début", "soyezcreateurs_install");
 			create_groupe("_FondPage", "Images en fond de page :\n-* Créer autant de mots clefs que de fonds de page désirés\n-* Mettre un logo à ces mots clefs\n-* Possibilité de fixer un fond de page pour :\n-** Une rubrique (et la branche en dessous)\n-** Un type de page particulier (Sommaire, Plan)\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", "", 'oui', 'non', 'rubriques', 'oui', 'non', 'non');
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", 'non', 'non', 'rubriques', 'oui', 'non', 'non');			
-			spip_log("SoyezCreateurs maj 3.0.43 Faite", "soyezcreateurs_install");
-			ecrire_meta($nom_meta_base_version,$current_version='3.0.43','non');
+			spip_log("SoyezCreateurs maj 3.1.43 Faite", "soyezcreateurs_install");
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.43','non');
+		}
+		if (version_compare($current_version,'3.1.44','<')) {
+			spip_log("SoyezCreateurs maj 3.1.44 Début", "soyezcreateurs_install");
+			$id_mot = create_mot("_ModePortail", "Goodies2", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en mode international, sous la Une).", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.44','non');
 		}
 		
 		
