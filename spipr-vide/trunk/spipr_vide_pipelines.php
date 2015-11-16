@@ -14,8 +14,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  function spipr_vide_noizetier_blocs_defaut($blocs) {
 	unset($blocs['navigation']);
 	unset($blocs['extra']);
-    unset($blocs['contenu']);
-	   
+	unset($blocs['contenu']);
+
 	static $blocs_defaut = null;
 	if (is_null($blocs_defaut)){
 		$blocs_defaut = array (
@@ -33,7 +33,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 				'nom' => _T('spipr_vide:nom_bloc_extra'),
 				'description' => _T('spipr_vide:description_bloc_extra'),
 				'icon' => 'bloc-extra-24.png'
-				),            
+				)
 		);
 		$blocs_defaut = pipeline('noizetier_blocs_defaut',$blocs_defaut);
 	}
