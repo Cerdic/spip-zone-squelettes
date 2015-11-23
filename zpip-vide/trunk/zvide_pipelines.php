@@ -26,17 +26,17 @@ function zvide_recuperer_fond($flux)
 		// Si on est sur un bloc contenu, navigation ou extra, on ajoute les noisettes de la page par defaut
 		// On ajoute également une ancre correspondant au nom du bloc
 		if (in_array($bloc, array('contenu', 'navigation', 'extra'))) {
-			$contexte = $flux['data']['contexte'];
+			$contexte = isset($flux['data']['contexte']) ? $flux['data']['contexte'] : array();
 			$contexte['bloc'] = 'pre_'.$bloc;
 			$contexte['type'] = 'defaut';
 			$contexte['composition'] = '';
-			if ($flux['args']['contexte']['voir'] == 'noisettes' && autoriser('configurer', 'noizetier')) {
+			if ((isset($flux['args']['contexte']['voir']) and $flux['args']['contexte']['voir'] == 'noisettes') && autoriser('configurer', 'noizetier')) {
 				$complements_pre = recuperer_fond('noizetier-generer-bloc-voir-noisettes', $contexte, array('raw' => true));
 			} else {
 				$complements_pre = recuperer_fond('noizetier-generer-bloc', $contexte, array('raw' => true));
 			}
 			$contexte['bloc'] = 'post_'.$bloc;
-			if ($flux['args']['contexte']['voir'] == 'noisettes' && autoriser('configurer', 'noizetier')) {
+			if ((isset($flux['args']['contexte']['voir']) and $flux['args']['contexte']['voir'] == 'noisettes') && autoriser('configurer', 'noizetier')) {
 				$complements_post = recuperer_fond('noizetier-generer-bloc-voir-noisettes', $contexte, array('raw' => true));
 			} else {
 				$complements_post = recuperer_fond('noizetier-generer-bloc', $contexte, array('raw' => true));
