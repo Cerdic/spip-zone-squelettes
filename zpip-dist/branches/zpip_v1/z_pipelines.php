@@ -79,7 +79,7 @@ function Z_styliser($flux){
 		}
 
 		// si on est sur un ?page=XX non trouve
-		elseif ($flux['args']['contexte'][_SPIP_PAGE] == $fond OR $flux['args']['contexte']['type'] == $fond) {
+		elseif ((isset($flux['args']['contexte'][_SPIP_PAGE]) and $flux['args']['contexte'][_SPIP_PAGE] == $fond) OR (isset($flux['args']['contexte']['type']) and $flux['args']['contexte']['type'] == $fond)) {
 			// si c'est un objet spip, associe a une table, utiliser le fond homonyme
 			if (z_scaffoldable($fond)){
 				$flux['data'] = substr(find_in_path("objet.$ext"), 0, - strlen(".$ext"));
