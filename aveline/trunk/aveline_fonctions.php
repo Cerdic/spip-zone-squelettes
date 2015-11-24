@@ -4,17 +4,18 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 	return;
 }
 
-// Nécessaire pour le formulaire volant
+// NÃ©cessaire pour le formulaire volant
 if (!defined('_FORUM_AUTORISER_POST_ID_FORUM')) {
 	define('_FORUM_AUTORISER_POST_ID_FORUM', true);
 }
 
-// Filtre pour afficher les statistiques d'un mot-clé
+// Filtre pour afficher les statistiques d'un mot-clÃ©
 // [(#ID_MOT|statistiques_mot{#ID_GROUPE})] // passer #ID_GROUPE si possible (evite une requete)
 function filtre_statistiques_mot_dist($id_mot, $id_groupe = '')
 {
 	include_spip('inc/mots');
 	include_spip('inc/filtres');
+	include_spip('base/abstract_sql');
 
 	$id_mot = intval($id_mot);
 	if (!$id_groupe) {
@@ -26,7 +27,7 @@ function filtre_statistiques_mot_dist($id_mot, $id_groupe = '')
 	return $texte_lie;
 }
 
-// Critère compteur_publie
+// CritÃ¨re compteur_publie
 // Provient de http://contrib.spip.net/Classer-les-articles-par-nombre-de-commentaires
 
 function critere_compteur_publie($idb, &$boucles, $crit)
@@ -49,7 +50,7 @@ function critere_compteur_publie($idb, &$boucles, $crit)
 	$boucle->select[] = 'COUNT('.$type_id.') AS compteur_'.$type;
 	$boucle->from['compt'] = table_objet_sql($type);
 	$boucle->from_type['compt'] = 'LEFT';
-	// On passe par cette jointure pour que les articles avec 0 commentaires soient comptés
+	// On passe par cette jointure pour que les articles avec 0 commentaires soient comptÃ©s
 	// Merci notation !
 	// on verifie que la table dispose d'un champ sur notre table
 	// sinon on tente  objet id_objet
@@ -84,8 +85,8 @@ function critere_compteur_publie($idb, &$boucles, $crit)
 	}
 }
 
-// On préfixe avec AVELINE pour éviter conflit avec d'autres plugins
-// comme afficher_objet qui définit sont propre #COMPTEUR_ARTICLES
+// On prÃ©fixe avec AVELINE pour Ã©viter conflit avec d'autres plugins
+// comme afficher_objet qui dÃ©finit sont propre #COMPTEUR_ARTICLES
 
 function balise_AVELINE_COMPTEUR_FORUM_dist($p)
 {
@@ -204,16 +205,16 @@ function balise_AVELINE_PAGINATION_dist($p)
 	return $p;
 }
 
-// Critère aveline_pagination
+// CritÃ¨re aveline_pagination
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/pagination.yaml'
-// Ajouter {aveline_pagination} à la boucle
+// Ajouter {aveline_pagination} Ã  la boucle
 
 function critere_aveline_pagination_dist($idb, &$boucles, $crit)
 {
 	$boucle = &$boucles[$idb];
 	// definition de la taille de la page
-	$pas = "((\$Pile[0]['selection']=='pagination') ? \$Pile[0]['pas_pagination'] : ((\$Pile[0]['selection']=='limite') ? \$Pile[0]['limite'] : 1000000))";
-	// On ajoute id_noisette à la variable de pagination
+	$pas = "((@\$Pile[0]['selection']=='pagination') ? @\$Pile[0]['pas_pagination'] : ((@\$Pile[0]['selection']=='limite') ? @\$Pile[0]['limite'] : 1000000))";
+	// On ajoute id_noisette Ã  la variable de pagination
 	$type = !isset($crit->param[0][1]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']" : calculer_liste(array($crit->param[0][1]), array(), $boucles, $boucle->id_parent);
 	$debut = ($type[0] !== "'") ? "'debut'.$type"
 	  : ("'debut".substr($type, 1));
@@ -222,10 +223,10 @@ function critere_aveline_pagination_dist($idb, &$boucles, $crit)
 	$partie =
 		 // tester si le numero de page demande est de la forme '@yyy'
 		 'isset($Pile[0]['.$debut.']) ? $Pile[0]['.$debut.'] : _request('.$debut.");\n"
-		."\tif(substr(\$debut_boucle,0,1)=='@'){\n"
-		."\t\t".'$debut_boucle = $Pile[0]['.$debut.'] = quete_debut_pagination(\''.$boucle->primary.'\',$Pile[0][\'@'.$boucle->primary.'\'] = substr($debut_boucle,1),'.$pas.',$result,'._q($boucle->sql_serveur).');'."\n"
-		."\t\t".'if (!sql_seek($result,0,'._q($boucle->sql_serveur).")){\n"
-		."\t\t\t".'@sql_free($result,'._q($boucle->sql_serveur).");\n"
+		."\tif(substr(\$debut_boucle, 0, 1)=='@'){\n"
+		."\t\t".'$debut_boucle = @$Pile[0]['.$debut.'] = quete_debut_pagination(\''.$boucle->primary.'\', @$Pile[0][\'@'.$boucle->primary.'\'] = substr($debut_boucle, 1), '.$pas.', $result, '._q($boucle->sql_serveur).');'."\n"
+		."\t\t".'if (!sql_seek($result, 0, '._q($boucle->sql_serveur).")){\n"
+		."\t\t\t".'@sql_free($result, '._q($boucle->sql_serveur).");\n"
 		."\t\t\t".'$result = calculer_select($select, $from, $type, $where, $join, $groupby, $orderby, $limit, $having, $table, $id, $connect);'."\n"
 		."\t\t}\n"
 		."\t}\n"
@@ -244,9 +245,9 @@ function critere_aveline_pagination_dist($idb, &$boucles, $crit)
 	}
 }
 
-// Si le plugin notation n'est pas actif, on définit un critère {notation} ne faisant rien
-// pour ne pas avoir d'erreur avec les boucles appelant ce critère
-// on définit également moyenne (égal alors à id)
+// Si le plugin notation n'est pas actif, on dÃ©finit un critÃ¨re {notation} ne faisant rien
+// pour ne pas avoir d'erreur avec les boucles appelant ce critÃ¨re
+// on dÃ©finit Ã©galement moyenne (Ã©gal alors Ã  id)
 if (!defined('_DIR_PLUGIN_NOTATION')) {
 	function critere_notation_dist($idb, &$boucles, $crit)
 	{
@@ -260,9 +261,9 @@ if (!defined('_DIR_PLUGIN_NOTATION')) {
 // #AVELINE_CHOIX_TRI
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
 // Appel : #AVELINE_CHOIX_TRI{objet,debut_ou_fin}
-// S'utilise en conjonction avec le critère tri de Bonux
-// Les possibilités de tri pour chaque objet sont définis directement dans le code de la balise
-// pour récupérer les variables d'environnement adéquates.
+// S'utilise en conjonction avec le critÃ¨re tri de Bonux
+// Les possibilitÃ©s de tri pour chaque objet sont dÃ©finis directement dans le code de la balise
+// pour rÃ©cupÃ©rer les variables d'environnement adÃ©quates.
 
 function balise_AVELINE_CHOIX_TRI_dist($p)
 {
@@ -298,58 +299,58 @@ function balise_AVELINE_CHOIX_TRI_dist($p)
 	$tri_actuel = $boucle->modificateur['tri_champ'];
 	$sens_actuel = $boucle->modificateur['tri_sens'];
 
-	// Définir les choix possibles
+	// DÃ©finir les choix possibles
 	$choix = 'array()';
 	if ($objet == "'article'") {
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
-			array('affiche' => \$Pile['0']['choix_tri_rang'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_rang')),
-			array('affiche' => \$Pile['0']['choix_tri_popularite'], 'tri' => 'popularite', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_populaires')),
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_recents')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date', 'sens' => 1, 'libelle' => _T('avelinepublic:les_plus_anciens')),
-			array('affiche' => \$Pile['0']['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('avelinepublic:modifies_recemment')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_commentes')),
-			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_visites')),
-			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('avelinepublic:les_mieux_notes')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
+			array('affiche' => @\$Pile[0]['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
+			array('affiche' => @\$Pile[0]['choix_tri_rang'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_rang')),
+			array('affiche' => @\$Pile[0]['choix_tri_popularite'], 'tri' => 'popularite', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_populaires')),
+			array('affiche' => @\$Pile[0]['choix_tri_date'], 'tri' => 'date', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_recents')),
+			array('affiche' => @\$Pile[0]['choix_tri_anciens'], 'tri' => 'date', 'sens' => 1, 'libelle' => _T('avelinepublic:les_plus_anciens')),
+			array('affiche' => @\$Pile[0]['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('avelinepublic:modifies_recemment')),
+			array('affiche' => @\$Pile[0]['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_commentes')),
+			array('affiche' => @\$Pile[0]['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_visites')),
+			array('affiche' => @\$Pile[0]['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('avelinepublic:les_mieux_notes')),
+			array('affiche' => @\$Pile[0]['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	}
 	if ($objet == "'breve'") {
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
-			array('affiche' => \$Pile['0']['choix_tri_rang'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_rang')),
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_recentes')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('avelinepublic:b_les_plus_anciennes')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_commentees')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_pertinentes'))
+			array('affiche' => @\$Pile[0]['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
+			array('affiche' => @\$Pile[0]['choix_tri_rang'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_rang')),
+			array('affiche' => @\$Pile[0]['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_recentes')),
+			array('affiche' => @\$Pile[0]['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('avelinepublic:b_les_plus_anciennes')),
+			array('affiche' => @\$Pile[0]['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_commentees')),
+			array('affiche' => @\$Pile[0]['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:b_les_plus_pertinentes'))
 		)";
 	}
 	if ($objet == "'auteur'") {
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('avelinepublic:par_nom')),
-			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('avelinepublic:par_nb_articles')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
+			array('affiche' => @\$Pile[0]['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('avelinepublic:par_nom')),
+			array('affiche' => @\$Pile[0]['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('avelinepublic:par_nb_articles')),
+			array('affiche' => @\$Pile[0]['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	}
 	if ($objet == "'rubrique'") {
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_commentes')),
-			array('affiche' => \$Pile['0']['choix_tri_date_heure'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('avelinepublic:modifiees_recemment')),
-			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('avelinepublic:les_mieux_notes')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
+			array('affiche' => @\$Pile[0]['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
+			array('affiche' => @\$Pile[0]['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_commentes')),
+			array('affiche' => @\$Pile[0]['choix_tri_date_heure'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('avelinepublic:modifiees_recemment')),
+			array('affiche' => @\$Pile[0]['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('avelinepublic:les_mieux_notes')),
+			array('affiche' => @\$Pile[0]['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	}
 	if ($objet == "'evenement'") {
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('avelinepublic:par_date_decroissante')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('avelinepublic:par_date_croissante')),
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
+			array('affiche' => @\$Pile[0]['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('avelinepublic:par_date_decroissante')),
+			array('affiche' => @\$Pile[0]['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('avelinepublic:par_date_croissante')),
+			array('affiche' => @\$Pile[0]['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('avelinepublic:par_titre')),
+			array('affiche' => @\$Pile[0]['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('avelinepublic:les_plus_pertinents'))
 		)";
 	}
 
-	$p->code = "calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
+	$p->code = "calculer_balise_AVELINE_CHOIX_TRI($suffixe, $choix, $pos, $tri_actuel, $sens_actuel, @\$Pile[0]['choix_tri'], @\$Pile[0]['position_choix_tri'])";
 
 	return $p;
 }
@@ -363,7 +364,7 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe, $choix, $pos, $tri_actuel, 
 
 	$retour = array();
 	foreach ($choix as $c) {
-		// Cas où on demande la note moyenne et que notation n'est pas activé
+		// Cas oÃ¹ on demande la note moyenne et que notation n'est pas activÃ©
 		if ($c['tri'] == 'moyenne' && !defined('_DIR_PLUGIN_NOTATION')) {
 			$c['affiche'] = '';
 		}
@@ -377,7 +378,7 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe, $choix, $pos, $tri_actuel, 
 	return implode(' <span class="sep separateur">|</span> ', $retour);
 }
 
-// Surcharge du critère tri pour ajouter id_noisette aux variables de personnalisation du tri
+// Surcharge du critÃ¨re tri pour ajouter id_noisette aux variables de personnalisation du tri
 /**
  * {tri [champ_par_defaut][,sens_par_defaut][,nom_variable]}
  * champ_par_defaut : un champ de la table sql
@@ -402,7 +403,7 @@ function critere_tri($idb, &$boucles, $crit)
 		: calculer_liste(array($crit->param[0][0]), array(), $boucles, $boucle->id_parent);
 	$_sens_defaut = !isset($crit->param[1][0]) ? '1'
 		: calculer_liste(array($crit->param[1][0]), array(), $boucles, $boucle->id_parent);
-	// On ajoute _id_noisette à la variable de tri
+	// On ajoute _id_noisette Ã  la variable de tri
 	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']"
 		: calculer_liste(array($crit->param[2][0]), array(), $boucles, $boucle->id_parent);
 
@@ -428,9 +429,9 @@ function critere_tri($idb, &$boucles, $crit)
 	$boucle->order[] = "tri_champ_order(\$tri,\$command['from']).\$senstri";
 }
 
-// Critère aveline_branche
+// CritÃ¨re aveline_branche
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/branche-objet.yaml'
-// Ajouter {aveline_branche} à la boucle
+// Ajouter {aveline_branche} Ã  la boucle
 function critere_aveline_branche_dist($idb, &$boucles, $crit)
 {
 	$boucle = &$boucles[$idb];
@@ -452,7 +453,7 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit)
 	$table = $boucle->id_table;
 	$primary = $boucle->primary;
 
-	$boucle->where[] = "aveline_calcul_branche($id_article,$id_syndic,$id_rubrique, $id_secteur, $cle_rubrique, $table, $primary, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'], \$Pile[0]['article_specifique'], \$Pile[0]['site_specifique'], \$Pile[0]['filtre_rub'], \$Pile[0]['filtre_art'])";
+	$boucle->where[] = "aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secteur, '$cle_rubrique', '$table', '$primary', @\$Pile[0]['branche'], @\$Pile[0]['rubrique_specifique'], @\$Pile[0]['branche_specifique'], @\$Pile[0]['secteur_specifique'], @\$Pile[0]['article_specifique'], @\$Pile[0]['site_specifique'], @\$Pile[0]['filtre_rub'], @\$Pile[0]['filtre_art'])";
 }
 
 function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secteur, $cle_rubrique, $table, $primary, $branche, $rubrique_specifique, $branche_specifique, $secteur_specifique, $article_specifique, $site_specifique, $filtre_rub, $filtre_art)
@@ -495,19 +496,19 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 	}
 	switch ($branche) {
 		case 'meme_article':
-			return $id_article ? array('=',"$table.id_article",$id_article) : array();
+			return $id_article ? array('=', "$table.id_article", $id_article) : array();
 			break;
 		case 'article_specifique':
 			return $article_specifique ? sql_in("$table.id_article", picker_selected($article_specifique, 'article')) : array();
 			break;
 		case 'meme_site':
-			return $id_syndic ? array('=',"$table.id_syndic",$id_syndic) : array();
+			return $id_syndic ? array('=', "$table.id_syndic", $id_syndic) : array();
 			break;
 		case 'site_specifique':
 			return $site_specifique ? sql_in("$table.id_syndic", $site_specifique) : array();
 			break;
 		case 'meme_rubrique':
-			return $id_rubrique ? array('=',"$cle_rubrique.id_rubrique",$id_rubrique) : array();
+			return $id_rubrique ? array('=', "$cle_rubrique.id_rubrique", $id_rubrique) : array();
 			break;
 		case 'meme_rubrique_complete':
 			$where1 = array('=',"$cle_rubrique.id_rubrique",$id_rubrique); // Enfants directs
@@ -515,7 +516,7 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 			$sous = array_map('reset', $sous);
 			$where2 = sql_in($table.'.'.$primary, $sous);
 
-			return $id_rubrique ? array('OR',$where1,$where2) : array();
+			return $id_rubrique ? array('OR', $where1, $where2) : array();
 			break;
 		case 'meme_rubrique_indirects':
 			$sous = sql_allfetsel('rl.id_objet', 'spip_rubriques_liens as rl', sql_in('rl.id_parent', $id_rubrique)." AND objet='$objet'"); // Enfants indirects
@@ -542,7 +543,7 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 			$sous = array_map('reset', $sous);
 			$where2 = sql_in($table.'.'.$primary, $sous);
 
-			return $rubrique_specifique ? array('OR',$where1,$where2) : array();
+			return $rubrique_specifique ? array('OR', $where1, $where2) : array();
 			break;
 		case 'branche_actuelle':
 			return $id_rubrique ? sql_in("$cle_rubrique.id_rubrique", calcul_branche_in($id_rubrique)) : array();
@@ -554,7 +555,7 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 			$sous = array_map('reset', $sous);
 			$where2 = sql_in($table.'.'.$primary, $sous);
 
-			return $id_rubrique ? array('OR',$where1,$where2) : array();
+			return $id_rubrique ? array('OR', $where1, $where2) : array();
 			break;
 		case 'branche_specifique':
 			return $branche_specifique ? sql_in("$cle_rubrique.id_rubrique", calcul_branche_in(picker_selected($branche_specifique, 'rubrique'))) : array();
@@ -566,10 +567,10 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 			$sous = array_map('reset', $sous);
 			$where2 = sql_in($table.'.'.$primary, $sous);
 
-			return $branche_specifique ? array('OR',$where1,$where2) : array();
+			return $branche_specifique ? array('OR', $where1, $where2) : array();
 			break;
 		case 'meme_secteur':
-			return $id_secteur ? array('=',"$cle_secteur.$champ_secteur",$id_secteur) : array();
+			return $id_secteur ? array('=', "$cle_secteur.$champ_secteur", $id_secteur) : array();
 			break;
 		case 'secteur_specifique':
 			return $secteur_specifique ? sql_in("$cle_secteur.$champ_secteur", $secteur_specifique) : array();
@@ -579,15 +580,15 @@ function aveline_calcul_branche($id_article, $id_syndic, $id_rubrique, $id_secte
 	}
 }
 
-// Critère aveline_lang
+// CritÃ¨re aveline_lang
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/restreindre_langue.yaml''
-// Ajouter {aveline_lang} à la boucle
-// N'appliquer qu'à des tables ayant un champ 'lang'
+// Ajouter {aveline_lang} Ã  la boucle
+// N'appliquer qu'Ã  des tables ayant un champ 'lang'
 function critere_aveline_lang_dist($idb, &$boucles, $crit)
 {
 	$boucle = &$boucles[$idb];
 
-	//Trouver une jointure (pour les évènements par exemple)
+	//Trouver une jointure (pour les Ã©vÃ¨nements par exemple)
 	$desc = $boucle->show;
 	//Seulement si necessaire
 	if (!array_key_exists('lang', $desc['field'])) {
@@ -596,34 +597,34 @@ function critere_aveline_lang_dist($idb, &$boucles, $crit)
 		$id_table = $boucle->id_table;
 	}
 
-	$boucle->where[] = "aveline_calcul_lang($id_table,\$Pile[0]['restreindre_langue'],\$Pile[0]['lang'])";
+	$boucle->where[] = "aveline_calcul_lang('$id_table', @\$Pile[0]['restreindre_langue'], @\$Pile[0]['lang'])";
 }
 
 function aveline_calcul_lang($id_table, $restreindre_langue, $lang)
 {
 	if ($restreindre_langue) {
-		return array('=',"$id_table.lang",sql_quote($lang));
+		return array('=', "$id_table.lang", sql_quote($lang));
 	} else {
 		return array();
 	}
 }
 
-// Critère aveline_exclure_objet_encours
+// CritÃ¨re aveline_exclure_objet_encours
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/exclure_objet_en_cours-objet.yaml''
-// Ajouter {aveline_exclure_objet_encours} à la boucle
+// Ajouter {aveline_exclure_objet_encours} Ã  la boucle
 function critere_aveline_exclure_objet_encours_dist($idb, &$boucles, $crit)
 {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
 	$id_objet = $boucle->primary;
 
-	$boucle->where[] = "aveline_calcul_exclure_objet($id_table,$id_objet,\$Pile[0][$id_objet],\$Pile[0]['exclure_objet_en_cours'])";
+	$boucle->where[] = "aveline_calcul_exclure_objet('$id_table', '$id_objet', @\$Pile[0]['$id_objet'], @\$Pile[0]['exclure_objet_en_cours'])";
 }
 
 function aveline_calcul_exclure_objet($id_table, $id_objet, $id_en_cours, $exclure_objet_en_cours)
 {
 	if ($exclure_objet_en_cours) {
-		return array('!=',"$id_table.$id_objet",intval($id_en_cours));
+		return array('!=', "$id_table.$id_objet", intval($id_en_cours));
 	} else {
 		return array();
 	}
@@ -659,8 +660,8 @@ function aveline_retrouver_champ_date($type)
 	return $dates[$type] = $date;
 }
 
-// Critère aveline_selecteurs_archives_mois et aveline_selecteurs_archives_annees
-// Utilisée pour les sélecteurs d'archives
+// CritÃ¨re aveline_selecteurs_archives_mois et aveline_selecteurs_archives_annees
+// UtilisÃ©e pour les sÃ©lecteurs d'archives
 // Balise disponible #NB_ARCHIVES
 function critere_aveline_selecteur_archives_mois_dist($idb, &$boucles, $crit)
 {
@@ -714,7 +715,7 @@ function aveline_initiale($nom)
 
 /**
  * Afficher l'initiale pour la navigation par lettres
- * adptée du plugin afficher_objets.
+ * adptÃ©e du plugin afficher_objets.
  *
  * @staticvar string $memo
  *
@@ -761,11 +762,11 @@ function filtre_aveline_affdate_dist($date, $format = 'affdate')
 	}
 	switch ($format) {
 		case 'affdate':                // affiche la date sous forme de texte (1er juillet 2012)
-		case 'affdate_jourcourt':    // affiche le numéro du jour et le nom du mois, si la date est dans l’année en cours (1er juillet),
-											// si la date n’est pas dans l’année en cours, on rajoute l’année (1er juillet 2010)
-		case 'affdate_court':        // affiche le numéro du jour et le nom du mois (si la date est dans l’année en cours) (1er juillet),
-											// si la date n’est pas dans l’année en cours, on affiche le nom du mois et l’année (juillet 2010)
-		case 'affdate_mois_annee': // affiche seulement le mois et l’année (juillet 2012)
+		case 'affdate_jourcourt':    // affiche le numÃ©ro du jour et le nom du mois, si la date est dans lâ€™annÃ©e en cours (1er juillet),
+											// si la date nâ€™est pas dans lâ€™annÃ©e en cours, on rajoute lâ€™annÃ©e (1er juillet 2010)
+		case 'affdate_court':        // affiche le numÃ©ro du jour et le nom du mois (si la date est dans lâ€™annÃ©e en cours) (1er juillet),
+											// si la date nâ€™est pas dans lâ€™annÃ©e en cours, on affiche le nom du mois et lâ€™annÃ©e (juillet 2010)
+		case 'affdate_mois_annee': // affiche seulement le mois et lâ€™annÃ©e (juillet 2012)
 			$f_affdate = chercher_filtre($format);
 
 			return $f_affdate($date);
@@ -775,18 +776,18 @@ function filtre_aveline_affdate_dist($date, $format = 'affdate')
 
 			return $f_annee($date);
 			break;
-		case 'nom_jour_affdate':    // Idem affdate précédé du nom du jour (dimanche 1er juillet 2012)
+		case 'nom_jour_affdate':    // Idem affdate prÃ©cÃ©dÃ© du nom du jour (dimanche 1er juillet 2012)
 			$f_affdate = chercher_filtre('affdate');
 			$f_nom_jour = chercher_filtre('nom_jour');
 
 			return $f_nom_jour($date).' '.$f_affdate($date);
 			break;
-		case 'numerique_slash':        // affiche la date sous forme numerique avec un slash séparateur (01/07/2012)
+		case 'numerique_slash':        // affiche la date sous forme numerique avec un slash sÃ©parateur (01/07/2012)
 			$f_annee = chercher_filtre('affdate');
 
 			return $f_annee($date, 'd/m/Y');
 			break;
-		case 'numerique_tiret':        // affiche la date sous forme numerique avec un tiret séparateur (01-07-2012)
+		case 'numerique_tiret':        // affiche la date sous forme numerique avec un tiret sÃ©parateur (01-07-2012)
 			$f_annee = chercher_filtre('affdate');
 
 			return $f_annee($date, 'd-m-Y');
