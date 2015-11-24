@@ -150,7 +150,7 @@ function balise_RACINE_SPECIALISEE($p) {
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
 	$critere = interprete_argument_balise(2,$p);
 	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
-	$mode = "secteur";
+	$mode = "'secteur'";
 
 	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
@@ -163,7 +163,7 @@ function balise_BRANCHE_SPECIALISEE($p) {
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
 	$critere = interprete_argument_balise(2,$p);
 	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
-	$mode = "branche";
+	$mode = "'branche'";
 
 	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
