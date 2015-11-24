@@ -106,6 +106,36 @@
 ]
 
 [(#CONFIG{soyezcreateurs_google/googleplusun,non}|=={oui}|?{'<div class="googleplusun"><div class="g-plusone"></div></div>'})]
+
+	<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
+	<div class="forum-repondre"><a href="#form_graversonnom" rel="nofollow"><:soyezcreateurs:deposer_intention:></a></div>
+
+	<BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}{logo}>[(#SET{logograver,[(#LOGO_MOT_NORMAL|extraire_attribut{src})]})]</BOUCLE_LogoGraverSonNom>[(#SET{logograver,[(#CHEMIN{images/graversonnom.jpg}|image_reduire{120,0}|extraire_attribut{src})]})]<//B_LogoGraverSonNom>
+	<B_NomsGraves>
+	<div id="graversonnom">
+		<ul>
+		<BOUCLE_NomsGraves(FORUMS){id_article}{!par date}{0,500}{age<60}>
+			<li class="#EDIT{nom}"><img src="#GET{logograver}" width="[(#GET{logograver}|largeur)]" height="[(#GET{logograver}|hauteur)]" alt="[(#NOM|attribut_html)]" title="[(#NOM|attribut_html)]" /></li>
+		</BOUCLE_NomsGraves>
+		</ul>
+	<div class="clearing"></div>
+	</div>
+	</B_NomsGraves>
+	<div id="form_graversonnom">
+	<h2><:soyezcreateurs:deposer_intention:></h2>
+	#FORMULAIRE_FORUM
+	</div>
+	</BOUCLE_GraverSonNom>
+	<!-- Forums -->
+	[(#PLUGIN{comments}|non)
+	[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
+	<INCLURE{fond=noisettes/forums/inc-forum}{id_article}>]
+	[(#PLUGIN{comments}|oui)
+	<div class="forum-repondre"><a href="#formulaire_forum" rel="nofollow" title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>
+	[(#INCLURE{fond=comments}{id_article})]]
+
+	<//B_GraverSonNom>
+
 	</div><!-- Fin de #LeTexte -->
 </main>
 </div><!-- Fin de .texte -->
@@ -132,32 +162,6 @@
 </tbody>
 </table>
 </B_signatures>
-<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
-[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow""><:soyezcreateurs:deposer_intention:></a></div>]
-
-<div id="graversonnom">
-<BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}>[(#SET{logograver,[(#LOGO_MOT_NORMAL|extraire_attribut{src})]})]
-	<B_NomsGraves>
-	<ul>
-	<BOUCLE_NomsGraves(FORUMS){id_article}{!par date}{0,500}{age<60}>
-		<li class="#EDIT{nom}"><img src='#GET{logograver}' alt='[(#NOM|attribut_html)]' title='[(#NOM|attribut_html)]' /></li>
-	</BOUCLE_NomsGraves>
-	</ul>
-	</B_NomsGraves>
-</BOUCLE_LogoGraverSonNom>
-<div class="clearing"></div>
-</div>
-</BOUCLE_GraverSonNom>
-
-<!-- Forums -->
-[(#PLUGIN{comments}|non)
-[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
-<INCLURE{fond=noisettes/forums/inc-forum}{id_article}>]
-[(#PLUGIN{comments}|oui)
-<div class="forum-repondre"><a href="#formulaire_forum" rel="nofollow" title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>
-[(#INCLURE{fond=comments}{id_article})]]
-
-<//B_GraverSonNom>
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{archive}{lang}{classe=artrecent_bas})]]
 
 <//B_TypeArticle><//B_TypeRubrique>

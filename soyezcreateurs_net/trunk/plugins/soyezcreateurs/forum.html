@@ -40,7 +40,7 @@
 	[<div class="notes">(#NOTES|safehtml)</div>]
 </div>
 </BOUCLE_forum_parent>
-<BOUCLE_article(ARTICLES) {id_article}>
+<BOUCLE_article(ARTICLES) {id_article}{!titre_mot=GraverSonNom}>
 	<h2><:soyezcreateurs:forum_enreponse:></h2>
 	<h3 class="titre-texte"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></h3>
 [<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF}|sinon{[(#TEXTE|couper{300})]}|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,540},0})</div>]
@@ -58,7 +58,8 @@
 <//B_article>
 <//B_forum_parent>
 
-<h2>[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</h2>
+<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}><h2><:soyezcreateurs:deposer_intention:></h2></BOUCLE_GraverSonNom>
+<h2>[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</h2><//B_GraverSonNom>
 <div>
 #FORMULAIRE_FORUM
 </div>
