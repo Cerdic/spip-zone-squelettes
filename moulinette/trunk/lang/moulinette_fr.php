@@ -34,7 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_colorlinkhover' => 'Couleur des liens au survol :',
 	
 	// M
-	'plan_du_site' => 'Plan du site',
+	'menu' => 'Menu',
 	
 	// T
 	'titre' => 'Squelette Moulinette',
