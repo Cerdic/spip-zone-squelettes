@@ -404,7 +404,7 @@ function critere_tri($idb, &$boucles, $crit)
 	$_sens_defaut = !isset($crit->param[1][0]) ? '1'
 		: calculer_liste(array($crit->param[1][0]), array(), $boucles, $boucle->id_parent);
 	// On ajoute _id_noisette à la variable de tri
-	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.\$Pile[0]['id_noisette']"
+	$_variable = !isset($crit->param[2][0]) ? "'$idb'.'_'.@\$Pile[0]['id_noisette']"
 		: calculer_liste(array($crit->param[2][0]), array(), $boucles, $boucle->id_parent);
 
 	$_tri = "((\$t=(isset(\$Pile[0]['tri'.$_variable]))?\$Pile[0]['tri'.$_variable]:$_champ_defaut)?tri_protege_champ(\$t):'')";
