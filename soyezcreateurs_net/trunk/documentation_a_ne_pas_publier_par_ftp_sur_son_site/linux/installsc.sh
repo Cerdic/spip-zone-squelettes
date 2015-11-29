@@ -31,13 +31,13 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/nospam nospam
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/notifications/trunk notifications
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/oembed oembed
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/orthotypo/trunk orthotypo
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/changement_langue changement_langue
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout porteplumepartout
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_changement_langue/trunk porte_plume_changement_langue
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_partout/trunk porte_plume_partout
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/saisies/trunk saisies
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/savecfg/trunk savecfg
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs soyezcreateurs
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-3 spip_bonux
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/enluminures_typographiques_v3 typoenluminee
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_enluminures_typographiques/trunk porte_plume_enluminures_typographiques
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/typo_guillemets typo_guillemets
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/uploadhtml5/trunk uploadhtml5
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/verifier verifier
