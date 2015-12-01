@@ -46,9 +46,11 @@
 			{date_debut > (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
 			{date_debut < (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
 			{par date_debut}{statut=publie}>
+			<BOUCLE_ArticleAssocie(ARTICLES){id_article}>
 				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE)],
 				#DESCRIPTIF,#LIEU,
 				#ID_ARTICLE, #HORAIRE})]
+			</BOUCLE_ArticleAssocie>
 			</BOUCLE_evenement>
 			[(#GET{date}|sc_agenda_mini)]
 		</tbody>
