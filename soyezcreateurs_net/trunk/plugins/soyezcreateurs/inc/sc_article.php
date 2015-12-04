@@ -30,7 +30,7 @@ Ce squelette est entièrement personnalisable et il va vous permettre de changer
 -* Pour changer le nom du site et son logo : {URL de votre site}<code>/ecrire/?exec=configurer_identite</code>
 _ Le logo de survol s'il est présent est utilisé comme bannière en haut du site[[Lui donner précisément la taille voulue]]
 -* Configuration du Squelette SoyezCreateurs {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs</code> (ex : position Logo) [[Attention, l'accès à cette configuration est réservée aux webmestres du site, par défaut, l'auteur n°1 avec ce squelette.]]
--* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout</code> (source: [LayoutGala/->http://blog.html.it/layoutgala/])
+-* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout</code> (source: [LayoutGala->http://blog.html.it/layoutgala/index.html])
 
 Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessous : 
 -* [Pyrat.net->http://www.pyrat.net/] :
