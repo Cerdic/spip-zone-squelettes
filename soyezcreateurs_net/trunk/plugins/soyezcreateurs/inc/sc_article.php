@@ -27,16 +27,17 @@ Et maintenant vous vous demandez « Que faire ? »
 
 Ce squelette est entièrement personnalisable et il va vous permettre de changer les différents critères suivants : 
 -* Pour changer l'Édito, créer un article et lui affecter le mot clef <code>EDITO</code>
--* Pour changer le nom du site et son logo : {URL de votre site}<code>/ecrire/?exec=configuration</code>
+-* Pour changer le nom du site et son logo : {URL de votre site}<code>/ecrire/?exec=configurer_identite</code>
 _ Le logo de survol s'il est présent est utilisé comme bannière en haut du site[[Lui donner précisément la taille voulue]]
--* Configuration du Squelette SoyezCreateurs {URL de votre site}<code>/ecrire/?exec=cfg&cfg=soyezcreateurs</code> (ex : position Logo) [[Attention, l'accès à cette configuration est réservée aux webmestres du site, par défaut, l'auteur n°1 avec ce squelette.]]
--* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=cfg&cfg=soyezcreateurs_layout</code> (source: [LayoutGala/->http://blog.html.it/layoutgala/])
+-* Configuration du Squelette SoyezCreateurs {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs</code> (ex : position Logo) [[Attention, l'accès à cette configuration est réservée aux webmestres du site, par défaut, l'auteur n°1 avec ce squelette.]]
+-* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout</code> (source: [LayoutGala/->http://blog.html.it/layoutgala/])
 
 Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessous : 
 -* [Pyrat.net->http://www.pyrat.net/] :
--** [Raccourcis Typographiques de SPIP, mode d’emploi->http://www.pyrat.net/Raccourcis-Typographiques-de-SPIP.html]
--** [Rédiger pour Internet : les grandes règles->http://www.pyrat.net/Rediger-pour-Internet-les-grandes.html]
--** [Erreurs classiques de mise en forme typographique->http://www.pyrat.net/Erreurs-classiques-de-mise-en.html]
+-** [Rédacteurs SPIP : la boîte à outils->http://www.pyrat.net/556]
+-** [Les raccourcis typographiques indispensables de SPIP->http://www.pyrat.net/452]
+-** [Rédiger pour Internet afin d’être lu et trouvé->http://www.pyrat.net/313]
+-** [Erreurs classiques de mise en forme typographique->http://www.pyrat.net/351]
 -* Les 2 groupes de Mots Clés : 
 -** [Navigation->http://www.pyrat.net/@mot.html]
 -** [Fonctionnels->http://www.pyrat.net/@motsfonctionnels.html]
