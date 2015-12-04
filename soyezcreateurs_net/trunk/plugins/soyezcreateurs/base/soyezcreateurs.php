@@ -752,7 +752,7 @@ function soyezcreateurs_config_motsclefs() {
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', '', 'oui', 'non', 'non');
 
-	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'articles,breves,rubriques,syndic', 'oui', 'non', 'non');
+	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/index.html]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'articles,breves,rubriques,syndic', 'oui', 'non', 'non');
 		$id_mot = create_mot("_LayoutGala", "01. Three percentage columns", "", "");
 		$id_mot = create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
 		$id_mot = create_mot("_LayoutGala", "03. Three percentage columns (Right)", "", "");
