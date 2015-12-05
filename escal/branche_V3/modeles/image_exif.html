@@ -1,11 +1,27 @@
+<BOUCLE_document (DOCUMENTS) {id_document=#ID}{extension==jpg|png|gif}>
 
-<BOUCLE_document (DOCUMENTS) {id_document=#ENV{img}}>
+#SET{largeurmax,#CONFIG{escal/config/largeurimage,400}|>{#LARGEUR}|?{#LARGEUR,#CONFIG{escal/config/largeurimage,400} } }
+
+<div class="exif" style="padding: 20px;">
+    <dl class="image_fluide" style='max-width:[(#GET{largeurmax})]px;'>
+        <dt>
+            <a href="#URL_DOCUMENT" class="mediabox">
+                <img
+                style='max-width:[(#GET{largeurmax})]px;'
+                src='#URL_DOCUMENT'
+                alt="[(#TITRE|texte_backend)]"
+                [ title="(#TITRE|texte_backend)"]
+                 />
+            </a>
+        </dt>
+    </dl>
+
 
 [	<div style='background-color: #b5ca77; padding: 5px; -webkit-border-radius: 10px;-moz-border-radius: 10px;'>
-	
+
 
 	<table cellspacing='2' cellpadding='0' style='width: 100%;  font-family: verdana; border: 0px;'>
-	
+
 	[(#SET{logo,#CHEMIN{appareils/#FICHIER|lire_exif{logoAppareil}}})]
 	[<!--(#ENV{fichier}|lire_exif{logoAppareil})-->]
 	<tr>
@@ -26,7 +42,7 @@
 		(#FICHIER|lire_exif{isoEquiv})
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Vitesse
@@ -35,7 +51,7 @@
 		(#FICHIER|lire_exif{exposureTime}) s
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Ouverture
@@ -45,7 +61,7 @@
 		<i>f</i>/(#FICHIER|lire_exif{fnumber})
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Focale
@@ -54,7 +70,7 @@
 		(#FICHIER|lire_exif{focalLength})&nbsp;mm
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Focale éq.&nbsp;35&nbsp;mm
@@ -63,7 +79,7 @@
 		(#FICHIER|lire_exif{focalLength35mm})&nbsp;mm
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Flash
@@ -73,7 +89,7 @@
 		(#FICHIER|lire_exif{flashUsed})
 		</td>
 	</tr>]
-	
+
 	[<tr>
 		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
 			Distance
@@ -92,8 +108,10 @@
 		<i>f</i>/(#FICHIER|lire_exif{maxAperture})
 		</td>
 	</tr>]
-	
+
 	</table>
 	</div>
 ]
+
+</div>
 </BOUCLE_document>
