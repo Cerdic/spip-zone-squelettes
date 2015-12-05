@@ -29,6 +29,10 @@
 	<BOUCLE_exclure_art(ARTICLES){titre_mot=pas-a-la-une}{doublons}>
 	</BOUCLE_exclure_art>
 
+[(#SPIP_VERSION|version_compare{3, >=}|oui)
+    #SET{inverse,"inverse"}
+]
+
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
 #SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}  
 <BOUCLE_selection(ARTICLES){lang}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection1}{doublons selection2}>
@@ -37,7 +41,7 @@
 <!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{par #CONFIG{escal/config/ordrealaune,date}}>
+  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1} >
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
