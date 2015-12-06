@@ -1,117 +1,15 @@
-<BOUCLE_document (DOCUMENTS) {id_document=#ID}{extension==jpg|png|gif}>
 
-#SET{largeurmax,#CONFIG{escal/config/largeurimage,400}|>{#LARGEUR}|?{#LARGEUR,#CONFIG{escal/config/largeurimage,400} } }
-
-<div class="exif" style="padding: 20px;">
-    <dl class="image_fluide" style='max-width:[(#GET{largeurmax})]px;'>
-        <dt>
-            <a href="#URL_DOCUMENT" class="mediabox">
-                <img
-                style='max-width:[(#GET{largeurmax})]px;'
-                src='#URL_DOCUMENT'
-                alt="[(#TITRE|texte_backend)]"
-                [ title="(#TITRE|texte_backend)"]
-                 />
-            </a>
-        </dt>
-    </dl>
-
-
-[	<div style='background-color: #b5ca77; padding: 5px; -webkit-border-radius: 10px;-moz-border-radius: 10px;'>
-
-
-	<table cellspacing='2' cellpadding='0' style='width: 100%;  font-family: verdana; border: 0px;'>
-
-	[(#SET{logo,#CHEMIN{appareils/#FICHIER|lire_exif{logoAppareil}}})]
-	[<!--(#ENV{fichier}|lire_exif{logoAppareil})-->]
-	<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			[(#GET{logo}|image_reduire{36}|sinon{Appareil})]
-		</td>
-		<td>
-		(#FICHIER|lire_exif{make}) - [(#FICHIER|lire_exif{model})]
-		</td>
-	</tr>
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Sensibilité
-		</td>
-		<td >
-		[<img src="(#CHEMIN{imgs_photo/iso-16.png})" alt="ISO" align="top" />]
-		(#FICHIER|lire_exif{isoEquiv})
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Vitesse
-		</td>
-		<td >
-		(#FICHIER|lire_exif{exposureTime}) s
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Ouverture
-		</td>
-		<td >
-		[<img src="(#CHEMIN{imgs_photo/ouverture-16.png})" alt="ISO" align="top" />]
-		<i>f</i>/(#FICHIER|lire_exif{fnumber})
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Focale
-		</td>
-		<td >
-		(#FICHIER|lire_exif{focalLength})&nbsp;mm
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Focale éq.&nbsp;35&nbsp;mm
-		</td>
-		<td >
-		(#FICHIER|lire_exif{focalLength35mm})&nbsp;mm
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Flash
-		</td>
-		<td >
-		[<img src="(#CHEMIN{imgs_photo/flash-[(#FICHIER|lire_exif{flashUsed})]-16.png})" alt="ISO" align="top" />]
-		(#FICHIER|lire_exif{flashUsed})
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Distance
-		</td>
-		<td >
-		(#FICHIER|lire_exif{focusDistance})[(#FICHIER|lire_exif{focusDistance}|=={infini}|?{'','&nbsp;m'})]
-		</td>
-	</tr>]
-
-	[<tr>
-		<td style='width: 50%; font-size: 90%; color: #4d6110; text-align: right; padding-right: 5px;'>
-			Ouverture max.
-		</td>
-		<td >
-		[<img src="(#CHEMIN{imgs_photo/ouverture-max-16.png})" alt="ISO" align="top" />]
-		<i>f</i>/(#FICHIER|lire_exif{maxAperture})
-		</td>
-	</tr>]
-
-	</table>
-	</div>
+[(#PLUGIN{PHOTO_INFOS}|non)
+<p>
+Pour afficher l'image et ses données EXIF, vous devez activer le plugin
+<a href="http://contrib.spip.net/Metadonnees-Photo" title="Voir la documentation">Métadonnées Photos</a>.
+</p>
+<p>
+Attention, l’archive Zip de ce plugin est très volumineuse, et l’installateur automatique ne peut pas la récupérer. Il est donc nécessaire d’installer ce plugin à la main
+</p>
 ]
 
-</div>
+
+<BOUCLE_document (DOCUMENTS){si #PLUGIN{PHOTO_INFOS}|oui} {id_document=#ID}{extension==jpg|png|gif}>
+    <INCLURE{fond=inclusions/inc-donnees_exif}{id_document=#ID}{fichier=#FICHIER}>
 </BOUCLE_document>
