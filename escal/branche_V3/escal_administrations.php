@@ -28,7 +28,7 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
         array('ecrire_config', array('escal', array()))
     );
     
-    $maj['1.0.6'] =array(
+    $maj['1.0.7'] =array(
         array('update_groupe_mots') 
     );
     
