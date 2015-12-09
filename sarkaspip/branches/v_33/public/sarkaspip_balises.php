@@ -1,5 +1,8 @@
 <?php
-if (!defined("_ECRIRE_INC_VERSION")) return;
+
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 // =======================================================================================================================================
 // Balise : #VERSION_SQUELETTE
@@ -11,21 +14,23 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function balise_VERSION_SQUELETTE($p) {
 	$p->code = 'calcul_version_squelette()';
 	$p->interdire_scripts = false;
+
 	return $p;
 }
 
-function calcul_version_squelette() {
-
-	$version = NULL;
+function calcul_version_squelette()
+{
+	$version = null;
 
 	$informer = chercher_filtre('info_plugin');
 	$version = $informer('sarkaspip', 'version');
 
 	$revision = version_svn_courante(_DIR_PLUGIN_SARKASPIP);
-	if ($revision > 0)
+	if ($revision > 0) {
 		$version .= ' ['.strval($revision).']';
-	else if ($revision < 0)
+	} elseif ($revision < 0) {
 		$version .= ' SVN&nbsp;['.strval(abs($revision)).']';
+	}
 
 	return $version;
 }
@@ -37,9 +42,11 @@ function calcul_version_squelette() {
 // Fonction : affiche la version du PHP utilisee
 // =======================================================================================================================================
 //
-function balise_VERSION_PHP($p) {
+function balise_VERSION_PHP($p)
+{
 	$p->code = 'phpversion()';
 	$p->interdire_scripts = false;
+
 	return $p;
 }
 
@@ -51,15 +58,18 @@ function balise_VERSION_PHP($p) {
 // Parametre: aucun
 // =======================================================================================================================================
 //
-function balise_VISITEURS_CONNECTES($p) {
-
+function balise_VISITEURS_CONNECTES($p)
+{
 	$p->code = 'calcul_visiteurs_connectes()';
 	$p->statut = 'php';
+
 	return $p;
 }
 
-function calcul_visiteurs_connectes() {
-	$nb = count(preg_files(_DIR_TMP.'visites/','.'));
+function calcul_visiteurs_connectes()
+{
+	$nb = count(preg_files(_DIR_TMP.'visites/', '.'));
+
 	return $nb;
 }
 
@@ -71,49 +81,51 @@ function calcul_visiteurs_connectes() {
 // Parametre: aujourdhui, hier, depuis_debut (ou vide)
 // =======================================================================================================================================
 //
-function balise_VISITES_SITE($p) {
-
-	$jour = interprete_argument_balise(1,$p);
+function balise_VISITES_SITE($p)
+{
+	$jour = interprete_argument_balise(1, $p);
 	$jour = isset($jour) ? str_replace('\'', '"', $jour) : '"depuis_debut"';
 
 	$p->code = 'calcul_visites_site('.$jour.')';
 	$p->statut = 'php';
+
 	return $p;
 }
 
-function calcul_visites_site($j) {
-
+function calcul_visites_site($j)
+{
 	$visites = 0;
-	
-	if ( $j == 'aujourdhui' ) {
-		$auj = date('Y-m-d',strtotime(date('Y-m-d')));
+
+	if ($j == 'aujourdhui') {
+		$auj = date('Y-m-d', strtotime(date('Y-m-d')));
 		$select = array('visites');
 		$from = array('spip_visites');
-		$where = array("date=".sql_quote($auj));
+		$where = array('date='.sql_quote($auj));
 		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
 		}
-	}
-	else if ( $j == 'hier' ) {
-		$hier = date('Y-m-d',strtotime(date('Y-m-d')) - 3600*24);
+	} elseif ($j == 'hier') {
+		$hier = date('Y-m-d', strtotime(date('Y-m-d')) - 3600 * 24);
 		$select = array('visites');
 		$from = array('spip_visites');
-		$where = array("date=".sql_quote($hier));
+		$where = array('date='.sql_quote($hier));
 		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
 		}
-	}
-	else {
+	} else {
 		$select = array('SUM(visites) AS total_absolu');
 		$from = array('spip_visites');
 		$result = sql_select($select, $from);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['total_absolu'];
-			if ($visites == NULL) $visites=0;
+			if ($visites == null) {
+				$visites = 0;
+			}
 		}
 	}
+
 	return $visites;
 }
 
@@ -124,10 +136,11 @@ function calcul_visites_site($j) {
 // Fonction : retourne la date du jour independamment du contexte d'appel
 // =======================================================================================================================================
 //
-function balise_AUJOURDHUI($p) {
-
+function balise_AUJOURDHUI($p)
+{
 	$p->code = 'date("Y-m-d H:i")';
 	$p->statut = 'php';
+
 	return $p;
 }
 
@@ -139,77 +152,93 @@ function balise_AUJOURDHUI($p) {
 //            Pour creer une nouvelle rubrique specialisee il suffit de rajouter un mot dans le tableau des mots reserves ($mots_reserves)
 // =======================================================================================================================================
 //
-function balise_RACINE_SPECIALISEE($p) {
-
-	$mot_rubrique = interprete_argument_balise(1,$p);
+function balise_RACINE_SPECIALISEE($p)
+{
+	$mot_rubrique = interprete_argument_balise(1, $p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
-	$critere = interprete_argument_balise(2,$p);
+	$critere = interprete_argument_balise(2, $p);
 	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
-	$mode = "secteur";
+	$mode = "'secteur'";
 
 	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
+
 	return $p;
 }
 
-function balise_BRANCHE_SPECIALISEE($p) {
-
-	$mot_rubrique = interprete_argument_balise(1,$p);
+function balise_BRANCHE_SPECIALISEE($p)
+{
+	$mot_rubrique = interprete_argument_balise(1, $p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
-	$critere = interprete_argument_balise(2,$p);
+	$critere = interprete_argument_balise(2, $p);
 	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
-	$mode = "branche";
+	$mode = "'branche'";
 
 	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
+
 	return $p;
 }
 
-function calcul_rubrique_specialisee($mot_rubrique, $mode, $critere) {
+function calcul_rubrique_specialisee($mot_rubrique, $mode, $critere)
+{
 
 	// On calcule la liste des mots reserves SarkaSPIP + definis par l'utilisateur
 	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
-    if (defined('_PERSO_MOT_SECTEURS_SPECIALISES'))
-    	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
-	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
+	if (defined('_PERSO_MOT_SECTEURS_SPECIALISES')) {
+		if (_PERSO_MOT_SECTEURS_SPECIALISES != '') {
+			$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
+		}
+	}
 	$types_reserves = explode(':', _SARKASPIP_TYPE_SECTEURS_SPECIALISES);
-    if (defined('_PERSO_TYPE_SECTEURS_SPECIALISES'))
-    	if (_PERSO_TYPE_SECTEURS_SPECIALISES != '')
-	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
+	if (defined('_PERSO_TYPE_SECTEURS_SPECIALISES')) {
+		if (_PERSO_TYPE_SECTEURS_SPECIALISES != '') {
+			$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
+		}
+	}
 	$fonds_reserves = explode(':', _SARKASPIP_FOND_SECTEURS_SPECIALISES);
-    if (defined('_PERSO_FOND_SECTEURS_SPECIALISES'))
-    	if (_PERSO_FOND_SECTEURS_SPECIALISES != '')
-	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
+	if (defined('_PERSO_FOND_SECTEURS_SPECIALISES')) {
+		if (_PERSO_FOND_SECTEURS_SPECIALISES != '') {
+			$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
+		}
+	}
 
 	// Determination de la liste des mots cles associes aux secteurs specialises demandes par la balise
-	$id = NULL;
+	$id = null;
 	$mots = explode(':', $mot_rubrique);
-	if ($critere == "not_in") {
+	if ($critere == 'not_in') {
 		$mots = array_diff($mots_reserves, $mots);
 		sort($mots);
 	}
- 	if (!$mots[0]) $mots = $mots_reserves;
- 	// Si on est en en mode secteur (ie. balise #RACINE_SPECIALISEE) et qu'on demande un seul secteur specialise
- 	// on renvoie une valeur; sinon on renvoie toujours une regexp
+	if (!$mots[0]) {
+		$mots = $mots_reserves;
+	}
+	// Si on est en en mode secteur (ie. balise #RACINE_SPECIALISEE) et qu'on demande un seul secteur specialise
+	// on renvoie une valeur; sinon on renvoie toujours une regexp
 	$comparaison_valeur = (($mode == 'secteur') && ($mots[0] == $mot_rubrique)) ? true : false;
 	// Calcul de la balise
 	reset($mots_reserves);
 	while (list($cle, $valeur) = each($mots_reserves)) {
-		if ( in_array($valeur, $mots)) {
-			if ($id != NULL) $id .= '|';
+		if (in_array($valeur, $mots)) {
+			if ($id != null) {
+				$id .= '|';
+			}
 			$id .= strval(calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle], $mode));
 		}
 	}
-	if (!$comparaison_valeur) $id = '^('.$id.')$';
-	
+	if (!$comparaison_valeur) {
+		$id = '^('.$id.')$';
+	}
+
 	return $id;
 }
 
-function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
-
+function calcul_rubrique($mot, $type, $fond, $mode = 'rubrique')
+{
 	$id_rubrique = 0;
-	if (!$mot)
+	if (!$mot) {
 		return $id_rubrique;
+	}
 
 	// On recupere le secteur de base soit via la methode du mot-cle, soit par la config
 	if ($type == 'motcle') {
@@ -219,36 +248,39 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 					   't3.id_groupe=t2.id_groupe',
 					   't2.titre='.sql_quote($mot),
 					   't2.id_mot=t1.id_mot',
-					   't1.objet='.sql_quote('rubrique'));
+					   't1.objet='.sql_quote('rubrique'), );
 		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$id_rubrique = $row['id_rubrique'];
 		}
-	}
-	else if ($type == 'config') {
+	} elseif ($type == 'config') {
 		include_spip('inc/config');
 		if (function_exists('lire_config')) {
 			$valeur = lire_config($fond.'/rubrique_'.$mot);
-			if (($valeur != NULL) && ($valeur > 0)) $id_rubrique = $valeur;
+			if (($valeur != null) && ($valeur > 0)) {
+				$id_rubrique = $valeur;
+			}
 		}
 	}
-	
+
 	// Si on est en mode branche on retourne les rubriques de la branche, sinon uniquement le secteur recupere precedemment
-	if (( $id_rubrique != 0) && ($mode == 'branche')) {
+	if (($id_rubrique != 0) && ($mode == 'branche')) {
 		$select = array('id_rubrique');
 		$from = array('spip_rubriques AS t1');
 		$where = array('t1.id_secteur='.sql_quote($id_rubrique));
 		$result = sql_select($select, $from, $where);
 		$secteur = $id_rubrique;
 		while ($row = sql_fetch($result)) {
-			if ($row['id_rubrique'] != $secteur) $id_rubrique .= '|'.$row['id_rubrique'];
+			if ($row['id_rubrique'] != $secteur) {
+				$id_rubrique .= '|'.$row['id_rubrique'];
+			}
 		}
 	}
-	
+
 	return $id_rubrique;
 }
 
-/**
+/*
  * Generer les boutons d'admin des forum selon les droits du visiteur
  *
  * @param object $p
@@ -256,10 +288,12 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
  */
 
 //permettre l'utilisation de comments et sarkaspip (meme si ce n'est pas souhaitable dans cette version de sarkaspip)
-if (!defined("_DIR_PLUGIN_COMMENTS")) {
-function balise_BOUTONS_ADMIN_FORUM_dist($p) {
-	if (($_id = interprete_argument_balise(1,$p))===NULL)
-		$_id = champ_sql('id_forum', $p);
+if (!defined('_DIR_PLUGIN_COMMENTS')) {
+	function balise_BOUTONS_ADMIN_FORUM_dist($p)
+	{
+		if (($_id = interprete_argument_balise(1, $p)) === null) {
+			$_id = champ_sql('id_forum', $p);
+		}
 
 		$p->code = "
 '<'.'?php
@@ -276,9 +310,9 @@ function balise_BOUTONS_ADMIN_FORUM_dist($p) {
 		}
 ?'.'>'";
 
-	$p->interdire_scripts = false;
-	return $p;
-}
-}//Comments 
+		$p->interdire_scripts = false;
 
-?>
+		return $p;
+	}
+}//Comments 
+;

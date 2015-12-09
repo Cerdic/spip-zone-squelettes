@@ -5,9 +5,9 @@
  *
  * @package SPIP\SARKASPIP\CONFIGURATION
  */
-
-if (!defined("_ECRIRE_INC_VERSION")) return;
-
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 /**
  * Installation du schéma de données propre au plugin et gestion des migrations suivant
@@ -18,26 +18,23 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @api
  *
  * @param string $nom_meta_base_version
- * 		Nom de la meta dans laquelle sera rangée la version du schéma
+ *                                      Nom de la meta dans laquelle sera rangée la version du schéma
  * @param string $version_cible
- * 		Version du schéma de données en fin d'upgrade
- *
- * @return void
+ *                                      Version du schéma de données en fin d'upgrade
  */
-function sarkaspip_upgrade($nom_meta_base_version, $version_cible){
+function sarkaspip_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 
 	// Configuration :
 	// - à la première activation du plugin
 	// - ou à la mise à jour à partir d'une version sans schéma
 	$maj['create'] = array(
-		array('creer_config_sarkaspip')
+		array('creer_config_sarkaspip'),
 	);
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
-
 
 /**
  * Suppression de l'ensemble du schéma de données propre au plugin, c'est-à-dire
@@ -46,9 +43,7 @@ function sarkaspip_upgrade($nom_meta_base_version, $version_cible){
  * @api
  *
  * @param string $nom_meta_base_version
- * 		Nom de la meta dans laquelle est rangée la version du schéma et qui sera supprimée.
- *
- * @return void
+ *                                      Nom de la meta dans laquelle est rangée la version du schéma et qui sera supprimée.
  */
 function sarkaspip_vider_tables($nom_meta_base_version) {
 	include_spip('inc/sarkaspip_configuration');
@@ -63,14 +58,11 @@ function sarkaspip_vider_tables($nom_meta_base_version) {
 	effacer_meta($nom_meta_base_version);
 }
 
-
 /**
  * Création du schéma de version 1 du squelette Sarka-SPIP.
  *
  * Le schéma est créé soit uniquement à partir des valeurs par défaut dans le cas d'une
  * nouvelle installation, soit à partir des variables de configuration déjà existantes.
- *
- * @return void
  */
 function creer_config_sarkaspip() {
 	include_spip('inc/sarkaspip_configuration');
@@ -78,5 +70,3 @@ function creer_config_sarkaspip() {
 	$pages = lister_pages_configuration();
 	creer_config($pages, 'configuration');
 }
-
-?>

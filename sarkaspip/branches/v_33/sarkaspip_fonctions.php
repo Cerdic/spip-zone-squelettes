@@ -1,10 +1,11 @@
 <?php
 /**
- * Squelette SarkaSPIP v4
- * (c) 2005-2012 Licence GPL 3
+ * Squelette SarkaSPIP v3
+ * (c) 2005-2015 Licence GPL 3.
  */
-
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 // =======================================================================================================================================
 // Balises : AGENDA, RUBRIQUE, AUJOURDHUI...
@@ -25,7 +26,7 @@ include_spip('public/sarkaspip_balises');
 include_spip('public/sarkaspip_criteres');
 
 // =======================================================================================================================================
-// Filtres : 
+// Filtres :
 // =======================================================================================================================================
 // Auteur: Smellup
 // Fonction : regroupe les filtres definis par le squelette
@@ -33,19 +34,16 @@ include_spip('public/sarkaspip_criteres');
 //
 include_spip('inc/sarkaspip_filtres');
 
-
 function ajuster_couleur_input($couleur, $type) {
 	include_spip('filtres/couleurs');
 	$transparent = ($type == 'background') ? '#ffffff' : '#000000';
-	if (strtolower($couleur) == 'transparent')
+	if (strtolower($couleur) == 'transparent') {
 		$couleur_calculee = $transparent;
-	else
-		if ($type == 'color')
-			$couleur_calculee = '#' . couleur_extreme(couleur_inverser($couleur));
-		else
-			$couleur_calculee = $couleur;
+	} elseif ($type == 'color') {
+		$couleur_calculee = '#'.couleur_extreme(couleur_inverser($couleur));
+	} else {
+		$couleur_calculee = $couleur;
+	}
 
 	return $couleur_calculee;
 }
-
-?>
