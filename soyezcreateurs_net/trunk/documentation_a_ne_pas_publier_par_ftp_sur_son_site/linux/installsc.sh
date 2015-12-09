@@ -26,7 +26,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/fulltext/trunk fulltext
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/inserer_modeles/trunk inserer_modeles
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/mailcrypt mailcrypt
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/memoization memoization
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/memoization/trunk memoization
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/nospam nospam
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/notifications/trunk notifications
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/oembed oembed
