@@ -4,16 +4,16 @@
 
 <head>
 	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
-	
+
 	[(#REM) Lien vers l'icone destinee a la barre de bookmarks ]
 	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-	
+
 	[(#REM) Icone WebClip pour iPhone/iPod Touch ]
 	[<link rel="apple-touch-icon" href="(#CHEMIN{apple-touch-icon.png})"/>]
-	
+
 	[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou CSS ]
 	#INSERT_HEAD
-	
+
 	[(#REM) Appliquer le _blank en fonction de certaines class]
 	<script type="text/javascript">
 	/* <![CDATA[ */
@@ -21,7 +21,7 @@
 	  jQuery("a.spip_out,a.spip_url,a.spip_glossaire").attr("target", "_self");
 	});
 	/* ]]> */
-	</script>		
+	</script>
 
 	<meta name="viewport" content="width = device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	<link rel='stylesheet' href='#URL_PAGE{ispip_css}' type='text/css' media="screen" />
@@ -42,17 +42,17 @@
 	<ul id="home"[ title="(#NOM_SITE_SPIP|attribut_html|couper{80})"] selected="true">
 		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
 		<li class="group"><:ispip:sommaire:></li>
-		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
+		<BOUCLE_menu_princ (RUBRIQUES) {racine} {par num titre}>
 			[<li><a href="#URL_PAGE{ispip-rubrique,id_rubrique=#ID_RUBRIQUE}">(#TITRE|supprimer_numero)</a></li>]
 		</BOUCLE_menu_princ>
 		<li><a href="#auteurs"><:spip:icone_auteurs:></a></li>
 		<li><a href="#mots_list"><:mots_clefs:></a></li>
 		<li class="group"><:ispip:actus:></li>
 		<li><a href="#URL_PAGE{ispip-breves}"><:breves:></a></li>
-		[(#PLUGIN{agenda}|?{' 
+		[(#PLUGIN{agenda}|?{'
 '})<li><a href="#URL_PAGE{ispip-agenda}"><:ispip:agenda:></a></li>]
-		
-		
+
+
 		<li class="group"><:ispip:infos:></li>
 			<form class="panel">
 				<ul>
@@ -64,14 +64,14 @@
 
 		[(#REM) MENU AUTEURS ]
 		<ul id="auteurs" title="<:spip:icone_auteurs:>">
-		<BOUCLE_auteur_site(AUTEURS) {par nom}>
+		<BOUCLE_auteur_site (AUTEURS) {par nom}>
 			<li><a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a></li>
 		</BOUCLE_auteur_site>
 		</ul>
 
 		[(#REM) MENU MOTS CLES ]
 		<ul id="mots_list" title="<:mots_clefs:>">
-		<BOUCLE_mots_list(MOTS)>
+		<BOUCLE_mots_list (MOTS)>
 			<li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT}">#TITRE</a></li>
 		</BOUCLE_mots_list>
 		</ul>

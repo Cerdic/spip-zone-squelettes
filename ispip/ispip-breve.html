@@ -1,4 +1,4 @@
-	<BOUCLE_breve(BREVES) {id_breve}>
+	<BOUCLE_breve (BREVES) {id_breve}>
 		<div id="art[(#ID_BREVE)]" class="panel"[ title="(#TITRE|supprimer_numero|attribut_html|couper{80})"] selected="true">
 
 			<div class="cartouche">
@@ -6,22 +6,22 @@
 				<h1>[(#TITRE|supprimer_numero)]</h1>
 				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small></p>
 			</div><!--.cartouche-->
-						
+
 			<br class="nettoyeur" />
 			[<p class="hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" target="_self">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 			[<div class="texte">(#TEXTE|image_reduire{300,200})</div>]
-			
+
 
 			[(#REM) Portfolio : album d'images ]
 			<B_documents_portfolio>
 			<div id="documents_portfolio">
 				<h2><:info_portfolio:></h2>
-				<BOUCLE_documents_portfolio(DOCUMENTS) {id_breve} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				<BOUCLE_documents_portfolio (DOCUMENTS) {id_breve} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
 				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_BREVE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|attribut_html|couper{80})"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|attribut_html|couper{60})]})</a>]
 				</BOUCLE_documents_portfolio>
 			</div>
 			</B_documents_portfolio>
-			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_breve} {mode=document}{extension IN png,jpg,gif}>
+			<BOUCLE_afficher_document (DOCUMENTS) {id_document} {id_breve} {mode=document}{extension IN png,jpg,gif}>
 			<div class="spip_documents spip_documents_center" id="document_actif">
 				#EMBED_DOCUMENT
 				[<div class="spip_doc_titre">(#TITRE|supprimer_numero)</div>]
@@ -29,14 +29,14 @@
 			</div>
 			</BOUCLE_afficher_document>
 
-			
+
 			[(#REM) Autres documents joints a l'article ]
 			<B_documents_joints>
 			<div id="documents_joints">
 				<h2><:titre_documents_joints:></h2>
 				<form class="panel">
 				<ul>
-					<BOUCLE_documents_joints(DOCUMENTS) {id_breve} {mode=document} {par num titre, date} {doublons}>
+					<BOUCLE_documents_joints (DOCUMENTS) {id_breve} {mode=document} {par num titre, date} {doublons}>
 					<li>
 						<a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE" target="_self" >[(#TITRE|supprimer_numero|sinon{<:info_document:>})]<br /><small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])[ (#DESCRIPTIF)]</small></a>
 					</li>
@@ -49,25 +49,25 @@
 
 			<hr />
 
-				
-		<BOUCLE_rub_art(RUBRIQUES) {id_rubrique}>
+
+		<BOUCLE_rub_art (RUBRIQUES) {id_rubrique}>
 		<p><a class="whiteButton" href="#URL_PAGE{ispip-rubrique,id_rubrique=#ID_RUBRIQUE}">[(#TITRE|supprimer_numero)]</a></p>
 		</BOUCLE_rub_art>
-	
-		<p><a class="whiteButton" href="#mots-brv[(#ID_BREVE)]"><:mots_clefs:></a></p>
-	
-		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
-		
-       </div><!--.panel-->		
 
-   		[(#REM) MENU MOTS CLES ]
-        <B_mots_de_art>
-        <ul id="mots-art[(#ID_BREVE)]" title="<:mots_clefs:>">
-        <BOUCLE_mots_de_art(MOTS) {id_article}>
-                <li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT }">#TITRE</a></li>
-        </BOUCLE_mots_de_art>
-        </ul>
-        </B_mots_de_art>
-        
+		<p><a class="whiteButton" href="#mots-brv[(#ID_BREVE)]"><:mots_clefs:></a></p>
+
+		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
+
+	   </div><!--.panel-->
+
+		[(#REM) MENU MOTS CLES ]
+		<B_mots_de_art>
+		<ul id="mots-art[(#ID_BREVE)]" title="<:mots_clefs:>">
+		<BOUCLE_mots_de_art (MOTS) {id_article}>
+				<li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT }">#TITRE</a></li>
+		</BOUCLE_mots_de_art>
+		</ul>
+		</B_mots_de_art>
+
 
 </BOUCLE_breve>

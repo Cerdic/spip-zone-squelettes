@@ -1,38 +1,25 @@
-<BOUCLE_auteur(AUTEURS) {id_auteur}>
-
-	<div id="aut[(#ID_AUTEUR)]" class="panel"[ title="(#NOM|attribut_html|couper{80})"] selected="true">
-		
-			<div class="cartouche">
-				[(#LOGO_AUTEUR||image_reduire{200,200})]
-				<h1>#NOM</h1>
-				[<p class="hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-			</div><!--.cartouche-->
-            
-			[<div class="texte">(#BIO)</div>]
-			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
-			
-			<br class="nettoyeur" />
-
-			#FORMULAIRE_ECRIRE_AUTEUR
-			
-			<hr />
-			
-			<p><a class="grayButton" href="#aut_art[(#ID_AUTEUR)]"><:articles_auteur:></a></p>
-			
-			<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
-
-	</div><!--.panel-->
-	
-
-
-			[(#REM) Articles de l'auteur ]
-			<B_articles>
-			<ul id="aut_art[(#ID_AUTEUR)]"[ title="(#NOM|attribut_html|couper{80})"]>
-				<li class="group"><:articles_auteur:></li>
-				<BOUCLE_articles(ARTICLES) {id_auteur} {!par date}>
-					[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
-				</BOUCLE_articles>
-			</ul>
-			</B_articles>
-
+<BOUCLE_auteur (AUTEURS) {id_auteur}>
+<div id="aut[(#ID_AUTEUR)]" class="panel"[ title="(#NOM|attribut_html|couper{80})"] selected="true">
+	<div class="cartouche">
+		[(#LOGO_AUTEUR||image_reduire{200,200})]
+		<h1>#NOM</h1>
+		[<p class="hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div><!--.cartouche-->
+	[<div class="texte">(#BIO)</div>]
+	[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	<br class="nettoyeur" />
+	#FORMULAIRE_ECRIRE_AUTEUR
+	<hr />
+	<p><a class="grayButton" href="#aut_art[(#ID_AUTEUR)]"><:articles_auteur:></a></p>
+	<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
+</div><!--.panel-->
+[(#REM) Articles de l'auteur ]
+<B_articles>
+<ul id="aut_art[(#ID_AUTEUR)]"[ title="(#NOM|attribut_html|couper{80})"]>
+	<li class="group"><:articles_auteur:></li>
+	<BOUCLE_articles (ARTICLES) {id_auteur} {!par date}>
+	[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
+	</BOUCLE_articles>
+</ul>
+</B_articles>
 </BOUCLE_auteur>
