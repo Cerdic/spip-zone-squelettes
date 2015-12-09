@@ -59,7 +59,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/eva_freemind/eva_freem
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/gis/trunk gis
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/gravatar gravatar
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/image_cliquable/trunk image_cliquable
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/mesfavoris mesfavoris
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/mesfavoris/trunk mesfavoris
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens mll
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/notation/trunk notation
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk nuage
