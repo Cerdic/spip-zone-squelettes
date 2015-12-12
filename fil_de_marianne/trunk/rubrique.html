@@ -17,30 +17,52 @@
 
 	<h2 class="title"><:sites_dans_la_rubrique:> #TITRE</h2>
 	[(#REM) Cette boucle permet de ne garder que 1 article par site ]
-	<BOUCLE_sites(SITES)>
-	<BOUCLE_syndic_tt_sf_trois(SYNDIC_ARTICLES){id_syndic}{par date}{0,n-1}{unique}> </BOUCLE_syndic_tt_sf_trois>
+	<BOUCLE_sites (SITES)>
+	<BOUCLE_syndic_tt_sf_trois (SYNDIC_ARTICLES){id_syndic}{par date}{0,n-1}{unique}> </BOUCLE_syndic_tt_sf_trois>
 	</BOUCLE_sites>
 	<B_syndiclist_centre>
 	#ANCRE_PAGINATION
 	<div id="archive">
-	<BOUCLE_syndiclist_centre(SYNDIC_ARTICLES) {id_rubrique}{!par date}{unique}{doublons}{pagination 5}>
-	<div class="clearfloat">
-	<h3 class="cat_title"><a rel="category tag" title="<:voir_tous_articles_dans:> [(#NOM_SITE|attribut_html)]" href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a> &raquo;</h3>
-	<div class="title"><a rel="bookmark" href="[(#URL_PAGE{syndic_article}|parametre_url{id_syndic_article,#ID_SYNDIC_ARTICLE})]" title="[(#TITRE|attribut_html)]">[(#TITRE|couper{120})]</a></div>
-	<div class="meta">[[(#DATE|affdate)] - [(#DATE|heures)]:[(#DATE|minutes)] | <a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a>]</div>
-	<div class="spoiler">
-		<a title="[(#TITRE|attribut_html)]" rel="bookmark" href="[(#URL_PAGE{syndic_article}|parametre_url{id_syndic_article,#ID_SYNDIC_ARTICLE})]">
-		[(#DESCRIPTIF|extraire_balise{img}||?{[(#DESCRIPTIF|extraire_balise{img}|image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})],
-		[(#LOGO_SITE||image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})]})]</a>
-		[<p>(#DESCRIPTIF|couper{630}|sinon{<:site_pas_description:>})</p>]
-	</div>
-	</div>
+	<BOUCLE_syndiclist_centre (SYNDIC_ARTICLES) {id_rubrique}{!par date}{unique}{doublons}{pagination 5}>
+		<div class="clearfloat">
+		<h3 class="cat_title"><a rel="category tag" title="<:voir_tous_articles_dans:> [(#NOM_SITE|attribut_html)]" href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a> &raquo;</h3>
+		<div class="title"><a rel="bookmark" href="[(#URL_PAGE{syndic_article}|parametre_url{id_syndic_article,#ID_SYNDIC_ARTICLE})]" title="[(#TITRE|attribut_html)]">[(#TITRE|couper{120})]</a></div>
+		<div class="meta">[[(#DATE|affdate)] - [(#DATE|heures)]:[(#DATE|minutes)] | <a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a>]</div>
+		<div class="spoiler">
+			<a title="[(#TITRE|attribut_html)]" rel="bookmark" href="[(#URL_PAGE{syndic_article}|parametre_url{id_syndic_article,#ID_SYNDIC_ARTICLE})]">
+			[(#DESCRIPTIF|extraire_balise{img}||?{[(#DESCRIPTIF|extraire_balise{img}|image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})],
+			[(#LOGO_SITE||image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})]})]</a>
+			[<p>(#DESCRIPTIF|couper{630}|sinon{<:site_pas_description:>})</p>]
+		</div>
+		</div>
 	</BOUCLE_syndiclist_centre>
 	</div>
 	<div class="pagination">
 	#PAGINATION
 	</div>
 	</B_syndiclist_centre>
+	<B_sites_rub>
+	#ANCRE_PAGINATION
+	<div id="archive">
+	<BOUCLE_sites_rub (SITES) {branche} {pagination} {par date}>
+		<div class="clearfloat">
+			<div class="title"><a rel="bookmark" href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#NOM_SITE|attribut_html)]">#NOM_SITE</a></div>
+			<div class="meta">[[(#DATE|affdate)] - [(#DATE|heures)]:[(#DATE|minutes)] | <a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a>]</div>
+			<div class="spoiler">
+				<a title="[(#TITRE|attribut_html)]" rel="bookmark" href="[(#URL_PAGE{syndic_article}|parametre_url{id_syndic_article,#ID_SYNDIC_ARTICLE})]">
+				[(#DESCRIPTIF|extraire_balise{img}||?{[(#DESCRIPTIF|extraire_balise{img}|image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})],
+				[(#LOGO_SITE||image_passe_partout{150,150,center}|image_recadre{150,150,center}|inserer_attribut{'class','left'}|inserer_attribut{'alt',[(#TITRE|attribut_html)]}|inserer_attribut{'style',''})]})]</a>
+				[<p>(#DESCRIPTIF|couper{630}|sinon{<:site_pas_description:>})</p>]
+			</div>
+		</div>
+	</BOUCLE_sites_rub>
+	</div><!-- #archive -->
+	<div class="pagination">
+	#PAGINATION
+	</div>
+	</B_sites_rub>
+	<//B_sites_rub>
+	<//B_syndiclist_centre>
     </div><!-- #content -->
 
     <INCLURE{fond=inc-rubriques}{env}{skel=#SQUELETTE}>
