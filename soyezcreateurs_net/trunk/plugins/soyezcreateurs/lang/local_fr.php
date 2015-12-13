@@ -10,4 +10,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum_votre_email' => 'Votre adresse email (<strong>ne sera pas rendue publique sur le site</strong>, nécessaire pour pouvoir vous répondre personnellement) :'
 
 );
-?>

@@ -18,5 +18,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_contenu_bas' => 'Bas'
 
 );
-
-?>

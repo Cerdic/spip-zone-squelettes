@@ -34,5 +34,3 @@ function formulaires_evenements_par_mots_traiter_dist($filtre_groupes = null, $u
 						);
 	return array('redirect' => $url_resultat);
 }
-
-?>

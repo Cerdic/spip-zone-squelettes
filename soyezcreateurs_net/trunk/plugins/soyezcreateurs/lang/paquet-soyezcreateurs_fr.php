@@ -26,4 +26,3 @@ Un squelette
 Pour disposer d\'un site SPIP incluant des fonctions génériques, largement configurable et adaptable.',
 	'soyezcreateurs_slogan' => 'Largement configurable et adaptable, générique, conforme aux normes d\'accessibilité et RWD',
 );
-?>

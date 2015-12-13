@@ -10,4 +10,3 @@ function ajuster_couleur_input($couleur, $type='') {
 
 	return $couleur_calculee;
 }
-?>
