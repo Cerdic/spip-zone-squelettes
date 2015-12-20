@@ -16,17 +16,16 @@
 	<BOUCLE_exclure_art(ARTICLES){titre_mot=pas-a-la-une}{doublons}>
 	</BOUCLE_exclure_art>
 
+
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
 #SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}  
-<BOUCLE_selection(ARTICLES){lang}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection}>
-</BOUCLE_selection>
 
 
 <!--  On affiche les articles sélectionnés -->
   <B_articles_une>
     <div class="derniers-art-ter">
     <ul class="anchors">
-	<BOUCLE_articles_une (ARTICLES){!doublons selection}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}>
+	<BOUCLE_articles_une (ARTICLES){lang}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}{0,#GET{nombrealaune}}{doublons}>
     <li>
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 
