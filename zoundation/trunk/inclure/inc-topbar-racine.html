@@ -1,25 +1,25 @@
 [(#REM)
 Créer une une topbar avec toutes la racine du site
 ]
-<ul[ class="(#ENV{class})"]>
+<ul class="dropdown menu[ (#ENV{class})]" data-dropdown-menu>
 
-    <li[ (#SI_PAGE{sommaire}|oui)class="on"]>
-      <a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
-    </li>
+  <li class="menu-text[ (#SI_PAGE{sommaire}|oui)on]">
+    <a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
+  </li>
 
   [(#REM) La racine du site. ]
   <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
 
     [(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
-    <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
+    <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-submenu]">
       <a href="#URL_RUBRIQUE">
         [(#TITRE|couper{80})]
       </a>
       [(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
       <B_sous_rubrique>
-        <ul class="dropdown">
+        <ul class="submenu menu vertical" data-submenu>
           <BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
-            <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
+            <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-submenu]">
               <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
 
               [(#REM) On génère autant de dropdow qu'il faut ]
