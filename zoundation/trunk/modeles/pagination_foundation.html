@@ -5,11 +5,11 @@
 #SET{pages,#GET{premiere}|range{#GET{derniere}}}
 
 <B_pagination_foundation>
-  <ul class="pagination">
+  <ul class="pagination" role="navigation" aria-label="Pagination">
 
     [(#SET{item, #ENV{page_courante}|moins{2}|mult{#ENV{pas}} })]
 
-    <li[ class="(#ENV{page_courante}|<={1}|oui)unavailable"]>
+    <li[ class="(#ENV{page_courante}|<={1}|oui)disabled"]>
       [(#ENV{page_courante}|<={1}|?{
       <a href="[(#SELF|ancre_url{#ENV{ancre}})]">&laquo;</a>,
       <a href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}})]">
@@ -21,16 +21,21 @@
       [(#SET{item, #VALEUR|moins{1}|mult{#ENV{pas}} })]
 
       <li[ (#VALEUR|=={#ENV{page_courante}}|oui)class="current"]>
-        <a href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}})]">
+		[(#VALEUR|=={#ENV{page_courante}}|oui)
+		<span class="show-for-sr"><:zoundation:vous_etes_page:></span> ]
+
+		[(#VALEUR|=={#ENV{page_courante}}|non)
+        <a href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}})]"  aria-label="Page #VALEUR">]
           #VALEUR
-        </a>
+		[(#VALEUR|=={#ENV{page_courante}}|non)
+        </a>]
       </li>
 
     </BOUCLE_pagination_foundation>
 
     [(#SET{item, #ENV{page_courante}|mult{#ENV{pas}}})]
 
-    <li[ class="(#ENV{page_courante}|<={1}|oui)unavailable"]>
+    <li[ class="(#ENV{page_courante}|<={1}|oui)disabled"]>
       [(#ENV{page_courante}|<={1}|?{
         <a href="[(#SELF|ancre_url{#ENV{ancre}})]">&raquo;</a>,
         <a href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}})]">
