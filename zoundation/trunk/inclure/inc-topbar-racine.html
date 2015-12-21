@@ -4,7 +4,7 @@ Créer une une topbar avec toutes la racine du site
 <ul[ class="(#ENV{class})"]>
 
     <li[ (#SI_PAGE{sommaire}|oui)class="on"]>
-      <a href="#URL_SITE_SPIP" [title="(#NOM_SITE_SPIP|attribut_html|couper{80})"]><:zcore:accueil:></a>
+      <a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
     </li>
 
   [(#REM) La racine du site. ]
@@ -12,7 +12,7 @@ Créer une une topbar avec toutes la racine du site
 
     [(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
     <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
-      <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
+      <a href="#URL_RUBRIQUE">
         [(#TITRE|couper{80})]
       </a>
       [(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
@@ -20,7 +20,7 @@ Créer une une topbar avec toutes la racine du site
         <ul class="dropdown">
           <BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
             <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-dropdown]">
-              <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>[(#TITRE|couper{80})]</a>
+              <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
 
               [(#REM) On génère autant de dropdow qu'il faut ]
               <BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
