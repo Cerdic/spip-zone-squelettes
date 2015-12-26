@@ -59,8 +59,19 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
                     <br /><br />
+            #SET{name,texteicone}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage des liens ci-dessus<br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_texte" value="texte"
+                            [(#ENV{#GET{name}}|=={icone}|non)checked="checked"] /><label for="#GET{name}_texte">Sous forme de textes</label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_icone" value="icone"
+                            [(#ENV{#GET{name}}|=={icone}|oui)checked="checked"] /><label for="#GET{name}_icone">Sous forme d'icônes</label>
+                    </span>
+                    <br /><br />
             #SET{name,dernierepuce}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher la dernière puce (choisir non si aucun des liens ci-dessus)
+                    Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d'icones)
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -71,7 +82,7 @@
                     </span>
                     <br /><br /><br />                    
             #SET{name,lienRSS}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Icône/Lien vers la page de flux RSS
+                    Icône avec lien vers la page de flux RSS
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -82,7 +93,7 @@
                     </span>
                     <br /><br />
             #SET{name,lienXHTML}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Icône/Lien vers validateur XHTML
+                    Icône avec lien vers validateur XHTML
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
