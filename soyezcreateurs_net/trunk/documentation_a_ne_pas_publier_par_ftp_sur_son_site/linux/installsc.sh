@@ -67,7 +67,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/palette/trunk palette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/photospip/trunk photospip
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/player/trunk player
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/qrcode/trunk qrcode
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/trunk rainette
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/branches/v2 rainette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/sedna/trunk sedna
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/sidr sidr
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/skeleditor/trunk skeleditor
