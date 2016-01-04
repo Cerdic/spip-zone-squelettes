@@ -10,7 +10,7 @@ cd plugins-dist
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 #sleep 2 && svn checkout https://github.com/Cerdic/video_accessible/trunk ./video_accessible/
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite accessibilite
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite/trunk accessibilite
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/agenda/trunk agenda
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/ancres_douces ancresdouces
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/trunk boutonstexte
