@@ -1,0 +1,32 @@
+#SET{mon_tableau,#ARRAY}
+<B_articles_selection>
+<h2 class="h2"><:spipr_dane:a_la_une:> <span class="icone icone-rss" >[(#CHEMIN{img/selection.png}|balise_img{Une}|image_reduire{50})]</span></h2>
+<div id="carousel" class="carousel slide">
+	<div class="carousel-inner">
+		<BOUCLE_articles_selection(ARTICLES ){mots.titre IN Éditorial,edito}{!par date}{0,3}{doublons}>
+		<div class="item[ (#COMPTEUR_BOUCLE|=={1}|?{'active',''})] hentry" >
+			<article class="entry hentry">
+				<strong class="h3-like entry-title">
+					<a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE|image_reduire{400,0}|image_recadre{400,270,center,#E0E2E4})]<span>#TITRE</span></a>
+				</strong>
+				[<div class="introduction #EDIT{introduction}">(#INTRODUCTION)</div>]
+				<br class="clear"/>
+			</article>
+		</div>#SET{mon_tableau, #GET{mon_tableau}|push{#COMPTEUR_BOUCLE}}
+		</BOUCLE_articles_selection>
+	</div>	
+	<B_combien>
+	<ul class="carousel-stop">
+		<li id="carousel-pause-cancel" title="<:spipr_dane:pause_carousel_cancel:>" >▶</li>
+		<li id="carousel-pause" title="<:spipr_dane:pause_carousel:>">▮▮</li>
+	</ul>
+	<ol class="carousel-indicators">
+		<BOUCLE_combien(DATA){si #GET{mon_tableau}|table_valeur{1}}{source tableau,#GET{mon_tableau}}>
+		<li data-target="#carousel" data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class="(#COMPTEUR_BOUCLE|=={1}|?{'active',''})"] >●</li>
+		</BOUCLE_combien>
+	</ol>
+	<a class="left carousel-control" href="#carousel" data-slide="prev">◄</a>
+	<a class="right carousel-control" href="#carousel" data-slide="next">►</a>
+	</B_combien>
+</div><!-- /.carousel -->
+</B_articles_selection>

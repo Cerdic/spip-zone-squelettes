@@ -1,0 +1,35 @@
+
+#SET{mon_tableau,#ARRAY}
+<B_articles_selection>
+<div id="carousel" class="carousel slide ">
+	<div class="carousel-inner">
+		<BOUCLE_articles_selection(ARTICLES ){mots.titre IN Éditorial,edito}{!par date}{0,3}{doublons}>
+		<div class="item[ (#COMPTEUR_BOUCLE|=={1}|?{'active',''})] hentry" >
+			<article class="entry hentry">
+				[<span class="span2 spip_logos hidden-phone">(#LOGO_ARTICLE|image_reduire{200,200}|inserer_attribut{class, 'img-responsive'})</span>]
+				<strong class="h3-like entry-title">
+					<a href="#URL_ARTICLE" rel="bookmark"><span>#TITRE</span></a>
+				</strong>
+				[<div class="introduction #EDIT{introduction} visible-phone">(#INTRODUCTION{100})</div>]
+				[<div class="introduction #EDIT{introduction} visible-tablet">(#INTRODUCTION{150})</div>]
+				[<div class="introduction #EDIT{introduction} visible-desktop">(#INTRODUCTION{280})</div>]
+				<br class="clear"/>
+			</article>
+		</div>#SET{mon_tableau, #GET{mon_tableau}|push{#COMPTEUR_BOUCLE}}
+		</BOUCLE_articles_selection>
+	</div>	
+	<B_combien>
+	<ul class="carousel-stop">
+		<li id="carousel-pause-cancel" title="<:spipr_dane:pause_carousel_cancel:>" >▶</li>
+		<li id="carousel-pause" title="<:spipr_dane:pause_carousel:>">▮▮</li>
+	</ul>
+	<ol class="carousel-indicators">
+		<BOUCLE_combien(DATA){si #GET{mon_tableau}|table_valeur{1}}{source tableau,#GET{mon_tableau}}>
+		<li data-target="#carousel" data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class="(#COMPTEUR_BOUCLE|=={1}|?{'active',''})"] >●</li>
+		</BOUCLE_combien>
+	</ol>
+	<a class="left carousel-control" href="#carousel" data-slide="prev">◄&nbsp;</a>
+	<a class="right carousel-control" href="#carousel" data-slide="next">&nbsp;►</a>
+	</B_combien>
+</div><!-- /.carousel -->
+</B_articles_selection>

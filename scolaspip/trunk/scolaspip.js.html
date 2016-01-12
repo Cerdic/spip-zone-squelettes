@@ -1,0 +1,83 @@
+[(#REM)
+
+ Ce squelette definit le javascript du plugin ScolaSPIP (page publique)
+ 
+]
+#CACHE{604800}
+#HTTP_HEADER{Content-Type:text/javascript;charset=utf-8}
+#HTTP_HEADER{Vary:Accept-Encoding}
+var tout_masque=true;
+
+function masque(identifiant,num) { // masque les premiers sous niveaux
+    $(".niveau1>li>.ss-rubrique").each(function(){ $(this).hide('slow');});
+    $("img.imageplus").each(function(){$(this).attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " - " , title : "<:scolaspip:rubriques_afficher:>"});});
+}
+function changeTousPlusMoins(){
+    if (tout_masque){
+        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "<:scolaspip:rubriques_masquer:>"});});
+	tout_masque=false;
+    }
+    else{
+        jQuery("img.imageplus").each(function(){jQuery(this).attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " + " , title : "<:scolaspip:rubriques_afficher:>"});});
+	tout_masque=true;
+    }
+}
+function changePlusMoins(niveau){
+    if (niveau.parent().children("ul").css("display")=="block")
+        niveau.attr({ src: "[(#CHEMIN{img/deplierhaut.png})]", alt : " + " , title : "<:scolaspip:rubriques_afficher:>" });
+    else
+        niveau.attr({ src: "[(#CHEMIN{img/deplierbas.png})]", alt : " - " , title : "<:scolaspip:rubriques_masquer:>" });
+}
+function activeToggleBreves() {    // on masque les contenus des breves, on mets les boutons + et on active l'action
+    if (jQuery(".liste.breves li.item div.contenu_breve").css("display")!="none"){
+	jQuery(".liste.breves li.item div.contenu_breve").css({display:'none'});
+	jQuery(".liste.breves li.item h3.h3 a").removeClass("ouvert");
+	jQuery(".liste.breves li.item h3.h3 a").addClass("ouvrable");
+	jQuery(".liste.breves li.item h3.h3").click(function(){ // Affichage des breves
+	    jQuery(this).next().slideToggle();
+	    jQuery(this).children().toggleClass("ouvrable");
+	    jQuery(this).children().toggleClass("ouvert");
+	    return false;
+	});
+    }
+}
+
+jQuery(document).ready(function(){
+    // on masque les premiers sous-niveaux sauf le courant
+    jQuery(".niveau1>li>.ss-rubrique").css({display:'none'});
+    jQuery(".niveau1>li>.ss-rubrique.ddon").css({display:'block'});
+    activeToggleBreves();
+    jQuery("#montre_ou_masque_tout").click(function(){ // ouverture/fermeture de tout le sommaire
+	if (tout_masque) {
+	    jQuery(".niveau1>li>.ss-rubrique").slideDown('slow',changeTousPlusMoins());
+	}
+	else {
+	    jQuery(".niveau1>li>.ss-rubrique").slideUp('slow',changeTousPlusMoins());
+	}
+    });
+    jQuery(".bouton_niveau1").click(function(){ // ouverture/fermeture d'une branche du sommaire
+	jQuery(this).parent().children("ul").slideToggle("slow",changePlusMoins(jQuery(this)));
+    });
+    jQuery('.forum .repondre').css({'visibility':'hidden'});
+    $('.comment').hover( // d'apres zzz.rezo.net
+	function() { $('.comment-reply', this).css({'visibility':'visible'});},
+	function() { $('.comment-reply', this).css({'visibility':'hidden'});}
+   );
+
+    if (typeof onAjaxLoad == 'function') onAjaxLoad(activeToggleBreves); // callback pour les breves lors de pagination ajax (merci astuces spip)
+    
+    
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100){
+            $('.go_top').fadeIn();
+        }
+        else{
+            $('.go_top').fadeOut();
+        }
+    });
+    // Evenement au clic
+    $('.go_top').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+});
