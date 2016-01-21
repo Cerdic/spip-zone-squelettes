@@ -43,7 +43,13 @@
 	<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></li>
 	</BOUCLE_SsRubriques>
-	</ul></B_SsRubriques>
+	</ul></B_SsRubriques>[(#REM) Pas de sous-rubrique ? On tente les sites référencés]
+	<B_SitesDessousBreves><ul class="listeafficherimages">
+	<BOUCLE_SitesDessousBreves(SITES){id_rubrique}{par num nom_site}{!par date}>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{nom_site}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a></li>
+	</BOUCLE_SitesDessousBreves>
+	</ul></B_SitesDessousBreves>
+	<//B_SsRubriques>
 	<//B_articles_recents>
 </div><!-- dessousbreves -->
 </BOUCLE_DessousBreves>
