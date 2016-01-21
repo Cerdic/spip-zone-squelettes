@@ -15,6 +15,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_contenu_gauche' => 'Gauche',
 	'cfg_contenu_haut' => 'Haut',
 	'cfg_contenu_droit' => 'Droite',
-	'cfg_contenu_bas' => 'Bas'
+	'cfg_contenu_bas' => 'Bas',
+	'cfg_nombres_dessousbreves_label' => 'Nombre d\'items affichés dans les DessousBreves'
+	
 
 );

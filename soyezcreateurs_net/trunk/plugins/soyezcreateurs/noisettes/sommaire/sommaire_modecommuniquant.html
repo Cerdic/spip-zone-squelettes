@@ -35,17 +35,17 @@
 	<h2 class="#EDIT{titre}">[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_liens,on}|=={on}|?{<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>,[(#TITRE)]})]</h2>
 	[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
 	<B_articles_recents><ul class="listeafficherimages">
-	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}{doublons}>
+	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}{doublons}>
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 	</BOUCLE_articles_recents>
 	</ul></B_articles_recents>[(#REM) Pas d'articles ? On tente les sous-rubriques]
 	<B_SsRubriques><ul class="listeafficherimages">
-	<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
+	<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}>
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></li>
 	</BOUCLE_SsRubriques>
 	</ul></B_SsRubriques>[(#REM) Pas de sous-rubrique ? On tente les sites référencés]
 	<B_SitesDessousBreves><ul class="listeafficherimages">
-	<BOUCLE_SitesDessousBreves(SITES){id_rubrique}{par num nom_site}{!par date}>
+	<BOUCLE_SitesDessousBreves(SITES){id_rubrique}{par num nom_site}{!par date}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}>
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{nom_site}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a></li>
 	</BOUCLE_SitesDessousBreves>
 	</ul></B_SitesDessousBreves>
