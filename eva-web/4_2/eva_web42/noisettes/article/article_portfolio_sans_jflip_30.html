@@ -1,0 +1,24 @@
+<BOUCLE_principale(ARTICLES){id_article}>
+<B_vignettes>
+<div class="divers" id="documents_portfolio">
+<h4><:info_portfolio_automatique:></h4>
+	<ul id="albumvignettes">
+		<BOUCLE_vignettes (DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{par num titre}{vu=non}{doublons} >
+		<li[ class="(#EXPOSE{on,off})"]>
+		<a 
+		[(#CONFIG{plugin}|match{MEDIABOX}|?{' ',''})class="mediabox"]
+		[(#CONFIG{plugin}|match{NYRO}|?{' ',''})class="nyroceros"]
+		[(#CONFIG{plugin}|match{FANCYBOX}|?{' ',''}) class="fancybox"]
+		[(#CONFIG{plugin}|match{THICKBOX}|?{' ',''}) class="thickbox"]
+		rel="gal"
+		href="#URL_DOCUMENT"[ title="(#TITRE|supprimer_numero)"]>
+		#SET{facteur_reduction,#EVAL{min(#LARGEUR,#HAUTEUR)/85}}
+		[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIERimage_reduire_par{#GET{facteur_reduction}}image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
+		</a>
+		</li>
+		</BOUCLE_vignettes>
+	</ul>
+	<div class="nettoyeur"></div>
+</div>
+</B_vignettes>
+</BOUCLE_principale>
