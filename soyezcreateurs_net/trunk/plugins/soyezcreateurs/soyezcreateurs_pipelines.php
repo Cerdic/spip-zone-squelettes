@@ -13,3 +13,13 @@ function soyezcreateurs_jqueryui_plugins($scripts) {
 	}
 	return $scripts;
 }
+
+function soyezcreateurs_formulaire_traiter($flux){
+	if(strpos($flux['args']['form'], 'configurer_soyezcreateurs') !== false){
+		include_spip('inc/invalideur');
+		purger_repertoire(_DIR_VAR.'cache-css');
+		purger_repertoire(_DIR_VAR.'cache-js');
+		suivre_invalideur('configurer_soyezcreateurs');
+	}
+	return $flux;
+}
