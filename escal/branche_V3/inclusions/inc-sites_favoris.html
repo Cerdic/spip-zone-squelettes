@@ -1,3 +1,20 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des vignettes
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#sites-defilants",
+        element   : "div.un-site-defilant",
+        tempo     : [(#CONFIG{escal/config/tempophotos, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
 	<h1 class="cadre sites-favoris">
 	[(#CONFIG{escal/config/titresitesfav}|oui)
     [(#CONFIG{escal/config/titresitesfav}|propre|_T_ou_typo|PtoBR)]
@@ -9,7 +26,7 @@
 
 	<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
 #SET{nbrsitesfav,#CONFIG{escal/config/nombresitesfav,10}}
-  <div id="scrollup4">
+  <div id="sites-defilants">
 <!-- affichage si aucun site -->
       <BOUCLE_sites_favoris0(SITES){titre_mot=favori}{0,1}>   
       </BOUCLE_sites_favoris0>
@@ -18,7 +35,7 @@
       <//B_sites_favoris0>   
 <!-- affichage par défaut : par hasard -->
       <BOUCLE_sites_favoris_defaut(SITES){si #CONFIG{escal/config/ordresitesfav}|non}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
-      <div class="headline4">
+      <div class="un-site-defilant">
         <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
           <span class="titre-site">#NOM_SITE</span><br />
           [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
@@ -27,7 +44,7 @@
       </BOUCLE_sites_favoris_defaut>  
 <!-- affichage par hasard -->
       <BOUCLE_sites_favoris1(SITES){si #CONFIG{escal/config/ordresitesfav}|=={hasard}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
-      <div class="headline4">
+      <div class="un-site-defilant">
         <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
           <span class="titre-site">#NOM_SITE</span><br />
           [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
@@ -36,7 +53,7 @@
       </BOUCLE_sites_favoris1>
 <!-- affichage par date -->
       <BOUCLE_sites_favoris2(SITES){si #CONFIG{escal/config/ordresitesfav}|=={date}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}>
-      <div class="headline4">
+      <div class="un-site-defilant">
         <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
           <span class="titre-site">#NOM_SITE</span><br />
           [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]
@@ -45,7 +62,7 @@
       </BOUCLE_sites_favoris2>        
 <!-- affichage par date inverse -->      
       <BOUCLE_sites_favoris3(SITES){si #CONFIG{escal/config/ordresitesfav}|=={dateinverse}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}{inverse}>
-      <div class="headline4">
+      <div class="un-site-defilant">
         <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
           <span class="titre-site">#NOM_SITE</span><br />
           [(#LOGO_SITE||image_reduire{152}||sinon{<img src="http://www.apercite.fr/api/apercite/160x120/oui/#URL_SITE" alt="vignette du site"/>})]

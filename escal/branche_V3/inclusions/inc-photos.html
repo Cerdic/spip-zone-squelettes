@@ -1,3 +1,20 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des photos
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#photos-defilantes",
+        element   : "div.une-photo-defilante",
+        tempo     : [(#CONFIG{escal/config/tempophotos, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
 
 <!-- on selectionne les articles avec le mot-cle photo-une et on stocke dans doublons photos -->
     <BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}{par hasard}{0,10}>
@@ -17,10 +34,10 @@
 
 	<div class="texte photos [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
 #SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
-  <div id="scrollup2">
+  <div id="photos-defilantes">
 
       <BOUCLE_photo_une(DOCUMENTS){!doublons photos}{par hasard}{0,#GET{nombrephotos}}>
-      <div class="headline2"> 
+      <div class="une-photo-defilante"> 
      
 <BOUCLE_titre_article(ARTICLES){id_document}{0,1}> 
 #SET{lien,#URL_ARTICLE}

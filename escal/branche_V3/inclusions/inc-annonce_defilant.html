@@ -1,6 +1,5 @@
 [(#REM)
-  D'après la noisette inc-annonce_defilant.html de J.-C. Villeneuve dans le
-  squelette Escal v3.79.30.
+  D'après la noisette inc-annonce_defilant.html de J.-C. Villeneuve dans le squelette Escal
 
   Nom de la noisette : inc-annonce_defilant.html
   Auteur             : Patrice Guerlais
@@ -14,9 +13,30 @@
 ]
 
 <BOUCLE_test(ARTICLES){titre_mot=annonce-defilant}{lang}>
+  [(#REM) Rien à faire s'il n'y a pas d'article "annonce-defilant"]
 </BOUCLE_test>
-  
-<div id="scrollup3">
+  [(#REM) Traitement des articles "annonce-defilant"]
+
+
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des articles
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#annonces-defilantes",
+        element   : "div.une-annonce-defilante",
+        tempo     : [(#CONFIG{escal/config/tempoannoncedefil, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
+
+<div id="annonces-defilantes">
 <!-- affichage par défaut selon le numéro du titre -->
   <BOUCLE_annoncedefaut1(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par num titre}{0,n}>
     [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
@@ -29,14 +49,13 @@
 
 <!-- affichage selon la date -->  
   <BOUCLE_annonce3(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{0,n}>
-    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce3>  
 
 <!-- affichage selon la date inverse -->
   <BOUCLE_annonce5(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{0,n}>
     [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
   </BOUCLE_annonce5>     
-
 
 <!-- affichage par hasard -->  
   <BOUCLE_annonce7(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={hasard}|oui}{titre_mot=annonce-defilant}{lang}{par hasard}>

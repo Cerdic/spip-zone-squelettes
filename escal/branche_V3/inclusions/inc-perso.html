@@ -1,3 +1,20 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des actus
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#articles-defilants",
+        element   : "div.un-article-defilant",
+        tempo     : [(#CONFIG{escal/config/tempoactus, 5})]
+      }
+    )
+  }
+) ;
+</script>
+
 	<h1 class="cadre perso">
 	[(#CONFIG{escal/config/titreperso}|oui)
     [(#CONFIG{escal/config/titreperso}|propre|_T_ou_typo|PtoBR)]
@@ -85,9 +102,9 @@ num titre,1
 
   
   <B_perso4>
-	<div id="scrollup5">
+	<div id="articles-defilants">
   <BOUCLE_perso4(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{!doublons special}{lang}{tri #CONFIG{escal/config/ordreperso},#GET{defaut_tri}}>
-  <div class="headline5" >
+  <div class="un-article-defilant" >
   <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})] [title="(#DESCRIPTIF|textebrut|entites_html)"]">#TITRE</a>
   <div class="intro">
   [(#INTRODUCTION|couper{#GET{couperperso}}|propre)]
