@@ -365,7 +365,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_email_explication' => 'Votre adresse email (<strong>ne sera pas rendue publique sur le site</strong>, nécessaire pour pouvoir vous répondre personnellement)',
 	'forum_votre_prenom' => 'Votre prénom :',
 
-
 	// L
 	'layout_accueil_title' => 'Agencement spécifique à la page d’accueil',
 	'layout_defaut_title' => 'Agencement par défaut pour le site (articles et rubriques)',
