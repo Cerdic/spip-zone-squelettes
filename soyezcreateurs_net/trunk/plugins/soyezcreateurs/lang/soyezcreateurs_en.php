@@ -324,7 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernieremaj' => 'Last update of the site:',
 	'derniersarticlespublies' => 'The last articles published',
 	'descriptif' => 'Description',
-	'discus_en_cours' => 'Ongoing discussion', # MODIF
+	'discus_en_cours' => 'Ongoing discussion',
 	'docatelecharger' => 'Document download',
 
 	// E
@@ -343,6 +343,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_prenom' => 'Who are you?',
 	'forum_repondre' => 'Add your testimony',
 	'forum_vosreponses' => 'Your testimonies',
+	'forum_votre_email_explication' => 'Your email address (<strong>This will not be made public on the site,</strong>, but is necessary in order to send replies to you)',
 	'forum_votre_prenom' => 'Your firstname:',
 
 	// L
