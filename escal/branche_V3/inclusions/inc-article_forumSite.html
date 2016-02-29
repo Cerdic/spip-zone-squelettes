@@ -30,27 +30,31 @@
         <div class="nettoyeur"></div>
 
 #SET{nbrpagsujets,#CONFIG{escal/config/paginforumsite,10}}
-	<B_forums>
-	<p class="pagination">#PAGINATION</p>
+
+<B_test>
+	<p class="pagination">#PAGINATION</p> 
 	<table class="forum">
     <tr>
 			<th colspan="2">Sujets</th>
 			<th>Réponses</th>
 			<th>Derniers  Messages</th>
 		</tr>
-	<BOUCLE_forums(FORUMS){id_article}{!par date}{pagination #GET{nbrpagsujets}}>
+
+<BOUCLE_test(FORUMS){id_article}{!par date_thread}{pagination #GET{nbrpagsujets}}> 
+     
+	<BOUCLE_forums(FORUMS){id_thread}{doublons}>    
 		<tr class="art-forum" [(#COMPTEUR_BOUCLE|alterner{style="background-color:#e0e0e0",style="background-color:#d6d6d6"})]>
 			<td class="logo">
 				[(#LOGO_AUTEUR||oui) [(#LOGO_AUTEUR||image_reduire{64})] ]
 				[(#LOGO_AUTEUR||non) <img src="#CHEMIN{images/forum_iconeSujet.jpg}" alt="sujet" /> ]
-      </td>
+            </td>
 			
-      <td class="titre-rub">
-        <a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM})]" id="forum#ID_FORUM" title="[(#TEXTE|couper{100})]">
-        #TITRE
-        </a>
-        <p>Propos&eacute; [(#LANG|=={ja}|non)<:par_auteur:>] #NOM [(#LANG|=={ja}|oui)<:par_auteur:>]</p>
-      </td>
+            <td class="titre-rub">
+              <a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM})]" id="forum#ID_FORUM" title="[(#TEXTE|couper{100})]">
+              #TITRE
+              </a>
+              <p>Propos&eacute; [(#LANG|=={ja}|non)<:par_auteur:>] #NOM [(#LANG|=={ja}|oui)<:par_auteur:>]</p>
+            </td>
 			
 			<td>
 				<!--nombre de message-->
@@ -58,22 +62,23 @@
 				<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}></BOUCLE_nb_forumtotal>
 				<?php $total=#TOTAL_BOUCLE-1; echo $total; ?>
 				<//B_nb_forumtotal>
-      </td>
+            </td>
 	
 			<td style="font-size:11px">
 				<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
 					<a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#_forums:ID_FORUM})]#ancre[(#ID_FORUM)]">
 					[(#NOM)]<br />
 					[(#DATE|affdate{'d/m/Y'})] [(#DATE|affdate{'H:i:s'})]
-          </a>
+                    </a>
 				</BOUCLE_dernier_message>
-      </td>
-      
-		</tr>
+            </td>      
+		</tr>              
 	</BOUCLE_forums>
 	</B_forums>
+        
+</BOUCLE_test>    
 	</table>
-
+</B_test>
 
 </div>
 </BOUCLE_contexte>

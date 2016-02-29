@@ -1,5 +1,5 @@
 <?php
-// lingvodosiero por la ŝablono Escal
+// lingvodosiero por la ŝablono Escal - Philippe Pellicier
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 

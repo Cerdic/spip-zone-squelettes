@@ -1,5 +1,5 @@
 <?php
-// fichier de langue anglais pour le squelette Escal
+// fichier de langue russe pour le squelette Escal par Olga Karpenko
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 

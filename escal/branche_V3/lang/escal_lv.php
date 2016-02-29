@@ -1,5 +1,5 @@
 <?php
-// fichier de langue letton pour le squelette Escal
+// fichier de langue letton pour le squelette Escal par Jaseur Boréal
 	   
 if (!defined('_ECRIRE_INC_VERSION')) return;	   
 	   

@@ -2,7 +2,7 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 function escal_porte_plume_barre_pre_charger($barres){
 	$barre = &$barres['edition'];
-	
+
 	$barre->cacher('stroke_through');
 
 	$module_barre = "barre_outils";
