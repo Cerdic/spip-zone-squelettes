@@ -5,5 +5,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nombre_photo_un'   => '1 photo',
 'nombre_photo_plus' => '@nb@ photos',
 'voir_album' => "Voir l'album"
-    );
+	);
 ?>
