@@ -105,7 +105,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_colonne_nav' => 'principale (au dessus d’Accueil)',
 	'cfg_colonne_nav_liens' => 'En bas de la zone de menu principal',
 	'cfg_colonne_sec' => 'Affichage en bas de la zone de menu secondaire',
-	'cfg_contenu' => 'Contenu',
 	'cfg_couleurs_css' => 'Configuration des couleurs CSS',
 	'cfg_couleurs_css_contenu' => 'Configuration des couleurs CSS du contenu',
 	'cfg_couleurs_css_lettre' => 'Configuration des couleurs des NewsLetters',
