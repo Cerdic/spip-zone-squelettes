@@ -11,7 +11,7 @@ include_spip('inc/config');
 function formulaires_configurer_sarkaspip_apparence_charger_dist(){
 
 	clear_path_cache();
-	spip_clearstatcache();
+//	spip_clearstatcache();
 
 	$variables = sarkaspip_apparence_defaut_variables();
 	// d'abord on lit le less
