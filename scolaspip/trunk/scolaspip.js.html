@@ -41,8 +41,15 @@ function activeToggleBreves() {    // on masque les contenus des breves, on mets
 	});
     }
 }
-
-jQuery(document).ready(function(){
+$.removeCookie = function (key, options) {
+	if ($.cookie(key) === undefined) {
+		return false;
+	}
+	// Must not alter options, thus extending a fresh object...
+	$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+	return !$.cookie(key);
+};
+$(function() {
     // on masque les premiers sous-niveaux sauf le courant
     jQuery(".niveau1>li>.ss-rubrique").css({display:'none'});
     jQuery(".niveau1>li>.ss-rubrique.ddon").css({display:'block'});
@@ -72,6 +79,32 @@ jQuery(document).ready(function(){
     // Evenement au clic
     $('.go_top').click(function(){
         $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+    
+    // carousel
+    if (!$.cookie('stop-carousel')) {
+        jQuery('#carousel').carousel({interval:8000});
+        $('#carousel-pause-cancel').hide();
+    }
+    else{
+        $('#carousel-pause').hide();
+    }
+    //bouton arret temporaire du carousel
+    $('#carousel-pause').on('click',function(){
+        $('#carousel').carousel('pause');
+        $.cookie('stop-carousel', true, { expires: 7 });
+        $(this).hide();
+        $('#carousel-pause-cancel').show();
+        return false;
+    });
+    //bouton arret/reprise definitive du carousel
+    $('#carousel-pause-cancel').on('click',function() {
+        $.removeCookie('stop-carousel');
+        jQuery('#carousel').carousel('next');
+        jQuery('#carousel').carousel({interval:8000});
+        $(this).hide();
+        $('#carousel-pause').show();
         return false;
     });
 });
