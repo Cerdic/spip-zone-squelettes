@@ -8,4 +8,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'pass_vousinscrire'=>'S\'inscrire sur ce site',
 
 );
-?>

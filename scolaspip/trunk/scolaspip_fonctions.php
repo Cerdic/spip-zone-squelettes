@@ -131,4 +131,3 @@ function critere_scolaspip_nb_tweets_dist($idb, &$boucles, $crit) {
 	else $var=lire_config('scolaspip_accueil/nb_tweets');
 	$boucle->limit = '0, ' .$var ;
 }
-?>

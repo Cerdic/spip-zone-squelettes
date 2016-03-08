@@ -1,51 +1,31 @@
-<B_rubriques><div class="panel-group well rubriques" id="accordion">
-	<BOUCLE_rubriques(RUBRIQUES)  {racine}{!mots.titre IN Dans le menu horizontal}{!mots.titre=Exclu}{par num titre, titre}>
-                <div class="panel panel-default">
- 
-
-
-
-
-<BOUCLE_sous_rubriques_presentes(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}> </BOUCLE_sous_rubriques_presentes>
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse#ID_RUBRIQUE">[(#EXPOSE |== {'on'} |? {[(#CHEMIN{img/deplierbas.png}|balise_img{-}|inserer_attribut{class,imageplus bouton_sommaire bouton_niveau1}|inserer_attribut{title,<:scolaspip:rubriques_masquer:>})],[(#CHEMIN{img/deplierhaut.png}|balise_img{+}|inserer_attribut{class,imageplus bouton_sommaire bouton_niveau1}|inserer_attribut{title,<:scolaspip:rubriques_afficher:>})]} )]</a>
-                            <a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})]&nbsp;#TITRE</a>
-
-                        </h4>
-                    </div>
-                    <div id="collapse#ID_RUBRIQUE" class="panel-collapse collapse [ in no(#EXPOSE)]">
-                        <div class="panel-body">
-                            <table class="table">
-						<B_sous_rubriques>
-								<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]> #TITRE</a>
-                                    </td>
-                                </tr>
- 								</BOUCLE_sous_rubriques>
-						</B_sous_rubriques>
-                           </table>
-                        </div>
-                    </div>
-                    
-
-
-				</B_sous_rubriques_presentes>
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a  href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#CHEMIN{img/deplierbas.png}|balise_img{-})]&nbsp;[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]
-                            </a>
-                        </h4>
-                    </div>
-
-				<//B_sous_rubriques_presentes>
-
- 
- 
-
-                </div>
-	</BOUCLE_rubriques>
-</div>
+<B_rubriques>
+<ul class="panel-group well rubriques" id="accordion">
+    <BOUCLE_rubriques(RUBRIQUES){racine}{!mots.titre IN Dans le menu horizontal}{!mots.titre=Exclu}{par num titre, titre}>
+    <li class="panel panel-default">
+        <BOUCLE_sous_rubriques_presentes(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}> </BOUCLE_sous_rubriques_presentes>
+        <div class="panel-heading">
+            <h4 class="panel-title[ (#EXPOSE)]">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse#ID_RUBRIQUE" class="toggle[ (#EXPOSE{on,collapsed})]"></a>
+                <a href="#URL_RUBRIQUE" class="branche[ (#EXPOSE)]">[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})&nbsp;]#TITRE</a>
+            </h4>
+        </div>
+        <div id="collapse#ID_RUBRIQUE" class="panel-collapse collapse[ in no(#EXPOSE)]">
+            <ul class="panel-body table">
+            <B_sous_rubriques>
+            <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}>
+            <li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]> #TITRE</a></li>
+            </BOUCLE_sous_rubriques>
+            </B_sous_rubriques>
+            </ul>
+        </div>
+        </B_sous_rubriques_presentes>
+        <div class="panel-heading">
+            <h4 class="panel-title[ (#EXPOSE)] feuille">
+                <a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})&nbsp;]#TITRE</a>
+            </h4>
+        </div>
+        <//B_sous_rubriques_presentes>
+    </li>
+    </BOUCLE_rubriques>
+</ul>
 </B_rubriques>
