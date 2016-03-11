@@ -1,4 +1,4 @@
-<section class="span9">
+<section>
 	
 	<header class="cartouche hide">
 		<h1>#NOM_SITE_SPIP</h1>
@@ -7,14 +7,15 @@
 	[(#CONFIG{scolaspip_accueil/descriptifdusite}|!={oui}|?{'',<div id="descriptif_site_spip">#DESCRIPTIF_SITE_SPIP</div>})]
 	
 	<INCLURE{fond=inclure/article-hero} />
+	
 </section>
 
-<section  class="span6">
+<section class="span6">
 	<div class="main">
 		
 		<INCLURE{fond=inclure/selection_accueil,ajax} {doublons}/>
 
-		[(#CONFIG{scolaspip_accueil/breves}|!={oui}|?{' ',#INCLURE{fond=inclure/breves}{ajax}{env}})]		
+		[(#CONFIG{scolaspip_accueil/breves}|!={oui}|?{' ',#INCLURE{fond=liste/breves-resume}{ajax}{env}})]		
 
 		<div class="liste long articles">
 			[(#CONFIG{scolaspip_accueil/articles}|!={oui}|?{' ',#INCLURE{fond=liste/derniers-articles}{ajax}{env}})]
@@ -31,11 +32,12 @@
 	#SET{date_debut,#DATE|affdate{Y-m-01}}
 	#CALENDRIER_MINI{#GET{date_debut},date_debut,#URL_PAGE{agenda},#URL_PAGE{calendrier_mini_event.json}}
     </div>
-	]	
+	]
     [(#REM) Affichage prochains evenements si la configuration du plugin dit oui ]
     [(#CONFIG{scolaspip_accueil/evenements}|!={oui}|?{' ',#INCLURE{fond=inclure/prochainement}{ajax}{env}})]
 	
 	<INCLURE{fond=inclure/mosaiques_accueil} />
+	
 	[(#REM) Affichage du flux Twitter ]
     [(#CONFIG{scolaspip_accueil/afficher_compte_twitter}|!={oui}|?{' ',[(#INCLURE{fond=inclure/twitter_accueil}{ajax}{env})]})]
 

@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'afficher_logos_rubrique_menu_vertical'=>'Y afficher les logos des rubriques',
 // b
     'background_legend' => 'Couleur de fond du site',
-    'background_texte' => 'Correspond à l\'arrière plan du site. <strong>Paramètre sans effet en mode «&nbsp;Bandeau élargi&nbsp;».</strong>',
+    'background_texte' => 'Correspond à l\'arrière plan du site. À noter : une image de fond est superposée et atténue la couleur (vous pouvez ajouter dans les règles css en bas la ligne <code>body { background-image : none; }</code> pour retirer l\'image de fond',
     'bandeau_elargi' => 'Bandeau élargi',
     
     'boite_forum1' => 'Boite forum premier niveau',

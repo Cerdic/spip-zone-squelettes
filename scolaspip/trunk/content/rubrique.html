@@ -9,103 +9,67 @@
 
 	<div class="main">
 		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
-
-		<br class="nettoyeur"></br>
-		[(#REM) Breves du secteur ]
-			<B_breves>
-			<div class="liste breves">
-					#ANCRE_PAGINATION
-					<h2 class="h2"><:scolaspip:actualites:></h2>
-					<ul class="liste-items">
-							<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
-							<li class="item short">#INCLURE{fond=inclure/resume/breve,id_breve}</li>
-							</BOUCLE_breves>
-					</ul>
-					[<div class="pagination">(#PAGINATION)</div>]
-			</div>
-			</B_breves>
-
-		<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
-			<div class="liste articles">
-			<INCLURE{fond=liste/articles-resume,env,ajax,titre=<:articles_rubrique:>} />
-			</div>
-			<B_sous_rubriques>
-		<div class="menu rubriques">
-			<h2 class="h2"><:sous_rubriques:></h2>
-			<ul class="menu-items menu-liste">
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-				<li class="item menu-entree sous-rubriques-rubrique">
-					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
-
-									</li>
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</div>
-		</B_sous_rubriques>
+		<br class="clear"/>
 		
-		</BOUCLE_articles>
-
-
-
-
 		[(#REM) affiche un plan de la rubrique ]
-	<B_sous_rubriques2>
-		<div class="menu rubriques">
-			<h2 class="h2"><:sous_rubriques:></h2>
-			<ul class="menu-items menu-liste">
-				<BOUCLE_sous_rubriques2(RUBRIQUES) {id_parent} {par num titre, titre}>
-				<li class="item menu-entree ">
-					<a href="#URL_RUBRIQUE" class=" sous-rubriques-rubrique">[(#TITRE)]</a>
-
-					[(#REM) Une boucle recursive pour le mini plan]
-					<B_miniplan>
-					<ul class="menu-items menu-liste">
-						<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-						<li class="item menu-entree">
-							<a href="#URL_RUBRIQUE" class=" sous-rubriques-rubrique">[(#TITRE)]</a>
-							<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-						</li>
-						</BOUCLE_miniplan>
-					</ul>
-					</B_miniplan>
-
-				</li>
-				</BOUCLE_sous_rubriques2>
-			</ul>
-			</div>
-		</B_sous_rubriques2>
+		<B_sous_rubriques>
+		<div class="span4 offset">
+			<div class="menu rubriques">
+				<h2 class="h2"><:sous_rubriques:></h2>
+				<ul class="menu-items menu-liste liste-items">
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li class="item menu-entree ">
+						<a href="#URL_RUBRIQUE" class=" sous-rubriques-rubrique">[(#TITRE)]</a>
+						[(#REM) Une boucle recursive pour le mini plan]
+						<B_miniplan>
+						<ul class="menu-items menu-liste">
+							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+							<li class="item menu-entree">
+								<a href="#URL_RUBRIQUE" class=" sous-rubriques-rubrique">[(#TITRE)]</a>
+								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+							</li>
+							</BOUCLE_miniplan>
+						</ul>
+						</B_miniplan>
+					</li>
+					</BOUCLE_sous_rubriques>
+				</ul>
+				</div>
+		</div>
+		<div class="span4">
+		</B_sous_rubriques>
+		<div>
+		<//B_sous_rubriques>
+			<INCLURE{fond=liste/breves-resume}{id_rubrique}{ajax}{env}>
+			
+			<INCLURE{fond=liste/articles-resume}{ajax}{env}{titre=<:articles_rubrique:>}>
+		</div>
 		
-		
-		
-		
-	<//B_articles>
 	</div>
 
-	<aside>
+	<aside class="clear">
 		[(#REM) Gestion du portfolio et des documents ]
 		[(#INCLURE{fond=inclure/documents,id_rubrique})]
 
-
-			[(#REM) Sites de la rubrique ]
-			<B_sites>
-			<div class="liste sites">
-					<h2 class="h2"><:sur_web:></h2>
-					<ul class="liste-items">
-							<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-							<li class="item short">#INCLURE{fond=inclure/resume/site,id_syndic}
-									<B_syndic>
-									<ul class="spip">
-											<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-											<li class="short with-publication-inline">#INCLURE{fond=inclure/resume/syndic_article,id_syndic_article}</li>
-											</BOUCLE_syndic>
-									</ul>
-									</B_syndic>
-							</li>
-							</BOUCLE_sites>
+		[(#REM) Sites de la rubrique ]
+		<B_sites>
+		<div class="liste sites">
+			<h2 class="h2"><:sur_web:></h2>
+			<ul class="liste-items">
+				<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+				<li class="item short">#INCLURE{fond=inclure/resume/site,id_syndic}
+					<B_syndic>
+					<ul class="spip">
+						<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+						<li class="short with-publication-inline">#INCLURE{fond=inclure/resume/syndic_article,id_syndic_article}</li>
+						</BOUCLE_syndic>
 					</ul>
-			</div>
-			</B_sites>
-
+					</B_syndic>
+				</li>
+				</BOUCLE_sites>
+			</ul>
+		</div>
+		</B_sites>
 
 	</aside>
 
