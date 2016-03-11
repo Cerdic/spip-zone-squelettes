@@ -9,22 +9,24 @@
   </div>
 
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
-<!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
-    <div id="cadre-rubrique">
-	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})] </div>
-	  				<div id="titre-rubrique">
-                        [(#CONFIG{escal/config/fluxrssrub}|=={oui}|oui)
-                        <div class="fluxrss-rubrique">
-                            <a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
-                            <img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
-                            </a>
-                        </div>
-                        ]
-			  			<div class="#EDIT{titre} titre-rub">[(#TITRE)]</div>
-			  			<div id="descriptif-rubrique" class="#EDIT{descriptif}">
-                          [(#DESCRIPTIF|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-                        </div>
-			  			<div id="texte-rubrique" class="#EDIT{texte}">[(#TEXTE)]</div>
+<!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelee -->
+	<div id="cadre-rubrique">
+		<div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})] </div>
+	  	<div id="titre-rubrique">
+                [(#CONFIG{escal/config/fluxrssrub}|=={oui}|oui)
+                <div class="fluxrss-rubrique">
+                	<a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
+                	<img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
+                	</a>
+                 </div>
+                 ]
+		<div class="#EDIT{titre} titre-rub">[(#TITRE)]</div>
+		<div id="descriptif-rubrique" class="#EDIT{descriptif}">
+                [(#DESCRIPTIF|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
+                </div>
+		<div id="texte-rubrique" class="#EDIT{texte}">[(#TEXTE)]</div>
+		[<div id="notes"><strong>Notes : </strong> <br />(#NOTES)</div>]			  			
+			  			
  			  	<!-- affichage de l'icone pdf si plugin article_pdf activé -->
       [(#PLUGIN{ARTICLE_PDF}|oui)
       [(#CONFIG{escal/config/rubpdf}|=={oui}|oui)
@@ -171,3 +173,4 @@
 </B_derniers_sites>
 
 </BOUCLE_contexte>
+
