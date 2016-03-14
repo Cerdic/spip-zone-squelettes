@@ -13,5 +13,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'explication_rubrique_sommaire' => "Limite l'affichage des articles sur la page d'accueil à une ou plusieurs rubriques (séparer par une virgule). <br />Si aucune rubrique n'est choisie, l'ensemble des rubriques sera utilisé.<br /> Exemple: 1,12,36",
     'dernier_album' => 'Dernier album',
     'vous_etes_ici' => 'Vous êtes ici',
-    'vous_etes_page' => 'Vous êtes à la page'
+    'vous_etes_page' => 'Vous êtes à la page',
+    'mailsubscribers_liste' => 'Liste de newsletter'
 );
