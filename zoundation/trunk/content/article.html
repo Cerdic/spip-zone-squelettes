@@ -1,21 +1,35 @@
 <BOUCLE_content(ARTICLES){id_article}>
 
-  <article class="content-principal">
-    <header class="cartouche">
-      [(#LOGO_ARTICLE|image_reduire{200,200})]
-      [<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-      <h2 class="#EDIT{titre}">#TITRE</h2>
-      [<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+	<article class="content-principal">
+		<header class="cartouche">
+			[(#LOGO_ARTICLE|image_reduire{200,200})]
+			[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+			<h2 class="#EDIT{titre}">#TITRE</h2>
+			[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 
-      <p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
-      [(#REM) Inclure le modele des liens de traductions ]
-      #MODELE{article_traductions}
-    </header>
+			<p class="info-publi">
+				<span">[(#DATE|nom_jour) ][(#DATE|affdate)]</span>,
+				[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]
+			</p>
+			[(#REM) Inclure le modele des liens de traductions ]
+			#MODELE{article_traductions}
+		</header>
 
-    [<section class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{720,0}|iframe_responsive)</section>]
-    [<section class="#EDIT{texte} texte surlignable">(#TEXTE|image_reduire{720,0}|iframe_responsive)</section>]
-    [<section class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></section>]
-    [<section class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|image_reduire{720,0})</section>]
+		[<section class="[(#EDIT{chapo}) ]surlignable">
+			(#CHAPO|image_reduire{720,0}|iframe_responsive)
+		</section>]
+
+		[<section class="[(#EDIT{texte}) ]surlignable">
+			(#TEXTE|image_reduire{720,0}|iframe_responsive)
+		</section>]
+
+		[<section class="#EDIT{hyperlien} hyperlien">
+			<:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+		</section>]
+
+		[<section class="#EDIT{ps} ps surlignable">
+			<h2><:info_ps:></h2>(#PS|image_reduire{720,0})
+		</section>]
 
 		[(#PLUGIN{gis}|oui)
 		[(#INCLURE{fond=modeles/carte_gis_objet,
@@ -26,24 +40,25 @@
 		]
 
 
-    [(#REM) Gestion du portfolio et des documents ]
-    [(#INCLURE{fond=inclure/documents,id_article})]
+		[(#REM) Gestion du portfolio et des documents ]
+		[(#INCLURE{fond=inclure/documents, id_article})]
 
-    [<footer>
-      <aside class="notes"><h2><:info_notes:></h2>(#NOTES)</aside>
-    </footer>]
-  </article>
+		[<footer>
+			<aside class="notes">
+				<h2><:info_notes:></h2>
+				(#NOTES)
+			</aside>
+		</footer>]
+	</article>
 
-  [(#REM) Petition :
-  La petition ayant une PAGINATION il faut absolument {env}
-  et pourquoi pas ajax
-  ][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+	[(#PETITION|oui)
+	<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
 
-  [(#REM) Forum de l'article ]
+	[(#REM) Forum de l'article ]
 
-  [(#CONFIG{forums_publics}|!={non}|oui)
-  [(#SET{repondre_url, #PARAMETRES_FORUM|url_reponse_forum})]
-  <INCLURE{fond=inclure/forum,id_article,repondre_url=#GET{repondre_url},repondre_titre=<:repondre_article:>} />
-  ]
+	[(#CONFIG{forums_publics}|!={non}|oui)
+	[(#SET{repondre_url, #PARAMETRES_FORUM|url_reponse_forum})]
+	<INCLURE{fond=inclure/forum, id_article, repondre_url=#GET{repondre_url}, repondre_titre=<:repondre_article:>} />
+	]
 
 </BOUCLE_content>
