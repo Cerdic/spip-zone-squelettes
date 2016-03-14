@@ -5,6 +5,12 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 function formulaires_configurer_zoundation_saisies_dist() {
+	include_spip('inc/mailsubscribers');
+
+	// Récupérer les listes de newsletter et créer une data compatible
+	$listes = mailsubscribers_listes();
+	$listes = array_column($listes, 'titre', 'id');
+
 	$saisies = array(
 		array(
 			'saisie' => 'input',
@@ -12,6 +18,14 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'nom' => 'rubrique_sommaire',
 				'label' => _T('zoundation:rubrique_sommaire'),
 				'explication' => _T('zoundation:explication_rubrique_sommaire')
+			)
+		),
+		array(
+			'saisie' => 'selection',
+			'options' => array(
+				'nom' => 'mailsubscribers_liste',
+				'label' => _T('zoundation:mailsubscribers_liste'),
+				'datas' => $listes
 			)
 		)
 	);
