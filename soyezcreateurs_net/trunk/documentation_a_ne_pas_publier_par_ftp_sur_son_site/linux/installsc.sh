@@ -1,6 +1,7 @@
 #! /bin/sh
 #Installation de SPIP 3.1 beta
-svn checkout svn://trac.rezo.net/spip/spip ./
+svn checkout svn://trac.rezo.net/spip/branches/spip-3.1 ./
+#svn checkout svn://trac.rezo.net/spip/spip ./
 #sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 #Si besoin de la mutualisation, decomenter la ligne suivante
 #sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation/trunk ./mutualisation/
@@ -10,7 +11,7 @@ cd plugins-dist
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
 #sleep 2 && svn checkout https://github.com/Cerdic/video_accessible/trunk ./video_accessible/
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite/trunk accessibilite
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite accessibilite
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/agenda/trunk agenda
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/ancres_douces ancresdouces
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/trunk boutonstexte
@@ -67,7 +68,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/palette/trunk palette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/photospip/trunk photospip
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/player/trunk player
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/qrcode/trunk qrcode
-sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/branches/v2 rainette
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/trunk rainette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/sedna/trunk sedna
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/sidr sidr
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/skeleditor/trunk skeleditor
