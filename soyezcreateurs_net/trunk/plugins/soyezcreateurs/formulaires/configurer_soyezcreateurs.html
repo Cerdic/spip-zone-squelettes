@@ -1,3 +1,13 @@
+<?php // Contournement du bug https://core.spip.net/issues/3712
+if (!function_exists('sc_ouinon_default')) {
+	function sc_ouinon_default($cfg) {
+		if (is_null(lire_config($cfg))) {
+			ecrire_config($cfg,'on');
+		}
+		return true;
+	}
+}
+?>
 <div class="formulaire_spip formulaire_configurer_sc">
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -60,6 +70,7 @@
 						defaut=10000,
 						explication=<:soyezcreateursprive:cfg_vitesse_slider_label_ex:>}
 					)]
+					<?php sc_ouinon_default('soyezcreateurs/dessousbreves_communiquant_liens'); ?>
 					[(#SAISIE{oui_non,dessousbreves_communiquant_liens,
 						label=<:soyezcreateursprive:cfg_dessousbreves_communiquant_liens_label:>,
 						defaut=on}
@@ -296,6 +307,7 @@
 						defaut=date_modif,
 						cacher_option_intro=oui}
 					)]
+					<?php sc_ouinon_default('soyezcreateurs/affichage_lien_antichrono'); ?>
 					[(#SAISIE{oui_non,affichage_lien_antichrono,
 						label=<:soyezcreateursprive:cfg_affichage_plan_label:>,
 						defaut=on,
@@ -453,6 +465,7 @@
 						},
 						defaut=oui}
 					)]
+					<?php sc_ouinon_default('soyezcreateurs/aff_datepublicationgoodies'); ?>
 					[(#SAISIE{oui_non,aff_datepublicationgoodies,
 						label=<:soyezcreateursprive:cfg_datepublicationgoodies_label:>,
 						explication=<:soyezcreateursprive:cfg_datepublicationgoodies_ex:>,
@@ -466,10 +479,12 @@
 			<fieldset>
 				<h3 class="legend"><:soyezcreateursprive:cfg_miniagenda:></h3>
 				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					<?php sc_ouinon_default('soyezcreateurs/miniagenda'); ?>
 					[(#SAISIE{oui_non,miniagenda,
 						label=<:soyezcreateursprive:cfg_miniagenda_label:>,
 						defaut=on}
 					)]
+					<?php sc_ouinon_default('soyezcreateurs/homeagenda'); ?>
 					[(#SAISIE{oui_non,homeagenda,
 						label=<:soyezcreateursprive:cfg_homeagenda_label:>,
 						explication=<:soyezcreateursprive:cfg_homeagenda_ex:>,
@@ -541,6 +556,7 @@
 			<fieldset>
 				<h3 class="legend"><:soyezcreateursprive:cfg_anonymatglobal:></h3>
 				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					<?php sc_ouinon_default('soyezcreateurs/anonymatglobal'); ?>
 					[(#SAISIE{oui_non,anonymatglobal,
 						label=<:soyezcreateursprive:cfg_anonymatglobal_label:>,
 						defaut=on,
