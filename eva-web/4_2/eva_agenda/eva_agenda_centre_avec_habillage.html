@@ -1,45 +1,44 @@
-
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
-<B_articles_a_venir>
-<div class="bloc">
-<h3 class="titre"><:evenements_a_venir:></h3>
-<ul>
-<BOUCLE_articles_a_venir(ARTICLES){id_rubrique}{lang}{annee_redac!=0000}{age_redac<=0}{par date_redac}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
-	[(#INTRODUCTION)]
-	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
-	</li>
-</BOUCLE_articles_a_venir>
-</ul>
-</div>
-</B_articles_a_venir>
-<h4 class="titre"><:evenement_aucun:></h4>
-<//B_articles_a_venir>
+	<B_articles_a_venir>
+		<div class="bloc">
+			<h3 class="titre"><:evenements_a_venir:></h3>
+			<ul>
+				<BOUCLE_articles_a_venir(ARTICLES){id_rubrique}{lang}{annee_redac!=0000}{age_redac<=0}{par date_redac}>
+					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+					</li>
+				</BOUCLE_articles_a_venir>
+			</ul>
+		</div>
+	</B_articles_a_venir>
+	<h4 class="titre"><:evenement_aucun:></h4>
+	<//B_articles_a_venir>
 
-[(#REM) Evenements passes ]
-<B_articles_passes>
-<div class="bloc">
-<h3 class="titre"><:evenements_passes:></h3>
-<ul>
-<BOUCLE_articles_passes(ARTICLES){id_rubrique}{lang}{annee_redac!=0000}{age_redac>0}{!par date_redac}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
-	[(#INTRODUCTION)]
-	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
-	</li>
-</BOUCLE_articles_passes>
-</ul>
-</div>
-</B_articles_passes>
-<h4 class="titre"><:evenements_passes_aucun:></h4>
-<//B_articles_passes>
+	[(#REM) Evenements passes ]
+	<B_articles_passes>
+		<div class="bloc">
+			<h3 class="titre"><:evenements_passes:></h3>
+			<ul>
+				<BOUCLE_articles_passes(ARTICLES){id_rubrique}{lang}{annee_redac!=0000}{age_redac>0}{!par date_redac}>
+					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+					</li>
+				</BOUCLE_articles_passes>
+			</ul>
+		</div>
+	</B_articles_passes>
+	<h4 class="titre"><:evenements_passes_aucun:></h4>
+	<//B_articles_passes>
 
-<BOUCLE_div_gauche(SPIP_EVA_HABILLAGE_IMAGES){nom_habillage=Defaut}{type=bloc}{nom_image=centre}{attach=rubrique}{nom_div!=rubrique_articles}{par num pos_x}>
-<INCLURE{fond=noisettes/rubrique/#NOM_DIV}{id_rubrique}{ajax}{lang}>
-</BOUCLE_div_gauche>
+	<BOUCLE_div_gauche(SPIP_EVA_HABILLAGE_IMAGES){nom_habillage=Defaut}{type=bloc}{nom_image=centre}{attach=rubrique}{nom_div!=rubrique_articles}{par num pos_x}>
+		<INCLURE{fond=noisettes/rubrique/#NOM_DIV}{id_rubrique}{ajax}{lang}>
+	</BOUCLE_div_gauche>
 
 </BOUCLE_principale>
