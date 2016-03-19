@@ -6,23 +6,23 @@
 <script type="text/javascript" src="#EVAL{_DIR_PLUGIN_EVABONUS}javascript/menu_depliable_horizontal.js"></script>
 
 <ul id="menu_horizontal">
-<li><a href="[(#URL_SITE_SPIP|parametre_url{'lang',#LANG})]"><:accueil:></a></li>
-<BOUCLE_racine(RUBRIQUES){racine}{par titre}{lang}{doublons}>
-<li class="[(#EXPOSE)]">
-		<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-		<B_ss_rubrique>
-		<ul>
-	        <BOUCLE_ss_rubrique(RUBRIQUES){id_parent}{par num titre}{lang}{doublons}>
+	<li>
+		<a href="[(#URL_SITE_SPIP|parametre_url{'lang',#LANG})]"><:accueil:></a>
+	</li>
+	<BOUCLE_racine(RUBRIQUES){racine}{par titre}{lang}{doublons}>
 		<li class="[(#EXPOSE)]">
 			<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-			
-	        <BOUCLE_n(boucle_ss_rubrique)></BOUCLE_n>
-			
+			<B_ss_rubrique>
+				<ul>
+					<BOUCLE_ss_rubrique(RUBRIQUES){id_parent}{par num titre}{lang}{doublons}>
+						<li class="[(#EXPOSE)]">
+							<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+							<BOUCLE_n(boucle_ss_rubrique)></BOUCLE_n>
+						</li>
+					</BOUCLE_ss_rubrique>         	
+				</ul>
+			</B_ss_rubrique>
 		</li>
-	        </BOUCLE_ss_rubrique>         	
-		</ul>
-		</B_ss_rubrique>
-	</li>
-</BOUCLE_racine>  
+	</BOUCLE_racine>  
 </ul>
 <div class="nettoyeur"></div>

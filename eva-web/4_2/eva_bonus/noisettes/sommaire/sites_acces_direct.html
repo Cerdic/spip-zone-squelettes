@@ -14,19 +14,19 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <B_sites>
-<div class="bloc">
-#ANCRE_PAGINATION
-<h3 class="titre"><:derniers_sites:></h3>
-<ul>
-<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{pagination #GET{nbre_site_somm}}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	[<a href="[(#URL_SITE)]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
-	<em> - (#DATE|affdate_jourcourt)</em>]
-	[(#DESCRIPTIF|textebrut|couper{300})]
-	<div class="nettoyeur"></div>
-	</li>
-</BOUCLE_sites>
-[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-</ul>
-</div>
+	<div class="bloc">
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:derniers_sites:></h3>
+		<ul>
+			<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{pagination #GET{nbre_site_somm}}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					[<a href="[(#URL_SITE)]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+					<em> - (#DATE|affdate_jourcourt)</em>]
+					[(#DESCRIPTIF|textebrut|couper{300})]
+					<div class="nettoyeur"></div>
+				</li>
+			</BOUCLE_sites>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
+	</div>
 </B_sites>

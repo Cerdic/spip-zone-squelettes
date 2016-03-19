@@ -12,19 +12,17 @@ $req_menu_horizontal_actif0=$tab_menu_horizontal_actif0['nom_image'];
 $req_menu_horizontal_actif1=$tab_menu_horizontal_actif1['nom_image'];
 $req_menu_horizontal_actif2=$tab_menu_horizontal_actif2['nom_image'];
 if (
-($req_menu_horizontal_actif0=='oui' OR $req_menu_horizontal_actif1=='oui')
-AND $req_menu_horizontal_actif2!='oui') 
-	{
-	echo debut_cadre_enfonce(_DIR_PLUGIN_EVABONUS."img_pack/logo_eva_bonus.png", true, '', _T('evabonus:evabonus_menu_horizontal'));
-	echo _T('evabonus:evabonus_menu_horizontal_non_headers');
-	echo fin_cadre_enfonce(true);
+	($req_menu_horizontal_actif0=='oui' OR $req_menu_horizontal_actif1=='oui')
+	AND $req_menu_horizontal_actif2!='oui') {
+		echo debut_cadre_enfonce(_DIR_PLUGIN_EVABONUS."img_pack/logo_eva_bonus.png", true, '', _T('evabonus:evabonus_menu_horizontal'));
+		echo _T('evabonus:evabonus_menu_horizontal_non_headers');
+		echo fin_cadre_enfonce(true);
 	}
-elseif (
-($req_menu_horizontal_actif0!='oui' AND $req_menu_horizontal_actif1!='oui')
-AND $req_menu_horizontal_actif2=='oui')
-	{
-	echo debut_cadre_enfonce(_DIR_PLUGIN_EVABONUS."img_pack/logo_eva_bonus.png", true, '', _T('evabonus:evabonus_menu_horizontal'));
-	echo _T('evabonus:evabonus_menu_horizontal_non_entete');
-	echo fin_cadre_enfonce(true);
+	elseif (
+	($req_menu_horizontal_actif0!='oui' AND $req_menu_horizontal_actif1!='oui')
+	AND $req_menu_horizontal_actif2=='oui') {
+		echo debut_cadre_enfonce(_DIR_PLUGIN_EVABONUS."img_pack/logo_eva_bonus.png", true, '', _T('evabonus:evabonus_menu_horizontal'));
+		echo _T('evabonus:evabonus_menu_horizontal_non_entete');
+		echo fin_cadre_enfonce(true);
 	}
 ?>

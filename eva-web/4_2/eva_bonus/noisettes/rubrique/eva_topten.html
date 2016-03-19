@@ -1,18 +1,17 @@
 <B_not>
 <div class="bloc">
-<h3 class="titre"><:dix_meilleurs_articles:></h3>
-<ul>
-<BOUCLE_not(NOTATIONS_OBJETS){par note_ponderee}{objet=article}{inverse}{0,#ENV{max,10}}>
-<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-#COMPTEUR_BOUCLE -
-<BOUCLE_aa(ARTICLES){id_article=#ID_OBJET}>
-[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a><br />]
-[(#NOTATION_ETOILE{#NOTE_PONDEREE,top_ten#TYPE_BOUCLE-#ID_ARTICLE})]<br />
-<small>(#NOTE_PONDEREE - #NOMBRE_VOTES [(#NOMBRE_VOTES|>{1}|oui)<:notation:votes:>][(#NOMBRE_VOTES|>{1}|non)<:notation:vote:>])</small>
-</BOUCLE_aa>
-</li>
-</BOUCLE_not>
-</ul>
+	<h3 class="titre"><:dix_meilleurs_articles:></h3>
+	<ul>
+		<BOUCLE_not(NOTATIONS_OBJETS){par note_ponderee}{objet=article}{inverse}{0,#ENV{max,10}}>
+			<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+				#COMPTEUR_BOUCLE -
+				<BOUCLE_aa(ARTICLES){id_article=#ID_OBJET}>
+					[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a><br />]
+					[(#NOTATION_ETOILE{#NOTE_PONDEREE,top_ten#TYPE_BOUCLE-#ID_ARTICLE})]<br />
+					<small>(#NOTE_PONDEREE - #NOMBRE_VOTES [(#NOMBRE_VOTES|>{1}|oui)<:notation:votes:>][(#NOMBRE_VOTES|>{1}|non)<:notation:vote:>])</small>
+				</BOUCLE_aa>
+			</li>
+		</BOUCLE_not>
+	</ul>
 </div>
 </B_not>
-

@@ -28,16 +28,16 @@ function exec_eva_bonus(){
 	<td style="text-align:center;"><strong>'._T('evabonus:descriptif').'</strong></td>
 	<td style="text-align:center;"><strong>'._T('evabonus:auteur').'</strong></td></tr>';
 	foreach (eva_bonus_tab() as $tab) {
-	echo '<tr ';
-        if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
-        $couleur_table++;
-	echo '><td style="text-align:center;">'.$tab[0].'</td>
-	<td style="text-align:center;">'.$tab[1].'</td>
-	<td style="text-align:center;">'.$tab[2].'</td>
-	<td style="text-align:center;">'.$tab[3].'</td></tr>';
+		echo '<tr ';
+		if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
+		$couleur_table++;
+		echo '><td style="text-align:center;">'.$tab[0].'</td>
+		<td style="text-align:center;">'.$tab[1].'</td>
+		<td style="text-align:center;">'.$tab[2].'</td>
+		<td style="text-align:center;">'.$tab[3].'</td></tr>';
 	}
 	echo '</table><br style="height:40px;" />';
-	
+
 	/** Gestion des noisettes meteo **/
 	$req_meteo=sql_select('nom_image','spip_eva_habillage_images',"type='evabonus' AND nom_habillage='Defaut' AND nom_div='code_commune'");
 	$tab_meteo=sql_fetch($req_meteo);
@@ -55,7 +55,7 @@ function exec_eva_bonus(){
 		sql_insertq('spip_eva_habillage_images',array('nom_habillage' => 'Defaut','type' => 'evabonus','nom_div' => 'jours_prevision','nom_image' => $_POST['jours_prevision']));
 		$jours_prevision=$_POST['jours_prevision'];
 	}
-	
+
 	echo debut_cadre_trait_couleur('../'._DIR_PLUGIN_EVABONUS.'img_pack/rainette.png', true,'','<div style="text-align:center;">Utilisation des noisettes de m&eacute;t&eacute;o</div>');
 	echo "<form method='post' action='".generer_url_ecrire("eva_bonus")."'>Afin d'utiliser les noisettes de m&eacute;t&eacute;o, il vous faut :
 	<ul><li> installer et activer le plugin <a href='http://plugins.spip.net/rainette'>Rainette</a></li>
@@ -76,7 +76,7 @@ function exec_eva_bonus(){
 	echo "</form>";
 	echo fin_cadre_trait_couleur(true);
 	/** Fin meteo **/
-	
+
 	echo fin_gauche(), fin_page();
 }
 ?>

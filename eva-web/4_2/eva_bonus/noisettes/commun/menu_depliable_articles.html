@@ -7,45 +7,47 @@
 [(#REM) Menu : déroule le niveau (fil d'ariane)]
 <script type="text/javascript" src="#EVAL{_DIR_PLUGIN_EVASQUELETTES}javascript/menu_depliable.js"></script>
 <ul id="sommaire">
-<li><a href="[(#URL_SITE_SPIP|parametre_url{'lang',#LANG})]"><:accueil:></a></li>
-<BOUCLE_racine(RUBRIQUES){racine}{par titre}{doublons rubriques}{lang}>
-<li class="[(#EXPOSE)]">
-		<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-		<B_ss_rubrique>
-		<ul>
-	        <BOUCLE_ss_rubrique(RUBRIQUES){id_parent}{par num titre}{doublons rubriques}{lang}>
-			<li class="[(#EXPOSE)]">
-				<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+	<li>
+		<a href="[(#URL_SITE_SPIP|parametre_url{'lang',#LANG})]"><:accueil:></a>
+	</li>
+	<BOUCLE_racine(RUBRIQUES){racine}{par titre}{doublons rubriques}{lang}>
+		<li class="[(#EXPOSE)]">
+			<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+			<B_ss_rubrique>
+				<ul>
+					<BOUCLE_ss_rubrique(RUBRIQUES){id_parent}{par num titre}{doublons rubriques}{lang}>
+						<li class="[(#EXPOSE)]">
+							<a href="#URL_RUBRIQUE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+
+							<BOUCLE_n(boucle_ss_rubrique)></BOUCLE_n>
+
+						</li>		
+					</BOUCLE_ss_rubrique>
 			
-	        	<BOUCLE_n(boucle_ss_rubrique)></BOUCLE_n>
-			
-			</li>		
-	        </BOUCLE_ss_rubrique>
-			
-	        <BOUCLE_articles_ss_rubrique(ARTICLES){id_rubrique}{par num titre}{doublons articles}{lang}>
-			<li class="[(#EXPOSE)]">
-				<a href="#URL_ARTICLE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]> 
-				[(#TITRE|supprimer_numero)]
-				</a>
-			</li>
-	        </BOUCLE_articles_ss_rubrique>				
-		</ul>		
-		
-		</B_ss_rubrique>
+					<BOUCLE_articles_ss_rubrique(ARTICLES){id_rubrique}{par num titre}{doublons articles}{lang}>
+						<li class="[(#EXPOSE)]">
+							<a href="#URL_ARTICLE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]> 
+								[(#TITRE|supprimer_numero)]
+							</a>
+						</li>
+					</BOUCLE_articles_ss_rubrique>				
+				</ul>		
+
+			</B_ss_rubrique>
 
 			<B_articles_seulement_ss_rubrique>
-				<ul[ class="(#EXPOSE)"]>
-				<BOUCLE_articles_seulement_ss_rubrique(ARTICLES){id_rubrique}{par num titre}{doublons articles}{lang}>
-					<li class="[(#EXPOSE)]">
-						<a href="#URL_ARTICLE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]> 
-							[(#TITRE|supprimer_numero)]
-						</a>
-					</li>	
-				</BOUCLE_articles_seulement_ss_rubrique>
+				<ul [class="(#EXPOSE)"]>
+					<BOUCLE_articles_seulement_ss_rubrique(ARTICLES){id_rubrique}{par num titre}{doublons articles}{lang}>
+						<li class="[(#EXPOSE)]">
+							<a href="#URL_ARTICLE" [class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]> 
+								[(#TITRE|supprimer_numero)]
+							</a>
+						</li>	
+					</BOUCLE_articles_seulement_ss_rubrique>
 				</ul>
 			</B_articles_seulement_ss_rubrique>		
-		
-		<//B_ss_rubrique>
-	</li>
-</BOUCLE_racine>  
+
+			<//B_ss_rubrique>
+		</li>
+	</BOUCLE_racine>  
 </ul>
