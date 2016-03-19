@@ -1,24 +1,23 @@
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
+	<?php $les_themes = array(); ?>
+	<BOUCLE_rubrique_mere(RUBRIQUES){id_enfant}{titre_mot=calendrier}>
+		<?php $les_themes[]=array(#ID_RUBRIQUE,'[(#TITRE|supprimer_numero|texte_script)]'); 
+		?>
+		<BOUCLE_autres_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
+		<?php $les_themes[]=array(#ID_RUBRIQUE,'&gt; [(#TITRE|supprimer_numero|texte_script)]'); 
+		?>
+		</BOUCLE_autres_themes>
+	</BOUCLE_rubrique_mere>
 
-<?php $les_themes = array(); ?>
-<BOUCLE_rubrique_mere(RUBRIQUES){id_enfant}{titre_mot=calendrier}>
 	<?php $les_themes[]=array(#ID_RUBRIQUE,'[(#TITRE|supprimer_numero|texte_script)]'); 
 	?>
-	<BOUCLE_autres_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
+	<BOUCLE_les_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
 	<?php $les_themes[]=array(#ID_RUBRIQUE,'&gt; [(#TITRE|supprimer_numero|texte_script)]'); 
 	?>
-	</BOUCLE_autres_themes>
-</BOUCLE_rubrique_mere>
+	</BOUCLE_les_themes>
 
-<?php $les_themes[]=array(#ID_RUBRIQUE,'[(#TITRE|supprimer_numero|texte_script)]'); 
-	?>
-<BOUCLE_les_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
-	<?php $les_themes[]=array(#ID_RUBRIQUE,'&gt; [(#TITRE|supprimer_numero|texte_script)]'); 
-	?>
-</BOUCLE_les_themes>
-
-<//B_rubrique_mere>
+	<//B_rubrique_mere>
 
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -28,222 +27,218 @@
 	</head>
 
 	<body>
-	<div id="page">
+		<div id="page">
+
+			[(#REM) Entte de la page]
+			<INCLURE{fond=noisettes/entete/inc_entete-page}{id_rubrique}>
 	
-		[(#REM) Entte de la page]
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_rubrique}>
-			
-		[(#REM) Conteneur]
-		<div id="conteneurseul">
-		
-			[(#REM) Contenu de la page ]
-			<div id="contenu">
-<?php
-	if (is_numeric($_GET['calendrier_annee'])) {$calendrier_annee=$_GET['calendrier_annee'];}
-	if (is_numeric($_GET['calendrier_mois'])) {$calendrier_mois=$_GET['calendrier_mois'];}
-?>
-<div class="bloc">
-[<h3 class="titre">(#TITRE|supprimer_numero)</h3>]
+			[(#REM) Conteneur]
+			<div id="conteneurseul">
 
-					  <?php
-$months = array('', '<:m1|texte_script:>', '<:m2|texte_script:>', '<:m3|texte_script:>', '<:m4|texte_script:>', '<:m5|texte_script:>', '<:m6|texte_script:>', '<:m7|texte_script:>', '<:m8|texte_script:>', '<:m9|texte_script:>', '<:m10|texte_script:>', '<:m11|texte_script:>', '<:m12|texte_script:>');
-$days = array('<:jo7|texte_script:>', '<:jo1|texte_script:>', '<:jo2|texte_script:>', '<:jo3|texte_script:>', '<:jo4|texte_script:>', '<:jo5|texte_script:>', '<:jo6|texte_script:>');
+				[(#REM) Contenu de la page ]
+				<div id="contenu">
+					<?php
+						if (is_numeric($_GET['calendrier_annee'])) {$calendrier_annee=$_GET['calendrier_annee'];}
+						if (is_numeric($_GET['calendrier_mois'])) {$calendrier_mois=$_GET['calendrier_mois'];}
+					?>
+					<div class="bloc">
+						[<h3 class="titre">(#TITRE|supprimer_numero)</h3>]
 
-if ($test_mini_agenda_deja_present!=1) {
-function mkdate($month, $day, $year)
-{
-	return mktime(0, 0, 0, $month, $day, $year);
-}
+						<?php
+							$months = array('', '<:m1|texte_script:>', '<:m2|texte_script:>', '<:m3|texte_script:>', '<:m4|texte_script:>', '<:m5|texte_script:>', '<:m6|texte_script:>', '<:m7|texte_script:>', '<:m8|texte_script:>', '<:m9|texte_script:>', '<:m10|texte_script:>', '<:m11|texte_script:>', '<:m12|texte_script:>');
+							$days = array('<:jo7|texte_script:>', '<:jo1|texte_script:>', '<:jo2|texte_script:>', '<:jo3|texte_script:>', '<:jo4|texte_script:>', '<:jo5|texte_script:>', '<:jo6|texte_script:>');
 
-function preparation_URL($texte_URL,$mois_URL,$annee_URL)
-    {
-    $position = StrPos($texte_URL,"calendrier_mois");
-    $texte_remplacement = "calendrier_mois=".$mois_URL."&calendrier_annee=".$annee_URL;
-    if ($position!=FALSE) 
-        {        
-        $texte_URL = substr_replace ($texte_URL,$texte_remplacement,$position);}
-        else  { $presence = StrPos($texte_URL,"?");
-                if ($presence==FALSE)
-                  {$texte_URL = $texte_URL."?".$texte_remplacement;}
-                else
-                  {$texte_URL = $texte_URL."&".$texte_remplacement;}
-              }
-    return $texte_URL;
-    }
-}
-if(isset($GLOBALS['var_nav_month'])) {
-	$cal_day = mkdate($GLOBALS['var_nav_month'], 1, $GLOBALS['var_nav_year']);
-} else {
-	$cal_day = time();
-}
+							if ($test_mini_agenda_deja_present!=1) {
+								function mkdate($month, $day, $year) {
+									return mktime(0, 0, 0, $month, $day, $year);
+								}
 
-$D = intval(date('d', $cal_day));
-if (isset($calendrier_mois)) {
-$M = $calendrier_mois;
-} else {$M = intval(date('m', $cal_day));}
-if (isset($calendrier_annee)) {
-$Y = $calendrier_annee;
-} else {$Y = intval(date('Y', $cal_day));}
-$events = array();
-$test_mini_agenda_deja_present = 1;
-?>
+								function preparation_URL($texte_URL,$mois_URL,$annee_URL) {
+									$position = StrPos($texte_URL,"calendrier_mois");
+									$texte_remplacement = "calendrier_mois=".$mois_URL."&calendrier_annee=".$annee_URL;
+									if ($position!=FALSE) {
+										$texte_URL = substr_replace ($texte_URL,$texte_remplacement,$position);}
+										else  { $presence = StrPos($texte_URL,"?");
+											if ($presence==FALSE)
+											{$texte_URL = $texte_URL."?".$texte_remplacement;}
+											else
+											{$texte_URL = $texte_URL."&".$texte_remplacement;}
+										}
+										return $texte_URL;
+								}
+							}
+							if(isset($GLOBALS['var_nav_month'])) {
+								$cal_day = mkdate($GLOBALS['var_nav_month'], 1, $GLOBALS['var_nav_year']);
+							} else {
+								$cal_day = time();
+							}
 
-<BOUCLE_evenements(ARTICLES){id_rubrique}{annee_redac!=0000}>
-	<?php
-    
-	$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
-	if ($date > date("Ymd", mkdate($M, $D - 31, $Y)) && $date < date("Ymd", mkdate($M, $D + 31, $Y))) {
-		if (!isset($events[$date])) {
-			$events[$date] = array();
-		}
-		$events[$date][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE|supprimer_numero|texte_script)]',  'descriptif' => '[(#DESCRIPTIF|supprimer_tags|texte_script)]', 'logo' => '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" width="20" />]');
-	}
-	?>
-</BOUCLE_evenements>
+							$D = intval(date('d', $cal_day));
+							if (isset($calendrier_mois)) {
+								$M = $calendrier_mois;
+							} else {$M = intval(date('m', $cal_day));}
+							if (isset($calendrier_annee)) {
+								$Y = $calendrier_annee;
+							} else {$Y = intval(date('Y', $cal_day));}
+							$events = array();
+							$test_mini_agenda_deja_present = 1;
+						?>
 
-<BOUCLE_les_evenements_des_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
-	<BOUCLE_evenements_themes(ARTICLES){id_rubrique}{annee_redac!=0000}>
-	<?php
-    
-	$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
-	if ($date > date("Ymd", mkdate($M, $D - 31, $Y)) && $date < date("Ymd", mkdate($M, $D + 31, $Y))) {
-		if (!isset($events[$date])) {
-			$events[$date] = array();
-		}
-		$events[$date][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE|supprimer_numero|texte_script)]',  'descriptif' => '[(#DESCRIPTIF|supprimer_tags|texte_script)]', 'logo' => '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" width="20" />]');
-	}
-	?>
-	</BOUCLE_evenements_themes>
-</BOUCLE_les_evenements_des_themes>
+						<BOUCLE_evenements(ARTICLES){id_rubrique}{annee_redac!=0000}>
+							<?php
+								$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
+								if ($date > date("Ymd", mkdate($M, $D - 31, $Y)) && $date < date("Ymd", mkdate($M, $D + 31, $Y))) {
+									if (!isset($events[$date])) {
+										$events[$date] = array();
+									}
+									$events[$date][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE|supprimer_numero|texte_script)]',  'descriptif' => '[(#DESCRIPTIF|supprimer_tags|texte_script)]', 'logo' => '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" width="20" />]');
+								}
+							?>
+						</BOUCLE_evenements>
 
-		<?php
-		
-        $mes = $months [$M];
-        if ($M==1){
-            $calendrier_mois_moins=12;
-            $calendrier_annee_moins=$Y-1;}
-        else {
-            $calendrier_mois_moins=$M-1;
-            $calendrier_annee_moins=$Y;}
-        if ($M==12){
-            $calendrier_mois_plus=1;
-            $calendrier_annee_plus=$Y+1;}
-        else {
-            $calendrier_mois_plus=$M+1;
-            $calendrier_annee_plus=$Y;}
-	    
-	echo '<ul><li class="un"><center><table width="90%" cellpadding="0" cellspacing="0" align="center"><tr align="center"><td  width="33%">';
-	$annee_en_cours = intval(date('Y', $cal_day));
-	$mois_en_cours = intval(date('m', $cal_day));
-	echo '<form method="GET" action="#SELF"><input type="hidden" name="page" value="rubrique"><input type="hidden" name="id_rubrique" value="#ID_RUBRIQUE">';
-	echo '<select name="calendrier_mois">';
-	for ($i = 1 ; $i <= 12 ; $i++) {
-		echo '<option value ="'.$i.'" ';
-		if ($i==$mois_en_cours) {echo "selected";}
-		echo ">".$months[$i]."</option>";
-	}
-	echo '</select>&nbsp;';
-	echo '<select name="calendrier_annee">';
-	for ($i = $annee_en_cours-8 ; $i <= $annee_en_cours + 5 ; $i++) {
-		echo '<option value="'.$i.'" ';
-		if ($i==$annee_en_cours){echo "selected";}
-		echo ">$i</option>"; }
-	echo '</select>&nbsp;<input type="submit" value="Va !"/></form></td>';
-	echo '<td  width="33%"><strong><a href="'.preparation_URL('#SELF',$M,$Y-1).'" title="Ann&eacute;e pr&eacute;c&eacute;dente">&lt;&lt;</a>
-	&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$calendrier_mois_moins,$calendrier_annee_moins).'" title="Mois pr&eacute;c&eacute;dent">&lt;</a>
-	&nbsp;&nbsp;'.$mes.' '.$Y.'&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$calendrier_mois_plus,$calendrier_annee_plus).'" title="Mois suivant">&gt;</a>
-	&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$M,$Y+1).'" title="Ann&eacute;e suivante">&gt;&gt;</a></strong></td>';
-	
-	echo '<td  width="33%">';
-	if (isset($les_themes[1][0])) {
-		echo '<form method="GET" action="#SELF">Th&egrave;mes : ';
-		echo '<input type="hidden" name="page" value="rubrique"><select name="id_rubrique">';
-		foreach ($les_themes as $tab_themes) {
-			echo '<option value="'.$tab_themes[0].'" ';
-			if ($tab_themes[0]==#ID_RUBRIQUE) {echo 'selected';}
-			echo '>'.$tab_themes[1].'</option>';
-		}
-		echo '</select><input type="hidden" name="calendrier_mois" value="'.$M.'">
-		<input type="hidden" name="calendrier_annee" value="'.$Y.'"><input type="submit" value="Va !"/></form>';
-	}
-	echo '</td>';
-	?>
-	</td></tr></table></center></li>
+						<BOUCLE_les_evenements_des_themes(RUBRIQUES){id_parent}{titre_mot=calendrier}>
+							<BOUCLE_evenements_themes(ARTICLES){id_rubrique}{annee_redac!=0000}>
+								<?php
 
-	</td>
-</tr>
+									$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
+									if ($date > date("Ymd", mkdate($M, $D - 31, $Y)) && $date < date("Ymd", mkdate($M, $D + 31, $Y))) {
+										if (!isset($events[$date])) {
+											$events[$date] = array();
+										}
+										$events[$date][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE|supprimer_numero|texte_script)]',  'descriptif' => '[(#DESCRIPTIF|supprimer_tags|texte_script)]', 'logo' => '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" width="20" />]');
+									}
+								?>
+							</BOUCLE_evenements_themes>
+						</BOUCLE_les_evenements_des_themes>
 
-<li class="deux"><center><table width="100%" cellpadding="1" cellspacing="10" align="center">
+						<?php
+							$mes = $months [$M];
+							if ($M==1){
+								$calendrier_mois_moins=12;
+							$calendrier_annee_moins=$Y-1;}
+							else {
+								$calendrier_mois_moins=$M-1;
+							$calendrier_annee_moins=$Y;}
+							if ($M==12){
+								$calendrier_mois_plus=1;
+							$calendrier_annee_plus=$Y+1;}
+							else {
+								$calendrier_mois_plus=$M+1;
+							$calendrier_annee_plus=$Y;}
 
-<tr align="center"> 
-	<?php
-	
-	for($i = 1; $i < 8; $i++) {
-		echo '<th width="14%" >'.$days[$i%7].'</th>';
-	}	
-	$TempD = 1;
-	if(date('w', mkdate($M, 1, $Y)) != 1) {
-		echo '</tr><tr align="center" style="height:100%;">';
-		$tmp = '';
-		while(date('w', mkdate($M, $TempD, $Y)) != 1) {
-			$TempD--;
-			$case = '<td valign="top" style="font-size:80%; height:100%;">';
-			$case .= '<div class="bloc" style="height:100%;"><h3 class="titre">'.date('j', mkdate($M, $TempD, $Y)).'</h3><ul style="padding-bottom:0;">';
-			$date = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
-				if (isset($events[$date])) {
-					$class_compte=1;
-					foreach ($events[$date] as $EventTab) {
-					$case .= '<li class="';
-					if (($class_compte%2)==1) {$case .= 'un';} else {$case .= 'deux';}
-					$case .='"><a href="'.$EventTab['link'].'" title="'.$EventTab['descriptif'].'">'.$EventTab['logo'].$EventTab['title'].'</a></li>';
-					$class_compte++;
-					}
-				}
-				else {$case .= '<li class="un"></li>';}
-			$case .= '</ul></div>';
-			
-			$case .= '</td>';
-			$tmp = $case.$tmp;
-		}
-		echo $tmp;
-	}
-	$TempD = 1;
-	while((date('m', mkdate($M, $TempD, $Y)) == $M) || (date('w', mkdate($M, $TempD, $Y)) != 1)) {
-		if(date('w', mkdate($M, $TempD, $Y)) == 1) {
-			echo '</tr><tr align="center" style="height:100%;">';
-		}
-		echo '<td  valign="top" style="font-size:80%; height:100%;">';
-		$date = date('Ymd', mkdate($M, $TempD, $Y));
-		echo '<div class="bloc" style="height:100%;"><h3 class="titre">'. date('j', mkdate($M, $TempD, $Y)).'</h3><ul style="padding-bottom:0;">';
-		if (isset($events[$date])) {
-			$class_compte=1;
-			foreach ($events[$date] as $EventTab) {
-			echo '<li class="';
-			if (($class_compte%2)==1) {echo 'un';} else {echo 'deux';}
-			echo '"><a href="'.$EventTab['link'].'" title="'.$EventTab['descriptif'].'">'.$EventTab['logo'].$EventTab['title'].'</a></li>';
-			$class_compte++;
-			}
-		}
-		else {echo '<li class="un"></li>';}
-		echo '</ul></div>';
-		echo '</td>';
-		$TempD++;
-	}
-	?>
-</tr>
-</table>
-</center></li>
-</ul>
-</div>
+							echo '<ul><li class="un"><center><table width="90%" cellpadding="0" cellspacing="0" align="center"><tr align="center"><td  width="33%">';
+								$annee_en_cours = intval(date('Y', $cal_day));
+								$mois_en_cours = intval(date('m', $cal_day));
+								echo '<form method="GET" action="#SELF"><input type="hidden" name="page" value="rubrique"><input type="hidden" name="id_rubrique" value="#ID_RUBRIQUE">';
+									echo '<select name="calendrier_mois">';
+									for ($i = 1 ; $i <= 12 ; $i++) {
+										echo '<option value ="'.$i.'" ';
+										if ($i==$mois_en_cours) {echo "selected";}
+										echo ">".$months[$i]."</option>";
+									}
+									echo '</select>&nbsp;';
+									echo '<select name="calendrier_annee">';
+									for ($i = $annee_en_cours-8 ; $i <= $annee_en_cours + 5 ; $i++) {
+										echo '<option value="'.$i.'" ';
+										if ($i==$annee_en_cours){echo "selected";}
+									echo ">$i</option>"; }
+								echo '</select>&nbsp;<input type="submit" value="Va !"/></form></td>';
+								echo '<td  width="33%"><strong><a href="'.preparation_URL('#SELF',$M,$Y-1).'" title="Ann&eacute;e pr&eacute;c&eacute;dente">&lt;&lt;</a>
+									&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$calendrier_mois_moins,$calendrier_annee_moins).'" title="Mois pr&eacute;c&eacute;dent">&lt;</a>
+									&nbsp;&nbsp;'.$mes.' '.$Y.'&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$calendrier_mois_plus,$calendrier_annee_plus).'" title="Mois suivant">&gt;</a>
+									&nbsp;&nbsp;<a href="'.preparation_URL('#SELF',$M,$Y+1).'" title="Ann&eacute;e suivante">&gt;&gt;</a></strong></td>';
 
-<INCLURE{fond=noisettes/rubrique/rubrique_contenu}{id_rubrique}{lang}>
-<INCLURE{fond=noisettes/rubrique/rubrique_sous_rubriques}{id_rubrique}{lang}>
+								echo '<td  width="33%">';
+									if (isset($les_themes[1][0])) {
+										echo '<form method="GET" action="#SELF">Th&egrave;mes : ';
+											echo '<input type="hidden" name="page" value="rubrique"><select name="id_rubrique">';
+												foreach ($les_themes as $tab_themes) {
+													echo '<option value="'.$tab_themes[0].'" ';
+														if ($tab_themes[0]==#ID_RUBRIQUE) {echo 'selected';}
+													echo '>'.$tab_themes[1].'</option>';
+												}
+											echo '</select><input type="hidden" name="calendrier_mois" value="'.$M.'">
+										<input type="hidden" name="calendrier_annee" value="'.$Y.'"><input type="submit" value="Va !"/></form>';
+									}
+								echo '</td>';
+						?>
+							</td></tr></table></center></li>
 
-</div>
-<div class="nettoyeur"></div>
-</div>
-<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-</div>
-</body>
-</html>
+						</td>
+						</tr>
+
+							<li class="deux"><center><table width="100%" cellpadding="1" cellspacing="10" align="center">
+
+								<tr align="center"> 
+									<?php
+
+										for($i = 1; $i < 8; $i++) {
+											echo '<th width="14%" >'.$days[$i%7].'</th>';
+										}	
+										$TempD = 1;
+										if(date('w', mkdate($M, 1, $Y)) != 1) {
+											echo '</tr><tr align="center" style="height:100%;">';
+											
+											$tmp = '';
+											while(date('w', mkdate($M, $TempD, $Y)) != 1) {
+												$TempD--;
+												$case = '<td valign="top" style="font-size:80%; height:100%;">';
+													$case .= '<div class="bloc" style="height:100%;"><h3 class="titre">'.date('j', mkdate($M, $TempD, $Y)).'</h3><ul style="padding-bottom:0;">';
+														$date = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
+														if (isset($events[$date])) {
+															$class_compte=1;
+															foreach ($events[$date] as $EventTab) {
+																$case .= '<li class="';
+																	if (($class_compte%2)==1) {$case .= 'un';} else {$case .= 'deux';}
+																$case .='"><a href="'.$EventTab['link'].'" title="'.$EventTab['descriptif'].'">'.$EventTab['logo'].$EventTab['title'].'</a></li>';
+																$class_compte++;
+															}
+														}
+														else {$case .= '<li class="un"></li>';}
+													$case .= '</ul></div>';
+
+												$case .= '</td>';
+												$tmp = $case.$tmp;
+											}
+											echo $tmp;
+										}
+										$TempD = 1;
+										while((date('m', mkdate($M, $TempD, $Y)) == $M) || (date('w', mkdate($M, $TempD, $Y)) != 1)) {
+											if(date('w', mkdate($M, $TempD, $Y)) == 1) {
+												echo '</tr><tr align="center" style="height:100%;">';
+											}
+													echo '<td  valign="top" style="font-size:80%; height:100%;">';
+														$date = date('Ymd', mkdate($M, $TempD, $Y));
+														echo '<div class="bloc" style="height:100%;"><h3 class="titre">'. date('j', mkdate($M, $TempD, $Y)).'</h3><ul style="padding-bottom:0;">';
+														if (isset($events[$date])) {
+															$class_compte=1;
+															foreach ($events[$date] as $EventTab) {
+																echo '<li class="';
+																	if (($class_compte%2)==1) {echo 'un';} else {echo 'deux';}
+																echo '"><a href="'.$EventTab['link'].'" title="'.$EventTab['descriptif'].'">'.$EventTab['logo'].$EventTab['title'].'</a></li>';
+																$class_compte++;
+															}
+														}
+														else {echo '<li class="un"></li>';}
+														echo '</ul></div>';
+													echo '</td>';
+													$TempD++;
+										}
+									?>
+												</tr>
+							</table>
+							</center></li>
+						</ul>
+					</div>
+
+					<INCLURE{fond=noisettes/rubrique/rubrique_contenu}{id_rubrique}{lang}>
+					<INCLURE{fond=noisettes/rubrique/rubrique_sous_rubriques}{id_rubrique}{lang}>
+
+				</div>
+				<div class="nettoyeur"></div>
+			</div>
+			<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+		</div>
+	</body>
+	</html>
 </BOUCLE_principale>
