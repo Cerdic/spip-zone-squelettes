@@ -23,4 +23,3 @@ function formulaires_evahabillage_langue_traiter_dist(){
 	$res['message_ok'] = _T('config_info_enregistree');
 	return $res;
 }
-

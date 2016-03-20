@@ -4,28 +4,28 @@
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
 <form method='post' action='#ENV{action}' name ="formvignette">
-		[(#REM) declarer les hidden qui declencheront le service du formulaire
-		parametre : url d'action ]
-		#ACTION_FORMULAIRE{#ENV{action}}
-<?php
-include_spip("inc/eva_habillage_definition_themes");
-$les_blocs_array = EVA_mes_nbres();
-$val_nbre=$les_blocs_array['EVA_nbre_article'];
-foreach ($val_nbre as $val) {
-	$test_pres=sql_select('nom_image','spip_eva_habillage_images',"nom_habillage='Defaut' AND nom_div='$val'");
-	$test_tab=sql_fetch($test_pres);
-	$test=$test_tab['nom_image'];
-	echo '<br />'._T('evahabillage:'.strtolower($val));
-    echo '&nbsp;&nbsp;&nbsp;&nbsp;<select name="'.$val.'">';
-	for ($i=0;$i<=20;$i++) {
-		echo '<option value="'.$i.'" ';
-		if ($i==$test) {echo 'selected';}
-		elseif (($i==5) AND (!isset($test))) {echo 'selected';}
-		echo '>'.$i.'</option>';
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<?php
+	include_spip("inc/eva_habillage_definition_themes");
+	$les_blocs_array = EVA_mes_nbres();
+	$val_nbre=$les_blocs_array['EVA_nbre_article'];
+	foreach ($val_nbre as $val) {
+		$test_pres=sql_select('nom_image','spip_eva_habillage_images',"nom_habillage='Defaut' AND nom_div='$val'");
+		$test_tab=sql_fetch($test_pres);
+		$test=$test_tab['nom_image'];
+		echo '<br />'._T('evahabillage:'.strtolower($val));
+		echo '&nbsp;&nbsp;&nbsp;&nbsp;<select name="'.$val.'">';
+		for ($i=0;$i<=20;$i++) {
+			echo '<option value="'.$i.'" ';
+			if ($i==$test) {echo 'selected';}
+			elseif (($i==5) AND (!isset($test))) {echo 'selected';}
+			echo '>'.$i.'</option>';
+		}
+		echo '</select><br />';
 	}
-	echo '</select><br />';
-}
-echo '<div style="text-align:center;"><input type="submit" style="margin-bottom:6px;margin-top:6px;" name="submit_nbre_article" value="'._T('evahabillage:eva_valider').'"></div>';
-?>
+	echo '<div style="text-align:center;"><input type="submit" style="margin-bottom:6px;margin-top:6px;" name="submit_nbre_article" value="'._T('evahabillage:eva_valider').'"></div>';
+	?>
 </form>
 </div>

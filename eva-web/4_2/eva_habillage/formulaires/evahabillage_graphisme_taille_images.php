@@ -3,7 +3,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 function formulaires_evahabillage_graphisme_taille_images_charger_dist(){
-	//Rien à retourner ici : tout est dans le formulaire html et en php
+	//Rien Ã  retourner ici : tout est dans le formulaire html et en php
 	$valeurs=array();
 	return $valeurs;
 }
@@ -21,4 +21,3 @@ function formulaires_evahabillage_graphisme_taille_images_traiter_dist(){
 	}
 	return $res;
 }
-

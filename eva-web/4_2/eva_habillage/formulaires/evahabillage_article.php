@@ -3,7 +3,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 function formulaires_evahabillage_article_charger_dist(){
-	//Rien à retourner ici : tout est dans le formulaire html et en php
+	//Rien Ã  retourner ici : tout est dans le formulaire html et en php
 	$valeurs=array();
 	return $valeurs;
 }
@@ -35,11 +35,10 @@ function formulaires_evahabillage_article_traiter_dist(){
 			));
 		$res['message_ok'] = 'Le squelette personnel <b>'._request('eva_mon_bloc_perso_nom_article').'</b> a &eacute;t&eacute; ins&eacute;r&eacute;';
 	}
-	//On traite enfin la suppression des noisettes perso préalablement insérées
+	//On traite enfin la suppression des noisettes perso prÃ©alablement insÃ©rÃ©es
 	if (_request('submit_supprime_skel_perso_article')) {
 		sql_delete('spip_eva_habillage_images',"id='"._request('eva_suppr_skel_perso_article')."'");
 		$res['message_ok'] = 'Le squelette personnel a &eacute;t&eacute; supprim&eacute;';
 	}
 	return $res;
 }
-

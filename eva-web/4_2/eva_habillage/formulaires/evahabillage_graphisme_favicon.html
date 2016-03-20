@@ -9,29 +9,29 @@
 		#ACTION_FORMULAIRE{#ENV{action}}
 <?php
 	$test_favicon=sql_select('id , nom_image','spip_eva_habillage_images',"type = 'favicon' AND nom_habillage = 'Defaut'");
-    $test_fav=sql_fetch($test_favicon);
-    if (!isset($test_fav['id'])) {
-    echo _T('evahabillage:favicon_a_choisir').'<img src="'._DIR_PLUGIN_EVASQUELETTES.'images/eva3_favicon.png"><br />&nbsp;<br />';
-    echo _T('evahabillage:favicon_a_choisir2').'<br />&nbsp;<br />';
-    }
-    else {
-    echo '<center>'._T('evahabillage:favicon_a_choisir3').'<img src="'._DIR_IMG.'eva_habillage/favicon/'.$test_fav['nom_image'].'"> nomm&eacute; <strong>'._DIR_IMG.'eva_habillage/favicon/'.$test_fav['nom_image'].'</strong><br />&nbsp;<br />';
-    echo _T('evahabillage:favicon_a_supprimer');
-    echo '<input type="hidden" name="supprim_favicon" value="'.$test_fav['id'].'">';
-    echo '<input type="submit" name="submit_supprim_favicon" value="'._T('evahabillage:eva_supprimer').'" />';
+	$test_fav=sql_fetch($test_favicon);
+	if (!isset($test_fav['id'])) {
+		echo _T('evahabillage:favicon_a_choisir').'<img src="'._DIR_PLUGIN_EVASQUELETTES.'images/eva3_favicon.png"><br />&nbsp;<br />';
+		echo _T('evahabillage:favicon_a_choisir2').'<br />&nbsp;<br />';
+	}
+	else {
+		echo '<center>'._T('evahabillage:favicon_a_choisir3').'<img src="'._DIR_IMG.'eva_habillage/favicon/'.$test_fav['nom_image'].'"> nomm&eacute; <strong>'._DIR_IMG.'eva_habillage/favicon/'.$test_fav['nom_image'].'</strong><br />&nbsp;<br />';
+		echo _T('evahabillage:favicon_a_supprimer');
+		echo '<input type="hidden" name="supprim_favicon" value="'.$test_fav['id'].'">';
+		echo '<input type="submit" name="submit_supprim_favicon" value="'._T('evahabillage:eva_supprimer').'" />';
 	}
 ?>
 <:evahabillage:favicon_choix1:><br />
 <?php
 	echo _T('evahabillage:favicon_choisir3').'<strong>'._DIR_IMG.'eva_habillage/favicon </strong> '._T('evahabillage:flash_choisit_animation2').'<br />';
 	echo '<br /><center><select name="nom_favicon">';
-    $dir_favicon = opendir(_DIR_IMG."eva_habillage/favicon");
-    while ($nom_fichier = readdir($dir_favicon)) {
-        if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.ico')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.ICO')) OR (strpos($nom_fichier,'.PNG')) OR (strpos($nom_fichier,'.GIF')))) {
-        echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
-        }
-    }
-    closedir($dir_favicon);
+	$dir_favicon = opendir(_DIR_IMG."eva_habillage/favicon");
+	while ($nom_fichier = readdir($dir_favicon)) {
+		if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.ico')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.ICO')) OR (strpos($nom_fichier,'.PNG')) OR (strpos($nom_fichier,'.GIF')))) {
+			echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+		}
+	}
+	closedir($dir_favicon);
 ?>
 </select>
 <input type="submit" name="choix_du_favicon" style="margin-top:6px;margin-bottom:6px;" value="<:evahabillage:eva_valider:>"></center>

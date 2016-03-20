@@ -29,13 +29,13 @@ foreach ($def_div as $cle) {
 <:evahabillage:flash_choisit_animation2:>
 <select name="nom_flash">
 <?php
-    $dir_flash = opendir(_DIR_IMG."eva_habillage/flash");
-    while ($nom_fichier = readdir($dir_flash)) {
-        if (($nom_fichier!='.') AND ($nom_fichier!='..') AND (strpos($nom_fichier,'.swf'))) {
+	$dir_flash = opendir(_DIR_IMG."eva_habillage/flash");
+	while ($nom_fichier = readdir($dir_flash)) {
+		if (($nom_fichier!='.') AND ($nom_fichier!='..') AND (strpos($nom_fichier,'.swf'))) {
 			echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
-        }
-    }
-    closedir($dir_flash);
+		}
+	}
+	closedir($dir_flash);
 ?>
 </select></center>
 </p>
@@ -54,32 +54,32 @@ foreach ($def_div as $cle) {
  <input type="file" name="flash_eva_habillage_envoi" /><br />&nbsp;<br />
  <input type="submit" name="submit_fichier_flash" value="Envoyer" />
  </p>
- 
+
  <?php
- $recup_exist_flash = sql_select('id , nom_div , nom_image , pos_x , pos_y , repetition','spip_eva_habillage_images',"type = 'flash' AND nom_habillage = 'Defaut'");
- $test_exist_flash = sql_select('id','spip_eva_habillage_images',"type = 'flash' AND nom_habillage = 'Defaut' LIMIT 1");
- $tab_test_exist_flash = sql_fetch($test_exist_flash);
- if ($tab_test_exist_flash!='') {
-	$couleur_table=1;
-	$texte='<hr /><p><b><:evahabillage:flash_lister:></b><br /><table align="center" class="spip">';
-	$texte.='<tr align="center" ';
-	if (($couleur_table%2)==0) {$texte.='class="row_even"';} else {$texte.='class="row_odd"';}
-	$couleur_table++;
-	$texte.='>';
-	$texte.='<td align="center"><div style="text-decoration:underline;">Secteur</div></td><td align="center"><div style="text-decoration:underline;">Fichier</div></td><td align="center"><div style="text-decoration:underline;">Largeur</div></td><td align="center"><div style="text-decoration:underline;">Hauteur</div></td><td align="center"><div style="text-decoration:underline;">Version</div></td><td align="center"><div style="text-decoration:underline;">Supprimer ?</div></td></tr>';
-	while ($tab_exist_flash = sql_fetch($recup_exist_flash)) {
+	$recup_exist_flash = sql_select('id , nom_div , nom_image , pos_x , pos_y , repetition','spip_eva_habillage_images',"type = 'flash' AND nom_habillage = 'Defaut'");
+	$test_exist_flash = sql_select('id','spip_eva_habillage_images',"type = 'flash' AND nom_habillage = 'Defaut' LIMIT 1");
+	$tab_test_exist_flash = sql_fetch($test_exist_flash);
+	if ($tab_test_exist_flash!='') {
+		$couleur_table=1;
+		$texte='<hr /><p><b><:evahabillage:flash_lister:></b><br /><table align="center" class="spip">';
 		$texte.='<tr align="center" ';
 		if (($couleur_table%2)==0) {$texte.='class="row_even"';} else {$texte.='class="row_odd"';}
 		$couleur_table++;
-		$texte.='><td align="center">'._T('evahabillage:'.$tab_exist_flash['nom_div']).'&nbsp;&nbsp;</td><td align="center"><strong>'.$tab_exist_flash['nom_image'].'</strong></td>';
-		$texte.='<td align="center">'.$tab_exist_flash['pos_x'].'</td>';
-		$texte.='<td align="center">'.$tab_exist_flash['pos_y'].'</td>';
-		$texte.='<td align="center">'.$tab_exist_flash['repetition'].'</td>';
-		$texte.='<td align="center"><input type="submit" name="supprime_image'.$tab_exist_flash['id'].'" value="'._T('evahabillage:eva_supprimer').'" /></td></tr>';
+		$texte.='>';
+		$texte.='<td align="center"><div style="text-decoration:underline;">Secteur</div></td><td align="center"><div style="text-decoration:underline;">Fichier</div></td><td align="center"><div style="text-decoration:underline;">Largeur</div></td><td align="center"><div style="text-decoration:underline;">Hauteur</div></td><td align="center"><div style="text-decoration:underline;">Version</div></td><td align="center"><div style="text-decoration:underline;">Supprimer ?</div></td></tr>';
+		while ($tab_exist_flash = sql_fetch($recup_exist_flash)) {
+			$texte.='<tr align="center" ';
+			if (($couleur_table%2)==0) {$texte.='class="row_even"';} else {$texte.='class="row_odd"';}
+			$couleur_table++;
+			$texte.='><td align="center">'._T('evahabillage:'.$tab_exist_flash['nom_div']).'&nbsp;&nbsp;</td><td align="center"><strong>'.$tab_exist_flash['nom_image'].'</strong></td>';
+			$texte.='<td align="center">'.$tab_exist_flash['pos_x'].'</td>';
+			$texte.='<td align="center">'.$tab_exist_flash['pos_y'].'</td>';
+			$texte.='<td align="center">'.$tab_exist_flash['repetition'].'</td>';
+			$texte.='<td align="center"><input type="submit" name="supprime_image'.$tab_exist_flash['id'].'" value="'._T('evahabillage:eva_supprimer').'" /></td></tr>';
+		}
+		$texte.='</table></p>';
+		echo $texte;
 	}
-	$texte.='</table></p>';
-	echo $texte;
-}
 ?>
 </form>
 </div>

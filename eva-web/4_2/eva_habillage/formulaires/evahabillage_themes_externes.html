@@ -1,20 +1,19 @@
 <script type="text/javascript">
 <!--
 if(document.images){
-newvign = new Array()
-for(i=1;i<<?php echo count($tab_externe);?>;i++)
-      {
-      newvign[i] = new Image()
-      newvign[i].src = i + ".png"
-      }
+	newvign = new Array()
+	for(i=1;i<<?php echo count($tab_externe);?>;i++){
+		newvign[i] = new Image()
+		newvign[i].src = i + ".png"
+	}
 }
 
 function affvign(){
 	chemin = "<?php echo _DIR_PLUGIN_EVA_HABILLAGE.'img_pack/vignettes/'; ?>"
-if(document.images){
-validevign=document.formvignette.integrer_theme_externe.options[document.formvignette.integrer_theme_externe.selectedIndex].value
-      document.vignetteaff.src = chemin+validevign+".png"
-      }
+	if(document.images){
+		validevign=document.formvignette.integrer_theme_externe.options[document.formvignette.integrer_theme_externe.selectedIndex].value
+		document.vignetteaff.src = chemin+validevign+".png"
+	}
 }
 window.onerror = null;
 //-->
@@ -32,7 +31,7 @@ window.onerror = null;
 		[(#REM) declarer les hidden qui declencheront le service du formulaire
 		parametre : url d'action ]
 		#ACTION_FORMULAIRE{#ENV{action}}
-		
+
 		[(#REM) On recupere les variables necessaires au traitement du bloc]
 		#SET{habillage,habillage_actuel}
 		#SET{chemin,chemin_vignettes}
@@ -47,7 +46,7 @@ window.onerror = null;
 		<select name="integrer_theme_externe" onChange = "affvign()">
 		<?php
 		$i=1;
-        foreach ($tab_externe as $cle => $inutile) {
+		foreach ($tab_externe as $cle => $inutile) {
 			echo '<option value="'.$i.'" ';
 			if ('#ENV{#GET{habillage}}'==$i) {echo 'selected';}
 			echo '>'.$cle.'</option>'; $i++;

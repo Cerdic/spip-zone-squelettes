@@ -37,8 +37,8 @@ function balise_EVAHABILLAGE($p){
 		if ($tab_image_def['type']!=''){
 			if (strpos($image_cle, 'image_')!==FALSE){
 				if ($f = find_in_path("eva_habillage/" . $tab_image_def['nom_image'])
-					OR file_exists($f=_DIR_IMG . "eva_habillage/" . $tab_image_def['nom_image'])
-					OR file_exists($f=_DIR_PLUGIN_EVA_HABILLAGE . "mon_image/" . $tab_image_def['nom_image']) ){
+				OR file_exists($f=_DIR_IMG . "eva_habillage/" . $tab_image_def['nom_image'])
+				OR file_exists($f=_DIR_PLUGIN_EVA_HABILLAGE . "mon_image/" . $tab_image_def['nom_image']) ){
 					$envoi .= implode(' , ', $image_val);
 					$envoi .= " {background-image : url($f);";
 					$envoi .= "background-position : " . $tab_image_def['pos_x'] . " " . $tab_image_def['pos_y'] . ";";
@@ -47,8 +47,8 @@ function balise_EVAHABILLAGE($p){
 				}
 			} elseif (strpos($image_cle, 'liste_')!==FALSE) {
 				if ($f = find_in_path("eva_habillage/" . $tab_image_def['nom_image'])
-				  OR file_exists($f=_DIR_IMG . "eva_habillage/" . $tab_image_def['nom_image'])
-					OR file_exists($f=_DIR_PLUGIN_EVA_HABILLAGE . "mon_image/" . $tab_image_def['nom_image']) ){
+				OR file_exists($f=_DIR_IMG . "eva_habillage/" . $tab_image_def['nom_image'])
+				OR file_exists($f=_DIR_PLUGIN_EVA_HABILLAGE . "mon_image/" . $tab_image_def['nom_image']) ){
 					$envoi .= implode(', ', $image_val);
 					$envoi .= " {list-style-image : url($f);";
 					$envoi .= "list-style-position : " . $tab_image_def['pos_x'] . ";}\n";
@@ -91,5 +91,4 @@ function balise_EVAHABILLAGE($p){
 	$p->interdire_scripts = false;
 	return $p;
 }
-
 ?>

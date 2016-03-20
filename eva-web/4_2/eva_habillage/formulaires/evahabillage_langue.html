@@ -23,17 +23,17 @@ $couleur_table = 0;?>
 <tr align="center" class="row_even"><td align="center"><:evahabillage:titrebloc_tab1:></td>
 <td align="center"><:evahabillage:titrebloc_tab2:></td></tr>
 <?php $couleur_table++;
-    foreach ($langue_fichier_initial as $cle => $val) {
-	$test_langue=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND attach='#ENV{#GET{langue}}' AND nom_div = '$cle'");
-	$result_langue=sql_fetch($test_langue);
-	$resultat=$result_langue['nom_image'];
-	echo '<tr align="center" ';
-	if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
-	$couleur_table++;
-	echo '><td align="center">'.$val.'</td>';
-	echo "<td align=\"center\"><input type=\"text\" name=\"$cle\" value=\"".str_replace("\"","&#34;",$resultat)."\" size=\"25\" /></td>";
-	echo '</tr>';
-    }
+	foreach ($langue_fichier_initial as $cle => $val) {
+		$test_langue=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND attach='#ENV{#GET{langue}}' AND nom_div = '$cle'");
+		$result_langue=sql_fetch($test_langue);
+		$resultat=$result_langue['nom_image'];
+		echo '<tr align="center" ';
+		if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
+		$couleur_table++;
+		echo '><td align="center">'.$val.'</td>';
+		echo "<td align=\"center\"><input type=\"text\" name=\"$cle\" value=\"".str_replace("\"","&#34;",$resultat)."\" size=\"25\" /></td>";
+		echo '</tr>';
+	}
 ?>
 </table>
 </p>
