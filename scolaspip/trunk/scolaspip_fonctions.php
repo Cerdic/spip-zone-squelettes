@@ -23,7 +23,7 @@ function scolaspip_accueil_config($public=null){
 		'nb_forums' => '10',
 		'pagination_forums' => '5',
 		'afficher_compte_twitter' => 'non',
-		'compte_twitter' => 'crdp_versailles',
+		'compte_twitter' => 'DANEVersailles',
 		'nb_tweets' => '12',
 		'pagination_tweets' => '3',
 	), $config);
