@@ -1,4 +1,4 @@
-﻿#CACHE{4*3600}
+#CACHE{4*3600}
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,40 +8,40 @@
 	</head>
 	<body>
 	<div id="page">
-	
-	[(#REM) Entte de la page]
-	<INCLURE{fond=noisettes/entete/inc_entete-page}{id_rubrique}>
 
-	[(#REM) Conteneur]
-	<div id="conteneurseul">
-	
-	[(#REM) Contenu de la page ]
-	<div id="contenu">
-	
-	[(#REM) Liste des rubriques]
-	<B_sous_rubriques>
-	<div class="bloc">
-	<h3 class="titre"><:sous_rubriques:></h3>
-	<ul>
-	<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
-		[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>]</h2>
-		[(#INTRODUCTION)]
-		<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_sous_rubriques>
-	</ul>
+		[(#REM) Entte de la page]
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_rubrique}>
+
+		[(#REM) Conteneur]
+		<div id="conteneurseul">
+
+			[(#REM) Contenu de la page ]
+			<div id="contenu">
+
+				[(#REM) Liste des rubriques]
+				<B_sous_rubriques>
+					<div class="bloc">
+						<h3 class="titre"><:sous_rubriques:></h3>
+						<ul>
+							<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+								[<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+									[(#INTRODUCTION)]
+									<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
+									<div class="nettoyeur"></div>
+								</li>
+							</BOUCLE_sous_rubriques>
+						</ul>
+					</div>
+				</B_sous_rubriques>
+
+				<INCLURE{fond=livre_article_contenu}{id_rubrique}{lang}{ajax}>
+
+				<div class="nettoyeur"></div>
+
+			</div>
+		</div>
+		<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
 	</div>
-</B_sous_rubriques>
-
-<INCLURE{fond=livre_article_contenu}{id_rubrique}{lang}{ajax}>
-
-<div class="nettoyeur"></div>
-
-</div>
-</div>
-<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-</div>
-</body>
-</html>
+	</body>
+	</html>
 </BOUCLE_principale>

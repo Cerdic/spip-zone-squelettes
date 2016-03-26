@@ -1,106 +1,106 @@
-[(#REM) Liste des articles épisodes]
+[(#REM) Liste des articles Ã©pisodes]
 <BOUCLE_rubriques(RUBRIQUES){id_rubrique}>
-<B_articles>
-<div class="bloc">
-#ANCRE_PAGINATION
-<h3 class="titre">[(#LOGO_RUBRIQUE||image_reduire{50,60})][(#TITRE|supprimer_numero)]</h3>
-<ul>
-[<li class="pagination menupaginationhaut">(#PAGINATION{precedent_suivant})</li>]	
-</ul>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{pagination 1}>
-	<div class="titre">
-		[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
-		[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
-		[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
-		[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ] 
-	</div>
-	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-	[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{700,0})</div>]
-	<div class="nettoyeur"></div>
-	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	<B_articles>
+		<div class="bloc">
+			#ANCRE_PAGINATION
+			<h3 class="titre">[(#LOGO_RUBRIQUE||image_reduire{50,60})][(#TITRE|supprimer_numero)]</h3>
+			<ul>
+				[<li class="pagination menupaginationhaut">(#PAGINATION{precedent_suivant})</li>]	
+			</ul>
+			<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{pagination 1}>
+				<div class="titre">
+					[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
+					[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
+					[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
+					[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ] 
+				</div>
+				[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+				[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{700,0})</div>]
+				<div class="nettoyeur"></div>
+				[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
-	[(#REM) Liste des Documents joints exclure les doublons des images tant dans le portfolio ]
+				[(#REM) Liste des Documents joints exclure les doublons des images tant dans le portfolio ]
 
-	<BOUCLE_exclure_doublons_album(MOTS){id_article}{titre=portfolio}>
-		<BOUCLE_exclure_doublons(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{doublons}>
-		</BOUCLE_exclure_doublons>
-	</BOUCLE_exclure_doublons_album>
+				<BOUCLE_exclure_doublons_album(MOTS){id_article}{titre=portfolio}>
+					<BOUCLE_exclure_doublons(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{doublons}>
+					</BOUCLE_exclure_doublons>
+				</BOUCLE_exclure_doublons_album>
 
-	[(#REM) Si mot cle "diaporama"]
-	<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>
-	<B_diapo>
-	
-	<div class="bloc">
-	#ANCRE_PAGINATION
-	<h3 class="titre"><:diaporama:></h3>
-	<ul>
-	<BOUCLE_diapo(DOCUMENTS){id_article}{par num titre}{pagination 1}>
-		<li>
-		[(#EMBED_DOCUMENT|image_reduire{700,0})]
-		</li>
-	</BOUCLE_diapo>
-	</ul>
-	[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
-	</div>
-	</B_diapo> 
+				[(#REM) Si mot cle "diaporama"]
+				<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>
+					<B_diapo>
 
-	</BOUCLE_test_diaporama>
-	</B_test_diaporama>
+						<div class="bloc">
+							#ANCRE_PAGINATION
+							<h3 class="titre"><:diaporama:></h3>
+							<ul>
+								<BOUCLE_diapo(DOCUMENTS){id_article}{par num titre}{pagination 1}>
+									<li>
+										[(#EMBED_DOCUMENT|image_reduire{700,0})]
+									</li>
+								</BOUCLE_diapo>
+							</ul>
+							[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
+						</div>
+					</B_diapo> 
 
-	<B_documents>
-	<div class="divers">
-	<h4><:documents_joints:></h4>
-	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons}>
-		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
-		[(#DESCRIPTIF)]
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_documents>
-	</ul>
-	</div>
-	</B_documents>
-	<//B_test_diaporama>
+				</BOUCLE_test_diaporama>
+				</B_test_diaporama>
 
-	[<div class="divers surlignable">
-	<h4><:post_scriptum:></h4>
-	<div class="#EDIT{ps} contenu">(#PS)</div>
-	</div>]
+				<B_documents>
+					<div class="divers">
+						<h4><:documents_joints:></h4>
+						<ul>
+							<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons}>
+								<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+									[(#DESCRIPTIF)]
+									<div class="nettoyeur"></div>
+								</li>
+							</BOUCLE_documents>
+						</ul>
+					</div>
+				</B_documents>
+				<//B_test_diaporama>
 
-	[(#REM)  Notes de bas de page ]
-	[<div class="divers">
-	<h4><:notes:></h4>
-	<div class="contenu">(#NOTES)</div>
-	</div>]
+				[<div class="divers surlignable">
+					<h4><:post_scriptum:></h4>
+					<div class="#EDIT{ps} contenu">(#PS)</div>
+				</div>]
 
-
-<div class="suite">
-[(#REM) Auteurs et dates]
-
-<B_auteurs>
-<p>	
-<strong><:par:></strong>
-<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
-<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a>
-</BOUCLE_auteurs>
-</p>
-</B_auteurs>
+				[(#REM)  Notes de bas de page ]
+				[<div class="divers">
+					<h4><:notes:></h4>
+					<div class="contenu">(#NOTES)</div>
+				</div>]
 
 
-[<strong><:publie:></strong>
- (#DATE|affdate_jourcourt)]
+				<div class="suite">
+					[(#REM) Auteurs et dates]
 
-[(#REM)
-[<p><strong><:mis_a_jour:></strong>
- (#DATE_MODIF|affdate_jourcourt)]	
-</p>]
+					<B_auteurs>
+						<p>
+							<strong><:par:></strong>
+							<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+								<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a>
+							</BOUCLE_auteurs>
+						</p>
+					</B_auteurs>
 
-</div>
- [(#REM) Inclusion du compteur graphique si le plugin est activé ]
-[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})<INCLURE{fond=inc_compteurgraphique-diaporama}{id_article}{lang}>]
 
-<INCLURE{fond=noisettes/communs/inc_forum}{id_article}{lang}>
-</BOUCLE_articles>
-</div>
-</B_articles>
+					[<strong><:publie:></strong>
+					(#DATE|affdate_jourcourt)]
+
+					[(#REM)
+					[<p><strong><:mis_a_jour:></strong>
+						(#DATE_MODIF|affdate_jourcourt)]	
+					</p>]
+
+				</div>
+				[(#REM) Inclusion du compteur graphique si le plugin est activÃ© ]
+				[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})<INCLURE{fond=inc_compteurgraphique-diaporama}{id_article}{lang}>]
+
+				<INCLURE{fond=noisettes/communs/inc_forum}{id_article}{lang}>
+			</BOUCLE_articles>
+		</div>
+	</B_articles>
 </BOUCLE_rubriques>
