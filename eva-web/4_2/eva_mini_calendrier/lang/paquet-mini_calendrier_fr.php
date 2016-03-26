@@ -4,9 +4,9 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-    'mini_calendrier_slogan' => 'Un mini-calendrier mensuel pour EVA-web 4.2',
-    'mini_calendrier_description' => '',
-    
+	'mini_calendrier_slogan' => 'Un mini-calendrier mensuel pour EVA-web 4.2.x',
+	'mini_calendrier_description' => '',
+
 );
 
 ?>

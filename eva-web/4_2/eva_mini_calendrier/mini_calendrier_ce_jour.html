@@ -12,84 +12,84 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 	<head>
-	<INCLURE{fond=noisettes/headers/entete-meta}{env}>
+		<INCLURE{fond=noisettes/headers/entete-meta}{env}>
 	</head>
 
 <body>
-<div id="page">
-	
-[(#REM) Entete de la page]
-	<INCLURE {fond=noisettes/entete/inc_entete-page}{id_rubrique}>
+	<div id="page">
 
-[(#REM) Conteneur]
-<div id="conteneur">
+		[(#REM) Entete de la page]
+		<INCLURE {fond=noisettes/entete/inc_entete-page}{id_rubrique}>
 
-[(#REM) Menu de gauche]
-	<div id="menu">
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_avec_habillage}{lang}>]
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_sans_habillage}{lang}>]
+		[(#REM) Conteneur]
+		<div id="conteneur">
+
+			[(#REM) Menu de gauche]
+			<div id="menu">
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_avec_habillage}{lang}>]
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_sans_habillage}{lang}>]
+			</div>
+
+			[(#REM) Menu de droite]
+			<div id="menudroit">
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_droite_avec_habillage}{lang}>]
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_droite_sans_habillage}{lang}>]
+			</div>
+
+
+			[(#REM) Menu du centre]
+			<div id="contenu">
+
+				<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
+				</BOUCLE_article_mentions>
+
+				[(#REM) Debut du bloc contenu]
+				<?php $test_un_deux=1; ?>
+				<div class="bloc">
+					<h3 class="titre"><:evenements_du:> <?php echo $calendrier_jour_mini.' '.$months[$calendrier_mois_mini].' '.$calendrier_annee_mini; ?></h3>
+					<ul>
+						<BOUCLE_articles(ARTICLES){titre_mot=mini-calendrier}{lang}{annee_redac!=0000}{doublons}>
+							<?php $moisE = (int) '[(#DATE_REDAC|mois)]';
+							$anneeE = (int) '[(#DATE_REDAC|annee)]';
+							$jourE = (int) '[(#DATE_REDAC|jour)]'; ?>
+							<?php if (($moisE==$calendrier_mois_mini) AND ($anneeE==$calendrier_annee_mini) AND ($jourE==$calendrier_jour_mini)) { ?>
+							<li class="
+								<?php if ($test_un_deux%2==1) {echo 'un';} else {echo 'deux';}
+								$test_un_deux++; ?>
+									"><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+									[(#INTRODUCTION)]
+									<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+							</li>
+							<?php } ?>
+						</BOUCLE_articles>
+
+						<BOUCLE_rubriques(RUBRIQUES){titre_mot=mini-calendrier}{lang}>
+							<BOUCLE_articles2(ARTICLES){id_rubrique}{annee_redac!=0000}{doublons}>
+								<?php $moisE = (int) '[(#DATE_REDAC|mois)]';
+								$anneeE = (int) '[(#DATE_REDAC|annee)]';
+								$jourE = (int) '[(#DATE_REDAC|jour)]'; ?>
+								<?php if (($moisE==$calendrier_mois_mini) AND ($anneeE==$calendrier_annee_mini) AND ($jourE==$calendrier_jour_mini)) { ?>
+								<li class="
+									<?php if ($test_un_deux%2==1) {echo 'un';} else {echo 'deux';}
+									$test_un_deux++;?>
+									"><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+									[(#INTRODUCTION)]
+									<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+								</li>
+								<?php } ?>
+							</BOUCLE_articles2>
+						</BOUCLE_rubriques>
+					</ul>
+				</div>
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_centre_avec_habillage}{lang}>]
+				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_centre_sans_habillage}{lang}>]
+			</div>
+
+			[(#REM) Pied de la page]			
+			<div class="nettoyeur"></div>
+			<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+		</div>
+
 	</div>
-
-[(#REM) Menu de droite]
-	<div id="menudroit">
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_droite_avec_habillage}{lang}>]
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_droite_sans_habillage}{lang}>]
-	</div>
-
-
-[(#REM) Menu du centre]
-<div id="contenu">
-
-<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
-</BOUCLE_article_mentions>
-
-[(#REM) Debut du bloc contenu]
-<?php $test_un_deux=1; ?>
-	<div class="bloc">
-		<h3 class="titre"><:evenements_du:> <?php echo $calendrier_jour_mini.' '.$months[$calendrier_mois_mini].' '.$calendrier_annee_mini; ?></h3>
-		<ul>
-			<BOUCLE_articles(ARTICLES){titre_mot=mini-calendrier}{lang}{annee_redac!=0000}{doublons}>
-				<?php $moisE = (int) '[(#DATE_REDAC|mois)]';
-				$anneeE = (int) '[(#DATE_REDAC|annee)]';
-				$jourE = (int) '[(#DATE_REDAC|jour)]'; ?>
-				<?php if (($moisE==$calendrier_mois_mini) AND ($anneeE==$calendrier_annee_mini) AND ($jourE==$calendrier_jour_mini)) { ?>
-				<li class="
-				<?php if ($test_un_deux%2==1) {echo 'un';} else {echo 'deux';}
-				$test_un_deux++; ?>
-				"><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
-				[(#INTRODUCTION)]
-				<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
-				</li>
-				<?php } ?>
-			</BOUCLE_articles>
-			
-			<BOUCLE_rubriques(RUBRIQUES){titre_mot=mini-calendrier}{lang}>
-				<BOUCLE_articles2(ARTICLES){id_rubrique}{annee_redac!=0000}{doublons}>
-				<?php $moisE = (int) '[(#DATE_REDAC|mois)]';
-				$anneeE = (int) '[(#DATE_REDAC|annee)]';
-				$jourE = (int) '[(#DATE_REDAC|jour)]'; ?>
-				<?php if (($moisE==$calendrier_mois_mini) AND ($anneeE==$calendrier_annee_mini) AND ($jourE==$calendrier_jour_mini)) { ?>
-				<li class="
-				<?php if ($test_un_deux%2==1) {echo 'un';} else {echo 'deux';}
-				$test_un_deux++;?>
-				"><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
-				[(#INTRODUCTION)]
-				<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
-				</li>
-				<?php } ?>
-				</BOUCLE_articles2>
-			</BOUCLE_rubriques>
-		</ul>
-	</div>
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_centre_avec_habillage}{lang}>]
-	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_centre_sans_habillage}{lang}>]
-</div>
-
-[(#REM) Pied de la page]			
-	<div class="nettoyeur"></div>
-	<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-	</div>
-
-</div>
 </body>
 </html>
