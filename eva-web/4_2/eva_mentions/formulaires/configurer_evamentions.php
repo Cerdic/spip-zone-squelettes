@@ -7,10 +7,10 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-function evamentions_config($public=null){
+function evamentions_config($public=null) {
 	$config = @unserialize($GLOBALS['meta']['eva_mentions']);
 	if (!is_array($config))
-		$config = array();
+	$config = array();
 	$config = array_merge(array(
 		'structure' => _T('evamentions:a_preciser'),
 		'directeur' => _T('evamentions:a_preciser'),
@@ -21,25 +21,25 @@ function evamentions_config($public=null){
 		'fonction' => _T('evamentions:a_preciser'),
 		'idwebmaster'=> '1',
 	), $config);
-	
+
 	return $config;	
 }
 
-function formulaires_configurer_evamentions_charger_dist(){
+function formulaires_configurer_evamentions_charger_dist() {
 	$valeurs = evamentions_config(true);
-	
+
 	return $valeurs;
 }
 
-function formulaires_configurer_evamentions_traiter_dist(){
+function formulaires_configurer_evamentions_traiter_dist() {
 	$config = evamentions_config(true);
 	include_spip('inc/meta');
-	
-	foreach ($config as $k=>$v){
+
+	foreach ($config as $k=>$v) {
 		if (!is_null(_request($k))) $config[$k] = _request($k);
 	}
 	ecrire_meta('eva_mentions',serialize($config));
-	
+
 	return array('message_ok'=>_T('config_info_enregistree'),'editable'=>true);
 }
 
