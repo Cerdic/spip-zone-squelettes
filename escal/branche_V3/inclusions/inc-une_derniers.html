@@ -139,7 +139,7 @@
       <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>">
 
 <!-- affichage logo -->
-      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,40}})]
+      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,100}})]
 <!-- affichage titre -->
 			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
 <!-- affichage auteur -->
@@ -159,7 +159,23 @@
 			 </span>
 			</BOUCLE_Rub_suite>
 			<br />
-
+<!-- affichage texte article -->
+			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersart}|=={non}|non}>
+      <div class="texte-autres">
+        [(#PLUGIN{COUTEAU_SUISSE}|oui)
+        [(#TEXTE*
+            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+        )]
+        ]
+        [(#PLUGIN{COUTEAU_SUISSE}|non)
+        [(#TEXTE
+            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+        )]
+        ]      
+      </div>
+			</BOUCLE_texteart>
+			<br />
 
 <!-- affichage nombre de commentaires -->
       <BOUCLE_comment(FORUMS){id_article}{0,1}{si #CONFIG{escal/config/affichcomm}|=={oui}|oui}>
