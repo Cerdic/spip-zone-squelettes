@@ -3,17 +3,17 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_auteur_pag_auteur,#EVANBREAUTEURPAGAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_auteur_pag_auteur,5}]
 
-  [(#REM) Affichage de tous les auteurs]
+	[(#REM) Affichage de tous les auteurs]
 <?php if (#GET{nbre_auteur_pag_auteur}!=0) { ?>
 <B_auteurs>
 	<div class="bloc" id="auteur_auteurs">
-	#ANCRE_PAGINATION
-	<h3 class="titre"><:tous_les_auteurs:></h3>
-	<ul>
-	<BOUCLE_auteurs(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
-		<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">[<strong>(#NOM)</strong>]</a></li>
-	</BOUCLE_auteurs>
-	[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-	</ul>
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:tous_les_auteurs:></h3>
+		<ul>
+			<BOUCLE_auteurs(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">[<strong>(#NOM)</strong>]</a></li>
+			</BOUCLE_auteurs>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
 	</div>
 </B_auteurs> <?php } ?>

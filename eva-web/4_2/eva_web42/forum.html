@@ -2,91 +2,83 @@
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
-	<head>
-	<INCLURE{fond=noisettes/headers/entete-meta}{skel=forum}{env}>
-	</head>
+		<head>
+			<INCLURE{fond=noisettes/headers/entete-meta}{skel=forum}{env}>
+		</head>
 
-	<body>
-	<div id="page">
-	
-		[(#REM) Entete de la page]
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_breve}{skel=forum}{lang}>
-			
-		[(#REM) Conteneur]
-		<div id="conteneurseul">
-		
-		[(#REM) Contenu de la page]
-		<div id="contenu">
+		<body>
+			<div id="page">
 
-		[(#REM) Contenu : poster un message dans le forum ]
-			<div class="bloc">
-				<h3 class="titre"><:poster_message:></h3>
-				<p class="titre"><:en_reponse:></p>
-				
-				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
-				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
-				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
-				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+				[(#REM) Entete de la page]
+				<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_breve}{skel=forum}{lang}>
 
-					<BOUCLE_forum_parent(FORUMS){id_forum}>
-					<h3 class="titre"><a href="#URL_FORUM">#TITRE</a></h3>
-					<div class="texte">
-					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
-					[<p>(#INTRODUCTION|lignes_longues)</p>]
-					</div>
-					</BOUCLE_forum_parent>
+				[(#REM) Conteneur]
+				<div id="conteneurseul">
 
-					<BOUCLE_article(ARTICLES){id_article}>
-					[(#LOGO_ARTICLE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
-					<h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
-					<div class="nettoyeur"></div>
-					<div class="texte">
-					<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
-					<p>[(#INTRODUCTION)]</p>
-					</div>
-					</BOUCLE_article>
+					[(#REM) Contenu de la page]
+					<div id="contenu">
 
-					<BOUCLE_breve(BREVES){id_breve}>
-					[(#LOGO_BREVE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
-					<h3 class="titre"><a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]">[(#TITRE|supprimer_numero)]</a></h3>
-					<div class="nettoyeur"></div>
-					<div class="texte">
-					<small>[(#DATE|affdate_jourcourt)]</small>
-					[(#INTRODUCTION)]
-					</div>
-					</BOUCLE_breve>
+						[(#REM) Contenu : poster un message dans le forum ]
+						<div class="bloc">
+							<h3 class="titre"><:poster_message:></h3>
+							<p class="titre"><:en_reponse:></p>
 
-					<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-					<h3 class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
-					<div class="nettoyeur"></div>
-					<div class="texte">
-					[(#TEXTE)]
-					</div>
-					</BOUCLE_rubrique>
+							[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+							[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+							[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+							[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
 
-					<BOUCLE_syndic(SITES){id_syndic}>
-					<h3 class="titre"><a href="[(#URL_SITE|parametre_url{'lang',#LANG})]">#NOM_SITE</a></h3>
-					<div class="nettoyeur"></div>
-					<div class="bloc">
-					[(#DESCRIPTIF)]
-					</div>
-					</BOUCLE_syndic>
+							<BOUCLE_forum_parent(FORUMS){id_forum}>
+								<h3 class="titre"><a href="#URL_FORUM">#TITRE</a></h3>
+								<div class="texte">
+									<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+									[<p>(#INTRODUCTION|lignes_longues)</p>]
+								</div>
+							</BOUCLE_forum_parent>
 
-					<//B_forum_parent>
+							<BOUCLE_article(ARTICLES){id_article}>
+								[(#LOGO_ARTICLE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
+								<h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+								<div class="nettoyeur"></div>
+								<div class="texte">
+									<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+									<p>[(#INTRODUCTION)]</p>
+								</div>
+							</BOUCLE_article>
 
-				
+							<BOUCLE_breve(BREVES){id_breve}>
+								[(#LOGO_BREVE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
+								<h3 class="titre"><a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]">[(#TITRE|supprimer_numero)]</a></h3>
+								<div class="nettoyeur"></div>
+								<div class="texte">
+									<small>[(#DATE|affdate_jourcourt)]</small>
+									[(#INTRODUCTION)]
+								</div>
+							</BOUCLE_breve>
 
-			</div>
+							<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+								<h3 class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
+								<div class="nettoyeur"></div>
+								<div class="texte">
+									[(#TEXTE)]
+								</div>
+							</BOUCLE_rubrique>
 
-			#FORMULAIRE_FORUM
+							<BOUCLE_syndic(SITES){id_syndic}>
+								<h3 class="titre"><a href="[(#URL_SITE|parametre_url{'lang',#LANG})]">#NOM_SITE</a></h3>
+								<div class="nettoyeur"></div>
+								<div class="bloc">
+									[(#DESCRIPTIF)]
+								</div>
+							</BOUCLE_syndic>
 
-		</div><!-- fin contenu -->
-
-	</div><!-- fin conteneur -->
-
-	[(#REM) Pied de page ]
-	<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-
-</div><!-- fin page -->
-</body>
-</html>
+							<//B_forum_parent>
+						</div>
+						#FORMULAIRE_FORUM
+					</div><!-- fin contenu -->
+				</div><!-- fin conteneur -->
+				[(#REM) Pied de page ]
+				<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+			</div><!-- fin page -->
+		</body>
+	</html>

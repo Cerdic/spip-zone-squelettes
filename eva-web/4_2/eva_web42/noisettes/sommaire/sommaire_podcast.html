@@ -9,19 +9,19 @@
 
 [(#REM) Affichage des podcasts]
 <B_podcast>
-<div class="bloc" id="sommaire_podcast">
-<h3 class="titre"><:derniers_podcasts:></h3>
-<ul>
-<BOUCLE_podcast(SITES){titre_mot=podcast}{par date}{inverse}{pagination #GET{nbre_art_syndic_sommaire}}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	[<a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
-	<em> - (#DATE|affdate_jourcourt)</em>]
-	<div class="nettoyeur"></div>
-	[(#DESCRIPTIF|textebrut|couper{80})]
-	<div class="nettoyeur"></div>
-	</li>
-</BOUCLE_podcast>
-[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-</ul>	
-</div>
+	<div class="bloc" id="sommaire_podcast">
+		<h3 class="titre"><:derniers_podcasts:></h3>
+		<ul>
+			<BOUCLE_podcast(SITES){titre_mot=podcast}{par date}{inverse}{pagination #GET{nbre_art_syndic_sommaire}}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					[<a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+					<em> - (#DATE|affdate_jourcourt)</em>]
+					<div class="nettoyeur"></div>
+					[(#DESCRIPTIF|textebrut|couper{80})]
+					<div class="nettoyeur"></div>
+				</li>
+			</BOUCLE_podcast>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>	
+	</div>
 </B_podcast>

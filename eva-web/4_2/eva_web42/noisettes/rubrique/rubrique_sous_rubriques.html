@@ -4,17 +4,17 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
-<B_sous_rubriques>
-<div class="bloc" id="rubrique_sous_rubriques">
-<h3 class="titre [(#EXPOSE{on,off})]"><:sous_rubrique:></h3>
-<ul>
-<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{lang}{par num titre}>
-	[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]</h2>
-	[(#DESCRIPTIF|?{#DESCRIPTIF,#INTRODUCTION})]
-	<div class="suite"> <a href="#URL_RUBRIQUE"[ title='(#TITRE|supprimer_numero|texte_script)']><:lire_suite:></a> </div>
-	</li>
-</BOUCLE_sous_rubriques>
-</ul>
-</div>
-</B_sous_rubriques>
+	<B_sous_rubriques>
+		<div class="bloc" id="rubrique_sous_rubriques">
+			<h3 class="titre [(#EXPOSE{on,off})]"><:sous_rubrique:></h3>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{lang}{par num titre}>
+					[<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]</h2>
+						[(#DESCRIPTIF|?{#DESCRIPTIF,#INTRODUCTION})]
+						<div class="suite"> <a href="#URL_RUBRIQUE"[ title='(#TITRE|supprimer_numero|texte_script)']><:lire_suite:></a> </div>
+					</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</div>
+	</B_sous_rubriques>
 </BOUCLE_principale>

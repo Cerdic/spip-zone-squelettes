@@ -212,15 +212,15 @@ $langue_fichier_initial=$test_lang_personnalisation;
 $test=sql_showtable('spip_eva_habillage_images',true);
 if ($test['field']) {
 $surcharges = sql_allfetsel(array('nom_image AS texte', 'nom_div AS cle'),'spip_eva_habillage_images',  array(
-        "type = 'fichier_lang'",
-        "nom_habillage = 'Defaut'",
-	"attach = 'de'",
-        "nom_image != ''"));
-foreach ($surcharges as $s) {
-        if (isset($test_lang_personnalisation[$s['cle']])) {
-                $test_lang_personnalisation[$s['cle']] = $s['texte'];
-        }
-}
+		"type = 'fichier_lang'",
+		"nom_habillage = 'Defaut'",
+		"attach = 'de'",
+		"nom_image != ''"));
+	foreach ($surcharges as $s) {
+		if (isset($test_lang_personnalisation[$s['cle']])) {
+			$test_lang_personnalisation[$s['cle']] = $s['texte'];
+		}
+	}
 }
 $GLOBALS[$GLOBALS['idx_lang']] = $test_lang_personnalisation;
 ?>

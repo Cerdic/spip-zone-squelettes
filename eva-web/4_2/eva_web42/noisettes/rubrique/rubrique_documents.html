@@ -5,37 +5,36 @@
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
-[(#REM) Si mot cle "diaporama"]
-<BOUCLE_test_diaporama(RUBRIQUES){id_rubrique}{titre_mot=diaporama}>
-<B_diapo>
-<div class="bloc" id="rubrique_documents">
-#ANCRE_PAGINATION
-<h3 class="titre"><:diaporama:></h3>
-<ul>
-<BOUCLE_diapo(DOCUMENTS){id_rubrique}{par num titre}{vu=non}{pagination 1}>
-	<li>
-	[(#EMBED_DOCUMENT)]
-	</li>
-</BOUCLE_diapo>
-</ul>
-[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
-</div>
-</B_diapo> 
-
-</BOUCLE_test_diaporama>
-</B_test_diaporama>
-<B_documents>
-<div class="bloc" id="rubrique_documents">
-<h3 class="titre"><:documents_joints:></h3>
-<ul>
-<BOUCLE_documents(DOCUMENTS){id_rubrique}{mode=document}{par num titre}{vu=non}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero|sinon{[(#FICHIER|basename)]})</a>]</h2>[ - <em>(#TYPE_DOCUMENT)</em>][ - <em>(#TAILLE|taille_en_octets)</em>]
-	[(#DESCRIPTIF)]
-	</li>
-</BOUCLE_documents>
-</ul>
-</div>
-</B_documents>
-<//B_test_diaporama>
+	[(#REM) Si mot cle "diaporama"]
+	<BOUCLE_test_diaporama(RUBRIQUES){id_rubrique}{titre_mot=diaporama}>
+		<B_diapo>
+			<div class="bloc" id="rubrique_documents">
+				#ANCRE_PAGINATION
+				<h3 class="titre"><:diaporama:></h3>
+				<ul>
+					<BOUCLE_diapo(DOCUMENTS){id_rubrique}{par num titre}{vu=non}{pagination 1}>
+						<li>
+							[(#EMBED_DOCUMENT)]
+						</li>
+					</BOUCLE_diapo>
+				</ul>
+				[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
+			</div>
+		</B_diapo> 
+	</BOUCLE_test_diaporama>
+	</B_test_diaporama>
+	<B_documents>
+		<div class="bloc" id="rubrique_documents">
+			<h3 class="titre"><:documents_joints:></h3>
+			<ul>
+				<BOUCLE_documents(DOCUMENTS){id_rubrique}{mode=document}{par num titre}{vu=non}>
+					<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero|sinon{[(#FICHIER|basename)]})</a>]</h2>[ - <em>(#TYPE_DOCUMENT)</em>][ - <em>(#TAILLE|taille_en_octets)</em>]
+						[(#DESCRIPTIF)]
+					</li>
+				</BOUCLE_documents>
+			</ul>
+		</div>
+	</B_documents>
+	<//B_test_diaporama>
 
 </BOUCLE_principale>

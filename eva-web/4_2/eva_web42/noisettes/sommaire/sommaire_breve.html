@@ -9,7 +9,7 @@
 
 <BOUCLE_breves_exclues (BREVES) {titre_mot=excluredusommaire} {doublons} >
 </BOUCLE_breves_exclues>
-		
+
 <BOUCLE_rubriques_exclues (RUBRIQUES){titre_mot=excluredusommaire}>
 	<BOUCLE_breves_exclues2 (BREVES){id_rubrique}{doublons}>
 	</BOUCLE_breves_exclues2>
@@ -18,18 +18,19 @@
 <B_breve_courante>
 	[(#REM) Liste des breves]
 	<div class="bloc" id="sommaire_breve">
-	#ANCRE_PAGINATION
-	<h3 class="titre"><:dernieres_breves:></h3>
-	<ul>
-	<BOUCLE_breve_courante(BREVES){par date}{inverse}{pagination #GET{nbre_breve_somm}}{lang}{doublons}>
-		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		[<a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]">[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
-		[ - <em>(#DATE|affdate_jourcourt)</em>]
-		<div class="nettoyeur"></div>
-		[(#INTRODUCTION|couper{80})]
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_breve_courante>
-	[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-	</ul></div>
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:dernieres_breves:></h3>
+		<ul>
+			<BOUCLE_breve_courante(BREVES){par date}{inverse}{pagination #GET{nbre_breve_somm}}{lang}{doublons}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					[<a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]">[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
+					[ - <em>(#DATE|affdate_jourcourt)</em>]
+					<div class="nettoyeur"></div>
+					[(#INTRODUCTION|couper{80})]
+					<div class="nettoyeur"></div>
+				</li>
+			</BOUCLE_breve_courante>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
+	</div>
 </B_breve_courante>

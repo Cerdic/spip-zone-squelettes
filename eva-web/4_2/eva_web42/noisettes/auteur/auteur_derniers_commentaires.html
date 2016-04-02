@@ -1,15 +1,14 @@
 [(#REM) Liens des forums ]
 <B_forums_liens>
-<div class="bloc" id="auteur_derniers_commentaires">
-	<h3 class="titre"><:derniers_commentaires:></h3>
-	<ul>
-		<BOUCLE_forums_liens(FORUMS) {plat}{id_article?}{id_auteur?} {par date}{inverse} {pagination #ENV{pagine,8}}{0,40}>
-		<li>[(#DATE|affdate_jourcourt|unique) &ndash; ][(#TITRE|couper{40}|unique)&nbsp;:]
-			<a href="[(#URL_FORUM|parametre_url{'lang',#LANG})]"[ title="(#TITRE|couper{60}|texte_backend)"]>[(#TEXTE|couper{40})]</a>
-		</li>
-		</BOUCLE_forums_liens>
-	
-	[<li class='pagination menupaginationbas'>(#PAGINATION{page_precedent_suivant})</li>]
-	</ul>
-</div>
+	<div class="bloc" id="auteur_derniers_commentaires">
+		<h3 class="titre"><:derniers_commentaires:></h3>
+		<ul>
+			<BOUCLE_forums_liens(FORUMS) {plat}{id_article?}{id_auteur?} {par date}{inverse} {pagination #ENV{pagine,8}}{0,40}>
+				<li>[(#DATE|affdate_jourcourt|unique) &ndash; ][(#TITRE|couper{40}|unique)&nbsp;:]
+					<a href="[(#URL_FORUM|parametre_url{'lang',#LANG})]"[ title="(#TITRE|couper{60}|texte_backend)"]>[(#TEXTE|couper{40})]</a>
+				</li>
+			</BOUCLE_forums_liens>
+			[<li class='pagination menupaginationbas'>(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
+	</div>
 </B_forums_liens>

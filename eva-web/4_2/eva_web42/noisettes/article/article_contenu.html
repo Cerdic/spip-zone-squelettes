@@ -23,25 +23,25 @@
 <div class="bloc" id="article_contenu">
 
 	<div class="titre">
-	[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
+		[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
 
-	[(#REM) Auteurs et dates]
-	<div id="auteursdates">
-	<B_auteurs>
-	<div><strong><:par:></strong>
-	<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
-		<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a></BOUCLE_auteurs></div>
-	</B_auteurs>
-	[<div><strong><:publie:></strong>
-	(#DATE|affdate_jourcourt)</div>]
-	[<div><em>Format PDF (#ARTICLE_PDF)</em></div>]
-	</div>
+		[(#REM) Auteurs et dates]
+		<div id="auteursdates">
+			<B_auteurs>
+				<div><strong><:par:></strong>
+				<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+				<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a></BOUCLE_auteurs></div>
+			</B_auteurs>
+			[<div><strong><:publie:></strong>
+			(#DATE|affdate_jourcourt)</div>]
+			[<div><em>Format PDF (#ARTICLE_PDF)</em></div>]
+		</div>
 
-	[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
-	[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
-	[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
-	[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ]
-	<div class="nettoyeur"></div>
+		[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
+		[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
+		[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
+		[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ]
+		<div class="nettoyeur"></div>
 	</div>
 
 	[(#REM) chapeau, texte, post-scriptum de l'article ]
@@ -51,20 +51,20 @@
 	<div class="nettoyeur"></div>		
 	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
-<INCLURE{fond=noisettes/article/article_documents}{id_article}{lang}>
+	<INCLURE{fond=noisettes/article/article_documents}{id_article}{lang}>
 
 	[<div class="divers surlignable">
-	<h4><:post_scriptum:></h4>
-	<div class="#EDIT{ps} contenu">(#PS)</div>
+		<h4><:post_scriptum:></h4>
+		<div class="#EDIT{ps} contenu">(#PS)</div>
 	</div>]
 
 	[(#REM)  Notes de bas de page ]
 	[<div class="divers">
-	<h4><:notes:></h4>
-	<div class="contenu">(#NOTES)</div>
+		<h4><:notes:></h4>
+		<div class="contenu">(#NOTES)</div>
 	</div>]
 
-	</div> [(#REM) Fin du bloc ]
-	#FIN_SURLIGNE
+</div> [(#REM) Fin du bloc ]
+#FIN_SURLIGNE
 
 </BOUCLE_principale>

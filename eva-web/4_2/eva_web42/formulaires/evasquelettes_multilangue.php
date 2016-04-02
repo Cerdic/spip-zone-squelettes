@@ -2,7 +2,7 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-function formulaires_evasquelettes_multilangue_charger_dist(){
+function formulaires_evasquelettes_multilangue_charger_dist() {
 	foreach(array(
 		"evamultilinguisme"
 		) as $m)
@@ -18,7 +18,7 @@ function formulaires_evasquelettes_multilangue_charger_dist(){
 }
 
 
-function formulaires_evasquelettes_multilangue_traiter_dist(){
+function formulaires_evasquelettes_multilangue_traiter_dist() {
 	$res = array('editable'=>true);
 	foreach(array(
 		"evamultilinguisme"
@@ -34,8 +34,6 @@ function formulaires_evasquelettes_multilangue_traiter_dist(){
 			}
 			elseif ($v=='non') sql_delete('spip_eva_habillage_images',"type='multilinguisme' AND nom_habillage='Defaut' AND nom_div='menu_langue_actif'");
 		}
-
 	$res['message_ok'] = _T('config_info_enregistree');
 	return $res;
 }
-

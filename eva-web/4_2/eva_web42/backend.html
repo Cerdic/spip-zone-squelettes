@@ -5,36 +5,35 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 >
 
-<channel[ xml:lang="(#LANG)"]>
-	<title>[(#NOM_SITE_SPIP|textebrut|texte_backend)]</title>
-	<link>#URL_SITE_SPIP/</link>
-	<description>[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)]</description>
-	<language>#LANG</language>
-	<generator>SPIP - www.spip.net</generator>
-
-[	<image>
-		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{src}|url_absolue|texte_backend)</url>
+	<channel[ xml:lang="(#LANG)"]>
+		<title>[(#NOM_SITE_SPIP|textebrut|texte_backend)]</title>
 		<link>#URL_SITE_SPIP/</link>
-		[<height>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{height})</height>]
-		[<width>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{width})</width>]
-	</image>
-]
+		<description>[(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)]</description>
+		<language>#LANG</language>
+		<generator>SPIP - www.spip.net</generator>
 
-<BOUCLE_exclusion_articles1(ARTICLES){titre_mot=exclure_des_flux_rss}{doublons art1}>
-</BOUCLE_exclusion_articles1>
+		[<image>
+			<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+			<url>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{src}|url_absolue|texte_backend)</url>
+			<link>#URL_SITE_SPIP/</link>
+			[<height>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{height})</height>]
+			[<width>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{width})</width>]
+		</image>]
 
-<BOUCLE_exclusion_articles2(ARTICLES){titre_mot=exclure_des_flux_rss}{doublons art2}>
-</BOUCLE_exclusion_articles2>
+		<BOUCLE_exclusion_articles1(ARTICLES){titre_mot=exclure_des_flux_rss}{doublons art1}>
+		</BOUCLE_exclusion_articles1>
 
-<BOUCLE_10recents(ARTICLES) {lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{0,10}{unique}{doublons art1}>
-<INCLURE{fond=inc-rss-item, id_article} />
-</BOUCLE_10recents>
+		<BOUCLE_exclusion_articles2(ARTICLES){titre_mot=exclure_des_flux_rss}{doublons art2}>
+		</BOUCLE_exclusion_articles2>
 
-<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{age<3}{unique}{doublons art2}>
-<INCLURE{fond=inc-rss-item, id_article} />
-</BOUCLE_tres_recents>
+		<BOUCLE_10recents(ARTICLES) {lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{0,10}{unique}{doublons art1}>
+			<INCLURE{fond=inc-rss-item, id_article} />
+		</BOUCLE_10recents>
 
-</channel>
+		<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{age<3}{unique}{doublons art2}>
+			<INCLURE{fond=inc-rss-item, id_article} />
+		</BOUCLE_tres_recents>
+
+	</channel>
 
 </rss>

@@ -1,24 +1,24 @@
 <BOUCLE_principale(ARTICLES){id_article}>
-<BOUCLE_test_jflip(ARTICLES){id_article}{titre_mot=jflip}>
-[(#CONFIG{plugin}|match{JFLIPBOOK}|?{' ',''})<INCLURE{fond=jflipbook}{id_article}{lang}>]
-[(#CONFIG{plugin}|match{JFLIPBOOK}|?{'',' '})<INCLURE{fond=noisettes/article/article_portfolio_sans_jflip}{id_article}{lang}>]
-</BOUCLE_test_jflip>
-</B_test_jflip>
-<INCLURE{fond=noisettes/article/article_portfolio_sans_jflip}{id_article}{lang}>
-<//B_test_jflip>
-<BOUCLE_vignettes (DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{par num titre}{vu=non}{doublons}>
-</BOUCLE_vignettes>
+	<BOUCLE_test_jflip(ARTICLES){id_article}{titre_mot=jflip}>
+		[(#CONFIG{plugin}|match{JFLIPBOOK}|?{' ',''})<INCLURE{fond=jflipbook}{id_article}{lang}>]
+		[(#CONFIG{plugin}|match{JFLIPBOOK}|?{'',' '})<INCLURE{fond=noisettes/article/article_portfolio_sans_jflip}{id_article}{lang}>]
+	</BOUCLE_test_jflip>
+	</B_test_jflip>
+	<INCLURE{fond=noisettes/article/article_portfolio_sans_jflip}{id_article}{lang}>
+	<//B_test_jflip>
+	<BOUCLE_vignettes (DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{par num titre}{vu=non}{doublons}>
+	</BOUCLE_vignettes>
 	<B_documents>
-	<div class="divers" id="article_documents">
-	<h4><:documents_joints:></h4>
-	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{vu=non}{doublons}>
-		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
-		[(#DESCRIPTIF)]
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_documents>
-	</ul>
-	</div>
+		<div class="divers" id="article_documents">
+			<h4><:documents_joints:></h4>
+			<ul>
+				<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{vu=non}{doublons}>
+					<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+						[(#DESCRIPTIF)]
+						<div class="nettoyeur"></div>
+					</li>
+				</BOUCLE_documents>
+			</ul>
+		</div>
 	</B_documents>
 </BOUCLE_principale>

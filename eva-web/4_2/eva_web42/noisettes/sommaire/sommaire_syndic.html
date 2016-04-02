@@ -3,20 +3,20 @@
 [ (#PLUGIN{eva_habillage}|?{#SET{nbre_art_syndic_sommaire,#EVANBREARTICLESYNDICSOMMAIRE},#SET{nbre_art_syndic_sommaire,5}})]
 
 <B_liens-syndic>
-<div class="bloc" id="sommaire_syndic">
-#ANCRE_PAGINATION
-<h3 class="titre"><:sur_le_web:></h3>
-<ul>
-<BOUCLE_liens-syndic(SYNDIC_ARTICLES){tous}{!par date}{pagination #GET{nbre_art_syndic_sommaire}}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a>[<em> sur <a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">(#NOM_SITE|supprimer_numero|textebrut)</a></em>][,
-	<em>(#DATE|affdate_jourcourt)</em>]
-	<div class="nettoyeur"></div>
-	[(#DESCRIPTIF|textebrut|couper{80})]
-	<div class="nettoyeur"></div>
-	</li>
-</BOUCLE_liens-syndic>
-[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-</ul>
-</div>
+	<div class="bloc" id="sommaire_syndic">
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:sur_le_web:></h3>
+		<ul>
+			<BOUCLE_liens-syndic(SYNDIC_ARTICLES){tous}{!par date}{pagination #GET{nbre_art_syndic_sommaire}}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a>[<em> sur <a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">(#NOM_SITE|supprimer_numero|textebrut)</a></em>][,
+					<em>(#DATE|affdate_jourcourt)</em>]
+					<div class="nettoyeur"></div>
+					[(#DESCRIPTIF|textebrut|couper{80})]
+					<div class="nettoyeur"></div>
+				</li>
+			</BOUCLE_liens-syndic>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
+	</div>
 </B_liens-syndic>

@@ -7,26 +7,26 @@
 
 <BOUCLE_principale(ARTICLES){id_article}>
 
-<div>
-[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][
-<em> - (#DATE|affdate_jourcourt)</em>]
+	<div>
+		[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][
+		<em> - (#DATE|affdate_jourcourt)</em>]
 
-[(#GET{sommaire_article_ajax}|=={2}|?{
-[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
-[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
-<div class="nettoyeur"></div>
-<div class="suite">
-	<a href='#URL_ARTICLE'><:article_complet:></a> |
-	<a href='[(#ENV{url}|parametre_url{'eva_sommaire_article_ajax',3})]' class='ajax'><:replier:></a>
-	
-</div>
-,
-<div class="nettoyeur"></div>
-[(#INTRODUCTION|couper{200})]
-<div class="suite"> 
-	<a href='[(#ENV{url}|parametre_url{'eva_sommaire_article_ajax',2})]' [title='(#TITRE|supprimer_numero|texte_script)'] class='ajax'><:lire_suite:></a>
-</div>
-})]
-</div>
+		[(#GET{sommaire_article_ajax}|=={2}|?{
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+			[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+			[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+			<div class="nettoyeur"></div>
+			<div class="suite">
+				<a href='#URL_ARTICLE'><:article_complet:></a> |
+				<a href='[(#ENV{url}|parametre_url{'eva_sommaire_article_ajax',3})]' class='ajax'><:replier:></a>
+
+			</div>
+			,
+			<div class="nettoyeur"></div>
+			[(#INTRODUCTION|couper{200})]
+			<div class="suite"> 
+				<a href='[(#ENV{url}|parametre_url{'eva_sommaire_article_ajax',2})]' [title='(#TITRE|supprimer_numero|texte_script)'] class='ajax'><:lire_suite:></a>
+			</div>
+		})]
+	</div>
 </BOUCLE_principale>

@@ -1,104 +1,106 @@
 #CACHE{12*3600}
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 	<head>
-	<INCLURE{fond=noisettes/headers/entete-meta}{skel=plan}{env}>
+		<INCLURE{fond=noisettes/headers/entete-meta}{skel=plan}{env}>
 	</head>
-
 	<body>
-	<div id="page">
-	
-		[(#REM) Entete de la page]
+		<div id="page">
 
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{skel=plan}{lang}>	
-		
-		[(#REM) Conteneur]
-		<div id="conteneurseul">
+			[(#REM) Entete de la page]
 
-		[(#REM) Contenu de la page]
-		<div id="contenu">
-	
-	[(#REM) Liste des secteurs]
-	
-	<BOUCLE_aexclure(RUBRIQUES){titre_mot=exclureduplan}{doublons}>
-	</BOUCLE_aexclure>
-	
-	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}{doublons}>
+			<INCLURE{fond=noisettes/entete/inc_entete-page}{skel=plan}{lang}>	
 
-	<div class="bloc">
-			<h3 class="titre"><a href="#URL_RUBRIQUE"><span>[(#TITRE|supprimer_numero)]</span></a></h3>
+			[(#REM) Conteneur]
+			<div id="conteneurseul">
 
-	<div class="blocplan">
+				[(#REM) Contenu de la page]
+				<div id="contenu">
 
-	[(#REM) affichage des brêves contenues dans le secteur]
-			<B_breves_secteur>
-			<div class="bloc">
-           		<h3 class="titre"><:breves:></h3>            
-            	<ul>
-				  	<BOUCLE_breves_secteur(BREVES){id_secteur}{par date}{inverse}{lang}{0,5}>
-	              	<li>
-	              	<a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">[(#TITRE|supprimer_numero)]</a>
-	              	</li>
-              		</BOUCLE_breves_secteur>
-            	</ul>
-		
- 			</div>           
-			</B_breves_secteur>
+					[(#REM) Liste des secteurs]
 
-[(#REM) affichage des sites contenus dans le secteur]
-            <B_sites_rub>
-			<div class="bloc">			
-				<h3 class="titre">Sites référencés</h3>            
-            <ul>
-				  <BOUCLE_sites_rub(SITES){id_rubrique}{par date}{inverse}{0,5}>
-	              <li>
-	              <a href="#URL_SITE" target="_blank">[(#NOM_SITE|supprimer_numero)]</a>[, 
-	              (#DESCRIPTIF|couper{80})]
-	              </li>
-              </BOUCLE_sites_rub>
-            </ul>
-			</div>	
-            </B_sites_rub>
-			
-		</div>   
-		
-		<BOUCLE_article_mentions(ARTICLES){id_rubrique}{titre_mot=mentions}{doublons}>
-		</BOUCLE_article_mentions>
+					<BOUCLE_aexclure(RUBRIQUES){titre_mot=exclureduplan}{doublons}>
+					</BOUCLE_aexclure>
 
-				<ul>
-					<BOUCLE_articles(ARTICLES){id_rubrique}{doublons}{lang}{par num titre}>
-					<li class="article">
-					<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
-					</li>
-					</BOUCLE_articles>
-				</ul>
+					<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}{doublons}>
 
-					<B_rubriques>
-					<ul>
-						<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}{lang}{doublons}>
-						<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+						<div class="bloc">
+							<h3 class="titre">
+								<a href="#URL_RUBRIQUE"><span>[(#TITRE|supprimer_numero)]</span></a>
+							</h3>
 
-							<B_articles2>
+							<div class="blocplan">
+
+								[(#REM) affichage des brÃªves contenues dans le secteur]
+								<B_breves_secteur>
+									<div class="bloc">
+										<h3 class="titre"><:breves:></h3>            
+										<ul>
+											<BOUCLE_breves_secteur(BREVES){id_secteur}{par date}{inverse}{lang}{0,5}>
+												<li>
+													<a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">[(#TITRE|supprimer_numero)]</a>
+												</li>
+											</BOUCLE_breves_secteur>
+										</ul>
+									</div>           
+								</B_breves_secteur>
+
+								[(#REM) affichage des sites contenus dans le secteur]
+								<B_sites_rub>
+									<div class="bloc">			
+										<h3 class="titre">Sites rÃ©fÃ©rencÃ©s</h3>            
+										<ul>
+											<BOUCLE_sites_rub(SITES){id_rubrique}{par date}{inverse}{0,5}>
+												<li>
+													<a href="#URL_SITE" target="_blank">[(#NOM_SITE|supprimer_numero)]</a>[, 
+													(#DESCRIPTIF|couper{80})]
+												</li>
+											</BOUCLE_sites_rub>
+										</ul>
+									</div>	
+								</B_sites_rub>
+							</div>
+
+							<BOUCLE_article_mentions(ARTICLES){id_rubrique}{titre_mot=mentions}{doublons}>
+							</BOUCLE_article_mentions>
+
 							<ul>
-								<BOUCLE_articles2(ARTICLES) {doublons}{id_rubrique}{lang}{par titre}>
-								<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
-								</BOUCLE_articles2>
+								<BOUCLE_articles(ARTICLES){id_rubrique}{doublons}{lang}{par num titre}>
+									<li class="article">
+										<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+									</li>
+								</BOUCLE_articles>
 							</ul>
-							</B_articles2>
 
-							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-						</li>
-						</BOUCLE_rubriques>
-					</ul>
-					</B_rubriques>
-<div class="nettoyeur"></div>
-</div>
-</BOUCLE_secteurs>
-			
-</div><!-- contenu -->
-</div><!-- conteneurseul -->
-		<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-	</div>
-</body>
+							<B_rubriques>
+								<ul>
+									<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}{lang}{doublons}>
+										<li>
+											<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+
+											<B_articles2>
+												<ul>
+													<BOUCLE_articles2(ARTICLES) {doublons}{id_rubrique}{lang}{par titre}>
+														<li>
+															<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+														</li>
+													</BOUCLE_articles2>
+												</ul>
+											</B_articles2>
+
+											<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+										</li>
+									</BOUCLE_rubriques>
+								</ul>
+							</B_rubriques>
+							<div class="nettoyeur"></div>
+						</div>
+					</BOUCLE_secteurs>
+
+				</div><!-- contenu -->
+			</div><!-- conteneurseul -->
+			<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+		</div>
+	</body>
 </html>

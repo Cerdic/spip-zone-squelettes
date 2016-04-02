@@ -20,119 +20,128 @@
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
-	<head>
-	<INCLURE{fond=noisettes/headers/entete-meta}{skel=mot}{env}>
-	</head>
+		<head>
+		<INCLURE{fond=noisettes/headers/entete-meta}{skel=mot}{env}>
+		</head>
 
-	<body>
-	<div id="page">
-	
-		[(#REM) Entete de la page]
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_auteur}{lang}>
-			
-		[(#REM) Conteneur]
-		<div id="conteneur">
+		<body>
+			<div id="page">
 
-		[(#REM) Menu et lments de navigation]
-			<div id="menu">
-				<INCLURE{fond=noisettes/communs/inc_menu}{lang}>
-				
-				<BOUCLE_mot_mentions(MOTS){titre=mentions}{doublons}>
-				</BOUCLE_mot_mentions>
-				
-				<B_groupes_mots_cle>
-				<div class="bloc">
-					<h3 class="titre"><:mot_cle:></h3>
-					<ul>
-						<BOUCLE_groupes_mots_cle(GROUPES_MOTS){par titre}>
-						<li>
-							[(#TITRE|supprimer_numero)]
-							<B_mots_cle>
-							<ul>
-								<BOUCLE_mots_cle(MOTS){id_groupe}{par titre}{doublons}>
-								<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"][ class="(#EXPOSE{on,off})"]><a href="[(#URL_MOT|parametre_url{lang,#LANG})]">[(#TITRE|supprimer_numero)]</a></li>
-								</BOUCLE_mots_cle>
-							</ul>
-							</B_mots_cle>
-						</li>
-						</BOUCLE_groupes_mots_cle>
-					</ul>
+				[(#REM) Entete de la page]
+				<INCLURE{fond=noisettes/entete/inc_entete-page}{id_auteur}{lang}>
+
+				[(#REM) Conteneur]
+				<div id="conteneur">
+
+					[(#REM) Menu et lments de navigation]
+					<div id="menu">
+						<INCLURE{fond=noisettes/communs/inc_menu}{lang}>
+
+						<BOUCLE_mot_mentions(MOTS){titre=mentions}{doublons}>
+						</BOUCLE_mot_mentions>
+
+						<B_groupes_mots_cle>
+							<div class="bloc">
+								<h3 class="titre"><:mot_cle:></h3>
+								<ul>
+									<BOUCLE_groupes_mots_cle(GROUPES_MOTS){par titre}>
+										<li>
+											[(#TITRE|supprimer_numero)]
+											<B_mots_cle>
+												<ul>
+													<BOUCLE_mots_cle(MOTS){id_groupe}{par titre}{doublons}>
+														<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"][ class="(#EXPOSE{on,off})"]>
+															<a href="[(#URL_MOT|parametre_url{lang,#LANG})]">[(#TITRE|supprimer_numero)]</a>
+														</li>
+													</BOUCLE_mots_cle>
+												</ul>
+											</B_mots_cle>
+										</li>
+									</BOUCLE_groupes_mots_cle>
+								</ul>
+							</div>
+						</B_groupes_mots_cle>
+					</div>
+
+					[(#REM) Contenu de la page]
+					<div id="contenu">
+						[<div class="texte">[(#LOGO_MOT||image_reduire{#GET{largeurlogomoyen},#GET{hauteurlogomoyen}})](#TEXTE)</div>]
+
+						[(#REM) Liste des rubriques]
+						<B_sous_rubriques>
+							<div class="bloc">
+								<h3 class="titre"><:sous_rubriques:></h3>
+								<ul>
+									<BOUCLE_sous_rubriques(RUBRIQUES){id_mot}>
+										[<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+											<h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#TITRE|supprimer_numero)</a></h2>
+										</li>]
+										[(#INTRODUCTION)]
+									</BOUCLE_sous_rubriques>
+								</ul>
+							</div>
+						</B_sous_rubriques>
+
+						[(#REM) Liste des articles]
+						<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
+						</BOUCLE_article_mentions>
+
+						<B_articles>
+							<div class="bloc">
+								<h3 class="titre"><:articles:></h3>
+								<ul>
+									<BOUCLE_articles(ARTICLES){id_mot}{par date}{inverse}{doublons}>
+										<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+											<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+											[(#INTRODUCTION)]
+											<div class="suite">
+												<a href="#URL_ARTICLE"><:lire_suite:></a>
+											</div>
+									</BOUCLE_articles>
+								</ul>
+							</div>
+						</B_articles>
+
+						[(#REM) Liste des breves]
+						<B_breves>
+							<div class="bloc">
+								<h3 class="titre"><:breves:></h3>
+								<ul>
+									<BOUCLE_breves(BREVES){id_mot}{par date}{inverse}>
+										<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+											<h2>[<a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2>
+										</li>
+										[(#INTRODUCTION)]
+									</BOUCLE_breves>
+								</ul>
+							</div>
+						</B_breves>
+
+						[(#REM) Liste des sites references]
+						<B_sites>
+							<div class="bloc">
+								<h3 class="titre"><:sites_references:></h3>
+								<ul>
+									<BOUCLE_sites(SITES){id_mot}{par date}{inverse}>
+										<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+											<h2>[<a href="[(#URL_SITE|parametre_url{lang,#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#NOM_SITE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2>
+										</li>
+										[(#DESCRIPTIF)]
+									</BOUCLE_sites>
+								</ul>
+							</div>
+						</B_sites>
+
+						[(#REM)  Notes de bas de page ][
+						<div class="divers">
+							<h4><:notes:></h4>
+							<div>(#NOTES)</div>
+						</div>]
+					</div>
+					<div class="nettoyeur"></div>
 				</div>
-				</B_groupes_mots_cle>
+				<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
 			</div>
-		
-			[(#REM) Contenu de la page]
-			<div id="contenu">
-				[<div class="texte">[(#LOGO_MOT||image_reduire{#GET{largeurlogomoyen},#GET{hauteurlogomoyen}})](#TEXTE)</div>]
-				
-				[(#REM) Liste des rubriques]
-				<B_sous_rubriques>
-				<div class="bloc">
-					<h3 class="titre"><:sous_rubriques:></h3>
-					<ul>
-					<BOUCLE_sous_rubriques(RUBRIQUES){id_mot}>
-						[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#TITRE|supprimer_numero)</a></h2></li>]
-						[(#INTRODUCTION)]
-					</BOUCLE_sous_rubriques>
-					</ul>
-				</div>
-				</B_sous_rubriques>
-				
-				[(#REM) Liste des articles]
-				<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
-				</BOUCLE_article_mentions>
-				
-				<B_articles>
-				<div class="bloc">
-					<h3 class="titre"><:articles:></h3>
-					<ul>
-						<BOUCLE_articles(ARTICLES){id_mot}{par date}{inverse}{doublons}>
-						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
-						[(#INTRODUCTION)]
-						<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
-						</BOUCLE_articles>
-					</ul>
-				</div>
-				</B_articles>
-				
-				[(#REM) Liste des breves]
-				<B_breves>
-				<div class="bloc">
-					<h3 class="titre"><:breves:></h3>
-					<ul>
-						<BOUCLE_breves(BREVES){id_mot}{par date}{inverse}>
-						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2></li>
-						[(#INTRODUCTION)]
-						</BOUCLE_breves>
-					</ul>
-				</div>
-				</B_breves>
-				
-				[(#REM) Liste des sites references]
-				<B_sites>
-				<div class="bloc">
-					<h3 class="titre"><:sites_references:></h3>
-					<ul>
-						<BOUCLE_sites(SITES){id_mot}{par date}{inverse}>
-						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="[(#URL_SITE|parametre_url{lang,#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogomini},#GET{hauteurlogomini}})](#NOM_SITE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2></li>
-						[(#DESCRIPTIF)]
-						</BOUCLE_sites>
-					</ul>
-				</div>
-				</B_sites>
-				
-				[(#REM)  Notes de bas de page ][
-				<div class="divers">
-					<h4><:notes:></h4>
-					<div>(#NOTES)</div>
-				</div>]
-				
-			</div>
-
-			<div class="nettoyeur"></div>
-		</div>
-		<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
-	</div>
-</body>
-</html>
+		</body>
+	</html>
 </BOUCLE_principale>

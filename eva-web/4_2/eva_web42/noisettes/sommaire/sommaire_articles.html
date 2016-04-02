@@ -1,7 +1,7 @@
 <BOUCLE_articles_exclus(ARTICLES){titre_mot IN mentions,editorial,excluredusommaire}{par id_article}{doublons} />
-<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
-	<BOUCLE_articles_exclus2 (ARTICLES) {id_rubrique} {doublons} />
-</BOUCLE_rubriques_exclues>
+	<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
+		<BOUCLE_articles_exclus2 (ARTICLES) {id_rubrique} {doublons} />
+	</BOUCLE_rubriques_exclues>
 
 [(#PLUGIN{eva_habillage}|?{#SET{nbre_art_somm,#EVANBREARTSOMM},#SET{nbre_art_somm,5}})]
 
@@ -12,20 +12,20 @@
 
 <B_articles>
 	<div class="bloc" id="sommaire_articles">
-	#ANCRE_PAGINATION
-	<h3 class="titre"><:derniers_articles:></h3>
-	<ul>
-	<BOUCLE_articles(ARTICLES) {par date} {inverse} {doublons} {pagination #GET{nbre_art_somm}} {lang}>
-		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
-		[<em> - (#DATE|affdate_jourcourt)</em>]</h2>
-		[(#INTRODUCTION|couper{200})]
-		<div class="suite"> 
-			<a href="#URL_ARTICLE"[ title='(#TITRE|supprimer_numero|texte_script)']><:lire_suite:></a>
-		</div>
-		</li>
-	</BOUCLE_articles>
-	[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-	</ul>
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:derniers_articles:></h3>
+		<ul>
+			<BOUCLE_articles(ARTICLES) {par date} {inverse} {doublons} {pagination #GET{nbre_art_somm}} {lang}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
+					[<em> - (#DATE|affdate_jourcourt)</em>]</h2>
+					[(#INTRODUCTION|couper{200})]
+					<div class="suite"> 
+						<a href="#URL_ARTICLE"[ title='(#TITRE|supprimer_numero|texte_script)']><:lire_suite:></a>
+					</div>
+				</li>
+			</BOUCLE_articles>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
 	</div>
 </B_articles>

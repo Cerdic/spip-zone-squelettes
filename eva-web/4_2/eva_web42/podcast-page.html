@@ -9,93 +9,101 @@
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
-	<head>
-	<INCLURE{fond=noisettes/headers/entete-meta}{skel=podcast-page}{env}>
-	</head>
+		<head>
+			<INCLURE{fond=noisettes/headers/entete-meta}{skel=podcast-page}{env}>
+		</head>
 
-	<body>
-	<div id="page">
-	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=noisettes/entete/inc_entete-page}{id_syndic}{skel=podcast-page}{lang}>
+		<body>
+			<div id="page">
+				[(#REM) Entete de la page + titre du site ]
+				<INCLURE{fond=noisettes/entete/inc_entete-page}{id_syndic}{skel=podcast-page}{lang}>
 
-	<div id="conteneur">
+				<div id="conteneur">
 
-		[(#REM) Contenu principal : affichage du site ]
-		<div id="contenu">
+					[(#REM) Contenu principal : affichage du site ]
+					<div id="contenu">
 
-				<a href="[(#URL_SITE|parametre_url{lang,#LANG})]">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
-				<h2 class="titre">#NOM_SITE</h2>
+						<a href="[(#URL_SITE|parametre_url{lang,#LANG})]">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
+						<h2 class="titre">#NOM_SITE</h2>
 
-					[(#REM) Auteurs et dates]
-					<ul id="auteursdates">
-						<B_auteurs>
-						<li class="premier"><strong><:par:></strong> <BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
-								<a href="[(#URL_AUTEUR|parametre_url{lang,#LANG})]">#NOM</a></BOUCLE_auteurs></li>
-						</B_auteurs>
-						
-						[<li><strong><:publie:></strong>
-							(#DATE|affdate_jourcourt)</li>]
-							
-						[(#REM)
-						[<li><strong><:mis_a_jour:></strong>
-							(#DATE_MODIF|affdate_jourcourt)</li>]]
-					</ul>
+						[(#REM) Auteurs et dates]
+						<ul id="auteursdates">
+							<B_auteurs>
+								<li class="premier"><strong><:par:></strong>
+									<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+										<a href="[(#URL_AUTEUR|parametre_url{lang,#LANG})]">#NOM</a>
+									</BOUCLE_auteurs>
+								</li>
+							</B_auteurs>
 
-				[<p class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+							[<li>
+								<strong><:publie:></strong>
+								(#DATE|affdate_jourcourt)
+							</li>]
 
-			[<div class="chapo">(#DESCRIPTIF)</div>]
+							[(#REM)
+							[<li>
+								<strong><:mis_a_jour:></strong>
+								(#DATE_MODIF|affdate_jourcourt)
+							</li>]]
+						</ul>
 
-			[(#REM) Articles issus de la syndication ]
-			<B_articles>
-			<div class="bloc">
-				#ANCRE_PAGINATION
-				<h3 class="titre">Liste des chapitres</h3>
+						[<p class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
 
-				<ul class="bloc">
-					<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{age<180}{par date}{inverse}{pagination 5}>
-					<li>
-						<h3 class="spip"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
-						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
-						<small>[(#DATE|affdate_court)][, <:par:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
-						[<div class="texte">(#DESCRIPTIF|image_reduire{300})
-						<br class="nettoyeur" /></div>]
-					</li>
-					</BOUCLE_articles>
-				</ul>
-				[<p class="pagination">(#PAGINATION)</p>]
-			</div>
-			</B_articles>
+						[<div class="chapo">(#DESCRIPTIF)</div>]
 
-			[<div class="notes"><h2><:notes:></h2>(#NOTES)</div>]
+						[(#REM) Articles issus de la syndication ]
+						<B_articles>
+							<div class="bloc">
+								#ANCRE_PAGINATION
+								<h3 class="titre">Liste des chapitres</h3>
 
-		</div><!-- fin contenu -->
+								<ul class="bloc">
+									<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{age<180}{par date}{inverse}{pagination 5}>
+										<li>
+											<h3 class="spip"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+											[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+											<small>[(#DATE|affdate_court)][, <:par:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+											[<div class="texte">(#DESCRIPTIF|image_reduire{300})
+											<br class="nettoyeur" /></div>]
+										</li>
+									</BOUCLE_articles>
+								</ul>
+								[<p class="pagination">(#PAGINATION)</p>]
+							</div>
+						</B_articles>
 
-		[(#REM) Menu de navigation ]
-		<div id="menu">
-			<INCLURE{fond=inc_menu}{id_syndic}{lang}>
+						[<div class="notes"><h2><:notes:></h2>(#NOTES)</div>]
 
-			[(#REM) Autres sites web ]
-			<B_sites>
-			<div class="bloc">
-				<h3 class="titre"><:sites_web:></h3>
-				<ul>
-					[<li class="pagination">(#PAGINATION)</li>]
-					<BOUCLE_sites(SITES){par nom_site}{pagination 10}>
-					<li><a href="[(#URL_SITE|parametre_url{'lang',#LANG})]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
-					</BOUCLE_sites>
-				</ul>
-			</div>
-			</B_sites>
-		</div><!-- fin navigation -->
+					</div><!-- fin contenu -->
 
+					[(#REM) Menu de navigation ]
+					<div id="menu">
+						<INCLURE{fond=inc_menu}{id_syndic}{lang}>
 
-	</div><!-- fin conteneur -->
+						[(#REM) Autres sites web ]
+						<B_sites>
+							<div class="bloc">
+								<h3 class="titre"><:sites_web:></h3>
+								<ul>
+									[<li class="pagination">(#PAGINATION)</li>]
+									<BOUCLE_sites(SITES){par nom_site}{pagination 10}>
+										<li>
+											<a href="[(#URL_SITE|parametre_url{'lang',#LANG})]"[ class="(#EXPOSE)"]>#NOM_SITE</a>
+										</li>
+									</BOUCLE_sites>
+								</ul>
+							</div>
+						</B_sites>
+					</div><!-- fin navigation -->
 
-		<div class="nettoyeur"></div>
-	[(#REM) Pied de page ]
-	<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+				</div><!-- fin conteneur -->
 
-</div><!-- fin page -->
-</body>
-</html>
+				<div class="nettoyeur"></div>
+				[(#REM) Pied de page ]
+				<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+
+			</div><!-- fin page -->
+		</body>
+	</html>
 </BOUCLE_principale>

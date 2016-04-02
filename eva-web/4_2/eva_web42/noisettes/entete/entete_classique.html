@@ -6,32 +6,32 @@
 <div id="entete">
 	<a name="haut"></a>
 	<ul class="liens">
-		<li class="premier"><a href="[(#URL_PAGE{recherche}|parametre_url{lang,#LANG})]"><:rechercher:></a></li>
-		
-			<BOUCLE_liens(SITES){titre_mot=lien-haut}>
+		<li class="premier">
+			<a href="[(#URL_PAGE{recherche}|parametre_url{lang,#LANG})]"><:rechercher:></a>
+		</li>
+		<BOUCLE_liens(SITES){titre_mot=lien-haut}>
 			[<li>
 				<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut)]">(#NOM_SITE)</a>
 			</li>]			
-			</BOUCLE_liens>		
-
-		<li<?php if ($TitrePage=='plan') {
+		</BOUCLE_liens>		
+		<li <?php if ($TitrePage=='plan') {
 			echo ' class="on"';
-			} ?>><a href="[(#URL_PAGE{plan}|parametre_url{lang,#LANG})]"><:plan_du_site:></a></li>
-	<li><a href="[(#EVAL{_DIR_RESTREINT_ABS}|parametre_url{lang,#LANG})]"><:redaction:></a></li>
-	
-	[(#REM) On stocke le nom de l'auteur actuellement connecte ]
-	<BOUCLE_nom-auteur(AUTEURS) {id_auteur=#SESSION{id_auteur}}>#SET{nom_auteur,#NOM}</BOUCLE_nom-auteur>
-	
-	[(#REM) S'il est connecte, on affiche son nom ]
-	[<li>(#SESSION{id_auteur}|?{' '}) <a href="[(#URL_AUTEUR{#SESSION{id_auteur}}|parametre_url{lang,#LANG})]">#GET{nom_auteur}</a></li>]
+		}?>><a href="[(#URL_PAGE{plan}|parametre_url{lang,#LANG})]"><:plan_du_site:></a></li>
+		<li><a href="[(#EVAL{_DIR_RESTREINT_ABS}|parametre_url{lang,#LANG})]"><:redaction:></a></li>
 
-	[(#REM) Sinon, on affiche "Se connecter" ]
-	[<li>(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{lang,#LANG})]" class='login_modal'><:lien_connecter:></a></li>]
+		[(#REM) On stocke le nom de l'auteur actuellement connecte ]
+		<BOUCLE_nom-auteur(AUTEURS) {id_auteur=#SESSION{id_auteur}}>#SET{nom_auteur,#NOM}</BOUCLE_nom-auteur>
 
-	[(#REM) Affichage de l'ancre ]
-	<li><a href="#bas" ><img src="#EVAL{_DIR_PLUGIN_EVASQUELETTES}images/ancrebas.gif" width="13" height="14" alt="<:page_bas:>" title="<:page_bas:>" /></a></li>
+		[(#REM) S'il est connecte, on affiche son nom ]
+		[<li>(#SESSION{id_auteur}|?{' '}) <a href="[(#URL_AUTEUR{#SESSION{id_auteur}}|parametre_url{lang,#LANG})]">#GET{nom_auteur}</a></li>]
+
+		[(#REM) Sinon, on affiche "Se connecter" ]
+		[<li>(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{lang,#LANG})]" class='login_modal'><:lien_connecter:></a></li>]
+
+		[(#REM) Affichage de l'ancre ]
+		<li><a href="#bas" ><img src="#EVAL{_DIR_PLUGIN_EVASQUELETTES}images/ancrebas.gif" width="13" height="14" alt="<:page_bas:>" title="<:page_bas:>" /></a></li>
 	</ul>
-	
+
 	[<h1><a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]">[(#LOGO_SITE_SPIP||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <span> (#NOM_SITE_SPIP)</span></a></h1>]
 	[(#EVAMENULANGUE|?{' ',''})<INCLURE{fond=noisettes/entete/entete_menu_langue}{env}>]
 	<div class="nettoyeur"></div>

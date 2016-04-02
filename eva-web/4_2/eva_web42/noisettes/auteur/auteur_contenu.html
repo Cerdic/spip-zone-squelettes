@@ -1,45 +1,45 @@
 <BOUCLE_principale(AUTEURS){id_auteur}>
 
-[(#REM)  Presentation de l'auteur ]
-<div class="bloc" id="auteur_contenu">
-	<h3 class="#EDIT{qui} titre">[(#NOM)]</h3>
-			<div id="auteursdates">
-				[<div>(#LOGO_AUTEUR||image_reduire{100,0})</div>]
-				[(#SESSION{id_auteur}|oui) [<a href="(#URL_LOGOUT)"><:deconnecter:></a>]]
-			</div>
-	[<div class="#EDIT{bio} texte">(#BIO)</div>]
-	<div class="nettoyeur"></div>
-</div>				
+	[(#REM)  Presentation de l'auteur ]
+	<div class="bloc" id="auteur_contenu">
+		<h3 class="#EDIT{qui} titre">[(#NOM)]</h3>
+				<div id="auteursdates">
+					[<div>(#LOGO_AUTEUR||image_reduire{100,0})</div>]
+					[(#SESSION{id_auteur}|oui) [<a href="(#URL_LOGOUT)"><:deconnecter:></a>]]
+				</div>
+		[<div class="#EDIT{bio} texte">(#BIO)</div>]
+		<div class="nettoyeur"></div>
+	</div>				
 
-[(#REM)  L'url qu'il a mis dans sa fiche auteur ]
-[<div class="#EDIT{hyperlien} lien">
-	<strong><:voir_en_ligne:></strong>
-	<a href="#URL_SITE">(#NOM_SITE)</a>
-</div>]				
+	[(#REM)  L'url qu'il a mis dans sa fiche auteur ]
+	[<div class="#EDIT{hyperlien} lien">
+		<strong><:voir_en_ligne:></strong>
+		<a href="#URL_SITE">(#NOM_SITE)</a>
+	</div>]				
 
-[(#REM) A afficher si l'auteur concerne est connecte ]
+	[(#REM) A afficher si l'auteur concerne est connecte ]
 
-[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
-	<INCLURE{fond=noisettes/auteur/auteur_derniers_commentaires}{id_auteur}{lang}{ajax}>
-	[(#REM) Messagerie ]
-	[(#CONFIG{plugin}|match{MESSAGERIE}|?{' ',''}) <INCLURE{fond=noisettes/auteur/auteur_envoyer}{id_auteur}{lang}{ajax}>
-	<INCLURE{fond=noisettes/auteur/auteur_messages_recus}{id_auteur}{lang}{ajax}>
-	<INCLURE{fond=noisettes/auteur/auteur_messages_envoyes}{id_auteur}{lang}{ajax}>
-  	]    
-]
+	[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
+		<INCLURE{fond=noisettes/auteur/auteur_derniers_commentaires}{id_auteur}{lang}{ajax}>
+		[(#REM) Messagerie ]
+		[(#CONFIG{plugin}|match{MESSAGERIE}|?{' ',''}) <INCLURE{fond=noisettes/auteur/auteur_envoyer}{id_auteur}{lang}{ajax}>
+			<INCLURE{fond=noisettes/auteur/auteur_messages_recus}{id_auteur}{lang}{ajax}>
+			<INCLURE{fond=noisettes/auteur/auteur_messages_envoyes}{id_auteur}{lang}{ajax}>
+		]
+	]
 
-[(#REM) A afficher si l'auteur concerne n'est pas celui de la fiche ]
-[(#SESSION{id_auteur}|!={#ID_AUTEUR}|oui)
-[(#REM)  Formulaire permettant d'ecrire a cet auteur ]
-<div class="formulaire_spip formulaire_login">
-	#FORMULAIRE_ECRIRE_AUTEUR
-</div>			
-]
+	[(#REM) A afficher si l'auteur concerne n'est pas celui de la fiche ]
+	[(#SESSION{id_auteur}|!={#ID_AUTEUR}|oui)
+		[(#REM)  Formulaire permettant d'ecrire a cet auteur ]
+		<div class="formulaire_spip formulaire_login">
+			#FORMULAIRE_ECRIRE_AUTEUR
+		</div>			
+	]
 
-[(#REM)  Notes de bas de page ]
-[<div class="notes">
-	<h4><:notes:></h4>
-	<div>(#NOTES)</div>
-</div>]
+	[(#REM)  Notes de bas de page ]
+	[<div class="notes">
+		<h4><:notes:></h4>
+		<div>(#NOTES)</div>
+	</div>]
 
 </BOUCLE_principale>

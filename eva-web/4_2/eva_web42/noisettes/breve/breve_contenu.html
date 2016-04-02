@@ -6,39 +6,41 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurimagearticle,0}]
 
 <BOUCLE_principale(BREVES){id_breve}>
-<div class="bloc" id="breve_contenu">
-<div class="titre">
+	<div class="bloc" id="breve_contenu">
+		<div class="titre">
 
-[(#REM) Auteurs et dates]
-<div id="auteursdates">
-<B_auteurs>
-<div><strong><:par:></strong>
-<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
-	<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a></BOUCLE_auteurs></div>
-</B_auteurs>
-[<div><strong><:publie:></strong>
-(#DATE|affdate_jourcourt)</div>]
-</div>
+			[(#REM) Auteurs et dates]
+			<div id="auteursdates">
+				<B_auteurs>
+					<div><strong><:par:></strong>
+						<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+							<a href="[(#URL_AUTEUR|parametre_url{'lang',#LANG})]">#NOM</a>
+						</BOUCLE_auteurs>
+					</div>
+				</B_auteurs>
+				[<div><strong><:publie:></strong>
+					(#DATE|affdate_jourcourt)</div>]
+			</div>
 
-[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
-[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
-[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
-[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
-[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ]
-<div class="nettoyeur"></div>
-</div>
+			[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
+			[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
+			[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
+			[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
+			[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ]
+			<div class="nettoyeur"></div>
+		</div>
 
-[(#REM) chapeau, texte, post-scriptum de l'article ]
-[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{largeurimagearticle},0})</div><div class="nettoyeur"></div>]			
-[<div class="lien"><strong><:voir_en_ligne:> </strong><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		[(#REM) chapeau, texte, post-scriptum de l'article ]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{largeurimagearticle},0})</div><div class="nettoyeur"></div>]			
+		[<div class="lien"><strong><:voir_en_ligne:> </strong><a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
-[(#REM)  Notes de bas de page ]
-[<div class="notes">
-<h4><:notes:></h4>
-<div>(#NOTES)</div>
-</div>]
+		[(#REM)  Notes de bas de page ]
+		[<div class="notes">
+			<h4><:notes:></h4>
+			<div>(#NOTES)</div>
+		</div>]
 
-[(#REM) Inclure le forum ]
-<INCLURE{fond=noisettes/communs/inc_forum}{id_breve}{lang}>
-</div>
+		[(#REM) Inclure le forum ]
+		<INCLURE{fond=noisettes/communs/inc_forum}{id_breve}{lang}>
+	</div>
 </BOUCLE_principale>

@@ -1,4 +1,4 @@
-﻿#CACHE{4*3600}
+#CACHE{4*3600}
 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMINILARGEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,30}]
@@ -10,53 +10,48 @@
 [(#REM) Menu : déroule le niveau (fil d'ariane)]
 <?php
 	$hierarchie = array();
-<BOUCLE_principale(RUBRIQUES){id_rubrique}>
-	<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}{doublons}>
+	<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+		<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}{doublons}>
+			$hierarchie[] = #ID_RUBRIQUE;
+		</BOUCLE_recup_hierarchie>
 		$hierarchie[] = #ID_RUBRIQUE;
-	</BOUCLE_recup_hierarchie>
-	$hierarchie[] = #ID_RUBRIQUE;
-	$le_secteur = #ID_SECTEUR; 
-	$actuelle = #ID_RUBRIQUE;
-</BOUCLE_principale>
+		$le_secteur = #ID_SECTEUR; 
+		$actuelle = #ID_RUBRIQUE;
+	</BOUCLE_principale>
 ?>
-	<B_rubriques>
+<B_rubriques>
 	<ul id="sommaire">
-		
 		<li>
-		<a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]"<?php	
+			<a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]"<?php	
 			if ($TitrePage=='accueil') { echo ' class="on"'; }
-		?>>[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
+			?>>[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
 		</li>
-
 		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}{doublons}{lang}>
-		<li[ class="(#EXPOSE{on,off})"]>
-			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
-		<?php	
-			if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-		?>
-		<B_sous_rubriques>
-		<ul>
-			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{lang}>
-			<li[ class="(#EXPOSE{on,off})"]>
-				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
-		<?php	
-			if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-		?>
-				<BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
-		<?php
-			}
-		?>
-
+			<li [class="(#EXPOSE{on,off})"]>
+				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
+				<?php	
+					if (in_array(#ID_RUBRIQUE, $hierarchie)) {
+				?>
+				<B_sous_rubriques>
+					<ul>
+						<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{lang}>
+							<li [class="(#EXPOSE{on,off})"]>
+								<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
+								<?php	
+									if (in_array(#ID_RUBRIQUE, $hierarchie)) {
+								?>
+								<BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
+									<?php
+										}
+									?>
+							</li>
+						</BOUCLE_sous_rubriques>
+					</ul>
+				</B_sous_rubriques>
+				<?php
+					}
+				?>
 			</li>
-			</BOUCLE_sous_rubriques>
-		</ul>
-		</B_sous_rubriques>
-		<?php
-			}
-		?>
-	
-		</li>
 		</BOUCLE_rubriques>
-		
 	</ul>
-	</B_rubriques>
+</B_rubriques>

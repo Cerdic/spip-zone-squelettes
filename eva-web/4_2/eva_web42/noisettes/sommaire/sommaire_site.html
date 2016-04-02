@@ -1,9 +1,9 @@
 #CACHE{4*3600}
 [(#REM) Liste des sites references]
 <BOUCLE_exclure(SITES){titre_mot IN logo-pied,podcast,logo-bloc,lien-haut,excluredusommaire}{par id_syndic}{doublons} />
-<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
-	<BOUCLE_sites_exclus2 (SITES) {id_rubrique} {doublons} />
-</BOUCLE_rubriques_exclues>
+	<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
+		<BOUCLE_sites_exclus2 (SITES) {id_rubrique} {doublons} />
+	</BOUCLE_rubriques_exclues>
 
 [(#PLUGIN{eva_habillage}|?{#SET{nbre_site_somm,#EVANBRESITESOMM},#SET{nbre_site_somm,5}})]
 
@@ -13,19 +13,19 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <B_sites>
-<div class="bloc" id="sommaire_site">
-#ANCRE_PAGINATION
-<h3 class="titre"><:derniers_sites:></h3>
-<ul>
-<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{pagination #GET{nbre_site_somm}}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	[<a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
-	<em> - (#DATE|affdate_jourcourt)</em>]
-	[(#DESCRIPTIF|textebrut|couper{300})]
-	<div class="nettoyeur"></div>
-	</li>
-</BOUCLE_sites>
-[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
-</ul>
-</div>
+	<div class="bloc" id="sommaire_site">
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:derniers_sites:></h3>
+		<ul>
+			<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{pagination #GET{nbre_site_somm}}>
+				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					[<a href="[(#ID_SYNDIC|generer_url_entite{site}|parametre_url{'lang',#LANG})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+					<em> - (#DATE|affdate_jourcourt)</em>]
+					[(#DESCRIPTIF|textebrut|couper{300})]
+					<div class="nettoyeur"></div>
+				</li>
+			</BOUCLE_sites>
+			[<li class="pagination menupaginationbas">(#PAGINATION{page_precedent_suivant})</li>]
+		</ul>
+	</div>
 </B_sites>
