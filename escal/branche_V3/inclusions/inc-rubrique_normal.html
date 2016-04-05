@@ -1,4 +1,9 @@
-	<div class="cadre-chemin">
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot=pas-au-menu}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+	
+		<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
 	<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
 
@@ -93,10 +98,11 @@
 
 <B_SsRubriques>
 <!-- Afficher les sous-rubriques associées à cette rubrique -->
+	
 <div class="texte-insert">
 <:escal:rubrique_sous_rubriques:>
 </div>
-		<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons}>
+		<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
 			<div class="cadre-sous-rubrique">
                         [(#CONFIG{escal/config/fluxrsssousrub}|=={oui}|oui)
                         <div class="fluxrss-rubrique">
