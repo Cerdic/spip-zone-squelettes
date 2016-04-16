@@ -14,8 +14,28 @@
 		[(#SET{LargeurCadre,[(#GET{Cadre}|largeur)]})]
 		[(#SET{HauteurCadre,[(#GET{Cadre}|hauteur)]})]
 		[(#SET{ImageCadree,
-			[(#LOGO_ARTICLE_NORMAL|image_reduire{#GET{LargeurMasque},0}
-			|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},center}
+			[(#LOGO_ARTICLE_NORMAL
+			)]}
+		)]
+		[(#GET{ImageCadree}|largeur|<={#GET{LargeurMasque}}|ou{
+			[(#GET{ImageCadree}|hauteur|<={#GET{HauteurMasque}})]}|oui)
+				[(#SET{ImageCadree, [(#GET{ImageCadree}
+					|image_recadre{#GET{LargeurMasque}:#GET{HauteurMasque},'+',right,transparent}
+					|image_recadre{#GET{LargeurMasque},#GET{HauteurMasque},right,transparent}
+					)]}
+				)]
+			
+		]
+		[(#GET{ImageCadree}|largeur|>{#GET{LargeurMasque}}|oui)
+			[(#GET{ImageCadree}|hauteur|>{#GET{HauteurMasque}}|oui)
+				[(#SET{ImageCadree, [(#GET{ImageCadree}
+					|image_recadre{#GET{LargeurMasque}:#GET{HauteurMasque},'-',focus,transparent}
+					|image_reduire{#GET{LargeurMasque},#GET{HauteurMasque}}
+					)]}
+				)]
+			]
+		]
+		[(#SET{ImageCadree, [(#GET{ImageCadree}
 			|image_masque{#GET{Masque}}
 			|image_masque{#GET{Cadre},mode=normal}
 			|image_reduire{[(#GET{LargeurCadre,[(#ENV{Largeurcontent_central})]})],0}
