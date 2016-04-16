@@ -107,7 +107,7 @@ function id_groupe($titre) {
 
 //fonction qui permet de créer un groupe de mots clés
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $tables_liees='', $minirezo='oui', $comite='oui', $forum='non') {
-	$id_groupe = id_groupe($groupe);
+	$id_groupe = find_groupe($groupe);
 	spip_log("1. (create_groupe) pret a creer groupe : titre = $groupe. retour de find_groupe = $id_groupe", _LOG_INSTALL);
 	if ($id_groupe == 0) {
 		$id_insert = sql_insertq(
