@@ -34,9 +34,21 @@
 <div class="dessousbreves[ dessousbreves(#ID_RUBRIQUE) ][(#_DessousBreves:COMPTEUR_BOUCLE|alterner{' oddbreves',''})]">
 	<h2 class="#EDIT{titre}">[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_liens,on}|=={on}|?{<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>,[(#TITRE)]})]</h2>
 	[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
-	<B_articles_recents><ul class="listeafficherimages">
+	<B_articles_recents><ul class="listeafficherimages[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui|?{' block'})]">
 	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}{doublons}>
+		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={liste}|oui)
 		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		]
+		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui)
+		[(#SET{logoblock,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_recadre{48,48,focus,transparent})]})]
+		<li>
+			<div class="dessousbreves_ligne clearfix">
+			[<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]><img src="(#GET{logoblock}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|embarque_fichier)" class="logo" alt=""[ width="(#GET{logoblock}|largeur)]"[ height="(#GET{logoblock}|hauteur)]" /></a>]
+			<div class="#EDIT{titre}"><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></div>
+			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+			</div>
+		</li>
+		]
 	</BOUCLE_articles_recents>
 	</ul></B_articles_recents>[(#REM) Pas d'articles ? On tente les sous-rubriques]
 	<B_SsRubriques><ul class="listeafficherimages">

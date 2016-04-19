@@ -6,9 +6,11 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'cfg_affichage_affiche' => 'Afficher',
+	'cfg_affichage_block' => 'Bloc : logo, titre, descriptif',
 	'cfg_affichage_impression' => 'Affichage complet',
 	'cfg_affichage_impression_ex' => 'Affichage d’un lien en haut de page, permettant d’afficher la totalité du contenu de la branche (articles compris) en vue d’une impression',
 	'cfg_affichage_impression_label' => 'Affichage rubrique complète',
+	'cfg_affichage_liste' => 'Liste à puce',
 	'cfg_affichage_masquer' => 'Masquer',
 	'cfg_affichage_nouveautes_ex' => 'Affichage d’un bloc "Quoi de neuf" dans le cartouche de chaque rubrique, listant les nouveaux articles de la branche en cours',
 	'cfg_affichage_nouveautes_label' => 'Affichage des nouveautés par branche',
@@ -80,6 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_debut_contenu' => 'Au début du contenu (flottant en haut à droite)',
 	'cfg_decalage_bas_label' => 'Décalage vers le bas du logo si présent dans l’en-tête (en pixel)',
 	'cfg_decalage_droite_label' => 'Décalage vers la droite du logo si présent dans l’en-tête (en pixel)',
+	'cfg_dessousbreves_communiquant_blocs' => 'Apparence des items de la zone "DessousBreves" en mode communiquant',
 	'cfg_dessousbreves_communiquant_liens_label' => 'Liens sur les titres des rubriques "DessousBreves" en mode communiquant',
 	'cfg_em' => 'en <b>em</b>',
 	'cfg_entete_page' => 'En-tête de page',
