@@ -238,6 +238,24 @@ function shema_escal(){
                 'type'=>'affichage'
             ),
             array(
+                'titre'=>'RubriqueOnglet3',
+
+                'descriptif'=>'pour choisir une troisi&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'RubriqueOnglet4',
+
+                'descriptif'=>'pour choisir une quatri&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'RubriqueOnglet5',
+
+                'descriptif'=>'pour choisir une cinqui&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'type'=>'affichage'
+            ),
+            array(
                 'titre'=>'site-exclu',
                 'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)',
                 'type'=>'affichage'

@@ -1,0 +1,47 @@
+#SET{nbrpagrubaccueil,#CONFIG{escal/config/pagrubaccueil,5}}
+
+<BOUCLE_rubrique_accueil(RUBRIQUES){lang}{titre_mot=RubriqueOnglet4}{par date}{inverse}{0,1}>
+
+[(#CONFIG{escal/config/descriptifrubaccueil}|=={non}|non)
+<div class="descriptif-rubrique-accueil #EDIT{descriptif}">[(#DESCRIPTIF)]</div>
+]
+[(#CONFIG{escal/config/texterubaccueil}|=={non}|non)
+<div class="descriptif-rubrique-accueil #EDIT{descriptif}">[(#TEXTE)]</div>
+]
+
+<B_articles_rubs>
+<!-- affichage des articles de la rubrique -->
+<!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
+
+<p class="pagination" style="align:right; margin-top:0; padding:10px;">#PAGINATION</p>
+
+	<BOUCLE_articles_rubs(ARTICLES){branche}{par date}{inverse}{pagination #GET{nbrpagrubaccueil}}>
+		<div class="cadre-rubrique-accueil">
+			<div class="titre-articles-rubrique">
+        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{25})]
+        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+      </div>
+			<div class="introduction-articles-rubrique">
+      [(#INTRODUCTION|supprimer_tags|couper{150})]
+      <br/>
+      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
+      <br/>
+      </div>
+			<div class="auteur-articles-rubrique">
+        [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
+		    <BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurrubaccueil}|=={non}|non}>
+		    </BOUCLE_test>
+	       <br />[(#LANG|=={ja}|non)<:par_auteur:>]
+			   <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+			   <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+	       [(#LANG|=={ja}|oui)<:par_auteur:>]
+         </B_test>
+      </div>
+		</div>
+	</BOUCLE_articles_rubs>
+
+<p class="pagination" style="align:right; padding:10px;">#PAGINATION</p>
+
+</B_articles_rubs>
+
+</BOUCLE_rubrique_accueil>
