@@ -113,8 +113,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'descriptif_site_vide'=>'Le descriptif de votre site est actuellement vide.',
 
 // e
-    'evenement_associe'=>'Un événement associé',
-    'evenements_associes'=>'@nb@ événements associés',
+    'evenement_associe'=>'Un événement à venir',
+    'evenements_associes'=>'@nb@ événements à venir',
     'evenement_bien_inscrit'=>'Inscription prise en compte !',
     'evenement_etre_identifie'=>'Il faut être identifié sur le site pour accéder au formulaire d\'inscription.',
     'evenement_liste_inscrits'=>'NB : Seuls les administrateurs voient ce lien vers la liste détaillée des inscrits',
