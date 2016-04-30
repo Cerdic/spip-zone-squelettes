@@ -1,56 +1,59 @@
-<article class="content-principal">
-  <header>
-    <h2><:poster_message:></h1>
-  </header>
-
-  <section class="resume articles">
-    <h3><:en_reponse:></h2>
-
-    <BOUCLE_forum_parent(FORUMS) {id_forum}>
-      <article class="comment comment-message">
-        <header class="comment-meta">
-          <INCLURE{fond=inclure/inc-header-forum, env, id_forum} />
+<B_forum_parent>
+    <article class="content-principal">
+        <header>
+            <h2><:poster_message:></h1>
         </header>
-        <section class="comment-content">
-          <INCLURE{fond=inclure/inc-content-forum, env, id_forum, cacher_repondre=oui} />
+
+        <section class="resume articles">
+            <h3><:en_reponse:></h2>
+
+                <BOUCLE_forum_parent(FORUMS) {id_forum}>
+                    <article class="comment comment-message">
+                        <header class="comment-meta">
+                            <INCLURE{fond=inclure/inc-header-forum, env, id_forum} />
+                        </header>
+                        <section class="comment-content">
+                            <INCLURE{fond=inclure/inc-content-forum, env, id_forum, cacher_repondre=oui} />
+                        </section>
+                    </article>
+                </BOUCLE_forum_parent>
+
+                <BOUCLE_article(ARTICLES) {id_article}>
+                    <ul class="liste-items">
+                        #INCLURE{fond=inclure/article-resume,id_article}
+                    </ul>
+                </BOUCLE_article>
+
+                <BOUCLE_breve(BREVES) {id_breve}>
+                    <article>
+                        [(#LOGO_BREVE|image_reduire{150,100})]
+                        <h3 class="h3"><a href="#URL_BREVE">#TITRE</a></h3>
+                        <div class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]</div>
+                        [<div class="introduction">(#INTRODUCTION)</div>]
+                    </article>
+                </BOUCLE_breve>
+
+                <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+                    <article>
+                        <h3 class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+                        [<div class="texte">(#TEXTE)</div>]
+                    </article>
+                </BOUCLE_rubrique>
+
+                <BOUCLE_syndic(SITES) {id_syndic}>
+                    <article>
+                        <h3 class="h3"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h3>
+                        [<div class="texte">(#DESCRIPTIF)</div>]
+                    </article>
+                </BOUCLE_syndic>
+
+                <//B_forum_parent>
+
         </section>
-      </article>
-    </BOUCLE_forum_parent>
 
-    <BOUCLE_article(ARTICLES) {id_article}>
-      <ul class="liste-items">
-        #INCLURE{fond=inclure/article-resume,id_article}
-      </ul>
-    </BOUCLE_article>
+        #FORMULAIRE_FORUM
+    </article>
 
-    <BOUCLE_breve(BREVES) {id_breve}>
-      <article>
-        [(#LOGO_BREVE|image_reduire{150,100})]
-        <h3 class="h3"><a href="#URL_BREVE">#TITRE</a></h3>
-        <div class="info-publi">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]</div>
-        [<div class="introduction">(#INTRODUCTION)</div>]
-      </article>
-    </BOUCLE_breve>
+    <INCLURE{fond=inclure/reveal-close, env} />
 
-    <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
-      <article>
-        <h3 class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
-        [<div class="texte">(#TEXTE)</div>]
-      </article>
-    </BOUCLE_rubrique>
-
-    <BOUCLE_syndic(SITES) {id_syndic}>
-      <article>
-        <h3 class="h3"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h3>
-        [<div class="texte">(#DESCRIPTIF)</div>]
-      </article>
-    </BOUCLE_syndic>
-
-    <//B_forum_parent>
-
-  </section>
-
-  #FORMULAIRE_FORUM
-</article>
-
-<INCLURE{fond=inclure/reveal-close, env} />
+</B_forum_parent>
