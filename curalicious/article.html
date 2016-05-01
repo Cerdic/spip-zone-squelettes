@@ -36,7 +36,7 @@
 				[(#LOGO_ARTICLE_RUBRIQUE|image_recadre{16:9,'-','center top'}|sinon{#GET{logo_document}}|image_recadre{16:9,'-','center top'})]
 				#TITRE</h1>
 				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
-				<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></p>
+				<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr> – #LESAUTEURS</p>
 				[(#REM) Inclure le modele des liens de traductions ]
 				#MODELE{article_traductions}
 			</div>
@@ -61,32 +61,14 @@
 			<INCLURE{fond=inclure/forum,id_article} />
 			[<h2 class="forum-titre"><:forum:form_pet_message_commentaire:></h2>
 			(#FORMULAIRE_FORUM)]
+
+
 	
 		</div><!--.content-->
+			<INCLURE{fond=inclure/listemots,env,ajax} />
 		</div><!--.wrapper-->
 	
 	
-		<div class="aside">
-		
-			<INCLURE{fond=inclure/navsub, id_rubrique} />
-			#FORMULAIRE_RECHERCHE
-	
-			[(#REM) Articles dans la meme rubrique ] 
-			<B_articles_rubrique>
-			<div class="menu">
-				<h2><:meme_rubrique:></h2>
-				<ul>
-					<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!par date} {0,10}>
-					<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
-					</BOUCLE_articles_rubrique>
-				</ul>
-			</div>
-			</B_articles_rubrique>
-	
-			[(#REM) Menu de navigation mots-cles ]
-			#MODELE{article_mots}
-			
-		</div><!--.aside-->
 	</div><!--.main-->
 
 	<INCLURE{fond=inclure/footer,self=#SELF} />
