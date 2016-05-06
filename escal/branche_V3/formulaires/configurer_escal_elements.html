@@ -28,8 +28,17 @@
                             <br /> <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_logosite" value="logosite"
                             [(#ENV{#GET{name}}|=={logosite}|oui)checked="checked"] /><label for="#GET{name}_logosite">à partir du logo de votre site<br />il sera automatiquement transformé (taille, format) par Escal </label>
-
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_faviconlibre" value="faviconlibre"
+                            [(#ENV{#GET{name}}|=={faviconlibre}|oui)checked="checked"] /><label for="#GET{name}_faviconlibre">à partir d'un fichier image de votre choix (gif, png, jpg ...) mis dans le dossier "squelettes"<br />le nom et l'extension de ce fichier sont à préciser ci-dessous</label>
                     </span>
+            #SET{name,titrefavicon}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+              
                     </div>
              </li>
 
@@ -69,24 +78,40 @@
 									</div>
              </li>
              
-<!-- ombres laterales -->
+<!-- bord latéral des pages -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Ombres latérales des pages</strong></label>
+                    <label><strong>bord latéral des pages</strong></label>
                     <br />
                     <div class="explication">
             #SET{name,ombres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_gris" value="gris"
-                            [(#ENV{#GET{name}}|=={gris}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_gris"><img src="#CHEMIN{images/ombregris.png}" alt="" /></label>
-
-                            <input type="radio" name="#GET{name}" id="#GET{name}_blanc" value="blanc"
-                            [(#ENV{#GET{name}}|=={blanc}|oui)checked="checked"] /><label for="#GET{name}_blanc"><img src="#CHEMIN{images/ombreblanc.png}" alt="" /></label>
-
+                    ]<span class="choix">
+                            
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non">Aucune</label>
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] />
+                            <label for="#GET{name}_non">Non</label>
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] />
+                            <label for="#GET{name}_oui">Oui</label>
                     </span>
+                    <br /><br /><br />
+			#SET{name,couleurombre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Couleur de l'ombre
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+                    <input type="texte"  class="palette" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]"  /> 
+                    <br /><br />  
+			#SET{name,decalombre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Décalage de l'ombre
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+                    <input type="texte" style="width: 30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />px
                     <br /><br />
+			#SET{name,degradeombre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Force du dégradé
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+                    <input type="texte" style="width: 30px"  name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />px   
+                    <br /><br />
+                    NB : Indiquer 1 et 0 pour avoir un trait sans ombre                                  
                     </div>
              </li>
 
@@ -130,7 +155,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />
+                    <div class="nettoyeur"></div>
                     </div>
              </li>
              
@@ -155,26 +180,10 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_coldroite">Nulle part</label>
                      </span>
-            <br /><br /><br /><br /><br />
+            <div class="nettoyeur"></div>
             </div>
             </li>
-<!-- bord des cadres lateraux -->
-            <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><strong>Cadres latéraux</strong></label>
-                    <br />
-            <div class="explication">
-            #SET{name,bordcadres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Bord des cadres présents
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-            </div>
-            </li>
 
     </ul>
 

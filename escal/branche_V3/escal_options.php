@@ -15,9 +15,10 @@ function header_prive_perso($flux) {
 // Librement inspiré du squellete Sarkaspip
 if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 'accueil
-|G&eacute;n&eacute;ralit&eacute;s!meta:layout:elements:bandeau:menu:multilinguisme:pied
-|La page d\'accueil!sommaire_corps:sommaire_colonnes:sommaire_noisettes
-|Les pages internes!rubrique:article:contact:pages_noisettes:forumsite
+|G&eacute;n&eacute;ralit&eacute;s!meta:layout:elements:bandeau:menuh:multilinguisme:pied
+|Colonne principale!sommaire_principal:rubrique_principal:article_principal:contact_principal:forumsite_principal
+|Choix des blocs lat&eacute;raux!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
+|Param&eacute;trage des blocs lat&eacute;raux!deplier_replier:titre_contenu
 |Un peu de style!fonds:textes:bords:arrondis
 |Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement
 ');

@@ -1,0 +1,127 @@
+
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configarticle.png}|balise_img{'',cadre-icone})]La page article</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+<legend><strong>Colonne principale</strong></legend>
+
+     <ul>
+<!-- Taille du logo -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,taillelogoart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Taille maxi du logo des articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]" /> px
+                    </span>
+                    </div>
+             </li>
+
+<!-- Date de l'article -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            Affichage des dates de publication et de modification
+             #SET{name,dateart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+            </div>
+            </li>
+<!-- Auteur de l'article -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            Affichage de l'auteur de l'article
+             #SET{name,auteurart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+            </div>
+            </li>
+
+<!-- Largeur des images -->
+            <div class="explication">
+            Vous pouvez définir ici la largeur maximum des images dans vos articles. <br /> 
+            Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page, ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page
+            </div>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">            
+            <div class="explication">
+              #SET{name,largeurimage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Largeur maximum des images :
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},400})]"  /> px
+                    </span>
+                    <div class="nettoyeur"></div>
+              #SET{name,largeurimagepleinepage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},850})]"  /> px
+                    </span>                                    
+            </div>
+            </li>
+<legend><strong>Réponses des forums d'articles</strong></legend>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            #SET{name,togglereponsearticle}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    N'afficher que le premier message de chaque fil de discussion, les réponses étant dépliables
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
+            </div>
+            </li>
+            
+<legend><strong>Portfolio</strong></legend>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            #SET{name,portfolio}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher le portfolio (doublon avec le bloc "A télécharger")
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div><br />
+            </div>
+            </li>
+     </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <div class="nettoyeur"></div>
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>  

@@ -123,6 +123,11 @@ function shema_escal(){
                 'type'=>'affichage'
             ),
             array(
+                'titre'=>'articles-de-rubrique',
+                'descriptif'=>'pour choisir la rubrique dont les articles seront affich&eacute;s dans la noisette "Articles de rubrique"',
+                'type'=>'affichage'
+            ),
+            array(
                 'titre'=>'article-libre1',
                 'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 1"',
                 'type'=>'affichage'
@@ -175,6 +180,11 @@ function shema_escal(){
             array(
                 'titre'=>'forum',
                 'descriptif'=>'pour choisir le secteur qui sera utilis&eacute; pour le forum du site',
+                'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'invisible',
+                'descriptif'=>'pour cacher une rubrique et ses sous-rubriques de tous les menus et du plan du site',
                 'type'=>'affichage'
             ),
             array(
