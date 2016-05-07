@@ -17,5 +17,3 @@ Aes eo da staliañ ha da implij, dre ma ’z eo bet graet evit an holl.
 Evit ar  vistri-gwiad, hag e vefent o kregiñ gantañ, ez eo aes personelaat anezhañ dre an etrefas a zo e-barzh tachenn brevez SPIP (layout, kraoñ, liv, furmat pajennoù...).',
 	'sarkaspip_slogan' => 'Skeledenn hollek hag aes da gefluniañ'
 );
-
-?>

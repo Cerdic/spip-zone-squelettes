@@ -14,5 +14,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	Destiné à tout public, il est simple d’installation et d’utilisation. Pour les webmestres même débutants, il reste facile à personnaliser au travers de son interface intégrée à l’espace privé de SPIP (layout, noisettes, couleurs, format des pages...).',
 	'sarkaspip_slogan' => 'Squelette généraliste et hautement configurable'
 );
-
-?>
