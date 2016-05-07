@@ -96,5 +96,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Z
 	'zvide' => 'Zpip-vide'
 );
-
-?>
