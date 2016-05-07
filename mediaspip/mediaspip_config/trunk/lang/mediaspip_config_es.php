@@ -107,5 +107,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_plugins_conseilles' => 'Plugins adicionalies recomendados',
 	'titre_site_background' => 'Imagen de fondo'
 );
-
-?>
