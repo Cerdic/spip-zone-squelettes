@@ -393,5 +393,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_sommaire_une' => 'À la une',
 	'titre_syndication' => 'Syndication'
 );
-
-?>
