@@ -14,5 +14,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mediaspip_init_nom' => 'MediaSPIP Inicialización',
 	'mediaspip_init_slogan' => 'Inicialización de los sitios MediaSPIP'
 );
-
-?>
