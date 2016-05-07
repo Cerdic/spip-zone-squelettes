@@ -164,5 +164,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voir_capture' => 'Zobraziť snímku obrazovky',
 	'votre_commentaire' => 'Váš komentár'
 );
-
-?>

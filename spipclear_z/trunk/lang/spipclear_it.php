@@ -125,5 +125,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// V
 	'voir_capture' => 'Afficher la capture d’écran' # MODIF
 );
-
-?>

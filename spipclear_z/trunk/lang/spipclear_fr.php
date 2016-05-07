@@ -162,5 +162,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voir_capture' => 'Afficher la capture d’écran',
 	'votre_commentaire' => 'Votre commentaire'
 );
-
-?>
