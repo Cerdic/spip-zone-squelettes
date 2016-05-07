@@ -344,5 +344,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Z
 	'zard' => 'el bucle "atzar"'
 );
-
-?>
