@@ -30,5 +30,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_rubrique_medias' => 'Medios',
 	'titre_rubrique_sites' => 'Sitios'
 );
-
-?>
