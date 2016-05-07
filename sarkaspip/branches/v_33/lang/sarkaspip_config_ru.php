@@ -857,5 +857,3 @@ bg_hover@lbl_hi_suffixe@из папки images/ и с расширением gif
 	'titre_debug_env' => 'Переменные окружения',
 	'titre_debug_meta' => 'Переменные конфигурации « @meta@ »'
 );
-
-?>

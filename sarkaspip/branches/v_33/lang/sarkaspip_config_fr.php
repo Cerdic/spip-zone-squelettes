@@ -737,5 +737,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_debug_env' => 'Variables d’environnement',
 	'titre_debug_meta' => 'Variables de configuration « @meta@ »'
 );
-
-?>
