@@ -13,5 +13,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mediaspip_core_description' => 'Funciones y esqueletos principales de MediaSPIP',
 	'mediaspip_core_slogan' => 'Funciones y esqueletos principales de MediaSPIP'
 );
-
-?>
