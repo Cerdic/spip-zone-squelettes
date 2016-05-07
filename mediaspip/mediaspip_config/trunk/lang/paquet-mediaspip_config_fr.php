@@ -13,5 +13,3 @@ _ Permet d’avoir une partie de configuration publique.',
 	'mediaspip_config_nom' => 'MediaSPIP Configuration',
 	'mediaspip_config_slogan' => 'Configurer son MediaSPIP'
 );
-
-?>

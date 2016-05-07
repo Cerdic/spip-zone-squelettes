@@ -15,5 +15,3 @@ _ Allow to configure the website in the public area.',
 	'mediaspip_config_nom' => 'MediaSPIP Setup',
 	'mediaspip_config_slogan' => 'Setup our MediaSPIP'
 );
-
-?>

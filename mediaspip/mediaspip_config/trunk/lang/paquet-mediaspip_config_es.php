@@ -15,5 +15,3 @@ _ Permite tener una parte de configuración pública.',
 	'mediaspip_config_nom' => 'MediaSPIP Configuración',
 	'mediaspip_config_slogan' => 'Configurar sonido MediaSPIP'
 );
-
-?>
