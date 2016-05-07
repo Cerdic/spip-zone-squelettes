@@ -208,5 +208,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_week' => 'Týždeň',
 	'wdcalendar_what' => 'Predmet'
 );
-
-?>

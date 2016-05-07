@@ -147,5 +147,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirle' => 'Див. дату ...',
 	'voirsitespar' => 'Список сайтів з'
 );
-
-?>

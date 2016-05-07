@@ -209,5 +209,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_week' => 'Week',
 	'wdcalendar_what' => 'Subject'
 );
-
-?>

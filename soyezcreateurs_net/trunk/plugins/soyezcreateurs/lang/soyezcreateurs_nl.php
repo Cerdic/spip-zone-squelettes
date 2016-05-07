@@ -121,5 +121,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirle' => 'Kijk op',
 	'voirsitespar' => 'Zie de websites met'
 );
-
-?>

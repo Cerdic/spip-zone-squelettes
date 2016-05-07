@@ -12,5 +12,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'recherche_value' => 'Buscar ?'
 );
-
-?>
