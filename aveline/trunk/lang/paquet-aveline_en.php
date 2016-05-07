@@ -13,5 +13,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aveline_description' => 'Collection of hazelnuts highly configurable and compatible with Z themes.',
 	'aveline_slogan' => 'Collection of hazelnuts compatible with Z themes.'
 );
-
-?>

@@ -11,5 +11,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aveline_description' => 'Collection de noisettes hautement paramétrables et compatibles avec les thèmes Z.',
 	'aveline_slogan' => 'Collection de noisettes compatibles Z'
 );
-
-?>
