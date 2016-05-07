@@ -75,5 +75,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_page_telechargements' => 'Downloads',
 	'toutes_versions_spip' => 'All versions'
 );
-
-?>
