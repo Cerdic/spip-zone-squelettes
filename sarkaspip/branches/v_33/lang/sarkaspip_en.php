@@ -172,5 +172,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'web_france' => 'French Wide Web',
 	'web_monde' => 'World Wide Web'
 );
-
-?>

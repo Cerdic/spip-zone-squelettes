@@ -374,5 +374,3 @@ Ret eo deoc’h, mar plij, en em gevreañ da gentañ, en ur ober gant an furmskr
 	'web_france' => 'Web galleger',
 	'web_monde' => 'Web bedel'
 );
-
-?>
