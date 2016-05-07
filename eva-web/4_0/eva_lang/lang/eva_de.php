@@ -211,5 +211,3 @@ und basiert auf dem Programm  <a href="http://www.spip.net/">SPIP</a>.</p>
 	// Z
 	'zone' => 'Geschützte Zone'
 );
-
-?>

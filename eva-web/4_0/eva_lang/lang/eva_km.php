@@ -147,5 +147,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Z
 	'zone' => 'តំបន់បានការពារ'
 );
-
-?>

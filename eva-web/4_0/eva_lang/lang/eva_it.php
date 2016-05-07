@@ -214,5 +214,3 @@ corrispondeva a un progetto di portale d’Intranet istituzionalem installato su
 	// Z
 	'zone' => 'Zona protetta'
 );
-
-?>

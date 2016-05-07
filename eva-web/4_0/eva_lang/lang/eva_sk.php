@@ -214,5 +214,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Z
 	'zone' => 'chránená zóna'
 );
-
-?>
