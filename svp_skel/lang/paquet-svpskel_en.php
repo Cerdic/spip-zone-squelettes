@@ -16,5 +16,3 @@ Its purpose is primarily to allow easy verification of all information gathered 
 	'svpskel_nom' => 'SVP templates',
 	'svpskel_slogan' => 'Set of Z templates for SVP'
 );
-
-?>

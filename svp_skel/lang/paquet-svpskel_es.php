@@ -16,5 +16,3 @@ Su objetivo es ante todo permitir una verificación fácil de todas las informac
 	'svpskel_nom' => 'SVP Esqueletos',
 	'svpskel_slogan' => 'Juego de esqueletos Z para SVP'
 );
-
-?>

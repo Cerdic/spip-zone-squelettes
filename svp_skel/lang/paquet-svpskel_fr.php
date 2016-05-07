@@ -14,5 +14,3 @@ Son but est avant tout de permettre une vérification aisée de toutes les infor
 	'svpskel_nom' => 'SVP Squelettes',
 	'svpskel_slogan' => 'Jeu de squelettes Z pour SVP'
 );
-
-?>
