@@ -13,5 +13,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'zvide_description' => 'Un esqueleto Z cuyo  conjunto de contenidos son gestionados con las  noisettes que se pueden configurar con el noiZetier. Este esqueleto se utiliza pues conjuntamente con el noiZetier y  una colección de noisettes.',
 	'zvide_slogan' => 'Esqueleto de Z vacio de contenido a rellenar con  noisettes (dejo la palabra original del francés  noisettes)'
 );
-
-?>

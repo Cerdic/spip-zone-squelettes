@@ -12,5 +12,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Z
 	'zvide_slogan' => 'Šablóna Z vide, ktorú treba naplniť orieškami'
 );
-
-?>
