@@ -138,5 +138,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voir' => 'See',
 	'voir_tous' => 'See all'
 );
-
-?>
