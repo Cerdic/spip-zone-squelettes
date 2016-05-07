@@ -542,5 +542,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'zbug_erreur_critere' => 'Erreur dans le critère @critere@.',
 	'zbug_tri_sans_critere' => 'Balise #TRI sans critère de tri dans la boucle'
 );
-
-?>

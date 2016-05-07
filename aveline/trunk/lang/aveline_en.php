@@ -546,5 +546,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'zbug_erreur_critere' => 'Error in the criterion @critere@.',
 	'zbug_tri_sans_critere' => '#TRI tag without sorting criteria in the loop'
 );
-
-?>

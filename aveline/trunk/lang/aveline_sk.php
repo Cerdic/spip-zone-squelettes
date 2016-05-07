@@ -537,5 +537,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'zbug_erreur_critere' => 'Chyba v kritériu @critere@.',
 	'zbug_tri_sans_critere' => 'Tag #TRI bez kritéria triedenia v cykle'
 );
-
-?>

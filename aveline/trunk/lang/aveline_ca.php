@@ -455,5 +455,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-syndic_articles' => 'Articles sindicats d’aquest lloc',
 	'nom_titre_descriptif_site' => 'Títol i descripció del lloc'
 );
-
-?>
