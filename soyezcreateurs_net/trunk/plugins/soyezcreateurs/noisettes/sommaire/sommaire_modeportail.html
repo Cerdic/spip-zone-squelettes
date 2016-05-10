@@ -72,8 +72,8 @@
 <h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
 <div class="fond">
 <ul class="syndic listeafficherimages">
-<BOUCLE_sites(SITES){!par date}{0,6}{!titre_mot=ReseauxSociaux}>
-	<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] class="spip_out">[<img class="logo_modenews" src="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|embarque_fichier)"[ width="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|hauteur)"] alt="" />][(#NOM_SITE)]</a></li>
+<BOUCLE_sites(SITES){!par date}{0,(#CONFIG{soyezcreateurs/nombres_sitesaccueil,6})}{!titre_mot=ReseauxSociaux}>
+	<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{nom_site}"><a href="#INCLURE{fond=noisettes/menus/site_lien_direct,id_syndic=#ID_SYNDIC}" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] class="spip_out">[<img class="logo_modenews" src="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|embarque_fichier)"[ width="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|largeur)"][ height="(#LOGO_SITE_NORMAL|sinon{#LOGO_SITE}|image_reduire{48,48}|hauteur)"] alt="" />][(#NOM_SITE)]</a></li>
 </BOUCLE_sites>
 </ul>
 </div>
@@ -84,7 +84,7 @@
 	<h2 class="menu-titre"><:nouveautes_web:></h2>
 <div class="fond">
 	<ul>
-	<BOUCLE_syndic(SYNDIC_ARTICLES) {si #CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}} {age<180} {!par date} {0,6} {!titre_mot=ReseauxSociaux}>
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {si #CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}} {age<180} {!par date} {0,(#CONFIG{soyezcreateurs/nombres_rssaccueil,6})} {!titre_mot=ReseauxSociaux}>
 		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[(#DATE|affdate_court) &ndash; ]<a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
 	</BOUCLE_syndic>
 	</ul>

@@ -241,6 +241,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rainette_ville' => 'Code Ville (Météo)',
 	'cfg_realisation' => 'Réalisation',
 	'cfg_redirection_ancien_site' => 'Redirection vers l’ancien site',
+	'cfg_rssaccueil_label' => 'Nombre RSS en page d\'accueil',
+	'cfg_rssaccueil_label_ex' => 'Nombre de syndications affichées par flux RSS en page d\'accueil',
 	'cfg_rss_label' => 'Nombre RSS',
 	'cfg_rss_label_ex' => 'Nombre de syndications affichées par flux RSS dans la navigation secondaire',
 	'cfg_scolaire' => 'Scolaire (de septembre à décembre de l’année suivante)',
@@ -301,7 +303,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_contenu_droit' => 'Droite',
 	'cfg_contenu_bas' => 'Bas',
 	'cfg_affichage_zone_underedito' => 'Affichage en dessous de l\'Édito',
-	'cfg_nombres_dessousbreves_label' => 'Nombre d\'items affichés dans les DessousBreves'
+	'cfg_nombres_dessousbreves_label' => 'Nombre d\'items affichés dans les DessousBreves',
+	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d\'accueil'
 	
 
 );
