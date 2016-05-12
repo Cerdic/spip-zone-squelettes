@@ -872,3 +872,15 @@ function mini_html($texte) {
 	$texte = preg_replace(",\n+,", "\n", $texte);
 	return $texte;
 }
+
+// Permet de recadrer une image en la centrant sur son focus (plugin Centre Image)
+function focusimage($img, $largeur, $hauteur, $position = 'center') {
+	if ((largeur($img) <= $largeur) AND (hauteur($img) <= $hauteur)) {
+		$img = image_recadre($img, "$largeur:$hauteur", '+', $position, 'transparent');
+		$img = image_recadre($img, $largeur, $hauteur, $position, 'transparent');
+	} else  {
+		$img = image_recadre($img, "$largeur:$hauteur", '-', 'focus', 'transparent');
+		$img = image_reduire($img, $largeur, $hauteur, $position, 'transparent');
+	}
+	return $img;
+}

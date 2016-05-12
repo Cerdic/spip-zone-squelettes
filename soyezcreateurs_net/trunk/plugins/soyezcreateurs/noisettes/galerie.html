@@ -2,19 +2,10 @@
 	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
 <B_imgs>
 <div id="galerie" class="surlignable">
-<BOUCLE_afficher_document(DOCUMENTS) {id_document}>
-<div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT|couleur_extraire); color: #[(#LOGO_DOCUMENT|couleur_extraire|couleur_inverser|couleur_extreme)];"]>
-	[<h2[ style="background-color: #(#LOGO_DOCUMENT|couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT|couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"] class="#EDIT{titre}">(#TITRE)</h2>]
-<dl>
-	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:soyezcreateurs:voirimage:> : [(#TITRE|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])">[(#SET{limage,[(#FICHIER|copie_locale|image_reduire{[(#CONFIG{soyezcreateurs_layout/largeurconteneur,960}|moins{#CONFIG{soyezcreateurs_layout/largeurmenugauche,180}}|moins{#CONFIG{soyezcreateurs_layout/largeurmenudroit,180}}|moins{150})],0})]})]<img class="galleriebig" src="[(#GET{limage}|extraire_attribut{src})]" width='[(#GET{limage}|largeur)]' height='[(#GET{limage}|hauteur)]' alt="[(#TITRE|attribut_html)]" /></a></dt>
-	[<dd class="#EDIT{descriptif}">(#DESCRIPTIF)</dd>]
-</dl>
-</div>
-</BOUCLE_afficher_document>
-<div id="documents_portfolio">
-<BOUCLE_imgs(DOCUMENTS){id_article?}{id_rubrique?}{mode=document}{par num titre}{!par date}{extension IN png,jpg,gif}{vu=non}>[(#SET{grandeversion,[(#FICHIER|copie_locale|image_reduire{1200,0}|image_masque{#CHEMIN{images/copyright_masque.png}}|image_aplatir{jpg,[(#GET{c_container_bk}|couleur_inverserluminosite{1})],80})]})][(#SET{lavignette,[(#FICHIER|copie_locale|image_reduire{60,60}|image_recadre{60,60,center,[(#GET{c_container_bk}|couleur_inverserluminosite{1})]}|image_aplatir{jpg,[(#GET{c_container_bk}|couleur_inverserluminosite{1})]})]})][(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',[(#PLUGIN{mediabox}|?{<a class="mediabox" href="[(#GET{grandeversion}|extraire_attribut{src})]" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,<a class="ajax" href="[(#ARTICLE_URL|parametre_url{id_document,#ID_DOCUMENT})]#document_actif">})]})]<img src="[(#GET{lavignette}|extraire_attribut{src})]"  width="[(#GET{lavignette}|largeur)]" height="[(#GET{lavignette}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
-</BOUCLE_imgs>
-</div>
+	<div id="documents_portfolio">
+	<BOUCLE_imgs(DOCUMENTS){id_article?}{id_rubrique?}{mode=document}{par num titre}{!par date}{extension IN png,jpg,gif}{vu=non}>[(#SET{grandeversion,[(#FICHIER|copie_locale|image_reduire{1600,0}|image_masque{#CHEMIN{images/copyright_masque.png}})]})][(#SET{lavignette,[(#FICHIER|copie_locale|focusimage{110,110})]})]<a class="mediabox" href="[(#GET{grandeversion}|extraire_attribut{src})]" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal"><img src="[(#GET{lavignette}|extraire_attribut{src})]"  width="[(#GET{lavignette}|largeur)]" height="[(#GET{lavignette}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" /></a>
+	</BOUCLE_imgs>
+	</div>
 </div>
 </B_imgs>
 #FILTRE{mini_html}
