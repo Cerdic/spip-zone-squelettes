@@ -3,7 +3,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function escal_porte_plume_barre_pre_charger($barres){
 	$barre = &$barres['edition'];
 
-	$barre->cacher('stroke_through');
+
 
 	$module_barre = "barre_outils";
 	if (intval($GLOBALS['spip_version_branche'])>2)
@@ -11,6 +11,8 @@ function escal_porte_plume_barre_pre_charger($barres){
 	
 
 	// Ajouts Escal
+				
+	
 	$barre->ajouterApres('grpCaracteres', array(
                 "id"          => 'ajouts_escal',
 				"name"        => 'utiliser un outil d\'Escal',
@@ -69,8 +71,16 @@ function escal_porte_plume_barre_pre_charger($barres){
 					),
 				),
    ));
-	
-	
+   
+	$barre->ajouterApres('lowercase', array(
+					// Fleche droite
+						"id" => 'arrow',
+						"name" => 'fleche',
+						"className" => "outil_fleche",
+						"replaceWith" => "&rarr;",
+						"display" => true,
+	));	
+		
 	return $barres;
 }
 
@@ -82,6 +92,8 @@ function escal_porte_plume_lien_classe_vers_icone($flux){
             'outil_escal_avertissement' => array('avertissement.png','0'),
             'outil_escal_info' => array('info.png','0'),
             'outil_escal_centrer' => array('centrer.png','0'),
+
+        'outil_fleche' => array('fleche.png','0'),
 
 	));
 }
