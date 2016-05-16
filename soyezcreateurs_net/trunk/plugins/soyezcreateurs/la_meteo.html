@@ -1,5 +1,6 @@
 #CACHE{3600}
-#SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0076}, ville}}
+#SET{service, #ENV{service, wunderground}}
+#SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0076}, ville, #GET{service}}}
 [(#SET{titre_meteo,#VAL{<:rainette:meteo_de:>}|replace{@ville@,#GET{nom_ville}}})]
 <INCLURE{fond=noisettes/header/header}
 	{title=#GET{titre_meteo}|attribut_html|texte_script}
@@ -20,7 +21,7 @@
 <div class="titrepage"><h1><:rainette:meteo_de{ville=#GET{nom_ville}}:></h1></div>
 </div>
 	<div id="letexte">
-		[(#MODELE{rainette_previsions, code=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0076})], type=x_jours, jour=5, sous_modele=previsions_24h})]
+		[(#MODELE{rainette_previsions, code=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0076})], type=x_jours, jour=5, sous_modele=previsions_24h, service=#GET{service}})]
 	</div>
 </main>
 </div><!-- Fin de .texte -->
