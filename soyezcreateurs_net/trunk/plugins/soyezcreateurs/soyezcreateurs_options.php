@@ -101,6 +101,9 @@ if (!defined('_CS_OUTILS_CACHES'))
 	define('_CS_OUTILS_CACHES', 'auteurs:cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres:ecran_securite:autobr:soft_scroller');
 
 // désactiver l'héritage des logos de rubriques (cf http://www.spip.net/fr_article5691.html)
+if (!function_exists('lire_config')) {
+	include_spip('inc/config');
+}
 if (lire_config('soyezcreateurs_layout/logolocal','local') == 'local') {
 	define('_LOGO_RUBRIQUE_DESACTIVER_HERITAGE', true);
 }
