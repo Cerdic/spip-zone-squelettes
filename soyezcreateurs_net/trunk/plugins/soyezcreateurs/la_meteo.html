@@ -1,5 +1,5 @@
 #CACHE{3600}
-#SET{service, #ENV{service, wunderground}}
+#SET{service,weather}[(#CONFIG{rainette/wunderground/inscription}|oui)#SET{service,wunderground}]
 #SET{nom_ville,#RAINETTE_INFOS{#CONFIG{soyezcreateurs/rainette_ville, FRXX0076}, ville, #GET{service}}}
 [(#SET{titre_meteo,#VAL{<:rainette:meteo_de:>}|replace{@ville@,#GET{nom_ville}}})]
 <INCLURE{fond=noisettes/header/header}

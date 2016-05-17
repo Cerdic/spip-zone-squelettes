@@ -5,6 +5,6 @@
 	[(#REM) Saint du jour ]
 	<BOUCLE_SiteSaintDuJour(SITES){titre_mot=SaintDuJour}><BOUCLE_SaintDuJour(SYNDIC_ARTICLES){id_syndic}{!par date}{0,1}><p[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#TITRE</p></BOUCLE_SaintDuJour></BOUCLE_SiteSaintDuJour>
 	[(#REM) Météo ]
-	[(#PLUGIN{RAINETTE}|oui)[(#CONFIG{rainette/wunderground/inscription}|oui)<p>[(#MODELE{rainette_conditions, code=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0076})], sous_modele=mod_lien_detail, service=wunderground})]</p>]]
+	[(#PLUGIN{RAINETTE}|oui)#SET{service,weather}[(#CONFIG{rainette/wunderground/inscription}|oui)#SET{service,wunderground}]<p>[(#MODELE{rainette_conditions, code=[(#CONFIG{soyezcreateurs/rainette_ville, FRXX0076})], sous_modele=mod_lien_detail, service=#GET{service}})]</p>]
 </div>
 #FILTRE{mini_html}
