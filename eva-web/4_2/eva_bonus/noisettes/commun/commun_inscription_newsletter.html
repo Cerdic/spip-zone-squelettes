@@ -1,0 +1,12 @@
+#SET{inscr_newsletter,#EVAL{$_GET['eva_inscr_newsletter']}}
+
+[(#GET{inscr_newsletter}|=={2}|?{
+[<h3 class="titre"><:mailsubscriber:unsubscribe_titre_email:></h3>
+<div class="texte">(#FORMULAIRE_NEWSLETTER_UNSUBSCRIBE)</div>]
+<p style="text-align:right;"><a href='[(#ENV{url}|parametre_url{'eva_inscr_newsletter',3})]' class='ajax'><:mailsubscriber:subscribe_titre_email:> ?</a> </p>
+,
+[<h3 class="titre"><:mailsubscriber:subscribe_titre_email:></h3>
+<div class="texte"><p>(#FORMULAIRE_NEWSLETTER_SUBSCRIBE)</p>
+<p style="text-align:right;"><a href='[(#ENV{url}|parametre_url{'eva_inscr_newsletter',2})]' class='ajax'><:mailsubscriber:unsubscribe_titre_email:> ?</a> </p>
+</div>]
+})]
