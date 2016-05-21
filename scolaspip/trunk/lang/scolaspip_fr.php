@@ -251,6 +251,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'theme17'=>'Thème 17 : ',
     'theme18'=>'Thème 18 : ',
     'theme19'=>'Thème 19 : ',
+    'tous_liens'=>'Tous les liens',
 
 // u
     'utilise_theme' => 'ScolaSPIP propose un habillage type par défaut (si vous utilisez «&nbsp;la feuille de style de ScolaSPIP&nbsp;») : le thème ScolaSPIP.',
