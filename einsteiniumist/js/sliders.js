@@ -27,7 +27,6 @@ function padd_tabs_init() {
 }
 
 jQuery(document).ready(function() {
-	jQuery.noConflict();
 
 	padd_create_slideshow();
 
