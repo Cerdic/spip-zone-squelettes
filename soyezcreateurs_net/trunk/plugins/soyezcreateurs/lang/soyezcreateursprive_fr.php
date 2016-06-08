@@ -139,7 +139,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_layout_defaut' => 'Par défaut',
 	'cfg_layout_gala' => 'Agencement des colonnes sur la page',
 	'cfg_layout_gala_explications' => '<p>Agencement du site.<br />Pour les articles et les rubriques, le réglage peut être fait de manière individuelle en affectant un des mots clefs de layout à ces derniers.</p>',
-	'cfg_layout_gala_intro' => '<p>Basé sur <a href="http://blog.html.it/layoutgala/" hreflang="en">Layout Gala</a></p>',
+	'cfg_layout_gala_intro' => '<p>Basé sur <a href="http://blog.html.it/layoutgala/index.html" hreflang="en">Layout Gala</a></p>',
 	'cfg_lien_clic' => 'Lien clic',
 	'cfg_lien_non_visite' => 'Lien non visité',
 	'cfg_lien_survol' => 'Lien survol',
