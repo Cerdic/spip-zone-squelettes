@@ -7,11 +7,21 @@
 		<B_sous_rub>
 		<li class="item menu-entree dropdown [ (#EXPOSE{on active})]">
 			<a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" >[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{40})] <b class="caret"></b></a>
-			<ul  class="dropdown-menu" role="menu"	>
+			<ul class="dropdown-menu" role="menu"	>
 				<li class="item menu-entree[ (#EXPOSE{on active})] "><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"] >[(#TITRE)]</a></li>
 				<li class="divider"></li>
 				<BOUCLE_sous_rub(RUBRIQUES){id_parent}{!mots.titre=Exclu}{par num titre,titre}>
-				<li class="item menu-entree[ (#EXPOSE{on active})]"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]</a></li>
+				<li class="item menu-entree[ (#EXPOSE{on active})]">
+					<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]</a>
+					<B_rub3>
+					<ul>
+						<BOUCLE_rub3(RUBRIQUES){id_parent}{!mots.titre=Exclu}{par num titre,titre}>
+						<li class="item menu-entree[ (#EXPOSE{on active})]"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]</a></li>
+						<BOUCLE_recursive(BOUCLE_rub3)></BOUCLE_recursive>
+						</BOUCLE_rub3>
+					</ul>
+					</B_rub3>
+				</li>
 				</BOUCLE_sous_rub>
 			</ul>
 		</li>
