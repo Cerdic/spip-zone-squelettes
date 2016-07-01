@@ -159,6 +159,16 @@
                              value="#ENV**{#GET{name}}"  />
                     </span>
                     <br /><br />
+                    Les <a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article281&lang=fr" title="Voir la documentation"><strong> articles sélectionnés par mot-clé</strong></a><br />
+                    Le titre de cet onglet sera celui du mot-clé.<br />
+                    Choix du mot-clé :
+                    #SET{name,titreongletmotcle}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>                    
+                    <br /><br />                    
                     Le <strong>Plan du site</strong> pour afficher ... le plan du site !
                     <br /><br />
                     L'<a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article182&lang=fr" title="Voir la documentation"><strong>Article d'accueil</strong></a> est celui qui a le mot-clé "accueil" sinon c'est le dernier publié.
@@ -172,15 +182,20 @@
                     permettent d'afficher les rubriques qui ont le mot-clé "RubriqueOnglet" ou "RubriqueOnglet2" ou "RubriqueOnglet3" ou "RubriqueOnglet4" ou "RubriqueOnglet5".
                     Le titre de la rubrique est affiché dans l'onglet et les articles de cette rubrique sont affichés dessous.<br />
                     Si vous utilisez cette option, vous pouvez :<br />
-                    - définir le pas de pagination pour les articles de la rubrique
-                        
+                    - définir le pas de pagination pour les articles de la rubrique                     
                         #SET{name,pagrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                         [<span class='erreur_message'>(#GET{erreurs})</span>
                         ]<span class="choix">
                                  <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                         </span>                    
                         <br />
-                  
+                    - choisir la taille du logo de la rubrique                       
+                        #SET{name,taillelogorubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                        [<span class='erreur_message'>(#GET{erreurs})</span>
+                        ]<span class="choix">
+                                 <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},25})]"  />
+                        </span>px                    
+                        <br />                                         
                     - afficher le descriptif de la rubrique    
                         #SET{name,descriptifrubaccueil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                         [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -285,6 +300,7 @@
                               <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="derniersarticlesbis" [(#ENV{#GET{name}}|=={derniersarticlesbis}|?{'selected="selected"',''})] >Derniers articles bis</option>
                               <option value="derniersarticlester" [(#ENV{#GET{name}}|=={derniersarticlester}|?{'selected="selected"',''})] >Derniers articles ter</option>
+                              <option value="articlesmotcle" [(#ENV{#GET{name}}|=={articlesmotcle}|?{'selected="selected"',''})] >Articles avec mot-clé</option>
                               <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
                               <option value="articleaccueil" [(#ENV{#GET{name}}|=={articleaccueil}|?{'selected="selected"',''})] >Article d'accueil</option>
                               <option value="articlearchive" [(#ENV{#GET{name}}|=={articlearchive}|?{'selected="selected"',''})] >Article archive</option>
@@ -307,6 +323,7 @@
                               <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="derniersarticlesbis" [(#ENV{#GET{name}}|=={derniersarticlesbis}|?{'selected="selected"',''})] >Derniers articles bis</option>
                               <option value="derniersarticlester" [(#ENV{#GET{name}}|=={derniersarticlester}|?{'selected="selected"',''})] >Derniers articles ter</option>
+                              <option value="articlesmotcle" [(#ENV{#GET{name}}|=={articlesmotcle}|?{'selected="selected"',''})] >Articles avec mot-clé</option>
                               <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Plan du site</option>
                               <option value="articleaccueil" [(#ENV{#GET{name}}|=={articleaccueil}|?{'selected="selected"',''})] >Article d'accueil</option>
                               <option value="articlearchive" [(#ENV{#GET{name}}|=={articlearchive}|?{'selected="selected"',''})] >Article archive</option>
@@ -330,6 +347,7 @@
                               <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="derniersarticlesbis" [(#ENV{#GET{name}}|=={derniersarticlesbis}|?{'selected="selected"',''})] >Derniers articles bis</option>
                               <option value="derniersarticlester" [(#ENV{#GET{name}}|=={derniersarticlester}|?{'selected="selected"',''})] >Derniers articles ter</option>
+                              <option value="articlesmotcle" [(#ENV{#GET{name}}|=={articlesmotcle}|?{'selected="selected"',''})] >Articles avec mot-clé</option>
                               <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
                               <option value="articleaccueil" [(#ENV{#GET{name}}|=={articleaccueil}|?{'selected="selected"',''})] >Article d'accueil</option>
                               <option value="articlearchive" [(#ENV{#GET{name}}|=={articlearchive}|?{'selected="selected"',''})] >Article archive</option>
@@ -353,6 +371,7 @@
                               <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="derniersarticlesbis" [(#ENV{#GET{name}}|=={derniersarticlesbis}|?{'selected="selected"',''})] >Derniers articles bis</option>
                               <option value="derniersarticlester" [(#ENV{#GET{name}}|=={derniersarticlester}|?{'selected="selected"',''})] >Derniers articles ter</option>
+                              <option value="articlesmotcle" [(#ENV{#GET{name}}|=={articlesmotcle}|?{'selected="selected"',''})] >Articles avec mot-clé</option>
                               <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
                               <option value="articleaccueil" [(#ENV{#GET{name}}|=={articleaccueil}|?{'selected="selected"',''})] >Article d'accueil</option>
                               <option value="articlearchive" [(#ENV{#GET{name}}|=={articlearchive}|?{'selected="selected"',''})] >Article archive</option>
@@ -376,6 +395,7 @@
                               <option value="derniersarticles" [(#ENV{#GET{name}}|=={derniersarticles}|?{'selected="selected"',''})] >Derniers articles</option>
                               <option value="derniersarticlesbis" [(#ENV{#GET{name}}|=={derniersarticlesbis}|?{'selected="selected"',''})] >Derniers articles bis</option>
                               <option value="derniersarticlester" [(#ENV{#GET{name}}|=={derniersarticlester}|?{'selected="selected"',''})] >Derniers articles ter</option>
+                              <option value="articlesmotcle" [(#ENV{#GET{name}}|=={articlesmotcle}|?{'selected="selected"',''})] >Articles avec mot-clé</option>
                               <option value="plansite" [(#ENV{#GET{name}}|=={plansite}|?{'selected="selected"',''})] >Plan du site</option>
                               <option value="articleaccueil" [(#ENV{#GET{name}}|=={articleaccueil}|?{'selected="selected"',''})] >Article d'accueil</option>
                               <option value="articlearchive" [(#ENV{#GET{name}}|=={articlearchive}|?{'selected="selected"',''})] >Article archive</option>
@@ -612,7 +632,7 @@
 
   <!-- articles à la une de "Derniers articles" et "Derniers articles ter"-->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label style="width: 500px"><strong>Articles à la une de "Derniers articles" et "Derniers articles ter"</strong></label>
+                    <label style="width: 500px"><strong>Articles à la une de "Derniers articles", "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
                     <br />
              <div class="explication">
                     Affichage des derniers articles du site en page sommaire. <br />
