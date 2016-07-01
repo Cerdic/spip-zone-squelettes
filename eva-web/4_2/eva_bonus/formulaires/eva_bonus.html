@@ -1,0 +1,51 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><center>Utilisation des noisettes de m&eacute;t&eacute;o</center></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+	Afin d'utiliser les noisettes de m&eacute;t&eacute;o, il vous faut :
+	<ul class="spip">
+		<li> installer et activer le plugin <a href='http://contrib.spip.net/Rainette-v2-une-version-multi-services' title='Documentation du plugin Rainette'>Rainette</a> ;</li>
+		<li> <a href="<?php echo generer_url_ecrire("configurer_rainette"); ?>" title="Accès à la page de configuration du plugin Rainette">configurer le plugin Rainette</a> pour le service de m&eacute;t&eacute;o qui vous int&eacute;resse ;</li>
+		<li> indiquer ci-dessous le service de m&eacute;t&eacute;o choisi ;</li>
+		<li> indiquer ci-dessous le code commune concern&eacute;, le format de ce code d&eacute;pend du service de m&eacute;t&eacute;o choisi (r&eacute;f&eacute;rez-vous &agrave; la documentation du plugin Rainette pour en savoir plus).</li>
+	</ul>
+	<p class="spip">
+	Quel <span style="font-weight:bold;">service de météo</span> souhaitez-vous utiliser (pensez avant tout à <a href="<?php echo generer_url_ecrire("configurer_rainette"); ?>" title="Accès à la page de configuration du plugin Rainette">le configurer dans le plugin Rainette</a>) ?
+	<select name='service'>
+		<option value='owm'[(#ENV{service}|=={own}|?{' selected="selected"',''})]>Open Weather Map</option>
+		<option value='weather'[(#ENV{service}|=={weather}|?{' selected="selected"',''})]>weather.com®</option>
+		<option value='wunderground'[(#ENV{service}|=={wunderground}|?{' selected="selected"',''})]>Weather Underground</option>
+		<option value='wwo'[(#ENV{service}|=={wwo}|?{' selected="selected"',''})]>World Weather Online</option>
+	</select>
+	</p>
+	<hr />
+	<p class="spip" style="text-align:center;">
+	Indiquez ci-dessous <span style="font-weight:bold;">le code correspondant à la commune choisie</span>. Attention, <span style="text-decoration:underline;">le format de ce code dépend du service de météo sélectionné</span>.
+	<br />Pour en savoir plus, consultez <a href='http://contrib.spip.net/Rainette-v2-une-version-multi-services' title='Documentation du plugin Rainette'>la documentation du plugin Rainette</a>.
+	<br /><input type="text" name="code_commune" value="#ENV{code_commune}" size="24">
+	</p>
+	<hr />
+	<p class="spip" style="text-align:center;">
+	Si vous utilisez la noisette de pr&eacute;vision sur plusieurs jours, <span style="font-weight:bold;">combien de jours faut-il afficher</span> ?<br />
+	<select name='jours_prevision'>
+	<?php
+	for ($i=1;$i<=14;$i++) {
+	echo "<option value='$i'";
+	if (#ENV{jours_prevision}==$i) echo " selected='selected'";
+	echo ">$i</option>";
+	}
+	?>
+	</select>
+	</p>
+	<p class="spip" style="text-align:center;">
+	<input type='submit' value='Valider' />
+	</p>
+	
+</form>
+</div>

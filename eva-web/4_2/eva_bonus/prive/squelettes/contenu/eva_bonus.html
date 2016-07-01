@@ -1,0 +1,28 @@
+#CACHE{0}
+[(#AUTORISER{configurer}|sinon_interdire_acces)]
+
+<h1 class="grostitre"><:evabonus:nom_plugin_bonus:></h1>
+
+<?php
+include_spip('inc/evabonus');
+	echo '<table class="spip">';
+	$couleur_table=0;
+	echo '<tr><td style="text-align:center;"><strong>'._T('evabonus:nom').'</strong></td>
+	<td style="text-align:center;"><strong>'._T('evabonus:lieu').'</strong></td>
+	<td style="text-align:center;"><strong>'._T('evabonus:descriptif').'</strong></td>
+	<td style="text-align:center;"><strong>'._T('evabonus:auteur').'</strong></td></tr>';
+	foreach (eva_bonus_tab() as $tab) {
+		echo '<tr ';
+		if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
+		$couleur_table++;
+		echo '><td style="text-align:center;">'.$tab[0].'</td>
+		<td style="text-align:center;">'.$tab[1].'</td>
+		<td style="text-align:center;">'.$tab[2].'</td>
+		<td style="text-align:center;">'.$tab[3].'</td></tr>';
+	}
+	echo '</table><br style="height:40px;" />';
+?>
+
+<div class="ajax">
+	#FORMULAIRE_EVA_BONUS
+</div>

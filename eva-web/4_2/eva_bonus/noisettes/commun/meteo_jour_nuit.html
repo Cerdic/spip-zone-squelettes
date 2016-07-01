@@ -4,11 +4,19 @@
 </B_meteo>
 #SET{code_commune,FRXX0085}
 <//B_meteo>
+
+<BOUCLE_meteo_service(EVA_HABILLAGE_IMAGES){nom_habillage=Defaut}{type=evabonus}{nom_div=service}>
+	#SET{service,#NOM_IMAGE}
+</BOUCLE_meteo_service>
+</B_meteo_service>
+#SET{service,weather}
+<//B_meteo_service>
+
 <div class="bloc">
 	<h3 class="titre"><:meteo:></h3>
 	<ul>
 		<li class="un">
-			[(#MODELE{rainette_previsions,code=#GET{code_commune},type=1_jour,jour=1,sous_modele=previsions_2x12h})]
+			[(#MODELE{rainette_previsions,code=#GET{code_commune},service=#GET{service},type=1_jour,jour=1,sous_modele=previsions_2x12h})]
 		</li>
 	</ul>
 	<div class="nettoyeur"></div>
