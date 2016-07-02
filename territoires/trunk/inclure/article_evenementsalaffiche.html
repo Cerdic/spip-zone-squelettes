@@ -1,0 +1,55 @@
+<B_lesevenementsalaffiche>
+			<div class="menu menu_evenements">			    
+		   		<a name="evenementsalaffiche" id="evenementsalaffiche" class="ancre"></a>
+		   		<h2 class="spip"><:evenementsalaffiche:> : [(#TOTAL_BOUCLE)]</h2>
+		   		<ul class="clearfix">
+				    <BOUCLE_lesevenementsalaffiche(EVENEMENTS){id_article} {age_fin<=0}{age_debut>=-365} {par date_fin}>
+				    	<li>
+				    	[(#SET{docevenement,''})]
+					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenement,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenement>					    
+					    [(#SET{logo_source,''})]				    
+					    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+					    [(#SET{logo_source,#LOGO_EVENEMENT})]
+					    </BOUCLE_logosource>
+					    [(#SET{docevenementsource,''})]
+					    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementsource>
+					    [(#SET{logo_auteur,''})]
+					    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteur>						    			        
+				    	<!--Ici on a mis une ancre à chaque évènement avec son ID-->
+					    <a name="evt#ID_EVENEMENT" id="evt#ID_EVENEMENT" class="ancre"></a>
+					    <div class="cartouche_evenement clearfix">
+					    <h3>[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{logo_auteur}}|image_passe_partout{115,115,center}|image_recadre{115,115,center})]<span class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</span>
+					    [(#SESSION{id_auteur}|?{
+							[<span> <a href="(#URL_ECRIRE{evenement_edit,id_evenement=#ID_EVENEMENT})">#ID_EVENEMENT</a></span>]})]</h3>			    
+					    <p class="dateevenement"><strong>[(#DATE_DEBUT|affdate{Y-m-d}|=={[(#DATE_FIN|affdate{Y-m-d})]}|?{
+					     Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					    [(#HORAIRE|=={oui}|?{
+					      [(#REM) memes heures ?]
+					        [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+					    [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+					      [(#REM) pas memes heures ?]
+					        [(#DATE_DEBUT|!={#DATE_FIN}|?{De
+					    [(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					    [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+					    ,''})]
+					    ,
+					     Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					    [(#HORAIRE|=={oui}|?{&agrave; partir de
+					     [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]<br/>au
+					    [(#DATE_FIN|nom_jour)]
+					     [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+					     [(#DATE_FIN|heures)]h[(#DATE_FIN|minutes)],''})]  })]</strong></p>
+					     <p class="lieuevenement">[<strong class="#EDIT{lieu}">(#LIEU|sinon{#LESCOMMUNES})</strong>][ &ndash; <span class="#EDIT{adresse}">(#ADRESSE|PtoBR)</span>]</p>
+					     </div>
+					     [<div class="#EDIT{descriptif} descriptif_evenement">(#DESCRIPTIF)</div>]					     
+						</li>
+				    </BOUCLE_lesevenementsalaffiche>
+		    </ul>
+		    </div><!--.menu menu_evenements-->
+</B_lesevenementsalaffiche>

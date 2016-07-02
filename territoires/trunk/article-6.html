@@ -1,0 +1,135 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut)][ | (#LESMOTS|supprimer_tags|replace{','}|strtolower)]<BOUCLE_rubriqueencours(RUBRIQUES){id_rubrique}>[ | (#TITRE)]</BOUCLE_rubriqueencours>[ | (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_article">
+	
+[(#REM) Barre de navigation principale ]
+<a class="ancre" id="top"></a>
+<div id="barrefixe">
+	<INCLURE{fond=inclure/rub_contexte,env,id_rubrique} />
+	<INCLURE{fond=inclure/nav,env}/>
+</div><!--.Fin de barre fixe-->
+
+[(#REM) Entête principal ]
+<div class="header">
+	[(#REM) Fil d'Arianne ]
+	<BOUCLE_testrubriqueracine(RUBRIQUES){id_rubrique}{racine}></BOUCLE_testrubriqueracine>
+	<B_ariane><p class="arbo"><BOUCLE_ariane(HIERARCHIE){id_article}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a> &gt; </BOUCLE_ariane></p></B_ariane>
+	<//B_testrubriqueracine>
+</div><!--.Fin de header-->
+
+[(#REM) Partie principale ]
+<div class="page">
+	
+	<div class="main">	
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div class="wrapper hw_wrapper hfeed">		
+		<div class="content hw_publication hentry" id="content">
+			
+			[(#REM) Cartouche : header de l'article ]
+			    #SET{logo_document,''}
+			    <BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{0,1}>
+			    #SET{logo_document,#LOGO_DOCUMENT}
+			    </BOUCLE_doc>						
+			<div class="cartouche vcard">
+				[(#LOGO_ARTICLE)]
+				[(#SURTITRE|?{<p class="#EDIT{surtitre} surtitre title">#SURTITRE</p>,
+					[(#SESSION{id_auteur}|?{<p class="#EDIT{surtitre} surtitre title">[(#LESMOTS|?{#LESMOTS|replace{#},<:ajouterunsurtitre:>})]</p>,
+					[<p class="#EDIT{surtitre} surtitre title">(#LESMOTS|replace{#})</p>]
+					})]
+					})]			
+				<h1 class="#EDIT{titre} surlignable org">#TITRE</h1>
+				[<p class="#EDIT{soustitre} soustitre adr">(#SOUSTITRE)</p>]
+				<BOUCLE_compteurevenementsavenir(EVENEMENTS){id_article}{age_fin<=0}{age_debut>=-365}{par date_fin}{statut=publie}>
+	           	</BOUCLE_compteurevenementsavenir>
+	           	<div id="tampondate"><a href="[(#SELF|ancre_url{evenementsalaffiche})]"><span id="ladate">#TOTAL_BOUCLE</span><div id="mentiondate">[(#TOTAL_BOUCLE|>{1}|?{dates,date})]</div></a></div>
+	           	</B_compteurevenementsavenir>
+				[<p class="auteurs fn">(#LESAUTEURS)</p>]
+				[(#PS|?{[<p class="#EDIT{ps} ps tel">(#PS|supprimer_tags) [(#FORMULAIRE_ECRIRE_AUTEUR|oui)<a href="#contact" class="hw_smartphones" [title="Contactez (#LESAUTEURS|supprimer_tags)"]>@</a>]</p>],
+					[(#SESSION{id_auteur}|?{<p class="#EDIT{ps} ps tel"><:ajouterunnumerodetelephone:></p>,[(#FORMULAIRE_ECRIRE_AUTEUR|oui)<p class="ps hw_smartphones"><a href="#contact" [title="Contactez (#LESAUTEURS|supprimer_tags)"]>Contact @</a></p>]})]
+					})]								
+				[(#REM) Inclure le modele des liens de traductions ]
+				[<p class="#EDIT{hyperlien} hyperlien url"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			</div>			
+			
+			[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{500,*})</div>]
+						
+			[<div class="#EDIT{texte} texte surlignable clearfix">(#TEXTE|image_reduire{500,*})</div>]
+
+			[(#REM) Evènements associés à l'affiche ]
+			<INCLURE{fond=inclure/article_evenementsalaffiche, id_article} />
+
+			[(#REM) Evènements passés ]
+			<INCLURE{fond=inclure/article_evenementspasses, id_article} />
+				
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents,id_article, env})]
+	
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+			
+			[<div class="notes"><hr />(#NOTES)</div>]
+				
+		</div><!--.content-->
+		
+			[(#REM) Forum de l'article ]	
+			<a href="#forum" name="forum" id="forum"></a>
+			<INCLURE{fond=inclure/forum-fil,id_article} />
+			[<div id="messagecommentaire">
+			<h2><:forum:form_pet_message_commentaire:></h2>
+			(#FORMULAIRE_FORUM)</div>]
+			
+		</div><!--.wrapper-->
+	
+	
+		<div class="aside hw_aside">			
+		
+	        [(#REM) Messages ]					
+			<B_telegraphes>
+			<div class="menu menu_comments hw_boite">
+				<h2><:messages_forum:></h2>
+				<ul>
+					<BOUCLE_telegraphes(FORUMS?){id_article}{plat}{age<450}{!titre==^>}{0,3}>
+					[<li><p>[<strong>(#DATE|affdate_jourcourt)</strong> &ndash; ]<a href="#URL_FORUM">(#TEXTE|couper{150})</a></p></li>]
+					</BOUCLE_telegraphes>
+				</ul>
+			</div>
+			</B_telegraphes>
+			
+			[(#REM) Formulaire de contact direct si secteur concerné ]
+			[<div class="menu hw_boite">
+			<a href="#contact" name="contact" id="contact" class="ancre"></a>
+			[<h2><:contactez:><br/>(#LESAUTEURS|supprimer_tags)</h2>]
+			(#FORMULAIRE_ECRIRE_AUTEUR)
+			</div>]
+			
+			[<div class="menu menu_tag hw_boite">
+			<h2><:mots_cles:></h2>
+			<p>(#LESMOTS|replace{#})</p></div>]		
+			
+		</div><!--.aside-->
+	</div><!--.main-->
+
+</div><!--.page-->
+
+[(#REM) Pied de page du site ]
+<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</body>
+</html>
+</BOUCLE_principale>

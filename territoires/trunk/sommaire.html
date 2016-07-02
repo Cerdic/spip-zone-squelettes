@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{300}|textebrut)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_sommaire">
+
+[(#REM) Barre de navigation principale ]
+<a class="ancretop ancre" name="top"></a>
+<div id="barrefixe">
+	<div id="contexte">
+	<img class="spip_logos" width="32" height="32" src="[(#CHEMIN{css/img/maison_blanche.png})]" alt="">[<span class="identite_titre">(#NOM_SITE_SPIP|textebrut)</span>]
+	</div><!--.fin de contexte-->
+	<INCLURE{fond=inclure/nav,env}{home=oui} />
+</div><!--.Fin de barre fixe-->
+
+[(#REM) Entête principal ]
+<div class="header">
+	<h1>[(#LOGO_SITE_SPIP|image_reduire{50,*}) ]#NOM_SITE_SPIP</h1>
+	[<p>(#SLOGAN_SITE_SPIP)</p>]
+</div>
+
+[(#REM) Section centrale ]	
+<div class="page">
+
+	<div class="main accueil clearfix">
+	
+		[(#REM) Bandeau ]
+		<B_imagesbandeau>
+		<div id="bandeau">
+		<BOUCLE_imagesbandeau(DOCUMENTS){tout}{extension==jpg|png}{titre_mot=z_bandeau}{!par date}{0,1}>
+			[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE">
+			(#FICHIER|image_recadre{1000,200,left})</a>]
+		</BOUCLE_imagesbandeau>
+		</div><!--#bandeau-->
+		</B_imagesbandeau>
+		<div id="bandeau">
+			<BOUCLE_bandeaupredecoupe(DOCUMENTS){tout}{extension==jpg|png}{largeur > 1000}{!par date}{0,1}{doublons imagesbandeau}>
+			[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE">
+			(#FICHIER|image_passe_partout{1000,200}|image_recadre{1000,200,center})</a>]
+			</BOUCLE_bandeaupredecoupe>
+		</div><!--#bandeau-->
+		<//B_imagesbandeau>
+		
+		
+		
+		[(#REM) Colonne de gauche ]
+		<div class="aside gauche">	
+		[(#REM) Agenda ]			
+		<INCLURE{fond=inclure/alaffiche}>	
+		</div><!--.aside gauche-->
+	
+		[(#REM) Milieu ]
+		<div class="wrapper centre hfeed">
+		<div class="content centre" id="content">			
+		<INCLURE{fond=inclure/recents,env,ajax} />
+		</div><!--.content-->
+		</div><!--.wrapper-->
+		
+		[(#REM) Colonne de droite ]
+		<div class="aside droite">			
+   		[(#REM) Dernières photos ]
+		<B_img>
+		<div class="menu menu_photos">
+	    <h2 title="<:imagesdernieres:>"><:voir:></h2>
+	    <ul>
+		<BOUCLE_img(DOCUMENTS){extension==jpg|png|gif}{largeur > 300}{hauteur > 300}{!titre_mot=z_invisible}{!par date}{0,45}{doublons imagesbandeau}>
+		<li><a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE" rel="bookmark">[(#FICHIER|image_reduire{230,0})]</a></li>
+		</BOUCLE_img>
+		</ul>
+		</div>
+		</B_img>			
+		</div><!--.aside droite-->
+		
+	</div><!--.main-->
+	
+	[(#REM) Pied de la page d'accueil ]
+	<div class="prefooter clearfix">
+	<INCLURE{fond=inclure/about} />
+	<INCLURE{fond=inclure/abonnement} />
+	</div>
+	
+</div><!--.page-->
+
+[(#REM) Pied de page du site ]
+<INCLURE{fond=inclure/footer,self=#SELF} />	
+
+</body>
+</html>
+
+#FILTRE{minisauvage_html}

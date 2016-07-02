@@ -1,0 +1,162 @@
+[(#REM) TEST POUR SAVOIR S'IL Y A DES SOUS-RUBRIQUES ]
+<BOUCLE_testsousrubriques_contexte(RUBRIQUES){id_rubrique}>
+	<BOUCLE_testsousrubriques_sousrubriques(RUBRIQUES){id_parent}>
+	</BOUCLE_testsousrubriques_sousrubriques>
+	#SET{sousrubriques,oui}
+	</B_testsousrubriques_sousrubriques>
+</BOUCLE_testsousrubriques_contexte>
+
+[(#REM) Stockage des articles de la branche ]
+<BOUCLE_articlesdelabranche(ARTICLES){branche}{doublons articlesdelabranche}>
+</BOUCLE_articlesdelabranche>
+
+<div class="main clearfix">
+
+			<div class="wrapper hw_wrapper">
+			<div class="content" id="content">
+
+			[(#REM) Par date de rédaction, de mise à jour, ou par hasard]	
+			<div class="articles clearfix">
+			<B_articles>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<ul class="liste_articles">
+				<BOUCLE_articles(ARTICLES) {!doublons articlesdelabranche}{!par date}{pagination}>	
+					<li>
+				    #SET{logo_document,''}
+				    <BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{doublons dejavu}{0,1}>
+				    #SET{logo_document,#LOGO_DOCUMENT}
+				    </BOUCLE_doc>
+				    #SET{logo_auteur,''}
+				    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+				    #SET{logo_auteur,#LOGO_AUTEUR}
+				    </BOUCLE_logoauteur>	    
+					<a href="#URL_ARTICLE" rel="bookmark">
+					[(#GET{logo_document}|image_passe_partout{300,150}|image_recadre{300,150,center}|sinon{[<div class="petitlogos">(#LOGO_ARTICLE)</div>]}|sinon{[<div class="petitlogos">(#GET{logo_auteur})</div>]})]
+					[<p class="surtitre">(#SURTITRE)</p>]
+					<h3>#TITRE</h3>
+					[<p class="soustitre">(#SOUSTITRE)</p>]
+					<p class="info-publi"><em><abbr class="published"[ title="(#DATE|date_iso)"]>[<:publiele:> (#DATE|affdate_jourcourt)]</abbr>[, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</em></p>
+					[<p class="info-publi"><em><abbr class="published">(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|? {[<:misajour:> (#DATE_MODIF|affdate)],''})</abbr></em></p>]
+				 	[(#REM) Ici on a choisi pour intro de récupérer en priorité le Chapeau de l'article ]
+				    [<p class="introduction entry-content">(#CHAPO|textebrut|sinon{#TEXTE|textebrut|couper{200}})</p>]
+			    	</a>
+			    	</li>
+				</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+				</div><!--.Fin de articles-->
+
+			</div><!--.content-->
+			</div><!--.wrapper-->				
+			
+			[(#REM) Contenu latéral : éléments complémentaires, en marge ]
+			<div class="aside hw_aside"> 
+
+				[(#REM) Formulaire de contact si secteur concerné ]
+				<BOUCLE_testdusecteur(RUBRIQUES){id_secteur}{racine}{titre_mot=z_secteur_apropos}>
+				</BOUCLE_testdusecteur>
+					<BOUCLE_auteur1(AUTEURS){id_auteur=1}>
+					<div class="menu hw_boite">
+					<h2><:contactez:><br/>#NOM</h2>
+					#FORMULAIRE_ECRIRE_AUTEUR
+					</div>
+					</BOUCLE_auteur1>
+				</B_testdusecteur>
+				
+				[(#REM) Image épinglée ou au hasard ]
+				[(#REM) Parmi tous les documents postés dans la branche parmi les 10 derniers articles
+				on prend l'une des trois dernières épinglées ]				
+				#SET{imagechoisie,#ARRAY}
+				<BOUCLE_articlesdelarubriqueavecdoc(ARTICLES){!doublons articlesdelabranche}{!par date}{0,10}>								
+					<BOUCLE_imagesepingles(DOCUMENTS){extension IN png,jpg}{titre_mot=z_epingles}{id_article}{!par date}{0,3}>
+					#SET{imagechoisie,#GET{imagechoisie}|push{#ID_DOCUMENT}}					
+					</BOUCLE_imagesepingles>
+				</BOUCLE_articlesdelarubriqueavecdoc>	
+											
+				<B_imagechoisieouhasard>
+					<div class="menu hw_boite">						
+					<h2><:imagechoisie:></h2>		
+						<ul class="clearfix">
+						<BOUCLE_imagechoisieouhasard(DOCUMENTS){id_document IN #GET{imagechoisie}}{doublons imagechoisie}{par hasard}{0,1}>
+							<li>
+							[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE">
+							(#LOGO_DOCUMENT|image_reduire{248,0})    
+			                </a>] 
+	                    	</li>
+						</BOUCLE_imagechoisieouhasard>
+						</ul><!--.planche-->
+					</div>	
+				</B_imagechoisieouhasard>		
+            
+		        [(#REM) Messages ]
+		        <BOUCLE_articlesmessages(ARTICLES){!doublons articlesdelabranche}>
+						<BOUCLE_forums_liens(FORUMS?){id_article}{plat}{age<450}{!titre==^>}{doublons messages}>
+						</BOUCLE_forums_liens>
+				</BOUCLE_articlesmessages>
+						
+				<B_telegraphes>
+				<div class="menu menu_comments hw_boite">
+					<h2><:messages_forum:></h2>
+					<ul>
+						<BOUCLE_telegraphes(FORUMS){!doublons messages}{!par date}{0,3}>
+						[<li><p>[<strong>(#DATE|affdate_jourcourt)</strong> &ndash; ]<a href="#URL_FORUM">(#TEXTE|couper{80})</a></p></li>]
+						</BOUCLE_telegraphes>
+					</ul>
+				</div>
+				</B_telegraphes>
+				
+				[(#REM) Épingles ] 														
+				
+				[(#REM) Pour chacun des 10 derniers articles épinglés, on sélectionne au hasard
+				l'un des mots dans un tableau tout en élimnant les doublons éventuels ]				
+				#SET{motsepingles,#ARRAY}
+				#SET{articlesepingles,#ARRAY}	
+				<BOUCLE_articlesepingles(ARTICLES){!doublons articlesdelabranche}{titre_mot=z_epingles}{!par date}{0,10}>				
+					#SET{articlesepingles,#GET{articlesepingles}|push{#ID_ARTICLE}}					
+					<BOUCLE_motsarticlesepingles(MOTS){!type==^Z}{id_article}{doublons motsarticlesepingles}{par hasard}{0,1}>
+					#SET{motsepingles,#GET{motsepingles}|push{#ID_MOT}}					
+					</BOUCLE_motsarticlesepingles>
+				</BOUCLE_articlesepingles>
+				[(#REM) Sous chacun de ces mots-clés sélectionnés, on regroupe les articles épinglés concernés]
+					<BOUCLE_motsepingles(MOTS){id_mot IN #GET{motsepingles}}>
+						<B_epinglesparmot>						
+							<div class="menu menu_epingles hw_boite">
+							<h2>#TITRE</h2>
+								<ul class="clearfix">
+								<BOUCLE_epinglesparmot(ARTICLES){id_mot}{id_article IN #GET{articlesepingles}}{doublons epinglesmots}>
+										#SET{logo_epinglemot,''}
+									    <BOUCLE_docepinglesparmot(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+									    #SET{logo_epinglemot,#LOGO_DOCUMENT}
+									    </BOUCLE_docepinglesparmot>
+									<li>
+									<a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#LOGO_ARTICLE|sinon{[(#GET{logo_epinglemot})]}|image_passe_partout{65,65}|image_recadre{65,65,center})]#TITRE</a>
+					                </li>  	
+								</BOUCLE_epinglesparmot>
+								</ul>
+							</div><!--.menu_epingles-->	
+						</B_epinglesparmot>
+					</BOUCLE_motsepingles>
+					[(#REM) Et on rajoute les articles épinglés ne contiennent aucun mot thématique...]
+						<B_epinglesansmot>
+							<div class="menu menu_epingles hw_boite">
+							<h2><:alire:></h2>						
+								<ul class="clearfix">
+								<BOUCLE_epinglesansmot(ARTICLES){id_article IN #GET{articlesepingles}}{doublons epinglesmots}>
+										#SET{logo_epinglesansmot,''}
+									    <BOUCLE_docepinglesansmot(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+									    #SET{logo_epinglesansmot,#LOGO_DOCUMENT}
+									    </BOUCLE_docepinglesansmot>
+									<li>
+									<a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#LOGO_ARTICLE|sinon{[(#GET{logo_epinglesansmot})]}|image_passe_partout{65,65}|image_recadre{65,65,center})]#TITRE</a>
+					                </li>  	
+								</BOUCLE_epinglesansmot>
+								</ul>
+							</div><!--.menu_epingles-->	
+						</B_epinglesansmot>					
+				</B_articlesepingles>	
+							
+			</div><!--.aside-->					
+				
+			</B_articles>
+	
+			</div><!--.main-->			

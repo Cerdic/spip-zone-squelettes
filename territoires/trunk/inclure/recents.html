@@ -1,0 +1,28 @@
+<B_articles>
+<h2 title="<:publicationsdernieres:>"><:lire:></h2>
+<div class="menu menu_articles" id="articles_recents">
+<ul>
+	    <BOUCLE_articles(ARTICLES) {id_secteur IN 4}{!par date} {0,28}>
+		    <li class="hentry clearfix">
+			    [(#SET{logo_document,''})]
+			    <BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{0,1}>
+			    [(#SET{logo_document,#LOGO_DOCUMENT})]
+			    </BOUCLE_doc>
+			    [(#SET{logo_auteur,''})]
+			    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+			    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+			    </BOUCLE_logoauteur>
+			    [(#LOGO_ARTICLE|sinon{#GET{logo_document}}|sinon{#GET{logo_auteur}}||image_passe_partout{67,67}|image_recadre{67,67,center})]
+			    <a href="#URL_ARTICLE" rel="bookmark">
+			    <h4>#TITRE</h4>
+				</a>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				<p><em><abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE|affdate_jourcourt)]</abbr>[, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</em></p>
+			    [<p class="introduction entry-content">(#CHAPO|textebrut|sinon{#TEXTE|textebrut|couper{200}})</p>]
+		    </li>
+		</BOUCLE_articles>	
+</ul>
+</div><!--#articles_recents-->
+</B_articles>
+
+#FILTRE{minisauvage_html}

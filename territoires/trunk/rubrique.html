@@ -1,0 +1,71 @@
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut)][ | (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body class="pas_surlignable">
+
+[(#REM) Barre de navigation principale ]
+<a class="ancre" id="top"></a>
+<div id="barrefixe">
+	<INCLURE{fond=inclure/rub_contexte,env,titre,id_secteur}/>
+	<INCLURE{fond=inclure/nav,env} />
+</div><!--.Fin de barre fixe-->
+
+[(#REM) Entête principal ]
+<div class="header">
+	[(#REM) Fil d'Arianne ]
+	<BOUCLE_testrubriqueracine(RUBRIQUES){id_rubrique}{racine}></BOUCLE_testrubriqueracine>
+	<B_ariane><p class="arbo"><BOUCLE_ariane(HIERARCHIE){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a> &gt; </BOUCLE_ariane></p></B_ariane>
+	<//B_testrubriqueracine>			
+	[(#REM) Cartouche de la rubrique ]		
+	<h1 class="#EDIT{titre} titre">#TITRE</h1>
+	[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+	<B_sisousrubriques>		
+		<div class="menu menu_sousrubriques">
+		<p><strong>Sous-rubriques</strong></p>
+		[(#TOTAL_BOUCLE|>{10}|?{<ul class="rubriquescolonnes">,<ul>})]
+		<BOUCLE_sisousrubriques(RUBRIQUES){id_parent}{par titre}>
+		<BOUCLE_sisousrubriques_comptelesarticles(ARTICLES){id_rubrique}>
+		[(#SET{urldelarticle,#URL_ARTICLE})]
+		</BOUCLE_sisousrubriques_comptelesarticles>
+		[(#SET{nombrearticles,#TOTAL_BOUCLE})]
+		</B_sisousrubriques_comptelesarticles>
+		<li>[(#GET{nombrearticles}|=={1}|?{[<a href="(#GET{urldelarticle})">],[<a href="(#URL_RUBRIQUE)">]})]#TITRE</a></li></BOUCLE_sisousrubriques>
+		</ul>	
+		</div>
+	</B_sisousrubriques>	
+</div><!--.Fin de header-->
+
+[(#REM) Partie principale ]
+<div class="page hw_page_rubrique">
+		<BOUCLE_charpentiere(RUBRIQUES){id_secteur}{racine}>
+		<BOUCLE_mottypecharpentiere(MOTS){id_rubrique}{type=Z}{titre==^z_secteur}>
+		[(#SET{squelettecontenu,[(#DESCRIPTIF|supprimer_tags)]})]
+		</BOUCLE_mottypecharpentiere>			
+		</BOUCLE_charpentiere>			
+		[(#REM) Contenu principal : contenu de la rubrique ]			
+		<INCLURE{fond=inclure/contenu(#GET{squelettecontenu}),ajax}{id_secteur}{env} />				
+</div><!--.page-->
+
+[(#REM) Pied de page du site ]
+<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</body>
+</html>
+</BOUCLE_principale>
+
+#FILTRE{mini_html}

@@ -1,0 +1,59 @@
+<div class="main meteo clearfix">
+
+	[(#REM) Contenu principal : contenu de la rubrique ]
+	<div class="wrapper">
+	<div class="content" id="content">
+	
+	[(#MODELE{rainette_conditions, code=FRXX0396, sous_modele=conditions_tempsreel})]
+	
+	<div class="previsions">
+	[(#MODELE{rainette_previsions, code=FRXX0396, type=x_jours, jour=9, sous_modele=previsions_24h})]
+	</div>
+	
+	</div><!--.content-->
+	</div><!--.wrapper-->
+
+	<div class="aside">
+							
+		[(#REM) Vigicrue ]
+
+		<B_sites>
+		<div class="menu hw_boite">
+			<h2>Vigicrue</h2>
+			<a href="spip.php?site1"><img width="248" height="180" src="http://www.vigicrues.gouv.fr/niv3grph.php?_jpg_csimd=7&idstation=1258&typegraphe=h&ffProfondeur=72"></a>
+			<ul>
+				<BOUCLE_sites(SITES) {id_rubrique} {par date} {0,1}>
+				<li>
+					<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+					<B_syndic>
+					<ul>
+						<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {!par date} {0,1}>
+						<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+						</BOUCLE_syndic>
+					</ul>
+					</B_syndic>
+				</li>
+				</BOUCLE_sites>
+			</ul>		
+		</div>
+		</B_sites>
+
+		
+		[(#REM) Dernières photos ]
+		<B_img>
+		<div class="menu hw_boite menu_photos">
+	    <h2><:ciels:></h2>
+		    <ul>
+				<BOUCLE_img(DOCUMENTS){extension==jpg|png|gif}{id_mot=75}{!par date}{0,4}>
+				<li>
+				<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}">[(#_img:FICHIER|image_reduire{230,0})]</a>	
+				</li>
+				</BOUCLE_img>
+			</ul>
+		</div>		
+		</B_img>
+		
+
+	</div><!--.aside-->
+	
+</div><!--.main-->	

@@ -1,0 +1,23 @@
+[(#REM)<!-- 
+	Ce sous-modele est celui utilise par defaut par Rainette pour presenter les conditions temps reel d'une ville
+	Il est appelee par le filtre rainette_croaaaaa_conditions
+ -->
+]
+<dl class="rainette_conditionstempsreel">
+	<dt class="titre"><:tendanceactuelle:><span class="resume">[(#ENV{code_icone}|rainette_resume_meteo)]</span></dt>
+	<dd class="iconefloat">[(#ENV{code_icone}|rainette_icone_meteo{grand})]</dd>
+	<dd><span class="t_reelle">[(#ENV{temperature_reelle}|rainette_afficher_unite{temperature})]</span>
+	<span class="t_ressentie"> (<:rainette:temperature_ressentie:>&nbsp;:[&nbsp;(#ENV{temperature_ressentie}|rainette_afficher_unite{temperature})) ]</span>	
+		[<dd class="vent"><:rainette:vent|ucfirst:>
+		(#ENV{vitesse_vent}|rainette_afficher_unite{vitesse})
+		[ - (#ENV{direction_vent}|rainette_afficher_direction)]</dd>]
+		[<dd class="details"><:rainette:humidite|ucfirst:>
+		(#ENV{humidite}|rainette_afficher_unite{pourcentage})]
+		[ - <:rainette:pression|ucfirst:>
+		(#ENV{pression}|rainette_afficher_unite{pression})
+		[ (#ENV{tendance_pression}|rainette_afficher_tendance{icone})]</dd>]
+		[<dd class="details"><:rainette:point_rosee|ucfirst:>
+		(#ENV{point_rosee}|rainette_afficher_unite{temperature})]
+		[ - <:rainette:visibilite|ucfirst:>
+		(#ENV{visibilite}|rainette_afficher_unite{distance})</dd>]
+</dl>

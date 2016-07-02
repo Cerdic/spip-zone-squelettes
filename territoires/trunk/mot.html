@@ -1,0 +1,230 @@
+<BOUCLE_principale(MOTS) {id_mot}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[#(#TITRE|textebrut|strtolower) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_MOT|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles du mot cle ]
+<link rel="alternate" type="application/rss+xml"[ title="(#TITRE|attribut_html)"] href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+</head>
+
+<body class="pas_surlignable page_mot">
+
+[(#REM) Barre de navigation principale ]
+<a class="ancre" id="top"></a>
+<div id="barrefixe">
+	<div id="contexte">
+		<span class="spip_logos" style="padding: 6px 9px; text-align: center; font-size: 32px; color: #CCCCCC;">#</span>
+		<span class="identite_titre"><a href="#URL_SITE_SPIP/">Valleeducousin.fr</a></span>
+		</h1>
+	</div>
+		<INCLURE{fond=inclure/nav,env} />
+</div><!--.Fin de barre fixe-->
+
+[(#REM) Entête principal ]
+<div class="header">
+	[(#REM) Fil d'Arianne ]
+	<p class="arbo"><:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane></p>			
+	[(#REM) Cartouche de la rubrique ]		
+	[(#LOGO_MOT|image_reduire{40,*})]
+	<h1 class="#EDIT{titre} titre">#TITRE</h1>
+	[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+</div><!--.Fin de header-->
+
+[(#REM) Partie principale ]
+<div class="page">
+
+    <div class="main">
+		[(#REM) Contenu principal : contenu du mot-cle ]
+		<div class="wrapper hw_wrapper">
+		<div class="content" id="content">
+
+			[(#REM) Evenements lies au mot-cle ]
+			[(#REM) En direct ]
+			<BOUCLE_evenementsmots(EVENEMENTS){id_mot}{doublons evenementsmots}{age_fin<=0}{age_debut>=-365}{!titre_mot=z_invisible}{statut=publie}>
+					<BOUCLE_motsconnexesevenements1(MOTS){id_evenement}{!type=Z}{doublons motsconnexes}/>
+			</BOUCLE_evenementsmots>	
+			[(#REM) Par le truchement des articles ]
+			<BOUCLE_articlesmots(ARTICLES){id_mot}{doublons articlesmots}>
+					<BOUCLE_motsconnexesevenements2(MOTS){id_article}{!type=Z}{doublons motsconnexes}/>
+				<BOUCLE_evenementsarticlesmots(EVENEMENTS){id_article}{doublons evenementsmots}{age_fin<=0}{age_debut>=-365}>
+					</BOUCLE_motsconnexesevenements3(MOTS){id_evenement}{!type=Z}{doublons motsconnexes}>
+				</BOUCLE_evenementsarticlesmots>	
+			</BOUCLE_articlesmots>		
+			<B_lesevenementsmots>
+			<a name="evenenementsannonces" id="evenenementsannonces" class="ancre"></a>
+			<div class="menu hw_mot menu_articles">		   								    
+		   		<h2><:evenementsalaffiche:> (#GRAND_TOTAL)</h2>
+		   		<ul class="clearfix">
+				    <BOUCLE_lesevenementsmots(EVENEMENTS){!doublons evenementsmots}{par date_debut}>				    	
+				    	<li>
+				    	[(#SET{docevenement,''})]
+					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenement,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenement>					    
+					    [(#SET{logo_source,''})]				    
+					    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+					    [(#SET{logo_source,#LOGO_EVENEMENT})]
+					    </BOUCLE_logosource>
+					    [(#SET{docevenementsource,''})]
+					    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementsource>	   	
+					   	[(#SET{docevenementarticle,''})]
+					   	<BOUCLE_docevenementarticle(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementarticle,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementarticle>				    
+					    [(#SET{logo_auteur,''})]
+					    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteur> 						    
+					    <div class="clearfix">
+					    <p><strong><a href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{50,50,center}|image_recadre{50,50,center})][(#TITRE|supprimer_numero)]</a></strong></p>	    
+					    <p class="dateevenement"><strong>[(#DATE_DEBUT|affdate{Y-m-d}|=={[(#DATE_FIN|affdate{Y-m-d})]}|?{
+					     Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					     ,
+					     Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					     au [(#DATE_FIN|nom_jour)] [(#DATE_FIN|affdate)]})]</strong>
+					     [ | <strong class="#EDIT{lieu}">(#LIEU|PtoBR)</strong>][ &ndash; <span class="#EDIT{adresse}">(#ADRESSE|PtoBR)</span>]</p>
+					     </div>				     						
+						</li>
+				    </BOUCLE_lesevenementsmots>
+		    	</ul>
+		    </div><!--.menu menu_evenements-->
+			</B_lesevenementsmots>
+
+			[(#REM) Activités lies au mot-clé ]
+			<B_activites>
+			<BOUCLE_activites(RUBRIQUES){racine}{titre_mot=z_secteur_annuaire}>
+			<B_activitesarticles>
+			<div class="menu menu_articles hw_mot">
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<h2><:activites:> (#GRAND_TOTAL)</h2>			
+				<ul>					
+					<BOUCLE_activitesarticles(ARTICLES) {branche}{!doublons articlesmots}{doublons activites}{par titre} {pagination 10}>						
+						[(#SET{logo_documentactivites,''})]
+					    <BOUCLE_docactivites(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{0,1}>
+					    [(#SET{logo_documentactivites,#LOGO_DOCUMENT})]
+					    </BOUCLE_docactivites>	  	
+					<li id="hcard_#ID_ARTICLE" class="vcard">		   				
+			   				[(#LOGO_ARTICLE|sinon{#GET{logo_documentactivites}}|image_passe_partout{50,50}|image_recadre{50,50,center})]
+							<p><a href="#URL_ARTICLE" rel="bookmark" class="url"><strong class="org">#TITRE</strong></a>[ &ndash; <span class="title">(#SURTITRE)</span>]</p>				
+							<p>[<span class="adr">(#SOUSTITRE)</span>][ &ndash; <span class="tel">(#PS|supprimer_tags)</span>]</p>										
+					</li>	
+					</BOUCLE_activitesarticles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div><!--.menu menu_articles-->
+			</B_activitesarticles>
+			</BOUCLE_activites>
+			</B_activites>	
+
+			[(#REM) Articles lies au mot-cle ]
+			<B_articles>
+			<div class="menu hw_mot menu_articles">
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<h2><:articles:> (#GRAND_TOTAL)</h2>			
+				<ul>
+					<BOUCLE_articles(ARTICLES) {!doublons articlesmots} {doublons activites}{!par date} {pagination 10}>
+						[(#SET{logo_document,''})]
+					    <BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{doublons dejavu}{0,1}>
+					    [(#SET{logo_document,#LOGO_DOCUMENT})]
+					    </BOUCLE_doc>
+					    [(#SET{logo_auteurarticle,''})]
+					    <BOUCLE_logoauteurarticle(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteurarticle,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteurarticle>	  	
+					<li>
+						<strong><a href="#URL_ARTICLE" rel="bookmark">[(#GET{logo_document}|sinon{#GET{logo_auteurarticle}}|sinon{#LOGO_ARTICLE_RUBRIQUE}|image_passe_partout{50,50}|image_recadre{50,50,center})]#TITRE</a></strong>
+						<br /><small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</small>
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div><!--.menu menu_articles-->
+			</B_articles>
+	
+			[(#REM) Images liées au mot-cle ]
+			<INCLURE{fond=inclure/mot_images,env,ajax,doublons} />
+	
+			[(#REM) Liens des forums ]
+			<B_forums_liens>
+			<div class="menu hw_mot menu_comments">
+				<h2><:messages_forum:> (#GRAND_TOTAL)</h2>			
+				<ul>
+					<BOUCLE_forums_liens(FORUMS?) {id_mot} {plat} {!par date}>
+						<BOUCLE_motsconnexesmessages(MOTS){id_forum}{!type=Z}{doublons motsconnexes}/>
+					[<li>[(#NOM|sinon{...})&nbsp;: ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>(#TEXTE|couper{80})</a></li>]
+					</BOUCLE_forums_liens>
+				</ul>
+			</div>
+			</B_forums_liens>
+	
+			[(#REM) Sites web lies au mot-cle ]
+			<B_sites>
+			<div class="menu hw_mot">
+				<h2><:sites_web:> (#GRAND_TOTAL)</h2></h2>		
+				<ul>
+					<BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+						<BOUCLE_motsconnexessites(MOTS){id_syndic}{!type=Z}{doublons motsconnexes}/>
+					<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+				</ul>
+			</div>
+			</B_sites>
+	
+			[<div class="notes"><hr />(#NOTES)</div>]
+	
+		</div><!--.content-->
+		</div><!--.wrapper-->
+	
+		<div class="aside hw_aside">
+
+			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+			<B_mots_lies>
+			<div class="menu menu_tag hw_boite">
+				<h2><:motsconnexes:> (#TOTAL_BOUCLE)</h2>
+				<p>
+					<BOUCLE_mots_lies(MOTS){!id_mot}{!doublons motsconnexes} {par titre}{',' }>
+					<a href="#URL_MOT" rel="tag"[ class="(#EXPOSE)"]>#TITRE</a></BOUCLE_mots_lies>
+				</p>
+			</div>
+			</B_mots_lies>
+
+			[(#REM) Épingles ] 														
+			<B_epinglesparmot>						
+				<div class="menu menu_epingles hw_boite">
+				<h2><:alire:></h2>
+					<ul class="clearfix">
+					<BOUCLE_epinglesparmot(ARTICLES){!doublons articlesmots}{titre_mot=z_epingles}{!par date}{0,10}>
+							[(#SET{logo_epinglemot,''})]
+						    <BOUCLE_docepinglesparmot(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+						    [(#SET{logo_epinglemot,#LOGO_DOCUMENT})]
+						    </BOUCLE_docepinglesparmot>
+						<li>
+						<a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#LOGO_ARTICLE|sinon{[(#GET{logo_epinglemot})]}|image_passe_partout{65,65}|image_recadre{65,65,center})]#TITRE</a>
+		                </li>  	
+					</BOUCLE_epinglesparmot>
+					</ul>
+				</div><!--.menu_epingles-->	
+			</B_epinglesparmot>
+			
+		</div><!--.aside-->
+	</div><!--.main-->
+
+</div><!--.page-->
+
+[(#REM) Pied de page du site ]
+<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</body>
+</html>
+</BOUCLE_principale>

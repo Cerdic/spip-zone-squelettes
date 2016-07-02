@@ -1,0 +1,79 @@
+<div class="main media clearfix">
+
+	[(#REM) Contenu principal : contenu de la rubrique ]
+	<div class="wrapper hw_wrapper_100">
+	<div class="content" id="content">
+	
+	[(#REM) Images]	
+	<div class="galerie clearfix">	
+			<div class="mode_affichage">
+			[(#REM) Ancre de titre et titre]	
+			<a class="ancre" id="images"></a>
+	  		
+	  		[(#REM) Barre de tri]
+	  		<div class="tri">
+	  		<ul>
+	  		[(#REM) Si c'est le choix actif, classe on, afficher en strong, sans lien, sinon lien de classe ajax ]
+	  		[(#TRI_IMG|sinon{date}|=={date}|?{
+	  			<li><strong class="on"><:date:></strong></li>,
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_img,date}|parametre_url{debut_img,''})"><:date:></a></li>]
+	  		})][(#TRI_IMG|=={hasard}|?{
+	  			<li><strong class="on"><:hasard:></strong></li>,		  			
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_img,hasard}|parametre_url{debut_img,''})"><:hasard:></a></li>]
+	  		})][(#TRI_IMG|=={mot}|?{
+	  			<li><strong class="on"><:mots_cles:></strong></li>,		  			
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_img,mot}|parametre_url{debut_img,''})"><:mots_cles:></a></li>]
+	  		})]
+	  		</ul>
+	  		</div>
+	  		</div><!-- .mode affichage-->
+		  	
+		  	[(#REM) Affichage 1 : par défaut, ordre chronologique inversé]	
+		  	<B_img>
+		  	[(#SET{totalimages,#TOTAL_BOUCLE})]
+		  		<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<ul class="planche clearfix">
+					<BOUCLE_img(DOCUMENTS){si #TRI_IMG|!={mot}}{extension==jpg|png|gif}{largeur > 335}{hauteur > 335}{!titre_mot=z_invisible}{tri date,-1}{pagination 12}>				
+						<li>
+						[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" rel="bookmark" title="#TITRE">
+						(#FICHIER
+						|image_reduire{335}|image_recadre{375,375,center,#FFFFFF}
+						|inserer_attribut{title,[(#TITRE|attribut_html|couper{80})]}
+		                |inserer_attribut{alt,[(#DESCRIPTIF|attribut_html)]})   
+		                </a>]   
+	                   	</li>
+					</BOUCLE_img>
+				</ul><!--.planche-->
+				[<p class="pagination">(#PAGINATION)</p>]
+				</div><!--.Fin de la galerie 1-->		
+			</B_img>[(#REM) Fin de la première partie de la boucle]
+			
+			[(#REM) Affichage 2 : par mots-clés]
+				[(#REM) On stocke d'abord les mots-clés de toutes les images au-deça d'une taille en pixels]	
+				<BOUCLE_imagesmots(DOCUMENTS){extension==jpg|png|gif}{largeur > 335}{hauteur > 335}>
+					<BOUCLE_motsimages(MOTS){id_document}{!type==^Z}{doublons motsimages}/>
+				</BOUCLE_imagesmots>
+			
+				<B_mot>
+				<ul class="planche clearfix">
+					<BOUCLE_mot(MOTS){!doublons motsimages}{tri titre}>			
+						<li>
+						<a href="#URL_MOT" title="#TITRE" rel="tag"><h3 class="motimage">#TITRE</h3>
+						<BOUCLE_vignette(DOCUMENTS){id_mot}{extension==jpg|png|gif}{largeur > 335}{hauteur > 335}{!par date}{0,1}>
+						[(#LOGO_DOCUMENT
+						|image_reduire{335}|image_recadre{375,375,center,#FFFFFF}
+						|inserer_attribut{title,[(#TITRE|attribut_html|couper{80})]}
+		                |inserer_attribut{alt,[(#DESCRIPTIF|attribut_html)]}) ]  
+		                </BOUCLE_vignette>
+		                 </a>
+	                   	</li>
+					</BOUCLE_mot>	
+				</ul><!--.planche-->
+				</div><!--.Fin de la galerie 2-->	
+				</B_mot>	
+			<//B_img>[(#REM) Fin de la deuxième partie de la boucle]
+			
+	</div><!--.content-->
+	</div><!--.wrapper-->	
+	
+</div><!--.main-->	

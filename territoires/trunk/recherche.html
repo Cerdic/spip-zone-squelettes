@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inclure/head} />
+<meta name="robots" content="none" />
+</head>
+
+<body class="pas_surlignable page_recherche">
+
+
+<div id="barrefixe">
+	<div id="contexte">
+	<span class="spip_logos" style="padding: 6px 9px; text-align: center; font-size: 32px; color: #CCCCCC;"><strong>?</strong></span>
+	<span class="identite_titre"><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP </a> / <:resultats:></span>
+	</div><!--.fin de contexte-->
+	<INCLURE{fond=inclure/nav,env} />
+</div><!--.Fin de barre fixe-->
+
+[(#REM) Entête principal ]
+[<div class="header">
+	<p class="arbo"><:resultats_recherche:></p>
+	<h1/>&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</h1>
+</div>]
+
+[(#REM) Partie principale ]
+<div class="page">	
+	<div class="main clearfix">
+		[(#REM) Contenu principal : Resultats de la recherche ]
+		<div class="wrapper hw_wrapper">
+		<div class="content" id="content">
+
+			[(#REM) Evenements trouvés ]
+			<B_lesevenementsmots>
+			<div class="menu hw_mot menu_articles">		   								    
+		   		<h2><:evenementsalaffiche:> (#GRAND_TOTAL)</h2>
+		   		<ul class="clearfix">
+				    <BOUCLE_lesevenementsmots(EVENEMENTS){recherche} {!par points}{age_fin<=0}{age_debut>=-365}{par date_fin}>
+				    	<li>
+				    	[(#SET{docevenement,''})]
+					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenement,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenement>					    
+					    [(#SET{logo_source,''})]				    
+					    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+					    [(#SET{logo_source,#LOGO_EVENEMENT})]
+					    </BOUCLE_logosource>
+					    [(#SET{docevenementsource,''})]
+					    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementsource>	   	
+					   	[(#SET{docevenementarticle,''})]
+					   	<BOUCLE_docevenementarticle(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementarticle,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementarticle>				    
+					    [(#SET{logo_auteur,''})]
+					    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteur> 							    
+					    <div class="clearfix">
+					    <strong><a href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{50,50,center}|image_recadre{50,50,center})][(#TITRE|supprimer_numero)]</a></strong>   
+					    <p class="dateevenement"><strong>[(#DATE_DEBUT|affdate{Y-m-d}|=={[(#DATE_FIN|affdate{Y-m-d})]}|?{
+					     Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					     ,
+					     Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					     au [(#DATE_FIN|nom_jour)] [(#DATE_FIN|affdate)]})]</strong>
+					     [ | <strong class="#EDIT{lieu}">(#LIEU|PtoBR)</strong>][ &ndash; <span class="#EDIT{adresse}">(#ADRESSE|PtoBR)</span>]</p>
+					     </div>				     						
+						</li>
+				    </BOUCLE_lesevenementsmots>
+		    	</ul>
+		    </div><!--.menu menu_evenements-->
+			</B_lesevenementsmots>
+			
+			[(#REM) Activités trouvées ]
+			<B_activites>
+			<BOUCLE_activites(RUBRIQUES){racine}{titre_mot=z_secteur_annuaire}>
+			[(#SET{id_secteur_annuaire,#ID_SECTEUR})]
+			<B_activitesarticles>
+			<div class="menu menu_articles hw_mot">
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<h2><:activites:> (#GRAND_TOTAL)</h2>			
+				<ul>					
+					<BOUCLE_activitesarticles(ARTICLES) {branche}{recherche}{doublons activites}{par titre} {pagination 10}>						
+						[(#SET{logo_documentactivites,''})]
+					    <BOUCLE_docactivites(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{0,1}>
+					    [(#SET{logo_documentactivites,#LOGO_DOCUMENT})]
+					    </BOUCLE_docactivites>	  	
+					<li id="hcard_#ID_ARTICLE" class="vcard">		   				
+			   				[(#LOGO_ARTICLE|sinon{#GET{logo_documentactivites}}|image_passe_partout{50,50}|image_recadre{50,50,center})]
+							<p><a href="#URL_ARTICLE" rel="bookmark" class="url"><strong class="org">#TITRE</strong></a>[ &ndash; <span class="title">(#SURTITRE)</span>]</p>				
+							<p>[<span class="adr">(#SOUSTITRE)</span>][ &ndash; <span class="tel">(#PS|supprimer_tags)</span>]</p>										
+					</li>	
+					</BOUCLE_activitesarticles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div><!--.menu menu_articles-->
+			</B_activitesarticles>
+			</BOUCLE_activites>
+			</B_activites>				
+			
+			[(#REM) Articles trouves ]
+			<B_articles>
+			<div class="menu hw_mot menu_articles">				
+				<h2><:articles:> (#GRAND_TOTAL)</h2>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>
+				<ul>
+					<BOUCLE_articles(ARTICLES) {recherche}{!id_secteur=#GET{id_secteur_annuaire}} {!par date}{pagination}>
+						[(#SET{logo_document,''})]
+					    <BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{doublons dejavu}{0,1}>
+					    [(#SET{logo_document,#LOGO_DOCUMENT})]
+					    </BOUCLE_doc>
+					    [(#SET{logo_auteurarticle,''})]
+					    <BOUCLE_logoauteurarticle(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteurarticle,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteurarticle>										
+					<li>
+						<strong><a href="#URL_ARTICLE" rel="bookmark">[(#GET{logo_document}|sinon{#GET{logo_auteurarticle}}|sinon{#LOGO_ARTICLE_RUBRIQUE}|image_passe_partout{50,50}|image_recadre{50,50,center})]#TITRE</a></strong>
+						<br /><small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</small>
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
+
+			[(#REM) Images trouvées]	
+			<B_lesimagesmots>
+			<a name="imagesmots" id="imagesmots" class="ancre"></a>
+			<div class="menu hw_mot hw_mot_images">		   								    
+		   		<h2><:images:> (#GRAND_TOTAL)</h2>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>					   		
+		   		<ul class="clearfix">
+				    <BOUCLE_lesimagesmots(DOCUMENTS){recherche} {!par points}{extension==jpg|png}{largeur > 300}{hauteur > 300}{pagination 20}>
+				    	<li>
+						[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE" rel="bookmark">
+						(#LOGO_DOCUMENT|image_passe_partout{125,125}|image_recadre{125,125,center})    
+		                </a>] 			     						
+						</li>
+				    </BOUCLE_lesimagesmots>
+		    	</ul>
+				[<p class="pagination">(#PAGINATION)</p>]		    	
+		    </div><!--.menu menu_evenements-->
+			</B_lesimagesmots>
+			
+			[(#REM) Sites web trouves ]
+			<B_sites>
+			<div class="menu hw_mot menu_articles">
+				<h2><:sites_web:> (#GRAND_TOTAL)</h2>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>				
+				<ul>
+					<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 5}>
+					<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_sites>
+			
+		</div><!--.content-->
+		</div><!--.wrapper-->
+				
+		<div class="aside hw_aside">
+
+			[(#REM) Mots-cles trouves ]
+			<B_mots>
+			<div class="menu menu_tag hw_boite">
+				<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>				
+				<ul>
+					<BOUCLE_mots(MOTS) {recherche} {!par points} {pagination 10}>
+					<li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+					</BOUCLE_mots>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_mots>
+
+			[(#REM) Messages trouves ]
+			<B_messages>
+			<div class="menu hw_boite menu_comments">
+				<h2><:messages_forum:> (#GRAND_TOTAL)</h2>
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>				
+				<ul>
+					<BOUCLE_messages(FORUMS?) {recherche} {!par points} {pagination 5}>
+					[<li><a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>(#TEXTE|couper{80})</a></li>]
+					</BOUCLE_messages>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_messages>
+
+		</div><!--.aside-->
+	</div><!--.main-->
+
+    
+</div><!--.page-->
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</body>
+</html>

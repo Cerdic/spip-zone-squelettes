@@ -1,0 +1,130 @@
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut)][ de (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body class="pas_surlignable page_rubrique">
+<div class="page">
+
+	<INCLURE{fond=inclure/header} />
+	<INCLURE{fond=inclure/nav,env} />
+
+	<div class="main">
+		[(#REM) Contenu principal : contenu de la rubrique ]
+		<div class="wrapper">
+		<div class="content" id="content">
+			<p class="arbo"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]
+			<BOUCLE_compteur_articles(ARTICLES) {branche}>
+			</BOUCLE_compteur_articles>[((#TOTAL_BOUCLE) <:adresses_publiees:>)]</B_compteur_articles>			
+			</p><!--.arbo-->
+	
+			<div class="cartouche">
+				<h1 class="#EDIT{titre}">[(#LOGO_RUBRIQUE|image_reduire{40,*}) ]#TITRE</h1>
+			</div>
+	
+			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+
+			[(#REM) Carte ]
+			
+			<div class="menu menu_carte">
+			[(#MODELE{geoportail_articles_mots}{id_geoportail=0}{id_rubrique}{recadre=1}{legende=4}{taille=12})]
+			</div>
+			
+			[(#REM) Articles de la rubrique ]
+			
+			<B_articles>
+			<div class="menu menu_articles">
+				#ANCRE_PAGINATION
+					<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre} {pagination 30}>
+						<dl class="hentry clearfix">
+							#SET{logo_document,''}
+							<BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif} {!par date}{0,1}>
+			                #SET{logo_document,#LOGO_DOCUMENT}
+			   				</BOUCLE_doc>
+							<dt><a href="#URL_ARTICLE">[(#LOGO_ARTICLE|sinon{#GET{logo_document}}||image_passe_partout{45,45}|image_recadre{45,45,center})]#TITRE</a></dt>
+							[<dd class="#EDIT{soustitre}">(#SOUSTITRE)</dd>]
+						</dl>
+					</BOUCLE_articles>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>	
+
+			[(#REM) Si aucun article, affiche un plan de la rubrique ]
+			
+			<B_annuaire>
+			<div class="menu menu_rubriques">
+				<ul class="annuaire">
+					<BOUCLE_annuaire(RUBRIQUES) {id_parent} {par titre}>
+					<li>
+			        <!--Ce premier SET sert à vider la mémoire à chaque tour de boucle-->
+			        #SET{logo_document,''}
+			        #SET{logo_article,''}
+			    	<!--Là on attrape une l'une des images de l'article pour en faire un logo-->
+			    	<BOUCLE_articlesannuaire(ARTICLES) {id_rubrique} {par hasard}>
+			    	<BOUCLE_docannuaire(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{par hasard}{0,1}>
+			    	#SET{logo_document,#LOGO_DOCUMENT}
+			    	</BOUCLE_docannuaire>
+			    	#SET{logo_article,#LOGO_ARTICLE}
+					</BOUCLE_articlesannuaire>
+			   		<a href="#URL_RUBRIQUE">
+						<dl>
+			 				<dt>#TITRE</dt>
+							[<dd>(#LOGO_RUBRIQUE|sinon{#GET{logo_document}}|sinon{#GET{logo_article}}||image_passe_partout{115,115}|image_recadre{115,115,center})</dd>]
+			   			</dl>
+			   		</a>							
+					</li>
+					</BOUCLE_annuaire>
+				</ul>
+			</div>
+			</B_annuaire>
+			
+			<//B_articles>[(#REM) supprimer pour toujours avoir le miniplan]
+	
+			[(#REM) Documents joints a la rubrique ]
+			<INCLURE{fond=inclure/rubrique_documentsjoints, id_rubrique} />
+	
+			[<div class="notes"><hr />(#NOTES)</div>]
+	
+		</div><!--.content-->
+		</div><!--.wrapper-->
+	
+		<div class="aside">
+	
+			#FORMULAIRE_RECHERCHE
+			
+			[(#REM) Affichage ]
+			<div class="menu">
+			<h2>Carte</h2>
+			<p><a href="#URL_RUBRIQUE">Masquer la carte ?</a></p>
+			</div>
+			
+			[(#REM) Menu de navigation mots-cles ]	
+				
+			<INCLURE{fond=inclure/rubrique_mots, id_rubrique} />			
+	
+			[(#REM) Breves du secteur ]
+
+			<INCLURE{fond=inclure/rubrique_breves, id_rubrique}{ajax}{env} />	
+	
+		</div><!--.aside-->
+	</div><!--.main-->
+
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div><!--.page-->
+</body>
+</html>
+</BOUCLE_principale>

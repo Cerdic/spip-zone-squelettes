@@ -1,0 +1,42 @@
+	<BOUCLE_evtpasfini(EVENEMENTS){age_fin<=0}{!titre_mot=z_invisible}{statut=publie}{doublons evtpasfini}>
+			<BOUCLE_communesevtpasfini(MOTS){id_evenement}{id_groupe IN 1}{par titre}{doublons communesevtpasfini}/>
+			<BOUCLE_motspasfini(MOTS){id_evenement}{id_groupe IN 5}{par titre}{doublons motsevtpasfini}/>
+			<BOUCLE_articlesevtpasfini(ARTICLES){id_evenement}{doublons articlesevtpasfini}>
+				<BOUCLE_communesarticlesevtpasfini(MOTS){id_article}{id_groupe IN 1}{par titre}{doublons communesevtpasfini}/>
+				<BOUCLE_motsarticlesevtpasfini(MOTS){id_article}{id_groupe IN 5}{par titre}{doublons motsevtpasfini}/>
+			</BOUCLE_articlesevtpasfini>
+	</BOUCLE_evtpasfini>
+
+
+		<BOUCLE_mots(MOTS){gis}{!doublons communesevtpasfini}{0, #ENV{limit}}{","}>
+					[(#REM) A. Sélection des événements directement liés à un mot-clé commune ]
+					#SET{evenementsparcommune2,#ARRAY}
+					<BOUCLE_sel_evtcommunes2(EVENEMENTS){!doublons evtpasfini}{id_mot}>
+					[(#SET{evenementsparcommune2,#GET{evenementsparcommune2}|push{#ID_EVENEMENT}})]				
+					</BOUCLE_sel_evtcommunes2>
+	
+					[(#REM) B. Sélection des événements indirectement liés à un mot-clé commune par le truchement de l'article ]
+					<BOUCLE_sel_articlescommunes2(ARTICLES){!doublons articlesevtpasfini}{id_mot}>
+						<BOUCLE_sel_evtarticlescommunes2(EVENEMENTS){!doublons evtpasfini}{id_article}>
+							[(#REM) Astuce pour éviter de récupérer les évenements ayant un mot du groupe ]
+							<BOUCLE_test_commune2(MOTS){id_groupe=1}{id_evenement}>
+							</BOUCLE_test_commune2>
+							[(#SET{evenementsparcommune2,#GET{evenementsparcommune2}|push{#ID_EVENEMENT}})]
+							<//B_test_commune2>	
+						</BOUCLE_sel_evtarticlescommunes2>
+					</BOUCLE_sel_articlescommunes2>
+			<BOUCLE_evtcommunes(EVENEMENTS){id_evenement IN #GET{evenementsparcommune2}}>		
+			</BOUCLE_evtcommunes>
+			#SET{totalevenements,#TOTAL_BOUCLE}
+			</B_evtcommunes>
+		
+				
+		{"type": "Feature",
+		["geometry": (#GEOMETRY|appliquer_filtre{wkt_to_json}|sinon{{"type": "Point", "coordinates": \[#LON, #LAT\]}}),]
+		"id":"#ID_GIS",
+		"properties": {
+			"title":[(#URL_MOT|lien_ou_expose{[(#TITRE_GIS*}|sinon{#TITRE*}|extraire_multi|supprimer_numero)]}|json_encode)],
+			"description":[(#GET{totalevenements})][
+			(#LOGO_GIS|gis_icon_properties)][,
+			"styles": (#GEOMETRY_STYLES|appliquer_filtre{geometry_styles_to_json})]
+		}}</BOUCLE_mots>

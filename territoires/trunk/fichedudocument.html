@@ -1,0 +1,208 @@
+<BOUCLE_principale(DOCUMENTS) {id_document}>
+
+[(#ENV{mode_force,#MODE}|=={image}|oui)
+	[(#SET{fichier,#URL_DOCUMENT})]
+	[(#SET{width,#LARGEUR})]
+	[(#SET{height,#HAUTEUR})]
+	[(#SET{url,#ENV{lien}})]
+]
+[(#ENV{mode_force,#MODE}|=={image}|non)
+	[(#SET{fichier,#URL_DOCUMENT})]
+	[(#SET{width,[(#LOGO_DOCUMENT|extraire_attribut{width})]})]
+	[(#SET{height,[(#LOGO_DOCUMENT|extraire_attribut{height})]})]
+	[(#SET{url,#ENV{lien,#URL_DOCUMENT}})]
+]
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut|sinon{<:documentnumero:>#ID_DOCUMENT})][ | (#LESMOTS|supprimer_tags|replace{','}|strtolower)][ | (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_DOCUMENT|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_article">
+
+<a class="ancre" id="top"></a>
+
+<div id="barrefixe">
+	<div id="contexte">
+		<img class="spip_logos" width="32" height="32" src="[(#CHEMIN{css/img/medias32x32_gris.png})]" alt="">
+		<span class="identite_titre"><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></span>
+		</h1>
+	</div>
+		<INCLURE{fond=inclure/nav,env} />
+</div><!--.Fin de barre fixe-->
+
+<div class="page">	
+	<div class="main">
+		[(#REM) Contenu principal : contenu de la page document ]
+		<div class="wrapper hw_wrapper hfeed">
+		<div class="content hw_publication hentry" id="content">
+
+			[(#REM) Cartouche : header du document ]					
+			<div class="cartouche">
+			[<p class="surtitre">(#TITRE|?{Document n°[(#SESSION{id_auteur}|?{
+				[<a href="(#URL_ECRIRE{document_edit,id_document=#ID_DOCUMENT})">#ID_DOCUMENT</a>],
+				#ID_DOCUMENT})]})</p>]			
+			<h1 class="#EDIT{titre} surlignable">[(#TITRE|?{#TITRE,
+				[(#SESSION{id_auteur}|?{Document n°[<a href="(#URL_ECRIRE{document_edit,id_document=#ID_DOCUMENT})">#ID_DOCUMENT</a>],
+					Document n°#ID_DOCUMENT})]
+				})]</h1>
+			[(#CREDITS|?{[<p class="#EDIT{credits} credits"><strong><:credits:> : (#CREDITS)</strong></p>],
+				[(#SESSION{id_auteur}|?{<p class="#EDIT{credits} credits"><:ajouteruncredit:></p>})]
+				})] 
+			<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[<:publiele:> (#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+			</div>	
+
+			[(#REM) Le document lui-même ]
+			<dl class="spip_documents spip_documents_center">
+				<dt>
+				[<a href="(#GET{url})"[
+				class="(#ENV{lien_class})"] title='#TYPE_DOCUMENT - #LARGEUR x #HAUTEUR - [(#TAILLE|taille_en_octets|texte_backend)]'[
+				(#ENV{lien}|?{'',type="#MIME_TYPE"})]>]<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='[(#TITRE|?{#TITRE,#TYPE_DOCUMENT - #LARGEUR x #HAUTEUR - [(#TAILLE|taille_en_octets|texte_backend)]})]' />[(#GET{url}|?{</a>})]
+				</dt>
+				<dt class="accesfiche"><:documentnumero:>[(#SESSION{id_auteur}|?{
+					[<a href="(#URL_ECRIRE{document_edit,id_document=#ID_DOCUMENT})">#ID_DOCUMENT</a>],
+					#ID_DOCUMENT})]</dt>
+				[(#TITRE|?{[<dt class="#EDIT{titre} titre">(#TITRE)</dt>],
+					[(#SESSION{id_auteur}|?{<dt class="#EDIT{titre} titre"><:ajouteruntitre:></dt>})]
+					})]
+				[(#DESCRIPTIF|?{[<dd class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF|PtoBR)</dd>],
+					[(#SESSION{id_auteur}|?{<dd class="#EDIT{descriptif} descriptif"><:ajouterundescriptif:></dd>})]
+					})]
+				[<dd class="#EDIT{credits} credits"><small><:credits:> : (#CREDITS)</small></dd>]	 
+				<dd class="dimensions"><:dimensionsenpx:> #LARGEUR x #HAUTEUR - <:poids:> [(#TAILLE|taille_en_octets)]</dd>
+				[<dd class="tagdoc"><:mots_cles:> : (#LESMOTS|replace{#})</dd>]
+			</dl>
+
+		</div><!--.content-->
+		</div><!--.wrapper-->
+
+	
+	<div class="aside hw_aside">		
+
+			[(#REM) Articles auxquels le document est attaché]
+			<B_attachements_articles>
+				<div class="menu menu_epingles hw_boite">		
+				<h2><:articleslies:></h2>
+					<ul class="clearfix">
+						<BOUCLE_attachements_articles(ARTICLES) {!id_rubrique=5}{id_document}{doublons articleslies}{!par date}>
+						[(#SET{logo_epingle,''})]
+					    <BOUCLE_docepingle(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{!titre_mot=z_invisible}{!par date}{0,1}>
+					    [(#SET{logo_epingle,#LOGO_DOCUMENT})]
+					    </BOUCLE_docepingle> 
+						<li>
+						<a href="#URL_ARTICLE" rel="bookmark" title="#TITRE">[(#GET{logo_epingle}|image_passe_partout{65,65}|image_recadre{65,65,center}|sinon{[(#LOGO_ARTICLE|image_reduire{65,65})]})]
+						<p>#TITRE</p></a>											
+						</li>
+						</BOUCLE_attachements_articles>
+					</ul>
+				</div>
+			</B_attachements_articles>
+
+			[(#REM) A. On fait un tableau avec les mots du document ]
+			#SET{mots,#ARRAY}
+			<BOUCLE_motsconnexes(MOTS){id_document}{!type==^Z}> 
+   			#SET{mots,#GET{mots}|push{#ID_MOT}}
+			</BOUCLE_motsconnexes>
+			
+			[(#REM) B. Grâce au plugin - mots connexes - on sélectionne et on compte les documents connexes par mots ]
+			#SET{tableauimages,#ARRAY}
+			<BOUCLE_compteur_imagesconnexes(DOCUMENTS) {id_document!=#ID_DOCUMENT}{extension==jpg|png}{!titre_mot=z_invisible}{largeur > 300}{hauteur > 300}{mots 1 #GET{mots} !tri}{doublons imagesconnexes}>
+				#SET{tableauimages,#GET{tableauimages}|push{#ID_DOCUMENT}}
+			</BOUCLE_compteur_imagesconnexes>
+				#SET{nombreimagesconnexes,#TOTAL_BOUCLE}				
+			</B_compteur_imagesconnexes>
+				#SET{manquant,#GET{nombreimagesconnexes}|moins{6}|mult{-1}}			
+				
+			[(#REM) C. S'il y en a au moins 6, on affiche ces images par nombre de mots connexes ]
+			<B_imagesconnexesmots>
+			<div class="menu hw_boite hw_boite_images">
+				<span class="ancre_pagination">#ANCRE_PAGINATION</span>				
+				<h2><:imagesconnexes:></h2>		
+					<ul class="clearfix">
+					<BOUCLE_imagesconnexesmots(DOCUMENTS){si #GET{nombreimagesconnexes}|>={6}}{!doublons imagesconnexes}{mots 1 #GET{mots} !tri}{pagination 6}>
+						<li>
+						[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE">
+						(#LOGO_DOCUMENT|image_passe_partout{110,110}|image_recadre{110,110,center})    
+		                </a>]   
+	                   	</li>
+					</BOUCLE_imagesconnexesmots>
+					</ul><!--.planche-->
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_imagesconnexesmots>
+			
+			[(#REM) D. Sinon on cherche d'autres images connexes pour arriver à 6 ]
+			[(#REM) On reprend tous les articles qui utilisent la même image ]
+            <BOUCLE_articleslies(ARTICLES){!doublons articleslies}>   
+            	[(#REM) On sélectionne en priorité les autres images de ces articles ]
+	            <BOUCLE_imagesarticleslies(DOCUMENTS){si #GET{nombreimagesarticleslies}|<{#GET{manquant}}}{id_article}{id_document!=#ID_DOCUMENT}{!titre_mot=z_invisible}{extension==jpg|png}{largeur > 300}{hauteur > 300}{par hasard}{0,#GET{manquant}}>
+	            	#SET{tableauimages,#GET{tableauimages}|push{#ID_DOCUMENT}}
+	            </BOUCLE_imagesarticleslies>
+					#SET{nombreimagesarticleslies,#TOTAL_BOUCLE|plus{#GET{nombreimagesarticleslies}}}            
+				</B_imagesarticleslies>
+					#SET{manquant,#GET{nombreimagesconnexes}|plus{#GET{nombreimagesarticleslies}}|moins{6}|mult{-1}}					
+				[(#REM) S'il y en manque encore, alors on cherche dans les articles connexes ]
+				<BOUCLE_motsarticleslies(MOTS){si #GET{nombreimagesconnexes}|plus{#GET{nombreimagesarticleslies}}|<{6}}{id_article}>
+            		<BOUCLE_articlesconnexes(ARTICLES){id_mot}{par hasard}>
+	            		[(#REM) Chercher les autres images de ces autres articles ]
+	            		<BOUCLE_imagesarticlesconnexes(DOCUMENTS){si #GET{nombreimagesarticlesconnexes}|<{#GET{manquant}}}{id_article}{id_document!=#ID_DOCUMENT}{!titre_mot=z_invisible}{extension==jpg|png}{largeur > 300}{hauteur > 300}{par hasard}{0,#GET{manquant}}>
+	            			#SET{tableauimages,#GET{tableauimages}|push{#ID_DOCUMENT}}
+            			</BOUCLE_imagesarticlesconnexes>
+            				#SET{nombreimagesarticlesconnexes,#TOTAL_BOUCLE|plus{#GET{nombreimagesarticlesconnexes}}}
+            			</B_imagesarticlesconnexes>
+            		</BOUCLE_articlesconnexes>
+            	</BOUCLE_motsarticleslies>		                                        
+            </BOUCLE_articleslies>
+            
+            [(#REM) E. Si l'en manque encore... on prend les dernières photos de l'auteur ]
+            #SET{manquant,#GET{nombreimagesconnexes}|plus{#GET{nombreimagesarticleslies}}|plus{#GET{nombreimagesarticlesconnexes}}|moins{6}|mult{-1}}
+            <BOUCLE_auteurdocument(AUTEURS){id_document}>
+            <BOUCLE_imagesmemeauteur(DOCUMENTS){si #GET{nombreimagesmemeauteur}|<{#GET{manquant}}}{id_document!=#ID_DOCUMENT}{!titre_mot=z_invisible}{extension==jpg|png}{largeur > 300}{hauteur > 300}{id_auteur}{!par date}>
+            #SET{tableauimages,#GET{tableauimages}|push{#ID_DOCUMENT}}
+            </BOUCLE_imagesmemeauteur>
+            #SET{nombreimagesmemeauteur,#TOTAL_BOUCLE|plus{#GET{nombreimagesmemeauteur}}}
+            </B_imagesmemeauteur>
+	        </BOUCLE_auteurdocument>
+	                   
+			[(#REM) F. On affiche le tout ]
+			
+				<B_imagesconnexestout>
+				<div class="menu hw_boite hw_boite_images">					
+					<h2><:imagesconnexes:></h2>		
+						<ul class="clearfix">
+						<BOUCLE_imagesconnexestout(DOCUMENTS){id_document IN #GET{tableauimages}}{doublons images}{0,6}>
+							<li>
+							[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE">
+							(#LOGO_DOCUMENT|image_passe_partout{110,110}|image_recadre{110,110,center})    
+			                </a>] 
+	                    	</li>
+						</BOUCLE_imagesconnexestout>										
+						</ul><!--.planche-->
+				</div>
+				</B_imagesconnexestout>
+			
+		<//B_imagesconnexesmots>
+		
+		</div><!--.aside-->
+	</div><!--.main-->
+
+</div><!--.page-->
+
+[(#REM) Pied de page du site ]
+<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</body>
+</html>
+</BOUCLE_principale>
+
+#FILTRE{minisauvage_html}

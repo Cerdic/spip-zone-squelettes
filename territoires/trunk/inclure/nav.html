@@ -1,0 +1,91 @@
+#CACHE{1800}
+
+[(#REM) On commence par le menu générique, valable partout ]
+<div id="menugenerique" class="nav">
+	
+	[(#REM) Bouton recherche ]
+	#FORMULAIRE_RECHERCHE
+	<a class="boutoncercle" href="#URL_PAGE{rechercher}" title="<:rechercher:>">
+	<span class="iconeloupe"></span>
+	</a>
+
+	[(#REM) Bouton accueil ou A propos ]
+	[(#REM) Si A propos ne compte qu'un article, on prend son url, sinon on prend l'url de la rubrique ]
+	<BOUCLE_apropos(RUBRIQUES) {racine} {titre_mot=z_secteur_apropos}{par num titre, titre}>
+	[(#SET{url_rubrique_about,#URL_RUBRIQUE})]
+	[(#SET{logo_rubrique_about,#LOGO_RUBRIQUE})]
+	[(#SET{titre_rubrique_about,#TITRE})]
+	<BOUCLE_nombrearticlesapropos(ARTICLES){id_rubrique}>
+	[(#SET{url_article_about,#URL_ARTICLE})]
+	</BOUCLE_nombrearticlesapropos>
+	[(#SET{nombrearticlesabout,#TOTAL_BOUCLE})]
+	</B_nombrearticlesapropos>
+	</BOUCLE_apropos>
+	[(#ENV{home,'non'}|=={non}|?{
+	<div id="reveniraccueil">
+	<a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>"><img width="32" height="32" src="[(#CHEMIN{css/img/maison.png})]" alt="Accueil"></a></li>
+	</div>,
+	[<div id="apropos"><a href="[(#GET{nombrearticlesabout}|=={1}|?{#GET{url_article_about},#GET{url_rubrique_about}})]" title="#GET{titre_rubrique_about}">(#GET{logo_rubrique_about}|image_passe_partout{32,32}|image_recadre{32,32,center})</a></div>]
+	})]
+	
+	[(#REM) Bouton revenir en haut ]	
+	<div>
+	<a title="<:remonter:>" href="#top" rel="nofollow">
+	<span id="revenirenhaut"></span> 
+	</a>
+	</div>
+	
+</div>
+
+[(#REM) Puis on cherche les rubriques secteur sélectionnées par des mots-clés ]
+<B_nav>
+<div class="nav clearfix[ (#TOTAL_BOUCLE|=={1}|oui)none]" id="nav">
+	<nav role="navigation" id="navigation" [(#ENV{home,'non'}|=={non}|?{class="navrub"})]>
+	<ul>
+	<BOUCLE_navagenda(RUBRIQUES){racine}{tout}{titre_mot=z_secteur_agenda}>
+	<li[ class="(#EXPOSE)"]><a href="#URL_RUBRIQUE" title="#TITRE">[(#LOGO_RUBRIQUE_SURVOL|sinon{#LOGO_RUBRIQUE_NORMAL}|image_masque{#ENV{date}|jour|image_typo{police=arialbold.ttf,taille=10,padding=14,hauteur_ligne=8,couleur=777777}|image_recadre{32,32},mode=normal})]<span class="menutoptexte">#TITRE</span></a></li>
+	</BOUCLE_navagenda>
+	<BOUCLE_nav(RUBRIQUES){racine}{tout}{titre_mot=z_menu_haut}{par num titre, titre}>
+	<li[ class="(#EXPOSE)"]><a href="#URL_RUBRIQUE" title="#TITRE">[(#LOGO_RUBRIQUE_SURVOL|sinon{#LOGO_RUBRIQUE_NORMAL}|image_reduire{*,32})]<span class="menutoptexte">#TITRE</span></a></li>
+	</BOUCLE_nav>
+	<BOUCLE_navmeteo(RUBRIQUES){racine}{titre_mot=z_secteur_meteo}>
+	<li[ class="(#EXPOSE)"]><a href="#URL_RUBRIQUE" title="#TITRE">[(#MODELE{rainette_conditions_iconerubrique, code=FRXX0396, sous_modele=conditions_tempsreel_iconerubrique})]<span class="menutoptexte">#TITRE</span></a></li>
+	</BOUCLE_navmeteo>
+	</ul>
+	</nav>
+</div>
+</B_nav>
+
+
+[(#REM) Script destiné au pliage/dépliage du menu sur petits écrans ]
+<script>
+	// config
+    var maxBreakpoint = 850; // maximum breakpoint
+    var targetID = 'navigation'; // target ID (must be present in DOM)
+    var triggerID = 'toggle-nav'; // trigger/button ID (will be created into targetID)
+    
+	// targeting navigation
+	var n = document.getElementById(targetID);
+        
+	// nav initially closed is JS enabled
+	n.classList.add('is-closed');
+	
+    // global navigation function
+	function navi() {
+		// when small screen, create a switch button, and toggle navigation class
+		if (window.matchMedia("(max-width:" + maxBreakpoint +"px)").matches && document.getElementById(triggerID)==undefined) {			
+			n.insertAdjacentHTML('afterBegin','<button id='+triggerID+' title="open/close navigation"></button>');
+			t = document.getElementById(triggerID);  
+			t.onclick=function(){ n.classList.toggle('is-closed');}
+		}
+		// when big screen, delete switch button, and toggle navigation class
+        var minBreakpoint = maxBreakpoint + 1;
+		if (window.matchMedia("(min-width: " + minBreakpoint +"px)").matches && document.getElementById(triggerID)) {
+			document.getElementById(triggerID).outerHTML="";
+		}
+	}
+	navi();
+        
+	// when resize or orientation change, reload function
+	window.addEventListener('resize', navi);
+	</script>

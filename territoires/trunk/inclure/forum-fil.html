@@ -1,0 +1,77 @@
+[(#REM) Messages du forum ]
+<B_forums>
+[<p class='pagination'>(#PAGINATION{page})</p>]
+<h2><:messages_forum:></h2>
+<ul class="forum">
+
+	<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {!par date}{pagination 25}>
+
+	<li class="forum-fil">
+
+		<div class="forum-message">
+		[<span class='gravatar'>(#LOGO_AUTEUR||sinon{#CHEMIN{img/spipeur.png}}|image_reduire{50,50}|image_aplatir{png,ffffff,128,1})</span>]
+			<div class="forum-chapo">
+				<div class="date"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM" class="ancre">#</a> Message posté le [(#DATE|affdate_jourcourt)]<BOUCLE_qui(AUTEURS){id_auteur}>[, <:par_auteur:><a href='#URL_AUTEUR'><span class="#EDIT{nom}">(#NOM|couper{80})</span></a>]</BOUCLE_qui><BOUCLE_qui2(AUTEURS){email}{email!=''}{0,1}>[, <:par_auteur:><a href='#URL_AUTEUR'><span class="#EDIT{nom}">(#NOM|couper{80})</span></a>]</BOUCLE_qui2>[, <:par_auteur:><span class="#EDIT{qui}">(#NOM|couper{80})</span>]																																					 
+				<//B_qui2>
+				<//B_qui></div>
+				<div class="#EDIT{titre} forum-titre"><:en_reponse_a:> : [(#TITRE|couper{80})]</div>
+			</div>
+			<div class="#EDIT{texte} forum-texte">
+				[(#TEXTE|lignes_longues)]
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+				<BOUCLE_doc(DOCUMENTS){id_forum}>
+				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#EMBED_DOCUMENT|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+				</BOUCLE_doc>
+				
+			</div>
+		</div><!--.forum-message-->
+
+		<B_forums_fils>
+		<ul class='forum-reponse'>
+			<BOUCLE_forums_fils(FORUMS) {id_parent} {par date}>
+
+			<li>
+				<div class="forum-message fil [(#COMPTEUR_BOUCLE|alterner{'pair','impair'})]">
+				[<span class='gravatar'>(#LOGO_AUTEUR||sinon{#CHEMIN{img/spipeur.png}}|image_reduire{50,50}|image_aplatir{png,ffffff,128,1})</span>]
+					<div class="forum-chapo">
+						<div class="date"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM" class="ancre">#</a> Message posté le [(#DATE|affdate_jourcourt)]<BOUCLE_qui3(AUTEURS){id_auteur}>[, <:par_auteur:><a href='#URL_AUTEUR'><span class="#EDIT{nom}">(#NOM|couper{80})</span></a>]</BOUCLE_qui3><BOUCLE_qui4(AUTEURS){email}{email!=''}{0,1}>[, <:par_auteur:><a href='#URL_AUTEUR'><span class="#EDIT{nom}">(#NOM|couper{80})</span></a>]</BOUCLE_qui4>[, <:par_auteur:><span class="#EDIT{qui}">(#NOM|couper{80})</span>]
+						<//B_qui4>
+						<//B_qui3></div>
+						<div class="#EDIT{titre} forum-titre"><:en_reponse_a:> : #TITRE</div>
+					</div>
+					<div class="#EDIT{texte} forum-texte">
+						[(#TEXTE|lignes_longues)]
+						[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+				<BOUCLE_doc2(DOCUMENTS){id_forum}>
+				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#EMBED_DOCUMENT|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+				</BOUCLE_doc2>
+			
+					</div>
+				</div>
+
+				<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
+
+			</li>
+			</BOUCLE_forums_fils>
+			
+		</ul><!--.forum-reponse-->
+		</B_forums_fils>
+		
+	</li>
+	[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:poursuivre_cette_discussion:></a></p>]
+
+	</BOUCLE_forums>
+
+</ul>
+[<p class='pagination'>(#PAGINATION{page})</p>]
+</B_forums>

@@ -1,0 +1,121 @@
+<div class="main annuaire clearfix">
+
+	[(#REM) Contenu principal : contenu de la rubrique ]
+
+		[(#REM) Si aucun article, affiche un plan de la rubrique ]
+		
+		<B_annuaire>
+		
+		<div class="wrapper hw_wrapper_100">
+		<div class="content" id="content">
+		
+		<div class="menu menu_rubriques">
+			<ul class="annuaire_vignettes">
+				<BOUCLE_annuaire(RUBRIQUES) {id_rubrique}{racine}>
+					<BOUCLE_annuaireb(RUBRIQUES) {id_parent} {par titre}>
+					<li>
+			        #SET{logo_document,''}
+			        #SET{logo_article,''}	
+			    	<BOUCLE_articlesannuaire(ARTICLES) {id_rubrique} {par hasard}>
+			    	<BOUCLE_docannuaire(DOCUMENTS) {id_article} {extension IN png,jpg,gif}{par hasard}{0,1}>
+			    	#SET{logo_document,#LOGO_DOCUMENT}
+			    	</BOUCLE_docannuaire>
+			    	#SET{logo_article,#LOGO_ARTICLE}
+			    	#SET{urldelarticle,#URL_ARTICLE}
+					</BOUCLE_articlesannuaire>
+					#SET{nombrearticles,#TOTAL_BOUCLE}
+					</B_articlesannuaire>		
+			   		[(#GET{nombrearticles}|=={1}|?{[<a href="(#GET{urldelarticle})">],[<a href="(#URL_RUBRIQUE)">]})]
+			 				<h2>#TITRE</h2>
+							[(#GET{logo_document}|sinon{#GET{logo_article}}||image_passe_partout{115,115}|image_recadre{115,115,center}|sinon{#LOGO_RUBRIQUE})]
+			   		</a>							
+					</li>
+					</BOUCLE_annuaireb>
+					</BOUCLE_annuaire>
+			</ul>
+		</div>
+		</div><!--.content-->
+		</div><!--.wrapper-->
+		
+		</B_annuaire>
+
+		<B_articles>
+		<div class="wrapper hw_wrapper">
+		<div class="content" id="content">
+		
+		<div class="menu menu_fiches">
+			<ul class="hentry clearfix">
+				<BOUCLE_articles(ARTICLES) {branche} {par titre}>
+				<li id="hcard_#ID_ARTICLE" class="vcard">	
+						#SET{logo_document,''}
+						<BOUCLE_doc(DOCUMENTS) {id_article} {extension IN png,jpg,gif} {!par date}{0,1}>
+		                #SET{logo_document,#LOGO_DOCUMENT}
+		   				</BOUCLE_doc>
+		   				<BOUCLE_motsarticles(MOTS) {id_article} {!type==^Z} {doublons motsarticles}/>
+		   				<a href="#URL_ARTICLE" rel="bookmark" class="url">
+		   				[(#GET{logo_document}|sinon{#LOGO_ARTICLE}|image_passe_partout{420,280}|image_recadre{420,280,center})]
+						<h2 class="org">#TITRE</h2>
+		   				[<p class="surtitre title">(#SURTITRE)</p>]						
+						[<p class="adr">(#SOUSTITRE)</p>]	
+						[<p class="fn">(#LESAUTEURS|supprimer_tags)</p>]						
+						[<p class="ps tel">(#PS|supprimer_tags)</p>]
+						</a>
+				</li>	
+				</BOUCLE_articles>
+			</ul>
+		</div>
+		
+		</div><!--.content-->
+		</div><!--.wrapper-->	
+		
+		<div class="aside hw_aside">	
+
+		[(#REM) Mots des articles de la rubrique ]
+		
+		<BOUCLE_mots_lies(MOTS){!doublons motsarticles}>
+			<BOUCLE_groupedemots_lies(GROUPES_MOTS){id_mot}{doublons groupesdemots}/>
+		</BOUCLE_mots_lies>
+		
+		<B_groupes>
+		<BOUCLE_groupes(GROUPES_MOTS){!doublons groupesdemots}{par titre}>
+			<B_motspargroupe>
+				<div class="menu menu_tag hw_boite">
+					<h2>#TITRE</h2>
+			   		<span class="ancre_pagination">#ANCRE_PAGINATION</span>					
+					<p>
+						<BOUCLE_motspargroupe(MOTS){!doublons motsarticles}{id_groupe} {par titre}{',' }{pagination 20}>
+						<a href="#URL_MOT"[ class="(#EXPOSE)"] rel="tag">#TITRE</a></BOUCLE_motspargroupe>
+					</p>
+				[<p class="pagination">(#PAGINATION)</p>]	
+				</div>
+			</B_motspargroupe>
+		</BOUCLE_groupes>
+		</B_groupes>	
+		
+        [(#REM) Messages ]
+        <BOUCLE_articlesmessages(ARTICLES){branche}>
+				<BOUCLE_forums_liens(FORUMS?){id_article}{plat}{age<30}{!titre==^>}{doublons messages}>
+				</BOUCLE_forums_liens>
+		</BOUCLE_articlesmessages>
+				
+		<B_telegraphes>
+		<div class="menu menu_comments hw_boite">
+			<h2><:messages_forum:></h2>
+			<ul>
+				<BOUCLE_telegraphes(FORUMS){!doublons messages}{!par date}{0,3}>
+				[<li><p>[<strong>(#DATE|affdate_jourcourt)</strong> &ndash; ]<a href="#URL_FORUM">(#TEXTE|couper{80})</a></p></li>]
+				</BOUCLE_telegraphes>
+			</ul>
+		</div>
+		</B_telegraphes>		
+				
+		</div><!--.aside-->
+		
+		</B_articles>
+		
+		<//B_annuaire>
+		
+	
+
+	
+</div><!--.main-->	

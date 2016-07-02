@@ -1,0 +1,84 @@
+			#CACHE{12*3600}
+			<h2 title="<:evenementsdesprochainsjours:>"><:sortir:></h2>
+			<B_prochainement>
+    		<div class="alaffiche">
+    		<div class="prochainement">
+    		<h3 class="manchette"><:prochainement:></h3>
+    			<ul> 	
+    				<BOUCLE_prochainement(EVENEMENTS){age_fin<=0}{age_debut<=0}{age_debut>=-10}{!titre_mot=z_invisible}{par date_debut}{statut=publie}{0,12}>
+				    	[(#SET{docevenement,''})]
+					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenement,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenement>					    
+					    [(#SET{logo_source,''})]				    
+					    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+					    [(#SET{logo_source,#LOGO_EVENEMENT})]
+					    </BOUCLE_logosource>
+					    [(#SET{docevenementsource,''})]
+					    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementsource>	   	
+					   	[(#SET{docevenementarticle,''})]
+					   	<BOUCLE_docevenementarticle(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementarticle,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementarticle>				    
+					    [(#SET{logo_auteur,''})]
+					    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteur>    				
+	    				<li id="hcalendar_#ID_EVENEMENT" class="vevent">
+	    				<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+	    					<h4 class="summary">#TITRE</h4>
+	    					<p class="dtstart">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
+	    					<p class="location">[(#LIEU|sinon{#LESCOMMUNES})][<br/> (#ADRESSE|deparagrapher)]</p>
+	    					[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{115,115,center}|image_recadre{115,115,center})]
+	    				</a>
+	    				</li>
+
+    				</BOUCLE_prochainement>	
+    			</ul>
+    		</div>	
+    		</div>
+    		</B_prochainement>
+    		
+    		<B_encours>
+    		<div class="alaffiche">
+    		<div class="encours">
+    		<h3 class="manchette"><:encours:></h3>
+    			<ul> 	
+    				<BOUCLE_encours(EVENEMENTS){age_fin<=0}{age_debut>=1}{0,10}{!titre_mot=z_invisible}{par date_fin}{statut=publie}{0,6}>
+				    	[(#SET{docevenement2,''})]
+					    <BOUCLE_docevenement2(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenement2,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenement2>					    
+					    [(#SET{logo_source2,''})]				    
+					    <BOUCLE_logosource2(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+					    [(#SET{logo_source2,#LOGO_EVENEMENT})]
+					    </BOUCLE_logosource2>
+					    [(#SET{docevenementsource2,''})]
+					    <BOUCLE_docevenementsource2(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementsource2,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementsource2>	   	
+					   	[(#SET{docevenementarticle2,''})]
+					   	<BOUCLE_docevenementarticle2(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+					    [(#SET{docevenementarticle2,#LOGO_DOCUMENT})]
+					    </BOUCLE_docevenementarticle2>				    
+					    [(#SET{logo_auteur2,''})]
+					    <BOUCLE_logoauteur2(AUTEURS) {id_article} {0,1}>
+					    [(#SET{logo_auteur2,#LOGO_AUTEUR})]
+					    </BOUCLE_logoauteur2>
+	    				<li>
+	    				<a href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+	    					<h4>#TITRE</h4>
+	    					<p>[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
+	    					<p>#LIEU</p>
+	    					[(#LOGO_EVENEMENT|sinon{#GET{docevenement2}}|sinon{#GET{logo_source2}}|sinon{#GET{docevenementsource2}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle2}}|sinon{#GET{logo_auteur2}}|image_passe_partout{115,115,center}|image_recadre{115,115,center})]
+	    				</a>
+	    				</li>
+    				</BOUCLE_encours>
+    			</ul>
+    		</div>
+    		</div>	
+    		</B_encours>
+    		
+#FILTRE{minisauvage_html}    		

@@ -1,0 +1,29 @@
+			[(#REM) Images liées au mot-cle ]
+			[(#REM) En direct ]
+			<BOUCLE_imagesmots(DOCUMENTS){id_mot}{doublons imagesmots}>
+				<BOUCLE_motsconnexesimages1(MOTS){id_document}{!type=Z}{doublons motsconnexes}/>
+			</BOUCLE_imagesmots>
+			[(#REM) Par le truchement des articles ]
+			<BOUCLE_articlesmotsimages(ARTICLES){id_mot}>
+				<BOUCLE_imagesarticlesmots(DOCUMENTS){id_article}{doublons imagesmots}>
+					<BOUCLE_motsconnexesimages2(MOTS){id_document}{!type=Z}{doublons motsconnexes}/>
+				</BOUCLE_imagesarticlesmots>
+			</BOUCLE_articlesmotsimages>		
+			<B_lesimagesmots>
+			<a name="imagesmots" id="imagesmots" class="ancre"></a>
+			<div class="menu hw_mot hw_mot_images">		   								    
+		   		<h2><:images:> (#GRAND_TOTAL)</h2>
+		   		#SET{compteurimages,#GRAND_TOTAL}
+		   		<span class="ancre_pagination">#ANCRE_PAGINATION</span>			   					   		
+		   		<ul class="clearfix">
+				    <BOUCLE_lesimagesmots(DOCUMENTS){!doublons imagesmots}{extension==jpg|png}{largeur > 300}{hauteur > 300}{!par date}{pagination 20}>
+				    	<li>
+						[<a href="#URL_PAGE{fichedudocument,id_document=#ID_DOCUMENT}" title="#TITRE" alt="">
+						(#LOGO_DOCUMENT|image_passe_partout{125,125}|image_recadre{125,125,center})    
+		                </a>] 			     						
+						</li>
+				    </BOUCLE_lesimagesmots>
+		    	</ul>
+		    [<p class="pagination">(#PAGINATION)</p>]		    	
+		    </div><!--.menu menu_evenements-->
+			</B_lesimagesmots>
