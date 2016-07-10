@@ -76,31 +76,31 @@
 				</li><!--Mois-->						
 				</B_encours>	
 				<B_annees>
-				<BOUCLE_annees(EVENEMENTS){!doublons evtpasfini}{age_debut<=0}{par date_debut}{annee_relatif_debut}{lang_select=non}{fusion YEAR(date_debut)}{fusion MONTH(date_debut)}>	
+				<BOUCLE_annees(EVENEMENTS){!doublons evtpasfini}{age_debut<=1}{par date_debut}{annee_relatif_debut}{lang_select=non}{fusion YEAR(date_debut)}{fusion MONTH(date_debut)}>	
 					<B_mois>
 					<li><h3>[(#DATE_DEBUT|nom_mois|ucfirst) ][(#DATE_DEBUT|annee)]</h3>
 						<ul>
-						<BOUCLE_mois(EVENEMENTS){!doublons evtpasfini}{age_debut<=0}{par date_debut}{mois_relatif_debut}{doublons}>
-						[(#SET{docevenement,''})]
-					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
-					    [(#SET{docevenement,#LOGO_DOCUMENT})]
-					    </BOUCLE_docevenement>					    
-					    [(#SET{logo_source,''})]				    
-					    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
-					    [(#SET{logo_source,#LOGO_EVENEMENT})]
-					    </BOUCLE_logosource>
-					    [(#SET{docevenementsource,''})]
-					    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
-					    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
-					    </BOUCLE_docevenementsource>	   	
-					   	[(#SET{docevenementarticle,''})]
-					   	<BOUCLE_docevenementarticle(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
-					    [(#SET{docevenementarticle,#LOGO_DOCUMENT})]
-					    </BOUCLE_docevenementarticle>				    
-					    [(#SET{logo_auteur,''})]
-					    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
-					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
-					    </BOUCLE_logoauteur>				    	
+						<BOUCLE_mois(EVENEMENTS){!doublons evtpasfini}{age_debut<=1}{par date_debut}{mois_relatif_debut}{doublons}>
+							[(#SET{docevenement,''})]
+						    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
+						    [(#SET{docevenement,#LOGO_DOCUMENT})]
+						    </BOUCLE_docevenement>					    
+						    [(#SET{logo_source,''})]				    
+						    <BOUCLE_logosource(EVENEMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {0,1}>
+						    [(#SET{logo_source,#LOGO_EVENEMENT})]
+						    </BOUCLE_logosource>
+						    [(#SET{docevenementsource,''})]
+						    <BOUCLE_docevenementsource(DOCUMENTS){id_evenement=#ID_EVENEMENT_SOURCE} {extension IN png,jpg,gif}{!par date}{0,1}>
+						    [(#SET{docevenementsource,#LOGO_DOCUMENT})]
+						    </BOUCLE_docevenementsource>	   	
+						   	[(#SET{docevenementarticle,''})]
+						   	<BOUCLE_docevenementarticle(DOCUMENTS){id_article} {extension IN png,jpg,gif}{!par date}{0,1}>
+						    [(#SET{docevenementarticle,#LOGO_DOCUMENT})]
+						    </BOUCLE_docevenementarticle>				    
+						    [(#SET{logo_auteur,''})]
+						    <BOUCLE_logoauteur(AUTEURS) {id_article} {0,1}>
+						    [(#SET{logo_auteur,#LOGO_AUTEUR})]
+						    </BOUCLE_logoauteur>				    	
 							<li>
 							<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
 							<h4 class="summary">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{60,60,center}|image_recadre{60,60,center})][(#TITRE|supprimer_numero)]</h4></a>
