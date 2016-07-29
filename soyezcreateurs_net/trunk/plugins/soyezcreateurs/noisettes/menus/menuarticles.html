@@ -2,7 +2,8 @@
 <B_MenuArticles>
 [(#ENV{pas2ul}|?{'',<ul>})]
 <BOUCLE_MenuArticles(ARTICLES){id_rubrique}{par num titre}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {lang}>
-	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'<strong>',''})]<a href="[(#ARTICLE_URL)]" class="menuarticles" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE|image_reduire{16,16}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|embarque_fichier)" width="[(#LOGO_ARTICLE|image_reduire{16,16}|largeur)]" height="[(#LOGO_ARTICLE|image_reduire{16,16}|hauteur)]" alt="" class="menu_gauche_logo" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'</strong>',''})]</li>
+[(#ENV{logomenuderoulant,oui}|=={oui}|oui)[(#SET{lelogo,[(#LOGO_ARTICLE_NORMAL|image_reduire{#ENV{largeurlogomenuhaut,16},#ENV{hauteurlogomenuhaut,16}})]})]]
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'<strong>',''})]<a href="[(#ARTICLE_URL)]" class="menuarticles" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#GET{lelogo}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|embarque_fichier)"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="" class="menu_gauche_logo" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{'</strong>',''})]</li>
 </BOUCLE_MenuArticles>
 [(#ENV{pas2ul}|?{'',</ul>})]
 </B_MenuArticles>
