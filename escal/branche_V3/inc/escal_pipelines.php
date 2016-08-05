@@ -1,19 +1,16 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
 function escal_porte_plume_barre_pre_charger($barres){
-	$barre = &$barres['edition'];
-
-
-
-	$module_barre = "barre_outils";
+  $barre_edition = &$barres['edition'];
+  $barre_forum = &$barres['forum'];
+ 
+ 	$module_barre = "barre_outils";
 	if (intval($GLOBALS['spip_version_branche'])>2)
 		$module_barre = "barreoutils";
-	
-
+		
 	// Ajouts Escal
-				
-	
-	$barre->ajouterApres('grpCaracteres', array(
+					
+	$barre_edition->ajouterApres('grpCaracteres', array(
                 "id"          => 'ajouts_escal',
 				"name"        => 'utiliser un outil d\'Escal',
                 "className"   => "outil_ajouts_escal",
@@ -72,7 +69,7 @@ function escal_porte_plume_barre_pre_charger($barres){
 				),
    ));
    
-	$barre->ajouterApres('lowercase', array(
+	$barre_edition->ajouterApres('lowercase', array(
 					// Fleche droite
 						"id" => 'arrow',
 						"name" => 'fleche',
@@ -80,6 +77,29 @@ function escal_porte_plume_barre_pre_charger($barres){
 						"replaceWith" => "&rarr;",
 						"display" => true,
 	));	
+	
+	$barre_forum->ajouterApres('quote', array(
+					// balise code
+				'id'          => 'barre_code',
+				'name'        => _T($module_barre.':barre_code'),
+				'className'   => 'outil_barre_code',
+				'openWith'    => '&lt;code&gt;',
+				'closeWith'   => '&lt;/code&gt;',
+				'display'     => true,
+				'selectionType' => 'word',
+				'dropMenu'    => array(
+                    // aide
+                    array(
+						'id'          => 'barre_cadre',
+						'name'        => _T($module_barre.':barre_cadre'),
+						'className'   => 'outil_barre_cadre',
+						'openWith'    => "\n&lt;cadre&gt;",
+						'closeWith'   => "&lt;/cadre&gt;\n",
+						'display'     => true,
+						'selectionType' => 'line',
+                    ),
+               ),
+	));		
 		
 	return $barres;
 }
