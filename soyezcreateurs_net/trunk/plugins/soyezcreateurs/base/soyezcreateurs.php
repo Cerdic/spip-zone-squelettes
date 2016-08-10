@@ -515,6 +515,35 @@ function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $
 	}
 }
 
+function create_encart($titre, $identifiant, $largeur=0, $hauteur=0) {
+	$titre = addslashes($titre);
+	$result = sql_fetsel(
+		"id_encart", 
+		"spip_encarts", 
+		"titre='$titre'"
+	);
+	$id_encart = $result['id_encart'];
+	if ($id_encart > 0) {
+		sql_updateq(
+			"spip_encarts", array(
+				"titre" => $titre,
+				"identifiant" => $identifiant,
+				"largeur" => $largeur,
+				"hauteur" => $hauteur
+			), "id_encart='$id_encart'"
+		);
+	} else {
+		$id_encart = sql_insertq(
+			"spip_encarts", array(
+				"titre" => $titre,
+				"identifiant" => $identifiant,
+				"largeur" => $largeur,
+				"hauteur" => $hauteur,
+			));
+	}
+	return $id_encart;
+}
+
 //fonction qui permet de trouver l'id d'un auteur à partir de son nom
 function find_auteur($nom) {
 	$result = sql_fetsel(
