@@ -33,7 +33,15 @@ if (!defined('_AUTOBR'))
 
 // Recalculer le cache si la config du site change
 // Ne marche pas sur les CSS et JS calculés avec #PRODUIRE, cf https://core.spip.net/issues/3696
-$GLOBALS['marqueur'] = (isset($GLOBALS['marqueur'])?$GLOBALS['marqueur']:'').':sc'.md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta']['btv2'].$GLOBALS['meta']['bte'].$GLOBALS['meta']['nom_site'].$GLOBALS['meta']['slogan_site'].$GLOBALS['meta']['descriptif_site'].$GLOBALS['meta']['email_webmaster']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
+$GLOBALS['marqueur'] = (isset($GLOBALS['marqueur'])?$GLOBALS['marqueur']:'').':sc'.md5(
+	(isset($GLOBALS['meta']['boutonstexte'])?$GLOBALS['meta']['boutonstexte']:'').
+	(isset($GLOBALS['meta']['btv2'])?$GLOBALS['meta']['btv2']:'').
+	(isset($GLOBALS['meta']['bte'])?$GLOBALS['meta']['bte']:'').
+	$GLOBALS['meta']['nom_site'].
+	$GLOBALS['meta']['slogan_site'].
+	$GLOBALS['meta']['descriptif_site'].
+	$GLOBALS['meta']['email_webmaster']
+); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
 if (!defined('_TRI_GROUPES_MOTS'))
 	define('_TRI_GROUPES_MOTS', '0+titre,titre');  // cf http://trac.rezo.net/trac/spip/changeset/14712
 if (!defined('_DUREE_CACHE_DEFAUT'))
