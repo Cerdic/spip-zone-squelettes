@@ -5,6 +5,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d\'accueil',
 	'cfg_affichage_affiche' => 'Afficher',
 	'cfg_affichage_block' => 'Bloc : logo, titre, descriptif',
 	'cfg_affichage_impression' => 'Affichage complet',
