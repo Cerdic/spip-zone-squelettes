@@ -33,6 +33,8 @@ function formulaires_evahabillage_themes_externes_traiter_dist() {
 		foreach ($tab as $val) {spip_query("INSERT INTO spip_eva_habillage_images VALUES ".$val);}
 		include_spip('inc/eva_habillage_transition_module');
 		eva_habillage_transition_module();
+		include_spip('inc/eva_habillage_parametres_accessibilite');
+		eva_habillage_parametres_accessibilite();
 	}
 	$res['message_ok'] = _T('config_info_enregistree');
 	return $res;

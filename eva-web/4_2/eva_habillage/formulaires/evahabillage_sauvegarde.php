@@ -75,6 +75,8 @@ function formulaires_evahabillage_sauvegarde_traiter_dist() {
 		$res['message_ok'] = 'La sauvegarde de l\'habillage <b>'.mysql_escape_string($nom_sauvegarde).'</b> a &eacute;t&eacute; restaur&eacute;e';
 		include_spip('inc/eva_habillage_transition_module');
 		eva_habillage_transition_module();
+		include_spip('inc/eva_habillage_parametres_accessibilite');
+		eva_habillage_parametres_accessibilite();
 	}
 	elseif ((_request('sauvegarder')=='Supprimer ?') AND (_request('supprimer_habillage')!='Defaut')) {
 		$nom_sauvegarde=_request('supprimer_habillage');
