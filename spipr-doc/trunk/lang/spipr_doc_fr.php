@@ -11,6 +11,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
 	'a_personnaliser' => 'A personnaliser',
-
+// L
+	'licence_utilise' => 'Code sous licence <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL 3</a>, documentation sous licence <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL 3</a>',
+// R
+	'realise_par' => 'Conçu et réalisé par',
 );
 ?>
