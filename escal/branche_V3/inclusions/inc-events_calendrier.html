@@ -17,23 +17,68 @@
 
 <div id="cadre-article">
 
-<div id="outils-article">
+    <div id="outils-article">
   	<!-- affichage du bouton pour imprimer l'article -->
-        <div id="imprime-article">
+        <div class="imprime-article outil">
 		<a href="#" onclick="javascript:window.print()" title="<:escal:article_imprimer:>">
-		<:escal:article_imprimer:>
 		<img src="#CHEMIN{images/imprimer.gif}" alt="logo imprimer" />
 		</a>
         </div>
  	<!-- affichage de l'icone pdf si plugin article_pdf activé -->
         [(#PLUGIN{ARTICLE_PDF}|oui)
+        <div class="article-pdf outil">
         #ARTICLE_PDF{id_article}
+        </div>
+        ]
+    <!-- affichage de l'icone pdf si plugin spipdf activé -->         
+        [(#PLUGIN{SPIPDF}|oui)
+        <div class="spipdf outil">
+          <a href="[(#URL_PAGE{spipdf}
+          |parametre_url{spipdf,spipdf_article}
+          |parametre_url{id_article,#ID_ARTICLE}
+          |parametre_url{nom_fichier,article_#ID_ARTICLE})]">
+          <img src="#CHEMIN{images/icone_pdf.gif}" alt="article au format PDF" title="Télécharger l'article au format PDF" /></a>
+        </div>
+        ]        
+ 	<!-- affichage de l'icone de licence si plugin licence activé -->
+ 	
+        [(#PLUGIN{LICENCE}|oui)
+        [(#ID_LICENCE|=={0}|non)
+        <div class="licence outil">
+        <:escal:article_licence:> [(#LICENCE|image_reduire{0, 32})]
+        </div>
+        ]
         ]
  	<!-- affichage des icones socialtags si plugin Socialtags activé -->
         [(#PLUGIN{SOCIALTAGS}|oui)
-        <div id="socialtags-article"></div>
-        ]
-</div>
+        <div id="socialtags-article" class="outil"></div>
+        ]        
+    <!-- affichage du bouton signalement si plugin activé -->
+        [(#PLUGIN{SIGNALEMENT}|oui)
+        <div class="signalement outil">        
+        #FORMULAIRE_SIGNALEMENT
+        </div>        
+        ] 
+    </div>
+  	<!-- affichage des images pour diminuer ou augmenter la taille des caractères -->
+			<div id="diminuer">
+				<a href="javascript:changestyle(-1)" title="<:escal:taille_diminuer:>">
+     			<img src="#CHEMIN{images/fontsizedown.png}"
+					alt="<:escal:taille_diminuer:>"
+					 />
+				</a>
+			</div>
+
+			<div id="augmenter">
+				<a href="javascript:changestyle(1)" title="<:escal:taille_augmenter:>">
+     			<img src="#CHEMIN{images/fontsizeup.png}"
+					alt="<:escal:taille_augmenter:>"
+					 />
+				</a>
+			</div>
+
+<div class="nettoyeur"></div>  
+			
   <div id="texte-article" class="surlignable">
      
 	    <div class="banner">
