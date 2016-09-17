@@ -118,4 +118,10 @@ function escal_porte_plume_lien_classe_vers_icone($flux){
 	));
 }
 
+function escal_ieconfig_metas($table){
+	$table['escal']['titre'] = Escal;
+	$table['escal']['icone'] = 'images/escal16.png';
+	$table['escal']['metas_brutes'] = 'escal,escal_base_version';
+	return $table;
+}
 ?>
