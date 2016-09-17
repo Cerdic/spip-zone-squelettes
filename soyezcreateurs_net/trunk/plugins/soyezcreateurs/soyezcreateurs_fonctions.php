@@ -849,7 +849,7 @@ function dictionnaires_remplacer_defaut($mot, $definition){
  * (car seuls les gens avec des yeux valides et un pointeur de souris ont accès à l'information)
  */
 function dictionnaires_remplacer_abbr($mot, $definition){
-	return '<abbr title="'.couper(trim(attribut_html(supprimer_tags(typo($definition['texte'])))),80).'">'.$mot.'</abbr>';
+	return '<abbr title="'.trim(attribut_html(supprimer_tags(typo($definition['texte'])))).'">'.$mot.'</abbr>';
 	/* Pas de texte rajouté après : pose problème sur |couper et |attribut_html
 		.'<sup><a href="'
 		.($definition['url']?$definition['url']:generer_url_public('sigles', 'id_dictionnaire='.$definition['id_dictionnaire'].'&type=abbr#sigle'.$definition['id_definition']))
