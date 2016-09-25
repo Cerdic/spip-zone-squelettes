@@ -23,6 +23,10 @@ if (!defined('_TITRER_DOCUMENTS'))
 // Pour forcer le mode écran large
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
 
+// Pour avoir un affichage compact des Saisies (admin et mails), cf http://zone.spip.org/trac/spip-zone/changeset/99576
+if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
+	define('_SAISIES_AFFICHAGE_COMPACT', 'oui');
+
 // Demander au compresseur CSS d'embarquer les images : cf https://core.spip.net/issues/3425
 $GLOBALS['compresseur_filtres_css'] = array('compresseur_embarquer_images_css');
 
