@@ -1,33 +1,44 @@
 [(#REM)
 Créer une une topbar avec toutes la racine du site
 ]
-<ul class="dropdown menu[ (#ENV{class})]" data-dropdown-menu>
 
-  <li class="menu-text[ (#SI_PAGE{sommaire}|oui)on]">
-    <a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
-  </li>
+[(#REM) Title bar qui déclenchera le menu responsive ]
+<div class="title-bar" data-responsive-toggle="racine" data-hide-for="large">
+	<button class="menu-icon" type="button" data-toggle></button>
+	<div class="title-bar-title" data-toggle>Menu</div>
+</div>
 
-  [(#REM) La racine du site. ]
-  <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+<nav class="top-bar[ (#ENV{class})]" id="racine">
+	<div class="top-bar-left">
+		<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown">
 
-    [(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
-    <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-submenu]">
-      <a href="#URL_RUBRIQUE">
-        [(#TITRE|couper{80})]
-      </a>
-      [(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
-      <B_sous_rubrique>
-        <ul class="submenu menu vertical" data-submenu>
-          <BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
-            <li class="#EXPOSE[ (#ID_RUBRIQUE|test_enfants_rubrique|oui)has-submenu]">
-              <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+			<li class="menu-text[ (#SI_PAGE{sommaire}|oui)on]">
+				<a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
+			</li>
 
-              [(#REM) On génère autant de dropdow qu'il faut ]
-              <BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
-            </li>
-          </BOUCLE_sous_rubrique>
-        </ul>
-      </B_sous_rubrique>
-    </li>
-  </BOUCLE_rubriques>
-</ul>
+			[(#REM) La racine du site. ]
+			<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+
+				[(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
+				<li[ class="(#EXPOSE)"]>
+					<a href="#URL_RUBRIQUE">
+						[(#TITRE|couper{80})]
+					</a>
+					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
+					<B_sous_rubrique>
+						<ul class="menu vertical">
+							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
+								<li[ class="(#EXPOSE)"]>
+									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+
+									[(#REM) On génère autant de dropdow qu'il faut ]
+									<BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
+								</li>
+							</BOUCLE_sous_rubrique>
+						</ul>
+					</B_sous_rubrique>
+				</li>
+			</BOUCLE_rubriques>
+		</ul>
+	</div>
+</nav>

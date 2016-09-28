@@ -1,37 +1,40 @@
 [(#REM)
 Permet de transformer une rubrique en élément section "top bar"
-
-Paramètre:
-#ENV{class} = left ou right | aligner les éléments
-#ENV{id_parent} La rubrique à transformer en section topbar
-
 ]
-<B_rubriques>
-  <ul[ class="(#ENV{class})"]>
-    [(#REM) La racine du site. ]
-    <BOUCLE_rubriques(RUBRIQUES) {id_secteur ?} {id_parent ?} {id_rubrique ?} {par num titre, titre}>
 
-      [(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
-      <li <BOUCLE_test_sous_rubriques(RUBRIQUES){id_parent}{0,1}>class="has-dropdown"</BOUCLE_test_sous_rubriques>>
-        <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
-          [(#TITRE|couper{80})]
-        </a>
-        [(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
-        <B_sous_rubrique>
-          <ul class="dropdown">
-            <BOUCLE_sous_rubrique(RUBRIQUES){id_parent} {par num titre, titre}>
-              <li <BOUCLE_test_sous_rubriques_2(RUBRIQUES){id_parent}{0,1}>class="has-dropdown"</BOUCLE_test_sous_rubriques_2>>
-                <a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>[(#TITRE|couper{80})]</a>
+[(#REM) Title bar qui déclenchera le menu responsive ]
+[(#SET{id_topbar, rubrique[-(#ID_RUBRIQUE)][-(#ID_PARENT)][-(#ID_SECTEUR)]})]
+<div class="title-bar" data-responsive-toggle="#GET{id_topbar}" data-hide-for="large">
+	<button class="menu-icon" type="button" data-toggle></button>
+	<div class="title-bar-title" data-toggle>Menu</div>
+</div>
 
-                [(#REM) On génère autant de dropdow qu'il faut ]
-                <BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
-              </li>
-            </BOUCLE_sous_rubrique>
-          </ul>
-        </B_sous_rubrique>
-      </li>
-    </BOUCLE_rubriques>
-  </ul>
-</B_rubriques>
-<INCLURE{fond=inclure/inc-topbar-racine, env} />
-<//B_rubriques>
+<nav class="top-bar[ (#ENV{class})]" id="#GET{id_topbar}">
+	<div class="top-bar-left">
+		<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown">
+			[(#REM) La racine du site. ]
+			<BOUCLE_rubriques(RUBRIQUES) {id_secteur ?} {id_parent ?} {id_rubrique ?} {par num titre, titre}>
+
+				<li[ class="(#EXPOSE)"]>
+					<a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
+						[(#TITRE|couper{80})]
+					</a>
+					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
+					<B_sous_rubrique>
+						<ul class="menu vertical">
+							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
+								<li[ class="(#EXPOSE)"]>
+									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+
+									[(#REM) On génère autant de dropdow qu'il faut ]
+									<BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
+								</li>
+							</BOUCLE_sous_rubrique>
+						</ul>
+					</B_sous_rubrique>
+				</li>
+			</BOUCLE_rubriques>
+		</ul>
+
+	</div>
+</nav>
