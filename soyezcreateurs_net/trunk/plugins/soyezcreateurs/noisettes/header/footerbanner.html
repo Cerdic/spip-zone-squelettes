@@ -1,0 +1,32 @@
+#CACHE{1}
+<BOUCLE_FooterBannerRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_FooterBanner}{inverse}{0,1}>
+<BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_FooterBanner}{par hasard}{0,1}>
+#SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
+</BOUCLE_LogoHeader>
+</BOUCLE_FooterBannerRubrique>
+<BOUCLE_FooterBannerTemplate(MOTS){type=_FooterBanner}{descriptif!=''}{descriptif=#ENV{template}}{par hasard}{0,1}>
+#SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
+</BOUCLE_FooterBannerTemplate>
+#SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_FooterBanner}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
+<BOUCLE_FooterBanner(MOTS){type=_FooterBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}{par hasard}{0,1}>
+#SET{labanniere,#LOGO_MOT_NORMAL}
+#SET{labannierehachures,#LOGO_MOT_SURVOL}
+</BOUCLE_FooterBanner><//B_FooterBannerTemplate><//B_FooterBannerRubrique>
+[<style type="text/css">
+/*<!\[CDATA\[*/
+#footer {
+	background-image: [url((#GET{labannierehachures}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|url_absolue)), #SET{hachures,1}]url((#GET{labanniere}|extraire_attribut{src}|appliquer_filtre{supprimer_timestamp,true}|url_absolue));
+	background-repeat: [(#GET{hachures}|?{repeat, })]no-repeat;
+	background-position: [(#GET{hachures}|?{top, })]bottom;
+	min-height: [(#GET{labanniere}|hauteur)]px;
+	display: flex;
+}
+#footer_inner {
+    width: 100%;
+    margin-top: auto;
+}
+/*\]\]>*/
+</style>]
+#FILTRE{mini_html}

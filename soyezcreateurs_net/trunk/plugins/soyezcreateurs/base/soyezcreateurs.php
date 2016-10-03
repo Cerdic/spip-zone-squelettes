@@ -124,7 +124,7 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 				"forum" => $forum
 			)
 		);
-		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id__insert et titre = $groupe", _LOG_INSTALL);
+		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id_insert et titre = $groupe", _LOG_INSTALL);
 	} 
 	else if ($id_groupe > 0) {
 		$id_insert = remplacer_groupe($groupe, $descriptif, $texte, $unseul, $obligatoire, $tables_liees, $minirezo, $comite, $forum);
