@@ -13,6 +13,7 @@
 	{id_rubrique}
 	{secteurencours=#ID_SECTEUR}
 	{noindex=#GET{noindex}}
+	{canonical=(#GET{noindex}|?{#URL_ARTICLE,''})}
 >
 </BOUCLE_ArticleSyndiqueTitre>
 [(#SET{title,[(#NOM_SITE|typo|supprimer_tags|texte_script) ]})]
@@ -24,6 +25,7 @@
 	{id_secteur}
 	{id_rubrique}
 	{secteurencours=#ID_SECTEUR}
+	{canonical=(#ID_SYNDIC|generer_url_entite{site}|url_absolue)}
 >
 <//B_ArticleSyndiqueTitre>
 	<nav id="miettesdepain">
@@ -66,7 +68,7 @@
 				[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 				<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags|supprimer_tags)</em>]</small>
 				[<div class="#EDIT{descriptif}">(#DESCRIPTIF|propre|image_reduire{300})</div>]
-				[<p class="#EDIT{url_article} hyperlien">&rarr;&nbsp;<a href="(#URL_ARTICLE*)" class="spip_out" title="[<:soyezcreateurs:liresuitede|typo|texte_script|supprimer_tags|attribut_html:> (#TITRE|typo|texte_script|supprimer_tags|attribut_html)]"><:soyezcreateurs:liresuitesyndic|typo:></a></p><br class="nettoyeur" />]
+				[<p class="#EDIT{url_article} hyperlien">&rarr;&nbsp;<a href="(#URL_ARTICLE)" class="spip_out" title="[<:soyezcreateurs:liresuitede|typo|texte_script|supprimer_tags|attribut_html:> (#TITRE|typo|texte_script|supprimer_tags|attribut_html)]"><:soyezcreateurs:liresuitesyndic|typo:></a></p><br class="nettoyeur" />]
 				
 			</BOUCLE_ArticleSyndique>
 		</div>
