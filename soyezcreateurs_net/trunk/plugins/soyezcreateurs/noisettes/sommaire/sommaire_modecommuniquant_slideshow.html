@@ -1,7 +1,11 @@
+[(#CONFIG{soyezcreateurs/tri_slideshow_communiquant,parnum}|=={parnum}|oui)
+#SET{defaut_tri,#ARRAY{num titre,1}}]
+[(#CONFIG{soyezcreateurs/tri_slideshow_communiquant,parnum}|=={antichrono}|oui)
+#SET{defaut_tri,#ARRAY{#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif},-1}}]
 <B_articles_recentsAlaUne>
 <div id="homeSpecialFeature">
 	<ul>
-	<BOUCLE_articles_recentsAlaUne(ARTICLES) {par num titre} {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{lang}>
+	<BOUCLE_articles_recentsAlaUne(ARTICLES) {tri titre,#GET{defaut_tri}} {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}} {0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{titre_mot=AlaUne}{lang}>
 		<li id="hSFItem#COMPTEUR_BOUCLE" class="hSFItem">
 		<div class="postListItem" title="[(#DESCRIPTIF|textebrut|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">	
 			<h2 class="postListItemTitle #EDIT{titre}"><a href="#ARTICLE_URL">[(#TITRE)]</a></h2>
