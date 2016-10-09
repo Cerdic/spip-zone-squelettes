@@ -33,6 +33,10 @@ define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de si
 
 define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
 
+// Pour avoir un affichage compact des Saisies (admin et mails), cf http://zone.spip.org/trac/spip-zone/changeset/99576
+if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
+	define('_SAISIES_AFFICHAGE_COMPACT', 'oui');
+
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.
 	Merci à ARNO* : http://permalink.gmane.org/gmane.comp.web.spip.devel/55856
