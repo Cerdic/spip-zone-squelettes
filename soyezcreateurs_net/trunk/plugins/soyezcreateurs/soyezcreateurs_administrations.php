@@ -178,7 +178,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.40','non');
 		}
 		if (version_compare($current_version,'3.1.41','<')) {
-			ecrire_meta('version_html_max', 'html5', 'non');
 			ecrire_meta('auto_compress_css', 'oui', 'non');
 			ecrire_meta('auto_compress_js', 'oui', 'non');
 			ecrire_meta('forum_prive', 'non', 'non');
@@ -213,6 +212,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_groupe("_FooterBanner", "Pour définir plusieurs fonds de pied de page pour le site.", "Il faut créer un mot clef par fond (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme fond de pied du site.\n\nLes mots clefs affectés à une rubrique restreignent le choix des fonds pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{tous}} les fonds sont disponibles pour le reste du site).\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->http://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", 'non', 'non', 'rubriques', 'oui', 'non', 'non');			
 			spip_log("SoyezCreateurs maj 3.1.45 Faite", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.45','non');
+		}
+		if (version_compare($current_version,'3.1.46','<')) {
+			spip_log("SoyezCreateurs maj 3.1.44 Début", "soyezcreateurs_install");
+			ecrire_meta('version_html_max', 'html4', 'non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.46','non');
 		}
 		
 		

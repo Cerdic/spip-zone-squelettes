@@ -23,6 +23,14 @@ if (!defined('_TITRER_DOCUMENTS'))
 // Pour forcer le mode écran large
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
 
+// Activer HTML5 depuis le squelette uniquement dans le public, et jamais dans le privé
+// Cf http://contrib.spip.net/Formidable-le-generateur-de-formulaires#forum488975
+if (!test_espace_prive()) {
+    $GLOBALS['meta']['version_html_max'] = 'html5';
+} else {
+	$GLOBALS['meta']['version_html_max'] = 'html4';
+}
+
 // Pour avoir un affichage compact des Saisies (admin et mails), cf http://zone.spip.org/trac/spip-zone/changeset/99576
 if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
 	define('_SAISIES_AFFICHAGE_COMPACT', 'oui');
