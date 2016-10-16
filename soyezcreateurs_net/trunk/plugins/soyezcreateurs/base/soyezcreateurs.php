@@ -88,7 +88,7 @@ function soyezcreateurs_config_site() {
 
 // fonction qui permet de trouver si un groupe de mots clés existe à partir du titre
 function find_groupe($titre) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	spip_log("1. (find_groupe) recherche des occurences dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
 	$count = sql_countsel("spip_groupes_mots", "titre='$titre'");
 	spip_log("2. (find_groupe) resultat de la recherche : $count occurences pour $titre", _LOG_INSTALL);
@@ -97,7 +97,7 @@ function find_groupe($titre) {
 
 // fonction pour trouver l'id du groupe de mots clés à partir du titre du groupe
 function id_groupe($titre) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	spip_log("1. (id_groupe) selection dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
 	$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre='$titre'");
 	$resultat = $result['id_groupe'];
@@ -176,7 +176,7 @@ function remplacer_groupe($titre, $descriptif, $texte, $unseul, $obligatoire, $t
 
 // fonction qui permet de trouver si un mot clé existe à partir du titre et de l'id du groupe
 function find_mot($titre, $id_groupe) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$count = sql_countsel(
 		"spip_mots", 
 		"titre = '$titre' AND id_groupe = $id_groupe"
@@ -187,7 +187,7 @@ function find_mot($titre, $id_groupe) {
 //fonction qui permet de trouver l'id du mot clé à partir du titre et de l'id du groupe
 function id_mot($titre, $id_groupe) {
 	spip_log("1. (id_mot) debut de recherche de l'id de $titre avec $id_groupe", _LOG_INSTALL);
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$result = sql_fetsel(
 		"id_mot", 
 		"spip_mots", 
@@ -242,7 +242,7 @@ function remplacer_mot($id_mot, $mot, $descriptif, $texte, $id_groupe, $groupe) 
 }
 // fonction qui permet de trouver si une rubrique existe à partir du titre
 function find_rubrique($titre) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$count = sql_countsel(
 		"spip_rubriques", 
 		"titre = '$titre'"
@@ -326,7 +326,7 @@ function remplacer_rubrique($id_rubrique, $id_parent, $descriptif) {
 
 // fonction qui permet de trouver si un article existe à partir du titre
 function find_article($titre, $id_rubrique) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$count = sql_countsel(
 		"spip_articles", 
 		"titre='$titre' AND id_rubrique = $id_rubrique"
@@ -336,7 +336,7 @@ function find_article($titre, $id_rubrique) {
 
 //fonction qui permet de trouver l'id d'un article à partir du titre
 function id_article($titre, $id_rubrique) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$result = sql_fetsel(
 		"id_article", 
 		"spip_articles", 
@@ -516,7 +516,7 @@ function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $
 }
 
 function create_encart($titre, $identifiant, $largeur=0, $hauteur=0) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$result = sql_fetsel(
 		"id_encart", 
 		"spip_encarts", 
@@ -617,7 +617,7 @@ function create_logo($chemin, $type='art', $id, $ext, $onoff='on') {
 
 //fonction qui permet de trouver l'id d'un site à partir du titre
 function id_site($titre, $id_rubrique) {
-	$titre = addslashes($titre);
+	$titre = sql_quote($titre);
 	$result = sql_fetsel(
 		"id_syndic", 
 		"spip_syndic", 
@@ -664,7 +664,7 @@ function create_site($site, $rubrique) {
 
 //fonction qui permet de trouver l'id d'un formulaire à partir de l'id textuel
 function id_formidable($identifiant) {
-	$identifiant = addslashes($identifiant);
+	$identifiant = sql_quote($identifiant);
 	$result = sql_fetsel(
 		"id_formulaire", 
 		"spip_formulaires", 
