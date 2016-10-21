@@ -15,8 +15,12 @@
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
 #SET{LargeurMilieu,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}}|div{2})}
 
-
-div#wrapper { float: left; width: #GET{LargeurContaineur}px; border-left: #GET{LargeurMenuGauche}px solid #GET{c_navigation_bk}; border-right: #GET{LargeurMenuDroit}px solid #GET{c_extra_bk}; }
+div#wrapper { float: left; width: #GET{LargeurContaineur}px; 
+	border-left: #GET{LargeurMenuGauche}px solid #GET{c_navigation_bk}; 
+	border-right: #GET{LargeurMenuDroit}px solid #GET{c_extra_bk};
+	[(#CONFIG{soyezcreateurs_couleurs/transparencenavigation,1}|!={1}|oui)border-left-color: rgba([(#GET{c_navigation_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencenavigation,1});]
+	[(#CONFIG{soyezcreateurs_couleurs/transparencenavigation,1}|!={1}|oui)border-right-color: rgba([(#GET{c_extra_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparenceextra,1});]
+}
 div#content { margin: 0; width: 100%; }
 #pre-header { position: relative; margin: 0 auto; }
 #contenu { clear: both; margin-top: 0; }
@@ -24,8 +28,8 @@ div#content { margin: 0; width: 100%; }
 #droite { position: relative; float: left; padding: 0 20px; width: 50%; }
 #gauche { position: relative; float: left; padding: 0 20px; width: 50%; }
 
-#sommaire_mode_portail #navigation { float: left; margin-left: -#GET{LargeurContaineur}px;}
-#sommaire_mode_portail #extra { margin-left: -#GET{LargeurMenuDroit}px; }
+#sommaire_mode_portail #navigation { float: left; margin-left: -#GET{LargeurContaineur}px; background-color: transparent; }
+#sommaire_mode_portail #extra { margin-left: -#GET{LargeurMenuDroit}px; background-color: transparent; }
 
 dl, dd, dt { margin: 0; }
 
