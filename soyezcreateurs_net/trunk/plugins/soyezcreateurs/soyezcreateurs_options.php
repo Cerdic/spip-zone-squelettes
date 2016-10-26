@@ -159,12 +159,6 @@ function balise_SECTEUR_PDF_dist($p) {
 	return $f($p);
 }
 
-function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, $opt = NULL){
-	if (isset($opt['contexte']['id_article']))
-		return autoriser('creerevenementdans','article',$opt['contexte']['id_article'],$qui);
-	return false;
-}
-
 if (!defined('_DIR_PLUGIN_CRITERE_MOTS')) {
 	function critere_mots_dist($idb, &$boucles, $crit){
 		return true;
