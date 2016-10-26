@@ -65,10 +65,10 @@ if (!defined('_URLS_PROPRES_MAX'))
 #define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
 if (!defined('_CLEVERMAIL_NOUVEAUTES_HTML'))
 	define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
-/* Ne sert plus à rien depuis que CM gère la génération automatique du format texte à partir du format HTML
+// Doit être à vide depuis que CM gère la génération automatique du format texte à partir du format HTML
 if (!defined('_CLEVERMAIL_NOUVEAUTES_TEXT'))
-	define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
-*/
+	define("_CLEVERMAIL_NOUVEAUTES_TEXT", '');
+
 if (!defined('_CLEVERMAIL_DISTANT'))
 	define("_CLEVERMAIL_DISTANT", false); // Pour que CM ne calcule pas l'URL publique du squelette
 if (!defined('_SKEL_HORS_TRAVAUX'))
