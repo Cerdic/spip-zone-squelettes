@@ -20,9 +20,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * http://contrib.spip.net/spip.php?article76
 */
 
-if (!defined('_SPIP3')) define('_SPIP3', true);
-
-
 function sc_sommaire_article($texte,$istxt=0)
 {
 	// Conversion des intertitres d'enluminures type {ß{titre}ß}
@@ -114,35 +111,6 @@ function sc_sommaire_ancre($texte) {
 }
 //Fin filtre sommaire de l'article
 
-function sc_prepareNLtexte($texte) {
-	// Remplace tous les liens
-	while (eregi("<a href=['\"]([^'\">]+)['\"][^>]*>([^<]+)</a>", $texte, $regs)) {
-		$cleanReg1 = ereg_replace("\\?", "\?", $regs[1]);
-		$cleanReg1 = ereg_replace("\\+", "\+", $cleanReg1);
-		$cleanReg2 = ereg_replace("\\?", "\?", $regs[2]);
-		$cleanReg2 = ereg_replace("\\+", "\+", $cleanReg2);
-		if ($regs[1] == $regs[2]) {
-		    $texte = eregi_replace("<a href=['\"]".$cleanReg1."['\"][^>]*>".$cleanReg1."</a>", $regs[1], $texte);
-		} else {
-		    if ($regs[1] == str_replace("&nbsp;?","?",$regs[2])) {
-			    $texte = eregi_replace("<a href=['\"]".$cleanReg1."['\"][^>]*>".$cleanReg2."</a>", $regs[1], $texte);
-		    } else {
-			    $texte = eregi_replace("<a href=['\"]".$cleanReg1."['\"][^>]*>".$cleanReg2."</a>", str_replace("&nbsp;?","?",$regs[2])." (".$regs[1].")", $texte);
-		    }
-		}
-	}
-	$texte = preg_replace("|(<h[2]>)(.*)(<\/h[2]>)|U","<br /><br />----------------------------------------------------------------------<br />$1$2$3<br />----------------------------------------------------------------------<br />", $texte);
-	$texte = preg_replace("|(<h[3456]>)(.*)(<\/h[3456]>)|U","<br />···· $1$2$3 ····", $texte);
-	$texte = ereg_replace ('<li[^>]>', "\n".'-', $texte);
-	$texte = ereg_replace ('&#8217;', '\'', $texte);
-	$texte = ereg_replace ('&#171;', '"', $texte);
-	$texte = ereg_replace ('&#187;', '"', $texte);
-	$texte = ereg_replace ('&amp;', '&', $texte);
-	$texte = textebrut($texte);
-	$texte = wordwrap($texte, 70, "\n");
-	return $texte;
-}
-
 function sc_nettoyer_marqueur($texte) {
 	include_spip('inc/charsets');
 	$texte=translitteration($texte);
@@ -204,14 +172,6 @@ function sc_annee_scolaire($ladate) {
 	$mois = mois($ladate);
 	if ($mois <= 8) $annee -= 1;
 	return $annee;
-}
-
-function sc_garder_body($texte) {
-	$texte = eregi_replace('^.*<body[^>]*>', '', $texte);
-	$texte = eregi_replace('</body>.*$', '', $texte);
-	$texte = eregi_replace('^.*<!-- CutHere -->', '', $texte);
-	$texte = eregi_replace('<!-- /CutHere -->.*$', '', $texte);
-	return $texte;
 }
 
 /* Permet dans un texte de faire [->refsite12] qui fera un lien vers la page du site en cours décrivant ce site (et non pas un lien direct vers le site de destination) */
