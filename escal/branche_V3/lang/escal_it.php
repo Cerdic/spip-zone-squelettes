@@ -75,6 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'copyright' => 'Tutti i diritti riservati',
 // D
 'dans_site' => 'in questo sito',
+'derniers_articles_syndiques' => 'Ultimi articoli in syndication',
 // E
 'en_ligne' => 'Attualmente online: ',
 'envoi_mail_nom' => 'Cognome: ',

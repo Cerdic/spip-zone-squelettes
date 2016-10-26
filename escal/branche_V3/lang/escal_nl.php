@@ -75,6 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'copyright' => 'Alle rechten voorbehouden',
 // D
 'dans_site' => 'in deze site',
+'derniers_articles_syndiques' => 'Laatste nieuws syndicated',
 // E
 'en_ligne' => 'Op dit moment on-line: ',
 'envoi_mail_nom' => 'Naam: ',

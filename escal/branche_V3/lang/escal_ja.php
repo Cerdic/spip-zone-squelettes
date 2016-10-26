@@ -74,6 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'copyright' => 'All right reserved/Tous droits réservés',
 // D
 'dans_site' => 'このサイトには ',
+'derniers_articles_syndiques' => 'Sur le Web',
 // E
 'en_ligne' => '現在オンライン : ',
 'envoi_mail_nom' => '姓 : ',

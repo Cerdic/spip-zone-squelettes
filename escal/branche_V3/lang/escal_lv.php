@@ -74,7 +74,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contenu_site'=> 'šivietne satur:',
 'copyright' => 'Visas tiesibas aizsargatas',
 // D	   
-'dans_site'=> 'šaja vietne',	   
+'dans_site'=> 'šaja vietne',
+'derniers_articles_syndiques' => 'Jaunākās ziņas',	   
 // E	   
 'en_ligne'=> 'šobred tiešsaiste: ',	   
 'envoi_mail_nom'=> 'Nosaukums: ',	   

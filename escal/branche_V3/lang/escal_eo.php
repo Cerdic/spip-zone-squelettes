@@ -68,6 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contenu_site' => 'Ĉi-tiu retejo enhavas : ',
 // D
 'dans_site' => 'en tiu retejo',
+'derniers_articles_syndiques' => 'Lasta sindicado artikoloj',
 // E
 'en_ligne' => 'Nun enrete: ',
 'envoi_mail_nom' => 'Familia nomo: ',

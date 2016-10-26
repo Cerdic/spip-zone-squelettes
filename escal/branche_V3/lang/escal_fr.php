@@ -115,6 +115,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'copyright' => 'Tous droits réservés',
 // D
 'dans_site' => 'dans ce site',
+'derniers_articles_syndiques' => 'Derniers articles syndiqués',
 // E
 'en_ligne' => 'Actuellement en ligne : ',
 'envoi_mail_nom' => 'Nom : ',

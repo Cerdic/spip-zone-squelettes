@@ -105,6 +105,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'copyright' => 'Усі права захищено',
 // D
 'dans_site' => 'на цьому сайті',
+'derniers_articles_syndiques' => 'Sur le Web',
 // E
 'en_ligne' => 'Зараз он-лайн:',
 'envoi_mail_nom' => 'Фамілія: ',
