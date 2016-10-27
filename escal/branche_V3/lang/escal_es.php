@@ -69,7 +69,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_message' => ' ¡ Usted no compuso mensaje! ¿ Despistado?',
 'contact_alerte_interdit' => ' Su mensaje contiene caracteres no válidos',
 'contact_retour_commentaire' => 'Su mensaje ha sido enviado al webmestre del sitio
-                                <br />que le responderá cuanto antes a esta dirección:',                                 
+                                <br />que le responderá cuanto antes a esta dirección:',
 
 'contenu_site' => 'Este sitio contiene: ',
 'copyright' => 'Reservados todos los derechos',
@@ -85,7 +85,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Enviar un mensaje a',
 'erreur404' => 'Error 404',
 'erreur404_message' => 'La página que pide no existe más en el sitio o está en otra parte.
-                    
                     Si usted piensa que es un error en el sitio,
                     puede escribir al responsable del sitio
                     utilizando la página [Contacto|Página contacto->@url@] de este sitio.',

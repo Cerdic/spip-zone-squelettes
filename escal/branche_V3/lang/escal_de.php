@@ -67,7 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_mail' => 'Ihre E-Mail-Adresse ist nicht richtig.',
 'contact_alerte_domaine' => 'Der Domain-Name ist nicht gültig',
 'contact_alerte_message' => ' Sie haben doch keine Meldung verfaßt!? Waren Sie abgelenkt ?',
-'contact_alerte_interdit' => ' Ihre Nachricht enthält unzulässige Zeichen',                                                             
+'contact_alerte_interdit' => ' Ihre Nachricht enthält unzulässige Zeichen',
 'contact_retour_commentaire' => 'Ihre Meldung wurde ordentlich an den Webmaster geschickt
                                   <br />der Ihnen sobald wie möglich antworten wird :',
 'contenu_site' => 'diese Website enthält : ',
@@ -84,7 +84,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Meldung schicken an ',
 'erreur404' => '404 Fehler',
 'erreur404_message' => 'die von Ihnen gefragte Seite existiert nicht oder nicht mehr in dieser Website .
-                    
                     denken Sie, es geht um einen Fehler in der Website ?
                     so können Sie dessen Webmaster mit dieser Seite [Kontakt|Kontaktseite->@url@] auf dem Problem hinweisen.',
 'espace_redacteurs' => 'Raum der Verfasser',

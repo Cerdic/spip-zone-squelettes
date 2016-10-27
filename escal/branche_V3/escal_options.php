@@ -1,7 +1,5 @@
 <?php
 
-define('_AGENDA_AUTORISER_ORPHELINS',true);
-
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
 
 // Header prive

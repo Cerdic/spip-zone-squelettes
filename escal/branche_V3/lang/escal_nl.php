@@ -69,8 +69,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_message' => ' U heeft geen bericht geschreven',
 'contact_alerte_interdit' => ' Uw bericht bevat ongeldige tekens',
 'contact_retour_commentaire' => 'Uw bericht is goed verzonden naar de webmaster van de site
-                                <br />die zullen u zo snel mogelijk op dit adres zullen antwoorden:',                                
-
+                                <br />die zullen u zo snel mogelijk op dit adres zullen antwoorden:',
 'contenu_site' => 'Deze site bevat: ',
 'copyright' => 'Alle rechten voorbehouden',
 // D
@@ -85,7 +84,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Zend een bericht naar',
 'erreur404' => 'Error 404',
 'erreur404_message' => 'De pagina die u opvraagt is onbestaand, niet meer online, of verplaatst.
-                    
                     Als u denkt dat dit fout is,
                     kan u de webmaster contacteren 
                     met de [Contact|Contactpagina->@url@] pagina van deze site.',

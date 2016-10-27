@@ -68,8 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_message' => ' You did not compose any message ! Absent-minded ?',
 'contact_alerte_interdit' => ' Your message contains illegal characters',
 'contact_retour_commentaire' => 'Your message was successfully sent to the webmaster of the site
-                                <br />who will answer you as soon as possible at this address:',                                  
-                                
+                                <br />who will answer you as soon as possible at this address:',
 'contenu_site' => 'This site contains: ',
 'copyright' => 'All rights reserved',
 // D
@@ -84,7 +83,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Send a message to ',
 'erreur404' => 'Error 404',
 'erreur404_message' => 'The page you want does not exist, is no longer online or has moved.
-                    
                     If you think this is wrong,
                     you can inform the webmaster using the 
                     by using the [Contact|Contact page->@url@] page of this site.',

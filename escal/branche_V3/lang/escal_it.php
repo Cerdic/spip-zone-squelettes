@@ -70,7 +70,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_interdit' => ' Il tuo messaggio contiene caratteri illegali',
 'contact_retour_commentaire' => 'Il vostro messaggio č stato inviato al responsabile del sito
                                 <br />che vi risponderà appena possibile a questo indirizzo:',
-
 'contenu_site' => 'Questo sito contiene : ',
 'copyright' => 'Tutti i diritti riservati',
 // D
@@ -85,7 +84,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Mandare un messaggio a ',
 'erreur404' => 'Errore 404',
 'erreur404_message' => 'La pagina che chiedete non esiste o più sul sito.
-                    
                     Se pensate che si tratta duna errore nel sito,
                     potete segnalare il problema al responsabile del sito
                     utilizzando il pagina [Contatto|Pagina contatto->@url@] di questo sito.',

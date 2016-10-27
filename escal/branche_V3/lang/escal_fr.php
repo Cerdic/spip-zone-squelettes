@@ -125,7 +125,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Envoyer un message à ',
 'erreur404' => 'Erreur 404',
 'erreur404_message' => 'La page que vous demandez n\'existe pas ou plus sur le site.
-                    
                     Si vous pensez qu\'il s\'agit d\'une erreur dans le site,
                     vous pouvez signaler le problème au responsable du site
                     en utilisant la page [Contact|Page contact->@url@] de ce site.',

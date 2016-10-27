@@ -78,10 +78,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Sendi mesaĝon al ',
 'erreur404' => 'Eraro 404',
 'erreur404_message' => 'Ne ekzistas la serĉita paĝo en la retejo.
-                    
                     Se vi opinias, ke temas pri eraro en la retejo,
                     eblas sciigi la problemon al ties retejestro
-                    per la paĝo [Kontakto|Paĝo kontakto->@url@] de tiu retejo.',                      
+                    per la paĝo [Kontakto|Paĝo kontakto->@url@] de tiu retejo.',
 'espace_redacteurs' => 'Zono por redaktantoj',
 'escal' => 'Escal',
 'et' => 'kaj',
