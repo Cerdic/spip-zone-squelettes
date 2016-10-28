@@ -278,8 +278,14 @@ function sarkaspip_ecrire_less_from_variables($valeurs,$c){
 
 	// ecrire dans squelettes/css/variables.less
 	// en sauvegardant le precedent si besoin
-	$dir = sous_repertoire(_DIR_RACINE,"squelettes");
-	$dir = sous_repertoire($dir,"css");
+	if (!$dir = sous_repertoire(_DIR_RACINE, "squelettes", false, true)) {
+		$erreur = "Impossible de créer le répertoire <tt>squelettes</tt>, ou celui-ci n'est pas accessible en écriture.";
+		return $erreur;
+	}
+	if (!$dir = sous_repertoire($dir,"css", false, true)) {
+		$erreur = "Impossible de créer le répertoire <tt>squelettes/css</tt>, ou celui-ci n'est pas accessible en écriture.";
+		return $erreur;
+	};
 
 	if (file_exists($f=$dir."variables.less")){
 		@rename($f,"$f.sav");
