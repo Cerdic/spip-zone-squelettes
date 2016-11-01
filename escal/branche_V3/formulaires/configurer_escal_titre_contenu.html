@@ -18,7 +18,7 @@
               <p>En laissant la case vide, Escal utilisera le titre par défaut.</p>
               </div>
      <ul>
-     
+
 <!-- bord des cadres lateraux -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong>Cadres latéraux</strong></label>
@@ -111,7 +111,7 @@
             <div class="explication">
             #SET{name,inscription}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <p>Le titre de cette noisette n'est pas modifiable.</p>
-                    Afficher le formulaire d'inscription de nouveaux rédacteurs <br />
+                    Afficher le formulaire d'inscription de nouveaux <strong>rédacteurs</strong> <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -121,6 +121,18 @@
                     </span>
                     <br /><br />
                     (Il faut avoir coché "Accepter les inscriptions" dans l'espace privé : Configuration - Interactivité)
+            <br /><br />
+            #SET{name,inscription_visiteur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher le formulaire d'inscription de nouveaux <strong>visiteurs</strong> <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    (Il faut avoir coché "Accepter l’inscription de visiteurs du site public" dans l'espace privé : Configuration - Interactivité)
             </div>
             </li>
 <!-- inc-recherche_multi -->
