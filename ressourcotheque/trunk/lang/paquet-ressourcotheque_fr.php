@@ -1,12 +1,5 @@
 <?php
 
-// Ceci est un fichier langue de SPIP -- This is a SPIP language file
-
-///  Fichier produit par PlugOnet
-// Module: paquet-motus
-// Langue: fr
-// Date: 07-12-2011 17:03:35
-// Items: 2
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
