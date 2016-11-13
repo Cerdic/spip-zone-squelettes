@@ -14,7 +14,7 @@ include_spip('inc/meta');
 define('_LOG_INSTALL', "soyezcreateurs_install");
 
 //fonction qui permet de créer les métas de config du site
-function soyezcreateurs_config_site() {	
+function soyezcreateurs_config_site() {
 	ecrire_meta('activer_logos_survol', 'oui','non');
 	ecrire_meta('config_precise_groupes', 'oui','non');
 	ecrire_meta('articles_surtitre', 'oui','non');
@@ -48,7 +48,7 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('socialtags', 'a:5:{s:4:"tags";a:7:{i:0;s:0:"";i:1;s:9:"blogmarks";i:2;s:9:"delicious";i:3;s:4:"digg";i:4;s:6:"google";i:5;s:7:"twitter";i:6;s:6:"viadeo";}s:10:"jsselector";s:11:"#socialtags";s:5:"badge";s:0:"";s:7:"badgejs";s:0:"";s:9:"ifreferer";N;}','non');
 	ecrire_meta('ppp', 'a:5:{s:14:"descriptif_ppp";s:0:"";s:9:"chapo_ppp";s:2:"on";s:6:"ps_ppp";s:2:"on";s:29:"configuration_description_ppp";s:2:"on";s:23:"auteurs_quietesvous_ppp";s:2:"on";}', 'non');
 	ecrire_meta('gis', 'a:11:{s:25:"champ_map_config_geocoder";s:0:"";s:3:"lat";s:2:"45";s:3:"lon";s:1:"1";s:4:"zoom";s:2:"10";s:12:"api_key_bing";s:0:"";s:8:"geocoder";s:2:"on";s:7:"adresse";s:2:"on";s:23:"geolocaliser_user_html5";s:0:"";s:10:"gis_objets";a:5:{i:0;s:13:"spip_articles";i:1;s:12:"spip_auteurs";i:2;s:14:"spip_documents";i:3;s:11:"spip_syndic";i:4;s:0:"";}s:12:"layer_defaut";s:16:"openstreetmap_fr";s:6:"layers";a:5:{i:0;s:16:"openstreetmap_fr";i:1;s:14:"google_roadmap";i:2;s:16:"google_satellite";i:3;s:14:"google_terrain";i:4;s:17:"stamen_watercolor";}}', 'non');
-	
+
 	// Activer les crayons dans ecrire, et la barre typo sur les crayons, réduire les images à 400 px de large (au cas où)
 	ecrire_config('crayons/barretypo','on');
 	ecrire_config('crayons/reduire_logo',400);
@@ -90,7 +90,7 @@ function soyezcreateurs_config_site() {
 function find_groupe($titre) {
 	$titre = sql_quote($titre);
 	spip_log("1. (find_groupe) recherche des occurences dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
-	$count = sql_countsel("spip_groupes_mots", "titre='$titre'");
+	$count = sql_countsel("spip_groupes_mots", "titre=$titre");
 	spip_log("2. (find_groupe) resultat de la recherche : $count occurences pour $titre", _LOG_INSTALL);
 	return $count;
 }
@@ -99,7 +99,7 @@ function find_groupe($titre) {
 function id_groupe($titre) {
 	$titre = sql_quote($titre);
 	spip_log("1. (id_groupe) selection dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
-	$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre='$titre'");
+	$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre=$titre");
 	$resultat = $result['id_groupe'];
 	spip_log("2. (id_groupe) selection = $resultat pour $titre", _LOG_INSTALL);
 	return $resultat;
@@ -125,7 +125,7 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 			)
 		);
 		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id_insert et titre = $groupe", _LOG_INSTALL);
-	} 
+	}
 	else if ($id_groupe > 0) {
 		$id_insert = remplacer_groupe($groupe, $descriptif, $texte, $unseul, $obligatoire, $tables_liees, $minirezo, $comite, $forum);
 		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe... passage a remplacer_groupe", _LOG_INSTALL);
@@ -178,8 +178,8 @@ function remplacer_groupe($titre, $descriptif, $texte, $unseul, $obligatoire, $t
 function find_mot($titre, $id_groupe) {
 	$titre = sql_quote($titre);
 	$count = sql_countsel(
-		"spip_mots", 
-		"titre = '$titre' AND id_groupe = $id_groupe"
+		"spip_mots",
+		"titre=$titre AND id_groupe = $id_groupe"
 	);
 	return $count;
 }
@@ -189,9 +189,9 @@ function id_mot($titre, $id_groupe) {
 	spip_log("1. (id_mot) debut de recherche de l'id de $titre avec $id_groupe", _LOG_INSTALL);
 	$titre = sql_quote($titre);
 	$result = sql_fetsel(
-		"id_mot", 
-		"spip_mots", 
-		"titre='$titre' AND id_groupe = $id_groupe"
+		"id_mot",
+		"spip_mots",
+		"titre=$titre AND id_groupe=$id_groupe"
 	);
 	$id_mot = $result['id_mot'];
 	spip_log("2. (id_mot) retour de la fonction id_mot = $id_mot", _LOG_INSTALL);
@@ -244,18 +244,19 @@ function remplacer_mot($id_mot, $mot, $descriptif, $texte, $id_groupe, $groupe) 
 function find_rubrique($titre) {
 	$titre = sql_quote($titre);
 	$count = sql_countsel(
-		"spip_rubriques", 
-		"titre = '$titre'"
+		"spip_rubriques",
+		"titre=$titre"
 	);
 	return $count;
 }
 
 //fonction qui permet de trouver l'id d'une rubrique à partir du titre
 function id_rubrique($titre) {
+	$titre = sql_quote($titre);
 	$result = sql_fetsel(
-		"id_rubrique", 
-		"spip_rubriques", 
-		"titre='$titre'"
+		"id_rubrique",
+		"spip_rubriques",
+		"titre=$titre"
 	);
 	$resultat = $result['id_rubrique'];
 	spip_log("1. (id_rubrique) recherche de l'id_rubrique de $titre = $resultat", _LOG_INSTALL);
@@ -285,7 +286,7 @@ function rename_rubrique($titre, $nouveau_titre) {
 	}
 	return true;
 }
-	
+
 
 //fonction qui permet de créer une rubrique
 function create_rubrique($titre, $id_parent='0', $descriptif='') {
@@ -328,8 +329,8 @@ function remplacer_rubrique($id_rubrique, $id_parent, $descriptif) {
 function find_article($titre, $id_rubrique) {
 	$titre = sql_quote($titre);
 	$count = sql_countsel(
-		"spip_articles", 
-		"titre='$titre' AND id_rubrique = $id_rubrique"
+		"spip_articles",
+		"titre=$titre AND id_rubrique=$id_rubrique"
 	);
 	return $count;
 }
@@ -338,12 +339,12 @@ function find_article($titre, $id_rubrique) {
 function id_article($titre, $id_rubrique) {
 	$titre = sql_quote($titre);
 	$result = sql_fetsel(
-		"id_article", 
-		"spip_articles", 
-		"titre='$titre' AND id_rubrique = $id_rubrique"
+		"id_article",
+		"spip_articles",
+		"titre=$titre AND id_rubrique=$id_rubrique"
 	);
 	$resultat = $result['id_article'];
-	spip_log("1. (id_article) recherche de l'id_article de $titre = $resultat", _LOG_INSTALL);
+	spip_log("1. (id_article) recherche de l'id_article de '$titre' = $resultat", _LOG_INSTALL);
 	return $resultat;
 }
 
@@ -389,7 +390,7 @@ function create_article($texte, $rubrique, $lang='fr') {
 			"spip_auteurs_liens", array(
 				"id_auteur" => 1,
 				"id_objet" => $id_article,
-				objet => 'article'
+				"objet" => 'article'
 			)
 		);
 		include_spip('inc/rubriques');
@@ -419,7 +420,7 @@ function remplacer_article($id_article, $id_rubrique, $texte) {
 			"nom_site" => $texte['nom_site'],
 			"url_site" => $texte['url_site'],
 			"virtuel" => $texte['virtuel']
-		), "id_article='$id_article' AND id_rubrique = $id_rubrique"
+		), "id_article=$id_article AND id_rubrique=$id_rubrique"
 	);
 	return true;
 }
@@ -429,7 +430,7 @@ function poubelle_article($titre_article, $titre_rubrique) {
 	if ($id_rubrique) {
 		$id_article = id_article($titre_article, $id_rubrique);
 		if ($id_article) {
-			sql_updateq("spip_articles", array("statut" => "poubelle"),"id_article=$id_article");
+			sql_updateq("spip_articles", array("statut" => "poubelle"), "id_article=$id_article");
 		}
 	}
 }
@@ -437,8 +438,8 @@ function poubelle_article($titre_article, $titre_rubrique) {
 // fonction qui permet de trouver si une liaison entre un article et un mot clé existe
 function find_article_mot($id_mot, $id_article) {
 	$count = sql_countsel(
-		"spip_mots_liens", 
-		"id_mot = $id_mot AND id_objet = $id_article AND objet='article'"
+		"spip_mots_liens",
+		"id_mot=$id_mot AND id_objet=$id_article AND objet='article'"
 	);
 	return $count;
 }
@@ -453,9 +454,9 @@ function create_article_mot($article, $rubrique, $mot, $groupe) {
 	$count = find_article_mot($id_mot, $id_article);
 	if ($count == 0) {
 		sql_insertq(
-			"spip_mots_liens", 
+			"spip_mots_liens",
 			array(
-				"id_mot"=> $id_mot, 
+				"id_mot"=> $id_mot,
 				"id_objet" => $id_article,
 				"objet" => 'article'
 			)
@@ -470,7 +471,7 @@ function create_article_mot($article, $rubrique, $mot, $groupe) {
 //fonction qui permet de trouver des liaisons entre rubrique et mot clé
 function find_rubrique_mot($id_mot, $id_rubrique) {
 	$count = sql_countsel(
-		"spip_mots_liens", 
+		"spip_mots_liens",
 		"id_mot = $id_mot AND id_objet = $id_rubrique AND objet = 'rubrique'"
 	);
 	return $count;
@@ -518,9 +519,9 @@ function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $
 function create_encart($titre, $identifiant, $largeur=0, $hauteur=0) {
 	$titre = sql_quote($titre);
 	$result = sql_fetsel(
-		"id_encart", 
-		"spip_encarts", 
-		"titre='$titre'"
+		"id_encart",
+		"spip_encarts",
+		"titre=$titre"
 	);
 	$id_encart = $result['id_encart'];
 	if ($id_encart > 0) {
@@ -530,7 +531,7 @@ function create_encart($titre, $identifiant, $largeur=0, $hauteur=0) {
 				"identifiant" => $identifiant,
 				"largeur" => $largeur,
 				"hauteur" => $hauteur
-			), "id_encart='$id_encart'"
+			), "id_encart=$id_encart"
 		);
 	} else {
 		$id_encart = sql_insertq(
@@ -547,8 +548,8 @@ function create_encart($titre, $identifiant, $largeur=0, $hauteur=0) {
 //fonction qui permet de trouver l'id d'un auteur à partir de son nom
 function find_auteur($nom) {
 	$result = sql_fetsel(
-		"id_auteur", 
-		"spip_auteurs", 
+		"id_auteur",
+		"spip_auteurs",
 		"nom='$nom'"
 	);
 	$resultat = $result['id_auteur'];
@@ -559,8 +560,8 @@ function find_auteur($nom) {
 //fonction qui permet de trouver l'email d'un auteur à partir de son id
 function find_auteur_email($id_auteur) {
 	$result = sql_fetsel(
-		"email", 
-		"spip_auteurs", 
+		"email",
+		"spip_auteurs",
 		"id_auteur=$id_auteur"
 	);
 	$resultat = $result['email'];
@@ -619,9 +620,9 @@ function create_logo($chemin, $type='art', $id, $ext, $onoff='on') {
 function id_site($titre, $id_rubrique) {
 	$titre = sql_quote($titre);
 	$result = sql_fetsel(
-		"id_syndic", 
-		"spip_syndic", 
-		"nom_site='$titre' AND id_rubrique = $id_rubrique"
+		"id_syndic",
+		"spip_syndic",
+		"nom_site=$titre AND id_rubrique=$id_rubrique"
 	);
 	$resultat = $result['id_syndic'];
 	return $resultat;
@@ -666,9 +667,9 @@ function create_site($site, $rubrique) {
 function id_formidable($identifiant) {
 	$identifiant = sql_quote($identifiant);
 	$result = sql_fetsel(
-		"id_formulaire", 
-		"spip_formulaires", 
-		"identifiant='$identifiant'"
+		"id_formulaire",
+		"spip_formulaires",
+		"identifiant=$identifiant"
 	);
 	$resultat = $result['id_formulaire'];
 	return $resultat;
@@ -713,20 +714,20 @@ function create_formidable($formidable) {
 function poubelle_site($titre_site, $titre_rubrique) {
 	$id_rubrique = id_rubrique($titre_rubrique);
 	if ($id_rubrique) {
-		$id_site = id_site($titre_site, $id_rubrique);
-		if ($id_site > 0) {
+		$id_syndic = id_site($titre_site, $id_rubrique);
+		if ($id_syndic > 0) {
 			sql_updateq(
 				"spip_syndic", array(
 					"statut" => 'refuse',
-				), "id_syndic='$id_syndic'"
-			);			
+				), "id_syndic=$id_syndic"
+			);
 		}
 	}
 }
 //fonction qui permet de trouver des liaisons entre site et mot clé
 function find_site_mot($id_mot, $id_syndic) {
 	$count = sql_countsel(
-		"spip_mots_liens", 
+		"spip_mots_liens",
 		"id_mot = $id_mot AND id_objet = $id_syndic AND objet = 'site'"
 	);
 	return $count;
@@ -894,7 +895,7 @@ function soyezcreateurs_config_motsclefs() {
 		$id_mot = create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
 		$id_mot = create_mot("_TypeRubrique", "Magazines", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des Magazines.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des documents joints aux articles, avec la vignette associée.");
 		$id_mot = create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
-	
+
 	include_spip("inc/sc_article");
 	// Structure et contenu du site
 	$nouvelle_installation = false;
@@ -925,32 +926,32 @@ function soyezcreateurs_config_motsclefs() {
 			create_logo('documents/arton1.jpg', $type='art', $id_article, 'jpg');
 			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "ALaUne", "_Specialisation");
 			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
-		$id_doc = create_document('documents/contact.jpg', 
-			null, 
+		$id_doc = create_document('documents/contact.jpg',
+			null,
 			'image',
 			array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...'));
 		$article = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
 		$article['texte'] = str_replace('<img1', "<img$id_doc", $article['texte']);
 		$article['texte'] = str_replace('<doc1', "<doc$id_doc", $article['texte']);
 		$article['texte'] = str_replace('<emb1', "<emb$id_doc", $article['texte']);
-		$id_doc2 = create_document('documents/arton1.jpg', 
-			null, 
+		$id_doc2 = create_document('documents/arton1.jpg',
+			null,
 			'image',
 			array('titre' => 'Exemple d\'image', 'descriptif' => 'Avec un descriptif de l\'image en dessous.'));
 		$article['texte'] = str_replace("<img$id_doc|center", "<img$id_doc2|center", $article['texte']);
 		$article['texte'] = str_replace("<doc$id_doc|center", "<doc$id_doc2|center", $article['texte']);
-		$article['texte'] = str_replace("<emb$id_doc|center", "<emb$id_doc2|center", $article['texte']);			
+		$article['texte'] = str_replace("<emb$id_doc|center", "<emb$id_doc2|center", $article['texte']);
 		$id_article = create_article($article, "000. Fourre-tout");
-			$id_doc = create_document('documents/spip_decroche_la_lune.jpg', 
-				array('type' => 'article', 'id_objet' => $id_article), 
+			$id_doc = create_document('documents/spip_decroche_la_lune.jpg',
+				array('type' => 'article', 'id_objet' => $id_article),
 				'document',
 				array('titre' => 'Décrochez la lune avec SPIP !', 'statut' => 'publie'));
-			$id_doc = create_document('documents/arton1.jpg', 
-				array('type' => 'article', 'id_objet' => $id_article), 
+			$id_doc = create_document('documents/arton1.jpg',
+				array('type' => 'article', 'id_objet' => $id_article),
 				'document',
 				array('titre' => 'Arbre dans la lumière', 'statut' => 'publie'));
-			$id_doc = create_document('documents/arton7.png', 
-				array('type' => 'article', 'id_objet' => $id_article), 
+			$id_doc = create_document('documents/arton7.png',
+				array('type' => 'article', 'id_objet' => $id_article),
 				'document',
 				array('titre' => 'Casier de typographe avec lettres au plomb', 'statut' => 'publie'));
 			create_logo('documents/arton7.png', $type='art', $id_article, 'png');
@@ -973,9 +974,9 @@ function soyezcreateurs_config_motsclefs() {
 				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "000. Fourre-tout");
 			}
-	
+
 		$id_parent = $id_rubrique;
-	
+
 		$id_rubrique = create_rubrique("05. Saint du jour", $id_parent, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
 				$sites = array();
 				$sites['nom_site'] = "Nominis (Saint du jour)";
@@ -985,13 +986,13 @@ function soyezcreateurs_config_motsclefs() {
 				$sites['statut'] = 'prop';
 				$id_site = create_site($sites, "05. Saint du jour");
 					create_site_mot($id_site, "SaintDuJour", "_Specialisation_Sites");
-	
+
 		$id_rubrique = create_rubrique("10. Navigation haute", $id_parent, "Pour éviter que les articles servant à la création du menu de navigation haute se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nVoir [->mot106] pour la documentation.");
 			create_rubrique_mot("10. Navigation haute", "AfficherArticlesMenu", "_Specialisation_Rubrique");
 			create_rubrique_mot("10. Navigation haute", "PasDansFildAriane", "_Specialisation_Rubrique");
-	
+
 		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
-	
+
 		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
 		if ($nouvelle_installation) {
 			$id_article = create_article(trouve_article_sc("10. Outil 1"), "30. Outils");
@@ -1015,7 +1016,7 @@ function soyezcreateurs_config_motsclefs() {
 				create_logo('documents/artoff20.jpg', $type='art', $id_article, 'jpg','off');
 				create_article_mot("50. Documentation", "30. Outils", "Outils", "_Specialisation");
 		}
-	
+
 		$id_rubrique = create_rubrique("80. Réseaux sociaux", $id_parent, "Rubrique destinée à recevoir les sites référencés utilisés pour l'affichage des réseaux sociaux.");
 				$sites = array();
 				$sites['nom_site'] = "10. Facebook";
@@ -1062,26 +1063,26 @@ function soyezcreateurs_config_motsclefs() {
 				$id_site = create_site($sites, "80. Réseaux sociaux");
 					create_logo('documents/siteon5.png', $type='site', $id_site, 'png');
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
-	
-	
+
+
 	if ($nouvelle_installation) {
 		$id_rubrique = create_rubrique("100. Rubriques", '0', "Clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.");
 			create_rubrique_mot("100. Rubriques", "MenuHaut", "_Specialisation_Rubrique");
-		
+
 		$id_parent = $id_rubrique;
-		
+
 			$id_rubrique = create_rubrique("10. DessousBreves 1", $id_parent, "Avec le mot clef \"DessousBreves\".\n_ Affiche: titre, bulle d'aide, liste des article");
 				create_rubrique_mot("10. DessousBreves 1", "DessousBreves", "_Specialisation_Rubrique");
 				$id_article = create_article(trouve_article_sc("20. Et prima post Osdroenam quam"), "10. DessousBreves 1");
 				$id_article = create_article(trouve_article_sc("30. Ideo urbs venerabilis"), "10. DessousBreves 1");
-		
+
 			$id_rubrique = create_rubrique("20. DessousBreves 2", $id_parent, "Sur 2 colonnes.\n_ non limité en nombre");
 				create_rubrique_mot("20. DessousBreves 2", "DessousBreves", "_Specialisation_Rubrique");
 				$id_article = create_article(trouve_article_sc("10. Nos obsecuturos"), "20. DessousBreves 2");
 				$id_article = create_article(trouve_article_sc("20. Mensarum enim"), "20. DessousBreves 2");
 				$id_article = create_article(trouve_article_sc("30. Iamque non umbratis"), "20. DessousBreves 2");
-		
-		
+
+
 
 		$id_rubrique = create_rubrique("200. Avec le mot-clé", '0', "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni.");
 			create_rubrique_mot("200. Avec le mot-clé", "MenuHaut", "_Specialisation_Rubrique");
@@ -1096,8 +1097,8 @@ function soyezcreateurs_config_motsclefs() {
 			$id_article = create_article(trouve_article_sc("40. Image = logo"), "200. Avec le mot-clé");
 				create_logo('documents/arton24.jpg', $type='art', $id_article, 'jpg');
 				create_article_mot("40. Image = logo", "200. Avec le mot-clé", "ALaUne", "_Specialisation");
-		
-		
+
+
 
 		$id_rubrique = create_rubrique("300. MenuHaut", '0', "Libano monti Phoenice, regio plena gratiarum et venustatis");
 			create_rubrique_mot("300. MenuHaut", "MenuHaut", "_Specialisation_Rubrique");
@@ -1106,16 +1107,16 @@ function soyezcreateurs_config_motsclefs() {
 				create_logo('documents/artoff32.jpg', $type='art', $id_article, 'jpg','off');
 			$id_article = create_article(trouve_article_sc("10. Urbibus decorata"), "300. MenuHaut");
 			$id_article = create_article(trouve_article_sc("20. Rogatus ad ultimum"), "300. MenuHaut");
-		
-		
+
+
 
 		$id_rubrique = create_rubrique("400. Classées par numéro de titre", '0', "Subsidiis patrimonii aut amicorum liberalitate sustentant hos perire patiemur.");
 			create_rubrique_mot("400. Classées par numéro de titre", "MenuHaut", "_Specialisation_Rubrique");
 			$id_article = create_article(trouve_article_sc("10. Oportunum est"), "400. Classées par numéro de titre");
 			$id_article = create_article(trouve_article_sc("20. Quis enim"), "400. Classées par numéro de titre");
 			$id_article = create_article(trouve_article_sc("30. Altera sententia est"), "400. Classées par numéro de titre");
-		
-		
+
+
 
 		$id_rubrique = create_rubrique("800. Rubrique \"Goodies\"", '0', "Si post exsudatos labores itinerum longos congestosque adfatim.");
 			create_rubrique_mot("800. Rubrique \"Goodies\"", "Goodies", "_ModePortail");
@@ -1130,7 +1131,7 @@ function soyezcreateurs_config_motsclefs() {
 				create_logo('documents/arton31.jpg', $type='art', $id_article, 'jpg');
 				create_logo('documents/artoff31.jpg', $type='art', $id_article, 'jpg','off');
 	}
-	
+
 
 	$id_rubrique = create_rubrique("900. Agenda", '0', "");
 		create_rubrique_mot("900. Agenda", "Agenda", "_Specialisation_Rubrique");
@@ -1140,16 +1141,16 @@ function soyezcreateurs_config_motsclefs() {
 			$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
 			$id_article = create_article(trouve_article_sc("Installation du site"), "900. Agenda");
 			$id_article = create_article(trouve_article_sc("Événement exceptionnel"), "900. Agenda");
-		
+
 			$id_parent = $id_rubrique;
-		
+
 			$id_rubrique = create_rubrique("10. SPIP", $id_parent, "");
 				$id_article = create_article(trouve_article_sc("Historique des versions de SPIP"), "10. SPIP");
-		
+
 			$id_rubrique = create_rubrique("20. Linux", $id_parent, "");
 		}
-	
-	
+
+
 
 	$id_rubrique = create_rubrique("999. Citations", '0', "Mettre dans cette rubrique une citation par article");
 		create_rubrique_mot("999. Citations", "Citations", "_Specialisation_Rubrique");
@@ -1163,7 +1164,7 @@ function soyezcreateurs_config_motsclefs() {
 			$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
 			$id_article = create_article(trouve_article_sc("Conseil n°4"), "999. Citations");
 		}
-		
+
 	return true;
 }
 
@@ -1200,7 +1201,7 @@ function soyezcreateurs_vider($tout=false) {
 	poubelle_article("20. Quis enim","400. Classées par numéro de titre");
 	poubelle_article("30. Altera sententia est","400. Classées par numéro de titre");
 	poubelle_article("Historique des versions de SPIP","10. SPIP");
-	
+
 	poubelle_site("MàJ SoyezCréateurs", "000. Fourre-tout");
 	poubelle_site("SoyezCréateurs", "000. Fourre-tout");
 
@@ -1217,7 +1218,7 @@ function soyezcreateurs_vider($tout=false) {
 		delete_rubrique("400. Classées par numéro de titre");
 		delete_rubrique("800. Rubrique \"Goodies\"");
 	}
-	
+
 	delete_rubrique("10. SPIP");
 	delete_rubrique("20. Linux");
 
