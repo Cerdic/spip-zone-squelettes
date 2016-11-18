@@ -9,7 +9,7 @@
 
   <div class="texte top [(#CONFIG{escal/config/toggletop}|=={oui}|oui)toggle]" >
   
-	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=forum}>
+	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot IN 'forum', 'invisible'}>
 	 <BOUCLE_extract(ARTICLES){id_rubrique}{doublons}>
 	 </BOUCLE_extract>
   	<BOUCLE_exclure_rub2(RUBRIQUES){branche}>
@@ -17,6 +17,10 @@
   	 </BOUCLE_extract2>
   	</BOUCLE_exclure_rub2>
 	</BOUCLE_exclure_rub>
+	
+	<!-- exclusion des articles avec le mot-clé"invisible"  -->
+	<BOUCLE_exclure_art(ARTICLES){titre_mot=invisible}{doublons}>
+	</BOUCLE_exclure_art>
 	
 #SET{nombretop,#CONFIG{escal/config/nombretop,5}}
     <B_affichage_articles>
