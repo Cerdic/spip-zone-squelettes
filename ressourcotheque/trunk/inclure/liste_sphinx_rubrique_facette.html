@@ -1,0 +1,40 @@
+#SET{groupby,#ENV{critere}}
+
+[(#ENV{critere}|match{'\x28'}|oui)
+	#SET{groupby,valeur}
+]
+
+<B_resultats_facette>
+	<h2>#ENV{titre}</h2>
+		<div class='liste'>
+			<ul class='liste-items'>
+				<BOUCLE_resultats_facette(SPHINX)
+					{index #ENV{source,spip}}
+					{recherche #ENV*{recherche}}
+
+					{filtermono #ID_RUBRIQUE, properties.id_rubrique, #ID_RUBRIQUE}
+					{filtermono article, properties.objet, article}
+					
+					{filter #ENV{tag},    'IN(properties.tags, @valeurs)',    'LENGTH(properties.tags) = 0'}
+
+					
+					{select COUNT(*) AS nb}
+					{select GROUPBY() AS facette}
+					{select (#ENV{critere}|concat{' '}) AS valeur}
+
+					{groupby #GET{groupby}}
+
+
+					{par #GET{tri}}{inverse #GET{sens_tri}}
+
+					{0,10}
+				>
+			<li class='item'>
+				<a href="[(#SELF|parametre_url{#ENV{cle},[(#FACETTE|sinon{-})]})]">
+					[(#FACETTE|sinon{<i>#ENV{texte_vide}</i>})]
+				</a> (#NB [(#NB|=={1}|?{document,documents})])
+			</li>
+</BOUCLE_resultats_facette>
+		</ul>
+	</div>
+</B_resultats_facette>
