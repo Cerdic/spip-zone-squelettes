@@ -1,12 +1,12 @@
 <B_filtres>
+<div id="filtres">
 <h4>Filtres:</h4>
-<BOUCLE_filtres(DATA){source tableau, #ARRAY{tag,Aucun tag}}>[
-(#ENV{#CLE}|oui)
-	<div>
-		<a class="btn btn-mini" href="[(#SELF|parametre_url{#CLE,''})]"><i class="icon-remove"></i> [(#ENV{#CLE}|=={-}|?{#VALEUR,#ENV{#CLE}})]</a>
-	</div>
-]</BOUCLE_filtres>
-
+<BOUCLE_filtres(DATA){source tableau, #ENV{tag}}{" <span class='sep'>|</span> "}>
+		#SET{c,#COMPTEUR_BOUCLE|moins{1}}
+		<a class="btn btn-mini" href="[(#SELF|parametre_url_supprimer_element_tableau{tag,#ENV{tag},#GET{c}})]"><i class="icon-remove"></i>#VALEUR</a>
+</BOUCLE_filtres>
+</div>
+</B_filtres>
 <B_sphinx>
 			<div class="pagination">
 				#PAGINATION
