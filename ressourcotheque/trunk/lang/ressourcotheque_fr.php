@@ -10,4 +10,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
 	',
 	'types_ressources' => 'Types de ressources disponibles',
+	'zip' => 'Zip de l\'ensemble des documents joints'
 );
