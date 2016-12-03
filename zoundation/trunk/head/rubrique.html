@@ -5,11 +5,14 @@
 [(#REM) Lien vers le flux RSS de la rubrique ]
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
 
-<INCLURE{fond=inclure/meta_og,
-titre=#TITRE,
-url=#URL_RUBRIQUE,
-image=#LOGO_RUBRIQUE,
-description=#DESCRIPTIF,
-env} />
-
+[(#PLUGIN{metasplus}|oui)
+<INCLURE{fond=inclure/metasplus,
+    titre=#TITRE,
+    lang=#LANG,
+    desc=#DESCRIPTIF,
+    auteur=#LESAUTEURS,
+    date=#DATE,
+    url=#URL_RUBRIQUE,
+    logo=#LOGO_RUBRIQUE} />
+]
 </BOUCLE_rubrique_head>

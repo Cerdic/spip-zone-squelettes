@@ -4,11 +4,13 @@
 [(#REM) Lien vers le flux RSS des articles du mot cle ]
 <link rel="alternate" type="application/rss+xml"[ title="(#TITRE|attribut_html)"] href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
 
-<INCLURE{fond=inclure/meta_og,
-titre=#TITRE,
-url=#URL_MOT,
-image=#LOGO_MOT,
-description=#DESCRIPTIF,
-env} />
-
+[(#PLUGIN{metasplus}|oui)
+<INCLURE{fond=inclure/metasplus,
+    	titre=#TITRE,
+    	lang=#LANG,
+    	desc=#DESCRIPTIF,
+    	date=#DATE,
+    	url=#URL_MOT,
+    	logo=#LOGO_MOT} />
+]
 </BOUCLE_principale>
