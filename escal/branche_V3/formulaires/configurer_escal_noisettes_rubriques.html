@@ -1,0 +1,123 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{confignoisettes.png}|balise_img{'',cadre-icone})]Noisettes spécifiques à la page rubrique</h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}  
+
+	<ul>
+<!-- inc-nav_mots -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article131&lang=fr" title="Voir la documentation"><strong>Mots-clés associés</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titrenavmot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            </div>
+            </li>
+<!-- inc-meme_rub -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article28&lang=fr" title="Voir la documentation"><strong>Dans la même rubrique</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <div class="nettoyeur"></div>
+             #SET{name,nombrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
+                    </span>
+            <br /> <br />
+            #SET{name,paginmemerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre d'articles par page de pagination
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+            <div class="nettoyeur"></div>
+            #SET{name,ordrememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Ordre d'affichage
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Par date inverse</label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
+                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard">Par hasard</label>
+                    </span>
+                    <div class="nettoyeur"></div>
+            #SET{name,datememerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage de la date de publication
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+            #SET{name,auteurmemerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage du nom de l'auteur
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>        
+                    <div class="nettoyeur"></div>                                
+            #SET{name,togglememerubrique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Noisette repliée et dépliable
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
+            </div>
+            </li>	
+<!-- inc-documents_article -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article191&lang=fr" title="Voir la documentation"><strong>A télécharger</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titredocsart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            </div>
+            </li>	
+	</ul>     
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

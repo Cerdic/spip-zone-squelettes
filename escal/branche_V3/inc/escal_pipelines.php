@@ -1,5 +1,7 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
+
+   
 function escal_porte_plume_barre_pre_charger($barres){
   $barre_edition = &$barres['edition'];
   $barre_forum = &$barres['forum'];

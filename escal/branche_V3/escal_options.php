@@ -1,15 +1,17 @@
 <?php
 
+    // Header prive
+    $GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
+     
+    function header_prive_perso($flux) {
+        return $flux .= '  
+    	<link rel="stylesheet" type="text/css" href="'.find_in_path('styles/prive_perso.css').'" media="all" />
+    	';
+    }
+    
+
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
 
-// Header prive
-$GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
- 
-function header_prive_perso($flux) {
-    return $flux .= '  
-	<link rel="stylesheet" type="text/css" href="'.find_in_path('styles/prive_perso.css').'" media="all" />
-	';
-} 
 
 // Liste des pages de configuration dans l'ordre de presentation
 // Librement inspiré du squellete Sarkaspip
@@ -19,7 +21,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |Colonne principale!sommaire_principal:rubrique_principal:article_principal:contact_principal:forumsite_principal
 |Choix des blocs lat&eacute;raux!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
 |Param&eacute;trage des blocs lat&eacute;raux!deplier_replier:titre_contenu
-|Un peu de style!fonds:textes:bords:arrondis
+|Un peu de style!fonds:bords:arrondis
 |Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement
 ');
 

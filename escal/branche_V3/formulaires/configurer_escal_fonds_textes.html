@@ -1,0 +1,513 @@
+   <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configfonds.png}|balise_img{'',cadre-icone})]Les fonds et les textes des noisettes</h3>
+
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+
+<ul>
+<!-- bandeau -->
+	<strong>Le bandeau</strong>
+	<br />par défaut : #336699 / #ffffff
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur9}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul9="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+				if(isset($_POST["reinit9f"])) { $coul9="#336699"; }
+				if(isset($_POST["reinitF"])) { $coul9="#336699"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul9"; ?>" />
+				<input type="submit" name="reinit9f" class="submit" value="Réinitialiser"/>
+			<br />
+				#SET{name,texte01}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$texte01="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinit9t"])) { $texte01="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $texte01="#ffffff"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$texte01"; ?>" />
+				<input type="submit" name="reinit9t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul9"; ?>; color:<?php echo "$texte01"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- contenu des pages -->
+	<strong>Le contenu des pages</strong>
+	<br />par défaut : #ffffff / #000000
+	<br />On peut aussi écrire "transparent", ce qui peut être sympa avec une image de fond.
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleurpage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coulpage="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinitpagef"])) { $coulpage="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $coulpage="#ffffff"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coulpage"; ?>" />
+				<input type="submit" name="reinitpagef" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,textpage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$textpage="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinitpaget"])) { $textpage="#000000"; }
+				if(isset($_POST["reinitF"])) { $textpage="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$textpage"; ?>" />
+				<input type="submit" name="reinitpaget" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coulpage"; ?>; color:<?php echo "$textpage"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>		
+
+<!-- pied de page -->
+	<strong>Le pied de page</strong>
+	<br />par défaut : #BBCCDD / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur11}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul11="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#BBCCDD})]";
+				if(isset($_POST["reinit11f"])) { $coul11="#BBCCDD"; }
+				if(isset($_POST["reinitF"])) { $coul11="#BBCCDD"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul11"; ?>" />
+				<input type="submit" name="reinit11f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text11}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text11="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit11t"])) { $text11="#000000"; }
+				if(isset($_POST["reinitF"])) { $text11="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text11"; ?>" />
+				<input type="submit" name="reinit11t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul11"; ?>; color:<?php echo "$text11"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- menu horizontal, liens survolés du menu vertical déroulant à droite, encart des entetes pour les rubriques et les articles, plan, forum -->
+	<strong>Le menu horizontal, les liens survolés du menu vertical déroulant à droite, l'encart de titre pour les rubriques et les articles, 
+			le plan, les en-têtes des forums</strong>
+	<br />par défaut : #336699 / #ffffff
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul3="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+				if(isset($_POST["reinit3f"])) { $coul3="#336699"; }
+				if(isset($_POST["reinitF"])) { $coul3="#336699"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul3"; ?>" />
+				<input type="submit" name="reinit3f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text3="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinit3t"])) { $text3="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $text3="#ffffff"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text3"; ?>" />
+				<input type="submit" name="reinit3t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul3"; ?>; color:<?php echo "$text3"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- annonce, surlignage recherche-->
+	<strong> Les annonces en une, le surlignage des mots recherchés</strong>
+	<br />par défaut : #EC7942 / #ffffff
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur10}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul10="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#EC7942})]";
+				if(isset($_POST["reinit10f"])) { $coul10="#EC7942"; }
+				if(isset($_POST["reinitF"])) { $coul10="#EC7942"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul10"; ?>" />
+				<input type="submit" name="reinit10f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text10}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text10="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinit10t"])) { $text10="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $text10="#ffffff"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text10"; ?>" />
+				<input type="submit" name="reinit10t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul10"; ?>; color:<?php echo "$text10"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+						
+<!-- onglets à la une si actifs -->
+	<strong>Les onglets à la une si actifs</strong>
+	<br />par défaut : #336699 / #ffffff
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,coulune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coulune="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+				if(isset($_POST["reinitunef"])) { $coulune="#336699"; }
+				if(isset($_POST["reinitF"])) { $coulune="#336699"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coulune"; ?>" />
+				<input type="submit" name="reinitunef" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,textune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$textune="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinitunet"])) { $textune="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $textune="#ffffff"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$textune"; ?>" />
+				<input type="submit" name="reinitunet" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coulune"; ?>; color:<?php echo "$textune"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>            
+
+<!-- onglets à la une si inactifs -->
+	<strong>Les onglets à la une si inactifs</strong>
+	<br />par défaut : #82ADE2 / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleuruneinact}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$couluneinact="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#82ADE2})]";
+				if(isset($_POST["reinituneinactf"])) { $couluneinact="#82ADE2"; }
+				if(isset($_POST["reinitF"])) { $couluneinact="#82ADE2"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$couluneinact"; ?>" />
+				<input type="submit" name="reinituneinactf" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,textuneinact}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$textuneinact="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinituneinactt"])) { $textuneinact="#000000"; }
+				if(isset($_POST["reinitF"])) { $textuneinact="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$textuneinact"; ?>" />
+				<input type="submit" name="reinituneinactt" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$couluneinact"; ?>; color:<?php echo "$textuneinact"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- derniers articles en une -->
+	<strong>Liste des derniers articles en une</strong>
+	<br />par défaut : #DAE6F6 / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleuruneart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$couluneart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DAE6F6})]";
+				if(isset($_POST["reinituneartf"])) { $couluneart="#DAE6F6"; }
+				if(isset($_POST["reinitF"])) { $couluneart="#DAE6F6"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$couluneart"; ?>" />
+				<input type="submit" name="reinituneartf" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,textuneart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$textuneart="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinituneartt"])) { $textuneart="#000000"; }
+				if(isset($_POST["reinitF"])) { $textuneart="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$textuneart"; ?>" />
+				<input type="submit" name="reinituneartt" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$couluneart"; ?>; color:<?php echo "$textuneart"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- titre et bords cadres latéraux, menu vertical 2, entete tableaux, évènements, ... -->
+	<strong> Le titre et les bords des cadres latéraux, le menu vertical dépliant, l'en-tête des tableaux, ...</strong>
+	<br />par défaut : #82ADE2 / #000000	
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul5="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#82ADE2})]";
+				if(isset($_POST["reinit5f"])) { $coul5="#82ADE2"; }
+				if(isset($_POST["reinitF"])) { $coul5="#82ADE2"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul5"; ?>" />
+				<input type="submit" name="reinit5f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text5="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit5t"])) { $text5="#000000"; }
+				if(isset($_POST["reinitF"])) { $text5="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text5"; ?>" />
+				<input type="submit" name="reinit5t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul5"; ?>; color:<?php echo "$text5"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+		
+<!-- texte des cadres latéraux -->
+	<strong> Le texte des cadres latéraux</strong>
+	<br />par défaut : #DAE6F6 / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur8}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul8="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DAE6F6})]";
+				if(isset($_POST["reinit8f"])) { $coul8="#DAE6F6"; }
+				if(isset($_POST["reinitF"])) { $coul8="#DAE6F6"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul8"; ?>" />
+				<input type="submit" name="reinit8f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text8}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text8="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit8t"])) { $text8="#000000"; }
+				if(isset($_POST["reinitF"])) { $text8="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text8"; ?>" />
+				<input type="submit" name="reinit8t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul8"; ?>; color:<?php echo "$text8"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+		
+<!-- articles, forum, agenda -->
+	<strong>Les articles, le forum des articles, l'agenda</strong>
+	<br />par défaut : #FFFFFF / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul2="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DAE6F6})]";
+				if(isset($_POST["reinit2f"])) { $coul2="#DAE6F6"; }
+				if(isset($_POST["reinitF"])) { $coul2="#DAE6F6"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul2"; ?>" />
+				<input type="submit" name="reinit2f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text2="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit2t"])) { $text2="#000000"; }
+				if(isset($_POST["reinitF"])) { $text2="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text2"; ?>" />
+				<input type="submit" name="reinit2t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul2"; ?>; color:<?php echo "$text2"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+		
+<!-- identification, recherche, formulaire contact, tableaux lignes paires, portfolio, post-scriptum, forum, ... -->
+	<strong> Les boutons d'identification et de recherche, le formulaire de contact, les lignes paires des tableaux, 
+			le portfolio, le post-scriptum, le forum du site, ...</strong>
+	<br />par défaut : #EFEFEF / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul6="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#EFEFEF})]";
+				if(isset($_POST["reinit6f"])) { $coul6="#EFEFEF"; }
+				if(isset($_POST["reinitF"])) { $coul6="#EFEFEF"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul6"; ?>" />
+				<input type="submit" name="reinit6f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text6="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit6t"])) { $text6="#000000"; }
+				if(isset($_POST["reinitF"])) { $text6="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text6"; ?>" />
+				<input type="submit" name="reinit6t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul6"; ?>; color:<?php echo "$text6"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+<!-- rubrique active du menu horizontal, tableaux lignes impaires, prévisualisation des forum ... -->
+	<strong> La rubrique active du menu horizontal, les lignes impaires des tableaux, la prévisualisation des forum, ...</strong>
+	<br />par défaut : #BBCCDD / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul7="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#BBCCDD})]";
+				if(isset($_POST["reinit7f"])) { $coul7="#BBCCDD"; }
+				if(isset($_POST["reinitF"])) { $coul7="#BBCCDD"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul7"; ?>" />
+				<input type="submit" name="reinit7f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text7}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text7="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit7t"])) { $text7="#000000"; }
+				if(isset($_POST["reinitF"])) { $text7="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text7"; ?>" />
+				<input type="submit" name="reinit7t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul7"; ?>; color:<?php echo "$text7"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+		
+<!-- survol des entrées du menu horizontal et des articles du bloc à la une -->
+	<strong>Le survol des entrées du menu, des articles du bloc à la une, du fil d'Ariane, ...</strong>
+	<br />par défaut : #224466 / #ffffff
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul4="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#224466})]";
+				if(isset($_POST["reinit4f"])) { $coul4="#224466"; }
+				if(isset($_POST["reinitF"])) { $coul4="#224466"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul4"; ?>" />
+				<input type="submit" name="reinit4f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text4="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#ffffff})]";
+				if(isset($_POST["reinit4t"])) { $text4="#ffffff"; }
+				if(isset($_POST["reinitF"])) { $text4="#ffffff"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text4"; ?>" />
+				<input type="submit" name="reinit4t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul4"; ?>; color:<?php echo "$text4"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+				
+<!-- forum site -->
+	<strong>Le forum du site</strong>
+	<br />par défaut : #DFDFDF / #000000
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+			[<span class='erreur_message'>(#GET{erreurs})</span>] 
+			<div class="explication">
+				#SET{name,couleur1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$coul1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DFDFDF})]";
+				if(isset($_POST["reinit1f"])) { $coul1="#DFDFDF"; }
+				if(isset($_POST["reinitF"])) { $coul1="#DFDFDF"; }
+				?>
+			fond :
+				<input type="texte"class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$coul1"; ?>" />
+				<input type="submit" name="reinit1f" class="submit" value="Réinitialiser" />
+			<br />
+				#SET{name,text1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				<?php
+				$text1="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#000000})]";
+				if(isset($_POST["reinit1t"])) { $text1="#000000"; }
+				if(isset($_POST["reinitF"])) { $text1="#000000"; }
+				?>
+			texte :
+				<input type="texte"  class="palette" style="width: 50%" name="#GET{name}" id="#GET{name}" value="<?php echo "$text1"; ?>" />
+				<input type="submit" name="reinit1t" class="submit" value="Réinitialiser" />
+			<br />
+				<div class="apercu_couleur_fond" style="background-color:<?php echo "$coul1"; ?>; color:<?php echo "$text1"; ?>" >
+				Aperçu de votre texte
+				</div>
+            	</div>
+		</li>
+
+
+    </ul>
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+	<input type="submit" name="reinitF" class="submit" value="Réinitialiser toutes les couleurs de fond" />
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+
+	
+  </div>
+    </form>
+    </div>

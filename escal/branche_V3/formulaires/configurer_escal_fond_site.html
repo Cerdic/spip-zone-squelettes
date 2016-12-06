@@ -1,0 +1,143 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configfonds.png}|balise_img{'',cadre-icone})]Le fond du site</h3>
+
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+
+
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Couleur de fond du site</strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleurfond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coul0="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DFDFDF})]";
+            if(isset($_POST["reinit0"])) { $coul0="#DFDFDF"; }
+            if(isset($_POST["reinitF"])) { $coul0="#DFDFDF"; }
+            ?>
+                    (par défaut : #DFDFDF)
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style=" background-color:<?php echo "$coul0"; ?>">
+                             <input type="texte" class="palette" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$coul0"; ?>"  />
+                             <input type="submit" name="reinit0" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong>Image de fond</strong></label>
+                    <br />            
+            <div class="explication">
+              #SET{name,imagefond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              Vos fonds doivent être placés dans /squelettes/images/fonds <br />
+              Toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
+              Avec Firefox, vous aurez même un aperçu de votre fond en direct !
+              <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix"  style="width:100%">
+<script type="text/javascript">
+      function descriptifOption(id, display, text){
+          document.getElementById(id).innerHTML = document.getElementById(text).innerHTML;
+          if (display == "over") {
+            document.getElementById(id).display = "none";
+          } else {
+            document.getElementById(id).display = "block";
+          }
+      }
+      function descriptifChange(id){
+          var optionValue = "option"+document.getElementById("imgfond").value;
+          document.getElementById(id).innerHTML = document.getElementById(optionValue).innerHTML;
+      }
+</script>
+                  <div style="
+                              height:180px;
+                              background-size: 320px;
+                              margin: auto; 
+                              background-repeat: no-repeat;
+                              background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];
+                              [(#CONFIG{escal/config/imagefond}|?{
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]); ,
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+                              })];
+                              margin-bottom: 2px;
+                              " >
+                  </div>
+                  <div id="desc" style="height:100px;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];</div>
+                  <div id="option0" style="display: none;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})]">
+                  </div>
+                  <BOUCLE_affiche_image(DATA){source glob, ../squelettes/images/fonds/{*.jpg,*.png,*.gif}}>
+										#SET{val2,#VALEUR|replace{../squelettes/}}
+										<div id="option#COMPTEUR_BOUCLE" style="display: none;">
+										[(#VALEUR|balise_img{<:escal:bandeau:>}|image_reduire{387,100})]
+                    </div>
+									</BOUCLE_affiche_image>
+                  <br />
+                  <select name="#GET{name}" class="select" id="imgfond" onchange="descriptifChange('desc');">
+                  <option
+                    onmouseout="descriptifOption('desc', 'out', 'option0')"
+                    onmouseover="descriptifOption('desc', 'over', 'option0')"
+                    value="">
+                  Aucune image de fond
+                  </option>
+									<BOUCLE_choix_image(DATA){source glob, ../squelettes/images/fonds/{*.jpg,*.png,*.gif}}>
+										#SET{val,#VALEUR|replace{../squelettes/}}
+										<option
+										  onmouseout="descriptifOption('desc', 'out', 'option#COMPTEUR_BOUCLE')"
+                      onmouseover="descriptifOption('desc', 'over', 'option#COMPTEUR_BOUCLE')"
+                      value="#GET{val}"[(#ENV{#GET{name}}|=={#GET{val}}|?{'selected="selected"',''})]>
+                    #VALEUR
+                    </option>
+									</BOUCLE_choix_image>
+                  </select>
+                <br /><br />
+                #SET{name,imagefond2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                Et si votre hébergeur ne permet pas de lister les fichiers présents,
+                vous pouvez indiquer ici le chemin de votre fichier image.<br />
+                exemple : images/fonds/fond.jpg<br />
+                si votre fichier fond.jpg est dans squelettes/images/fonds
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
+                <br /><br />
+                #SET{name,imagefondunique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                Par défaut, l'image de fond est répétée horizontalement et/ou verticalement,
+                ce qui est bien pour un fond dégradé par exemple.
+                Mais si vous avez une image qui ne doit pas se répéter, cocher "oui" en dessous
+                et votre image s'adaptera à l'écran du visiteur et restera fixe. <br /><br />
+                - Taille conseillée pour la plupart des écrans : 2000px par 1300px<br />
+                - Le poids de l'image doit être optimisé pour ne pas ralentir considérablement le chargement<br />
+                Voir <a href="http://www.alsacreations.com/astuce/lire/1216-arriere-plan-background-extensible.html" title="Plus d'infos">
+                      Un arrière-plan extensible intelligent
+                      </a>
+                <br /><br />
+                    Adapter le fond à l'écran ?
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>
+            </li>
+          </ul>
+          
+<!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+	<br />
+
+	
+  </div>
+    </form>
+    </div>
