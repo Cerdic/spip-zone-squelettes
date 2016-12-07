@@ -14,5 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dernier_album' => 'Dernier album',
 	'vous_etes_ici' => 'Vous êtes ici',
 	'vous_etes_page' => 'Vous êtes à la page',
-	'mailsubscribers_liste' => 'Liste de newsletter'
+	'mailsubscribers_liste' => 'Liste de newsletter',
+	'rubrique_exclue_menu' => 'Exclure ces rubriques du menu',
+	'explication_rubrique_exclue_menu' => 'Les rubriques sélectionnées seront exclue des menu du site'
 );

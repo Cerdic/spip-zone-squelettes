@@ -15,6 +15,15 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'explication' => _T('zoundation:explication_rubrique_sommaire'),
 				'multiple' => 'oui'
 			)
+		),
+		array(
+			'saisie' => 'selecteur_rubrique',
+			'options' => array(
+				'nom' => 'rubrique_exclue_menu',
+				'label' => _T('zoundation:rubrique_exclue_menu'),
+				'explication' => _T('zoundation:explication_rubrique_exclue_menu'),
+				'multiple' => 'oui'
+			)
 		)
 	);
 
