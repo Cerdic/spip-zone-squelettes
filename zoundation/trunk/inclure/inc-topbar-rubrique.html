@@ -17,7 +17,7 @@ Permet de transformer une rubrique en élément section "top bar"
 	<div class="top-bar-left">
 		<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown">
 			[(#REM) La racine du site. ]
-			<BOUCLE_rubriques(RUBRIQUES) {id_secteur ?} {id_parent ?} {id_rubrique ?} {par num titre, titre}>
+			<BOUCLE_rubriques(RUBRIQUES) {id_secteur ?} {id_parent ?} {id_rubrique ?} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
 
 				<li[ class="(#EXPOSE)"]>
 					<a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
@@ -26,7 +26,7 @@ Permet de transformer une rubrique en élément section "top bar"
 					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
 					<B_sous_rubrique>
 						<ul class="menu vertical">
-							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
+							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
 								<li[ class="(#EXPOSE)"]>
 									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
 

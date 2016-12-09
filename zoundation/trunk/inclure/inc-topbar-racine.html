@@ -21,7 +21,7 @@ Créer une une topbar avec toutes la racine du site
 			</li>
 
 			[(#REM) La racine du site. ]
-			<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+			<BOUCLE_rubriques(RUBRIQUES) {racine} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
 
 				[(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
 				<li[ class="(#EXPOSE)"]>
@@ -31,7 +31,7 @@ Créer une une topbar avec toutes la racine du site
 					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
 					<B_sous_rubrique>
 						<ul class="menu vertical">
-							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {par num titre, titre}>
+							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
 								<li[ class="(#EXPOSE)"]>
 									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
 
