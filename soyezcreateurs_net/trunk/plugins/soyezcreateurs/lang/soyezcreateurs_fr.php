@@ -109,6 +109,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => 'NewsLetter du site',
+	'newsletter_consulter' => 'Consulter les archives des newsletters',
 	'newsletter_recevoir' => 'Recevoir la newsletter du site',
 
 	// O
