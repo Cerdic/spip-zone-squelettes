@@ -1038,7 +1038,7 @@ function soyezcreateurs_config_motsclefs() {
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "20. Twitter";
-				$sites['url_site'] = "https://fr.twitter.com/";
+				$sites['url_site'] = "https://twitter.com/";
 				$sites['descriptif'] = "Retrouvez-nous sur Twitter";
 				$sites['url_syndic'] = "";
 				$sites['statut'] = 'prop';

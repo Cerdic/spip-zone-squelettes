@@ -399,7 +399,7 @@ L’accessibilité des services de communication publique en ligne concerne l’
 
 Un [décret en Conseil d’État->http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020616980&dateTexte=20090527] fixe les règles relatives à l’accessibilité et précise, par référence aux recommandations établies par l’Agence pour le développement de l’administration électronique, la nature des adaptations à mettre en œuvre ainsi que les délais de mise en conformité des sites existants, qui ne peuvent excéder trois ans, et les sanctions imposées en cas de non-respect de cette mise en accessibilité. Le décret énonce en outre les modalités de formation des personnels intervenant sur les services de communication publique en ligne ».</quote>
 
-Le [Référentiel général d’accessibilité pour les administrations->http://www.references.modernisation.gouv.fr/] (RGAA) est le guide de référence (compatible avec les recommandations du W3C) pour assurer la mise en conformité des sites Internet publics.
+Le [Référentiel général d’accessibilité pour les administrations->https://references.modernisation.gouv.fr/] (RGAA) est le guide de référence (compatible avec les recommandations du W3C) pour assurer la mise en conformité des sites Internet publics.
 
 SoyezCreateurs, respecte[[En ce qui concerne le contenant ; le contenu devant lui aussi être rendu accessible par les rédacteurs du site...]] l’intégralité des points de contrôle obligatoires et le plus grand nombre de points de contrôle recommandés.
 
