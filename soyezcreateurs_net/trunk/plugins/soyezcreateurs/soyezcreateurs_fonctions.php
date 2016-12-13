@@ -779,7 +779,7 @@ function critere_archive_dist($idb, &$boucles, $crit) {
 				INNER JOIN spip_rubriques AS rubriques 
 					ON (articlesin.id_rubrique = rubriques.id_rubrique)
 				INNER JOIN spip_mots_liens AS mots_liens_rubriques 
-					ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet=\"article\")
+					ON (rubriques.id_rubrique = mots_liens_rubriques.id_objet AND mots_liens_rubriques.objet=\"rubrique\")
 				INNER JOIN spip_mots AS mots_articles ON 
 					(mots_liens_rubriques.id_mot=mots_articles.id_mot)",
 			array("articlesin.id_article = $art","mots_articles.titre=\"Archives\""));
