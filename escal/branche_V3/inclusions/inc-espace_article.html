@@ -17,8 +17,7 @@
         [(#CONFIG{escal/config/formrecherche}|=={espace}|oui)#FORMULAIRE_RECHERCHE]
 
 
-    <!-- affichage du menu de langue pour page article -->
-        <BOUCLE_contexte2(ARTICLES){id_article}>
+          <!-- affichage du menu de langue-->
             <B_langues>
               <div id="drapeau">
                 <div id="langue">
@@ -29,9 +28,9 @@
                   <strong>| #LANG</strong>
                 ]
                 </div>
-            <BOUCLE_langues(ARTICLES){traduction}{par lang}{exclus} >
-              <span dir="#LANG_DIR" lang="#LANG">
-                <a href="[(#URL_ARTICLE|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
+            <BOUCLE_langues(RUBRIQUES){racine} {fusion lang}{par lang} {lang != #ENV{lang}} >
+              <span lang="#LANG" xml:lang="#LANG">
+                <a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
                 [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
                   <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
                 ]
@@ -43,32 +42,7 @@
             </BOUCLE_langues>
               </div>
             </B_langues>
-                        <B_langues2>
-                        <div id="drapeau">
-                          <div id="langue">
-                          [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
-                            <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
-                          ]
-                          [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
-                            <strong>| #LANG</strong>
-                          ]
-                          </div>
-                      <BOUCLE_langues2(RUBRIQUES){racine} {fusion lang}{par lang} {lang != #ENV{lang}} >
-                        <span lang="#LANG" xml:lang="#LANG">
-                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
-                        [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
-                          <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
-                        ]
-                        [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
-                          | #LANG
-                        ]
-                        </a>
-                        </span>
-                      </BOUCLE_langues2>
-                        </div>
-                      </B_langues2>
-            <//B_langues>
-        </BOUCLE_contexte2>
-          </div>
+            
+</div>
           
 <div class="nettoyeur"></div> 
