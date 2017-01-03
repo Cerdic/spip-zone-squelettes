@@ -197,10 +197,16 @@ function sc_trouver_corr_pl ($id_article) {
 	"id_article=$id_article");
 	return $row;
 }
+// Retrouver le fonctionnement d'avant http://core.spip.org/projects/spip/repository/revisions/23315
+function sc_date_ical($date, $addminutes = 0) {
+	list($heures, $minutes, $secondes) = recup_heure($date);
+	list($annee, $mois, $jour) = recup_date($date);
+	return date("Ymd\THis", mktime($heures, $minutes + $addminutes, $secondes, $mois, $jour, $annee));
+}
 function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=false) {
 	if($mode == 'skel') {
-		$date_d = date_ical($date_d);
-		$date_e = date_ical($date_e);
+		$date_d = sc_date_ical($date_d);
+		$date_e = sc_date_ical($date_e);
 	}
 	$debut = array();
 	$debut['annee'] = substr($date_d, 0, 4);
@@ -606,9 +612,9 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 	}
 	$url=str_replace("&amp;","&",$url);
 	
-	$idatedeb = date_ical($date_deb);
-	$idatefin = date_ical($date_fin);
-	$vidatefin = date_ical($date_fin);
+	$idatedeb = sc_date_ical($date_deb);
+	$idatefin = sc_date_ical($date_fin);
+	$vidatefin = sc_date_ical($date_fin);
 	$cal = trim($cal); // func_get_args (filtre alterner) rajoute \n !!!!
 	$startday1=explode(' ',$date_deb);
 	$startday1=$startday1['0'].' 00:00:00';
