@@ -1443,7 +1443,7 @@ function  quete_calendrier_interval_forums($limites, &$evenements) {
 				'URL' => generer_url_entite($id, 'forum'),
 				'CATEGORIES' => 'calendrier-couleur7',
 				'SUMMARY' => $row['titre'],
-				'DTSTART' => date_ical($row['date_heure']));
+				'DTSTART' => sc_date_ical($row['date_heure']));
 	}
 }
 
@@ -1553,8 +1553,8 @@ function quete_calendrier_interval_rv($avant, $apres) {
 			$evenements[$amj][$id_message]=
 			  array(
 				'URL' => generer_url_ecrire("message","id_message=$id_message"),
-				'DTSTART' => date_ical($date_heure),
-				'DTEND' => date_ical($date_fin),
+				'DTSTART' => sc_date_ical($date_heure),
+				'DTEND' => sc_date_ical($date_fin),
 				'DESCRIPTION' => $row['texte'],
 				'SUMMARY' => $row['titre'],
 				'CATEGORIES' => $cat,
