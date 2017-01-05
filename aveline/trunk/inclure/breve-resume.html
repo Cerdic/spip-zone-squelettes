@@ -4,7 +4,7 @@
 		[(#ENV{liste_afficher_date}|oui)[(#DATE|affdate_jourcourt) &ndash; ]]<a href="#URL_BREVE"[(#ENV{id_breve_expose}|=={#ID_BREVE}) class="on"]>#TITRE</a>
 		[(#ENV{liste_afficher_nb_commentaires}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}})<div class="info-publi">]
 			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|_T) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
-			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/objet-mots_cles,id_breve,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
+			[(#ENV{liste_afficher_mots_cles}oui)<INCLURE{fond=inclure/objet-mots_cles,id_breve,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}/>]
 			[(#ENV{liste_afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
 				[<a href="[(#URL_BREVE|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>.]
 			]
@@ -37,7 +37,7 @@
 			[(#ENV{afficher_rubrique}oui)
 				[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|et{#ENV{texte_devant_rubrique}|!={avelinepublic:gt}}|et{#ENV{texte_devant_rubrique}|!={avelinepublic:colon2}})<span class="sep">|</span> ][(#ENV{texte_devant_rubrique}|_T)]
 			<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>]
-			[(#ENV{afficher_mots_cles}oui)[(#INCLURE{fond=inclure/objet-mots_cles,id_breve,id_rubrique='',texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|?{'on',''})]})]]
+			[(#ENV{afficher_mots_cles}oui)[<INCLURE{fond=inclure/objet-mots_cles,id_breve,id_rubrique='',texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|?{'on',''})]})]/>]
 			[(#ENV{afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
 				[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|oui)<span class="sep">|</span>]
 				[<a href="[(#URL_BREVE|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>]

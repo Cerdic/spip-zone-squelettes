@@ -5,14 +5,14 @@
 	[(#ENV{selection}|=={pagination}|oui) #ANCRE_PAGINATION]
 	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate|sinon{#ENV{archives}}))]</h2>]]
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
-		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
+		<INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}/>
 	]
 	[(#ENV{filtrer_sous_rubriques}|et{#ENV{position_filtrer_sous_rubriques}|!={fin}})
-		#INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}
+		<INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}/>
 	]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'article','debut'})</p>]
 	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={fin}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}})
-		#INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}
+		<INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}/>
 	]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
    [(#ENV{ignorer_si_objet_unique}|non|ou{#TOTAL_BOUCLE|>{1}|oui})
@@ -22,20 +22,20 @@
 		[(#SET{initiale,[(#TITRE**|aveline_initiale|unique{liste_articles})]})]
 	]
    [(#ENV{ignorer_si_objet_unique}|non|ou{#TOTAL_BOUCLE|>{1}|oui})
-		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},initiale=#GET{initiale},env}]
+		<INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},initiale=#GET{initiale},env}/>]
 	</BOUCLE_liste_articles>
    [(#ENV{ignorer_si_objet_unique}|non|ou{#TOTAL_BOUCLE|>{1}|oui})
 		</ul>]
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
 	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={debut}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}})
-		#INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}
+		<INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}/>
 	]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'article','fin'})</p>]
 	[(#ENV{filtrer_sous_rubriques}|et{#ENV{position_filtrer_sous_rubriques}|!={debut}})
-		#INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}
+		<INCLURE{fond=inclure/liste_articles-filtrer_sous_rubriques,env,filtre_rub='',ssrub=#ENV{filtre_rub}}/>
 	]
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
-		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
+		<INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}/>
 	]
 </div>
 </B_liste_articles>
