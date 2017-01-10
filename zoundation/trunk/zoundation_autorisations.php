@@ -12,7 +12,8 @@ function zoundation_autoriser(){}
 * On utilise ce système pour éviter de générer trop de cache sur les tests
 * simple.
 *
-* Il suffit ensuite de faire [(#AUTORISER{connecter}|oui) ... ] oui [(#AUTORISER{connecter}|non) ... ]
+* Il suffit ensuite de faire [(#AUTORISER{connecter}|oui) ... ] oui
+* [(#AUTORISER{connecter}|non) ... ]
 *
 * @param mixed $faire
 * @param mixed $type
