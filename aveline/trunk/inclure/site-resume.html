@@ -5,12 +5,12 @@
 		<a [(#ENV{liste_lien_externe}|oui)href="#URL_SITE")][(#ENV{liste_lien_externe}|non)href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"] class="[(#ENV{liste_lien_externe}|oui)spip_out][(#ENV{id_syndic_expose}|=={#ID_SYNDIC}|oui)on]"><span class="#EDIT{nom_site}">#NOM_SITE</span></a>
 		[(#ENV{liste_afficher_nb_commentaires}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}})<div class="info-publi">]
 			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|_T) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
-			[(#ENV{liste_afficher_mots_cles}oui)<INCLURE{fond=inclure/objet-mots_cles,id_syndic,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}/>]
+			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/objet-mots_cles,id_syndic,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
 			[(#ENV{liste_afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT}|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>.]
 			]
 		[(#ENV{liste_afficher_nb_commentaires}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}})</div>]
-		[(#ENV{afficher_derniers_articles_syndiques}|oui)<INCLURE{fond=inclure/site-derniers_articles,id_syndic,nombre_articles_syndiques_a_afficher}/>]
+		[(#ENV{afficher_derniers_articles_syndiques}|oui)#INCLURE{fond=inclure/site-derniers_articles,id_syndic,nombre_articles_syndiques_a_afficher}]
 	</li>
 ]
 [(#ENV{style_liste}|=={resume}|oui)
@@ -40,7 +40,7 @@
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT}|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>]
 			]
 		[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_url}}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}})</div>]
-		[(#ENV{afficher_derniers_articles_syndiques}|oui)<INCLURE{fond=inclure/site-derniers_articles,id_syndic,nombre_articles_syndiques_a_afficher}/>]
+		[(#ENV{afficher_derniers_articles_syndiques}|oui)#INCLURE{fond=inclure/site-derniers_articles,id_syndic,nombre_articles_syndiques_a_afficher}]
 	</li>
 ]
 </BOUCLE_site>
