@@ -13,7 +13,7 @@
 			[(#ENV{liste_afficher_date_modif}|oui)<:avelinepublic:mis_a_jour_le:> [(#DATE_MODIF|affdate)].]
 			[(#ENV{liste_afficher_source_rss}|et{#ENV{liste_afficher_source_rss_soustitre}|non}|et{#PLUGIN{rssarticle}}|oui)[<span class="source_rss"><strong><:avelinepublic:source_deux_points:></strong> (#INCLURE{fond=inclure/source_rss,id_article=#ID_ARTICLE})</span>.]]
 			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|_T) ]<a href="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
-			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/objet-mots_cles,id_article,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
+			[(#ENV{liste_afficher_mots_cles}oui)<INCLURE{fond=inclure/objet-mots_cles,id_article,id_rubrique='',texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}/>]
 			[(#ENV{liste_afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
 				[<a href="[(#URL_ARTICLE|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]</a>.]
 			]
@@ -33,8 +33,8 @@
       	[(#GET{lien_sur_titre}|oui)
 				<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>]
 				[(#ENV{afficher_logo}|oui)
-					[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}})]]
-					[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{#INCLURE{fond=inclure/article-resume-image}{env}})]]
+					[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{ #INCLURE{fond=inclure/article-resume-image, env}})]]
+					[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]}|sinon{#INCLURE{fond=inclure/article-resume-image, env}})]]
 				]
 				<span class="#EDIT{titre}">#TITRE</span>
       	[(#GET{lien_sur_titre}|oui)</a>]
@@ -90,7 +90,7 @@
 			<dt [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px; width:[(#ENV{vignette_taille_max_logo,50}|plus{30})]px;"]><a href="#URL_ARTICLE" [(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 				[(#SET{logo,[(#ENV{vignette_utiliser_logo_article_rubrique}
 					|?{#LOGO_ARTICLE_RUBRIQUE,#LOGO_ARTICLE}
-					|sinon{#INCLURE{fond=inclure/article-resume-image,env,seulement_fichier=oui}})]})]
+					|sinon{#INCLURE{fond=inclure/article-resume-image, env, seulement_fichier=oui}})]})]
 				[(#SET{vignette_taille_max_logo,#ENV{vignette_taille_max_logo,50}})]
 				[(#ENV{vignette_type_vignettes}|non)
 					[(#GET{logo}
