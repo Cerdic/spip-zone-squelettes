@@ -8,7 +8,7 @@ function formulaires_configurer_zoundation_saisies_dist() {
 
 	$saisies = array(
 		array(
-			'saisie' => 'selecteur_rubrique',
+			'saisie' => 'secteur',
 			'options' => array(
 				'nom' => 'rubrique_sommaire',
 				'label' => _T('zoundation:rubrique_sommaire'),
