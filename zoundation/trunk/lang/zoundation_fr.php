@@ -16,5 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'vous_etes_page' => 'Vous êtes à la page',
 	'mailsubscribers_liste' => 'Liste de newsletter',
 	'rubrique_exclue_menu' => 'Exclure ces rubriques du menu',
-	'explication_rubrique_exclue_menu' => 'Les rubriques sélectionnées seront exclue des menu du site'
+	'explication_rubrique_exclue_menu' => 'Les rubriques sélectionnées seront exclue des menu du site',
+	'rubrique_footer' => 'Rubrique du footer',
+	'explication_rubrique_footer' => 'Choisissez la rubrique qui constituera le footer. Les articles de cette rubrique seront automatiquement transformé en menu.'
 );
