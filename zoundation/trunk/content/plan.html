@@ -3,39 +3,39 @@
 		<h2><:plan_site:></h2>
 	</header>
 
-<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+	<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
 
-	<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+		<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
 
-	[(#REM) Articles et sous-rubriques ]
-	<B_articles_racine>
-	<h4><:articles:></h4>
-	<ul class="plan">
-		<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-		<li><a href="#URL_ARTICLE">#TITRE</a></li>
-		</BOUCLE_articles_racine>
-	</ul>
-	</B_articles_racine>
-
-	<B_rubriques>
-	<ul class="plan">
-		<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-		<li>
-			<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-
-			<B_articles>
-			<ul>
-				<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-				<li><a href="#URL_ARTICLE">#TITRE</a></li>
-				</BOUCLE_articles>
+		[(#REM) Articles et sous-rubriques ]
+		<B_articles_racine>
+			<h4><:articles:></h4>
+			<ul class="plan">
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+					<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles_racine>
 			</ul>
-			</B_articles>
+		</B_articles_racine>
 
-			<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-		</li>
-		</BOUCLE_rubriques>
-	</ul>
-	</B_rubriques>
+		<B_rubriques>
+			<ul class="plan">
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+					<li>
+						<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 
-</BOUCLE_secteurs>
+						<B_articles>
+							<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+									<li><a href="#URL_ARTICLE">#TITRE</a></li>
+								</BOUCLE_articles>
+							</ul>
+						</B_articles>
+
+						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+					</li>
+				</BOUCLE_rubriques>
+			</ul>
+		</B_rubriques>
+
+	</BOUCLE_secteurs>
 </article>
