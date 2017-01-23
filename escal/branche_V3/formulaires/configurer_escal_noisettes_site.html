@@ -474,23 +474,23 @@
             #SET{name,donneescalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Choix de l'affichage : 
                     <br />
-                    - les <strong>articles</strong> eux-mêmes en prenant en compte leur "date de rédaction antérieure".
+                    - les <strong>événements</strong> créés dans des articles grâce au plugin Agenda<br />
+                    - des <strong>articles</strong> en prenant en compte leur "date de rédaction antérieure".
                     Les articles concernés sont ceux ayant le mot-clé "agenda"
-                    ou les articles de la rubrique ayant le même mot-clé "agenda". <br />
-                    - les <strong>évènements</strong> créés dans des articles grâce au plugin Agenda
+                    ou les articles de la rubrique ayant le même mot-clé "agenda". 
                     <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="margin-left:30px">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_articles" value="articles"
-                            [(#ENV{#GET{name}}|=={evenements}|non)checked="checked"] /><label for="#GET{name}_oui"><:articles:></label>
-
                             <input type="radio" name="#GET{name}" id="#GET{name}_evenements" value="evenements"
-                            [(#ENV{#GET{name}}|=={evenements}|oui)checked="checked"] /><label for="#GET{name}_evenements"><:agenda:evenements:></label>
+                            [(#ENV{#GET{name}}|=={articles}|non)checked="checked"] /><label for="#GET{name}_evenements"><:agenda:evenements:></label>
+                                                
+                            <input type="radio" name="#GET{name}" id="#GET{name}_articles" value="articles"
+                            [(#ENV{#GET{name}}|=={articles}|oui)checked="checked"] /><label for="#GET{name}_oui"><:articles:></label>
                     </span>
                     <br />(ce choix s'appliquera aussi à la noisette "Evènements à venir")                                      
             <br /><br />
             #SET{name,listeeventscalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Liste des évènement à venir en dessous
+                    Liste des événement à venir en dessous
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -501,14 +501,14 @@
                     </span>
                     <br /><br />
             #SET{name,pagincalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre d'évènements par page de pagination
+                    Nombre d'événements par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /><br />
             #SET{name,liennouvelevent}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Lien "Ajouter un évènement"
+                    Lien "Ajouter un événement" si le visiteur est authentifié
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
@@ -537,13 +537,13 @@
                     </span>
             <br /><br />
             #SET{name,paginevenements}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre d'articles ou d'évènements par page de pagination
+                    Nombre d'articles ou d'événements par page de pagination
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /> <br />
-            Attention : le choix de l'affichage des articles ou des évènements 
+            Attention : le choix de l'affichage des articles ou des événements 
             est le même que celui de la noisette "Mini-calendrier" juste au-dessus. 
 
             </div>
