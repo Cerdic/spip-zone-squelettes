@@ -517,9 +517,8 @@
                     <label style="width: 500px"><strong>Articles à la une de "Derniers articles", "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
                     <br />
              <div class="explication">
-                    Affichage des derniers articles du site en page sommaire. <br />
              #SET{name,nombrealaune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre d'articles à la une (sous les onglets).
+                    Nombre d'articles à la une (sous les onglets), y compris l'article en exergue.<br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},11})]"  />
@@ -626,7 +625,25 @@
              <br /><br />
              </div>
              </li>
+  <!-- articles à la une de "Derniers articles ter" et "Derniers articles ter"-->
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label style="width: 500px"><strong>Articles à la une de "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
+                    <br />
+             <div class="explication">
+             #SET{name,articleexergue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage d'un article en exergue
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
+
+             </div>
+             </li>
      </ul>
 
 

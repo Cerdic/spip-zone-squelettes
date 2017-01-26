@@ -1,19 +1,14 @@
 <!-- on exclut les mots des groupes de mot "techniques" utilises dans Escal -->   
-<BOUCLE_exclusion1(MOTS){id_article}{type=affichage}{doublons}>
-</BOUCLE_exclusion1>
-<BOUCLE_exclusion2(MOTS){id_article}{type=trombino}{doublons}>
-</BOUCLE_exclusion2>
-<BOUCLE_exclusion3(MOTS){id_article}{type=type_rubrique}{doublons}>
-</BOUCLE_exclusion3> 
-
+<BOUCLE_exclusion(MOTS){id_article}{type IN 'affichage', 'trombino', 'type_rubrique', 'type_article','Agenda_couleur'}{doublons}>
+</BOUCLE_exclusion>
 
 
 <!-- on teste s'il y a un mot-cle associé à l'article 
 en excluant les mots des groupes de mot "techniques" utilises dans Escal-->
-<BOUCLE_test(MOTS){id_article}{type!==affichage}{type!==trombino}{type!==type_rubrique}{id_mot?}>
+<BOUCLE_test(MOTS){id_article}{type !IN 'affichage', 'trombino', 'type_rubrique', 'type_article','Agenda_couleur'}{id_mot?}>
 </BOUCLE_test>
 <!-- si la boucle ne renvoie rien, rien ne s'affiche
-  et si elle renvoie quelque chose, on affiche le cadre avec lee groupes de mots et les mots -->
+  et si elle renvoie quelque chose, on affiche le cadre avec les groupes de mots et les mots -->
 	<h1 class="cadre nav-mots">
 	[(#CONFIG{escal/config/titrenavmot}|oui)
     [(#CONFIG{escal/config/titrenavmot}|propre|_T_ou_typo|PtoBR)]
