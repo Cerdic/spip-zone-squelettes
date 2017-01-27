@@ -308,38 +308,30 @@
               </div>
              </li>
              
+
+  <!-- Pour "Derniers articles ter" et "Derniers articles ter"-->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-             <label style="width: 500px"><strong>L'article d'accueil et l'article archive</strong></label>
-             <br />
+                    <label style="width: 500px"><strong>Pour "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
+                    <br />
              <div class="explication">
-             #SET{name,accueilforum}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher le forum de l'article d'accueil
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
+             #SET{name,articleexergue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage d'un article en exergue
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br /> <br />
-             #SET{name,archiveforum}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher le forum de l'article archive
-                    [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                    <br /><br />                    
 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
-                    </span>
-             <br /><div class="nettoyeur"></div>
              </div>
              </li>
-<!-- inc-une_derniers -->
+             
   <!-- article en exergue -->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label style="width: 500px"><strong>Article en exergue de "Derniers articles" ou articles pour "Derniers articles bis"</strong></label>
+                    <label style="width: 500px"><strong>Article en exergue et articles de "Derniers articles bis"</strong></label>
                     <br />
              <div class="explication">
             #SET{name,taillelogoartexergue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
@@ -468,50 +460,7 @@
              <br /> <br />
              </div>
              </li>
-  <!-- articles de "Derniers articles bis" -->             
-             <li class="editer [ (#GET{erreurs}|oui)erreur]">                    
-                    <label style="width: 500px"><strong>Uniquement pour les articles de "Derniers articles bis"</strong></label>
-                    <br />
-              <div class="explication">
-              #SET{name,nombrearticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre total d'articles à afficher
-                  [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
-                    </span>
-                    <br /><br />
-              #SET{name,modelepaginarticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Modèle de pagination (essayez-les !)
-                  [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">                     
-                            <input type="radio" name="#GET{name}" id="#GET{name}_defaut" value=""
-                            [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non">par défaut</label><br />
-                            
-                            <input type="radio" name="#GET{name}" id="#GET{name}_prive" value="prive"
-                            [(#ENV{#GET{name}}|=={prive}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non">prive</label><br />
-                            
-                            <input type="radio" name="#GET{name}" id="#GET{name}_page" value="page"
-                            [(#ENV{#GET{name}}|=={page}|oui)checked="checked"] /><label for="#GET{name}_non">page</label><br />
-                            
-                            <input type="radio" name="#GET{name}" id="#GET{name}_page_precedent_suivan" value="page_precedent_suivant"
-                            [(#ENV{#GET{name}}|=={page_precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_non">page_precedent_suivant</label><br />                            
-                                                 
-                            <input type="radio" name="#GET{name}" id="#GET{name}_precedent_suivant" value="precedent_suivant"
-                            [(#ENV{#GET{name}}|=={precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_oui">precedent_suivant</label><br />
-
-                    </span>
-                    </span>
-                    <div style="clear:both"></div>
-              #SET{name,paginarticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Pas de pagination
-                  [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
-                    </span>
-                    <br /><br />                                        
-             </div>
-             </li>
-
+           
   <!-- articles à la une de "Derniers articles" et "Derniers articles ter"-->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label style="width: 500px"><strong>Articles à la une de "Derniers articles", "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
@@ -625,23 +574,78 @@
              <br /><br />
              </div>
              </li>
-  <!-- articles à la une de "Derniers articles ter" et "Derniers articles ter"-->
-             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label style="width: 500px"><strong>Articles à la une de "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
+
+  <!-- articles de "Derniers articles bis" -->             
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">                    
+                    <label style="width: 500px"><strong>Uniquement pour les articles de "Derniers articles bis"</strong></label>
                     <br />
-             <div class="explication">
-             #SET{name,articleexergue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage d'un article en exergue
+              <div class="explication">
+              #SET{name,nombrearticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Nombre total d'articles à afficher
                   [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
+                    </span>
+                    <br /><br />
+              #SET{name,modelepaginarticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Modèle de pagination (essayez-les !)
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">                     
+                            <input type="radio" name="#GET{name}" id="#GET{name}_defaut" value=""
+                            [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non">par défaut</label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_prive" value="prive"
+                            [(#ENV{#GET{name}}|=={prive}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non">prive</label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_page" value="page"
+                            [(#ENV{#GET{name}}|=={page}|oui)checked="checked"] /><label for="#GET{name}_non">page</label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_page_precedent_suivan" value="page_precedent_suivant"
+                            [(#ENV{#GET{name}}|=={page_precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_non">page_precedent_suivant</label><br />                            
+                                                 
+                            <input type="radio" name="#GET{name}" id="#GET{name}_precedent_suivant" value="precedent_suivant"
+                            [(#ENV{#GET{name}}|=={precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_oui">precedent_suivant</label><br />
+
+                    </span>
+                    </span>
+                    <div style="clear:both"></div>
+              #SET{name,paginarticlesunebis}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Pas de pagination
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />                                        
+             </div>
+             </li>
+                                     
+<!--Forum de l'article accueil et archive -->             
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+             <label style="width: 500px"><strong>L'article d'accueil et l'article archive</strong></label>
+             <br />
+             <div class="explication">
+             #SET{name,accueilforum}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher le forum de l'article d'accueil
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="float: right">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br /><br />                    
+                    <br /> <br />
+             #SET{name,archiveforum}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Afficher le forum de l'article archive
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+             <br /><div class="nettoyeur"></div>
              </div>
              </li>
      </ul>
