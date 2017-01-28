@@ -66,7 +66,15 @@
 			<div class="rubrique #EDIT{titre}">
 			<:rubrique:> : [(#TITRE)]
 			</div>
-			</BOUCLE_Rub>
+			</BOUCLE_Rub>   
+<!-- affichage descriptif -->
+    [(#CONFIG{escal/config/descriptifune}|=={non}|non)
+		<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
+	]
+<!-- affichage chapeau -->
+    [(#CONFIG{escal/config/chapeauune}|=={non}|non)
+		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
+	]
 <!-- affichage premiere image -->
       <div class="image-une" >
       <BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageune}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{doublons}{titre==^[0-9]+\.}{par num titre}>
@@ -76,15 +84,7 @@
          <img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
          </BOUCLE_image_alt>
       <//B_image>
-      </div>     
-<!-- affichage descriptif -->
-    [(#CONFIG{escal/config/descriptifune}|=={non}|non)
-		<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
-	]
-<!-- affichage chapeau -->
-    [(#CONFIG{escal/config/chapeauune}|=={non}|non)
-		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
-	]
+      </div>  
 <!-- affichage texte -->
     [(#CONFIG{escal/config/texteune}|=={non}|non)
         <div class="texte #EDIT{texte}">
