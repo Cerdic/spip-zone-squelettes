@@ -3,7 +3,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip('inc/cextras');
 include_spip('base/ressourcotheque');
-	
+
 function ressourcotheque_upgrade($nom_meta_base_version,$version_cible) {
 
   $maj = array();
@@ -15,5 +15,6 @@ function ressourcotheque_upgrade($nom_meta_base_version,$version_cible) {
 }
 
 function ressourcotheque_vider_tables($nom_meta_base_version) {
+	include_spip('inc/meta');
   effacer_meta($nom_meta_base_version);
 }
