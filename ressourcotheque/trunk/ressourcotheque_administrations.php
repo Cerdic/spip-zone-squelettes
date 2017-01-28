@@ -15,6 +15,5 @@ function ressourcotheque_upgrade($nom_meta_base_version,$version_cible) {
 }
 
 function ressourcotheque_vider_tables($nom_meta_base_version) {
-  cextras_api_vider_tables(titrecourt_declarer_champs_extras());
   effacer_meta($nom_meta_base_version);
 }
