@@ -28,6 +28,9 @@
 	
 	<BOUCLE_exclure_art(ARTICLES){titre_mot IN 'pas-a-la-une', 'invisible'}{doublons}>
 	</BOUCLE_exclure_art>
+	
+	<BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
+	</BOUCLE_exclure_art2> 
 
 #SET{sens_tri, #SPIP_VERSION|version_compare{3.1, >=}|?{inverse,direct}}
 
@@ -39,7 +42,7 @@
 <!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}} >
+  <BOUCLE_dernier_endate(ARTICLES){doublons exergue}{!doublons selection1}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}} >
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
