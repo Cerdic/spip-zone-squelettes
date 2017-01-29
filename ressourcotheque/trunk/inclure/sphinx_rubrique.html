@@ -1,9 +1,9 @@
 <B_filtres>
 <div id="filtres">
 <h4>Filtres:</h4>
-<BOUCLE_filtres(DATA){source tableau, #ENV{tag}}{" <span class='sep'>|</span> "}>
+<BOUCLE_filtres(DATA){source tableau, #ENV{tags}}{" <span class='sep'>|</span> "}>
 		#SET{c,#COMPTEUR_BOUCLE|moins{1}}
-		<a class="btn btn-mini" href="[(#SELF|parametre_url_supprimer_element_tableau{tag,#ENV{tag},#GET{c}})]"><i class="icon-remove"></i>#VALEUR</a>
+		<a class="btn btn-mini" href="[(#SELF|parametre_url_supprimer_element_tableau{tags,#ENV{tags},#GET{c}})]"><i class="icon-remove"></i>#VALEUR</a>
 </BOUCLE_filtres>
 </div>
 </B_filtres>
@@ -16,7 +16,7 @@
 			{recherche #ENV*{recherche}} 
 			{filtermultijson #ID_RUBRIQUE, properties.id_rubrique, #LISTE{#ID_RUBRIQUE}}
 			{filtermono article, properties.objet, article}
-			{filter #ENV{tag},    'IN(properties.tags, @valeurs)',    'LENGTH(properties.tags) = 0'}
+			{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
 			{pagination 10}
 		>
 		<li class='item'>
@@ -30,10 +30,8 @@
 						#NOTATION_ETOILE{#PROPERTIES{notes/note_ponderee}}
 				</p>
 			
-				
 				[<div class="introduction entry-content clear">(#SNIPPET|sinon{#SUMMARY}|replace{b>,mark>}|propre)</div>]
 			</article>
-
 		</li>
 		</BOUCLE_sphinx>
 		<div class="pagination">

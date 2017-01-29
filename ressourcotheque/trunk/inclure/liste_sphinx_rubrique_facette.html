@@ -15,7 +15,8 @@
 					{filtermultijson #ID_RUBRIQUE, properties.id_rubrique, #LISTE{#ID_RUBRIQUE}}
 					{filtermono article, properties.objet, article}
 					
-					{filter #ENV{tag},    'IN(properties.tags, @valeurs)',    'LENGTH(properties.tags) = 0'}
+					{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
+
 
 					
 					{select COUNT(*) AS nb}
@@ -31,7 +32,13 @@
 				>
 			[
 			<li class='item'>
-				<a href="[(#SELF|parametre_url{#ENV{cle},[(#FACETTE|sinon{-})]})]">
+				[(#ENV{tags}|?{
+					#SET{tags,#ENV{tags}|push{#FACETTE}},
+					#SET{tags,#LISTE{#FACETTE}}
+					}
+				)]
+				#SET{url,#SELF|parametre_url{tags,#GET{tags}}}
+				<a href="#GET{url}">
 					(#FACETTE)
 				</a> \(#NB [(#NB|singulier_ou_pluriel{document,documents})]\)
 			</li>
