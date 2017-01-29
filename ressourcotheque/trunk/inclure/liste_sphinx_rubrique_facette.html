@@ -39,7 +39,10 @@
 			[
 			<li class='item'>
 				[(#ENV{tags}|?{
-					#SET{tags,#ENV{tags}|push{#FACETTE}},
+					[(#ENV{tags}|find{#FACETTE}|?{
+						#SET{tags,#ENV{tags}},
+						#SET{tags,#ENV{tags}|push{#FACETTE}}
+					})],
 					#SET{tags,#LISTE{#FACETTE}}
 					}
 				)]
