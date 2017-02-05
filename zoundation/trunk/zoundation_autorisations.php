@@ -1,11 +1,14 @@
 <?php
 
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 /**
  * Fonction d'appel pour le pipeline
  * @pipeline autoriser */
-function zoundation_autoriser(){}
+function zoundation_autoriser() {
+}
 
 /**
 * Fonction d'autorisation pour tester si une personne est connectée ou non
@@ -23,5 +26,5 @@ function zoundation_autoriser(){}
 * @access public
 */
 function autoriser_connecter_dist($faire, $type, $id, $qui, $opt) {
-    return ($qui['id_auteur'] !== 0);
+	return ($qui['id_auteur'] !== 0);
 }
