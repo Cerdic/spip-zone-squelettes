@@ -21,21 +21,33 @@
             <B_langues>
               <div id="drapeau">
                 <div id="langue">
+                [(#CONFIG{escal/config/affichelangue}|non)
+                  <strong>| #LANG</strong>
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={code}|oui)
+                  <strong>| #LANG</strong>
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={nom}|oui)
+                  <strong>| [(#LANG|traduire_nom_langue)]</strong>
+                ]
                 [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
                   <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
-                ]
-                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
-                  <strong>| #LANG</strong>
                 ]
                 </div>
             <BOUCLE_langues(RUBRIQUES){racine} {fusion lang}{par lang} {lang != #ENV{lang}} >
               <span lang="#LANG" xml:lang="#LANG">
                 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">
+                [(#CONFIG{escal/config/affichelangue}|non)
+                  <strong>| #LANG</strong>
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={code}|oui)
+                  <strong>| #LANG</strong>
+                ]
+                [(#CONFIG{escal/config/affichelangue}|=={nom}|oui)
+                  <strong>| [(#LANG|traduire_nom_langue)]</strong>
+                ]
                 [(#CONFIG{escal/config/affichelangue}|=={drapeau}|oui)
                   <img src="#CHEMIN{images/img_#LANG.jpg}" alt="[(#LANG|traduire_nom_langue)]"  />
-                ]
-                [(#CONFIG{escal/config/affichelangue}|=={drapeau}|non)
-                  | #LANG
                 ]
                 </a>
               </span>
