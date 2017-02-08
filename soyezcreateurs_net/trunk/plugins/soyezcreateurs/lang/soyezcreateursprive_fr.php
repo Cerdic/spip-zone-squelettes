@@ -190,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_bandeau_contact_label' => 'Mode d’affichage du bandeau de contact',
 	'cfg_mode_blog' => 'Affichage d’un portail d’accueil de type blog',
 	'cfg_mode_communiquant' => 'Affichage d’un portail d’accueil de type communiquant',
+	'cfg_mode_cognac' => 'Affichage d’un portail d’accueil de type Cognac',
 	'cfg_mode_edito' => 'Affichage de l’Edito',
 	'cfg_mode_evenementiel' => 'Affichage d’un portail d’accueil de type événementiel',
 	'cfg_mode_international' => 'Affichage d’un portail d’accueil de type international',
