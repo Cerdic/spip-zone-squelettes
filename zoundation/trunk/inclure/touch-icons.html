@@ -1,13 +1,13 @@
 [(#REM)
-  Favicon touch icon.
-  Voir https://mathiasbynens.be/notes/touch-icons
+Favicon touch icon.
+Voir https://mathiasbynens.be/notes/touch-icons
 
-  Ce fichier a générer les favicons pour un maximum de device
+Ce fichier a générer les favicons pour un maximum de device
 ]
 
 [(#REM)
-  Tableau des taille, en px
-  Pour le moment, ils n'ont pas encore pondu autre chose que des icones carrés. On espère que cela ne change pas
+Tableau des taille, en px
+Pour le moment, ils n'ont pas encore pondu autre chose que des icones carrés. On espère que cela ne change pas
 ]
 
 [(#SET{taille_device,
@@ -23,20 +23,20 @@
 57,57})]})]
 
 <BOUCLE_generateur_touch_icone(DATA){source tableau, #GET{taille_device}}>
-  [(#REM)
-    L'utilisateur fourni un fichier spécifique, on affiche directement
-  ]
+	[(#REM)
+	L'utilisateur fourni un fichier spécifique, on affiche directement
+	]
 
-  [(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png}|oui)
-    [<link rel="[(#VALEUR|=={192}?{icon, apple-touch-icon-precomposed})]" sizes="#VALEURx#VALEUR" href="(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png})">]
-  ]
+	[(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png}|oui)
+	[<link rel="[(#VALEUR|=={192}?{icon, apple-touch-icon-precomposed})]" sizes="#VALEURx#VALEUR" href="(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png})">]
+	]
 
-  [(#REM)
-    Pas de fichier spécique, on va créer l'icone si le fichier générique le permet.
-  ]
-  [(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png}|non
-    |et{#CHEMIN{apple-touch-icon.png}|hauteur|>={#VALEUR}|oui}
-    |et{#CHEMIN{apple-touch-icon.png}|largeur|>={#VALEUR}|oui})
-    [<link rel="[(#VALEUR|=={192}?{icon, apple-touch-icon-precomposed})]" sizes="#VALEURx#VALEUR" href="(#CHEMIN{apple-touch-icon.png}|image_reduire{#VALEUR,#VALEUR}|extraire_attribut{src})">]
-    ]
+	[(#REM)
+	Pas de fichier spécique, on va créer l'icone si le fichier générique le permet.
+	]
+	[(#CHEMIN{apple-touch-icon-#VALEURx#VALEUR.png}|non
+	|et{#CHEMIN{apple-touch-icon.png}|hauteur|>={#VALEUR}|oui}
+	|et{#CHEMIN{apple-touch-icon.png}|largeur|>={#VALEUR}|oui})
+	[<link rel="[(#VALEUR|=={192}?{icon, apple-touch-icon-precomposed})]" sizes="#VALEURx#VALEUR" href="(#CHEMIN{apple-touch-icon.png}|image_reduire{#VALEUR,#VALEUR}|extraire_attribut{src})">]
+	]
 </BOUCLE_generateur_touch_icone>
