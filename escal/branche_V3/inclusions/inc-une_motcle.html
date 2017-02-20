@@ -127,21 +127,28 @@
 			 </span>
 			</BOUCLE_Rub_suite>
 			<br />
+<!-- affichage descriptif -->
+			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptif}|=={oui}|oui}>
+			 [<div class="descriptif-autres">
+			 (#DESCRIPTIF)
+			 </div>]
+			</BOUCLE_descriptif_art>
+			<br />			
 <!-- affichage texte article -->
 			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersart}|=={oui}|oui}>
-      <div class="texte-autres">
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)
-        [(#TEXTE*
-            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
-            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
-        )]
-        ]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)
-        [(#TEXTE
-            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
-        )]
-        ]      
-      </div>
+		      <div class="texte-autres">
+		        [(#PLUGIN{COUTEAU_SUISSE}|oui)
+		        [(#TEXTE*
+		            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+		            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+		        )]
+		        ]
+		        [(#PLUGIN{COUTEAU_SUISSE}|non)
+		        [(#TEXTE
+		            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+		        )]
+		        ]      
+		      </div>
 			</BOUCLE_texteart>
 			<br />
 

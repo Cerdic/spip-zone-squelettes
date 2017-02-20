@@ -46,7 +46,7 @@
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
-      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartexergue,50}})]
+      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartexergue,100}})]
 <!-- affichage surtitre -->
     [(#CONFIG{escal/config/surtitreune}|=={non}|non)
     <div class="surtitre-article #EDIT{surtitre}">[(#SURTITRE)]</div>
@@ -143,7 +143,7 @@
       <a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>">
 
 <!-- affichage logo -->
-      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,100}})]
+      [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,80}})]
 <!-- affichage titre -->
 			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
 <!-- affichage auteur -->
@@ -163,21 +163,28 @@
 			 </span>
 			</BOUCLE_Rub_suite>
 			<br />
+<!-- affichage descriptif -->
+			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptif}|=={oui}|oui}>
+			 [<div class="descriptif-autres">
+			 (#DESCRIPTIF)
+			 </div>]
+			</BOUCLE_descriptif_art>
+			<br />
 <!-- affichage texte article -->
 			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersart}|=={oui}|oui}>
-      <div class="texte-autres">
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)
-        [(#TEXTE*
-            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
-            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
-        )]
-        ]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)
-        [(#TEXTE
-            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
-        )]
-        ]      
-      </div>
+		      <div class="texte-autres">
+		        [(#PLUGIN{COUTEAU_SUISSE}|oui)
+		        [(#TEXTE*
+		            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+		            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+		        )]
+		        ]
+		        [(#PLUGIN{COUTEAU_SUISSE}|non)
+		        [(#TEXTE
+		            |couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+		        )]
+		        ]      
+		      </div>
 			</BOUCLE_texteart>
 			<br />
 
