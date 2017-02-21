@@ -10,7 +10,7 @@
 			var time=400;
 			// un temps plus long pour refermer !
 			if ($(me).parent().find('>ul').is(':visible')) {
-				time=1200;
+				time=800;
 			}
 
 			$(me).addClass('hop');

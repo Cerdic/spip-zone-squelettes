@@ -104,6 +104,34 @@
                     (Il faut avoir coché "Accepter l’inscription de visiteurs du site public" dans l'espace privé : Configuration - Interactivité)
             </div>
             </li>
+<!-- inc-nav_mots2 -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article191&lang=fr" title="Voir la documentation"><strong>Navigation par mots-clés</strong></a></label>
+                    <br />
+            <div class="explication">
+            #SET{name,titrenavmot2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Titre de la noisette
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>                                        
+            #SET{name,groupemot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Groupe de mot à utiliser
+                    
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width: 80%">
+				<select name="#GET{name}">
+					<option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] >Aucun</option>                           
+					
+					<BOUCLE_selection(GROUPES_MOTS){titre !IN 'affichage', 'trombino', 'type_rubrique', 'type_article','Agenda_couleur'}{par titre}>
+					<option value="#TITRE" [(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+					</BOUCLE_selection>
+					
+				</select>
+                    </span>                                                                                                      
+            </div>
+            </li>            
 <!-- inc-recherche_multi -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><a class="spip_out" href="http://www2.ac-lyon.fr/services/escal/spip.php?article198&lang=fr" title="Voir la documentation"><strong>Recherche multi-critères</strong></a></label>
