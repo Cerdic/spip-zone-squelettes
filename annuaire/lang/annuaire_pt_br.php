@@ -1,0 +1,180 @@
+<?php
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// extrait automatiquement de https://trad.spip.net/tradlang_module/annuaire?lang_cible=pt_br
+// ** ne pas modifier le fichier **
+
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
+
+$GLOBALS[$GLOBALS['idx_lang']] = array(
+
+	// A
+	'accueil_intro' => 'Bem vindo à página de apresentação do plugin "diretório".',
+	'accueil_option' => 'Alguns plugins são opcionais:',
+	'accueil_option_contact' => 'O plugin "contato" permites exibir ou não a página de contato e sua configuração no plugin.',
+	'accueil_option_couteau_suisse' => 'O plugin "caniveter suiço" oferece uma lâmina para esconder os endereços de e-mail que se encontram nas tags #LESAUTEURS e #DESCRIPTIF na página do site.',
+	'accueil_option_pub' => 'Se você deseja integrar publicações Google no seu site, é necessário criar as palavras-chave "pub-entete" e "pub-nav" no grupo "Affichage" e colocar a nota numa seção chamada "squelette".',
+	'accueil_option_slogan' => 'O plugin "slogan" permite definir um slogan para o seu site.',
+	'accueil_option_spiplistes' => 'O plugin "spip liste" ou "clevermail" permite ou não a exibição da página de inscrição e sua configuração no plugin.',
+	'accueil_option_visiteurs' => 'O plugin "visiteur connectés" ou a lâmina do canivete suiço permite exibir o nome dos visitantes conectados na coluna de navegação (à direita).',
+	'accueil_presentation' => 'Apresentação',
+	'accueil_requis' => 'Os requisitos para um bom funcionamento do site',
+	'accueil_requis_1' => 'Para um bom referenciamento do seu site, é preciso criar:
+     <br />um grupo de palavras-chave "_META"
+     <br />as palavras-chave keywords, description e preencher o campo de texto para que o seu site se referencie
+     <br />e, ao contrário, criar robots e o texto noindex, nofollow para que não se referencie',
+	'accueil_requis_2' => 'Para exibir os parceiros na página "Parceiro", é necessário criar o grupo "Affichage" com a palacra-chave "partenaire" e a vincular com cada um dos sites pretendidos.',
+	'actuellement' => 'Há presentemente',
+	'aff_date' => 'Exibir a data',
+	'aff_date_expli' => 'Deseja exibir a data do dia no site?',
+	'affichage' => 'A exbição',
+	'afficher_colonne_nav' => 'Você escolheu exibir na navegação.',
+	'ajouter_commentaire' => 'Incluir um comentário',
+	'ajouter_google' => 'incluir no Google',
+	'align_pied3_page_expli' => 'Alinhamento do texto na parte direita do rodapé',
+	'annuaire' => 'diretório',
+	'annuaire_abonnement' => 'Página de assinatura',
+	'annuaire_accueil' => 'Página principal',
+	'annuaire_bandeau' => 'Faixa',
+	'annuaire_colonne' => 'Coluna e rodapé',
+	'annuaire_contact' => 'Página de contato',
+	'annuaire_erreur' => 'Página de erro',
+	'annuaire_forum' => 'Página de fórum',
+	'annuaire_general' => 'Generalidades',
+	'annuaire_gratuit' => 'Diretório gratuito de links duros',
+	'annuaire_herbier' => 'Herbário',
+	'annuaire_login_public' => 'Página de login público',
+	'annuaire_menu' => 'Menu do site',
+	'annuaire_mot' => 'Página de palavras-chave',
+	'annuaire_partenaire' => 'Página de parceiros',
+	'annuaire_plan' => 'Página de mapa do site',
+	'annuaire_plan_complet' => 'Página de mapa do site completo',
+	'annuaire_recherche' => 'Página de busca',
+	'annuaire_rubrique' => 'Página de seção',
+	'annuaire_site' => 'Página de site',
+	'annuaire_sommaire' => 'Página de sumário',
+	'annuaire_taille' => 'Tamanhos',
+	'article_syndic' => '1 matéria sindicada',
+	'articles' => '@nb@ matérias',
+	'articles_syndic' => '@nb@ matérias sindicadas',
+
+	// B
+	'boucles' => 'Configuração dos boucles',
+	'bouton_configurer' => 'Configurar o diretório',
+
+	// C
+	'cache_titre' => 'Esconder o título',
+	'cache_titre_news' => 'do boucle "novidade"',
+	'cache_titre_plus_votes_defaut' => 'do boucle "mais votados"',
+	'cache_titre_plus_votes_vertical' => 'do boucle "mais votados" (boxes verticais)',
+	'cache_titre_zard' => 'do boucle "sorteado"',
+	'col_navigation' => 'Coluna de navegação',
+	'commentaire' => '1 comentário',
+	'commun' => 'Comum aos boucles',
+	'conception' => 'concepção do diretório',
+	'config_boucle_vertical' => 'Exibição dos resultados na vertical (tabela)',
+	'config_boucle_zard' => 'Exibição do boucle sorteado',
+	'config_boucle_zard_expli' => 'Você pode exibir quer na página principal quer na navegação e, neste caso, não se exibem os segmentos de código.',
+	'config_cache_boucle' => 'Não exibir o laço',
+	'config_defaut_boucle' => 'Exibição padrão do laço.',
+	'config_defaut_menu_lien' => 'Exibir o link.',
+	'config_defaut_noisettes' => 'Exibir os snippets.',
+	'config_entete' => 'Exibir no cabeçalho.',
+	'config_non_menu_lien' => 'Não exibir o link.',
+	'config_pied' => 'Exibir no rodapé (à direita).',
+	'configuration_abonnement' => 'configuração da pãgina "assinaturas"',
+	'configuration_bandeau' => 'configuração do "cabeçalho"',
+	'configuration_colonne_pied' => 'configuração da "coluna e do rodapé"',
+	'configuration_contact' => 'configuração da página "contato"',
+	'configuration_erreur' => 'configuração das páginas "erro"',
+	'configuration_forum' => 'configuração dos fóruns do site',
+	'configuration_general' => 'configuração das informações gerais do site',
+	'configuration_herbier' => 'configuração da página "herbário"',
+	'configuration_login_public' => 'configuração da página "login público"',
+	'configuration_menu' => 'configuração dos links do menu',
+	'configuration_mot' => 'configuração da página "palavra-chave"',
+	'configuration_partenaire' => 'configuração da página "parceiro"',
+	'configuration_plan' => 'configuração da página "índice"',
+	'configuration_plan_complet' => 'configuração da página "índice completo"',
+	'configuration_recherche' => 'configuração da página "busca"',
+	'configuration_rubrique' => 'configuração da página "seção"',
+	'configuration_site' => 'configuração da página "site"',
+	'configuration_sommaire' => 'configuração da página "inicial"',
+	'configuration_taille' => 'configuração das dimensões de tudo no site',
+	'css' => 'Os CSS',
+	'css_bg' => 'Cor do fundo',
+	'css_bs' => 'Cor da borda',
+	'css_couleurs' => 'Permite escolher as cores de fundo, do texto, dos links e de sobreposição dos links. ',
+	'css_couleurs_bandeau' => 'Escolha as cores de fundo do "cabeçalho"',
+	'css_couleurs_fieldset' => 'Escolher a cor das bordas para todo o site.',
+	'css_couleurs_fond_expli' => 'Permite escolher a cor de fundo de uma página.',
+	'css_couleurs_fond_nav_bas' => 'Escolha a cor de fundo da "coluna de navegação baixa"',
+	'css_couleurs_fond_nav_haut' => 'Escolha a cor de fundo da "coluna de navegação alta"',
+	'css_couleurs_fond_page_abonnement' => 'Escolha a cor de fundo da página "assinatura"',
+	'css_couleurs_fond_page_contact' => 'Escolha a cor de fundo da página "contato"',
+	'css_couleurs_fond_page_erreur' => 'Escolha a cor de fundo da página "erro"',
+	'css_couleurs_fond_page_forum' => 'Escolha a cor de fundo da página "fórum"',
+	'css_couleurs_fond_page_herbier' => 'Escolha a cor de fundo da página "herbário"',
+	'css_couleurs_fond_page_login_public' => 'Escolha a cor de fundo da página "login público"',
+	'css_couleurs_fond_page_mot' => 'Escolha a cor de fundo da página "palavra-chave"',
+	'css_couleurs_fond_page_partenaire1' => 'Escolha a cor de fundo da página "parceiro"',
+	'css_couleurs_fond_page_plan' => 'Escolha a cor de fundo da página "índice"',
+	'css_couleurs_fond_page_plan_complet' => 'Escolha a cor de fundo da página "índice completo"',
+	'css_couleurs_fond_page_recherche' => 'Escolha a cor de fundo da página "busca"',
+	'css_couleurs_fond_page_rubrique' => 'Escolha a cor de fundo da página "seção"',
+	'css_couleurs_fond_page_site1' => 'Escolha a cor de fundo da página "site"',
+	'css_couleurs_fond_page_sommaire' => 'Escolha a cor de fundo da página "inicial"',
+	'css_couleurs_herbier' => 'Escolha as cores da página "herbário"',
+	'css_couleurs_hierarchie' => 'Escolha a cor de fundo da página "hierarquia"',
+	'css_couleurs_menu_site' => 'Escolha a cor de fundo da página "menu do site"',
+	'css_couleurs_mot' => 'Escolha as cores da página "palavra-chave"',
+	'css_couleurs_nav_connect' => 'Escolha as cores do snippet "conexâo"',
+	'css_couleurs_nav_copy' => 'Escolha as cores do snippet "copyright"',
+	'css_couleurs_nav_lien' => 'Escolha as cores do snippet "link"',
+	'css_couleurs_nav_mot' => 'Escolha as cores do snippet "palavra-chave"',
+	'css_couleurs_nav_option' => 'Escolha as cores do snippet "opções"',
+	'css_couleurs_nav_pied' => 'Escolha as cores do snippet "rodapé"',
+	'css_couleurs_nav_secteur' => 'Escolha as cores do snippet "setor"',
+	'css_couleurs_nav_sites' => 'Escolha as cores do snippet "sites"',
+	'css_couleurs_new' => 'Escolha as cores do laço "nouveauté"',
+	'css_couleurs_partenaire1' => 'Escolha as cores da pãgina "parceiro"',
+	'css_couleurs_plan' => 'Escolha as cores da página "índice"',
+	'css_couleurs_plan_complet' => 'Escolha as cores da página "índice completo"',
+	'css_couleurs_plus_vote' => 'Escolha as cores do laço "mais votadas"',
+	'css_couleurs_plus_vote_vertical' => 'Escolha as cores do laço "mais votadas" (boxes verticais)',
+	'css_couleurs_recherche' => 'Escolha as cores da página "busca"',
+	'css_couleurs_rubrique' => 'Escolha as cores da página "seção"',
+	'css_couleurs_site1' => 'Escolha as cores da página "site"',
+	'css_couleurs_zard' => 'Escolha as cores do laço "aleatório"',
+	'css_fg' => 'Cor de primeiro plano (texto e links)',
+	'css_fieldset' => 'Cor dos boxes',
+	'css_fond' => 'Plano de fundo',
+	'css_ho' => 'Cor de sobreposição',
+
+	// D
+	'descriptif_abonnement' => '<h4>Configurações da página de assinatura</h4>
+<br />Configure os estilos da página de assinatura.',
+	'descriptif_accueil' => 'Apresentação do plugin "anuário" e suas funções.',
+	'descriptif_bandeau' => '<h4>Configurações do cabeçalho</h4>
+<br />Configure os estilos do cabeçalho.',
+	'descriptif_colonne' => '<h4>Configuração do estilo</h4>
+<br />Escolha as cores para as colunas e rodapé.',
+	'descriptif_contact' => '<h4>Configurações da página de contato</h4>
+<br />Configure os estilos da página de contato.',
+	'descriptif_erreur' => '<h4>Configuração das paginas de erro</h4>
+<br />Configure os estilos das pãginas de erro',
+	'descriptif_forum' => '<h4>Configurações do fórum</h4>
+<br />Configure as cores da página de fórum.',
+	'descriptif_general' => '<h4>Configurações gerais</h4>
+<br />Uma página que agrupa todas as configurações gerais do site.',
+	'descriptif_herbier' => '<h4>Configurações do herbário</h4>
+<br />Configure os laços e estilos do herbário.
+<p />A página exibe as atualizações dos sites sindicados',
+	'descriptif_login_public' => '<h4>Configurações da página de login públic</h4>
+<br />Configure os estilos da página de login público.',
+	'descriptif_menu' => '<h4>Configurações do menu</h4>
+<br />Exibir ou não os links para as páginas do site, no menu do cabeçalho e no rodapé.',
+	'descriptif_mot' => '<h4>Configurações da página de palavra-chave</h4>
+<br />Configure os laços e estilos da página de palavra-chave.'
+);
