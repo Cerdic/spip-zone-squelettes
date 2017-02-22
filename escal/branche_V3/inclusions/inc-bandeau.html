@@ -60,17 +60,30 @@
 [(#CONFIG{escal/config/optionbandeau}|=={option3}|oui)
 <dl class="image_fluide"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
-<!-- Y a-t-il une image rubriqueXX pour cette rubrique ? Si oui, on l'affiche --> 
-[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|oui)
-<!-- récupération de la largeur de l'image rubriqueXX -->
+
+<!-- Y a-t-il une image rubriqueXX.jpg pour cette rubrique ? Si oui, on l'affiche --> 
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|?{
+
 #SET{largeurmaxbandeaurub,#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|balise_img|extraire_attribut{width}}
 <!-- affichage de l'image rubriqueXX sans l'agrandir mais responsive -->
   [(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}
   |balise_img{<:escal:bandeau:>}
   |image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
   |inserer_attribut{style, max-width:#GET{largeurmaxbandeaurub}px })]
-  ]
-<!-- Y a-t-il une image rubriqueXX pour cette rubrique ? Si non, on affiche l'image choisie-->
+
+, 
+<!-- Si non, y a-t-il une image rubriqueXX.png pour cette rubrique ? Si oui, on l'affiche --> 
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.png}|?{
+
+#SET{largeurmaxbandeaurub,#CHEMIN{images/bandeau/rubrique#GET{num}.png}|balise_img|extraire_attribut{width}}
+<!-- affichage de l'image rubriqueXX sans l'agrandir mais responsive -->
+  [(#CHEMIN{images/bandeau/rubrique#GET{num}.png}
+  |balise_img{<:escal:bandeau:>}
+  |image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
+  |inserer_attribut{style, max-width:#GET{largeurmaxbandeaurub}px })]
+
+, 
+<!-- Si non, on affiche l'image choisie-->
 [(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|non)
 <!-- récupération de la largeur de l'image choisie -->
 #SET{largeurmaxbandeau,#CHEMIN{#CONFIG{escal/config/fondbandeau}}|balise_img|extraire_attribut{width}}
@@ -94,6 +107,10 @@
   |inserer_attribut{style, max-width:#GET{largeurmaxbandeau2}px })]
 })]
 ]
+
+})]
+
+})]
 
 </a>
 </dt></dl>
