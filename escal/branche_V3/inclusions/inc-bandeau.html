@@ -60,40 +60,38 @@
 [(#CONFIG{escal/config/optionbandeau}|=={option3}|oui)
 <dl class="image_fluide"><dt>
 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
-<!-- Y a-t-il une image rubriqueXX pour cette rubrique ? Si oui, on l'affiche --> 
-[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|oui)
-<!-- récupération de la largeur de l'image rubriqueXX -->
-#SET{largeurmaxbandeaurub,#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|balise_img|extraire_attribut{width}}
-<!-- affichage de l'image rubriqueXX sans l'agrandir mais responsive -->
-  [(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}
-  |balise_img{<:escal:bandeau:>}
-  |image_reduire{#CONFIG{escal/config/largeurlayoutbase,950}}
-  |inserer_attribut{style, max-width:#GET{largeurmaxbandeaurub}px })]
-  ]
-<!-- Y a-t-il une image rubriqueXX pour cette rubrique ? Si non, on affiche l'image choisie-->
-[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|non)
-<!-- récupération de la largeur de l'image choisie -->
+
+[(#CONFIG{escal/config/fondbandeau}|oui)
 #SET{largeurmaxbandeau,#CHEMIN{#CONFIG{escal/config/fondbandeau}}|balise_img|extraire_attribut{width}}
-#SET{largeurmaxbandeau2,#CHEMIN{#CONFIG{escal/config/fondbandeau2}}|balise_img|extraire_attribut{width}}
+#SET{chemin,#CONFIG{escal/config/fondbandeau}}
+]
+
+[(#CONFIG{escal/config/fondbandeau2}|oui)
+#SET{largeurmaxbandeau,#CHEMIN{#CONFIG{escal/config/fondbandeau2}}|balise_img|extraire_attribut{width}}
+#SET{chemin,#CONFIG{escal/config/fondbandeau2}}
+]
+
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|oui)
+#SET{largeurmaxbandeau,#CHEMIN{images/bandeau/rubrique#GET{num}.jpg}|balise_img|extraire_attribut{width}}
+#SET{chemin,images/bandeau/rubrique#GET{num}.jpg}
+]
+
+[(#CHEMIN{images/bandeau/rubrique#GET{num}.png}|oui)
+#SET{largeurmaxbandeau,#CHEMIN{images/bandeau/rubrique#GET{num}.png}|balise_img|extraire_attribut{width}}
+#SET{chemin,images/bandeau/rubrique#GET{num}.png}
+]
+
 [(#CONFIG{escal/config/layout}|=={layout_PMP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
 [(#CONFIG{escal/config/layout}|=={layout_MPP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
 [(#CONFIG{escal/config/layout}|=={layout_PPM}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
 [(#CONFIG{escal/config/layout}|=={layout_MP}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
 [(#CONFIG{escal/config/layout}|=={layout_PM}|oui)#SET{largeurreduite,#CONFIG{escal/config/largeurlayoutbase,950}}]
 
-<!-- affichage de l'image choisie sans l'agrandir mais responsive -->
-[(#CONFIG{escal/config/fondbandeau}|?{
-  [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}
+[(#CHEMIN{#GET{chemin}}
   |balise_img{<:escal:bandeau:>}
   |image_reduire{#GET{largeurreduite}}
   |inserer_attribut{style, max-width:#GET{largeurmaxbandeau}px })]
-,
-  [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}
-  |balise_img{<:escal:bandeau:>}
-  |image_reduire{#GET{largeurreduite}}
-  |inserer_attribut{style, max-width:#GET{largeurmaxbandeau2}px })]
-})]
-]
+
 
 </a>
 </dt></dl>
