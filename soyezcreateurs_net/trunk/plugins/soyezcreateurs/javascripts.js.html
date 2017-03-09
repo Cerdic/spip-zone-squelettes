@@ -118,7 +118,7 @@ function adjustLayout() {
 	tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
 	if (tnotstackable==tlaststackable) {
 			var h=0;
-			$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+			$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'min-height': h+'px'});
 			$("div.equilibre").css({'height': parseInt($("div.equilibre")[0].offsetHeight)});
 			/*alert("Cas 1");*/
 	}
@@ -135,12 +135,12 @@ function adjustLayout() {
 			var hnotstackable = 0;
 			hnotstackable = parseInt($("div.notstackable")[0].offsetHeight);
 			if (hnotstackable>hstacked) {
-				$("div.laststackable").css({'height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
-				$("div.notstackable").css({'height': hnotstackable+'px'});
+				$("div.laststackable").css({'min-height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
+				$("div.notstackable").css({'min-height': hnotstackable+'px'});
 				/*alert("Cas 2");*/
 			}
 			else {
-				$("div.notstackable").css({'height': hstacked+'px'});
+				$("div.notstackable").css({'min-height': hstacked+'px'});
 			};
 		}
 		else {
@@ -150,7 +150,7 @@ function adjustLayout() {
 			tstackable = parseInt($("div.stackable")[0].offsetTop);
 			if (tstackable==tlaststackable){
 				var h=0;
-				$("div.stackable").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+				$("div.stackable").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'min-height': h+'px'});
 				/*alert("Cas 3");*/
 			}
 			else {
@@ -161,10 +161,10 @@ function adjustLayout() {
 					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight)) + (hauteurext = parseInt($("div.laststackable")[0].offsetHeight));
 					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
 					if(hstackable < hnavigation) {
-						$("div.notstackable").css({'height': (hnavigation - hauteurext)+'px'});
+						$("div.notstackable").css({'min-height': (hnavigation - hauteurext)+'px'});
 					}
 					else {
-						$("div#navigation").css({'height': hstackable+'px'});
+						$("div#navigation").css({'min-height': hstackable+'px'});
 					}
 					/*alert("Cas 4");*/
 				}
@@ -174,10 +174,10 @@ function adjustLayout() {
 					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight));
 					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
 					if(hstackable > hnavigation) {
-						$("div#navigation").css({'height': hstackable+'px'});
+						$("div#navigation").css({'min-height': hstackable+'px'});
 					}
 					else {
-					$("div.notstackable").css({'height': hnavigation+'px'});
+					$("div.notstackable").css({'min-height': hnavigation+'px'});
 					}
 					/*alert("Cas 5");*/
 				}
