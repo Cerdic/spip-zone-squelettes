@@ -11,7 +11,7 @@
       <INCLURE {fond=inclusions/inc-head, env}>
     </head>
 
-    <body id="page_login">
+    <body id="page_pass">
     
         <div id="ombre-gauche">
       <div id="ombre-droite">
@@ -38,26 +38,29 @@
             <div id="page">
               <div id="contenu">
               
-<div id="minipres">
+<div id='minipres'>
 
-
-	<h1>#NOM_SITE_SPIP</h1>    
-	[(#REM)
-		Est-ce qu'on se connecte a l'espace prive ou pas ?
-	][
-	(#ENV**{url}|non
-	|ou{[(#ENV**{url}|match{^/?(.*/)?#EVAL{_DIR_RESTREINT_ABS}})]})
-	<h3 class="spip"><:login_acces_prive:></h3>
-	]
-	
-	[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
-	<p class="retour">
-		[<a href="#URL_PAGE{identifiants,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{1comite})"><:login_sinscrire:></a> | ]
-		<a href="#URL_SITE_SPIP/"><:login_retoursitepublic:></a>
-	</p>
-	[<p class="generator">
-		<a href="http://www.spip.net/" title="<:site_realise_avec_spip:>">(#CHEMIN_IMAGE{spip.png}|balise_img)</a>
-	</p>]
+	<h1>#NOM_SITE_SPIP</h1>
+		
+	<div class="formulaire_spip pass">
+		[(#ENV{p}|non)
+		  #FORMULAIRE_OUBLI
+		]
+		[(#ENV{p}|oui)
+		  #FORMULAIRE_MOT_DE_PASSE
+		]
+	</div>
+	<div class="quitter_fenetre">
+	<script type='text/javascript'>/*<!#EVAL{chr(91)}CDATA#EVAL{chr(91)}*/
+	document.write("<a href='")
+	document.write((window.opener) ? "javascript:close()" : "#URL_PAGE{login}")
+	document.write("' title='<:pass_quitter_fenetre:>'><:pass_quitter_fenetre:><" + "/a>");
+	document.getElementById('oubli').focus()
+	/*#EVAL{chr(93)}[(#EVAL{chr(93)})]>*/</script>
+	<noscript>
+		<a href='[(#URL_PAGE{login}|parametre_url{lang, #LANG})]' title='<:lien_connecter:>'><:lien_connecter:></a>
+	</noscript>
+	</div>
 	
 </div><!--#minipres-->
 
