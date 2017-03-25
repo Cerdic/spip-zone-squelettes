@@ -105,23 +105,24 @@
 			{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}
 			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
 			{statut=publie}
-			{"</div><div class='grid-item'>"}>
+			>
 			<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 				<div class="content-actus #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
 						<header class="flexbox-center-space-between triadeA texte-blanc">
-							<time itemprop="startDate" title="2017-02-01 14:30:00" datetime="2017-02-01 14:30:00">
+							<time itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
 								<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{d})]</strong>&nbsp;/[(#DATE_DEBUT|affdate{m})]</span>
 								<span class="dateMois display-block">[(#DATE_DEBUT|affdate{Y})]</span>
 							</time>
 							[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|focusimage{180,95}|extraire_attribut{src}|sinon{http://placehold.it/180x95})" alt="" width="180" height="95" />]
 						</header>
-						<div class="h2"><span class="titre-actus">#TITRE</span>
+						<div class="h2"><span class="titre-actus">[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{#TITRE[&nbsp;: (#_AgendaDerniersAjouts:TITRE)],#TITRE})]</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
 					</a>
 				</div>
-				</BOUCLE_DernierEvenementArticle>
-				</BOUCLE_AgendaDerniersAjouts>
+			</BOUCLE_DernierEvenementArticle>
+			[(#COMPTEUR_BOUCLE|alterner{'','</div><div class="grid-item">'})]
+			</BOUCLE_AgendaDerniersAjouts>
 			</div>
 			</B_AgendaDerniersAjouts>
 			<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
