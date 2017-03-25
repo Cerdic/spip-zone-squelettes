@@ -79,33 +79,24 @@
 	</header>
 	<div class="row" id="masonry" role="region" aria-label="Actualités">
 		<div class="grid">
-			<div class="grid-item">
+			<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL})]})]
+			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
+			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
+			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
+			#SET{facteur,''}#SET{largeur,308}
+			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,955}})]
+			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus">
-					<a href="#" title="Lire l'article">
-						<img src="https://unsplash.it/308/340?image=118" alt="" />
-						<div class="h2"><span class="titre-actus">Recyclez vos sapins de Noël</span>
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#GET{logo}|focusimage{#GET{largeur},340}|extraire_attribut{src}|sinon{http://placehold.it/#GET{largeur}x340})" alt="" width="#GET{largeur}" height="340" />]
+						<div class="h2"><span class="titre-actus">#TITRE</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
 					</a>
 				</div>
 			</div>
-			<div class="grid-item grid-item-x2">
-				<div class="content-actus">
-					<a href="#" title="Lire l'article">
-						<img src="https://unsplash.it/638/340?image=182" alt="" />
-						<div class="h2"><span class="titre-actus">Belle et heureuse année 2017</span>
-						<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
-					</a>
-				</div>
-			</div>
-			<div class="grid-item ">
-				<div class="content-actus">
-					<a href="#" title="Lire l'article">
-						<img src="https://unsplash.it/308/340?image=82" alt="" />
-						<div class="h2"><span class="titre-actus">Ville d'art et d'histoire : programme automne</span>
-							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
-					</a>
-				</div>
-			</div>
+			</BOUCLE_articles_recentsAlaUne>
 			<div class="grid-item">
 				<div class="content-actus">
 					<a href="#" title="Lire l'article">
