@@ -9,61 +9,29 @@
 <main id="main" role="main"><div id="communiquant_content">
 <a id="letexte"></a>
 
+<BOUCLE_Edito(ARTICLES) {titre_mot=EDITO}{!par date}{0,1}{lang}{doublons}>
+#SET{article_url,#ARTICLE_URL}
 <!-- SLIDER -->
 <div id="diaporama" class="zone-slider">
 	<header>
-		<h1 class="hide">Diaporama</h1>
+		<h1 class="hide">#TITRE</h1>
 	</header>
 	<div class="slider-slick">
+		<BOUCLE_Slider(DOCUMENTS){id_article}{mode=document}{par num titre}{!par date}{extension IN png,jpg,gif}{vu=non}>
 		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
 			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=1043" alt="" />
+				<a href="#GET{article_url}" title="Voir [(#_Edito:TITRE|attribut_html)]">
+					<img src="[(#FICHIER|copie_locale|focusimage{1920,580}|extraire_attribut{src})]" alt="" />
 				</a>
 			</div>
 		</div>
-		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
-			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=103" alt="" />
-				</a>
-			</div>
-		</div>
-		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
-			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=1031" alt="" />
-				</a>
-			</div>
-		</div>
-		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
-			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=83" alt="" />
-				</a>
-			</div>
-		</div>
-		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
-			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=107" alt="" />
-				</a>
-			</div>
-		</div>
-		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
-			<div class="slider-diapo-imgfull">
-				<a href="#" title="Lire l'article suivant">
-					<img src="https://unsplash.it/1920/580?image=78" alt="" />
-				</a>
-			</div>
-		</div>
+		</BOUCLE_Slider>
 	</div>
 	<div id="liens-diaporama">
 		<ul>
-			<li>
-				<a href="#" title="Voir Visite virtuelle">
-					<span>Visite virtuelle<br />
-					Ville d'art & d'histoire</span>
+			<li class="#EDIT{titre}">
+				<a href="#ARTICLE_URL" title="Voir [(#TITRE|attribut_html)]">
+					<span>#TITRE</span>
 					<span class="icon icon-arrow-right2 icon-2x">&#10140;</span>
 				</a>
 			</li>
@@ -71,6 +39,7 @@
 	</div>
 </div>
 <!-- fin SLIDER -->
+</BOUCLE_Edito>
 
 <!-- ACTUS -->
 <div id="actualites" class="zone-actus">
