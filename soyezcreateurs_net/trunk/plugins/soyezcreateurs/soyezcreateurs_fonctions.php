@@ -845,6 +845,8 @@ function mini_html($texte) {
 
 // Permet de recadrer une image en la centrant sur son focus (plugin Centre Image)
 function focusimage($img, $largeur, $hauteur, $position = 'center') {
+	include_spip('filtres_images_lib_mini');
+	include_spip('filtres/images_transforme');
 	if ((largeur($img) <= $largeur) AND (hauteur($img) <= $hauteur)) {
 		$img = image_recadre($img, "$largeur:$hauteur", '+', $position, 'transparent');
 		$img = image_recadre($img, $largeur, $hauteur, $position, 'transparent');
