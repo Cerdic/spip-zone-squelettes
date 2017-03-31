@@ -35,14 +35,6 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
   </head>
   <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-article article#ID_ARTICLE rubrique#ID_RUBRIQUE">
   
-<?php
-define("_BBC_PAGE_NAME", "Article #TITRE ");
-define("_BBCLONE_DIR", "bbclone/");
-define("COUNTER", _BBCLONE_DIR."mark_page.php");
-if (is_readable(COUNTER)) include_once(COUNTER);
-?>
-
-
     <div id="ombre-gauche">
       <div id="ombre-droite">
         <div id="conteneur">
@@ -76,6 +68,10 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 
             <div id="page">
               <div id="contenu" class="contenu-article">
+<!-- affichage des blocs annonce -->
+[(#CONFIG{escal/config/annonceart}|=={oui}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+[(#CONFIG{escal/config/annoncedefilart}|=={oui}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]              
+              
                 <BOUCLE_type_article(MOTS){id_rubrique}{type=type_article}{0,1}>
                   #SET{type, #TITRE}
                 </BOUCLE_type_article>

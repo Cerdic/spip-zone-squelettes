@@ -9,7 +9,39 @@
 
 
      <ul>
-<legend><strong>Colonne principale</strong></legend>
+<legend><strong>Les annonces</strong></legend>    
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,annoncerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Afficher le bloc "Annonce"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    </div>
+            #SET{name,annoncedefilrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Afficher le bloc "Annonces défilantes"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    </div>                                 
+           </li>
+    
+     
+     
+<legend><strong>La rubrique</strong></legend>
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
              #SET{name,fluxrssrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -86,7 +118,7 @@
                     </span>
             <br /><br />
             </div>
-            </li>
+          </li>
 
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -97,7 +129,7 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     </div>
-             </li>
+           </li>
              
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,taillelogorub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -108,7 +140,7 @@
                              <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]"  /> px
                     </span>
                     </div>
-             </li>
+           </li>
 
 
      </ul>

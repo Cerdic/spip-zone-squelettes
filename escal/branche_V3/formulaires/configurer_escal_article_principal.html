@@ -8,9 +8,40 @@
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
 
-<legend><strong>Colonne principale</strong></legend>
+
 
      <ul>
+<legend><strong>Les annonces</strong></legend>    
+          <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,annonceart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Afficher le bloc "Annonce"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    </div>
+            #SET{name,annoncedefilart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication">
+                    Afficher le bloc "Annonces défilantes"
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    </div>                                 
+           </li>
+               
+<legend><strong>Les articles</strong></legend>     
 <!-- Taille du logo -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,taillelogoart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}

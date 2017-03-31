@@ -1,3 +1,9 @@
+<!-- affichage des blocs annonce -->
+[(#CONFIG{escal/config/annoncerub}|=={oui}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+[(#CONFIG{escal/config/annoncedefilrub}|=={oui}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
+
+
+
 	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
 	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons rubriques}>
 	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
@@ -6,7 +12,7 @@
 		<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
 	<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
-
+<!-- affichage du fil d'Ariane -->
 [(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_rub}{env}>]
 [(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_rub_2eniveau}{env}>]
 
