@@ -9,7 +9,7 @@ if (!defined('_DIR_LIB_SM'))
 	define('_DIR_LIB_SM', _DIR_RACINE . 'lib/soundmanagerv297a-20110123/');
 
 if (!defined('_IMG_GD_QUALITE'))
-	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://contrib.spip.net/Astuces-SPIP
+	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP
 
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
@@ -24,7 +24,7 @@ if (!defined('_TITRER_DOCUMENTS'))
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
 
 // Activer HTML5 depuis le squelette uniquement dans le public, et jamais dans le privé
-// Cf http://contrib.spip.net/Formidable-le-generateur-de-formulaires#forum488975
+// Cf https://contrib.spip.net/Formidable-le-generateur-de-formulaires#forum488975
 if (!test_espace_prive()) {
     $GLOBALS['meta']['version_html_max'] = 'html5';
 } else {
