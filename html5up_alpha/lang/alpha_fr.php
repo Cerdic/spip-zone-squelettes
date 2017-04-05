@@ -15,6 +15,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'explication_config_contenu' => "Le squelette utilise les sous titre pour les articles, n'oubliez pas de les activer dans <a href='?exec=configurer_contenu'>configurer contenu</a>",
     'explication_doc_home' => "L'id SPIP du document qui sera utilisé pour la grande image du haut.Le thème original utilise une image de taille <b>1800 × 905 pixels</b> ",
     'explication_doc_home2' => "L'id SPIP du document qui sera utilisé pour l'image <i>featured</i> . Le theme Alpha original utilise une image de taille  <b>1200 × 393 pixels</b>",
+    'explication_articles_home' => "Le(s) numéro(s) d'article(s) SPIP ou de page(s) unique séparés par une virgule. Pour les mettre dans l'ordre voulu ajouter un 1. 2. dans le titre de l'article ( les articles sont triés par num titre) " , 
     'explication_instagram' => "Url complète compte Instagram",
     'explication_facebook' => "Url complète compte facebook",
     'explication_twitter' => "Url complète compte twitter",
@@ -22,6 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
     'label_config_contenu' => "Sous-titre",
     'label_doc_home2' => "Id doc home fearured",
+    'label_articles_home' => "Id article(s)",
     'label_doc_home' => "Id doc home",
     'label_twitter' => 'Twitter',
     'label_facebook' => 'Facebook',
