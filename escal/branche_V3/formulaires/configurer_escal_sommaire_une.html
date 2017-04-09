@@ -309,7 +309,7 @@
              </li>
              
 
-  <!-- Pour "Derniers articles ter" et "Derniers articles ter"-->
+  <!-- Pour "Derniers articles" et "Derniers articles ter"-->
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label style="width: 500px"><strong>Pour "Derniers articles ter" et "Articles avec mot-clé" </strong></label>
                     <br />
@@ -513,6 +513,17 @@
                              <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},27})]"  />
                     </span>
                     <br /><br />
+             #SET{name,dateuneautres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    Affichage de la date <br />(de modification, sinon de publication)
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
              #SET{name,auteuruneautres}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     Affichage de l'auteur
                   [<span class='erreur_message'>(#GET{erreurs})</span>

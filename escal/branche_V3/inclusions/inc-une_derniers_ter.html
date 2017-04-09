@@ -22,6 +22,10 @@
 #SET{sens_tri, #SPIP_VERSION|version_compare{3.1, >=}|?{inverse,direct}}
 
 
+<!-- *************
+	article en exergue 
+************** -->
+
   <BOUCLE_dernier_endate(ARTICLES){doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergue}|=={non}|non}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,1}>
     <div id="section-#ID_ARTICLE" class="fragment">
 
@@ -110,7 +114,10 @@
   </BOUCLE_dernier_endate>
   
 
-<!--  On affiche les articles sélectionnés -->
+<!-- *************
+	les autres articles
+************** -->
+
   <B_articles_une>
     <div class="derniers-art-ter">
     <ul class="anchors">
@@ -122,6 +129,13 @@
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,40}})]
 <!-- affichage titre -->
 			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
+<!-- affichage date de publication ou de derniere modification -->
+      [(#CONFIG{escal/config/dateuneautres}|=={non}|non)
+      <span class="rubrique-autres">
+      [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[(#DATE_MODIF|affdate)],[(#DATE|affdate)]})]
+      <br />
+      </span> 
+      ] 
 <!-- affichage auteur -->
       <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautres}|=={non}|non}>
       </BOUCLE_testauteur>

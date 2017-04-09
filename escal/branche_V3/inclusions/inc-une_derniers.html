@@ -146,6 +146,13 @@
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,80}})]
 <!-- affichage titre -->
 			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
+<!-- affichage date de publication ou de derniere modification -->
+      [(#CONFIG{escal/config/dateuneautres}|=={non}|non)
+      <span class="rubrique-autres">
+      [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[(#DATE_MODIF|affdate)],[(#DATE|affdate)]})]
+      <br />
+      </span> 
+      ] 
 <!-- affichage auteur -->
       <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautres}|=={non}|non}>
       </BOUCLE_testauteur>
