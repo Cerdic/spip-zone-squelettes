@@ -1,44 +1,69 @@
-<BOUCLE_content(PRODUITS){id_produit}>
-
-	<article class="content-principal">
-		<header class="cartouche">
-
-			[(#LOGO_PRODUIT
-			|image_reduire{200,200}
-			|inserer_attribut{class, thumbnail spip_logos}
-			|inserer_attribut{alt, #TITRE|attribut_html})]
-
+<BOUCLE_produit(PRODUITS){id_produit}>
+	<div class="row">
+		<div class="#COLONNES{large, 12}">
 			<h1 class="#EDIT{titre}">#TITRE</h1>
-		</header>
 
-		[<section class="[(#EDIT{descriptif}) ]surlignable clearfix">
-			(#DESCRIPTIF|image_reduire{720,0}|iframe_responsive)
-		</section>]
+			<div class="float-right">
+				<p class="info-publi">
+					<span>[(#DATE|nom_jour|spip_ucfirst) ][(#DATE|affdate)]</span>
+				</p>
+			</div>
+		</div>
+	</div>
 
-		[<section class="[(#EDIT{texte}) ]surlignable">
-			(#TEXTE|image_reduire{720,0}|iframe_responsive)
-		</section>]
+	<div class="row">
+		<div class="#COLONNES{#ARRAY{large,4}}">
+			<div class="clearfix">
+				[<a href="[(#LOGO_PRODUIT|image_reduire{1920,1080}|extraire_attribut{src})]" class="mediabox">
+				(#LOGO_PRODUIT
+				|image_reduire{400,400}
+				|inserer_attribut{class, thumbnail spip_logos}
+				|inserer_attribut{alt, #TITRE|attribut_html})
+				</a>]
+			</div>
 
-		<section class="fiche-produit callout">
-			<ul>
-				<li><:produits:produit_champ_prix_ht_label:> : #PRIX_HT</li>
-				<li><:produits:produit_champ_poids_label:> : #POIDS g</li>
-				<li><:info_dimension:> #LARGEUR X #LONGUEUR X #HAUTEUR</li>
-			</ul>
-		</section>
+			<div class="callout warning">
+				<h3>#PRIX</h3>
+			</div>
+		</div>
+		<div class="#COLONNES{#ARRAY{large,8}}">
 
-		<INCLURE{fond=inclure/mots_produit, id_produit} />
+			<div class="row">
+				<div class="#COLONNES{#ARRAY{large, 12}}">
+					<h3><:info_description:></h3>
+					<div class="callout">
+						[<section class="[(#EDIT{descriptif}) ]surlignable clearfix">
+						(#DESCRIPTIF|image_reduire{720,0}|iframe_responsive)
+						</section>]
 
-		[(#REM) Gestion du portfolio et des documents ]
-		<INCLURE{fond=inclure/documents, id_produit} />
+						[<section class="[(#EDIT{texte}) ]surlignable">
+						(#TEXTE|image_reduire{720,0}|iframe_responsive)
+						</section>]
 
-		[<footer>
-			<aside class="notes">
-				<h3><:info_notes:></h3>
-				(#NOTES)
-			</aside>
-		</footer>]
+						<dl>
+							<dt><:produits:produit_champ_poids_label:> :</dt>
+							<dd>#POIDS g</dd>
+							<dt><:produits:produit_champ_largeur_label:></dt>
+							<dd>#LARGEUR cm</dd>
+							<dt><:produits:produit_champ_longueur_label:></dt>
+							<dd>#LONGUEUR cm</dd>
+							<dt><:produits:produit_champ_hauteur_label:></dt>
+							<dd>#HAUTEUR cm</dd>
+						</dl>
+					</div>
 
-	</article>
+					<INCLURE{fond=inclure/mots_produit, id_produit} />
 
-</BOUCLE_content>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="#COLONNES{#ARRAY{large,12}}">
+			[(#REM) Gestion du portfolio et des documents ]
+			<INCLURE{fond=inclure/documents, id_produit} />
+		</div>
+	</div>
+</BOUCLE_produit>
