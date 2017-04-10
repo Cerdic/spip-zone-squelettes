@@ -262,7 +262,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.0.2','<')) {
 			$id_rubrique = id_rubrique('000. Fourre-tout');
 			if ($id_rubrique >0) {
-				create_rubrique('10. NewsLetter', $id_rubrique, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
+				create_rubrique('10. NewsLetter', $id_rubrique, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->https://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 			}
 			spip_log("SoyezCreateurs maj 3.0.2", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.2','non');

@@ -65,7 +65,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 <p>Ce site fonctionne avec le logiciel libre <acronym title="Syst&egrave;me de Publication pour Internet">SPIP</acronym> et le jeu de squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;, tous deux distribu&eacute;s sous <a href="http://www.april.org/gnu/gpl_french.html" class="spip_out">licence <acronym title="GNU\'s Not UNIX" lang="en">GNU</acronym> / <abbr title="General Public License" lang="en">GPL</abbr></a>. Vous pouvez les utiliser librement pour r&eacute;aliser votre propre site.</p>
 <ul class="spip">
 	<li><a href="http://www.spip.net" class="spip_out">Documentation et t&eacute;l&eacute;chargement de SPIP</a></li>
-	<li><a href="http://contrib.spip.net/spip.php?article2624" class="spip_out">Explications et t&eacute;l&eacute;chargement des squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</a></li>
+	<li><a href="https://contrib.spip.net/spip.php?article2624" class="spip_out">Explications et t&eacute;l&eacute;chargement des squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</a></li>
 </ul>',
 'mentions_legales_contenus' => '<h3 class="spip">Droits de reproduction</h3>
 <p>L\'ensemble des textes, illustrations, photographies, plans, dessins, animations, vid&eacute;os, sons, etc. contenus sur ce site ne peuvent &ecirc;tre utilis&eacute;s ou reproduits sans l\'autorisation de l\'&eacute;diteur. Contactez-nous pour toute demande de reproduction ou d\'utilisation d\'&eacute;l&eacute;ments contenus sur ce&nbsp;site.</p>',

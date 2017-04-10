@@ -61,7 +61,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'par_numdoc' => 'By document number',
 	// Q
 	// R
-	'readme' => 'Cette page permet de configurer le squelette.<br /></br.><br >[Documentation->http://contrib.spip.net/Squelettes-Fullscreen-Gallery-With-Thumbnail-Flip]',
+	'readme' => 'Cette page permet de configurer le squelette.<br /></br.><br >[Documentation->https://contrib.spip.net/Squelettes-Fullscreen-Gallery-With-Thumbnail-Flip]',
 	// S
 	'shadow' => '(shadow)',
 	'size_content' => 'Text size',

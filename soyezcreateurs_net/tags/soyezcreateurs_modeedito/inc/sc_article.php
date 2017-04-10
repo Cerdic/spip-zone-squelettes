@@ -40,7 +40,7 @@ Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessou
 -** [Fonctionnels->http://www.pyrat.net/@motsfonctionnels.html]
 EOF;
 		$contenu['nom_site'] = "Original de l'article";
-		$contenu['url_site'] = "http://contrib.spip.net/?article3075";
+		$contenu['url_site'] = "https://contrib.spip.net/?article3075";
 	}
 
 	/* Raccourcis Typographiques de SPIP, mode d'emploi */
@@ -110,7 +110,7 @@ Certains attributs sont un peu spéciaux :
 <poesie>Le geai gélatineux gégnait dans le jasmin
 Voici mes infins le plus beau vers de la langue française.</poesie>
 
--* Cadre <code><cadre></code>Texte qui apparaitra dans une zone de formulaire facilitant le copier/coller[[Essentiellement utilisé sur spip-contrib pour donner des exemples de code]]<code></cadre></code>
+-* Cadre <code><cadre></code>Texte qui apparaitra dans une zone de formulaire facilitant le copier/coller[[Essentiellement utilisé sur contrib.spip pour donner des exemples de code]]<code></cadre></code>
 
 <cadre>
 Ceci est du texte dans un cadre.
@@ -428,7 +428,7 @@ EOF;
 	if ($article == "Politique d'accessibilité du site") {
 		$contenu['titre'] = $article;
 		$contenu['descriptif'] = "Politique d'accessibilité du site";
-		$contenu['chapo'] = "Le [squelette SPIP SoyezCreateurs->http://contrib.spip.net/SoyezCreateurs,1237] utilisé sur ce site est conçu pour faciliter la mise en œuvre des bonnes pratiques de l'accessibilité des sites pour tous.";
+		$contenu['chapo'] = "Le [squelette SPIP SoyezCreateurs->https://contrib.spip.net/SoyezCreateurs,1237] utilisé sur ce site est conçu pour faciliter la mise en œuvre des bonnes pratiques de l'accessibilité des sites pour tous.";
 		$contenu['texte'] = <<<EOF
 SoyezCreateurs accorde un soin tout particulier à la qualité de réalisation de ses sites Internet. Il est ainsi engagée dans une démarche d’optimisation de l’accessibilité de ses contenus web. Cette démarche vise dans un premier temps à faciliter la consultation de nos sites par les personnes handicapées, non voyantes, malvoyantes ou malentendantes. Mais plus généralement, la démarche d’accessibilité est indispensable pour garantir le plus large accès à nos contenus par tous les internautes et tous les dispositifs de lecture.
 
@@ -536,7 +536,7 @@ EOF;
 	if ($article == 'Installation du site') {
 		$contenu['titre'] = $article;
 		$contenu['descriptif'] = 'Date d\'installation du site';
-		$contenu['texte'] = "Cet événement est là pour vous montrer que vous pouvez utiliser un [agenda événementiel dans votre site->http://contrib.spip.net/Agenda-evenementiel-avec].";
+		$contenu['texte'] = "Cet événement est là pour vous montrer que vous pouvez utiliser un [agenda événementiel dans votre site->https://contrib.spip.net/Agenda-evenementiel-avec].";
 	}
 	/* Événement exceptionnel */
 	if ($article == 'Événement exceptionnel') {

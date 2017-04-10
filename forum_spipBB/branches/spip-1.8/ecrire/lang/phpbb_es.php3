@@ -28,7 +28,7 @@ $GLOBALS['i18n_phpbb_es'] = array(
 'date' => 'Inscripto el',
 
 //C
-'credits'=>'Realizado con <a href=http://www.spip.net class=copyright>SPIP</a> 1.7 : 2004<br/><a href=http://contrib.spip.net/rubrique.php3?id_rubrique=43>Squelettes 0.8.4 CSS</a> por <a href=http://www.laprise.org/>James aka Klik&eacute;</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> y <a href=http://www.missmopi.net/>Nad&egrave;ge aka Miss Mopi</a> (logos de St&eacute;phane),<br /> traducci&oacute;n de <a href=http://www.belvil.net/>dani</a>.',
+'credits'=>'Realizado con <a href=http://www.spip.net class=copyright>SPIP</a> 1.7 : 2004<br/><a href=https://contrib.spip.net/rubrique.php3?id_rubrique=43>Squelettes 0.8.4 CSS</a> por <a href=http://www.laprise.org/>James aka Klik&eacute;</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> y <a href=http://www.missmopi.net/>Nad&egrave;ge aka Miss Mopi</a> (logos de St&eacute;phane),<br /> traducci&oacute;n de <a href=http://www.belvil.net/>dani</a>.',
 'categorie'=>'Categor&iacute;a',
 'contact' => 'Contacto',
 'citer' => 'Citar',

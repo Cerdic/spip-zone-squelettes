@@ -1,5 +1,5 @@
 <?php
-# Voir doc sur http://contrib.spip.net/La-mutualisation-facile
+# Voir doc sur https://contrib.spip.net/La-mutualisation-facile
 
 require _DIR_RACINE.'mutualisation/mutualiser.php';
 

@@ -869,9 +869,9 @@ function soyezcreateurs_config_motsclefs() {
 				$id_site = create_site($sites, "000. Fourre-tout");
 				$sites = array();
 				$sites['nom_site'] = "SoyezCréateurs";
-				$sites['url_site'] = "http://contrib.spip.net/?rubrique1237";
+				$sites['url_site'] = "https://contrib.spip.net/?rubrique1237";
 				$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
-				$sites['url_syndic'] = "http://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
+				$sites['url_syndic'] = "https://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
 				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "000. Fourre-tout");
 			}
@@ -892,7 +892,7 @@ function soyezcreateurs_config_motsclefs() {
 			create_rubrique_mot("10. Navigation haute", "AfficherArticlesMenu", "_Specialisation_Rubrique");
 			create_rubrique_mot("10. Navigation haute", "PasDansFildAriane", "_Specialisation_Rubrique");
 	
-		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->http://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
+		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->https://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 	
 		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
 		if ($nouvelle_installation) {

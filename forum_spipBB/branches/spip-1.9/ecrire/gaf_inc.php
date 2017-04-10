@@ -110,7 +110,7 @@ function signature_gaf()
 		echo "<b>"._T('phpbb:credits_bis1').$gaf_version."</b><br>";
 		echo "<a href='http://www.koakidi.com/'>Scoty, koakidi.com.</a><br>"._T('phpbb:credits_bis2')."<br><br>";
 		echo _T('phpbb:credits_bis3');
-		echo "<a href='http://contrib.spip.net/Un-squelette-de-forum-8-4-CSS'>SPIP Forum</a><br>";
+		echo "<a href='https://contrib.spip.net/Un-squelette-de-forum-8-4-CSS'>SPIP Forum</a><br>";
 		echo _T('phpbb:credits_bis4');
 	fin_boite_info();
 	}

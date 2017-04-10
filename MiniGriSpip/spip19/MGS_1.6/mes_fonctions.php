@@ -63,7 +63,7 @@ function asciihtml($textHtml) {
 // Fonction pour retourner le texte Html fourni ($textHtml) converti en codes Ascii Html ($asciiHtml).
 // Exemple d'utilisation : [(#TEXT|asciihtml)]
 // Petite adaptation d'un code issu d'une contribution sur Spip'Contrib proposee par Jean Luc Girard et Coyote, merci a eux.
-// Voir : <http://contrib.spip.net/Crypter-une-adresse-email>
+// Voir : <https://contrib.spip.net/Crypter-une-adresse-email>
 
         $asciiHtml = '';
         for ($i = 0; $i < strlen($textHtml); $i++) {

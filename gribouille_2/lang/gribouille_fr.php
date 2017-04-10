@@ -29,7 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// D
 	'deconnexion' => 'd&#233;connexion',
 	'derniers_changements' => 'Derniers changements',
-	'disclaimer' => 'Ce site fonctionne avec le squelette <a href="http://contrib.spip.net/Gribouille">Gribouille</a>&nbsp;; inspir&#233; de <a href="http://www.wikini.net/wakka.php?wiki=PagePrincipale">WikiNi</a>',
+	'disclaimer' => 'Ce site fonctionne avec le squelette <a href="https://contrib.spip.net/Gribouille">Gribouille</a>&nbsp;; inspir&#233; de <a href="http://www.wikini.net/wakka.php?wiki=PagePrincipale">WikiNi</a>',
 	
 	// E
 	'editer_page' => '&Eacute;diter cette page',

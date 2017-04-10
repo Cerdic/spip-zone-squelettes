@@ -732,7 +732,7 @@ while (list($nom,$chem) = each($listimag))
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/article241.html
+ * https://contrib.spip.net/article241.html
 */
 
 # Remplace seulement la première occurence. Mêmes arguments que str_replace

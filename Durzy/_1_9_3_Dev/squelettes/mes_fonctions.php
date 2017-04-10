@@ -22,7 +22,7 @@ include_spip('public/stats_balises');
 // =======================================================================================================================================
 // Auteur: Philippe Avi
 // Fonction : permet de visualiser la liste des emplois du temps créés par EDT
-// http://contrib.spip.net/Filtre-EDT-pour-site-lycee-ou  =======================================================================================================================================
+// https://contrib.spip.net/Filtre-EDT-pour-site-lycee-ou  =======================================================================================================================================
 //
 include_spip('public/edt');
 

@@ -18,7 +18,7 @@
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/article.php3?id_article=261
+ * https://contrib.spip.net/article.php3?id_article=261
 */
 function get_auteur_infos($id='', $nom='') {
 if ($id) $query = "SELECT * FROM spip_auteurs WHERE id_auteur=$id";
@@ -106,7 +106,7 @@ return $retour;
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/article.php3?id_article=421
+ * https://contrib.spip.net/article.php3?id_article=421
 */
 function afficher_mots_clefs($texte) {
 // 3 à changer par le num du Groupe "Type de sujets"
@@ -190,7 +190,7 @@ $nb_mess = spip_num_rows($result_auteurs);
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/article.php3?id_article=261
+ * https://contrib.spip.net/article.php3?id_article=261
 */
 
 function smileys($chaine) {
@@ -242,7 +242,7 @@ while (list($nom,$chem) = each($listimag))
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/Pagination,663
+ * https://contrib.spip.net/Pagination,663
 */
 
 	function pagination($total, $position=0, $pas=1, $fonction='') {
@@ -303,7 +303,7 @@ while (list($nom,$chem) = each($listimag))
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/Pagination,663
+ * https://contrib.spip.net/Pagination,663
 */
 
 function barre_forum_citer($texte, $lan)

@@ -8,7 +8,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// B
 	// C
 	'cfg_alpha' => 'Transparence',
-	'cfg_boite_info' => '<h1>Vittory\'s</h1>Configuration<br /><br />[Documentation->http://contrib.spip.net/]',
+	'cfg_boite_info' => '<h1>Vittory\'s</h1>Configuration<br /><br />[Documentation->https://contrib.spip.net/]',
 	'cfg_color_back' => 'Couleur de fond',
 	'cfg_color_grid' => 'Couleur de la grille',
 	'cfg_color_title' => 'Couleur du titre',

@@ -68,7 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_descriptions_site' =>  'Website baseline',
 'cfg_complement_nom_site' =>  'This sentence will be displayed under the website\'s title.',
 'cfg_nuage' =>  'Tag cloud',
-'cfg_nuage_info' =>  'If you use the <a href=\'http://contrib.spip.net/Nuage-de-mots-cles\' hreflang=\"fr\"Nuage plugin</a>, Select the id_groupe of the keyword group to not use.',
+'cfg_nuage_info' =>  'If you use the <a href=\'https://contrib.spip.net/Nuage-de-mots-cles\' hreflang=\"fr\"Nuage plugin</a>, Select the id_groupe of the keyword group to not use.',
 'cfg_nuage_liste_groupes' => 'Available keyword groups:',
 'cfg_nuage_aucun' => 'Please create a keyword group first.'
 

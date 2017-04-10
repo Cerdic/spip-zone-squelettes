@@ -39,7 +39,7 @@ function filtre_statistiques_mot_dist($id_mot){
 }
 
 // Critère compteur_publie
-// Provient de http://contrib.spip.net/Classer-les-articles-par-nombre-de-commentaires
+// Provient de https://contrib.spip.net/Classer-les-articles-par-nombre-de-commentaires
 
 function critere_compteur_publie($idb, &$boucles, $crit){
  $op='';
@@ -135,7 +135,7 @@ function archives_fin($date) {
 }
 
 // Balise #ME
-// Source : http://contrib.spip.net/me-Moi-and-myself
+// Source : https://contrib.spip.net/me-Moi-and-myself
 
 /***
  * (c)James 2006, Licence GNU/GPL
@@ -618,7 +618,7 @@ function aveline_agenda_mini($i) {
 }
 
 // Filtre d'affichage de date
-// http://contrib.spip.net/Utilisation-des-filtres-de-date
+// https://contrib.spip.net/Utilisation-des-filtres-de-date
 function filtre_aveline_affdate_dist($date, $format='affdate') {
 	if($format==NULL) {
 		$f_affdate = chercher_filtre('affdate');

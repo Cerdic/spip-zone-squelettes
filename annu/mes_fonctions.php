@@ -38,7 +38,7 @@ function recuperer_variables_pagination($total, $debut, $pas, $texte) {
  * inscrivez-vous et ecrivez a la liste de discussion : spip-zone<at>rezo.net
  * Pour les explications sur l'utilisation de ce filtre,
  * reportez-vous a l'article :
- * http://contrib.spip.net/Pagination,1212
+ * https://contrib.spip.net/Pagination,1212
 */
 
 function pagination($total, $debut='debut_page', $pas=10, $fonction='') {

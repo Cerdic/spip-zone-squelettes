@@ -17,7 +17,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/spip.php?article76
+ * https://contrib.spip.net/spip.php?article76
 */
 
 include_spip('plugins/installer'); // spip_version_compare dans SPIP 3.x 

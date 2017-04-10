@@ -2,7 +2,7 @@ Ce squelette est ouvert aux commits après en avoir discuté avec son auteur : r
 
 Licence : il est distribué en licence GPL
 
-Documentation : http://contrib.spip.net/SoyezCreateurs,1237?tri_articles=titre
+Documentation : https://contrib.spip.net/SoyezCreateurs,1237?tri_articles=titre
 
 Il sera possible de participer à cette documentation sur SPIP-Contrib
 

@@ -63,7 +63,7 @@ L\'adresse e-mail est uniquement utilis&eacute;e afin de confirmer les d&eacute;
 'contact' => 'Contact',
 'courrier' => '<p>Apr&egrave;s l\'&eacute;tape d\'enregistrement, votre identifiant personnel vous parviendra rapidement par courrier &eacute;lectronique.</p>',
 'credits'=>'R&eacute;alis&eacute; avec <a href=http://www.spip.net class=copyright>SPIP</a> : 2004-2006<br/>
-<a href=http://contrib.spip.net/spipBB>spipBB 1.0a1</a> 
+<a href=https://contrib.spip.net/spipBB>spipBB 1.0a1</a> 
 par <a href=http://spipbb.spip-zone.info/>la spipbb-team</a>',
 'credits_bis1' => 'GAFoSPIP v. ',
 'credits_bis2' => 'Ao&ucirc;t 2005',

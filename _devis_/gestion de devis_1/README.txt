@@ -1,6 +1,6 @@
 /* Proposer un devis en ligne */
 
-/* Proposer par soon7 [ http://contrib.spip.net/ecrire/articles.php3?id_article=1091 ] */
+/* Proposer par soon7 [ https://contrib.spip.net/ecrire/articles.php3?id_article=1091 ] */
 
 
 Ceci est ma première contrib.

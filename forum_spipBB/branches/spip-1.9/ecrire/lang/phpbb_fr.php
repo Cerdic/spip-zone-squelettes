@@ -63,7 +63,7 @@ L\'adresse e-mail est uniquement utilis&eacute;e afin de confirmer les d&eacute;
 'contact' => 'Contact',
 'courrier' => '<p>Apr&egrave;s l\'&eacute;tape d\'enregistrement, votre identifiant personnel vous parviendra rapidement par courrier &eacute;lectronique.</p>',
 'credits'=>'R&eacute;alis&eacute; avec <a href=http://www.spip.net class=copyright>SPIP</a> : 2004-2005<br/>
-<a href=http://contrib.spip.net/article.php3?id_article=414>spipBB 0.9 CSS</a> 
+<a href=https://contrib.spip.net/article.php3?id_article=414>spipBB 0.9 CSS</a> 
 par <a href=http://www.laprise.org/>James aka Klik&eacute;</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nad&egrave;ge aka Miss Mopi</a> (logos de St&eacute;phane)',
 'credits_bis1' => 'GAFoSPIP v. ',
 'credits_bis2' => 'Ao&ucirc;t 2005',

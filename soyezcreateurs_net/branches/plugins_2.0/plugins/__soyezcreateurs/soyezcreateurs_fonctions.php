@@ -16,7 +16,7 @@
  *
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://contrib.spip.net/spip.php?article76
+ * https://contrib.spip.net/spip.php?article76
 */
 function sc_sommaire_article($texte,$istxt=0)
 {

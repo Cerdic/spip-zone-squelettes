@@ -23,7 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<p>En plus de la rubrique d\'accueil et de quelques couleurs configurables ci-dessus, les logos sont utilisés pour intégrer des images d\'arrière-plan : le logo de la rubrique servira pour l\'arrière-plan du bloc de l\'accueil, en haut de page, les logos des articles viennent se placer en arrière-plan du bloc de l\'article lui-même.</p>
 	<p>Si vous utilisez le plugin <a href="http://plugins.spip.net/couleur_objet" class="spip_out">Couleur d\'objet</a>, vous pourrez régler les couleurs d\'arrière-plan de chaque bloc d\'article en leur choisissant une couleur chacun. En même temps, si vous choisissez une couleur pour la rubrique, elle sera utilisée pour le fond du bloc d\'accueil. Dans ce cas ne déterminez pas les logos, ni pour les articles ni pour la rubrique. </p>
 	<p>Si vous ne pouvez absolument pas limiter le nombre de rubriques, un plan du site sera présent en bas de chaque page.<br />
-	Toutes les précisions sur la page de documentation : <a href="http://contrib.spip.net/?article4675">http://contrib.spip.net/?article4675</a>.</p>',
+	Toutes les précisions sur la page de documentation : <a href="https://contrib.spip.net/?article4675">https://contrib.spip.net/?article4675</a>.</p>',
 	
 	// L
 	'label_accueil' => 'Rubrique n° :',

@@ -18,7 +18,7 @@
   $sites = array(
     array("SPIP.NET","http://www.spip.net/opensearch.php?recherche={searchTerms}$critere_lang",10),
     array("FORUM.SPIP.ORG","http://forum.spip.org/opensearch.php?recherche={searchTerms}$critere_lang",10),
-    /*array("SPIP-CONTRIB","http://contrib.spip.net/opensearch.php?recherche={searchTerms}",10),*/
+    /*array("SPIP-CONTRIB","https://contrib.spip.net/opensearch.php?recherche={searchTerms}",10),*/
     array("SPIP-CONTRIB","http://www.spip.net/contrib/opensearch.php?recherche={searchTerms}$critere_lang",10)
   );
 
@@ -100,7 +100,7 @@
 			$nb=$url[2];
 			
 
-			// habillage spip-contrib
+			// habillage contrib.spip
 			echo"
 			<div class=\"bloctype3 first\">
 			<img class=\"borderTL2\" src=\"images/bloctype3/topleft.gif\" alt=\"\" width=\"5\" height=\"5\"/>
@@ -111,7 +111,7 @@
 			// C'est ca qui est important 
 			echo "	<p><h1>Recherche de <em>". entites_html($_GET["recherche"])."</em> sur <em>$nomUrl</em>... </h1>";
 
-			// habillage spip-contrib
+			// habillage contrib.spip
 			echo"				<div class=\"spacer\">&nbsp;</div>
 			</div>
 			<div class=\"bottomCorners\">

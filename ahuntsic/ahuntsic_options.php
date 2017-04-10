@@ -32,7 +32,7 @@
 
 ############### CONFIGURATION COUTEAU SUISSE ################
 // Installation des outils par defaut
-// Voir : http://contrib.spip.net/Le-Couteau-Suisse-a-piloter
+// Voir : https://contrib.spip.net/Le-Couteau-Suisse-a-piloter
 $GLOBALS['cs_installer']['Ahuntsic']['outils'] =
     'decoupe|sommaire|soft_scroller|guillemets|pucesli|liens_orphelins';
 // Installation des variables par defaut

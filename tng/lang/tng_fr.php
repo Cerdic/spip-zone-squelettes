@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	// Q
 	// R
-	'readme' => 'Cette page permet de configurer le squelette.<br /></br.><br >[Documentation->http://contrib.spip.net/Squelettes-Thumbnails-Navigation-Gallery]',
+	'readme' => 'Cette page permet de configurer le squelette.<br /></br.><br >[Documentation->https://contrib.spip.net/Squelettes-Thumbnails-Navigation-Gallery]',
 	// S
 	// T
 	'titre_page_configurer_tng' => 'Configuration du squelette Thumbnails Navigation Gallery',

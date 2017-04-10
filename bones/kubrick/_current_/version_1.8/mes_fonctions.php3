@@ -2,7 +2,7 @@
 
 $GLOBALS[ 'dossier_squelettes' ] = "bones" ;
 
-# titre homogene http://contrib.spip.net/article46.html
+# titre homogene https://contrib.spip.net/article46.html
 function titre_homogene($titre) {
   $titre = tronquer_titre($titre);
   return casse_titre($titre);

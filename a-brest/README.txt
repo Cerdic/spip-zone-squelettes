@@ -9,7 +9,7 @@ Pour l'installation et configuration:
 lire les informations contenues dans le repertoire /doc
 
 Page d'information sur SPIP-Contrib:
-http://contrib.spip.net/Squelette-brest-version-SPIP-1-9
+https://contrib.spip.net/Squelette-brest-version-SPIP-1-9
 
 Tous les fichiers ci-joints sont sous licence GPL version 2.
 

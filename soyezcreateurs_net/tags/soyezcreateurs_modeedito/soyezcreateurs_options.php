@@ -2,7 +2,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return; 
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
-define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir http://contrib.spip.net/Astuces-SPIP 
+define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP 
 
 define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480

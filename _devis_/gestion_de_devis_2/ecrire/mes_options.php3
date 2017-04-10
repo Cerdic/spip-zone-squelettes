@@ -14,7 +14,7 @@
  * ainsi que celles proposé à ajouter dans le fichier  mes_fonctions.php3  *
  *                                                                         *
  * Pour plus de détails voir:                                              *
- * http://contrib.spip.net/ecrire/articles.php3?id_article=1080        * 
+ * https://contrib.spip.net/ecrire/articles.php3?id_article=1080        * 
  * ou communiquer avec                                                     *
  * francois.vachon@iago.ca                                                 *
 \***************************************************************************/
