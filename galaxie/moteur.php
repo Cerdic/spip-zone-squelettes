@@ -100,7 +100,7 @@
 			$nb=$url[2];
 			
 
-			// habillage contrib.spip
+			// habillage spip-contrib
 			echo"
 			<div class=\"bloctype3 first\">
 			<img class=\"borderTL2\" src=\"images/bloctype3/topleft.gif\" alt=\"\" width=\"5\" height=\"5\"/>
@@ -111,7 +111,7 @@
 			// C'est ca qui est important 
 			echo "	<p><h1>Recherche de <em>". entites_html($_GET["recherche"])."</em> sur <em>$nomUrl</em>... </h1>";
 
-			// habillage contrib.spip
+			// habillage spip-contrib
 			echo"				<div class=\"spacer\">&nbsp;</div>
 			</div>
 			<div class=\"bottomCorners\">
