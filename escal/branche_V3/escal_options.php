@@ -22,7 +22,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |Choix des blocs lat&eacute;raux!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
 |Param&eacute;trage des blocs lat&eacute;raux!deplier_replier:titre_contenu
 |Un peu de style!fonds:bords:arrondis
-|Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement
+|Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement:shoutbox
 ');
 
 // les images de plus de 1050 pixels de largeur ou de hauteur ne seront pas enregistrées
