@@ -47,7 +47,7 @@ $GLOBALS['calendrier_partie'] = array(
 /// sait remplacer les arguments au bon endroit -- Fil)
 /// Pas si simple: certains param ne sont pas remplaces 
 /// et doivent reprendre leur valeur par defaut -- esj.
-/// http://doc.spip.org/@calendrier_retire_args_ancre
+/// http://code.spip.net/@calendrier_retire_args_ancre
 function calendrier_retire_args_ancre($script)
 {
 
@@ -77,7 +77,7 @@ function calendrier_retire_defaults($echelle, $partie_cal)
 /// tous les liens de navigations sont issus de cette fonction
 /// on peut definir generer_url_date et un htacces pour simplifier les URL
 
-// http://doc.spip.org/@calendrier_args_date
+// http://code.spip.net/@calendrier_args_date
 function calendrier_args_date($script, $annee, $mois, $jour, $type, $finurl) {
 	if (function_exists('generer_url_date'))
 		return generer_url_date($script, $annee, $mois, $jour, $type, $finurl);
@@ -101,7 +101,7 @@ function calendrier_args_time($time, $script, $type, $fin='')
 
 /// utilise la precedente pour produire une balise A avec tous les accessoires
 
-// http://doc.spip.org/@calendrier_href
+// http://code.spip.net/@calendrier_href
 function calendrier_href($script, $annee, $mois, $jour, $type, $fin, $ancre, $img, $titre, $class='', $alt='', $clic='', $style='', $evt='')
 {
 	static $moi = NULL;
@@ -127,7 +127,7 @@ function calendrier_href($script, $annee, $mois, $jour, $type, $fin, $ancre, $im
 /// attention au cas ou la href est du Javascript avec des "'"
 /// pour un href conforme au validateur W3C, faire & --> &amp; avant
 
-// http://doc.spip.org/@http_href
+// http://code.spip.net/@http_href
 function http_href($href, $clic, $title='', $style='', $class='', $evt='') {
 	if ($style) $evt .= " style='$style'";
 	$r = lien_ou_expose($href, $clic, false, $class, $title, 'nofollow', $evt);
@@ -141,7 +141,7 @@ function http_href($href, $clic, $title='', $style='', $class='', $evt='') {
 /// - taille de la fonte
 /// - taille de la marge
 
-// http://doc.spip.org/@calendrier_echelle
+// http://code.spip.net/@calendrier_echelle
 function calendrier_echelle($debut, $fin, $echelle)
 {
   if ($echelle==0) $echelle = DEFAUT_D_ECHELLE;
@@ -157,7 +157,7 @@ function calendrier_echelle($debut, $fin, $echelle)
 
 /// Calcule le "top" d'une heure
 
-// http://doc.spip.org/@calendrier_top
+// http://code.spip.net/@calendrier_top
 function calendrier_top ($heure, $debut, $fin, $dimheure, $dimjour) {
 	
 	$h_heure = substr($heure, 0, strpos($heure, ":"));
@@ -173,7 +173,7 @@ function calendrier_top ($heure, $debut, $fin, $dimheure, $dimjour) {
 }
 
 /// Calcule la hauteur entre deux heures
-// http://doc.spip.org/@calendrier_height
+// http://code.spip.net/@calendrier_height
 function calendrier_height ($heure, $heurefin, $debut, $fin, $dimheure, $dimjour) {
 
 	$height = calendrier_top ($heurefin, $debut, $fin, $dimheure, $dimjour)
@@ -191,7 +191,7 @@ function calendrier_height ($heure, $heurefin, $debut, $fin, $dimheure, $dimjour
 /// init: calcul generique des evenements a partir des tables SQL
 ///
 
-// http://doc.spip.org/@http_calendrier_init
+// http://code.spip.net/@http_calendrier_init
 function http_calendrier_init($time='', $type='mois', $echelle='', $partie_cal='', $script='', $evt=null)
 {
 	if (is_array($time)) {
@@ -226,7 +226,7 @@ function http_calendrier_init($time='', $type='mois', $echelle='', $partie_cal='
 /// affichage d'un calendrier de mois, avec son bandeau de navigation
 
 
-// http://doc.spip.org/@http_calendrier_mois
+// http://code.spip.net/@http_calendrier_mois
 function http_calendrier_mois($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt)
 {
 	global $spip_ecran;
@@ -269,7 +269,7 @@ function http_calendrier_mois($annee, $mois, $jour, $echelle, $partie_cal, $scri
 /// si la periore a plus de 31 jours, c'est du genre trimestre, semestre etc
 /// pas de navigation suivant/precedent alors
 
-// http://doc.spip.org/@http_calendrier_mois_navigation
+// http://code.spip.net/@http_calendrier_mois_navigation
 function http_calendrier_mois_navigation($annee, $mois, $premier_jour, $dernier_jour, $echelle, $partie_cal, $script, $ancre){
 	if ($dernier_jour > 31) {
 	  $prec = $suiv = '';
@@ -304,7 +304,7 @@ function http_calendrier_mois_navigation($annee, $mois, $premier_jour, $dernier_
 
 }
 
-// http://doc.spip.org/@http_calendrier_mois_noms
+// http://code.spip.net/@http_calendrier_mois_noms
 function http_calendrier_mois_noms(){
 
 	$bandeau ="";
@@ -320,7 +320,7 @@ function http_calendrier_mois_noms(){
 /// dispose les lignes d'un calendrier de 7 colonnes (les jours)
 /// chaque case est garnie avec les evenements du jour figurant dans $evenements
 
-// http://doc.spip.org/@http_calendrier_mois_sept
+// http://code.spip.net/@http_calendrier_mois_sept
 function http_calendrier_mois_sept($annee, $mois, $premier_jour, $dernier_jour,$evenements, $script, $finurl, $ancre='')
 {
 	global $spip_lang_left, $spip_lang_right;
@@ -390,7 +390,7 @@ function http_calendrier_sept_un($annee, $mois, $jour,$evenements, $script, $fin
 }
 
 /// typo pour l'espace public
-// http://doc.spip.org/@http_calendrier_mois_clics
+// http://code.spip.net/@http_calendrier_mois_clics
 function http_calendrier_mois_clics($annee, $mois, $jour, $script, $finurl, $ancre)
 {
 	$d = mktime(0,0,0,$mois, $jour, $annee);
@@ -412,7 +412,7 @@ function http_calendrier_mois_clics($annee, $mois, $jour, $script, $finurl, $anc
 
 /// dispose les evenements d'une semaine
 
-// http://doc.spip.org/@http_calendrier_semaine
+// http://code.spip.net/@http_calendrier_semaine
 function http_calendrier_semaine($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt)
 {
 	global $spip_ecran;
@@ -450,7 +450,7 @@ function http_calendrier_semaine($annee, $mois, $jour, $echelle, $partie_cal, $s
 	  "</div>";
 }
 
-// http://doc.spip.org/@http_calendrier_semaine_navigation
+// http://code.spip.net/@http_calendrier_semaine_navigation
 function http_calendrier_semaine_navigation($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre){
 
 	$fin = mktime (1,1,1,$mois, $jour+6, $annee);
@@ -483,7 +483,7 @@ function http_calendrier_semaine_navigation($annee, $mois, $jour, $echelle, $par
 			       $ancre);
 }
 
-// http://doc.spip.org/@http_calendrier_semaine_noms
+// http://code.spip.net/@http_calendrier_semaine_noms
 function http_calendrier_semaine_noms($annee, $mois, $jour, $script, $finurl, $ancre){
 
 	$bandeau = '';
@@ -503,7 +503,7 @@ function http_calendrier_semaine_noms($annee, $mois, $jour, $script, $finurl, $a
 	return "\n<tr>$bandeau</tr>";
 }
 
-// http://doc.spip.org/@http_calendrier_semaine_sept
+// http://code.spip.net/@http_calendrier_semaine_sept
 function http_calendrier_semaine_sept($annee, $mois, $jour, $echelle, $partie_cal, $evt)
 {
 	global $spip_ecran, $spip_lang_left;
@@ -527,7 +527,7 @@ function http_calendrier_semaine_sept($annee, $mois, $jour, $echelle, $partie_ca
 }
 
 
-// http://doc.spip.org/@http_calendrier_jour
+// http://code.spip.net/@http_calendrier_jour
 function http_calendrier_jour($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt){
 	global $spip_ecran;
 	if (!isset($spip_ecran)) $spip_ecran = isset($_COOKIE['spip_ecran']) ? $_COOKIE['spip_ecran'] : "large";
@@ -552,7 +552,7 @@ function http_calendrier_jour($annee, $mois, $jour, $echelle, $partie_cal, $scri
 	  "</div>";
 }
 
-// http://doc.spip.org/@http_calendrier_jour_noms
+// http://code.spip.net/@http_calendrier_jour_noms
 function http_calendrier_jour_noms($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre){
 
 	global $spip_ecran;
@@ -575,7 +575,7 @@ function http_calendrier_jour_noms($annee, $mois, $jour, $echelle, $partie_cal, 
 	  "</th></tr>";
 }
 
-// http://doc.spip.org/@http_calendrier_jour_sept
+// http://code.spip.net/@http_calendrier_jour_sept
 function http_calendrier_jour_sept($annee, $mois, $jour, $echelle,  $partie_cal, $script, $ancre, $evt){
 	global $spip_ecran;
 
@@ -612,7 +612,7 @@ function http_calendrier_jour_sept($annee, $mois, $jour, $echelle,  $partie_cal,
 /// $partie_cal donne l'intervalle des heures affichee
 /// a travers la globale calendrier_partie ou sous la forme D_F
 
-// http://doc.spip.org/@http_calendrier_ics
+// http://code.spip.net/@http_calendrier_ics
 function http_calendrier_ics($annee, $mois, $jour, $echelle, $partie_cal, $largeur, $evt, $style='', $class='') {
 	global $spip_lang_left;
 
@@ -751,7 +751,7 @@ function http_calendrier_ics_div($evts, $date, $debut, $fin, $dimheure, $dimjour
 /// Affiche une grille horaire 
 /// Selon l'echelle demandee, on affiche heure, 1/2 heure 1/4 heure, 5minutes.
 
-// http://doc.spip.org/@http_calendrier_ics_grille
+// http://code.spip.net/@http_calendrier_ics_grille
 function http_calendrier_ics_grille($debut, $fin, $dimheure, $dimjour, $echelle)
 {
 	global $spip_lang_left, $spip_lang_right;
@@ -786,7 +786,7 @@ function http_calendrier_ics_grille($debut, $fin, $dimheure, $dimjour, $echelle)
 /// si la largeur le permet, les evenements sans duree, 
 /// se placent a cote des autres, sinon en dessous
 
-// http://doc.spip.org/@http_calendrier_ics_trois
+// http://code.spip.net/@http_calendrier_ics_trois
 function http_calendrier_ics_trois($evt, $largeur, $dimjour, $echelle, $border)
 {
 	global $spip_lang_left; 
@@ -816,7 +816,7 @@ function http_calendrier_ics_trois($evt, $largeur, $dimjour, $echelle, $border)
 	return "\n<div style='position: relative; z-index: 2; top: ${pos}px; margin-$spip_lang_left: " . $largeur . "px'>$res</div>";
 }
 
-// http://doc.spip.org/@http_calendrier_ics_titre
+// http://code.spip.net/@http_calendrier_ics_titre
 function http_calendrier_ics_titre($annee, $mois, $jour,$script, $finurl='', $ancre='')
 {
 	$date = mktime(0,0,0,$mois, $jour, $annee);
@@ -830,7 +830,7 @@ function http_calendrier_ics_titre($annee, $mois, $jour,$script, $finurl='', $an
 }
 
 
-// http://doc.spip.org/@http_calendrier_sans_date
+// http://code.spip.net/@http_calendrier_sans_date
 function http_calendrier_sans_date($annee, $mois, $evenements)
 {
   $r = $evenements[0+($annee . $mois . "00")];
@@ -843,7 +843,7 @@ function http_calendrier_sans_date($annee, $mois, $evenements)
 }
 
 
-// http://doc.spip.org/@http_calendrier_sans_heure
+// http://code.spip.net/@http_calendrier_sans_heure
 function http_calendrier_sans_heure($ev)
 {
 	$desc = PtoBR(propre($ev['DESCRIPTION']));
@@ -857,7 +857,7 @@ function http_calendrier_sans_heure($ev)
 	  "<span class='" . $ev['CATEGORIES'] . "'>&nbsp;</span>&nbsp;$sum</div>"; 
 }
 
-// http://doc.spip.org/@http_calendrier_avec_heure
+// http://code.spip.net/@http_calendrier_avec_heure
 function http_calendrier_avec_heure($evenement, $amj)
 {
 	$jour_debut = substr($evenement['DTSTART'], 0,8);
@@ -1006,7 +1006,7 @@ function http_calendrier_trimestre($annee, $mois, $jour, $echelle, $partie_cal, 
 /// 1 icone pour amener sur aujourd'hui au clic, et donner un triple agenda au survol
 /// et le $nom du calendrier
 
-// http://doc.spip.org/@http_calendrier_navigation
+// http://code.spip.net/@http_calendrier_navigation
 function http_calendrier_navigation($annee, $mois, $jour, $echelle, $partie_cal, $nom, $script, $args_pred, $args_suiv, $type, $ancre)
 {
 	global $spip_lang_right, $spip_lang_left;
@@ -1139,7 +1139,7 @@ function calendrier_navigation_type($annee, $mois, $jour, $finurl, $script, $typ
 
 /// agenda mensuel 
 
-// http://doc.spip.org/@http_calendrier_agenda
+// http://code.spip.net/@http_calendrier_agenda
 function http_calendrier_agenda ($annee, $mois, $jour_ved, $mois_ved, $annee_ved, $semaine = false,  $script='', $ancre='', $evt='') {
 
   if (!$script) $script =  $GLOBALS['PHP_SELF'] ;
@@ -1162,7 +1162,7 @@ function http_calendrier_agenda ($annee, $mois, $jour_ved, $mois_ved, $annee_ved
 
 /// typographie un mois sous forme d'un tableau de 7 colonnes
 
-// http://doc.spip.org/@http_calendrier_agenda_rv
+// http://code.spip.net/@http_calendrier_agenda_rv
 function http_calendrier_agenda_rv ($annee, $mois, $les_rv, $fclic,
 				    $script='', $ancre='',
 				    $jour_ved='', $mois_ved='', $annee_ved='',
@@ -1238,7 +1238,7 @@ function http_calendrier_agenda_rv ($annee, $mois, $les_rv, $fclic,
 
 /// Fonctions pour la messagerie, la page d'accueil et les gadgets
 
-// http://doc.spip.org/@http_calendrier_messages
+// http://code.spip.net/@http_calendrier_messages
 function http_calendrier_messages($annee='', $mois='', $jour='', $heures='', $partie_cal='', $echelle='')
 {
 	$evtm = quete_calendrier_agenda($annee, $mois);
@@ -1260,7 +1260,7 @@ function http_calendrier_messages($annee='', $mois='', $jour='', $heures='', $pa
 	return array($evtm, $evtt, $evtr);
 }
 
-// http://doc.spip.org/@http_calendrier_rv
+// http://code.spip.net/@http_calendrier_rv
 function http_calendrier_rv($messages, $type) {
 
 	$total = $date_rv = '';
@@ -1323,7 +1323,7 @@ function http_calendrier_rv($messages, $type) {
 	  fin_cadre_enfonce(true);
 }
 
-// http://doc.spip.org/@calendrier_categories
+// http://code.spip.net/@calendrier_categories
 function calendrier_categories($table, $num, $objet)
 {
   if (function_exists('generer_calendrier_class'))
@@ -1336,7 +1336,7 @@ function calendrier_categories($table, $num, $objet)
   }
 }
 
-// http://doc.spip.org/@http_calendrier_ics_message
+// http://code.spip.net/@http_calendrier_ics_message
 function http_calendrier_ics_message($annee, $mois, $jour, $large)
 {	
 
@@ -1367,7 +1367,7 @@ function http_calendrier_ics_message($annee, $mois, $jour, $large)
 		'calendrier-arial10 annonce')));
 }
 
-// http://doc.spip.org/@http_calendrier_aide_mess
+// http://code.spip.net/@http_calendrier_aide_mess
 function http_calendrier_aide_mess()
 {
   global $spip_lang_left;
@@ -1386,7 +1386,7 @@ function http_calendrier_aide_mess()
 //------- fonctions d'appel MySQL. 
 // au dela cette limite, pas de production HTML
 
-// http://doc.spip.org/@quete_calendrier_mois
+// http://code.spip.net/@quete_calendrier_mois
 function quete_calendrier_mois($annee,$mois,$jour) {
 	$avant = "'" . date("Y-m-d", mktime(0,0,0,$mois,1,$annee)) . "'";
 	$apres = "'" . date("Y-m-d", mktime(0,0,0,$mois+1,1,$annee)) .
@@ -1394,7 +1394,7 @@ function quete_calendrier_mois($annee,$mois,$jour) {
 	return array($avant, $apres);
 }
 
-// http://doc.spip.org/@quete_calendrier_semaine
+// http://code.spip.net/@quete_calendrier_semaine
 function quete_calendrier_semaine($annee,$mois,$jour) {
 	$w_day = date("w", mktime(0,0,0,$mois, $jour, $annee));
 	if ($w_day == 0) $w_day = 7; // Gaffe: le dimanche est zero
@@ -1407,7 +1407,7 @@ function quete_calendrier_semaine($annee,$mois,$jour) {
 
 /// ici on prend en fait le jour, la veille et le lendemain
 
-// http://doc.spip.org/@quete_calendrier_jour
+// http://code.spip.net/@quete_calendrier_jour
 function quete_calendrier_jour($annee,$mois,$jour) {
 	$avant = "'" . date("Y-m-d", mktime(0,0,0,$mois,$jour-1,$annee)) . "'";
 	$apres = "'" . date("Y-m-d", mktime(1,1,1,$mois,$jour+1,$annee)) .
@@ -1419,7 +1419,7 @@ function quete_calendrier_jour($annee,$mois,$jour) {
 /// - le premier indique les evenements du jour, sans indication de duree
 /// - le deuxime indique les evenements commencant ce jour, avec indication de duree
 
-// http://doc.spip.org/@quete_calendrier_interval
+// http://code.spip.net/@quete_calendrier_interval
 function quete_calendrier_interval($limites) {
 	include_spip('inc/urls');
 	list($avant, $apres) = $limites;
@@ -1430,7 +1430,7 @@ function quete_calendrier_interval($limites) {
 	return array($evt, quete_calendrier_interval_rv($avant, $apres));
 }
 
-// http://doc.spip.org/@quete_calendrier_interval_forums
+// http://code.spip.net/@quete_calendrier_interval_forums
 function  quete_calendrier_interval_forums($limites, &$evenements) {
 	list($avant, $apres) = $limites;
 	$result=sql_select("DISTINCT titre, date_heure, id_forum",	"spip_forum", "date_heure >= $avant AND date_heure < $apres", '',  "date_heure");
@@ -1454,7 +1454,7 @@ function  quete_calendrier_interval_forums($limites, &$evenements) {
 /// pour faciliter la navigation, ce qu'on obtient utilisant 
 /// le 4e argument des fonctions generer_url_ecrire_$table 
 
-// http://doc.spip.org/@quete_calendrier_interval_articles
+// http://code.spip.net/@quete_calendrier_interval_articles
 function quete_calendrier_interval_articles($avant, $apres, &$evenements) {
 	
   $result=sql_select('id_article, titre, date, descriptif, chapo,  lang', 'spip_articles', "statut='publie' AND date >= $avant AND date < $apres", '', "date");
@@ -1476,7 +1476,7 @@ function quete_calendrier_interval_articles($avant, $apres, &$evenements) {
 	}
 }
 
-// http://doc.spip.org/@quete_calendrier_interval_rubriques
+// http://code.spip.net/@quete_calendrier_interval_rubriques
 function quete_calendrier_interval_rubriques($avant, $apres, &$evenements) {
 	
   $result=sql_select('DISTINCT R.id_rubrique, titre, descriptif, date', 'spip_rubriques AS R, spip_documents_liens AS L', "statut='publie' AND	date >= $avant AND	date < $apres AND	R.id_rubrique = L.id_objet AND L.objet='rubrique'",'', "date");
@@ -1493,7 +1493,7 @@ function quete_calendrier_interval_rubriques($avant, $apres, &$evenements) {
 	}
 }
 
-// http://doc.spip.org/@quete_calendrier_interval_breves
+// http://code.spip.net/@quete_calendrier_interval_breves
 function quete_calendrier_interval_breves($avant, $apres, &$evenements) {
   $result=sql_select("id_breve, titre, date_heure, id_rubrique", 'spip_breves',	"statut='publie' AND date_heure >= $avant AND date_heure < $apres", '', "date_heure");
 	while($row=sql_fetch($result)){
@@ -1509,7 +1509,7 @@ function quete_calendrier_interval_breves($avant, $apres, &$evenements) {
 	}
 }
 
-// http://doc.spip.org/@quete_calendrier_interval_rv
+// http://code.spip.net/@quete_calendrier_interval_rv
 function quete_calendrier_interval_rv($avant, $apres) {
 	global $connect_id_auteur;
 	$evenements= $auteurs = array();
@@ -1573,7 +1573,7 @@ function quete_calendrier_interval_rv($avant, $apres) {
 
 /// fonction SQL, pour la messagerie
 
-// http://doc.spip.org/@tache_redirige
+// http://code.spip.net/@tache_redirige
 function tache_redirige ($row) {
 
 	$m = $row['description'];
@@ -1583,7 +1583,7 @@ function tache_redirige ($row) {
 	return generer_url_ecrire("message", "id_message=".$row['uid']);
 }
 
-// http://doc.spip.org/@quete_calendrier_taches_annonces
+// http://code.spip.net/@quete_calendrier_taches_annonces
 function quete_calendrier_taches_annonces () {
 	global $connect_id_auteur;
 
@@ -1595,7 +1595,7 @@ function quete_calendrier_taches_annonces () {
 	return $r;
 }
 
-// http://doc.spip.org/@quete_calendrier_taches_pb
+// http://code.spip.net/@quete_calendrier_taches_pb
 function quete_calendrier_taches_pb () {
 	global $connect_id_auteur;
 
@@ -1607,7 +1607,7 @@ function quete_calendrier_taches_pb () {
 	return $r;
 }
 
-// http://doc.spip.org/@quete_calendrier_taches_rv
+// http://code.spip.net/@quete_calendrier_taches_rv
 function quete_calendrier_taches_rv () {
 	global $connect_id_auteur;
 
@@ -1618,7 +1618,7 @@ function quete_calendrier_taches_rv () {
 	return  $r;
 }
 
-// http://doc.spip.org/@quete_calendrier_agenda
+// http://code.spip.net/@quete_calendrier_agenda
 function quete_calendrier_agenda ($annee, $mois) {
 	global $connect_id_auteur;
 

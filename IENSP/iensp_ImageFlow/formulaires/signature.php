@@ -134,7 +134,7 @@ function formulaires_signature_traiter_dist($id_article, $petition, $texte, $sit
 // Le controle d'unicite du mail ou du site (si requis) refait ici correspond
 // au cas de mails de demande de confirmation laisses sans reponse
 
-// http://doc.spip.org/@reponse_confirmation_dist
+// http://code.spip.net/@reponse_confirmation_dist
 function formulaires_signature_reponse_confirmation_dist($var_confirm = '') {
 	static $confirm = null;
 
@@ -234,7 +234,7 @@ function formulaires_signature_reponse_confirmation_dist($var_confirm = '') {
 // les controles devraient mantenant etre faits dans formulaires_signature_verifier()
 // 
 
-// http://doc.spip.org/@inc_controler_signature_dist
+// http://code.spip.net/@inc_controler_signature_dist
 function inc_controler_signature_dist($id_article, $nom, $mail, $message, $site, $url_site, $url_page) {
 
 	include_spip('inc/texte');
@@ -270,7 +270,7 @@ function inc_controler_signature_dist($id_article, $nom, $mail, $message, $site,
 	return $ret;
 }
 
-// http://doc.spip.org/@signature_a_confirmer
+// http://code.spip.net/@signature_a_confirmer
 function signature_a_confirmer($id_article, $url_page, $nom, $mail, $site, $url, $msg, $lang, &$statut)
 {
 
@@ -348,7 +348,7 @@ function signature_a_confirmer($id_article, $url_page, $nom, $mail, $site, $url,
 // En cas d'acces concurrents il y aura des requetes de retraits d'elements
 // deja detruits. Bizarre ?  C'est mieux que de bloquer!
 
-// http://doc.spip.org/@signature_entrop
+// http://code.spip.net/@signature_entrop
 function signature_entrop($where)
 {
 	$where .= " AND statut='publie'";
@@ -371,7 +371,7 @@ function signature_entrop($where)
 
 // Creer un mot de passe aleatoire et verifier qu'il est unique
 // dans la table des signatures
-// http://doc.spip.org/@signature_test_pass
+// http://code.spip.net/@signature_test_pass
 function signature_test_pass() {
 	include_spip('inc/acces');
 	do {

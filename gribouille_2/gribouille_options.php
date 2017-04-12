@@ -2,7 +2,7 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 // {recherche} ou {recherche susan}
 // http://www.spip.net/@recherche
-// http://doc.spip.org/@critere_recherche_dist
+// http://code.spip.net/@critere_recherche_dist
 function critere_recherche($idb, &$boucles, $crit) {
 
 	$boucle = &$boucles[$idb];
@@ -34,7 +34,7 @@ function critere_recherche($idb, &$boucles, $crit) {
 	
 // Preparer les listes id_article IN (...) pour les parties WHERE
 // et points =  des requetes du moteur de recherche
-// http://doc.spip.org/@inc_prepare_recherche_dist
+// http://code.spip.net/@inc_prepare_recherche_dist
 function inc_prepare_recherche($recherche, $table='articles', $cond=false, $serveur='',$tout=false) {
 	include_spip('inc/rechercher');
 	static $cache = array();

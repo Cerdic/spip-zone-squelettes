@@ -63,7 +63,7 @@ function Z_pre_propre($flux){
 // fonction standard de calcul de la balise #INTRODUCTION
 // mais retourne toujours dans un <p> comme propre
 //
-// http://doc.spip.org/@filtre_introduction_dist
+// http://code.spip.net/@filtre_introduction_dist
 function filtre_introduction($descriptif, $texte, $longueur, $connect) {
 	// Si un descriptif est envoye, on l'utilise directement
 	if (strlen($descriptif))

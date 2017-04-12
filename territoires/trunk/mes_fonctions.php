@@ -24,7 +24,7 @@ function deparagrapher ($texte)
 // les mots d'un objet
 // http://www.spip.net/fr_article902.html
 // http://www.spip.net/fr_article911.html
-// http://doc.spip.org/@balise_lesmots_dist
+// http://code.spip.net/@balise_lesmots_dist
 function balise_lesmots_dist ($p) {
 	// Cherche le champ 'lesmots' dans la pile
 	$_lesmots = champ_sql('lesmots', $p, false);
