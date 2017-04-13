@@ -23,3 +23,12 @@ if (!isset($GLOBALS['z_blocs'])) {
 
 define('_ZENGARDEN_FILTRE_THEMES','integraal');
 define('_ALBUMS_INSERT_HEAD_CSS',false);
+
+// Déclaration des menus utilisés
+function integraal_squelettes_menus_utiles($menus) {
+	$menus['firstnav'] = 'Menu principal';
+	$menus['access'] = 'Accessibilité';
+	$menus['footer'] = 'Pied de page';
+	
+	return $menus;
+}
