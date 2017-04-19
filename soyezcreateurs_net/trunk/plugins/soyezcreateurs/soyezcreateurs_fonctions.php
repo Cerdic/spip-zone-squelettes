@@ -840,6 +840,10 @@ function sc_rgb($couleurs) {
 function mini_html($texte) {
 	$texte = preg_replace(",\n[\t\ ]*,", "\n", $texte);
 	$texte = preg_replace(",\n+,", "\n", $texte);
+	if (defined('_CLEVER_CACHE_BUSTING') && _CLEVER_CACHE_BUSTING === true) {
+		$texte = preg_replace("/\.(jpg|gif|png|css|js|json|xml)\?([0-9]+)([\'\"])/", ".$2.$1$3", $texte);
+	}
+	
 	return $texte;
 }
 
