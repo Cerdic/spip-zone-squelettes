@@ -19,5 +19,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_rubrique_exclue_menu' => 'Les rubriques sélectionnées seront exclue des menu du site',
 	'rubrique_footer' => 'Rubrique du footer',
 	'explication_rubrique_footer' => 'Choisissez la rubrique qui constituera le footer. Les articles de cette rubrique seront automatiquement transformé en menu.',
-	'inscription' => 'Inscription'
+	'inscription' => 'Inscription',
+
+	'footer_js' => 'Insertion dans le footer',
+	'explication_footer_js' => "Cette configuration permet d'insérer de manière arbitraire des éléménts juste
+avant la balise fermante du body."
 );

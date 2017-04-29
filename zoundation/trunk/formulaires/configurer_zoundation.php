@@ -32,7 +32,15 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'label' => _T('zoundation:rubrique_footer'),
 				'explication' => _T('zoundation:explication_rubrique_footer')
 			)
-		)
+		),
+	   array(
+		   'saisie' => 'textarea',
+		   'options' => array(
+			   'nom' => 'footer_js',
+			   'label' => _T('zoundation:footer_js'),
+			   'explication' => _T('zoundation:explication_footer_js')
+		   )
+	   )
 	);
 
 
