@@ -1060,7 +1060,9 @@ ul.alaune li { list-style-image: url([(#CHEMIN{images/star.png}|embarque_fichier
 /* liste d'articles dans page de rubriques */
 dl#listearticlerubrique { clear:left; padding: 0; margin: .5em 0 1.5em; }
 #listearticlerubrique dt { clear:right; padding: 4px 0 2px; padding-right:0; padding-left:.5em; border-left: 4px solid [#(#GET{c_titraille_bk}|couleur_foncerluminosite)]; border-bottom: 1px solid [#(#GET{c_titraille_bk}|couleur_foncerluminosite)]; }
+#listearticlerubrique dt.nogap { border-bottom: none; }
 #listearticlerubrique dt .datepublication { margin-right: 0; -moz-border-radius-topleft: 1em; -webkit-border-top-left-radius: 1em; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0; }
+#listearticlerubrique dt.haslogo img.logo { padding: 0; }
 #listearticlerubrique dd { padding: 2px .5em 4px 1em; padding-right:.5em; padding-left:1em; margin-left: 2em; margin-bottom: 1.5em; border-left: 2px solid [#(#GET{c_titraille_bk}|couleur_foncerluminosite)]; }
 
 /*************** ARTICLE - CONTENT */
@@ -1712,6 +1714,14 @@ div [lang], span [lang] { font-style: italic; }
   }
 }
 
+[(#PLUGIN{lesscss}|oui)
+[(#CHEMIN{images/stylessoyezcreateurs_perso.less.html}|?{'/* Surcharge eventuelle */'})
+[(#INCLURE{[(#PRODUIRE{fond=images/stylessoyezcreateurs_perso.less,format=less}|less_css)]});
+#SET{lessdone,1}]
+]
+]
+[(#GET{lessdone}|non)
 [(#CHEMIN{images/stylessoyezcreateurs_perso.css}|?{'/* Surcharge eventuelle */'})
 [(#INCLURE{#CHEMIN{images/stylessoyezcreateurs_perso.css}|url_absolue_css}|compacte{css})]
+]
 ]
