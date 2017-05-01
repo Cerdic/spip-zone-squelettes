@@ -1,9 +1,20 @@
 <?php
-// fichier de langue japonais pour le squelette Escal par ecole-fl.com version 1
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue japonais pour le squelette Escal - Traduit par ecole-fl.com version 1
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'ダイレクトジャンプ',
@@ -99,6 +110,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'あなたの登録を有効にする為にサイトのウェブマスターからただいま確認のメールが送信されました。 ',
 'format' => 'フォーマット :',
 'forum' => 'フォーラム',
+'forum_trouve' => 'フォーラムの投稿が見つかりました。',
+'forums_trouves' => 'フォーラムの投稿が見つかりました。',
+'recherche_forum_non' => '検索条件に一致する投稿がありません',
 //G
 'gros_jour' => '最も重要な1日',
 // H

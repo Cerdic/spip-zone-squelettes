@@ -1,7 +1,7 @@
 <!-- Noisettes  et layout -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configlayout.gif}|balise_img{'',cadre-icone})]Layout</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configlayout.gif}|balise_img{'',cadre-icone})]<:escal:layout:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -14,17 +14,14 @@
 <!-- Choisir le layout ----------------------------------------------------------->
 <!-------------------------------------------------------------------------------->
             <div class="explication">
-            <a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Voir la documentation">Choisir le layout</a>
-            <br />
-            Attention à vos choix pour les largeurs : notez bien, par exemple, qu'un texte avec des lignes trop longues devient très difficile à lire
+            <:escal:layout_explication:>
             </div>
 
     <ul>
             #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <div class="explication">
-                    <strong>Layout fixe</strong> (PMP, MPP, PPM, MP et PM)<br />
-                    (largeurs par défaut : layout de 950px et colonnes de 200px)<br />
+                    <:escal:layout_fixe:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
@@ -42,7 +39,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
                             [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
                     <br /><br />
-                    <strong>Layout fluide</strong> : s'adaptant à la largeur de l'écran <br />
+                    <:escal:layout_fluide:><br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_PMPfluide" value="PMPfluide"
                             [(#ENV{#GET{name}}|=={PMPfluide}|oui)checked="checked"] /><label  for="#GET{name}_PMPfluide"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
 
@@ -58,7 +55,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_PMfluide" value="PMfluide"
                             [(#ENV{#GET{name}}|=={PMfluide}|oui)checked="checked"] /><label for="#GET{name}_PMfluide"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
                     <br /><br />
-                    <strong>Layout mixte</strong> : partie centrale fluide et colonnes latérales fixes <br />
+                   <:escal:layout_mixte:><br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_PMPmixte" value="PMPmixte"
                             [(#ENV{#GET{name}}|=={PMPmixte}|oui)checked="checked"] /><label  for="#GET{name}_PMPmixte"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
 
@@ -68,24 +65,24 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_PPMmixte" value="PPMmixte"
                             [(#ENV{#GET{name}}|=={PPMmixte}|oui)checked="checked"] /><label  for="#GET{name}_PPMmixte"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
                       <hr />
-                      Si <strong>layout fixe</strong> <br />
+                      <:escal:layout_fixe_si:><br />
                       #SET{name,largeurlayoutbase}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                      
-                      Largeur du layout
+                      <:escal:layout_fixe_largeur:>
                             [<span class='erreur_message'>(#GET{erreurs})</span>
                             ]<span class="choix">
                                      <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},950})]"  />px
                             </span>
                       <br />                       
                       #SET{name,colonnelayoutbase}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                      Largeur des colonnes latérales fixes
+                      <:escal:layout_largeur_colonnes:>
                             [<span class='erreur_message'>(#GET{erreurs})</span>
                             ]<span class="choix">
                                      <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},200})]"  />px
                             </span>
                       <br /><br />
-                      Si <strong>layout mixte</strong> <br />                            
+                      <:escal:layout_mixte_si:> <br />                          
                       #SET{name,colonnelayoutmixte}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                      Largeur des colonnes latérales fixes
+                      <:escal:layout_largeur_colonnes:>
                             [<span class='erreur_message'>(#GET{erreurs})</span>
                             ]<span class="choix">
                                      <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},200})]"  />px

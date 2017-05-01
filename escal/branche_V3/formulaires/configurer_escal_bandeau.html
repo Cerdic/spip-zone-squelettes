@@ -1,7 +1,7 @@
 <!-- Elements -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configbandeau.png}|balise_img{'',cadre-icone})]Bandeau</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configbandeau.png}|balise_img{'',cadre-icone})]<:escal:bandeau:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -12,60 +12,56 @@
 <!------------------------------>
 <!-- Gérer l'image du bandeau -->
 <!------------------------------>
-<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article25&lang=fr" title="Voir la documentation"><strong>Documentation</strong></a>
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article25&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a>
      <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
 
-                    <label><strong>choix de l'option pour l'image du bandeau</strong></label>
+                    <label><strong><:escal:bandeau_choix_option:></strong></label>
                     <br />
             <div class="explication">
               #SET{name,optionbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              <strong>Option 1</strong> : affichage du logo d'Escal (par défaut)<br />
-              <strong>Option 2</strong> : affichage du logo du site<br />
-              <strong>Option 3</strong> : affichage d'un bandeau personnalisé<br />
-              <strong>Option 4</strong> : aucune image<br />
-              <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_option1" value="option1"
-                            [(#ENV{#GET{name}}|=={option1}|oui)checked="checked"] /><label for="#GET{name}_oui">option 1</label>
+                            [(#ENV{#GET{name}}|=={option1}|oui)checked="checked"] />
+                            <label for="#GET{name}_option1"><:escal:bandeau_choix_item1:></label>
+                            <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_option2" value="option2"
-                            [(#ENV{#GET{name}}|=={option2}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] /><label for="#GET{name}_oui">option 2</label>
+                            [(#ENV{#GET{name}}|=={option2}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] />
+                            <label for="#GET{name}_option2"><:escal:bandeau_choix_item2:></label>
+                            <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_option3" value="option3"
-                            [(#ENV{#GET{name}}|=={option3}|oui)checked="checked"] /><label for="#GET{name}_oui">option 3</label>
+                            [(#ENV{#GET{name}}|=={option3}|oui)checked="checked"] />
+                            <label for="#GET{name}_option3"><:escal:bandeau_choix_item3:></label>
+                            <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_option4" value="option4"
-                            [(#ENV{#GET{name}}|=={option4}|oui)checked="checked"] /><label for="#GET{name}_oui">option 4</label>
+                            [(#ENV{#GET{name}}|=={option4}|oui)checked="checked"] />
+                            <label for="#GET{name}_option4"><:escal:bandeau_choix_item4:></label>
                     </span>
               <br /><br /><br />
-
-              Si votre image de bandeau n'occupe pas toute la largeur, vous pouvez choisir sa position.<br />
-              Attention néanmoins aux "effets de bords" si vous affichez le nom du  site, son slogan ou son descriptif.
-              <br /><br />
+              <:escal:bandeau_choix_explication:>
+              <br />
               #SET{name,alignbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Position de l'image du bandeau <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_left" value="left"
-                            [(#ENV{#GET{name}}|=={left}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui">À gauche</label>
+                            [(#ENV{#GET{name}}|=={left}|oui)checked="checked"][(#ENV{#GET{name}}|non)checked="checked"] /><label><:escal:gauche:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_center" value="center"
-                            [(#ENV{#GET{name}}|=={center}|oui)checked="checked"] /><label for="#GET{name}_non">Au centre</label>
+                            [(#ENV{#GET{name}}|=={center}|oui)checked="checked"] /><label><:escal:centre:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_right" value="right"
-                            [(#ENV{#GET{name}}|=={right}|oui)checked="checked"] /><label for="#GET{name}_non">À droite</label>
+                            [(#ENV{#GET{name}}|=={right}|oui)checked="checked"] /><label><:escal:droite:></label>
                     </span>
               <br /><br /><br />
              </div>
             </li>
 
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-            <label><strong>Pour l'option 3</strong></label>
+            <label><strong><:escal:bandeau_option3:></strong></label>
             <div class="explication">
               #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}} 
-              - votre image doit être placée dans /squelettes/images/bandeau <br />
-              - cette image sera "responsive" si l'écran fait moins de 640px de large <br />
-              - toutes les images .jpg .png et .gif de ce répertoire seront listées. <br />
-              - avec Firefox, vous aurez même un aperçu de votre bandeau en direct !
+              <:escal:bandeau_option3_explication1:>
               <br /><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<div class="choix">
@@ -136,7 +132,7 @@
                     onmouseout="descriptifOption('desc', 'out', 'option0')"
                     onmouseover="descriptifOption('desc', 'over', 'option0')"
                     value="">
-                  Aucune image de remplacement
+                 <:escal:bandeau_option3_aucune:>
                   </option>
 									<BOUCLE_choix_image(DATA){source glob, ../squelettes/images/bandeau/{*.jpg,*.png,*.gif}}>
 										#SET{val,#VALEUR|replace{../squelettes/}}
@@ -150,10 +146,7 @@
                   </select>
                 <br /><br />
                 #SET{name,fondbandeau2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                Et si votre hébergeur ne permet pas de lister les fichiers présents,
-                vous pouvez indiquer ici le chemin de votre fichier image.<br />
-                exemple : images/bandeau/bandeau.jpg<br />
-                si votre fichier bandeau.jpg est dans squelettes/images/bandeau
+                <:escal:bandeau_option3_explication2:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix"  style="width:100%" >
                              <input type="texte"  style="width:98%" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
@@ -161,10 +154,7 @@
 
 
               <br /><br />
-              Un bandeau en fonction du secteur ?<br />
-              Si votre dossier /squelettes/images/bandeau contient une image appelée rubriqueXX.jpg où XX est le numéro d'un secteur,
-              alors ce secteur, ses sous-rubriques et leurs articles afficheront ce bandeau.
-              Les autres afficheront le bandeau défini au-dessus.
+              <:escal:bandeau_option3_explication3:>
 
                     </div>
               <br />
@@ -172,22 +162,22 @@
             </li>
             
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-              <label><strong>choix des textes du bandeau</strong></label>
+              <label><strong><:escal:bandeau_texte:></strong></label>
               <br />
             <div class="explication">
               #SET{name,nomsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Nom du site présent
+             <:escal:bandeau_texte_nom:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite" >
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />
+                    <br /><br />
               #SET{name,nomsitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Taille des caractères en pixels
+              <:escal:bandeau_texte_taille:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
@@ -198,18 +188,18 @@
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
               #SET{name,slogansite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Slogan du site présent
+              <:escal:bandeau_texte_slogan:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite" >
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />
+                    <br /><br />
               #SET{name,slogansitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Taille des caractères en pixels
+              <:escal:bandeau_texte_taille:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},25})]"  />
@@ -220,18 +210,18 @@
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
               #SET{name,descriptifsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Descriptif du site présent
+              <:escal:bandeau_texte_descriptif:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite" >
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br />
+                    <br /><br />
               #SET{name,descriptifsitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-              Taille des caractères en pixels
+              <:escal:bandeau_texte_taille:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},12})]"  />

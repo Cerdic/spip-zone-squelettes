@@ -1,9 +1,20 @@
 <?php
-// fichier de langue espagnol pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue espagnol pour le squelette Escal
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Acceso directo',
@@ -29,8 +40,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_licence' => 'Licencia',
 'article_mise_en_ligne' => 'Artículo puesto en línea el' ,
 'article_modifie' => 'última modificación el' ,
-'article_trouve' => 'artículo encontrado',
-'articles_trouves' => 'artículos encontrados',
+'article_trouve' => 'artículo hallado',
+'articles_trouves' => 'artículos halladdos',
 'article_une' => 'Poner este artículo en primera plana',
 'a_telecharger' => 'Descargar',
 'a_decouvrir' => 'Descubrir',
@@ -100,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Un correo electrónico de confirmación acaba de ser enviado al webmaster del sitio con el fin de validar su inscripción. ',
 'format' => 'Formato :',
 'forum' => 'Foro',
+'forum_trouve' => 'mensaje de foro hallado',
+'forums_trouves' => 'mensajes de foro hallados',
 //G
 'gros_jour' => 'Día más grueso',
 //H
@@ -140,18 +153,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi' => 'Multi-criterios<br />de búsqueda',
 'recherche_multi_resultat' => 'Resultado de la búsqueda:',
 'rechercher' => 'Buscar ...',
-'recherche_articles_non' => 'Ningún artículo encontrado para esta búsqueda',
+'recherche_articles_non' => 'Ningún artículo hallado para esta búsqueda',
+'recherche_forum_non' => 'Ningún mensaje de foro hallado para esta búsqueda',
 'recherche_resultat' => 'Resultado de la búsqueda para ',
-'recherche_rubriques_non' => 'Ningúna rúbrica encontrada para esta búsqueda',
-'recherche_sites_non' => 'Ningún sitio encontrado para esta búsqueda',
+'recherche_rubriques_non' => 'Ningúna rúbrica hallada para esta búsqueda',
+'recherche_sites_non' => 'Ningún sitio hallado para esta búsqueda',
 'repondre_message' => 'Responder este mensaje',
 'rubriques' => 'rúbricas',
 'rubrique_articles' => 'Los artículos de esta rúbrica',
 'rubrique_contenu' => 'Esta rúbrica contiene',
 'rubrique_sites_references' => 'Los sitios referanciados en esta rúbrica',
 'rubrique_sous_rubriques' => 'Las subrúbricas de esta rúbrica',
-'rubrique_trouvee' => 'rúbrica encontrada',
-'rubriques_trouvees' => 'rúbricas encontradas',
+'rubrique_trouvee' => 'rúbrica hallada',
+'rubriques_trouvees' => 'rúbricas halladas',
 // S
 'sites' => 'Sitios',
 'sites_favoris' => 'Sitios favoritos',

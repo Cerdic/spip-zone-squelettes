@@ -1,9 +1,20 @@
 <?php
-// fichier de langue anglais pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue anglais pour le squelette Escal
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Direct access',
@@ -98,6 +109,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'An e-mail of confirmation has just been sent to the webmaster of the site to validate your registration. ',
 'format' => 'File type :',
 'forum' => 'Forum',
+'forum_trouve' => 'online message board found',
+'forums_trouves' => 'online message boards found',
 //G
 'gros_jour' => 'Biggest day',
 //H
@@ -139,6 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Search result:',
 'rechercher' => 'Search ...',
 'recherche_articles_non' => 'No article found for this entry',
+'recherche_forum_non' => 'no online message board found for this entry',
 'recherche_resultat' => 'Result of the search for ',
 'recherche_rubriques_non' => 'No section found for this entry',
 'recherche_sites_non' => 'No site found for this search',

@@ -1,5 +1,4 @@
 <?php
-// fichier de langue pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 

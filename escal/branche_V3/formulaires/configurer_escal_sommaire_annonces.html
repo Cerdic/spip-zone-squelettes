@@ -1,6 +1,6 @@
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configannonce.png}|balise_img{'',cadre-icone})]Les annonces</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configannonce.png}|balise_img{'',cadre-icone})]<:escal:annonces:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -11,17 +11,13 @@
      <ul>     
 
 <!-- inc-annonce -->
-<legend><strong>Le bloc "Annonce"</strong></legend>
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article174&lang=fr" title="Voir la documentation"><strong>Annonce</strong></a></label>
-                    <br />
+             <label><strong><:escal:doc_annonce:></strong></label>
              <div class="explication">
              #SET{name,periodeaffichage}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Choisir les dates d'affichage de l'article :<br />
-                    - date du début d'affichage = date de publication<br />
-                    - date de fin d'affichage = date de rédaction antérieure<br />
+                    <:escal:annonce_explication:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -33,58 +29,55 @@
              </li>
              
 <!-- inc-annonce_defilant -->
-<legend><strong>Le bloc des annonces défilantes</strong></legend>
              <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <label><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article179&lang=fr" title="Voir la documentation"><strong>Annonces défilantes</strong></a></label>
-                    <br />
+             <label><strong><:escal:doc_annonce_defil:></strong></label>
              <div class="explication">
             #SET{name,hauteurannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Hauteur du cadre (en px)
+                    <:escal:annonce_defil_hauteur:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},210})]"  />
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},210})]"  />px
                     </span>
                     <br /><br /><div class="nettoyeur"></div>
             #SET{name,ordreannonces}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Ordre d'affichage
+                    <:escal:affichage_ordre:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
-                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Ordre chronologique</label><br />
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date"><:escal:affichage_ordre_date:></label><br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_dateinverse" value="dateinverse"
-                            [(#ENV{#GET{name}}|=={dateinverse}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date">Ordre antéchronologique</label><br />
+                            [(#ENV{#GET{name}}|=={dateinverse}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date"><:escal:affichage_ordre_dateinv:></label><br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_numtitre" value="numtitre"
-                            [(#ENV{#GET{name}}|=={numtitre}|oui)checked="checked"] /><label for="#GET{name}_date">Par numéro du titre</label><br />
+                            [(#ENV{#GET{name}}|=={numtitre}|oui)checked="checked"] /><label for="#GET{name}_date"><:escal:affichage_ordre_num:></label><br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
-                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard">Au hasard</label>
+                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard"><:escal:affichage_ordre_hasard:></label>
                     </span>
                     <br /><br /><div class="nettoyeur"></div>
              #SET{name,tailletexteannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    On coupe le texte à
+                    <:escal:texte_coupe:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},300})]"  />&nbsp;caractères
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},300})]"  />&nbsp;<:escal:caracteres:>
                     </span>
                     <br /><br /><div class="nettoyeur"></div>                             
             #SET{name,tempoannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Temporisation entre chaque annonce :
+                    <:escal:annonce_defil_tempo:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},8})]"  />&nbsp;secondes
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},8})]"  />&nbsp;<:secondes:>
                     </span>
-                    <br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation
                     <br /><br /><div class="nettoyeur"></div>
              #SET{name,nbreannonces}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre d'annonces à afficher :
+                    <:escal:annonce_defil_nombre:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />&nbsp;annonces
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},10})]"  />
                     </span>
                     <br /><br /><div class="nettoyeur"></div>                     
              #SET{name,affichecompteur}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher le nombre d'annonces
+                    <:escal:annonce_defil_nombre_affiche:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 

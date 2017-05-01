@@ -1,9 +1,20 @@
 <?php
-// fichier de langue néerlandais pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue néerlandais pour le squelette Escal - Traduit par Gustave alias "Alligators du Kamchatka"
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Directe toegang',
@@ -99,6 +110,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Een bevestigings e-mail was verzonden naar de webmaster van de site om uw registratie te valideren. ',
 'format' => 'bestandstype :',
 'forum' => 'Forum',
+'forum_trouve' => 'message de forum trouvé',
+'forums_trouves' => 'messages de forum trouvés',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 //G
 'gros_jour' => 'de drukste dag',
 //H

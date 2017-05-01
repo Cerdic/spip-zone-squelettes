@@ -1,6 +1,6 @@
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configrubrique.png}|balise_img{'',cadre-icone})]La page rubrique</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configrubrique.png}|balise_img{'',cadre-icone})]<:escal:page_rubrique:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -9,31 +9,37 @@
 
 
      <ul>
-<legend><strong>Les annonces</strong></legend>    
+<legend><strong><:escal:annonces:></strong></legend>    
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,annoncerub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">
-                    Afficher le bloc "Annonce"
+                    <:escal:annonce_afficher:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                                               
+                            <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
+                            [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:haut:></label>
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
+                            [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:bas:></label>
                     </span>
                     <br /><br />
                     </div>
             #SET{name,annoncedefilrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">
-                    Afficher le bloc "Annonces défilantes"
+                    <:escal:annonce_defil_afficher:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
-                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
-                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
-
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
-                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                                               
+                            <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
+                            [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:haut:></label>
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
+                            [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:bas:></label>
                     </span>
                     <br /><br />
                     </div>                                 
@@ -41,13 +47,13 @@
     
      
      
-<legend><strong>La rubrique</strong></legend>
+<legend><strong><:escal:rubrique:></strong></legend>
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
              #SET{name,fluxrssrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage du logo RSS avec lien vers la page du flux
+                    <:escal:rubrique_rss:>
                   [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -56,9 +62,9 @@
                     </span>
                     <br /><br />
              #SET{name,fluxrsssousrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage du logo RSS avec lien dans la liste des sous-rubriques
+                    <:escal:rubrique_rss2:>
                   [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -67,9 +73,9 @@
                     </span>
                     <br /><br />
              #SET{name,daterub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage de la date de publication et de modification des articles
+                    <:escal:rubrique_date:>
                   [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -78,9 +84,9 @@
                     </span>
                     <br /><br />
              #SET{name,auteurrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Affichage de l'auteur des articles
+                    <:escal:affichage_auteur_articles:>
                   [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -89,16 +95,16 @@
                     </span>
                     <br /><br />            
             #SET{name,nombreart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Nombre d'articles affichés par page de pagination
+                    <:escal:nombre_articles_pagination:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /><br />
             #SET{name,paginhaut}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher la pagination en haut
+                    <:escal:rubrique_pagin_haut:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -107,9 +113,9 @@
                     </span>
                     <br /><br />
             #SET{name,paginbas}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Afficher la pagination en bas
+                    <:escal:rubrique_pagin_bas:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -123,7 +129,7 @@
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">
-                    Nombre de sites affichés par page de pagination
+                    <:escal:nombre_sites_pagination:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
@@ -134,7 +140,7 @@
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,taillelogorub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">
-                    Taille des logos des rubriques et articles listés
+                    <:escal:rubrique_taille_logo:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]"  /> px

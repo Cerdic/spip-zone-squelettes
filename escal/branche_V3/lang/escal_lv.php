@@ -1,9 +1,20 @@
 <?php
-// fichier de langue letton pour le squelette Escal par Jaseur Boréal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue letton pour le squelette Escal - Traduit par Jaseur Boréal
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct'=> 'Tieša piekluve',
@@ -100,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation'=> 'E-pasts apstiprinajumu nupat nosutets uz webmaster no vietnes, lai apstiprinatu savu re?istraciju.',
 'format'=> 'Faila tips:',
 'forum'=> 'Forums',
+'forum_trouve' => 'atrasta ziņa forumā',
+'forums_trouves' => 'atrastas ziņas forumā',
 //G
 'gros_jour'=> 'Lielakais dienu',
 // H
@@ -141,6 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Meklējuma rezultāti:',
 'rechercher'=> 'Meklešana ...',
 'recherche_articles_non'=> 'Nav rakstu atrasts ar šo ierakstu',
+'recherche_forum_non' => 'Nav atrastas jaunas ziņas forumā',
 'recherche_resultat'=> 'Rezultats meklešanu',
 'recherche_sites_non'=> 'Ne vietne atrodama šaja meklešana',
 'rubrique_trouvée'=> 'rubrika atrasta',

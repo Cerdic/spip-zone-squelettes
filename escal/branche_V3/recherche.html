@@ -66,6 +66,23 @@
                       <:escal:recherche_articles_non:>
                     </div>
                   <//B_compte_articles>
+                  
+			   <B_compte_forums>
+                    <!-- si au moins un forum trouvé, on affiche le nombre trouvé -->
+                    <div class="compte-resultat">
+                      <strong>#TOTAL_BOUCLE</strong>
+                      [(#TOTAL_BOUCLE|>{01}|oui) <:escal:forums_trouves:>]
+                      [(#TOTAL_BOUCLE|>{01}|non) <:escal:forum_trouve:>]
+                      <:escal:dans_site:>
+                    </div>
+                  <BOUCLE_compte_forums(FORUMS){recherche}{doublons forums}>
+                  </BOUCLE_compte_forums>
+                  </B_compte_forums>
+                    <!-- si pas de forum trouvé -->
+                    <div class="compte-resultat">
+                      <:escal:recherche_forum_non:>
+                    </div>
+                  <//B_compte_forums>                  
 
                   <B_compte_rubriques>
                     <!-- si au moins une rubrique trouvée, on affiche le nombre trouvé -->
@@ -125,6 +142,22 @@
                       </div>
                     </div>
                   </BOUCLE_articles>
+             
+			   <B_forums>
+                  <h2><:forums:></h2>
+                  <p style="align:right">#PAGINATION</p>
+                  <BOUCLE_forums(FORUMS){!doublons forums}{pagination 5}>
+                    <!-- on affiche le ou les forums -->
+                    <div class="cadre-articles-rubrique">
+                      <div class="titre-articles-rubrique">
+                        [<a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">(#TITRE)</a>]
+                      </div>
+                      <div class="introduction-articles-rubrique">
+                        [(#TEXTE|supprimer_tags|couper{150})]
+                      </div>
+
+                    </div>
+                  </BOUCLE_forums>                  
 
                   <B_rubriques>
                   <h2><:rubriques:></h2>

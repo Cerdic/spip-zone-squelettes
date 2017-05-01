@@ -1,9 +1,19 @@
 <?php
-// fichier de langue italien pour le squelette Escal
-
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue italien pour le squelette Escal
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Accesso diretto',
@@ -99,6 +109,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Una posta elettronica di conferma ha appena stato mandato al webmaster del sito per convalidare la vostra iscrizione. ',
 'format' => 'Formato :',
 'forum' => 'Forum',
+'forum_trouve' => 'messaggio di foro trovato',
+'forums_trouves' => 'messaggi di foro trovato',
 //G
 'gros_jour' => 'Giorno più importante',
 //H
@@ -140,6 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Risultato della ricerca:',
 'rechercher' => 'Ricercare ...',
 'recherche_articles_non' => 'Nessuno articolo trovato per questa ricerca',
+'recherche_forum_non' => 'Nessuno messaggio di foro trovato per questa ricerca',
 'recherche_resultat' => 'Risultato della ricerca per ',
 'recherche_rubriques_non' => 'Nessuna rubrica trovata per questa ricerca',
 'recherche_sites_non' => 'Nessuno sito trovato per questa ricerca',

@@ -1,7 +1,7 @@
 <!-- Noisettes  et layout -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configmetas.png}|balise_img{'',cadre-icone})]Balises "meta"</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmetas.png}|balise_img{'',cadre-icone})]<:escal:balise_meta:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -9,18 +9,15 @@
     #ACTION_FORMULAIRE{#ENV{action}}
 
             <div class="explication">
-            Configurer les balises meta du site (enfin celles qui ne le sont pas déjà)<br />
-            - Balise "Keyword" :  cette balise n'est quasiment plus utilisée par les moteurs de recherche pour référencer un site <br />
-            - Balise "Author" : utile surtout si vous voulez rappeler aux curieux qui lisent le code source des pages que le site a un auteur <br />
-            Au final, une page de configuration sans grande utilité ...
+            <:escal:balise_meta_explication:>
             </div>
 
      <ul>
 <!-- balise keyword -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,keyword}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <label for="#GET{name}">Balise "Keyword"</label>
-                    <div class="explication">Séparez vos mots-clés par des virgules
+                    <label for="#GET{name}"><:escal:balise_keyword:></label>
+                    <div class="explication"><:escal:balise_keyword_explication:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="width:100%">
                              <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}_oui" value="#ENV{#GET{name}}"  />
@@ -30,8 +27,8 @@
 <!-- balise author -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,author}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <label for="#GET{name}">Balise "Author"</label>
-                    <div class="explication">Vous, sans doute ?<br />
+                    <label for="#GET{name}"><:escal:balise_author:></label>
+                    <div class="explication"><:escal:balise_author_explication:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="width:100%" >
                              <input type="texte"  style="width:98%" name="#GET{name}" id="#GET{name}_oui" value="#ENV{#GET{name}}"  />

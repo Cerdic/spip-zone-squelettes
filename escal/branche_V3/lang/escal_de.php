@@ -1,9 +1,20 @@
 <?php
-// fichier de langue allemand pour le squelette Escal
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue allemand pour le squelette Escal - Traduit par Gustave alias "Alligators du Kamchatka"
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Direktzugriff',
@@ -100,6 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Ein Bestätigungse-mail wurde gerade dem Webmaster geschickt, um Ihre Einschreibung zu bestätigen.',
 'format' => 'Format :',
 'forum' => 'Forum',
+'forum_trouve' => 'forumsmeldung gefunden',
+'forums_trouves' => 'Forumsmeldungen gefunden',
 //G
 'gros_jour' => 'Beladenster Tag',
 //H
@@ -141,6 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Ergebnis der Suche:',
 'rechercher' => 'suchen ...',
 'recherche_articles_non' => 'kein Artikel entspricht dieser Suche',
+'recherche_forum_non' => 'Für diese Nachfrage keine Forumsmeldung gefunden',
 'recherche_resultat' => 'Sucheergebnis um ',
 'recherche_rubriques_non' => 'keine Rubrik entspricht dieser Suche',
 'recherche_sites_non' => 'keine Website entspricht dieser Suche',

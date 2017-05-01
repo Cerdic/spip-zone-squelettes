@@ -1,9 +1,20 @@
 <?php
-// fichier de langue russe pour le squelette Escal par Olga Karpenko
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// fichier de langue ukrainien pour le squelette Escal - Traduit par Olga Karpenko
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Прямий доступ',
@@ -128,6 +139,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Лист-підтвердження був відправлений веб-майстру сайту для підтвердження вашої реєстрації. ',
 'format' => 'Тип файлу:',
 'forum' => 'Форум',
+'forum_trouve' => 'message de forum trouvé',
+'forums_trouves' => 'messages de forum trouvés',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 //G
 'gros_jour' => 'Biggest day',
 //H

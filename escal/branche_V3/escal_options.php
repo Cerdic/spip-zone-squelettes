@@ -1,5 +1,17 @@
 <?php
 
+// Liste des pages de configuration dans l'ordre de presentation
+// Librement inspiré du squellete Sarkaspip
+if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
+'accueil
+|generalites!meta:layout:elements:bandeau:menuh:multilinguisme:pied
+|colonne_principale!sommaire_principal:rubrique_principal:article_principal:contact_principal:forumsite_principal
+|choix_blocs!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
+|parametrage_blocs!deplier_replier:titre_contenu
+|style!fonds:bords:arrondis
+|plugins!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement:shoutbox
+');
+
     // Header prive
     $GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
      
@@ -11,19 +23,6 @@
     
 
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
-
-
-// Liste des pages de configuration dans l'ordre de presentation
-// Librement inspiré du squellete Sarkaspip
-if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
-'accueil
-|G&eacute;n&eacute;ralit&eacute;s!meta:layout:elements:bandeau:menuh:multilinguisme:pied
-|Colonne principale!sommaire_principal:rubrique_principal:article_principal:contact_principal:forumsite_principal
-|Choix des blocs lat&eacute;raux!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
-|Param&eacute;trage des blocs lat&eacute;raux!deplier_replier:titre_contenu
-|Un peu de style!fonds:bords:arrondis
-|Des plugins dans Escal!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:facebook:signalement:shoutbox
-');
 
 // les images de plus de 1050 pixels de largeur ou de hauteur ne seront pas enregistrées
 define('_IMG_MAX_WIDTH', 1050);

@@ -1,9 +1,20 @@
 <?php
-// lingvodosiero por la ŝablono Escal - Philippe Pellicier
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+
+// lingvodosiero por la ŝablono Escal - Traduit par Philippe Pellicier
+
+// *************************************
+// chaines de langue pour l'espace prive
+// *************************************
+
+// à venir
+
+// **************************************
+// chaines de langue pour l'espace public
+// **************************************
 
 // A
 'acces_direct' => 'Rekta aliro',
@@ -93,6 +104,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Retmesaĝo al la retejestro ĵus konfirmis vian aliĝon. ',
 'format' => 'Dosiertipo :',
 'forum' => 'Forumo',
+'forum_trouve' => 'message de forum trouvé',
+'forums_trouves' => 'messages de forum trouvés',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 //H
 'haut_page' => 'paĝsupren',
 // I

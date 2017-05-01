@@ -1,21 +1,20 @@
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configcontact.png}|balise_img{'',cadre-icone})]La page contact</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configcontact.png}|balise_img{'',cadre-icone})]<:escal:page_contact:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
     <div>
     #ACTION_FORMULAIRE{#ENV{action}}
     
-<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article44&lang=fr">Documentation</a><br /><br />    
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article44&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a><br /><br />    
 
-<legend><strong>Colonne principale</strong></legend>
+<legend><strong><:escal:colonne_principale:></strong></legend>
 
             <div class="explication">
-            Pour changer le texte d'un autre élément de la page Contact, utilisez les fichiers de langue.
-            <a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article152&lang=fr">En savoir plus</a>
-            <br />Tous les champs de ce formulaire acceptent le multilinguisme avec la balise &lt;multi&gt; 
-            <br />exemple : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;
+            <:escal:contact_explication1:>
+            <a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article152&lang=fr"><:escal:savoirplus:></a>
+            <br /><:escal:contact_explication2:>
             </div>
 
 
@@ -25,10 +24,7 @@
             #SET{name,contactbienvenue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <div class="explication">
-                    <strong>Texte à afficher en haut de page à la place de</strong><br />
-                    "Pour contacter le référent technique,<br />
-                    veuillez remplir tous les champs de ce formulaire."<br />
-                    (Pour ne rien afficher, entrez juste une espace)
+                    <:escal:contact_texte_accueil:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="width:100%">
                              <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
@@ -40,9 +36,9 @@
 <!-- mail -->
             #SET{name,contactmail}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Case texte pour l'adresse électronique</strong>
+                    <div class="explication"><strong><:escal:contact_expediteur:></strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -56,9 +52,9 @@
 <!-- champ supplementaire 1 -->
             #SET{name,champsup1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Champ supplémentaire 1</strong>
+                    <div class="explication"><strong><:escal:contact_sup1:></strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -67,15 +63,15 @@
                     </span></div>
 
              #SET{name,titrechampsup1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Libellé
+                    <div class="explication"><:escal:contact_libelle:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,champsup1oblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Champ obligatoire
+                    <div class="explication"><:escal:contact_obli:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -89,9 +85,9 @@
 <!-- champ supplementaire 2 -->
             #SET{name,champsup2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Champ supplémentaire 2</strong>
+                    <div class="explication"><strong><:escal:contact_sup2:></strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -100,15 +96,15 @@
                     </span></div>
 
              #SET{name,titrechampsup2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Libellé
+                    <div class="explication"><:escal:contact_libelle:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,champsup2oblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Champ obligatoire
+                    <div class="explication"><:escal:contact_obli:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -122,9 +118,9 @@
 <!-- liste de choix -->
             #SET{name,radio}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Motif du message</strong> : Renseignement - Inscription - Problème technique -Votre avis sur le site - Autre                    
+                    <div class="explication"><:escal:contact_motif_message:>                    
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -134,9 +130,9 @@
                     <br /><br />
                     </div>
             #SET{name,radiooblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Champ obligatoire
+                    <div class="explication"><:escal:contact_obli:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -149,9 +145,9 @@
 <!-- checkbox -->
             #SET{name,checkbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
-                    <div class="explication"><strong>Cases à cocher (type "checkbox")</strong>
+                    <div class="explication"><strong><:escal:contact_cases:></strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -159,10 +155,10 @@
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </div>
             #SET{name,checkboxoblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Champ obligatoire <br />
-                    (si vous cochez oui, pensez à renseigner au moins un libellé de case, sinon cela génère une erreur )
+                    <div class="explication"><:escal:contact_obli:><br />
+                    <:escal:contact_cases_explication:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 
@@ -170,63 +166,61 @@
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </div>
             #SET{name,checkboxliste}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Présentation
+                    <div class="explication"><:escal:contact_presentation:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_ligne" value="ligne"
-                            [(#ENV{#GET{name}}|=={liste}|non)checked="checked"] /><label for="#GET{name}_oui">en ligne</label>
+                            [(#ENV{#GET{name}}|=={liste}|non)checked="checked"] /><label for="#GET{name}_oui"><:escal:contact_ligne:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_liste" value="liste"
-                            [(#ENV{#GET{name}}|=={liste}|oui)checked="checked"] /><label for="#GET{name}_non">en liste</label>
+                            [(#ENV{#GET{name}}|=={liste}|oui)checked="checked"] /><label for="#GET{name}_non"><:escal:contact_liste:></label>
                     </div>
             #SET{name,titrecheckbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication">Libellé général  (pas d'apostrophe ni de guillemets)
+                    <div class="explication"><:escal:contact_libelle_gen:>
                                               <br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
-                    <div class="explication">En laissant un libellé vide, la case correspondante ne s'affiche pas.</div>
+                    <div class="explication"><:escal:contact_libelle_explication:></div>
             #SET{name,checkbox1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication" style="padding-left: 50px">Libellé case 1
+                    <div class="explication" style="padding-left: 50px"><:escal:contact_libelle1:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication" style="padding-left: 50px">Libellé case 2
+                    <div class="explication" style="padding-left: 50px"><:escal:contact_libelle2:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication" style="padding-left: 50px">Libellé case 3
+                    <div class="explication" style="padding-left: 50px"><:escal:contact_libelle3:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication" style="padding-left: 50px">Libellé case 4
+                    <div class="explication" style="padding-left: 50px"><:escal:contact_libelle4:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
             #SET{name,checkbox5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication" style="padding-left: 50px">Libellé case 5
+                    <div class="explication" style="padding-left: 50px"><:escal:contact_libelle5:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:200px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}})]"  />
                     </span></div>
 
              </li>
-             <li>
-                    #SET{name,destinataire}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <div class="explication"">Adresse du destinataire (par défaut, celle du webmaster)<br />
-                                              Pour saisir plusieurs adresses, les séparer par une virgule <br />
-                                              Exemple : tata@yoyo.fr, titi@paris.fr, toto@blague.fr
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,destinataire}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <div class="explication"><:escal:contact_destinataire:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="width:100%">
-                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#EMAIL_WEBMASTER})]"  />
+                    ]<span class="choix" style="width:98%;">
+                             <input type="texte" style="width:98%;" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#EMAIL_WEBMASTER})]"  />
                     </span></div>
              </li>
              
