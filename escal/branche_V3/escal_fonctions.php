@@ -415,7 +415,7 @@ return inc_lien_dist($lien, $texte, $class, $title, $hlang, $rel, $connect);
 }
 }
 // balises issues da la contrib  "Balises de comptage" de Franck
-// https://contrib.spip.net/Balises-de-comptage 
+// http://contrib.spip.net/Balises-de-comptage 
 // =======================================================================================================================================
 // balise #TOTAL_VISITES
 // =======================================================================================================================================
@@ -478,7 +478,7 @@ function balise_MOY_VISITES($p) {
 // fonction pour l'affichage du nombre de visiteurs connectes
 // =======================================================================================================================================
 // issue du plugin "Nombre de visiteurs connectées"
-// https://contrib.spip.net/Nombres-de-visiteurs-connectes
+// http://contrib.spip.net/Nombres-de-visiteurs-connectes
 // corrections par Vincent de la liste Spip
 function escal_visiteurs_connectes_compter(){
          return count(preg_files(_DIR_TMP.'visites/','.'));

@@ -41,7 +41,7 @@ if (test_espace_prive ())
 
 # En cas d'erreur process_ins est absent et texte est un tableau de 2 chaines
 
-// http://code.spip.net/@public_parametrer_dist
+// http://doc.spip.org/@public_parametrer_dist
 function public_parametrer_dist($fond, $contexte='', $cache='', $connect='')  {
 	static $composer,$styliser,$notes=null;
 	$page = tester_redirection($fond, $contexte, $connect);
@@ -197,7 +197,7 @@ function public_parametrer_dist($fond, $contexte='', $cache='', $connect='')  {
  * avec un eventuel raccourci Spip
  * si le raccourci a un titre il sera pris comme corps du 302
  *
- * http://code.spip.net/@tester_redirection
+ * http://doc.spip.org/@tester_redirection
  *
  * @param string $fond
  * @param array $contexte

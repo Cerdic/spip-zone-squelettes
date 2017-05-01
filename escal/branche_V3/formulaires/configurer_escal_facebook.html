@@ -1,7 +1,7 @@
 <!-- Article PDF -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configfacebook.png}|balise_img{'',cadre-icone})]Facebook</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configfacebook.png}|balise_img{'',cadre-icone})]<:escal:facebook_plugin:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -9,20 +9,16 @@
     #ACTION_FORMULAIRE{#ENV{action}}
     
             <div class="explication">
-            Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Modeles-Facebook" title="Documentation">plugin "Modèles Facebook"</a>,
-            le bouton "J'aime" apparaitra dans le pied de page.<br />
-            N'oubliez pas de configurer ce plugin avec l'adresse URL de votre page ou de votre profil Facebook.
-            <br />
-            A noter que si vous activez ce plugin, vous perdrez la validation XHTML
+            <:escal:facebook_explication:>
             </div>
 
             <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
             #SET{name,boutonfacebook}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Aspect du bouton
+                    <:escal:facebook_bouton:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix">
                     <br />
                             <input type="radio" name="#GET{name}" id="#GET{name}_button_count" value="button_count"
                             [(#ENV{#GET{name}}|=={button_count}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_button_count"><img src="#CHEMIN{images/buttoncount.png}" alt="" /></label>
@@ -33,9 +29,9 @@
              <div style="clear: both"></div>
              <br />
             #SET{name,sendfacebook}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Bouton "Partager"
+                    <:escal:facebook_partager:><br />
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix" style="float: right">
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
 

@@ -1,7 +1,7 @@
 <!-- Mentions -->
     <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
 
-    <h3 class="titrem">[(#CHEMIN_IMAGE{configmentions.png}|balise_img{'',cadre-icone})]Mentions légales</h3>
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmentions.png}|balise_img{'',cadre-icone})]<:escal:mentions_plugin:></h3>
     [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
     [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
     <form method="post" action="#ENV{action}">
@@ -9,23 +9,22 @@
     #ACTION_FORMULAIRE{#ENV{action}}
     
             <div class="explication">
-            Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
-            vous pouvez faire apparaitre le lien vers la page dédiée dans le pied de votre page d'accueil.
+            <:escal:mentions_explication:>
             </div>
     
     <ul>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
             #SET{name,mentions}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    Activer le lien vers la page "Mentions légales" ?
+                    <:escal:mentions_activer:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix"  style="float: right">
+                    ]<span class="choix droite">
                             <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
                             [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-             <br /><br />
+             <div class="nettoyeur"></div>          
              </div>
              </li>
     </ul>
