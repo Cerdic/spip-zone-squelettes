@@ -25,7 +25,6 @@
 <!-- *************
 	article en exergue 
 ************** -->
-
   <BOUCLE_dernier_endate(ARTICLES){doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergue}|=={non}|non}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,1}>
     <div id="section-#ID_ARTICLE" class="fragment">
 
@@ -121,7 +120,7 @@
   <B_articles_une>
     <div class="derniers-art-ter">
     <ul class="anchors">
-	<BOUCLE_articles_une (ARTICLES){lang}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}{doublons}>
+	<BOUCLE_articles_une (ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}{doublons}>
     <li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 
@@ -132,7 +131,7 @@
 <!-- affichage date de publication ou de derniere modification -->
       [(#CONFIG{escal/config/dateuneautres}|=={non}|non)
       <span class="rubrique-autres">
-      [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[(#DATE_MODIF|affdate)],[(#DATE|affdate)]})]
+      [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],[<:escal:article_mise_en_ligne:> (#DATE|affdate)]})]
       <br />
       </span> 
       ] 
