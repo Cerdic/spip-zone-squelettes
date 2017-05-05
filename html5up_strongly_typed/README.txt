@@ -13,7 +13,7 @@ Ainsi tous les squelettes du premier niveau contiennent un include vers le fichi
 Seul le fichier du deuxième niveau  partie_droite_sommaire_1.html contient un include pour le fichier flash_infos.html
 
 Dans le répertoire SQUELETTES/IMG se trouve l'image 1959a.png appelé par le squelette 404.html.
-De même dans le répertoire IMAGES se trouve le fichier image QUADRATURE.PNG pouvant remplacer l'appel vers l'url indiqué dans cette ligne de commande 
+Toujours dans le même répertoire, se trouve le fichier image QUADRATURE.PNG pouvant remplacer l'appel vers l'url indiqué dans cette ligne de commande 
 <center><a href="https://www.laquadrature.net/fr" alt="La Quadrature du Net"><img src="http://blog.spyou.org/wordpress-mu/files/2011/05/20110524-lqdn-300x300.png"></a></center>
 située dans les squelettes partie_droite_sommaire_2.html, partie_droite_rubrique_2.html, partie_droite_rubrique.html
 
