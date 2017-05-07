@@ -81,7 +81,7 @@ cd ..
 mkdir lib
 cd lib
 # Pour le plugin Palette 
-wget http://files.spip.org/contribs/farbtastic_1_3_1.zip
+wget https://files.spip.net/contribs/farbtastic_1_3_1.zip
 unzip farbtastic_1_3_1.zip
 rm farbtastic_1_3_1.zip
 # Pour le plugin PhotoSPIP

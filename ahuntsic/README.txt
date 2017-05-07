@@ -22,7 +22,7 @@ AUTOMATIQUE (méthode préférée) :
 2. Dans l'interface privé de SPIP, aller à :
   'Configuration > Gestion des plugins : Ajoutez des plugins'
 3. Cliquer sur ou insérer :
-     http://files.spip.org/spip-zone/paquets.rss.xml.gz
+     https://files.spip.net/spip-zone/paquets.rss.xml.gz
    et 'Valider'
 4. Dans la liste des plugins à installer qui s'affichent, repérer et sélectionner 'ahuntsic'
 5. 'Valider' (la dernière version des squelettes sera téléchargé dans /plugins/auto/)
@@ -35,7 +35,7 @@ Pour une mise à jour automatique des squelettes Ahuntsic, répéter les étapes
 MANUELLE
 1. Comme plugin (alternative acceptable à la méthode précédente)
    - Télécharger :
-		http://files.spip.org/spip-zone/ahuntsic.zip
+		https://files.spip.net/spip-zone/ahuntsic.zip
    - Décompresser l'archive sur votre poste
    - Créer sur votre serveur à la racine de SPIP les dossiers /plugins/auto/
    - Téléversez le dossier 'ahuntsic' dans :
