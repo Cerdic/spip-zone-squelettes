@@ -9,18 +9,8 @@
 
 		<INCLURE{fond=inclure/head}>
 	</head>[
-	(#SET{fond, 
-		[(#LOGO_ARTICLE_RUBRIQUE|?{ 
-			#LOGO_ARTICLE_RUBRIQUE
-			,
-			[(#LOGO_SITE_SPIP|?{
-				#LOGO_SITE_SPIP
-				,
-				''
-			})]
-		})]	
-	 })]
-	<body[ (#GET{fond}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"]>
+	(#SET{fond,[(#LOGO_ARTICLE_RUBRIQUE|?{#LOGO_ARTICLE_RUBRIQUE,[(#LOGO_SITE_SPIP|?{#LOGO_SITE_SPIP,non})]})]})]
+	<body[ (#GET{fond}|!={non}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"]>
 
 		<div id="wrapper">
 

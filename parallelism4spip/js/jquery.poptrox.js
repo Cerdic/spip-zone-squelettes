@@ -30,8 +30,8 @@
 					windowHeightPad:				0,							// Window height pad
 					selector:						'a',						// Anchor tag selector
 					popupSpeed:						300,						// Popup (resize) speed
-					popupWidth:						200,						// Popup width
-					popupHeight:					100,						// Popup height
+					popupWidth:						1024,						// Popup width
+					popupHeight:					768,						// Popup height
 					popupIsFixed:					false,						// If true, popup won't resize to fit images
 					useBodyOverflow:				true,						// If true, the BODY tag is set to overflow: hidden when the popup is visible
 					usePopupEasyClose:				true,						// If true, popup can be closed by clicking on it anywhere
