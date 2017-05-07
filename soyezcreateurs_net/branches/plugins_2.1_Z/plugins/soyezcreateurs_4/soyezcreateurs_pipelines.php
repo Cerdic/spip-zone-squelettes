@@ -10,7 +10,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 **/
 function soyezcreateurs_declarer_tables_interfaces($interface){
 	// Documentation et inspiration :
-	// - http://programmer.spip.org/declarer_tables_interfaces,379
+	// - https://programmer.spip.net/declarer_tables_interfaces,379
 	// - http://permalink.gmane.org/gmane.comp.web.spip.devel/57655
 	// version complexe (ne pas ecraser la definition existante)
 	if (isset($interface['table_des_traitements']['TITRE'][0])) {
