@@ -18,12 +18,12 @@ include_spip('base/abstract_sql');
 // verifier dans la base ni a le devoiler au visiteur
 
 
-// http://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR
+// https://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR
 function balise_FORMULAIRE_ECRIRE_AUTEUR ($p) {
 	return calculer_balise_dynamique($p,'FORMULAIRE_ECRIRE_AUTEUR', array('id_auteur', 'id_article', 'email'));
 }
 
-// http://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR_stat
+// https://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR_stat
 function balise_FORMULAIRE_ECRIRE_AUTEUR_stat($args, $filtres) {
 	include_spip('inc/filtres');
 
@@ -58,7 +58,7 @@ function balise_FORMULAIRE_ECRIRE_AUTEUR_stat($args, $filtres) {
 	return $args;
 }
 
-// http://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR_dyn
+// https://code.spip.net/@balise_FORMULAIRE_ECRIRE_AUTEUR_dyn
 function balise_FORMULAIRE_ECRIRE_AUTEUR_dyn($id_auteur, $id_article, $mail) {
 	include_spip('inc/texte');
 	$puce = definir_puce();
