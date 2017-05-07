@@ -58,7 +58,7 @@ function exec_eva_bonus(){
 
 	echo debut_cadre_trait_couleur('../'._DIR_PLUGIN_EVABONUS.'img_pack/rainette.png', true,'','<div style="text-align:center;">Utilisation des noisettes de m&eacute;t&eacute;o</div>');
 	echo "<form method='post' action='".generer_url_ecrire("eva_bonus")."'>Afin d'utiliser les noisettes de m&eacute;t&eacute;o, il vous faut :
-	<ul><li> installer et activer le plugin <a href='http://plugins.spip.net/rainette'>Rainette</a></li>
+	<ul><li> installer et activer le plugin <a href='https://plugins.spip.net//rainette'>Rainette</a></li>
 	<li> indiquer ici le code commune concern&eacute;.</li></ul>";
 	echo "Pour obtenir le code commune correspondant &agrave; votre commune (la grande ville la plus proche), entrez l'URL suivante dans votre navigateur : http://xoap.weather.com/search/search?where=ma_ville";
 	echo "<br />&nbsp;<br /><center>Code commune : ";
