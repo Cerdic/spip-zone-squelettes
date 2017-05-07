@@ -27,7 +27,7 @@ function melusine_affiche_milieu ($flux) {
 
 		// Pages de l'espace privé où l'on veut que le message s'affiche
 		// TODO affiche_milieu ne semble pas fonctionner avec SVT (admin_plugin)
-		// -> trouver une solution (voir le bug: http://core.spip.org/issues/2694)
+		// -> trouver une solution (voir le bug: https://core.spip.net/issues/2694)
 		$pages_cibles = array("accueil","admin_vider","admin_plugin","configurer_identite","configurer_contenu","configurer_interactions","configurer_avancees");
 
 		if ($fichiers_a_deplacer AND in_array($flux['args']['type-page'],$pages_cibles)) {

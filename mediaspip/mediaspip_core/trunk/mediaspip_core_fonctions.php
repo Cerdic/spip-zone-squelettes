@@ -68,7 +68,7 @@ if (!function_exists('critere_agenda') and $spip_version_branche < "3.1" ){
 		$params = $crit->param;
 
 		if (count($params)>=1) {
-			/* Code copié de http://core.spip.org/projects/spip/repository/revisions/21002 pour la branche spip 3.0 */
+			/* Code copié de https://core.spip.net/projects/spip/repository/revisions/21002 pour la branche spip 3.0 */
 			$boucle = &$boucles[$idb];
 			$parent = $boucle->id_parent;
 			$fields = $boucle->show['field'];

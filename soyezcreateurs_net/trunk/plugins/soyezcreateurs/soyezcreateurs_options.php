@@ -78,7 +78,7 @@ if (!defined('_SIDR_PERSO'))
 	define('_SIDR_PERSO', true); // Pour avoir sa propre insertion des scripts de sidr
 
 if (!defined('_PREVIEW_TOKEN'))
-	define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
+	define('_PREVIEW_TOKEN', true); // https://core.spip.net/projects/spip/repository/revisions/21077 et https://core.spip.net/projects/spip/repository/revisions/21084
 
 /*
 	Le truc pour disposer dans #ENV{marker_icon_name} dans les squelettes.

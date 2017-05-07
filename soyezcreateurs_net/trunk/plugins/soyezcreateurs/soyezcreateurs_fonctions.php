@@ -197,7 +197,7 @@ function sc_trouver_corr_pl ($id_article) {
 	"id_article=$id_article");
 	return $row;
 }
-// Retrouver le fonctionnement d'avant http://core.spip.org/projects/spip/repository/revisions/23315
+// Retrouver le fonctionnement d'avant https://core.spip.net/projects/spip/repository/revisions/23315
 function sc_date_ical($date, $addminutes = 0) {
 	list($heures, $minutes, $secondes) = recup_heure($date);
 	list($annee, $mois, $jour) = recup_date($date);

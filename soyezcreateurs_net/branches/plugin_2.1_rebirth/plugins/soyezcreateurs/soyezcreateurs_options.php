@@ -31,7 +31,7 @@ define("_CLEVERMAIL_DISTANT", true); // Pour que CM calcule l'URL publique du sq
 
 define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de sidr
 
-define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
+define('_PREVIEW_TOKEN', true); // https://core.spip.net/projects/spip/repository/revisions/21077 et https://core.spip.net/projects/spip/repository/revisions/21084
 
 // Pour avoir un affichage compact des Saisies (admin et mails), cf https://zone.spip.org/trac/spip-zone/changeset/99576
 if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
