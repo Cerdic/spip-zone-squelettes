@@ -3,11 +3,11 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $forcer_lang = true;
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
-define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
+define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461 
 
 $GLOBALS['toujours_paragrapher'] = true;
-$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
+$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de https://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 
 // Recalculer le cache si la config du site change
 $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta']['btv2'].$GLOBALS['meta']['soyezcreateurs_couleurs'].$GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte'].$GLOBALS['meta']['nom_site'].$GLOBALS['meta']['slogan_site'].$GLOBALS['meta']['descriptif_site'].$GLOBALS['meta']['email_webmaster']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
@@ -134,7 +134,7 @@ define('_SUIVI_FORUM_THREAD', true);
 // Remplacé par un pipeline sur declarer_tables_interfaces
 
 // Ne pas afficher l'inscription dans le plugin Agenda : ça n'est pas pris en compte
-// cf http://zone.spip.org/trac/spip-zone/changeset/33103
+// cf https://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = 'non';
 
 define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres');

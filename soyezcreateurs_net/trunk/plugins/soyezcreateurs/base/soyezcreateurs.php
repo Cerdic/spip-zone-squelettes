@@ -961,9 +961,9 @@ function soyezcreateurs_config_motsclefs() {
 			if ($nouvelle_installation) {
 				$sites = array();
 				$sites['nom_site'] = "MàJ SoyezCréateurs";
-				$sites['url_site'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
+				$sites['url_site'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
 				$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
-				$sites['url_syndic'] = "http://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
+				$sites['url_syndic'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
 				$sites['statut'] = 'publie';
 				$id_site = create_site($sites, "000. Fourre-tout");
 				$sites = array();

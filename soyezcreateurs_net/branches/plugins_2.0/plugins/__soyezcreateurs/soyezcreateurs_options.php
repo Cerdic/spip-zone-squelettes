@@ -2,11 +2,11 @@
 $forcer_lang = true;
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
-define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
+define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461 
 
 $GLOBALS['toujours_paragrapher'] = true;
-$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
+$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de https://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 
 // Recalculer le cache si la config du site change
 $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta']['btv2'].$GLOBALS['meta']['soyezcreateurs_couleurs'].$GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte'].$GLOBALS['meta']['nom_site'].$GLOBALS['meta']['slogan_site'].$GLOBALS['meta']['descriptif_site'].$GLOBALS['meta']['email_webmaster']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
@@ -124,7 +124,7 @@ define('_SUIVI_FORUM_THREAD', true);
 $table_des_traitements['TITRE'][]= 'typo(trim(supprimer_numero(%s)))';
 
 // Ne pas afficher l'inscription dans le plugin Agenda : ça n'est pas pris en compte
-// cf http://zone.spip.org/trac/spip-zone/changeset/33103
+// cf https://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = 'non';
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########

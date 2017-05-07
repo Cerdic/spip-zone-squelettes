@@ -2,7 +2,7 @@
 
 /// ---------------------------------------
 // Pagination
-// http://zone.spip.org/trac/spip-zone/browser/_contribs_/_filtres_/pagination
+// https://zone.spip.org/trac/spip-zone/browser/_contribs_/_filtres_/pagination
 // ---------------------------------------
 function recuperer_variables_pagination($total, $debut, $pas, $texte) {
 	return array(

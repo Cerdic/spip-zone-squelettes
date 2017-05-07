@@ -14,11 +14,11 @@ if (!defined('_IMG_GD_QUALITE'))
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 #if (!defined('_BONUX_STYLE'))
-#	define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
+#	define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 if (!defined('_LARGEUR_MODE_IMAGE'))
 	define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461
 if (!defined('_TITRER_DOCUMENTS'))
-	define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
+	define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir https://zone.spip.org/trac/spip-zone/changeset/41565
 
 // Pour forcer le mode écran large
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
@@ -31,7 +31,7 @@ if (!test_espace_prive()) {
 	$GLOBALS['meta']['version_html_max'] = 'html4';
 }
 
-// Pour avoir un affichage compact des Saisies (admin et mails), cf http://zone.spip.org/trac/spip-zone/changeset/99576
+// Pour avoir un affichage compact des Saisies (admin et mails), cf https://zone.spip.org/trac/spip-zone/changeset/99576
 if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
 	define('_SAISIES_AFFICHAGE_COMPACT', 'oui');
 
@@ -39,7 +39,7 @@ if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
 $GLOBALS['compresseur_filtres_css'] = array('compresseur_embarquer_images_css');
 
 $GLOBALS['toujours_paragrapher'] = true;
-$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
+$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de https://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 if (!defined('_AUTOBR'))
 	define('_AUTOBR', ''); // cf https://www.spip.net/fr_article5427.html (TextWheel)
 
@@ -113,7 +113,7 @@ if (!defined('_SUIVI_FORUM_THREAD'))
 	define('_SUIVI_FORUM_THREAD', true);
 
 // Gere l'inscription aux evenements
-// cf http://zone.spip.org/trac/spip-zone/changeset/33103
+// cf https://zone.spip.org/trac/spip-zone/changeset/33103
 #include_spip('inc/config');
 #$GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 

@@ -9,12 +9,12 @@ if (!defined('_DIR_LIB_SM'))
 define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP 
 
 define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
-define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
+define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461
-define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir http://zone.spip.org/trac/spip-zone/changeset/41565
+define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir https://zone.spip.org/trac/spip-zone/changeset/41565
 
 $GLOBALS['toujours_paragrapher'] = true;
-$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
+$GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de https://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 define('_AUTOBR', ''); // cf https://www.spip.net/fr_article5427.html (TextWheel)
 
 // Recalculer le cache si la config du site change
@@ -33,7 +33,7 @@ define("_SIDR_PERSO", true); // Pour avoir sa propre insertion des scripts de si
 
 define('_PREVIEW_TOKEN', true); // http://core.spip.org/projects/spip/repository/revisions/21077 et http://core.spip.org/projects/spip/repository/revisions/21084
 
-// Pour avoir un affichage compact des Saisies (admin et mails), cf http://zone.spip.org/trac/spip-zone/changeset/99576
+// Pour avoir un affichage compact des Saisies (admin et mails), cf https://zone.spip.org/trac/spip-zone/changeset/99576
 if (!defined('_SAISIES_AFFICHAGE_COMPACT'))
 	define('_SAISIES_AFFICHAGE_COMPACT', 'oui');
 
@@ -152,7 +152,7 @@ define('_SUIVI_FORUM_THREAD', true);
 // Remplacé par un pipeline sur declarer_tables_interfaces
 
 // Gere l'inscription aux evenements
-// cf http://zone.spip.org/trac/spip-zone/changeset/33103
+// cf https://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
 // http://www.weblog.eliaz.fr/article38.html Pour mettre une version plus récente de jQuery
