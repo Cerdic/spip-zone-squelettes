@@ -147,11 +147,11 @@ _ Ce raccourcis est beaucoup moins nécessaire depuis que vous disposez de [->44
 
 {{{****Liens internes et externes}}}
 
--* lien : <code>[texte du lien->http://www.spip.net/]</code> : lien : [texte du lien->http://www.spip.net/]
+-* lien : <code>[texte du lien->https://www.spip.net/]</code> : lien : [texte du lien->https://www.spip.net/]
 _ À noter qu'il est possible de faire des liens à l'intérieur du site SPIP à l'aide des {{numéros}} des éléments et de leur type (se reporter à l'aide en ligne fournie par SPIP).
--* lien avec bulle d'aide : <code>[texte du lien|Le site officiel de SPIP->http://www.spip.net/]</code> : [texte du lien|Le site officiel de SPIP->http://www.spip.net/]
--* lien avec langue de destination (non visible sur Internet Explorer) : <code>[texte du lien|{fr}->http://www.spip.net/]</code> : [texte du lien|{fr}->http://www.spip.net/]
--* lien avec bulle d'aide et langue de destination : <code>[texte du lien|Le site officiel de SPIP{fr}->http://www.spip.net/]</code> : [texte du lien|Le site officiel de SPIP{fr}->http://www.spip.net/]
+-* lien avec bulle d'aide : <code>[texte du lien|Le site officiel de SPIP->https://www.spip.net/]</code> : [texte du lien|Le site officiel de SPIP->https://www.spip.net/]
+-* lien avec langue de destination (non visible sur Internet Explorer) : <code>[texte du lien|{fr}->https://www.spip.net/]</code> : [texte du lien|{fr}->https://www.spip.net/]
+-* lien avec bulle d'aide et langue de destination : <code>[texte du lien|Le site officiel de SPIP{fr}->https://www.spip.net/]</code> : [texte du lien|Le site officiel de SPIP{fr}->https://www.spip.net/]
 -* ancre et retour à l'ancre : <code>[definition_ancre<-]</code> et <code>[retour à l'ancre->#definition_ancre]</code> : [retour à l'ancre->#definition_ancre]
 -* définition dans Wikipedia : <code>[?GPL]</code> : appelle l'encyclopédie libre Wkipedia pour obtenir la définition du mot[[Si le mot n'existe pas, vous pouvez le créer vous-même!]] : [?GPL]
 _ Avec bulle d'aide : <code>[?GPL|Définition sur Wikipédia]</code> : [?GPL|Définition sur Wikipédia]

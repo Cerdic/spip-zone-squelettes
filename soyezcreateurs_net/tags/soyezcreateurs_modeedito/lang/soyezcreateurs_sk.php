@@ -319,7 +319,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Č. deklarácie CNIL',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Autor: ',
-	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'> Buďte tvoriví</a> prevádzkuje <a href=\'http://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>',
+	'copyright_spip' => 'Šablónu <a href=\'http://www.pyrat.net/\' title=\'Navštíviť stránku autora tejto šablóny\'> Buďte tvoriví</a> prevádzkuje <a href=\'https://www.spip.net/\' title=\'Navštíviť stránku SPIPu, softvéru na riadenie obsahu webových stránok  so slobodnou licenciou GPL\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'Odhlásenie',

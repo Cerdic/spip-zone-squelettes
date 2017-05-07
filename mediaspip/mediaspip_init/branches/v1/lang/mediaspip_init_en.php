@@ -8,7 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
-	'entree_powered_mediaspip' => 'Powered by<a href="http://www.mediaspip.net" > MediaSPIP</a> itself based on<a href="http://www.spip.net"> SPIP</a>',
+	'entree_powered_mediaspip' => 'Powered by<a href="http://www.mediaspip.net" > MediaSPIP</a> itself based on<a href="https://www.spip.net"> SPIP</a>',
 
 	// M
 	'menu_lateral' => 'Navigation menu',

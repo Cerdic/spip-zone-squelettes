@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => 'Copyright CNIL nº',
 	'copyright_icra' => 'Copyright; <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Copyright : ',
-	'copyright_spip' => 'Deze website gebruikt het skelet : <a href=\'http://www.pyrat.net/\' title=\'De website van de producent van dit skelet bezoeken\'>Pyrat.net</a> Voortgestuwd; door <a href=\'http://www.spip.net/\' title=\'De website van SPIP bezoeken, software van beleid van inhoud web in vergunning vrij LPG\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'Deze website gebruikt het skelet : <a href=\'http://www.pyrat.net/\' title=\'De website van de producent van dit skelet bezoeken\'>Pyrat.net</a> Voortgestuwd; door <a href=\'https://www.spip.net/\' title=\'De website van SPIP bezoeken, software van beleid van inhoud web in vergunning vrij LPG\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'uitschakelen',

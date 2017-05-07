@@ -141,7 +141,7 @@ $test_lang_personnalisation=array(
  <p>Si voleu més informació sobre el projecte <a href="http://eva-web.edres74.net">EVA-web</a>, consulteu el lloc <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
  <p><a href="http://eva-web.edres74.net">EVA-web</a> és un programari lliure distribuït sota Llicència Pública General 
  <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License o GPL)</a>
- concebut per funcionar a partir de l\'aplicació <a href="http://www.spip.net/">SPIP</a>.</p>
+ concebut per funcionar a partir de l\'aplicació <a href="https://www.spip.net/">SPIP</a>.</p>
  <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, per qui, per a qui?',
 	'mentions_responsable_edition' => 'Responsable d\'edició: ',

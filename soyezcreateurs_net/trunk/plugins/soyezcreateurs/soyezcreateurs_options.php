@@ -41,7 +41,7 @@ $GLOBALS['compresseur_filtres_css'] = array('compresseur_embarquer_images_css');
 $GLOBALS['toujours_paragrapher'] = true;
 $GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 if (!defined('_AUTOBR'))
-	define('_AUTOBR', ''); // cf http://www.spip.net/fr_article5427.html (TextWheel)
+	define('_AUTOBR', ''); // cf https://www.spip.net/fr_article5427.html (TextWheel)
 
 // Recalculer le cache si la config du site change
 // Ne marche pas sur les CSS et JS calculés avec #PRODUIRE, cf https://core.spip.net/issues/3696
@@ -120,7 +120,7 @@ if (!defined('_SUIVI_FORUM_THREAD'))
 if (!defined('_CS_OUTILS_CACHES'))
 	define('_CS_OUTILS_CACHES', 'dossier_squelettes:type_urls:filtrer_javascript:corbeille:SPIP_tailles:webmestres:spam:maj_auto:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:previsualisation:spip_cache:en_travaux:suivi_forums:forum_lgrmaxi:simpl_interface:boites_privees:icone_visiter:spip_ecran:tri_articles:auteurs:brouteur:set_options:soft_scroller:f_jQuery:desactiver_flash:forcer_langue:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:insert_head:introduction:titre_parent:horloge:liens_en_clair:masquer:orientation:trousse_balises:verstexte:liens_orphelins:pucesli:citations_bb:insertions:typo_exposants:glossaire:guillemets:titres_typo:mailcrypt:smileys:sommaire:blocs:toutmulti:decoration:decoupe:filets_sep:couleurs:cs_comportement:taches_cron:titres_typographies:autobr:ecran_securite:autorisations:meme_rubrique:liens_internes:aff_tout:alerte_urgence:spip_log:balise_set:devdebug:timezone:profiling:test_i18n');
 
-// désactiver l'héritage des logos de rubriques (cf http://www.spip.net/fr_article5691.html)
+// désactiver l'héritage des logos de rubriques (cf https://www.spip.net/fr_article5691.html)
 if (!function_exists('lire_config')) {
 	include_spip('inc/config');
 }

@@ -31,7 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'commentaires' => 'Comentários',
 	'commentaires_fermes' => 'Os comentários para este post estão fechados',
 	'commentaires_pour' => 'Comentários para',
-	'credits' => '<a href=>"http://www.spip.net/en">feita por SPIP</a>,
+	'credits' => '<a href=>"https://www.spip.net/en">feita por SPIP</a>,
 <a href=>"http://contrib.spip.net/Spip-Clear">vestido por Spip.Clear</a>', # MODIF
 
 	// D

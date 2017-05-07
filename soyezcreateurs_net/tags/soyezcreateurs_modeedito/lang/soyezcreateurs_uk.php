@@ -268,7 +268,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_cnil' => ' Декларація CNIL N º',
 	'copyright_icra' => 'Мічені завдяки  <a href="http://www.icra.org/sitelabel"> ICRA </ A>',
 	'copyright_realisation' => 'Реалізація:',
-	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'>SoyezCreateurs</a> на харчування від <a href=\'http://www.spip.net/\' title=\'Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії GPL\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'Скелет <a href=\'http://www.pyrat.net/\' title=\'Відвідати сайт  творця цього скелету\'>SoyezCreateurs</a> на харчування від <a href=\'https://www.spip.net/\' title=\'Відвідати сайт SPIP, програмне забезпечення управління змістом веб- вільної ліцензії GPL\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'Роз’єднання',

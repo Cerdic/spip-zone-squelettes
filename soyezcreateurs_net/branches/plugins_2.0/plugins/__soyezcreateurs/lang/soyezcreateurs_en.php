@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://www.spip.net/trad-lang/
+// extrait automatiquement de https://www.spip.net/trad-lang/
 // ** ne pas modifier le fichier **
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -273,7 +273,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_droits' => 'All rights reserved',
 	'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Made by: ',
-	'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this template\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
+	'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visit the website of the creator of this template\'>Pyrat.net</a> template, powered by <a href=\'https://www.spip.net/\' title=\'Visit the SPIP website, Content Management System in GPL license\'>SPIP</a>',
 
 	// D
 	'date_j_1' => 'S',

@@ -403,7 +403,7 @@ Merci de votre participation
 'info_contenance' => 'Ce site contient&nbsp;:',
 'info_contribution' => 'contributions de forum',
 'info_copyright' => '@spip@ est un logiciel libre distribu&eacute; @lien_gpl@.',
-'info_copyright_doc' => 'Pour plus d\'informations, voir le site <a href=\'http://www.spip.net/fr\'>http://www.spip.net/fr</a>.',
+'info_copyright_doc' => 'Pour plus d\'informations, voir le site <a href=\'https://www.spip.net/fr\'>https://www.spip.net/fr</a>.',
 'info_copyright_gpl' => 'sous licence GPL',
 'info_cours_edition' => 'Vos articles en cours de r&eacute;daction',
 'info_couverture' => 'Couverture',

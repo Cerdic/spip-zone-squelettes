@@ -13,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_config_image_process' => 'Attention : La méthode de fabrication des vignettes n\'a pas été choisie, veuillez  en sélectionner une dans les <a href=".?exec=configurer_avancees">fonctions avancées</a> de la configuration du site !',
 // 	'explication_panel1' => 'Choisir la rubrique dont sera tirer le premier article (par ordre de numéro du titre, sinon par ordre chronologique inversé) pour être afficher dans le premier panneau de la page d\'accueil.',
 	'explication_logobkg' => 'Sinon le logo sera sous le titre.',
-	'explication_couper' => 'En nombre de caractères. <a href="http://www.spip.net/fr_article3965.html">Par défaut 600 caractères</a>.',
+	'explication_couper' => 'En nombre de caractères. <a href="https://www.spip.net/fr_article3965.html">Par défaut 600 caractères</a>.',
 	'explication_nomsrows' => 'Renseignez ici le nom de chaque ligne (séparé par une virgule, sans accents et sans espace, pas de doublon) que vous voulez ajouter sur la page d\'accueil. Vous pouvez en créer autant que nécessaire.
 	Exemple : "presentation,actualites,articles" ou plus simplement : "ligne1,ligne2,ligne3".',
 	'explication_doc' => 'Utilisez le premier document associé à l\'article de format jpg, gif ou png, par ordre chronologique ou par numéro du titre :

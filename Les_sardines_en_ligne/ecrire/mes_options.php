@@ -83,7 +83,7 @@ $code_activation_debug = '';
 // Serveurs externes
 //
 # aide en ligne
-$help_server = 'http://www.spip.net/aide';
+$help_server = 'https://www.spip.net/aide';
 # TeX
 $tex_server = 'http://math.spip.org/tex.php';
 # MathML (pas pour l'instant: manque un bon convertisseur)

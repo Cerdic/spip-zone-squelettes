@@ -145,7 +145,7 @@ Website für unterschiedliche Inhalte (Artikel, Fotoalben, Diaporamen usw.) zu b
 <p>Weitere Informationen finden sie unter dieser Adresse: <a href="http://eva-web.edres74.net">EVA-web</a></p>
 <p><a href="http://eva-web.edres74.net">EVA-web</a> ist ein Programm unter der freien GPL-Lizenz
 <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License bzw. GPL)</a>
-und basiert auf dem Programm  <a href="http://www.spip.net/">SPIP</a>.</p>
+und basiert auf dem Programm  <a href="https://www.spip.net/">SPIP</a>.</p>
 <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, von wem, für wen?',
 	'mentions_responsable_edition' => 'Verantwortlicher Redakteur:',

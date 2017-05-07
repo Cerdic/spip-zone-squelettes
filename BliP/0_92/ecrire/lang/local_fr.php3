@@ -79,7 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'site_developpe' => 'd&eacute;velopp&eacute; avec', 
 'site_adapte' => 'adapt&eacute; du weblog', 
 'site_optimise' => 'et optimis&eacute; pour le navigateur', 
-'spip' => '<a href="http://www.spip.net/fr" title="Acc&eacute;der au site officiel de SPIP, Syst&egrave;me de Publication pour l\'Internet">SPIP</a>',
+'spip' => '<a href="https://www.spip.net/fr" title="Acc&eacute;der au site officiel de SPIP, Syst&egrave;me de Publication pour l\'Internet">SPIP</a>',
 'sous_rubrique' => 'sous rubrique',
 'sous_rubriques' => 'sous rubriques', 
 'sous_categorie' => 'sous cat&eacute;gorie ',

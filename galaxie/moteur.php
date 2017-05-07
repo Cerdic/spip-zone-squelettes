@@ -16,17 +16,17 @@
 
   //nos abonnes
   $sites = array(
-    array("SPIP.NET","http://www.spip.net/opensearch.php?recherche={searchTerms}$critere_lang",10),
+    array("SPIP.NET","https://www.spip.net/opensearch.php?recherche={searchTerms}$critere_lang",10),
     array("FORUM.SPIP.ORG","http://forum.spip.org/opensearch.php?recherche={searchTerms}$critere_lang",10),
     /*array("SPIP-CONTRIB","https://contrib.spip.net/opensearch.php?recherche={searchTerms}",10),*/
-    array("SPIP-CONTRIB","http://www.spip.net/contrib/opensearch.php?recherche={searchTerms}$critere_lang",10)
+    array("SPIP-CONTRIB","https://www.spip.net/contrib/opensearch.php?recherche={searchTerms}$critere_lang",10)
   );
 
   //$_GET["recherche"] = 'boucle';
  
 	// lui passer une page opensearch, recuperee par exemple
 	// comme resultat de
-	// recuperer_page('http://www.spip.net/opensearch.php?recherche=boucle')
+	// recuperer_page('https://www.spip.net/opensearch.php?recherche=boucle')
 	function analyser_opensearch($page) {
 		$resultats = array();
 		if (preg_match_all('@<item[ >].*?</item>@ims', $page, $items, PREG_SET_ORDER)) {

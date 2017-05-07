@@ -33,7 +33,7 @@ This template use <a href="http://www.huddletogether.com/projects/lightbox2">Lig
 
 // Autres personnalisations
 'personnalisations_autres' => 'Other settings',
-'personnalisations_autres_info' => '&agrave; traduire ! Link : <a href="http://www.spip.net/en_rubrique57.html">Guide for the Webmaster and the SPIP hacker</a>',
+'personnalisations_autres_info' => '&agrave; traduire ! Link : <a href="https://www.spip.net/en_rubrique57.html">Guide for the Webmaster and the SPIP hacker</a>',
 
 // Navigation
 'articles' => 'articles',

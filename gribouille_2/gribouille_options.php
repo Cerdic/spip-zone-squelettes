@@ -1,7 +1,7 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
 // {recherche} ou {recherche susan}
-// http://www.spip.net/@recherche
+// https://www.spip.net/@recherche
 // http://code.spip.net/@critere_recherche_dist
 function critere_recherche($idb, &$boucles, $crit) {
 

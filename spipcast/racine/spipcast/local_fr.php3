@@ -9,7 +9,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'accueil' => 'Accueil',
 'apropos' => '&Agrave; propos',
-'avec' => ', avec <a href="http://www.spip.net">spip</a>',
+'avec' => ', avec <a href="https://www.spip.net">spip</a>',
 
 // B
 

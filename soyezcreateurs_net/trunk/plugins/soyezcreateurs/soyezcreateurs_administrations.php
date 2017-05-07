@@ -42,8 +42,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					create_evenement("900. Agenda", "Installation du site", "Installation du site", $date, $date, "Quand le titre de l'événement est identique au titre de l'article, il n'est pas affiché en plus", 'Votre serveur web.');
 					create_evenement("900. Agenda", "Installation du site", "Installé !", $date, $date, "Quand le titre de l'événement est différent du titre de l'article, alors, les 2 titres sont affichés.", '');
 					create_evenement("900. Agenda", "Événement exceptionnel", "Événement exceptionnel", date('Y-m-d 20:30:00'), date('Y-m-d 22:30:00'), "Quand l'heure de début est différente de l'heure de fin, c'est un événement avec une durée...", '');
-					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->http://www.spip.net/fr_article4728.html]", '', 'non');
-					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->http://www.spip.net/fr_article3784.html]", '', 'non');
+					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->https://www.spip.net/fr_article4728.html]", '', 'non');
+					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->https://www.spip.net/fr_article3784.html]", '', 'non');
 					create_evenement("900. Agenda", "Démonstration Agenda", "Démonstration Agenda", '2017-12-13', '2017-12-13', "", '', 'non');
 				}
 			}

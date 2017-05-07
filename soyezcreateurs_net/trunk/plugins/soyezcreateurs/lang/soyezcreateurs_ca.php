@@ -54,7 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexiontitle' => 'Accedir a l’espai reservat',
 	'copyright_cnil' => 'Declaració CNIL nº ',
 	'copyright_realisation' => 'Realització: ',
-	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d’aquest esquelet\'>SigueuCreatiuss</a>  llançat per <a href=\'http://www.spip.net/\' title=\'Visitar el lloc d’SPIP, programari de gestió de continguts web amb llicència GPL\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d’aquest esquelet\'>SigueuCreatiuss</a>  llançat per <a href=\'https://www.spip.net/\' title=\'Visitar el lloc d’SPIP, programari de gestió de continguts web amb llicència GPL\'>SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'desconnexió',

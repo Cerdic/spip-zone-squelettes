@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
-// extrait automatiquement de http://www.spip.net/trad-lang/
+// extrait automatiquement de https://www.spip.net/trad-lang/
 // ** ne pas modifier le fichier **
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -273,7 +273,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_droits' => 'Tots els drets reservats.',
 	'copyright_icra' => 'Etiquetat gr&agrave;cies a <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'Realitzaci&oacute;: ',
-	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d\'aquest esquelet\'>SigueuCreatiuss</a>  llan&ccedil;at per <a href=\'http://www.spip.net/\' title=\'Visitar el lloc d\'SPIP, programari de gesti&oacute; de continguts web amb llic&egrave;ncia GPL\'>SPIP</a>',
+	'copyright_spip' => 'La plantilla <a href=\'http://www.pyrat.net/\' title=\'Visitar el lloc del creador d\'aquest esquelet\'>SigueuCreatiuss</a>  llan&ccedil;at per <a href=\'https://www.spip.net/\' title=\'Visitar el lloc d\'SPIP, programari de gesti&oacute; de continguts web amb llic&egrave;ncia GPL\'>SPIP</a>',
 
 	// D
 	'date_j_1' => 'Dg',

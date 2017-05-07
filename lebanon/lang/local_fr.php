@@ -33,7 +33,7 @@ Par d&eacute;faut, ces squelettes consid&egrave;rent que le &#171;&nbsp;contact&
 
 // Autres personnalisations
 'personnalisations_autres' => 'Autres personnalisations',
-'personnalisations_autres_info' => 'Pour toute autre personnalisation, vous êtes intiv&eacute;-e-s &agrave; modifier ces squelettes pour les adapter &agrave; vos besoins. Pour ce faire, consultez le &#171;&nbsp;<a href="http://www.spip.net/fr_rubrique135.html">Guide du webmestre et du bidouilleur</a>&nbsp;&#187; de la documentation officielle de SPIP.',
+'personnalisations_autres_info' => 'Pour toute autre personnalisation, vous êtes intiv&eacute;-e-s &agrave; modifier ces squelettes pour les adapter &agrave; vos besoins. Pour ce faire, consultez le &#171;&nbsp;<a href="https://www.spip.net/fr_rubrique135.html">Guide du webmestre et du bidouilleur</a>&nbsp;&#187; de la documentation officielle de SPIP.',
 
 // Navigation
 'articles' => 'articles',

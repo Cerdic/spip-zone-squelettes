@@ -148,7 +148,7 @@ corrispondeva a un progetto di portale d’Intranet istituzionalem installato su
    <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
  <p><a href="http://eva-web.edres74.net">EVA-web</a> è un software libero distribuito sotto licenza pubblica generale 
  <a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html">GNU (GNU General Public License o GPL)</a>
- concepito per funzionare grazie all’applicazione <a href="http://www.spip.net/">SPIP</a>.</p>
+ concepito per funzionare grazie all’applicazione <a href="https://www.spip.net/">SPIP</a>.</p>
  <div style="text-align:center;"><a rel="licence" target="_blank" href="http://katolaz.homeunix.net/gplv3/gplv3-it-final.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, di chi, per chi?',
 	'mentions_responsable_edition' => 'Responsabile di pubblicazione:',

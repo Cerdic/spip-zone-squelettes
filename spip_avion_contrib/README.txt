@@ -45,7 +45,7 @@ lors d'une colonie de vacances en Auvergne organisée par Objectif Sciences. <htt
 (actuellement un fichier texte donné par un simulateur) à une base de données, 
  puis de les afficher en temps réel sur un site web. 
   
- Il utilise le système de portail SPIP <http://www.spip.net> et 
+ Il utilise le système de portail SPIP <https://www.spip.net> et 
  la librairie  JavaScript RICO <http://openrico.org> pour l'actualisation 
  de la page en temps réel, tous les deux sous license libre GPL.
   

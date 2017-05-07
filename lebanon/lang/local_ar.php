@@ -35,7 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Autres personnalisations
 'personnalisations_autres' => '&agrave; traduire !',
-'personnalisations_autres_info' => '&agrave; traduire ! <a href="http://www.spip.net/ar_rubrique56.html">(link)</a>',
+'personnalisations_autres_info' => '&agrave; traduire ! <a href="https://www.spip.net/ar_rubrique56.html">(link)</a>',
 
 // Navigation
 'articles' => '&#1575;&#1604;&#1605;&#1602;&#1575;&#1604;&#1575;&#1578;',

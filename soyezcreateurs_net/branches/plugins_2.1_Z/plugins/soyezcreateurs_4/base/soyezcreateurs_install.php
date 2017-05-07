@@ -51,8 +51,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					create_rubrique('20. Linux', $id_rubrique);
 					$article1 = trouve_article_sc("Versions de SPIP ");
 					create_article($article1, "10. SPIP");
-					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->http://www.spip.net/fr_article4728.html]", '', 'non');
-					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->http://www.spip.net/fr_article3784.html]", '', 'non');
+					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->https://www.spip.net/fr_article4728.html]", '', 'non');
+					create_evenement("10. SPIP", "Versions de SPIP ", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->https://www.spip.net/fr_article3784.html]", '', 'non');
 				}
 
 			}

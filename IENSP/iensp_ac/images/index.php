@@ -6,7 +6,7 @@
 </head>
 <body>
 	<center>
-		<h1>Index des icones de <a href='http://www.spip.net'>Spip</a></h1>
+		<h1>Index des icones de <a href='https://www.spip.net'>Spip</a></h1>
 		<table>
 <?php
 	$myDir = opendir('.');

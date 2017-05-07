@@ -272,7 +272,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'copyright_droits' => 'Tous droits r&eacute;serv&eacute;s.',
 	'copyright_icra' => '&Eacute;tiquet&eacute; gr&acirc;ce &agrave; <a href="http://www.icra.org/sitelabel">ICRA</a>',
 	'copyright_realisation' => 'R&eacute;alisation : ',
-	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>SoyezCreateurs</a> propuls&eacute; par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
+	'copyright_spip' => 'Squelette <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>SoyezCreateurs</a> propuls&eacute; par <a href=\'https://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 
 	// D
 	'date_j_1' => 'D',
