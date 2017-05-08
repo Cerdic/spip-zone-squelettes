@@ -38,7 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'commentaires_fermes' => 'Komentáre pre tento lístok sú uzavreté',
 	'commentaires_pour' => 'komentáre na',
 	'contacts' => 'Kontakty',
-	'credits' => '<a href="https://www.spip.net/en">vytvorené v SPIPe,</a>
+	'credits' => '<a href="http://www.spip.net/en">vytvorené v SPIPe,</a>
  <a href="http://contrib.spip.net/SpipClear">využíva Spip.Clear</a>', # MODIF
 
 	// D
