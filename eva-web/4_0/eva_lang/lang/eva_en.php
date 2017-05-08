@@ -148,8 +148,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
  <p><a href="http://eva-web.edres74.net">EVA-web</a> is free software distributed under the 
  <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License or GPL)</a>
- and designed to operate based on the <a href="https://www.spip.net/">SPIP</a> application framework.</p>
- <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+ and designed to operate based on the <a href="http://www.spip.net/">SPIP</a> application framework.</p>
+ <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>', # MODIF
 	'mentions_qui_titre' => 'EVA, for whom, by whom?',
 	'mentions_responsable_edition' => 'Editorial manager:',
 	'mentions_site' => 'Internet Site of: ',
