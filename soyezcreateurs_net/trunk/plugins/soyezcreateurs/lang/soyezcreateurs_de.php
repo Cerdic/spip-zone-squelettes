@@ -49,7 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexiontitle' => 'Zugang zum reservierten Bereich',
 	'copyright_cnil' => 'Erklärung CNIL Nr.',
 	'copyright_realisation' => 'Regie:',
-	'copyright_spip' => 'Skelett <a href \'http://www.pyrat.net/\' title \'Visiter le site du créateur de ce squelette\'> Soyezcreateurs</a> angetrieben von <a href \'https://www.spip.net/\' title \'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'> SPIP</a>',
+	'copyright_spip' => 'Skelett <a href \'http://www.pyrat.net/\' title \'Visiter le site du créateur de ce squelette\'> Soyezcreateurs</a> angetrieben von <a href \'http://www.spip.net/\' title \'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'> SPIP</a>', # MODIF
 
 	// D
 	'deconnexion' => 'Logout',
