@@ -435,6 +435,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'menu_horizontal_titre' => 'Affichage du titre de la rubrique',
 'menu_horizontal_logo' => 'Affichage du logo de la rubrique s\'il existe',
 'menu_horizontal_hauteur' => 'Hauteur des logos de rubrique en pixels	(Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie)',
+'menu_horizontal_secteur' => 'Pour les rubriques de premier niveau (= secteur) :',
 'menu_vertical_depliant' => 'Menu vertical dépliant',
 'menu_vertical_deroulant' => 'Menu vertical déroulant à droite',
 'mini_calendrier' => 'Mini calendrier',
@@ -443,7 +444,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'multilinguisme_ariane' => 'Supprimer aussi le secteur dans les fils d\'Ariane',
 'multilinguisme_code' => 'Codes des langues',
 'multilinguisme_drapeau' => 'Drapeaux',
-'multilinguisme_explication1' => 'Par défaut, Escal affiche les rubriques de 1er niveau (=secteur) dans les menus.<br />
+'multilinguisme_explication1' => 'Par défaut, Escal affiche les rubriques de 1er niveau (= secteur) dans les menus.<br />
             Si on veut avoir la même structure dans plusieurs langues, on va donc dupliquer
             tous les secteurs dans toutes les langues. On se retrouve vite avec un grand nombre de secteurs.<br />
             On peut donc préférer créer un secteur par langue mais dans ce cas, seul le secteur de langue apparait dans le menu.<br />
