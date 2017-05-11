@@ -1,4 +1,4 @@
-<!-- titre de l'onglet  "Mon article" -->
+<!-- titre de l'onglet  "Derniers articles" -->
 
 [(#CONFIG{escal/config/titreongletderniers}|oui)
 #SET{titrederniers,#CONFIG{escal/config/titreongletderniers}|propre|_T_ou_typo|PtoBR}
@@ -6,6 +6,11 @@
 [(#CONFIG{escal/config/titreongletderniers}|non)
 [(#SET{titrederniers,#ENV{xxxx,<:escal:articles_derniers:>}})]
 ]
+
+<!-- titre de l'onglet  "Articles avec mots-clés" -->
+
+#SET{titremotcle,#CONFIG{escal/config/titreongletmotcle}|propre|_T_ou_typo|PtoBR}
+
 
 <!-- titre de l'onglet  "Article d'accueil" -->
 <BOUCLE_titre(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
@@ -86,7 +91,7 @@
     <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={articlesmotcle}|oui)
-    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#CONFIG{escal/config/titreongletmotcle}">#CONFIG{escal/config/titreongletmotcle}</a></li>
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
     ]
     [(#CONFIG{escal/config/onglet1}|=={plansite}|oui)
     <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:plan_site:>"><:escal:plan_site:></a></li>
