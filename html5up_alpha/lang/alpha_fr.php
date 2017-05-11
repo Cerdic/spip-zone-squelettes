@@ -41,6 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vimeo' => 'Vimeo',
 	'label_instagram' => 'Instagram',
 	'label_config_titre_sommaire' => 'Titre',
+    'label_newsletter_home' => 'Afficher le formulaire d\'inscription à la newsletter',
 	'legend1' => "Explications",
 	'legend_home' => "Paramétrages Sommaire ",
 	'legend_footer' => "Paramétrages Pied de page ",
