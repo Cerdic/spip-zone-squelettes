@@ -82,7 +82,7 @@
 					#ANCRE_PAGINATION
 					[<div class="pagination">(#PAGINATION{#ENV{type_pagination,page}})</div>]
 					<ul class="liste-items">
-					<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode=doc2img}{par page}{pagination 5}{tout}>
+					<BOUCLE_documents_joints_doc2img(DOCUMENTS){si #PLUGIN{doc2img}|oui}{si #VAL{copies}|in_array{#CONFIG{mediaspip/squelettes/telecharger_types,#ARRAY}}|oui}{objet=document}{id_objet=#ID_DOCUMENT}{mode=doc2img}{par page}{pagination 5}{tout}>
 						[(#INCLURE{fond=inclure/document-resume,id_document=#ID_DOCUMENT,expose=[(#ID_DOCUMENT|=={#GET{id_document}}|?{'on',''})]})]
 					</BOUCLE_documents_joints_doc2img>[(#GRAND_TOTAL|>{5}|oui)
 					</ul>
