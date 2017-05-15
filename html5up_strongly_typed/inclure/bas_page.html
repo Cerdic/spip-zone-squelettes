@@ -1,15 +1,19 @@
 					<div class="row">
 							<div class="6u 12u(mobile)">
-							<ul class="icons">
+								<header>
+									<h2 class="icon fa-file-text-o"> articles les plus populaires</h2>
+								</header>
 								<section>
-									<h2 class="icon fa-file-text-o"> Articles les plus appréci&eacute;s</h2>
-									<BOUCLE_hitparade(ARTICLES){tout}{par popularite}{inverse}{0,10}>
-									<li class="icon fa-caret-right">
-									<a href="#URL_ARTICLE">  #TITRE</a>
-									</li>
-									</BOUCLE_hitparade>
+									<B_posts>
+											#ANCRE_PAGINATION
+									<BOUCLE_posts(ARTICLES){tout}{par popularite}{inverse}{pagination 5}>
+										<div class="archive_post_block">
+											<h3 class="icon fa-caret-right" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" title="#TITRE" rel="bookmark">#TITRE</a></h3>
+										<p class="#EDIT{intro}">[(#TEXTE|justifier|couper{300, ... <a href="#URL_ARTICLE"> <em>Lire la suite...</em></a>})]</p>
+									</BOUCLE_posts>
+										[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
+									</B_posts>
 								</section>
-							</ul>
 							</div>
 							<div class="6u 12u(mobile)">
 								<section>
