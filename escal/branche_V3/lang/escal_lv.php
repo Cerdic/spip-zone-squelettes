@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Accueil',
+'cfg_page_arrondis' => 'Les arrondis',
+'cfg_page_article' => 'Les articles',
+'cfg_page_article_lateral' => 'Les articles',
+'cfg_page_article_principal' => 'Les articles',
+'cfg_page_articlepdf' => 'Article PDF',
+'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Bandeau',
+'cfg_page_bords' => 'Les bords',
+'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'La page contact',
+'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => '&Eacute;léments',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Les fonds et les textes',
+'cfg_page_forumsite' => 'Le forum du site',
+'cfg_page_forumsite_principal' => 'Le forum du site',
+'cfg_page_forumsite_lateral' => 'Le forum du site',
+'cfg_page_galleria' => 'Galleria',
+'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Mise en page',
+'cfg_page_licence' => 'Licence',
+'cfg_page_mentions' => 'Mentions légales',
+'cfg_page_menuh' => 'Menu horizontal',
+'cfg_page_meta' => 'Balises "meta"',
+'cfg_page_multilinguisme' => 'Multilinguisme',
+'cfg_page_pages_noisettes' => 'Les autres pages',
+'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Pied de page',
+'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette',
+'cfg_page_rubrique' => 'Les rubriques',
+'cfg_page_rubrique_lateral' => 'Les rubriques',
+'cfg_page_rubrique_principal' => 'Les rubriques',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_signalement' => 'Signalement',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Choix des blocs latéraux',
+'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Paramétrage des blocs latéraux',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Les textes',
+'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -49,9 +95,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs'=> 'autori',
 'avec'=> 'platums',
 'avec_le_squelette'=> 'ar veidni',
+
 // B
 'bandeau'=> 'Karogs',
 'bienvenue'=> 'Velams',
+
 // C
 'calendrier'=> 'Kalendars',
 'clic_telechargement'=> 'Uzspied, lai redzetu, vai lejupieladet',
@@ -82,9 +130,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                 <br />kurš Jums atbildesim pec iespejas atrak šaja adrese:',
 'contenu_site'=> 'šivietne satur:',
 'copyright' => 'Visas tiesibas aizsargatas',
+
 // D
 'dans_site'=> 'šaja vietne',
 'derniers_articles_syndiques' => 'Jaunākās ziņas',
+
 // E
 'en_ligne'=> 'šobred tiešsaiste: ',
 'envoi_mail_nom'=> 'Nosaukums: ',
@@ -99,12 +149,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                       izmantojot  [Kontakti|Page kontakts->@url@] no šīs vietnes',
 'espace_redacteurs'=> 'Redaktori plateba',
 'escal'=> 'Escal',
-'Escal : elements'=> 'Escal: krasas',
-'Escal : the colors'=> 'Escal: elementi',
 'et'=> 'un',
 'evenements'=> 'Notikumi, kas nak',
 'evenements_ajouter'=> 'Pievienot notikuma <br /> (Rezervets piekluve)',
 'evenements_non'=> 'Pasakumi nav nakt',
+
 // F
 'fleche'=> 'bultina',
 'fois'=> 'reizes',
@@ -113,19 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum'=> 'Forums',
 'forum_trouve' => 'atrasta ziņa forumā',
 'forums_trouves' => 'atrastas ziņas forumā',
-//G
+
+// G
 'gros_jour'=> 'Lielakais dienu',
+
 // H
 'haut_page'=> 'Lapas augša',
 'hebergeur' => 'Saimnieks:',
+
 // I
 'identification'=> 'Identifikacija',
+
 // J
 'jours'=> 'dienas',
+
 // L
 'le'=> 'uz',
 'lire_article'=> 'Laset rakstu ...',
 'lire_suite'=> 'Laset vairak ...',
+
 // M
 'menu'=> 'Izvelne',
 'mentions'=> 'Juridiska informacija',
@@ -135,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs'=> 'Atslegvardi',
 'mots_clefs_associes'=> 'Saistetie atslegvardi',
 'moyenne_visites'=> 'Videjais',
+
 // P
 'pages'=> 'lapas',
 'page_auteur'=> 'Autors \ s lapas',
@@ -147,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur'=> 'Jums ir pirma!',
 'publie'=> 'Publicets',
 'puce'=> 'apakšteikums',
+
 // R
 'rappel_discussion'=> 'Atgadinajums par diskusiju',
 'recherche'=> 'Meklet',
@@ -156,6 +213,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_articles_non'=> 'Nav rakstu atrasts ar šo ierakstu',
 'recherche_forum_non' => 'Nav atrastas jaunas ziņas forumā',
 'recherche_resultat'=> 'Rezultats meklešanu',
+// 'recherche_rubriques_non' => 'Aucune rubrique trouvée pour cette recherche',
 'recherche_sites_non'=> 'Ne vietne atrodama šaja meklešana',
 'rubrique_trouvée'=> 'rubrika atrasta',
 'rubriques_trouvées'=> 'rubrika atrasts',
@@ -165,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contenu'=> 'šisadala satur',
 'rubrique_sites_references'=> 'Piesaistetas vietam šaja sadala',
 'rubrique_sous_rubriques'=> 'Apakšiedalas šes sadalas',
+
 // S
 'sites'=> 'Vietas',
 'sites_favoris'=> 'Iecienetakas vietnes',
@@ -177,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets'=> 'temas',
 'sur_forum'=> 'Par foruma ir:',
 'sur_web'=> 'Uz temekli',
+
 // T
 'taille_augmenter'=> 'Palielinatu izmeru burtiem',
 'taille_diminuer'=> 'Samazinat lielumu rakstzemem',
@@ -193,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles'=> 'Popularakas raksti',
 'total_visites'=> 'Kopejais apmeklejumu skaits:',
 'traductions_article'=> 'Tulkojumi no šo rakstu:',
+
 // V
 'video' => 'Video',
 'visites_jour'=> 'apmekle dienas',
@@ -200,9 +261,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs'=> 'apmekletaji',
 'votre_nom'=> 'Tavs vards?',
 'vu'=> 'reizi',
+
 // W
 'webmestre'=> 'Webmaster',
-
 
 );
 ?>	 

@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Головна',
+'cfg_page_arrondis' => 'Кути',
+'cfg_page_article' => 'Статті',
+'cfg_page_article_lateral' => 'Статті',
+'cfg_page_article_principal' => 'Статті',
+'cfg_page_articlepdf' => 'Article PDF',
+// 'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Банер',
+'cfg_page_bords' => 'Границі',
+// 'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+// 'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'Сторінка контактів',
+// 'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => 'Елементи',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Фони',
+'cfg_page_forumsite' => 'Форум',
+'cfg_page_forumsite_principal' => 'Форум',
+'cfg_page_forumsite_lateral' => 'Форум',
+'cfg_page_galleria' => 'Галерея',
+// 'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Макет',
+'cfg_page_licence' => 'Ліцензія',
+'cfg_page_mentions' => 'Юридичні умови',
+'cfg_page_menuh' => 'Меню',
+'cfg_page_meta' => '"meta"-теги',
+'cfg_page_multilinguisme' => 'Багатомовність',
+'cfg_page_pages_noisettes' => 'Інші сторінки',
+// 'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Підвал (footer)',
+// 'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette (погода)',
+'cfg_page_rubrique' => 'Рубрики',
+'cfg_page_rubrique_lateral' => 'Рубрики',
+'cfg_page_rubrique_principal' => 'Рубрики',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_signalement' => 'Звіти (Signalement)',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Бічні частини',
+// 'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+// 'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Налаштування блоків',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+// 'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Тексти',
+// 'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -49,46 +95,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'автори',
 'avec' => 'з',
 'avec_le_squelette' => 'з шаблоном',
+
 // B
 'bandeau' => 'Банер',
 'bienvenue' => 'Вітаємо, ',
+
 // C
 'calendrier' => 'Календар',
-'cfg_page_accueil' => 'Головна',
-'cfg_page_arrondis' => 'Кути',
-'cfg_page_article' => 'Статті',
-'cfg_page_articlepdf' => 'Article PDF',
-'cfg_page_bandeau' => 'Банер',
-'cfg_page_bords' => 'Границі',
-'cfg_page_contact' => 'Сторінка контактів',
-'cfg_page_elements' => 'Елементи',
-'cfg_page_facebook' => 'Facebook',
-'cfg_page_fonds' => 'Фони',
-'cfg_page_forumsite' => 'Форум',
-'cfg_page_galleria' => 'Галерея',
-'cfg_page_layout' => 'Макет',
-'cfg_page_licence' => 'Ліцензія',
-'cfg_page_mentions' => 'Юридичні умови',
-'cfg_page_menu' => 'Меню',
-'cfg_page_meta' => '"meta"-теги',
-'cfg_page_multilinguisme' => 'Багатомовність',
-'cfg_page_pages_noisettes' => 'Інші сторінки',
-'cfg_page_pied' => 'Підвал (footer)',
-'cfg_page_rainette' => 'Rainette (погода)',
-'cfg_page_rubrique' => 'Рубрики',
-'cfg_page_signalement' => 'Звіти (Signalement)',
-'cfg_page_socialtags' => 'Social Tags',
-'cfg_page_sommaire_colonnes' => 'Бічні частини',
-'cfg_page_sommaire_corps' => 'Центральна частина',
-'cfg_page_sommaire_noisettes' => 'Налаштування блоків',
-'cfg_page_spip400' => 'Spip 400',
-'cfg_page_spipdf' => 'spiPDF',
-'cfg_page_textes' => 'Тексти',
 'clic_telechargement' => 'Клацніть аби подивитися або завантажити',
 'collegues' => 'Усі колеги',
 'commentaires' => 'коментарі',
 'comments_derniers' => 'Нові коментарі',
-
 'contact' => 'Контакти',
 'contact_bienvenue' => 'Для зв\'язку зі службою технічної підтримки, 
                          <br />будь ласка, заповніть усі поля цієї форми.',
@@ -113,9 +130,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                 <br />і він відповість вам найближчим часом на адресу:',
 'contenu_site' => 'Цей сайт містить: ',
 'copyright' => 'Усі права захищено',
+
 // D
 'dans_site' => 'на цьому сайті',
 'derniers_articles_syndiques' => 'Останні імпортовані статті',
+
 // E
 'en_ligne' => 'Зараз он-лайн:',
 'envoi_mail_nom' => 'Фамілія: ',
@@ -126,13 +145,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'erreur404' => 'Помилка 404',
 'erreur404_message' => 'Сторінка, яку ви шукаєте, або не існує, або переміщена.
                     Якщо ви вважаєте це помилкою, напишіть про це веб-майстру
-                    за допомогою сторінки [Contact|Contact page->@url@] цього сайту.',
+                    за допомогою сторінки [Contact|Contact page->@url@] 
+                    цього сайту.',
 'espace_redacteurs' => 'Для редакторів',
 'escal' => 'Escal',
 'et' => 'і',
 'evenements' => 'Майбутні події',
 'evenements_ajouter' => 'Додати подію<br />(Захищений доступ)',
 'evenements_non' => 'Не очікується подій',
+
 // F
 'fleche' => 'стрілка',
 'fois' => 'разів',
@@ -141,20 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Форум',
 'forum_trouve' => 'message de forum trouvé',
 'forums_trouves' => 'messages de forum trouvés',
-'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
-//G
+
+// G
 'gros_jour' => 'Biggest day',
-//H
+
+// H
 'haut_page' => 'До початку &uArr;',
 'hebergeur' => 'Host:',
+
 // I
 'identification' => 'Ідентифікація',
+
 // J
 'jours' => 'днів',
+
 // L
 'le' => ' ',
 'lire_article' => 'Читати статтю...',
 'lire_suite' => 'Читати далі...',
+
 // M
 'menu' => 'В меню',
 'mentions' => 'Legal notices',
@@ -164,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'Ключі',
 'mots_clefs_associes' => 'Пов\'язані ключі',
 'moyenne_visites' => 'В середньому',
+
 // P
 'pages' => 'сторінок',
 'page_auteur' => 'Сторінки авторів' ,
@@ -176,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => 'Ви - перші!',
 'publie' => 'Опубліковано на ',
 'puce' => 'пункт списку',
+
 // R
 'rappel_discussion' => 'Нагадування про дискусію',
 'recherche' => 'Пошук',
@@ -183,6 +211,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Результати пошуку:',
 'rechercher' => 'Пошук...',
 'recherche_articles_non' => 'Не знайдено статей на цей запит',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 'recherche_resultat' => 'Результати пошуку для ',
 'recherche_rubriques_non' => 'Не знайдено рубрик на цей запит',
 'recherche_sites_non' => 'Не знайдено сайтів на цей запит',
@@ -194,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Підрубрики цієї рубрики',
 'rubrique_trouvee' => ' рубрику знайдено',
 'rubriques_trouvees' => 'рубрик знайдено',
+
 // S
 'sites' => 'Сайти',
 'sites_favoris' => 'Вибрані сайти',
@@ -206,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'теми',
 'sur_forum' => 'На форумі:',
 'sur_web' => 'У web',
+
 // T
 'taille_augmenter' => 'Збільшити розмір символів',
 'taille_diminuer' => 'Зменшити розмір символів',
@@ -222,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'Найбільш популярні статті',
 'total_visites' => 'Загальна кількість відвідувань:',
 'traductions_article' => 'Переклади цієї статті:',
+
 // V
 'video' => 'Відео',
 'visites_jour' => 'відвідувань на день',
@@ -229,6 +261,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'відвідувачі',
 'votre_nom' => 'Ваше ім\'я?',
 'vu' => 'див.',
+
 // W
 'webmestre' => 'Веб-майстер',
 

@@ -135,6 +135,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'articles_premier_message' => 'N\'afficher que le premier message de chaque fil de discussion, les réponses étant dépliables',
 'articles_portfolio' => 'Afficher le portfolio (doublon avec le bloc "A telecharger")',
 'aucun' => 'Aucun',
+
 // B
 'bas' => 'En bas',
 'balise_author' => 'Balise "Author"',
@@ -204,6 +205,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bord_pages_decalage' => 'Décalage de l\'ombre',
 'bord_pages_force' => 'Force du dégradé',
 'bord_pages_nb' => 'NB : Indiquer 1 et 0 pour avoir un trait sans ombre ',
+
 // C
 'cadres' => 'Cadres et images',
 'cadres_lateraux' => 'Cadres latéraux',
@@ -249,6 +251,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_destinataire' => 'Adresse du destinataire (par défaut, celle du webmaster)<br />
                                               Pour saisir plusieurs adresses, les séparer par une virgule <br />
                                               Exemple : tata@yoyo.fr, titi@paris.fr, toto@blague.fr',
+
 // D
 'deplier_replier' => 'Déplier et replier',
 'deplier_replier_explication' => 'En cochant "Oui" la noisette sera repliée et un bouton permettra de la déplier et de la replier à nouveau.',
@@ -318,10 +321,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="Voir la documentation">Vidéos</a>',
 'doc_videos2' => ' : affiche les vidéos au format flv ou mp4 des articles avec le mot-clé "video-une".',
 'droite' => 'A droite',
+
 // E           
 'edito' => 'Édito',
 'elements' => 'Éléments',
 'elements_explication' => 'Choisir la présence ou l\'absence d\'un élément sur toutes les pages du site',
+
 // F
 'facebook_plugin' => 'Plugin Modèles Facebook',
 'facebook_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Modeles-Facebook" title="Documentation">plugin "Modèles Facebook"</a>,
@@ -395,6 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_recherche_item2' => 'Colonne de gauche',
 'form_recherche_item3' => 'Colonne de droite',
 'form_recherche_item4' => 'Nulle part',
+
 // G
 'galleria_plugin' => 'Plugin Galleria',
 'galleria_explication' => 'Si vous avez activé <a class="spip_out" href="http://contrib.spip.net/Galleria-fr" title="Documentation">le plugin "Galleria"</a>,
@@ -404,8 +410,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'galleria_couleur_texte' => 'Couleur du texte de l\'encart d\'information (par défaut : #FFFFFF)',
 'galleria_caracteres' => 'Taille des caractères du titre de l\'image',
 'gauche' => 'A gauche',
+
 // H
 'haut' => 'En haut',
+
 // L
 'layout' => 'Mise en page',
 'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Voir la documentation">Choisir le layout</a>
@@ -422,6 +430,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'licence_plugin' => 'Plugin Licence',
 'licence_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentation">plugin "Licence"</a>,
             vous n\'avez rien d\'autre à faire, l\'icône correspondant à la licence que vous avez choisi pour un article s\'affichera automatiquement en haut de l\'article.',
+
 // M
 'meme_rub' => 'Dans la même rubrique',
 'menu_horizontal' => 'Menu horizontal',
@@ -455,6 +464,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             il est donc conseillé d\'utiliser les codes de langue',
 'multilinguisme_niveau' => 'Menus avec rubriques de deuxième niveau',
 'multilinguisme_nom' => 'Noms des langues',
+
 // N
 'nav_mot_cle' => 'Navigation par mots-clés',
 'noisette_article' => 'Noisettes spécifiques à la page article',
@@ -556,6 +566,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nombre_sites' => 'Nombre de sites',
 'nombre_sites_pagination' => 'Nombre de sites par page de pagination',
 'nombre_sujets_pagination' => 'Nombre de sujets par page de pagination',
+
 // O
 'onglets_art_accueil' => 'Article d\'accueil',
 'onglets_art_accueil_explication' => 'L\'article affiché sera celui qui a le mot-clé "accueil" sinon ce sera le dernier publié.<br />
@@ -622,6 +633,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_trois' => 'Troisième_onglet',
 'onglets_un' => 'Premier_onglet',
 'ou' => 'ou ',
+
 // P
 'page_accueil' => 'La page d\'accueil',
 'page_article' => 'La page article',
@@ -661,6 +673,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pointeur_defaut' => 'Pointeur par défaut',
 'pointeur_liens' => 'Pointeur pour les liens',
 'portfolio' => 'Portfolio',
+
 // R
 'rainette' => 'Rainette',
 'rainette_plugin' => 'Plugin Rainette',
@@ -680,6 +693,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_rss' => 'Affichage du logo RSS avec lien vers la page du flux',
 'rubrique_rss2' => 'Affichage du logo RSS avec lien vers la page du flux pour les sous-rubriques',
 'rubrique_taille_logo' => 'Taille des logos pour les rubriques et articles listés',
+
 // S
 'shoutbox_plugin' => 'Plugin Shoutbox',
 'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>, 
@@ -704,6 +718,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             vous n\'avez rien d\'autre à faire, l\'icône permettant d\'enregistrer ou d\'imprimer un article au format .pdf
             s\'affichera automatiquement dans les pages "article".   <br /><br />
             Pensez à télécharger l\'archive de la librairie et à la décompresser dans un dossier /lib/mpdf à la racine de votre spip (Voir la documentation).',
+
 // T
 'texte_accueil' => 'Vous êtes sur la page de configuration du squelette Escal.<br /><br />
 	Cette page va vous permettre de personnaliser votre site, 
@@ -713,9 +728,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'titre' => 'Titre',
 'titre_coupe' => 'Nombre de caractères affichés pour le titre des articles',
 'titre_noisette' => 'Titre de la noisette',
+
 // U
 'une' => 'A la une',
 'une_bloc' => 'Le bloc "A la une"',
+
 // V
 'videos' => 'Vidéos',
 
@@ -756,16 +773,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'auteurs',
 'avec' => 'avec',
 'avec_le_squelette' => 'avec le squelette',
+
 // B
 'bandeau' => 'Bandeau',
 'bienvenue' => 'Bienvenue',
+
 // C
 'calendrier' => 'Calendrier',
 'clic_telechargement' => 'Cliquer pour voir ou télécharger',
 'collegues' => 'Tous les collègues',
 'commentaires' => 'commentaires',
 'comments_derniers' => 'Derniers commentaires',
-
 'contact' => 'Contact',
 'contact_bienvenue' => 'Pour contacter le référent technique,
                           <br />veuillez remplir tous les champs de ce formulaire.',
@@ -788,12 +806,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_interdit' => ' Votre message contient des caractères interdits',
 'contact_retour_commentaire' => 'Votre message a bien été envoyé au webmestre du site
                                 <br />qui vous répondra dès que possible à cette adresse&nbsp;:',
-
 'contenu_site' => 'Ce site compte : ',
 'copyright' => 'Tous droits réservés',
+
 // D
 'dans_site' => 'dans ce site',
 'derniers_articles_syndiques' => 'Derniers articles syndiqués',
+
 // E
 'en_ligne' => 'Actuellement en ligne : ',
 'envoi_mail_nom' => 'Nom : ',
@@ -808,12 +827,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     en utilisant la page [Contact|Page contact->@url@] de ce site.',
 'espace_redacteurs' => 'Espace rédacteurs',
 'escal' => 'Escal',
-'escal_couleurs' => 'Escal : les couleurs',
-'escal_elements' => 'Escal : les éléments',
 'et' => 'et',
 'evenements' => 'Évènements à venir',
 'evenements_ajouter' => 'Ajouter un évènement<br />(Accès réservé)',
 'evenements_non' => 'Pas d\'évènements à venir',
+
 // F
 'fleche' => 'flèche',
 'fois' => 'fois',
@@ -822,19 +840,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Forum',
 'forum_trouve' => 'message de forum trouvé',
 'forums_trouves' => 'messages de forum trouvés',
-//G
+
+// G
 'gros_jour' => 'Plus grosse journée',
+
 // H
 'haut_page' => 'Haut de page',
 'hebergeur' => 'Hébergeur :',
+
 // I
 'identification' => 'Identification',
+
 // J
 'jours' => 'jours',
+
 // L
 'le' => 'le',
 'lire_article' => 'Lire l\'article ...',
 'lire_suite' => 'Lire la suite ...',
+
 // M
 'menu' => 'Au menu',
 'mentions' => 'Mentions légales',
@@ -844,6 +868,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'Les mots-clés',
 'mots_clefs_associes' => 'Mots-clés associés',
 'moyenne_visites' => 'Moyenne depuis',
+
 // P
 'pages' => 'pages',
 'page_auteur' => 'page de l\'auteur' ,
@@ -856,6 +881,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => 'Vous êtes le premier !',
 'publie' => 'Publié le',
 'puce' => 'puce',
+
 // R
 'rappel_discussion' => 'Rappel de la discussion',
 'recherche' => 'Recherche',
@@ -875,6 +901,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Les sous-rubriques de cette rubrique',
 'rubrique_trouvee' => 'rubrique trouvée',
 'rubriques_trouvees' => 'rubriques trouvées',
+
 // S
 'sites' => 'Sites',
 'sites_favoris' => 'Sites favoris',
@@ -887,6 +914,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'sujets',
 'sur_forum' => 'Sur le forum c\'est :',
 'sur_web' => 'Sur le web',
+
 // T
 'taille_augmenter' => 'Augmenter la taille des caractères',
 'taille_diminuer' => 'Diminuer la taille des caractères',
@@ -903,6 +931,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'Articles les plus vus',
 'total_visites' => 'Nombre total de visites : ',
 'traductions_article' => 'traductions de cet article :',
+
 // V
 'video' => 'Vidéo',
 'visites_jour' => 'visites par jour',
@@ -910,9 +939,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'visiteurs',
 'votre_nom' => 'Votre nom ?',
 'vu' => 'vu',
+
 // W
 'webmestre' => 'Webmestre',
-
 
 );
 ?>

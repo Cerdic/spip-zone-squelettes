@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Главная',
+'cfg_page_arrondis' => 'Углы',
+'cfg_page_article' => 'Статьи',
+'cfg_page_article_lateral' => 'Статьи',
+'cfg_page_article_principal' => 'Статьи',
+'cfg_page_articlepdf' => 'Article PDF',
+// 'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Баннер',
+'cfg_page_bords' => 'Границы',
+// 'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+// 'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'Страница контактов',
+// 'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => 'Элементы',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Фоны',
+'cfg_page_forumsite' => 'Форум',
+'cfg_page_forumsite_principal' => 'Форум',
+'cfg_page_forumsite_lateral' => 'Форум',
+'cfg_page_galleria' => 'Галерея',
+// 'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Макет',
+'cfg_page_licence' => 'Лицензия',
+'cfg_page_mentions' => 'Юридические упоминания',
+'cfg_page_menuh' => 'Меню',
+'cfg_page_meta' => 'META-теги',
+'cfg_page_multilinguisme' => 'Многоязычие',
+'cfg_page_pages_noisettes' => 'Другие страницы',
+'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Подвал (footer)',
+// 'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette (погода)',
+'cfg_page_rubrique' => 'Рубрики',
+'cfg_page_rubrique_lateral' => 'Рубрики',
+'cfg_page_rubrique_principal' => 'Рубрики',
+'cfg_page_signalement' => 'Отчеты (Signalement)',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Выбор боковых блоков',
+// 'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+// 'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Настройки боковых блоков',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Тексты',
+'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -49,46 +95,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'авторы',
 'avec' => 'с',
 'avec_le_squelette' => 'с шаблоном',
+
 // B
 'bandeau' => 'Баннер',
 'bienvenue' => 'Приветствуем, ',
+
 // C
 'calendrier' => 'Календарь',
-'cfg_page_accueil' => 'Главная',
-'cfg_page_arrondis' => 'Углы',
-'cfg_page_article' => 'Статьи',
-'cfg_page_articlepdf' => 'Article PDF',
-'cfg_page_bandeau' => 'Баннер',
-'cfg_page_bords' => 'Границы',
-'cfg_page_contact' => 'Страница контактов',
-'cfg_page_elements' => 'Элементы',
-'cfg_page_facebook' => 'Facebook',
-'cfg_page_fonds' => 'Фоны',
-'cfg_page_forumsite' => 'Форум',
-'cfg_page_galleria' => 'Галерея',
-'cfg_page_layout' => 'Макет',
-'cfg_page_licence' => 'Лицензия',
-'cfg_page_mentions' => 'Юридические упоминания',
-'cfg_page_menu' => 'Меню',
-'cfg_page_meta' => 'META-теги',
-'cfg_page_multilinguisme' => 'Многоязычие',
-'cfg_page_pages_noisettes' => 'Другие страницы',
-'cfg_page_pied' => 'Подвал (footer)',
-'cfg_page_rainette' => 'Rainette (погода)',
-'cfg_page_rubrique' => 'Рубрики',
-'cfg_page_signalement' => 'Отчеты (Signalement)',
-'cfg_page_socialtags' => 'Social Tags',
-'cfg_page_sommaire_colonnes' => 'Выбор боковых блоков',
-'cfg_page_sommaire_corps' => 'Центральная часть',
-'cfg_page_sommaire_noisettes' => 'Настройки боковых блоков',
-'cfg_page_spip400' => 'Spip 400',
-'cfg_page_spipdf' => 'spiPDF',
-'cfg_page_textes' => 'Тексты',
 'clic_telechargement' => 'Нажмите, чтобы просмотреть или загрузить',
 'collegues' => 'Все коллеги',
 'commentaires' => 'комментарии',
 'comments_derniers' => 'Новые комментарии',
-
 'contact' => 'Контакт',
 'contact_bienvenue' => 'Для связи со службой технической поддержки 
                          <br />заполните, пожалуйста,  все поля формы.',
@@ -113,9 +130,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                 <br />и он ответит вам в ближайшее время по этому адресу:',
 'contenu_site' => 'Этот сайт содержит: ',
 'copyright' => 'Все права защищены',
+
 // D
 'dans_site' => 'на этом сайте',
 'derniers_articles_syndiques' => 'Последние импортированные статьи',
+
 // E
 'en_ligne' => 'Сейчас он-лайн:',
 'envoi_mail_nom' => 'Фамилия: ',
@@ -125,13 +144,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'envoyer_message' => 'Отправить сообщение для ',
 'erreur404' => 'Ошибка 404',
 'erreur404_message' => 'Страница, которую вы ищете, либо перемещена, либо отсутствует.
-                        Если вам случившееся кажется ошибкой, напишите об этом веб-мастеру с помощью  [страницы обратной связи |Contact page ->@url@] этого сайта.',
+                        Если вам случившееся кажется ошибкой, 
+                        напишите об этом веб-мастеру с помощью  [страницы обратной связи |Contact page ->@url@] 
+                        этого сайта.',
 'espace_redacteurs' => 'Для редакторов',
 'escal' => 'Escal',
 'et' => 'и',
 'evenements' => 'Планируемые мероприятия',
 'evenements_ajouter' => 'Добавить событие<br />(Защищенный доступ)',
 'evenements_non' => 'Не ожидается событий',
+
 // F
 'fleche' => 'стрелка',
 'fois' => 'раз',
@@ -140,20 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Форум',
 'forum_trouve' => 'message de forum trouvé',
 'forums_trouves' => 'messages de forum trouvés',
-'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
-//G
+
+// G
 'gros_jour' => 'Biggest day',
-//H
+
+// H
 'haut_page' => 'В начало страницы  &uArr;',
 'hebergeur' => 'Host:',
+
 // I
 'identification' => 'Идентификация',
+
 // J
 'jours' => 'дней',
+
 // L
 'le' => ' ',
 'lire_article' => 'Читать статью...',
 'lire_suite' => 'Подробнее...',
+
 // M
 'menu' => 'В меню',
 'mentions' => 'Legal notices',
@@ -163,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'Ключи',
 'mots_clefs_associes' => 'Связанные ключи',
 'moyenne_visites' => 'В среднем',
+
 // P
 'pages' => 'страниц',
 'page_auteur' => 'Авторы страниц' ,
@@ -175,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => 'Вы - первый!',
 'publie' => 'Опубликовано',
 'puce' => 'пункт списка',
+
 // R
 'rappel_discussion' => 'Напоминание про обсуждение',
 'recherche' => 'Поиск',
@@ -182,6 +211,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Результаты поиска:',
 'rechercher' => 'Поиск...',
 'recherche_articles_non' => 'Не найдены статьи по этому запросу',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 'recherche_resultat' => 'Результат поиска для ',
 'recherche_rubriques_non' => 'Не найдены рубрики по этому запросу',
 'recherche_sites_non' => 'Не найдены сайты по этому запросу',
@@ -193,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Подрубрики в этой рубрике',
 'rubrique_trouvee' => 'найдена рубрика',
 'rubriques_trouvees' => 'рубрик(и) найдено',
+
 // S
 'sites' => 'Сайты',
 'sites_favoris' => 'Избранные сайты',
@@ -205,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'темы',
 'sur_forum' => 'На форуме находится:',
 'sur_web' => 'В сети',
+
 // T
 'taille_augmenter' => 'Увеличить размер символов',
 'taille_diminuer' => 'Уменьшить размер символов',
@@ -221,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'Популярные статьи',
 'total_visites' => 'Всего посещений:',
 'traductions_article' => 'Перевод этой статьи:',
+
 // V
 'video' => 'Видео',
 'visites_jour' => 'посещений в день',
@@ -228,6 +261,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'посетителей',
 'votre_nom' => 'Ваше имя?',
 'vu' => 'см.',
+
 // W
 'webmestre' => 'Веб-мастер',
 

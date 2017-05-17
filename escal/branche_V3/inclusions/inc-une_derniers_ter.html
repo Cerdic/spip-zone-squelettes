@@ -18,14 +18,11 @@
 	
 	<BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
 	</BOUCLE_exclure_art2> 
-
-#SET{sens_tri, #SPIP_VERSION|version_compare{3.1, >=}|?{inverse,direct}}
-
-
+	
 <!-- *************
 	article en exergue 
 ************** -->
-  <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergue}|=={non}|non}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,1}>
+  <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergue}|=={non}|non}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,1}>
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
@@ -120,7 +117,7 @@
   <B_articles_une>
     <div class="derniers-art-ter">
     <ul class="anchors">
-	<BOUCLE_articles_une (ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}{doublons}>
+	<BOUCLE_articles_une (ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}{doublons}>
     <li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 

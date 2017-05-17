@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Accueil',
+'cfg_page_arrondis' => 'Les arrondis',
+'cfg_page_article' => 'Les articles',
+'cfg_page_article_lateral' => 'Les articles',
+'cfg_page_article_principal' => 'Les articles',
+'cfg_page_articlepdf' => 'Article PDF',
+'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Bandeau',
+'cfg_page_bords' => 'Les bords',
+'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'La page contact',
+'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => '&Eacute;léments',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Les fonds et les textes',
+'cfg_page_forumsite' => 'Le forum du site',
+'cfg_page_forumsite_principal' => 'Le forum du site',
+'cfg_page_forumsite_lateral' => 'Le forum du site',
+'cfg_page_galleria' => 'Galleria',
+'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Mise en page',
+'cfg_page_licence' => 'Licence',
+'cfg_page_mentions' => 'Mentions légales',
+'cfg_page_menuh' => 'Menu horizontal',
+'cfg_page_meta' => 'Balises "meta"',
+'cfg_page_multilinguisme' => 'Multilinguisme',
+'cfg_page_pages_noisettes' => 'Les autres pages',
+'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Pied de page',
+'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette',
+'cfg_page_rubrique' => 'Les rubriques',
+'cfg_page_rubrique_lateral' => 'Les rubriques',
+'cfg_page_rubrique_principal' => 'Les rubriques',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_signalement' => 'Signalement',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Choix des blocs latéraux',
+'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Paramétrage des blocs latéraux',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Les textes',
+'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -49,16 +95,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'auteurs',
 'avec' => 'met',
 'avec_le_squelette' => 'met het sjabloon',
+
 // B
 'bandeau' => 'Banner',
 'bienvenue' => 'Welkom',
+
 // C
 'calendrier' => 'Kalender',
 'clic_telechargement' => 'Klik om dit te zien of te downloaden',
 'collegues' => 'Alle collega\'s',
 'commentaires' => 'commentaaren',
 'comments_derniers' => 'laatste commentaaren',
-
 'contact' => 'Contact',
 'contact_bienvenue' => 'Om contact op te nemen met de technische referent, 
                          <br />Vul alle velden van dit formulier.',
@@ -83,9 +130,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                 <br />die zullen u zo snel mogelijk op dit adres zullen antwoorden:',
 'contenu_site' => 'Deze site bevat: ',
 'copyright' => 'Alle rechten voorbehouden',
+
 // D
 'dans_site' => 'in deze site',
 'derniers_articles_syndiques' => 'Laatste nieuws syndicated',
+
 // E
 'en_ligne' => 'Op dit moment on-line: ',
 'envoi_mail_nom' => 'Naam: ',
@@ -104,6 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements' => 'komende evenementen',
 'evenements_ajouter' => 'Voeg een evenement toe<br />(Voorbehouden toegang)',
 'evenements_non' => 'Geen komende evenementen',
+
 // F
 'fleche' => 'pijl',
 'fois' => 'keer',
@@ -112,20 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Forum',
 'forum_trouve' => 'message de forum trouvé',
 'forums_trouves' => 'messages de forum trouvés',
-'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
-//G
+
+// G
 'gros_jour' => 'de drukste dag',
-//H
+
+// H
 'haut_page' => 'Begin van de pagina',
 'hebergeur' => 'Gastheer:',
+
 // I
 'identification' => 'Identificatie',
+
 // J
 'jours' => 'dagen',
+
 // L
 'le' => 'de',
 'lire_article' => 'Lees het artikel ...',
 'lire_suite' => 'Lees verder ...',
+
 // M
 'menu' => 'Op het menu',
 'mentions' => 'Wettelijke vermeldingen',
@@ -135,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'de trefwoorden',
 'mots_clefs_associes' => 'bijbehorende trefwoorden',
 'moyenne_visites' => 'gemiddeld aantal bezoekers sinds',
+
 // P
 'pages' => 'pagina\'s',
 'page_auteur' => 'Pagina\'s van de auteur' ,
@@ -147,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => 'U bent de eerste!',
 'publie' => 'Uitgegeven op',
 'puce' => 'bullet point',
+
 // R
 'rappel_discussion' => 'Herinnering van de discussie',
 'recherche' => 'Zoeken',
@@ -154,6 +211,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Zoek resultaat:',
 'rechercher' => 'Zoeken ...',
 'recherche_articles_non' => 'Geen artikel gevonden',
+'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 'recherche_resultat' => 'zoekresultaten voor ',
 'recherche_rubriques_non' => 'Geen sectie gevonden',
 'recherche_sites_non' => 'Geen site gevonden voor deze zoekopdracht',
@@ -165,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Sub-secties van deze sectie',
 'rubrique_trouvee' => 'sectie gevonden',
 'rubriques_trouvees' => 'secties gevonden',
+
 // S
 'sites' => 'Sites',
 'sites_favoris' => 'Favoriete websites',
@@ -177,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'onderwerpen',
 'sur_forum' => 'Op het forum:',
 'sur_web' => 'Op het internet',
+
 // T
 'taille_augmenter' => 'Vergroot de grootte van de tekens',
 'taille_diminuer' => 'Verklein de grootte van de tekens',
@@ -193,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'De meeste populaire artikelen',
 'total_visites' => 'Totaal aantal bezoeken:',
 'traductions_article' => 'Vertalingen van dit artikel:',
+
 // V
 'video' => 'Video',
 'visites_jour' => 'bezoeken per dag',
@@ -200,6 +261,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'bezoekers',
 'votre_nom' => 'Uw naam ?',
 'vu' => 'gezien',
+
 // W
 'webmestre' => 'Webmaster',
 

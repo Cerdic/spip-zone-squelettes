@@ -5,10 +5,9 @@
 
 <div class="laune" >
 
-#SET{sens_tri, #SPIP_VERSION|version_compare{3.1, >=}|?{inverse,direct}}
 
   <BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexergue}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
-  {tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}{0,1}{doublons exergue}{doublons}{lang}>
+  {tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
@@ -101,7 +100,7 @@
     <ul class="anchors">
 	<BOUCLE_articles_une(ARTICLES){lang}{doublons}
 	{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
-	{tri #CONFIG{escal/config/ordrealaune,date}, #GET{sens_tri}}
+	{tri #CONFIG{escal/config/ordrealaune,date}, inverse}
 	{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}>
     <li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>

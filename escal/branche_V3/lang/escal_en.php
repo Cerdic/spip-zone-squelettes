@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Accueil',
+'cfg_page_arrondis' => 'Les arrondis',
+'cfg_page_article' => 'Les articles',
+'cfg_page_article_lateral' => 'Les articles',
+'cfg_page_article_principal' => 'Les articles',
+'cfg_page_articlepdf' => 'Article PDF',
+'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Bandeau',
+'cfg_page_bords' => 'Les bords',
+'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'La page contact',
+'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => '&Eacute;léments',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Les fonds et les textes',
+'cfg_page_forumsite' => 'Le forum du site',
+'cfg_page_forumsite_principal' => 'Le forum du site',
+'cfg_page_forumsite_lateral' => 'Le forum du site',
+'cfg_page_galleria' => 'Galleria',
+'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Mise en page',
+'cfg_page_licence' => 'Licence',
+'cfg_page_mentions' => 'Mentions légales',
+'cfg_page_menuh' => 'Menu horizontal',
+'cfg_page_meta' => 'Balises "meta"',
+'cfg_page_multilinguisme' => 'Multilinguisme',
+'cfg_page_pages_noisettes' => 'Les autres pages',
+'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Pied de page',
+'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette',
+'cfg_page_rubrique' => 'Les rubriques',
+'cfg_page_rubrique_lateral' => 'Les rubriques',
+'cfg_page_rubrique_principal' => 'Les rubriques',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_signalement' => 'Signalement',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Choix des blocs latéraux',
+'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Paramétrage des blocs latéraux',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Les textes',
+'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -39,6 +85,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_imprimer' => 'Print',
 'article_licence' => 'License',
 'article_mise_en_ligne' => 'Article published on' ,
+'article_modifie' => 'last modification on' ,
 'article_trouve' => 'article found',
 'articles_trouves' => 'articles found',
 'article_une' => 'Put this article on the front page',
@@ -48,16 +95,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'authors',
 'avec' => 'with',
 'avec_le_squelette' => 'with the template',
+
 // B
 'bandeau' => 'Banner',
 'bienvenue' => 'Welcome',
+
 // C
 'calendrier' => 'Calendar',
 'clic_telechargement' => 'Click to see or download',
 'collegues' => 'All the colleagues',
 'commentaires' => 'comments',
 'comments_derniers' => 'Last comments',
-
 'contact' => 'Contact',
 'contact_bienvenue' => 'To contact the technical referent, 
                          <br />please fill in all the fields of this form.',
@@ -82,9 +130,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                                 <br />who will answer you as soon as possible at this address:',
 'contenu_site' => 'This site contains: ',
 'copyright' => 'All rights reserved',
+
 // D
 'dans_site' => 'in this site',
 'derniers_articles_syndiques' => 'Last syndicated articles',
+
 // E
 'en_ligne' => 'Currently on-line:',
 'envoi_mail_nom' => 'Name: ',
@@ -103,6 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements' => 'Events to come',
 'evenements_ajouter' => 'Add an event<br />(Reserved access)',
 'evenements_non' => 'No events to come',
+
 // F
 'fleche' => 'arrow',
 'fois' => 'times',
@@ -111,19 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Forum',
 'forum_trouve' => 'online message board found',
 'forums_trouves' => 'online message boards found',
-//G
+
+// G
 'gros_jour' => 'Biggest day',
-//H
+
+// H
 'haut_page' => 'Top of the page',
 'hebergeur' => 'Host:',
+
 // I
 'identification' => 'Identification',
+
 // J
 'jours' => 'days',
+
 // L
 'le' => 'on',
 'lire_article' => 'Read the article ...',
 'lire_suite' => 'Read more ...',
+
 // M
 'menu' => 'On the menu',
 'mentions' => 'Legal notices',
@@ -133,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'The keywords',
 'mots_clefs_associes' => 'Associated  keywords',
 'moyenne_visites' => 'Average for',
+
 // P
 'pages' => 'pages',
 'page_auteur' => 'Author\'s pages' ,
@@ -145,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => 'You are the first !',
 'publie' => 'Published on',
 'puce' => 'bullet point',
+
 // R
 'rappel_discussion' => 'Reminder of the discussion',
 'recherche' => 'Search',
@@ -164,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Sub-sections of this section',
 'rubrique_trouvee' => 'section found',
 'rubriques_trouvees' => 'sections found',
+
 // S
 'sites' => 'Sites',
 'sites_favoris' => 'Favorite sites',
@@ -176,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'topics',
 'sur_forum' => 'On the forum it is:',
 'sur_web' => 'On web',
+
 // T
 'taille_augmenter' => 'Increase the size of the characters',
 'taille_diminuer' => 'Decrease the size of the characters',
@@ -192,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'Most popular articles',
 'total_visites' => 'Total number of visits:',
 'traductions_article' => 'Translations of this article:',
+
 // V
 'video' => 'Video',
 'visites_jour' => 'visits a day',
@@ -199,6 +261,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'visitors',
 'votre_nom' => 'Your name ?',
 'vu' => 'seen',
+
 // W
 'webmestre' => 'Webmaster',
 

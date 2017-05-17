@@ -10,7 +10,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // chaines de langue pour l'espace prive
 // *************************************
 
-// à venir
+'cfg_page_accueil' => 'Accueil',
+'cfg_page_arrondis' => 'Les arrondis',
+'cfg_page_article' => 'Les articles',
+'cfg_page_article_lateral' => 'Les articles',
+'cfg_page_article_principal' => 'Les articles',
+'cfg_page_articlepdf' => 'Article PDF',
+'cfg_page_autres_lateral' => 'Les autres pages',
+'cfg_page_bandeau' => 'Bandeau',
+'cfg_page_bords' => 'Les bords',
+'cfg_page_choix_blocs' => 'Choix des blocs latéraux',
+'cfg_page_colonne_principale' => 'Colonne principale',
+'cfg_page_contact_principal' => 'La page contact',
+'cfg_page_deplier_replier' => 'Déplier et replier',
+'cfg_page_elements' => '&Eacute;léments',
+'cfg_page_facebook' => 'Facebook',
+'cfg_page_fonds' => 'Les fonds et les textes',
+'cfg_page_forumsite' => 'Le forum du site',
+'cfg_page_forumsite_principal' => 'Le forum du site',
+'cfg_page_forumsite_lateral' => 'Le forum du site',
+'cfg_page_galleria' => 'Galleria',
+'cfg_page_generalites' => 'Généralités',
+'cfg_page_layout' => 'Mise en page',
+'cfg_page_licence' => 'Licence',
+'cfg_page_mentions' => 'Mentions légales',
+'cfg_page_menuh' => 'Menu horizontal',
+'cfg_page_meta' => 'Balises "meta"',
+'cfg_page_multilinguisme' => 'Multilinguisme',
+'cfg_page_pages_noisettes' => 'Les autres pages',
+'cfg_page_parametrage_blocs' => 'Paramétrage des blocs latéraux',
+'cfg_page_pied' => 'Pied de page',
+'cfg_page_plugins' => 'Des plugins dans Escal',
+'cfg_page_rainette' => 'Rainette',
+'cfg_page_rubrique' => 'Les rubriques',
+'cfg_page_rubrique_lateral' => 'Les rubriques',
+'cfg_page_rubrique_principal' => 'Les rubriques',
+'cfg_page_shoutbox' => 'Shoutbox',
+'cfg_page_signalement' => 'Signalement',
+'cfg_page_socialtags' => 'Social Tags',
+'cfg_page_sommaire_colonnes' => 'Choix des blocs latéraux',
+'cfg_page_sommaire_lateral' => 'Page d\'accueil',
+'cfg_page_sommaire_principal' => 'Page d\'accueil',
+'cfg_page_sommaire_noisettes' => 'Paramétrage des blocs latéraux',
+'cfg_page_spip400' => 'Spip 400',
+'cfg_page_spipdf' => 'spiPDF',
+'cfg_page_style' => 'Un peu de style',
+'cfg_page_textes' => 'Les textes',
+'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -49,16 +95,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'auteurs' => 'autores',
 'avec' => 'con',
 'avec_le_squelette' => 'Con el esqueleto',
+
 // B
 'bandeau' => 'Tira',
 'bienvenue' => 'Bienvenida',
+
 // C
 'calendrier' => 'Calendario',
 'clic_telechargement' => 'Clicar para ver o descargar',
 'collegues' => 'Todos los colegas',
 'commentaires' => 'comentarios',
 'comments_derniers' => 'Últimos comentarios',
-
 'contact' => 'Contacto',
 'contact_bienvenue' => 'Para ponerse en contacto con el referente técnico, 
                           <br />por favor, completa todos los campos de este formulario.',
@@ -81,12 +128,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'contact_alerte_interdit' => ' Su mensaje contiene caracteres no válidos',
 'contact_retour_commentaire' => 'Su mensaje ha sido enviado al webmestre del sitio
                                 <br />que le responderá cuanto antes a esta dirección:',
-
 'contenu_site' => 'Este sitio contiene: ',
 'copyright' => 'Reservados todos los derechos',
+
 // D
 'dans_site' => 'en este sitio',
 'derniers_articles_syndiques' => 'Últimos artículos sindicados',
+
 // E
 'en_ligne' => 'Actualmente en línea: ',
 'envoi_mail_nom' => 'Apellido: ',
@@ -105,6 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'evenements' => 'Acontecimientos por ocurrir',
 'evenements_ajouter' => 'Añadir un acontecimiento<br />(Acceso reservado)',
 'evenements_non' => 'Ningunos acontecimientos que vienen',
+
 // F
 'fleche' => 'flecha',
 'fois' => 'veces',
@@ -113,19 +162,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'Foro',
 'forum_trouve' => 'mensaje de foro hallado',
 'forums_trouves' => 'mensajes de foro hallados',
-//G
+
+// G
 'gros_jour' => 'Día más grueso',
-//H
+
+// H
 'haut_page' => 'Arriba',
 'hebergeur' => 'Alojamiento:',
+
 // I
 'identification' => 'Identificación',
+
 // J
 'jours' => 'días',
+
 // L
 'le' => 'el',
 'lire_article' => 'Leer el artículo ...',
 'lire_suite' => 'Sigue ...',
+
 // M
 'menu' => 'Al menú',
 'mentions' => 'Menciones legales',
@@ -135,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mots_clefs' => 'Las palabras clave',
 'mots_clefs_associes' => 'Palabras clave asociadas',
 'moyenne_visites' => 'Media desde hace',
+
 // P
 'pages' => 'Páginas',
 'page_auteur' => 'página del autor' ,
@@ -147,6 +203,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'premier_visiteur' => '¡ Usted es el primero!',
 'publie' => 'Publicado el',
 'puce' => 'viñeta',
+
 // R
 'rappel_discussion' => 'Recuerdo de la discusión',
 'recherche' => 'Búsqueda',
@@ -166,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_sous_rubriques' => 'Las subrúbricas de esta rúbrica',
 'rubrique_trouvee' => 'rúbrica hallada',
 'rubriques_trouvees' => 'rúbricas halladas',
+
 // S
 'sites' => 'Sitios',
 'sites_favoris' => 'Sitios favoritos',
@@ -178,6 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sujets' => 'temas',
 'sur_forum' => 'Sobre el foro es:',
 'sur_web' => 'En la web',
+
 // T
 'taille_augmenter' => 'Aumentar la talla carácteres',
 'taille_diminuer' => 'Disminuir la talla carácteres',
@@ -194,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'top_articles' => 'Artículos más leídos',
 'total_visites' => 'Número total de visitas: ',
 'traductions_article' => 'Traducciones de este artículo:',
+
 // V
 'video' => 'Vídeo',
 'visites_jour' => 'visitas al día',
@@ -201,9 +261,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visiteurs' => 'visitantes',
 'votre_nom' => '¿ Su nombre?',
 'vu' => 'visto',
+
 // W
 'webmestre' => 'Webmestre',
-
 
 );
 ?>
