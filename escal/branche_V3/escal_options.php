@@ -24,9 +24,9 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
 
-// les images de plus de 1050 pixels de largeur ou de hauteur ne seront pas enregistrées
-define('_IMG_MAX_WIDTH', 1050);
-define('_IMG_MAX_HEIGHT', 1050); 
+// les images de plus de 1200 pixels de largeur ou de hauteur ne seront pas enregistrées
+define('_IMG_MAX_WIDTH', 1200);
+define('_IMG_MAX_HEIGHT', 1200); 
 
 // Et pour éviter de faire planter GD2 :
  define('_IMG_GD_MAX_PIXELS', 2000000);

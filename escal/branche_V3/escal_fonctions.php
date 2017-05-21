@@ -41,14 +41,14 @@ function shema_escal(){
         'groupes' => array(
             array(  // creation du groupe affichage
                 'titre'=>'affichage',
-                'descriptif'=>'Groupe de mots-cl&eacute;s techniques utilis&eacute;s dans Escal',
+                'descriptif'=> _T('escal:groupe_affichage'),
                 'tables_liees'=>'articles,rubriques,syndic',
                 'minirezo'=>'oui',
                 'comite'=>'oui'
             ),
             array( // creation du groupe Agenda_couleur
                 'titre'=>'Agenda_couleur',
-                'descriptif'=>'Groupe de mots-cl&eacute;s pour la couleur des &eacute;v&egrave;nements de l\'agenda dans Escal',
+                'descriptif'=> _T('escal:groupe_agenda_couleur'),
                 'tables_liees'=>'evenements',
                 'minirezo'=>'oui',
                 'comite'=>'oui'
@@ -84,200 +84,197 @@ function shema_escal(){
             // affichage
             array(
                 'titre'=>'acces-direct',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Acc&egrave;s direct" (noisette inc-acces_direct)',
+                'descriptif'=> _T('escal:mot_acces_direct'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'accueil',
-                'descriptif'=>'pour choisir l&rsquo;article affich&eacute; en onglet d&rsquo;accueil (noisette inc-accueil)',
+                'descriptif'=> _T('escal:mot_accueil'),
                 'type'=>'affichage'
             ),            
             array(
-                'titre'=>'actus',
-                'descriptif'=>'pour choisir les articles qui seront affich&eacute;s dans le bloc "Actus" (noisette inc-actus)',
+                'titre'=> 'actus',
+                'descriptif'=> _T('escal:mot_actus'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'agenda',
-                'descriptif'=>'pour choisir les articles ou la ou les rubriques dont les articles seront affich&eacute;s dans l&rsquo;agenda',
+                'descriptif'=> _T('escal:mot_agenda'),
                 'type'=>'affichage'
             ),            
             array(
                 'titre'=>'annonce',
-                'descriptif'=>'pour choisir l&rsquo;article dont le texte sera affich&eacute; dans le bloc "Annonce" de la page d&rsquo;accueil (noisette inc-annonce)',
+                'descriptif'=> _T('escal:mot_annonce'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'annonce-defilant',
-                'descriptif'=>'pour choisir les articles dont le texte sera affich&eacute; dans le bloc "Annonces d&eacute;filantes" de la page d&rsquo;accueil (noisette inc-annonce_defilant)',
+                'descriptif'=> _T('escal:mot_annonce_defilant'),
                 'type'=>'affichage'
             ),            
             array(
                 'titre'=>'annuaire',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera utilis&eacute; par la page annuaire.html',
+                'descriptif'=> _T('escal:mot_annuaire'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'archive',
-                'descriptif'=>'pour choisir la rubrique dont un article pris au hasard sera affich&eacute; dans l\'onglet "Article archive" de la page d\'accueil',
+                'descriptif'=> _T('escal:mot_archive'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'articles-de-rubrique',
-                'descriptif'=>'pour choisir la rubrique dont les articles seront affich&eacute;s dans la noisette "Articles de rubrique"',
+                'descriptif'=> _T('escal:mot_articles_rubrique'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-libre1',
-                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 1"',
+                'descriptif'=> _T('escal:mot_article_libre1'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-libre2',
-                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 2"',
+                'descriptif'=> _T('escal:mot_article_libre2'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-libre3',
-                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 3"',
+                'descriptif'=> _T('escal:mot_article_libre3'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-libre4',
-                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 4"',
+                'descriptif'=> _T('escal:mot_article_libre4'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-libre5',
-                'descriptif'=>'pour choisir l\'article dont le contenu sera affich&eacute; dans la noisette "Article libre 5"',
+                'descriptif'=> _T('escal:mot_article_libre5'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'article-sans-date',
-                'descriptif'=>'pour supprimer l\'affichage des dates de publication et de modification d\'un article ',
+                'descriptif'=> _T('escal:mot_article_sans_date'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'chrono',
-                'descriptif'=>'pour afficher les articles d&rsquo;une rubrique dans les menus en ordre ant&eacute;chronologique, comportement non transmis aux rubriques-filles',
+                'descriptif'=> _T('escal:mot_chrono'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'citations',
-                'descriptif'=>'pour choisir l&rsquo;article qui servira de r&eacute;servoir pour les citations dans le pied de page',
+                'descriptif'=> _T('escal:mot_citations'),
                 'type'=>'affichage'
             ),                        
             array(
                 'titre'=>'edito',
-                'descriptif'=>'pour choisir l&rsquo;article qui sera affich&eacute; dans le bloc "Edito" (noisette inc-edito)',
+                'descriptif'=> _T('escal:mot_edito'),
                 'type'=>'affichage'
             ),            
             array(
                 'titre'=>'favori',
-                'descriptif'=>'pour choisir les sites dont les vignettes seront affich&eacute;es dans le bloc "Sites favoris" (noisette inc-sites_favoris.html)',
+                'descriptif'=> _T('escal:mot_favori'),
                 'type'=>'affichage'
             ),            
             array(
                 'titre'=>'forum',
-                'descriptif'=>'pour choisir le secteur qui sera utilis&eacute; pour le forum du site',
+                'descriptif'=> _T('escal:mot_forum'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'invisible',
-                'descriptif'=>'pour cacher une rubrique et ses sous-rubriques de tous les menus et du plan du site',
+                'descriptif'=> _T('escal:mot_invisible'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'mon-article',
-                'descriptif'=>'pour choisir un article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_mon_article'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'mon-article2',
-                'descriptif'=>'pour choisir un 2e article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_mon_article2'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'mon-article3',
-                'descriptif'=>'pour choisir un 3e article qui sera affich&eacute; dans un onglet du bloc central de la page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_mon_article3'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pas-a-decouvrir',
-                'descriptif'=>'pour choisir les rubriques et les articles &agrave; exclure de l&rsquo;affichage dans la noisette "A decouvrir" si on choisit "dans tout le site" (inc-decouvrir-articles-sites.html)',
+                'descriptif'=> _T('escal:mot_pas_decouvrir'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pas-a-la-une',
-                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "les derniers articles ..." de la page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_pas_une'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pas-au-menu',
-                'descriptif'=>'pour ne pas afficher une rubrique ou un article dans le menu horizontal',
+                'descriptif'=> _T('escal:mot_pas_menu'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pas-au-menu-vertical',
-                'descriptif'=>'Modification dans le descriptif !! pour ne pas afficher une rubrique ou un article dans les menus verticaux',
+                'descriptif'=> _T('escal:mot_pas_menu_vertical'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pas-au-plan',
-                'descriptif'=>'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "Plan du site" de la page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_pas_plan'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'photo-une',
-                'descriptif'=>'pour choisir les articles dont les images seront affich&eacute;es dans le bloc "Quelques images au hasard" (noisette inc-photos)',
+                'descriptif'=> _T('escal:mot_photo_une'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'pleinepage',
-                'descriptif'=>'pour choisir les articles qui seront affich&eacute;s en pleine page sans aucun bloc lat&eacute;ral',
+                'descriptif'=> _T('escal:mot_pleine_page'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'RubriqueOnglet',
-                'descriptif'=>'pour choisir une rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_rubrique_onglet'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'RubriqueOnglet2',
-                'descriptif'=>'pour choisir une deuxi&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_rubrique_onglet2'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'RubriqueOnglet3',
-
-                'descriptif'=>'pour choisir une troisi&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_rubrique_onglet3'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'RubriqueOnglet4',
-
-                'descriptif'=>'pour choisir une quatri&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_rubrique_onglet4'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'RubriqueOnglet5',
-
-                'descriptif'=>'pour choisir une cinqui&egrave;me rubrique qui sera affich&eacute;e dans les onglets en page d&rsquo;accueil',
+                'descriptif'=> _T('escal:mot_rubrique_onglet5'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'site-exclu',
-                'descriptif'=>'pour exclure des sites dans le bloc "Sur le web" (noisette inc-sites.html)',
+                'descriptif'=> _T('escal:mot_site_exclu'),
                 'type'=>'affichage'
             ),
             array(
                 'titre'=>'special',
-                'descriptif'=>'pour choisir la rubrique et/ou les articles qui seront affich&eacute;s dans le bloc &agrave; personnaliser (noisette inc-perso.html)',
+                'descriptif'=> _T('escal:mot_special'),
                 'type'=>'affichage'
             ),            
             array(
                 'titre'=>'video-une',
-                'descriptif'=>'pour choisir les articles dont les vid&eacute;os seront affich&eacute;es dans le bloc "Vid&eacute;o" (noisette inc-video_accueil)',
+                'descriptif'=> _T('escal:mot_video_une'),
                 'type'=>'affichage'
             )           
         )

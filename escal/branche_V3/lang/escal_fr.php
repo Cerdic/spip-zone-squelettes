@@ -60,6 +60,50 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_page_textes' => 'Les textes',
 'cfg_page_titre_contenu' => 'Titres et contenus',
 
+// descriptifs des mots-clés
+
+'groupe_affichage' => 'Groupe de mots-clés techniques utilisés dans le plugin Escal',
+'groupe_agenda_couleur' => 'Groupe de mots-clés pour la couleur des événements de l\'agenda dans le plugin Escal',
+'mot_acces_direct' => 'pour choisir l\'article qui sera affiché dans le bloc "Accès direct"',
+'mot_accueil' => 'pour choisir un article affiché en onglet de la page d\'accueil',
+'mot_actus' => 'pour choisir les articles qui seront affichés dans le bloc "Actus" ',
+'mot_agenda' => 'pour choisir les articles ou la ou les rubriques dont les articles seront affichés dans l\'agenda',
+'mot_annonce' => 'pour choisir l\'article dont le texte sera affiché dans le bloc "Annonce" de la page d\'accueil',
+'mot_annonce_defilant' => 'pour choisir les articles dont le texte sera affiché dans le bloc "Annonces défilantes" de la page d\'accueil',
+'mot_annuaire' => 'pour choisir l\'article qui sera utilisé par la page annuaire.html',
+'mot_archive' => 'pour choisir la rubrique dont un article pris au hasard sera affiché dans l\'onglet "Article archive" de la page d\'accueil',
+'mot_articles_rubrique' => 'pour choisir la rubrique dont les articles seront affichés dans le bloc "Articles de rubrique"',
+'mot_article_libre1' => 'pour choisir l\'article dont le contenu sera affiché dans le bloc "Article libre 1"',
+'mot_article_libre2' => 'pour choisir l\'article dont le contenu sera affiché dans le bloc "Article libre 2"',
+'mot_article_libre3' => 'pour choisir l\'article dont le contenu sera affiché dans le bloc "Article libre 3"',
+'mot_article_libre4' => 'pour choisir l\'article dont le contenu sera affiché dans le bloc "Article libre 4"',
+'mot_article_libre5' => 'pour choisir l\'article dont le contenu sera affiché dans le bloc "Article libre 5"',
+'mot_article_sans_date' => 'pour supprimer l\'affichage des dates de publication et de modification d\'un article',
+'mot_chrono' => 'pour afficher les articles d\'une rubrique dans les menus en ordre antéchronologique, comportement non transmis aux rubriques-filles',
+'mot_citations' => 'pour choisir l\'article qui servira de réservoir pour les citations dans le pied de page',
+'mot_edito' => 'pour choisir l\'article qui sera affiché dans le bloc "Edito" ',
+'mot_favori' => 'pour choisir les sites dont les vignettes seront affichées dans le bloc "Sites favoris" ',
+'mot_forum' => 'pour choisir le secteur qui sera utilisé pour le forum du site',
+'mot_invisible' => 'pour cacher une rubrique et ses sous-rubriques de tous les menus, du plan du site et des derniers articles',
+'mot_mon_article' => 'pour choisir un article qui sera affiché dans un onglet du bloc central de la page d\'accueil',
+'mot_mon_article2' => 'pour choisir un deuxième article qui sera affiché dans un onglet du bloc central de la page d\'accueil',
+'mot_mon_article3' => 'pour choisir un troisième article qui sera affiché dans un onglet du bloc central de la page d\'accueil',
+'mot_pas_decouvrir' => 'pour choisir les rubriques et les articles à exclure de l\'affichage dans le bloc "A decouvrir" si on choisit "dans tout le site"',
+'mot_pas_une' => 'pour ne pas afficher une rubrique (et ses articles) ou des articles dans les onglets "Derniers articles" de la page d\'accueil',
+'mot_pas_menu' => 'pour ne pas afficher une rubrique ou un article dans le menu horizontal',
+'mot_pas_menu_vertical' => 'pour ne pas afficher une rubrique ou un article dans les menus verticaux',
+'mot_pas_plan' => 'pour ne pas afficher une rubrique (et ses articles) ou des articles dans le bloc "Plan du site" de la page d\'accueil',
+'mot_photo_une' => 'pour choisir les articles dont les images seront affichées dans le bloc "Quelques images au hasard" ',
+'mot_pleine_page' => 'pour choisir les articles qui seront affichés en pleine page sans aucun bloc latéral',
+'mot_rubrique_onglet' => 'pour choisir une rubrique qui sera affichée dans les onglets en page d\'accueil',
+'mot_rubrique_onglet2' => 'pour choisir une deuxième rubrique qui sera affichée dans les onglets en page d\'accueil',
+'mot_rubrique_onglet3' => 'pour choisir une troisième rubrique qui sera affichée dans les onglets en page d\'accueil',
+'mot_rubrique_onglet4' => 'pour choisir une quatrième rubrique qui sera affichée dans les onglets en page d\'accueil',
+'mot_rubrique_onglet5' => 'pour choisir une cinquième rubrique qui sera affichée dans les onglets en page d\'accueil',
+'mot_site_exclu' => 'pour exclure des sites dans le bloc "Sur le web"',
+'mot_special' => 'pour choisir la rubrique et/ou les articles qui seront affichés dans le bloc à personnaliser',
+'mot_video_une' => 'pour choisir les articles dont les vidéos seront affichées dans le bloc "Vidéo"',
+
 // A
 'affichage_auteur_articles' => 'Affichage du nom de l\'auteur des articles',
 'affichage_chapeau' => 'Affichage du chapeau',
@@ -211,7 +255,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cadres_lateraux' => 'Cadres latéraux',
 'cadres_bords' => 'Bord des cadres présents',
 'cadres_images' => 'Largeur des images',
-'cadres_images_largeur' => 'Largeur maximum des images pour les articles utilisés dans certaines noisettes latérales (Accès direct, Edito, Photos au hasard, Articles libres 1 à 5) ',
+'cadres_images_largeur' => 'Largeur maximum des images pour les articles utilisés dans certains blocs latéraux (Accès direct, Edito, Photos au hasard, Articles libres 1 à 5) ',
 'caracteres' => 'caractères',
 'centre' => 'Au centre',
 'choix_blocs_lateraux' => 'Choix des blocs latéraux',
@@ -254,7 +298,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // D
 'deplier_replier' => 'Déplier et replier',
-'deplier_replier_explication' => 'En cochant "Oui" la noisette sera repliée et un bouton permettra de la déplier et de la replier à nouveau.',
+'deplier_replier_explication' => 'En cochant "Oui" le bloc sera repliée et un bouton permettra de la déplier et de la replier à nouveau.',
 'derniers_articles' => 'Derniers articles',
 'derniers_comments' => 'Derniers commentaires',
 'documentation' => 'Documentation',
@@ -296,17 +340,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_menuv1' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article102&lang=fr" title="Voir la documentation">Menu vertical dépliant</a>',
 'doc_menuv2' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article112&lang=fr" title="Voir la documentation">Menu vertical déroulant à droite</a>',
 'doc_mini_calendrier' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article81&lang=fr" title="Voir la documentation">Mini calendrier</a>',
-'doc_mini_calendrier2' => ' : utilise le plugin "Calendrier Mini" activé automatiquement avec Escal.<br /> NB : l\'utilisation de cette noisette fait perdre la validation XHTML',
+'doc_mini_calendrier2' => ' : utilise le plugin "Calendrier Mini" activé automatiquement avec Escal.<br /> NB : l\'utilisation de ce bloc fait perdre la validation XHTML',
 'doc_mot_cles_associes' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article131&lang=fr" title="Voir la documentation">Mots-clés associés</a>',
 'doc_mot_cles_associes2' => ' : navigation par mots-clés, si l\'article en a au moins un.',
 'doc_navigation_mots_cles' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article312&lang=fr" title="Voir la documentation">Navigation par mots-clés</a>',
 'doc_navigation_mots_cles2' => ' : menu de navigation via les mots-clés d\'un groupe.',
-'doc_personnalise' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article190&lang=fr" title="Voir la documentation">Noisette à personnaliser</a>',
+'doc_personnalise' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article190&lang=fr" title="Voir la documentation">Bloc à personnaliser</a>',
 'doc_personnalise2' => ' : articles avec le mot-clé "special". Le paramétrage de cette noisette se fait dans "Paramétrage des blocs latéraux -> Titres et contenus".',
 'doc_photos_hasard' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article144&lang=fr" title="Voir la documentation">Photos au hasard</a>',
 'doc_photos_hasard2' => ' : les images des articles avec le mot-clé "photo-une" défilent.',
 'doc_rainette' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article192&lang=fr" title="Voir la documentation">Rainette</a>',
-'doc_rainette2' => ' : nécessite le plugin "Rainette". Infos sur la météo d\'une ville au choix.<br />La configuration de cette noisette se fait dans la partie "Des plugins dans Escal".',
+'doc_rainette2' => ' : nécessite le plugin "Rainette". Infos sur la météo d\'une ville au choix.<br />La configuration de ce bloc se fait dans la partie "Des plugins dans Escal".',
 'doc_recherche_multi' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article198&lang=fr" title="Voir la documentation">Recherche multi-critères</a>',
 'doc_recherche_multi2' => ' : recherche par groupes de mots-clés et par mots-clés.',
 'doc_sites_favoris' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article181&lang=fr" title="Voir la documentation">Sites favoris</a>',
@@ -342,7 +386,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'favicon_choix3' => 'à partir d\'un fichier image de votre choix (gif, png, jpg ...) mis dans le dossier "squelettes"<br />le nom et l\'extension de ce fichier sont à préciser ci-dessous',
 'form_recherche' => 'Formulaire de recherche',
 'fonds_annonce' => '<strong>Attention</strong> : quand vous réinitialisez une ou plusieurs couleurs, pensez à valider ensuite pour enregistrer cette réinitialisation.',
-'fonds_noisettes' => 'Les fonds et les textes des noisettes',
+'fonds_noisettes' => 'Les fonds et les textes des blocs',
 'fonds_noisettes_fond' => 'fond :',
 'fonds_noisettes_texte' => 'texte :',
 'fonds_noisettes_apercu' => 'Aperçu de votre texte',
@@ -467,13 +511,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // N
 'nav_mot_cle' => 'Navigation par mots-clés',
-'noisette_article' => 'Noisettes spécifiques à la page article',
-'noisette_commun' => 'Noisettes communes à plusieurs pages',
-'noisette_perso' => 'Noisette à personnaliser',
-'noisette_rubrique' => 'Noisettes spécifiques à la page rubrique',
-'noisettes_acces_direct_explication' => 'Le titre de cette noisette est donné par le titre de l\'article avec le mot-clé "acces-direct". Article dont il faut décliner les traductions sur un site multilingue.',
+'noisette_article' => 'Blocs spécifiques à la page article',
+'noisette_commun' => 'Blocs communs à plusieurs pages',
+'noisette_perso' => 'Bloc à personnaliser',
+'noisette_rubrique' => 'Blocs spécifiques à la page rubrique',
+'noisettes_acces_direct_explication' => 'Le titre de ce bloc est donné par le titre de l\'article avec le mot-clé "acces-direct". Article dont il faut décliner les traductions sur un site multilingue.',
 'noisettes_actus_tempo' => 'Temporisation entre chaque actu (en secondes).<br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation.',
-'noisettes_actus_enlever' => 'Enlever la noisette si pas d\'actus',
+'noisettes_actus_enlever' => 'Enlever le bloc si pas d\'actus',
 'noisettes_affiche_articles' => 'Avec affichage des articles',
 'noisettes_annuaire_admin' => 'Couleur pour les admins',
 'noisettes_annuaire_icones' => 'Affichage des icônes',
@@ -485,7 +529,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - les <strong>événements</strong> créés dans des articles grâce au plugin Agenda<br />
                     - des <strong>articles</strong> en prenant en compte leur "date de rédaction antérieure".
                     Les articles concernés sont ceux ayant le mot-clé "agenda" ou ceux de la rubrique ayant le même mot-clé "agenda". ',
-'noisettes_calendrier_explication2' => '(ce choix s\'appliquera aussi à la noisette "Evénements à venir") ',
+'noisettes_calendrier_explication2' => '(ce choix s\'appliquera aussi à le bloc "Evénements à venir") ',
 'noisettes_calendrier_events' => 'Liste des événement à venir en dessous',
 'noisettes_calendrier_pagination' => 'Nombre d\'articles ou d\'événements par page de pagination',
 'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur est authentifié',
@@ -497,16 +541,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisettes_decouvrir_recents' => 'Nombre d\'articles les plus récents',
 'noisettes_decouvrir_rubrique' => 'Uniquement dans la rubrique en cours et ses sous-rubriques',
 'noisettes_decouvrir_site' => 'Dans tout le site (on peut exclure des articles ou des rubriques avec le mot-clé "pas-a-decouvrir")',
-'noisettes_edito_explication' => 'Le titre de cette noisette est donné par le titre de l\'article avec le mot-clé "edito". Article dont il faut décliner les traductions sur un site multilingue.',
-'noisettes_events_explication' => 'Attention : le choix de l\'affichage des articles ou des événements est le même que celui de la noisette "Mini-calendrier" juste au-dessus.',
-'noisettes_explication' => '<strong>Titres des noisettes</strong><br /><br />
-              Dans le cas d\'un <strong>site multilingue</strong>, si vous voulez changer le titre d\'une noisette
+'noisettes_edito_explication' => 'Le titre de ce bloc est donné par le titre de l\'article avec le mot-clé "edito". Article dont il faut décliner les traductions sur un site multilingue.',
+'noisettes_events_explication' => 'Attention : le choix de l\'affichage des articles ou des événements est le même que celui du bloc "Mini-calendrier" juste au-dessus.',
+'noisettes_explication' => '<strong>Titres des blocs</strong><br /><br />
+              Dans le cas d\'un <strong>site multilingue</strong>, si vous voulez changer le titre d\'un bloc
               tout en conservant le multilinguisme, vous devez écrire ce titre en suivant cet exemple :<br /><br />
               &lt;multi&gt; [fr]Exemple [en]Example [de]Beispiel [es]Ejemplo [it]Esempio &lt;/multi&gt;<br /><br />
               En laissant la case vide, Escal utilisera le titre par défaut.',
 'noisettes_forum_explication' => 'Une seule colonne latérale car le forum occupe le reste de l\'espace',
 'noisettes_forum_colonne' => 'Place de la colonne latérale',
-'noisettes_identification_explication' => 'Le titre de cette noisette n\'est pas modifiable.',
+'noisettes_identification_explication' => 'Le titre de ce bloc n\'est pas modifiable.',
 'noisettes_identification_redacteur' => 'Afficher le formulaire d\'inscription de nouveaux <strong>rédacteurs</strong><br />
 			(Il faut avoir coché "Accepter les inscriptions" dans l\'espace privé : Configuration - Interactivité)',
 'noisettes_identification_visiteur' => 'Afficher le formulaire d\'inscription de nouveaux <strong>visiteurs</strong><br />
@@ -535,7 +579,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisettes_perso_tempo' => 'Temporisation entre chaque article (en secondes).<br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation.',
 'noisettes_photos_tempo' => 'Temporisation entre chaque image (en secondes).<br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation.',
 'noisettes_photos_lien' => 'Lien vers l\'article source de la photo',
-'noisettes_sites_exclus' => 'Exclure les sites avec le mot-clé "favori" puisque déjà présents dans la noisette "Sites favoris" si vous l\'utilisez',
+'noisettes_sites_exclus' => 'Exclure les sites avec le mot-clé "favori" puisque déjà présents dans le bloc "Sites favoris" si vous l\'utilisez',
 'noisettes_sites_tempo' => 'Temporisation entre chaque logo de site (en secondes).<br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation.',
 'noisettes_stats_affiche' => 'Affichage ...',
 'noisettes_stats_articles' => 'Nombre d\'articles du site',
@@ -722,12 +766,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // T
 'texte_accueil' => 'Vous êtes sur la page de configuration du squelette Escal.<br /><br />
 	Cette page va vous permettre de personnaliser votre site, 
-	du choix des noisettes au choix des couleurs, en passant par l\'affichage ou non de nombreux éléments.<br /><br />
+	du choix des blocs au choix des couleurs, en passant par l\'affichage ou non de nombreux éléments.<br /><br />
 	A vous de jouer !',
 'texte_coupe' => 'On coupe le texte à',
 'titre' => 'Titre',
 'titre_coupe' => 'Nombre de caractères affichés pour le titre des articles',
-'titre_noisette' => 'Titre de la noisette',
+'titre_noisette' => 'Titre du bloc',
 
 // U
 'une' => 'A la une',
