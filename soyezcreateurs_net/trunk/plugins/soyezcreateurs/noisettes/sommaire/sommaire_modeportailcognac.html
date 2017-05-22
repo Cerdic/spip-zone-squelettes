@@ -88,10 +88,16 @@
 				<div class="content-actus agenda #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
 						<header class="flexbox-center-space-between triadeA texte-blanc">
-							<time itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
-								<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{d})]</strong>&nbsp;/[(#DATE_DEBUT|affdate{m})]</span>
-								<span class="dateMois display-block">[(#DATE_DEBUT|affdate{Y})]</span>
-							</time>
+							<div class="date[(#DATE_DEBUT|!={#DATE_FIN}|?{' debutfin'})]">
+								<time class="debut" itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
+									<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{d})]</strong>&nbsp;/[(#DATE_DEBUT|affdate{m})]</span>
+									<span class="dateMois display-block">[(#DATE_DEBUT|affdate{Y})]</span>
+								</time>[(#DATE_DEBUT|!={#DATE_FIN}|oui)
+								<time class="fin" itemprop="startDate" title="#DATE_FIN" datetime="#DATE_FIN">
+									<span class="dateNombre"><strong>[(#DATE_FIN|affdate{d})]</strong>&nbsp;/[(#DATE_FIN|affdate{m})]</span>
+									<span class="dateMois display-block">[(#DATE_FIN|affdate{Y})]</span>
+								</time>]
+							</div>
 							[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{180,95}|extraire_attribut{src})" alt="" width="180" height="95" />]
 						</header>
 						<div class="h2"><span class="titre-actus">[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{#TITRE[&nbsp;: (#_AgendaDerniersAjouts:TITRE)],#TITRE})]</span>
@@ -202,7 +208,7 @@
 		});
 		$('.slider-pratique').slick({
 		  dots: false,
-		  slidesToShow: 7,
+		  slidesToShow: [(#GET{LargeurContaineur}|div{304}|intval)],
 		  slidesToScroll: 3,
 		  infinite: true,
 		  variableWidth: true
