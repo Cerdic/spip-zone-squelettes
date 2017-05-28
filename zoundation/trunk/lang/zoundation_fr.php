@@ -23,5 +23,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'footer_js' => 'Insertion dans le footer',
 	'explication_footer_js' => "Cette configuration permet d'insérer de manière arbitraire des éléménts juste
-avant la balise fermante du body."
+avant la balise fermante du body.",
+	'expedier' => 'Expédier à cette adresse'
 );
