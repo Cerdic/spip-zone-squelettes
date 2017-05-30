@@ -115,9 +115,10 @@
 ************** -->
 
   <B_articles_une>
+  #ANCRE_PAGINATION
     <div class="derniers-art-ter">
     <ul class="anchors">
-	<BOUCLE_articles_une (ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#CONFIG{escal/config/nombrealaune,11}|moins{1}}{doublons}>
+	<BOUCLE_articles_une (ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#CONFIG{escal/config/nombrearticlesune,50}|moins{1}}{pagination #CONFIG{escal/config/paginarticlesune,5}}{doublons}>
     <li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
       <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 
@@ -192,6 +193,8 @@
 	</BOUCLE_articles_une>
     </ul>
     </div>
+    <div class="nettoyeur"></div> 
+    <p class="pagination pagination-une">#PAGINATION{#CONFIG{escal/config/modelepaginarticlesune}}</p>
   </B_articles_une>
 
 
