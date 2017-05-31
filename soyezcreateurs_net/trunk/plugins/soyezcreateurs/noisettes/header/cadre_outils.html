@@ -3,7 +3,17 @@
 <ul>
 <BOUCLE_Outils(ARTICLES){titre_mot=Outils}{par num titre} {lang}>
 	<li id="cadre_outil_#ID_ARTICLE"[ class="(#COMPTEUR_BOUCLE|=={1}|?{first})"][ class="(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{last})"]><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|extraire_attribut{src}|embarque_fichier)" class="logo_outil" alt="" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogooutils,16},#CONFIG{soyezcreateurs_layout/hauteurlogooutils,16}}|hauteur)]" />]#TITRE</a></li>
+	#SET{vu,1}
 </BOUCLE_Outils>
-</ul>
-</div>
-</B_Outils>#FILTRE{mini_html}
+</B_Outils>
+[(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={portailcognac}|oui)
+[(#GET{vu}|non)<div id="cadre_outils">
+<ul>]
+#SET{vu,1}
+[(#PLUGIN{SOCIALTAGS}|oui)	<li id="cadre_outil_socialtags"><a href="#" title="<:socialtags:noisette_action_recommand:>"><span class="open-socialtags icon icon-share2 icon-lg texte-blanc"></span><span class="hide"><:socialtags:noisette_action_recommand:></span></a></li>]
+[(#PLUGIN{MLL}|oui)	<li id="cadre_outil_language"><a href="#" title="Choisir la langue d'affichage du site"><span class="open-language icon icon-language icon-lg texte-blanc"></span><span class="hide">Langues</span></a></li>]
+	<li id="cadre_outil_search"><a href="#" title="<:soyezcreateurs:accessibilite_recherche:>"><span class="open-search icon icon-search icon-lg texte-blanc"></span><span class="hide"><:soyezcreateurs:accessibilite_recherche:></span></a></li>
+]
+[(#GET{vu}|oui)</ul>
+</div>]
+#FILTRE{mini_html}
