@@ -186,32 +186,6 @@ function adjustLayout() {
 	}
 }
 ;
-/* Initialisation de zone mises en popup via menu_outils
-   Par exemple :
-   03. <span class="open-socialtags icon icon-share2 icon-lg texte-blanc"></span><span class="hide">Partager</span>
-   04. <span class="open-search icon icon-search icon-lg texte-blanc"></span><span class="hide">Rechercher</span>
-*/
-function sc_init_popup(actionneur, cible, message) {
-	var cible = $(cible);
-	var open = $('.open-' + actionneur);
-	if (!cible.length) {
-		open.parent().parent().hide();
-		return;
-	}
-	// on ajoute le bouton pour fermer l'overlay réseaux sociaux
-	cible.append('<a href="#" class="close-' + actionneur + '" title="' + message + '"></a>');
-	var close = $('.close-' + actionneur);
-	// on ouvre et ferme l'overlay recherche
-	open.click(function () {
-		cible.fadeIn();
-		close.fadeIn();
-	});
-	close.click(function () {
-		cible.fadeOut();
-		close.hide();
-	});
-}
-
 /* FUNCTIONS ON ALL PAGES */
 function myInitPages() {
 	/* HOME SPECIAL FEATURE */
@@ -255,10 +229,6 @@ function myInitPages() {
 	});
 ]
 	$(".escapelinks").one("focus", "a", function() { $(".escapelinks").removeClass("escapelinks"); } );
-	
-	sc_init_popup('search', '.cadre_recherche', 'Fermer la recherche');
-	sc_init_popup('socialtags', '#socialtags', 'Fermer le partage');
-	sc_init_popup('language', '#cadre_lang', 'Fermer le choix de langue');
 }
 ;
 function myInitLayout() {
