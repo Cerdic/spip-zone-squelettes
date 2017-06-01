@@ -1,9 +1,8 @@
 <div class="laune" >
 
 	<!-- 
-  		on extrait tous les articles des rubriques a qui un a donné le mot-cle "pas-a-la-une" ou "invisible" 
-  		on les stocke dans "doublons une"
-			on n'affiche rien ici -->
+  		on extrait tous les articles des rubriques a qui on a donné le mot-cle "pas-a-la-une" ou "invisible" 
+  		on les stocke dans "doublons" et on n'affiche rien ici -->
 	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot IN 'pas-a-la-une', 'invisible'}>
 	 <BOUCLE_extract(ARTICLES){id_rubrique}{doublons}>
 	 </BOUCLE_extract>
@@ -12,12 +11,29 @@
   	 </BOUCLE_extract2>	 
   	</BOUCLE_exclure_rub2>	 
 	</BOUCLE_exclure_rub>
-	
+	<!-- 
+  		on extrait tous les articles a qui on a donné le mot-cle "pas-a-la-une" ou "invisible" 
+  		on les stocke dans "doublons" et on n'affiche rien ici -->	
 	<BOUCLE_exclure_art(ARTICLES){titre_mot IN 'pas-a-la-une', 'invisible'}{doublons}>
 	</BOUCLE_exclure_art>
+	<!-- 
+  		si le bloc "Annonce" ou "Annonces défilantes" sont activés
+  		on extrait tous les articles a qui on a donné le mot-cle "annonce" ou "annonce-defilant" 
+  		on les stocke dans "doublons exergue" pour qu'ils ne s'affichent pas en exergue et on n'affiche rien ici -->
+	<BOUCLE_exclure_annonce1(ARTICLES){si #CONFIG{escal/config/blocune1}|=={annonce}|oui}{titre_mot=annonce}{doublons exergue}>
+	</BOUCLE_exclure_annonce1>
+	<BOUCLE_exclure_annonce2(ARTICLES){si #CONFIG{escal/config/blocune2}|=={annonce}|oui}{titre_mot=annonce}{doublons exergue}>
+	</BOUCLE_exclure_annonce2>
+	<BOUCLE_exclure_annonce3(ARTICLES){si #CONFIG{escal/config/blocune3}|=={annonce}|oui}{titre_mot=annonce}{doublons exergue}>
+	</BOUCLE_exclure_annonce3>
+		
+	<BOUCLE_exclure_annoncedef1(ARTICLES){si #CONFIG{escal/config/blocune1}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons exergue}>
+	</BOUCLE_exclure_annoncedef1>
+	<BOUCLE_exclure_annoncedef2(ARTICLES){si #CONFIG{escal/config/blocune2}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons exergue}>
+	</BOUCLE_exclure_annoncedef2>
+	<BOUCLE_exclure_annoncedef3(ARTICLES){si #CONFIG{escal/config/blocune3}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons exergue}>
+	</BOUCLE_exclure_annoncedef3>
 	
-	<BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
-	</BOUCLE_exclure_art2> 
 	
 <!-- *************
 	article en exergue 
