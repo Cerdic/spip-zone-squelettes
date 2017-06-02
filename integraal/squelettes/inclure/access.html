@@ -2,12 +2,14 @@
 
 	Menu de liens d'évitement et formulaire de recherche
 
+	Nécessite le plugin menus.
+
 ]
-[(#PLUGIN{menus}|oui)
-[<div class="menu">
-	(#INCLURE{fond=inclure/menu,identifiant=access,env})
-</div>]
-]
+<BOUCLE_menu(MENUS ?) {identifiant=access} {si #PLUGIN{menus}}>
+<div class="menu" role="navigation"[ aria-label="(#TITRE|attribut_html)"]>
+	<INCLURE{fond=inclure/menu,identifiant, env} />
+</div>
+</BOUCLE>
 
 <div class="search" role="search">
 	#FORMULAIRE_RECHERCHE
