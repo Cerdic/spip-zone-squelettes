@@ -1,4 +1,5 @@
 [(#SET{defaut_tri,#ARRAY{
+	titre,1,
 	num titre,1,
 	date,#ENV{date_sens,-1},
 	id_article,1,
@@ -6,14 +7,37 @@
 }})
 ]<B_articles>
 	#ANCRE_PAGINATION
-	[<h2>(#ENV{titre})</h2>]
+	[<h2 class="titre-liste">
+		(#ENV*{titre}|sinon{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,info_un_article},#ENV{titre_pluriel,info_nb_articles}}})
+	</h2>]
 	<ul class="liste-items">
-		<BOUCLE_articles(ARTICLES){id_article?}{id_rubrique?}{recherche?}{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}{!id_article IN #ENV{articles_exclus,#ARRAY}} {pagination #ENV{nb,5}}>
-		<li class="item">#INCLURE{fond=inclure/resume/article,id_article,largeur_logo,hauteur_logo}</li>
+		<BOUCLE_articles(ARTICLES)
+			{id_article?}
+			{id_rubrique?}
+			{branche?}
+			{recherche?}
+			{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}
+			{!id_article IN #ENV{articles_exclus,#ARRAY}}
+			{pagination #ENV{pagination,5}}
+		>
+		<li class="item">
+			<INCLURE{fond=inclure/resume/article,
+				id_article,
+				largeur_logo,
+				hauteur_logo}>
+		</li>
 		</BOUCLE_articles>
 	</ul>
-	[<div class="pagination">(#PAGINATION)</div>]
+	[(#ENV{masquer_pagination}|!={oui}|oui)
+	[<div class="pagination">
+		(#PAGINATION{
+			#ENV{modele_pagination,page_precedent_suivant},
+			label_precedent=#ENV{label_precedent},
+			label_suivant=#ENV{label_suivant}
+		})
+	</div>]
+	]
 </B_articles>
 [(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:info_aucun_article:>, #ENV{message_aucun}})]})]
-[<p>(#GET{message_aucun})</p>]
+[<p class="aucun-resultat">(#GET{message_aucun})</p>]
 <//B_articles>
