@@ -17,20 +17,24 @@ function parallelism_insert_head($flux){
     
 function parallelism_insert_head_css($flux) {
     $cssnoscript = find_in_path('css/skel-noscript.css');
-    $cssstyle = find_in_path('css/style.css');
+    // css/style.css fait déja partie des css embarquées par le head de la dist alors pas la peine de le charger en double
+    //$cssstyle = find_in_path('css/style.css');
     $cssstyledesktop = find_in_path('css/style-desktop.css');
-    $cssstylenoscript = find_in_path('css/style-noscript.css');    
+    $cssstylenoscript = find_in_path('css/style-noscript.css');
 
     // générer une css au départ d'un squelette SPIP
     // $css_icones = generer_url_public('barre_outils_icones.css');
     
     $flux .= '<noscript>
-      <link rel="stylesheet" type="text/css" media="all" href="'.$cssnoscript.'" />
-      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstyle.'" />
-      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstyledesktop.'" />
-      <link rel="stylesheet" type="text/css" media="all" href="'.$cssstylenoscript.'" />
+		<link rel="stylesheet" type="text/css" media="all" href="'.$cssnoscript.'" />
+		<link rel="stylesheet" type="text/css" media="all" href="'.$cssstylenoscript.'" />
     </noscript>
+    <link rel="stylesheet" type="text/css" media="all" href="'.$cssstyledesktop.'" />
+    
     <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->';
+
+    //<link rel="stylesheet" type="text/css" media="all" href="'.$cssstyle.'" />
+    
     //. "<link rel="stylesheet" type="text/css" media="all" href="$css_icones" />";
     return $flux;
     }

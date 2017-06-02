@@ -8,9 +8,25 @@
 		<meta name="keywords" content="" />
 
 		<INCLURE{fond=inclure/head}>
-	</head>[
-	(#SET{fond,[(#LOGO_ARTICLE_RUBRIQUE|?{#LOGO_ARTICLE_RUBRIQUE,[(#LOGO_SITE_SPIP|?{#LOGO_SITE_SPIP,non})]})]})]
-	<body[ (#GET{fond}|!={non}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"]>
+	[(#SET{fond, 
+		[(#LOGO_ARTICLE_RUBRIQUE|?{ 
+			#LOGO_ARTICLE_RUBRIQUE
+			,
+			[(#LOGO_SITE_SPIP|?{
+				#LOGO_SITE_SPIP
+				,
+				''
+			})]
+		})]	
+	 })]
+	[(#REM) si on utilise un logo comme image-background, calculer la couleur du texte de pied de page]
+	[ (#GET{fond}|oui)
+		[<style type='text/css'>
+			body, a { color: #(#GET{fond}|couleur_extraire{2,2}|couleur_extreme|couleur_inverser); }
+		</style>]
+	]
+	</head>
+	<body[ (#GET{fond}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"]>
 
 		<div id="wrapper">
 
