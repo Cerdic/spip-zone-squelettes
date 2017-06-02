@@ -1,3 +1,32 @@
+[(#REM)
+
+	Liste d'évènements
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- resume (string) : fond à utiliser pour les résumés dans inclure/resume | défaut = evenement
+
+	- titre (string) : titre personnalisé, '' pour ne pas afficher
+	- titre_singulier (string) : chaîne de langue pour le nombre de résultats au singulier
+	- titre_pluriel (string) : chaîne de langue pour le nombre de résultats au pluriel
+	- message_aucun (string) : message affiché si aucun item, '' pour ne pas afficher
+
+	- relatif (int) : évènement relatif
+	- id_article (int) : pour restreindre aux évènements d'un article
+	- branche (int) : pour restreindre aux évènements d'une branche
+	- recherche (string) : pour restreindre aux évènements correspondant à un terme de recherche
+	- evenements_exclus (array) : exclure des évènements
+
+	- par (string) : champ utilisé pour le tri | défaut = titre
+	- pagination (int) : nombre pour la pagination | défaut = 5
+	- masquer_pagination (string) : "oui" pour ne pas afficher la pagination
+
+	- hauteur_logo (int) : hauteur max du logo
+	- largeur_logo (int) : largeur max du logo
+
+]
 [(#SET{defaut_tri,#ARRAY{
 	titre,1,
 	num titre,1,
@@ -17,10 +46,11 @@
 			{branche?}
 			{recherche?}
 			{tri #ENV{par,#ENV{recherche}|?{points,date_debut}},#GET{defaut_tri}}
+			{!id_evenement IN #ENV{evenements_exclus,#ARRAY}}
 			{pagination #ENV{pagination,5}}
 		>
 		<li class="item">
-			<INCLURE{fond=inclure/resume/#ENV{resume,article},
+			<INCLURE{fond=inclure/resume/#ENV{resume,evenement},
 				id_evenement,
 				largeur_logo,
 				hauteur_logo}>

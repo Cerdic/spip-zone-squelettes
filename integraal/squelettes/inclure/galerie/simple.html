@@ -1,7 +1,29 @@
-[(#REM) Portfolio : album d'images ]
+[(#REM)
+
+	Portfolio : album d'images avec une mise en avant
+
+	Par défaut, les miniatures ont toutes les même hauteur.
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- titre (string) : titre personnalisé
+	- largeur (int) : largeur max des miniatures 
+	- hauteur (int) : hauteur max des miniatures
+
+	- id_article (int) : pour restreindre aux images d'un article
+	- id_rubrique (int) : pour restreindre aux images d'une rubrique
+	- objet (string) : pour restreindre aux images d'un type d'objet
+	- id_objet (int) : pour restreindre aux images à un numéro d'objet
+
+]
 <B_documents_portfolio>
 <div class="liste images documents_portfolio" id="album[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)][-(#OBJET)#ID_OBJET]">
+
 	[<h2 class="h2">(#ENV{titre,Galerie})</h2>]
+
+	[(#REM) Image mise en avant ]
 	<div class="zoom">
 		[(#REM) S'il y a une sélection explicite on zoom sur cette image ]
 		<BOUCLE_zoom_selection(DOCUMENTS){id_document}>
@@ -13,13 +35,25 @@
 			</BOUCLE_zoom_premier>
 		<//B_zoom_selection>
 	</div>
+
+	[(#REM) Miniatures ]
 	<div class="liste-items">
-		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?}{objet?}{id_objet?}{extension IN png,jpg,gif}{par num titre, date}{vu=non}{doublons}>
-		<a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT}|ancre_url{album[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)][-(#OBJET)#ID_OBJET]})]" class="ajax"
+		<BOUCLE_documents_portfolio(DOCUMENTS)
+			{id_article?}
+			{id_rubrique?}
+			{objet?}
+			{id_objet?}
+			{extension IN png,jpg,gif}
+			{par num titre, date}
+			{vu=non}
+			{doublons documents}
+		>
+		<a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT}|ancre_url{album[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)][-(#OBJET)#ID_OBJET]})]"
+			class="ajax"
 			rel="documents_portfolio[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)]"
 			[title="(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})"]
 		>[(#TOTAL_BOUCLE|>{1}|oui)[(#FICHIER
-			|image_reduire{0,100}
+			|image_reduire{#ENV{largeur,0}, #ENV{hauteur,100}}
 			|inserer_attribut{class,spip_logos}
 			|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})]})]]</a>
 		</BOUCLE_documents_portfolio>
