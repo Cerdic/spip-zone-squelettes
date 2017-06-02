@@ -8,7 +8,7 @@
 ]<B_resultats>
 	#ANCRE_PAGINATION
 	[<h2 class="titre-liste">
-		(#ENV{titre}|sinon{#GRAND_TOTAL|singulier_ou_pluriel{agenda:info_un_evenement, agenda:info_nombre_evenements}})
+		(#ENV{titre}|is_null|?{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,agenda:info_un_evenement},#ENV{titre_pluriel,agenda:info_nombre_evenements}},#ENV*{titre}})
 	</h2>]
 	<ul class="liste-items">
 		<BOUCLE_resultats(EVENEMENTS)
@@ -20,7 +20,7 @@
 			{pagination #ENV{pagination,5}}
 		>
 		<li class="item">
-			<INCLURE{fond=inclure/resume/evenement,
+			<INCLURE{fond=inclure/resume/#ENV{resume,article},
 				id_evenement,
 				largeur_logo,
 				hauteur_logo}>

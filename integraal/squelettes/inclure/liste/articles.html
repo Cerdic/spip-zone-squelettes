@@ -8,7 +8,7 @@
 ]<B_articles>
 	#ANCRE_PAGINATION
 	[<h2 class="titre-liste">
-		(#ENV*{titre}|sinon{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,info_un_article},#ENV{titre_pluriel,info_nb_articles}}})
+		(#ENV{titre}|is_null|?{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,info_un_article},#ENV{titre_pluriel,info_nb_articles}},#ENV*{titre}})
 	</h2>]
 	<ul class="liste-items">
 		<BOUCLE_articles(ARTICLES)
@@ -21,7 +21,7 @@
 			{pagination #ENV{pagination,5}}
 		>
 		<li class="item">
-			<INCLURE{fond=inclure/resume/article,
+			<INCLURE{fond=inclure/resume/#ENV{resume,article},
 				id_article,
 				largeur_logo,
 				hauteur_logo}>
