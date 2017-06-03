@@ -1,7 +1,7 @@
 			<div id="footer">
 				<div class="left">
 					<div[ class="(#EDIT{meta-descriptif_site})"]>#DESCRIPTIF_SITE_SPIP</div>
-					<ul><li class="articles"><a href="#URL_SITE_SPIP"><:accueil:></a></li>
+					<ul><li class="articles"><a href="#URL_SITE_SPIP"><:accueil_site:></a></li>
 					[(#REM) lien vers rubriques racines]
 					<BOUCLE_sommaire(RUBRIQUES){id_parent=0}{par num titre}>
 					<li class="articles"><a href="#URL_RUBRIQUE">#TITRE</a></li>
@@ -9,8 +9,6 @@
 					</B_sommaire>
 					[(#REM) les pages uniques (credits...)]
 					<BOUCLE_pages(ARTICLES){id_rubrique=-1}{par num titre}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_pages>
-					      <li class="articles">[(#SESSION{id_auteur}|non)<a href="spip.php?page=login&url=spip.php">Connexion</a>][(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT{/}">Déconnexion</a>]</li>
-					      [<li class="articles">(#SESSION{statut}|=={0minirezo}|oui|ou{[(#SESSION{statut}|=={1comite}|oui)]})<a href="#URL_ECRIRE">Admin</a></li>]
 					</ul>
 				</div>
 				[(#REM) intégrer ici social_tags ?]
@@ -25,6 +23,8 @@
 						<li><a rel="nofollow" href='mailto:?subject=[(#GET{ref}|rawurlencode)]&amp;body=[(#VAL{<:parallelism:signalement_mail:>}|rawurlencode)]&nbsp;#URL_SITE_SPIP/#SELF' class="fa fa-envelope solo"><span>Email</span></a></li>
 					</ul>
 					<div id="copyright">
+					      [(#SESSION{id_auteur}|non)<a href="spip.php?page=login&url=spip.php">Connexion</a>][(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT{/}">Déconnexion</a> | ]
+					      [(#SESSION{statut}|=={0minirezo}|oui|ou{[(#SESSION{statut}|=={1comite}|oui)]})<a href="#URL_ECRIRE">Admin</a> | ]
 						&copy; #NOM_SITE_SPIP | Design: <a href="http://html5up.net/">HTML5 UP</a>, sous licence <a href="http://html5up.net/license/">CCA 3.0</a>
 					</div>
 				</div>
