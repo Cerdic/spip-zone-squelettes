@@ -1,9 +1,9 @@
 <BOUCLE_content(ARTICLES){id_article}>
-<article>
+<article itemscope itemtype="http://schema.org/Article">
 	<header class="cartouche">
-		[(#LOGO_ARTICLE|image_reduire{200,200})]
+		[(#LOGO_ARTICLE|image_reduire{200,200}|inserer_attribut{itemprop,image})]
 		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-		<h1><span class="#EDIT{titre}">#TITRE</span>[
+		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span>[
 			<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
 		]</h1>
 		
@@ -11,25 +11,30 @@
 		<div class="postmeta">
 			#MODELE{article_traductions}
 			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
-			<span class="comments">
+			<span class="comments" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+				<meta itemprop="interactionType" content="http://schema.org/CommentAction" />
 				<span class="sep">|</span>
-				<a[ href="(#REM|ancre_url{comments})"] [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires}|attribut_html)"]>[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]</a>
+				<a[ href="(#REM|ancre_url{comments})"]>[<span itemprop="userInteractionCount">(#TOTAL_BOUCLE)</span>][ (#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]</a>
 			</span>
+			[<meta itemprop="discussionUrl" content="(#SELF|url_absolue|ancre_url{comments})" />]
 			]<//B_nb_commentaires>
 			<B_tags>
 			<span class="tags">
 				<span class="sep">|</span>
 				<ul class="inline">
+					#SET{tags,#ARRAY}
 					<BOUCLE_tags(MOTS){id_article}>
+					#SET{tags,#GET{tags}|push{#TITRE}}
 					<li><a class="label" href="#URL_MOT"><i class="icon-tag"></i> #TITRE</a></li>
 					</BOUCLE_tags>
+					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
 				</ul>
 			</span>
 			</B_tags>
 		</div>
 	</header>
 
-	<div class="main">
+	<div class="main" itemprop="articleBody">
 		[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|adaptive_images)</div>]
 		[<div class="#EDIT{texte} texte surlignable">(#TEXTE|adaptive_images)</div>]
 
@@ -39,7 +44,7 @@
 	<footer>
 		[<div class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|adaptive_images)</div>]
 		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
-		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>
+		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>
 	</footer>
 
 	<aside>
