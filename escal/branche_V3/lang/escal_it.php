@@ -629,12 +629,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_bis_pagin_pps' => '< 1 | 2 | 3	| 4 | 5 | 6 | >',
 'onglets_bis_pagin_prive' => '0 | 10 | 20 | 30 | Mostra tutti',
 'onglets_bis_pagin_ps' => 'pagina precedente | pagina successiva',
-// nouvelle chaine
-'onglets_bis_ter_mot' => 'Articles à la une de "Derniers articles bis", "Derniers articles ter" et "Articles avec mot-clé"',
+'onglets_bis_ter_mot' => 'Articoli in evidenza da "Derniers articles bis", "Derniers articles ter" e "Articles avec mot-clé"',
 'onglets_choix' => 'Scelta delle schede',
 'onglets_cinq' => 'Quinta scheda',
-// nouvelle chaine
-'onglets_derniers' => 'Articles à la une de "Derniers articles" ',
+'onglets_derniers' => 'Articoli in evidenza da "Derniers articles" ',
 'onglets_derniers_arts' => 'Ultimi articoli',
 'onglets_derniers_arts_explication1' => 'Questi possono essere visualizzati in 3 modi:',
 'onglets_derniers_arts_explication2' => 'Guarda la documentazione per ulteriori dettagli.<br /><br />

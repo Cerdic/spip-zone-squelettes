@@ -54,9 +54,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_page_sommaire_noisettes' => 'Настройки боковых блоков',
 'cfg_page_spip400' => 'Spip 400',
 'cfg_page_spipdf' => 'spiPDF',
-'cfg_page_style' => 'Un peu de style',
+// 'cfg_page_style' => 'Un peu de style',
 'cfg_page_textes' => 'Тексты',
-'cfg_page_titre_contenu' => 'Titres et contenus',
+// 'cfg_page_titre_contenu' => 'Titres et contenus',
 
 // **************************************
 // chaines de langue pour l'espace public
@@ -160,8 +160,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Письмо-подтверждение (e-mail) было отправлено веб-мастеру сайта для подтверждения вашей регистрации. ',
 'format' => 'Тип файла:',
 'forum' => 'Форум',
-'forum_trouve' => 'message de forum trouvé',
-'forums_trouves' => 'messages de forum trouvés',
+'forum_trouve' => 'найдено сообщение форумa',
+'forums_trouves' => 'найдены сообщения форумa',
 
 // G
 'gros_jour' => 'Biggest day',
@@ -211,7 +211,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Результаты поиска:',
 'rechercher' => 'Поиск...',
 'recherche_articles_non' => 'Не найдены статьи по этому запросу',
-'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
+'recherche_forum_non' => 'не найдены сообщения форума по этому запросу',
 'recherche_resultat' => 'Результат поиска для ',
 'recherche_rubriques_non' => 'Не найдены рубрики по этому запросу',
 'recherche_sites_non' => 'Не найдены сайты по этому запросу',

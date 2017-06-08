@@ -160,8 +160,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'form_pet_envoi_mail_confirmation' => 'Лист-підтвердження був відправлений веб-майстру сайту для підтвердження вашої реєстрації. ',
 'format' => 'Тип файлу:',
 'forum' => 'Форум',
-'forum_trouve' => 'message de forum trouvé',
-'forums_trouves' => 'messages de forum trouvés',
+'forum_trouve' => 'знайдено повідомлення форуму',
+'forums_trouves' => 'знайдені повідомлення форуму',
 
 // G
 'gros_jour' => 'Biggest day',
@@ -211,7 +211,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'recherche_multi_resultat' => 'Результати пошуку:',
 'rechercher' => 'Пошук...',
 'recherche_articles_non' => 'Не знайдено статей на цей запит',
-'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
+'recherche_forum_non' => 'не знайдено повідомлень форуму за цим запитом',
 'recherche_resultat' => 'Результати пошуку для ',
 'recherche_rubriques_non' => 'Не знайдено рубрик на цей запит',
 'recherche_sites_non' => 'Не знайдено сайтів на цей запит',
