@@ -29,18 +29,33 @@
 	<BOUCLE_exclure_art(ARTICLES){titre_mot IN 'pas-a-la-une', 'invisible'}{doublons}>
 	</BOUCLE_exclure_art>
 	
-	<BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
-	</BOUCLE_exclure_art2> 
+	
+	  	si le bloc "Annonce" ou "Annonces défilantes" sont activés
+  		on extrait tous les articles a qui on a donné le mot-cle "annonce" ou "annonce-defilant" 
+  		on les stocke dans "doublons exergue" pour qu'ils ne s'affichent pas en exergue et on n'affiche rien ici -->
+	<BOUCLE_exclure_annonce1(ARTICLES){si #CONFIG{escal/config/blocune1}|=={annonce}|oui}{titre_mot=annonce}{doublons annonce}>
+	</BOUCLE_exclure_annonce1>
+	<BOUCLE_exclure_annonce2(ARTICLES){si #CONFIG{escal/config/blocune2}|=={annonce}|oui}{titre_mot=annonce}{doublons annonce}>
+	</BOUCLE_exclure_annonce2>
+	<BOUCLE_exclure_annonce3(ARTICLES){si #CONFIG{escal/config/blocune3}|=={annonce}|oui}{titre_mot=annonce}{doublons annonce}>
+	</BOUCLE_exclure_annonce3>
+		
+	<BOUCLE_exclure_annoncedef1(ARTICLES){si #CONFIG{escal/config/blocune1}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons annonce}>
+	</BOUCLE_exclure_annoncedef1>
+	<BOUCLE_exclure_annoncedef2(ARTICLES){si #CONFIG{escal/config/blocune2}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons annonce}>
+	</BOUCLE_exclure_annoncedef2>
+	<BOUCLE_exclure_annoncedef3(ARTICLES){si #CONFIG{escal/config/blocune3}|=={annonce_defilant}|oui}{titre_mot=annonce-defilant}{doublons annonce}>
+	</BOUCLE_exclure_annoncedef3>
 
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
 #SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}  
-<BOUCLE_selection(ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#GET{nombrealaune}}{doublons}{doublons selection1}{doublons selection2}>
+<BOUCLE_selection(ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#GET{nombrealaune}}{doublons annonce}{doublons}{doublons selection1}{doublons selection2}>
 </BOUCLE_selection>
 
 <!--  On affiche les 11 articles selectionnes
       et seul le premier est affiche
       les autres sont masques par un javascript -->
-  <BOUCLE_dernier_endate(ARTICLES){doublons exergue}{!doublons selection1}{tri #CONFIG{escal/config/ordrealaune,date}, inverse} >
+  <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{tri #CONFIG{escal/config/ordrealaune,date}, inverse} >
     <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->

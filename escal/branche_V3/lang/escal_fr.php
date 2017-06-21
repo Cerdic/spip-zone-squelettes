@@ -629,11 +629,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_bis_pagin_pps' => '< 1 | 2 | 3	| 4 | 5 | 6 | >',
 'onglets_bis_pagin_prive' => '0 | 10 | 20 | 30 | Tout afficher',
 'onglets_bis_pagin_ps' => 'page précédente | page suivante',
-// nouvelle chaine
 'onglets_bis_ter_mot' => 'Articles à la une de "Derniers articles bis", "Derniers articles ter" et "Articles avec mot-clé"',
 'onglets_choix' => 'Choix des onglets',
 'onglets_cinq' => 'Cinquième_onglet',
-// nouvelle chaine
 'onglets_derniers' => 'Articles à la une de "Derniers articles" ',
 'onglets_derniers_arts' => 'Derniers articles',
 'onglets_derniers_arts_explication1' => 'Ils peuvent s\'afficher de 3 façons :',
