@@ -12,16 +12,18 @@
 		  <div id="banfooter" class="encart vertical">
 			  <INCLURE{fond=inclure/encart, identifiant=banfooter}>  
 		  </div>]
-		[<div id="qrcode" class="centrer_div">(#INCLURE{fond=noisettes/sc_qrcode}{env})</div>]
+		[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|=={bas}|oui)[(#CONFIG{soyezcreateurs/homeagenda,on}|=={on}|oui)<div id="miniagenda" class="cadreinfo avec-padding">
+		<INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}>
+		</div>]]]
 		[(#CONFIG{soyezcreateurs/bandeau_contact_extra,bas}|=={bas}|oui)
 		[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
 		]
-
+		[<div id="qrcode" class="centrer_div">(#INCLURE{fond=noisettes/sc_qrcode}{env})</div>]
 		<B_PlanMenuHaut>
 		<div class="row">
 			<div id="miniplan">
 				<div class="titre-plan text-center">
-					<h1><a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a></h1>
+					<h1 class="titre-plan-texte"><a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a></h1>
 				</div>
 				<div class="liste-rubriques flexbox-wrap-space-around">
 					<BOUCLE_PlanMenuHaut(RUBRIQUES){si #CONFIG{soyezcreateurs_layout/plansitefooter,generique}|=={miniplan}}{titre_mot=MenuHaut}{par num titre}>
