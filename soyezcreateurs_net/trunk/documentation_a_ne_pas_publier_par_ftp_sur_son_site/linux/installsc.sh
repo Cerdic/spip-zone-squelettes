@@ -67,6 +67,7 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/nuage/trunk nuage
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/palette/trunk palette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/photospip/trunk photospip
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/player/trunk player
+sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/querypath/trunk querypath
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/qrcode/trunk qrcode
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/branches/v2 rainette
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/sedna/trunk sedna
@@ -93,15 +94,15 @@ wget http://www.fpdf.org/fr/download/fpdf17.zip
 unzip fpdf17.zip
 rm fpdf17.zip
 # Pour CKEditor
-wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.5/ckeditor_3.6.5.zip
-unzip ckeditor_3.6.5.zip
-rm ckeditor_3.6.5.zip
-wget http://ftp.espci.fr/pub/html2spip/html2spip-0.6.zip
-unzip html2spip-0.6.zip
-rm html2spip-0.6.zip
-wget http://netcologne.dl.sourceforge.net/project/kcfinder/KCFinder/2.51/kcfinder-2.51.zip
-unzip kcfinder-2.51.zip
-rm kcfinder-2.51.zip
+#wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.5/ckeditor_3.6.5.zip
+#unzip ckeditor_3.6.5.zip
+#rm ckeditor_3.6.5.zip
+#wget http://ftp.espci.fr/pub/html2spip/html2spip-0.6.zip
+#unzip html2spip-0.6.zip
+#rm html2spip-0.6.zip
+#wget http://netcologne.dl.sourceforge.net/project/kcfinder/KCFinder/2.51/kcfinder-2.51.zip
+#unzip kcfinder-2.51.zip
+#rm kcfinder-2.51.zip
 #retour à la racine
 cd ..
 
