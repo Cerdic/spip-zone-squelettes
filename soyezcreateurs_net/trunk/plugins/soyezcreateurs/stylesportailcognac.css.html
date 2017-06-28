@@ -27,6 +27,8 @@
 #SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#ffffff})}
 	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#0b7899})}
 
+#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})}
+	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
 
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
 #SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
@@ -423,7 +425,7 @@ select {
 .portailcognac #content .titre-sommaire h1 {
   display: block;
   background-color: #eae9e5;
-  max-width: 1156px;
+max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   margin: -1.1em auto 1em auto;
   padding: .5em .8em .5em;
   color: #be1621;
@@ -543,12 +545,6 @@ select {
   content: '';
   display: block;
   clear: both;
-}
- #masonry {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 20px;
-  text-align: center;
 }
  .grid {
   text-align: center;
@@ -820,6 +816,26 @@ select {
   display: block;
   clear: both;
 }
+#diaporama {
+	margin-bottom: 9em;
+}
+#zoomsurtexte {
+  max-width: [(#GET{LargeurContaineur}|moins{44})]px;
+  margin: 0 auto;
+  padding: 1em 2em;
+  color: #GET{c_container};
+  background-color: #GET{c_container_bk};
+  [(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});]
+}
+.portailcognac #content #zoomsur .titre-sommaire h1 {
+	margin-bottom: 0;
+}
+.portailcognac img.zoomsurlogo {
+  max-width: [(#GET{LargeurContaineur})]px;
+  margin: 0 auto;
+  display: block;
+}
+
 #masonry {
   max-width: #GET{LargeurContaineur}px;
   margin: 0 auto;
