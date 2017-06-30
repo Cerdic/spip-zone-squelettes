@@ -26,6 +26,11 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
 <link rel="shortcut icon" type="image/x-icon" href="#URL_SITE_SPIP/spip.php?page=favicon.ico" />
+<!-- Vegas : http://vegas.jaysalvat.com/documentation/setup/ -->
+<link rel="stylesheet" href="#CHEMIN{javascript/vegas.jaysalvat.com/vegas.min.css}">
+
+<script src="#CHEMIN{javascript/jquery.js}"></script> 	
+<script src="#CHEMIN{javascript/vegas.jaysalvat.com/vegas.min.js}"></script>
 
 <style type="text/css">
 /*<![CDATA[*/
@@ -58,7 +63,7 @@ body{
 	font-family: sans-serif;
 	line-height: 20px;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.75);
-	background: #55575c url(#CHEMIN{en_travaux/fond.jpg}) no-repeat center fixed;
+	background: #55575c;
 	-webkit-background-size: cover; /* pour Chrome et Safari */
 	-moz-background-size: cover; /* pour Firefox */
 	-o-background-size: cover; /* pour Opera */
@@ -192,6 +197,35 @@ img.center {
 	padding-top: 5px;
 }
 #footerbas { text-align: right; }
+
+.container {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+}
+
+.vegas-overlay {
+  opacity: .2;
+}
+
+.vegas-timer-progress {
+  background: #fff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.8);
+  }
+}
+
+
+
 /*]]>*/
 </style>
 [<link rel="stylesheet" href="(#CHEMIN{en_travaux/style.css})">]
@@ -226,5 +260,44 @@ img.center {
 </div>
 
 </body>
+<script type="text/javascript">
+(function() {
+	var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+	if(isSafari) {
+	   document.getElementById('support-note').style.display = 'block';
+	}
+})();
+
+$('body').vegas({
+	overlay: true,
+	transition: 'fade', 
+	transitionDuration: 1000,
+	delay: 10000,
+	color: 'black',
+	animation: 'random',
+	shuffle: true,
+	loop: true,
+
+	slides: [
+<BOUCLE_FonddePage(MOTS){type=_FondPage}{par hasard}{","}>
+			{ src: '[(#LOGO_MOT_NORMAL|extraire_attribut{src})]' }
+</BOUCLE_FonddePage>
+			{ src: '#CHEMIN{en_travaux/fond.jpg}' }
+<//B_FonddePage>
+	],
+
+	
+    init: function (globalSettings) {
+        console.log("Init");
+    },
+    play: function (index, slideSettings) {
+        console.log("Play");
+    },
+    walk: function (index, slideSettings) {
+        console.log("Slide index " + index + " image " + slideSettings.src);
+    }
+});
+
+</script>
 </html>
 #FILTRE{mini_html}
