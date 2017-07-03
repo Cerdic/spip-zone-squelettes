@@ -546,62 +546,8 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   display: block;
   clear: both;
 }
- .grid {
-  text-align: center;
-}
- .grid-item {
-  background-color: #eae9e5 ;
-  height: calc(340px + 65px) ;
-  margin-bottom: 20px;
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-}
- .grid-item:hover,
- .grid-item:focus {
-  background-color: rgba(190, 22, 33, 0.2) ;
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-}
- .grid-item .content-actus:nth-child(2) {
-  margin-top: 0;
-  border-top: 20px solid white;
-}
- .grid-item header {
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 21px;
-  overflow: auto;
-}
- .grid-item header strong {
-  font-size: 36px;
-  font-weight: 400;
-}
- .grid-item header time {
-  padding: .75em .5em;
-}
- .grid-item header img {
-  max-width: 65%;
-}
- .grid-item .h2 {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 95px;
-  margin: 0;
-  font-size: 21px;
-  font-weight: 400;
-  color: #be1621 ;
-  line-height: 21px;
-  text-align: right;
-}
- .grid-item .h2 .icon {
-  font-size: 0;
-}
  .grid-item .h2 .icon:before {
   font-size: 30px;
-}
- .grid-item img {
-  max-width: 100%;
 }
  .grid-item-x2 {
   width: calc(50% - 20px) ;
@@ -846,25 +792,36 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   text-align: center;
 }
 .grid-item {
-  background-color: #ccc;
+  height: calc(340px + 65px) ;
+  margin-bottom: 20px;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
 }
-.grid-item:hover,
-.grid-item:focus {
-  background-color: #eee;
+.grid-item .content-actus:hover,
+.grid-item .content-actus:focus {
+  /* Si le fond est clair, on va le prendre comme couleur de fond, sinon, la couleur d'écriture Texte : #GET{c_header}([(#GET{c_header}|couleur_extreme)])/ Fond : #GET{c_header_bk}([(#GET{c_header_bk}|couleur_extreme)]) */
+  background-color: rgba([(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}}|sc_rgb)], 0.2);
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+}
+.grid-item .content-actus {
+  /* Si le fond est clair, on va le prendre comme couleur de fond, sinon, la couleur d'écriture Texte : #GET{c_header}([(#GET{c_header}|couleur_extreme)])/ Fond : #GET{c_header_bk}([(#GET{c_header_bk}|couleur_extreme)]) */
+  background-color: #[(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}}|couleur_foncerluminosite{20})];
 }
 .grid-item .content-actus:nth-child(2) {
   margin-top: 20px;
-  border-top: 20px solid white;
 }
 .grid-item header {
   font-size: 1.5em;
+  font-weight: 300;
+  line-height: 21px;
   overflow: auto;
 }
 .grid-item header strong {
   font-size: inherit;
 }
 .grid-item header time {
-  padding: .75em .5em;
+  padding: .25em .25em;
 }
 .grid-item header img {
   max-width: 180px;
@@ -875,14 +832,18 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   width: 100%;
   height: 95px;
   margin: 0;
+  font-size: 21px;
   font-weight: 400;
+  color: #be1621 ;
+  line-height: 21px;
   padding: 10px;
   text-align: right;
   border: none;
 }
 .grid-item .h2 .icon {
-    align-self: center;
-	padding: 7px 0 7px 7px;
+  font-size: 0;
+  align-self: center;
+  padding: 7px 0 7px 7px;
 }
 .grid-item .h2 .titre-actus {
     width: 100%;
@@ -916,21 +877,22 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
 }
 
 .debut, .fin {
-  width: 50%;
+  width: 75%;
   height: 50%;
   position: absolute;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: #fff;
   line-height: 1em;
-  font-size: inherit;
+  font-size: 75%;
 }
 
 .fin {
   right: 0;
   top: 50%;
+  text-align: right;
 }
 
 .ladate {
@@ -938,8 +900,8 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   padding:0;
 }
 
-.jour {
-  font-size: 2em;
+.annee {
+  font-size: 1.2em;
   line-height: 0.82em;
   display: block;
 }
