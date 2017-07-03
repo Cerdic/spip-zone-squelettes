@@ -5,28 +5,28 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // E
-'escal_description' => 'Adapt&eacute; pour la version 3 de SPIP, il propose :
--* une configuration pouss&eacute;e dans l\'espace priv&eacute;
--* une mise en page param&eacute;trable en 2 ou 3 colonnes par le choix d&#39;une feuille de style
--* une gestion du multilinguisme
--* un forum simple style phpBB
--* un large choix de noisettes &agrave; garder ou pas, certaines &eacute;tant redondantes : identification, menu horizontal et/ou vertical.
--* place, couleur et contenu des blocs lat&eacute;raux faciles &agrave; changer
--* un menu horizontal et/ou vertical (2 au choix) d&eacute;roulants avec mise en valeur de la rubrique courante
--* une redirection automatique vers l&#39;article s&#39;il est seul dans sa rubrique
--* une navigation par mots-cl&eacute;s
--* un calendrier et/ou une liste d&#39;&eacute;v&egrave;nements
--* un affichage des derniers articles ou des articles dans la m&ecirc;me rubrique
--* un affichage des sous-rubriques et des articles dans chaque page rubrique
--* un affichage des forums des articles
--* un formulaire de contact des auteurs s&#39;ils ont indiqu&eacute; leur e-mail
--* une page contact &eacute;labor&eacute;e
--* un plan du site
--* un fichier backend pour la syndication du site
--* une feuille de style sp&eacute;ciale pour l&#39;impression des articles
--* une zone de connexion en page d&#39;accueil (2 choix possibles d&#39;affichage)
--* un ensemble valide XHTML Strict 1.0',
-'escal_slogan' => 'Squelette 2 ou 3 colonnes compos&eacute; de nombreuses noisettes',
+'escal_description' => 'Adapted for the version 3 of SPIP, it proposes:
+-* a lot of options in the private space
+-* a parameterizable layout with 2 or 3 columns by the choice of a style sheet
+-* a multilingualism management
+-* a forum with a simple style phpBB
+-* un wide range of blocks to keep or not, some of them being redundant: identification, horizontal and/or vertical menu
+-* location, colour and content of side blocks easy to change
+-* a scroll-down horizontal and/or vertical menu (two in the choice) with the emphasis of the current section
+-* an automatic redirection towards the article if it is alone in its section
+-* a keyword  browsing
+-* a calendar and/or a list of events
+-* a display of the last articles or of the articles in the same section
+-* a display of the sub-sections and of the articles in each section page
+-* ua display of the forums of the articles
+-* a contact form of the authors if theyr have reported their e-mail
+-* an elaborated contact page
+-* a website map
+-* a backend file for the syndication of the website
+-* a special style sheet for the printing of the articles
+-* a login box in the home page (2 possible choices for display)
+-* a set XHTML Strict 1.0 validated'
+'escal_slogan' => 'A skeleton with 2 or 3 columns made of a large number of blocks',
 
 );
 ?>
