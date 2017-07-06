@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 -* a backend file for the syndication of the website
 -* a special style sheet for the printing of the articles
 -* a login box in the home page (2 possible choices for display)
--* a set XHTML Strict 1.0 validated'
+-* a set XHTML Strict 1.0 validated',
 'escal_slogan' => 'A skeleton with 2 or 3 columns made of a large number of blocks',
 
 );
