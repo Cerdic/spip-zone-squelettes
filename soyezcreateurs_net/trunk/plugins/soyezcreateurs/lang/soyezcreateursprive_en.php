@@ -103,7 +103,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_googleplusun_non' => 'Do not display the Google +1 badge',
 	'cfg_googleplusun_oui' => 'Display the Google +1 badge',
-	'cfg_haut_footer' => 'Display at the top of the footer',
 	'cfg_hauteur' => 'Height',
 	'cfg_hauteur_videoaccueil' => 'Height of the intro video (0 for automatic height)',
 	'cfg_header' => 'Header',

@@ -107,7 +107,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_googleplusun_non' => 'Google Abzeichen +1 nicht anzeigen',
 	'cfg_googleplusun_oui' => 'Google Abzeichen +1  anzeigen',
-	'cfg_haut_footer' => 'Oben der SeitenFuß anzeigen ',
 	'cfg_hauteur' => 'Höhe',
 	'cfg_hauteur_gis' => 'Höhenkarten (NNNpx Format)',
 	'cfg_hauteur_videoaccueil' => 'Höhe der Video Überblick (0 für Höhe automatisch) ',

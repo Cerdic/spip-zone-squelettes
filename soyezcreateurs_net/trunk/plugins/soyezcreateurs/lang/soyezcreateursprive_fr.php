@@ -114,7 +114,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_googleplusun_non' => 'Ne pas afficher le badge Google +1',
 	'cfg_googleplusun_oui' => 'Afficher le badge Google +1',
-	'cfg_haut_footer' => 'Affichage en haut du pied de page',
 	'cfg_hauteur' => 'Hauteur',
 	'cfg_hauteur_gis' => 'Hauteur des cartographies (format NNNpx)',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vidéo d’accueil (0 pour hauteur automatique)',

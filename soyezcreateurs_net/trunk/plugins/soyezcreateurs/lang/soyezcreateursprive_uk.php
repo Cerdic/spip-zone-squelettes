@@ -91,7 +91,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_geolocalisation_label' => 'Афішувати ( показати ) геолокаціі нижче пошуку',
 	'cfg_globale' => 'Глобальна для всього сайту',
 	'cfg_googleplusun_info' => 'Google +1',
-	'cfg_haut_footer' => 'Афішування ( показ, дисплей )  у верхній частині нижнього колонтитула',
 	'cfg_hauteur' => 'Висота',
 	'cfg_hauteur_videoaccueil' => 'Висота відео головної сторінки (0 для автоматичної висоти)',
 	'cfg_header' => 'Тема ',

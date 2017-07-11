@@ -96,7 +96,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_googleplusun_non' => 'No mostrar el distintiu Google +1',
 	'cfg_googleplusun_oui' => 'Mostrar el distintiu Google +1',
-	'cfg_haut_footer' => 'Publicació al capdamunt del peu de pàgina',
 	'cfg_hauteur' => 'Alçada',
 	'cfg_hauteur_videoaccueil' => 'Alçada del vídeo d’inici (0 per alçada automàtica)',
 	'cfg_header' => 'Capçalera',

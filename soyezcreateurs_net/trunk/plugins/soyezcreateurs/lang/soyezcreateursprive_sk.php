@@ -103,7 +103,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_info' => 'Google +1',
 	'cfg_googleplusun_non' => 'Nezobrazovať Google +1',
 	'cfg_googleplusun_oui' => 'Zobrazovať Google +1',
-	'cfg_haut_footer' => 'Zobraziť v hornej časti päty',
 	'cfg_hauteur' => 'Výška',
 	'cfg_hauteur_videoaccueil' => 'Výška úvodného videa (0 pre automatickú výšku)',
 	'cfg_header' => 'Hlavička',
