@@ -850,3 +850,12 @@ function mini_html($texte) {
 if(is_array($GLOBALS['spip_matrice'])){
 	$GLOBALS['spip_matrice']['image_focus'] = 'filtres/images_soyezcreateurs.php';
 }
+
+function sinoncrayon($texte, $sinon = '') {
+	if ((isset($GLOBALS['visiteur_session']['statut']) AND $GLOBALS['visiteur_session']['statut']=='0minirezo')) {
+		return sinon($texte, '<i><small>[Crayons]</small></i> '.$sinon.' <i><small>[/Crayons]</small></i>');
+	} else {
+		return $texte;
+	}
+}
+
