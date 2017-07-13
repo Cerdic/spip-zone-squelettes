@@ -10,12 +10,30 @@
 	</header>
 	#MENU_LANG_ECRIRE
 
-	[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
+	<div class="row">
 
-	[(#PLUGIN{facebook}|oui)
-	[[(#CHEMIN_IMAGE{facebook-24.png}|balise_img{'',cadre-icone})]
-	<a href="(#CONNECTEUR_FACEBOOK{#URL_PAGE{sommaire}})"><:connecteur:connexion_facebook:></a>]
-	]
+		#SET{size, 12}
+
+		[(#AUTORISER{connecter}|non|et{#CONFIG{accepter_visiteurs}|=={oui}|oui}|et{#ENV{proposer_inscription}|oui})
+		#SET{size, 6}
+		]
+		<div class="#COLONNES{#ARRAY{large, #GET{size}, medium, #GET{size}, small, 12}}">
+			[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
+
+			[(#PLUGIN{facebook}|oui)
+			[[(#CHEMIN_IMAGE{facebook-24.png}|balise_img{'',cadre-icone})]
+			<a href="(#CONNECTEUR_FACEBOOK{#URL_PAGE{sommaire}})"><:connecteur:connexion_facebook:></a>]
+			]
+		</div>
+
+		[(#AUTORISER{connecter}|non|et{#CONFIG{accepter_visiteurs}|=={oui}|oui}|et{#ENV{proposer_inscription}|oui})
+		<div class="#COLONNES{#ARRAY{large, 6, medium, 6, small, 12}}">
+			#FORMULAIRE_INSCRIPTION
+		</div>
+		]
+
+	</div>
+
 </article>
 
 <INCLURE{fond=inclure/reveal-close} />

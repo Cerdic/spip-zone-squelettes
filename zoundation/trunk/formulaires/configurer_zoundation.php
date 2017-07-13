@@ -43,10 +43,8 @@ function formulaires_configurer_zoundation_saisies_dist() {
 	   )
 	);
 
-
-	$plugin = charger_filtre('info_plugin');
-
-	if ($plugin('mailsubscribers', 'est_actif')) {
+	include_spip('inc/utils');
+	if (test_plugin_actif('mailsubscribers')) {
 		include_spip('inc/mailsubscribers');
 
 		// Récupérer les listes de newsletter et créer une data compatible
