@@ -1,0 +1,28 @@
+[(#REM)
+liste les liens vers les réseaux sociaux
+
+on associe les classes de socicon si l'option est activée
+http://www.socicon.com/how.php
+
+]
+<!-- sociaux -->
+<div class="sociaux">
+	<ul class="menu">
+		[(#SET{rezo,[(#PIPELINE{sociaux_lister,#ARRAY{args,#ARRAY{skel,#SQUELETTE,date,#ENV**{date}},data,#ARRAY}})]})]
+		<BOUCLE_rezo (DATA) {source tableau,#GET{rezo}}>
+			[(#CONFIG{sociaux/#CLE}|oui)
+			<li>
+				<a href="#CONFIG{sociaux/#CLE}" class="#CLE">
+					[(#CONFIG{sociaux/css}|oui)
+					<span class="socicon socicon-#CLE"></span>
+					]
+					[(#CONFIG{foundation_6/foundation-icons}|oui|et{#CONFIG{sociaux/css}|non})
+					<span class="fi-social-#CLE socicon"></span>
+					]
+					<span class="name[(#CONFIG{foundation_6/foundation-icons}|oui|et{#CONFIG{sociaux/css}|non}) show-for-sr]">[(#VALEUR)]</span>
+				</a>
+			</li>]
+		</BOUCLE_rezo>
+	</ul>
+</div>
+<!-- #sociaux -->
