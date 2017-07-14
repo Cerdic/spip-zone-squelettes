@@ -852,6 +852,8 @@ if(is_array($GLOBALS['spip_matrice'])){
 }
 
 function sinoncrayon($texte, $sinon = '') {
+	return $texte;
+	// ça ne marche pas : le cache garde la version vue par l'admin, même pour les visiteurs !
 	if ((isset($GLOBALS['visiteur_session']['statut']) AND $GLOBALS['visiteur_session']['statut']=='0minirezo')) {
 		return sinon($texte, '<i><small>[Crayons]</small></i> '.$sinon.' <i><small>[/Crayons]</small></i>');
 	} else {
