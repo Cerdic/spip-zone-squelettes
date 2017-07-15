@@ -1,5 +1,6 @@
 <BOUCLE_content(ARTICLES){id_article}>
-<article class="container" itemscope itemtype="http://schema.org/Article">
+<article class="container hentry" itemscope itemtype="http://schema.org/Article">
+	
 	[(#REM) Fil d'Ariane ]
 	<ol role="navigation" class="breadcrumb small" prefix="v: http://rdf.data-vocabulary.org/#">
 		<li typeof="v:Breadcrumb"><a rel="home v:url" property="v:title" href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
@@ -11,52 +12,68 @@
 
 	[(#REM) Contenu principal ]
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-lg-8">
+
+		<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
 			[<header class="page-header #EDIT{chapo} surlignable strong">(#CHAPO|abs_url)</header>]
 
-			[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>})]</a></p>]
+			[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>"})]</a></p>]
 
-			[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{465,0}|abs_url)</section>]
+			[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{750,0}|abs_url)</section>]
 			[(#REM) portfolio & documents ]
 			[<aside class="well" role="contentinfo">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
+
 		</div>
-		<div class="col-xs-12 col-sm-6 col-lg-4">
+	
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 			[<aside class="well #EDIT{ps}">(#PS)</aside>]
 			[(#REM) infos de publication ]
 			<aside class="well">
-				[(#REM) liens de traduction ]
+				[(#REM) liens de traduction ] 
 				#MODELE{article_traductions}
+				
+				[(#REM) Boutons de partage ]
+				[<p><i class="fa fa-share-square-o"></i> Partager cet article</p>
+				<p class="text-center">(#INCLURE{fond=inclure/socialtags,env})</p>]
+
+				
 				<B_lesmots>
 					<p><span class="glyphicon glyphicon-tags"></span> <BOUCLE_lesmots(MOTS){id_article}{", "}>[ <a href="[(#URL_MOT|url_absolue)]" rel="category">(#TITRE)</a>]</BOUCLE_lesmots></p>
 				</B_lesmots>
+				
 				<p>
 					<span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time>
 					[<br/><span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span>]
 				</p>
+				
 				[<p><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span></p>]
 				<p><span class="glyphicon glyphicon-comment"></span> <a href="#comments"><:zktx:jump2comments:></a></p>
-				[(#REM) Boutons de partage ]
-				[(#INCLURE{fond=inclure/socialtags}{id_article})]
 			</aside>
+			
 			[<section class="text-muted"><span class="h3">Notes</span> (#NOTES)</section>]
 		</div>
+	
 	</div>
 	
 	<B_auteur>
 	<BOUCLE_auteur(AUTEURS){id_article}>
-	<aside class="jumbotron auteur">
-		[<span class="#EDIT{qui} h3 author"><span class="glyphicon glyphicon-user"></span> (#NOM)</span>]
-		[<p class="#EDIT{bio}"><small>(#AUTEUR_BASELINE|sinon{[(#BIO|couper{260})]})</small></p>]
-		<a rel="author" class="btn btn-primary btn-lg" href="[(#URL_AUTEUR|url_absolue)]">En savoir +</a>
+	<aside class="jumbotron row">
+
+		[<figure class="text-center col-xs-12 col-sm-12 col-md-4 col-lg-2">(#LOGO_AUTEUR|image_reduire{80,80}|image_recadre{80,80,center}|inserer_attribut{class,'img-responsive img-circle'}|inserer_attribut{alt,'#NOM'})</figure>]
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-8">
+			[<span class="#EDIT{qui} h2 author" itemprop="author"><span class="glyphicon glyphicon-user"></span> (#NOM)</span>]
+			[<p class="#EDIT{bio}"><small>(#AUTEUR_BASELINE|sinon{[(#BIO|couper{260})]})</small></p>]
+		</div>
+		<nav clas="col-xs-12 col-sm-12 col-md-4 col-lg-2"><a rel="author" class="btn btn-outline btn-lg" href="[(#URL_AUTEUR|url_absolue)]">En savoir +</a></nav>
 	</aside>
 	</BOUCLE_auteur>
 	</B_auteur>
+
+	[(#REM) Petition ]
+	[<section class="ajax">(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} /></section>]
+
+	[(#REM) Forum & comments ]	
+	<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)} />
+
 </article>
-
-[(#REM) Petition ]
-[<section class="ajax">(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} /></section>]
-
-[(#REM) Forum & comments ]	
-<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)} />
 
 </BOUCLE_content>
