@@ -116,6 +116,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_googleplusun_oui' => 'Afficher le badge Google +1',
 	'cfg_hauteur' => 'Hauteur',
 	'cfg_hauteur_gis' => 'Hauteur des cartographies (format NNNpx)',
+	'cfg_hauteur_slider_label' => 'Hauteur du carrousel',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vidéo d’accueil (0 pour hauteur automatique)',
 	'cfg_header' => 'Header',
 	'cfg_homeagenda_ex' => 'Concerne les événements affichés en mode portail au centre de la page',
