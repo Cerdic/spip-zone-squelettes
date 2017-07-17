@@ -25,4 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_footer_js' => "Cette configuration permet d'insérer de manière arbitraire des éléménts juste
 avant la balise fermante du body.",
 	'mes_adresses' => 'Mes adresses',
+	'inc-sommaire' => 'Squelette du sommaire',
+	'explication_inc-sommaire' => 'Séléctionnez le squelette qui sera utilisé pour le sommaire du site. Vous pouvez créer vos propres squelettes en les placant dans un dossier <strong>inclure/</strong> avec pour nom <strong>inc-sommaire-*.html</strong>.'
 );

@@ -40,7 +40,15 @@ function formulaires_configurer_zoundation_saisies_dist() {
 			   'label' => _T('zoundation:footer_js'),
 			   'explication' => _T('zoundation:explication_footer_js')
 		   )
-	   )
+	   ),
+		array(
+			'saisie' => 'selecteur_squelettes',
+			'options' => array(
+				'nom' => 'inc-sommaire',
+				'label' => _T('zoundation:inc-sommaire'),
+				'explication' => _T('zoundation:explication_inc-sommaire')
+			)
+		)
 	);
 
 	include_spip('inc/utils');
