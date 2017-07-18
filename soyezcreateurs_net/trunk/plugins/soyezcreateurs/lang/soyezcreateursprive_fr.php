@@ -5,7 +5,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d\'accueil',
+	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d’accueil',
 	'cfg_affichage_affiche' => 'Afficher',
 	'cfg_affichage_block' => 'Bloc : logo, titre, descriptif',
 	'cfg_affichage_impression' => 'Affichage complet',
@@ -259,8 +259,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_rainette_ville' => 'Code Ville (Météo)',
 	'cfg_realisation' => 'Réalisation',
 	'cfg_redirection_ancien_site' => 'Redirection vers l’ancien site',
-	'cfg_rssaccueil_label' => 'Nombre RSS en page d\'accueil',
-	'cfg_rssaccueil_label_ex' => 'Nombre de syndications affichées par flux RSS en page d\'accueil',
+	'cfg_rssaccueil_label' => 'Nombre RSS en page d’accueil',
+	'cfg_rssaccueil_label_ex' => 'Nombre de syndications affichées par flux RSS en page d’accueil',
 	'cfg_rss_label' => 'Nombre RSS',
 	'cfg_rss_label_ex' => 'Nombre de syndications affichées par flux RSS dans la navigation secondaire',
 	'cfg_scolaire' => 'Scolaire (de septembre à décembre de l’année suivante)',
@@ -270,6 +270,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux_label' => 'Affichage des sous-rubriques dans le menu principal',
 	'cfg_sponsor' => 'Vous appréciez ce squelette, vous pouvez le manifester en utilisant cet identifiant pour les pubs et la recherche : @id@ (les squelettes correspondant sont à télécharger sur <a href="http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html">ads_column.html</a> et <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html">ads_search.html</a> et à installer dans votre dossier squelettes).',
 	'cfg_systematiquement' => 'Systématiquement',
+	'cfg_taille_logocontenuprincipal' => 'Taille maximum des logos placés à côté des titres d’une page (article, rubrique, site…)',
 	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog',
 	'cfg_taille_logos_derniers_art_blog' => 'Taille maximum des logos des derniers articles en mode blog',
 	'cfg_taille_logos_max' => 'Taille maximum des logos du menu haut',
@@ -315,15 +316,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_zone' => 'Zone',
 	'cfg_transparence' => 'Transparence',
 	'cfg_parametres' => 'Paramètres',
-	'cfg_ombrenon' => 'Pas d\'ombre',
+	'cfg_ombrenon' => 'Pas d’ombre',
 	'cfg_couleur' => 'Couleur',
 	'cfg_contenu_gauche' => 'Gauche',
 	'cfg_contenu_haut' => 'Haut',
 	'cfg_contenu_droit' => 'Droite',
 	'cfg_contenu_bas' => 'Bas',
-	'cfg_affichage_zone_underedito' => 'Affichage en dessous de l\'Édito',
-	'cfg_nombres_dessousbreves_label' => 'Nombre d\'items affichés dans les DessousBreves',
-	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d\'accueil'
+	'cfg_affichage_zone_underedito' => 'Affichage en dessous de l’Édito',
+	'cfg_nombres_dessousbreves_label' => 'Nombre d’items affichés dans les DessousBreves',
+	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d’accueil'
 	
 
 );
