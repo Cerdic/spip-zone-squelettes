@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
 	'accueil_site' => 'Back to Home of the site',
+	'actualite_toutes' => 'View all the news',
 	'agenda' => 'Calendar',
 	'agenda_exporter_ical' => 'Export in iCal format',
 	'agenda_fsd' => 'From @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
@@ -111,6 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// N
 	'newsletter' => 'Site newsletter',
+	'newsletter_consulter' => 'View the old newsletters',
 	'newsletter_recevoir' => 'Receive the site newsletter',
 
 	// O
