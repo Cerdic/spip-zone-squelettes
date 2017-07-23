@@ -77,3 +77,15 @@ function formulaires_configurer_zoundation_charger_dist() {
 	$config = lire_config('zoundation');
 	return (empty($config)) ? array() : lire_config('zoundation');
 }
+
+function formulaires_configurer_zoundation_verifier_dist() {
+	$erreurs = array();
+
+	// Dans le cas ou inc-sommaire est vide, on s'assure de vider la méta
+	// correctement
+	if (empty(_request('inc-sommaire'))) {
+		set_request('inc-sommaire', null);
+	}
+
+	return $erreurs;
+}
