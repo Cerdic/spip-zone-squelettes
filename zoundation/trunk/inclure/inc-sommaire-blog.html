@@ -1,29 +1,41 @@
-[(#SET{rubrique_sommaire, #CONFIG{zoundation/rubrique_sommaire}})]
 <B_article_blog>
 	#ANCRE_PAGINATION
 	<BOUCLE_article_blog(ARTICLES){id_secteur ?IN #ENV{id_secteur}}{par date}{inverse}{pagination}{'<hr/>'}>
 
-		<article>
+		[<div class="text-center">
+		(#LOGO_ARTICLE
+		|image_passe_partout{1200,300}
+		|image_recadre{1200,300}
+		|vider_attribut{class})
+		</div>]
 
-			<div class="callout rounded float-left meta">
-				<p class="text-center">
-					[(#DATE|jour)]
-					<br />
-					[(#DATE|nom_mois)]
-					<br />
-					[(#DATE|annee)]
-				</p>
+		<article class="row">
+
+			<div class="#COLONNES{#ARRAY{large,2}}">
+
+				<div class="callout">
+					<p class="text-center">
+						[(#DATE|jour)]
+						<br />
+						[(#DATE|nom_mois)]
+						<br />
+						[(#DATE|annee)]
+					</p>
+				</div>
+
+			</div>
+			<div class="#COLONNES{#ARRAY{large,10}}">
+				<span class="surtitre">#SURTITRE</span>
+				<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+				<p class="soustitre">#SOUSTITRE</p>
 			</div>
 
-			<h2 class="float-left"><a href="#URL_ARTICLE">#TITRE</a></h2>
+			<div class="#COLONNES{#ARRAY{large,12}}">
 
-			<div class="clearfix"></div>
+				#INTRODUCTION
 
-			[<div class="text-center">(#LOGO_ARTICLE|image_passe_partout{150,150}|image_recadre{150,150}|vider_attribut{class})</div>]
-
-			#INTRODUCTION
-
-			<INCLURE{fond=inclure/mots_article, id_article} />
+				<INCLURE{fond=inclure/mots_article, id_article} />
+			</div>
 		</article>
 
 	</BOUCLE_article_blog>
