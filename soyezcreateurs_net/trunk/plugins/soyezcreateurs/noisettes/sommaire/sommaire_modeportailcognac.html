@@ -108,9 +108,10 @@
 			{statut=publie}
 			>
 			<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
-				<div class="content-actus agenda #EDIT{titre}">
+				<div class="content-actus #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						<header class="flexbox-center-space-between triadeA texte-blanc">
+						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,108}|extraire_attribut{src})" alt="" width="308" height="108" />]
+						<div class="agenda flexbox-flex">
 							<div class="date[(#DATE_DEBUT|!={#DATE_FIN}|?{' debutfin'})]">
 								<time class="debut ladate" itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
 									<span class="dateNombre"><strong>[(#DATE_DEBUT|affdate{d})]</strong>/[(#DATE_DEBUT|affdate{m})]</span>
@@ -121,10 +122,9 @@
 									<span class="annee display-block">[(#DATE_FIN|affdate{Y})]</span>
 								</time>]
 							</div>
-							[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{180,95}|extraire_attribut{src})" alt="" width="180" height="95" />]
-						</header>
-						<div class="h2"><span class="titre-actus">[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{#TITRE[&nbsp;: (#_AgendaDerniersAjouts:TITRE)],#TITRE})]</span>
+							<div class="h2"><span class="titre-actus">[ (#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{#TITRE[&nbsp;: (#_AgendaDerniersAjouts:TITRE)],#TITRE})]</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+						</div>
 					</a>
 				</div>
 			</BOUCLE_DernierEvenementArticle>

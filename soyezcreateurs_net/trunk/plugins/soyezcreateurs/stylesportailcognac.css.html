@@ -555,37 +555,6 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
  .grid-item-x3 {
   width: calc(75% - 20px) ;
 }
-@media only screen and (max-width: 1200px) {
-   .grid-item {
-    height: calc(26vw + 90px) ;
-  }
-}
-@media only screen and (max-width: 1024px) {
-   .grid-item {
-    height: calc(34.5vw + 90px) ;
-  }
-   .grid-item-x2 {
-  }
-   .grid-item-x3 {
-  }
-}
-@media only screen and (max-width: 800px) {
-   .grid-item header strong {
-    font-size: 34px;
-  }
-}
-@media only screen and (max-width: 680px) {
-   .grid-item {
-    height: auto;
-  }
-   .grid-item-x2 {
-  }
-}
-@media only screen and (max-width: 540px) {
-   .grid-item {
-  }
-}
-
 #liens-diaporama {
   position: absolute;
   top: 100px;
@@ -792,7 +761,6 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   text-align: center;
 }
 .grid-item {
-  height: calc(340px + 65px) ;
   margin-bottom: 20px;
   -webkit-transition: all .25s ease;
   transition: all .25s ease;
@@ -809,7 +777,7 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   background-color: #[(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}}|couleur_foncerluminosite{20})];
 }
 .grid-item .content-actus:nth-child(2) {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 .grid-item header {
   font-size: 1.5em;
@@ -817,15 +785,17 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   line-height: 21px;
   overflow: auto;
 }
-.grid-item header strong {
-  font-size: inherit;
+.agenda strong {
+  font-size: 1.8em;
+  vertical-align: bottom;
 }
-.grid-item header time {
-  padding: .25em .25em;
+.agenda .annee {
+  font-size: 1.8em;
 }
-.grid-item header img {
-  max-width: 180px;
+.agenda time {
+  padding: 0 .25em;
 }
+.agenda {height: 95px; }
 .grid-item .h2 {
   display: flex;
   flex-direction: row;
@@ -840,6 +810,28 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   text-align: right;
   border: none;
 }
+.grid-item .agenda .h2 {
+  font-size: 18px;
+}
+.grid-item .agenda .date {
+  padding: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.agenda time {
+    text-align: center;
+}
+.agenda .debutfin time {
+    text-align: left;
+}
+.grid-item .agenda .date.debutfin {
+  display: block;
+  align-items: left;
+  justify-content: left;
+}
+
 .grid-item .h2 .icon {
   font-size: 0;
   align-self: center;
@@ -862,7 +854,8 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   width: 95px;
   height: 95px;
   position: relative;
-  background: red;
+  background: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];
+  color: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header},#GET{c_header_bk}})];
 }
 
 .debutfin:after {
@@ -889,7 +882,7 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   font-size: 75%;
 }
 
-.fin {
+.agenda .debutfin time.fin {
   right: 0;
   top: 50%;
   text-align: right;
