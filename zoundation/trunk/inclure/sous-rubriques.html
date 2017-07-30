@@ -1,0 +1,26 @@
+[(#REM) Squelette d'affichage des sous rubrique ]
+<B_sous_rubriques>
+	<nav class="menu rubriques">
+		<h3><:sous_rubriques:></h3>
+		<ul class="menu-items menu-liste">
+			<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent=#ID_RUBRIQUE} {par num titre, titre}>
+				<li class="item menu-entree">
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+
+					[(#REM) Une boucle recursive pour le mini plan]
+					<B_miniplan>
+						<ul class="menu-items menu-liste">
+							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+								<li class="item menu-entree">
+									<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+									<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+								</li>
+							</BOUCLE_miniplan>
+						</ul>
+					</B_miniplan>
+
+				</li>
+			</BOUCLE_sous_rubriques>
+		</ul>
+	</nav>
+</B_sous_rubriques>
