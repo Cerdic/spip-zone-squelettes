@@ -18,9 +18,9 @@
 			hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhaut,16},
 			menuhautlogo=#CONFIG{soyezcreateurs_layout/menuhautlogo,logoplustexte}}
 			>[(#REM) Contournement du "bug" qui fait planter PHP si <B OUCLE_SsSousMenuhaut(BOUCLE_SousMenuHautRecursif) /> est encadrée par une autre Boucle ]
-			<BOUCLE_LancerRecursion(RUBRIQUES){id_rubrique}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|=={arborescent}}{!lang_select}>
+			<BOUCLE_LancerRecursion(RUBRIQUES){id_rubrique}{!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|=={arborescent}}{!lang_select}>
 				<B_SousMenuHautRecursif><ul>
-				<BOUCLE_SousMenuHautRecursif(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
+				<BOUCLE_SousMenuHautRecursif(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
 				<li><INCLURE{fond=noisettes/menus/rubrique_li,
 					id_rubrique,
 					rubriqueencours=0,
@@ -40,7 +40,7 @@
 				</ul>
 				</B_SousMenuHautRecursif>
 					[(#REM) Cas où il n'y a que des articles et pas de sous rubrique au menu haut racine]
-					<BOUCLE_SubArticlesRacineRecursif(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_rubrique}{!lang_select}>
+					<BOUCLE_SubArticlesRacineRecursif(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_rubrique}{!lang_select}>
 					<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,mot=AfficherArticlesMenuHaut,
 					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
 					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
@@ -49,7 +49,7 @@
 				<//B_SousMenuHautRecursif>
 			</BOUCLE_LancerRecursion>
 				<B_SousMenuHaut><ul>
-				<BOUCLE_SousMenuHaut(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
+				<BOUCLE_SousMenuHaut(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
 				<li><INCLURE{fond=noisettes/menus/rubrique_li,
 					id_rubrique,
 					rubriqueencours=0,
@@ -69,7 +69,7 @@
 				</ul>
 				</B_SousMenuHaut>
 					[(#REM) Cas où il n'y a que des articles et pas de sous rubrique au menu haut racine]
-					<BOUCLE_SubArticlesRacine(RUBRIQUES){si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_rubrique}{!lang_select}>
+					<BOUCLE_SubArticlesRacine(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_rubrique}{!lang_select}>
 					<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,mot=AfficherArticlesMenuHaut,
 					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
 					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},

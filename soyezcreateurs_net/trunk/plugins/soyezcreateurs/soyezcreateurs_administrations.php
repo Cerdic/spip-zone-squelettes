@@ -214,9 +214,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.45','non');
 		}
 		if (version_compare($current_version,'3.1.46','<')) {
-			spip_log("SoyezCreateurs maj 3.1.44 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.46 Début", "soyezcreateurs_install");
 			ecrire_meta('version_html_max', 'html4', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.46','non');
+		}
+		if (version_compare($current_version,'3.1.47','<')) {
+			spip_log("SoyezCreateurs maj 3.1.44 Début", "soyezcreateurs_install");
+			$id_mot = create_mot("_Specialisation_Rubrique", "PasDansMenuHaut", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu du haut", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.47','non');
 		}
 		
 		
