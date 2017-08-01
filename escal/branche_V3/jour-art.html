@@ -58,36 +58,42 @@
 	<!-- si un seul évènement, on envoie vers celui-ci-->
 	[(#TOTAL_BOUCLE|>{1}|sinon_interdire_acces{#URL_ARTICLE|parametre_url{lang,#ENV{lang}}})]
 	<!-- sinon on affiche la liste -->
-		<div class="cadre-articles-rubrique">
-			<div class="titre-articles-rubrique">
-        [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
-        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
-      </div>
-			<div class="introduction-articles-rubrique">
-      [(#INTRODUCTION|supprimer_tags|couper{150})]
-      <br/>
-
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-
-      <br/>
-      </div>
-			<div class="auteur-articles-rubrique">
-        [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
-		    <BOUCLE_test(AUTEURS){id_article}{lang_select}>
-		    </BOUCLE_test>
-	       <br />[(#LANG|=={ja}|non)<:par_auteur:>]
-			   <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
-			   <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
-	       [(#LANG|=={ja}|oui)<:par_auteur:>]
-         </B_test>
-      </div>
+	
+	<div class="cadre-articles-rubrique">
+		
+		<div class="titre-articles-rubrique">
+			<div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+			</div>
+		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
 		</div>
+		
+		<div class="introduction-articles-rubrique">
+		[(#INTRODUCTION|supprimer_tags|couper{150})]
+		<br/>
+		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
+		<br/>
+		</div>
+		
+		<div class="auteur-articles-rubrique">
+			[<:escal:article_mise_en_ligne:> (#DATE|affdate)]
+			<BOUCLE_test(AUTEURS){id_article}{lang_select}>
+			</BOUCLE_test>
+			<br />
+			[(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+			<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+			</B_test>
+      	</div>
+      <div class="nettoyeur"></div>
+	</div>
+	
 	</BOUCLE_evenements>
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
 
-</B_evenements>
+	</B_evenements>
             </div>
           </div>
 
