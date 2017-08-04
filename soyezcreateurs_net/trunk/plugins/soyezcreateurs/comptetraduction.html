@@ -1,0 +1,37 @@
+<BOUCLE_ListeSecteurs(RUBRIQUES){racine}{par num titre}>
+<h[(#PROFONDEUR|plus{1})]>#TITRE [(#SET{comptemot,[(#TITRE|str_word_count|plus{[(#DESCRIPTIF|str_word_count)]}|plus{[(#TEXTE|str_word_count)]})]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+<B_ArticlesRacine>
+<ul>
+<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}>
+<li>#TITRE [(#SET{comptemot,
+	[(#TITRE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#CHAPO|str_word_count)]}
+		|plus{[(#TEXTE|str_word_count)]}
+		|plus{[(#PS|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+</BOUCLE_ArticlesRacine>
+</ul>
+</B_ArticlesRacine>
+<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
+<h[(#PROFONDEUR|plus{1})]>#TITRE [(#SET{comptemot,[(#TITRE|str_word_count|plus{[(#DESCRIPTIF|str_word_count)]}|plus{[(#TEXTE|str_word_count)]})]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+<B_Articles>
+<ul>
+<BOUCLE_Articles(ARTICLES){id_rubrique}{!par date}{lang?}>
+<li>#TITRE [(#SET{comptemot,
+	[(#TITRE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#CHAPO|str_word_count)]}
+		|plus{[(#TEXTE|str_word_count)]}
+		|plus{[(#PS|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+</BOUCLE_Articles>
+</ul>
+</B_Articles>
+<BOUCLE_RubriquesRecursion(BOUCLE_SsRubriques) />
+</BOUCLE_SsRubriques>
+</BOUCLE_ListeSecteurs>
+
+<p>==> Total : #GET{totalmots}</p>
