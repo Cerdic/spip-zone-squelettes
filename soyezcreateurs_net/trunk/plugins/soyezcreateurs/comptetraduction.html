@@ -1,5 +1,10 @@
 <BOUCLE_ListeSecteurs(RUBRIQUES){racine}{par num titre}>
-<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,[(#TITRE|str_word_count|plus{[(#DESCRIPTIF|str_word_count)]}|plus{[(#TEXTE|str_word_count)]})]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#TEXTE|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
 <B_ArticlesRacine>
 <ul>
 <BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}>
@@ -14,8 +19,24 @@
 </BOUCLE_ArticlesRacine>
 </ul>
 </B_ArticlesRacine>
+<B_SitesRacine>
+<ul>
+<BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}>
+<li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
+	[(#NOM_SITE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+</BOUCLE_SitesRacine>
+</ul>
+</B_SitesRacine>
 <BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
-<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,[(#TITRE|str_word_count|plus{[(#DESCRIPTIF|str_word_count)]}|plus{[(#TEXTE|str_word_count)]})]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#TEXTE|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
 <B_Articles>
 <ul>
 <BOUCLE_Articles(ARTICLES){id_rubrique}{!par date}{lang?}>
@@ -30,6 +51,17 @@
 </BOUCLE_Articles>
 </ul>
 </B_Articles>
+<B_Sites>
+<ul>
+<BOUCLE_Sites(SITES){id_rubrique}{!par date}>
+<li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
+	[(#NOM_SITE|str_word_count
+		|plus{[(#DESCRIPTIF|str_word_count)]}
+		|plus{[(#NOTES|str_word_count)]}
+	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+</BOUCLE_Sites>
+</ul>
+</B_Sites>
 <BOUCLE_RubriquesRecursion(BOUCLE_SsRubriques) />
 </BOUCLE_SsRubriques>
 </BOUCLE_ListeSecteurs>
