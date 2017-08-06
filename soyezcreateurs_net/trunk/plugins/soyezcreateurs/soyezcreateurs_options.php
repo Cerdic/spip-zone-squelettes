@@ -4,10 +4,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 // Optimisation du chargement des JS (SPIP 3.1 requis, cf https://core.spip.net/issues/3497)
 //define('_JS_ASYNC_LOAD',true);
 
-// Pour être vraiment sûr que ce define soit utilisable dans noisettes/header/header.html avec le #EVAL
-if (!defined('_DIR_LIB_SM'))
-	define('_DIR_LIB_SM', _DIR_RACINE . 'lib/soundmanagerv297a-20110123/');
-
 if (!defined('_IMG_GD_QUALITE'))
 	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP
 
