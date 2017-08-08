@@ -65,18 +65,15 @@
 
   <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}>
     <div class="cadre-articles-rubrique">
+    <a class="articles-rubrique" href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
       <div class="titre-articles-rubrique">
         <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
-        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+        [(#TITRE)]
       </div>
       <div class="introduction-articles-rubrique">
         [(#INTRODUCTION|supprimer_tags|couper{150})]
-        <br/>
-        <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-        <!--<a href="#URL_ARTICLE[(#CONFIG{multi_secteurs}=={oui}|oui)|parametre_url{lang,#ENV{lang}}]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-        -->
-        <br/>
       </div>
+     </a>
       <div class="auteur-articles-rubrique">
         [(#CONFIG{escal/config/daterub}|=={non}|non)
             <div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
