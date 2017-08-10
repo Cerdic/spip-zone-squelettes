@@ -1,32 +1,50 @@
+[(#ENV{textes}|non)<p><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></p>]
 <h1>#NOM_SITE_SPIP</h1>
+[(#ENV{textes}|oui)
 <p>#DESCRIPTIF_SITE_SPIP</p>
 [<p>(#CONFIG{soyezcreateurs/bandeau_annonce})</p>]
 [<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
+]
 [(#SET{comptemot,
-	[(#NOM_SITE_SPIP|str_word_count
-	|plus{[(#DESCRIPTIF|str_word_count)]}
-	|plus{[(#CONFIG{soyezcreateurs/bandeau_annonce}|str_word_count)]}
-	|plus{[(#CONFIG{soyezcreateurs/bandeau_contact}|str_word_count)]}
+	[(#NOM_SITE_SPIP|textebrut|str_word_count_utf8
+	|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_annonce}|textebrut|str_word_count_utf8)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_contact}|textebrut|str_word_count_utf8)]}
 )]})]
-<p>==> Hors rubriques :  #GET{comptemot}[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</p>
+[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|non)<p>==> Hors rubriques :  #GET{comptemot}</p>]
 <BOUCLE_ListeSecteurs(RUBRIQUES){racine}{par num titre}>
 <h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#TEXTE|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] 
+[(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#NOTES)</p>]
+]
 <B_ArticlesRacine>
 <ul>
 <BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}>
 <li><a href="#URL_ARTICLE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#CHAPO|str_word_count)]}
-		|plus{[(#TEXTE|str_word_count)]}
-		|plus{[(#PS|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#CHAPO|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#PS|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#CHAPO)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#PS)</p>]
+[<p>(#NOTES)</p>]	
+]
+</li>
 </BOUCLE_ArticlesRacine>
 </ul>
 </B_ArticlesRacine>
@@ -34,31 +52,49 @@
 <ul>
 <BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}>
 <li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
-	[(#NOM_SITE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+	[(#NOM_SITE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#NOTES)</p>]	
+]
+</li>
 </BOUCLE_SitesRacine>
 </ul>
 </B_SitesRacine>
 <BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
 <h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#TEXTE|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#NOTES)</p>]
+]
 <B_Articles>
 <ul>
 <BOUCLE_Articles(ARTICLES){id_rubrique}{!par date}{lang?}>
 <li><a href="#URL_ARTICLE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#CHAPO|str_word_count)]}
-		|plus{[(#TEXTE|str_word_count)]}
-		|plus{[(#PS|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#CHAPO|textebrut|str_word_count_utf8)]}
+		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
+		|plus{[(#PS|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#CHAPO)</p>]
+[<p>(#TEXTE)</p>]
+[<p>(#PS)</p>]
+[<p>(#NOTES)</p>]	
+]
+</li>
 </BOUCLE_Articles>
 </ul>
 </B_Articles>
@@ -66,10 +102,15 @@
 <ul>
 <BOUCLE_Sites(SITES){id_rubrique}{!par date}>
 <li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
-	[(#NOM_SITE|str_word_count
-		|plus{[(#DESCRIPTIF|str_word_count)]}
-		|plus{[(#NOTES|str_word_count)]}
-	)]})] (#GET{comptemot})[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</li>
+	[(#NOM_SITE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#NOTES)</p>]
+]
+</li>
 </BOUCLE_Sites>
 </ul>
 </B_Sites>
@@ -77,4 +118,4 @@
 </BOUCLE_SsRubriques>
 </BOUCLE_ListeSecteurs>
 
-<p>==> Total tout compris : #GET{totalmots}</p>
+[(#ENV{textes}|non)<p>==> Total tout compris : #GET{totalmots}</p>]
