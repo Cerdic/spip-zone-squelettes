@@ -1,3 +1,14 @@
+<h1>#NOM_SITE_SPIP</h1>
+<p>#DESCRIPTIF_SITE_SPIP</p>
+[<p>(#CONFIG{soyezcreateurs/bandeau_annonce})</p>]
+[<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
+[(#SET{comptemot,
+	[(#NOM_SITE_SPIP|str_word_count
+	|plus{[(#DESCRIPTIF|str_word_count)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_annonce}|str_word_count)]}
+	|plus{[(#CONFIG{soyezcreateurs/bandeau_contact}|str_word_count)]}
+)]})]
+<p>==> Hors rubriques :  #GET{comptemot}[(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</p>
 <BOUCLE_ListeSecteurs(RUBRIQUES){racine}{par num titre}>
 <h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
 	[(#TITRE|str_word_count
@@ -66,4 +77,4 @@
 </BOUCLE_SsRubriques>
 </BOUCLE_ListeSecteurs>
 
-<p>==> Total : #GET{totalmots}</p>
+<p>==> Total tout compris : #GET{totalmots}</p>
