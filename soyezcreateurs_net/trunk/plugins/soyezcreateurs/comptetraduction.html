@@ -1,9 +1,15 @@
-[(#ENV{textes}|non)<p><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></p>]
+[(#ENV{textes}|non)<ol><li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
+<li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li></ol>]
 <h1>#NOM_SITE_SPIP</h1>
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 <p>#DESCRIPTIF_SITE_SPIP</p>
 [<p>(#CONFIG{soyezcreateurs/bandeau_annonce})</p>]
 [<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF_SITE_SPIP*|echapper_tags)</pre>]
+[<pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|echapper_tags)</pre>]
+[<pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|echapper_tags)</pre>]
 ]
 [(#SET{comptemot,
 	[(#NOM_SITE_SPIP|textebrut|str_word_count_utf8
@@ -21,10 +27,15 @@
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] 
 [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#TEXTE)</p>]
 [<p>(#NOTES)</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#TEXTE*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]
 ]
 <B_ArticlesRacine>
 <ul>
@@ -37,12 +48,19 @@
 		|plus{[(#PS|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#CHAPO)</p>]
 [<p>(#TEXTE)</p>]
 [<p>(#PS)</p>]
 [<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#CHAPO*|echapper_tags)</pre>]
+[<pre>(#TEXTE*|echapper_tags)</pre>]
+[<pre>(#PS*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]	
 ]
 </li>
 </BOUCLE_ArticlesRacine>
@@ -56,9 +74,13 @@
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]	
 ]
 </li>
 </BOUCLE_SitesRacine>
@@ -71,10 +93,15 @@
 		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#TEXTE)</p>]
 [<p>(#NOTES)</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#TEXTE*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]
 ]
 <B_Articles>
 <ul>
@@ -87,12 +114,19 @@
 		|plus{[(#PS|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#CHAPO)</p>]
 [<p>(#TEXTE)</p>]
 [<p>(#PS)</p>]
 [<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#CHAPO*|echapper_tags)</pre>]
+[<pre>(#TEXTE*|echapper_tags)</pre>]
+[<pre>(#PS*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]	
 ]
 </li>
 </BOUCLE_Articles>
@@ -106,9 +140,13 @@
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|oui)
+[(#ENV{textes}|=={oui}|oui)
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#NOTES)</p>]
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]	
 ]
 </li>
 </BOUCLE_Sites>
