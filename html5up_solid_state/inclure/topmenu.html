@@ -1,8 +1,18 @@
 <h2>Menu</h2>
 <ul class="links">
 	<li><a href=URL_SITE_SPIP"><:accueil:></a></li>
-	<BOUCLE_navrubriques(RUBRIQUES) {par num titre, titre}>
-	<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-	</BOUCLE_navrubriques>
+
+<BOUCLE_rubrique_langue(RUBRIQUES){lang}{racine}{si #CONFIG{html5up_solid_state/multilinguisme_par_secteur}}>
+	<BOUCLE_articles(ARTICLES){par num titre, titre}{id_rubrique}>
+		<li><a href="#URL_ARTICLE">#TITRE</a></li>
+	</BOUCLE_articles>
+	<BOUCLE_sous_rubriques(RUBRIQUES){par num titre, titre}{lang}{id_parent}>
+		<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+	</BOUCLE_sous_rubriques>
+</BOUCLE_rubrique_langue>
+	<BOUCLE_rubriques(RUBRIQUES){par num titre, titre}{lang}{racine}>
+		<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+	</BOUCLE_rubriques>
+<//B_rubrique_langue>
 </ul>
 
