@@ -144,7 +144,7 @@
 					});
 
 			$body
-				.on('click', 'a[href="#menu"]', function(event) {
+				.on('click', 'a.open_menu', function(event) {
 
 					event.stopPropagation();
 					event.preventDefault();
