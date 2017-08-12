@@ -1,10 +1,16 @@
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 	<INCLURE{fond=inclure/sections/rubrique, id_rubrique, position=1} />
-	<INCLURE{fond=inclure/sections/liste-articles-cases, id_rubrique, position=3, alt=2} />
+
+	#SET{alt,0}
+	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+		<INCLURE{fond=inclure/sections/liste-articles-cases, id_rubrique, position=3, alt=2} />
+		#SET{alt,1}
+	</BOUCLE_articles>
 
 	#SET{i,1}
 	<BOUCLE_sous_rubs(RUBRIQUES){id_parent}>
-		<INCLURE{fond=inclure/sections/intro-rubrique, id_rubrique, position=#GET{i}, spot=1} />
+		<INCLURE{fond=inclure/sections/intro-rubrique, id_rubrique, position=#GET{i}, spot=1, alt=#GET{alt}} />
 		#SET{i,#GET{i}|plus{1}}
+		#SET{alt,#GET{alt}|non|boolval}
 	</BOUCLE_sous_rubs>
 </BOUCLE_rubrique>
