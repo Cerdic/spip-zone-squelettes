@@ -17,5 +17,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'en_savoir_plus' => 'En savoir plus',
 
 	// T
+	'theme_graphique_par_html5up' => 'Thème graphique par HTML5 UP',
 	'titre_page_configurer_html5up_solid_state' => 'Configurer le squelette Solid State',
 );
