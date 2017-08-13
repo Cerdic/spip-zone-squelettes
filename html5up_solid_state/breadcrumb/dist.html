@@ -1,0 +1,23 @@
+
+<h1>
+	<a href="#URL_SITE_SPIP" rel="start home" title="<:accueil_site|attribut_html:>">
+		[(#LOGO_SITE_SPIP|html5up_image_reduire_carre{35})]
+		[(#NOM_SITE_SPIP|textebrut)]
+	</a>
+</h1>
+
+<span class="breadcrumb">
+	#SET{objet,''}#SET{id_objet,''}
+
+	[(#ENV{id_rubrique}|oui)#SET{objet,rubrique}#SET{id_objet,#ENV{id_rubrique}}]
+	[(#ENV{id_syndic}|oui)#SET{objet,site}#SET{id_objet,#ENV{id_syndic}}]
+	[(#ENV{id_breve}|oui)#SET{objet,breve}#SET{id_objet,#ENV{id_breve}}]
+	[(#ENV{id_article}|oui)#SET{objet,article}#SET{id_objet,#ENV{id_article}}]
+	[(#ENV{id_objet}|oui)#SET{objet,#ENV{objet}}#SET{id_objet,#ENV{id_objet}}]
+	[(#GET{objet}|non|et{#ENV{#ENV{type-page}|id_table_objet}}|oui)
+		#SET{objet,#ENV{type-page}}#SET{id_objet,#ENV{#ENV{type-page}|id_table_objet}}
+	]
+	[(#GET{objet}|oui)
+		#INCLURE{fond=breadcrumb/inc-objet,id_objet=#GET{id_objet},objet=#GET{objet}}
+	]
+</span>

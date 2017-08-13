@@ -12,12 +12,38 @@
 	xxsmall: '(max-width: 360px)'
 ));
 
+$border-hover: dotted 1px rgba(255, 255, 255, 0.35);
+
 #header {
-	h1 .spip_logo {
-		margin-right:1em;
-		border-radius: 100%;
-		vertical-align: middle;
-		border: 1px solid rgba(255,255,255,.5);
+	h1 {
+		display:inline-block;
+		.spip_logo {
+			margin-right: 1em;
+			border-radius: 100%;
+			vertical-align: middle;
+			border: 1px solid rgba(255, 255, 255, .5);
+		}
+	}
+
+	.breadcrumb {
+		display:inline-block;
+		& > span,
+		& > a {
+			position: relative;
+			border:none;
+			margin-left: 1.3em;
+			&:before {
+				content: "❯";
+				padding:0 .5em;
+				color: rgba(255, 255, 255, .7);
+				position:absolute;
+				left:-1.5em;
+			}
+			strong.on { font-weight:normal; }
+		}
+		& > a:hover, & a:active {
+			border-bottom: $border-hover;
+		}
 	}
 
 	.menu_lang {
@@ -29,7 +55,7 @@
 			text-transform: none;
 			opacity:.8;
 			&:hover, &:active {
-				text-decoration:underline;
+				border-bottom: $border-hover;
 				opacity:1;
 			}
 			&.on {

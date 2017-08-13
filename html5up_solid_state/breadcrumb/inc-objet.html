@@ -1,0 +1,10 @@
+<BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique=(#OBJET|=={rubrique}|?{#INFO_ID_PARENT{#OBJET,#ID_OBJET},#INFO_ID_RUBRIQUE{#OBJET,#ID_OBJET}})}>
+	[(#SET{profondeur,#CONFIG{html5up_solid_state/multilinguisme_par_secteur}|?{1,0}})]
+	<BOUCLE_ariane_hier(HIERARCHIE) {id_rubrique}{tout}{profondeur >= #GET{profondeur}}>
+		<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+	</BOUCLE_ariane_hier>
+</BOUCLE_contexte_rubrique>
+
+<span[(#ENV{expose,' '}|oui)class="active"]>
+	[(#ID_OBJET|generer_url_entite{#OBJET}|lien_ou_expose{#INFO_TITRE{#OBJET,#ID_OBJET}|sinon{?}|couper{80},#ENV{expose,' '}|?{span}})]
+</span>

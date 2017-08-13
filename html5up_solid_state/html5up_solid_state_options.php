@@ -13,4 +13,4 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 	return;
 }
 
-$GLOBALS['z_blocs'] = array('content', 'head', 'head_js', 'header', 'header', 'footer');
+$GLOBALS['z_blocs'] = array('content', 'head', 'head_js', 'breadcrumb', 'header', 'footer');
