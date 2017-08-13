@@ -1,0 +1,42 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<section id="rubrique_#ID_RUBRIQUE" class="wrapper[ (#ENV{class})][ (#ENV{spot}|?{spotlight})][ style(#ENV{position})][ (#ENV{alt,#ENV{position}}|alterner{'', alt})]">
+	<div class="inner">
+		[(#ENV{titre}|=={non}|non)
+			<h2 class="h2"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+		]
+
+		[(#REM) Articles et sous-rubriques ]
+		<B_articles_racine>
+			[(#ENV{titre}|=={non}|non)
+				<h3 class="h3"><:articles:></h3>
+			]
+			<ul class="plan">
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles_racine>
+			</ul>
+		</B_articles_racine>
+
+		<B_rubriques>
+			<ul class="plan">
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li>
+					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+
+					<B_articles>
+						<ul>
+							<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+							<li><a href="#URL_ARTICLE">#TITRE</a></li>
+							</BOUCLE_articles>
+						</ul>
+					</B_articles>
+
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+		</B_rubriques>
+	</div>
+</section>
+</BOUCLE_rubrique>
+
