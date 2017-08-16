@@ -4,23 +4,23 @@
 @import 'css/libs/skel';
 
 @include skel-breakpoints((
-	xlarge: '(max-width: 1680px)',
-	large: '(max-width: 1280px)',
-	medium: '(max-width: 980px)',
-	small: '(max-width: 736px)',
-	xsmall: '(max-width: 640px)',
-	xxsmall: '(max-width: 360px)'
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 640px)',
+		xxsmall: '(max-width: 360px)'
 ));
 
 $border-hover: dotted 1px _palette(fg-light);
 
 .hide {
-	display:none;
+	display: none;
 }
 
 #header {
 	h1 {
-		display:inline-block;
+		display: inline-block;
 		.spip_logo {
 			margin-right: 1em;
 			border-radius: 100%;
@@ -30,7 +30,7 @@ $border-hover: dotted 1px _palette(fg-light);
 	}
 
 	.breadcrumb {
-		display:inline-block;
+		display: inline-block;
 		& > span,
 		& > a {
 			position: relative;
@@ -38,85 +38,116 @@ $border-hover: dotted 1px _palette(fg-light);
 			&:before {
 				content: "❯";
 				color: rgba(255, 255, 255, .7);
-				position:absolute;
-				left:-1em;
+				position: absolute;
+				left: -1em;
 			}
-			strong.on { font-weight:normal; }
+			strong.on {
+				font-weight: normal;
+			}
 		}
 	}
 
 	.menu_lang {
-		margin-right:10em;
-		line-height:1.5em;
-		margin-top:.7em;
+		margin-right: 10em;
+		line-height: 1.5em;
+		margin-top: .7em;
 		a {
 			border-bottom: $border-hover;
 			padding: 0;
 			text-transform: none;
-			opacity:.8;
+			opacity: .8;
 			&:hover, &:active {
-				opacity:1;
+				opacity: 1;
 				border-color: _palette(fg-bold);
 			}
 			&.on {
-				opacity:1;
+				opacity: 1;
 			}
 			& + a {
-				margin-left:1em;
+				margin-left: 1em;
 			}
+		}
+		@include breakpoint(xsmall) {
+			margin-right: 4em;
 		}
 	}
 }
-
 
 #banner {
 	p {
 		text-transform: none;
 		font-size: 1.2em;
-		line-height:1.75;
+		line-height: 1.75;
 	}
 	.inner {
 		@include vendor('display', 'flex');
-		@include vendor('align-items', 'center');
+		@include vendor('align-items', 'start');
 		@include vendor('flex-direction', 'row');
 
 		.logo {
 			border-radius: 100%;
-			margin:        0 _size(section-spacing, large) _size(element-margin) 0;
-			width:         22em;
-			overflow:      hidden;
-			-ms-flex:      1;
+			margin: 0 _size(section-spacing, large) _size(element-margin) 0;
+			width: 22em;
+			overflow: hidden;
+			-ms-flex: 1;
 
 			img {
 				border-radius: 100%;
-				width:         100%;
+				width: 100%;
 			}
 		}
 		.content {
-			width:100%;
-			-ms-flex:      2;
+			width: 100%;
+			-ms-flex: 2;
+			h2 {
+				margin-top: 2em;
+			}
+			.surtitre {
+				font-size: 1.5em;
+				margin-bottom: .2em;
+				margin-top: 1em;
+			}
+			.surtitre + h2 {
+				margin-top: 0;
+			}
+			.soustitre {
+				font-size: 1.5em;
+				margin-top: -0.8em;
+				margin-bottom: 1em;
+			}
+		}
+	}
+	@include breakpoint(xsmall) {
+		.inner {
+			display: block;
+			.logo {
+				margin:    0 auto (_size(element-margin) * 0.5) auto !important;
+				max-width: 85%;
+				width:     12em;
+				text-align:center;
+			}
 		}
 	}
 }
 
 .liste.documents_joints .liste-items {
-	padding-left:0;
+	padding-left: 0;
 }
 
 /** admin */
 #spip-admin.spip-admin-bloc,
 #spip-admin.spip-admin-float {
-	z-index:10001;
+	z-index: 10001;
 	right: 10px;
 	top: 4.1em;
 
 	.spip-admin-boutons {
-		border-radius:5px;
-		background-color:rgba(255, 255, 255, .05);
+		border-radius: 5px;
+		background-color: rgba(255, 255, 255, .05);
 		border: 1px solid rgba(255, 255, 255, .2);
-		color:white;
+		color: white;
 	}
 	@include breakpoint(xsmall) {
-		display:none;
+		display: none;
 	}
 }
