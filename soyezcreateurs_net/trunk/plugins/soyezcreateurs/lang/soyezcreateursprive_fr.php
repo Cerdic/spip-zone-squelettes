@@ -198,6 +198,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_haut_label' => 'Mode d’affichage du menu du haut (si présent)',
 	'cfg_mode_affichage_label' => 'Mode d’affichage de la page d’accueil du site',
 	'cfg_mode_affichage_logo_label' => 'Mode d’affichage du logo (si présent)',
+	'cfg_mode_agence' => 'Affichage d’un portail d’accueil de type Agence',
 	'cfg_mode_bandeau_contact_label' => 'Mode d’affichage du bandeau de contact',
 	'cfg_mode_blog' => 'Affichage d’un portail d’accueil de type blog',
 	'cfg_mode_communiquant' => 'Affichage d’un portail d’accueil de type communiquant',
