@@ -39,8 +39,8 @@
 	article en exergue 
 ************** -->
   <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergue}|=={non}|non}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,1}>
-    <div id="section-#ID_ARTICLE" class="fragment">
-
+    <div id="section-#ID_ARTICLE" class="fragment exergue">
+<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 <!-- affichage logo -->
       [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartexergue,50}})]
 <!-- affichage surtitre -->
@@ -49,10 +49,8 @@
     ]
 <!-- affichage titre -->
 			<div class="titre #EDIT{titre}">
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" 
-      title="[(#LANG|=={ja}|non)<:par_auteur:>] <BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_auteurs> [(#LANG|=={ja}|oui)<:par_auteur:>] <:escal:le:> [(#DATE|affdate)]">
-			#TITRE
-			</a>
+      #TITRE
+			
       </div>
 <!-- affichage soustitre -->
     [(#CONFIG{escal/config/soustitreune}|=={non}|non)
@@ -64,7 +62,7 @@
         <div class="auteur-articles-rubrique">
           [(#LANG|=={ja}|non)<:par_auteur:>]
           <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
-            <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a>
+            #NOM
           </BOUCLE_auteurs_art>
           [(#LANG|=={ja}|oui)<:par_auteur:>]
         </div>
@@ -115,13 +113,8 @@
 
       <div class="nettoyeur"></div>
           
-      <div class="suite">
-  		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>
-      [(#CONFIG{escal/config/texteune}|=={non}|non)<:escal:lire_suite:>]
-      [(#CONFIG{escal/config/texteune}|=={non}|oui)<:escal:lire_article:>]
-      </strong></a>
-			</div>
-      
+
+</a>      
     </div>
   </BOUCLE_dernier_endate>
   
