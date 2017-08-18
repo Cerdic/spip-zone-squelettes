@@ -1,5 +1,8 @@
-[(#ENV{textes}|non)<ol><li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
-<li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li></ol>]
+[(#ENV{textes}|non)<ol>
+<li><a href="[(#SELF|parametre_url{id_mot,113})]">Seulement les textes marqués à traduire</a> / <a href="[(#SELF|parametre_url{id_mot,''})]">Tous</a></li>
+<li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
+<li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li>
+</ol>]
 <h1>#NOM_SITE_SPIP</h1>
 [(#ENV{textes}|=={oui}|oui)
 <p>#DESCRIPTIF_SITE_SPIP</p>
@@ -19,7 +22,7 @@
 )]})]
 [(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
 [(#ENV{textes}|non)<p>==> Hors rubriques :  #GET{comptemot}</p>]
-<BOUCLE_ListeSecteurs(RUBRIQUES){racine}{par num titre}>
+<BOUCLE_ListeSecteurs(RUBRIQUES){id_parent}{par num titre}>
 <h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -39,7 +42,7 @@
 ]
 <B_ArticlesRacine>
 <ul>
-<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}>
+<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}{id_mot?}>
 <li><a href="#URL_ARTICLE">#TITRE</a> [(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -62,13 +65,32 @@
 [<pre>(#PS*|echapper_tags)</pre>]
 [<pre>(#NOTES*|echapper_tags)</pre>]	
 ]
+<B_Documents>
+<ul>
+<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}>
+<li><a href="#URL_DOCUMENT">#TITRE</a> [(#SET{comptemot,
+	[(#TITRE|textebrut|str_word_count_utf8
+		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
+	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
+[(#ENV{textes}|=={oui}|oui)
+[<p>(#DESCRIPTIF)</p>]
+[<p>(#NOTES)</p>]	
+]
+[(#ENV{textes}|=={spip}|oui)
+[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<pre>(#NOTES*|echapper_tags)</pre>]	
+]
+</BOUCLE_Documents>
+</ul>
+</B_Documents>
 </li>
 </BOUCLE_ArticlesRacine>
 </ul>
 </B_ArticlesRacine>
 <B_SitesRacine>
 <ul>
-<BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}>
+<BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}{id_mot?}>
 <li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
 	[(#NOM_SITE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -86,74 +108,7 @@
 </BOUCLE_SitesRacine>
 </ul>
 </B_SitesRacine>
-<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par num titre}>
-<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|textebrut|str_word_count_utf8
-		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
-		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
-		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
-	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
-[(#ENV{textes}|=={oui}|oui)
-[<p>(#DESCRIPTIF)</p>]
-[<p>(#TEXTE)</p>]
-[<p>(#NOTES)</p>]
-]
-[(#ENV{textes}|=={spip}|oui)
-[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<pre>(#TEXTE*|echapper_tags)</pre>]
-[<pre>(#NOTES*|echapper_tags)</pre>]
-]
-<B_Articles>
-<ul>
-<BOUCLE_Articles(ARTICLES){id_rubrique}{!par date}{lang?}>
-<li><a href="#URL_ARTICLE">#TITRE</a> [(#SET{comptemot,
-	[(#TITRE|textebrut|str_word_count_utf8
-		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
-		|plus{[(#CHAPO|textebrut|str_word_count_utf8)]}
-		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
-		|plus{[(#PS|textebrut|str_word_count_utf8)]}
-		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
-	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|=={oui}|oui)
-[<p>(#DESCRIPTIF)</p>]
-[<p>(#CHAPO)</p>]
-[<p>(#TEXTE)</p>]
-[<p>(#PS)</p>]
-[<p>(#NOTES)</p>]	
-]
-[(#ENV{textes}|=={spip}|oui)
-[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<pre>(#CHAPO*|echapper_tags)</pre>]
-[<pre>(#TEXTE*|echapper_tags)</pre>]
-[<pre>(#PS*|echapper_tags)</pre>]
-[<pre>(#NOTES*|echapper_tags)</pre>]	
-]
-</li>
-</BOUCLE_Articles>
-</ul>
-</B_Articles>
-<B_Sites>
-<ul>
-<BOUCLE_Sites(SITES){id_rubrique}{!par date}>
-<li><a href="#URL_SITE">#NOM_SITE</a> [(#SET{comptemot,
-	[(#NOM_SITE|textebrut|str_word_count_utf8
-		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
-		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
-	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
-[(#ENV{textes}|=={oui}|oui)
-[<p>(#DESCRIPTIF)</p>]
-[<p>(#NOTES)</p>]
-]
-[(#ENV{textes}|=={spip}|oui)
-[<pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<pre>(#NOTES*|echapper_tags)</pre>]	
-]
-</li>
-</BOUCLE_Sites>
-</ul>
-</B_Sites>
-<BOUCLE_RubriquesRecursion(BOUCLE_SsRubriques) />
-</BOUCLE_SsRubriques>
+<BOUCLE_RubriquesRecursion(BOUCLE_ListeSecteurs) />
 </BOUCLE_ListeSecteurs>
 
 [(#ENV{textes}|non)<p>==> Total tout compris : #GET{totalmots}</p>]
