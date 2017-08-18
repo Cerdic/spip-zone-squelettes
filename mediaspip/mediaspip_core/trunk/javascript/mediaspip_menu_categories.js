@@ -1,6 +1,6 @@
 /**
  * Navigation javascript des menus
- * sur les éléments de la div #extra1 ayant les class .menu et .rubriques
+ * sur les éléments de la div #aside ayant les class .menu et .rubriques
  * on applique un effet d'ouverture au survol
  */
 
@@ -9,9 +9,9 @@
 		/*
 		 * Menu depliant de navigation
 		 */
-		$('#extra1 .menu.rubriques li:not(.ouverte) ul,#extra1 .menu.important:not(.diogene) li:not(.ouverte) ul').hide();
+		$('#aside .menu.rubriques li:not(.ouverte) ul,#aside .menu.important:not(.diogene) li:not(.ouverte) ul').hide();
 		function menu_mediaspip() {
-			$('#extra1 .menu.rubriques li a,#extra1 .menu.rubriques li .bouton_action_post, #extra1 .menu.rubriques li .titre,#extra1 .menu.important:not(.diogene) li a,#extra1 .menu.rubriques li .titre,#extra1 .menu.important li .bouton_action_post, #extra1 .menu.important li .titre').each(function(){
+			$('#aside .menu.rubriques li a,#aside .menu.rubriques li .bouton_action_post, #aside .menu.rubriques li .titre,#aside .menu.important:not(.diogene) li a,#aside .menu.rubriques li .titre,#aside .menu.important li .bouton_action_post, #aside .menu.important li .titre').each(function(){
 				var me = $(this)
 				if (me.parent().find('>ul').is(':visible')) {
 					me.addClass('ouverte');
@@ -19,7 +19,7 @@
 					me.addClass('fermee');
 				}
 			});
-			$('#extra1 .menu.rubriques li a,#extra1 .menu.rubriques li .bouton_action_post, #extra1 .menu.rubriques li .titre,#extra1 .menu.important:not(.diogene) li a,#extra1 .menu.rubriques li .titre,#extra1 .menu.important li .bouton_action_post, #extra1 .menu.important li .titre').not('.do').addClass('do').hover(function(){
+			$('#aside .menu.rubriques li a,#aside .menu.rubriques li .bouton_action_post, #aside .menu.rubriques li .titre,#aside .menu.important:not(.diogene) li a,#aside .menu.rubriques li .titre,#aside .menu.important li .bouton_action_post, #aside .menu.important li .titre').not('.do').addClass('do').hover(function(){
 				var me=$(this);
 				var time=400;
 				// un temps plus long pour refermer !
