@@ -3,55 +3,60 @@ Créer une une topbar avec toutes la racine du site
 ]
 
 [(#CONFIG{foundation_6/javascript}|non)
-	<:foundation_6:erreur_js{squelette=#SQUELETTE}|erreur_squelette:>
+<:foundation_6:erreur_js{squelette=#SQUELETTE}|erreur_squelette:>
 ]
 
-[(#REM) Title bar qui déclenchera le menu responsive ]
-<div class="title-bar" data-responsive-toggle="racine" data-hide-for="large">
-	<button class="menu-icon" type="button" data-toggle><span class="hide">Menu</span></button>
-	<div class="title-bar-title" data-toggle>Menu</div>
-</div>
+[(#CONFIG{zoundation/sticky}|oui)
+<div data-sticky-container>]
 
-<nav class="top-bar[ (#ENV{class})]" id="racine">
-	<div class="top-bar-left">
-		<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown" data-parent-link="true">
-
-			<li[(#SI_PAGE{sommaire}|oui) class="on"]>
-				<a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
-			</li>
-
-			[(#REM) La racine du site. ]
-			<BOUCLE_rubriques(RUBRIQUES) {racine} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
-
-				[(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
-				<li[ class="(#EXPOSE)"]>
-					<a href="#URL_RUBRIQUE">
-						[(#TITRE|couper{80})]
-					</a>
-					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
-					<B_sous_rubrique>
-						<ul class="menu vertical">
-							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
-								<li[ class="(#EXPOSE)"]>
-									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
-
-									[(#REM) On génère autant de dropdow qu'il faut ]
-									<BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
-								</li>
-							</BOUCLE_sous_rubrique>
-						</ul>
-					</B_sous_rubrique>
-				</li>
-			</BOUCLE_rubriques>
-		</ul>
+	[(#REM) Title bar qui déclenchera le menu responsive ]
+	<div class="title-bar" data-responsive-toggle="racine" data-hide-for="large">
+		<button class="menu-icon" type="button" data-toggle><span class="hide">Menu</span></button>
+		<div class="title-bar-title" data-toggle>Menu</div>
 	</div>
 
-	[(#AUTORISER{connecter})
-	<div class="top-bar-right">
-		<ul class="menu">
-			<li>
-				<a href="#URL_LOGOUT" rel="nofollow"><span class="fi-power"></span> <:icone_deconnecter:></a>
-			</li>
-		</ul>
-	</div>]
-</nav>
+	<nav class="top-bar[ (#ENV{class})]" id="racine"[ (#CONFIG{zoundation/sticky}|oui)data-sticky data-options="marginTop:0;" data-top-anchor="container:top" data-btm-anchor="container:bottom" style="width: 100%;"]>
+		<div class="top-bar-left">
+			<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown" data-parent-link="true">
+
+				<li[(#SI_PAGE{sommaire}|oui) class="on"]>
+					<a href="#URL_SITE_SPIP"><:zcore:accueil:></a>
+				</li>
+
+				[(#REM) La racine du site. ]
+				<BOUCLE_rubriques(RUBRIQUES) {racine} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
+
+					[(#REM) On lance un boucle de test pour savoir si on doit gérer un dropdown ou non ]
+					<li[ class="(#EXPOSE)"]>
+						<a href="#URL_RUBRIQUE">
+							[(#TITRE|couper{80})]
+						</a>
+						[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
+						<B_sous_rubrique>
+							<ul class="menu vertical">
+								<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
+									<li[ class="(#EXPOSE)"]>
+										<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+
+										[(#REM) On génère autant de dropdow qu'il faut ]
+										<BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
+									</li>
+								</BOUCLE_sous_rubrique>
+							</ul>
+						</B_sous_rubrique>
+					</li>
+				</BOUCLE_rubriques>
+			</ul>
+		</div>
+
+		[(#AUTORISER{connecter})
+		<div class="top-bar-right">
+			<ul class="menu">
+				<li>
+					<a href="#URL_LOGOUT" rel="nofollow"><span class="fi-power"></span> <:icone_deconnecter:></a>
+				</li>
+			</ul>
+		</div>]
+	</nav>
+[(#CONFIG{zoundation/sticky}|oui)
+</div>]

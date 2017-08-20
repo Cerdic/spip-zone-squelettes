@@ -48,6 +48,13 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'label' => _T('zoundation:inc-sommaire'),
 				'explication' => _T('zoundation:explication_inc-sommaire')
 			)
+		),
+		array(
+			'saisie' => 'case',
+			'options' => array(
+				'nom' => 'sticky',
+				'label_case' => _T('zoundation:case_sticky')
+			)
 		)
 	);
 

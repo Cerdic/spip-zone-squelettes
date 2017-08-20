@@ -1,21 +1,20 @@
-[(#AUTORISER{connecter}|non|et{#CONFIG{accepter_visiteurs}|=={oui}|oui})
-<div class="button-group expanded">
-	[(#MODELE{reveal, href=#URL_PAGE{inscription}, data-id=inscription, titre=<:zoundation:inscription:>, class=button, animation-in=slide-in-down, animation-out=slide-out-up})]
-	[(#MODELE{reveal, href=#URL_PAGE{login, url=#SELF|rawurlencode}, data-id=login, titre=<:lien_connecter:>, class=button, animation-in=slide-in-down, animation-out=slide-out-up})]
-</div>
-]
 
-#FORMULAIRE_RECHERCHE
+[(#CONFIG{zoundation/sticky}|oui)
+<div data-sticky-container>]
+	<div[ (#CONFIG{zoundation/sticky}|oui)data-sticky data-options="marginTop:4;" data-top-anchor="container:top" data-btm-anchor="container:bottom"]>
 
-#PIPELINE{zoundation_top_colonne}
+		[(#AUTORISER{connecter}|non|et{#CONFIG{accepter_visiteurs}|=={oui}|oui})
+		<div class="button-group expanded">
+			[(#MODELE{reveal, href=#URL_PAGE{inscription}, data-id=inscription, titre=<:zoundation:inscription:>, class=button, animation-in=slide-in-down, animation-out=slide-out-up})]
+			[(#MODELE{reveal, href=#URL_PAGE{login, url=#SELF|rawurlencode}, data-id=login, titre=<:lien_connecter:>, class=button, animation-in=slide-in-down, animation-out=slide-out-up})]
+		</div>
+		]
 
-[(#AUTORISER{connecter}|oui)
-<INCLURE{fond=inclure/menu_utilisateur, env} />]
+		#FORMULAIRE_RECHERCHE
 
-[(#PLUGIN{albums}|oui)
-<INCLURE{fond=inclure/inc-dernier-album} />]
-
-[(#PLUGIN{mailsubscribers}|oui)
-<INCLURE{fond=inclure/newsletter, env} />]
-
-<INCLURE{fond=inclure/sous-rubriques, env} />
+		#PIPELINE{zoundation_top_colonne}
+[(#AUTORISER{connecter}|oui) <INCLURE{fond=inclure/menu_utilisateur, env} />] [(#PLUGIN{albums}|oui) <INCLURE{fond=inclure/inc-dernier-album} />] [(#PLUGIN{mailsubscribers}|oui) <INCLURE{fond=inclure/newsletter, env} />]
+		<INCLURE{fond=inclure/sous-rubriques, env} />
+	</div>
+[(#CONFIG{zoundation/sticky}|oui)
+</div>]
