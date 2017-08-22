@@ -16,7 +16,8 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 		$img = filtrer('image_reduire', $img, $largeur, $hauteur, $position, 'transparent');
 	}
 	
-	$img = filtrer('image_graver', $img);
+	// Pas la peine, c'est fait automatiquement quand c'est un vrai filtre d'image comme ici
+	//$img = filtrer('image_graver', $img);
 	
 	return $img;
 }

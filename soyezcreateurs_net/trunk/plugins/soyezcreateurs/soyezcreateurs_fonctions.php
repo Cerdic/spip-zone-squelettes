@@ -861,3 +861,6 @@ function sinoncrayon($texte, $sinon = '') {
 	}
 }
 
+function sc_enimage($image) {
+	return "<img src='$image' />";
+}
