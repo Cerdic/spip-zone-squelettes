@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_config_titre_sommaire' => "Le titre du site apparait sur la page d'accueil ? ",
 	'titre_calltoaction' => "Newsletter",
 	'texte_calltoaction' => "Pour avoir des nouvelles régulières, laisse ton mail ",
+	'titre_configurer_alpha' => 'Configurer Html5up Alpha',
 
 );
 
