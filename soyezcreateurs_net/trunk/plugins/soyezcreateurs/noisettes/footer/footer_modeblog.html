@@ -14,10 +14,10 @@
 <INCLURE{fond=noisettes/forums/forum_sommaire}>]
 	</div>
 
-[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc}{env}>]
+[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc,env}>]
 
 [(#CHEMIN{noisettes/ephemeride/dessous_ephemeride.html}|oui)
-<INCLURE{fond=noisettes/ephemeride/dessous_ephemeride}{env}>
+<INCLURE{fond=noisettes/ephemeride/dessous_ephemeride,env}>
 ]
 
 [(#PLUGIN{ACCESRESTREINT}|oui)<INCLURE{fond=noisettes/accesrestreint/login-logout,env}>]
@@ -31,7 +31,7 @@
 ]
 
 [(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)
-[(#INCLURE{fond=noisettes/header/cadre_recherche}{env})]
+[(#INCLURE{fond=noisettes/header/cadre_recherche,env})]
 ]
 [(#CONFIG{soyezcreateurs_google/google_search}|!={''}|oui)[(#INCLURE{fond=noisettes/navigation/ads_search})]]
 </div>
@@ -51,7 +51,7 @@
 <div class="rightmenu">
 	[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|=={on}|oui)<INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}>]]
 	
-	[(#ENV{template}|=={'Sommaire'}|?{[(#INCLURE{fond=noisettes/menus/menu_right_sommaire}{env})]})]
+	[(#ENV{template}|=={'Sommaire'}|?{[(#INCLURE{fond=noisettes/menus/menu_right_sommaire,env})]})]
 	<!--<B_Breves_Sommaire>
 	<ul>
 	  <BOUCLE_Breves_Sommaire(BREVES){!par date}{age<120}{lang}>
@@ -71,19 +71,19 @@
 	</ul>
 	</B_Breves>
 
-[(#ENV{template}|=={'Sommaire'}|?{'',[(#INCLURE{fond=noisettes/menus/menu_right_dessousbreves}{id_rubrique}{env})]})]
+[(#ENV{template}|=={'Sommaire'}|?{'',[(#INCLURE{fond=noisettes/menus/menu_right_dessousbreves,id_rubrique,env})]})]
 
 <BOUCLE_RubriqueSites(RUBRIQUES){id_rubrique}>
 [<h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
 <ul>
-(#INCLURE{fond=noisettes/menus/menu_right_sites}{id_rubrique}{env})
+(#INCLURE{fond=noisettes/menus/menu_right_sites,id_rubrique,env})
 </ul>]
 </BOUCLE_RubriqueSites>
 <B_RubriquesPasDansMenu>
 <h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
 <ul>
 <BOUCLE_RubriquesPasDansMenu(RUBRIQUES){titre_mot=PasDansMenu}>[
-(#INCLURE{fond=noisettes/menus/menu_right_sites}{id_rubrique}{env})
+(#INCLURE{fond=noisettes/menus/menu_right_sites,id_rubrique,env})
 ]</BOUCLE_RubriquesPasDansMenu>
 </ul>
 </B_RubriquesPasDansMenu>

@@ -21,7 +21,7 @@
 	<h2 class="#EDIT{titre}">[(#TEXTE**|oui)<a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#TEXTE**|oui)</a>]</h2>
 	<div>
 	[<div class="ZoomSur_ligne" onclick="location.href='#ARTICLE_URL';" title="<:soyezcreateurs:liresuitede:> [(#TITRE|attribut_html)]" style="cursor:pointer">[<img class="logo_zoomsur" src="(#LOGO_ARTICLE|image_passe_partout{#GET{Largeurcontent_central}|div{6},#GET{Largeurcontent_central}|div{6}}|image_recadre{#GET{Largeurcontent_central}|div{6},#GET{Largeurcontent_central}|div{6},center,transparent}|extraire_attribut{src}|embarque_fichier)" width="[(#GET{Largeurcontent_central}|div{6})]" height="[(#GET{Largeurcontent_central}|div{6})]" alt="" />](#CHAPO|sinon{#DESCRIPTIF}|sinon{[<p>(#TEXTE|couper{300})</p>]}|ptobr|image_reduire{#GET{Largeurcontent_central}|div{3},0})</div>]
-	[(#TEXTE**|oui)[<div class="infos suite"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]"><:soyezcreateurs:liresuitede:> (#TITRE)</a></div>]]
+	[(#TEXTE**|oui)[<div class="infos suite"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]"><:soyezcreateurs:liresuitede:> (#TITRE)</a></div>]]
 	</div>
 </div><!-- ZoomSur -->
 </BOUCLE_ZoomSur>
@@ -37,7 +37,7 @@
 	<B_articles_recents><ul class="listeafficherimages[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui|?{' block'})]">
 	<BOUCLE_articles_recents(ARTICLES) {id_rubrique}{par num titre}{!par date}{lang}{0,(#CONFIG{soyezcreateurs/nombres_dessousbreves,10})}{doublons}>
 		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={liste}|oui)
-		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		<li class="[(#COMPTEUR_BOUCLE|alterner{'odd ',''})]#EDIT{titre}"><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 		]
 		[(#CONFIG{soyezcreateurs/dessousbreves_communiquant_blocs,liste}|=={block}|oui)
 		[(#SET{logoblock,[(#LOGO_ARTICLE_NORMAL|sinon{#LOGO_RUBRIQUE_NORMAL}|image_recadre{128:96,-,focus}|image_reduire{128,96})]})]
@@ -109,7 +109,7 @@
 <ul>(#INCLURE{fond=noisettes/liensnav/bloc_liensnav,template})</ul>
 </div><!-- espaceavant -->]
 ]
-[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc}{env}>]
+[(#CONFIG{soyezcreateurs/affichage_ephemeride,oui}|=={oui}|oui)<INCLURE{fond=noisettes/ephemeride/ephemeride_bloc,env}>]
 
 [(#REM) Sur le Web ]
 [(#CONFIG{soyezcreateurs/positionnouveautes,extra}|=={extra}|oui)[(#CONFIG{soyezcreateurs/nouveautes_web,oui}|=={oui}|oui)#INCLURE{fond=noisettes/sommaire/nouveautes}]]
@@ -120,7 +120,7 @@
   </div>
 ]
 
-[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche}{env}{id_recherche=cadre_recherche})]]
+[(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche,env,id_recherche=cadre_recherche})]]
 #INCLURE{fond=noisettes/extra/ousommesnous}
 [(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={bottom}|oui)<div class="centrer_div rss_bottom">
 <INCLURE{fond=noisettes/liensnav/reseaux_sociaux}>

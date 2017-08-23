@@ -30,7 +30,7 @@
 </div>
 
 [(#CONFIG{soyezcreateurs/positionrecherche,header}|=={navigation}|oui)
-[(#INCLURE{fond=noisettes/header/cadre_recherche}{env})]
+[(#INCLURE{fond=noisettes/header/cadre_recherche,env})]
 ]
 [(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|oui)
 	[<div id="bandeaucontact" class="#EDIT{meta-soyezcreateurs/bandeau_contact}">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
@@ -48,7 +48,7 @@
 <B_Goodies>
   <ul class="menu">
 <BOUCLE_Goodies(ARTICLES) {titre_mot=Goodies}{par num titre}>
-	<li><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|hauteur)"] alt="" /><br />][(#TITRE)]</a></li>
+	<li><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|extraire_attribut{src}|embarque_fichier)"[ width="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_ARTICLE_NORMAL|image_reduire{120,50}|hauteur)"] alt="" /><br />][(#TITRE)]</a></li>
 </BOUCLE_Goodies>
 </ul>
 </B_Goodies>
@@ -63,17 +63,17 @@
 <h2><:soyezcreateurs:quoideneuf:></h2>
 <ul class="alaune">
 <BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
-	<li>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
-	[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
-	<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
+	<li>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
+	[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
+	<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
 </BOUCLE_articles_recentsAlaUne>
 </ul>
 	<B_articles_recentsSiUne>
 	<ul>
 	<BOUCLE_articles_recentsSiUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}>
-		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
-		[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
-		<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
+		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
+		[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
+		<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
 	</BOUCLE_articles_recentsSiUne>
 	</ul>
 	</B_articles_recentsSiUne>
@@ -84,9 +84,9 @@
 <h2><:soyezcreateurs:quoideneuf:></h2>
 <ul>
 <BOUCLE_articles_recents(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}>
-	<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
-	[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
-	<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
+	<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="date">(#DATE|affdate)</span></a><br />]
+	[<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]"><span class="titre">(#TITRE)</span></a>]
+	<a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)[ ((#INCLURE{fond=noisettes/aff_datepublication,id_article}|supprimer_tags))]]" class="readmore"><span class="readmore">Read More</span></a></li>
 </BOUCLE_articles_recents>
 </ul>
 </div>

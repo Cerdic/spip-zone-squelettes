@@ -1,4 +1,4 @@
-<BOUCLE_article_principal(ARTICLES) {id_article}>[(#VAL{redirectsiunique}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)[(#TEXTE*|?{'',[(#INCLURE{fond=noisettes/articles/documentjointunique,id_article})]})]]<BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
+<BOUCLE_article_principal(ARTICLES) {id_article}>[(#VAL{redirectsiunique}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)[(#TEXTE*|?{'',[(#INCLURE{fond=noisettes/articles/documentjointunique,id_article})]})]]<BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique,tout,titre_mot=MenuHaut,inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
 	{id_article}
@@ -14,10 +14,10 @@
 >
 
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{inverse}{type_mot=_TypeRubrique}{0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>[(#CHEMIN{noisettes/articles/typearticle_#TITRE.html}|oui)
-[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article=#_article_principal:ID_ARTICLE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE}{env})]
+[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE,id_article=#_article_principal:ID_ARTICLE,rubriqueencours,template,secteurencours,lang,racinetype=#_TypeRubrique:ID_RUBRIQUE,env})]
 ]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
 <BOUCLE_TypeArticle(MOTS){id_article}{type=_TypeArticle}{0,1}>[(#CHEMIN{noisettes/articles/typearticle_#TITRE.html}|oui)
-[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#ID_RUBRIQUE}{env})]
+[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE,id_article,rubriqueencours,template,secteurencours,lang,racinetype=#ID_RUBRIQUE,env})]
 ]</BOUCLE_TypeArticle>
 
 
@@ -30,10 +30,10 @@
 			</BOUCLE_plan>
 			<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
 		</ul>
-		[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique}{lang})]
+		[(#INCLURE{fond=noisettes/affrubcomplete,id_rubrique,lang})]
 	</nav>
 	[(#REM)Ne pas afficher 2 fois les NOTES][(#NOTES|?{'',''})]
-[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{archive}{lang})]]
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche,id_article,archive,lang})]]
 
 <div class="texte">
 [(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
@@ -42,9 +42,9 @@
 <div class="cartouche surlignable">
 [(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]]
 [<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
-[(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})]
+[(#INCLURE{fond=noisettes/aff_datepublication,id_article,lang})]
 <div class="titrepage"><h1 class="#EDIT{titre} entry-title">[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={content}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]][(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)][(#PLUGIN{ARTICLE_PDF}|oui)#ARTICLE_PDF]</h1>[(#FORMULAIRE_FAVORI)][(#CONFIG{soyezcreateurs_google/googleplusun,non}|=={oui}|?{'<div class="googleplusun"><div class="g-plusone"></div></div>'})]</div>
-[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs,id_article,lang})]
 [(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
 [(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_article}|extraire_attribut{src})" class="logo_article" alt="" width="[(#GET{logo_article}|largeur)]" height="[(#GET{logo_article}|hauteur)]" />]]
 [<div class="notation pas_surlignable">(#FORMULAIRE_NOTATION)</div>]
@@ -61,7 +61,7 @@
 </B_SommaireArticle>
 <//B_Sommaire>
 
-[<div id="motsaveclogo">(#INCLURE{fond=noisettes/affichermotslogo}{id_article})</div>]
+[<div id="motsaveclogo">(#INCLURE{fond=noisettes/affichermotslogo,id_article})</div>]
 
 	<div id="letexte" class="surlignable">
 [<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0}|sinon{#DESCRIPTIF})</div>]
@@ -74,8 +74,8 @@
 ]})
 ]
 
-[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul}{id_article}{lang}>]
-[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail}{id_article}{lang}>]]
+[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul,id_article,lang}>]
+[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail,id_article,lang}>]]
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
@@ -104,9 +104,9 @@
 (#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis,id_article,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_article,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
 </div>]
 
-[(#INCLURE{fond=noisettes/galerie}{ajax}{id_article}{env})]
+[(#INCLURE{fond=noisettes/galerie,ajax,id_article,env})]
 [(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
-[(#INCLURE{fond=modeles/documentsjoints}{id_article})]
+[(#INCLURE{fond=modeles/documentsjoints,id_article})]
 ]
 
 [(#CONFIG{soyezcreateurs_google/googleplusun,non}|=={oui}|?{'<div class="googleplusun"><div class="g-plusone"></div></div>'})]
@@ -133,10 +133,10 @@
 	<!-- Forums -->
 	[(#PLUGIN{comments}|non)
 	[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
-	<INCLURE{fond=noisettes/forums/inc-forum}{id_article}>]
+	<INCLURE{fond=noisettes/forums/inc-forum,id_article}>]
 	[(#PLUGIN{comments}|oui)
 	<div class="forum-repondre"><a href="#formulaire_forum" rel="nofollow" title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>
-	[(#INCLURE{fond=comments}{id_article})]]
+	[(#INCLURE{fond=comments,id_article})]]
 
 	<//B_GraverSonNom>
 
@@ -166,7 +166,7 @@
 </tbody>
 </table>
 </B_signatures>
-[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{archive}{lang}{classe=artrecent_bas})]]
+[(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={bas}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche,id_article,archive,lang,classe=artrecent_bas})]]
 
 <//B_TypeArticle><//B_TypeRubrique>
 [<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#ARTICLE_URL|url_absolue)]" type="text/javascript" charset="utf-8"></script>]

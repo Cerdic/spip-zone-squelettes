@@ -5,7 +5,7 @@
 		- s'il y a plusieurs
 		- et que les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu)
 ]
-[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives}{id_article}{id_rubrique}{lang}{classe})#SET{div_artrecents,1}]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_article,id_rubrique,lang,classe})#SET{div_artrecents,1}]]
 <BOUCLE_PlusieursArticles(ARTICLES) {id_rubrique} {lang} {1,1}{!archive}>
 <BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
 [(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>#SET{div_artrecents,1}]
@@ -25,7 +25,7 @@
 </BOUCLE_PlusieursArticles>
 
 [(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
-[[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints}{id_article}{cartouche=_cartouche})]
+[[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints,id_article,cartouche=_cartouche})]
 ]
 
 <BOUCLE_MotsExclus1(MOTS){type==^_}{doublons 1}> </BOUCLE_MotsExclus1>
@@ -38,10 +38,10 @@
 </BOUCLE_MotsClefsArticle>
 </ul>
 <BOUCLE_EstDansUnMenuHaut(RUBRIQUES){id_secteur}{titre_mot=MenuHaut}>
-[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={locale}|oui)[(#INCLURE{fond=noisettes/articles_connexes_locaux}{id_secteur}{id_article})]]
-[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={globale}|oui)[(#INCLURE{fond=noisettes/articles_connexes}{id_secteur}{id_article})]]
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={locale}|oui)[(#INCLURE{fond=noisettes/articles_connexes_locaux,id_secteur,id_article})]]
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={globale}|oui)[(#INCLURE{fond=noisettes/articles_connexes,id_secteur,id_article})]]
 </BOUCLE_EstDansUnMenuHaut>
-[(#INCLURE{fond=noisettes/articles_connexes}{id_secteur}{id_article})]
+[(#INCLURE{fond=noisettes/articles_connexes,id_secteur,id_article})]
 <//B_EstDansUnMenuHaut>
 </B_MotsClefsArticle>
 
