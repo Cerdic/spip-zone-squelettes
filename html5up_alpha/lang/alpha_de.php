@@ -21,8 +21,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_config_titre_sommaire' => "Auf der Startseite überlappen Bild und Titel unter Umständen",
 	'explication_config_contenu' => "Dieses Skelett verwendet Untertitel der Artikel. Nicht bergessen, sie auf der Seite <a href='?exec=configurer_contenu'>Inhalte der Website</a> zu aktivieren.",
-	'explication_doc_home' => "Die von SPIP vergebene ID (id_document) wird für das große Bild oben verwendet. Das ursprüngliche Design vernwendet Bilder der Größe  <b>1800 × 905 pixels</b> ",
-	'explication_doc_home2' => "Die SPIP-eigne ID (id_document) wird für das Bild <i>featured</i> verwndet. Das ursprüngliche Design Alpha verwendet Bilder der Größe <b>1200 × 393 pixels</b>.",
+	'explication_doc_home' => "Die von SPIP vergebene ID (id_document) wird für das große Bild oben verwendet. Das ursprüngliche Design nutzt Bilder der Größe  <b>1800 × 905 pixels</b> ",
+	'explication_doc_home2' => "Die SPIP-eigne ID (id_document) wird für das Bild <i>featured</i> verwendet. Das ursprüngliche Design nutzt Bilder der Größe <b>1200 × 393 pixels</b>.",
 	'explication_articles_home' => "Eine oder mehrere Artikelnummern (id_article) durch Kommata getrennt. Um eine Sortierung der Artikel zu erzwingen, stellen sie ihren Titeln jeweils eine Ordnungszahl 1. 2. usw. voran. Sie werden dann in dieser Reihenfolge angezeigt." ,
 	'explication_instagram' => "Vollständiger URL eines Instagram Accounts",
 	'explication_facebook' => "Vollständiger URL eines Facebook Accounts",
