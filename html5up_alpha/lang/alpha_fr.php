@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	 // L
 	'label_config_contenu' => "Sous-titre",
-	'label_doc_home2' => "Id doc home fearured",
+	'label_doc_home2' => "Id doc home featured",
 	'label_articles_home' => "Id article(s)",
 	'label_doc_home' => "Id doc home",
 	'label_twitter' => 'Twitter',
