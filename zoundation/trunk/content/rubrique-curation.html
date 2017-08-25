@@ -18,11 +18,7 @@
 
 	<INCLURE{fond=inclure/articles-curation, env, ajax} />
 
-	[(#PLUGIN{produits}|oui)
-	<INCLURE{fond=inclure/produits, env, ajax} />
-	]
-
-	[(#PIPELINE{zoundation_rubrique, #ARRAY{data, '', args, #ARRAY{id_rubrique, #ID_RUBRIQUE, id_secteur, #ID_SECTEUR}}})]
+	[(#PIPELINE{zoundation_rubrique, #ARRAY{data, '', args, #ENV*|unserialize}})]
 
 	[(#REM) Gestion du portfolio et des documents ]
 	<INCLURE{fond=inclure/documents,id_rubrique} />
