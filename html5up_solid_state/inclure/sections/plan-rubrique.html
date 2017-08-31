@@ -1,3 +1,4 @@
+#SET{exclure_compositions_enfants,#LISTE{petits_articles}}
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 <section id="rubrique_#ID_RUBRIQUE" class="wrapper[ (#ENV{class})][ (#ENV{spot}|?{spotlight})][ style(#ENV{position})][ (#ENV{alt,#ENV{position}}|alterner{'', alt})]">
 	<div class="inner">
@@ -11,7 +12,7 @@
 				<h3 class="h3"><:articles:></h3>
 			]
 			<ul class="plan">
-				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre} {si #COMPOSITION|in_array{#GET{exclure_compositions_enfants}}|non}>
 				<li><a href="#URL_ARTICLE">#TITRE</a></li>
 				</BOUCLE_articles_racine>
 			</ul>
@@ -25,7 +26,7 @@
 
 					<B_articles>
 						<ul>
-							<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+							<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre} {si #COMPOSITION|in_array{#GET{exclure_compositions_enfants}}|non}>
 							<li><a href="#URL_ARTICLE">#TITRE</a></li>
 							</BOUCLE_articles>
 						</ul>
