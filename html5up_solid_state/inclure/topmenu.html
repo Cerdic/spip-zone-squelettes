@@ -1,6 +1,16 @@
 <h2>Menu</h2>
 <ul class="links">
-	<li><a href="#URL_SITE_SPIP"><:accueil_site:></a></li>
+	<B_langues>
+	<li class="principal">
+		<BOUCLE_langues(ARTICLES){fusion lang}{par lang}>[(#TOTAL_BOUCLE|>{1}|oui)
+		<a class="lang" href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate"
+		   hreflang="#LANG" dir="#LANG_DIR" lang="#LANG"
+		   class="[(#LANG|=={#ENV{lang}}|?{on,''})]"
+		>[(#LANG)]</a>
+		]</BOUCLE_langues>
+	</li>
+	</B_langues>
+	<li><a class="accueil" href="#URL_SITE_SPIP"><:accueil_site:></a></li>
 
 <BOUCLE_rubrique_langue(RUBRIQUES){lang}{racine}{si #CONFIG{html5up_solid_state/multilinguisme_par_secteur}}>
 	<BOUCLE_articles(ARTICLES){par num titre, titre}{id_rubrique}>
