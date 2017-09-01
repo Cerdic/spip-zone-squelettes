@@ -54,6 +54,9 @@ function html5up_image_reduire_carre($img, $taille = 300) {
  *
  */
 function html5up_image_reduire($img, $width = 300, $height = 300) {
+	if (defined('_DIR_PLUGIN_CENTRE_IMAGE')) {
+		$img = filtrer('image_recadre', $img, "$width:$height", '-', 'focus');
+	}
 	$img = filtrer('image_passe_partout', $img, $width, $height);
 	$img = filtrer('image_recadre', $img, $width, $height, 'center');
 	$img = filtrer('image_graver', $img);
