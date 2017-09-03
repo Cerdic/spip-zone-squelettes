@@ -1,0 +1,24 @@
+[(#REM)
+Afficher les articles d'une rubrique sous forme de "block grid" Foundation
+Voir http://foundation.zurb.com/sites/docs/grid.html#block-grids
+]
+<B_rubrique-block-grid>
+	<div class="row [(#ENV{small, small-up-2})] [(#ENV{medium, medium-up-3})] [(#ENV{large, large-up-3})]">
+		<BOUCLE_rubrique-block-grid(ARTICLES){id_rubrique ?IN #ENV{id_rubrique}}>
+			<div class="column column-block">
+
+				[(#ENV{card}|oui)
+				<INCLURE{fond=inclure/article-card, id_article} />]
+
+				[(#ENV{card}|non)
+				[<h3><a href="#URL_ARTICLE">(#TITRE)</a></h3>]
+				[(#LOGO_ARTICLE|vider_attribut{class})]
+				[(#INTRODUCTION{300})]
+				]
+
+			</div>
+		</BOUCLE_rubrique-block-grid>
+	</div>
+</B_rubrique-block-grid>
+<:info_aucun_article:>
+<//B_rubrique-block-grid>
