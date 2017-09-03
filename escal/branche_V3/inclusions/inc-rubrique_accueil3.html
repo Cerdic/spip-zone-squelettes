@@ -1,6 +1,8 @@
 #SET{nbrpagrubaccueil,#CONFIG{escal/config/pagrubaccueil,5}}
 
-<BOUCLE_rubrique_accueil(RUBRIQUES){lang}{titre_mot=RubriqueOnglet3}{par date}{inverse}{0,1}>
+<div class="laune" >
+
+<BOUCLE_rubrique_accueil(RUBRIQUES){lang}{titre_mot=RubriqueOnglet3}{par date}{inverse}{0,1}> 
 
 [(#CONFIG{escal/config/descriptifrubaccueil}|=={non}|non)
 <div class="descriptif-rubrique-accueil #EDIT{descriptif}">[(#DESCRIPTIF)]</div>
@@ -17,30 +19,34 @@
 	<div class="nettoyeur"></div>]
 
 	<BOUCLE_articles_rubs(ARTICLES){branche}{par date}{inverse}{pagination #GET{nbrpagrubaccueil}}>
+		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="cadre-rubrique-accueil">
-			<div class="titre-articles-rubrique">
-				[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorubaccueil,25}})]
-				<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
-			</div>
-			<div class="introduction-articles-rubrique">
+		
+			[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorubaccueil,25}})]
+			<span class="titre-autres">	
+				[(#TITRE)]
+				<br /><br />
+			</span>
+			<span class="rubrique-autres">
 				[(#INTRODUCTION|supprimer_tags|couper{150})]
-				<br/>
-				<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-				<br/>
-			</div>
-			<div class="auteur-articles-rubrique">
+				<br/><br/>
+			</span>
+			<span class="rubrique-autres">
 				[<:escal:article_mise_en_ligne:> (#DATE|affdate)]
 				<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurrubaccueil}|=={non}|non}>
 				</BOUCLE_test>
 				<br />
 				[(#LANG|=={ja}|non)<:par_auteur:>]
 				<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
-				<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+				#NOM
+				</BOUCLE_auteurs_art>
 				[(#LANG|=={ja}|oui)<:par_auteur:>]
 				</B_test>
-			</div>
+			</span>
+		
 			<div class="nettoyeur"></div>
-		</div>		
+		</div>
+		</a>		
 	</BOUCLE_articles_rubs>
 
 	[<p class="pagination" style="padding:10px;">(#PAGINATION)</p>
@@ -49,3 +55,5 @@
 </B_articles_rubs>
 
 </BOUCLE_rubrique_accueil>
+
+</div>
