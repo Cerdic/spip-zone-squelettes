@@ -1,0 +1,49 @@
+[(#REM)Création d'un slideshow sur base d'une séléction éditorial ]
+<BOUCLE_selection(SELECTIONS){identifiant}>
+	<B_selection_orbit>
+		<div class="orbit" role="region" aria-label="#TITRE" data-orbit>
+			<div class="orbit-wrapper">
+				<div class="orbit-controls">
+					[(#ENV{button}|!={non}|oui)
+					<button class="orbit-previous"><span class="show-for-sr"><:foundation_6:suivant:></span>&#9664;&#xFE0E;</button>
+					<button class="orbit-next"><span class="show-for-sr"><:foundation_6:precedent:></span>&#9654;&#xFE0E;</button>
+					]
+				</div>
+				<ul class="orbit-container">
+					<BOUCLE_selection_orbit(SELECTIONS_CONTENUS){id_selection}{par rang}>
+						<li class="is-active orbit-slide">
+							<figure class="orbit-figure">
+								<a href="#URL">
+									[(#LOGO_SELECTIONS_CONTENU
+										|image_passe_partout{1200,600}
+										|image_recadre{1200,600, center}
+										|inserer_attribut{class, orbit-image}
+										|inserer_attribut{alt, #TITRE})]
+
+									[<figcaption class="orbit-caption">
+									(#DESCRIPTIF
+										|sinon{#INFO_DESCRIPTIF{#OBJET, #ID_OBJET}}
+										|sinon{#INFO_TEXTE{#OBJET, #ID_OBJET}}
+										|couper{200})
+									</figcaption>]
+								</a>
+							</figure>
+						</li>
+					</BOUCLE_selection_orbit>
+				</ul>
+			</div>
+
+			<B_selection_orbit_bullet>
+				<nav class="orbit-bullets">
+					<BOUCLE_selection_orbit_bullet(SELECTIONS_CONTENUS){si #ENV{bullets}|!=={non}|oui}{id_selection}{par rang}>
+						<button[(#COMPTEUR_BOUCLE|=={1}|oui)class="is-active"] data-slide="[(#COMPTEUR_BOUCLE|moins{1})]">
+							<span class="show-for-sr">#TITRE</span>
+							[(#COMPTEUR_BOUCLE|=={1}|oui)
+							<span class="show-for-sr"><:zoundation:slide_affiche:></span>]
+						</button>
+					</BOUCLE_selection_orbit_bullet>
+				</nav>
+			</B_selection_orbit_bullet>
+		</div>
+	</B_selection_orbit>
+</BOUCLE_selection>
