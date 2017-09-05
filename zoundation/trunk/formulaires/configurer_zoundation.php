@@ -90,7 +90,8 @@ function formulaires_configurer_zoundation_verifier_dist() {
 
 	// Dans le cas ou inc-sommaire est vide, on s'assure de vider la méta
 	// correctement
-	if (empty(_request('inc-sommaire'))) {
+	$sommaire =_request('inc-sommaire');
+	if (empty($sommaire)) {
 		set_request('inc-sommaire', null);
 	}
 
