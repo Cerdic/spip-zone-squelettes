@@ -860,7 +860,3 @@ function sinoncrayon($texte, $sinon = '') {
 		return $texte;
 	}
 }
-
-function sc_enimage($image) {
-	return "<img src='$image' />";
-}
