@@ -14,12 +14,21 @@
 		<h1 class="hide">#TITRE</h1>
 	</header>
 	<div class="slider-slick">
-		<BOUCLE_Slider(DOCUMENTS){id_article}{mode=document}{par num titre}{!par date}{extension IN png,jpg,gif}{vu=non}>
+		<BOUCLE_Slider(DOCUMENTS){id_article}{mode=document}{par num titre}{!par date}{media IN image,video}{vu=non}>
 		<div class="slider show-for-medium" role="region" aria-label="Diaporama d'accueil">
 			<div class="slider-diapo-imgfull">
+				[(#MEDIA|=={image}|oui)
 				<a href="#GET{article_url}"[ title="(#_EDITO:DESCRIPTIF|attribut_html)"]>
 					<img src="[(#FICHIER|copie_locale|image_focus{1920,#CONFIG{soyezcreateurs/hauteur_slider,580}}|extraire_attribut{src})]" alt="" />
-				</a>
+				</a>]
+				[(#MEDIA|=={video}|oui)
+				<a href="#GET{article_url}"[ title="(#_EDITO:DESCRIPTIF|attribut_html)"]>
+					<div style="width: 1920px; height: #CONFIG{soyezcreateurs/hauteur_slider,580}px;">
+					<video autoplay loop muted preload="true" class="autoplay">
+						<source src="#FICHIER" type="[(#EXTENSION|in_array{#LISTE{mp4,webm,ogv}}|?{[(#MIME_TYPE|replace{application/,video/})],#MIME_TYPE})]"/>
+					</video>
+					</div>
+				</a>]
 			</div>
 		</div>
 		</BOUCLE_Slider>
@@ -231,6 +240,12 @@
 		  centerMode: true,
 		  focusOnSelect: true
 		});
+		
+		// Pour que les éventuelles vidéos soient jouées
+		var vid = $('.slider-slick').find('video');
+		if (vid.length > 0)
+			$(vid).get(0).play();
+		
 		$('.slider-pratique').slick({
 		  dots: false,
 		  slidesToShow: [(#GET{LargeurContaineur}|div{304}|intval)],
