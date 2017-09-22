@@ -14,3 +14,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 $GLOBALS['z_blocs'] = array('content','colonne','head','head_js','header','footer');
+
+// Par défaut les intertitre produise des H2
+$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
+$GLOBALS['fin_intertitre'] = "</h2>\n";
