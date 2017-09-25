@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_logonavigation_bastitre' => 'Dans le corps de la page, après le titre',
 	'cfg_logonavigation_content' => 'Dans le corps de la page, dans le titre',
 	'cfg_logonavigation_hauttitre' => 'Dans le corps de la page, avant le titre',
+	'cfg_logonavigation_header' => 'Dans l’entête de la page, en-dessous du menu haut',
 	'cfg_logonavigation_navigation' => 'En haut de la colonne de navigation principale',
 	'cfg_logonavigation_never' => 'Ni l’un, ni l’autre',
 	'cfg_logorubriquenavigation_label' => 'Position logo rubrique',
