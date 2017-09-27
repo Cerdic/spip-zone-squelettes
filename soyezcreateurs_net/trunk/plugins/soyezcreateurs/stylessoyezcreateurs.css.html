@@ -616,7 +616,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #escapelinks a:hover, #escapelinks a:focus, #escapelinks a:active { color:#GET{c_header}; }
 
 /*************** STRUCTURE - CONTENT */
-#content { clear:both; position: relative; background-color: #GET{c_container_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});] color: #GET{c_container}; }
+#content[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|oui), #miettesdepain, .cartouche] { clear:both; position: relative; background-color: #GET{c_container_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});] color: #GET{c_container}; }
 /* Astuce : https://www.fourfront.us/blog/css-shadow-borders-with-curved-box-shadows */
 #contenu, #content { position:relative; overflow:hidden; }
 [(#CONFIG{soyezcreateurs_couleurs/ombrecontentbefore,none}!={none}|oui)
@@ -843,7 +843,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #content img.smiley { padding: 0; }
 #content img.fullwidth { margin:0; padding: 0; }
 #content img.groslogo { float:left; }
-#content h1 { clear: both; padding-left: 1em; background-color: #GET{c_titraille_bk}; color: #GET{c_titraille};
+#contenu h1 { clear: both; padding-left: 1em; background-color: #GET{c_titraille_bk}; color: #GET{c_titraille};
 	[(#GET{c_titraille_bk}|!={transparent}|oui|et{[(#GET{d_titraille_degrade}|non)]})
 	background: #GET{c_titraille_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas4.png}|image_sepia{[(#GET{c_titraille_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x top];]
 	font-family: #GET{f_content}; font-weight: bold; border-bottom: 4px solid [#(#GET{c_titraille_bk}|couleur_foncerluminosite)];
@@ -986,7 +986,7 @@ table.programmation caption { text-align: left; }
 }
 
 /* Breadcrumbs/Ariane */
-#miettesdepain { clear: both; padding: .25em 1em 1.5em; background-color: transparent; color: #GET{c_container}; font-size: .9em; font-style: italic; text-align: right; }
+#miettesdepain { clear: both; padding: .25em 1em 1.5em; [(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|non)background-color: transparent;] color: #GET{c_container}; font-size: .9em; font-style: italic; text-align: right; }
 #miettesdepain img { width: 8px; height: 11px; padding: 0; background: url([(#CHEMIN{images/chevrons.gif}|embarque_fichier)]) no-repeat center; }
 #miettesdepain ul { margin: 0; }
 #miettesdepain ul li { display: inline; }
@@ -1211,8 +1211,25 @@ div.spip_poesie div { margin-left: 60px; text-indent: -60px; }
 .caractencadre-spip { color: #f60; font-weight: bold; background-color: transparent; }
 .caractencadre2-spip { color: #009; font-weight: bold;  background-color: transparent; }
 
-.cartouche { position: relative; margin-top: 2em; margin-bottom: 3em; }
-
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|non)
+.cartouche { position: relative; padding-top: 2em; padding-bottom: 3em; }
+]
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|oui)
+.cartouche {
+    position: relative;
+    padding: 0;
+}
+.#miettesdepain,
+.portailcognac #miettesdepain {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.portailcognac #miettesdepain ul {
+	border-bottom: none;
+}
+]
 .chapo, .ps, #artrecents.artrecent_bas, .notes { clear: both; background-color: [(#GET{c_cadrestexte_bk})];  color: [(#GET{c_cadrestexte})]; overflow: auto; -webkit-border-radius: 1em; -moz-border-radius: 1em; border-radius: 1em; border: none;margin: 0 0 1em 0; padding: 0 1em .5em 1em; }
 .ps { margin: 0 0 1em 0; padding: .5em 1em; }
 #artrecents.artrecent_bas { display: block; overflow: auto; float: none; position: relative; z-index: auto; width: auto; max-height: none; margin: 3em 2.2em; }
@@ -2104,7 +2121,7 @@ a[href]:focus {
   height: auto;
   width: auto;
 }
-.portailcognac #content h1,
+.portailcognac #contenu h1,
 .portailcognac #content h2,
 .portailcognac #content h3,
 .portailcognac #content h4,
@@ -2375,17 +2392,19 @@ button {
 .portailcognac .boutonstexte a.textsizedown img {
   width: 16px;
 }
-
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|non)
 .portailcognac #miettesdepain {
   padding: .25rem 0 .5rem 0;
 }
+]
 .portailcognac #miettesdepain ul {
   text-align: left;
   font-size: 15px;
   font-style: normal;
   color: #666;
-  border-bottom: 1px solid #ccc;
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|non)  border-bottom: 1px solid #ccc; ]
 }
+
 .portailcognac #miettesdepain ul li a {
   padding-right: 16px;
 }
@@ -2421,10 +2440,6 @@ button {
 .portailcognac #sommaire > ul {
   margin-left: 1.5rem;
   padding: 1rem;
-}
-.portailcognac .cartouche {
-  margin-top: 0;
-  margin-bottom: 1em;
 }
 .portailcognac .cartouche .logo_article,
 .portailcognac .cartouche .logo_rubrique {
@@ -2644,10 +2659,6 @@ button {
 }
 .portailcognac.bodyarticle .chapo p {
   font-weight: 700;
-}
-.portailcognac.bodyarticle .cartouche {
-  margin-top: 0;
-  margin-bottom: 1em;
 }
 .portailcognac.bodyarticle .cartouche .titrepage h1 {
   display: block;

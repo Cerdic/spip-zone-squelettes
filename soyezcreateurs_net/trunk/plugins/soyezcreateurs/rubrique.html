@@ -9,6 +9,7 @@
 	{metadescription=(#DESCRIPTIF|supprimer_tags|attribut_html)}
 	{title=#GET{titrearchive}}
 	{titretop=#GET{titretop}}
+	{type=rubrique}
 >
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
 [(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique,id_rubrique=#_rubrique_principal:ID_RUBRIQUE,env})]]
@@ -24,17 +25,9 @@
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type_mot=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}{id_rubrique}>[(#CHEMIN{noisettes/rubriques/typerubrique_#TITRE.html}|oui)
 [(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE,id_rubrique=#_rubrique_principal:ID_RUBRIQUE,rubriqueencours,template,secteurencours,lang,racinetype=#_TypeRubrique:ID_RUBRIQUE,env})]
 ]</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
-	<nav id="miettesdepain">
-		<h2 class="nocontent offscreen">Fil d'Ariane</h2>
-		<ul>
-			<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil_site|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
-			<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
-			<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-			</BOUCLE_plan>
-			<li>[(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</li>
-		</ul>
-		[(#INCLURE{fond=noisettes/affrubcomplete,id_rubrique})]
-	</nav>
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+	<INCLURE{fond=noisettes/miettesdepain/rubrique,id_rubrique,lang}>
+]
 
 [(#CONFIG{soyezcreateurs_layout/positioncartouche,bas}|=={haut}|oui)
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
@@ -48,10 +41,12 @@
 <main id="main" role="main">
 <BOUCLE_GrosLogoRub(MOTS){id_rubrique}{titre = GrosLogo}> #SET{AfficherGrosLogo,1}</BOUCLE_GrosLogoRub>[(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={recadre}|oui)[(#SET{logo_rubrique,[(#LOGO_RUBRIQUE_NORMAL|image_focus{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]][(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={entier}|oui)[(#SET{logo_rubrique,[(#LOGO_RUBRIQUE_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]]<//B_GrosLogoRub>
 [(#CONFIG{soyezcreateurs_layout/logorubriquenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_rubrique}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#GET{logo_rubrique}|largeur)]" height="[(#GET{logo_rubrique}|hauteur)]" />]]
-<div class="cartouche">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche surlignable">
 <div class="titrepage"><h1 class="#EDIT{titre} surlignable">[(#CONFIG{soyezcreateurs_layout/logorubriquenavigation,content}|=={content}|oui)[<img src="(#GET{logo_rubrique}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#GET{logo_rubrique}|largeur)]" height="[(#GET{logo_rubrique}|hauteur)]" />]][(#TITRE)][(#ENV{archive}|oui)(<:soyezcreateurs:archives:>)]</h1>[(#FORMULAIRE_FAVORI)]</div>
 [(#ENV{archive}|non)[(#INCLURE{fond=noisettes/cartouches/article_cartouche_archives,id_rubrique,lang}|oui)<div class="lienarchives pas_surlignable"><a href="[(#SELF|parametre_url{archive,oui})]" title="<:soyezcreateurs:archives_title|attribut_html:>"><:soyezcreateurs:archives:></a></div>]]
 </div>
+]
 [(#CONFIG{soyezcreateurs_layout/logorubriquenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_rubrique}|extraire_attribut{src})" class="logo_rubrique" alt="" width="[(#GET{logo_rubrique}|largeur)]" height="[(#GET{logo_rubrique}|hauteur)]" />]]
 	<div id="letexte" class="surlignable">
 [<div class="#EDIT{descriptif} descriptif">[(#GET{AfficherGrosLogo}|oui)[(#CONFIG{soyezcreateurs_layout/logorubriquenavigation,content}|match{^content}|oui)[<img src="(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|extraire_attribut{src})" class="groslogo" alt="" width="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|largeur)]" height="[(#LOGO_RUBRIQUE_NORMAL|image_reduire{200,0}|hauteur)]" />]]](#DESCRIPTIF|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
