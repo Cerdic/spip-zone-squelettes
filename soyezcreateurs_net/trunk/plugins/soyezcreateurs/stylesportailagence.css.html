@@ -70,8 +70,19 @@ select {
   height: 100%;
 }
 
-
-
+[(#PLUGIN{lesscss}|oui)
+	[(#CHEMIN{images/stylesportailagence_perso.less.html}|?{'/* Surcharge eventuelle */'})
+	
+		[(#PRODUIRE{fond=images/stylesportailagence_perso.less,format=less}
+				|appliquer_filtre{less_css}
+				|file_get_contents
+		)
+		#SET{lessdone,1}
+		]
+	]
+]
+[(#GET{lessdone}|non)
 [(#CHEMIN{images/stylesportailagence_perso.css}|?{'/* Surcharge eventuelle */'})
 [(#INCLURE{#CHEMIN{images/stylesportailagence_perso.css}|url_absolue_css}|compacte{css})]
+]
 ]
