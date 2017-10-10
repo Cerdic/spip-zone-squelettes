@@ -1,6 +1,10 @@
 <?php
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
+// Pour la mutualisation, metas à regarder
+$GLOBALS['mutualisation_afficher_config'] = (isset($GLOBALS['mutualisation_afficher_config'])?$GLOBALS['mutualisation_afficher_config'].',':'').'soyezcreateurs/mode_affichage,slogan_site';
+
+
 // Optimisation du chargement des JS (SPIP 3.1 requis, cf https://core.spip.net/issues/3497)
 //define('_JS_ASYNC_LOAD',true);
 
