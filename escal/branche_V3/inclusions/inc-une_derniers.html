@@ -49,7 +49,7 @@
 
 <!-- On selectionne les 11 articles les + recents et on les stocke dans {doublons selection}-->
 #SET{nombrealaune,#CONFIG{escal/config/nombrealaune,11}}  
-<BOUCLE_selection(ARTICLES){lang}{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,#GET{nombrealaune}}{doublons annonce}{doublons}{doublons selection1}{doublons selection2}>
+<BOUCLE_selection(ARTICLES){lang}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}{0,#GET{nombrealaune}}{doublons annonce}{doublons}{doublons selection1}{doublons selection2}>
 </BOUCLE_selection>
 
 <!--  On affiche les 11 articles selectionnes
@@ -182,14 +182,14 @@
 			 <:rubrique:> : [(#TITRE|couper{30})]
 			 </span>
 			</BOUCLE_Rub_suite>
-			<br />
+			<br /><br />
+		<div class="nettoyeur"></div>
 <!-- affichage descriptif -->
 			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptif}|=={oui}|oui}>
 			 [<div class="descriptif-autres">
 			 (#DESCRIPTIF)
 			 </div>]
 			</BOUCLE_descriptif_art>
-			<br />
 <!-- affichage texte article -->
 			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersart}|=={oui}|oui}>
 		      <div class="texte-autres">

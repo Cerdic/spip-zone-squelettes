@@ -174,7 +174,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             This width is 400px by default for classical articles and 850px for full pages articles, 
             which may be too restrictive if you previously opted to a layout with 2 columns or in full page',
 'articles_largeur_images' => 'Maximum width of the pictures: ',
-'articles_largeur_images2' => 'Maximum width of the pictures for full page articles (articles with the keyword "fullpage" which suppresses side blocks) :',
+'articles_largeur_images2' => 'Maximum width of the pictures for full page articles (articles with the keyword "pleinepage" which suppresses side blocks) :',
 'articles_reponses_forum' => 'Answers to the forums of articles',
 'articles_premier_message' => 'Only display the first message of each thread, answers being drop-down',
 'articles_portfolio' => 'Display the portfolio (constitute an overlap with the "Download" block)',
@@ -306,23 +306,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_a_decouvrir' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article180&lang=fr" title="To see the documentation">To discover</a>',
 'doc_a_decouvrir2' => ' : a choice of articles from the website or from the current section and its sub-sections.',
 'doc_acces_direct' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article24&lang=fr" title="To see the documentation">Direct access</a>',
-'doc_acces_direct2' => ' : article with the keyword "direct-acces" for internal links. The title of the block will be that of the article.',
+'doc_acces_direct2' => ' : article with the keyword "acces-direct" for internal links. The title of the block will be that of the article.',
 'doc_actus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article130&lang=fr" title="To see the documentation">News</a>',
-'doc_actus2' => ' : the articles with the keyword "news" scroll.',
+'doc_actus2' => ' : the articles with the keyword "actus" scroll.',
 'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="To see the documentation">In the spotlight</a>',
 'doc_une2' => ' : A box with tabs for the last articles of the website, the site map, an article, the articles of a section...',
 'doc_annonce' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article174&lang=fr" title="To see the documentation">Announcement</a>',
-'doc_annonce2' => ' : the most recent article with the keyword "announcement" in an insert.',
+'doc_annonce2' => ' : the most recent article with the keyword "annonce" in an insert.',
 'doc_annonce_defil' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article179&lang=fr" title="To see the documentation">Drop-down announcements</a>',
-'doc_annonce_defil2' => ' : all the articles with the keyword "drop-down-announcement" roll over in an insert.',
+'doc_annonce_defil2' => ' : all the articles with the keyword "annonce-defilant" roll over in an insert.',
 'doc_article_libre' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article200&lang=fr" title="To see the documentation">Free article 1 to 5</a>',
-'doc_article_libre2' => ' : article with a keyword "free-articleN" (N = 1 to 5) for what you want. The title of the block will be that of the article.',            
+'doc_article_libre2' => ' : article with a keyword "article-libreN" (N = 1 to 5) for what you want. The title of the block will be that of the article.',            
 'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="To see the documentation">Authors directory</a>',
 'doc_annuaire_auteurs2' => ' : the list of authors and their status.',
 'doc_articles_plus_vus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article78&lang=fr" title="To see the documentation">The most seen articles</a>',
 'doc_articles_plus_vus2' => ' : display of the most visited articles.',
 'doc_articles_rubrique' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article279&lang=fr" title="To see the documentation">Section articles</a>',
-'doc_articles_rubrique2' => ' : display the articles of the section with the keyword "section-articles".',
+'doc_articles_rubrique2' => ' : display the articles of the section with the keyword "articles-de-rubrique".',
 'doc_derniers_articles' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article26&lang=fr" title="To see the documentation">Last articles</a>',
 'doc_derniers_articles2' => ' : last articles of the current section and of its sub-sections.',
 'doc_derniers_art_syndic' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article291&lang=fr" title="To see the documentation">Last syndicated articles</a>',
@@ -348,13 +348,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_personnalise' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article190&lang=fr" title="To see the documentation">Block to be customized</a>',
 'doc_personnalise2' => ' : articles with the keyword "special". The configuration of this block is done in "Configuration of side blocks -> Titles and contents".',
 'doc_photos_hasard' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article144&lang=fr" title="To see the documentation">Random photos</a>',
-'doc_photos_hasard2' => ' : the pictures of the articles with the keyword "photo-one" scroll.',
+'doc_photos_hasard2' => ' : the pictures of the articles with the keyword "photo-une" scroll.',
 'doc_rainette' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article192&lang=fr" title="To see the documentation">Rainette</a>',
 'doc_rainette2' => ' : needs the plugin "Rainette". Informations about a given city weather.<br />The configuration of this block is done in the part "Some plugins in Escal".',
 'doc_recherche_multi' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article198&lang=fr" title="To see the documentation">Multi-criteria search</a>',
 'doc_recherche_multi2' => ' : search by keywords groups  and by keywords.',
 'doc_sites_favoris' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article181&lang=fr" title="To see the documentation"> Favorites websites</a>',
-'doc_sites_favoris2' => ' :  the thumbnails of the websites referenced in the current sector and with the keyword "favorite" scroll.',
+'doc_sites_favoris2' => ' :  the thumbnails of the websites referenced in the current sector and with the keyword "favori" scroll.',
 'doc_stats' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article126&lang=fr" title="To see the documentation">Statistics</a>',
 'doc_stats2' => ' : a selection of statistics on the website.',
 'doc_sur_web' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article82&lang=fr" title="To see the documentation">On the web</a>',
@@ -363,7 +363,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_telecharger_art2' => ' : lists the documents of the article (those in the portfolio).',
 'doc_telecharger_rub2' => ' : lists the documents of the section (not of its articles).',
 'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="To see the documentation">Videos</a>',
-'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-one".',
+'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-une".',
 'droite' => 'On the right',
 
 // E           
@@ -517,7 +517,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisette_commun' => 'Blocks shared by several pages',
 'noisette_perso' => 'Block to be customized',
 'noisette_rubrique' => 'Blocks specific to the page section',
-'noisettes_acces_direct_explication' => 'The title of this block is given by the title of the article with the keyword "direct-acces". Article whose translations should be developed on a multilingual site.',
+'noisettes_acces_direct_explication' => 'The title of this block is given by the title of the article with the keyword "acces-direct". Article whose translations should be developed on a multilingual site.',
 'noisettes_actus_tempo' => 'Delay between each news (in seconds).<br />A cache clearing is necessary to apply a new delay.',
 'noisettes_actus_enlever' => 'Remove the block if no news',
 'noisettes_affiche_articles' => 'With display of the articles',
@@ -542,8 +542,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisettes_decouvrir_plus_vus' => 'Number of most visited articles',
 'noisettes_decouvrir_recents' => 'Number of most recent articles',
 'noisettes_decouvrir_rubrique' => 'Only in the current section and its sub-sections',
-'noisettes_decouvrir_site' => 'In the whole website (articles or sections can be excluded with the keyword "not-to-discover")',
-'noisettes_edito_explication' => 'The title of this block is given by the title of the article with the keyword "editorial". Article whose translations should be developed on a multilingual site.',
+'noisettes_decouvrir_site' => 'In the whole website (articles or sections can be excluded with the keyword "pas-a-decouvrir")',
+'noisettes_edito_explication' => 'The title of this block is given by the title of the article with the keyword "edito". Article whose translations should be developed on a multilingual site.',
 'noisettes_events_explication' => 'Warning : the choice of the display of articles or events is the same as that of the block "Mini-calendar" just above.',
 'noisettes_explication' => '<strong>Titles of blocks</strong><br /><br />
               In the case of a <strong>multilingual website</strong>, if you want to change the title of a block
@@ -581,7 +581,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'noisettes_perso_tempo' => 'Delay between each article (in seconds).<br />A cache clearing is necessary to apply a new delay.',
 'noisettes_photos_tempo' => 'Delay between each picture (in seconds).<br />A cache clearing is necessary to apply a new delay.',
 'noisettes_photos_lien' => 'Link towards the source article of the photo',
-'noisettes_sites_exclus' => 'You must exclude the websites with the keyword "favourite" as already in the block "Favourite websites" if you use it',
+'noisettes_sites_exclus' => 'You must exclude the websites with the keyword "favori" as already in the block "Favourite websites" if you use it',
 'noisettes_sites_tempo' => 'Delay between each website logo (in seconds).<br />A cache clearing is necessary to apply a new delay.',
 'noisettes_stats_affiche' => 'Display ...',
 'noisettes_stats_articles' => 'The number of articles of the website',
@@ -616,7 +616,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // O
 'onglets_art_accueil' => 'Home article',
-'onglets_art_accueil_explication' => 'The displayed article will be that with the keyword "home" otherwise it will be the last one published.<br />
+'onglets_art_accueil_explication' => 'The displayed article will be that with the keyword "accueil" otherwise it will be the last one published.<br />
                     The title of the article is displayed in the tab.',
 'onglets_art_accueil_forum' => 'To display the forum of the home article',                    
 'onglets_art_archive' => 'Archive article',
@@ -652,7 +652,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_monart2_titre' => 'Title of the tab "My article 2"',
 'onglets_monart3' => 'Mon article 3',
 'onglets_monart3_titre' => 'Title of the tab "My article 3"',
-'onglets_monart_explication' => 'are articles with respectively the keywords "my-article" "my-article2" and "my-article3".<br /> 
+'onglets_monart_explication' => 'are articles with respectively the keywords "mon-article" "mon-article2" and "mon-article3".<br /> 
                     The title of the tab will be that of the article unless you give it a different title below. Only the text and the PS will be displayed.',
 'onglets_nombre_articles' => 'Total number of articles to display',
 'onglets_nombre_articles_exergue' => 'Number of articles to display, including the emphasized article',
@@ -668,7 +668,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_rub5' => 'Section 5',
 'onglets_rub_auteur' => 'display the author of the articles',
 'onglets_rub_descriptif' => 'display the description of the section',
-'onglets_rub_explication' => 'allows to display the sections with the keyword "SectionTab" or "SectionTabN" (N = 2 to 5).<br />
+'onglets_rub_explication' => 'allows to display the sections with the keyword "RubriqueOnglet" or "RubriqueOngletN" (N = 2 to 5).<br />
                     The title of the section is displayed in the tab and the articles of this section are displayed below.<br />
                     Fot this option:',
 'onglets_rub_logo' => 'to choose the size of the section logo',
@@ -707,7 +707,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pied_hebergeur_url' => 'URL of your provider (if you want a link towards it)',
 'pied_citations_explication' => '        You can display quotes at the left of the footer. <br /><br />
         These quotes<br />
-        - must be in an article dedicated with the keyword "quotes"<br />
+        - must be in an article dedicated with the keyword "citations"<br />
         - must each be in  a single paragraph <br />
         - should not exceed the length of 200 characters<br />
         - must be separated by an empty line',

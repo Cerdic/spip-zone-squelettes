@@ -5,28 +5,28 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // E
-'escal_description' => 'Adapt&eacute; pour la version 3 de SPIP, il propose :
--* une configuration pouss&eacute;e dans l\'espace priv&eacute;
--* une mise en page param&eacute;trable en 2 ou 3 colonnes par le choix d&#39;une feuille de style
--* une gestion du multilinguisme
--* un forum simple style phpBB
--* un large choix de noisettes &agrave; garder ou pas, certaines &eacute;tant redondantes : identification, menu horizontal et/ou vertical.
--* place, couleur et contenu des blocs lat&eacute;raux faciles &agrave; changer
--* un menu horizontal et/ou vertical (2 au choix) d&eacute;roulants avec mise en valeur de la rubrique courante
--* une redirection automatique vers l&#39;article s&#39;il est seul dans sa rubrique
--* une navigation par mots-cl&eacute;s
--* un calendrier et/ou une liste d&#39;&eacute;v&egrave;nements
--* un affichage des derniers articles ou des articles dans la m&ecirc;me rubrique
--* un affichage des sous-rubriques et des articles dans chaque page rubrique
--* un affichage des forums des articles
--* un formulaire de contact des auteurs s&#39;ils ont indiqu&eacute; leur e-mail
--* une page contact &eacute;labor&eacute;e
--* un plan du site
--* un fichier backend pour la syndication du site
+'escal_description' => 'Të përshtatshme për versionin 3 të SPIP, ajo ofron:
+-* një konfiguracion shtyjnë në zonë private
+-* një plan urbanistik configurable në 2 ose 3 kolona duke zgjedhur një fletë stil 
+-* menaxhimin e shumëgjuhësinë
+-* style thjeshtë phpBB
+-* një përzgjedhje të gjerë të arrave për të mbajtur apo jo, disa prej të identifikimit të tepërta, menu horizontale dhe / ose vertikale.
+-* në vend të kësaj, ngjyra dhe përmbajtje të lehtë për të ndryshuar blloqe anësore
+-* një menu horizontale dhe / ose vertikale (zgjedhja 2) të bjerë me zhvillimin e temës aktuale
+-* redirection automatik të shkrimit, nëse ai është i vetëm në kolonën e tij
+-* navigacion nga fjalë kyçe
+-* një kalendar dhe / ose një listë e ngjarjeve
+-* një shfaqje e artikujt e fundit apo artikujve në të njëjtin seksion
+-* ën-kategori ekran dhe sende në çdo faqe kategori
+-* a artikuj ekranit Forumet
+-* Autorët e një të kontaktit në qoftë se ata të listuara email e tyre
+-* një kontakt të zhvilluar
+-* një sitemap
+-* një fotografi backend për faqen syndication
 -* une feuille de style sp&eacute;ciale pour l&#39;impression des articles
--* une zone de connexion en page d&#39;accueil (2 choix possibles d&#39;affichage)
--* un ensemble valide XHTML Strict 1.0',
-'escal_slogan' => 'Squelette 2 ou 3 colonnes compos&eacute; de nombreuses noisettes',
+-* një zonë lidhje në faqen kryesore (2 zgjedhje viewing)
+-* vendosur një XHTML valide 1.0 strikte',
+'escal_slogan' => 'Skelet 2 ose 3 kolona përbërë nga shumë lajthi',
 
 );
 ?>

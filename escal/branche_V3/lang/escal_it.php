@@ -174,7 +174,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             L\'impostazione predefinita è 400 pixel in articoli convenzionali e 850 pixel in articoli a pieno schermo, 
             che può essere troppo restrittiva se si è scelto un layout in due colonne o a schermo intero',
 'articles_largeur_images' => 'Larghezza massima delle immagini : ',
-'articles_largeur_images2' => 'Larghezza massima delle immagini per le voci a schermo intero (elementi con la parola chiave "paginaintera", che sopprime blocchi laterali) :',
+'articles_largeur_images2' => 'Larghezza massima delle immagini per le voci a schermo intero (elementi con la parola chiave "pleinepage", che sopprime blocchi laterali) :',
 'articles_reponses_forum' => 'Risposte del forum dell\'articolo',
 'articles_premier_message' => 'Mostra solo il primo messaggio di ogni thread, le risposte sono espandibili',
 'articles_portfolio' => 'Visualizza il portfolio (si sovrappone al blocco "Per scaricare")',
@@ -306,17 +306,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'doc_a_decouvrir' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article180&lang=fr" title="Guarda la documentazione">Per scoprire</a>',
 'doc_a_decouvrir2' => ' : una selezione di articoli del sito o la rubrica corrente e le relative sotto-rubriche.',
 'doc_acces_direct' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article24&lang=fr" title="Guarda la documentazione">Accesso diretto</a>',
-'doc_acces_direct2' => ' : articolo con il tag "accesso-diretto" per i collegamenti interni. Il titolo del blocco sarà quello dell\'articolo.',
+'doc_acces_direct2' => ' : articolo con la parola chiave "acces-direct" per i collegamenti interni. Il titolo del blocco sarà quello dell\'articolo.',
 'doc_actus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article130&lang=fr" title="Guarda la documentazione">Notizie</a>',
-'doc_actus2' => ' : articoli con il tag "notizie" scorrevoli.',
+'doc_actus2' => ' : articoli con la parola chiave "actus" scorrevoli.',
 'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="Guarda la documentazione">In primo piano</a>',
 'doc_une2' => ' : Un contenitore con le schede degli ultimi articoli, la mappa del sito, la sezione, le sezioni di un argomento ecc...',
 'doc_annonce' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article174&lang=fr" title="Guarda la documentazione">Annunci</a>',
-'doc_annonce2' => ' : il più recente articolo con la parola chiave "annunci" in un inserto.',
+'doc_annonce2' => ' : il più recente articolo con la parola chiave "annonce" in un inserto.',
 'doc_annonce_defil' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article179&lang=fr" title="Guarda la documentazione">Annunci scorrevoli</a>',
-'doc_annonce_defil2' => ' : tutti gli articoli con la parola chiave "annunci-scorrevoli" scorrevoli in un inserto.',
+'doc_annonce_defil2' => ' : tutti gli articoli con la parola chiave "annonce-defilant" scorrevoli in un inserto.',
 'doc_article_libre' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article200&lang=fr" title="Guarda la documentazione">Articolo libero da 1 a 5</a>',
-'doc_article_libre2' => ' : articoli con il tag "articolo-liberoN" (dove N = da 1 a 5) per quello che si vuole. Il titolo del blocco sarà quello dell\'articolo.',            
+'doc_article_libre2' => ' : articoli con la parola chiave "article-libreN" (dove N = da 1 a 5) per quello che si vuole. Il titolo del blocco sarà quello dell\'articolo.',            
 'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="Guarda la documentazione">Elenco autori</a>',
 'doc_annuaire_auteurs2' => ' : la lista degli autori ed il loro stato.',
 'doc_articles_plus_vus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article78&lang=fr" title="Guarda la documentazione">Articoli popolari</a>',
@@ -616,11 +616,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // O
 'onglets_art_accueil' => 'Articolo di accoglienza',
-'onglets_art_accueil_explication' => 'L\'articolo visualizzato sarà quello con la parola chiave "ACCUEIL", altrimenti sarà l\'ultimo articolo pubblicato.<br />
+'onglets_art_accueil_explication' => 'L\'articolo visualizzato sarà quello con la parola chiave "accueil", altrimenti sarà l\'ultimo articolo pubblicato.<br />
                     Il titolo dell\'articolo appare nella scheda.',
 'onglets_art_accueil_forum' => 'Visualizza il forum dell\'articolo di accoglienza:',                    
 'onglets_art_archive' => 'Archivio articoli',
-'onglets_art_archive_explication' => 'L\'articolo visualizzato sarà un articolo preso a caso dalla sezione o da una selle sue sotto-sezioni, che ha la parola chiave "ARCHIVE".<br /> 
+'onglets_art_archive_explication' => 'L\'articolo visualizzato sarà un articolo preso a caso dalla sezione o da una selle sue sotto-sezioni, che ha la parola chiave "archive".<br /> 
                     Il titolo della scheda è "Souvenez-vous !".<br />Il multilinguismo è supportato nelle lingue disponibili in Escal. ',
 'onglets_art_archive_forum' => 'Visualizza il forum dell\'archivio articoli:',
 'onglets_arts_mot' => 'Articoli con parole chiave',
@@ -652,7 +652,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_monart2_titre' => 'Titolo della scheda "Mio articolo 2"',
 'onglets_monart3' => 'Mio articolo 3',
 'onglets_monart3_titre' => 'Titolo della scheda "Mio articolo 3"',
-'onglets_monart_explication' => 'sono articoli che contengono rispettivamente le parole chiave "MON-ARTICLE", "MON-ARTICLE2" e "MON-ARTICLE3".<br /> 
+'onglets_monart_explication' => 'sono articoli che contengono rispettivamente le parole chiave "mon-article", "mon-article2" e "mon-article3".<br /> 
                     Il titolo della scheda sarà quello dell\'articolo, a meno che non ne venga impostato uno diverso qui di seguito. Viene visualizzato solo il testo ed il Post Scriptum (PS).',
 'onglets_nombre_articles' => 'Numero totale di articoli da visualizzare:',
 'onglets_nombre_articles_exergue' => 'Numero di articoli da visualizzare, compreso l\'articolo in evidenza:',
@@ -668,7 +668,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'onglets_rub5' => 'Rubrica 5',
 'onglets_rub_auteur' => 'visualizza l\'autore dell\'articolo:',
 'onglets_rub_descriptif' => 'visualizza la descrizione della rubrica:',
-'onglets_rub_explication' => 'permettono di visualizzare gli argomenti che hanno come parola chiave "RUBRIQUEONGLET" o "RUBRIQUEONGLETN" (dove N = numero rubrica da 2 a 5).<br />
+'onglets_rub_explication' => 'permettono di visualizzare gli argomenti che hanno come parola chiave "RubriqueOnglet" o "RubriqueOngletN" (dove N = numero rubrica da 2 a 5).<br />
                     Il titolo della rubrica viene visualizzato nella scheda, e di seguito vengono visualizzati gli articoli di questa sezione.<br />
                     Per questa opzione:',
 'onglets_rub_logo' => 'scelta della dimensione del logo rubrica:',
@@ -707,7 +707,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pied_hebergeur_url' => 'URL del servizio hosting (se si vuole inserire il link):',
 'pied_citations_explication' => '        E\' possibile visualizzare le citazioni nel pié di pagina a sinistra. <br /><br />
         Queste citazioni:<br />
-        - devono trovarsi in un articolo dedicato, con la parola chiave "CITATIONS";<br />
+        - devono trovarsi in un articolo dedicato, con la parola chiave "citations";<br />
         - devono essere ciascuna in un paragrafo;<br />
         - non devono superare i 200 caratteri di lunghezza;<br />
         - devono essere separate da una linea vuota.',
