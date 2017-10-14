@@ -36,7 +36,7 @@
                     <:escal:annonce_defil_hauteur:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
-                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},210})]"  />px
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},250})]"  />px
                     </span>
                     <br /><br /><div class="nettoyeur"></div>
             #SET{name,ordreannonces}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -52,7 +52,30 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
                             [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard"><:escal:affichage_ordre_hasard:></label>
                     </span>
-                    <br /><br /><div class="nettoyeur"></div>
+                    <div class="nettoyeur"></div>
+                    <br />                    
+            #SET{name,descriptifannonce}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_descriptif:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
+            #SET{name,texteannonce}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_debut:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
              #SET{name,tailletexteannoncedefil}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:texte_coupe:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
