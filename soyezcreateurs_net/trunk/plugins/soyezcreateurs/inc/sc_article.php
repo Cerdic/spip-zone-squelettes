@@ -33,14 +33,14 @@ _ Le logo de survol s'il est présent est utilisé comme bannière en haut du si
 -* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout</code> (source: [LayoutGala->http://blog.html.it/layoutgala/index.html])
 
 Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessous : 
--* [Pyrat.net->http://www.pyrat.net/] :
--** [Rédacteurs SPIP : la boîte à outils->http://www.pyrat.net/556]
--** [Les raccourcis typographiques indispensables de SPIP->http://www.pyrat.net/452]
--** [Rédiger pour Internet afin d’être lu et trouvé->http://www.pyrat.net/313]
--** [Erreurs classiques de mise en forme typographique->http://www.pyrat.net/351]
+-* [pyrat.net->https://www.pyrat.net/] :
+-** [Rédacteurs SPIP : la boîte à outils->https://www.pyrat.net/556]
+-** [Les raccourcis typographiques indispensables de SPIP->https://www.pyrat.net/452]
+-** [Rédiger pour Internet afin d’être lu et trouvé->https://www.pyrat.net/313]
+-** [Erreurs classiques de mise en forme typographique->https://www.pyrat.net/351]
 -* Les 2 groupes de Mots Clés : 
--** [Navigation->http://www.pyrat.net/@mot.html]
--** [Fonctionnels->http://www.pyrat.net/@motsfonctionnels.html]
+-** [Navigation->https://www.pyrat.net/@mot.html]
+-** [Fonctionnels->https://www.pyrat.net/@motsfonctionnels.html]
 EOF;
 		$contenu['nom_site'] = "Original de l'article";
 		$contenu['url_site'] = "https://contrib.spip.net/?article3075";
@@ -61,7 +61,7 @@ EOF;
 
 N'oubliez pas non plus que votre site sera lu par des visiteurs pouvant être dans des résolutions d'écran différentes de la vôtre et qu'une «belle» mise en page chez vous pourrait être complètement différente pour le visiteur.
 
-Avant d'aller plus loin, vous pouvez lire avec profit : [Raccourcis typographiques indispensables de SPIP->http://www.pyrat.net/452].
+Avant d'aller plus loin, vous pouvez lire avec profit : [Raccourcis typographiques indispensables de SPIP->https://www.pyrat.net/452].
 EOF;
 		$contenu['texte'] = <<<EOF
 {{{Le texte préexiste à la mise en page}}}
@@ -377,7 +377,7 @@ EOF;
 		$contenu['surtitre'] = "Ceci est un surtitre";
 		$contenu['soustitre'] = "Ceci est un soustitre";
 		$contenu['nom_site'] = "Original de l'article";
-		$contenu['url_site'] = "http://www.pyrat.net/Raccourcis-Typographiques-de-SPIP-mode-d-emploi.html";
+		$contenu['url_site'] = "https://www.pyrat.net/Raccourcis-Typographiques-de-SPIP-mode-d-emploi.html";
 	}
 
 	/* Politique d'accessibilité du site */
@@ -482,9 +482,9 @@ Des cookies peuvent être utilisés par ce site :
 
 {{{Réalisation}}}
 
-[PYRAT.net|Expert SPIP->http://www.pyrat.net/] en utilisant l'outil [SPIP->https://www.spip.net/].
+[PYRAT.net|Expert SPIP->https://www.pyrat.net/] en utilisant l'outil [SPIP->https://www.spip.net/].
 
-[PYRAT.net|Expert SPIP->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
+[PYRAT.net|Expert SPIP->https://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->https://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.
 
 
 EOF;
@@ -536,7 +536,7 @@ EOF;
 	if ($article == "Conseil n°2") {
 		$contenu['titre'] = "Conseil n°2";
 		$contenu['texte'] = <<<EOF
-Prenez le temps de lire la [documentation->http://www.pyrat.net/556]
+Prenez le temps de lire la [documentation->https://www.pyrat.net/556]
 EOF;
 	}
 
@@ -544,7 +544,7 @@ EOF;
 	if ($article == "Conseil n°1") {
 		$contenu['titre'] = "Conseil n°1";
 		$contenu['texte'] = <<<EOF
-[Écrivez pour vos lecteurs->http://www.pyrat.net/313], pas pour les moteurs de recherche.
+[Écrivez pour vos lecteurs->https://www.pyrat.net/313], pas pour les moteurs de recherche.
 EOF;
 	}
 
@@ -572,7 +572,7 @@ EOF;
 	if ($article == "50. Documentation") {
 		$contenu['titre'] = "50. Documentation";
 		$contenu['chapo'] = <<<EOF
-=http://www.pyrat.net/556
+=https://www.pyrat.net/556
 EOF;
 	}
 
