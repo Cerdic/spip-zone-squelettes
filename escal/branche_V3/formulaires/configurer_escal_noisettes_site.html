@@ -485,6 +485,17 @@
                              value="#ENV**{#GET{name}}"  />
                     </span>
             <br /><br />
+            #SET{name,lienagenda}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            		<:escal:noisettes_calendrier_lien_agenda:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div><br />
             #SET{name,donneescalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:noisettes_calendrier_explication:>
                     <br />

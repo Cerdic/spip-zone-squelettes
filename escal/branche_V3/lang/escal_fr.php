@@ -531,8 +531,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - les <strong>événements</strong> créés dans des articles grâce au plugin Agenda<br />
                     - des <strong>articles</strong> en prenant en compte leur "date de rédaction antérieure".
                     Les articles concernés sont ceux ayant le mot-clé "agenda" ou ceux de la rubrique ayant le même mot-clé "agenda". ',
-'noisettes_calendrier_explication2' => '(ce choix s\'appliquera aussi à le bloc "Evénements à venir") ',
+'noisettes_calendrier_explication2' => '(ce choix s\'appliquera aussi au bloc "Evénements à venir") ',
 'noisettes_calendrier_events' => 'Liste des événement à venir en dessous',
+'noisettes_calendrier_lien_agenda' => 'Titre avec lien vers l\'agenda en pleine page',
 'noisettes_calendrier_pagination' => 'Nombre d\'articles ou d\'événements par page de pagination',
 'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur est authentifié',
 'noisettes_decouvrir' => 'A découvrir',
@@ -907,6 +908,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'le' => 'le',
 'lire_article' => 'Lire l\'article ...',
 'lire_suite' => 'Lire la suite ...',
+'lien_agenda' => 'Afficher l\'agenda en pleine page',
+
 
 // M
 'menu' => 'Au menu',
