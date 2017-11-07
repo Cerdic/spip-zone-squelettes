@@ -72,7 +72,7 @@ function Z_styliser($flux){
 	// ou scaffolding ou page automatique les contenus
 	if (!$squelette){
 
-		// Cas de figure o� on a d�clar� type-composition.html dans un bloc, mais o� type.html n'existe pas
+		// Cas de figure où on a déclaré type-composition.html dans un bloc, mais où type.html n'existe pas
 		if (isset($flux['args']['contexte']['composition'])
 		  AND $dir = explode('/',$fond)
 		  AND $dir = reset($dir)
