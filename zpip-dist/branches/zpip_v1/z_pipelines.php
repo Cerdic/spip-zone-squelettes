@@ -23,6 +23,9 @@ if (defined('_Z_AJAX_PARALLEL_LOAD')) {
 	 AND $_SERVER['REQUEST_METHOD'] == 'GET'
 	 ) {
 		define('_Z_AJAX_PARALLEL_LOAD_OK',true);
+		if (empty($GLOBALS['marqueur'])) {
+			$GLOBALS['marqueur'] = "";
+		}
 		$GLOBALS['marqueur'] .= ":Zapl";
 	}
 }
@@ -69,7 +72,7 @@ function Z_styliser($flux){
 	// ou scaffolding ou page automatique les contenus
 	if (!$squelette){
 
-		// Cas de figure où on a déclaré type-composition.html dans un bloc, mais où type.html n'existe pas
+		// Cas de figure oï¿½ on a dï¿½clarï¿½ type-composition.html dans un bloc, mais oï¿½ type.html n'existe pas
 		if (isset($flux['args']['contexte']['composition'])
 		  AND $dir = explode('/',$fond)
 		  AND $dir = reset($dir)
