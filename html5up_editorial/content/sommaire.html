@@ -1,0 +1,33 @@
+
+#SET{exclus,#ARRAY}
+<B_hero>
+<section id="banner">
+	<BOUCLE_hero(ARTICLES){id_article IN #CONFIG{html5up_editorial/hero}|picker_selected{article}}>
+	<INCLURE{fond=inclure/article-hero,id_article} />#SET{exclus,#GET{exclus}|push{#ID_ARTICLE}}
+	</BOUCLE_hero>
+</section>
+</B_hero>
+
+<B_major>
+<section>
+	<BOUCLE_major(ARTICLES){id_article IN #CONFIG{html5up_editorial/major}|picker_selected{article}}>
+	[<header class="major">
+		<h2>(#TITRE)</h2>
+	</header>]
+	[<div class="features #EDIT{texte}">
+		(#TEXTE)
+	</div>]#SET{exclus,#GET{exclus}|push{#ID_ARTICLE}}
+	</BOUCLE_major>
+</section>
+</B_major>
+<BOUCLE_heroside(ARTICLES){id_article IN #CONFIG{html5up_editorial/heroside}|picker_selected{article}}>
+#SET{exclus,#GET{exclus}|push{#ID_ARTICLE}}
+</BOUCLE_heroside>
+
+<section>
+	<INCLURE{fond=inclure/liste/articles,env,ajax,
+		parpage=#CONFIG{html5up_editorial/suivants_parpage,6},
+		exclus=#GET{exclus},
+		total=#CONFIG{html5up_editorial/suivants_total,12},
+		titre=#CONFIG{html5up_editorial/suivants_titre}} />
+</section>
