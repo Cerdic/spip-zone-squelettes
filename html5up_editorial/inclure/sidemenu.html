@@ -13,17 +13,16 @@
 		<li><a class="accueil" href="#URL_SITE_SPIP"><:accueil_site:></a></li>
 	
 		<BOUCLE_rubriques(RUBRIQUES){par num titre, titre}{racine}>
-		[(#REM) si plus d'un article, la liste des articles, si une rubrique, la liste des rubriques ]
+		[(#REM) si plus d'un article, la liste des articles ]
 			#SET{smenu#ID_RUBRIQUE,non}
 			<BOUCLE_test_articles(ARTICLES){id_rubrique}{1,2}>
 			</BOUCLE_test_articles>#SET{smenu#ID_RUBRIQUE,oui}</B_test_articles>
 			
 		<li>
+			[(#GET{smenu#ID_RUBRIQUE}|=={oui}|non)
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>]
 			[(#GET{smenu#ID_RUBRIQUE}|=={oui}|oui)
-			<span class="opener[(#EXPOSE|oui) active]">]
-				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>
-			[(#GET{smenu#ID_RUBRIQUE}|=={oui}|oui)</span>
-			
+			<span class="opener[(#EXPOSE|oui) active]">#TITRE</span>
 			<ul>
 				<INCLURE{fond=inclure/sidemenu-articles,env,id_rubrique,id_article} />
 			</ul>]
