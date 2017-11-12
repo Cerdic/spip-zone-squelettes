@@ -22,6 +22,8 @@ Un autre modèle permet d'insérer n'importe quel icône de FontAwesome dans le 
 	|icone=fa-rocket (ou tout autre icone de FontAwesome http://fontawesome.io/icons/)
 	|taille=3em (ou 60px ou 150%)
 
+Le champ chapeau d'un article s'affiche en public en une colonne pleine largeur, le champ texte s'affiche lui sur deux colonnes, et le champ Post-scriptum se déroule sur 3 colonnes.
+
 Un problème js empêchait aléatoirement le script javscript/main.js de retirer la classe "is-loading" qui est placé sur la balise body (par ce même script). Ce petit soucis cause des prblèmes plus gros dans l'interface.
 Un petit bout de code dans javascript/perso.js permet de retirer cette classe de manière plus sûre, mais c'est une rustine en attendant mieux.
 
