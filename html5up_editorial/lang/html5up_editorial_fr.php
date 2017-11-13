@@ -8,8 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'aide' => 'Le squelette <strong>Editorial</strong> fonctionne très bien avec un seul niveau de rubrique.
-	<br />Pensez à jeter un œil au dossier "modèles" avant de mettre en forme vos textes.',
+	'aide' => '<a href="https://contrib.spip.net/?article4947" class="spip_out">Consultez la documentation.</a>',
 	'article_suivants_titre' => 'Autres articles',
 	'article_suivants_titre_explications' => 'C\'est le titre au-dessus de la liste des articles en bas de la page d\'accueil.',
 	'articles_suivants_total' => 'Total d\'autres articles',
