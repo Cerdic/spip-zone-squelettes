@@ -10,7 +10,7 @@ Conseil : utiliser Court-Circuit pour éviter la page rubrique s'il n'y a qu'un 
 
 La page de configuration permet quelques réglages. On y défini le contenu de la page d'accueil, le premier article est le "héro", le second est le "majeur".
 L'article héro : le titre, un résumé + le logo + un bouton "Lire la suite"
-L'article majeur : le titre + le champ texte intégral. Si cet article est une "page unique" (plugin "Pages") il n'apparaîtra pas dans le menu. Pour rédiger le texte, un modèle permet d'afficher comme dans le thème de départ une icône de FontAwesome et un texte en deux blocs par ligne. C'est le modèle <iconebloc|> qui prend quelques paramètres :
+L'article majeur : le titre + l'introduction. Si cet article est une "page unique" (plugin "Pages") il n'apparaîtra pas dans le menu. Pour rédiger le texte, un modèle permet d'afficher comme dans le thème de départ une icône de FontAwesome et un texte en deux blocs par ligne. C'est le modèle <iconebloc|> qui prend quelques paramètres :
 	|icone=fa-rocket (ou tout autre icone de FontAwesome http://fontawesome.io/icons/)
 	|iconetitre=le titre
 	|iconetexte=le texte
@@ -24,11 +24,11 @@ Un autre modèle permet d'insérer n'importe quel icône de FontAwesome dans le 
 
 Le champ chapeau d'un article s'affiche en public en une colonne pleine largeur, le champ texte s'affiche lui sur deux colonnes, et le champ Post-scriptum se déroule sur 3 colonnes.
 
-Un problème js empêchait aléatoirement le script javscript/main.js de retirer la classe "is-loading" qui est placé sur la balise body (par ce même script). Ce petit soucis cause des prblèmes plus gros dans l'interface.
+Un problème js empêchait aléatoirement le script javascript/main.js de retirer la classe "is-loading" qui est placé sur la balise body (par ce même script). Ce petit soucis cause des prblèmes plus gros dans l'interface.
 Un petit bout de code dans javascript/perso.js permet de retirer cette classe de manière plus sûre, mais c'est une rustine en attendant mieux.
 
 TODO
-Vérifier et adapter les modèles où qu'on les insère.
+Vérifier et adapter les modèles où qu'on les insère => ok pour <iconebloc> - v1.0.4
 Retrouver le multilinguisme 
 Adapter les autres objets SPIP (mots, sites, brèves)
 Se passer de google api pour les typos ?
