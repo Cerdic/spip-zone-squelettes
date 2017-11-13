@@ -39,6 +39,18 @@ hr.spip {
 }
 /* content */
 #main {
+	> .inner > section {
+		clear:both;
+		&:after {
+			display:block;
+			content:'';
+			clear:both;
+		}
+	}
+	.chapo, .texte, .ps {
+		margin-bottom:3em;
+		position:relative;
+	}
 	.texte { /* texte en 2 colonnes, en attendant mieux (mixin ?) */
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
@@ -67,13 +79,52 @@ hr.spip {
 	color: _palette(accent);
 }
 /* avec crayons, remettre en forme les boutons */
-.features {
+/*.features {
 	position:relative;
-	width:100%;
+	margin-left:-1.5em;
 	.crayon-icones {
 		position:absolute;
 		right:0;
 		left:auto;
+	}
+	p, .spip {
+		margin-left:1.5em;
+	}
+}*/
+article.feature.bloc {
+	width:calc(50% - 3em);
+	float:left;
+	clear:both;
+	padding: 2em 0 0 3.5em;
+	margin:0 3em 3em 0;
+	&:nth-child(2n) {
+		margin-right:0;
+		clear:none;
+	}
+	.icon {
+		&:after {
+			display: block;
+			position: absolute;
+			height: 7em;
+			width: 7em;
+			left: 50%;
+			top: 50%;
+			margin: -3.5em 0 0 -3.5em;
+			transform: rotate(45deg);
+			border-radius: 0.25rem;
+			border: solid 2px _palette(border);
+			content: '';
+		}
+		&:before {
+			color: _palette(accent);
+			font-size: 2.75rem;
+			position: relative;
+			top: .05em;
+		}
+	}
+	.content {
+		margin: -5em 0 0 7em;
+		p { margin:0; }
 	}
 }
 .formulaire_crayon {
