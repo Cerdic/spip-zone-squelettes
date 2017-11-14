@@ -47,6 +47,9 @@ body { background: transparent; }
 #SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
 #SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#262626})}
 	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff})}
+#SET{c_fildariane,(#CONFIG{soyezcreateurs_couleurs/fildariane,#262626})}
+	#SET{c_fildariane_bk,(#CONFIG{soyezcreateurs_couleurs/fildariane_bk,#ffffff})}
+#SET{c_fildarianehome,(#CONFIG{soyezcreateurs_couleurs/fildarianehome,#EA5044})}
 #SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#595959})}
 	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,#ffffff})}
 #SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#017ca5})}
@@ -68,6 +71,8 @@ body { background: transparent; }
 
 #SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})}
 	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
+#SET{c_fildariane,(#CONFIG{soyezcreateurs_couleurs/fildariane,#02265a})}
+	#SET{c_fildariane_bk,(#CONFIG{soyezcreateurs_couleurs/fildariane_bk,#f6f6f6})}
 #SET{c_titraille,(#CONFIG{soyezcreateurs_couleurs/titraille,#005e7a})}
 	#SET{c_titraille_bk,(#CONFIG{soyezcreateurs_couleurs/titraille_bk,#f6f6f6})}
 #SET{c_titraille_ssniveaux,(#CONFIG{soyezcreateurs_couleurs/titraille_ssniveaux,#005e7a})}
@@ -616,7 +621,8 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #escapelinks a:hover, #escapelinks a:focus, #escapelinks a:active { color:#GET{c_header}; }
 
 /*************** STRUCTURE - CONTENT */
-#content, #miettesdepain[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|oui), .cartouche] { background-color: #GET{c_container_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});] color: #GET{c_container}; }
+#content[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={haut}|oui), .cartouche] { background-color: #GET{c_container_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencecontent,1}|!={1}|oui)background-color: rgba([(#GET{c_container_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencecontent,1});] color: #GET{c_container}; }
+#miettesdepain { background-color: #GET{c_fildariane_bk};[(#CONFIG{soyezcreateurs_couleurs/transparencefildariane,1}|!={1}|oui)background-color: rgba([(#GET{c_fildariane_bk}|sc_rgb)], #CONFIG{soyezcreateurs_couleurs/transparencefildariane,1});] color: #GET{c_fildariane}; }
 /* Astuce : https://www.fourfront.us/blog/css-shadow-borders-with-curved-box-shadows */
 #contenu, #content { position:relative; overflow:hidden; }
 [(#CONFIG{soyezcreateurs_couleurs/ombrecontentbefore,none}!={none}|oui)
@@ -1003,11 +1009,11 @@ table.programmation caption { text-align: left; }
 }
 
 /* Breadcrumbs/Ariane */
-#miettesdepain { padding: .25em 88px 1em 1em; color: #GET{c_container}; font-size: .9em; font-style: italic; min-height: 40px; }
-#miettesdepain img { width: 8px; height: 11px; padding: 0; background: url([(#CHEMIN{images/chevrons.gif}|embarque_fichier)]) no-repeat center; }
+#miettesdepain { padding: .25em 88px 1em 1em; color: #GET{c_fildariane}; font-size: .9em; font-style: italic; min-height: 40px; }
+#miettesdepain img { width: 8px; height: 11px; padding: 0; background: url([(#CHEMIN{images/chevrons.gif}|image_sepia{#GET{c_fildarianehome}}|extraire_attribut{src}|embarque_fichier)]) no-repeat center; }
 #miettesdepain ul { margin: 0; }
 #miettesdepain ul li { display: inline; }
-#miettesdepain ul li a { padding-right: 14px; background: url([(#CHEMIN{images/chevrons.gif}|embarque_fichier)]) right no-repeat; }
+#miettesdepain ul li a { padding-right: 14px; background: url([(#CHEMIN{images/chevrons.gif}|image_sepia{#GET{c_fildarianehome}}|extraire_attribut{src}|embarque_fichier)]) right no-repeat; }
 
 /* Onglets de la page de téléchargement */
 
@@ -1251,7 +1257,7 @@ div.spip_poesie div { margin-left: 60px; text-indent: -60px; }
 .retoursommaire { float: right; }
 #content .retoursommaire img { margin:0; padding: 1em 0 0 1em; }
 
-.menuarticles { background-image: url([(#CHEMIN{images/chevrons.gif}|embarque_fichier)]) !important; background-position: 5px !important; background-repeat: no-repeat !important; }
+.menuarticles { background-image: url([(#CHEMIN{images/chevrons.gif}|image_sepia{#GET{c_fildarianehome}}|extraire_attribut{src}|embarque_fichier)]) !important; background-position: 5px !important; background-repeat: no-repeat !important; }
 
 .rubriques_chapitres { padding-left: 1em; border-left: 2px solid #076b8b; }
 
@@ -2409,7 +2415,7 @@ button:focus {
   text-align: left;
   font-size: 15px;
   font-style: normal;
-  color: #666;
+  color: #GET{c_fildariane};
 }
 
 #miettesdepain ul li a {
@@ -2424,18 +2430,18 @@ button:focus {
   position: absolute;
   font-size: 0;
   line-height: 1.7;
-  color: #GET{c_header};
+  color: #GET{c_fildarianehome};
 }
 #miettesdepain ul li:first-child a:before {
   font-family: 'picto-soyezcreateurs' !important;
   content: "\2302";
   font-size: 20px;
   vertical-align: middle;
-  color: #GET{c_header};
+  color: #GET{c_fildarianehome};
 }
 #miettesdepain ul li:first-child a:hover:before,
 #miettesdepain ul li:first-child a:focus:before {
-  color: [#(#GET{c_header}|couleur_saturation{1})];
+  color: [#(#GET{c_fildarianehome}|couleur_saturation{1})];
 }
 .portailcognac #sommaire {
   clear: both!important;
