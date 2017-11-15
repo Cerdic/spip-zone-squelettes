@@ -146,9 +146,9 @@ function formulaires_contact_traiter_dist(){
         'from'=>$email_from,
         'texte'=>supprimer_tags($message),
         'html'=> $message_html,
-        'headers'=> [
-            "X-Originating-IP: ".$GLOBALS['ip']    
-        ],
+    	   'headers'=> array(
+             "X-Originating-IP: ".$GLOBALS['ip']
+         ),
     );
 
         if ($champs['antispam']=='' ){
