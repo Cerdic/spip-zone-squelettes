@@ -26,8 +26,8 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 function html5up_editorial_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 	$maj['create'] = array(
-		array('ecrire_config','html5up_editorial', array(
-			'accent' => '#f56a6a'
+		array('ecrire_config','html5up', array(
+			'couleur_accent' => '#f56a6a'
 		))
 	);
 	include_spip('base/upgrade');
