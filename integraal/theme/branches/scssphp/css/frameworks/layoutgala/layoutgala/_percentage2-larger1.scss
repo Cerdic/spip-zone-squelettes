@@ -1,0 +1,34 @@
+@import "compass/utilities/general/float";
+@import "base";
+
+@mixin layoutgala-percentage2-larger1 (
+	$content-side: right,
+	$content-width: 70%,
+	$margin: 0,
+	$content-padding-left: 0,
+	$content-padding-right: 0
+) {
+	$container-width: 100%;
+	#{$layoutgala-wrapper-selector} {
+		@include float($content-side);
+		width: ($content-width);
+	}
+	@if ($content-padding-left > 0 or $content-padding-right > 0) {
+		#{$layoutgala-content-selector} {
+			@if $content-padding-left > 0 {
+				padding-left: $content-padding-left;
+			}
+			@if $content-padding-right > 0 {
+				padding-right: $content-padding-right;
+			}
+		}
+	}
+	#{$layoutgala-aside1-selector} {
+		@include float(#{opposite-position($content-side)});
+		width: ($container-width - $content-width - $margin - 0.1%);
+	}
+	#{$layoutgala-aside2-selector} {
+		clear: both;
+		width: 100%;
+	}
+}
