@@ -973,6 +973,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'taille_fichier' => 'Taille du fichier :',
 'telechargement' => 'Fichier à télécharger :',
 'telechargements' => 'Fichiers à télécharger :',
+'texte_sous_image' => 'Texte sous l\'image (sinon, à côté)',
 'title_articles_derniers' => 'Derniers articles',
 'title_contact' => 'Contacter le référent technique',
 'title_espace_redacteurs' => 'L\'espace privé des auteurs et administrateurs',
