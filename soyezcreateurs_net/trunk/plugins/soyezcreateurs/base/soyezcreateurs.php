@@ -430,7 +430,14 @@ function poubelle_article($titre_article, $titre_rubrique) {
 	if ($id_rubrique) {
 		$id_article = id_article($titre_article, $id_rubrique);
 		if ($id_article) {
-			sql_updateq("spip_articles", array("statut" => "poubelle"), "id_article=$id_article");
+			include_spip('action/editer_objet');
+			objet_modifier(
+				'article',
+				$id_article, 
+				array(
+					'statut'	=> 'poubelle'
+				)
+			);
 		}
 	}
 }
