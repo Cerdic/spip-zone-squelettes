@@ -81,7 +81,7 @@ gulp.task('css', function() {
 
 // Créer des copies minifiée des CSS
 gulp.task('css-minify', function() {
-  return gulp.src('./css/*.css')
+  return gulp.src('./css/theme.css')
     .pipe(cleanCSS({
       compatibility: 'ie9'
     }))
@@ -101,7 +101,7 @@ gulp.task('css-sourcemaps', function() {
 
 // Synchroniser les images
 gulp.task('sync', function() {
-  return gulp.src('./css/theme.css')
+  return gulp.src('./images/*')
     .pipe(dirSync('./scss/images', './css/images', {
       printSummary: true
     }));
