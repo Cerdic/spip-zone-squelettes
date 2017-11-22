@@ -140,7 +140,7 @@ gulp.task('js-minify', function() {
         ext: {
             min:'.min.js'
         },
-        ignoreFiles: ['.min.js', '-min.js']
+        ignoreFiles: ['*min.js']
     }))
     .pipe(gulp.dest('./javascript'))
 });
