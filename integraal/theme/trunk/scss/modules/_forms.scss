@@ -1,23 +1,29 @@
+/**
+ * Formulaires - styles communs
+**/
 
-/* Formulaires - styles communs */
+
 label{
 	display:block;
 	font-weight:bold;
 }
-textarea, input[type=text], input.text, select{
-	background-color:white;
-	border: bs(1)/3/8 solid grey;
-	border-radius:3px;
-	font-size:1em;
-	line-height:$typo-line-height - ($typo-line-height/3/4);
+textarea, input[type=text], input.text, select {
 	margin:0;
 	padding:0 0.5em;
 	width:90%;
 	max-width:90%;
+	background-color:white;
+	border: bs(1)/3/8 solid grey;
+	border-radius:3px;
+	font-size:1em;
+	// interligne : utiliser le rythme vertical
+	line-height: bs(1);
+	@include gridle_state( desktop ) { line-height: bs-desktop(1) }
+	@include gridle_state( large ) { line-height: bs-large(1) }
 
 	&:focus{
-		background-color:white;
-		border-color:$couleur-texte;
+		background-color: white;
+		border-color: $couleur-texte;
 	}
 }
 
@@ -30,21 +36,27 @@ textarea, input[type=text], input.text, select{
 		margin:0;
 	}
 	.editer{
-		list-style:none;
+		list-style: none; // SPIP <= 3
+		// marge : utiliser le rythme vertical
+		margin-bottom: bs(1);
+		@include gridle_state( desktop ) { margin-bottom: bs-desktop(1) }
+		@include gridle_state( large ) { margin-bottom: bs-large(1) }
 
 		.erreur_message{
 		}
 	}
-	/*.editer{
-		// À partir des moyens grands on met deux champs par ligne
-		@include media($bp-medium-up){
-			float:left;
-			width:50%;
+	// À partir des moyens grands on met deux champs par ligne
+	@include gridle_state( desktop-up ) {
+		.editer-groupe {
+			@include gridle(row);
+		}
+		.editer {
+			@include gridle( 6 );
 		}
 	}
-	.saisie_textarea{
+	.saisie_textarea {
 		clear:both;
-	}*/
+	}
 	.choix{
 		label{
 			display:inline;
