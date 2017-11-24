@@ -26,9 +26,12 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 function html5up_editorial_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 	$maj['create'] = array(
-		array('ecrire_config','html5up', array(
+		array('ecrire_config','html5up_editorial', array(
 			'couleur_accent' => '#f56a6a'
 		))
+	);
+	$maj['1.1.0'] = array(
+		array('ecrire_config','html5up', lire_config('html5up_editorial'))
 	);
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
