@@ -8,11 +8,15 @@ Voir http://foundation.zurb.com/sites/docs/grid.html#block-grids
 			<div class="column column-block">
 
 				[(#ENV{card}|oui)
-				<INCLURE{fond=inclure/article-card, id_article} />]
+				<INCLURE{fond=inclure/article-card, id_article, logo_defaut=oui} />]
 
 				[(#ENV{card}|non)
 				[<h3><a href="#URL_ARTICLE">(#TITRE)</a></h3>]
-				[(#LOGO_ARTICLE|vider_attribut{class})]
+				[(#LOGO_ARTICLE
+					|sinon{#LOGO_SITE_SPIP}
+					|image_passe_partout{175,175}
+					|image_recadre{175,175}
+					|vider_attribut{class})]
 				[(#INTRODUCTION{300})]
 				]
 
