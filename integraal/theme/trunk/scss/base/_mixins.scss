@@ -3,12 +3,20 @@
 **/
 
 /**
- * Compléments à shevy pour le base-spacing
- * Correspondent aux variantes de $shevy dans _rythm-settings.scss
+ * Convertir des px en em
+ *
+ * @param int $pixels
+ *     Taille en px
+ * @param int $context
+ *     Taille de police par défaut du navigateur
+ * @return taille en em
 **/
-@function bs-desktop($factor) {
-  @return base-spacing($factor, $shevy-desktop);
-}
-@function bs-large($factor) {
-  @return base-spacing($factor, $shevy-large);
+@function em($pixels, $context: 16) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1em;
 }
