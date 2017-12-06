@@ -8,14 +8,18 @@
 		<meta name="keywords" content="" />
 
 		<INCLURE{fond=inclure/head}>
-			
-	[(#SET{fond,[(#LOGO_RUBRIQUE|?{#LOGO_RUBRIQUE,[(#LOGO_SITE_SPIP|?{#LOGO_SITE_SPIP,non})]})]})]
-	[(#REM) si on utilise un logo comme image-background, calculer la couleur du texte de pied de page]
-	[ (#GET{fond}|!={non}|oui)
-		[<style type='text/css'>
-			body, a, a:visited { color: #(#GET{fond}|couleur_extraire{5,5}|couleur_extreme|couleur_inverser); }
-		</style>]
-	]
+		
+		<style type='text/css'>
+		[(#REM) récupération de la couleur de fond des blocs de texte: config plugin > #d64760 ]
+			#header { background-color: #CONFIG{parallelism/couleur_boites_defaut, #d64760}; }
+		
+		[(#REM) récupération d'un éventuel logo pour l'image de fond ]
+		[(#SET{fond,[(#LOGO_RUBRIQUE|?{#LOGO_RUBRIQUE,[(#LOGO_SITE_SPIP|?{#LOGO_SITE_SPIP,non})]})]})]
+
+		[(#REM) si on utilise un logo comme image-background, calculer la couleur du texte de pied de page]
+		[ (#GET{fond}|!={non}|oui)
+			[body, a, a:visited { color: #(#GET{fond}|couleur_extraire{5,5}|couleur_extreme|couleur_inverser); }]]
+		</style>
 	</head>
 	<body[ (#GET{fond}|!={non}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"]>
 

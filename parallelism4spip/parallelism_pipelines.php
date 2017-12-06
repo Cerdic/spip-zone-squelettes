@@ -3,6 +3,17 @@
 function parallelism_insert_head($flux){
     $poptroxjs = find_in_path('js/jquery.poptrox.js');
     $configjs = generer_url_public('config.js'); //calculer prefix en attendant mieux
+
+	// si on est dans une page_unique, transmettre l'info à config.js.html 
+	// pour éventuels paramétrages spécifiques
+	if (isset($GLOBALS['page']['contexte']['id_article'])) {
+		$where = 'id_article='.$GLOBALS['page']['contexte']['id_article'];
+		$id_rub = sql_getfetsel('id_rubrique', 'spip_articles', $where);
+		if ($id_rub == -1) {
+			$configjs .= '&page_unique=oui';
+		}
+	}
+
     $skeljs = find_in_path('js/skel.js');
     $html5shiv = find_in_path('js/html5shiv.js'); 
     $cssspipstyle = find_in_path('css/spip-style.css'); // mis ici pour passer après style.css !
