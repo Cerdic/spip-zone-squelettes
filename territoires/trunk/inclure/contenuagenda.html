@@ -40,7 +40,10 @@
 		<B_evt>
 			<div class="liste_mots_articles">
 			<ul>			
-			<BOUCLE_evt(EVENEMENTS){si #TRI_EVT|!={communes}}{si #TRI_EVT|!={carte}}{!doublons evtpasfini}>			
+			<BOUCLE_evt(EVENEMENTS){si #TRI_EVT|!={communes}}{si #TRI_EVT|!={carte}}{!doublons evtpasfini}>	
+			
+				[(#REM) En cours ]	
+				
 				<B_encours>
                 <li><h3>En cours</h3>
                 <ul>				
@@ -66,7 +69,7 @@
 					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
 					    </BOUCLE_logoauteur1>				    	
 							<li>
-							<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+							<a class="uid url" href="[(#CHAMP_SQL{notes}|?{[(#CHAMP_SQL{notes}|replace{&id_evenement=,#evt})],[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]})]">
 							<h4 class="summary">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{60,60,center}|image_recadre{60,60,center})][(#TITRE|supprimer_numero)]</h4></a>
 							<p class="dateevenement dtstart">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
 							<p class="lieuevenement location">[(#LIEU|sinon{#LESCOMMUNES})][<br/> (#ADRESSE|deparagrapher)]</p>
@@ -74,9 +77,14 @@
 				</BOUCLE_encours>
 				</ul>
 				</li><!--Mois-->						
-				</B_encours>	
+				</B_encours>
+				
+				[(#REM) A venir, par année et par mois ]	
+					
 				<B_annees>
-				<BOUCLE_annees(EVENEMENTS){!doublons evtpasfini}{age_debut<=1}{par date_debut}{annee_relatif_debut}{lang_select=non}{fusion YEAR(date_debut)}{fusion MONTH(date_debut)}>	
+				<BOUCLE_annees(EVENEMENTS){!doublons evtpasfini}{age_debut<=1}{par date_debut}{fusion YEAR(date_debut)}>	
+				<BOUCLE_anneesrelatif(EVENEMENTS){!doublons evtpasfini}{age_debut<=1}{par date_debut}{annee_relatif_debut}{fusion MONTH(date_debut)}>	
+			
 					<B_mois>
 					<li><h3>[(#DATE_DEBUT|nom_mois|ucfirst) ][(#DATE_DEBUT|annee)]</h3>
 						<ul>
@@ -102,7 +110,7 @@
 						    [(#SET{logo_auteur,#LOGO_AUTEUR})]
 						    </BOUCLE_logoauteur>				    	
 							<li>
-							<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+							<a class="uid url" href="[(#CHAMP_SQL{notes}|?{[(#CHAMP_SQL{notes}|replace{&id_evenement=,#evt})],[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]})]">
 							<h4 class="summary">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{60,60,center}|image_recadre{60,60,center})][(#TITRE|supprimer_numero)]</h4></a>
 							<p class="dateevenement dtstart">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
 							<p class="lieuevenement location">[(#LIEU|sinon{#LESCOMMUNES})][<br/> (#ADRESSE|deparagrapher)]</p>
@@ -111,6 +119,7 @@
 						</ul>
 					</li><!--Mois-->
 					</B_mois>
+				</BOUCLE_anneesrelatif>	
 				</BOUCLE_annees>						
 				</B_annees>		
 			</BOUCLE_evt>
@@ -165,7 +174,7 @@
 					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
 					    </BOUCLE_logoauteurc> 
 						<li>
-						<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+						<a class="uid url" href="[(#CHAMP_SQL{notes}|?{[(#CHAMP_SQL{notes}|replace{&id_evenement=,#evt})],[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]})]">
 						<h4 class="summary">[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{60,60,center}|image_recadre{60,60,center})][(#TITRE|supprimer_numero)]</h4></a>
 						<p class="dateevenement dtstart">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
 						<p class="lieuevenement location">[(#LIEU|sinon{#LESCOMMUNES})][<br/> (#ADRESSE|deparagrapher)]</p>

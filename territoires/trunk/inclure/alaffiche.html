@@ -3,7 +3,6 @@
 			<B_prochainement>
     		<div class="alaffiche">
     		<div class="prochainement">
-    		<h3 class="manchette"><:prochainement:></h3>
     			<ul> 	
     				<BOUCLE_prochainement(EVENEMENTS){age_fin<=0}{age_debut<=0}{age_debut>=-10}{!titre_mot=z_invisible}{par date_debut}{statut=publie}{0,12}>
 				    	[(#SET{docevenement,''})]
@@ -27,7 +26,7 @@
 					    [(#SET{logo_auteur,#LOGO_AUTEUR})]
 					    </BOUCLE_logoauteur>    				
 	    				<li id="hcalendar_#ID_EVENEMENT" class="vevent">
-	    				<a class="uid url" href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+	    				<a class="uid url" href="[(#CHAMP_SQL{notes}|?{#CHAMP_SQL{notes},[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]})]">
 	    					<h4 class="summary">#TITRE</h4>
 	    					<p class="dtstart">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
 	    					<p class="location">[(#LIEU|sinon{#LESCOMMUNES})][<br/> (#ADRESSE|deparagrapher)]</p>
@@ -44,7 +43,6 @@
     		<B_encours>
     		<div class="alaffiche">
     		<div class="encours">
-    		<h3 class="manchette"><:encours:></h3>
     			<ul> 	
     				<BOUCLE_encours(EVENEMENTS){age_fin<=0}{age_debut>=0}{!titre_mot=z_invisible}{par date_fin}{statut=publie}{0,6}>
 				    	[(#SET{docevenement2,''})]
@@ -68,7 +66,7 @@
 					    [(#SET{logo_auteur2,#LOGO_AUTEUR})]
 					    </BOUCLE_logoauteur2>
 	    				<li>
-	    				<a href="[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]">
+	    				<a href="[(#CHAMP_SQL{notes}|?{#CHAMP_SQL{notes},[(#URL_ARTICLE|ancre_url{evt#ID_EVENEMENT})]})]">
 	    					<h4>#TITRE</h4>
 	    					<p>[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</p>
 	    					<p>#LIEU</p>
