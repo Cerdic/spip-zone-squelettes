@@ -4,7 +4,7 @@
     		<div class="alaffiche">
     		<div class="prochainement">
     			<ul> 	
-    				<BOUCLE_prochainement(EVENEMENTS){age_fin<=0}{age_debut<=0}{age_debut>=-10}{!titre_mot=z_invisible}{par date_debut}{statut=publie}{0,12}>
+    				<BOUCLE_prochainement(EVENEMENTS){age_fin<=0}{age_debut<=1}{age_debut>=-10}{!titre_mot=z_invisible}{par date_debut}{statut=publie}{0,12}>
 				    	[(#SET{docevenement,''})]
 					    <BOUCLE_docevenement(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
 					    [(#SET{docevenement,#LOGO_DOCUMENT})]
@@ -33,7 +33,6 @@
 	    					[(#LOGO_EVENEMENT|sinon{#GET{docevenement}}|sinon{#GET{logo_source}}|sinon{#GET{docevenementsource}}|sinon{#LOGO_ARTICLE}|sinon{#GET{docevenementarticle}}|sinon{#GET{logo_auteur}}|image_passe_partout{115,115,center}|image_recadre{115,115,center})]
 	    				</a>
 	    				</li>
-
     				</BOUCLE_prochainement>	
     			</ul>
     		</div>	
@@ -43,8 +42,9 @@
     		<B_encours>
     		<div class="alaffiche">
     		<div class="encours">
+    		<h3 title="<:encours:>"><:encours:></h3>
     			<ul> 	
-    				<BOUCLE_encours(EVENEMENTS){age_fin<=0}{age_debut>=0}{!titre_mot=z_invisible}{par date_fin}{statut=publie}{0,6}>
+    				<BOUCLE_encours(EVENEMENTS){age_fin<=0}{age_debut>=1}{!titre_mot=z_invisible}{par date_fin}{statut=publie}{0,6}>
 				    	[(#SET{docevenement2,''})]
 					    <BOUCLE_docevenement2(DOCUMENTS) {id_evenement} {extension IN png,jpg,gif}{!par date}{0,1}>
 					    [(#SET{docevenement2,#LOGO_DOCUMENT})]
