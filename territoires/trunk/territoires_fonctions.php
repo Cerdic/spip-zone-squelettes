@@ -107,14 +107,4 @@ function balise_lescommunes_dist ($p) {
 	return $p;
 }
 
-function mini_html($texte) {
-   $texte = preg_replace("/\s{128,}/"," ", $texte);
-   return $texte;
-}
-
-function minisauvage_html($texte) {
-   $texte = preg_replace(",\s+,"," ", $texte);    
-   $texte = preg_replace(",\n[\n\t\s]*,", "\n", $texte);
-   return $texte;
-}
-
+?>
