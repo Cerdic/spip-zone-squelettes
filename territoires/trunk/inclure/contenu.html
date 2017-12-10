@@ -22,14 +22,14 @@
 	  		<ul>
 	  		[(#REM) Si c'est le choix actif, classe on, afficher en strong, sans lien, sinon lien de classe ajax ]
 	  		[(#TRI_ARTICLES|sinon{date}|=={date}|?{
-	  			<li><strong class="on"><:manchettes:></strong></li>,
-	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,date}|parametre_url{debut_articles,''})"><:manchettes:></a></li>]
+	  			<li><strong class="on"><:territoires:manchettes:></strong></li>,
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,date}|parametre_url{debut_articles,''})"><:territoires:manchettes:></a></li>]
 	  		})][(#TRI_ARTICLES|=={liste}|?{
-	  			<li><strong class="on"><:liste:></strong></li>,
-	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,liste}|parametre_url{debut_articles,''})"><:liste:></a></li>]
+	  			<li><strong class="on"><:territoires:liste:></strong></li>,
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,liste}|parametre_url{debut_articles,''})"><:territoires:liste:></a></li>]
   			})][(#TRI_ARTICLES|=={mot}|?{
-	  			<li><strong class="on"><:mots_cles:></strong></li>,
-	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,mot}|parametre_url{debut_articles,''})"><:mots_cles:></a></li>]
+	  			<li><strong class="on"><:territoires:mots_cles:></strong></li>,
+	  			[<li><a class="ajax" href="(#SELF|parametre_url{tri_articles,mot}|parametre_url{debut_articles,''})"><:territoires:mots_cles:></a></li>]
   			})]
   			</ul>
   			</div><!-- .tri-->
@@ -72,8 +72,8 @@
 					[<p class="surtitre">(#SURTITRE)</p>]
 					<h3>#TITRE</h3>
 					[<p class="soustitre">(#SOUSTITRE)</p>]
-					<p class="info-publi"><em><abbr class="published"[ title="(#DATE|date_iso)"]>[<:publiele:> (#DATE|affdate_jourcourt)]</abbr>[, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</em></p>
-					[<p class="info-publi"><em><abbr class="published">(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|? {[<:misajour:> (#DATE_MODIF|affdate)],''})</abbr></em></p>]
+					<p class="info-publi"><em><abbr class="published"[ title="(#DATE|date_iso)"]>[<:territoires:publiele:> (#DATE|affdate_jourcourt)]</abbr>[, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</em></p>
+					[<p class="info-publi"><em><abbr class="published">(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|? {[<:territoires:misajour:> (#DATE_MODIF|affdate)],''})</abbr></em></p>]
 				 	[(#REM) Ici on a choisi pour intro de récupérer en priorité le Chapeau de l'article ]
 				    [<p class="introduction entry-content">(#CHAPO|textebrut|sinon{#TEXTE|textebrut|couper{200}})</p>]
 			    	</a>
@@ -101,7 +101,7 @@
 											
 				<B_imagechoisieouhasard>
 					<div class="menu hw_boite">						
-					<h2><:imagechoisie:></h2>		
+					<h2><:territoires:imagechoisie:></h2>		
 						<ul class="clearfix">
 						<BOUCLE_imagechoisieouhasard(DOCUMENTS){id_document IN #GET{imagechoisie}}{doublons imagechoisie}{par hasard}{0,1}>
 							<li>
@@ -164,7 +164,7 @@
 					[(#REM) Et on rajoute les articles épinglés ne contiennent aucun mot thématique...]
 						<B_epinglesansmot>
 							<div class="menu menu_epingles hw_boite">
-							<h2><:alireaussi:></h2>						
+							<h2><:territoires:alireaussi:></h2>						
 								<ul class="clearfix">
 								<BOUCLE_epinglesansmot(ARTICLES){id_article IN #GET{articlesepingles}}{doublons epinglesmots}>
 										[(#SET{logo_epinglesansmot,''})]
@@ -184,7 +184,7 @@
 				<B_lesevenementsmots>
 				<a name="evenenementsannonces" id="evenenementsannonces" class="ancre"></a>
 				<div class="menu hw_boite menu_epingles">		   								    
-			   		<h2><:prochainement:></h2>
+			   		<h2><:territoires:prochainement:></h2>
 			   		<ul class="clearfix">
 					    <BOUCLE_lesevenementsmots(EVENEMENTS){age_fin>=-15}{age_debut<=0}{!titre_mot=z_invisible}{par date_debut}{statut=publie}{0,5}>				    	
 					    	<li>
@@ -230,7 +230,7 @@
 				</BOUCLE_derniersarticlesavecdoc>								
 				<B_imagesrubrique>
 					<div class="menu hw_boite hw_boite_images">						
-					<h2><:dernieres_images:></h2>		
+					<h2><:territoires:dernieres_images:></h2>		
 						<ul class="clearfix">
 						<BOUCLE_imagesrubrique(DOCUMENTS){id_document IN #GET{dernieresimages}}{!par date}{0,6}>
 							<li>
@@ -247,7 +247,7 @@
 				<B_lesevenementsencours>
 				<a name="evenenementsencours" id="evenenementsencours" class="ancre"></a>
 				<div class="menu hw_boite menu_epingles">		   								    
-			   		<h2><:encours:></h2>
+			   		<h2><:territoires:encours:></h2>
 			   		<ul class="clearfix">
 					    <BOUCLE_lesevenementsencours(EVENEMENTS){age_fin<=0}{age_debut>=1}{!titre_mot=z_invisible}{par date_fin}{statut=publie}>				    	
 					    	<li>

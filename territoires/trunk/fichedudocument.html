@@ -22,7 +22,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
 <head>
 <script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
-<title>[(#TITRE|couper{80}|textebrut|sinon{<:documentnumero:>#ID_DOCUMENT})][ | (#LESMOTS|supprimer_tags|replace{','}|strtolower)][ | (#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|couper{80}|textebrut|sinon{<:territoires:documentnumero:>#ID_DOCUMENT})][ | (#LESMOTS|supprimer_tags|replace{','}|strtolower)][ | (#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
 [<link rel="canonical" href="(#URL_DOCUMENT|url_absolue)" />]
 <INCLURE{fond=inclure/head} />
@@ -56,10 +56,10 @@
 				[(#SESSION{id_auteur}|?{Document n°[<a href="(#URL_ECRIRE{document_edit,id_document=#ID_DOCUMENT})">#ID_DOCUMENT</a>],
 					Document n°#ID_DOCUMENT})]
 				})]</h1>
-			[(#CREDITS|?{[<p class="#EDIT{credits} credits"><strong><:credits:> : (#CREDITS)</strong></p>],
-				[(#SESSION{id_auteur}|?{<p class="#EDIT{credits} credits"><:ajouteruncredit:></p>})]
+			[(#CREDITS|?{[<p class="#EDIT{credits} credits"><strong><:territoires:credits:> : (#CREDITS)</strong></p>],
+				[(#SESSION{id_auteur}|?{<p class="#EDIT{credits} credits"><:territoires:ajouteruncredit:></p>})]
 				})] 
-			<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[<:publiele:> (#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+			<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[<:territoires:publiele:> (#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
 			</div>	
 
 			[(#REM) Le document lui-même ]
@@ -69,18 +69,18 @@
 				class="(#ENV{lien_class})"] title='#TYPE_DOCUMENT - #LARGEUR x #HAUTEUR - [(#TAILLE|taille_en_octets|texte_backend)]'[
 				(#ENV{lien}|?{'',type="#MIME_TYPE"})]>]<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='[(#TITRE|?{#TITRE,#TYPE_DOCUMENT - #LARGEUR x #HAUTEUR - [(#TAILLE|taille_en_octets|texte_backend)]})]' />[(#GET{url}|?{</a>})]
 				</dt>
-				<dt class="accesfiche"><:documentnumero:>[(#SESSION{id_auteur}|?{
+				<dt class="accesfiche"><:territoires:documentnumero:>[(#SESSION{id_auteur}|?{
 					[<a href="(#URL_ECRIRE{document_edit,id_document=#ID_DOCUMENT})">#ID_DOCUMENT</a>],
 					#ID_DOCUMENT})]</dt>
 				[(#TITRE|?{[<dt class="#EDIT{titre} titre">(#TITRE)</dt>],
-					[(#SESSION{id_auteur}|?{<dt class="#EDIT{titre} titre"><:ajouteruntitre:></dt>})]
+					[(#SESSION{id_auteur}|?{<dt class="#EDIT{titre} titre"><:territoires:ajouteruntitre:></dt>})]
 					})]
 				[(#DESCRIPTIF|?{[<dd class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF|PtoBR)</dd>],
-					[(#SESSION{id_auteur}|?{<dd class="#EDIT{descriptif} descriptif"><:ajouterundescriptif:></dd>})]
+					[(#SESSION{id_auteur}|?{<dd class="#EDIT{descriptif} descriptif"><:territoires:ajouterundescriptif:></dd>})]
 					})]
-				[<dd class="#EDIT{credits} credits"><small><:credits:> : (#CREDITS)</small></dd>]	 
-				<dd class="dimensions"><:dimensionsenpx:> #LARGEUR x #HAUTEUR - <:poids:> [(#TAILLE|taille_en_octets)]</dd>
-				[<dd class="tagdoc"><:mots_cles:> : (#LESMOTS|replace{#})</dd>]
+				[<dd class="#EDIT{credits} credits"><small><:territoires:credits:> : (#CREDITS)</small></dd>]	 
+				<dd class="dimensions"><:territoires:dimensionsenpx:> #LARGEUR x #HAUTEUR - <:territoires:poids:> [(#TAILLE|taille_en_octets)]</dd>
+				[<dd class="tagdoc"><:territoires:mots_cles:> : (#LESMOTS|replace{#})</dd>]
 			</dl>
 
 		</div><!--.content-->
@@ -92,7 +92,7 @@
 			[(#REM) Articles auxquels le document est attaché]
 			<B_attachements_articles>
 				<div class="menu menu_epingles hw_boite">		
-				<h2><:articleslies:></h2>
+				<h2><:territoires:articleslies:></h2>
 					<ul class="clearfix">
 						<BOUCLE_attachements_articles(ARTICLES) {!id_rubrique=5}{id_document}{doublons articleslies}{!par date}>
 						[(#SET{logo_epingle,''})]
@@ -127,7 +127,7 @@
 			<B_imagesconnexesmots>
 			<div class="menu hw_boite hw_boite_images">
 				<span class="ancre_pagination">#ANCRE_PAGINATION</span>				
-				<h2><:imagesconnexes:></h2>		
+				<h2><:territoires:imagesconnexes:></h2>		
 					<ul class="clearfix">
 					<BOUCLE_imagesconnexesmots(DOCUMENTS){si #GET{nombreimagesconnexes}|>={6}}{!doublons imagesconnexes}{mots 1 #GET{mots} !tri}{pagination 6}>
 						<li>
@@ -178,7 +178,7 @@
 			
 				<B_imagesconnexestout>
 				<div class="menu hw_boite hw_boite_images">					
-					<h2><:imagesconnexes:></h2>		
+					<h2><:territoires:imagesconnexes:></h2>		
 						<ul class="clearfix">
 						<BOUCLE_imagesconnexestout(DOCUMENTS){id_document IN #GET{tableauimages}}{doublons images}{0,6}>
 							<li>

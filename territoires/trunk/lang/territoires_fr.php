@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'breves' => 'Br&egrave;ves',
 	
 	// C
+	'carte' => 'Carte', 
 	'calendrier' => 'Calendrier',
 	'ciels' => 'Ciels',
 	'credits' => 'Cr&eacute;dits',
@@ -128,6 +129,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// R
 	'recherche' => 'Recherche',
+	'rechercher' => 'Rechercher', 
 	'remonter' => 'Remonter',	
 	'resultats' => 'R&eacute;sultats',
 	'repondre_message' => 'R&eacute;pondre au message',
