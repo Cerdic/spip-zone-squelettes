@@ -118,4 +118,3 @@ function minisauvage_html($texte) {
    return $texte;
 }
 
-?>
