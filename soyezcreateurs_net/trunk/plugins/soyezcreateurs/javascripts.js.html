@@ -107,6 +107,85 @@ function inputKeyHandler(ev) {
 	}
 }
 
+
+function adjustLayout() {
+	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
+	$("div.equilibre").css({'height': 'auto'});
+	/*******************************************CAS N°1********************************************************************/
+	/*Nav, Contenu et Extra alignes top (Layout 1 a 22)*/
+	var tnotstackable =0;
+	tnotstackable = parseInt($("div.notstackable")[0].offsetTop);
+	tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
+	if (tnotstackable==tlaststackable) {
+			var h=0;
+			$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'min-height': h+'px'});
+			$("div.equilibre").css({'height': parseInt($("div.equilibre")[0].offsetHeight)});
+			/*alert("Cas 1");*/
+	}
+	else {
+/*********************************************CAS 2*********************************************************************/
+	/* Navigation et Extra sont empiles (Layout 23 a 26 et 33 et 34)*/
+		leftlaststackable = parseInt($("div.laststackable")[0].offsetLeft);
+		leftnavigation = parseInt($("div#navigation")[0].offsetLeft);
+		largeurnavigation = parseInt($("div#navigation")[0].offsetWidth);
+		largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
+		if ((leftlaststackable == leftnavigation) && (largeurextra == largeurnavigation)) {
+			var hstacked = 0;
+			$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
+			var hnotstackable = 0;
+			hnotstackable = parseInt($("div.notstackable")[0].offsetHeight);
+			if (hnotstackable>hstacked) {
+				$("div.laststackable").css({'min-height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
+				$("div.notstackable").css({'min-height': hnotstackable+'px'});
+				/*alert("Cas 2");*/
+			}
+			else {
+				$("div.notstackable").css({'min-height': hstacked+'px'});
+			};
+		}
+		else {
+/**********************************************CAS 3*******************************************************************/
+	/* Navigation et Extra meme Top et differents de Contenu (Layout 27-28-39-40)*/
+			tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
+			tstackable = parseInt($("div.stackable")[0].offsetTop);
+			if (tstackable==tlaststackable){
+				var h=0;
+				$("div.stackable").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'min-height': h+'px'});
+				/*alert("Cas 3");*/
+			}
+			else {
+/**********************************************CAS 4*******************************************************************/
+	/* Navigation et Contenu meme alignement Top (Layout 35 et 36)*/
+				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
+				if (largeurcontenu==largeurextra) {
+					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight)) + (hauteurext = parseInt($("div.laststackable")[0].offsetHeight));
+					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
+					if(hstackable < hnavigation) {
+						$("div.notstackable").css({'min-height': (hnavigation - hauteurext)+'px'});
+					}
+					else {
+						$("div#navigation").css({'min-height': hstackable+'px'});
+					}
+					/*alert("Cas 4");*/
+				}
+				else	{
+/**********************************************CAS 5*******************************************************************/
+	/* Navigation et Contenu meme alignement Top (Layout 29 a 32 et 37 et 38)*/
+					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight));
+					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
+					if(hstackable > hnavigation) {
+						$("div#navigation").css({'min-height': hstackable+'px'});
+					}
+					else {
+					$("div.notstackable").css({'min-height': hnavigation+'px'});
+					}
+					/*alert("Cas 5");*/
+				}
+			}
+		}
+	}
+}
+;
 /* FUNCTIONS ON ALL PAGES */
 function myInitPages() {
 	/* HOME SPECIAL FEATURE */
@@ -150,6 +229,26 @@ function myInitPages() {
 	});
 ]
 	$(".escapelinks").one("focus", "a", function() { $(".escapelinks").removeClass("escapelinks"); } );
+}
+;
+function myInitLayout() {
+	if (CanceladjustLayout != true) {
+		adjustLayout();
+		$("body").resize(
+			function () {
+			adjustLayout();
+			}
+		);
+		if (CancelMonitorTextSize != true) {
+			$.em.element = $('<div />').css({ left:     '-100em',
+										position: 'absolute',
+										width:    '100em' })
+								 .prependTo('div.texte')[0];
+			$('div.texte').bind('emchange', function(e, cur, prev) { adjustLayout(); });
+		}
+		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
+	}
+;
 }
 ;
 /* BLACK TRANSPARENT BACKGROUNDS */
@@ -725,6 +824,10 @@ function prop(n) {
 
 $(document).ready(function() {
 	myInitPages();
+	// Ceci devrait régler le problème de l'ajustement des colonne pas toujours fait
+	$(window).on('load',function() {
+		myInitLayout();
+	});
 });
 
 [(#CHEMIN{images/sc_javascript_perso.js.html}|?{'/* Complément personnalisé du JS */'})
