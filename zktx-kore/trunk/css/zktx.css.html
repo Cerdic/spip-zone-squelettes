@@ -12,7 +12,16 @@
 
 body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
 
+
 [(#REM) Liens hypertextes ]
+  
+  a:link, a:visited, a:active, a:hover, a:focus, button, .btn, button:hover, .btn:hover {
+    -webkit-transition: All .6s ease-in;
+    moz-transition: All .6s ease-in;
+    o-transition: All .6s ease-in;
+    transition: All .6s ease-in;
+  }
+
   a:link, a:visited { [color: #(#ID_RUBRIQUE
       |couleur_rubrique
       |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
@@ -21,7 +30,6 @@ body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
     );]
     [(#REM) text-decoration:underline; ]
   }
-
   a:active, a:hover, a:focus {
     [color: #(#ID_RUBRIQUE
       |couleur_rubrique
@@ -123,8 +131,8 @@ body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
   }
 
       [(#REM) Pages articles ]
-      <BOUCLE_article_bs_header(ARTICLES){id_article = #ENV{id_article}}>
-        .page_article .bs-header { 
+      <BOUCLE_article_bs_header(ARTICLES){tout}>
+        .bs-header.article#ID_ARTICLE { 
           background-color: [#(#ID_RUBRIQUE
                               |couleur_rubrique
                               |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
@@ -147,8 +155,8 @@ body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
       </BOUCLE_article_bs_header>
 
       [(#REM) Pages rubriques ]
-      <BOUCLE_rubrique_bs_header(RUBRIQUES){id_rubrique = #ENV{id_rubrique}}>
-        .page_rubrique .bs-header { 
+      <BOUCLE_rubrique_bs_header(RUBRIQUES){tout}>
+        .bs-header.rubrique#ID_RUBRIQUE { 
           background-color: [#(#ID_RUBRIQUE
                               |couleur_rubrique
                               |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
@@ -170,8 +178,8 @@ body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
       </BOUCLE_rubrique_bs_header>
 
     [(#REM) Pages mots ]
-    <BOUCLE_mot_bs_header(MOTS){id_mot=#ENV{id_mot}}>
-      .bs-header { 
+    <BOUCLE_mot_bs_header(MOTS){id_mot}>
+      .bs-header.mot#ID_MOT { 
         [background-image:url('(#LOGO_MOT
                                   |sinon{ #LOGO_SITE_SPIP_SURVOL }
                                   |image_reduire{1900,0}
@@ -219,5 +227,3 @@ body {  padding-top: 50px; [(#REM) padding-bottom: 30px; ] }
     color: #FFFFFF;
   }
 
-  .bs-footer a { color: #FFFFFF!important; text-decoration:underline; }
-  .bs-footer a:hover, .bs-footer a:active, .bs-footer a:focus {text-shadow:1px 1px 8px #EFEFEF;}

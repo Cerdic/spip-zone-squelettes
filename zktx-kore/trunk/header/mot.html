@@ -1,27 +1,27 @@
 <BOUCLE_header(MOTS){id_mot}>
-
-<div class="row">
-	<figure class="col-md-3">
-		[(#REM) 
-			Logos & Bootstrap :
-				on peut passer un |inserer_attribut{class,""}  
-				avec, au choix, la class img-thumbnail img-circle, img-square, ...
-				Mobile: vous disposez aussi de la class img-responsive
-				> voir http://getbootstrap.com/css/#images
-		]
-		[(#LOGO_MOT_NORMAL
-			|sinon{[(#LOGO_RUBRIQUE_NORMAL{0})]}
-			|image_reduire{260,260}
-			|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)][ (#TITRE|textebrut)]}
-			|inserer_attribut{class,"img-responsive"}
-		)]
-	</figure>
-	<section class="col-md-9">
-		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
-		[<p class="#EDIT{soutitre}">(#SOUTITRE|PtoBR|abs_url)</p>]
-		<p><a href="#descriptif" class="btn btn-primary btn-lg" role="button">En savoir + ?</a></p>
-		[(#INCLURE{fond=inclure/socialtags,env})]
-	</section>
-</div>
-
+<header class="bs-header mot#ID_MOT" id="header" role="banner">
+	<div class="container">
+		<figure class="center-block">
+			[(#REM) 
+				Logos & Bootstrap :
+					on peut passer un |inserer_attribut{class,""}  
+					avec, au choix, la class img-thumbnail img-circle, img-square, ...
+					Mobile: vous disposez aussi de la class img-responsive
+					> voir http://getbootstrap.com/css/#images
+			]
+			[(#LOGO_MOT_NORMAL
+				|sinon{[(#LOGO_RUBRIQUE_NORMAL{0})]}
+				|image_reduire{260,260}
+				|inserer_attribut{alt,[(#TITRE|textebrut|attribut_html)]}
+				|inserer_attribut{class,"img-responsive"}
+				|inserer_attribut{role,"img"}
+			)]
+			<figcaption class="text-center">
+				[(#MENU_LANG)]
+				<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+				[<div class="jumbotron #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
+			</figcaption>
+		</figure>
+	</div>
+</header>
 </BOUCLE_header>
