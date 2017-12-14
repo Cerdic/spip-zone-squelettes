@@ -4,7 +4,9 @@ function spip_zoundation() {
     });
 }
 
-spip_zoundation();
-onAjaxLoad(function() {
+$(function() {
     spip_zoundation();
+    onAjaxLoad(function() {
+        spip_zoundation();
+    });
 });
