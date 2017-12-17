@@ -1,0 +1,19 @@
+[(#REM) <!-- Navigation dans les pages de configuration 
+            Fortement inspiré du squelette Sarkaspip --> ]
+<div class="sous_navigation">
+<BOUCLE_nav(DATA){source table, #EVAL{_ESCAL_PAGES_CONFIG}|explode{|}}>
+<div class="liste">
+[(#VALEUR|explode{!}|count|>{1}|oui)
+[<h5>(#VAL{escal:cfg_page_}|concat{#VALEUR|explode{!}|reset}|trim|_T)</h5>]]
+<ul class="liste-items">
+        <BOUCLE_navigation_cfg(DATA){source table, #VALEUR|explode{!}|end|explode{:}}>
+        [<li class="item[(#ENV{cfg, accueil}|=={#VALEUR|trim}|oui)on]"  style="padding:2px 0 2px 10px;">
+    (#URL_ECRIRE{#ENV{exec}}|parametre_url{cfg,#VALEUR|trim}
+        |lien_ou_expose{
+            [(#VAL{escal:cfg_page_}|concat{#VALEUR}|trim|_T)]})
+</li>]
+        </BOUCLE_navigation_cfg>
+</ul>
+</div>
+</BOUCLE_nav>
+</div>

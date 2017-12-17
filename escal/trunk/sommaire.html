@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG" >
+
+ <head>
+    <title>[(#NOM_SITE_SPIP|textebrut)]</title>
+    [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut)" />]
+    [<link rel="canonical" href="(#URL_SITE_SPIP|url_absolue)" />]
+    <meta name="Keywords" content="#CONFIG{escal/config/keyword,spip escal squelette academie Lyon etablissement scolaire}" />
+    <meta name="author" content="#CONFIG{escal/config/author,DANE de l'académie de Lyon}" />
+
+[(#REM) feuille de style pour le bloc a_la_une ]
+	[<link href="(#CHEMIN{styles/alaune.css}|direction_css)" rel="stylesheet" type="text/css" />]
+	<INCLURE {fond=inclusions/inc-head, env}>
+
+[(#REM) javascript pour les articles a la une ]
+	<script src="#CHEMIN{scripts/onglets.js}" type="text/javaScript"></script>
+
+</head>
+
+<body [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] id="top" class="page-sommaire">
+
+<noscript>
+<p class="alerte"><:escal:alerte_javascript:></p>
+</noscript>
+
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+          <div class="nettoyeur"></div>
+
+          <div id="page">
+            <div id="contenu">
+
+         <!-- affichage des noisettes centrales selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocune1}|=={rien}|non)
+           <INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocune1,a_la_une}}{env}>
+         ]
+         [(#CONFIG{escal/config/blocune2}|oui) [(#CONFIG{escal/config/blocune2}|=={rien}|non)
+           <INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocune2}}{env}>
+         ]]
+         [(#CONFIG{escal/config/blocune3}|oui) [(#CONFIG{escal/config/blocune3}|=={rien}|non)
+           <INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocune3}}{env}>
+         ]]
+
+            </div>
+          </div>
+
+          [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnav1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav1,choixmenuV1}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav2,choixmenuV2}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav3,edito}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav4,acces_direct}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav5,top}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnav6}|oui) [(#CONFIG{escal/config/blocnav6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav7}|oui) [(#CONFIG{escal/config/blocnav7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav8}|oui) [(#CONFIG{escal/config/blocnav8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav9}|oui) [(#CONFIG{escal/config/blocnav9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnav10}|oui) [(#CONFIG{escal/config/blocnav10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnav10}}{env}{ajax}></div>
+         ]]
+
+          </div> <!-- fin navigation -->
+
+          [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextra1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra1,identification}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra2,actus}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra3,photos}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra4,sites_favoris}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra5,derniers_comments}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra6,evenements}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra7,sites}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra8,stats}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextra9}|oui) [(#CONFIG{escal/config/blocextra9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextra10}|oui) [(#CONFIG{escal/config/blocextra10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextra10}}{env}{ajax}></div>
+         ]]
+
+          </div> <!-- fin extra -->
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

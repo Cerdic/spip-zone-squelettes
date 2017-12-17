@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG" >
+ 
+  <head>
+    <title>Forum du site - [(#NOM_SITE_SPIP|textebrut)]</title>
+    <INCLURE {fond=inclusions/inc-head, env}>
+    <meta name="robots" content="noindex, nofollow">
+    [<link href="(#URL_PAGE{forum.css}|direction_css)" rel="stylesheet" type="text/css" />]
+  </head>
+
+<body [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] id="top" class="page-forum">
+
+<noscript>
+<p class="alerte"><:escal:alerte_javascript:></p>
+</noscript>
+
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+            
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+          <div class="nettoyeur"></div>
+          
+          <div id="page">
+            <div id="contenu">
+
+              <BOUCLE_forum(FORUMS){id_forum}>
+
+                <div id="forum-site">
+
+                <BOUCLE_article(ARTICLES){id_article=#ID_OBJET}>
+                	<div id="ariane-forum">
+                  <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+                    <BOUCLE_ariane(HIERARCHIE){id_article}>
+                    <img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" />
+                    <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]">
+                    [(#TITRE|couper{80})]
+                    </a>
+                    </BOUCLE_ariane>
+                    <img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" />
+                    <a href="spip.php?page=forumSite-article&amp;id_article=#ID_ARTICLE">
+                    #TITRE
+                    </a>
+                	</div>
+	               </BOUCLE_article>
+
+
+	<table class="forum">
+			<tr>
+				<th colspan="2">
+        <div class="titre #EDIT{titre}">#TITRE</div>
+        </th>
+			</tr>
+			
+      <tr class="art-forum">
+				
+        <td class="logo1" style="background-color:#4b8fb1; color: #FFFFFF;">
+					[(#LOGO_AUTEUR||image_reduire{60,0})]<br />
+					[<strong>(#NOM|couper{80})</strong>]<br />
+          le [(#DATE|affdate_jourcourt)]<br />
+          [&agrave; (#DATE|heures)][:(#DATE|minutes)]
+        </td>
+        
+				<td class="sujet1" style="background-color:#4b8fb1; color: #FFFFFF;">
+				Rappel du sujet :
+						<div class="#EDIT{texte}">#TEXTE</div> 
+            <BOUCLE_doc_joints(DOCUMENTS){id_forum}{mode=document}>
+              <span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
+            </BOUCLE_doc_joints>
+        </td>
+        
+			</tr>			
+
+			<BOUCLE_forums_fils(FORUMS){id_thread}{plat}{par date}{1,n}>
+			<tr class="art-forum" [(#COMPTEUR_BOUCLE|alterner{style="background-color:#E0E0E0",style="background-color:#fff"})]>
+        <td class="logo">
+        <a name="ancre#ID_FORUM"></a>
+					[(#LOGO_AUTEUR||image_reduire{60,0})]<br />
+					[<strong>(#NOM|couper{80})</strong>]<br />
+          le [(#DATE|affdate_jourcourt)]<br />
+          [&agrave; (#DATE|heures)][:(#DATE|minutes)]
+        </td>
+          <td class="sujet">
+						<div class="titre #EDIT{titre}">#TITRE</div>
+            <div class="#EDIT{texte}">#TEXTE</div>
+            <BOUCLE_doc_joints2(DOCUMENTS){id_forum}{mode=document}>
+              <span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
+            </BOUCLE_doc_joints2>
+			 </td>
+
+			</tr>
+			</BOUCLE_forums_fils>
+		
+		</table>
+
+		<div id="boutonD">
+		<BOUCLE_retour(RUBRIQUES){titre_mot=forum}>
+    <a href="[(#URL_PAGE{forumSite-rubrique}|parametre_url{lang,#LANG})]">
+    <img src="#CHEMIN{images/forum_boutonRetour.png}" alt="Retour vers le forum" />
+    </a>
+    </BOUCLE_retour>
+    </div>
+    <div id="boutonG">
+    <img src="#CHEMIN{images/forum_bouton_reagirAuSujet.png}" alt="Reagir au sujet" />
+    </div>
+    
+    <div class="nettoyeur"></div>
+
+    
+    [(#FORMULAIRE_FORUM{#SELF})]
+
+
+
+                </div><!-- fin forum-site -->
+</BOUCLE_forum>
+
+        </div><!-- fin contenu -->
+        </div><!-- fin page -->
+
+
+          <div id="navigation">
+          
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavforumsite1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite1,choixmenuV1}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite2,choixmenuV2}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite3,edito}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite4,acces_direct}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite5,top}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavforumsite6}|oui) [(#CONFIG{escal/config/blocnavforumsite6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite7}|oui) [(#CONFIG{escal/config/blocnavforumsite7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite8}|oui) [(#CONFIG{escal/config/blocnavforumsite8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite9}|oui) [(#CONFIG{escal/config/blocnavforumsite9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavforumsite10}|oui) [(#CONFIG{escal/config/blocnavforumsite10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavforumsite10}}{env}{ajax}></div>
+         ]]
+
+          </div>
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

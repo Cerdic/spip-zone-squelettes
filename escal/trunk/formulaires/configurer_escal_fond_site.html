@@ -1,0 +1,129 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configfonds.png}|balise_img{'',cadre-icone})]<:escal:fonds_site:></h3>
+
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+
+
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:fonds_site_couleur:></strong></label>
+                    <br />
+            <div class="explication">
+            #SET{name,couleurfond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coul0="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#DFDFDF})]";
+            if(isset($_POST["reinit0"])) { $coul0="#DFDFDF"; }
+            if(isset($_POST["reinitF"])) { $coul0="#DFDFDF"; }
+            ?>
+                    <:escal:fonds_site_couleur_defaut:>
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style=" background-color:<?php echo "$coul0"; ?>">
+                             <input type="texte" class="palette" name="#GET{name}" id="#GET{name}_oui" value="<?php echo "$coul0"; ?>"  />
+                             <input type="submit" name="reinit0" class="submit" value="<:escal:reinitialiser:>" />
+                    </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:fonds_site_image:></strong></label>
+                    <br />            
+            <div class="explication">
+              #SET{name,imagefond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              		<:escal:fonds_site_explication1:>
+              <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix"  style="width:100%">
+                    
+<script type="text/javascript">
+      function descriptifOption(id, display, text){
+          document.getElementById(id).innerHTML = document.getElementById(text).innerHTML;
+          if (display == "over") {
+            document.getElementById(id).display = "none";
+          } else {
+            document.getElementById(id).display = "block";
+          }
+      }
+      function descriptifChange(id){
+          var optionValue = "option"+document.getElementById("imgfond").value;
+          document.getElementById(id).innerHTML = document.getElementById(optionValue).innerHTML;
+      }
+</script>
+                  <div style="
+                              height:180px;
+                              background-size: 320px;
+                              margin: auto; 
+                              background-repeat: no-repeat;
+                              background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];
+                              [(#CONFIG{escal/config/imagefond}|?{
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond}})]); ,
+                                background-image: url([(#CHEMIN{#CONFIG{escal/config/imagefond2}})]);
+                              })];
+                              margin-bottom: 2px;
+                              " >
+                  </div>
+                  <div id="desc" style="height:100px;background-color:[(#CONFIG{escal/config/couleurfond,#DFDFDF})];">
+                  </div>
+                  <BOUCLE_affiche_image(DATA){source glob, ../squelettes/images/fonds/{*.jpg,*.png,*.gif}}>
+										#SET{val2,#VALEUR|replace{../squelettes/}}
+										<div id="option#COMPTEUR_BOUCLE" style="display: none;">
+										[(#VALEUR|balise_img{<:escal:bandeau:>}|image_reduire{387,100})]
+                    </div>
+									</BOUCLE_affiche_image>
+                  <br />
+                  <select name="#GET{name}" class="select" id="imgfond" onchange="descriptifChange('desc');">
+                  <option
+                    onmouseout="descriptifOption('desc', 'out', 'option0')"
+                    onmouseover="descriptifOption('desc', 'over', 'option0')"
+                    value="">
+                  <:escal:fonds_site_aucune_image:>
+                  </option>
+									<BOUCLE_choix_image(DATA){source glob, ../squelettes/images/fonds/{*.jpg,*.png,*.gif}}>
+										#SET{val,#VALEUR|replace{../squelettes/}}
+										<option
+										  onmouseout="descriptifOption('desc', 'out', 'option#COMPTEUR_BOUCLE')"
+                      onmouseover="descriptifOption('desc', 'over', 'option#COMPTEUR_BOUCLE')"
+                      value="#GET{val}"[(#ENV{#GET{name}}|=={#GET{val}}|?{'selected="selected"',''})]>
+                    #VALEUR
+                    </option>
+									</BOUCLE_choix_image>
+                  </select>
+                <br /><br />
+                #SET{name,imagefond2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	                	<:escal:fonds_site_explication2:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
+                <br /><br />
+                #SET{name,imagefondunique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                		<:escal:fonds_site_explication3:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix"  style="float: right">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </div>
+            </li>
+          </ul>
+          
+<!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+	<br />
+
+	
+  </div>
+    </form>
+    </div>

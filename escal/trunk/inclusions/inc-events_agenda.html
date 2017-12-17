@@ -1,0 +1,148 @@
+<BOUCLE_vevent(EVENEMENTS){id_evenement=#ENV{id,#ENV{id_evenement}}}{tout}>
+
+<BOUCLE_artevent(ARTICLES){id_article}>
+<div class="cadre-chemin">
+
+	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>"><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
+
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_art}{id_article}>]
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_art_2eniveau}{id_article}>]
+
+	<img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" />
+	<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE)]</a> 
+ 	 
+</div>
+</BOUCLE_artevent>
+    
+<div id="cadre-titre-article">
+
+		<div id="titre-article" class="#EDIT{titre}">[(#TITRE)]</div>
+
+</div> <!-- fin cadre-titre-article -->
+
+
+<div id="cadre-article">
+
+    <div id="outils-article">
+  	<!-- affichage du bouton pour imprimer l'article -->
+        <div class="imprime-article outil">
+		<a href="#" onclick="javascript:window.print()" title="<:escal:article_imprimer:>">
+		<img src="#CHEMIN{images/imprimer.gif}" alt="logo imprimer" />
+		</a>
+        </div>
+ 	<!-- affichage de l'icone pdf si plugin article_pdf activé -->
+        [(#PLUGIN{ARTICLE_PDF}|oui)
+        <div class="article-pdf outil">
+        #ARTICLE_PDF{id_article}
+        </div>
+        ]
+    <!-- affichage de l'icone pdf si plugin spipdf activé -->         
+        [(#PLUGIN{SPIPDF}|oui)
+        <div class="spipdf outil">
+          <a href="[(#URL_PAGE{spipdf}
+          |parametre_url{spipdf,spipdf_article}
+          |parametre_url{id_article,#ID_ARTICLE}
+          |parametre_url{nom_fichier,article_#ID_ARTICLE})]">
+          <img src="#CHEMIN{images/icone_pdf.gif}" alt="article au format PDF" title="Télécharger l'article au format PDF" /></a>
+        </div>
+        ]        
+ 	<!-- affichage de l'icone de licence si plugin licence activé -->
+ 	
+        [(#PLUGIN{LICENCE}|oui)
+        [(#ID_LICENCE|=={0}|non)
+        <div class="licence outil">
+        <:escal:article_licence:> [(#LICENCE|image_reduire{0, 32})]
+        </div>
+        ]
+        ]
+ 	<!-- affichage des icones socialtags si plugin Socialtags activé -->
+        [(#PLUGIN{SOCIALTAGS}|oui)
+        <div id="socialtags-article" class="outil"></div>
+        ]        
+    <!-- affichage du bouton signalement si plugin activé -->
+        [(#PLUGIN{SIGNALEMENT}|oui)
+        <div class="signalement outil">        
+        #FORMULAIRE_SIGNALEMENT
+        </div>        
+        ] 
+    </div>
+  	<!-- affichage des images pour diminuer ou augmenter la taille des caractères -->
+			<div id="diminuer">
+				<a href="javascript:changestyle(-1)" title="<:escal:taille_diminuer:>">
+     			<img src="#CHEMIN{images/fontsizedown.png}"
+					alt="<:escal:taille_diminuer:>"
+					 />
+				</a>
+			</div>
+
+			<div id="augmenter">
+				<a href="javascript:changestyle(1)" title="<:escal:taille_augmenter:>">
+     			<img src="#CHEMIN{images/fontsizeup.png}"
+					alt="<:escal:taille_augmenter:>"
+					 />
+				</a>
+			</div>
+			
+<div class="nettoyeur"></div>  
+  
+  <div id="texte-article" class="surlignable">
+     
+	    <div class="banner">
+
+         [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+          le [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{
+            [(#REM) memes heures ?]
+            [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+            [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+            [(#REM) pas memes heures ?]
+            [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+            [(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+            [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+            ,''})]
+            ,
+          du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{&agrave; partir de
+            [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
+            <br />au
+            [(#DATE_FIN|nom_jour)]
+            <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})] })]
+
+      </div>
+
+        [<div class="location" itemprop="location">
+          <span class="lieu #EDIT{lieu}">(#LIEU)</span>
+          [<br /><br /><span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]
+        </div>]
+
+        [(#LOGO_EVENEMENT|image_reduire{150,100}|inserer_attribut{itemprop,image})]
+
+      
+      <meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
+      <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
+
+
+
+        [(#DESCRIPTIF|oui)#DESCRIPTIF]
+        <BOUCLE_art(ARTICLES){id_article}{si #DESCRIPTIF|non}>
+        [(#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
+        </BOUCLE_art>        
+
+      <p class="meta-publi">
+        [(#INSCRIPTION|?{' ',''})
+        <hr />
+        <span class="inscrits">#NB_INSCRITS</span> inscrits [pour <span class="inscrits">(#PLACES)</span> places]
+        <INCLURE {fond=inclusions/inc-evenements_inscription}{env}>
+        ]
+      
+      #FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
+
+	    </p>
+
+      
+  </div>
+
+</div>
+
+</BOUCLE_vevent>

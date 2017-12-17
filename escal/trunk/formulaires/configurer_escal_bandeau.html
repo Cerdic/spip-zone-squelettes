@@ -1,0 +1,246 @@
+<!-- Elements -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configbandeau.png}|balise_img{'',cadre-icone})]<:escal:bandeau:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+<!------------------------------>
+<!-- Gérer l'image du bandeau -->
+<!------------------------------>
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article25&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a>
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+
+                    <label><strong><:escal:bandeau_choix_option:></strong></label>
+                    <br />
+            <div class="explication">
+              #SET{name,optionbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_option1" value="option1"
+                            [(#ENV{#GET{name}}|=={option1}|oui)checked="checked"] />
+                            <label for="#GET{name}_option1"><:escal:bandeau_choix_item1:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_option2" value="option2"
+                            [(#ENV{#GET{name}}|=={option2}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] />
+                            <label for="#GET{name}_option2"><:escal:bandeau_choix_item2:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_option3" value="option3"
+                            [(#ENV{#GET{name}}|=={option3}|oui)checked="checked"] />
+                            <label for="#GET{name}_option3"><:escal:bandeau_choix_item3:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_option4" value="option4"
+                            [(#ENV{#GET{name}}|=={option4}|oui)checked="checked"] />
+                            <label for="#GET{name}_option4"><:escal:bandeau_choix_item4:></label>
+                    </span>
+              <br /><br /><br />
+              <:escal:bandeau_choix_explication:>
+              <br />
+              #SET{name,alignbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_left" value="left"
+                            [(#ENV{#GET{name}}|=={left}|oui)checked="checked"][(#ENV{#GET{name}}|non)checked="checked"] /><label><:escal:gauche:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_center" value="center"
+                            [(#ENV{#GET{name}}|=={center}|oui)checked="checked"] /><label><:escal:centre:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_right" value="right"
+                            [(#ENV{#GET{name}}|=={right}|oui)checked="checked"] /><label><:escal:droite:></label>
+                    </span>
+              <br /><br /><br />
+             </div>
+            </li>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <label><strong><:escal:bandeau_option3:></strong></label>
+            <div class="explication">
+              #SET{name,fondbandeau}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}} 
+              <:escal:bandeau_option3_explication1:>
+              <br /><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+
+<script type="text/javascript">
+      function descriptifOption(id, display, text){
+          document.getElementById(id).innerHTML = document.getElementById(text).innerHTML;
+          if (display == "over") {
+            document.getElementById(id).display = "none";
+          } else {
+            document.getElementById(id).display = "block";
+          }
+      }
+      function descriptifChange(id){
+          var optionValue = "option"+document.getElementById("imgbandeau").value;
+          document.getElementById(id).innerHTML = document.getElementById(optionValue).innerHTML;
+      }
+</script>
+                  <div style="height:100px;background-color:[(#CONFIG{escal/config/couleur3,#336699})]" id="desc">
+                  
+                      [(#CONFIG{escal/config/optionbandeau}|non)
+                      [(#LOGO_SITE_SPIP|?{
+                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+                        [(#LOGO_SITE_SPIP|image_reduire{312})]
+                        </a>
+                        ,
+                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+                        [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                        </a>
+                      })]
+                      ]
+
+                      [(#CONFIG{escal/config/optionbandeau}|=={option1}|oui)
+                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+                        [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                        </a>
+                      ]
+
+                      [(#CONFIG{escal/config/optionbandeau}|=={option2}|oui)
+                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+                        [(#LOGO_SITE_SPIP|image_reduire{312})]
+                        </a>
+                      ]
+
+                      [(#CONFIG{escal/config/optionbandeau}|=={option3}|oui)
+                        <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>" >
+                        [(#CONFIG{escal/config/fondbandeau}|?{
+                        [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau})]}|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                        ,
+                        [(#CHEMIN{[(#CONFIG{escal/config/fondbandeau2})]}|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                      })]
+                      </a>
+                      ]
+
+                  </div>
+                  <div id="option0" style="display: none;">
+                        [(#CHEMIN{images/bandacad.jpg}|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                  </div>
+                  <BOUCLE_affiche_image(DATA){source glob, ../squelettes/images/bandeau/{*.jpg,*.png,*.gif}}>
+										#SET{val2,#VALEUR|replace{../squelettes/}}
+										<div id="option#COMPTEUR_BOUCLE" style="display: none;">
+										[(#VALEUR|balise_img{<:escal:bandeau:>}|image_reduire{312})]
+                    </div>
+									</BOUCLE_affiche_image>
+									<br />
+                  <select name="#GET{name}" class="select" id="imgbandeau" onchange="descriptifChange('desc');">
+                  <option
+                    onmouseout="descriptifOption('desc', 'out', 'option0')"
+                    onmouseover="descriptifOption('desc', 'over', 'option0')"
+                    value="">
+                 <:escal:bandeau_option3_aucune:>
+                  </option>
+									<BOUCLE_choix_image(DATA){source glob, ../squelettes/images/bandeau/{*.jpg,*.png,*.gif}}>
+										#SET{val,#VALEUR|replace{../squelettes/}}
+										<option
+										  onmouseout="descriptifOption('desc', 'out', 'option#COMPTEUR_BOUCLE')"
+                      onmouseover="descriptifOption('desc', 'over', 'option#COMPTEUR_BOUCLE')"
+                      value="#GET{val}"[(#ENV{#GET{name}}|=={#GET{val}}|?{'selected="selected"',''})]>
+                    #VALEUR
+                    </option>
+									</BOUCLE_choix_image>
+                  </select>
+                <br /><br />
+                #SET{name,fondbandeau2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                <:escal:bandeau_option3_explication2:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix"  style="width:100%" >
+                             <input type="texte"  style="width:98%" name="#GET{name}" id="#GET{name}" value="#ENV{#GET{name}}"  />
+                    </span>
+
+
+              <br /><br />
+              <:escal:bandeau_option3_explication3:>
+
+                    </div>
+              <br />
+            </div>
+            </li>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+              <label><strong><:escal:bandeau_texte:></strong></label>
+              <br />
+            <div class="explication">
+              #SET{name,nomsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+             <:escal:bandeau_texte_nom:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+              #SET{name,nomsitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:bandeau_texte_taille:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
+                    </span>
+            </div>
+            </li>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,slogansite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:bandeau_texte_slogan:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+              #SET{name,slogansitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:bandeau_texte_taille:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},25})]"  />
+                    </span>
+            </div>
+            </li>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,descriptifsite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:bandeau_texte_descriptif:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+              #SET{name,descriptifsitetaille}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:bandeau_texte_taille:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},12})]"  />
+                    </span>
+            </div>
+            </li>
+
+    </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

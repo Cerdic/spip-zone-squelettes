@@ -1,0 +1,203 @@
+<div id="menumobile">
+<div class="menu">
+<ul id="menu">
+
+[(#CONFIG{escal/config/taillelogorubmenu}|oui)
+#SET{taillelogo,#CONFIG{escal/config/taillelogorubmenu}}
+]
+[(#CONFIG{escal/config/taillelogorubmenu}|non)
+#SET{taillelogo,20}
+]
+
+
+	<li class="item-accueil">
+	 <a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" title="<:escal:accueil:>">
+    [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+    [(#CHEMIN{images/accueil2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,#GET{taillelogo}})]
+    ]
+    [(#CONFIG{escal/config/texterubmenu}|=={non}|non)<:escal:accueil:>
+    ]
+    </a>
+	</li>
+
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" ou "invisible" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+
+	<!-- exclusion des articles avec le mot-clé "pas-au-menu" ou "invisible"  -->
+	<BOUCLE_exclure_art_menu(ARTICLES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons articles}>
+	</BOUCLE_exclure_art_menu>
+
+
+ <!-- affichage des secteurs-->
+    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par num titre}{doublons rubriques}>
+     <li class="#EXPOSE rubrique rubrique#ID_RUBRIQUE secteur">
+     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+     [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+     [(#LOGO_RUBRIQUE|oui)[(#LOGO_RUBRIQUE|image_reduire{0,#GET{taillelogo}})]]
+     [(#LOGO_RUBRIQUE|non)[(#CHEMIN{images/transparent2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,#GET{taillelogo}})] ]
+     ]
+     [(#CONFIG{escal/config/texterubmenu}|=={non}|non)
+     #TITRE
+     ]
+     <BOUCLE_testrub1(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_testrub1>
+     </a>
+
+    <ul>
+       <!-- affichage des articles du secteur -->
+      <BOUCLE_testchrono(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+      <BOUCLE_articles_racineC(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+        <li class="#EXPOSE article">
+      	 <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+      	</li>
+      </BOUCLE_articles_racineC>
+      </BOUCLE_testchrono>
+      <BOUCLE_articles_racine(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+        <li class="#EXPOSE article">
+      	 <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+      	</li>
+      </BOUCLE_articles_racine>
+      <//B_testchrono>
+      
+      <!-- affichage des sous-rubriques de niveau 1 -->
+			<BOUCLE_rubriques1(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+        <li class="#EXPOSE rubrique">
+				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+						<BOUCLE_testrub2(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub2>
+			    </a>
+
+        <ul>
+              <!-- affichage des articles des sous-rubriques de niveau 1 -->
+              <BOUCLE_testchrono1(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+              <BOUCLE_articles_rubrique1C(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+                <li class="#EXPOSE article">
+                  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                </li>
+              </BOUCLE_articles_rubrique1C>
+              </BOUCLE_testchrono1>
+              <BOUCLE_articles_rubrique1(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+                <li class="#EXPOSE article">
+                  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                </li>
+              </BOUCLE_articles_rubrique1>
+              <//B_testchrono1>
+              
+              <!-- affichage des sous-rubriques de niveau 2 -->
+              <BOUCLE_rubriques2(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                <li class="#EXPOSE rubrique">
+      				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+      						<BOUCLE_testrub3(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub3>
+      			    </a>
+
+			              <ul>
+                      <!-- affichage des articles des sous-rubriques de niveau 2 -->
+                      <BOUCLE_testchrono2(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                      <BOUCLE_articles_rubrique2C(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+                        <li class="#EXPOSE article">
+                          <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                        </li>
+                      </BOUCLE_articles_rubrique2C>
+                      </BOUCLE_testchrono2>
+                      <BOUCLE_articles_rubrique2(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+                        <li class="#EXPOSE article">
+                          <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                        </li>
+                      </BOUCLE_articles_rubrique2>
+                      <//B_testchrono2>
+                      
+                      <!-- affichage des sous-rubriques de niveau 3 -->
+                      <BOUCLE_rubriques3(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                      <li class="#EXPOSE rubrique">
+              				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+              						<BOUCLE_testrub4(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub4>
+              			    </a>
+
+              				    <ul>
+                            <!-- affichage des articles des sous-rubriques de niveau 3 -->
+                            <BOUCLE_testchrono3(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                            <BOUCLE_articles_rubrique3C(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+                              <li class="#EXPOSE article">
+                                <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                            </li>
+                            </BOUCLE_articles_rubrique3C>
+                            </BOUCLE_testchrono3>
+                            <BOUCLE_articles_rubrique3(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+                              <li class="#EXPOSE article">
+                                <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                            </li>
+                            </BOUCLE_articles_rubrique3>
+                            <//B_testchrono3>
+                            
+                            <!-- affichage des sous-rubriques de niveau 4 -->
+                            <BOUCLE_rubriques4(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                            <li class="#EXPOSE rubrique">
+                    				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+                    						<BOUCLE_testrub5(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub5>
+                    			    </a>
+
+                    				    <ul>
+                                  <!-- affichage des articles des sous-rubriques de niveau 4 -->
+                                  <BOUCLE_testchrono4(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                                  <BOUCLE_articles_rubrique4C(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+                                    <li class="#EXPOSE article">
+                                      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                                    </li>
+                                  </BOUCLE_articles_rubrique4C>
+                                  </BOUCLE_testchrono4>
+                                  <BOUCLE_articles_rubrique4(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+                                    <li class="#EXPOSE article">
+                                      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                                    </li>
+                                  </BOUCLE_articles_rubrique4>
+                                  <//B_testchrono4>
+
+                                  <!-- affichage des sous-rubriques de niveau 5 -->
+                                  <BOUCLE_rubriques5(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
+                                  <li class="#EXPOSE rubrique">
+                          				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+                          						<BOUCLE_testrub6(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub6>
+                          			    </a>
+
+                          				    <ul>
+                                        <!-- affichage des articles des sous-rubriques de niveau 5 -->
+                                        <BOUCLE_testchrono5(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+                                        <BOUCLE_articles_rubrique5C(ARTICLES){id_rubrique} {par date}{inverse}{doublons articles}>
+                                          <li class="#EXPOSE article">
+                                            <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                                          </li>
+                                        </BOUCLE_articles_rubrique5C>
+                                        </BOUCLE_testchrono5>
+                                        <BOUCLE_articles_rubrique5(ARTICLES){id_rubrique} {par num titre, titre}{doublons articles}>
+                                          <li class="#EXPOSE article">
+                                            <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+                                          </li>
+                                        </BOUCLE_articles_rubrique5>
+                                        <//B_testchrono5>
+                          					  </ul>
+
+                                  </li>
+                                 </BOUCLE_rubriques5>
+                    				    </ul>
+
+                            </li>
+                           </BOUCLE_rubriques4>
+              				    </ul>
+
+              			  </li>
+              			</BOUCLE_rubriques3>
+              			</ul>
+              </li>
+             </BOUCLE_rubriques2>
+				    </ul>
+
+			  </li>
+			</BOUCLE_rubriques1>
+    </ul>
+
+
+     </li>
+	</BOUCLE_secteur>
+</ul><!-- fin menu -->
+</div>
+</div>

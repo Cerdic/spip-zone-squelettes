@@ -1,0 +1,35 @@
+	<h1 class="cadre sites-recents" >
+	[(#CONFIG{escal/config/titresitesrecents}|oui)
+    [(#CONFIG{escal/config/titresitesrecents}|propre|_T_ou_typo|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titresitesrecents}|non)
+    <:escal:sur_web:>
+  ]
+	</h1>
+
+  <div class="texte sites-recents [(#CONFIG{escal/config/togglesitesrecents}|=={oui}|oui)toggle]">
+
+
+#SET{nombreartsitesrecents,#CONFIG{escal/config/nombreartsitesrecents,5}}
+
+<BOUCLE_testsites(SITES)>&nbsp;</BOUCLE_testsites>
+</B_testsites>
+  Ici vous pouvez afficher les derniers articles des sites syndiqués sur votre propre site.
+<//B_testsites>
+
+<BOUCLE_exclusion(SITES){si #CONFIG{escal/config/exclurefav2}|=={oui}}{titre_mot=favori}{doublons}>
+</BOUCLE_exclusion>
+<BOUCLE_exclusion2(SITES){titre_mot=site-exclu}{doublons}>
+</BOUCLE_exclusion2>
+
+	<B_articles_sites>
+	<ul>
+	<BOUCLE_articles_sites(SYNDIC_ARTICLES){par date}{inverse}{doublons}{0,#GET{nombreartsitesrecents}}>
+		<li><div class="titre-art-site"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE|couper{50})]</a></div>
+		Source : <a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" >#NOM_SITE</a>
+		</li>
+	</BOUCLE_articles_sites>
+	</ul>
+	</B_articles_sites>
+
+  </div>

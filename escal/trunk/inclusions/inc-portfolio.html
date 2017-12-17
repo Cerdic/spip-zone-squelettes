@@ -1,0 +1,35 @@
+<!-- documents à telécharger -->
+	<B_doc_joints>
+		<div id="documents_portfolio">
+			<img src="#CHEMIN{images/download.gif}" width="18" height="18" alt="<:escal:alt_telechargements:>" />
+      [(#TOTAL_BOUCLE|>{01}|oui) <:escal:telechargements:>]
+      [(#TOTAL_BOUCLE|>{01}|non) <:escal:telechargement:>]
+			<div class="texte-doc" >
+			<table>
+				<BOUCLE_doc_joints(DOCUMENTS){id_article}{par num titre, titre}{mode=document}{vu=non}>
+				[(#COMPTEUR_BOUCLE|alterner{'<tr>',''})]
+				<td>
+	    		<ul>
+					<li>
+                        [(#SPIP_VERSION|version_compare{2.1, >=}|non)
+                            <a href="#URL_DOCUMENT">#LOGO_DOCUMENT</a>
+                        ]
+                        [(#SPIP_VERSION|version_compare{2.1, >=}|oui)
+                            #LOGO_DOCUMENT{#URL_DOCUMENT}
+                        ]
+                    </li>
+
+					<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</div></li>
+
+					<li>[(#TAILLE|taille_en_octets)] / [(#TYPE_DOCUMENT)]</li>
+
+				</ul>
+                </td>
+				[(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]
+				</BOUCLE_doc_joints>
+				[(#TOTAL_BOUCLE|alterner{'<td></td></tr>',''})]
+			</table>
+		    </div><!-- fin texte-doc -->
+
+	  </div><!-- Fin cadre-telechargements -->
+	</B_doc_joints>
