@@ -29,6 +29,8 @@
 
 #SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})}
 	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#f6f6f6})}
+#SET{c_titraille,(#CONFIG{soyezcreateurs_couleurs/titraille,#005e7a})}
+	#SET{c_titraille_bk,(#CONFIG{soyezcreateurs_couleurs/titraille_bk,#f6f6f6})}
 
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
 #SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,180})}
@@ -350,7 +352,7 @@ select {
   font-family: "picto-soyezcreateurs" ;
   font-size: 50px;
   opacity: 1;
-  color: #be1621;
+  color: #GET{c_titraille};
 }
 .slider-pratique .slick-prev:hover:before,
 .slider-pratique .slick-prev:focus:before,
@@ -426,20 +428,20 @@ select {
 #content .titre-sommaire:before {
   content: "";
   display: block;
-  background-color: #be1621;
+  background-color: #GET{c_titraille};
   width: 100%;
   height: 1px;
 }
 #content .titre-sommaire h1 {
   display: block;
-  background-color: #eae9e5;
+  background-color: #GET{c_titraille_bk};
 max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   margin: -1.1em auto 1em auto;
   padding: .5em .8em .5em;
-  color: #be1621;
+  color: #GET{c_titraille};
   font-size: 2rem;
   line-height: 1em;
-  border-left: 1px solid #be1621;
+  border-left: 1px solid #GET{c_titraille};
 }
 @media screen and (max-width: 1178px) {
    #content .titre-sommaire h1 {
@@ -476,7 +478,7 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   height: 30px;
 }
  .slick-dots li.slick-active button::before {
-  color: #be1621;
+  color: #GET{c_titraille};
 }
  #liens-diaporama {
   position: absolute;
@@ -517,7 +519,7 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
   margin-left: .55rem;
   padding: .85rem .5rem;
   font-size: 0;
-  border-left: 1px solid #be1621 ;
+  border-left: 1px solid #GET{c_titraille};
 }
  #liens-diaporama li a span.icon:before {
   font-size: 2.15rem;
@@ -544,9 +546,6 @@ max-width: [(#GET{LargeurContaineur}|moins{44})]px;
  #pratique {
   margin-top: 6.5em;
   margin-bottom: 4em;
-}
- #pratique .titre-sommaire h1 {
-  background-color: #CFEBEB;
 }
  .clearfix:after,
  .grid:after {
@@ -695,6 +694,7 @@ img.zoomsurlogo {
   margin-bottom: 20px;
   -webkit-transition: all .25s ease;
   transition: all .25s ease;
+  background-color: #eae9e5;
 }
 .grid-item .content-actus:hover,
 .grid-item .content-actus:focus {
@@ -735,7 +735,7 @@ img.zoomsurlogo {
   margin: 0;
   font-size: 21px;
   font-weight: 400;
-  color: #be1621 ;
+  color: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];
   line-height: 21px;
   padding: 10px;
   text-align: right;
