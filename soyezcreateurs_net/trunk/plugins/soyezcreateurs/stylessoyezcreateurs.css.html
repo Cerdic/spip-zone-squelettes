@@ -44,11 +44,15 @@ body { background: transparent; }
 [(#SET{largeurMenu,[(#GET{LargeurMenuGauche}|plus{#GET{LargeurMenuDroit}}|moins{20})]})]
 
 #SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#eceded})}
+#SET{c_triadea,(#CONFIG{soyezcreateurs_couleurs/triadea,#be1621})}
+#SET{c_triadeb,(#CONFIG{soyezcreateurs_couleurs/triadeb,#129b9b})}
+#SET{c_triadec,(#CONFIG{soyezcreateurs_couleurs/triadec,#c38f06})}
 #SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
 #SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#262626})}
 	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff})}
-#SET{c_fildariane,(#CONFIG{soyezcreateurs_couleurs/fildariane,#262626})}
-	#SET{c_fildariane_bk,(#CONFIG{soyezcreateurs_couleurs/fildariane_bk,#ffffff})}
+#SET{c_outils,(#CONFIG{soyezcreateurs_couleurs/outils,(#CONFIG{soyezcreateurs_couleurs/header,#262626})})}
+#SET{c_fildariane,(#CONFIG{soyezcreateurs_couleurs/fildariane,(#CONFIG{soyezcreateurs_couleurs/container,#02265a})})}
+	#SET{c_fildariane_bk,(#CONFIG{soyezcreateurs_couleurs/fildariane_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#02265a})})}
 #SET{c_fildarianehome,(#CONFIG{soyezcreateurs_couleurs/fildarianehome,#EA5044})}
 	#SET{c_chevrons,(#CONFIG{soyezcreateurs_couleurs/fildarianehome_bk,#EA5044})}
 #SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#595959})}
@@ -57,6 +61,8 @@ body { background: transparent; }
 	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#ffffff})}
 #SET{c_menuhaut,(#CONFIG{soyezcreateurs_couleurs/menuhaut,#017ca5})}
 	#SET{c_menuhaut_bk,(#CONFIG{soyezcreateurs_couleurs/menuhaut_bk,#ffffff})}
+#SET{c_menubas,(#CONFIG{soyezcreateurs_couleurs/menubase,#017ca5})}
+	#SET{c_menubas_bk,(#CONFIG{soyezcreateurs_couleurs/menubas_bk,#ffffff})}
 #SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,#017ca5})}
 	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,#ffffff})}
 #SET{c_datemajsite,(#CONFIG{soyezcreateurs_couleurs/datemajsite,#595959})}
@@ -65,8 +71,8 @@ body { background: transparent; }
 	#SET{c_menu_a_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_bk,#ffffff})}
 #SET{c_menu_a_hover,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover,#ffffff})}
 	#SET{c_menu_a_hover_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover_bk,#0b7899})}
-#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#ffffff})}
-	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#0b7899})}
+#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#ffffff})!important}
+	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#0b7899})!important}
 #SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#ffffff})}
 	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#0b7899})}
 
@@ -92,6 +98,7 @@ body { background: transparent; }
 #SET{d_footer_degrade,#CONFIG{soyezcreateurs_couleurs/footer_degrade,on}}
 #SET{d_titraille_degrade,#CONFIG{soyezcreateurs_couleurs/titraille_degrade,on}}
 #SET{d_menuhaut_degrade,#CONFIG{soyezcreateurs_couleurs/menuhaut_degrade,on}}
+#SET{d_menubas_degrade,#CONFIG{soyezcreateurs_couleurs/menubas_degrade,on}}
 #SET{d_cartouche_degrade,#CONFIG{soyezcreateurs_couleurs/cartouche_degrade,on}}
 #SET{d_cadreinfo_degrade,#CONFIG{soyezcreateurs_couleurs/cadreinfo_degrade,on}}
 #SET{d_citations_degrade,#CONFIG{soyezcreateurs_couleurs/citations_degrade,on}}
@@ -174,6 +181,28 @@ body { background: transparent; }
 }
 .icon-partenaires:before {
   content: "\1F91D";
+}
+
+.triadeA {
+	background-color: #GET{c_triadea};
+	color: [(#GET{c_triadea}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
+}
+.texte-triadeA {
+	color:#GET{c_triadea};
+}
+.triadeB {
+	background-color: #GET{c_triadeb};
+	color: [(#GET{c_triadeb}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
+}
+.texte-triadeB {
+	color:#GET{c_triadeb};
+}
+.triadeC {
+	background-color: #GET{c_triadec};
+	color: [(#GET{c_triadec}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
+}
+.texte-triadeC {
+	color:#GET{c_triadec};
 }
 
 
@@ -800,16 +829,16 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #citations a:hover, #citations a:focus { [color: #(#GET{c_menu_a_bk}|couleur_foncerluminosite|couleur_extreme); ]text-decoration: underline; }
 #citations a:active { color: #f00; }
 /* ?? */
-#menufooter { background-color: #GET{c_navigation_bk};
-	[(#GET{c_navigation_bk}|!={transparent}|oui|et{[(#GET{d_menuhaut_degrade}|non)]})
-	background: #GET{c_navigation_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas_menu.png}|image_sepia{[(#GET{c_navigation_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x bottom];]
+#menufooter { background-color: #GET{c_menubas_bk};
+	[(#GET{d_menubas_degrade}|non)
+	background: #GET{c_menubas_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas_menu.png}|image_sepia{[(#GET{c_menubas_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x bottom];]
 	text-align:right;
 	font-size: 1.4em;
 }
 #menufooter ul { padding: 0; margin: 0; list-style-type: none; }
 #menufooter ul li { display: inline; margin: 0; list-style: none; }
-#menufooter ul li a, #menufooter ul li a:visited { display: inline-block; padding: 0.5em 1em; text-decoration: none; white-space: nowrap; color: #GET{c_navigation}; }
-#menufooter ul li a:hover, #menufooter ul li a:focus { background-color: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; }
+#menufooter li a, #menufooter li a:visited { display: inline-block; padding: 0.5em 1em; text-decoration: none; white-space: nowrap; }
+#menufooter li a:hover, #menufooter li a:focus { background-color: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; }
 /* bandeau de contact dans le footer */
 #footer #bandeaucontact { padding: 1px 10px; color: #GET{c_footer}; text-align: center; }
 #footer #bandeaucontact p { text-align: center; font-size: 1.2em; }
@@ -1917,11 +1946,11 @@ a[href]:focus {
 }
 .portailcognac a[href]:hover,
 .portailcognac a[href]:focus {
-  color: #GET{c_container} !important;
+  color: #GET{c_container};
   text-decoration: none;
 }
 .portailcognac a[href]:focus {
-  background-color: #ddd!important;
+  background-color: #ddd;
 }
 .portailcognac #spip-admin a[href]:hover {
   color: white!important;
@@ -2229,8 +2258,38 @@ a.button:focus,
 button:hover,
 button:focus {
   background-color: white;
-  border: 1px solid #GET{c_fildarianehome};
+  border: 1px solid #GET{c_triadea};
   color: #333;
+}
+.triadeA:hover,
+.triadeA:focus,
+a.triadeA:hover,
+a.triadeA:focus,
+#footer a.triadeA:hover,
+#footer a.triadeA:focus {
+  background-color: [(#GET{c_triadea}|couleur_extreme|=={000000}|?{#000000,#FFFFFF})];
+  border: 1px solid #GET{c_triadea};
+  color: [(#GET{c_triadea}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
+}
+.triadeB:hover,
+.triadeB:focus,
+a.triadeB:hover,
+a.triadeB:focus,
+#footer a.triadeB:hover,
+#footer a.triadeB:focus {
+  background-color: [(#GET{c_triadeb}|couleur_extreme|=={000000}|?{#000000,#FFFFFF})];
+  border: 1px solid #GET{c_triadeb};
+  color: [(#GET{c_triadeb}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
+}
+.button.triadeC:hover,
+.button.triadeC:focus,
+a.button.triadeC:hover,
+a.button.triadeC:focus,
+#footer a.button.triadeC:hover,
+#footer a.button.triadeC:focus {
+  background-color: [(#GET{c_triadec}|couleur_extreme|=={000000}|?{#000000,#FFFFFF})];
+  border: 1px solid #GET{c_triadec};
+  color: [(#GET{c_triadec}|couleur_extreme|=={000000}|?{#FFFFFF,#000000})];
 }
 
 .portailcognac #container {
@@ -2322,7 +2381,7 @@ button:focus {
 }
 .portailcognac #menuhaut #menuh strong a,
 .portailcognac #menuhaut #menuh a:hover {
-  border-bottom: 3px solid #GET{c_header_bk};
+  border-bottom: 3px solid [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];;
 }
 .portailcognac #menuhaut #menuh ul li {
   line-height: 1em;
@@ -2386,11 +2445,11 @@ button:focus {
   padding: 8px .5vw 8px;
   border-bottom: 3px solid transparent;
   background-color: transparent;
-  color: #GET{c_header};
+  color: #GET{c_outils};
 }
 #header #cadre_outils a:hover, #header #cadre_outils a:focus {
   background-color: transparent;
-  border-bottom: 3px solid #GET{c_header};
+  border-bottom: 3px solid #GET{c_outils};
 }
 ]
 .portailcognac #content {
@@ -2545,28 +2604,14 @@ button:focus {
   vertical-align: text-bottom;
 }
 .portailcognac #footer #footerbas {
-  background: [(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}})];
   margin: 0;
   padding: 0;
-  color: [(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header},#GET{c_header_bk}})];
 }
 .portailcognac #footer #footerbas div {
   display: block;
 }
-.portailcognac #footer #footerbas a {
-  color: [(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header},#GET{c_header_bk}})];
-}
 
-.portailcognac #footer #datemajsitefooter {
-  background: [(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}})];
-  margin: 0;
-  font-size: 12px;
-}
-.portailcognac #footer #datemajsitefooter span {
-  padding: 0;
-}
 .portailcognac #footer p {
-  color: white;
   font-weight: 300;
 }
 .portailcognac #footer #copymentions {
@@ -2574,8 +2619,6 @@ button:focus {
 }
 .portailcognac #footer #w3cgohome {
   font-size: 70%;
-  border-top: 1px dotted #aaa;
-  border-bottom: 1px dotted #aaa;
 }
 .portailcognac #footer #footerbas div#droitsauteurs {
   display: none;
@@ -2792,12 +2835,8 @@ button:focus {
 .portailcognac #footer h2 a {
   padding-bottom: 7px;
   font-weight: 300;
-  text-transform: lowercase;
-  font-size: .85em !important;
+  font-size: .85em;
   border-bottom: 2px dotted transparent;
-}
-.portailcognac #footer h2 a:hover {
-  border-bottom: 2px dotted #GET{c_footer};
 }
 #footer .liste-rubriques section {
   max-width: 300px;
