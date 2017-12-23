@@ -923,7 +923,40 @@ function soyezcreateurs_config_motsclefs() {
 		create_rubrique_mot("000. Fourre-tout", "PasDansFildAriane", "_Specialisation_Rubrique");
 		$id_article = create_article(trouve_article_sc("Contact"), "000. Fourre-tout");
 			create_article_mot("Contact", "000. Fourre-tout", "MENURACINEBAS_Systematique", "_Specialisation");
-			ecrire_config('soyezcreateurs/bandeau_contact',"[Votre nom->$id_article] -- Votre adresse -- 00000 Ville -- Tél. 00 00 00 00 00");
+			ecrire_config('soyezcreateurs/bandeau_contact',"<div id=\"informations\" class=\"row\">\n
+	<div id=\"coordonnees\" class=\"avec-padding\">\n
+		<div class=\"adresse flexbox-flex\">\n
+			<span class=\"icon-location icon-lg icon-fw texte-blanc\"></span>\n
+			<p>\n
+				Rue du bonheur<br />\n
+				01777 - SoyezCréateurs\n
+			</p>\n
+		</div>\n
+		<div class=\"telephone flexbox-flex\">\n
+			<span class=\"icon-phone icon-lg icon-fw texte-blanc\"></span>\n
+			<p>\n
+				[01~23~45~67~89->tel:+33.123456789]\n
+			</p>\n
+		</div>\n
+		<div class=\"telephone flexbox-flex\">\n
+			<span class=\"icon-fax icon-lg icon-fw texte-blanc\"></span>\n
+			<p>\n
+				01~23~45~67~89 (fax)\n
+			</p>\n
+		</div>\n
+		<div class=\"accueil flexbox-flex\">\n
+			<span class=\"icon-information icon-lg icon-fw texte-blanc\"></span>\n
+			<p>\n
+				Information complémentaires.<br />\n
+ \n
+			</p>\n
+		</div>\n
+		<p><a class=\"button triadeC texte-blanc float-center avec-margin\" href=\"/$id_article\"><span class=\"icon-envelope icon-lg avec-padding-right05\"></span>Nous écrire</a></p>\n
+	</div>\n
+	<div id=\"carte\" class=\"avec-padding\">\n
+		<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d365312.326488903!2d-1.5056982671874777!3d44.33045219999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5380bbec6fa8d3%3A0x2cd88d7991f88ca4!2sPerdu..!5e0!3m2!1sfr!2sfr!4v1508413717844\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen=\"true\"></iframe>\n
+	</div>\n
+</div>");
 		$id_article = create_article(trouve_article_sc("Politique d'accessibilité du site"), "000. Fourre-tout");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
