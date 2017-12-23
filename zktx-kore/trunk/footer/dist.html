@@ -1,10 +1,11 @@
-
-	[(#PLUGINS{menus}|oui) [<nav id="footernav">(#INCLURE{fond=inclure/menu, env, identifiant=footernav})</nav>] ]
-	<B_a><BOUCLE_a(ARTICLES){titre = footer}{statut = prop}{tout_voir}>[<div class="#EDIT{texte}">(#TEXTE|abs_url)</div>]</BOUCLE_a></B_a>
-	[<p class="text-muted">
-		(#SESSION{id_auteur}|oui) <a class="submit" href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>
-		[<span class="sep">	(#AUTORISER{ecrire})| </span><a class="submit" href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
-	</p>]
+[(#PLUGINS{menus}|oui) [<nav id="footernav">(#INCLURE{fond=inclure/menu, env, identifiant=footernav})</nav>] ]
+<B_a><BOUCLE_a(ARTICLES){titre = footer}{statut = prop}{tout_voir}>[<div class="#EDIT{texte}">(#TEXTE|abs_url)</div>]</BOUCLE_a></B_a>
+[(#SESSION{statut}|=={0minirezo}|oui) 
+	[<ul class="list-inline text-muted text-center">
+		(#SESSION{id_auteur}|oui) <li><a class="submit" href="#URL_LOGOUT" rel="nofollow"><i class="fa fa-times-circle" aria-hidden="true"></i> <:icone_deconnecter:></a></li>
+		[(#AUTORISER{ecrire})<li><a class="submit" href="#EVAL{_DIR_RESTREINT_ABS}"><i class="fa fa-key" aria-hidden="true"></i> <:espace_prive:></a></li>]
+	</ul>]
+]
 
 
 
