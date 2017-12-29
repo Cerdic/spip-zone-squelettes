@@ -93,7 +93,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
-                    <br /><br />            
+                    <br /><br />                               
             #SET{name,nombreart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:nombre_articles_pagination:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
@@ -101,6 +101,26 @@
                              <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
                     </span>
                     <br /><br />
+            #SET{name,nbrecolrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:onglets_nombre_colonnes:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_un" value="1"
+                            [(#ENV{#GET{name}}|=={1}|oui)checked="checked"] /><label for="#GET{name}_date"><:escal:choix_une:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_deux" value="2"
+                            [(#ENV{#GET{name}}|=={2}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_hasard"><:escal:choix_deux:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_utrois" value="3"
+                            [(#ENV{#GET{name}}|=={3}|oui)checked="checked"] /><label for="#GET{name}_date"><:escal:choix_trois:></label>
+                    </span>
+                    <br /><br />  
+            #SET{name,nbrecaracttexterub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                   <:escal:texte_coupe:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]"  />
+                    </span>
+                    <:escal:caracteres:>
+                    <br /><br />  
             #SET{name,paginhaut}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:rubrique_pagin_haut:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
