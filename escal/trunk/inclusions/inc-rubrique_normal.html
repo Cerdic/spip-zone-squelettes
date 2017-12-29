@@ -63,15 +63,16 @@
 [(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
 
 
-  <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}>
+  <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}> 
     <div class="cadre-articles-rubrique">
     <a class="articles-rubrique" href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
       <div class="titre-articles-rubrique">
         <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
         [(#TITRE)]
       </div>
+      <div class="nettoyeur"></div> 
       <div class="introduction-articles-rubrique">
-        [(#INTRODUCTION|supprimer_tags|couper{150})]
+        [(#INTRODUCTION|supprimer_tags|couper{#CONFIG{escal/config/nbrecaracttexterub,150}})]
       </div>
      </a>
       <div class="auteur-articles-rubrique">
@@ -88,10 +89,16 @@
           [(#LANG|=={ja}|oui)<:par_auteur:>]
           </B_test>
       </div>
-      <div class="nettoyeur"></div>
-    </div>
-    
+    </div> 
+	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui) 
+		[(#COMPTEUR_BOUCLE|alterner{'','<div class="nettoyeur"></div>'})] 
+	]
+	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui) 
+		[(#COMPTEUR_BOUCLE|alterner{'','','<div class="nettoyeur"></div>'})] 
+	]
+      
   </BOUCLE_articles_rubs>
+<div class="nettoyeur"></div> 
 
 <!-- si plus de x articles, on pagine (x est defini plus haut avec {pagination x} ) -->
 [(#CONFIG{escal/config/paginbas}|=={non}|oui) <!-- ]
