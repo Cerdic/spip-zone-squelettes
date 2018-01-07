@@ -1,0 +1,81 @@
+[(#SET{colonne,[(#ENV{colonne,1})]})]
+
+[(#GET{colonne}|=={1}|oui)
+#SET{width,100}
+]
+[(#GET{colonne}|=={2}|oui)
+#SET{width,40}
+]
+[(#GET{colonne}|=={3}|oui)
+#SET{width,25}
+]
+
+<style type="text/css">
+.container-choix {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.choix-article{	
+	margin:5px; 
+	background-color: [(#CONFIG{escal/config/couleuruneart,#DAE6F6})];
+	border-radius: [(#CONFIG{escal/config/arrondi1,10px})];
+	width: #GET{width}%;
+	flex-grow: 1;
+	display: flex;
+}
+.choix-article a{
+	background-color: [(#CONFIG{escal/config/couleuruneart,#DAE6F6})];
+	color:  [(#CONFIG{escal/config/textuneart,#000000})]; 
+	padding:10px;
+	border-radius: [(#CONFIG{escal/config/arrondi1,10px})];
+	flex-grow: 1;	
+}
+.choix-article a:hover{
+	background-color: [(#CONFIG{escal/config/couleur4,#224466})] !important;
+	color:  [(#CONFIG{escal/config/text4,#FFFFFF})] !important;	
+}
+@media screen and (max-width: 640px) {
+.choix-article{
+	width: 100%;
+}
+}
+</style>
+
+
+
+<div class="container-choix">
+
+<BOUCLE_article (ARTICLES){id_article?}>
+
+<div class="choix-article">
+<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+<!-- affichage logo -->
+	<span style="float:left; margin:5px"> [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,80}})] </span>
+	
+<!-- affichage titre -->
+	<span style="font-size:1.1rem; font-weight:bold; margin-left: 5px;">
+	[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]
+	</span><br />
+	
+<!-- affichage rubrique -->
+	<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubrique}|=={non}|non}>
+		<span style="font-size:1rem; margin-left:10px;">
+			 <:rubrique:> : [(#TITRE|couper{30})]
+		</span>
+		<br />
+	</BOUCLE_Rub_suite>
+	<br />
+	<div class="nettoyeur"></div>
+	
+<!-- affichage texte article -->
+	<div class="texte-autres">
+		[(#TEXTE|couper{#CONFIG{escal/config/nbrecaracttexte,150}})]      
+	</div>
+	<br />
+</a>
+</div>   
+    
+</BOUCLE_article>
+
+</div>

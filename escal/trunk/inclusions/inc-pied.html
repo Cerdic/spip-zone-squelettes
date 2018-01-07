@@ -4,8 +4,14 @@
 <BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}{si #CONFIG{escal/config/citations}|=={oui}|oui}>
 [(#TEXTE|citations)]
 </BOUCLE_citations>
+
+[(#PLUGIN{SOCIAUX}|oui)
 <br /><br />
+<INCLURE{fond=inclure/sociaux}>
+]
+
 [(#PLUGIN{FB_MODELES}|oui)
+<br /><br />
     [(#MODELE{
     fb_like,
     send=#CONFIG{escal/config/sendfacebook,oui},
@@ -13,10 +19,7 @@
     show_faces=non
     })]
 ]
-<br /><br />
-[(#PLUGIN{SOCIAUX}|oui)
-<INCLURE{fond=inclure/sociaux}>
-]
+
 
 </div>
 
@@ -95,8 +98,8 @@
 [(#LANG|=={ja}|oui) <a href="https://www.spip.net" title="<:ecrire:version:> #SPIP_VERSION">SPIP</a> <:escal:site_realise_avec:> ]
 [(#LANG|=={ja}|non) <:escal:site_realise_avec:> <a href="https://www.spip.net" title="<:ecrire:version:> #SPIP_VERSION">SPIP</a> ]
 <br /> 
-<:escal:avec_le_squelette:> <a href="http://escal.ac-lyon.fr/" title="<:escal:title_escal:>" >ESCAL-V3</a><br />
-<:version:> #PLUGIN{escal, version}<br />
+<:escal:avec_le_squelette:> <a href="http://escal.ac-lyon.fr/" title="<:escal:title_escal:>" >ESCAL</a>
+#PLUGIN{escal, version}<br />
 [(#CONFIG{escal/config/hebergeur}|=={oui}|oui)
   <:escal:hebergeur:>
   [(#CONFIG{escal/config/urlhebergeur}|oui)<a href="#CONFIG{escal/config/urlhebergeur}" title="site de l'hébergeur">]
