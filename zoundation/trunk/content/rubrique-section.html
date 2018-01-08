@@ -1,0 +1,41 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+
+	<article class="column-block content-principal">
+		<header>
+			[(#LOGO_RUBRIQUE
+				|image_reduire{200,200}
+				|inserer_attribut{class, thumbnail spip_logos}
+				|inserer_attribut{alt, #TITRE|attribut_html})]
+			<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+		</header>
+
+		[<section[ class="(#EDIT{descriptif})"]>(#DESCRIPTIF)</section>]
+		[<section[ class="(#EDIT{texte})"]>(#TEXTE)</section>]
+
+		<INCLURE{fond=inclure/mots_rubrique, id_rubrique} />
+	</article>
+
+	<B_boucle_sections_sous_rubrique>
+		<BOUCLE_boucle_sections_sous_rubrique(RUBRIQUES){id_parent=#ID_RUBRIQUE}{'<hr>'}>
+			[<h2>(#TITRE)</h2>]
+			<B_boucle_article_section>
+				<div class="row [(#BLOCKGRID{#ARRAY{small-up, 2*, medium-up, 2*, large-up, 3*}})]">
+					<BOUCLE_boucle_article_section(ARTICLES){id_rubrique}>
+						<div class="column column-block">
+							<INCLURE{fond=inclure/article-card, id_article} />
+						</div>
+					</BOUCLE_boucle_article_section>
+				</div>
+			</B_boucle_article_section>
+		</BOUCLE_boucle_sections_sous_rubrique>
+	</B_boucle_sections_sous_rubrique>
+
+	[(#PIPELINE{zoundation_rubrique, #ARRAY{data, '', args, #ENV*|unserialize}})]
+
+	[(#REM) Gestion du portfolio et des documents ]
+	<INCLURE{fond=inclure/documents,id_rubrique} />
+
+
+	[<section class="notes"><hr />(#NOTES)</section>]
+
+</BOUCLE_content>
