@@ -1,0 +1,23 @@
+[(#REM)
+Un squelette pour faciliter l'affichage d'article sous forme de "card" foundation
+http://foundation.zurb.com/sites/docs/card.html
+]
+<BOUCLE_article-card(SITES){id_syndic}>
+	<div class="card">
+		[<div class="card-divider">
+			<h2 class="h4"><a href="#URL_SITE">(#NOM_SITE)</a></h2>
+		</div>]
+		[<div class="card-section text-center">
+			<a href="[(#LOGO_SITE|extraire_attribut{src})]" class="mediabox">
+				(#LOGO_SITE
+					|sinon{[(#ENV{logo_defaut}|?{#LOGO_SITE_SPIP,''})]}
+					|image_passe_partout{175,175}
+					|image_recadre{175,175}
+					|vider_attribut{class})
+			</a>
+		</div>]
+		[<div class="card-section">
+			(#DESCRIPTIF)
+		</div>]
+	</div>
+</BOUCLE_article-card>

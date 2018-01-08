@@ -39,22 +39,12 @@
 
 	[(#REM) Sites de la rubrique ]
 	<B_sites>
-		<aside class="liste sites">
-			<h3><:sur_web:></h3>
-			<ul class="liste-items">
-				<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-					<li class="item">
-						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
-						<B_syndic>
-							<ul>
-								<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-									<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
-								</BOUCLE_syndic>
-							</ul>
-						</B_syndic>
-					</li>
-				</BOUCLE_sites>
-			</ul>
+		<aside class="row[ (#BLOCKGRID{#ARRAY{large-up, 3, medium-up, 3, small-up, 1}})]">
+			<BOUCLE_sites(SITES) {id_rubrique} {par date}{inverse}>
+				<div class="column column-block">
+					<INCLURE{fond=inclure/site-card, id_syndic} />
+				</div>
+			</BOUCLE_sites>
 		</aside>
 	</B_sites>
 
