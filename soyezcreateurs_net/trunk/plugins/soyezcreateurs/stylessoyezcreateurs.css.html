@@ -211,7 +211,7 @@ html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
 html { background-color: #GET{c_body_bk}; [(#GET{c_body_bk}|!={transparent}|oui|et{[(#GET{d_body_degrade}|non)]}) background: #GET{c_body_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_haut3.png}|image_sepia{[(#GET{c_body_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x top];] color: #[(#GET{c_body_bk}|couleur_inverserluminosite{80})]; font-size: [(#CONFIG{soyezcreateurs/mode_affichage,communiquant}|=={portailcognac}|?{100%,62.7%})]; }
 #header, #menuhaut, #navHaute, #navigation, #extra, #footer { font-family: #GET{f_navigation}; }
 div { margin: 0; padding: 0; border: 0; }
-img { z-index: 0; border: none; }
+img { z-index: 0; border: none; image-rendering:optimizeQuality; }
 p { margin-bottom: 10px; margin-top: 20px; font-size: 1em; text-align: left; }
 strong, b { font-weight: bold; }
 ol { color: #[(#GET{c_container}|couleur_inverserluminosite{10})]; font-size: 1em; list-style-type: decimal; list-style-image: none; }
@@ -2585,9 +2585,24 @@ a.button.triadeC:focus,
     display: inline-block;
 	width:80%;
   }
+  #header_inner {
+    min-height: auto!important;
+	margin-top: 0!important;
+  }
+  #header:before, #content:before, #content:after { display: none!important; }
+  #menu .logo_rubrique { width: 100%; }
+  #content, #navigation, #extra { min-height: auto!important; }
+  #footer {
+        background: #GET{c_footer_bk}!important;
+		min-height: auto!important;
+		height: auto!important;
+  }
   .portailcognac #letexte {
     display: block;
     padding: 0 0.75em;
+  }
+  .portailcognac .boutonstexte, .portailagence .boutonstexte {
+    right: 0;
   }
 }
 #footer #bandeaucontact p {
