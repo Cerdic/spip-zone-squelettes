@@ -118,6 +118,16 @@
 <legend><strong><:escal:articles_reponses_forum:></strong></legend>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
+            #SET{name,afficheformreponse}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_form_reponse:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
             #SET{name,togglereponsearticle}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:articles_premier_message:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>

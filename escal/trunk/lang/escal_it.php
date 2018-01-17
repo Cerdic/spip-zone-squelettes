@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'affichage_date_pub_ou_modif' => 'Visualizzazione della data <br />(di modifica, altrimenti di pubblicazione)',
 'affichage_debut' => 'Visualizzazione dell\'inizio del testo',
 'affichage_descriptif' => 'Visualizzazione della descrizione',
+'affichage_form_reponse' => 'Visualizzazione del modulo di risposta sotto l\'articolo',
 'affichage_image' => 'Visualizzazione della prima immagine',
 'affichage_nom_auteur' => 'Visualizzazione del nome dell\'autore',
 'affichage_nombre_comments' => 'Visualizzazione del numero dei commenti',
