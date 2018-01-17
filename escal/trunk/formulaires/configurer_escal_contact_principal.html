@@ -143,8 +143,9 @@
                     </div>
             </li>  
 <!-- checkbox -->
-            #SET{name,checkbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,checkbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><strong><:escal:contact_cases:></strong>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix droite">
@@ -153,6 +154,7 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
                     </div>
             #SET{name,checkboxoblig}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><:escal:contact_obli:><br />
@@ -164,17 +166,23 @@
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
                     </div>
+                    
             #SET{name,checkboxliste}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><:escal:contact_presentation:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
-                    ]<span class="choix droite">
+                    ]<span class="choix">
                             <input type="radio" name="#GET{name}" id="#GET{name}_ligne" value="ligne"
                             [(#ENV{#GET{name}}|=={liste}|non)checked="checked"] /><label for="#GET{name}_oui"><:escal:contact_ligne:></label>
 
                             <input type="radio" name="#GET{name}" id="#GET{name}_liste" value="liste"
                             [(#ENV{#GET{name}}|=={liste}|oui)checked="checked"] /><label for="#GET{name}_non"><:escal:contact_liste:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
                     </div>
+                    
             #SET{name,titrecheckbox}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication"><:escal:contact_libelle_gen:>
                                               <br />

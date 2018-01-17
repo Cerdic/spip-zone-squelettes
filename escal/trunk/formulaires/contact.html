@@ -2,135 +2,134 @@
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 <BOUCLE_editable(CONDITION){si #ENV{editable}|oui}>
 <form action='#ENV{action}' method='post'> 
-    #ACTION_FORMULAIRE{#ENV{action}}    
-    <ul id="item">
-        <li>
-            <label>
-                <:escal:contact_nom:> *
-                [<span class="alerte">(#ENV**{erreurs}|table_valeur{nom})</span>]
-            </label>
-            <input type="text" name="nom" size="30" value="#ENV{nom}" />
-        </li>
-        <li>
-            <label>
-                <:escal:contact_prenom:> *
-                [<span class="alerte">(#ENV**{erreurs}|table_valeur{prenom})</span>]
-            </label>
-            <input type="text" name="prenom" value="#ENV{prenom}" size="30" />
-        </li>
+    #ACTION_FORMULAIRE{#ENV{action}} 
+    
+    
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{nom})</span>]
+	<input name="nom" type="text" class="feedback-input" value="#ENV{nom}" 
+	placeholder="<:escal:contact_nom:> *" id="nom" />
+</div>
+
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{prenom})</span>]
+	<input name="prenom" type="text" class="feedback-input" value="#ENV{prenom}" 
+	placeholder="<:escal:contact_prenom:> *" id="prenom" />
+</div>
+
+[(#CONFIG{escal/config/contactmail}|=={non}|non)  
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{email})</span>]
+	<input name="email" type="text" class="feedback-input" value="#ENV{email}" 
+	placeholder="<:escal:contact_mail:> *" id="email" />
+</div>
+]
+
+[(#CONFIG{escal/config/champsup1}|=={oui}|oui)
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup1})</span>]
+	<input name="champsup1" type="text" class="feedback-input" value="#ENV{champsup1}" 
+	placeholder="[(#CONFIG{escal/config/titrechampsup1}|_T_ou_typo)][(#CONFIG{escal/config/champsup1oblig}|=={oui}|oui)*]" id="champsup1" />
+</div>
+]
+[(#CONFIG{escal/config/champsup2}|=={oui}|oui)
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup2})</span>]
+	<input name="champsup2" type="text" class="feedback-input" value="#ENV{champsup2}" 
+	placeholder="[(#CONFIG{escal/config/titrechampsup2}|_T_ou_typo)][(#CONFIG{escal/config/champsup2oblig}|=={oui}|oui)*]" id="champsup2" />
+</div>
+]
+
+[(#CONFIG{escal/config/radio}|=={oui}|oui) 
+<div class="item radio">  
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{sujet})</span>]
+	<div class="texte-item" id="motif"><:escal:contact_motif:> [(#CONFIG{escal/config/radiooblig}|=={oui}|oui)*]</div>
+
+		<div class="listitem radio1">
+			<input type="radio" name="sujet" value="<:escal:contact_motif1:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif1:>}|oui)checked] />
+			<label class="contact-radio" for="sujet1"><:escal:contact_motif1:></label>
+		</div>
+		<div class="listitem radio2">
+			<input type="radio" name="sujet" value="<:escal:contact_motif2:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif2:>}|oui)checked] />
+			<label class="contact-radio" for="sujet2"><:escal:contact_motif2:></label>
+		</div>
+		<div class="listitem radio3">
+			<input type="radio" name="sujet" value="<:escal:contact_motif3:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif3:>}|oui)checked] />
+			<label class="contact-radio" for="sujet3"><:escal:contact_motif3:></label>
+		</div>
+		<div class="listitem radio4">
+			<input type="radio" name="sujet" value="<:escal:contact_motif4:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif4:>}|oui)checked] />
+			<label class="contact-radio" for="sujet4"><:escal:contact_motif4:></label>
+		</div>
+		<div class="listitem radio5">
+			<input type="radio" name="sujet" value="<:escal:contact_motif5:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif5:>}|oui)checked] />
+			<label class="contact-radio" for="sujet5"><:escal:contact_motif5:></label>
+		</div>
+	</ul>
+	<br/>
+</div>
+]
+
+[(#CONFIG{escal/config/radio}|=={oui}|oui) 
+<div class="item checkbox">  
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{checkbox})</span>]
+	<div class="texte-item" id="checkbox">
+	[(#CONFIG{escal/config/titrecheckbox}|oui)
+         [(#CONFIG{escal/config/titrecheckbox}|_T_ou_typo)][(#CONFIG{escal/config/checkboxoblig}|=={oui}|oui)*]
+        ]
+     </div>
         
-        [(#CONFIG{escal/config/contactmail}|=={non}|non)
-            <li>
-                <label>
-                    <:escal:contact_mail:> *
-                    [<span class="alerte">(#ENV**{erreurs}|table_valeur{email})</span>]
-                </label>
-                <input type="text" name="email" value="#ENV{email}" size="30" />
-            </li>
-        ]
+	[(#CONFIG{escal/config/checkbox1}|?{' ',''})
+	<div class="listitem">
+	<input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]
+	</div>
+	]
 
+	[(#CONFIG{escal/config/checkbox2}|?{' ',''})
+	<div class="listitem">
+	<input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]
+	</div>
+	]
 
-        [(#CONFIG{escal/config/champsup1}|=={oui}|oui)
-            <li>
-                <label>[(#CONFIG{escal/config/titrechampsup1}|_T_ou_typo)][(#CONFIG{escal/config/champsup1oblig}|=={oui}|oui)*]
-                [<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup1})</span>]
-                </label>
-                <input type="text" name="champsup1" value="#ENV{champsup1}" size="30" />
-            </li>
-        ]
+	[(#CONFIG{escal/config/checkbox3}|?{' ',''})
+	<div class="listitem">
+	<input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]
+	</div>
+	]
 
+	[(#CONFIG{escal/config/checkbox4}|?{' ',''})
+	<div class="listitem">
+	<input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]
+	</div>
+	]
 
-        [(#CONFIG{escal/config/champsup2}|=={oui}|oui)
-            <li>
-                <label>[(#CONFIG{escal/config/titrechampsup2}|_T_ou_typo)][(#CONFIG{escal/config/champsup2oblig}|=={oui}|oui)*]
-                [<span class="alerte">(#ENV**{erreurs}|table_valeur{champsup2})</span>]
-                </label>
-                <input type="text" name="champsup2" value="#ENV{champsup2}" size="30" />
-            </li>
-         ]
+	[(#CONFIG{escal/config/checkbox5}|?{' ',''})
+	<div class="listitem">
+	<input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]
+	</div>
+	]
 
+	<br/>
+</div>
+]
 
+<div class="item" style="display:none;">
+	N'entrez rien dans ce champ *
+	<input type="text" name="Antispam" value="#ENV{Antispam}" size="30" />
+</div>
 
-        [(#CONFIG{escal/config/radio}|=={oui}|oui) 
-            <li><:escal:contact_motif:> [(#CONFIG{escal/config/radiooblig}|=={oui}|oui)*]
-            [<span class="alerte">(#ENV**{erreurs}|table_valeur{sujet})</span>]
-              <ul>
-                <li class="radio radio1">
-                <input type="radio" name="sujet" value="<:escal:contact_motif1:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif1:>}|oui)checked] />
-                <label class="contact-radio" for="sujet1"><:escal:contact_motif1:></label>
-                </li>
-                <li class="radio radio2">
-                <input type="radio" name="sujet" value="<:escal:contact_motif2:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif2:>}|oui)checked] />
-                <label class="contact-radio" for="sujet2"><:escal:contact_motif2:></label>
-                </li>
-                <li class="radio radio3">
-                <input type="radio" name="sujet" value="<:escal:contact_motif3:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif3:>}|oui)checked] />
-                <label class="contact-radio" for="sujet3"><:escal:contact_motif3:></label>
-                </li>
-                <li class="radio radio4">
-                <input type="radio" name="sujet" value="<:escal:contact_motif4:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif4:>}|oui)checked] />
-                <label class="contact-radio" for="sujet4"><:escal:contact_motif4:></label>
-                </li>
-                <li class="radio radio5">
-                <input type="radio" name="sujet" value="<:escal:contact_motif5:>"  size="30" [(#ENV{sujet}|=={<:escal:contact_motif5:>}|oui)checked] />
-                <label class="contact-radio" for="sujet5"><:escal:contact_motif5:></label>
-                </li>
-              </ul>
-            </li>
-        ]
+<div class="item">
+	[<span class="alerte">(#ENV**{erreurs}|table_valeur{message})</span>]
+	<div class="interdit"><:escal:contact_interdit:>[]%~#`$&|}{^>< </div>	
+	<textarea name="message" class="feedback-input" placeholder="<:escal:contact_message:> *" id="message">[(#ENV{message})]</textarea>
+</div>
+
+<div class="item">
+	<input type="submit" value="<:escal:contact_envoyer:>" id="button-blue"/>
+	<div class="ease"></div>
+</div>
         
-        <li id="checkbox">[(#CONFIG{escal/config/titrecheckbox}|oui)
-          <br />[(#CONFIG{escal/config/titrecheckbox}|_T_ou_typo)][(#CONFIG{escal/config/checkboxoblig}|=={oui}|oui)*][<span class="alerte">(#ENV**{erreurs}|table_valeur{checkbox})</span>]<br />] 
 
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)<ul><li>]
-        
-        [(#CONFIG{escal/config/checkbox1}|?{' ',''})
-            <input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox1}|_T_ou_typo)]
-        ]
-
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
-
-        [(#CONFIG{escal/config/checkbox2}|?{' ',''})
-            <input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox2}|_T_ou_typo)]
-        ]
-
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
-
-        [(#CONFIG{escal/config/checkbox3}|?{' ',''})
-            <input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox3}|_T_ou_typo)]
-        ]
-
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
-
-        [(#CONFIG{escal/config/checkbox4}|?{' ',''})
-            <input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox4}|_T_ou_typo)]
-        ]
-
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li><li>]
-
-        [(#CONFIG{escal/config/checkbox5}|?{' ',''})
-            <input type="checkbox" name="checkbox\[\]" value="[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]" [(#ENV{checkbox}|find{[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]}|oui)checked] />[(#CONFIG{escal/config/checkbox5}|_T_ou_typo)]
-        ]
-
-        [(#CONFIG{escal/config/checkboxliste}|=={liste}|oui)</li></ul>]
-
-        </li>
-        <li style="display:none;">
-            N'entrez rien dans ce champ *
-            <input type="text" name="Antispam" value="#ENV{Antispam}" size="30" />
-        </li>
-        <li>
-            <label style="width:100%" ><:escal:contact_message:> *[<span class="alerte">(#ENV**{erreurs}|table_valeur{message})</span>]
-            <br /><span class="interdit"><:escal:contact_interdit:>[]%~#`$&|}{^>< </span>
-            </label>
-        </li>
-        <li>
-            <textarea name="message" rows="10" cols="35" style="background-color:#ffffff">[(#ENV{message})]</textarea>
-        </li>
-        <li>
-            <input id="envoi" type="submit" name="Submit" value="<:escal:contact_envoyer:>" alt="Envoi"  title="Envoi de votre message" />
-        </li>
-    </ul>
 </form> 
 </BOUCLE_editable>
 <div class="nettoyeur"></div>
