@@ -102,12 +102,12 @@ function formulaires_contact_traiter_dist(){
 
 
         if (lire_config('escal/config/champsup1') == 'oui') {
-            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."&nbsp"."</strong>";
+            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup1'))."&nbsp;:&nbsp;"."</strong>";
             $message .= $champs['champsup1']."\n\n";
         }
 
         if (lire_config('escal/config/champsup2') == 'oui') {
-            $message.= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."&nbsp"."</strong>";
+            $message.= "<strong>"._T_ou_typo(lire_config('escal/config/titrechampsup2'))."&nbsp;:&nbsp;"."</strong>";
             $message.= $champs['champsup2']."\n\n";
         }
 
