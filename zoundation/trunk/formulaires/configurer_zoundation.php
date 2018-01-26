@@ -55,6 +55,14 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'nom' => 'sticky',
 				'label_case' => _T('zoundation:case_sticky')
 			)
+		),
+		array(
+			'saisie' => 'input',
+			'options' => array(
+				'nom' => 'google-site-verification',
+				'label' => _T('zoundation:google-site-verification'),
+				'explication' => _T('zoundation:explication_google-site-verification')
+			)
 		)
 	);
 

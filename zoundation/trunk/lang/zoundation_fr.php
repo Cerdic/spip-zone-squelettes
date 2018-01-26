@@ -27,5 +27,7 @@ avant la balise fermante du body.",
 	'mes_adresses' => 'Mes adresses',
 	'inc-sommaire' => 'Squelette du sommaire',
 	'explication_inc-sommaire' => 'Séléctionnez le squelette qui sera utilisé pour le sommaire du site. Vous pouvez créer vos propres squelettes en les placant dans un dossier <strong>inclure/</strong> avec pour nom <strong>inc-sommaire-*.html</strong>.',
-	'case_sticky' => 'Activer la navigation "<a href="http://foundation.zurb.com/sites/docs/sticky.html#sticky-navigation">sticky</a>" des menus par défaut.'
+	'case_sticky' => 'Activer la navigation "<a href="http://foundation.zurb.com/sites/docs/sticky.html#sticky-navigation">sticky</a>" des menus par défaut.',
+	'google-site-verification' => 'Code de vérification Google Search Console',
+	'explication_google-site-verification' => 'Placez ici le code de vérification de <a href="https://www.google.com/webmasters/">Search Console</a>. Placez <strong>uniquement</strong> le code, la balise méta sera automatiquement créée.'
 );
