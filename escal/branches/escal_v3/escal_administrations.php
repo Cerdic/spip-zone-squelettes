@@ -25,7 +25,7 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
     $maj['create'] = array(
         array('install_groupe_mots'),
         array('escal_configuration'),
-        array('ecrire_config', array('escal', array()))
+        array('ecrire_config', 'escal', array())
     );
     
     $maj['1.0.12'] =array(
