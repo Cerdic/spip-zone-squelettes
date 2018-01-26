@@ -5,7 +5,7 @@
 // Pour desactiver le mode multilingue, si votre site est monolingue,
 // commenter en placant un '#' au debut de la ligne suivante :
 
-    $forcer_lang = true;
+$GLOBALS['forcer_lang'] = true;
 
 ############# CONFIGURATION ADRESSAGE .html ##################
 
@@ -28,7 +28,7 @@
 // du site que nous pourrions ajouter et aux squelettes /dist/
 // que l'on utilise (backend, formulaire, etc...).
 
-    $table_des_traitements['TITRE'][] = 'supprimer_numero(typo(%s))';
+$GLOBALS['table_des_traitements']['TITRE'][] = 'supprimer_numero(typo(%s))';
 
 ############### CONFIGURATION COUTEAU SUISSE ################
 // Installation des outils par defaut
