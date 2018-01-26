@@ -34,8 +34,6 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
     
     include_spip('base/upgrade');
     maj_plugin($nom_meta_base_version, $version_cible, $maj);
-    ecrire_meta($nom_meta_base_version,$version_cible);
-    //ecrire_meta();
 }
 
 
