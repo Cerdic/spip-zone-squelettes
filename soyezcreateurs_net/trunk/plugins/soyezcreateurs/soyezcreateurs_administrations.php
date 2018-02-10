@@ -21,7 +21,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$current_version = 0.0;
 	if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		if (version_compare($current_version,'3.0.20','<')) {
-			spip_log("SoyezCreateurs maj 3.0.20 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.20 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
 			// Installation des index FullText si le plugin est présent
@@ -47,12 +47,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					create_evenement("900. Agenda", "Démonstration Agenda", "Démonstration Agenda", '2017-12-13', '2017-12-13', "", '', 'non');
 				}
 			}
-			spip_log("SoyezCreateurs maj 3.0.20 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.20 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
 
 		if (version_compare($current_version,'3.0.24','<')) {
-			spip_log("SoyezCreateurs maj 3.0.24 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.24 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			// Initialisation Sigles du dictionnaire
 			if (defined('_DIR_PLUGIN_DICTIONNAIRES')) {
 				include_spip('action/editer_dictionnaire');
@@ -112,40 +112,40 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				dictionnaires_lister_definitions(true);
 				
 			}
-			spip_log("SoyezCreateurs maj 3.0.24 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.24 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.24','non');
 		}
 		if (version_compare($current_version,'3.0.28','<')) {
-			spip_log("SoyezCreateurs maj 3.0.28 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.28 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			// Au cas où : remttre au carré les id_secteur des articles et rubriques.
 			include_spip('inc/rubriques');
 			calculer_rubriques();
 			propager_les_secteurs();
 			effacer_meta("date_calcul_rubriques");
 			
-			spip_log("SoyezCreateurs maj 3.0.28 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.28 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.28','non');
 		}
 		
 		if (version_compare($current_version,'3.0.30','<')) {
-			spip_log("SoyezCreateurs maj 3.0.30 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.30 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_ModePortail", "ZoomSur2_Variante1", "Affecter ce mot clef à l’objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef.", "Variante sur 2 colonnes : \n-* Titre de la rubrique contenant l’article\n-* 1re colonne :\n-** Document joint (de type autre média, PowerPoint par exemple) affiché avec son logo\n-** Chapo de l'article en dessous (permet de faire un lien)\n-* 2e colonne :\n-** Logo de l’article\n-** faisant un lien vers l’article (et si c’est une redirection, ça peut conduire à une autre page");
-			spip_log("SoyezCreateurs maj 3.0.30 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.30 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.30','non');
 		}
 		if (version_compare($current_version,'3.0.31','<')) {
-			spip_log("SoyezCreateurs maj 3.0.31 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.31 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_ModePortail", "ZoomSur2_Variante2", "Affecter ce mot clef à l’objet que vous voulez placer dans le cadre « Zoom sur secondaire » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef.", "Variante sur 2 colonnes : \n-* Titre de la rubrique contenant l’article\n-* 1re colonne :\n-** Fonctionne comme le Cycloshow avec les articles de la sous rubriques de la rubrique de l'article\n-* 2e colonne :\n-** Logo de l’article\n-** faisant un lien vers l’article (et si c’est une redirection, ça peut conduire à une autre page");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.31','non');
 		}
 		if (version_compare($current_version,'3.0.33','<')) {
-			spip_log("SoyezCreateurs maj 3.0.33 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.33 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_Specialisation_Rubrique", "ClassementAlpha", "Mettre ce mot clef à la rubrique pour classer son contenu alphabétiquement.", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.33','non');
 		}
 		
 		if (version_compare($current_version,'3.0.34','<')) {
-			spip_log("SoyezCreateurs maj 3.0.34 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.34 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$sites['nom_site'] = "90. Flux RSS du site";
 			$sites['url_site'] = "?page=backend";
 			$sites['descriptif'] = "public:syndiquer_site";
@@ -159,17 +159,17 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.34','non');
 		}
 		if (version_compare($current_version,'3.1.35','<')) {
-			spip_log("SoyezCreateurs maj 3.1.35 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.35 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			supprimer_mot_groupe("_Specialisation_Rubrique", "GisSecteur");
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.35','non');
 		}
 		if (version_compare($current_version,'3.1.36','<')) {
-			spip_log("SoyezCreateurs maj 3.1.36 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.36 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_config('boutonstexte/skin','soyezcreateurs');
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.36','non');
 		}
 		if (version_compare($current_version,'3.1.39','<')) {
-			spip_log("SoyezCreateurs maj 3.1.39 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.39 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta('orthotypo',"a:7:{s:10:\"guillemets\";s:1:\"1\";s:9:\"exposants\";s:1:\"1\";s:4:\"mois\";s:1:\"1\";s:4:\"caps\";s:1:\"1\";s:5:\"fines\";s:1:\"1\";s:11:\"corrections\";s:1:\"1\";s:18:\"corrections_regles\";s:319:\"oeuf = œuf\ncceuil = ccueil\n(a priori) = {a priori}\n(([hH])uits) = $1uit\n/([cC]h?)oeur/ = $1œur\n/oeuvre/ = œuvre\n(O[Ee]uvre([rs]?)) = Œuvre$1\n/\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\b/ = $1onnaissa$2\nCO2 = <abbr title=\"CO2, Dioxyde de carbone, O=C=O\">CO<sub>2</sub></abbr>\noeil = œil\n(O[Ee]il) = Œil\";}", 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.39','non');
 		}
@@ -196,40 +196,64 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.42','non');
 		}
 		if (version_compare($current_version,'3.1.43','<')) {
-			spip_log("SoyezCreateurs maj 3.1.43 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.43 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			create_groupe("_FondPage", "Images en fond de page :\n-* Créer autant de mots clefs que de fonds de page désirés\n-* Mettre un logo à ces mots clefs\n-* Possibilité de fixer un fond de page pour :\n-** Une rubrique (et la branche en dessous)\n-** Un type de page particulier (Sommaire, Plan)\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->https://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", "", 'oui', 'non', 'rubriques', 'oui', 'non', 'non');
-			spip_log("SoyezCreateurs maj 3.1.43 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.43 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.43','non');
 		}
 		if (version_compare($current_version,'3.1.44','<')) {
-			spip_log("SoyezCreateurs maj 3.1.44 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.44 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_ModePortail", "Goodies2", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en mode international, sous la Une).", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.44','non');
 		}
 		if (version_compare($current_version,'3.1.45','<')) {
-			spip_log("SoyezCreateurs maj 3.1.45 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.45 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignent le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->https://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", 'non', 'non', 'rubriques', 'oui', 'non', 'non');			
 			create_groupe("_FooterBanner", "Pour définir plusieurs fonds de pied de page pour le site.", "Il faut créer un mot clef par fond (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme fond de pied du site.\n\nLes mots clefs affectés à une rubrique restreignent le choix des fonds pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{tous}} les fonds sont disponibles pour le reste du site).\n\nSe reporter à la documentation sur [Personnalisation graphique du squelette SoyezCreateurs->https://contrib.spip.net/Personnalisation-graphique-du-squelette-SoyezCreateurs].\n\nPour mettre une trame de fond, utiliser le logo de survol.\n\nUn site pour [créer des trames de fond->http://www.patternify.com/].", 'non', 'non', 'rubriques', 'oui', 'non', 'non');			
-			spip_log("SoyezCreateurs maj 3.1.45 Faite", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.45 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.45','non');
 		}
 		if (version_compare($current_version,'3.1.46','<')) {
-			spip_log("SoyezCreateurs maj 3.1.46 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.46 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta('version_html_max', 'html4', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.46','non');
 		}
 		if (version_compare($current_version,'3.1.47','<')) {
-			spip_log("SoyezCreateurs maj 3.1.47 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.47 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_Specialisation_Rubrique", "PasDansMenuHaut", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu du haut", "");
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.47','non');
 		}
 		if (version_compare($current_version,'3.1.49','<')) {
-			spip_log("SoyezCreateurs maj 3.1.49 Début", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.1.49 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_config('boutonstexte/selector','#contenu');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.49','non');
+		}
+		if (version_compare($current_version,'3.1.50','<')) {
+			spip_log("SoyezCreateurs maj 3.1.50 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+			if (lire_config('soyezcreateurs/mode_affichage') == 'portailcognac') {
+				spip_log("SoyezCreateurs maj 3.1.50 Portailcognac", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+				$id_zoomsur = id_mot('ZoomSur',id_groupe('_ModePortail'));
+				$id_edito = id_mot('EDITO',id_groupe('_Specialisation'));
+				// Trouver les articles attachés à EDITO et ZoomSur
+				$Articles_ZoomSur = sql_allfetsel('id_objet', "spip_mots_liens", "id_mot=$id_zoomsur AND objet='article'");
+				$Articles_EDITO = sql_allfetsel('id_objet', "spip_mots_liens", "id_mot=$id_edito AND objet='article'");
+				if ($Articles_ZoomSur) {
+					foreach ($Articles_ZoomSur as $Article_ZoomSur) {
+						create_lien_mot($id_edito, $Article_ZoomSur['id_objet'], 'article');
+						delete_lien_mot($id_zoomsur, $Article_ZoomSur['id_objet'], 'article');
+					}
+				}
+				if ($Articles_EDITO) {
+					foreach ($Articles_EDITO as $Article_EDITO) {
+						create_lien_mot($id_zoomsur, $Article_EDITO['id_objet'], 'article');
+						delete_lien_mot($id_edito, $Article_EDITO['id_objet'], 'article');
+					}
+				}
+			}
 			// On invalide les caches
 			include_spip('inc/invalideur');
 			suivre_invalideur("soyezcreateurs");
-			ecrire_meta($nom_meta_base_version,$current_version='3.1.49','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.50','non');
 		}
 		
 		
@@ -242,7 +266,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		// en l'occurrence, remplacer dans le squelette {titre_mot=Agenda} par {agenda=1}
 		if (version_compare($current_version,'2.1.14','<')) {
 			include_spip('base/soyezcreateurs');
-			spip_log("SoyezCreateurs maj 2.1.14", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 2.1.14", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_groupe = id_groupe("_Specialisation_Rubrique");
 			$id_mot = id_mot("Agenda", $id_groupe);
 			if ($id_mot>0) {

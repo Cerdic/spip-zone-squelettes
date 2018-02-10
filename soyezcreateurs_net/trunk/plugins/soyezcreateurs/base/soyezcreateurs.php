@@ -11,7 +11,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 include_spip("inc/lang");
 include_spip('inc/meta');
-define('_LOG_INSTALL', "soyezcreateurs_install");
+define('_LOG_DEBUG', "soyezcreateurs_install");
 
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {
@@ -82,33 +82,33 @@ function soyezcreateurs_config_site() {
 		sauvegarder_savecfg('soyezcreateurs_couleurs','Violet & vert','a:54:{s:7:"body_bk";s:7:"#9ed897";s:6:"header";s:7:"#ffffff";s:9:"header_bk";s:7:"#663b62";s:11:"datemajsite";s:7:"#ffffff";s:14:"datemajsite_bk";s:7:"#164017";s:6:"footer";s:7:"#ffffff";s:9:"footer_bk";s:7:"#663b64";s:10:"navigation";s:7:"#c982c2";s:13:"navigation_bk";s:7:"#69c975";s:8:"menuhaut";s:7:"#ffffff";s:11:"menuhaut_bk";s:7:"#70a16e";s:7:"logo_bk";s:11:"transparent";s:5:"extra";s:7:"#8a0f81";s:8:"extra_bk";s:7:"#69c975";s:6:"menu_a";s:7:"#af12a2";s:9:"menu_a_bk";s:7:"#f6daf5";s:12:"menu_a_hover";s:7:"#a4569f";s:15:"menu_a_hover_bk";s:7:"#61b757";s:13:"menu_a_active";s:7:"#cd55c7";s:16:"menu_a_active_bk";s:7:"#ffffff";s:13:"menu_a_strong";s:7:"#670165";s:16:"menu_a_strong_bk";s:7:"#ffffff";s:12:"vignettes_bk";s:7:"#663b62";s:9:"container";s:7:"#cc6cd0";s:12:"container_bk";s:7:"#c5f2d1";s:9:"titraille";s:7:"#670161";s:12:"titraille_bk";s:7:"#c08cd4";s:4:"link";s:7:"#c055cd";s:7:"visited";s:7:"#de66d4";s:5:"hover";s:7:"#a16ea0";s:6:"active";s:7:"#40163f";s:15:"fontsnavigation";s:34:"Verdana, Arial, Geneva, sans-serif";s:12:"fontscontent";s:34:"Verdana, Arial, Geneva, sans-serif";s:14:"fontsizeheader";s:3:"1.2";s:14:"fontsizefooter";s:3:"1.2";s:18:"fontsizenavigation";s:3:"1.2";s:15:"fontsizecontenu";s:3:"1.2";s:18:"fontsizeartrecents";s:1:"1";s:13:"autovignettes";s:4:"auto";s:17:"fontsizevignettes";s:2:"16";s:12:"body_degrade";N;s:14:"footer_degrade";N;s:16:"menuhaut_degrade";N;s:17:"cadreinfo_degrade";N;s:17:"citations_degrade";N;s:17:"cartouche_degrade";N;s:17:"titraille_degrade";N;s:19:"titraille_ssniveaux";s:7:"#013067";s:22:"titraille_ssniveaux_bk";s:7:"#eca6e6";s:11:"cadrestexte";s:7:"#002652";s:14:"cadrestexte_bk";s:7:"#f9e4f4";s:13:"header_lettre";s:7:"#ffffff";s:16:"header_lettre_bk";s:7:"#663b62";s:16:"titraille_lettre";s:7:"#670161";}');
 	}
 
-	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", _LOG_INSTALL);
+	spip_log("1. (soyezcreateurs_config_site) metas du plugins ecrite", _LOG_DEBUG);
 	return true;
 }
 
 // fonction qui permet de trouver si un groupe de mots clés existe à partir du titre
 function find_groupe($titre) {
 	$titre = sql_quote($titre);
-	spip_log("1. (find_groupe) recherche des occurences dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
+	spip_log("1. (find_groupe) recherche des occurences dans la table spip_groupes_mots de l'id de : $titre", _LOG_DEBUG);
 	$count = sql_countsel("spip_groupes_mots", "titre=$titre");
-	spip_log("2. (find_groupe) resultat de la recherche : $count occurences pour $titre", _LOG_INSTALL);
+	spip_log("2. (find_groupe) resultat de la recherche : $count occurences pour $titre", _LOG_DEBUG);
 	return $count;
 }
 
 // fonction pour trouver l'id du groupe de mots clés à partir du titre du groupe
 function id_groupe($titre) {
 	$titre = sql_quote($titre);
-	spip_log("1. (id_groupe) selection dans la table spip_groupes_mots de l'id de : $titre", _LOG_INSTALL);
+	spip_log("1. (id_groupe) selection dans la table spip_groupes_mots de l'id de : $titre", _LOG_DEBUG);
 	$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre=$titre");
 	$resultat = $result['id_groupe'];
-	spip_log("2. (id_groupe) selection = $resultat pour $titre", _LOG_INSTALL);
+	spip_log("2. (id_groupe) selection = $resultat pour $titre", _LOG_DEBUG);
 	return $resultat;
 }
 
 //fonction qui permet de créer un groupe de mots clés
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $tables_liees='', $minirezo='oui', $comite='oui', $forum='non') {
 	$id_groupe = find_groupe($groupe);
-	spip_log("1. (create_groupe) pret a creer groupe : titre = $groupe. retour de find_groupe = $id_groupe", _LOG_INSTALL);
+	spip_log("1. (create_groupe) pret a creer groupe : titre = $groupe. retour de find_groupe = $id_groupe", _LOG_DEBUG);
 	if ($id_groupe == 0) {
 		$id_insert = sql_insertq(
 			"spip_groupes_mots", array(
@@ -124,11 +124,11 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 				"forum" => $forum
 			)
 		);
-		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id_insert et titre = $groupe", _LOG_INSTALL);
+		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe, donc insertion avec id = $id_insert et titre = $groupe", _LOG_DEBUG);
 	}
 	else if ($id_groupe > 0) {
 		$id_insert = remplacer_groupe($groupe, $descriptif, $texte, $unseul, $obligatoire, $tables_liees, $minirezo, $comite, $forum);
-		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe... passage a remplacer_groupe", _LOG_INSTALL);
+		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe... passage a remplacer_groupe", _LOG_DEBUG);
 	}
 	return $id_insert;
 }
@@ -186,7 +186,7 @@ function find_mot($titre, $id_groupe) {
 
 //fonction qui permet de trouver l'id du mot clé à partir du titre et de l'id du groupe
 function id_mot($titre, $id_groupe) {
-	spip_log("1. (id_mot) debut de recherche de l'id de $titre avec $id_groupe", _LOG_INSTALL);
+	spip_log("1. (id_mot) debut de recherche de l'id de $titre avec $id_groupe", _LOG_DEBUG);
 	$titre = sql_quote($titre);
 	$result = sql_fetsel(
 		"id_mot",
@@ -194,7 +194,7 @@ function id_mot($titre, $id_groupe) {
 		"titre=$titre AND id_groupe=$id_groupe"
 	);
 	$id_mot = $result['id_mot'];
-	spip_log("2. (id_mot) retour de la fonction id_mot = $id_mot", _LOG_INSTALL);
+	spip_log("2. (id_mot) retour de la fonction id_mot = $id_mot", _LOG_DEBUG);
 	return $id_mot;
 }
 
@@ -203,7 +203,7 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	$id_groupe = id_groupe($groupe);
 	$find_mot = find_mot($mot, $id_groupe);
 	if ($find_mot == 0) {
-		spip_log("1. (create_mot) debut create_mot. mot inexistant donc creation : $id_groupe - $mot", _LOG_INSTALL);
+		spip_log("1. (create_mot) debut create_mot. mot inexistant donc creation : $id_groupe - $mot", _LOG_DEBUG);
 		$id_mot = sql_insertq(
 			"spip_mots", array(
 				"id_mot" => '',
@@ -214,15 +214,15 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 				"type" => $groupe
 			)
 		);
-		spip_log("2. (create_mot) mot cle $mot insere sous l'id $id_mot dans la table avec groupe = $id_groupe", _LOG_INSTALL);
+		spip_log("2. (create_mot) mot cle $mot insere sous l'id $id_mot dans la table avec groupe = $id_groupe", _LOG_DEBUG);
 	}
 	else if ($find_mot > 0) {
 		$id_mot = id_mot($mot, $id_groupe);
-		spip_log("1. (create_mot) mise a jour dans la table du mot cle : $mot", _LOG_INSTALL);
+		spip_log("1. (create_mot) mise a jour dans la table du mot cle : $mot", _LOG_DEBUG);
 		remplacer_mot($id_mot, $mot, $descriptif, $texte, $id_groupe, $groupe);
 	}
 	else {
-		spip_log("insertion impossible ! debug : groupe = $groupe --- id_groupe = $id_groupe", _LOG_INSTALL);
+		spip_log("insertion impossible ! debug : groupe = $groupe --- id_groupe = $id_groupe", _LOG_DEBUG);
 	}
 	return $id_mot;
 }
@@ -259,7 +259,7 @@ function id_rubrique($titre) {
 		"titre=$titre"
 	);
 	$resultat = $result['id_rubrique'];
-	spip_log("1. (id_rubrique) recherche de l'id_rubrique de $titre = $resultat", _LOG_INSTALL);
+	spip_log("1. (id_rubrique) recherche de l'id_rubrique de $titre = $resultat", _LOG_DEBUG);
 	return $resultat;
 }
 
@@ -282,7 +282,7 @@ function rename_rubrique($titre, $nouveau_titre) {
 				"titre" => $nouveau_titre
 			), "id_rubrique=$id_rubrique"
 		);
-		spip_log("rename_rubrique) renommage de $titre en $nouveau_titre", _LOG_INSTALL);
+		spip_log("rename_rubrique) renommage de $titre en $nouveau_titre", _LOG_DEBUG);
 	}
 	return true;
 }
@@ -305,7 +305,7 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 				"id_secteur" => $id_rubrique
 			), "id_rubrique=$id_rubrique"
 		);
-		spip_log("1. (create_rubrique) rubrique cree : id = $id_rubrique, titre = $titre", _LOG_INSTALL);
+		spip_log("1. (create_rubrique) rubrique cree : id = $id_rubrique, titre = $titre", _LOG_DEBUG);
 	}
 	else if ($id_rubrique > 0) {
 		$id_rubrique = id_rubrique($titre);
@@ -344,7 +344,7 @@ function id_article($titre, $id_rubrique) {
 		"titre=$titre AND id_rubrique=$id_rubrique"
 	);
 	$resultat = $result['id_article'];
-	spip_log("1. (id_article) recherche de l'id_article de '$titre' = $resultat", _LOG_INSTALL);
+	spip_log("1. (id_article) recherche de l'id_article de '$titre' = $resultat", _LOG_DEBUG);
 	return $resultat;
 }
 
@@ -353,7 +353,7 @@ function create_article($texte, $rubrique, $lang='fr') {
 	$id_rubrique = id_rubrique($rubrique);
 	$count_articles = find_article($texte['titre'], $id_rubrique);
 	if ($count_articles == 0) {
-		spip_log("1. (create_article) insertion d'un article : ".$texte['titre'], _LOG_INSTALL);
+		spip_log("1. (create_article) insertion d'un article : ".$texte['titre'], _LOG_DEBUG);
 		$statut = 'publie';
 		$date = date("Y-m-d H:i:s");
 		$id_article = sql_insertq(
@@ -397,11 +397,11 @@ function create_article($texte, $rubrique, $lang='fr') {
 		calculer_rubriques();
 		propager_les_secteurs();
 		effacer_meta("date_calcul_rubriques");
-		spip_log("2. (create_article) article insere : $id_article", _LOG_INSTALL);
+		spip_log("2. (create_article) article insere : $id_article", _LOG_DEBUG);
 	}
 	else if ($count_articles > 0) {
 		$id_article = id_article($texte['titre'], $id_rubrique);
-		spip_log("2. (create_article) maj de l'article : ".$texte['titre'], _LOG_INSTALL);
+		spip_log("2. (create_article) maj de l'article : ".$texte['titre'], _LOG_DEBUG);
 		remplacer_article($id_article, $id_rubrique, $texte);
 	}
 	return $id_article;
@@ -453,7 +453,7 @@ function find_article_mot($id_mot, $id_article) {
 
 //fonction qui permet de créer une relation entre un article et un mot clé
 function create_article_mot($article, $rubrique, $mot, $groupe) {
-	spip_log("1. (create_article_mot) demande de creation de liaison : $article avec $mot", _LOG_INSTALL);
+	spip_log("1. (create_article_mot) demande de creation de liaison : $article avec $mot", _LOG_DEBUG);
 	$id_rubrique = id_rubrique($rubrique);
 	$id_groupe = id_groupe($groupe);
 	$id_mot = id_mot($mot, $id_groupe);
@@ -468,11 +468,42 @@ function create_article_mot($article, $rubrique, $mot, $groupe) {
 				"objet" => 'article'
 			)
 		);
-		spip_log("2. (create_article_mot) liaison mise en place (article = $id_article - mot = $id_mot)", _LOG_INSTALL);
+		spip_log("2. (create_article_mot) liaison mise en place (article = $id_article - mot = $id_mot)", _LOG_DEBUG);
 	}
 	else {
-		spip_log("2. (create_article_mot) liaison deja existante ! (article = $id_article - mot = $id_mot)", _LOG_INSTALL);
+		spip_log("2. (create_article_mot) liaison deja existante ! (article = $id_article - mot = $id_mot)", _LOG_DEBUG);
 	}
+}
+
+function find_lien_mot($id_mot, $id_objet, $type='article') {
+	$count = sql_countsel(
+		"spip_mots_liens",
+		"id_mot=$id_mot AND id_objet=$id_objet AND objet='$type'"
+	);
+	return $count;
+}
+
+function create_lien_mot($id_mot, $id_objet, $type='article') {
+	$count = find_lien_mot($id_mot, $id_objet, $type);
+	if ($count == 0) {
+		sql_insertq(
+			"spip_mots_liens",
+			array(
+				"id_mot"=> $id_mot,
+				"id_objet" => $id_objet,
+				"objet" => $type
+			)
+		);
+		spip_log("2. (create_lien_mot) liaison mise en place (article = $id_objet - mot = $id_mot - $type)", _LOG_DEBUG);
+	}
+	else {
+		spip_log("2. (create_lien_mot) liaison deja existante ! (article = $id_objet - mot = $id_mot - $type)", _LOG_DEBUG);
+	}	
+}
+
+function delete_lien_mot($id_mot, $id_objet, $type='article') {
+	sql_delete("spip_mots_liens", "id_mot=$id_mot AND id_objet=$id_objet AND objet = '$type'");
+	spip_log("2. (delete_lien_mot) liaison supprimée (article = $id_objet - mot = $id_mot - $type)", _LOG_DEBUG);
 }
 
 //fonction qui permet de trouver des liaisons entre rubrique et mot clé
@@ -489,7 +520,7 @@ function create_rubrique_mot($rubrique, $mot, $groupe) {
 	$id_rubrique = id_rubrique($rubrique);
 	$id_groupe = id_groupe($groupe);
 	$id_mot = id_mot($mot, $id_groupe);
-	spip_log("1. (create_rubrique_mot) creation : rubrique = $id_rubrique ($rubrique) - mot = $id_mot ($mot) - groupe = $id_groupe ($groupe)", _LOG_INSTALL);
+	spip_log("1. (create_rubrique_mot) creation : rubrique = $id_rubrique ($rubrique) - mot = $id_mot ($mot) - groupe = $id_groupe ($groupe)", _LOG_DEBUG);
 	$count = find_rubrique_mot($id_mot, $id_rubrique);
 	if ($count == 0) {
 		sql_insertq(
@@ -560,7 +591,7 @@ function find_auteur($nom) {
 		"nom='$nom'"
 	);
 	$resultat = $result['id_auteur'];
-	spip_log("1. (id_auteur) recherche de l'id_auteur de $nom = $resultat", _LOG_INSTALL);
+	spip_log("1. (id_auteur) recherche de l'id_auteur de $nom = $resultat", _LOG_DEBUG);
 	return $resultat;
 }
 
@@ -572,7 +603,7 @@ function find_auteur_email($id_auteur) {
 		"id_auteur=$id_auteur"
 	);
 	$resultat = $result['email'];
-	spip_log("1. (email) recherche de l'email de $id_auteur = $resultat", _LOG_INSTALL);
+	spip_log("1. (email) recherche de l'email de $id_auteur = $resultat", _LOG_DEBUG);
 	return $resultat;
 }
 
@@ -596,7 +627,7 @@ function create_auteur($nom, $email='', $bio='') {
 			)
 		);
 	}
-	spip_log("1. (create_auteur) auteur cree : id = $id_auteur, nom = $nom", _LOG_INSTALL);
+	spip_log("1. (create_auteur) auteur cree : id = $id_auteur, nom = $nom", _LOG_DEBUG);
 	return $id_auteur;
 }
 
