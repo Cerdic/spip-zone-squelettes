@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'major_explications' => 'It is the second article put forward on the homepage, under heroin. His text is readable completely on the welcome.',
 	
 	// R
+	'rechercher' => 'Search',
 	'reseaux_sociaux' => 'Social networks',
 	'reseaux_sociaux_activer' => 'Activate the plugin "Links towards the social networks" to show such links.',
 	'reseaux_sociaux_configurer' => 'Configure the plugin: social Links',

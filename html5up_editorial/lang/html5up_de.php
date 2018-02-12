@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'major_explications' => 'Der zweite hervorgehobene Artikel auf der Startseite, unter dem Superartikel. Sein Text wird auf der Startseite vollständig angezeigt.',
 	
 	// R
+	'rechercher' => 'Suchen',
 	'reseaux_sociaux' => 'Soziale Netzwerke',
 	'reseaux_sociaux_activer' => 'Aktivieren sie das Plugin «Links zu sozialen Netzwerken» um diese Links anzuzeigen.',
 	'reseaux_sociaux_configurer' => 'Plugin konfigurieren: Links zu sozialen Netzwerken',

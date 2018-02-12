@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'major_explications' => 'C\'est le second article mis en avant sur la page d\'accueil, sous le héro. Son texte est lisible entièrement sur l\'accueil.',
 	
 	// R
+	'rechercher' => 'Chercher',
 	'reseaux_sociaux' => 'Réseaux sociaux',
 	'reseaux_sociaux_activer' => 'Activer le plugin «Liens vers les réseaux sociaux» pour afficher de tels liens.',
 	'reseaux_sociaux_configurer' => 'Configurer le plugin : Liens sociaux',
