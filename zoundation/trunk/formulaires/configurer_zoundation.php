@@ -63,6 +63,13 @@ function formulaires_configurer_zoundation_saisies_dist() {
 				'label' => _T('zoundation:google-site-verification'),
 				'explication' => _T('zoundation:explication_google-site-verification')
 			)
+		),
+		array(
+			'saisie' => 'input',
+			'options' => array(
+				'nom' => 'copyright',
+				'label' => _T('zoundation:copyright')
+			)
 		)
 	);
 
