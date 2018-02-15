@@ -14,4 +14,4 @@ TODO
 Vérifier et adapter les modèles où qu'on les insère => ok pour <iconebloc> - v1.0.4
 Retrouver le multilinguisme 
 Adapter les autres objets SPIP (mots, sites, brèves)
-Se passer de google api pour les typos ?
+Se passer de google api pour les typos ? - OK en v1.1.7
