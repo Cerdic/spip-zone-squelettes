@@ -111,10 +111,7 @@ function formulaires_contact_traiter_dist(){
             $message.= $champs['champsup2']."\n\n";
         }
 
-        if (lire_config('escal/config/radio') == 'oui') {
-            $message.= "<strong>"._T('escal:envoi_mail_motif')."</strong>";
-            $message.= $champs['sujet']."\n\n";
-        }
+
 
         if (lire_config('escal/config/checkbox') == 'oui') {
             $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."</strong>" ;
