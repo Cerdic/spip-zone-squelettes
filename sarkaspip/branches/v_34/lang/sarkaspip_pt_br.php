@@ -184,6 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'Todas as matérias sindicadas',
 	'filtre_titre' => 'Filtro',
 	'forum' => 'Fórum',
+	'forum_ferme' => 'Fórum fechado',
 	'forum_sujet_reponses' => 'Respostas',
 	'forums_meme_groupe' => 'Fóruns do grupo',
 	'fourni_par_weather_com' => 'por weather.com®',
