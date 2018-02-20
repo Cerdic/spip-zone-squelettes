@@ -176,5 +176,171 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'descriptif_menu' => '<h4>Configurações do menu</h4>
 <br />Exibir ou não os links para as páginas do site, no menu do cabeçalho e no rodapé.',
 	'descriptif_mot' => '<h4>Configurações da página de palavra-chave</h4>
-<br />Configure os laços e estilos da página de palavra-chave.'
+<br />Configure os laços e estilos da página de palavra-chave.',
+	'descriptif_partenaire' => '<h4>Configuração da página parceira</h4>
+				<br />Configure o seu laço e os seus estilos para a página parceira.',
+	'descriptif_plan' => '<h4>Configuração da página mapa</h4>
+				<br />Configure os seus estilos para o mapa.',
+	'descriptif_plan_complet' => '<h4>Configuração da página mapa completo</h4>
+				<br />Configire os seus estilos para a página mapa completo.
+				<p />Esta página é de fato um mapa completo que exibe mesmo as seções que ainda não possuam sites, facilitando a proposição de sites pelo visitante.',
+	'descriptif_recherche' => '<h4>Configuração da página busca</h4>
+				<br />Configure os seus laços e estilos para a página busca.',
+	'descriptif_rubrique' => '<h4>Configuração da página seção</h4>
+				<br />Confikgure os seus laços e estilos para a página seção.',
+	'descriptif_site' => '<h4>Configuração da página site</h4>
+				<br />Configure os seus laços e estilos para a página site.',
+	'descriptif_sommaire' => '<h4>Configuração para o índice</h4>
+				<br />Configure os seus laços e estilos para o índice.',
+	'descriptif_taille' => '<h4>Configuração dos tamanhos</h4>
+				<br />Escolha os seus tamanhos em pixels (px) ou em percentagem (%).
+				<br />Exemplo: 130px ou 100%',
+
+	// E
+	'editer_site' => 'Editar o site',
+	'email_lesauteurs:description' => 'Nas tags #LESAUTEURS e #DESCRIPTIF da páginia "site" retiramos os endereços de e-mail, se existirem, para que não sejam capturados para spam.',
+	'email_lesauteurs:nom' => 'E-mail nos fluxos rss',
+	'epingle_site' => 'grudados em',
+	'espace_membre_gestion_sites' => 'Espaço Membros Gerenciamento dos sites',
+	'est_rattache' => 'está ligado a ',
+
+	// F
+	'formulaire_recherche' => 'Formulário de busca',
+	'formulaire_recherche_expli' => 'Onde você quer exibir o formulário de busca?',
+	'formulaire_recherche_margin_left' => 'A margem esquerda do formulário',
+	'formulaire_recherche_margin_top' => 'A margem superior do formulário',
+
+	// G
+	'groupe_mots' => 'Grupos de palavras-chaves',
+	'groupe_mots_expli' => 'Preencher com o título dos grupos de palavras-chaves, separados por vírgulas, que você não quer exibir na coluna da direita',
+
+	// H
+	'hasard' => 'Sites sorteados',
+	'hebergement' => 'Indicar a instituição ou a pessoa que a hospeda: (exibir coluna da direita em baixo, unicamente se estiver preenchido), sendo possível usar código SPIP ou HTML.',
+	'hebergeur' => 'Hospedeiro do site:',
+	'height_bandeau_expli' => 'Altura do cabeçalho do site',
+	'height_fieldset' => 'Altura do quadro',
+	'height_fieldset_prems' => 'Altura do primeiro quadro',
+	'height_fieldset_rubrique' => 'Altura do quadro com as informações da seção',
+	'height_fieldset_site' => 'Altura do quadro com as informações do site',
+	'height_fieldset_suivants' => 'Altura dos quadros seguintes',
+	'height_menu_site_expli' => 'Altura do menu do site',
+	'height_pied_page_expli' => 'Altura do rodapé',
+
+	// I
+	'info_abo' => 'Nesta página, você encontrará listas de difusão de novidades',
+	'infos' => 'Exibir informação sobre todas as seções (se quiser que sejam diferentes, use a descrição.)',
+
+	// L
+	'le_mot' => 'A palavra-chave',
+	'le_site' => 'O site conta',
+	'lire_suite' => 'Leia mais',
+	'longueur_descriptif' => 'Comprimento da descrição',
+	'longueur_descriptif_prems' => 'Comprimento da descrição do primeiro site',
+	'longueur_descriptif_suivants' => 'Comprimento da descrição dos sites seguintes',
+
+	// M
+	'margin_left_fieldset' => 'Margem esquerda do quadro',
+	'margin_left_prems_fieldset' => 'Margem esquerda do primeiro quadro',
+	'margin_left_second_fieldset' => 'Margem esquerda do segundo quadro',
+	'margin_left_tiers_fieldset' => 'Margem esquerda do terceiro quadro',
+	'margin_right_fieldset' => 'Margem direita do quadro',
+	'margin_right_prems_fieldset' => 'Margem direita do primeiro quadro',
+	'margin_right_second_fieldset' => 'Margem direita do segundo quadro',
+	'margin_right_tiers_fieldset' => 'Margem direita do terceiro quadro',
+	'margin_top' => 'Margem abaixo dos laços',
+	'margin_top_img' => 'Margem no topo das imagens',
+	'margin_top_plus_vote_verti' => 'Margem abaixo dos quadros do laço',
+	'menu_lien_abonnement' => 'Link para a página de assinatura',
+	'menu_lien_afficher' => 'Link para as páginas do menu',
+	'menu_lien_contact' => 'Link para a página de contato',
+	'menu_lien_partenaire' => 'Link para a página parceira',
+	'menu_lien_plan' => 'Link para a página mapa',
+	'menu_lien_plan_complet' => 'Link para todas as seções',
+	'menu_lien_sommaire' => 'Link para a capa (índice)',
+	'menu_site' => 'o menu do site',
+	'miniatures_par' => 'Miniaturas para',
+
+	// N
+	'nav_connect' => 'o bloco "conexão"',
+	'nav_copy' => 'o bloco "copyright"',
+	'nav_copy_expli' => 'Onde você quer exibir esta parte do copyright?',
+	'nav_herbier' => 'o bloco "hospedagem"',
+	'nav_lien' => 'o bloco "links"',
+	'nav_mot' => 'o bloco "palavras-chaves"',
+	'nav_option' => 'o bloco "opção"',
+	'nav_pied' => 'o "rodapé"',
+	'nav_secteur' => 'o bloco "setores"',
+	'nav_sites' => 'o bloco com o nome de "sites referenciados"',
+	'nbr_articles' => 'Número de matérias:',
+	'nbr_sites' => 'Número de sites:',
+	'new' => 'o laço "novidades"',
+	'non' => 'Não',
+	'nous_avons' => 'Temos',
+	'nouveau_site' => 'Novo site',
+	'nouveaute' => 'Site novo',
+
+	// O
+	'oui' => 'Sim',
+
+	// P
+	'padding_top_rubrique' => 'Margem abaixo do fieldset da seção',
+	'padding_top_site' => 'Margem abaixo do fieldset do site',
+	'partenaire' => 'parceiro',
+	'partenaires' => '@nb@ parceiros',
+	'pas_commentaire' => 'Nenhum comentário ainda',
+	'pas_descriptif' => 'Não temos descrição para este site, se você é o webmaster, você pode nos contatar propondo uma descrição para o site.',
+	'pas_le_droit_ecrire' => 'Você não tem permissão de escrita',
+	'pas_pagination' => 'Número de elementos por laço',
+	'pas_partenaire' => 'Ainda não temos parceria(s); se desejar, junte-se a nós...',
+	'pas_votes' => 'Nenhum voto ainda',
+	'pas_zard' => 'Nenhum site sorteado, identifique-se...',
+	'pied_page' => 'Rodapé',
+	'plus_vote' => 'o laço "mais votados"',
+	'plus_vote_vertical' => 'o laço "mais votados" (quadros verticais)',
+	'plus_votes' => 'Sites mais votados',
+	'popu_site' => 'A popularidade do site é de',
+
+	// R
+	'recherche_site' => 'Buscar um site',
+	'resultats' => 'Resultados nos laços',
+	'rss' => 'Número de matérias sindicados por página',
+	'rss_contient' => 'O fluxo RSS contém',
+	'rubrique_contient' => 'A seção contém',
+
+	// S
+	'site' => '1 site',
+	'site1' => 'de "site"',
+	'sites' => '@nb@ sites',
+	'style' => 'Estilo:',
+	'styliste' => 'Indique a pessoa responsável pelo gráfico: (exibir coluna da direita em baixo, apenas se estiver preenchido), é possível usar código SPIP ou HTML.',
+	'synthese_flux' => 'Síntese dos fluxos',
+
+	// T
+	'taille' => 'Tamanhos do site',
+	'toutes_rubriques' => 'Todas as seções',
+
+	// U
+	'utilisation' => 'Utilização',
+	'utilisation_expli_contact_1' => 'Para configurar esta página, você precisa instalar o plugin "contato".',
+	'utilisation_expli_contact_2' => 'Você pode configurar esta página porque o plugin "contato" está ativo.',
+	'utilisation_expli_spiplistes_clevermail_1' => 'Para configurar esta página, você precisa instalar o plugin "spip listas" ou o "clevermail".',
+	'utilisation_expli_spiplistes_clevermail_2' => 'Você pode configurar esta página porque o plugin "spip listes" ou o "clevermail" estão ativos.',
+
+	// V
+	'vote' => '1 voto',
+	'votes' => '@nb@ votos',
+
+	// W
+	'width_content_explication' => 'Tamanho da coluna conteúdo',
+	'width_nav_explication' => 'Tamanho da coluna navegação',
+	'width_page' => 'Formato da página',
+	'width_page_explication' => 'Tamanho da página',
+	'width_pied_page_content' => 'Tamanho da parte de conteúdo do rodapé',
+	'width_pied_page_nav' => 'Tamanho da parte de navegação do rodapé',
+	'width_pied_page_total' => 'Tamanho do rodapé completo',
+	'width_recherche' => 'Tamanho do formulário de busca',
+
+	// Z
+	'zard' => 'o laço "sorteio"'
 );
