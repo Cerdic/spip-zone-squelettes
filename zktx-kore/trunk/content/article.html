@@ -13,8 +13,18 @@
 	[(#REM) Contenu principal ]
 	<div class="row">
 
+		[<header class="page-header #EDIT{chapo} surlignable lead">(#CHAPO|abs_url)</header>]
+
 		<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-			[<header class="page-header #EDIT{chapo} surlignable lead">(#CHAPO|abs_url)</header>]
+			<div class="well">			
+				[<p><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span></p>]
+				<p>
+					<span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time>[ <span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span>]
+				</p>
+				<B_lesmots>
+					<p><span class="glyphicon glyphicon-tags"></span> <BOUCLE_lesmots(MOTS){id_article}{", "}>[ <a href="[(#URL_MOT|url_absolue)]" rel="category">(#TITRE)</a>]</BOUCLE_lesmots></p>
+				</B_lesmots>			
+			</div>
 
 			[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>"})]</a></p>]
 
@@ -32,20 +42,11 @@
 				#MODELE{article_traductions}
 				
 				[(#REM) Boutons de partage ]
+
 				[<p><i class="fa fa-share-square-o"></i> Partager cet article</p>
 				<p class="text-center">(#INCLURE{fond=inclure/socialtags,env})</p>]
-
 				
-				<B_lesmots>
-					<p><span class="glyphicon glyphicon-tags"></span> <BOUCLE_lesmots(MOTS){id_article}{", "}>[ <a href="[(#URL_MOT|url_absolue)]" rel="category">(#TITRE)</a>]</BOUCLE_lesmots></p>
-				</B_lesmots>
 				
-				<p>
-					<span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time>
-					[<br/><span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span>]
-				</p>
-				
-				[<p><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span></p>]
 				<p><span class="glyphicon glyphicon-comment"></span> <a href="#comments"><:zktx:jump2comments:></a></p>
 			</aside>
 			
@@ -59,6 +60,7 @@
 	<aside class="jumbotron row">
 
 		[<figure class="text-center col-xs-12 col-sm-12 col-md-4 col-lg-2">(#LOGO_AUTEUR|image_reduire{80,80}|image_recadre{80,80,center}|inserer_attribut{class,'img-responsive img-circle'}|inserer_attribut{alt,'#NOM'})</figure>]
+
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-8">
 			[<span class="#EDIT{qui} h2 author" itemprop="author"><span class="glyphicon glyphicon-user"></span> (#NOM)</span>]
 			[<p class="#EDIT{bio}"><small>(#AUTEUR_BASELINE|sinon{[(#BIO|couper{260})]})</small></p>]

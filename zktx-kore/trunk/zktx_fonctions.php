@@ -9,6 +9,3 @@
 		$p->interdire_scripts = false;
 		return $p;
 	}
-	
-	
-?>
