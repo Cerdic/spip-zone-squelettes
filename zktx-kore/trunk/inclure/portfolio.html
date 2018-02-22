@@ -1,0 +1,28 @@
+[(#REM) 
+  Mosaïque de vignettes cliquables des photos du portfolio SPIP d'un article 
+
+  - https://www.spip.net/fr_article5632.html - Ajouter une image à un article
+  - https://www.spip.net/fr_article1823.html - La boucle <DOCUMENTS>
+]
+
+<B_documents_mosaique>
+<section class="portfolio">
+  <BOUCLE_documents_mosaique(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{doublons}{vu=non}>
+    [<figure class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|url_absolue|parametre_url{id_document,#ID_DOCUMENT}|ancre_url{documents_portfolio})]';return false;"[ class="active (#EXPOSER)"][ title="(#TITRE|attribut_html)"]>
+        (#FICHIER
+          |image_reduire{600,0}
+          |image_passe_partout{237,237}
+          |image_recadre{237,237}
+          |inserer_attribut{class,img-responsive img-thumbnail}
+          |inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]}
+        )
+      </a>
+      <figcaption class="visible-xs visible-sm">
+        [<h3 class="h3 #EDIT{titre}">(#TITRE)</h3>]
+        [<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
+      </figcaption>
+    </figure>]
+  </BOUCLE_documents_mosaique>
+</section>
+</B_documents_mosaique>
