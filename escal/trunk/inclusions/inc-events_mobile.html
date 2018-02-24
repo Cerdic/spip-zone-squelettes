@@ -1,8 +1,31 @@
-<hr />
-<BOUCLE_evenements_agenda(EVENEMENTS){doublons}{age_fin<=0}{par date}{lang}>
+    #SET{tableauprochainement,#ARRAY}
+    <BOUCLE_prochainementselection(EVENEMENTS){age_fin<=0}{par date_debut}>
+    [(#ID_EVENEMENT_SOURCE|=={0}|?{				
+    	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+    	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+    })]
+    </BOUCLE_prochainementselection>
+    
+    
+<B_evenements_agenda>
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+	<hr />
+<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{age_fin<=0}{par date}{lang}{pagination 5}{statut=publie}>
+
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+#SET{couleur,#336699}
+<//B_mot>
+
+ 
+
 	<div class="mobile-event">
-		<div class="mobile-event-date">
+		<div class="mobile-event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
 		<span class="mobile-event-mois">[(#DATE_DEBUT|nom_mois)]</span><br />
+		<span class="mobile-event-nomjour">[(#DATE_DEBUT|nom_jour)]</span><br />
 		<span class="mobile-event-jour">[(#DATE_DEBUT|affdate{'d'})]</span><br />
 		<span class="mobile-event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span><br />
 		</div>
@@ -27,10 +50,29 @@
 		
           [<span class="mobile-event-adresse"><strong>Adresse :</strong><br />(#ADRESSE|PtoBR)</span>]
           
+          
+          <B_autres>
+          Autres dates :
+          <ul>
+          <BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}>
+          <li>
+          [(#DATE_DEBUT|affdate{'nom_jour'})]
+          [(#DATE_DEBUT|affdate{'d'})]
+          [(#DATE_DEBUT|affdate{'nom_mois'})]
+          [(#DATE_DEBUT|affdate{'Y'})]
+          </li>
+          </BOUCLE_autres>
+          </ul>
+          </B_autres>
+          
         	</div>
 		
 	</div>
 	<div class="nettoyeur"></div>
 	<hr />
 </BOUCLE_evenements_agenda>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+<//B_evenements_agenda>
 
