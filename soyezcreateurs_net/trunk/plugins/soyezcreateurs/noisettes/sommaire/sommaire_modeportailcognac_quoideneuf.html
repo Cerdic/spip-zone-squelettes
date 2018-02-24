@@ -28,7 +28,7 @@
 			<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 				<div class="content-actus #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,108}|extraire_attribut{src})" alt="" width="308" height="108" />]
+						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]}|extraire_attribut{src})" alt="" width="308" height="[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]" />]
 						<div class="agenda flexbox-flex">
 							<div class="date debutfin">
 								<time class="debut ladate" itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
@@ -51,7 +51,7 @@
 				</div>
 			</BOUCLE_DernierEvenementArticle>
 			[(#COMPTEUR_BOUCLE|!={#TOTAL_BOUCLE}|oui)
-			[(#COMPTEUR_BOUCLE|alterner{'','</div><div class="grid-item">'})]
+			[(#COMPTEUR_BOUCLE|alterner{[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{'</div><div class="grid-item">',''})],'</div><div class="grid-item">'})]
 			]
 			</BOUCLE_AgendaDerniersAjouts>
 			</div>
