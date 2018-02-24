@@ -1,6 +1,15 @@
 <!-- affichage de la liste des evènements -->
 
 #SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+
+#SET{tableauprochainement,#ARRAY}
+<BOUCLE_prochainementselection(EVENEMENTS){age_fin<=0}{par date_debut}>
+[(#ID_EVENEMENT_SOURCE|=={0}|?{				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+})]
+</BOUCLE_prochainementselection>
+    
     <B_evenements_agenda>
 		  <div id="entete-evenement">
         <:escal:evenements:>
@@ -8,10 +17,13 @@
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-		<BOUCLE_evenements_agenda(EVENEMENTS){age_fin<=0}{par date}{pagination #GET{nbrpageventcalendrier}}{lang}>
+		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{age_fin<=0}{par date}{pagination #GET{nbrpageventcalendrier}}{lang}>
 			<div class="liste-evenements">
 			[(#DATE_DEBUT|affdate_jourcourt)] :
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+          	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age_fin<=0}{par date_debut}>
+          		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
+          	</BOUCLE_autres>
 			</div>
 		</BOUCLE_evenements_agenda>
 			<div class="liste-evenements">

@@ -10,17 +10,29 @@
 <BOUCLE_exclusion(EVENEMENTS){titre_mot=event-exclus}{doublons}>
 </BOUCLE_exclusion>
 
+#SET{tableauprochainement,#ARRAY}
+<BOUCLE_prochainementselection(EVENEMENTS){age_fin<=0}{par date_debut}>
+[(#ID_EVENEMENT_SOURCE|=={0}|?{				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+})]
+</BOUCLE_prochainementselection>
+
   <div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
 #SET{nbrpagevent,#CONFIG{escal/config/paginevenements,5}}
     <B_evenements_agenda>
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-		<BOUCLE_evenements_agenda(EVENEMENTS){doublons}{age_fin<=0}{par date}{pagination #GET{nbrpagevent}}{lang}>
+		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{age_fin<=0}{par date}{pagination #GET{nbrpagevent}}{lang}>
 			<div class="liste-evenements">
 			[(#DATE_DEBUT|affdate_jourcourt)] : 
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+          	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age_fin<=0}{par date_debut}>
+          		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
+          	</BOUCLE_autres>
 			</div>
+          
 		</BOUCLE_evenements_agenda>
 			<div class="liste-evenements">
 			<:escal:evenements_non:>
