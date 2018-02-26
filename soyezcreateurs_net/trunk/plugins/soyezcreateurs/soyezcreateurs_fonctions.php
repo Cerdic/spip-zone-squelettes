@@ -860,3 +860,11 @@ function sinoncrayon($texte, $sinon = '') {
 		return $texte;
 	}
 }
+
+function sc_exclude_newsletter($texte) {
+	$texte = preg_replace(
+		'/(<!-- Begin Exclude NewsLetter -->.*<!-- End Exclude NewsLetter -->)/s', 
+		'',
+		$texte);
+	return $texte;
+}

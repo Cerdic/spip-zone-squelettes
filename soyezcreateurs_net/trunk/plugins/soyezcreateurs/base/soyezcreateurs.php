@@ -985,7 +985,7 @@ function soyezcreateurs_config_motsclefs() {
 		<p><a class=\"button triadeC texte-blanc float-center avec-margin\" href=\"/$id_article\"><span class=\"icon-envelope icon-lg avec-padding-right05\"></span>Nous écrire</a></p>\n
 	</div>\n
 	<div id=\"carte\" class=\"avec-padding\">\n
-		<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d365312.326488903!2d-1.5056982671874777!3d44.33045219999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5380bbec6fa8d3%3A0x2cd88d7991f88ca4!2sPerdu..!5e0!3m2!1sfr!2sfr!4v1508413717844\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen=\"true\"></iframe>\n
+		<html><!-- Begin Exclude NewsLetter --></html><iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d365312.326488903!2d-1.5056982671874777!3d44.33045219999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5380bbec6fa8d3%3A0x2cd88d7991f88ca4!2sPerdu..!5e0!3m2!1sfr!2sfr!4v1508413717844\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen=\"true\"></iframe><html><!-- End Exclude NewsLetter --></html>\n
 	</div>\n
 </div>");
 		$id_article = create_article(trouve_article_sc("Politique d'accessibilité du site"), "000. Fourre-tout");
