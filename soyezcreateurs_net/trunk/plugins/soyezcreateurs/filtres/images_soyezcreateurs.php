@@ -12,14 +12,16 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 	
 	include_spip('filtres_images_lib_mini');
 	include_spip('filtres/images_transforme');
-	if ((largeur($img) <= $largeur) OR (hauteur($img) <= $hauteur)) {
-		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '+', $position, 'transparent');
+	if ((largeur($img) <= $largeur) AND (hauteur($img) <= $hauteur)) {
+		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '-', 'focus', 'transparent');
 		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	} else  {
 		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '-', 'focus', 'transparent');
 		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_reduire', $img, $largeur, $hauteur, $position, 'transparent');
+		$img = filtrer('image_graver', $img);
+		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	}
 	
 	// Pas la peine, c'est fait automatiquement quand c'est un vrai filtre d'image comme ici
