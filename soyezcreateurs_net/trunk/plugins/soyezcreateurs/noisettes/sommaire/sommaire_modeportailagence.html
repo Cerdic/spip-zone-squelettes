@@ -7,12 +7,160 @@
 	CanceladjustLayout = true;
 </script>
 <main id="main" role="main"><div id="agence_content">
-<a id="letexte"></a>
+	<a id="letexte"></a>
 
+	<!-- SLOGAN -->
+	<div id="slogan" class="zone-slogan">
+		<header>
+			[<h1 class="titre-sommaire #EDIT{meta-descriptif_site}">(#DESCRIPTIF_SITE_SPIP|ptobr)</h1>]
+		</header>
+	</div>
+	<!-- fin SLOGAN -->
+	
+	<B_Defilant>
+	<!-- Defilant -->
+	<div id="diaporama" class="zone-slider">
+		<header>
+			<h1 class="titre-sommaire">Diaporama présentation #NOM_SITE_SPIP</h1>
+		</header>
+		<div class="content-diaporama">
+			<BOUCLE_Defilant(ARTICLES){titre_mot=Defilant}{par num titre}{!par date}>
+			<article class="item">
+				<a href="#URL_ARTICLE">
+				<figure>
+					[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|extraire_attribut{src})" />]
+					<figcaption>
+						<p class="#EDIT{titre}">#TITRE</p>
+					</figcaption>
+				</figure>
+				</a>
+			</article>
+			</BOUCLE_Defilant>
+		</div>
+	</div>
+	<!-- fin Defilant -->
+	</B_Defilant>
 
+	<BOUCLE_ZoomSur(RUBRIQUES){titre_mot=ZoomSur}>
+	<!-- L'ÉQUIPE -->
+	<div id="lequipe" class="zone-lequipe">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-lequipe">
+				<BOUCLE_Membres(ARTICLES){id_rubrique}{par num titre}{!par date}>
+				<article class="item texte">
+					<a href="#URL_ARTICLE" title="#DESCRIPTIF|supprimer_tags|attribut_html">
+						<figure>
+							<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{280,280}|extraire_attribut{src})]" alt="" />
+						</figure>
+						<div class="h2 #EDIT{titre}">#TITRE</div>
+						<div class="h3 #EDIT{sous_titre}">#SOUS_TITRE</div>
+						[<div class="pave-content">
+							(#CHAPO|sinon{#DESCRIPTIF})
+						</div>]
+						<bouton>Lire la suite</bouton>
+					</a>
+				</article>
+				</BOUCLE_Membres>
+			</div>
+		</div>
+	</div>
+	<!-- fin L'ÉQUIPE -->
+	</BOUCLE_ZoomSur>
 
-[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+	<!-- Citations -->
+	<INCLURE{fond=noisettes/extra/citations}>
+	<!-- fin Citations -->
 
-</div><!-- agence_content --></main>
+	<BOUCLE_Cycloshow(ARTICLES){titre_mot=Cycloshow}{!par date}{0,1}>
+	<!-- Cycloshow -->
+	<div id="realisations" class="zone-realisations">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-realisations">
+				[<link rel="stylesheet" href="(#CHEMIN{javascript/flipster/dist/jquery.flipster.min.css})">]
+				[<link rel="stylesheet" href="(#CHEMIN{javascript/flipster/dist/flipster.portailagence.css})">]
+				<article id="coverflow">
+					<div class="flip-items">
+						<BOUCLE_CycloshowFigures(DOCUMENTS){id_article}{extension==jpg|png|gif}{par num titre}{!par date}>
+						<figure>
+							<img src="[(#FICHIER|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{700,600}|extraire_attribut{src})]" />
+							<figcaption>#TITRE</figcaption>
+						</figure>
+						</BOUCLE_CycloshowFigures>
+					</div>
+				</article>
 
+				[<script src="(#CHEMIN{javascript/flipster/dist/jquery.flipster.min.js})" type="text/javascript"></script>]
+				<script type="text/javascript">
+					var coverflow = $("#coverflow").flipster({
+						style: 'coverflow',
+						itemContainer: 'div',
+						itemSelector: 'figure',
+						start: 'center',
+						loop: false,
+						scrollwheel: false,
+						spacing: -0.45,
+						nav: false,
+						buttons: true,
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+	<!-- fin Cycloshow -->
+	</BOUCLE_Cycloshow>
+
+	<BOUCLE_Goodies(RUBRIQUES){titre_mot=Goodies}>
+	<!-- Goodies -->
+	<div id="prestations" class="zone-prestations">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">#TITRE</h1>
+		</header>
+		<div role="region" aria-label="">
+			<div class="content-prestations">
+				[(#REM) basé sur avignon pave-img-titre-desc-suite-doublure ]
+				<BOUCLE_presta(ARTICLES){id_rubrique}{!par date}{0,12}>
+				<article class="item texte">
+					[<img src="(#LOGO_ARTICLE_NORMAL|image_focus{120,120}|extraire_attribut{src})" alt="">]
+					<div class="pave-content">
+						<h2 class="#EDIT{titre}">#TITRE</h2>
+						<a href="#URL_ARTICLE" title="Lire[ (#TITRE|attribut_html)]">
+							<span class="bouton plus">+</span>
+						</a>
+					</div>
+					<div class="pave-content-plus">
+						<h3 class="#EDIT{titre}">#TITRE</h3>
+						[<p class="#EDIT{descriptif}">(#DESCRIPTIF|ptobr|couper{50,'...'})</p>]
+						<a href="#URL_ARTICLE" title="Lire[ (#TITRE|attribut_html)]">
+							<span class="bouton plus">+</span>
+						</a>
+					</div>
+				</article>
+				</BOUCLE_presta>
+			</div>
+		</div>
+	</div>
+	<!-- fin Goodies -->
+	</BOUCLE_Goodies>
+
+	<BOUCLE_Goodies2(ARTICLES){titre_mot=Goodies2}{par hasard}{0,1}>
+	<!-- Tarifs -->
+	<div id="tarifs" class="zone-tarifs">
+		<header class="titre-sommaire">
+			<h1 class="#EDIT{titre}">Nos tarifs</h1>
+		</header>
+		<div class="content-tarifs #EDIT{texte}">#TEXTE</div>
+	</div>
+	<!-- fin Tarifs -->
+	</BOUCLE_Goodies2>
+
+	[(#PLUGIN{SOCIALTAGS}|oui)<div id="socialtags"></div>]
+
+</div><!-- agence_content -->
+</main>
 #FILTRE{mini_html}
