@@ -14,11 +14,11 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 	<generator>SPIP - www.spip.net</generator>
 
 [	<image>
-		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>(#LOGO_SITE_SPIP|extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<title>[(#NOM_SITE_SPIP|supprimer_tags|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP|image_reduire{144,400}|extraire_attribut{src}|url_absolue|texte_backend)</url>
 		<link>#URL_SITE_SPIP/</link>
-		[<height>(#LOGO_SITE_SPIP|hauteur)</height>]
-		[<width>(#LOGO_SITE_SPIP|largeur)</width>]
+		[<height>(#LOGO_SITE_SPIP|image_reduire{144,400}|hauteur)</height>]
+		[<width>(#LOGO_SITE_SPIP|image_reduire{144,400}|largeur)</width>]
 	</image>
 ]
 
@@ -30,6 +30,9 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 <BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{racine}>
 [(#INCLURE{fond=noisettes/rss/backendagenda_detail,id_rubrique})]
 </BOUCLE_agenda>
+[(#REM) Non, alors on affiche tous les événements du site ]
+[(#INCLURE{fond=noisettes/rss/backendagenda_detail})]
+<//B_agenda>
 <//B_SyndicationRubriqueAgenda>
 
 </channel>
