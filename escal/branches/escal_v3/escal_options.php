@@ -47,7 +47,8 @@ $nb_el = count($hote_el);
 $domaine = $hote_el[$nb_el - 2] . '.' . $hote_el[$nb_el - 1];
 define('_DOMAINE_SITE', $domaine); // extrait dans l'url du site le nom du domaine pleinement qualifié sous la forme domaine.tld
 
-
+// proteger le #FORMULAIRE_CONTACT
+$GLOBALS['formulaires_no_spam'][] = 'contact';
 
 // multilinguisme
 
