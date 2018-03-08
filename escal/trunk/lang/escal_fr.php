@@ -35,6 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_page_generalites' => 'Généralités',
 'cfg_page_layout' => 'Mise en page',
 'cfg_page_licence' => 'Licence',
+'cfg_page_liens_sociaux' => 'Liens sociaux',
 'cfg_page_mentions' => 'Mentions légales',
 'cfg_page_menuh' => 'Menu horizontal',
 'cfg_page_meta' => 'Balises "meta"',
@@ -102,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mot_rubrique_onglet5' => 'pour choisir une cinquième rubrique qui sera affichée dans les onglets en page d\'accueil',
 'mot_site_exclu' => 'pour exclure des sites dans le bloc "Sur le web"',
 'mot_special' => 'pour choisir la rubrique et/ou les articles qui seront affichés dans le bloc à personnaliser',
+'mot_texte2colonnes' => 'Pour afficher un texte d\'article en 2 colonnes dans une page article',
 'mot_video_une' => 'pour choisir les articles dont les vidéos seront affichées dans le bloc "Vidéo"',
 
 // A
@@ -477,7 +479,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'licence_plugin' => 'Plugin Licence',
 'licence_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentation">plugin "Licence"</a>,
             vous n\'avez rien d\'autre à faire, l\'icône correspondant à la licence que vous avez choisi pour un article s\'affichera automatiquement en haut de l\'article.',
-
+'liens_sociaux_plugin' => 'Plugin Liens sociaux',
+'liens_sociaux_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Liens sociaux"</a>, 
+les réseaux sociaux que vous aurez paramétré apparaîtront automatiquement en pied de page.',
 // M
 'meme_rub' => 'Dans la même rubrique',
 'menu_horizontal' => 'Menu horizontal',
@@ -776,6 +780,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	du choix des blocs au choix des couleurs, en passant par l\'affichage ou non de nombreux éléments.<br /><br />
 	A vous de jouer !',
 'texte_coupe' => 'On coupe le texte à',
+'texte_sous_image' => 'Texte sous le logo (sinon, à côté)',
 'titre' => 'Titre',
 'titre_coupe' => 'Nombre de caractères affichés pour le titre des articles',
 'titre_noisette' => 'Titre du bloc',
@@ -974,7 +979,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'taille_fichier' => 'Taille du fichier :',
 'telechargement' => 'Fichier à télécharger :',
 'telechargements' => 'Fichiers à télécharger :',
-'texte_sous_image' => 'Texte sous l\'image (sinon, à côté)',
 'title_articles_derniers' => 'Derniers articles',
 'title_contact' => 'Contacter le référent technique',
 'title_espace_redacteurs' => 'L\'espace privé des auteurs et administrateurs',

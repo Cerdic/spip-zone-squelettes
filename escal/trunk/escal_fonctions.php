@@ -271,6 +271,11 @@ function shema_escal(){
                 'titre'=>'special',
                 'descriptif'=> _T('escal:mot_special'),
                 'type'=>'affichage'
+            ),
+            array(
+                'titre'=>'texte2colonnes',
+                'descriptif'=> _T('escal:mot_texte2colonnes'),
+                'type'=>'affichage'
             ),            
             array(
                 'titre'=>'video-une',
@@ -691,4 +696,95 @@ if (!function_exists('json_encode')) {
         return $json->encode($content);
     }
 } 
+
+
+
+/*######
+#
+# Filtre SPIP 'decouper_en_XD_parties'
+# 4 Alexandra By Apsulis
+# 14 janvier 2007
+#
+# OBJET :
+# -------
+# Pour decouper un contenu texte en X parties egale avec cesure mot entier.
+# Retourne la partie Y demandee.
+#
+# USAGE :
+# -------
+# Dans le squelette :
+# [(#TEXTE*|decouper_en_XD_parties{X,Y}|propre)]
+#
+# Dans le fichier mes_fonctions.php (a ranger par exemple dans votre dossier de squelettes) :
+# placer la fonction qui suit depuis "function decouper"... jusqu'a "return $partie_isolee; }"
+#
+#
+# Remarque :
+# ----------
+# - Fonctionne avec n'importe quel contenu texte : #INTRO, #TEXTE, #DESCRIPTIF, #PS, etc...
+# - Pour remplir X colonnes, dans le cadre d'une boucle (ou pas, vous faites ce que vous voulez),
+# utiliser X fois le filtre en changeant la partie Y demandee.
+#
+#######*/
+
+
+
+function decouper_en_XD_parties($texte,$nb_parties,$partie_a_retourner){
+
+        /* On traite les erreurs positives et negatives au cas ou */
+        if($partie_a_retourner > $nb_parties){
+                $partie_a_retourner = $nb_parties;
+        }
+        if($partie_a_retourner == 0){
+                $partie_a_retourner = 1;
+        }
+
+       
+//var_dump($nb_parties);
+        $longueur = strlen($texte);                                                                 // Longueur totale de la chaine de caractere
+        $partie = $longueur/$nb_parties;                                        // Taille en caracteres d'une partie
+        $decoupe = str_word_count($texte, 2, '.&<|>');                        // On decoupe le texte par mot pour savoir a quels mots couper les parties
+
+//print_r(str_word_count($texte, 2, '.&'));
+
+        $mots_cesure[0] = 0;                                                                                        // Premiere borne = 0
+        $j = 1;
+
+       
+                        while($j < $nb_parties){                                                                        // On recherche la fin du dernier mot de la partie pour ne pas le couper (=cesure)
+                $i = $partie*($j);                                                                                        // On debute la recherche a partie, et ensuite on incremente de la taille d'une partie pour trouver le mot suivant                         
+                while(!isset($decoupe[$i])){                                                // On part du caractere ou on devrait couper,
+                        $i++;                                                                                                                                        // et on avance jusqu'a trouver la fin du mot
+                }
+        /*###
+        # CORRECTIF par Pierre
+        # Pour eviter de couper les colonnes au milieu d'une ligne (par exemple une ligne de un ou deux mots)
+        # La coupure se fait  la fin d'une phrase, aprs le point.
+        # (ligne 49)"$decoupe = str_word_count($texte, 2, '.&');" ici le troisime parametre est l'ensemble des caracteres autorises dans un mot dont le point ce qui permet la coupure.
+        ###*/
+                while(!preg_match('`\.$`',"$decoupe[$i]")){   //tant que le mot ne se termine pas par un point...
+                        $i++;                                                                                                                                                                //incrementation d'un caractere
+                        while(!isset($decoupe[$i])){                                               
+                        $i++;                                                                                                                               
+                        }
+                }
+                $i++;
+                        while(!isset($decoupe[$i])){                                               
+                        $i++;                                                                                                                               
+                        }
+        //echo $decoupe[$i];
+               
+        /*### FIN DU CORRECTIF ###*/       
+               
+               
+                $mots_cesure[$j] = $i;                                                                        // On range la valeur en caractere du mot clef pour la cesure
+                $j++;                                                                                                                                                // On passe a la partie suivante
+        }
+        $mots_cesure[$j] = $longueur;                                                        // Derniere borne = fin du texte
+
+        // On isole la partie qu'on renvoi pour affichage par SPIP
+        $partie_isolee = substr($texte, $mots_cesure[$partie_a_retourner-1], $mots_cesure[$partie_a_retourner]-$mots_cesure[$partie_a_retourner-1]);
+
+        return propre($partie_isolee);
+}
 ?>
