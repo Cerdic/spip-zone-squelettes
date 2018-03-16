@@ -11,7 +11,7 @@
 </BOUCLE_exclusion>
 
 #SET{tableauprochainement,#ARRAY}
-<BOUCLE_prochainementselection(EVENEMENTS){age_fin<=0}{par date_debut}>
+<BOUCLE_prochainementselection(EVENEMENTS){age_fin<=1}{par date_debut}>
 [(#ID_EVENEMENT_SOURCE|=={0}|?{				
 #SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
 #SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
@@ -24,7 +24,7 @@
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{age_fin<=0}{par date}{pagination #GET{nbrpagevent}}{lang}>
+		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{par date}{pagination #GET{nbrpagevent}}{lang}>
 			<div class="liste-evenements">
 			[(#DATE_DEBUT|affdate_jourcourt)] : 
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
