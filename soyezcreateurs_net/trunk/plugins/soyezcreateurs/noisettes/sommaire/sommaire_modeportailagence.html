@@ -23,12 +23,12 @@
 		<header>
 			<h1 class="titre-sommaire">Diaporama présentation #NOM_SITE_SPIP</h1>
 		</header>
-		<div class="content-diaporama">
+		<div class="content-diaporama slider-slick">
 			<BOUCLE_Defilant(ARTICLES){titre_mot=Defilant}{par num titre}{!par date}>
-			<article class="item">
+			<article class="item slider-diapo-imgfull">
 				<a href="#URL_ARTICLE">
 				<figure>
-					[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|extraire_attribut{src})" />]
+					[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{1920,780}|extraire_attribut{src})" />]
 					<figcaption>
 						<p class="#EDIT{titre}">#TITRE</p>
 					</figcaption>
@@ -165,4 +165,21 @@
 
 </div><!-- agence_content -->
 </main>
+<script type="text/javascript">
+	// slider Slick
+	$(document).ready(function(){
+		$('#diaporama .slider-slick').slick({
+		  autoplay: true,
+		  pauseOnHover: true,
+		  autoplaySpeed: #CONFIG{soyezcreateurs/vitesse_slider,10000},
+		  fade: true,
+		  cssEase: 'linear',
+		  arrows: true,
+		  dots: true,
+		  centerMode: true,
+		  focusOnSelect: true
+		});
+	});
+</script>
+
 #FILTRE{mini_html}
