@@ -481,7 +481,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             vous n\'avez rien d\'autre à faire, l\'icône correspondant à la licence que vous avez choisi pour un article s\'affichera automatiquement en haut de l\'article.',
 'liens_sociaux_plugin' => 'Plugin Liens sociaux',
 'liens_sociaux_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Liens sociaux"</a>, 
-les réseaux sociaux que vous aurez paramétré apparaîtront automatiquement en pied de page.',
+			vous pouvez le paramétrer ici.',
+'liens_sociaux_espace' => 'Afficher les liens sociaux dans la barre d\'outils',
+'liens_sociaux_pied' => 'Afficher les liens sociaux dans le pied de page',
+'liens_sociaux_texte' => 'Texte éventuel à afficher : ',	
+			
 // M
 'meme_rub' => 'Dans la même rubrique',
 'menu_horizontal' => 'Menu horizontal',
