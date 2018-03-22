@@ -868,3 +868,9 @@ function sc_exclude_newsletter($texte) {
 		$texte);
 	return $texte;
 }
+
+function sc_filesize($file) {
+	$size = 0;
+	$size = filesize($file=preg_replace(',[?].*$,','',$file));
+	return $size;
+}
