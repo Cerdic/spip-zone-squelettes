@@ -6,11 +6,11 @@
 		<title>[(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|texte_backend)][ : (#_AgendaDerniersAjouts:TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'}|texte_backend)],[(#TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|sc_decoder_date{#_AgendaDerniersAjouts:DATE_FIN,#HORAIRE,'skel'}|texte_backend)]})]</title>
 		<link>[(#ARTICLE_URL|url_absolue)#evenement#ID_EVENEMENT]</link>
 		[<guid isPermaLink="true">(#ARTICLE_URL|url_absolue)#evenement#ID_EVENEMENT</guid>]
-		[<dc:date>(#_AgendaDerniersAjouts:DATE_DEBUT|date_iso)</dc:date>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		[<dc:language>(#LANG)</dc:language>]
 		[<dc:creator>(#LESAUTEURS|supprimer_tags|texte_backend)</dc:creator>]
-		[<enclosure url="(#LOGO_ARTICLE|extraire_attribut{src}|url_absolue|texte_backend)"[ length="(#LOGO_ARTICLE|extraire_attribut{src}|sc_filesize)"] type="image[(#LOGO_ARTICLE|extraire_attribut{src}|match{\.(jpg|jpeg)}|?{/jpeg})][(#LOGO_ARTICLE|extraire_attribut{src}|match{\.gif}|?{/gif})][(#LOGO_ARTICLE|extraire_attribut{src}|match{\.png}|?{/png})]" />]
+		[<enclosure url="(#LOGO_ARTICLE|extraire_attribut{src}|supprimer_timestamp|url_absolue|texte_backend)"[ length="(#LOGO_ARTICLE|extraire_attribut{src}|sc_filesize)"] type="image[(#LOGO_ARTICLE|extraire_attribut{src}|match{\.(jpg|jpeg)}|?{/jpeg})][(#LOGO_ARTICLE|extraire_attribut{src}|match{\.gif}|?{/gif})][(#LOGO_ARTICLE|extraire_attribut{src}|match{\.png}|?{/png})]" />]
 		[<ev:location>(#_AgendaDerniersAjouts:LIEU|texte_backend)</ev:location>]
 		[<dc:subject>(#_AgendaDerniersAjouts:DESCRIPTIF|texte_backend)</dc:subject>]
 		[<ev:startdate>(#DATE_DEBUT|date_iso)</ev:startdate>]
@@ -19,7 +19,7 @@
 [(#REM)
 	Le bloc qui suit diffuse la rubrique et les mots-cles a la mode RSS
 
-]<BOUCLE_rubrique_rss(RUBRIQUES){id_rubrique}>[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]</BOUCLE_rubrique_rss>
+]
 <BOUCLE_mots_rss(MOTS){id_article}>
 		[<dc:subject>(#TITRE|texte_backend)</dc:subject>]</BOUCLE_mots_rss>
 
