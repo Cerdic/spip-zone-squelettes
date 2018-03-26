@@ -29,7 +29,7 @@ function gribouille_styliser($flux){
 		 */
 		if($id_rubrique = $flux['args']['id_rubrique']) {
 			$id_secteur = sql_getfetsel('id_secteur', 'spip_rubriques', 'id_rubrique=' . intval($id_rubrique));
-			if (in_array($id_secteur, lire_config('gribouille/principal/secteurs_wiki', array(0,-1)))) {
+			if (in_array($id_secteur, lire_config('gribouille/secteurs_wiki', array(0,-1)))) {
 				include_spip('inc/autoriser');
 				/**
 				 * On vérifie si nous sommes autorisé à voir le Wiki
@@ -69,8 +69,8 @@ function test_squelette_gribouille($fond, $ext) {
  * @return array
  */
 function gribouille_prepare_recherche($flux){
-	if(lire_config('gribouille/principal/exclure_recherche') == 'on'){
-		$id_secteurs = lire_config('gribouille/principal/secteurs_wiki');
+	if(lire_config('gribouille/exclure_recherche') == 'on'){
+		$id_secteurs = lire_config('gribouille/secteurs_wiki');
 		if(is_array($id_secteurs)){
 			if ($flux['args']['type']=='article'
 				AND $flux['args']['tout']=='0'

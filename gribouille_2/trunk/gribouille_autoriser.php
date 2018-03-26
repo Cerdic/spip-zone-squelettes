@@ -21,7 +21,7 @@ function autoriser_article_modifier($faire,$quoi,$id,$qui,$opts){
 		return autoriser_article_modifier_dist($faire,$quoi,$id,$qui,$opts);
 	}
 	if(function_exists('lire_config')){
-		$secteurs_wiki = lire_config('gribouille/principal/secteurs_wiki', array());
+		$secteurs_wiki = lire_config('gribouille/secteurs_wiki', array());
 		$id_secteur = sql_getfetsel('id_secteur','spip_articles','id_article='.intval($id));
 		if(in_array($id_secteur,$secteurs_wiki)){
 			$type = lire_config('gribouille/autorisations/ecrire_type', 'webmestre');
@@ -68,7 +68,7 @@ function autoriser_rubrique_publierdans($faire,$quoi,$id,$qui,$opts){
 		return autoriser_rubrique_publierdans_dist($faire,$quoi,$id,$qui,$opts);
 	}
 	if(function_exists('lire_config')){
-		$secteurs_wiki = lire_config('gribouille/principal/secteurs_wiki', array());
+		$secteurs_wiki = lire_config('gribouille/secteurs_wiki', array());
 		$id_secteur = sql_getfetsel('id_secteur','spip_rubriques','id_rubrique='.intval($id));
 		if(in_array($id_secteur,$secteurs_wiki)){
 			$type = lire_config('gribouille/autorisations/ecrire_type', 'webmestre');
@@ -118,7 +118,7 @@ function autoriser_rubrique_voir($faire,$quoi,$id,$qui,$opts){
 		return autoriser('publierdans','rubrique',$id,$qui,$opts);
 	}
 	if(function_exists('lire_config')){
-		$secteurs_wiki = lire_config('gribouille/principal/secteurs_wiki', array());
+		$secteurs_wiki = lire_config('gribouille/secteurs_wiki', array());
 		$id_secteur = sql_getfetsel('id_secteur','spip_rubriques','id_rubrique='.intval($id));
 		if(in_array($id_secteur,$secteurs_wiki)){
 			$type = lire_config('gribouille/autorisations/voir_type', 'webmestre');

@@ -61,11 +61,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sous_rubriques' => 'Sous-rubriques',
 	
 	// T
+	'titre_configurer_gribouille' => 'Configurer Gribouille',
+	'titre_configurer_gribouille_autorisations' => 'Configurer les autorisations de Gribouille',
 	'texte_bienvenue' => 'Bienvenue sur le carnet de notes de @nom_site@.',
 	'titre_input' => 'Titre...',
 	
 	// Z
 	'z' => 'zzz'
 );
-
-?>
