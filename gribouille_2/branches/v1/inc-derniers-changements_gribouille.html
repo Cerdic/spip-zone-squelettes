@@ -1,0 +1,19 @@
+<B_revisions>
+<div style="font-size: small;">
+<h2><:gribouille:derniers_changements:></h2>
+[<p class='pagination'>(#PAGINATION)</p>]
+<ul>
+<BOUCLE_revisions(VERSIONS articles){branche}{par date}{inverse}{pagination 50}{statut=publie}>
+<li>
+	[(#SET{gras,[(#ID_ARTICLE|unique|?{b})]})]
+	[<(#GET{gras})>]<a href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]"
+	rel="noindex,nofollow" title="version #ID_VERSION">#TITRE</a>[</(#GET{gras})>]
+
+	<span style='color:gray;'>&mdash; [<abbr title="[(#DATE|date_iso)]">(#DATE|date_relative)</abbr>], [(#ID_AUTEUR|affiche_auteur_diff)]
+	</span>
+</li>
+</BOUCLE_revisions>
+</ul>
+[<p class='pagination'>(#PAGINATION)</p>]
+</div>
+</B_revisions>
