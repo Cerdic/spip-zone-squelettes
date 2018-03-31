@@ -31,10 +31,7 @@ function gribouille_styliser($flux) {
 		// Si la rubrique fait partie du secteur défini dans la configuration on change son fond
 		if ($id_rubrique = $flux['args']['id_rubrique']) {
 			$id_secteur = sql_getfetsel('id_secteur', 'spip_rubriques', 'id_rubrique=' . intval($id_rubrique));
-			if (in_array($id_secteur, lire_config('gribouille/secteurs_wiki', array(
-				0,
-				-1,
-			)))) {
+			if (in_array($id_secteur, lire_config('gribouille/secteurs_wiki',array()))) {
 				include_spip('inc/autoriser');
 				// On vérifie si nous sommes autorisé à voir le Wiki
 				if (autoriser('voir', 'rubrique', $id_rubrique, $GLOBALS['visiteur_session'])) {

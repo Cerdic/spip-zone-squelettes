@@ -1,25 +1,33 @@
-<BOUCLE_r(RUBRIQUES){id_rubrique}{tout}>
+<div class="footer">
 
-<div class="copyright">
+	<p>
+	<?php
+		if ($GLOBALS['auteur_session']['id_auteur']) {
+		echo _T('gribouille:nom_visiteur', array('nom'=>$GLOBALS['auteur_session']['nom']));
+	?>
+		<a href="#URL_LOGOUT"><:gribouille:deconnexion:></a>
+	<?php	
+		} else {
+			echo " (<a href='#URL_PAGE{login,url=#ENV{url}}'>connexion</a>)";
+		}
+	?>
+	</p>
 
-[(#SESSION{nom}|oui)
-	<:gribouille:nom_visiteur{nom=#SESSION{nom}}:>
-	(<a href="#URL_LOGOUT"><:gribouille:deconnexion:></a>)
-]
+	<div class="ajout-page">
+	<BOUCLE_r(RUBRIQUES){id_rubrique}{wiki}>
+		<p><:gribouille:dans_rubrique:> 
+			<BOUCLE_h(HIERARCHIE){id_rubrique}{tout}{' > '}>
+			#TITRE
+			</BOUCLE_h>
+		</p>
+	</nav>
+	</BOUCLE_r>
+	#FORMULAIRE_AJOUTER_PAGE_WIKI{#ENV{id_rubrique}}
+	#FORMULAIRE_AJOUTER_RUBRIQUE_WIKI{#ENV{id_rubrique}}
+	</div>
 	
-<?php
-	if ($GLOBALS['auteur_session']) {
-	} else {
-		echo $GLOBALS['ip'];
-		echo " (<a href='#URL_PAGE{login,url=#ENV{url}}'>connexion</a>)";
-	}
-?>
-#FORMULAIRE_AJOUTER_PAGE_WIKI{#ID_RUBRIQUE}
-#FORMULAIRE_AJOUTER_RUBRIQUE_WIKI{#ID_RUBRIQUE}
-<br />
-
-<:gribouille:disclaimer:>
+	<p>
+	<:gribouille:disclaimer:>
+	</p>
 
 </div>
-
-</BOUCLE_r>

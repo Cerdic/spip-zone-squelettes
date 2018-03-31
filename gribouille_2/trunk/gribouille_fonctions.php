@@ -23,55 +23,30 @@ if (!defined("_ECRIRE_INC_VERSION")) {
  */
 function affiche_diff($id_objet, $objet, $id_version, $format = 'complet') {
 	include_spip('inc/suivi_versions');
-
-	if ($GLOBALS['spip_version_branche'] < '2.1') {
-		if ($objet == 'article') {
-			$textes = revision_comparee($id_objet, $id_version, $format);
-		}
-		else {
-			return;
-		}
-	}
-	else {
-		$textes = revision_comparee($id_objet, $objet, $id_version, $format);
-	}
-
+	
+	$textes = revision_comparee($id_objet, $objet, $id_version, $format);
 	$ret = '';
 	foreach ($textes as $champ => $texte) {
-		$texte = propre_diff($texte);
-
 		if ($champ == 'titre') {
-			$texte = "<h1>$texte</h1>";
+			$ret .= '<h1>'.propre_diff($texte).'</h1>';
 		}
-		else {
-			$texte = "<div class='$k'>$texte</div>";
+		else if ($champ == 'texte') {
+			$ret .= '<div>'.propre_diff($texte).'</div>';
 		}
-
-		$ret .= "\n<hr/>\n" . $texte;
 	}
 
 	return $ret;
 }
 
-function revisions_tout_objets() {
-	return ($GLOBALS['spip_version_branche'] < '2.1') ? '' : ' ';
+function boucle_secteurs_wiki() {
+	return lire_config('gribouille/secteurs_wiki');
 }
 
-/**
- * Affiche le nom de l'auteur à partir de son id_auteur
- *
- * @param object $auteur
- *
- * @return string
- */
-function affiche_auteur_diff($auteur) {
-	// Si c'est un nombre, c'est un auteur de la table spip_auteurs
-	if ($auteur == intval($auteur)
-		AND $s = sql_getfetsel("nom", "spip_auteurs", "id_auteur=" . intval($auteur))) {
-		return typo($s);
-	}
-	else {
-		return $auteur;
-	}
+// un critère qui restreint les boucles articles et rubriques aux secteurs wiki
+function critere_wiki($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$boucle->where[] = array("'IN'", "'$id_table.id_secteur'", "'('.join(',',boucle_secteurs_wiki()).')'");
+	$boucle->modificateur['wiki'] = true;
 }
 

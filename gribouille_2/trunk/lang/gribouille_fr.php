@@ -9,7 +9,7 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 
 	// A
 	'ajouter_article_wiki'                      => 'Ajouter une page',
-	'ajouter_rubrique_wiki'                     => 'Ajouter une rubrique',
+	'ajouter_rubrique_wiki'                     => 'Ajouter une sous rubrique',
 
 	// C
 	'cette_version'                             => 'Cette version',
@@ -25,12 +25,13 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'cfg_lgd_autorisation_ecrire'               => 'Autoriser &agrave; modifier le Wiki',
 	'cfg_lgd_autorisation_voir'                 => 'Autoriser &agrave; voir le Wiki',
 	'cfg_secteur_wiki'                          => 'Secteur(s) Wiki',
-	'click_ajout_texte'                         => 'double-cliquez pour ajouter du texte',
+	'click_ajout_texte'                         => 'Double-cliquez pour ajouter du texte.',
 
 	// D
 	'deconnexion'                               => 'd&#233;connexion',
 	'derniers_changements'                      => 'Derniers changements',
 	'disclaimer'                                => 'Ce site fonctionne avec le squelette <a href="https://contrib.spip.net/Gribouille">Gribouille</a>&nbsp;; inspir&#233; de <a href="http://www.wikini.net/wakka.php?wiki=PagePrincipale">WikiNi</a>',
+	'dans_rubrique'                                => 'Dans la rubrique :',
 
 	// E
 	'editer_page'                               => '&Eacute;diter cette page',
@@ -42,16 +43,20 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'gribouille_titre'                          => 'Gribouille',
 
 	// H
-	'historique'                                => 'Historique',
+	'historique'                                => 'Historique de cette page',
 
 	// L
 	'label_exclure_recherche'                   => 'Exclure de la recherche',
+
+	// M
+	'mis_a_jour'                                => 'Mise à jour :',
 
 	// N
 	'nom_visiteur'                              => 'Vous &ecirc;tes @nom@',
 
 	// P
 	'piege_a_robot'                             => 'Laissez ce champ vide :',
+	'pages_plus_lues'                           => 'Pages les plus lues',
 
 	// R
 	'recherche'                                 => 'Recherche',
@@ -66,6 +71,7 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'titre_configurer_gribouille_autorisations' => 'Configurer les autorisations de Gribouille',
 	'texte_bienvenue'                           => 'Bienvenue sur le carnet de notes de @nom_site@.',
 	'titre_input'                               => 'Titre...',
+	'toutes_version'                            => 'Toutes les versions',
 
 	// Z
 	'z'                                         => 'zzz',

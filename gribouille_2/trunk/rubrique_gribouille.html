@@ -1,77 +1,46 @@
-[(#REM) Page d'accueil de gribouille ]
-<BOUCLE_r(RUBRIQUES){id_rubrique}{tout}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}{wiki}>
+#SET{accueil, #ID_SECTEUR|=={#ID_RUBRIQUE}|?{1,0}}
+<!DOCTYPE html>
+<html lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>#TITRE</title>
-<INCLURE{fond=inc-head_gribouille}>
+	<title>#TITRE</title>
+	<INCLURE{fond=inc-head_gribouille}>
 </head>
 <body>
-	<h1 class="wiki_name">#TITRE</h1>
-	<h1 class="#EDIT{titre} page_name">#TITRE</h1>
+<div class="container">
+	
+	<INCLURE{fond=inc-entete_gribouille,id_rubrique,accueil=#GET{accueil}}>
+	
+	[(#GET{accueil}|non)
+	<h1 class="#EDIT{titre}">#TITRE</h1>
+	]
 
-	<INCLURE{fond=inc-entete_gribouille}{id_rubrique}>
+	<div class="page">
 
-	<div id="contenu" class="page">
-		[<div style='float:left;[width:(#LOGO_RUBRIQUE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_RUBRIQUE)</div>]
-		<div class="#EDIT{texte} chapo texte">[(#TEXTE|sinon{[(#ID_RUBRIQUE|=={#ID_SECTEUR}|?{<:gribouille:texte_bienvenue{nom_site=#NOM_SITE_SPIP}:>,<:gribouille:click_ajout_texte:>})]})]</div>
-		[<h2><:spip:info_rechercher_02:>(#RECHERCHE)</h2>]
+		[<div class="[(#GET{accueil}|non)#EDIT{texte} ]texte">(#TEXTE|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>}|safehtml)
+		[<div class="notes">(#NOTES|safehtml)</div>]
+		</div>]
 
-		<B_recherche>
+		<INCLURE{fond=inc-pages-gribouille,id_rubrique,env,ajax}>
+
+		<B_sous_rubriques>
+			<h2>
+				<:gribouille:sous_rubriques:>
+			</h2>
 			<ul>
-			<BOUCLE_recherche(ARTICLES){recherche}{tout}{branche}{!par points}{0,50}>
-				<li>
-					[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
-					<h2 class="#EDIT{titre} titre">#TITRE</h2>
-					[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-					[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-					[<div class="#EDIT{texte}">(#TEXTE**|strlen|>{1500}|?{[(#TEXTE|couper{1000})],#TEXTE}|sinon{<i>texte vide</i>})[
-						<div class="notes">(#NOTES)</div>
-					]</div>]
-					[<div class="#EDIT{ps}">(#PS)</div>]
-					<div style="text-align:#LANG_RIGHT;">
-						<a href="#URL_ARTICLE">#TITRE</a> (score: #POINTS)
-					</div>
-				</li>
-			</BOUCLE_recherche>
-			</ul>
-		</B_recherche>
-
-		[(#RECHERCHE|?{Pas de r&#233;sultat})]
-
-		<div style="border-left: 2px solid rgb(204, 204, 204); float: right; width: 40%; margin-left: 30px; padding-left: 10px;">
-			[(#INCLURE{fond=inc-derniers-changements_gribouille,id_rubrique,env})]
-		</div>
-
-		<h2>Pages</h2>
-
-		<B_pages>
-		[<p class="pagination">(#PAGINATION)</p>]
-		<ul>
-			<BOUCLE_pages(ARTICLES){id_rubrique}{!par popularite}{pagination 50}>
-			<li>
-				<strong><a href="#URL_ARTICLE">#TITRE</a></strong>
-				<span style='color:gray;'>&mdash;  [(#INTRODUCTION|couper{80}|supprimer_tags)]</span>
-			</li>
-			</BOUCLE_pages>
-		</ul>
-		</B_pages>
-
-		<B_sous>
-		<hr />
-		<h2><:gribouille:sous_rubriques:></h2>
-		<ul>
-			<BOUCLE_sous(RUBRIQUES){branche}{tout}{exclus}>
+				<BOUCLE_sous_rubriques(RUBRIQUES){branche}{wiki}{exclus}>
 				<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-			</BOUCLE_sous>
-		</ul>
-		</B_sous>
-
-		<hr style="clear:both"/>
-		<//B_recherche>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</B_sous_rubriques>
 		
-	</div>[(#REM) /page]
+		<INCLURE{fond=inc-derniers-changements_gribouille,id_rubrique,env,ajax}>
+		
+	</div>
+	
 	<INCLURE{fond=inc-pied_gribouille}{id_rubrique}{url=#URL_RUBRIQUE}>
+
+</div>
 </body>
 </html>
-</BOUCLE_r>
+</BOUCLE_principale>

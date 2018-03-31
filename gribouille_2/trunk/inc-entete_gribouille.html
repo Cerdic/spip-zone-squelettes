@@ -1,20 +1,33 @@
-<BOUCLE_r(RUBRIQUES){id_rubrique}{tout}>
-
-
-<form action="#URL_RUBRIQUE" method="get">
-[(#URL_RUBRIQUE|form_hidden)]
-
 <div class="header">
+	<BOUCLE_racine(RUBRIQUES){id_rubrique}{wiki}>
+	<BOUCLE_h_titre(HIERARCHIE){id_rubrique=#ID_SECTEUR}{tout}>
+	#SET{secteur_wiki,#ID_RUBRIQUE}
+	[(#ENV{accueil}|?{
+	<h1 class="wikititre">#TITRE</h1>,
+	<p class="h1 wikititre"><a href="#URL_RUBRIQUE">#TITRE</a></p>
+	})]
+	
+	</BOUCLE_h_titre>
+	</BOUCLE_racine>
 
-<a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a>
-::
-<BOUCLE_h(HIERARCHIE){id_rubrique}{tout}>
-<a href="#URL_RUBRIQUE">#TITRE</a>
-::
-</BOUCLE_h>
-[(#CONFIG{articles_versions}|=={oui}|?{<a href="#URL_RUBRIQUE#revisions"><:gribouille:derniers_changements:></a>}) :: ]
-<:gribouille:recherche:> : <input type='text' name='recherche' value='' />
+	<div class="header_tools">
+		<div class="header_breadcrumb">
+			<BOUCLE_r(RUBRIQUES){id_rubrique}{wiki}>
+			<nav aria-label="breadcrumb" role="navigation">
+				<ol>
+					<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
+					<BOUCLE_h(HIERARCHIE){id_rubrique}{tout}>
+					<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_h>
+				</ol>
+			</nav>
+			</BOUCLE_r>
+		</div>
+		
+		<div class="header_search">
+			[(#REM) Passer le secteur en cours à la page des résultats de recherche ] 
+			#FORMULAIRE_RECHERCHE{#URL_PAGE{recherche_gribouille}|parametre_url{id_rubrique,#GET{secteur_wiki}}}
+		</div>
+	</div>
+	
 </div>
-</form>
-
-</BOUCLE_r>

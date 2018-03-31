@@ -87,7 +87,7 @@ function autoriser_rubrique_publierdans($faire, $quoi, $id, $qui, $opts) {
 			switch ($type) {
 				case 'webmestre':
 					// Webmestres uniquement
-					$autorise = tickets_verifier_webmestre($qui);
+					$autorise = gribouille_verifier_webmestre($qui);
 					break;
 				case 'par_statut':
 					// Traitement spécifique pour la valeur 'tous'
@@ -140,7 +140,7 @@ function autoriser_rubrique_voir($faire, $quoi, $id, $qui, $opts) {
 			switch ($type) {
 				case 'webmestre':
 					// Webmestres uniquement
-					$autorise = tickets_verifier_webmestre($qui);
+					$autorise = gribouille_verifier_webmestre($qui);
 					break;
 				case 'par_statut':
 					// Traitement spécifique pour la valeur 'tous'

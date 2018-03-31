@@ -1,91 +1,52 @@
-<BOUCLE_a(ARTICLES){id_article}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-
+<BOUCLE_article(ARTICLES){id_article}{wiki}>
+<!DOCTYPE html>
+<html lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>#TITRE</title>
-<INCLURE{fond=inc-head_gribouille}>
+	<title>#TITRE</title>
+	<INCLURE{fond=inc-head_gribouille}>
 </head>
+<body>
+<div class="container">
 
-<body id="contenu">
+	<INCLURE{fond=inc-entete_gribouille}{id_rubrique}{id_article}>
 
-<BOUCLE_r(RUBRIQUES){id_rubrique}>
-<h1 class="wiki_name">#TITRE</h1>
-</BOUCLE_r>
-
-
-[<div style='float:left;[width:(#LOGO_ARTICLE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_ARTICLE)</div>]
-
-[(#ENV{id_version}|?{
-	<h1 class="page_name">[(#TITRE|safehtml)]
-	&mdash; version [(#ENV{id_version})]
-	::
-	<a href="#URL_ARTICLE"><:gribouille:retour_version_actuelle:></a>
-	</h1>
-,
-	<h1 class="[(#EDIT{titre}) ]page_name">[(#TITRE|safehtml)]</h1>
-})]
-
-<INCLURE{fond=inc-entete_gribouille}{id_rubrique}{id_article}>
-
-
-<div class="texte page">
-
-[(#ENV{id_version}|oui)
-	[(#VAL|revisions_tout_objets|oui)
-		[(#INCLURE{fond=afficher_revisions_gribouille}{id_version=#ENV{id_version}}{objet=article}{id_objet=#ENV{id_article}})]
-	][(#VAL|revisions_tout_objets|non)
-		[(#INCLURE{fond=afficher_revisions_old_gribouille}{id_version=#ENV{id_version}}{id_article})]
+	[(#ENV{id_version}|non)
+	<h1 class="[(#ENV{id_version}|non)[(#EDIT{titre}) ]]page_name">[(#TITRE|safehtml)]</h1>
 	]
-]
-[(#ENV{id_version}|non)
-	[<div class="#EDIT{surtitre} surtitre">(#SURTITRE|safehtml)</div>]
-	[<h2 class="#EDIT{titre} titre">(#TITRE|sinon{<:info_sans_titre:>}|safehtml)</h2>]
-	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE|safehtml)</div>]
-	[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
-	[<div class="#EDIT{texte}">(#TEXTE
-		|sinon{<i><:gribouille:click_ajout_texte:></i>}
-		|safehtml)
-		[<div class="notes">(#NOTES|safehtml)</div>]
-	</div>]
-	[<div class="#EDIT{ps}">(#PS|safehtml)</div>]
-]
+	<div class="page">
 
+		[(#ENV{id_version}|oui)
+		[(#INCLURE{fond=afficher_revisions_gribouille}{id_version=#ENV{id_version}}{objet=article}{id_objet=#ENV{id_article}})]
+		]
+		
+		[(#ENV{id_version}|non)
+		[<div class="#EDIT{texte} texte">(#TEXTE|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>}|safehtml)
+			[<div class="notes">(#NOTES|safehtml)</div>]
+		</div>]
+		<div><:gribouille:mis_a_jour:> [(#DATE|affdate_heure)]</p>
+		]
+			
+		<B_rev>
+			<h2><:gribouille:toutes_version:></h2>
+			<ul>
+				[(#REM) 
+					On n'affiche pas la version avec id_auteur = -1 (version initiale, qui est toujours vide).
+					On affiche donc le numéro de version - 1
+				]
+				<BOUCLE_rev(VERSIONS){id_objet=#ID_ARTICLE}{objet=article}{par date}{inverse}{id_auteur!=-1}>
+				<li>
+					#SET{titre, #ID_VERSION|moins{1}|concat{' &mdash; ',#INFO_NOM{auteur,#ID_AUTEUR}|sinon{#ID_AUTEUR},', ',#TITRE_VERSION|sinon{#DATE|affdate_heure}}}
+					[(#SELF|parametre_url{id_version,#ID_VERSION}|lien_ou_expose{  #GET{titre}, #ENV{id_version}|=={#ID_VERSION}})]
+				</li>
+				</BOUCLE_rev>
+			</ul>
+		</B_rev>
+			
+	</div>
 
-<hr class="hr_clear" />
-</div>[(#REM) /page]
-
-
-<div class="footer">
-
-<script type='text/javascript'><!--
-	if (typeof cQuery != 'undefined') {
-		cQuery(function(){
-			cQuery('<span><a><:gribouille:editer_page:><\/a><\/span>')
-			.bind('click',function(e){
-				cQuery('.crayon-autorise')
-				.opencrayon(e);
-			})
-			.prependTo(".footer");
-		});
-	}
-// --></script>
-
-[ :: (#CONFIG{articles_versions}|=={oui}|?{' '})
-<a rel="noindex,nofollow" [(#ENV{id_version}|?{
-	href="#URL_ARTICLE"><:gribouille:retour_version_courante:>
-,
-	href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]"><:gribouille:historique:>
-})]</a>
-
-
-:: <:gribouille:cette_version:>&nbsp;: ]<BOUCLE_v(VERSIONS){id_article}{id_version=#ENV{id_version,#ID_VERSION}}>#DATE</BOUCLE_v>
+	<INCLURE{fond=inc-pied_gribouille}{id_rubrique}{url=#URL_ARTICLE}>
 
 </div>
-
-
-<INCLURE{fond=inc-pied_gribouille}{id_rubrique}{url=#URL_ARTICLE}>
-
 </body>
 </html>
-</BOUCLE_a>
+</BOUCLE_article>
