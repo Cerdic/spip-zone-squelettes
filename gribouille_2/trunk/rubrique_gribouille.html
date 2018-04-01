@@ -4,12 +4,12 @@
 <html lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>#TITRE</title>
-	<INCLURE{fond=inc-head_gribouille}>
+	<INCLURE{fond=inc-gribouille/head}>
 </head>
 <body>
 <div class="container">
 	
-	<INCLURE{fond=inc-entete_gribouille,id_rubrique,accueil=#GET{accueil}}>
+	<INCLURE{fond=inc-gribouille/entete,id_rubrique,accueil=#GET{accueil}}>
 	
 	[(#GET{accueil}|non)
 	<h1 class="#EDIT{titre}">#TITRE</h1>
@@ -21,24 +21,15 @@
 		[<div class="notes">(#NOTES|safehtml)</div>]
 		</div>]
 
-		<INCLURE{fond=inc-pages-gribouille,id_rubrique,env,ajax}>
+		<INCLURE{fond=inc-gribouille/pages,id_rubrique,env,ajax}>
 
-		<B_sous_rubriques>
-			<h2>
-				<:gribouille:sous_rubriques:>
-			</h2>
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES){branche}{wiki}{exclus}>
-				<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-				</BOUCLE_sous_rubriques>
-			</ul>
-		</B_sous_rubriques>
+		<INCLURE{fond=inc-gribouille/sousrubriques,id_rubrique,env,ajax}>
 		
-		<INCLURE{fond=inc-derniers-changements_gribouille,id_rubrique,env,ajax}>
+		<INCLURE{fond=inc-gribouille/derniers-changements,id_rubrique,env,ajax}>
 		
 	</div>
 	
-	<INCLURE{fond=inc-pied_gribouille}{id_rubrique}{url=#URL_RUBRIQUE}>
+	<INCLURE{fond=inc-gribouille/pied,id_rubrique,url=#URL_RUBRIQUE}>
 
 </div>
 </body>

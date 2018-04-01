@@ -3,12 +3,12 @@
 <html lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>#TITRE</title>
-	<INCLURE{fond=inc-head_gribouille}>
+	<INCLURE{fond=inc-gribouille/head}>
 </head>
 <body>
 <div class="container">
 
-	<INCLURE{fond=inc-entete_gribouille}{id_rubrique}{id_article}>
+	<INCLURE{fond=inc-gribouille/entete,id_rubrique,id_article}>
 
 	[(#ENV{id_version}|non)
 	<h1 class="[(#ENV{id_version}|non)[(#EDIT{titre}) ]]page_name">[(#TITRE|safehtml)]</h1>
@@ -16,7 +16,7 @@
 	<div class="page">
 
 		[(#ENV{id_version}|oui)
-		[(#INCLURE{fond=afficher_revisions_gribouille}{id_version=#ENV{id_version}}{objet=article}{id_objet=#ENV{id_article}})]
+		<INCLURE{fond=inc-gribouille/afficher_revisions,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
 		]
 		
 		[(#ENV{id_version}|non)
@@ -44,7 +44,7 @@
 			
 	</div>
 
-	<INCLURE{fond=inc-pied_gribouille}{id_rubrique}{url=#URL_ARTICLE}>
+	<INCLURE{fond=inc-gribouille/pied,id_rubrique,url=#URL_ARTICLE}>
 
 </div>
 </body>
