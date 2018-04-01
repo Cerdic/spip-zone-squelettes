@@ -1,4 +1,5 @@
 <BOUCLE_article(ARTICLES){id_article}{wiki}>
+#SET{diff, #VAL{#ID_ARTICLE}|gribouille_calcul_diff{'article',#ENV{id_version}}}
 <!DOCTYPE html>
 <html lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -9,38 +10,42 @@
 <div class="container">
 
 	<INCLURE{fond=inc-gribouille/entete,id_rubrique,id_article}>
-
-	[(#ENV{id_version}|non)
+	
+	[(#ENV{id_version}|?{
+	<h1>[(#GET{diff/titre})]</h1>,
 	<h1 class="[(#ENV{id_version}|non)[(#EDIT{titre}) ]]page_name">[(#TITRE|safehtml)]</h1>
-	]
-	<div class="page">
+	})]
 
-		[(#ENV{id_version}|oui)
-		<INCLURE{fond=inc-gribouille/afficher_revisions,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
-		]
+	[(#ENV{id_version}|oui)
+	<INCLURE{fond=inc-gribouille/entete_revision,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
+	]
+	
+	<div class="page">
 		
-		[(#ENV{id_version}|non)
-		[<div class="#EDIT{texte} texte">(#TEXTE|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>}|safehtml)
-			[<div class="notes">(#NOTES|safehtml)</div>]
-		</div>]
-		<div><:gribouille:mis_a_jour:> [(#DATE|affdate_heure)]</p>
-		]
-			
-		<B_rev>
-			<h2><:gribouille:toutes_version:></h2>
-			<ul>
-				[(#REM) 
-					On n'affiche pas la version avec id_auteur = -1 (version initiale, qui est toujours vide).
-					On affiche donc le numéro de version - 1
+		<div class="contenu">
+			<div class="contenu_texte">
+				[(#ENV{id_version}|oui)
+					[<div class="chapo">(#GET{diff/chapo})</div>]
+					[<div class="texte">(#GET{diff/texte})</div>]
+					[<div class="ps">(#GET{diff/ps})</div>]
 				]
-				<BOUCLE_rev(VERSIONS){id_objet=#ID_ARTICLE}{objet=article}{par date}{inverse}{id_auteur!=-1}>
-				<li>
-					#SET{titre, #ID_VERSION|moins{1}|concat{' &mdash; ',#INFO_NOM{auteur,#ID_AUTEUR}|sinon{#ID_AUTEUR},', ',#TITRE_VERSION|sinon{#DATE|affdate_heure}}}
-					[(#SELF|parametre_url{id_version,#ID_VERSION}|lien_ou_expose{  #GET{titre}, #ENV{id_version}|=={#ID_VERSION}})]
-				</li>
-				</BOUCLE_rev>
-			</ul>
-		</B_rev>
+				[(#ENV{id_version}|non)
+					[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
+					<div class="#EDIT{texte} texte">
+						[(#TEXTE|safehtml|ancres_sommaire|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>})]
+						[<div class="notes">(#NOTES|safehtml)</div>]
+					</div>
+					[<div class="#EDIT{ps} ps">(#PS|safehtml)</div>]
+					<div class="contenu_date"><:gribouille:mis_a_jour:> [(#MAJ|affdate_heure)]</div>
+				]
+			</div>
+			<div class="contenu_sommaire">
+				[(#ENV{id_version}|non)
+				[(#SOMMAIRE{#TEXTE})]
+				]
+				<INCLURE{fond=inc-gribouille/liste_versions,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
+			</div>
+		</div>
 			
 	</div>
 

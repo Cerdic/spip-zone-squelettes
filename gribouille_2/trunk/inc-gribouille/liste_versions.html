@@ -1,0 +1,17 @@
+<B_rev>
+	[(#ENV{id_version}|oui)
+	<p><a rel="noindex,nofollow" href="[(#ENV{id_objet}|generer_url_entite{#ENV{objet}})]"><:gribouille:retour_version_courante:></a></p>
+	]
+	<h2><:gribouille:toutes_version:></h2>
+	<ul>
+		<BOUCLE_rev(VERSIONS){id_objet=#ENV{id_objet}}{objet=#ENV{objet}}{par date}{inverse}>
+		<li>
+			[(#SET{date, <abbr title="[(#DATE|date_iso)]">[(#DATE|date_relative)]</abbr>})]
+			#SET{titre, #ID_VERSION|concat{' - ',#INFO_NOM{auteur,#ID_AUTEUR}|sinon{#ID_AUTEUR|=={-1}|?{#GET{auteur},#ID_AUTEUR}},', ',#TITRE_VERSION|sinon{#GET{date}}}}
+			[(#SELF|parametre_url{id_version,#ID_VERSION}|lien_ou_expose{#GET{titre}, #ENV{id_version}|=={#ID_VERSION}})]
+			#SET{auteur,#INFO_NOM{auteur,#ID_AUTEUR}}
+		</li>
+		</BOUCLE_rev>
+	</ul>
+</B_rev>
+

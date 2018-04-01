@@ -31,7 +31,7 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'deconnexion'                               => 'd&#233;connexion',
 	'derniers_changements'                      => 'Derniers changements',
 	'disclaimer'                                => 'Ce site fonctionne avec le squelette <a href="https://contrib.spip.net/Gribouille">Gribouille</a>&nbsp;; inspir&#233; de <a href="http://www.wikini.net/wakka.php?wiki=PagePrincipale">WikiNi</a>',
-	'dans_rubrique'                                => 'Dans la rubrique :',
+	'dans_rubrique'                             => 'Dans la rubrique :',
 
 	// E
 	'editer_page'                               => '&Eacute;diter cette page',
@@ -56,7 +56,7 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 
 	// P
 	'piege_a_robot'                             => 'Laissez ce champ vide :',
-	'pages_plus_lues'                           => 'Pages les plus lues',
+	'pages'                                     => 'Pages',
 
 	// R
 	'recherche'                                 => 'Recherche',
@@ -72,6 +72,8 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'texte_bienvenue'                           => 'Bienvenue sur le carnet de notes de @nom_site@.',
 	'titre_input'                               => 'Titre...',
 	'toutes_version'                            => 'Toutes les versions',
+	'tri_par_titre'                                 => 'Par titre',
+	'tri_par_popularite'                            => 'Par popularité',
 
 	// Z
 	'z'                                         => 'zzz',

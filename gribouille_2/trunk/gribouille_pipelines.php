@@ -37,6 +37,9 @@ function gribouille_styliser($flux) {
 				if (autoriser('voir', 'rubrique', $id_rubrique, $GLOBALS['visiteur_session'])) {
 					if ($squelette = test_squelette_gribouille($fond, $ext)) {
 						$flux['data'] = $squelette;
+						// définir les intertitres en H2 sur le Wiki
+						$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
+						$GLOBALS['fin_intertitre'] = "</h2>\n";
 					}
 				}
 				else {

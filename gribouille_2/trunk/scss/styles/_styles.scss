@@ -3,33 +3,28 @@
 //----------------------------------------
 
 .container {
-  max-width: 60em;
+  max-width: 70em;
   margin:    0 auto;
 }
+
+// -------- HEADER ---------------------
+
 .header {
-  margin-bottom: 2em;
+  margin-bottom:  2em;
   padding-bottom: 2em;
-  border-bottom: 1px solid $couleur-gris4;
-}
-.header_tools {
-  @include flex();
-  justify-content: space-between;
+  border-bottom:  1px solid $couleur-gris4;
 }
 
-.footer {
-  margin-top: 2em;
-  padding-top: 2em;
-  border-top: 1px solid $couleur-gris4;
+.header_tools {
+  @include media($bp-medium-up) {
+    @include flex();
+    justify-content: space-between;
+  }
 }
-.header_breadcrumb ol {
-  list-style: none;
-  margin:     0;
-  li {
-    margin:  0;
-    display: inline-block;
-    &:not(:last-child):after {
-      content: ' >';
-    }
+
+.header_breadcrumb {
+  @include media($bp-medium) {
+    margin-bottom: 1.5em;
   }
 }
 
@@ -43,7 +38,118 @@
   }
 }
 
+.header_breadcrumb ol {
+  list-style: none;
+  margin:     0;
+  li {
+    margin:  0;
+    display: inline-block;
+    &:not(:last-child):after {
+      content: ' >';
+    }
+  }
+}
 
+// -------- CONTENU ---------------------
+
+.contenu {
+  @include media($bp-medium-up) {
+    @include flex();
+    justify-content: space-between;
+  }
+  .chapo {
+    font-weight: bold;
+  }
+}
+
+.extra_rubrique,
+.contenu_sommaire {
+  ul {
+    list-style:  none;
+    margin-left: 0;
+    li {
+      line-height:   $typo-line-height*0.9;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+.contenu_sommaire {
+  width:       15em;
+  min-width:   15em;
+  margin-left: 2em;
+  .nav-sommaire {
+    margin: 0;
+    border: none;
+    h2 {
+      @extend .h2;
+      text-transform: none;
+    }
+    @include media($bp-medium) {
+      display: none;
+    }
+    ul {
+      padding-left: 0.8em;
+      text-indent:  -1em;
+      li:before {
+        content: "\2219";
+      }
+    }
+  }
+}
+
+.contenu_date {
+  margin-top:  1.5em;
+  padding-top: 1em;
+  color:       $couleur-gris4;
+  font-style:  italic;
+}
+
+.extra_rubrique {
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  border-top: thin solid $couleur-gris5;
+  @include media($bp-medium-up) {
+    @include flex();
+    & > div {
+      //width:  33%;
+      margin: 0 1em;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.extra_rubrique__pages_header {
+  @include media($bp-medium-up) {
+    @include flex();
+    justify-content: space-between;
+  }
+}
+.extra_rubrique__pages_tri {
+  @include media($bp-medium-up) {
+    padding-right: 1em;
+  }
+}
+.extra_rubrique__pages,
+.extra_rubrique__sous_rubriques {
+  a {
+    display:     block;
+    font-weight: bold;
+  }
+}
+
+// -------- FOOTER ---------------------
+
+.footer {
+  margin-top:  2em;
+  padding-top: 2em;
+  border-top:  1px solid $couleur-gris4;
+}
 
 .ajout-page {
   margin-bottom: 1.5em;
@@ -55,34 +161,30 @@
       width:   15em;
       display: inline-block;
     }
-    input.text, input[type="text"] {
+    input.text, input[type=" text "] {
       width:   16em;
       display: inline-block;
     }
   }
 }
 
-
-.version-entete {
-  @include flex();
-  justify-content: space-between;
-}
-
-
 .recherche_resultats {
   li {
     margin-bottom: 1em;
   }
 }
+
 .recherche_chemin {
   font-size: 85%;
-  color: $couleur-gris4;
+  color:     $couleur-gris4;
 }
 
-.coloration_code {
-  background: #f6f4f4;
-  padding: 0.5em;
+.spip_code, .coloration_code {
+  background:    #F6F4F4;
+  padding:       0.5em;
   margin-bottom: 1.5em;
+  // pour les lignes vraiment trop longues
+  hyphens:       auto;
   ol {
     margin-bottom: 0;
   }
@@ -91,45 +193,56 @@
   }
 }
 
+// code inline
+code.spip_code {
+  padding: 0.2em;
+}
 
 // Comparaison d'articles
 
 .diff-para-deplace {
-  background: #e8e8ff;
-}
-.diff-para-ajoute {
-  background: #d0ffc0;
-  color: #000;
-}
-.diff-para-supprime {
-  background: #ffd0c0;
-  color: #904040;
-  text-decoration: line-through;
-}
-.diff-deplace {
-  background: #e8e8ff;
-}
-.diff-ajoute {
-  background: #d0ffc0;
-}
-.diff-supprime {
-  background: #ffd0c0;
-  color: #802020;
-  text-decoration: line-through;
-}
-.diff-para-deplace .diff-ajoute {
-  border: 1px solid #808080;
-  background: #b8ffb8;
-}
-.diff-para-deplace .diff-supprime {
-  border: 1px solid #808080;
-  background: #ffb8b8;
-}
-.diff-para-deplace .diff-deplace {
-  border: 1px solid #808080;
-  background: #b8b8ff;
+  background: #E8E8FF;
 }
 
+.diff-para-ajoute {
+  background: #D0FFC0;
+  color:      #000;
+}
+
+.diff-para-supprime {
+  background:      #FFD0C0;
+  color:           #904040;
+  text-decoration: line-through;
+}
+
+.diff-deplace {
+  background: #E8E8FF;
+}
+
+.diff-ajoute {
+  background: #D0FFC0;
+}
+
+.diff-supprime {
+  background:      #FFD0C0;
+  color:           #802020;
+  text-decoration: line-through;
+}
+
+.diff-para-deplace .diff-ajoute {
+  border:     1px solid #808080;
+  background: #B8FFB8;
+}
+
+.diff-para-deplace .diff-supprime {
+  border:     1px solid #808080;
+  background: #FFB8B8;
+}
+
+.diff-para-deplace .diff-deplace {
+  border:     1px solid #808080;
+  background: #B8B8FF;
+}
 
 //----------------------------------------
 //  Surcharges SPIP
@@ -183,7 +296,7 @@ table.spip {
 }
 
 .markItUp .markItUpHeader {
-  // une barre d'édition "flat" comme le thème, sans dégradé ni arrondis
+  // une barre d'édition " flat " comme le thème, sans dégradé ni arrondis
   background:    $couleur-gris5 !important;
   border-color:  darken($couleur-gris5, 5%) !important;
   border-bottom: none;

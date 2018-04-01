@@ -10,29 +10,24 @@ if (!defined("_ECRIRE_INC_VERSION")) {
 }
 
 /**
- * Affiche le diff d'un objet
+ * Retourne le diff d'un objet
  * (uniquement pour les articles en 2.0.X)
- * Ex: [<small> (#ID_ARTICLE|affiche_diff{article,#ID_VERSION,diff}|supprimer_tags|couper{50})</small>]
+ * Ex: [<small> (#ID_ARTICLE|gribouille_calcul_diff{article,#ID_VERSION,diff}|supprimer_tags|couper{50})</small>]
  *
  * @param int    $id_objet
  * @param string $objet
  * @param int    $id_version
  * @param string $format [optional]
  *
- * @return string
+ * @return array
  */
-function affiche_diff($id_objet, $objet, $id_version, $format = 'complet') {
+function gribouille_calcul_diff($id_objet, $objet, $id_version, $format = 'complet') {
 	include_spip('inc/suivi_versions');
 	
 	$textes = revision_comparee($id_objet, $objet, $id_version, $format);
-	$ret = '';
+	$ret = array();
 	foreach ($textes as $champ => $texte) {
-		if ($champ == 'titre') {
-			$ret .= '<h1>'.propre_diff($texte).'</h1>';
-		}
-		else if ($champ == 'texte') {
-			$ret .= '<div>'.propre_diff($texte).'</div>';
-		}
+		$ret[$champ] = propre_diff($texte);
 	}
 
 	return $ret;

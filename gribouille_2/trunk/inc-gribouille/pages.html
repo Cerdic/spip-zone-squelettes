@@ -1,11 +1,15 @@
+[(#SET{defaut_tri,#ARRAY{titre,1,popularite,-1}})]
 <B_pages>
-	<h2><:gribouille:pages_plus_lues:></h2>
+	<div class="extra_rubrique__pages_header">
+		<h2><:gribouille:pages:></h2>
+		<p class="extra_rubrique__pages_tri">[(#TRI{titre,<:gribouille:tri_par_titre:>,ajax})] | [(#TRI{popularite,<:gribouille:tri_par_popularite:>,ajax})]</p>
+	</div>
 	#ANCRE_PAGINATION
-	<ul>
-		<BOUCLE_pages(ARTICLES){id_rubrique}{!par popularite}{pagination #ENV{nb,20}}{wiki}>
+	<ul class="extra_rubrique__pages">
+		<BOUCLE_pages(ARTICLES){id_rubrique}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,20}}{wiki}>
 		<li>
-			<strong><a href="#URL_ARTICLE">#TITRE</a></strong>
-			[<br>(#INTRODUCTION|couper{80}|supprimer_tags)]
+			<a href="#URL_ARTICLE">#TITRE</a>
+			[(#INTRODUCTION|couper{80}|supprimer_tags)]
 		</li>
 		</BOUCLE_pages>
 	</ul>
