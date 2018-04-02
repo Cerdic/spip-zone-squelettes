@@ -4,14 +4,14 @@
 			<:gribouille:derniers_changements:>
 		</h2>
 		#ANCRE_PAGINATION
-		<ul>
-			<BOUCLE_revisions(VERSIONS articles){branche}{par date}{inverse}{pagination #ENV{nb,20}}{statut=publie}{tout}>
+		<ul class="liste-articles">
+			<BOUCLE_revisions(VERSIONS articles){branche}{!par date}{pagination #ENV{nb,20}}{statut=publie}>
 			<li>
-				[(#SET{gras,[(#ID_ARTICLE|unique|?{b})]})]
-				[<(#GET{gras})>]
-				<a href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]" rel="noindex,nofollow" title="version [(#ID_VERSION|moins{1})]">#TITRE</a>
-				[</(#GET{gras})>]
-				<br>[<abbr title="[(#DATE|date_iso)]">(#DATE|date_relative)</abbr>], [(#INFO_NOM{auteur,#ID_AUTEUR})]
+				<a href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]" [(#ID_ARTICLE|unique|non)style="font-weight: normal;"] rel="noindex,nofollow" title="version [(#ID_VERSION|moins{1})]">#TITRE</a>
+				<span class="liste-articles_info">
+					[(#DATE|oui)[<abbr title="[(#DATE|date_iso)]">(#DATE|date_relative)</abbr>], [(#INFO_NOM{auteur,#ID_AUTEUR})]]
+					[(#DATE|non)#TITRE_VERSION]
+				</span>
 			</li>
 			</BOUCLE_revisions>
 		</ul>

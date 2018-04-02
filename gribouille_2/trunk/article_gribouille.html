@@ -36,14 +36,17 @@
 						[<div class="notes">(#NOTES|safehtml)</div>]
 					</div>
 					[<div class="#EDIT{ps} ps">(#PS|safehtml)</div>]
-					<div class="contenu_date"><:gribouille:mis_a_jour:> [(#MAJ|affdate_heure)]</div>
+					<div class="contenu_date_auteurs">
+						<INCLURE{fond=inc-gribouille/article-auteurs,id_article}>		
+						[ - <:gribouille:mis_a_jour:>(#MAJ|affdate_heure)]
+					</div>
 				]
 			</div>
 			<div class="contenu_sommaire">
 				[(#ENV{id_version}|non)
 				[(#SOMMAIRE{#TEXTE})]
 				]
-				<INCLURE{fond=inc-gribouille/liste_versions,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
+				<INCLURE{fond=inc-gribouille/liste_versions, env, id_version=#ENV{id_version}, objet=article, id_objet=#ENV{id_article}}>
 			</div>
 		</div>
 			

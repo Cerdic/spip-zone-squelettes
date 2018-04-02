@@ -65,6 +65,8 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 
 	// S
 	'sous_rubriques'                            => 'Sous-rubriques',
+	'ses_articles'                              => 'Ses articles',
+	'ses_modifications'                         => 'Ses modifications',
 
 	// T
 	'titre_configurer_gribouille'               => 'Configurer Gribouille',
@@ -72,8 +74,11 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'texte_bienvenue'                           => 'Bienvenue sur le carnet de notes de @nom_site@.',
 	'titre_input'                               => 'Titre...',
 	'toutes_version'                            => 'Toutes les versions',
-	'tri_par_titre'                                 => 'Par titre',
-	'tri_par_popularite'                            => 'Par popularité',
+	'tri_par_titre'                             => 'Titre',
+	'tri_par_popularite'                        => 'Popularité',
+	'tri_par_date'                              => 'Date',
+	'tri_par_maj'                               => 'Date de mise à jour',
+	'tri_par_points'                            => 'Points',
 
 	// Z
 	'z'                                         => 'zzz',

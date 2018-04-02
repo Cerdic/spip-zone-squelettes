@@ -37,11 +37,26 @@ function boucle_secteurs_wiki() {
 	return lire_config('gribouille/secteurs_wiki');
 }
 
-// un critère qui restreint les boucles articles et rubriques aux secteurs wiki
+// un critère qui restreint les boucles articles et rubriques du wiki
 function critere_wiki($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
-	$boucle->where[] = array("'IN'", "'$id_table.id_secteur'", "'('.join(',',boucle_secteurs_wiki()).')'");
+	$boucle->where[] = array("'='", "'$id_table.id_secteur'", "boucle_secteurs_wiki()");
+	$boucle->modificateur['wiki'] = true;
+}
+
+// un critère qui restreint les versions aux articles du wiki
+function critere_versions_wiki($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	
+	$boucle->select[]= 'articles.*';
+	$boucle->from['articles'] = "spip_articles";
+	$boucle->from_type['articles'] = "LEFT";
+	$boucle->join["articles"]= array("'$id_table'","'id_article'","'id_objet'","'$id_table.objet=\"article\"'");
+	
+	$boucle->where[] = array("'='", "'articles.id_secteur'", "boucle_secteurs_wiki()");
+	$boucle->where[] = array("'='", "'articles.statut'", "'\"publie\"'");
 	$boucle->modificateur['wiki'] = true;
 }
 

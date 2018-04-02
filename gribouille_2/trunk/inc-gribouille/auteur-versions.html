@@ -1,0 +1,22 @@
+[(#SET{defaut_tri,#ARRAY{versions.date,-1,titre,1}})]
+<B_versions>
+	<div class="liste-articles_tri">
+		<h2><:gribouille:ses_modifications:></h2>
+		<p class="tri">[(#TRI{titre,<:gribouille:tri_par_titre:>,ajax})] | [(#TRI{maj,<:gribouille:tri_par_date:>,ajax})]</p>
+	</div>
+	#ANCRE_PAGINATION
+	<ul class="liste-articles">
+		<BOUCLE_versions(VERSIONS)
+			{id_auteur}{objet=article}{versions_wiki}
+			{tri #ENV{par,versions.date},#GET{defaut_tri}}{!par versions.date}{pagination #ENV{nb,20}}>
+		<li>
+			[(#SET{date, <abbr title="[(#DATE|date_iso)]">[(#DATE|date_relative)]</abbr>})]
+			#SET{titre, #TITRE|concat{', ',#TITRE_VERSION|sinon{#GET{date}}}}
+			[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION}|parametre_url{rel,noindex,nofollow}|lien_ou_expose{#GET{titre}, #ENV{id_version}|=={#ID_VERSION}})]
+			#SET{auteur,#INFO_NOM{auteur,#ID_AUTEUR}}
+			<INCLURE{fond=inc-gribouille/chemin-article,id_rubrique}>
+		</li>
+		</BOUCLE_versions>
+	</ul>
+	[<p class="pagination">(#PAGINATION{page})</p>]
+</B_versions>

@@ -56,21 +56,34 @@
   @include media($bp-medium-up) {
     @include flex();
     justify-content: space-between;
+    & > div {
+      margin: 0 1em;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
   .chapo {
     font-weight: bold;
   }
+  &.contenu__auteur {
+    & > div {
+      width: 50%;
+    }
+  }
 }
 
-.extra_rubrique,
-.contenu_sommaire {
-  ul {
-    list-style:  none;
-    margin-left: 0;
-    li {
-      line-height:   $typo-line-height*0.9;
-      margin-bottom: 0.5em;
-    }
+.liste-articles,
+.extra_rubrique ul,
+.contenu_sommaire ul {
+  list-style:  none;
+  margin-left: 0;
+  li {
+    line-height:   $typo-line-height*0.9;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -98,7 +111,12 @@
   }
 }
 
-.contenu_date {
+//.contenu_ses_articles,
+//.contenu_ses_modifications {
+//  width: 100%;
+//}
+
+.contenu_date_auteurs {
   margin-top:  1.5em;
   padding-top: 1em;
   color:       $couleur-gris4;
@@ -106,13 +124,13 @@
 }
 
 .extra_rubrique {
-  margin-top: 1.5em;
+  margin-top:  1.5em;
   padding-top: 1.5em;
-  border-top: thin solid $couleur-gris5;
+  border-top:  thin solid $couleur-gris5;
   @include media($bp-medium-up) {
     @include flex();
     & > div {
-      //width:  33%;
+      width:  33%;
       margin: 0 1em;
       &:first-child {
         margin-left: 0;
@@ -124,22 +142,37 @@
   }
 }
 
-.extra_rubrique__pages_header {
-  @include media($bp-medium-up) {
-    @include flex();
-    justify-content: space-between;
-  }
-}
-.extra_rubrique__pages_tri {
-  @include media($bp-medium-up) {
-    padding-right: 1em;
-  }
-}
-.extra_rubrique__pages,
-.extra_rubrique__sous_rubriques {
+.liste-articles {
   a {
     display:     block;
     font-weight: bold;
+  }
+}
+
+.liste-articles_tri {
+  @include media($bp-medium-up) {
+    @include flex();
+    align-items:     flex-end;
+    justify-content: space-between;
+  }
+  .tri {
+    @include media($bp-medium-up) {
+      font-size:     80%;
+      padding-right: 1em;
+    }
+  }
+}
+
+.liste-articles_info {
+  display:   block;
+  font-size: 80%;
+}
+
+.recherche_resultats {
+  list-style: square;
+  margin-left: 1em;
+  li {
+    margin-bottom: 1em;
   }
 }
 
@@ -166,17 +199,6 @@
       display: inline-block;
     }
   }
-}
-
-.recherche_resultats {
-  li {
-    margin-bottom: 1em;
-  }
-}
-
-.recherche_chemin {
-  font-size: 85%;
-  color:     $couleur-gris4;
 }
 
 .spip_code, .coloration_code {
