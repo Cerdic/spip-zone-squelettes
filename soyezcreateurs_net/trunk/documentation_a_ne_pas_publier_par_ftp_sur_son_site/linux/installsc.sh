@@ -1,6 +1,6 @@
 #! /bin/sh
-#Installation de SPIP 3.1 beta
-svn checkout svn://trac.rezo.net/spip/branches/spip-3.1 ./
+#Installation de SPIP 3.2
+svn checkout svn://trac.rezo.net/spip/branches/spip-3.2 ./
 #svn checkout svn://trac.rezo.net/spip/spip ./
 #sleep 2 && svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 #Si besoin de la mutualisation, decomenter la ligne suivante
@@ -18,7 +18,6 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/trunk bou
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/calendrier_mini/trunk calendriermini
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/citations_bien_balisees citations_bien_balisees
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/corbeille/trunk corbeille
-#sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse couteau_suisse
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/crayons crayons
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/dictionnaires/trunk dictionnaires
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/facteur/trunk facteur
@@ -28,10 +27,12 @@ sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/fulltext/trunk fulltex
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/inserer_modeles/trunk inserer_modeles
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/mailcrypt mailcrypt
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/memoization/trunk memoization
+#sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/minidoc/trunk minidoc # Pour 3.1 seulement
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/nospam nospam
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/notifications/trunk notifications
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/oembed oembed
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/orthotypo/trunk orthotypo
+#sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/ordoc/trunk ordoc # Pour 3.1 seulement
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_changement_langue/trunk porte_plume_changement_langue
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_partout/trunk porte_plume_partout
 sleep 2 && svn co svn://zone.spip.org/spip-zone/_plugins_/saisies/trunk saisies
