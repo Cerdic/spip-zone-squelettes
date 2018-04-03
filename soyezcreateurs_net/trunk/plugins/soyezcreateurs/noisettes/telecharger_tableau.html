@@ -22,7 +22,7 @@
 					</tr>
 				</thead>
 				<tbody>#SET{compteur_ligne,0}
-					<BOUCLE_AfficheDocuments(DOCUMENTS){media ?}{vu ?}{!par date}{par num titre,titre}{pagination 10}>
+					<BOUCLE_AfficheDocuments(DOCUMENTS){media ?}{vu ?}{!par date}{par rang_lien, num titre, titre}{pagination 10}>
 					#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}[(#SET{lelogo,[(#LOGO_DOCUMENT|image_reduire{24,24})]})]
 					<tr class="[(#GET{compteur_ligne}|alterner{'row_odd','row_even'})]">
 						<td><a href="#URL_DOCUMENT" type="#MIME_TYPE" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]"><img src="[(#GET{lelogo}|extraire_attribut{src}|embarque_fichier)]" height="[(#GET{lelogo}|hauteur)]" width="[(#GET{lelogo}|largeur)]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></a></td>
