@@ -33,20 +33,30 @@
 							<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
 							<BOUCLE_rub(RUBRIQUES){id_parent}{" | "}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_rub>
 						</div>
-					<!-- Articles de la rubrique -->
-					<BOUCLE_artrub(ARTICLES){id_rubrique}{unique}{!par date}>#SET{arttitre,#TITRE} #SET{arturl,#URL_ARTICLE}
-					    <BOUCLE_images_art(DOCUMENTS){id_article}{extension==jpg|png|gif}{par hasard}{0,1}>#SET{rapport,#HAUTEUR|div{231}}
-						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
-							<div class="lien" onclick="window.location.href='[(#GET{arturl}|attribut_html)]'"><h2>#GET{arttitre}</h2>
-						        [(#FICHIER|image_reduire{0,212})]</div>
-						</article>
-					    </BOUCLE_images_art>		
-					</B_images_art> 
-					</BOUCLE_artrub>					
+					<!-- Articles de la rubrique: tri par numéro si il y en a sinon par date inverse -->
+					<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
+						<BOUCLE_ordre_numeros(ARTICLES){id_rubrique}{unique}{par num titre}>#SET{arttitre,#TITRE} #SET{arturl,#URL_ARTICLE}
+							<BOUCLE_images_num(DOCUMENTS){id_article}{extension==jpg|png|gif}{par hasard}{0,1}>#SET{rapport,#HAUTEUR|div{231}}
+							<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
+								<div class="lien" onclick="window.location.href='[(#GET{arturl}|attribut_html)]'"><h2>#GET{arttitre}</h2>
+									[(#FICHIER|image_reduire{0,212})]</div>
+							</article>
+							</BOUCLE_images_num>		
+						</BOUCLE_ordre_numeros>
+					</BOUCLE_test_numero>
+						<BOUCLE_ordre_date(ARTICLES){id_rubrique}{unique}{par date}{inverse}>#SET{arttitre,#TITRE} #SET{arturl,#URL_ARTICLE}
+							<BOUCLE_images_art(DOCUMENTS){id_article}{extension==jpg|png|gif}{par hasard}{0,1}>#SET{rapport,#HAUTEUR|div{231}}
+							<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
+								<div class="lien" onclick="window.location.href='[(#GET{arturl}|attribut_html)]'"><h2>#GET{arttitre}</h2>
+									[(#FICHIER|image_reduire{0,212})]</div>
+							</article>
+							</BOUCLE_images_art>		
+						</BOUCLE_ordre_date>
+					<//B_test_numero>
 					
 					<!-- Articles des sous rubriques -->
 					<BOUCLE_ss_rub(RUBRIQUES){id_parent}>
-						<BOUCLE_recursion(BOUCLE_artrub) />
+						<BOUCLE_recursion(BOUCLE_test_numero) />
 					</BOUCLE_ss_rub>	
 
 					<!-- Images de la rubrique -->
