@@ -1,0 +1,61 @@
+[(#REM) Ordre de tri des articles ]
+#SET{defaut_tri,#ARRAY{
+date,-1,
+titre,1,
+popularite,-1,
+hasard,
+}}
+<B_articles_mb>
+
+	<div id="articles_mb">
+		#ANCRE_PAGINATION
+		<strong class="h1"><:moodboard:all_pins:> (#GRAND_TOTAL)</strong>
+
+		[(#REM) Si javascript n'est pas activé sur le navigateur ]
+		<INCLURE{fond=inclure/noscript_mb} />
+
+		[(#REM) Info Barre  ]
+		<div class="clearfix infobar_md">
+			<div class="content_infobar_md">
+				<div class="tri_mb">
+					#TRI{date,'Date',ajax}&nbsp;|
+					#TRI{titre,'Titre',ajax}&nbsp;|
+					#TRI{popularite,'Vues',ajax}&nbsp;|
+					#TRI{hasard,'Hazard',ajax}
+				</div>
+				[<div class="pagination_mb">(#PAGINATION|{prive})</div>]
+			</div>
+		</div>
+
+		[(#REM) Affichage des articles façon moodboard ]
+		<ul id="pins_mb">
+			[(#REM) Exclure les mots about et offscreen ]
+			<BOUCLE_articles_mb(ARTICLES){tri date,#GET{defaut_tri}}{!titre_mot == ^(about_mb|offscreen_mb)$}{pagination 20}>
+				<li class="hentry pin_mb" style="display: list-item;">
+
+					[(#REM) Si pas de logo d'article récupérer la première image ]
+					#SET{logo_document,''}
+					<BOUCLE_doc(DOCUMENTS) {id_article}{extension IN png,jpg,gif}{0,1}>
+						#SET{logo_document,#FICHIER}
+					</BOUCLE_doc>
+					<a href="[(#URL_ARTICLE)]" rel="bookmark">
+						[<div class="logo_pin_mb" style="width: 236px; height: [(#LOGO_ARTICLE|sinon{#GET{logo_document}}||image_reduire{236,*}|hauteur)]px;">
+							<img width="[(#LOGO_ARTICLE|sinon{#GET{logo_document}}||image_reduire{236,*}|largeur)]" height="[(#LOGO_ARTICLE|sinon{#GET{logo_document}}||image_reduire{236,*}|hauteur)]" alt="[(#TITRE|textebrut)]" src="(#LOGO_ARTICLE|sinon{#GET{logo_document}}||image_reduire{236,*}|extraire_attribut{src}|url_absolue)" />
+						</div>]
+						<div class="text_pin_mb">
+							<h2 class="h2 entry-title">#TITRE</h2>
+							[<h3 class="#EDIT{soustitre} soustitre entry-content">(#SOUSTITRE)</h3>]
+						</div>
+						<small><abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></small>
+					</a>
+				</li>
+			</BOUCLE_articles_mb>
+		</ul>
+
+	</div><!-- #articles_mb -->
+
+</B_articles_mb>
+
+<!-- Wookmark : lancement du script de mise en page des articles -->
+<script src="[(#CHEMIN{js/play.jquery.wookmark.js})]" type="text/javascript"></script>
+<!-- Fin Wookmark -->
