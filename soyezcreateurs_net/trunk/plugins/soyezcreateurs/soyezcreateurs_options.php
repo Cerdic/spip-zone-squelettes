@@ -72,7 +72,7 @@ if (!defined('_CLEVERMAIL_NOUVEAUTES_TEXT'))
 if (!defined('_CLEVERMAIL_DISTANT'))
 	define("_CLEVERMAIL_DISTANT", false); // Pour que CM ne calcule pas l'URL publique du squelette
 if (!defined('_SKEL_HORS_TRAVAUX'))
-	define("_SKEL_HORS_TRAVAUX", 'clevermail_do'); // Pour que le plugin en travaux laisse passer les inscriptions à la NL
+	define("_SKEL_HORS_TRAVAUX", 'clevermail_do,gis_json'); // Pour que le plugin en travaux laisse passer les inscriptions à la NL
 
 if (!defined('_SIDR_PERSO'))
 	define('_SIDR_PERSO', true); // Pour avoir sa propre insertion des scripts de sidr
