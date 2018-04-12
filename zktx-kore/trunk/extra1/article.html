@@ -2,43 +2,12 @@
 
 <B_extra1_article>
 <BOUCLE_extra1_article(ARTICLES){id_article}{doublons}>
-	[(#REM) Articles dans la meme rubrique ]
-	<B_articles_rubrique>
-	<nav class="col-sm-6 articles list-group">
-		[<div class="h2">(#TITRE_PARENT|sinon{<:articles_meme_rubrique:>})</div>]
-		<BOUCLE_articles_rubrique(ARTICLES){id_rubrique} {!par date} {0,3}{doublons}>
-		 <a href="#URL_ARTICLE" class="list-group-item [ active (#EXPOSE)]">
-		 	[<figure class="pull-left">
-		 	(#LOGO
-		 		|image_reduire{600,600}
-		 		|image_recadre{80,80,centrer}
-		 		|inserer_attribut{alt,#TITRE}
-				|inserer_attribut{class,thumbnail}
-				|inserer_attribut{class,img-responsive}
-		 	)</figure>]
-		 	<span class="list-group-item-heading h4">#TITRE</span>
-		 	[<p class="list-group-item-text">
-		 		(#DESCRIPTIF|sinon{[(#INTRODUCTION|couper{120})]})
-		 		[<small[ title="(#DATE|affdate{'c'})"] class="pubdate">&nbsp;|&nbsp;(#DATE|affdate)</small>]
-		 	</p>]
-		 	
-		 </a>
-		</BOUCLE_articles_rubrique>
-	</nav>
-	</B_articles_rubrique>
-
-
-	[(#REM) Menu de navigation mots-cles ]
-	<B_mots>
-	<nav class="col-sm-3 mots">
-	  <span class="h4"><:mots_clefs:></div>
-	  <ul class="list-group">
-	  <BOUCLE_mots(MOTS) {id_article} {par titre}>
-	       <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
-	  </BOUCLE_mots>
-	  </ul>
-	</nav>
-	</B_mots>
-
+<aside class="container ajax" role="contentinfo">
+	[(#REM) Petition ]
+	[(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+	
+	[(#REM) Forum & comments ]	
+	<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)} />
+</aside>
 </BOUCLE_extra1_article>
 </B_extra1_article>

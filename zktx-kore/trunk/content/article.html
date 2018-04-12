@@ -11,70 +11,84 @@
 	</ol>
 
 	[(#REM) Contenu principal ]
+	[<header class="page-header #EDIT{chapo} surlignable lead">(#CHAPO|abs_url)</header>]
+
+	<ul class="list-inline">			
+		[<li><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span><li>]
+		<li><span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time></li>
+		[<li><span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span></li>]
+		[<li>(#MODELE{article_traductions})</li>] [(#REM) liens de traduction ]	
+		
+		<B_lesmots>
+			<li><span class="glyphicon glyphicon-tags"></span></li>
+			<li><BOUCLE_lesmots(MOTS){id_article}><a class="btn btn-link" href="[(#URL_MOT|url_absolue)]" rel="category">#TITRE</a></BOUCLE_lesmots></li>
+		</B_lesmots>			
+	</ul>
+
+
 	<div class="row">
 
-		[<header class="page-header #EDIT{chapo} surlignable lead">(#CHAPO|abs_url)</header>]
-
-		<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-			<div class="well">			
-				[<p><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span></p>]
-				<p>
-					<span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time>[ <span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span>]
-				</p>
-				<B_lesmots>
-					<p><span class="glyphicon glyphicon-tags"></span> <BOUCLE_lesmots(MOTS){id_article}{", "}>[ <a href="[(#URL_MOT|url_absolue)]" rel="category">(#TITRE)</a>]</BOUCLE_lesmots></p>
-				</B_lesmots>			
-			</div>
+		<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
 
 			[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>"})]</a></p>]
 
 			[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{750,0}|abs_url)</section>]
+			
+		</div>
+	
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			[<aside class="well #EDIT{ps}">(#PS)</aside>]
+			
 			[(#REM) portfolio & documents ]
 			[<aside class="well" role="contentinfo">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
 
-		</div>
-	
-		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-			[<aside class="well #EDIT{ps}">(#PS)</aside>]
+			[(#REM) un bloc pour présenter l'auteur, sauf si c'est le 1 {!id_auteur = 1}
+				
+				on part du principe que l'auteur principal du site est
+				- soit déjà suffisement référencé 
+				- soit il est juste webmaster et n'intervient pas en rédaction
+			]
+			<B_auteur>
+			<BOUCLE_auteur(AUTEURS){id_article}{!id_auteur = 1}>
+				<aside class="author" itemprop="author">
+					<figure class="well">
+						[<p class="h3"><span class="glyphicon glyphicon-user"></span> <span class="#EDIT{qui} name">(#NOM)</span></p>]
+						[(#LOGO_AUTEUR|image_reduire{80,80}|image_recadre{80,80,center}|inserer_attribut{class,'img-responsive img-circle pull-right'}|inserer_attribut{alt,'#NOM'})]	
+						<figcaption>
+							[<div class="#EDIT{auteur_baseline} bio">(#BIO|couper{300})</div>]
+							<p class="form-group">
+								<a rel="author" class="btn btn-primary" href="[(#URL_AUTEUR|url_absolue)]"><i class="fa fa-user-circle" aria-hidden="true"></i> En savoir +</a>
+								[ <span class="#EDIT{url_site}"><a class="btn btn-default spip_out fn url" href="#URL_SITE"><i class="fa fa-external-link" aria-hidden="true"></i> (#NOM_SITE|sinon{#URL_SITE})</a></span>]
+							</p>
+						</figcaption>
+					</figure>
+				</aside>
+			</BOUCLE_auteur>
+			</B_auteur>
+
 			[(#REM) infos de publication ]
 			<aside class="well">
-				[(#REM) liens de traduction ] 
-				#MODELE{article_traductions}
-				
 				[(#REM) Boutons de partage ]
-
 				[<p><i class="fa fa-share-square-o"></i> Partager cet article</p>
 				<p class="text-center">(#INCLURE{fond=inclure/socialtags,env})</p>]
-				
-				
 				<p><span class="glyphicon glyphicon-comment"></span> <a href="#comments"><:zktx:jump2comments:></a></p>
 			</aside>
 			
 			[<section class="text-muted"><span class="h3">Notes</span> (#NOTES)</section>]
 		</div>
 	
-	</div>
-	
-	<B_auteur>
-	<BOUCLE_auteur(AUTEURS){id_article}>
-	<aside class="jumbotron row">
+	</div> [(#REM) /.row ]
 
-		[<figure class="text-center col-xs-12 col-sm-12 col-md-4 col-lg-2">(#LOGO_AUTEUR|image_reduire{80,80}|image_recadre{80,80,center}|inserer_attribut{class,'img-responsive img-circle'}|inserer_attribut{alt,'#NOM'})</figure>]
-
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-8">
-			[<span class="#EDIT{qui} h2 author" itemprop="author"><span class="glyphicon glyphicon-user"></span> (#NOM)</span>]
-			[<p class="#EDIT{bio}"><small>(#AUTEUR_BASELINE|sinon{[(#BIO|couper{260})]})</small></p>]
-		</div>
-		<nav clas="col-xs-12 col-sm-12 col-md-4 col-lg-2"><a rel="author" class="btn btn-outline btn-lg" href="[(#URL_AUTEUR|url_absolue)]">En savoir +</a></nav>
-	</aside>
-	</BOUCLE_auteur>
-	</B_auteur>
-
-	[(#REM) Petition ]
-	[<section class="ajax">(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} /></section>]
-
-	[(#REM) Forum & comments ]	
-	<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)} />
+	[(#REM) Jumbotron article connexes ]
+	<B_articles_rubrique>
+	<nav class="container" role="complementary">
+		[<p class="h2">(#TITRE_PARENT|sinon{<:articles_meme_rubrique:>})</p>]		
+		<BOUCLE_articles_rubrique(ARTICLES){id_rubrique} {!par date} {0,1}{doublons}>
+			<div class="jumbotron"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} /></div>
+		</BOUCLE_articles_rubrique>
+	</nav>
+	</B_articles_rubrique>
+	<//B_articles_rubrique>
 
 </article>
 
