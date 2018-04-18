@@ -17,14 +17,26 @@
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{par date}{pagination #GET{nbrpageventcalendrier}}{lang}>
-			<div class="liste-evenements">
-			[(#DATE_DEBUT|affdate_jourcourt)] :
+		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}
+		{pagination #GET{nbrpagevent}}{lang}>
+
+			<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons}>
+			</BOUCLE_seul>
+			<BOUCLE_premier(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons}>
+			</BOUCLE_premier>
+			
+			<div class="liste-evenements">          	
+          	
+			<BOUCLE_affiche(EVENEMENTS){!doublons}{doublons affiche}{par date}>
+			[(#DATE_DEBUT|affdate_jourcourt)] : 
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
-          	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age_fin<=1}{age_fin>=-365}{par date_debut}>
+          	</BOUCLE_affiche>
+          	
+          	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{par date}{doublons affiche}>
           		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
           	</BOUCLE_autres>
 			</div>
+          
 		</BOUCLE_evenements_agenda>
 			<div class="liste-evenements">
 			<:escal:evenements_non:>
