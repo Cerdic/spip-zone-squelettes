@@ -19,15 +19,15 @@
 	<div class="nettoyeur"></div>] 
 		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}
 		{pagination #GET{nbrpagevent}}{lang}>
-
-			<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons}>
-			</BOUCLE_seul>
-			<BOUCLE_premier(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons}>
-			</BOUCLE_premier>
+		
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{doublons}>
+</BOUCLE_seul>
+<BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}{doublons}>
+</BOUCLE_autres2>
 			
 			<div class="liste-evenements">          	
           	
-			<BOUCLE_affiche(EVENEMENTS){!doublons}{doublons affiche}{par date}>
+			<BOUCLE_affiche(EVENEMENTS){!doublons}{age<=1}{0,1}{doublons affiche}{par date}>
 			[(#DATE_DEBUT|affdate_jourcourt)] : 
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
           	</BOUCLE_affiche>
