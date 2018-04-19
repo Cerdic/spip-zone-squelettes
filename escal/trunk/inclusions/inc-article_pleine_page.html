@@ -155,6 +155,51 @@
 			<!--Affichage des notes de bas de page  -->
 				[<strong>Notes : </strong> <br />
 				<div id="notes">(#NOTES)</div>]
+				
+<!-- affichage des événements -->
+
+#SET{tableauprochainement,#ARRAY}
+<BOUCLE_prochainementselection(EVENEMENTS){id_article}{age_fin<=1}{par date_debut}>
+[(#ID_EVENEMENT_SOURCE|=={0}|?{				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+})]
+</BOUCLE_prochainementselection>
+
+
+<BOUCLE_select1(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>	
+			<BOUCLE_premier(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons select}>
+			</BOUCLE_premier>
+			<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{par date}{doublons autres}>
+          	</BOUCLE_autres>        
+</BOUCLE_select1>	
+				
+
+	<B_affiche>
+		<hr />
+		<strong><:escal:evenements_associes:></strong>	
+
+		<div class="container-choix">         	
+          	
+			<BOUCLE_affiche(EVENEMENTS){!doublons select}{doublons affiche}{par date}>
+			<div class="choix-article" style="width:40%;">
+			
+			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">
+			[(#DATE_DEBUT|affdate_jourcourt)]  - [(#DATE_DEBUT|affdate{'H'})] h [(#DATE_DEBUT|affdate{'m'})] : <strong>#TITRE</strong>
+			<BOUCLE_autres2(EVENEMENTS){!doublons autres}{doublons affiche}>
+          		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)] - [(#DATE_DEBUT|affdate{'H'})] h [(#DATE_DEBUT|affdate{'m'})] 
+          	</BOUCLE_autres2> 
+			</a>
+
+          	</div>
+          	</BOUCLE_affiche>
+          		
+		</div>
+          
+
+		<hr />	
+	</B_affiche>				
+				
 
 	</div><!-- Fin texte-article -->
 

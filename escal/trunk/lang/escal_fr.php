@@ -373,6 +373,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'edito' => 'Édito',
 'elements' => 'Éléments',
 'elements_explication' => 'Choisir la présence ou l\'absence d\'un élément sur toutes les pages du site',
+'evenements_associes' => 'Événements associés :',
 
 // F
 'facebook_plugin' => 'Plugin Modèles Facebook',
