@@ -117,12 +117,13 @@
       <meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
       <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
 
+      [(#DESCRIPTIF|oui)#DESCRIPTIF]  
+            
 
-
-        [(#DESCRIPTIF|oui)#DESCRIPTIF]
         <BOUCLE_art(ARTICLES){id_article}{si #DESCRIPTIF|non}>
-        [(#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
-        </BOUCLE_art>        
+        <br />
+        [(#MODELE{choix_article_base})]
+        </BOUCLE_art>      
 
       <p class="meta-publi">
         [(#INSCRIPTION|?{' ',''})
@@ -132,8 +133,14 @@
         ]
       
       #FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
-
-	    </p>
+      </p>
+      
+<!-- affichage carte gis du lieu -->
+	[(#PLUGIN{GIS}|oui)
+	<INCLURE{fond=inclusions/inc-gis}{id_evenement}{env}>
+	] 
+<!-- fin affichage carte gis du lieu -->
+	    
 
       
   </div>
