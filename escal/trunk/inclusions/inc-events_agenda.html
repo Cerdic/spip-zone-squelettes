@@ -89,26 +89,36 @@
      
 	    <div class="banner">
 
-         [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
-          le [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
-            [(#HORAIRE|=={oui}|?{
-            [(#REM) memes heures ?]
-            [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
-            [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
-            [(#REM) pas memes heures ?]
-            [(#DATE_DEBUT|!={#DATE_FIN}|?{de
-            [(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
-            [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
-            ,''})]
-            ,
-          du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+#SET{couleur,#336699}
+<//B_mot>
+	    
+		<div class="event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
+		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="event-nomjour">[(#DATE_DEBUT|nom_jour)]</span>
+		<br />
+		<span class="event-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
+		</div>
+				
+		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+		<div class="periode">
+		du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
             [(#HORAIRE|=={oui}|?{&agrave; partir de
             [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
             <br />au
             [(#DATE_FIN|nom_jour)]
             <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
-            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})] })]
-
+            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
+          </div>  
+		]
+		
       </div>
 
         [<div class="location" itemprop="location">
@@ -121,7 +131,6 @@
       
       <meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
       <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
-
 
         [(#DESCRIPTIF|oui)#DESCRIPTIF]  
             
@@ -147,8 +156,7 @@
 	] 
 <!-- fin affichage carte gis du lieu --> 
 
-	    
-
+	   
       
   </div>
 

@@ -13,6 +13,12 @@
 	<hr />
 <BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{par date}{lang}{pagination 5}{statut=publie}>
 
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{doublons}>
+</BOUCLE_seul>
+<BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}{doublons}>
+</BOUCLE_autres2>
+
+
 <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
 #SET{couleur,#DESCRIPTIF}
 </BOUCLE_mot>
@@ -21,7 +27,7 @@
 <//B_mot>
 
  
-
+<BOUCLE_affiche(EVENEMENTS){!doublons}{age<=1}{0,1}{doublons affiche}{par date}>
 	<div class="mobile-event">
 		<div class="mobile-event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
 		<span class="mobile-event-mois">[(#DATE_DEBUT|nom_mois)]</span><br />
@@ -49,12 +55,12 @@
 		[<span class="mobile-event-lieu"><strong>Lieu :</strong><br />(#LIEU)</span><br /><br />]
 		
           [<span class="mobile-event-adresse"><strong>Adresse :</strong><br />(#ADRESSE|PtoBR)</span>]
-          
+</BOUCLE_affiche>	        
           
           <B_autres>
           Autres dates :
           <ul>
-          <BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age_fin<=1}{age_fin>=-365}{par date_debut}>
+          <BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{doublons affiche}{age_fin<=1}{age_fin>=-365}{par date_debut}>
           <li>
           [(#DATE_DEBUT|affdate{'nom_jour'})]
           [(#DATE_DEBUT|affdate{'d'})]
@@ -68,6 +74,8 @@
         	</div>
 		
 	</div>
+
+	
 	<div class="nettoyeur"></div>
 	<hr />
 </BOUCLE_evenements_agenda>
