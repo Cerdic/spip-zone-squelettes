@@ -86,8 +86,6 @@
 <div class="nettoyeur"></div>  
   
   <div id="texte-article" class="surlignable">
-     
-	    <div class="banner">
 
 <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
 #SET{couleur,#DESCRIPTIF}
@@ -95,7 +93,8 @@
 </B_mot>
 #SET{couleur,#336699}
 <//B_mot>
-	    
+
+	<div class="banner">	    
 		<div class="event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
 		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
 		<br />
@@ -106,8 +105,13 @@
 		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
 		<br />
 		</div>
+	</div>
+	
+	<div class="event-logo">
+		[(#LOGO_EVENEMENT|image_reduire{150,100}|inserer_attribut{itemprop,image})]
+	</div>
 				
-		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
 		<div class="periode">
 		du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
             [(#HORAIRE|=={oui}|?{&agrave; partir de
@@ -117,18 +121,13 @@
             <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
             [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
           </div>  
-		]
-		
-      </div>
+	]
 
         [<div class="location" itemprop="location">
           <span class="lieu #EDIT{lieu}">(#LIEU)</span>
           [<br /><br /><span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]
-        </div>]
-
-        [(#LOGO_EVENEMENT|image_reduire{150,100}|inserer_attribut{itemprop,image})]
-
-      
+        </div>] 
+   
       <meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
       <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
 
@@ -156,7 +155,8 @@
 	] 
 <!-- fin affichage carte gis du lieu --> 
 
-	   
+	<div class="nettoyeur"></div>
+	 
       
   </div>
 
