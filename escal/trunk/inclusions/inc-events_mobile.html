@@ -11,11 +11,11 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
 	<hr />
-<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{par date}{lang}{pagination 5}{statut=publie}>
+<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{lang}{pagination 5}{statut=publie}>
 
-<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{doublons}>
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{doublons}>
 </BOUCLE_seul>
-<BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}{doublons}>
+<BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{doublons}>
 </BOUCLE_autres2>
 
 
@@ -30,21 +30,21 @@
 <BOUCLE_affiche(EVENEMENTS){!doublons}{age<=1}{0,1}{doublons affiche}{par date}>
 	<div class="mobile-event">
 		<div class="mobile-event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
-		<span class="mobile-event-mois">[(#DATE_DEBUT|nom_mois)]</span><br />
-		<span class="mobile-event-nomjour">[(#DATE_DEBUT|nom_jour)]</span><br />
-		<span class="mobile-event-jour">[(#DATE_DEBUT|affdate{'d'})]</span><br />
-		<span class="mobile-event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span><br />
+		<span class="event-nomjour">[(#DATE_DEBUT|nom_jour)]</span>
+		<br />
+		<span class="event-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
 		</div>
-		
+				
 		<div class="mobile-event-description">	
 			
 		<div class="mobile-event-titre">
 		#TITRE
 		</div>
-		
-		[<div class="mobile-event-descriptif">
-		(#DESCRIPTIF)
-		</div>]
 		
 		[(#LOGO_EVENEMENT|oui)
 		<div class="mobile-event-logo">
@@ -52,13 +52,17 @@
 		</div>
 		]
 		
+		[<div class="mobile-event-descriptif">
+		(#DESCRIPTIF)
+		</div>]
+		
 		[<span class="mobile-event-lieu"><strong>Lieu :</strong><br />(#LIEU)</span><br /><br />]
 		
-          [<span class="mobile-event-adresse"><strong>Adresse :</strong><br />(#ADRESSE|PtoBR)</span>]
+          [<div class="mobile-event-adresse"><strong>Adresse :</strong><br />(#ADRESSE|PtoBR)</div>]
 </BOUCLE_affiche>	        
           
           <B_autres>
-          Autres dates :
+          <strong>Autres dates :</strong>
           <ul>
           <BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{doublons affiche}{age_fin<=1}{age_fin>=-365}{par date_debut}>
           <li>

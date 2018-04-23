@@ -96,20 +96,22 @@
 
 	<div class="banner">	    
 		<div class="event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
-		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
-		<br />
 		<span class="event-nomjour">[(#DATE_DEBUT|nom_jour)]</span>
 		<br />
 		<span class="event-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
 		<br />
 		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
 		<br />
 		</div>
 	</div>
 	
-	<div class="event-logo">
-		[(#LOGO_EVENEMENT|image_reduire{150,100}|inserer_attribut{itemprop,image})]
-	</div>
+		[(#LOGO_EVENEMENT|oui)
+		<div class="event-logo">
+		[(#LOGO_EVENEMENT|image_reduire{150,100})]
+		</div>
+		]
 				
 	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
 		<div class="periode">
