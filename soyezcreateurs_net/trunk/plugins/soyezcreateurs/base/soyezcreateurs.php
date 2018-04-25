@@ -11,7 +11,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 include_spip("inc/lang");
 include_spip('inc/meta');
-define('_LOG_DEBUG', "soyezcreateurs_install");
 
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {
@@ -240,6 +239,17 @@ function remplacer_mot($id_mot, $mot, $descriptif, $texte, $id_groupe, $groupe) 
 		);
 	return true;
 }
+
+//fonction qui permet de changer un mot clé de groupe
+function deplacer_mot($id_mot, $id_groupe) {
+	sql_updateq(
+			"spip_mots", array(
+				"id_groupe" => $id_groupe
+			), "id_mot=$id_mot"
+		);
+	return true;
+}
+
 // fonction qui permet de trouver si une rubrique existe à partir du titre
 function find_rubrique($titre) {
 	$titre = sql_quote($titre);
@@ -895,7 +905,6 @@ function soyezcreateurs_config_motsclefs() {
 		$id_mot = create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l'on soit dans un secteur avec MenuHaut ou non.");
 		$id_mot = create_mot("_Specialisation", "NavHaute", "Affecter ce mot clef aux articles devant être affichés dans le menu de navigation haute tout en haut du site.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
 		$id_mot = create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
-		$id_mot = create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		$id_mot = create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
 		$id_mot = create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
 
@@ -918,6 +927,7 @@ function soyezcreateurs_config_motsclefs() {
 		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site et des documents à télécharger.\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans le plan du site et dans la liste des documents à télécharger.");
 		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansPlanLocal", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) des plan locaux du site (ceux affichés quand une rubrique n'a ni texte, ni article, ni site).\n\nPermet aussi de le faire article par article.", "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans les plan locaux du site.");
 		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l'article ou la rubrique soit dans «Quoi de Neuf» sur la page d'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
+		$id_mot = create_mot("_Specialisation", "_Specialisation_Rubrique_ou_Article", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l'article a un sommaire", "Un sommaire automatique sera placé en début d'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l'article.");
 
 	create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'syndic', 'oui', 'non', 'non');

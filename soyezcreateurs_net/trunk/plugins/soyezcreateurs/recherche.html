@@ -13,12 +13,16 @@
 </div>
 ]
 	<div id="letexte">
+#SET{Rubriques_PasDansRecherche, #ARRAY}
+<BOUCLE_RubriquesPasDansRecherche(RUBRIQUES){titre_mot=PasDansRecherche}>
+  #SET{Rubriques_PasDansRecherche, #GET{Rubriques_PasDansRecherche}|push{#ID_RUBRIQUE}}
+</BOUCLE_RubriquesPasDansRecherche>
 <BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{lang}></BOUCLE_ArticlesExclus>
 [(#SET{nbelementstrouves,0})]
 <B_articles>
 	<h2>#ANCRE_PAGINATION<:articles:></h2>
 	<ul class="spip">
-		<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination 25}{doublons}{lang}>
+		<BOUCLE_articles(ARTICLES) {id_rubrique !IN #GET{Rubriques_PasDansRecherche}} {recherche} {!par points} {pagination 25}{doublons}{lang}>
 			<li><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_articles>
 	</ul>
@@ -55,7 +59,7 @@
 <B_rubriques>
 	<h2>#ANCRE_PAGINATION<:rubriques:></h2>
 	<ul class="spip">
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination 25}>
+		<BOUCLE_rubriques(RUBRIQUES) {id_rubrique !IN #GET{Rubriques_PasDansRecherche}} {recherche} {!par points} {pagination 25}>
 			<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_rubriques>
 	</ul>
@@ -67,7 +71,7 @@
 	<!-- Breves trouvees -->
 	<h2>#ANCRE_PAGINATION<:breves:breves:></h2>
 	<ul class="spip">
-		<BOUCLE_breves(BREVES) {recherche} {!par points} {pagination 25}{lang}>
+		<BOUCLE_breves(BREVES) {id_rubrique !IN #GET{Rubriques_PasDansRecherche}} {recherche} {!par points} {pagination 25}{lang}>
 			<li><a href="#URL_BREVE" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[(#TITRE)]</a></li>
 		</BOUCLE_breves>
 	</ul>
@@ -80,7 +84,7 @@
 <B_sites>
 	<h2>#ANCRE_PAGINATION<:sites_web:></h2>
 	<ul class="spip">
-		<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 25}>
+		<BOUCLE_sites(SITES) {id_rubrique !IN #GET{Rubriques_PasDansRecherche}} {recherche} {!par points} {pagination 25}>
 			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#NOM_SITE)]</a></li>
 		</BOUCLE_sites>
 	</ul>
@@ -91,7 +95,7 @@
 <B_Syndications>
 	<h2>#ANCRE_PAGINATION<:sites:titre_syndication:></h2>
 	<ul class="spip">
-		<BOUCLE_Syndications(SYNDIC_ARTICLES) {recherche} {!par points} {pagination 25}{
+		<BOUCLE_Syndications(SYNDIC_ARTICLES) {id_rubrique !IN #GET{Rubriques_PasDansRecherche}} {recherche} {!par points} {pagination 25}{
 }>
 			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]" title="[(#DATE|affdate) - ][(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_tags)]</a></li>
 		</BOUCLE_Syndications>

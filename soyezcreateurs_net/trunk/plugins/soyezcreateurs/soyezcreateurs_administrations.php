@@ -250,10 +250,22 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 					}
 				}
 			}
-			// On invalide les caches
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.50','non');
+		}
+		
+		if (version_compare($current_version,'3.1.51','<')) {
+			spip_log("SoyezCreateurs maj 3.1.51 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+						
+			$id_groupe_origine = id_groupe('_Specialisation');
+			$id_mot = id_mot('PasDansRecherche', $id_groupe_origine);
+			$id_groupe_dest = id_groupe('_Specialisation_Rubrique_ou_Article');
+			$id_mot = id_mot('PasDansRecherche', $id_groupe_origine);
+			remplacer_mot($id_mot, 'PasDansRecherche', 'Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche', 'À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche', $id_groupe_dest, '_Specialisation_Rubrique_ou_Article');
+			
+			// On termine en invalidant les caches
 			include_spip('inc/invalideur');
 			suivre_invalideur("soyezcreateurs");
-			ecrire_meta($nom_meta_base_version,$current_version='3.1.50','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.51','non');
 		}
 		
 		
