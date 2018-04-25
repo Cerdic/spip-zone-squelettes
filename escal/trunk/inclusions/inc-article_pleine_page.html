@@ -132,9 +132,51 @@
 			[<div id="chapo" class="#EDIT{chapo}">(#CHAPO)</div>]
 
 			<!--Affichage du texte de l'article -->
-				[<div class="#EDIT{texte}">
+			
+		<BOUCLE_2colonnes(ARTICLES){id_article}{titre_mot="texte2colonnes"}>
+		<div class="container-colonnes">	
+			<div id="colonne1" >
+			[<div class="#EDIT{texte}">
+			(#TEXTE*
+			|decouper_en_XD_parties{2,1}|propre
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<div style="text-align:center;">}
+               |replace{</centrer>,</div>})
+               </div>]
+			</div>
+			
+			<div id="colonne2">
+			[<div class="#EDIT{texte}">
+			(#TEXTE*
+			|decouper_en_XD_parties{2,2}|propre
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<div style="text-align:center;">}
+               |replace{</centrer>,</div>})
+               </div>]
+			</div>
+		</div>
+		</BOUCLE_2colonnes>	
+		
+		</B_2colonnes>	
+			[<div class="#EDIT{texte}">
                 (#TEXTE
-                |image_reduire{[(#CONFIG{escal/config/largeurimagepleinepage,850})],0}
+                |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
                 |replace{<aide>,<div class="aide">}
                 |replace{</aide>,</div>}
                 |replace{<important>,<div class="important">}
@@ -146,7 +188,8 @@
                 |replace{<centrer>,<div style="text-align:center;">}
                 |replace{</centrer>,</div>}
                 )
-                </div>]				
+                </div>]
+           <//B_2colonnes>  				
 					<!-- et hop, un petit div pour récupérer le flux normal d'affichage
 						au cas où l'article se finisse par une image non centrée -->
 					<div class="nettoyeur"></div>
@@ -155,6 +198,12 @@
 			<!--Affichage des notes de bas de page  -->
 				[<strong>Notes : </strong> <br />
 				<div id="notes">(#NOTES)</div>]
+				
+<!-- affichage carte gis du lieu -->
+	[(#PLUGIN{GIS}|oui)
+	<INCLURE{fond=inclusions/inc-gis}{env}>
+	] 
+<!-- fin affichage carte gis du lieu --> 
 				
 <!-- affichage des événements -->
 
