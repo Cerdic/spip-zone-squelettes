@@ -1,30 +1,53 @@
-#CACHE{1}
+<?php
+	$bannieres= array();
+?>
 <BOUCLE_HeaderBannerRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_HeaderBanner}{inverse}{0,1}>
-<BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_HeaderBanner}{par hasard}{0,1}>
-#SET{labanniere,#LOGO_MOT_NORMAL}
-#SET{labannierehachures,#LOGO_MOT_SURVOL}
+<BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_HeaderBanner}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[#(#LOGO_MOT_NORMAL|hauteur)]',
+	'hauteurrelative' => '[#(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_LogoHeader>
 </BOUCLE_HeaderBannerRubrique>
-<BOUCLE_HeaderBannerTemplate(MOTS){type=_HeaderBanner}{descriptif!=''}{descriptif=#ENV{template}}{par hasard}{0,1}>
-#SET{labanniere,#LOGO_MOT_NORMAL}
-#SET{labannierehachures,#LOGO_MOT_SURVOL}
+<BOUCLE_HeaderBannerTemplate(MOTS){type=_HeaderBanner}{descriptif!=''}{descriptif=#ENV{template}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[#(#LOGO_MOT_NORMAL|hauteur)]',
+	'hauteurrelative' => '[#(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_HeaderBannerTemplate>
 #SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_HeaderBanner}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
-<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}{par hasard}{0,1}>
-#SET{labanniere,#LOGO_MOT_NORMAL}
-#SET{labannierehachures,#LOGO_MOT_SURVOL}
+<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
+<?php
+$bannieres[] = array(
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
-[<style type="text/css">
+<?php
+$banniere = $bannieres[mt_rand(0, count($bannieres) - 1)];;
+if ($banniere['banniere']!='') {
+?><style type="text/css">
 /*<!\[CDATA\[*/
 #header { position: relative; }
 #header:before {
-	background-image: [url("(#GET{labannierehachures}|extraire_attribut{src}|timestamp|url_absolue)"), #SET{hachures,1}]url("(#GET{labanniere}|extraire_attribut{src}|timestamp|url_absolue)");
-	background-repeat: [(#GET{hachures}|?{repeat, })]no-repeat;
-	background-size: [(#GET{hachures}|?{initial, })]cover;
+	background-image: <?php if ($banniere['hachures']!='') { ?>url("<?php echo($banniere['hachures']); ?>"), <?php } ?>url("<?php echo($banniere['banniere']); ?>");
+	background-repeat: <?php if ($banniere['hachures']!='') { ?>repeat, <?php } ?>no-repeat;
+	background-size: <?php if ($banniere['hachures']!='') { ?>initial, <?php } ?>cover;
 	display: block;
 	content: "";
 	width: 100%;
-	padding-top: [(#GET{labanniere}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]%;
+	padding-top: <?php echo($banniere['hauteurrelative']); ?>%;
 }
 #headerbackground {
 	position: absolute;
@@ -35,12 +58,12 @@
 }
 #header_inner { 
 	position: relative; 
-	margin-top: [-(#GET{labanniere}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]%; 
-	min-height: [(#GET{labanniere}|hauteur)]px;
+	margin-top: -<?php echo($banniere['hauteurrelative']); ?>%; 
+	min-height: <?php echo($banniere['hauteur']); ?>px;
 }
 [(#CONFIG{soyezcreateurs/afficher_titre,visible}|=={invisible}|oui)
 #header h1 { position:absolute !important; overflow:hidden !important; top:-2000px !important; left:-2000px !important; height:0 !important; width:0 !important; }
 ]
 /*\]\]>*/
-</style>]
+</style><?php } ?>
 #FILTRE{mini_html}

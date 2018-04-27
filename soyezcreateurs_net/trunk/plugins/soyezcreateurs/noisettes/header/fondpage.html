@@ -1,25 +1,45 @@
-#CACHE{1}
+<?php
+	$fonds= array();
+?>
 <BOUCLE_FondPageRubrique(HIERARCHIE){tout}{id_rubrique}{type_mot=_FondPage}{inverse}{0,1}>
-<BOUCLE_LogoPage(MOTS){id_rubrique}{type=_FondPage}{par hasard}{0,1}>
-#SET{lefond,#LOGO_MOT_NORMAL}
-#SET{lefondhachures,#LOGO_MOT_SURVOL}
+<BOUCLE_LogoPage(MOTS){id_rubrique}{type=_FondPage}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_LogoPage>
 </BOUCLE_FondPageRubrique>
-<BOUCLE_FondPageTemplate(MOTS){type=_FondPage}{descriptif!=''}{descriptif=#ENV{template}}{par hasard}{0,1}>
-#SET{lefond,#LOGO_MOT_NORMAL}
-#SET{lefondhachures,#LOGO_MOT_SURVOL}
+<BOUCLE_FondPageTemplate(MOTS){type=_FondPage}{descriptif!=''}{descriptif=#ENV{template}}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_FondPageTemplate>
 #SET{ExclureBannieresRubriques,#ARRAY}<BOUCLE_ExclureBannieresRubriques(RUBRIQUES){type_mot=_FondPage}{fusion id_mot}>[(#ID_MOT|unique|oui)[(#SET{ExclureBannieresRubriques,#GET{ExclureBannieresRubriques}|push{#ID_MOT}})]]</BOUCLE_ExclureBannieresRubriques>
-<BOUCLE_FondPage(MOTS){type=_FondPage}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}{par hasard}{0,1}>
-#SET{lefond,#LOGO_MOT_NORMAL}
-#SET{lefondhachures,#LOGO_MOT_SURVOL}
+<BOUCLE_FondPage(MOTS){type=_FondPage}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
+<?php
+$fonds[] = array(
+	'fond' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'couleur' => '[#(#LOGO_MOT_NORMAL|image_reduire{30,0}|couleur_extraire{15,5})]',
+	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
+	);
+?>
 </BOUCLE_FondPage><//B_FondPageTemplate><//B_FondPageRubrique>
-[<style type="text/css">
+<?php
+$fond = $fonds[mt_rand(0, count($fonds) - 1)];;
+if ($fond['fond']!='') {
+?><style type="text/css">
 /*<!\[CDATA\[*/
 @media only screen and (min-width: #CONFIG{soyezcreateurs_layout/largeurconteneur,960}px) {
 html {
-	background-color:[#(#GET{lefond}|image_reduire{30,0}|couleur_extraire{15,5})];
-	background-image:url("(#GET{lefond}|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)");
+	background-color:<?php echo($fond['couleur']); ?>;
+	background-image:url("<?php echo($fond['fond']); ?>");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center; 
@@ -28,8 +48,9 @@ html {
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisée */
 }
-[/* Combinaison de http://www.dreevoo.com/content.php?id=2270 et https://gist.github.com/omurphy27/5243251 avec http://www.patternify.com/ */
-html:after { background: url("(#GET{lefondhachures}|extraire_attribut{src}|timestamp|url_absolue)") center repeat;
+<?php 
+if ($fond['hachures']!='') { ?>/* Combinaison de http://www.dreevoo.com/content.php?id=2270 et https://gist.github.com/omurphy27/5243251 avec http://www.patternify.com/ */
+html:after { background: url("<?php echo($fond['hachures']); ?>") center repeat;
 	content: "";
 	position: fixed;
 	bottom: 0;
@@ -38,8 +59,8 @@ html:after { background: url("(#GET{lefondhachures}|extraire_attribut{src}|times
 	top: 0;
 	opacity: 0.5;
 	z-index: -2;
-}]
+}<?php } ?>
 }
 /*\]\]>*/
-</style>]
+</style><?php } ?>
 #FILTRE{mini_html}
