@@ -18,25 +18,71 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
 	
-		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}
+		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{"<hr />"}
 		{pagination #GET{nbrpageventcalendrier}}{lang}>
 		
 <BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{doublons}>
 </BOUCLE_seul>
 <BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}{doublons}>
 </BOUCLE_autres2>
+
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+#SET{couleur,#336699}
+<//B_mot>	
 			
-			<div class="liste-evenements">          	
+			        	
           	
-			<BOUCLE_affiche(EVENEMENTS){!doublons}{age<=1}{0,1}{doublons affiche}{par date}>
-			[(#DATE_DEBUT|affdate_jourcourt)] : 
+	<BOUCLE_affiche(EVENEMENTS){!doublons}{age<=1}{0,1}{doublons affiche}{par date}>
+    
+		<div class="evenement-date" style="background-color:[(#GET{couleur}|PtoBR)];">
+		<span class="evenement-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="evenement-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="evenement-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
+		</div>
+				
+		<div class="evenement-donnees"> 
+			<div class="donnee-titre">		
 			<a href="[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
-          	</BOUCLE_affiche>
+			</div>
+			[<div class="donnee-lieu">		
+			<img src="#CHEMIN{images/geoloc.png}" alt="lieu"  />(#ADRESSE|PtoBR)
+			</div>]
+							
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+		<div class="donnee-heure">
+		  <img src="#CHEMIN{images/heure.png}" alt="horaire"  />
+		  du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{&agrave; partir de
+            [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
+            <br />au
+            [(#DATE_FIN|nom_jour)]
+            <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
+          </div>  
+	]
+	
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
+		<div class="donnee-heure">
+		  <img src="#CHEMIN{images/heure.png}" alt="horaire"  /> 
+            [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)] - 
+            [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
+          </div>  
+	]
+	
+	</BOUCLE_affiche>
           	
           	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{par date}{doublons affiche}>
           		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
           	</BOUCLE_autres>
 			</div>
+          
+          <div class="nettoyeur"></div>
           
 		</BOUCLE_evenements_agenda>
 			<div class="liste-evenements">
