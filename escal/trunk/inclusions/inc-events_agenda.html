@@ -93,6 +93,7 @@
 </B_mot>
 #SET{couleur,#336699}
 <//B_mot>
+
 	    
 		<div class="event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
 		<span class="event-nomjour">[(#DATE_DEBUT|nom_jour)]</span>
@@ -104,13 +105,15 @@
 		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
 		<br />
 		</div>
+
 	
 		[(#LOGO_EVENEMENT|oui)
 		<div class="event-logo">
 		[(#LOGO_EVENEMENT|image_reduire{150,100})]
 		</div>
 		]
-				
+		
+<div style="margin: 5px 0 5px 150px;"> 				
 	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
 		<div class="periode">
 		du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
@@ -123,12 +126,15 @@
           </div>  
 	]
 	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
-		<div class="periode">
+		<div class="donnee-heure">
+		  [(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non) 
+		  <img src="#CHEMIN{images/heure.png}" alt="horaire"  />
             [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)] - 
             [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
+            ]
           </div>  
 	]
-
+ </div>
         [<div class="location" itemprop="location">
           <span class="lieu #EDIT{lieu}">(#LIEU)</span>
           [<br /><br /><span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]
