@@ -26,9 +26,10 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'cfg_lgd_autorisation_voir'                 => 'Autoriser &agrave; voir le Wiki',
 	'cfg_secteur_wiki'                          => 'Secteur(s) Wiki',
 	'click_ajout_texte'                         => 'Double-cliquez pour ajouter du texte.',
+	'connexion'                                 => 'Se connecter',
 
 	// D
-	'deconnexion'                               => 'd&#233;connexion',
+	'deconnexion'                               => 'Se déconnecter',
 	'derniers_changements'                      => 'Derniers changements',
 	'disclaimer'                                => 'Ce site fonctionne avec le squelette <a href="https://contrib.spip.net/Gribouille">Gribouille</a>&nbsp;; inspir&#233; de <a href="http://www.wikini.net/wakka.php?wiki=PagePrincipale">WikiNi</a>',
 	'dans_rubrique'                             => 'Dans la rubrique :',

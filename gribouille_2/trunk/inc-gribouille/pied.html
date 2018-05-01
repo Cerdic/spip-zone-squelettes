@@ -1,33 +1,18 @@
 <div class="footer">
-
-	<p>
-	<?php
-		if ($GLOBALS['auteur_session']['id_auteur']) {
-		echo _T('gribouille:nom_visiteur', array('nom'=>$GLOBALS['auteur_session']['nom']));
-	?>
-		<a href="#URL_LOGOUT"><:gribouille:deconnexion:></a>
-	<?php	
-		} else {
-			echo " (<a href='#URL_PAGE{login,url=#ENV{url}}'>connexion</a>)";
-		}
-	?>
-	</p>
-
+	
 	<div class="ajout-page">
-	<BOUCLE_r(RUBRIQUES){id_rubrique}{wiki}>
-		<p><:gribouille:dans_rubrique:> 
-			<BOUCLE_h(HIERARCHIE){id_rubrique}{tout}{' > '}>
-			#TITRE
-			</BOUCLE_h>
-		</p>
-	</nav>
-	</BOUCLE_r>
 	#FORMULAIRE_AJOUTER_PAGE_WIKI{#ENV{id_rubrique}}
 	#FORMULAIRE_AJOUTER_RUBRIQUE_WIKI{#ENV{id_rubrique}}
 	</div>
 	
 	<p>
-	<:gribouille:disclaimer:>
+		<?php
+		if ($GLOBALS['visiteur_session']['id_auteur']) {
+		echo $GLOBALS['visiteur_session']['nom']; ?>
+		<a href="#URL_LOGOUT"><:gribouille:deconnexion:></a>
+		<?php } else { ?>
+		<a href="#URL_PAGE{login,url=#ENV{url}}"><:gribouille:connexion:></a>
+		<?php } ?>
 	</p>
 
 </div>
