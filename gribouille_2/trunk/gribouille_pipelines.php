@@ -31,20 +31,19 @@ function gribouille_styliser($flux) {
 		// Si la rubrique fait partie du secteur défini dans la configuration on change son fond
 		if ($id_rubrique = $flux['args']['id_rubrique']) {
 			$id_secteur = sql_getfetsel('id_secteur', 'spip_rubriques', 'id_rubrique=' . intval($id_rubrique));
-			if ($id_secteur == lire_config('gribouille/secteurs_wiki')) {
+			if (in_array($id_secteur, lire_config('autorite/espace_wiki'))) {
 				include_spip('inc/autoriser');
 				// On vérifie si nous sommes autorisé à voir le Wiki
-				if (autoriser('voir', 'rubrique', $id_rubrique, $GLOBALS['visiteur_session'])) {
+				//if (autoriser('voir', 'rubrique', $id_rubrique, $GLOBALS['visiteur_session'])) {
 					if ($squelette = test_squelette_gribouille($fond, $ext)) {
 						$flux['data'] = $squelette;
 						// définir les intertitres en H2 sur le Wiki
 						$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
 						$GLOBALS['fin_intertitre'] = "</h2>\n";
 					}
-				}
-				else {
-					unset($flux['args']);
-				}
+//				} else {
+//					unset($flux['args']);
+//				}
 			}
 		}
 	}
@@ -78,8 +77,8 @@ function test_squelette_gribouille($fond, $ext) {
  */
 function gribouille_prepare_recherche($flux) {
 	if (lire_config('gribouille/exclure_recherche') == 'on') {
-		$id_secteurs = lire_config('gribouille/secteurs_wiki');
-		if (is_array($id_secteurs)) {
+		$id_secteurs_wiki = gribouille_secteurs_wiki();
+		if (is_array($id_secteurs_wiki)) {
 			if ($flux['args']['type'] == 'article'
 				AND $flux['args']['tout'] == '0'
 				AND $points = $flux['data']) {
@@ -90,7 +89,7 @@ function gribouille_prepare_recherche($flux) {
 					"spip_articles",
 					"statut='publie' 
 						AND " . sql_in('id_article', array_keys($points), '', '', '', '', $serveur) . " 
-						AND " . sql_in('id_secteur', array_values($id_secteurs), 'NOT', '', '', '', $serveur)
+						AND " . sql_in('id_secteur', array_values($id_secteurs_wiki), 'NOT', '', '', '', $serveur)
 				);
 				while ($t = sql_fetch($s, $serveur)) {
 					$p2[ $t['id_article'] ] = '';

@@ -12,6 +12,7 @@
 	<div class="header_tools">
 		<div class="header_breadcrumb">
 			<BOUCLE_r(RUBRIQUES){id_rubrique}{wiki}>
+			#SET{id_secteur,#ID_SECTEUR}
 			<nav aria-label="breadcrumb" role="navigation">
 				<ol>
 					<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
@@ -24,8 +25,9 @@
 		</div>
 		
 		<div class="header_search">
-			[(#REM) Passer le secteur en cours à la page des résultats de recherche ] 
-			#FORMULAIRE_RECHERCHE{#URL_PAGE{recherche_gribouille}}
+			<BOUCLE_recherche(RUBRIQUES){id_rubrique}{wiki}> 
+			#FORMULAIRE_RECHERCHE{#URL_PAGE{recherche_gribouille,id_secteur=#ID_SECTEUR}}
+			</BOUCLE_recherche>
 		</div>
 	</div>
 	

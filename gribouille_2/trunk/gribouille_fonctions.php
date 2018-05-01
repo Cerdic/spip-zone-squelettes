@@ -33,15 +33,22 @@ function gribouille_calcul_diff($id_objet, $objet, $id_version, $format = 'compl
 	return $ret;
 }
 
-function boucle_secteurs_wiki() {
-	return lire_config('gribouille/secteurs_wiki');
+function gribouille_secteurs_wiki() {
+	return lire_config('autorite/espace_wiki');
 }
 
 // un critère qui restreint les boucles articles et rubriques du wiki
 function critere_wiki($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
-	$boucle->where[] = array("'='", "'$id_table.id_secteur'", "boucle_secteurs_wiki()");
+	$id_secteurs_wiki = join(',',gribouille_secteurs_wiki());
+	if($id_secteurs_wiki) {
+		$boucle->where[] = array(
+			"'IN'",
+			"'$id_table.id_secteur'",
+			"'($id_secteurs_wiki)'"
+		);
+	}
 	$boucle->modificateur['wiki'] = true;
 }
 
@@ -49,13 +56,14 @@ function critere_wiki($idb, &$boucles, $crit) {
 function critere_versions_wiki($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
+	$id_secteurs_wiki = join(',',gribouille_secteurs_wiki());
 	
 	$boucle->select[]= 'articles.*';
 	$boucle->from['articles'] = "spip_articles";
 	$boucle->from_type['articles'] = "LEFT";
 	$boucle->join["articles"]= array("'$id_table'","'id_article'","'id_objet'","'$id_table.objet=\"article\"'");
 	
-	$boucle->where[] = array("'='", "'articles.id_secteur'", "boucle_secteurs_wiki()");
+	$boucle->where[] = array("'IN'", "'articles.id_secteur'", "'($id_secteurs_wiki)'");
 	$boucle->where[] = array("'='", "'articles.statut'", "'\"publie\"'");
 	$boucle->modificateur['wiki'] = true;
 }
