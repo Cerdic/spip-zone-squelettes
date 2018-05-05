@@ -135,7 +135,9 @@ function inc_prepare_recherche($recherche, $table = 'articles', $cond = false, $
 	return $cache[ $recherche ][ $table ];
 }
 
-function analyse_droits_rapide() {
-	return true;
+if(!function_exists('analyse_droits_rapide')) {
+	function analyse_droits_rapide() {
+		return true;
+	}
 }
 

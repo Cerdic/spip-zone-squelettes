@@ -1,10 +1,14 @@
+<BOUCLE_test_autorite(CONDITION){si #PLUGIN{autorite}}>
+<p><a href="#URL_ECRIRE{configurer_autorite}"><:gribouille:config_autorite:></a></p>
+</BOUCLE_test_autorite>
+
 <div class="formulaire_spip formulaire_editer formulaire_cfg">
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<ul>
-			[(#SAISIE{secteur,secteurs_wiki,
+			[(#SAISIE{secteur,secteur_wiki,
 				label=<:gribouille:cfg_secteur_wiki:>,
 				option_intro=<:gribouille:cfg_aucun_secteur:>})]
 			[(#SAISIE{case,exclure_recherche,
@@ -12,8 +16,35 @@
 				label_case='',
 				explication=<:gribouille:explication_exclure_recherche:>})]
 		</ul>
+
+		[(#SET{legendes,[(#ARRAY{0,<:gribouille:cfg_lgd_autorisation_ecrire:>,1,<:gribouille:cfg_lgd_autorisation_voir:>})]})]
+		#SET{prefixes,#ARRAY{0,ecrire_,1,voir_}}
+		
+		<B_bloc_autorisation>
+		<ul>
+		<BOUCLE_bloc_autorisation(DATA){source tableau, #GET{legendes}}>
+		#SET{prefixe, #GET{prefixes}|table_valeur{#CLE}}
+			<li class="fieldset">
+				<fieldset>
+				<h3 class="legend">#VALEUR</h3>
+				<ul>
+					[(#SAISIE{statuts_auteurs,[(#GET{prefixe})]statuts,
+						label=<:gribouille:cfg_lbl_statuts_auteurs:>,
+						afficher_tous=oui,
+						multiple=oui})]
+				</ul>
+				</fieldset>
+
+			</li>
+			</BOUCLE_bloc_autorisation>
+		</ul>
+		</B_bloc_autorisation>
+		
 		<p class="boutons">
 			<input type="submit"class="submit" value="<:valider:>" />
 		</p>
 	</form>
+
 </div>
+
+<//B_test_autorite>

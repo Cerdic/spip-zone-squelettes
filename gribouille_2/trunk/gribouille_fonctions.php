@@ -34,7 +34,13 @@ function gribouille_calcul_diff($id_objet, $objet, $id_version, $format = 'compl
 }
 
 function gribouille_secteurs_wiki() {
-	return lire_config('autorite/espace_wiki');
+	include_spip('inc/filtres');
+	$f = chercher_filtre('info_plugin');
+	if($f('autorite','est_actif')) {
+		return lire_config('autorite/espace_wiki');
+	} else {
+		return array(lire_config('gribouille/secteur_wiki'));
+	}
 }
 
 // un critère qui restreint les boucles articles et rubriques du wiki

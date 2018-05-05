@@ -27,6 +27,7 @@ $GLOBALS[ $GLOBALS['idx_lang'] ] = array(
 	'cfg_secteur_wiki'                          => 'Secteur(s) Wiki',
 	'click_ajout_texte'                         => 'Double-cliquez pour ajouter du texte.',
 	'connexion'                                 => 'Se connecter',
+	'config_autorite'                           => 'La configuration du wiki est gérée par le plugin Autorité.',
 
 	// D
 	'deconnexion'                               => 'Se déconnecter',
