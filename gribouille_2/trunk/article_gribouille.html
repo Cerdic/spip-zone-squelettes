@@ -26,12 +26,16 @@
 			<div class="contenu_texte">
 				[(#ENV{id_version}|oui)
 					[<div class="chapo">(#GET{diff/chapo})</div>]
-					[<div class="texte">(#GET{diff/texte})</div>]
+					[<div class="texte">
+						[(#LOGO_ARTICLE|image_reduire{240}|inserer_attribut{class,logo_gribouille})]
+						(#GET{diff/texte})
+					</div>]
 					[<div class="ps">(#GET{diff/ps})</div>]
 				]
 				[(#ENV{id_version}|non)
 					[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
 					<div class="#EDIT{texte} texte">
+						[(#LOGO_ARTICLE|image_reduire{240}|inserer_attribut{class,logo_gribouille})]
 						[(#TEXTE|safehtml|ancres_sommaire|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>})]
 						[<div class="notes">(#NOTES|safehtml)</div>]
 					</div>
