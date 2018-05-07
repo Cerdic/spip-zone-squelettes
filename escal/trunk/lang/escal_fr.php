@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Affichage de la rubrique mère',
 	'affichage_soustitre' => 'Affichage du Soustitre',
 	'affichage_surtitre' => 'Affichage du Surtitre',
+	'affichage_visites_popularite' => 'Affichage du nombre de visites et de la popularité',
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Cette page ne peut pas fonctionner correctement sans JavaScript. Veuillez le réactiver',
 	'alt_telechargements' => 'Téléchargements',
@@ -838,6 +839,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - se trouver dans le dossier /squelettes/images/pointeurs ',
 	'pointeur_general' => 'Pointeur général',
 	'pointeur_liens' => 'Pointeur pour les liens',
+	'popularite' => 'Popularité',
 	'portfolio' => 'Portfolio',
 	'poster_message' => 'Poster un nouveau message',
 	'premier_visiteur' => 'Vous êtes le premier !',
@@ -951,6 +953,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// V
 	'video' => 'Vidéo',
 	'videos' => 'Vidéos',
+	'visites' => 'Visites',
 	'visites_jour' => 'visites par jour',
 	'visiteur' => 'visiteur',
 	'visiteurs' => 'visiteurs',
