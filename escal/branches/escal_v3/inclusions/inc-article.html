@@ -44,7 +44,15 @@
 				 <BOUCLE_auteurs_art(AUTEURS){id_article}{par nom}{", "}{lang_select}>
 				 <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
 		       [(#LANG|=={ja}|oui)<:par_auteur:>] 
-		      </B_test>      
+		      </B_test>
+		[(#CONFIG{escal/config/visites}|=={oui}|oui)
+		<div class="visites">
+		<:escal:visites:> : <strong>#VISITES</strong> - <:escal:popularite:> :
+		[<div class="graph">
+			<strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong>
+		</div>]
+		</div>
+		]      
 		</div>
     
 <div class="nettoyeur"></div>    

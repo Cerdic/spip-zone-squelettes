@@ -126,6 +126,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'affichage_rubrique' => 'Affichage de la rubrique mère',
 'affichage_soustitre' => 'Affichage du Soustitre',
 'affichage_surtitre' => 'Affichage du Surtitre',
+'affichage_visites_popularite' => 'Affichage du nombre de visites et de la popularité',
 'annonce' => 'Annonce',
 'annonce_afficher' => 'Afficher le bloc "Annonce"',
 'annonce_explication' => 'Choisir les dates d\'affichage de l\'article en annonce :<br />
@@ -722,6 +723,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pointeur_general' => 'Pointeur général',
 'pointeur_defaut' => 'Pointeur par défaut',
 'pointeur_liens' => 'Pointeur pour les liens',
+'popularite' => 'Popularité',
 'portfolio' => 'Portfolio',
 
 // R
@@ -785,6 +787,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // V
 'videos' => 'Vidéos',
+'visites' => 'Visites',
 
 // **************************************
 // chaines de langue pour l'espace public
