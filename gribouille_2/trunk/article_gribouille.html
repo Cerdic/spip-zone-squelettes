@@ -6,7 +6,7 @@
 	<title>#TITRE</title>
 	<INCLURE{fond=inc-gribouille/head}>
 </head>
-<body>
+<body class="article">
 <div class="container">
 
 	<INCLURE{fond=inc-gribouille/entete,id_rubrique,id_article}>
@@ -34,11 +34,11 @@
 				]
 				[(#ENV{id_version}|non)
 					[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
-					<div class="#EDIT{texte} texte">
+					[<div class="#EDIT{texte} texte">
 						[(#LOGO_ARTICLE|image_reduire{240}|inserer_attribut{class,logo_gribouille})]
-						[(#TEXTE|safehtml|ancres_sommaire|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>})]
+						(#TEXTE|safehtml|ancres_sommaire|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>})
 						[<div class="notes">(#NOTES|safehtml)</div>]
-					</div>
+					</div>]
 					[<div class="#EDIT{ps} ps">(#PS|safehtml)</div>]
 					<div class="contenu_date_auteurs">
 						<INCLURE{fond=inc-gribouille/article-auteurs,id_article}>		
