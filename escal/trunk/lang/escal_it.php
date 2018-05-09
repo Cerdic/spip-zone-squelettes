@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Visualizzazione della rubrica madre',
 	'affichage_soustitre' => 'Visualizzazione dei sottotitoli',
 	'affichage_surtitre' => 'Visualizzazione dei sopratitoli',
+	'affichage_visites_popularite' => 'Visualizza il numero di visite e la popolarità',
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Questa pagina non può funzionare correttamente senza JavaScript; si prega di riattivarlo',
 	'alt_telechargements' => 'Download',
@@ -221,6 +222,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_generalites' => 'PANORAMICA',
 	'cfg_page_layout' => 'Layout generale',
 	'cfg_page_licence' => 'Licence',
+	'cfg_page_liens_sociaux' => 'Link sociali',
 	'cfg_page_mentions' => 'Mentions légales',
 	'cfg_page_menuh' => 'Menù orizzontale',
 	'cfg_page_meta' => 'Meta-tag principali',
@@ -378,6 +380,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_une2' => ' : Un contenitore con le schede degli ultimi articoli, la mappa del sito, la sezione, le sezioni di un argomento ecc...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="Guarda la documentazione">Video</a>',
 	'doc_videos2' => ': visualizza i video in formato .flv o .mp4 degli articoli con parola chiave "video-une".',
+	'documentation' => 'Documentazione',
 	'documentation_voir' => 'Guarda la documentazione',
 	'droite' => 'A destra',
 
@@ -401,6 +404,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'et' => 'e',
 	'evenements' => 'Prossimi eventi',
 	'evenements_ajouter' => 'Aggiungere un evento<br />(Accesso riservato)',
+	'evenements_associes' => 'Eventi correlati :',
 	'evenements_non' => 'Nessun evento in programma',
 
 	// F
@@ -527,6 +531,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'licence_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentatione">plugin "Licence"</a>,
             non dovete fare altro, l’icona relativa alla licenza scelta per un determinato articolo apparirà automaticamente nella parte alta dell’articolo stesso.',
 	'licence_plugin' => 'Plugin Licence',
+	'lien_agenda' => 'Visualizzazione dell’agenda a pagina intera',
+	'liens_sociaux_espace' => 'Mostra i social link nella barra degli strumenti',
+	'liens_sociaux_explication' => 'Se è stato attivato il <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Social Links"</a>, 
+è possibile impostarlo qui.',
+	'liens_sociaux_pied' => 'Mostra i link sociali nel piè di pagina',
+	'liens_sociaux_plugin' => 'Plugin Link sociali',
+	'liens_sociaux_texte' => 'Possibile testo da visualizzare:',
 	'lire_article' => 'Leggere l’articolo...',
 	'lire_suite' => 'Leggere il seguito...',
 
@@ -589,6 +600,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mot_rubrique_onglet5' => 'per scegliere una quinta rubrica che verrà visualizzata nelle schede della home page',
 	'mot_site_exclu' => 'per escludere i siti dal blocco "Sur le web"',
 	'mot_special' => 'per scegliere la rubrica e/o gli articoli che verranno visualizzati nel blocco da personalizare',
+	'mot_texte2colonnes' => 'Per visualizzare un testo articolo in 2 colonne su una pagina articolo',
 	'mot_video_une' => 'per scegliere gli articoli il cui video verranno visualizzati del blocco "Vidéo"',
 	'mots_clefs' => 'Le parole chiave',
 	'mots_clefs_associes' => 'Parole chiave associate',
@@ -828,6 +840,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - esere nella cartella "/squelettes/images/pointeurs".',
 	'pointeur_general' => 'Puntatore generale:',
 	'pointeur_liens' => 'Puntatore per i link:',
+	'popularite' => 'Popolarità',
 	'portfolio' => 'Portfolio',
 	'poster_message' => 'Inviare un nuovo messaggio',
 	'premier_visiteur' => 'Sei il primo!',
@@ -919,6 +932,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	potrete scegliere blocchi, colori, rendere visibili oppure nascondere numerosi elementi e molto altro ancora.<br /><br />
 	Buon lavoro!',
 	'texte_coupe' => 'Limita il testo a ',
+	'texte_sous_image' => 'Testo sotto il logo (in caso contrario, accanto ad esso)',
 	'title_articles_derniers' => 'Ultimi articoli',
 	'title_contact' => 'Contattare il responsabile tecnico',
 	'title_escal' => 'Link verso il sito ufficiale di Escal',
@@ -940,6 +954,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// V
 	'video' => 'Vídeo',
 	'videos' => 'Video',
+	'visites' => 'Visite',
 	'visites_jour' => 'visite per giorno',
 	'visiteur' => 'visitatore',
 	'visiteurs' => 'visitatori',

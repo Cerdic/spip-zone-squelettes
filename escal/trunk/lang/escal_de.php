@@ -202,6 +202,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// V
 	'video' => 'Video',
+	'visites' => 'Visits',
 	'visites_jour' => 'Besuche pro Tag',
 	'visiteur' => 'Besucher',
 	'visiteurs' => 'Besucher',
