@@ -1,0 +1,16 @@
+[(#REM)
+  Copie du 2014-11-10 12:54:36 par Loiseau2nuit
+  Fichier original plugins/comments/inclure/forum.html
+]
+<div class="container">
+	<div class="row">
+	<a href="#comments" name="comments" id="comments"></a> 
+	<a href="#forum" name="forum" id="forum"></a> 
+	<INCLURE{fond=comments-#CONFIG{comments/comments_fil,list}|replace{'-',''},env,ajax} />[(#ENV{repondre_url}|oui)
+	[<div class="h3"><i class="fa fa-pencil-square-o"></i> (#ENV*{repondre_titre,<:repondre_article:>}|trim)</div>]
+	[<div class="well col-sm-12 col-xs-12 col-md-4 sticky">
+		(#FORMULAIRE_FORUM{#SELF,#ENV{objet},#ENV{id_objet}})
+	</div>]
+	[(#PARAMETRES_FORUM|oui)<INCLURE{fond=comments-feed,env} />]
+]
+</div></div>
