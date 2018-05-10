@@ -11,16 +11,31 @@
 				> voir http://getbootstrap.com/css/#images
 		]
 		[(#LOGO
-			|image_reduire{260,260}
+			|image_reduire{400,400}
 			|inserer_attribut{alt,[(#TITRE|textebrut|attribut_html)]}
 			|inserer_attribut{class,"img-responsive center-block"}
 			|inserer_attribut{role,"img"}
 		)] 
 		<figcaption class="text-center">
 			[(#MENU_LANG)]
-			[<p class="text-muted #EDIT{surtitre} small">(#SURTITRE|abs_url)</p>]
+			[<p class="text-muted #EDIT{surtitre}">(#SURTITRE|abs_url)</p>]
 			<h1 class="h1 #EDIT{titre}">#TITRE</h1>
-			[<h2 class="h2 #EDIT{soustitre}">(#SOUSTITRE|abs_url)</h2>]
+			[<h2 class="h2 text-muted #EDIT{soustitre}">(#SOUSTITRE|abs_url)</h2>]
+			<ul class="list-inline">		
+				[<li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span class="authors">(#LESAUTEURS)</span></li>]
+				<li><i class="fa fa-clock-o" aria-hidden="true"></i> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time>
+					[<span class="text-muted"> - <:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span>]</li>
+			</ul>
+			[(#MODELE{article_traductions})] [(#REM) liens de traduction ]	
+				
+			<B_lesmots>
+				<ul class="list-inline">
+					<BOUCLE_lesmots(MOTS){id_article}>
+						<li><a class="btn btn-sm btn-default" href="[(#URL_MOT|url_absolue)]" rel="category"><i class="fa fa-tag" aria-hidden="true"></i> #TITRE</a></li>
+					</BOUCLE_lesmots>
+				</ul>
+			</B_lesmots>			
+			
 		</figcaption>
 	</figure>
 </header>

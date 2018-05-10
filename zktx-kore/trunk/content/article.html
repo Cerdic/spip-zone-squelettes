@@ -2,10 +2,10 @@
 <article class="container hentry" itemscope itemtype="http://schema.org/Article">
 	
 	[(#REM) Fil d'Ariane ]
-	<ol role="navigation" class="breadcrumb small" prefix="v: http://rdf.data-vocabulary.org/#">
-		<li typeof="v:Breadcrumb"><a rel="home v:url" property="v:title" href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
+	<ol role="navigation" class="breadcrumb" prefix="v: http://rdf.data-vocabulary.org/#">
+		<li typeof="v:Breadcrumb"><i class="fa fa-home" aria-hidden="true"></i> <a rel="home v:url" property="v:title" href="#URL_SITE_SPIP"><:accueil_site:></a></li>
 		<BOUCLE_ariane(HIERARCHIE){id_article}>
-			<li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="[(#URL_RUBRIQUE|url_absolue)]">[<span itemprop="name">(#TITRE|couper{80})</span>]</a></li>
+			<li typeof="v:Breadcrumb"><i class="fa fa-folder-open" aria-hidden="true"></i> <a rel="v:url" property="v:title" href="[(#URL_RUBRIQUE|url_absolue)]">[<span itemprop="name">(#TITRE|couper{80})</span>]</a></li>
 		</BOUCLE_ariane>
 		[<li typeof="v:Breadcrumb" class="on active"><strong property="v:title">(#TITRE|couper{80})</strong></li>]
 	</ol>
@@ -13,22 +13,12 @@
 	[(#REM) Contenu principal ]
 	[<header class="page-header #EDIT{chapo} surlignable lead">(#CHAPO|abs_url)</header>]
 
-	<ul class="list-inline">			
-		[<li><span class="glyphicon glyphicon-user"></span> <span class="authors">(#LESAUTEURS)</span><li>]
-		<li><span class="glyphicon glyphicon-time"></span> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|affdate)]</time></li>
-		[<li><span class="small text-muted"><:zktx:modifie_le:> <time update class="updated" datetime="[(#DATE_MODIF|date_iso)]">(#DATE_MODIF|affdate)</time></span></li>]
-		[<li>(#MODELE{article_traductions})</li>] [(#REM) liens de traduction ]	
-		
-		<B_lesmots>
-			<li><span class="glyphicon glyphicon-tags"></span></li>
-			<li><BOUCLE_lesmots(MOTS){id_article}><a class="btn btn-link" href="[(#URL_MOT|url_absolue)]" rel="category">#TITRE</a></BOUCLE_lesmots></li>
-		</B_lesmots>			
-	</ul>
-
-
 	<div class="row">
-
-		<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+		
+		[(#REM) (futurs sticky) share btns ]
+		[<nav class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">(#INCLURE{fond=inclure/socialtags,env})</nav>]
+		
+		<div class="col-xs-12 col-sm-11 col-md-7 col-lg-7">
 
 			[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>"})]</a></p>]
 
@@ -36,7 +26,8 @@
 			
 		</div>
 	
-		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+		<div class="col-xs-12 col-sm-11 col-md-4 col-lg-4">
+
 			[<aside class="well #EDIT{ps}">(#PS)</aside>]
 			
 			[(#REM) portfolio & documents ]
@@ -57,8 +48,8 @@
 						<figcaption>
 							[<div class="#EDIT{auteur_baseline} bio">(#BIO|couper{300})</div>]
 							<p class="form-group">
-								<a rel="author" class="btn btn-primary" href="[(#URL_AUTEUR|url_absolue)]"><i class="fa fa-user-circle" aria-hidden="true"></i> En savoir +</a>
-								[ <span class="#EDIT{url_site}"><a class="btn btn-default spip_out fn url" href="#URL_SITE"><i class="fa fa-external-link" aria-hidden="true"></i> (#NOM_SITE|sinon{#URL_SITE})</a></span>]
+								<a rel="author" class="btn btn-primary" href="[(#URL_AUTEUR|url_absolue)]"><i class="fa fa-fw fa-user-circle" aria-hidden="true"></i> En savoir +</a>
+								[ <span class="#EDIT{url_site}"><a class="btn btn-default spip_out fn url" href="#URL_SITE"><i class="fa fa-fw fa-external-link" aria-hidden="true"></i> (#NOM_SITE|sinon{#URL_SITE})</a></span>]
 							</p>
 						</figcaption>
 					</figure>
@@ -66,14 +57,7 @@
 			</BOUCLE_auteur>
 			</B_auteur>
 
-			[(#REM) infos de publication ]
-			<aside class="well">
-				[(#REM) Boutons de partage ]
-				[<p><i class="fa fa-share-square-o"></i> Partager cet article</p>
-				<p class="text-center">(#INCLURE{fond=inclure/socialtags,env})</p>]
-				<p><span class="glyphicon glyphicon-comment"></span> <a href="#comments"><:zktx:jump2comments:></a></p>
-			</aside>
-			
+			[(#REM) Notes de bas de page ]			
 			[<section class="text-muted"><span class="h3">Notes</span> (#NOTES)</section>]
 		</div>
 	
@@ -82,13 +66,13 @@
 	[(#REM) Jumbotron article connexes ]
 	<B_articles_rubrique>
 	<nav class="container" role="complementary">
-		[<p class="h2">(#TITRE_PARENT|sinon{<:articles_meme_rubrique:>})</p>]		
-		<BOUCLE_articles_rubrique(ARTICLES){id_rubrique} {!par date} {0,1}{doublons}>
-			<div class="jumbotron"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} /></div>
-		</BOUCLE_articles_rubrique>
+
+
+		[(#PLUGIN{critere_mots}|oui) [(#INCLURE{fond=inclure/articles-connexes-mots,env,ajax,nb=3})] ]		
+		[(#PLUGIN{critere_mots}|non) [(#INCLURE{fond=inclure/articles-connexes-rubrique,env,ajax,nb=3})] ]
+
 	</nav>
-	</B_articles_rubrique>
-	<//B_articles_rubrique>
+
 
 </article>
 

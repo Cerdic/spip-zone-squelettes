@@ -3,10 +3,15 @@
 	#SET{liste, '#'}
 ]
 <B_somm>
-<div class="well nav-sommaire-[(#ENV{sommaire}|count)]">
-	<p><span class="glyphicon glyphicon-list"></span> <:sommaire:titre_cadre_sommaire:></p>
-	<BOUCLE_somm(POUR){tableau #ENV{sommaire}}>
--[(#GET{liste}|str_pad{#VALEUR{niveau},#GET{liste}})] [#VALEUR{id}<-][#VALEUR{titre}->#VALEUR{href}]</BOUCLE_somm>
+<div class="panel panel-default[ (#ENV{sommaire}|count)]">
+	<div class="panel-heading">
+		<p class="h5"><i class="fa fa-list" aria-hidden="true"></i> <:sommaire:titre_cadre_sommaire:></p>
+	</div>
+	<nav class="panel-body">
+		<BOUCLE_somm(POUR){tableau #ENV{sommaire}}>
+-[(#GET{liste}|str_pad{#VALEUR{niveau},#GET{liste}})] [#VALEUR{id}<-][#VALEUR{titre}->#VALEUR{href}]
+		</BOUCLE_somm>
+	</nav>
 </div>
 </B_somm>
 #FILTRE{propre}

@@ -8,16 +8,22 @@
 		[<li typeof="v:Breadcrumb" class="on active"><strong property="v:title">(#TITRE|couper{80})</strong></li>]
 	</ol>
 
+	[<article class="page-header lead #EDIT{texte}">(#TEXTE|abs_url)</article>]
+	[<p class="h3">Notes :</p>
+	<footer class="text-muted">(#NOTES|abs_url)</footer>]
+
 	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
-		<header class="page-header"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>} /></header>
+		<header class="page-header"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>,nb=9} /></header>
 	</BOUCLE_articles>
 	</B_articles>
 	<//B_articles>
 
-	<section class="row">
-		[<article class="#EDIT{texte} col-lg-8">(#TEXTE|abs_url)</article>]
-		[<footer class="well col-lg-4">(#NOTES|abs_url)</footer>]
-	</section>
+	<BOUCLE_sous_rub(RUBRIQUES){id_rubrique}{0,1}>
+		<header class="page-header"><INCLURE{fond=liste/rubriques-resume-col,env,ajax,titre=<:sous_rubriques:>} /></header>
+	</BOUCLE_sous_rub>
+	</B_sous_rub>
+	<//B_sous_rub>
+
 	
 	[(#REM) Gestion du portfolio et des documents ]
 	[<section>(#INCLURE{fond=inclure/documents,id_rubrique})</section>]

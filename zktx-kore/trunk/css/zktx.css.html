@@ -52,15 +52,7 @@ a.btn, a.fa { text-decoration:none!important; }
 
 
 
-[h2, .h2 {
-	color: #(#ID_RUBRIQUE
-		|couleur_rubrique
-		|sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-		|sinon{"111111"}
-	);
-}]
-
-p { margin:0 0 1em 0; }
+p { margin:1em 0; }
 
 .pull-left {margin-right:1em;}
 .pull-right {margin-left:1em;}
@@ -90,27 +82,24 @@ p { margin:0 0 1em 0; }
 
 .navbar-brand {padding:10px 15px;}
 
-a.top { position:fixed; bottom:1em; right:1em;}
+.top { position:fixed; bottom:1em; right:1em;}
+
 [.breadcrumb {
   background-color: #(#ID_RUBRIQUE
     |couleur_rubrique
-    |sinon{ [(#ID_RUBRIQUE|couleur_site|couleur_eclaircir|couleur_eclaircir)] }
-    |couleur_eclaircir
+    |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
     |couleur_eclaircir
   ); 
 }]
 
-
 .bs-header, .bs-content, .bs-footer {padding:40px 0;}
 .bs-header {padding-top:80px;}
 
-
-
+.bs-header .jumbotron {background-color:[#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EEEEEE"}|couleur_foncer|couleur_foncer)];}
 
 .bs-header {
-  background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EFEFEF"})]; 
-  color: [#(#ID_RUBRIQUE{0}|couleur_site|couleur_inverser|couleur_extreme|sinon{"111111"})];
-  
+  color:#FFFFFF;
+  background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"808080"})];   
   [background-position:50% 50%;
   background-size:cover;
   background-attachment:fixed;
@@ -124,19 +113,14 @@ a.top { position:fixed; bottom:1em; right:1em;}
 }
 .bs-footer { 
   background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EFEFEF"}|couleur_foncer|couleur_foncer)]; 
-  color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"FFFFFF"}|couleur_eclaircir|couleur_eclaircir)];
+  color: #FFFFFF;
 }
 
 
 
 <BOUCLE_article_bs_header(ARTICLES){tout}>
   .bs-header.article#ID_ARTICLE { 
-		color: [#(#ID_RUBRIQUE
-                        |couleur_rubrique
-                        |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                        |couleur_inverser
-                        |sinon{"111111"}
-                      )]; 
+
     background-color: [#(#ID_RUBRIQUE
                         |couleur_rubrique
                         |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
@@ -160,12 +144,7 @@ a.top { position:fixed; bottom:1em; right:1em;}
 
 <BOUCLE_rubrique_bs_header(RUBRIQUES){tout}>
   .bs-header.rubrique#ID_RUBRIQUE { 
-		color: [#(#ID_RUBRIQUE
-                        |couleur_rubrique
-                        |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                        |couleur_inverser
-                        |sinon{"111111"}
-                      )]; 
+
     background-color: [#(#ID_RUBRIQUE
                         |couleur_rubrique
                         |sinon{ [(#ID_RUBRIQUE|couleur_site)] }

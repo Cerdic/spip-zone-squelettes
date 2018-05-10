@@ -6,7 +6,7 @@
 
 	[<div class="h2 container">(#ENV{titre,<:derniers_articles:>})</div>]
 	#ANCRE_PAGINATION
-	<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot?} {!par date} {pagination #ENV{nb,6}}>
+	<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot?}{par num titre}{!par date}{!par date} {pagination #ENV{nb,6}}>
 		
 		[(#REM) 
 			Affichage :
@@ -30,13 +30,18 @@
 					[<li><i class="fa fa-fw fa-calendar-o" aria-hidden="true"></i> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">(#DATE|affdate)</time></li>]
 					[<li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span class="author">(#LESAUTEURS)</span></li>] 
 					<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
-						[(#TOTAL_BOUCLE|oui) [ <li><i class="fa fa-fw fa-comments" aria-hidden="true"></i> (#TOTAL_BOUCLE)</li>] ]
+						[(#TOTAL_BOUCLE|oui) [ <li><i class="fa fa-fw fa-comments-o" aria-hidden="true"></i> (#TOTAL_BOUCLE)</li>] ]
 					<//B_nb_commentaires>
-					<B_lesmots>
-						<li><i class="fa fa-fw fa-tags" aria-hidden="true"></i> <BOUCLE_lesmots(MOTS){id_article}{", "}>[<a href="[(#URL_MOT|url_absolue)]" rel="category">(#TITRE)</a>]</BOUCLE_lesmots>
-						</li>
-					</B_lesmots>
 				</ul>	
+				<B_lesmots>
+					<ul class="list-inline text-muted">
+						<li><i class="fa fa-fw fa-tags" aria-hidden="true"></i></li>
+						<BOUCLE_lesmots(MOTS){id_article}>
+							[<li><span class="label label-default">(#URL_MOT|abs_url|lien_ou_expose{#TITRE, [(#ID_MOT|=={#ENV{id_mot}})],supa_class,#TITRE,category})</span></li>]
+						</BOUCLE_lesmots>
+						</li>
+					</ul>
+				</B_lesmots>	
 			</article>
 		[(#COMPTEUR_BOUCLE|alterner{'', '', </div>})] [(#REM) /.row ]
 	</BOUCLE_articles>
