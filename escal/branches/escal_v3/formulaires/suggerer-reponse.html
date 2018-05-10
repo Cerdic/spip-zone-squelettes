@@ -1,0 +1,13 @@
+[(#REM) Si on est en train de creer une nouvelle question, suggerer des pistes
+	< INCLUDE{fond=formulaires/suggerer-reponse}{recherche=#ENV*{titre}} />
+]
+<BOUCLE_thread(FORUMS){id_forum=(#VAL{id_forum}|_request)}></BOUCLE_thread>
+<B_recherche>
+<h4><:escal:suggerer_reponse:></h4>
+<blockquote style='border: dotted 1px #ccc; padding-#LANG_LEFT: 5px; font-size:10px'>
+<BOUCLE_recherche(FORUMS){recherche}{!par points}{0,5}>
+#PUCE <a href="#URL_FORUM"[ title="(#TEXTE*|couper{80}|texte_backend)"]>#TITRE</a><br />
+</BOUCLE_recherche>
+</blockquote>
+</B_recherche>
+<//B_thread>

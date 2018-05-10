@@ -966,6 +966,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sous_rubrique' => 'sous_rubrique',
 'sous_rubriques' => 'sous_rubriques',
 'statistiques' => 'Statistiques du site',
+'suggerer_reponse' => 'Avant de continuer, avez-vous pensé à consulter les pages suivantes ?
+	<br />Elles contiennent peut-être la réponse que vous cherchez.',
 'sujets' => 'sujets',
 'sur_forum' => 'Sur le forum c\'est :',
 'sur_web' => 'Sur le web',
