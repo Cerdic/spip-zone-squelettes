@@ -36,8 +36,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Affichage de la rubrique mère',
 	'affichage_soustitre' => 'Affichage du Soustitre',
 	'affichage_surtitre' => 'Affichage du Surtitre',
-	'affichage_visites_popularite' => 'Affichage du nombre de visites et de la popularité',
 	'affichage_visites_inter' => 'Séparateur entre visites et popularité',
+	'affichage_visites_popularite' => 'Affichage du nombre de visites et de la popularité',
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Cette page ne peut pas fonctionner correctement sans JavaScript. Veuillez le réactiver',
 	'alt_telechargements' => 'Téléchargements',
@@ -917,7 +917,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             Pensez à télécharger l’archive de la librairie et à la décompresser dans un dossier /lib/mpdf à la racine de votre spip (Voir la documentation).',
 	'spipdf_plugin' => 'Plugin SpiPDF',
 	'statistiques' => 'Statistiques du site',
-	'suggerer_reponse' => 'Avant de continuer, avez-vous pensé à consulter les pages suivantes ?
+	'suggerer_reponse' => 'Avant de continuer, avez-vous pensé à consulter les pages suivantes ?
 	<br />Elles contiennent peut-être la réponse que vous cherchez.',
 	'sujets' => 'sujets',
 	'sur_forum' => 'Sur le forum c’est :',
