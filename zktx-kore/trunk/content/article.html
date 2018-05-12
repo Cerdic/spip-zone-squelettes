@@ -28,34 +28,22 @@
 	
 		<div class="col-xs-12 col-sm-11 col-md-4 col-lg-4">
 
-			[<aside class="well #EDIT{ps}">(#PS)</aside>]
-			
-			[(#REM) portfolio & documents ]
-			[<aside class="well" role="contentinfo">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
-
-			[(#REM) un bloc pour présenter l'auteur, sauf si c'est le 1 {!id_auteur = 1}
-				
-				on part du principe que l'auteur principal du site est
+			[(#REM) un panel pour présenter l'auteur, 
+				sauf si c'est le n°1 {!id_auteur = 1}
+				car on part du principe que l'auteur principal du site est
 				- soit déjà suffisement référencé 
 				- soit il est juste webmaster et n'intervient pas en rédaction
 			]
 			<B_auteur>
 			<BOUCLE_auteur(AUTEURS){id_article}{!id_auteur = 1}>
-				<aside class="author" itemprop="author">
-					<figure class="well">
-						[<p class="h3"><span class="glyphicon glyphicon-user"></span> <span class="#EDIT{qui} name">(#NOM)</span></p>]
-						[(#LOGO_AUTEUR|image_reduire{80,80}|image_recadre{80,80,center}|inserer_attribut{class,'img-responsive img-circle pull-right'}|inserer_attribut{alt,'#NOM'})]	
-						<figcaption>
-							[<div class="#EDIT{auteur_baseline} bio">(#BIO|couper{300})</div>]
-							<p class="form-group">
-								<a rel="author" class="btn btn-primary" href="[(#URL_AUTEUR|url_absolue)]"><i class="fa fa-fw fa-user-circle" aria-hidden="true"></i> En savoir +</a>
-								[ <span class="#EDIT{url_site}"><a class="btn btn-default spip_out fn url" href="#URL_SITE"><i class="fa fa-fw fa-external-link" aria-hidden="true"></i> (#NOM_SITE|sinon{#URL_SITE})</a></span>]
-							</p>
-						</figcaption>
-					</figure>
-				</aside>
+				<INCLURE{fond=inclure/panel-auteur}{env}{id_auteur}
 			</BOUCLE_auteur>
 			</B_auteur>
+
+			[<aside class="well #EDIT{ps}">(#PS)</aside>]
+			
+			[(#REM) portfolio & documents ]
+			[<aside class="well" role="contentinfo">(#INCLURE{fond=inclure/documents}{id_article})</aside>]
 
 			[(#REM) Notes de bas de page ]			
 			[<section class="text-muted"><span class="h3">Notes</span> (#NOTES)</section>]
