@@ -29,7 +29,7 @@
     ]
 <!-- affichage titre -->
 			<div class="titre #EDIT{titre}">
-      <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" 
+      <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" 
       title="[(#LANG|=={ja}|non)<:par_auteur:>] <BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_auteurs> [(#LANG|=={ja}|oui)<:par_auteur:>] <:escal:le:> [(#DATE|affdate)]">
 			#TITRE
 			</a>
@@ -96,7 +96,7 @@
       <div class="nettoyeur"></div>
           
       <div class="suite">
-  		<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>
+  		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong>
       [(#CONFIG{escal/config/texteune}|=={non}|non)<:escal:lire_suite:>]
       [(#CONFIG{escal/config/texteune}|=={non}|oui)<:escal:lire_article:>]
       </strong></a>

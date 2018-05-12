@@ -11,7 +11,7 @@
 	
 		<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
-	<a href="[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" /><:escal:accueil:></a>
 <!-- affichage du fil d'Ariane -->
 [(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_rub}{env}>]
 [(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_rub_2eniveau}{env}>]
@@ -65,7 +65,7 @@
 <div class="liste-articles-rubrique">
   <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}> 
     <div class="cadre-articles-rubrique">
-    <a class="articles-rubrique" href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+    <a class="articles-rubrique" href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
       <div class="titre-articles-rubrique">
         <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
         <div class="titre-articles-rubrique2">[(#TITRE)]</div>
@@ -125,7 +125,7 @@
                             </a>
                         </div>
                         ]
-				<a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+				<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
         [(#LOGO_RUBRIQUE||image_reduire{80})]
 				<span class="titre-sous-rubrique">
 					[(#TITRE)]
