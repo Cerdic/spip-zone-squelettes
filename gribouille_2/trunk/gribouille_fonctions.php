@@ -74,3 +74,10 @@ function critere_versions_wiki($idb, &$boucles, $crit) {
 	$boucle->modificateur['wiki'] = true;
 }
 
+function masquer_ip($texte){
+	if(preg_match('#^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\z#',$texte,$matches)) {
+		return $matches[1].'.'.$matches[2].'.xx.xx';
+	} else {
+		return $texte;
+	}
+}
