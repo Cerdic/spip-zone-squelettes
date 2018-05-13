@@ -1,11 +1,16 @@
 <?php
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// extrait automatiquement de https://trad.spip.net/tradlang_module/paquet-escal?lang_cible=en
+// ** ne pas modifier le fichier **
 
-if (!defined('_ECRIRE_INC_VERSION')) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// E
-'escal_description' => 'Adapted for the version 3 of SPIP, it proposes:
+	// E
+	'escal_description' => 'Adapted for the version 3 of SPIP, it proposes:
 -* a lot of options in the private space
 -* a parameterizable layout with 2 or 3 columns by the choice of a style sheet
 -* a multilingualism management
@@ -26,7 +31,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 -* a special style sheet for the printing of the articles
 -* a login box in the home page (2 possible choices for display)
 -* a set XHTML Strict 1.0 validated',
-'escal_slogan' => 'A skeleton with 2 or 3 columns made of a large number of blocks',
-
+	'escal_slogan' => 'A skeleton with 2 or 3 columns made of a large number of blocks'
 );
-?>

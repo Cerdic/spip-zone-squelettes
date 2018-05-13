@@ -1,11 +1,16 @@
 <?php
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// extrait automatiquement de https://trad.spip.net/tradlang_module/paquet-escal?lang_cible=uk
+// ** ne pas modifier le fichier **
 
-if (!defined('_ECRIRE_INC_VERSION')) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// E
-'escal_description' => 'Адаптований до версії 3 SPIP і пропонує:
+	// E
+	'escal_description' => 'Адаптований до версії 3 SPIP і пропонує:
 - * конфігурацію, що здійснюється в адміністративній частині;
 - * макет, що настроюється, в 2 або 3 колонки за вибором, зі стилями;
 - * управління багатомовністю;
@@ -26,7 +31,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 - * спеціальна таблиця стилів для друку статей;
 - * зона зв&#39;язку з домашньою сторінкою (2 варіанти перегляду);
 - * валідний XHTML Strict 1.0 ',
-'escal_slogan' => 'Squelette 2 ou 3 colonnes compos&eacute; de nombreuses noisettes',
-
+	'escal_slogan' => 'Squelette 2 ou 3 colonnes composé de nombreuses noisettes'
 );
-?>
