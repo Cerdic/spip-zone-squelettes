@@ -1,4 +1,5 @@
 #CACHE{900}
+#SET{'currentmonth', #ENV{date}|affdate{'Y-m-01'}
 [(#ENV{'mini_date_ev'}|!={''}|non)
 	[(#ENV{'month'}|oui)
 		[(#ENV{'year'}|oui)
@@ -7,23 +8,27 @@
 		]
 	]
 	[(#ENV{'month'}|non)
-		#SET{'date', #ENV{date}}
-		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
+		[(#SET{'date', [(#ENV{date}|affdate{'Y-m-01'})]})]
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-01'}
 	]
 ]
 [(#ENV{'mini_date_ev'}|!={''}|oui)
-	#SET{'date', #ENV{mini_date_ev}|concat{' 00:00:00'}}
-	#SET{'date_th', #ENV{mini_date_ev}}
+	#SET{'date', #ENV{mini_date_ev}|affdate{'Y-m-01'}|concat{' 00:00:00'}}
+	#SET{'date_th', #ENV{mini_date_ev}|affdate{'Y-m-01'}}
 ]
 <BOUCLE_Evenements(EVENEMENTS){0,1}>
 <div class="miniagenda">
 	<h2><:soyezcreateurs:agenda:></h2>
 	<table class="agenda">
 		<caption>
+		<BOUCLE_DatePassee(CONDITION){si #GET{currentmonth}|<{#GET{date_th}}}>		
 		[<a href="(#SELF|parametre_url{mini_date_ev,[(#GET{date}|Agenda_moisdecal{-1,'Y-m-d'})]})" title="<:precedent|ucfirst:>" class='ajax' rel="nofollow">&#171;</a>]
+		</BOUCLE_DatePassee>
 		[(#GET{date}|nom_mois|ucfirst)]
 		[(#GET{date}|annee)]
+		<BOUCLE_DateFuture(EVENEMENTS){date_fin>=(#GET{date}|Agenda_moisdecal{1,'Y-m-d'}|affdate{'Y-m-01'})}{0,1}>
 		[<a href="(#SELF|parametre_url{mini_date_ev,[(#GET{date}|Agenda_moisdecal{1,'Y-m-d'})]})" title="<:suivant|ucfirst:>" class='ajax' rel="nofollow">&#187;</a>]
+		</BOUCLE_DateFuture>
 		</caption>
 		<thead>
 			<tr>
