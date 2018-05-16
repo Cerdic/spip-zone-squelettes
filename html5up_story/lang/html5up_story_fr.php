@@ -11,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'404_sorry' => 'Désolé, la page que vous cherchez n\'existe plus.',
 
 	// A
-	'aide' => '<a href="https://contrib.spip.net/?FIXME" class="spip_out">Consultez la documentation FIXME</a>',
+	'aide' => '<a href="https://contrib.spip.net/4999" class="spip_out">Consultez la documentation</a>',
 	'articles_speciaux' => 'Articles spéciaux',
 	'article_gallery' => 'Galerie d\'images',
 	'article_gallery_explications' => 'C\'est l\'article dont les images serviront pour la galerie d\'images placée en bas de page',
