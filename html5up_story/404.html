@@ -1,0 +1,38 @@
+[(#REM)
+	page 404
+
+	param:
+	- (rien)
+
+
+]#HTTP_HEADER{HTTP/1.0  #ENV{code,'404 Not Found'}}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}<!DOCTYPE HTML>
+<html lang="#LANG">
+	<head>
+		<INCLURE{fond=inc/inc_head,no-bot} />
+		<title><:pass_erreur:> [(#ENV{status, 404}|intval) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	</head>
+
+	<body>
+	#SET{color,#CONFIG{html5up_story/color}}
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- Banner -->
+					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right[ (#GET{color})]">
+						<div class="content">
+							<h1><:pass_erreur:> [(#ENV{status, 404}|intval)]</h1>
+							<p><:html5up_story:404_sorry:></p>
+						</div>
+					</section>
+
+
+				<INCLURE{fond=inc/inc_footer} />
+			</div>
+		<!-- #Wrapper -->
+
+
+	</body>
+</html>

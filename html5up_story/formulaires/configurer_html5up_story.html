@@ -1,0 +1,82 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+	<h3 class="titrem"><:html5up_story:cfg_titre_parametrages:></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE
+
+		<fieldset>
+			<legend><:html5up_story:couleur:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{radio,color,
+						label=<:html5up_story:color:>,
+						data=#ARRAY{
+							color0,<:html5up_story:color0:>,
+							color1,<:html5up_story:color1:>,
+							color2,<:html5up_story:color2:>,
+							color3,<:html5up_story:color3:>,
+							color4,<:html5up_story:color4:>,
+							color5,<:html5up_story:color5:>,
+							color6,<:html5up_story:color6:>,
+							color7,<:html5up_story:color7:>},
+						defaut=color0})]
+				 <style>
+				 .story { display:inline-block;border:1px solid #ddd; padding:1rem .4rem;width:10rem;}
+				 .story-color1 {background-color:#30363d;}
+				 .story-color2 {background-color:#db8992;}
+				 .story-color3 {background-color:#ab7aad;}
+				 .story-color4 {background-color:#897cad;}
+				 .story-color5 {background-color:#7794ce;}
+				 .story-color6 {background-color:#64abb4;}
+				 .story-color7 {background-color:#6ba78c;}
+				 </style>
+
+			</div>
+		</fieldset>
+		<fieldset>
+		<legend><:html5up_story:articles_speciaux:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{selecteur_article, article_hero,
+					label=<:html5up_story:article_hero:>,
+					explication=<:html5up_story:article_hero_explications:>})]
+			</div>
+			<div class="editer-groupe">
+				[(#SAISIE{selecteur_article, article_gallery,
+					label=<:html5up_story:article_gallery:>,
+					explication=<:html5up_story:article_gallery_explications:>})]
+			</div>
+		</fieldset>
+		<fieldset>
+		<legend><:html5up_story:pied_page:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{textarea, pied_page_contenu,
+					label=<:html5up_story:pied_page_contenu:>,
+					explication=<:html5up_story:pied_page_contenu_explications:>,
+					rows=5})]
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend><:html5up_story:reseaux_sociaux:></legend>
+			<div class="editer-groupe">
+				<div class="editer pleine_largeur">
+					<span class="explication">
+						[(#PLUGIN{sociaux}|non)
+							<:html5up_story:reseau_sociaux_activer:>
+						][(#PLUGIN{sociaux}|oui)
+						<a href="#URL_ECRIRE{configurer_sociaux}"><:html5up_story:reseaux_sociaux_configurer:></a>
+						]
+					</span>
+				</div>
+			</div>
+		</fieldset>
+
+
+		<input type="hidden" name="_meta_casier" value="html5up_story" />
+		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	</div>
+	</form>
+</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="#LANG">
+	<head>
+		<INCLURE{fond=inc/inc_head} />
+		<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|couper{60}|textebrut)]</title>
+		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{130}|textebrut)" />]
+		[<link rel="canonical" href="(#URL_SITE_SPIP)" />]
+	</head>
+
+	<body>
+	#SET{color,#CONFIG{html5up_story/color}}
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- Banner -->
+				<BOUCLE_banner(ARTICLES){id_article IN #CONFIG{html5up_story/article_hero}|picker_selected{article}}{doublons articles_speciaux}>
+					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right[ (#GET{color})]">
+						<div class="content">
+							[<div class="centered"><a href="#section-1" class="smooth-scroll-middle">(#LOGO_SITE_SPIP)</a></div>]
+							<!-- <h1>#TITRE</h1> -->
+							<div class="#EDIT{texte}">#TEXTE</div>
+
+							<ul class="actions vertical">
+								<li><a href="#section-1" class="button big wide smooth-scroll-middle"><:en_savoir_plus:></a></li>
+							</ul>
+						</div>
+						<div class="image">
+							[(#LOGO_ARTICLE|non)<img src="#CHEMIN{images/banner.jpg}" alt="" />]
+							[(#LOGO_ARTICLE|oui) #LOGO_ARTICLE]
+						</div>
+					</section>
+				</BOUCLE_banner>
+
+				<BOUCLE_spotlight(ARTICLES){!id_article IN #CONFIG{html5up_story/article_gallery}|picker_selected{article}}{par num titre}{doublons articles_speciaux}>
+				<!-- Spotlight -->
+					<section class="spotlight style1 [(#COMPTEUR_BOUCLE|alterner{orient-right,orient-left})] content-align-left image-position-center onscroll-image-fade-in[ (#GET{color})]" id="section-#COMPTEUR_BOUCLE">
+						<div class="content">
+							[<h2 class="#EDIT{titre}">(#TITRE)</h2>]
+							[<div class="#EDIT{texte}">(#TEXTE)</div>]
+						</div>
+						<div class="image">
+							[(#LOGO_ARTICLE|non) <img src="#CHEMIN{images/spotlight01.jpg}" alt="" />]
+							[(#LOGO_ARTICLE|oui) #LOGO_ARTICLE]
+						</div>
+					</section>
+				</BOUCLE_spotlight>
+
+				<BOUCLE_galerie(ARTICLES){id_article IN #CONFIG{html5up_story/article_gallery}|picker_selected{article}}>
+				<!-- Gallery -->
+					<section class="wrapper style1 align-center[ (#GET{color})]">
+						<div class="inner">
+							[<h2 class="#EDIT{titre}">(#TITRE)</h2>]
+							[<div class="#EDIT{texte}">(#TEXTE)</div>]
+						</div>
+
+						<!-- Gallery images -->
+						<B_doc>
+							<div class="gallery style2 medium lightbox onscroll-fade-in">
+								<BOUCLE_doc(DOCUMENTS){id_article}{extension IN png,gif,jpg}{par rang_lien, id_document}>
+								<article>
+									<a href="#URL_DOCUMENT" class="image">
+										[(#FICHIER|image_passe_partout{540,390}|image_recadre{540,390,center})]
+									</a>
+									<div class="caption">
+										[<h3>(#TITRE)</h3>]
+										[<p>(#DESCRIPTIF)</p>]
+									</div>
+								</article>
+								</BOUCLE_doc>
+							</div>
+						</B_doc>
+
+					</section>
+				</BOUCLE_galerie>
+
+
+				<INCLURE{fond=inc/inc_footer} />
+
+
+			</div>
+		<!-- #Wrapper -->
+
+
+	</body>
+</html>
