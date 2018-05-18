@@ -1,21 +1,7 @@
 #CACHE{900}
-#SET{'currentmonth', #ENV{date}|affdate{'Y-m-01'}
-[(#ENV{'mini_date_ev'}|!={''}|non)
-	[(#ENV{'month'}|oui)
-		[(#ENV{'year'}|oui)
-			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
-			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
-		]
-	]
-	[(#ENV{'month'}|non)
-		[(#SET{'date', [(#ENV{date}|affdate{'Y-m-01'})]})]
-		#SET{'date_th', #ENV{date}|affdate{'Y-m-01'}
-	]
-]
-[(#ENV{'mini_date_ev'}|!={''}|oui)
-	#SET{'date', #ENV{mini_date_ev}|affdate{'Y-m-01'}|concat{' 00:00:00'}}
-	#SET{'date_th', #ENV{mini_date_ev}|affdate{'Y-m-01'}}
-]
+#SET{'currentmonth', #ENV{date}|affdate{'Y-m-01'}}
+#SET{'date', #ENV{mini_date_ev}|sinon{#ENV{date}}|affdate{'Y-m-01'}|concat{' 00:00:00'}}
+#SET{'date_th', #ENV{mini_date_ev}|sinon{#ENV{date}}|affdate{'Y-m-01'}}
 <BOUCLE_Evenements(EVENEMENTS){0,1}>
 <div class="miniagenda">
 	<h2><:soyezcreateurs:agenda:></h2>
