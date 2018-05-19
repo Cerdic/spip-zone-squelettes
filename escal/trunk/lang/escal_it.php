@@ -646,6 +646,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - gli <strong>articoli</strong> tenendo conto della "data di pubblicazione precedente".
                     Gli articoli in questione sono quelli con la parola chiave "agenda" o quelli della sezione con la stessa parola chiave "agenda". ',
 	'noisettes_calendrier_explication2' => '(questa scelta si applicherà anche al blocco "Prossimi eventi") ',
+	'noisettes_calendrier_lien_agenda' => 'Titolo con il link all’agenda a pagina intera',
 	'noisettes_calendrier_pagination' => 'Numero di articoli o di eventi per pagina:',
 	'noisettes_decouvrir' => 'Scoprire',
 	'noisettes_decouvrir_hasard' => 'Numero di articoli presi a caso:',
