@@ -47,7 +47,7 @@
                       [(#TOTAL_BOUCLE|>{01}|non) <:escal:article_trouve:>]
                       <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_articles(ARTICLES){recherche}{lang}{doublons articles}>
+                  <BOUCLE_compte_articles(ARTICLES){recherche}{lang}>
                   </BOUCLE_compte_articles>
                   </B_compte_articles>
                     <!-- si pas d'article trouvé -->
@@ -64,7 +64,7 @@
                       [(#TOTAL_BOUCLE|>{01}|non) <:escal:forum_trouve:>]
                       <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_forums(FORUMS){recherche}{doublons forums}>
+                  <BOUCLE_compte_forums(FORUMS){recherche}>
                   </BOUCLE_compte_forums>
                   </B_compte_forums>
                     <!-- si pas de forum trouvé -->
@@ -81,7 +81,7 @@
                       [(#TOTAL_BOUCLE|>{01}|non) <:escal:rubrique_trouvee:>]
                       <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_rubriques(RUBRIQUES){recherche}{lang}{doublons rubriques}>
+                  <BOUCLE_compte_rubriques(RUBRIQUES){recherche}{lang}>
                   </BOUCLE_compte_rubriques>
                   </B_compte_rubriques>
                     <!-- si pas de rubrique trouvée -->
@@ -98,7 +98,7 @@
                     [(#TOTAL_BOUCLE|>{1}|non) <:escal:site_reference:>]
                     <:escal:dans_site:>
                     </div>
-                  <BOUCLE_compte_sites(SITES){recherche}{doublons sites}>
+                  <BOUCLE_compte_sites(SITES){recherche}>
                   </BOUCLE_compte_sites>
                   </B_compte_sites>
                     <!-- si pas de site trouvé -->
@@ -111,7 +111,8 @@
                   <h2><:articles:></h2>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-                  <BOUCLE_articles(ARTICLES) {!doublons articles} {pagination 5}>
+		<div class="liste-articles-rubrique">
+                  <BOUCLE_articles(ARTICLES){recherche}{lang}{!par points}{pagination 5}>
                     <!-- on affiche le ou les article(s) -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -132,12 +133,13 @@
                       </div>
                     </div>
                   </BOUCLE_articles>
-             
+      	</div>      
 			   <B_forums>
                   <h2><:forums:></h2>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-                  <BOUCLE_forums(FORUMS){!doublons forums}{pagination 5}>
+		<div class="liste-articles-rubrique">
+                  <BOUCLE_forums(FORUMS){recherche}{!par points}{pagination 5}>
                     <!-- on affiche le ou les forums -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -148,13 +150,15 @@
                       </div>
 
                     </div>
-                  </BOUCLE_forums>                  
+                  </BOUCLE_forums> 
+      	</div>                 
 
                   <B_rubriques>
                   <h2><:rubriques:></h2>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-                  <BOUCLE_rubriques(RUBRIQUES) {!doublons rubriques}{pagination 5}>
+		<div class="liste-articles-rubrique">
+                  <BOUCLE_rubriques(RUBRIQUES){recherche}{lang}{!par points}{pagination 5}>
                     <!-- on affiche le ou les rubrique(s) -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -165,13 +169,14 @@
                       </div>
                     </div>
                   </BOUCLE_rubriques>
-
+		</div>
 
                   <B_sites>
                   <h2><:escal:sites:></h2>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-                  <BOUCLE_sites(SITES) {!doublons sites}{pagination 5}>
+		<div class="liste-articles-rubrique">
+                  <BOUCLE_sites(SITES){recherche}{!par points}{pagination 5}>
                     <!-- on affiche les sites trouvés -->
                     <div class="cadre-articles-rubrique">
                       <div class="titre-articles-rubrique">
@@ -182,7 +187,8 @@
                       </div>
                     </div>
                   </BOUCLE_sites>
-
+		</div>
+		
                 </div><!-- fin texte-article -->
               </div><!-- fin cadre-article -->
 
