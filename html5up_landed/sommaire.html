@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<INCLURE{fond=inclure/head}>
+	</head>
+	<body class="sommaire landing">
+		<div id="page-wrapper">
+
+			<INCLURE{fond=inclure/header, sommaire=oui}>
+
+			#SET{articles_sommaire,#ARRAY}
+			<BOUCLE_articles_sommaire(ARTICLES){id_mot=#CONFIG{html5_landed/id_mot_sommaire}}>
+			#SET{articles_sommaire, #GET{articles_sommaire}|push{#ID_ARTICLE}}
+			</BOUCLE_articles_sommaire>
+			
+			<BOUCLE_background_banner(DOCUMENTS){id_document=#CONFIG{html5_landed/image_banner}}{tout}>
+			#SET{background, #FICHIER}
+			</BOUCLE_background_banner>
+			<BOUCLE_banner(ARTICLES){id_article=#CONFIG{html5_landed/article_banner}|picker_selected{article}|table_valeur{0}}>
+			<section id="banner"[ style="background-image: url((#GET{background}));"] class="">
+				<div class="content">
+					<div class="block-link-parent">
+						<header>
+							<h2><a class="block-link" href="#URL_ARTICLE">#TITRE</a></h2>
+							[(#INTRODUCTION{200})]
+							<!--<p><a href="#URL_ARTICLE" class="button"><:html5_landed:lire_suite:></a></p>-->
+						</header>
+						#SET{logo,#LOGO_ARTICLE}
+						<BOUCLE_logo_banner(DOCUMENTS){id_article}{si #CONFIG{html5_landed/logo_document}}{si #LOGO_ARTICLE|non}{extension IN jpg,png}{mode=image}{0,1}>
+						#SET{logo,#FICHIER}
+						</BOUCLE_logo_banner>
+						[<span class="image"><img src="(#GET{logo}|image_passe_partout{360,360}|image_recadre{360,360}|image_aplatir{jpg,ffffff,90}|extraire_attribut{src})" alt="#TITRE"></span>]
+					</div>
+				</div>
+				[(#GET{articles_sommaire}|count|oui)
+				<a href="#sommaire1" class="goto-next scrolly"><:html5_landed:suite:></a>
+				]
+			</section>
+			
+			</BOUCLE_banner>
+			
+			<BOUCLE_articles(ARTICLES){id_article IN #GET{articles_sommaire}}>
+				#SET{class,wrapper fade-up} #SET{container, 1}
+				<BOUCLE_mots(MOTS){id_article}>
+				[(#ID_MOT|=={#CONFIG{html5_landed/id_mot_intro_droite}}|oui) #SET{class,spotlight right} #SET{container, 0} ]
+				[(#ID_MOT|=={#CONFIG{html5_landed/id_mot_intro_gauche}}|oui) #SET{class,spotlight left} #SET{container, 0} ]
+				[(#ID_MOT|=={#CONFIG{html5_landed/id_mot_intro_dessous}}|oui) #SET{class,spotlight bottom} #SET{container, 0} ]
+				</BOUCLE_mots>
+				<section id="sommaire#COMPTEUR_BOUCLE" class="section-home [(#GET{class})]">
+					#SET{logo,#LOGO_ARTICLE}
+					<BOUCLE_logo_section(DOCUMENTS){id_article}{si #CONFIG{html5_landed/logo_document}}{si #LOGO_ARTICLE|non}{extension IN jpg,png}{mode=image}{0,1}>
+					#SET{logo,#FICHIER}
+					</BOUCLE_logo_section>
+					[(#GET{container}|non)[<span class="image fit main">(#GET{logo}|balise_img)</span>]]
+						<div class="content block-link-parent">
+							[(#GET{container}|oui)<div class="container">]
+							<header class="">
+								<h2><a href="#URL_ARTICLE" class="block-link">#TITRE</a></h2>
+								#INTRODUCTION
+								<!--<p><a href="#URL_ARTICLE" class="button"><:html5_landed:lire_suite:></a></p>-->
+							</header>
+						 	[(#GET{container}|oui)[<div class="image logo">(#GET{logo}|image_reduire{900,400})</div>]]
+						 	[(#GET{container}|oui)</div>]
+						</div>
+					#SET{prochain, #GET{articles_sommaire}|table_valeur{#COMPTEUR_BOUCLE}}
+					[(#GET{prochain}|oui)
+					<a href="#sommaire[(#COMPTEUR_BOUCLE|plus{1})]" class="goto-next scrolly"><:html5_landed:suite:></a>
+					]
+				</section>
+			</BOUCLE_articles>
+
+			<INCLURE{fond=inclure/footer}>
+
+		</div>
+		
+	</body>
+</html>

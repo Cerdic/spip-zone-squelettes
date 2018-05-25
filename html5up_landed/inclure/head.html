@@ -1,0 +1,42 @@
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+#SET{title, #NOM_SITE_SPIP}
+#SET{description, #DESCRIPTIF_SITE_SPIP}
+#SET{url, #URL_SITE_SPIP|url_absolue{#URL_SITE_SPIP}}
+[(#ENV{id_rubrique}|oui) 
+	#SET{title, #INFO_TITRE{rubrique,#ENV{id_rubrique}}
+	#SET{description, #INTRODUCTION}
+	#SET{url, #URL_RUBRIQUE{#ENV{id_rubrique}|url_absolue{#URL_SITE_SPIP}}
+]
+[(#ENV{id_article}|oui) 
+	#SET{title, #INFO_TITRE{article,#ENV{id_article}}
+	#SET{description, #INTRODUCTION}
+	#SET{url, #URL_ARTICLE{#ENV{id_article}|url_absolue{#URL_SITE_SPIP}}
+]
+<title>[(#GET{title}|textebrut)]</title>
+[<meta name="description" content="(#GET{description}|couper{150}|attribut_html|trim)" />]
+[<link rel="canonical" href="(#GET{url})" />]
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+[<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
+
+[<link rel="icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />
+[<link rel="shortcut icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />]]
+
+#INSERT_HEAD_CSS
+
+[<link rel="stylesheet" href="(#CHEMIN{assets/css/roboto.css})" />]
+[<link rel="stylesheet" href="(#CHEMIN{assets/css/main.css}|timestamp)" />]
+[<link rel="stylesheet" href="(#PRODUIRE{fond=theme_landed.css}|timestamp)" />]
+
+[<link rel="stylesheet" href="(#CHEMIN{css/perso.css}|direction_css|timestamp)" type="text/css" />]
+
+
+#INSERT_HEAD
+
+[<script src="(#CHEMIN{assets/js/jquery.scrolly.min.js})"></script>]
+[<script src="(#CHEMIN{assets/js/jquery.dropotron.min.js})"></script>]
+[<script src="(#CHEMIN{assets/js/jquery.scrollex.min.js})"></script>]
+[<script src="(#CHEMIN{assets/js/skel.min.js})"></script>]
+[<script src="(#CHEMIN{assets/js/util.js})"></script>]
+[<script src="(#CHEMIN{assets/js/main.js})"></script>]

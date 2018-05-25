@@ -1,0 +1,50 @@
+[(#REM) On peut arriver avec id_article ou id_rubrique. On les réaffecte sur objet, id_objet. ]
+[(#ENV{id_article}|oui)[(#VAL{article}|setenv{objet})][(#ENV{id_article}|setenv{id_objet})]]
+[(#ENV{id_rubrique}|oui)[(#VAL{rubrique}|setenv{objet})][(#ENV{id_rubrique}|setenv{id_objet})]]
+
+
+
+<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}>
+<article class="tile block-link-parent">
+	<div class="picture">
+		<div class="illu-portfolio" style="background-image:url(#LOGO_ARTICLE)"></div>
+	</div>
+	<a href="#URL_ARTICLE" class="block-link">
+		<p class="title">#TITRE</p>
+		[<div class="content">
+		(#INTRODUCTION{80})
+	</div>]
+	</a>
+</article>
+</BOUCLE_articles>
+
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+	<h2><:medias:info_portfolio:></h2>
+		<ul class="portfolio">
+			<BOUCLE_documents_portfolio(DOCUMENTS) {objet?}{id_objet?} {mode=document}{extension IN png,jpg,gif} {par rang_lien, num titre, date}{doublons}{vu=non}>
+			<li>
+				<a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html|couper{80})"] class="mediabox">
+					[(#FICHIER
+						|image_passe_partout{270,200}
+						|image_recadre{270,200}
+						|inserer_attribut{alt,#TITRE|attribut_html|couper{80}})]
+				</a>
+			</li>
+			</BOUCLE_documents_portfolio>
+		</ul>
+</B_documents_portfolio>
+
+<B_documents_joints>
+		<h2><:medias:titre_documents_joints:></h2>
+		<ul class="portfolio">
+			<BOUCLE_documents_joints(DOCUMENTS) {objet?}{id_objet?} {extension !IN gif,jpg,png} {vu=non}{par rang_lien, num titre, date}>[
+			<li>
+				<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" class="spip_doc[ (#EXTENSION|attribut_html)]"><strong class="#EDIT{titre} titre">[(#TITRE|sinon{[(#FICHIER|basename|couper{80})]})]</strong>
+					<small class="info_document">([<abbr title="<:info_document:> #TYPE_DOCUMENT" class="ext">(#EXTENSION|strtoupper)</abbr> - ][<span>(#TAILLE|taille_en_octets)</span>])</small></a>
+				[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+				[<div class="#EDIT{credits} credits">(#CREDITS)</div>]
+				]</li>
+			</BOUCLE_documents_joints>
+		</ul>
+</B_documents_joints>

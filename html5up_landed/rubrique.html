@@ -1,0 +1,79 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE HTML>
+<html class="no-js" lang="#LANG" dir="#LANG_DIR">
+	<head>
+		<INCLURE{fond=inclure/head,id_rubrique}>
+	</head>
+	<body class="rubrique">
+		<div id="page-wrapper">
+
+			<INCLURE{fond=inclure/header,id_rubrique}>
+
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<BOUCLE_test_hierarchie(CONDITION){si #CONFIG{html5_landed/fil_ariane}}>
+						<p class="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}><span class="sep"> &gt; </span><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[<span class="sep"> &gt; </span><strong class="on">(#TITRE|couper{80})</strong>]</p><!--.arbo-->
+						</BOUCLE_test_hierarchie>
+						
+						<header class="major">
+							<h2>#TITRE</h2>
+						</header>
+
+						<section id="content">
+
+							<B_articles>
+							<div class="tiles">
+								<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}>
+								<article class="tile block-link-parent">
+									#SET{logo,#LOGO_ARTICLE}
+									<BOUCLE_doc_article(DOCUMENTS){id_article}{si #CONFIG{html5_landed/logo_document}}{si #LOGO_ARTICLE|non}{extension IN jpg,png}{mode=image}{0,1}>
+									#SET{logo,#FICHIER}
+									</BOUCLE_doc_article>
+									<div class="picture"><div [ style="background-image:url((#GET{logo}|image_passe_partout{270,200}|image_recadre{270,200}|image_aplatir{jpg,ffffff,90}|extraire_attribut{src}))"]></div></div>
+									<a href="#URL_ARTICLE" class="block-link">
+										<p class="title">#TITRE</p>
+										[<div class="content">
+											(#INTRODUCTION{80})
+										</div>]
+									</a>
+								</article>
+								</BOUCLE_articles>
+							</div>
+							</B_articles>
+							
+							<B_sous_rubriques>
+							<div class="tiles">
+								<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+								<article class="tile block-link-parent">
+									#SET{logo,#LOGO_RUBRIQUE}
+									<BOUCLE_premier_article(ARTICLES){id_rubrique}{par num titre,titre}{0,1}{si #GET{logo}|non}>
+									#SET{logo,#LOGO_ARTICLE}
+									<BOUCLE_doc_premier_article(DOCUMENTS){id_article}{si #CONFIG{html5_landed/logo_document}}{si #LOGO_ARTICLE|non}{extension IN jpg,png}{mode=image}{0,1}>
+									#SET{logo,#FICHIER}
+									</BOUCLE_doc_premier_article>
+									</BOUCLE_premier_article>
+									<div class="picture"><div [ style="background-image:url((#GET{logo}|image_passe_partout{270,200}|image_recadre{270,200}|image_aplatir{jpg,ffffff,90}|extraire_attribut{src}))"]></div></div>
+									<a href="#URL_RUBRIQUE" class="block-link">
+										<p class="title">#TITRE</p>
+										[<div class="content">
+											(#INTRODUCTION{80})
+										</div>]
+									</a>
+								</article>
+								</BOUCLE_sous_rubriques>
+							</div>
+							</B_sous_rubriques>
+							
+						</section>
+
+					</div>
+				</div>
+
+			<INCLURE{fond=inclure/footer}>
+
+		</div>
+		
+	</body>
+</html>
+</BOUCLE_principale>

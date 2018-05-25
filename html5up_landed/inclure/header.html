@@ -1,0 +1,20 @@
+<header id="header">
+	
+	<[(#ENV{sommaire}|?{h1,div})] class="logo-site">
+	[(#ENV{sommaire}|non)<a href="#URL_SITE_SPIP" title="<:accueil_site:>">]
+		<INCLURE{fond=inclure/logo-site}>
+    [(#ENV{sommaire}|non)</a>]
+	</[(#ENV{sommaire}|?{h1,div})]>
+
+	<nav id="nav">
+		[(#PLUGIN{menus}|oui)
+			[(#REM) charger le menu avec identifiant navbar s'il existe, sinon la nav standard]
+			[(#INCLURE{fond=inclure/navbar-menus, env}|sinon{#INCLURE{fond=inclure/navbar, env}})]
+		]
+		[(#PLUGIN{menus}|non)
+			[(#REM) nav standard]
+			<INCLURE{fond=inclure/navbar, env}>
+		]
+	</nav>
+
+</header>

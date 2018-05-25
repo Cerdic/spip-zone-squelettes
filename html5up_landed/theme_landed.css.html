@@ -1,0 +1,94 @@
+[(#REM)
+
+	Ce squelette definit les styles de l'espace prive
+
+	Note: l'entete "Vary:" sert a repousser l'entete par
+	defaut "Vary: Cookie,Accept-Encoding", qui est (un peu)
+	genant en cas de "rotation du cookie de session" apres
+	un changement d'IP (effet de clignotement).
+
+	ATTENTION: il faut absolument le charset sinon Firefox croit que
+	c'est du text/html !
+]
+#CACHE{3600*100,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+#SET{bando, #CONFIG{html5_landed/couleur_bando}|trim|sinon{#272727}}
+#SET{color, #CONFIG{html5_landed/couleur_theme}|trim|sinon{#e44c65}}
+#SET{liens, #CONFIG{html5_landed/couleur_liens}|trim|sinon{#e44c65}}
+#SET{actif, #CONFIG{html5_landed/couleur_actif}|trim|sinon{#e44c65}}
+
+[(#REM)<style>]
+	
+/* Bandeau (header) */
+
+#header {
+	background: #GET{bando};
+}
+
+/* Liens et menus actifs */
+
+a {
+	color: #GET{liens};
+}
+a:hover {
+	color: #[(#GET{liens}|replace{'#',''}|couleur_foncer{0.15})] !important;
+}
+
+.dropotron .on > a {
+color: #GET{liens} !important;
+}
+.dropotron .on > a:hover {
+color: #[(#GET{liens}|replace{'#',''}|couleur_foncer{0.15})] !important;
+}
+
+/* Rubrique active */
+
+#header nav > ul > .on > a {
+	background-color: #GET{actif} !important;
+}
+#header nav > ul > .on > a:hover {
+	background-color:  #[(#GET{actif}|replace{'#',''}|couleur_foncer{0.15})] !important;
+}
+
+/* Bordures et formulaires */
+
+header.major:after {
+	background: #GET{color};
+}
+
+textarea:focus {
+	border-color: #GET{color}; 
+}
+
+input[type="radio"]:focus + label:before {
+	border-color: #GET{color}; 
+}
+
+input[type="submit"]:hover, input[type="submit"]:active,
+input[type="reset"]:hover,
+input[type="reset"]:active,
+input[type="button"]:hover,
+input[type="button"]:active,
+.button:hover,
+.button:active {
+	box-shadow: inset 0 0 0 1px #GET{color};
+	color: #GET{color} !important; 
+}
+
+.spotlight .content {
+	border-color: #GET{color};
+}
+
+.dropotron > li.active > a, .dropotron > li.active > span {
+	color: #GET{color}; 
+}
+
+#header nav ul li.active > a, #header nav ul li.active > span {
+	color: #GET{color}; 
+}
+
+#titleBar .toggle:before {
+	background: #GET{color};
+}

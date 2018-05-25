@@ -1,0 +1,29 @@
+#SET{chemin,#ARRAY}
+<BOUCLE_ariane(HIERARCHIE){id_rubrique}{tout}>#SET{chemin,#GET{chemin}|push{#ID_RUBRIQUE}}</BOUCLE_ariane>
+<ul>
+	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre, titre}>
+	<li[(#ID_RUBRIQUE|in_array{#GET{chemin}}|oui) class="on"]>
+	<a href="#URL_RUBRIQUE">#TITRE</a>
+	<B_rubriques>
+		<ul>
+			<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+			<li[(#ID_RUBRIQUE|in_array{#GET{chemin}}|oui) class="on"]>
+			<a href="#URL_RUBRIQUE">#TITRE</a>
+			<B_sous_rubriques>
+				<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}{!par date}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li[(#ID_RUBRIQUE|in_array{#GET{chemin}}|oui) class="on"]>
+					<a href="#URL_RUBRIQUE">#TITRE</a>
+					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
+					</li>
+					</B_test_expose></BOUCLE_sous_rubriques>
+				</ul>
+			</B_sous_rubriques>
+
+			</li>
+			</BOUCLE_rubriques>
+		</ul>
+	</B_rubriques>
+	</li>
+	</BOUCLE_secteurs>
+</ul>
