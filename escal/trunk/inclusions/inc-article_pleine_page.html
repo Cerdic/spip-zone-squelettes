@@ -207,6 +207,7 @@
 				
 <!-- affichage des événements -->
 
+
 #SET{tableauprochainement,#ARRAY}
 <BOUCLE_prochainementselection(EVENEMENTS){id_article}{age_fin<=1}{par date_debut}>
 [(#ID_EVENEMENT_SOURCE|=={0}|?{				
@@ -215,39 +216,91 @@
 })]
 </BOUCLE_prochainementselection>
 
+<B_select>
+<div class="events-associes">
+<hr />	
+<strong><:escal:evenements_associes:></strong>
 
-<BOUCLE_select1(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>	
-			<BOUCLE_premier(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=1}{par date}{0,1}{doublons select}>
-			</BOUCLE_premier>
-			<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{par date}{doublons autres}>
-          	</BOUCLE_autres>        
-</BOUCLE_select1>	
+<div class="container-choix"> 
+<BOUCLE_select(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>
+	
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{date_fin>0}{doublons}>
+</BOUCLE_seul>
+<BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
+	<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=1}{doublons}>
+	</BOUCLE_futur>
+</BOUCLE_plusieurs>  
+
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+#SET{couleur,#336699}
+<//B_mot>	
+
+<B_affiche>
+	<div class="choix-article" style="width:40%;">
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">      	
+<BOUCLE_affiche(EVENEMENTS){!doublons}{0,1}{doublons affiche}{par date}>
+
+	<div class="evenement-date" style="background-color:[(#GET{couleur}|PtoBR)];">
+		<span class="evenement-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="evenement-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="evenement-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
+	</div>
 				
+	<div class="evenement-donnees"> 
+			<div class="donnee-titre">		
+			#TITRE
+			</div>
+			[<div class="donnee-lieu">		
+			<img src="#CHEMIN{images/geoloc.png}" alt="lieu"  />(#ADRESSE|PtoBR)
+			</div>]
+							
+		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+			<div class="donnee-heure">
+				<img src="#CHEMIN{images/heure.png}" alt="horaire"  />
+				du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+				[(#HORAIRE|=={oui}|?{&agrave; partir de
+  				[(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
+				<br />au
+				[(#DATE_FIN|nom_jour)]
+            		<strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+				[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
+          	</div>  
+		]
+	
+		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
+			<div class="donnee-heure">
+				[(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non) 
+				<img src="#CHEMIN{images/heure.png}" alt="horaire"  />
+				[(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)] - 
+				[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
+				]
+          	</div>  
+		]
+	</div>
+	
+</BOUCLE_affiche>
+	<div class="evenement-donnees">       	
+	<BOUCLE_autres2(EVENEMENTS){!doublons}{id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{doublons affiche}{par date}>
+		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)] 
+	</BOUCLE_autres2>
+	</div> 
+	</a>
+	</div><!--choix-article-->
+</B_affiche>	
+	
+</BOUCLE_select>
+</div><!--container-choix-->	
 
-	<B_affiche>
-		<hr />
-		<strong><:escal:evenements_associes:></strong>	
+<hr />
 
-		<div class="container-choix">         	
-          	
-			<BOUCLE_affiche(EVENEMENTS){!doublons select}{doublons affiche}{par date}>
-			<div class="choix-article" style="width:40%;">
-			
-			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">
-			[(#DATE_DEBUT|affdate_jourcourt)]  - [(#DATE_DEBUT|affdate{'H'})] h [(#DATE_DEBUT|affdate{'m'})] : <strong>#TITRE</strong>
-			<BOUCLE_autres2(EVENEMENTS){!doublons autres}{doublons affiche}>
-          		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)] - [(#DATE_DEBUT|affdate{'H'})] h [(#DATE_DEBUT|affdate{'m'})] 
-          	</BOUCLE_autres2> 
-			</a>
-
-          	</div>
-          	</BOUCLE_affiche>
-          		
-		</div>
-          
-
-		<hr />	
-	</B_affiche>				
+</div><!--events-associes-->
+</B_select>
 				
 
 	</div><!-- Fin texte-article -->

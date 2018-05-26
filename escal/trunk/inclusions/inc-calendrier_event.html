@@ -21,10 +21,12 @@
 		<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{"<hr />"}
 		{pagination #GET{nbrpageventcalendrier}}{lang}>
 		
-<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{doublons}>
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{date_fin>0}{doublons}>
 </BOUCLE_seul>
-<BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}{doublons}>
-</BOUCLE_autres2>
+<BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
+	<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=1}{doublons}>
+	</BOUCLE_futur>
+</BOUCLE_plusieurs>
 
 <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
 #SET{couleur,#DESCRIPTIF}
