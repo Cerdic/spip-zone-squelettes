@@ -79,7 +79,7 @@ form {
   }
 
   label {
-    display: block;
+    display:       block;
     margin-bottom: 0.5em;
   }
 
@@ -115,11 +115,11 @@ form {
   }
 
   /* choix */
-  
+
   .choix {
     overflow: hidden;
     margin:   0.3em 0;
-    display: flex;
+    display:  flex;
     @include vendor('justify-content', 'flex-start');
   }
 
@@ -129,9 +129,9 @@ form {
     //float:       left;
     //vertical-align: middle;
   }
-  
+
   .choix label {
-    display: inline-block;
+    display:        inline-block;
     font-weight:    normal;
     text-transform: none;
     //float:          right;
@@ -143,7 +143,7 @@ form {
   .choix label.on {
     font-weight: bold !important;
   }
-  
+
   /* reponses succes/erreur */
 
   .reponse_formulaire,
@@ -169,7 +169,7 @@ form {
   }
 
   /* Explications */
-  
+
   .saisie_explication .explication {
     background: #F0F0F0;
     font-size:  100%;
@@ -182,7 +182,7 @@ form {
     display:       block;
     font-weight:   normal;
     font-style:    italic;
-    margin-top: -0.5em;
+    margin-top:    -0.5em;
     margin-bottom: 0.5em;
   }
 
@@ -191,7 +191,7 @@ form {
   }
 
   /* Remarques importantes */
-  
+
   .attention {
     display:       block;
     margin-bottom: 1em;
@@ -216,11 +216,11 @@ form {
   h2.legend,
   h3.legend,
   legend {
-    color:          _palette(fg);
-    font-weight:    bold;
-    font-size:      125%;
-    display:        block;
-    margin:         0 0 0.75em 0;
+    color:       _palette(fg);
+    font-weight: bold;
+    font-size:   125%;
+    display:     block;
+    margin:      0 0 0.75em 0;
   }
 
   fieldset .editer-groupe {
@@ -261,26 +261,35 @@ form {
 
 a.button,
 .formulaire_spip button,
-.formulaire_spip input[type=submit] {
-  display:          inline-block;
-  height:           30px;
-  line-height:      30px;
-  margin-right:     1em;
-  padding:          0 1em;
-  background-color: _palette(border);
+.formulaire_spip input[type=submit],
+.button {
+  @include vendor('appearance', 'none');
+  @include vendor('transition', ('background-color #{_duration(transition)} ease-in-out', 'color #{_duration(transition)} ease-in-out', 'box-shadow #{_duration(transition)} ease-in-out'));
+  background-color: _palette(border-bg);
   border:           none;
-  box-shadow:       none;
-  text-transform:   uppercase;
+  border-radius:    _size(border-radius);
+  border:           0;
+  box-shadow:       inset 0 0 0 1px _palette(border);
+  color:            _palette(fg-bold) !important;
+  cursor:           pointer;
+  display:          inline-block;
+  font-weight:      _font(weight-bold);
+  height:           _size(element-height)/1.5;
+  line-height:      _size(element-height)/1.5;
+  padding:          0 2.25em;
   text-align:       center;
   text-decoration:  none;
-  color:            white !important;
-  transition:       background 0.3s;
+  white-space:      nowrap;
+  margin-right:     1em;
   &:last-child {
     margin-right: 0;
   }
-  &:hover {
-    background-color: darken(_palette(border), 10%);
+
+  &:hover, &:active {
+    background-color: lighten(_palette(border), 20%);
+    color:            _palette(fg-bold) !important;
   }
+
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=search]:focus, textarea:focus, select:focus {
