@@ -1,0 +1,295 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import "libs/skel";
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font:   inherit; // Correct font properties not being inherited.
+  margin: 0; // Address margins set differently in Firefox 4+, Safari, and Chrome
+}
+
+form {
+  margin: 0 0 _size(element-margin) 0;
+}
+
+//----------------------------------------
+//  Formulaires SPIP
+//----------------------------------------
+
+.formulaire_spip {
+
+  .boutons,
+  .titrem,
+  .legend {
+    margin: 0;
+  }
+
+  > p,
+  fieldset > p {
+    margin:  0 !important;
+    padding: 0.2em 1em;
+  }
+
+  .editer {
+    list-style: none;
+    margin:     0 0 1em 0;
+    clear:      both;
+    overflow:   hidden;
+  }
+
+  .fieldset,
+  .saisie_explication {
+    padding:    0;
+    border:     none;
+    background: none;
+  }
+
+  .editer.afficher {
+    overflow:      hidden;
+    margin-bottom: 0.8em;
+  }
+
+  /* elements du formulaire */
+  input.text,
+  input.password,
+  input.date,
+  input[type=text],
+  input[type=password],
+  input[type=search],
+  textarea,
+  select {
+    font-size:    1em;
+    font-family:  inherit;
+    padding-left: 0.3em;
+    width:        100%;
+    border:       1px solid _palette(border);
+    background:   _palette(border-bg);
+    // bug with em heights in chrome
+    height:       2.5em;
+    line-height:  2.5em;
+  }
+
+  input.placeholder,
+  textarea.placeholder {
+    color: _palette(fg);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  textarea {
+    overflow:    auto;
+    font-size:   inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  .erreur {
+    background-color: #FBE3E4;
+  }
+
+  .erreur_message {
+    display:     block;
+    color:       #8A1F11;
+    font-weight: bold;
+  }
+
+  .erreur input.text,
+  .erreur input.password,
+  .erreur textarea {
+    border: 2px solid #FBC2C4;
+  }
+
+  .obligatoire .label {
+    font-weight: bold;
+  }
+
+  /* choix */
+  
+  .choix {
+    overflow: hidden;
+    margin:   0.3em 0;
+    display: flex;
+    @include vendor('justify-content', 'flex-start');
+  }
+
+  .choix .radio,
+  .choix .checkbox {
+    display: inline-block;
+    //float:       left;
+    //vertical-align: middle;
+  }
+  
+  .choix label {
+    display: inline-block;
+    font-weight:    normal;
+    text-transform: none;
+    //float:          right;
+    //width:          96%;
+    margin:         0;
+    padding-left:   0.5em;
+  }
+
+  .choix label.on {
+    font-weight: bold !important;
+  }
+  
+  /* reponses succes/erreur */
+
+  .reponse_formulaire,
+  .error, .success, .notice {
+    border:        1px solid;
+    font-weight:   normal;
+    padding:       0.5em;
+    min-height:    24px;
+    margin-bottom: 1em;
+    margin-top:    1em;
+  }
+
+  .reponse_formulaire_ok {
+    color:            #264409;
+    border-color:     #C6D880;
+    background-color: #E6EFC2;
+  }
+
+  .reponse_formulaire_erreur {
+    color:            #8A1F11;
+    border-color:     #FBC2C4;
+    background-color: #FBE3E4;
+  }
+
+  /* Explications */
+  
+  .saisie_explication .explication {
+    background: #F0F0F0;
+    font-size:  100%;
+    color:      _palette(fg-light);
+    padding:    0.6em;
+  }
+
+  p.explication {
+    color:         _palette(fg-light);
+    display:       block;
+    font-weight:   normal;
+    font-style:    italic;
+    margin-top: -0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .explication * {
+    margin: 0 !important;
+  }
+
+  /* Remarques importantes */
+  
+  .attention {
+    display:       block;
+    margin-bottom: 1em;
+    font-weight:   normal;
+  }
+
+  input.submit,
+  input.reset,
+  input.button {
+    width: auto;
+  }
+
+  /* Fieldset */
+
+  fieldset {
+    border:  0;
+    width:   auto;
+    padding: 0;
+    margin:  1.5em 0;
+  }
+
+  h2.legend,
+  h3.legend,
+  legend {
+    color:          _palette(fg);
+    font-weight:    bold;
+    font-size:      125%;
+    display:        block;
+    margin:         0 0 0.75em 0;
+  }
+
+  fieldset .editer-groupe {
+    padding-left: 2em;
+    border-left:  1px solid _palette(border-bg);
+  }
+
+  .saisie_date label {
+    display:      inline-block;
+    margin-right: 1.5em;
+  }
+
+  /* boutons */
+  .boutons {
+    margin:     1em 0 0 0;
+    clear:      both;
+    padding:    1em 0;
+    text-align: right;
+  }
+
+  .boutons-left {
+    text-align: left;
+  }
+
+  .boutons-center {
+    text-align: center;
+  }
+
+  .boutons.noborder {
+    margin-top: 0;
+  }
+
+}
+
+//----------------------------------------
+//  Boutons
+//----------------------------------------
+
+a.button,
+.formulaire_spip button,
+.formulaire_spip input[type=submit] {
+  display:          inline-block;
+  height:           30px;
+  line-height:      30px;
+  margin-right:     1em;
+  padding:          0 1em;
+  background-color: _palette(border);
+  border:           none;
+  box-shadow:       none;
+  text-transform:   uppercase;
+  text-align:       center;
+  text-decoration:  none;
+  color:            white !important;
+  transition:       background 0.3s;
+  &:last-child {
+    margin-right: 0;
+  }
+  &:hover {
+    background-color: darken(_palette(border), 10%);
+  }
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=search]:focus, textarea:focus, select:focus {
+  //box-shadow: 0 0 5px $couleur_bordure_formulaire;
+  border-color: darken(_palette(border), 20%);
+}
+
+/* Bouton de validation */
+/* Pour IE, qui grossit le bouton submit */
+input[type="submit"], input[type="reset"] {
+  font-size: inherit;
+}
