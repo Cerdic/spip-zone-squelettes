@@ -10,6 +10,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// A
 	'article' => 'Article',
 	'article_banner' => 'Article en page d\'accueil',
+	
+	// B
+	'banner_opacite' => 'Opacité de l\'image de fond',
+	'banner_opacite1' => 'En haut (de 0 à 1)',
+	'banner_opacite2' => 'En bas (0 à 1)',
 
 	// C
 	'cfg_titre_parametrages' => 'Configuration',
