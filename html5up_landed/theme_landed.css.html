@@ -16,6 +16,7 @@
 
 #SET{bando, #CONFIG{html5_landed/couleur_bando}|trim|sinon{#272727}}
 #SET{color, #CONFIG{html5_landed/couleur_theme}|trim|sinon{#e44c65}}
+#SET{color_foncee, ##GET{color}|replace{'#',''}|couleur_foncer}
 #SET{liens, #CONFIG{html5_landed/couleur_liens}|trim|sinon{#e44c65}}
 #SET{liens_foncee, ##GET{liens}|replace{'#',''}|couleur_foncer}
 #SET{actif, #CONFIG{html5_landed/couleur_actif}|trim|sinon{#e44c65}}
@@ -63,42 +64,27 @@ color: #[(#GET{liens}|replace{'#',''}|couleur_foncer{0.15})] !important;
 	background-color:  #[(#GET{actif}|replace{'#',''}|couleur_foncer{0.15})] !important;
 }
 
-/* Bordures et formulaires */
+/* Sous rubrique active */
+
+.dropotron > li.active > a, .dropotron > li.active > span {
+	color: #GET{color};
+}
+
+#header nav ul li.active > a, #header nav ul li.active > span {
+	color: #GET{color};
+}
+
+/* bordure sous les titre et sections de la home */
 
 header.major:after {
 	background: #GET{color};
-}
-
-textarea:focus {
-	border-color: #GET{color}; 
-}
-
-input[type="radio"]:focus + label:before {
-	border-color: #GET{color}; 
-}
-
-input[type="submit"]:hover, input[type="submit"]:active,
-input[type="reset"]:hover,
-input[type="reset"]:active,
-input[type="button"]:hover,
-input[type="button"]:active,
-.button:hover,
-.button:active {
-	box-shadow: inset 0 0 0 1px #GET{color};
-	color: #GET{color} !important; 
 }
 
 .spotlight .content {
 	border-color: #GET{color};
 }
 
-.dropotron > li.active > a, .dropotron > li.active > span {
-	color: #GET{color}; 
-}
-
-#header nav ul li.active > a, #header nav ul li.active > span {
-	color: #GET{color}; 
-}
+/* bouton menu sur petits écrans */
 
 #titleBar .toggle {
 	background: #GET{liens};
