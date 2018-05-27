@@ -5,9 +5,9 @@
 	</head>
 	<body class="sommaire landing">
 		<div id="page-wrapper">
-
+			[(#CONFIG{html5_landed/id_mot_sommaire}|dd)]
 			<INCLURE{fond=inclure/header, sommaire=oui}>
-
+					
 			#SET{articles_sommaire,#ARRAY}
 			<BOUCLE_articles_sommaire(ARTICLES){id_mot=#CONFIG{html5_landed/id_mot_sommaire}}>
 			#SET{articles_sommaire, #GET{articles_sommaire}|push{#ID_ARTICLE}}
@@ -29,7 +29,7 @@
 				[(#ID_MOT|=={#CONFIG{html5_landed/id_mot_intro_dessous}}|oui) #SET{class,spotlight bottom} #SET{container, 0} ]
 				</BOUCLE_mots>
 				<section id="sommaire#COMPTEUR_BOUCLE" class="section-home [(#GET{class})]">
-					#SET{logo,#LOGO_ARTICLE}
+					#SET{logo,#LOGO_ARTICLE|extraire_attribut{src}}
 					<BOUCLE_logo_section(DOCUMENTS){id_article}{si #CONFIG{html5_landed/logo_document}}{si #LOGO_ARTICLE|non}{extension IN jpg,png}{mode=image}{0,1}>
 					#SET{logo,#FICHIER}
 					</BOUCLE_logo_section>
