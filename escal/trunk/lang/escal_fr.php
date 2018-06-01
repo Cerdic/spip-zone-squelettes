@@ -101,7 +101,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br /> 
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page, 
             ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page',
-	'articles_largeur_image' => 'Largeur maximum de l\'image : ',
+	'articles_largeur_image' => 'Largeur maximum de l’image : ',
 	'articles_largeur_images' => 'Largeur maximum des images : ',
 	'articles_largeur_images2' => 'Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :',
 	'articles_les' => 'Les articles',
