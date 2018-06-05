@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
     /*
      * jQuery simple and accessible modal window, using ARIA
-     * @version v1.9.0
+     * @version v1.10.0
      * Website: https://a11y.nicolas-hoffmann.net/modal/
      * License MIT: https://github.com/nico3333fr/jquery-accessible-modal-window-aria/blob/master/LICENSE
      */
@@ -45,13 +45,17 @@ jQuery(document).ready(function($) {
             $modal_close_img = options.modalCloseImg || '',
             $modal_background_click = options.modalBackgroundClick || '',
             $modal_focus_id = options.modalFocusId || '',
+            $modal_aria = typeof options.modalAriaModal !== 'undefined' ? 'aria-modal="true"' : '',
+            $modal_role_alertdialog = typeof options.modalUseRoleAlertdialog !== 'undefined' ? 'role="alertdialog"' : '',
+            $modal_role_dialog = typeof options.modalRemoveRoleDialog !== 'undefined' || $modal_role_alertdialog === 'role="alertdialog"' ? '' : 'role="dialog"',
+            $modal_tag = typeof options.modalRemoveDialogTag !== 'undefined' ? 'div' : 'dialog',
             $modal_code,
             $modal_overlay,
             $page = $('#js-modal-page');
 
         // insert code at the end
-        $modal_code = '<dialog id="js-modal" class="' + $modal_prefix_classes + 'modal" aria-labelledby="modal-title" open aria-modal="true"><div role="document">';
-        $modal_code += '<button type="button" id="js-modal-close" class="' + $modal_prefix_classes + 'modal-close" data-content-back-id="' + modal_content_id + '" data-focus-back="' + $modal_starter_id + '" title="' + $modal_close_title + '">';
+        $modal_code = '<' + $modal_tag + ' ' + $modal_role_dialog + ' ' + $modal_role_alertdialog + ' id="js-modal" class="' + $modal_prefix_classes + 'modal" aria-labelledby="modal-title" open ' + $modal_aria + '><div role="document" class="' + $modal_prefix_classes + 'modal__wrapper">';
+        $modal_code += '<button type="button" id="js-modal-close" class="' + $modal_prefix_classes + 'modal-close" data-content-back-id="back_' + modal_content_id + '" data-focus-back="' + $modal_starter_id + '" title="' + $modal_close_title + '">';
         if ($modal_close_img !== '') {
             $modal_code += '<img src="' + $modal_close_img + '" alt="' + $modal_close_text + '" class="' + $modal_prefix_classes + 'modal__closeimg" />';
         } else {
@@ -69,15 +73,19 @@ jQuery(document).ready(function($) {
             if (modal_content_id !== '' && $modal_content.length) {
                 //var $modal_content_id = $('#' + $modal_content_id);
                 $modal_code += '<div id="js-modal-content">';
+                //$modal_code += $modal_content.html();
                 $modal_code += '</div>';
+                //$modal_content.empty();
             }
         }
-        $modal_code += '</div></div></dialog>';
+        $modal_code += '</div></div></' + $modal_tag + '>';
 
         $($modal_code).insertAfter($page);
-		if (modal_content_id !== '' && $modal_content.length) {
-			$($modal_content).children().appendTo('#js-modal-content');
-		}
+        if (modal_content_id !== '' && $modal_content.length) {
+			$($modal_content).wrap("<div id='back_" + modal_content_id + "'></div>");
+			$($modal_content).appendTo('#js-modal-content');
+        }
+        
         $body.addClass('no-scroll');
 
         $page.attr('aria-hidden', 'true');
@@ -90,6 +98,7 @@ jQuery(document).ready(function($) {
         }
 
         $($modal_overlay).insertAfter($('#js-modal'));
+
 
         if ($modal_focus_id !== '') {
             $('#' + $modal_focus_id).focus();
@@ -129,9 +138,11 @@ jQuery(document).ready(function($) {
                     $body.removeClass('no-scroll');
                     if ($content_back_id !== '') {
 						$js_modal_content.children().appendTo('#' + $content_back_id);
+						$('#' + $content_back_id).children().unwrap();
                     }
                     $js_modal.remove();
                     $js_modal_overlay.remove();
+
                     $($focus_back).focus();
                     $js_modal.removeClass($class_element_reverse);
                     $js_modal.addClass($class_element);
@@ -140,14 +151,23 @@ jQuery(document).ready(function($) {
                 $body.removeClass('no-scroll');
                 if ($content_back_id !== '') {
 					$js_modal_content.children().appendTo('#' + $content_back_id);
+					$('#' + $content_back_id).children().unwrap();
                 }
                 $js_modal.remove();
                 $js_modal_overlay.remove();
+
                 $($focus_back).focus();
             }
 
         })
         .on('click', '#js-modal-overlay', function(event) {
+            var $close = $('#js-modal-close');
+
+            event.preventDefault();
+            $close.trigger('click');
+
+        })
+        .on('click', '.js-modal-close', function(event) {
             var $close = $('#js-modal-close');
 
             event.preventDefault();
@@ -215,5 +235,7 @@ jQuery(document).ready(function($) {
             $close.focus();
         });
 
-
+/*$("code").on("click", function() {
+  alert('User clicked on it');
+});*/
 });
