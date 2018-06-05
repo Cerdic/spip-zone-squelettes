@@ -1,3 +1,4 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
 <?php
 	$bannieres= array();
 ?>
@@ -5,9 +6,9 @@
 <BOUCLE_LogoHeader(MOTS){id_rubrique}{type=_HeaderBanner}>
 <?php
 $bannieres[] = array(
-	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|image_recadre{0,#CONFIG{soyezcreateurs/hauteurbannierre,0},'top center',#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}}|extraire_attribut{src}|timestamp|url_absolue)]',
-	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
-	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
 	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
 	);
 ?>
@@ -16,9 +17,9 @@ $bannieres[] = array(
 <BOUCLE_HeaderBannerTemplate(MOTS){type=_HeaderBanner}{descriptif!=''}{descriptif=#ENV{template}}>
 <?php
 $bannieres[] = array(
-	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|image_recadre{0,#CONFIG{soyezcreateurs/hauteurbannierre,0},'top center',#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}}|extraire_attribut{src}|timestamp|url_absolue)]',
-	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
-	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
 	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
 	);
 ?>
@@ -27,9 +28,9 @@ $bannieres[] = array(
 <BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{descriptif=''}{id_mot !IN #GET{ExclureBannieresRubriques}}>
 <?php
 $bannieres[] = array(
-	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|image_recadre{0,#CONFIG{soyezcreateurs/hauteurbannierre,0},'top center',#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}}|extraire_attribut{src}|timestamp|url_absolue)]',
-	'hauteur' => '[(#LOGO_MOT_NORMAL|hauteur)]',
-	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
+	'banniere' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+	'hauteur' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur)]',
+	'hauteurrelative' => '[(#LOGO_MOT_NORMAL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]',
 	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
 	);
 ?>
@@ -51,9 +52,17 @@ if ($banniere['banniere']!='') {
 	padding-top: <?php echo($banniere['hauteurrelative']); ?>%;
 	background-size: <?php if ($banniere['hachures']!='') { ?>initial, <?php } ?>cover;
 	<?php } ?>
-	[(#CONFIG{soyezcreateurs/hauteurbannierre,0}|=={0}|non)
-	padding-top: [(#CONFIG{soyezcreateurs/hauteurbannierre,0}|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]%;
-	]
+}
+@media screen and (min-width:[(#GET{LargeurContaineur})]px) {
+	#header:before {
+		<?php if(#CONFIG{soyezcreateurs/hauteurbannierre,0}==0){ ?>
+		padding-top: <?php echo($banniere['hauteurrelative']); ?>%;
+		background-size: <?php if ($banniere['hachures']!='') { ?>initial, <?php } ?>cover;
+		<?php } ?>
+		[(#CONFIG{soyezcreateurs/hauteurbannierre,0}|=={0}|non)
+		padding-top: [(#CONFIG{soyezcreateurs/hauteurbannierre,0})]px;
+		]
+	}
 }
 #headerbackground {
 	position: absolute;
