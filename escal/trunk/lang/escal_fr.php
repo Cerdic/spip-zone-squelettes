@@ -367,6 +367,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_rainette2' => ' : nécessite le plugin "Rainette". Infos sur la météo d’une ville au choix.<br />La configuration de ce bloc se fait dans la partie "Des plugins dans Escal".',
 	'doc_recherche_multi' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article198&lang=fr" title="Voir la documentation">Recherche multi-critères</a>',
 	'doc_recherche_multi2' => ' : recherche par groupes de mots-clés et par mots-clés.',
+	'doc_site_escal' => '<a class="doc-escal" href="http://escal.ac-lyon.fr" title="Aller sur le site d\'ESCAL">Documentation : site d\'ESCAL</a>',
 	'doc_sites_favoris' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article181&lang=fr" title="Voir la documentation">Sites favoris</a>',
 	'doc_sites_favoris2' => ' : les vignettes des sites référencés dans le secteur où on se trouve et avec le mot-clé "favori" défilent.',
 	'doc_stats' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article126&lang=fr" title="Voir la documentation">Statistiques</a>',
@@ -514,7 +515,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'layout' => 'Mise en page',
-	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Voir la documentation">Choisir le layout</a>
+	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Voir la documentation"><strong>Choisir le layout</strong></a>
             <br />
             Attention à vos choix pour les largeurs : notez bien, par exemple, qu’un texte avec des lignes trop longues devient très difficile à lire',
 	'layout_fixe' => '<strong>Layout fixe</strong> (PMP, MPP, PPM, MP et PM)<br />
@@ -530,8 +531,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'le' => 'le',
 	'licence_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentation">plugin "Licence"</a>,
             vous n’avez rien d’autre à faire, l’icône correspondant à la licence que vous avez choisi pour un article s’affichera automatiquement en haut de l’article.',
-	'licence_plugin' => 'Plugin Licence',
-	'lien_agenda' => 'Afficher l’agenda en pleine page',
+	'licence_plugin' => 'Plugin Licence',	
+	'lien_agenda' => '&#9658; voir en pleine page',
+	'lien_agenda_title' => 'Afficher l’agenda en pleine page',
 	'liens_sociaux_espace' => 'Afficher les liens sociaux dans la barre d’outils',
 	'liens_sociaux_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Liens sociaux"</a>, 
 			vous pouvez le paramétrer ici.',
