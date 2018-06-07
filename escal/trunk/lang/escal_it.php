@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Visualizzazione della rubrica madre',
 	'affichage_soustitre' => 'Visualizzazione dei sottotitoli',
 	'affichage_surtitre' => 'Visualizzazione dei sopratitoli',
+	'affichage_visites_inter' => 'Separatore tra visite e popolarità',
 	'affichage_visites_popularite' => 'Visualizza il numero di visite e la popolarità',
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Questa pagina non può funzionare correttamente senza JavaScript; si prega di riattivarlo',
@@ -102,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_explication' => 'Qui è possibile impostare la larghezza massima delle immagini nei tuoi articoli. <br /> 
             L’impostazione predefinita è 400 pixel in articoli convenzionali e 850 pixel in articoli a pieno schermo, 
             che può essere troppo restrittiva se si è scelto un layout in due colonne o a schermo intero',
+	'articles_largeur_image' => 'Larghezza massima dell’immagine :',
 	'articles_largeur_images' => 'Larghezza massima delle immagini : ',
 	'articles_largeur_images2' => 'Larghezza massima delle immagini per le voci a schermo intero (elementi con la parola chiave "pleinepage", che sopprime blocchi laterali) :',
 	'articles_les' => 'Articoli',
@@ -516,7 +518,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout' => 'Layout generale',
 	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Guarda la documentazione">Scelta del layout</a>
             <br />
-            Fai attenzione alla scelta delle larghezze: ad esempio un testo con linee lunghe diventa molto difficile da leggere',
+            Fai attenzione alla scelta delle larghezze: ad esempio un testo con linee lunghe diventa molto difficile da leggere', # MODIF
 	'layout_fixe' => '<strong>Layout fisso</strong> (PMP, MPP, PPM, MP e PM)<br />
                     (larghezza di default: parte centrale da 950 pixel e colonne da 200 pixel)',
 	'layout_fixe_largeur' => 'Larghezza del layout',
@@ -531,7 +533,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'licence_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentatione">plugin "Licence"</a>,
             non dovete fare altro, l’icona relativa alla licenza scelta per un determinato articolo apparirà automaticamente nella parte alta dell’articolo stesso.',
 	'licence_plugin' => 'Plugin Licence',
-	'lien_agenda' => 'Visualizzazione dell’agenda a pagina intera',
+	'lien_agenda' => 'Visualizzazione dell’agenda a pagina intera', # MODIF
 	'liens_sociaux_espace' => 'Mostra i social link nella barra degli strumenti',
 	'liens_sociaux_explication' => 'Se è stato attivato il <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Social Links"</a>, 
 è possibile impostarlo qui.',
@@ -918,6 +920,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             Ricordarsi di scaricare l’archivio dalla library e decomprimerlo nella cartella "/lib/mpdf" nella cartella root di SPIP (guarda la documentazione).',
 	'spipdf_plugin' => 'Plugin SpiPDF',
 	'statistiques' => 'Statistiche del sito',
+	'suggerer_reponse' => 'Prima di continuare, hai considerato le pagine seguenti <br />Può contenere la risposta che stai cercando.',
 	'sujets' => 'argomenti',
 	'sur_forum' => 'Sul forum sono:',
 	'sur_web' => 'Sul web',

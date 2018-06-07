@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Display of the parent section',
 	'affichage_soustitre' => 'Display of the subtitle',
 	'affichage_surtitre' => 'Display of the surtitle',
+	'affichage_visites_inter' => 'Separator between visits and popularity',
 	'affichage_visites_popularite' => 'Display number of visits and popularity',
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'This page cannot work correctly without JavaScript. Please reactivate it.',
@@ -102,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_explication' => 'You can define here the maximum width of the pictures in your articles. <br /> 
             This width is 400px by default for classical articles and 850px for full pages articles, 
             which may be too restrictive if you previously opted to a layout with 2 columns or in full page',
+	'articles_largeur_image' => 'Maximum width of the picture: ',
 	'articles_largeur_images' => 'Maximum width of the pictures: ',
 	'articles_largeur_images2' => 'Maximum width of the pictures for full page articles (articles with the keyword "pleinepage" which suppresses side blocks) :',
 	'articles_les' => 'The articles',
@@ -516,7 +518,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout' => 'Layout',
 	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="See the documentation">To choose the layout</a>
             <br />
-            Be careful to your choices for the widths: please note, for example, that a text with too long lines becomes very difficult to read',
+            Be careful to your choices for the widths: please note, for example, that a text with too long lines becomes very difficult to read', # MODIF
 	'layout_fixe' => '<strong>Fixed layout </strong> (PMP, MPP, PPM, MP and PM)<br />
                     (widths by default: 950px for the layout and 200px for the columns)',
 	'layout_fixe_largeur' => 'Width of the layout',
@@ -531,7 +533,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'licence_explication' => 'If you have activated the <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentation">plugin "Licence"</a>,
             you have nothing else to do, the icon corresponding to the licence choosen for an article will automatically be displayed at the top of the article.',
 	'licence_plugin' => 'Plugin Licence',
-	'lien_agenda' => 'Display the agenda in full page',
+	'lien_agenda' => 'Display the agenda in full page', # MODIF
 	'liens_sociaux_espace' => 'Show social links in the toolbar',
 	'liens_sociaux_explication' => 'If you have activated <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Socials Tags"</a>, 
 			you can configure it here.',
@@ -918,6 +920,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             Think of downloading the archive of the library and of decompressing it in a file /lib/mpdf at the root of your spip (See the documentation).',
 	'spipdf_plugin' => 'Plugin SpiPDF',
 	'statistiques' => 'Statistics of the site',
+	'suggerer_reponse' => 'Before continuing, have you considered the following pages? <br />May contain the answer you are looking for.',
 	'sujets' => 'topics',
 	'sur_forum' => 'On the forum it is:',
 	'sur_web' => 'On web',
