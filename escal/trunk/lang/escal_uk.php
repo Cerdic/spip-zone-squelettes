@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'Сьогодні: ',
 	'auteurs' => 'автори',
 	'avec' => 'з',
-	'avec_le_squelette' => 'з шаблоном',
+	'avec_le_squelette' => 'з шаблоном', # MODIF
 
 	// B
 	'bandeau' => 'Банер',
@@ -208,7 +208,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_trouvees' => 'рубрик знайдено',
 
 	// S
-	'site_realise_avec' => 'Сайт створено на ',
+	'site_realise_avec' => 'Сайт створено на ', # MODIF
 	'site_reference' => 'реферований сайт',
 	'sites' => 'Сайти',
 	'sites_favoris' => 'Вибрані сайти',

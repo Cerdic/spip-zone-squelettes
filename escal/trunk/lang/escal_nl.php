@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'Vandaag: ',
 	'auteurs' => 'auteurs',
 	'avec' => 'met',
-	'avec_le_squelette' => 'met het sjabloon',
+	'avec_le_squelette' => 'met het sjabloon', # MODIF
 
 	// B
 	'bandeau' => 'Banner',
@@ -172,7 +172,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_trouvees' => 'secties gevonden',
 
 	// S
-	'site_realise_avec' => 'Site gebouwd met',
+	'site_realise_avec' => 'Site gebouwd met', # MODIF
 	'site_reference' => 'verwezen website',
 	'sites' => 'Sites',
 	'sites_favoris' => 'Favoriete websites',

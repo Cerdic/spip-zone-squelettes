@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'sot:',
 	'auteurs' => 'autorët',
 	'avec' => 'me',
-	'avec_le_squelette' => 'me shtylla kurrizore',
+	'avec_le_squelette' => 'me shtylla kurrizore', # MODIF
 
 	// B
 	'bandeau' => 'rrip',
@@ -171,7 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_trouvees' => 'tema',
 
 	// S
-	'site_realise_avec' => 'Site krijuar me',
+	'site_realise_avec' => 'Site krijuar me', # MODIF
 	'site_reference' => 'faqe referohet',
 	'sites' => 'Sites',
 	'sites_favoris' => 'Faqe të preferuar',

@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'šodien:',
 	'auteurs' => 'autori',
 	'avec' => 'platums',
-	'avec_le_squelette' => 'ar veidni',
+	'avec_le_squelette' => 'ar veidni', # MODIF
 
 	// B
 	'bandeau' => 'Karogs',
@@ -169,7 +169,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques' => 'sekcijas',
 
 	// S
-	'site_realise_avec' => 'Vietne izveidota ar',
+	'site_realise_avec' => 'Vietne izveidota ar', # MODIF
 	'site_reference' => 'Atsauces vietne',
 	'sites' => 'Vietas',
 	'sites_favoris' => 'Iecienetakas vietnes',

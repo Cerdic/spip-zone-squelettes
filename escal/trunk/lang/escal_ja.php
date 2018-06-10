@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => '今日',
 	'auteurs' => '記事を書いた人',
 	'avec' => 'で',
-	'avec_le_squelette' => '使用したテンプレートは',
+	'avec_le_squelette' => '使用したテンプレートは', # MODIF
 
 	// B
 	'bandeau' => 'ヘッダー',
@@ -169,7 +169,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_trouvees' => '検索項目一覧',
 
 	// S
-	'site_realise_avec' => 'で制作されたサイト',
+	'site_realise_avec' => 'で制作されたサイト', # MODIF
 	'site_reference' => '参照サイト',
 	'sites' => 'サイト一覧',
 	'sites_favoris' => 'お気に入りサイト',

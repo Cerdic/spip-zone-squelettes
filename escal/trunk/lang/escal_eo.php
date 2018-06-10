@@ -37,7 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_trouves' => 'trovitaj artikoloj',
 	'aujourdhui' => 'Hodiaŭ : ',
 	'auteurs' => 'aŭtoroj',
-	'avec_le_squelette' => 'per la ŝablono',
+	'avec_le_squelette' => 'per la ŝablono', # MODIF
 
 	// B
 	'bandeau' => 'Reklamrubando',
@@ -158,7 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_sous_rubriques' => 'Sekcioj de tiu rubriko',
 
 	// S
-	'site_realise_avec' => 'Retejo estigita per',
+	'site_realise_avec' => 'Retejo estigita per', # MODIF
 	'site_reference' => 'referencitaj retejoj',
 	'sites' => 'Retejoj',
 	'sites_references' => 'Ŝablona retejo',

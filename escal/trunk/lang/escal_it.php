@@ -118,7 +118,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'Oggi: ',
 	'auteurs' => 'autori',
 	'avec' => 'con',
-	'avec_le_squelette' => 'con il modello',
+	'avec_le_squelette' => 'con il modello', # MODIF
 
 	// B
 	'balise_author' => 'Tag "Author": ',
@@ -897,7 +897,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'signalement_explication' => 'Se avete attivato il <a class="spip_out" href="http://www.mediaspip.net/Documentatione/les-plugins-utilises-par-mediaspip/signal-alert-on-the-validity-of/article/signalement-alerter-sur-la" title="Documentatione">plugin "Signalement"</a>,
             non dovete fare altro, il pulsante di allarme apparirà automaticamente in alto in qualsiasi articolo: ',
 	'signalement_plugin' => 'Plugin Signalement',
-	'site_realise_avec' => 'Sito realizzato con',
+	'site_realise_avec' => 'Sito realizzato con', # MODIF
 	'site_reference' => 'sito inserito',
 	'sites' => 'Siti',
 	'sites_favoris' => 'Siti preferiti',
