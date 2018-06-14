@@ -1,6 +1,15 @@
 # Integraal
 
-Integraal est une base de travail pour vos projets d'intégration.
+Integraal est une base de travail pour vos projets d'intégration, sous la forme de 3 plugins gérant les squelettes, le thème et les fonctionnalités de l'application.
+
+## Installation
+
+Pour initialiser un nouveau projet basé sur intégraal, le plus simple est d'utiliser SPIP-Cli et de suivre les indications.
+La commande va déployer les 3 plugins dans le dossier adéquat :
+
+````
+spip integraal:generer
+````
 
 ## Branches
 
