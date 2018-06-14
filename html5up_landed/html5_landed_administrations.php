@@ -35,6 +35,10 @@ function html5_landed_upgrade($nom_meta_base_version, $version_cible) {
 		array('html5_landed_creer_mots'),
 	);
 
+	$maj['1.1.0'] = array(
+		array('html5_landed_update_mots_101'),
+	);
+
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
 
@@ -85,6 +89,16 @@ function html5_landed_creer_mots() {
 	html5_landed_inserer_mot('02. '._T('html5_landed:mot_mot_intro_dessous'), '', 'intro_dessous', $id_groupe, $titre_groupe);
 	html5_landed_inserer_mot('03. '._T('html5_landed:mot_mot_intro_droite'), '', 'intro_droite', $id_groupe, $titre_groupe);
 	html5_landed_inserer_mot('04. '._T('html5_landed:mot_mot_intro_gauche'), '', 'intro_gauche', $id_groupe, $titre_groupe);
+
+}
+
+function html5_landed_update_mots_101() {
+
+	foreach(array('sommaire','intro_dessous','intro_droite','intro_gauche') as $key){
+		if($id_mot = lire_config('html5_landed/id_mot_' . $key)) {
+			sql_updateq('spip_mots', array('titre' => _T('html5_landed:mot_' . $key)), 'id_mot=' . $id_mot);
+		}
+	}
 
 }
 

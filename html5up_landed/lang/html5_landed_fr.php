@@ -40,10 +40,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'logo_document_explication' => 'Sur la page d\'accueil et dans les pages de rubriques, si la rubrique ou l\'article n\'a pas de logo, chercher le premier document pour l\'illustration.',
 
 	// M
-	'mot_article_une' => 'Article à la une',
-	'mot_intro_dessous' => 'Avec intro en dessous',
-	'mot_intro_droite' => 'Avec intro à droite',
-	'mot_intro_gauche' => 'Avec intro à gauche',
+	'mot_sommaire' => 'À la une, sans visuel plein écran',
+	'mot_intro_dessous' => 'À la une, visuel plein écran avec intro en dessous',
+	'mot_intro_droite' => 'À la une, visuel plein écran avec intro à droite',
+	'mot_intro_gauche' => 'À la une, visuel plein écran avec intro à gauche',
 	
 	// S
 	'suite' => 'Suite',

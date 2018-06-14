@@ -9,7 +9,8 @@
 			<INCLURE{fond=inclure/header, sommaire=oui}>
 					
 			#SET{articles_sommaire,#ARRAY}
-			<BOUCLE_articles_sommaire(ARTICLES){id_mot=#CONFIG{html5_landed/id_mot_sommaire}}>
+			#SET{liste_mots,#LISTE{#CONFIG{html5_landed/id_mot_sommaire},#CONFIG{html5_landed/id_mot_intro_dessous},#CONFIG{html5_landed/id_mot_intro_droite},#CONFIG{html5_landed/id_mot_intro_gauche}}
+			<BOUCLE_articles_sommaire(ARTICLES){id_mot IN #GET{liste_mots}}>
 			#SET{articles_sommaire, #GET{articles_sommaire}|push{#ID_ARTICLE}}
 			</BOUCLE_articles_sommaire>
 			
