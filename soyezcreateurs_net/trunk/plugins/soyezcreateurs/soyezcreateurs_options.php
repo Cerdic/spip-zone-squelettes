@@ -19,6 +19,8 @@ if (!defined('_LARGEUR_MODE_IMAGE'))
 	define('_LARGEUR_MODE_IMAGE', 799); //  Voir http://permalink.gmane.org/gmane.comp.web.spip.zone/16461
 if (!defined('_TITRER_DOCUMENTS'))
 	define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir https://zone.spip.org/trac/spip-zone/changeset/41565
+if (!defined('_MOTS_CREATION_RETOUR_MOT_CREE'))
+	define('_MOTS_CREATION_RETOUR_MOT_CREE', true); // Revenir au mot clef nouvellement créé. Cf https://zone.spip.net/trac/spip-zone/changeset/110686/spip-zone
 
 // Pour forcer le mode écran large
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';
