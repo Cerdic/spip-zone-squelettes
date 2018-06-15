@@ -342,6 +342,11 @@ footer {
 // Image 
 //-----------------------------------
 
+img {
+  width:  100%;
+  height: auto;
+}
+
 .image, .spip_documents, .mediabox {
   border-radius: _size(border-radius);
   border:        0;
@@ -366,12 +371,20 @@ footer {
     top:    0.25em;
   }
 
-  &.spip_documents_left,
-  &.spip_documents_right {
-    max-width: 40%;
+  @include breakpoint(medium) {
+    &.spip_documents_left,
+    &.spip_documents_right {
+      max-width: 50%;
+    }
+  }
 
-    img {
-      width: 100%;
+  @include breakpoint(small) {
+    &.spip_documents_left,
+    &.spip_documents_right {
+      float:     none;
+      margin:    0 0 1.5em 0;
+      top:       0;
+      max-width: none;
     }
   }
 
@@ -392,9 +405,8 @@ footer {
 //-----------------------------------
 
 ol {
-  list-style:   decimal;
-  margin:       0 0 _size(element-margin) 0;
-  padding-left: 1.25em;
+  list-style: inside decimal;
+  margin:     0 0 _size(element-margin) 0;
 
   li {
     padding-left: 0.25em;
@@ -402,9 +414,9 @@ ol {
 }
 
 ul {
-  list-style:   square;
-  margin:       0 0 _size(element-margin) 1.5em;
-  padding-left: 1.5em;
+  list-style: inside square;
+  //list-style-position: inside;
+  margin:     0 0 _size(element-margin) 1.5em;
 
   li {
     padding-left: 0.5em;
@@ -802,7 +814,6 @@ body.is-touch {
     }
   }
 }
-
 
 //-----------------------------------
 // Header 
