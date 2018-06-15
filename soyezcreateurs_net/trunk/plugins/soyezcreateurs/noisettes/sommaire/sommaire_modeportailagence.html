@@ -73,7 +73,7 @@
 	<!-- Citations -->
 	<INCLURE{fond=noisettes/extra/citations}>
 	<!-- fin Citations -->
-
+	<BOUCLE_NbCycloshow(MOTS){titre=Cycloshow}{texte!=''}>[(#SET{NbCycloshow,[(#TEXTE|ptobr|intval|sinon{7})]})]</BOUCLE_NbCycloshow>
 	<BOUCLE_Cycloshow(RUBRIQUES){titre_mot=Cycloshow}{!par date}{0,1}>
 	<!-- Cycloshow -->
 	<div id="realisations" class="zone-realisations">
@@ -86,7 +86,7 @@
 				[<link rel="stylesheet" href="(#CHEMIN{javascript/flipster/dist/flipster.portailagence.css})">]
 				<article id="coverflow">
 					<div class="flip-items">
-						<BOUCLE_CycloshowFigures(ARTICLES){id_rubrique}{par hasard}{logo}{0,7}>
+						<BOUCLE_CycloshowFigures(ARTICLES){id_rubrique}{par hasard}{logo}{0,#GET{NbCycloshow,7}}>
 						<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>
 						<figure>
 							<img src="[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|image_focus{700,600}|extraire_attribut{src})]" alt="" />
