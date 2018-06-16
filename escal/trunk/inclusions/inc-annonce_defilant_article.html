@@ -15,8 +15,10 @@
 ]
 
 <BOUCLE_inc_annonce_defilant_article(ARTICLES){id_article}>
-  <div class="une-annonce-defilante article#ID_ARTICLE" >
-  <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="<:escal:lire_suite:>">
+  <div class="une-annonce-defilante article#ID_ARTICLE" 
+  onclick="location.href='[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]'"
+  onmouseover="this.style.cursor='hand';" 
+  onmouseout="this.style.cursor='pointer';">
     <div class="annoncedefil">
       [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
         <span class="compteur-annonce">#ENV{compteur}/#ENV{total}</span>
@@ -60,6 +62,6 @@
       </BOUCLE_texteann>  
   
     </div>
-    </a>
+
   </div>
 </BOUCLE_inc_annonce_defilant_article>
