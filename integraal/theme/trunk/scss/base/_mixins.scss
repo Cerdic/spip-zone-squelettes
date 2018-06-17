@@ -20,3 +20,24 @@
   }
   @return $pixels / $context * 1em;
 }
+
+/**
+ * Retourner une couleur parmi le jeu de couleurs du projet
+ *
+ * @example
+ * background-color: color(principale);
+ *
+ * @param string $couleur
+ *     Nom de la couleur
+ * @param sap $palette
+*      Nom de la map à utiliser
+ * @return string
+ *     Code de la couleur
+ */
+ @function color($couleur) {
+  @if map-has-key($couleurs, $couleur) {
+    @return map-get($couleurs, $couleur);
+  }
+  @warn "Pas de couleur `#{$couleur}` dans $couleurs.";
+  @return null;
+}
