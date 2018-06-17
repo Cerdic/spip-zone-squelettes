@@ -1,19 +1,39 @@
 [(#REM)
 
-  Squelette Presentation resumee d'un rubrique dans une liste
-  Distribue sous licence GPL
+	Présentation résumée d'un rubrique dans une liste
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- **id_article (int) : identifiant de l'article
+
+	- largeur_logo  : largeur max du logo | défaut = 1200
+	- hauteur_logo  : hauteur max du logo | défaut = 1200
+	- ratio_logo    : ratio forcé du logo | défaut 16:9
+	- recadrer_logo : « non » pour ne pas recadrer le logo
+	- masquer_logo  : « oui » si on ne veut pas de logo
+
+	- coupe : longueur de l'introduction | défaut = 200
 
 ]
 <BOUCLE_resume_rubrique(RUBRIQUES) {id_rubrique} {statut?}>
-<div class="entry rubrique hentry">
+[(#REM) Choix de la vignette avec éventuellement les filtres d'images du thème ]
+#SET{vignette, #ENV{masquer_logo}|!={oui}|?{#LOGO_RUBRIQUE}}
 
-	[(#LOGO_RUBRIQUE|sinon{#CHEMIN{images/cube-bleu.jpg}}
-		|image_reduire{#ENV{largeur_logo,640},0}
-		|image_recadre{#ENV{logo_proportion,4:3},''}
-		|responsive_logo)]
+[(#REM) Définition du ratio de recadrage ]
+#SET{ratio_logo, #ENV{recadrer_logo}|!={non}|?{
+	#ENV{ratio_logo,16:9},
+	#GET{vignette}|largeur|concat{:,#GET{vignette}|hauteur}
+}}
+
+<div class="entry rubrique hentry">
 
 	<strong class="titre entry-title">
 		<a href="#URL_RUBRIQUE" rel="bookmark">
+			[(#GET{vignette}
+				|image_recadre{#GET{ratio_logo}, -, focus}
+				|adaptive_images{#ENV{largeur_logo,1200},#ENV{hauteur_logo,1200}})]
 			#TITRE
 		</a>
 	</strong>

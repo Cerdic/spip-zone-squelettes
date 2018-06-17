@@ -6,11 +6,14 @@
 	** obligatoire
 	* conseillé
 
-	- **id_article (int) ! identifiant de l'article
+	- **id_article (int) : identifiant de l'article
 
-	- logo_rubrique : pour afficher le logo de la rubrique au lieu de celui de l'article
-	- largeur_logo : largeur_max du logo | défaut = 96
-	- hauteur_logo : hauteur max du logo | défaut = 96
+	- largeur_logo  : largeur max du logo | défaut = 1200
+	- hauteur_logo  : hauteur max du logo | défaut = 1200
+	- ratio_logo    : ratio forcé du logo | défaut 16:9
+	- recadrer_logo : « non » pour ne pas recadrer le logo
+	- logo_rubrique : « oui » pour prendre le logo de la rubrique
+	- masquer_logo  : « oui » si on ne veut pas de logo
 
 	- coupe : longueur de l'introduction | défaut = 200
 
@@ -18,6 +21,8 @@
 <BOUCLE_resume_article(ARTICLES) {id_article} {statut?}>
 #SET{titre,#TITRE}
 #SET{url,#URL_ARTICLE}
+
+[(#REM) Si c'est l'article d'accueil d'une rubrique, on prend le texte de celle-ci ]
 <BOUCLE_resume_rubrique(RUBRIQUES){id_rubrique}{si #PLUGIN{article_accueil}}>
 [(#ID_ARTICLE_ACCUEIL|=={#_articles:ID_ARTICLE}|oui)
 	#SET{titre,#TITRE}
@@ -25,14 +30,27 @@
 ]
 </BOUCLE_resume_rubrique>
 
+[(#REM) Choix de la vignette avec éventuellement les filtres d'images du thème ]
+#SET{vignette, #ENV{masquer_logo}|!={oui}|?{
+	#ENV{logo_rubrique}|=={oui}|?{
+		#LOGO_ARTICLE_RUBRIQUE,
+		#LOGO_ARTICLE
+	}
+}}
+
+[(#REM) Définition du ratio de recadrage ]
+#SET{ratio_logo, #ENV{recadrer_logo}|!={non}|?{
+	#ENV{ratio_logo,16:9},
+	#GET{vignette}|largeur|concat{:,#GET{vignette}|hauteur}
+}}
+
 <article class="entry article hentry">
 
 	<strong class="entry-title">
 		<a href="#GET{url}" rel="bookmark">
-			[(#ENV{logo_rubrique,' '}|?{#LOGO_ARTICLE_RUBRIQUE,#LOGO_ARTICLE}
-				|image_passe_partout{#ENV{largeur_logo,96},#ENV{hauteur_logo,96}}
-				|image_recadre{#ENV{largeur_logo,96},#ENV{hauteur_logo,96}}
-				|responsive_logo)]
+			[(#GET{vignette}
+				|image_recadre{#GET{ratio_logo}, -, focus}
+				|adaptive_images{#ENV{largeur_logo,1200},#ENV{hauteur_logo,1200}})]
 			#GET{titre}
 		</a>
 	</strong>
