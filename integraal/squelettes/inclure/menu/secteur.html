@@ -12,11 +12,15 @@
 ]
 <BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
 <nav class="menu secteur secteur#ID_SECTEUR">
+
 	<h2>#ENV{titre,#INFO_TITRE{rubrique,#ID_SECTEUR}}</h2>
+
 	<ul class="menu-items">
+
 		<BOUCLE_rubriques(RUBRIQUES){id_parent=#ID_SECTEUR}{par num titre, titre}>
 		<li class="item[ (#EXPOSE{on active})]">
 			<a href="#URL_RUBRIQUE">#TITRE</a>
+
 			<B_sous_rubriques>
 			<ul class="menu-items">
 				<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{si #EXPOSE}{par num titre, titre}>
@@ -26,6 +30,7 @@
 				</BOUCLE_sous_rubriques>
 			</ul>
 			</B_sous_rubriques>
+
 			<B_sous_articles>
 			<ul class="menu-items">
 				<BOUCLE_sous_articles(ARTICLES){id_rubrique}{si #EXPOSE}{par num titre, titre}>
@@ -35,13 +40,17 @@
 				</BOUCLE_sous_articles>
 			</ul>
 			</B_sous_articles>
+
 		</li>
 		</BOUCLE_rubriques>
+
 		<BOUCLE_articles(ARTICLES){id_rubrique=#ID_SECTEUR}{par num titre, titre}>
 		<li class="item[ (#EXPOSE{on active})]">
 			<a href="#URL_ARTICLE">#TITRE</a>
 		</li>
 		</BOUCLE_articles>
+
 	</ul>
+
 </nav>
 </BOUCLE_rubrique_principale>

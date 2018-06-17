@@ -20,7 +20,9 @@
 ]
 <B_documents_portfolio>
 <div class="liste images documents_portfolio">
+
 	[<h2 class="h2">(#ENV{titre,Galerie})</h2>]
+
 	<div class="liste-items">
 		<BOUCLE_documents_portfolio(DOCUMENTS)
 			{id_article?}
@@ -31,16 +33,19 @@
 			{par num titre, date}
 			{vu=non}
 			{doublons documents}
-		>[
-		<a href="(#URL_DOCUMENT)"
+		>
+		[<a href="(#URL_DOCUMENT)"
 			type="#MIME_TYPE"
 			rel="documents_portfolio[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)]"
 			[title="(#TITRE|attribut_html|couper{80})"]
-		>[(#FICHIER
-			|image_reduire{#ENV{largeur,0}, #ENV{hauteur,100}}
-			|inserer_attribut{class,spip_logos}
-			|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})]})]</a>
-		]</BOUCLE_documents_portfolio>
+		>
+			[(#FICHIER
+				|image_reduire{#ENV{largeur,0}, #ENV{hauteur,100}}
+				|inserer_attribut{class,spip_logos}
+				|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})]})]
+		</a>]
+		</BOUCLE_documents_portfolio>
 	</div>
+
 </div>
 </B_documents_portfolio>
