@@ -5,11 +5,7 @@
  * Basé sur Shevy : https://kyleshevlin.github.io/shevy/
  *
  * @notes
- * - Il faut définir le rythme vertical APRÈS Tinytypo.
- * - Pour chaque variante $shevy-[truc], il vaut mieux redéclarer toutes les variables,
- * sinon ça prend celles pas défaut (pas celles qu'on a mis nous dans le $shevy de base)
- * - Les variantes $shevy-[truc] ne sont pas que pour le responsive, elles peuvent être utilisées pour n'importe quel sélecteur (blocs de mises en avant, etc.).
- * - Pour définir des marges dans d'autres composants du projet, utiliser la mixin bs()
+ * Il faut définir le rythme vertical APRÈS Tinytypo.
 **/
 
 /* Presets des tailles des titres (pour aider, pas obligatoire) */
@@ -39,63 +35,3 @@ $shevy: (
 @include body; // body (font-size, line-height)
 @include headings; // hn (font-size, line-height, margin-bottom)
 @include content; // p ol ul pre (font-size, line-height, margin-bottom)
-
-
-/**
- * Variantes pour le responsive
- * On les met dans une map pour automatiser et pouvoir les lister ailleurs
-**/
-
-$shevy-states: (
-  desktop-up: (
-    base-font-size: $typo-font-size * 1.2, // ~ 19px
-    base-line-height: $typo-line-height,
-    base-font-scale: $MAJOR_THIRD,
-    margin-bottom: true,
-    proximity: false,
-    proximity-factor: .85
-  )
-);
-@each $state, $shevy-state in $shevy-states {
-  @include gridle_state( $state ) {
-    @include headings($shevy-state);
-    @include body($shevy-state);
-    @include content($shevy-state);
-  }
-}
-
-
-/**
- * Variantes diverses pour des composants (blocs de mises en avant, etc.)
- * Utilisation : @extend .size-[variante]
-**/
-
-// Tailles génériques
-$shevy-variants: (
-  small: (
-    base-font-size: $typo-font-size * 0.9,
-    base-line-height: $typo-line-height,
-    base-font-scale: $BASIC_SHEVY
-  ),
-  medium: (
-    base-font-size: $typo-font-size * 1.25,
-    base-line-height: $typo-line-height,
-    base-font-scale: $BASIC_SHEVY
-  ),
-  large: (
-    base-font-size: $typo-font-size * 1.5,
-    base-line-height: $typo-line-height,
-    base-font-scale: $BASIC_SHEVY
-  ),
-  huge: (
-    base-font-size: $typo-font-size * 2,
-    base-line-height: $typo-line-height,
-    base-font-scale: $BASIC_SHEVY
-  ),
-);
-@each $variant, $shevy-variant in $shevy-variants {
-  .size-#{$variant} {
-    @include headings($shevy-variant);
-    @include content($shevy-variant);
-  }
-}
