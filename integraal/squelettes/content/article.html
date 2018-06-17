@@ -1,23 +1,39 @@
 <BOUCLE_content(ARTICLES){id_article}>
 <article itemscope itemtype="http://schema.org/Article">
+
+
+	[(#REM) Cartouche : logo, titre, métas ]
 	<header class="cartouche">
+
 		[(#LOGO_ARTICLE|image_reduire{200,200}|inserer_attribut{itemprop,image})]
-		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span>[
-			<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
-		]</h1>
-		
+
+		[<p class="#EDIT{surtitre} surtitre">
+			(#SURTITRE)
+		</p>]
+
+		<h1>
+			<span class="#EDIT{titre}" itemprop="name">#TITRE</span>
+			[<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>]
+		</h1>
+
 		[(#REM) Inclure le modele des liens de traductions ]
 		<div class="postmeta">
+
 			#MODELE{article_traductions}
-			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
+
+			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
+			[(#TOTAL_BOUCLE|oui)
 			<span class="comments" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
 				<meta itemprop="interactionType" content="http://schema.org/CommentAction" />
 				<span class="sep">|</span>
-				<a[ href="(#REM|ancre_url{comments})"]>[<span itemprop="userInteractionCount">(#TOTAL_BOUCLE)</span>][ (#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]</a>
+				<a href="#comments">
+					[<span itemprop="userInteractionCount">(#TOTAL_BOUCLE)</span>][ (#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]
+				</a>
 			</span>
 			[<meta itemprop="discussionUrl" content="(#SELF|url_absolue|ancre_url{comments})" />]
-			]<//B_nb_commentaires>
+			]
+			<//B_nb_commentaires>
+
 			<B_tags>
 			<span class="tags">
 				<span class="sep">|</span>
@@ -25,36 +41,73 @@
 					#SET{tags,#ARRAY}
 					<BOUCLE_tags(MOTS){id_article}>
 					#SET{tags,#GET{tags}|push{#TITRE}}
-					<li><a class="label" href="#URL_MOT"><i class="icon-tag"></i> #TITRE</a></li>
+					<li>
+						<a class="label" href="#URL_MOT">
+							<i class="icon-tag"></i> #TITRE
+						</a>
+					</li>
 					</BOUCLE_tags>
 					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
 				</ul>
 			</span>
 			</B_tags>
+
 		</div>
+
 	</header>
 
+
+	[(#REM) Contenu de l'article ]
 	<div class="main" itemprop="articleBody">
+
 		[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|adaptive_images)</div>]
+		
 		[<div class="#EDIT{texte} texte surlignable">(#TEXTE|adaptive_images)</div>]
 
-		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		[<p class="#EDIT{hyperlien} hyperlien">
+			<:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+		</p>]
+
 	</div>
 
+
+	[(#REM) Compléments : ps, notes, date de publication ]
 	<footer>
-		[<div class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|adaptive_images)</div>]
-		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
-		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>
+
+		[<div class="#EDIT{ps} ps surlignable">
+			<h2><:info_ps:></h2>
+			(#PS|adaptive_images)
+		</div>]
+
+		[<div class="notes">
+			<h2><:info_notes:></h2>
+			(#NOTES)
+		</div>]
+
+		<p class="publication">
+			<time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time>
+		</p>
+
 	</footer>
 
+
+	[(#REM) Contenu lié : galerie, documents, forum ]
 	<aside>
+
 		[(#REM) Gestion du portfolio et des documents ]
-		[(#INCLURE{fond=inclure/galerie/simple,id_article,id_rubrique=#EVAL{null},env,ajax})]
-		[(#INCLURE{fond=inclure/documents,id_article})]
+		<INCLURE{fond=inclure/galerie/simple,
+			id_article,
+			id_rubrique=#EVAL{null},
+			env,
+			ajax}
+		/>
+		<INCLURE{fond=inclure/documents, id_article} />
 
 		[(#REM) Forum de l'article
 		NB : pour desactiver les forums de l'article, supprimez simplement la ligne ci-dessous ]
-		<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum),repondre_titre=<:repondre_article:>} />
+		<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum),repondre_titre=<:repondre_article:>}>
+
 	</aside>
+
 </article>
 </BOUCLE_content>

@@ -1,50 +1,80 @@
 <BOUCLE_evenement(EVENEMENTS){id_evenement}>
 <article class="vevent id_#ID_EVENEMENT[ (#INFO_COMPOSITION{article,#ID_ARTICLE})]" itemscope itemtype="http://schema.org/Event">
+
+
+	[(#REM) Cartouche : nom, date ]
 	<header class="cartouche">
+
 		<h1 class="#EDIT{titre} summary" itemprop="name">#TITRE</h1>
 
-		[<p class="date">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</p>]
+		[<p class="date">
+			(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})
+		</p>]
 		<meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
 		<meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
+
 	</header>
-	
+
+
+	[(#REM) Contenu principal ]
 	<div class="main">
+
 		<div class="location" itemprop="location">
+
 			[(#LIEU|ou{#ADRESSE}|oui)<h2>Localisation</h2>]
+
 			<p>
 				[<strong class="lieu #EDIT{lieu}">(#LIEU)</strong>]
 				[(#LIEU|et{#ADRESSE}|?{<br/>})]
 				[<span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]
 			</p>
+
 			[(#PLUGIN{gis}|oui)
-			[<div class="carte" id="geolocalisation">
-			(#MODELE{carte_gis_objet,
-				id_carte_gis=carte_evenement_#ID_EVENEMENT,
-				objet=evenement,
-				id_objet=#ID_EVENEMENT,
-				height=360px,
-				type=relief,
-				zoom_molette=non,
-				fullscreen=oui,
-				centrer_auto=oui})
-			</div>]
+				[<div class="carte" id="geolocalisation">
+				(#MODELE{carte_gis_objet,
+					id_carte_gis=carte_evenement_#ID_EVENEMENT,
+					objet=evenement,
+					id_objet=#ID_EVENEMENT,
+					height=360px,
+					type=relief,
+					zoom_molette=non,
+					fullscreen=oui,
+					centrer_auto=oui})
+				</div>]
 			]
 		</div>
-		
+
 		[<h2>Description</h2>
+
 		<div class="#EDIT{descriptif} texte description surlignable" itemprop="description">
 			(#DESCRIPTIF|adaptive_images)
 		</div>]
+
 	</div>
-	
+
+
+	[(#REM) Contenu lié : galerie, documents, orgas, sélections éditoriales ]
 	<aside>
+
 		[(#REM) Gestion du portfolio et des documents ]
-		[(#INCLURE{fond=inclure/galerie/simple,objet=evenement,id_objet=#ID_EVENEMENT,id_article=#EVAL{null},id_rubrique=#EVAL{null},env,ajax})]
-		[(#INCLURE{fond=inclure/documents,objet=evenement,id_objet=#ID_EVENEMENT})]
+		<INCLURE{fond=inclure/galerie/simple,
+			objet=evenement,
+			id_objet=#ID_EVENEMENT,
+			id_article=#EVAL{null},
+			id_rubrique=#EVAL{null},
+			env,
+			ajax}
+		/>
+		<INCLURE{fond=inclure/documents,
+			objet=evenement,
+			id_objet=#ID_EVENEMENT}
+		/>
 		
 		<B_organisations>
 		<div class="liste organisations">
+
 			<h2>Coordonnées</h2>
+
 			<ul class="liste-items">
 				<BOUCLE_organisations(ORGANISATIONS?){id_article}{par num nom, nom}>
 				<li class="item">
@@ -52,13 +82,16 @@
 				</li>
 				</BOUCLE_organisations>
 			</ul>
+
 		</div>
 		</B_organisations>
 		
 		<BOUCLE_selections(SELECTIONS?){id_evenement}{par num titre,titre}{0,1}>
 		<B_selections_contenus>
 		<div class="liste selections">
+
 			<h2>Voir aussi</h2>
+
 			<ul class="liste-items">
 				<BOUCLE_selections_contenus(SELECTIONS_CONTENUS?){id_selection}{0,3}{par num titre, titre}>
 				<li class="item">
@@ -72,9 +105,12 @@
 				</li>
 				</BOUCLE_selections_contenus>
 			</ul>
+
 		</div>
 		</B_selections_contenus>
 		</BOUCLE_selections>
+
 	</aside>
+
 </article>
 </BOUCLE_evenement>
