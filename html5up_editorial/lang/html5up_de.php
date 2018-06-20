@@ -11,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aide' => '<a href="https://contrib.spip.net/?article4947" class="spip_out">Lesen sie die Dokumentation (FR).</a>',
 	'article_suivants_titre' => 'Andere Artikel',
 	'article_suivants_titre_explications' => 'Titel über der Artikelliste auf der Startseite',
-	'articles_suivants_total' => 'Summe der folgendn Artikel',
+	'articles_suivants_total' => 'Summe der folgenden Artikel',
 	'articles_suivants_total_explications' => 'Wieviele Artikel insgesamt?',
 	'articles_suivants_parpage' => 'Zahl der weiteren paginierten Artikel',
 	'articles_suivants_parpage_explications' => 'Wieviele Artikel pro Seite der Pagination?',
