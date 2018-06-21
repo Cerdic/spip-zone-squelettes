@@ -270,7 +270,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_bienvenue' => 'Per contattare il responsabile tecnico,
                           <br />compila tutti i campi di questa form.',
 	'contact_cases' => 'Caselle di controllo (tipo "checkbox")',
-	'contact_cases_explication' => '(selezionando SI, ricordati di riempire almeno un etichetta di campo, altrimenti viene generato un errore)',
+	'contact_cases_explication' => '(selezionando SI, ricordati di riempire almeno un etichetta di campo, altrimenti viene generato un errore)', # MODIF
 	'contact_destinataire' => 'Indirizzo del destinatario (per default quello del Webmaster)<br />
                                               Per inserire più di un idirizzo, utilizzare la virgola come separatore <br />
                                               Esempio : mario@rossi.it, pinco@pallino.it, caio@sempronio.it',
@@ -286,19 +286,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_libelle3' => 'Casella etichetta 3',
 	'contact_libelle4' => 'Casella etichetta 4',
 	'contact_libelle5' => 'Casella etichetta 5',
-	'contact_libelle_explication' => 'Lasciando un’etichetta vuota, il testo non compare.',
+	'contact_libelle_explication' => 'Lasciando un’etichetta vuota, il testo non compare.', # MODIF
 	'contact_libelle_gen' => 'Etichetta generale (senza apostrofo o virgolette):',
 	'contact_ligne' => 'On-line',
 	'contact_liste' => 'Lista',
 	'contact_mail' => 'Il tuo indirizzo e-mail:',
 	'contact_message' => 'Messaggio:',
 	'contact_motif' => 'Testo del messaggio:',
-	'contact_motif1' => 'Informazione',
-	'contact_motif2' => 'Iscrizione',
-	'contact_motif3' => 'Problema tecnico',
-	'contact_motif4' => 'Il tuo parere sul sito',
-	'contact_motif5' => 'Altro',
-	'contact_motif_message' => '<strong>Motivo della segnalazione</strong> : Informazioni - Iscrizione - Problemi tecnici - Opinioni sul sito - Altro',
+	'contact_motif1' => 'Informazione', # MODIF
+	'contact_motif2' => 'Iscrizione', # MODIF
+	'contact_motif3' => 'Problema tecnico', # MODIF
+	'contact_motif4' => 'Il tuo parere sul sito', # MODIF
+	'contact_motif5' => 'Altro', # MODIF
+	'contact_motif_message' => '<strong>Motivo della segnalazione</strong> : Informazioni - Iscrizione - Problemi tecnici - Opinioni sul sito - Altro', # MODIF
 	'contact_nom' => 'Il tuo cognome:',
 	'contact_obli' => 'Campo obbligatorio',
 	'contact_prenom' => 'Il tuo nome:',

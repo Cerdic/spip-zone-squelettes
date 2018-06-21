@@ -118,7 +118,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aujourdhui' => 'Today: ',
 	'auteurs' => 'authors',
 	'avec' => 'with',
-	'avec_le_squelette' => 'with the template', # MODIF
+	'avec_le_squelette' => 'Template',
 
 	// B
 	'balise_author' => '"Author" tag',
@@ -270,7 +270,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_bienvenue' => 'To contact the technical referent, 
                          <br />please fill in all the fields of this form.',
 	'contact_cases' => 'Check boxes (type "checkbox")',
-	'contact_cases_explication' => '(If you check yes, remember to fill out at least one box wording, otherwise an error would be generated)',
+	'contact_cases_explication' => '(If you check yes, remember to fill out at least one box wording, otherwise an error would be generated)', # MODIF
 	'contact_destinataire' => 'Address of the recipient (by default, that of the webmaster)<br />
                                               To enter several addresses, separate them with commas <br />
                                               Example : tata@yoyo.fr, titi@paris.fr, toto@blague.fr',
@@ -286,19 +286,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_libelle3' => 'Wording in box 3',
 	'contact_libelle4' => 'Wording in box 4',
 	'contact_libelle5' => 'Wording in box 5',
-	'contact_libelle_explication' => 'By leaving a wording empty, the corresponding box will not be displayed.',
+	'contact_libelle_explication' => 'By leaving a wording empty, the corresponding box will not be displayed.', # MODIF
 	'contact_libelle_gen' => 'General wording (no single quote nor quotation marks)',
 	'contact_ligne' => 'Online',
 	'contact_liste' => 'On list',
 	'contact_mail' => 'Your email address:',
 	'contact_message' => 'Your message:',
 	'contact_motif' => 'Subject of your message:',
-	'contact_motif1' => 'Information',
-	'contact_motif2' => 'Registration',
-	'contact_motif3' => 'Technical problem',
-	'contact_motif4' => 'Your opinion about the site',
-	'contact_motif5' => 'Other',
-	'contact_motif_message' => '<strong>The reason for the message</strong> : Information - Inscription - Technical problem - Your opinion about the site - Other',
+	'contact_motif1' => 'Information', # MODIF
+	'contact_motif2' => 'Registration', # MODIF
+	'contact_motif3' => 'Technical problem', # MODIF
+	'contact_motif4' => 'Your opinion about the site', # MODIF
+	'contact_motif5' => 'Other', # MODIF
+	'contact_motif_message' => '<strong>The reason for the message</strong> : Information - Inscription - Technical problem - Your opinion about the site - Other', # MODIF
 	'contact_nom' => 'Your name:',
 	'contact_obli' => ' Mandatory field',
 	'contact_prenom' => 'Your firstname:',
@@ -369,6 +369,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_rainette2' => ' : needs the plugin "Rainette". Informations about a given city weather.<br />The configuration of this block is done in the part "Some plugins in Escal".',
 	'doc_recherche_multi' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article198&lang=fr" title="To see the documentation">Multi-criteria search</a>',
 	'doc_recherche_multi2' => ' : search by keywords groups  and by keywords.',
+	'doc_site_escal' => '<a class="doc-escal" href="http://escal.ac-lyon.fr" title="Go to ESCAL website">Documentation:ESCAL website</a>',
 	'doc_sites_favoris' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article181&lang=fr" title="To see the documentation"> Favorites websites</a>',
 	'doc_sites_favoris2' => ' :  the thumbnails of the websites referenced in the current sector and with the keyword "favori" scroll.',
 	'doc_stats' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article126&lang=fr" title="To see the documentation">Statistics</a>',
@@ -516,9 +517,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'layout' => 'Layout',
-	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="See the documentation">To choose the layout</a>
+	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="See the documentation"><strong>To choose the layout</strong></a>
             <br />
-            Be careful to your choices for the widths: please note, for example, that a text with too long lines becomes very difficult to read', # MODIF
+            Be careful to your choices for the widths: please note, for example, that a text with too long lines becomes very difficult to read',
 	'layout_fixe' => '<strong>Fixed layout </strong> (PMP, MPP, PPM, MP and PM)<br />
                     (widths by default: 950px for the layout and 200px for the columns)',
 	'layout_fixe_largeur' => 'Width of the layout',
@@ -533,7 +534,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'licence_explication' => 'If you have activated the <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentation">plugin "Licence"</a>,
             you have nothing else to do, the icon corresponding to the licence choosen for an article will automatically be displayed at the top of the article.',
 	'licence_plugin' => 'Plugin Licence',
-	'lien_agenda' => 'Display the agenda in full page', # MODIF
+	'lien_agenda' => 'Display in full page',
+	'lien_agenda_title' => 'Display the agenda in full page',
 	'liens_sociaux_espace' => 'Show social links in the toolbar',
 	'liens_sociaux_explication' => 'If you have activated <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Socials Tags"</a>, 
 			you can configure it here.',
@@ -897,7 +899,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'signalement_explication' => 'If you have activated the <a class="spip_out" href="http://www.mediaspip.net/documentation/les-plugins-utilises-par-mediaspip/signal-alert-on-the-validity-of/article/signalement-alerter-sur-la" title="Documentation">plugin "Signalement"</a>,
             you have nothing else to do, the reporting button will appear automatically at the top of each article : ',
 	'signalement_plugin' => 'Plugin Reporting',
-	'site_realise_avec' => 'Site created with', # MODIF
+	'site_realise_avec' => 'Created with',
 	'site_reference' => 'referenced site',
 	'sites' => 'Sites',
 	'sites_favoris' => 'Favorite sites',
