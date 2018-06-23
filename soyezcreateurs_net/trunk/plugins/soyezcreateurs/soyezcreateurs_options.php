@@ -12,7 +12,7 @@ if (!defined('_IMG_GD_QUALITE'))
 	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP
 
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
-	define('_ACCESSIBILITE_CONSERVER_BULLE',true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
+	define('_ACCESSIBILITE_CONSERVER_BULLE', true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 #if (!defined('_BONUX_STYLE'))
 #	define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 if (!defined('_LARGEUR_MODE_IMAGE'))
@@ -21,6 +21,8 @@ if (!defined('_TITRER_DOCUMENTS'))
 	define('_TITRER_DOCUMENTS', true); // Le titre des documents joints est automatiquement pris à partir du nom du fichier (avec mediatheque) ; Voir https://zone.spip.org/trac/spip-zone/changeset/41565
 if (!defined('_MOTS_CREATION_RETOUR_MOT_CREE'))
 	define('_MOTS_CREATION_RETOUR_MOT_CREE', true); // Revenir au mot clef nouvellement créé. Cf https://zone.spip.net/trac/spip-zone/changeset/110686/spip-zone
+if (!defined('_AGENDA_CHOIX_RUBRIQUE_OUVERT'))
+	define('_AGENDA_CHOIX_RUBRIQUE_OUVERT', false); // Ne pas pouvoir choisir qu'une rubrique puisse être parmis les seules à recevoir des événements. Cf : https://zone.spip.org/trac/spip-zone/changeset/110827
 
 // Pour forcer le mode écran large
 $GLOBALS['spip_ecran']=$_COOKIE['spip_ecran']='large';

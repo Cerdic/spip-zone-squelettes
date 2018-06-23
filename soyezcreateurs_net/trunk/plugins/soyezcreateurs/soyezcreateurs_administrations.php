@@ -30,23 +30,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				include_spip('inc/fulltext_creer_index');
 				fulltext_liste_creer_index('all');
 			}
-			// Installation d'exemples concernant l'agenda si le plugin est actif
-			if ($f('agenda', 'est_actif')) {
-				// Réserve le formulaire des événements aux seules rubriques d'Agenda (avec le plugin agenda 2 installé)
-				sql_update('spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique = spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_liens.id_mot=spip_mots.id_mot', array('spip_rubriques.agenda' => 1, 'spip_mots_liens.objet'=>'rubrique'), 'spip_mots.titre='.sql_quote('Agenda'));
-				include_spip('inc/sc_article');
-				
-				$id_rubrique = id_rubrique('900. Agenda');
-				if ($id_rubrique >0) {
-					$date = date('Y-m-d H:i:00');
-					create_evenement("900. Agenda", "Installation du site", "Installation du site", $date, $date, "Quand le titre de l'événement est identique au titre de l'article, il n'est pas affiché en plus", 'Votre serveur web.');
-					create_evenement("900. Agenda", "Installation du site", "Installé !", $date, $date, "Quand le titre de l'événement est différent du titre de l'article, alors, les 2 titres sont affichés.", '');
-					create_evenement("900. Agenda", "Événement exceptionnel", "Événement exceptionnel", date('Y-m-d 20:30:00'), date('Y-m-d 22:30:00'), "Quand l'heure de début est différente de l'heure de fin, c'est un événement avec une durée...", '');
-					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.1", '2010-04-09', '2010-04-09', "[->https://www.spip.net/fr_article4728.html]", '', 'non');
-					create_evenement("10. SPIP", "Historique des versions de SPIP", "SPIP 2.0", '2008-12-13', '2008-12-13', "[->https://www.spip.net/fr_article3784.html]", '', 'non');
-					create_evenement("900. Agenda", "Démonstration Agenda", "Démonstration Agenda", '2017-12-13', '2017-12-13', "", '', 'non');
-				}
-			}
 			spip_log("SoyezCreateurs maj 3.0.20 Faite", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.20','non');
 		}
@@ -279,24 +262,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
-		}
-		*/
-		/*
-		// A integrer quand SPIP permettra d'avoir des critères optionnels sur un champ de table innexistant
-		// en l'occurrence, remplacer dans le squelette {titre_mot=Agenda} par {agenda=1}
-		if (version_compare($current_version,'2.1.14','<')) {
-			include_spip('base/soyezcreateurs');
-			spip_log("SoyezCreateurs maj 2.1.14", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
-			$id_groupe = id_groupe("_Specialisation_Rubrique");
-			$id_mot = id_mot("Agenda", $id_groupe);
-			if ($id_mot>0) {
-				sql_delete("spip_mots", "id_mot=$id_mot");
-				sql_delete("spip_mots_articles", "id_mot=$id_mot");
-				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-				sql_delete("spip_mots_forum", "id_mot=$id_mot");
-			}
-			ecrire_meta($nom_meta_base_version,$current_version='2.1.14','non');
 		}
 		*/
 	}

@@ -490,29 +490,6 @@ Des cookies peuvent être utilisés par ce site :
 EOF;
 	}
 
-	/* Démonstration Agenda */
-	if ($article == "Démonstration Agenda") {
-		$contenu['titre'] = "Démonstration Agenda";
-	}
-
-	/* Installation du site */
-	if ($article == "Installation du site") {
-		$contenu['titre'] = "Installation du site";
-		$contenu['texte'] = <<<EOF
-Cet événement est là pour vous montrer que vous pouvez utiliser un [agenda événementiel dans votre site->https://contrib.spip.net/Agenda-evenementiel-avec].
-EOF;
-	}
-
-	/* Événement exceptionnel */
-	if ($article == "Événement exceptionnel") {
-		$contenu['titre'] = "Événement exceptionnel";
-		$contenu['texte'] = <<<EOF
-Quand un événement ne se produit qu'une fois, il vaut mieux faire un article qui contienne un descriptif de l'événement et ne mettre dans l'événement lui-même que sa date. Le titre de l'événement devra alors être identique à celui de l'article.
-
-Il sera même possible de faire une galerie de photographies dans ce même article...
-EOF;
-	}
-
 	/* Conseil n°3 */
 	if ($article == "Conseil n°3") {
 		$contenu['titre'] = "Conseil n°3";

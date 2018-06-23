@@ -911,7 +911,6 @@ function soyezcreateurs_config_motsclefs() {
 	create_groupe("_Specialisation_Rubrique", "Spécialisation d'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n", 'non', 'non', 'rubriques', 'oui', 'oui', 'non');
 		$id_mot = create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
 		$id_mot = create_mot("_Specialisation_Rubrique", "AfficherArticlesMenuHaut", "Affichage des articles de la rubrique dans le menu déroulant", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu déroulant.");
-		$id_mot = create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu'une rubrique est dans l'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
 		$id_mot = create_mot("_Specialisation_Rubrique", "Citations", "Rubrique destinée à recevoir de courtes citations (une par article) affichées en haut à droite des pages du site de manière alléatoire (une nouvelle citation toutes les heures)", "Créer un article par citation avec :\n\n-* La citation dans le corps du texte (entourée de guillemets si nécessaires)\n-* L'auteur dans le sous-titre\n-* Le titre de l'article sert d'accroche pour le lecteur\n");
 		$id_mot = create_mot("_Specialisation_Rubrique", "DessousBreves", "Pour placer une rubrique et ses articles qui sont placés sous les brèves (dans la colonne de droite du site)", "[*Attention*] : une rubrique qui a ce mot clef ne doit pas avoir de sous-rubrique !\n\nLe titre de la rubrique sera affiché sur la droite et la liste de ses articles en dessous.\n\nSeuls les articles sont clicables pour accéder à leur contenu.");
 		$id_mot = create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
@@ -1213,26 +1212,6 @@ function soyezcreateurs_config_motsclefs() {
 				create_logo('documents/artoff31.jpg', $type='art', $id_article, 'jpg','off');
 	}
 
-
-	$id_rubrique = create_rubrique("900. Agenda", '0', "");
-		create_rubrique_mot("900. Agenda", "Agenda", "_Specialisation_Rubrique");
-		create_rubrique_mot("900. Agenda", "PasDansMenu", "_Specialisation_Rubrique");
-		create_rubrique_mot("900. Agenda", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
-		if ($nouvelle_installation) {
-			$id_article = create_article(trouve_article_sc("Démonstration Agenda"), "900. Agenda");
-			$id_article = create_article(trouve_article_sc("Installation du site"), "900. Agenda");
-			$id_article = create_article(trouve_article_sc("Événement exceptionnel"), "900. Agenda");
-
-			$id_parent = $id_rubrique;
-
-			$id_rubrique = create_rubrique("10. SPIP", $id_parent, "");
-				$id_article = create_article(trouve_article_sc("Historique des versions de SPIP"), "10. SPIP");
-
-			$id_rubrique = create_rubrique("20. Linux", $id_parent, "");
-		}
-
-
-
 	$id_rubrique = create_rubrique("999. Citations", '0', "Mettre dans cette rubrique une citation par article");
 		create_rubrique_mot("999. Citations", "Citations", "_Specialisation_Rubrique");
 		create_rubrique_mot("999. Citations", "PasDansMenu", "_Specialisation_Rubrique");
@@ -1255,9 +1234,6 @@ function soyezcreateurs_vider($tout=false) {
 	poubelle_article("20. Raccourcis Typographiques de SPIP, mode d'emploi","000. Fourre-tout");
 	#poubelle_article("Politique d'accessibilité du site","000. Fourre-tout");
 	#poubelle_article("Mentions légales","000. Fourre-tout");
-	poubelle_article("Installation du site","900. Agenda");
-	poubelle_article("Événement exceptionnel","900. Agenda");
-	poubelle_article("Démonstration Agenda","900. Agenda");
 	poubelle_article("Conseil n°3","999. Citations");
 	poubelle_article("Conseil n°4","999. Citations");
 	poubelle_article("Conseil n°2","999. Citations");
