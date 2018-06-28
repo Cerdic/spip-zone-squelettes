@@ -69,17 +69,16 @@ function soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c
 	$soyezcreateurs_couleurs = $config['soyezcreateurs_couleurs'];
 	$soyezcreateurs_google = $config['soyezcreateurs_google'];
 	
-	
-	if ($choix_sc != 'rien') {
+	if ($choix_sc != 'rien' and $choix_sc !== null) {
 		$ok = insert_base_ieconfig($choix_sc,$soyezcreateurs);		
 	}
-	if ($choix_sc_l != 'rien') {
+	if ($choix_sc_l != 'rien' and $choix_sc_l !== null) {
 		$ok = insert_base_ieconfig($choix_sc_l,$soyezcreateurs_layout);
 	}
-	if ($choix_sc_c != 'rien') {
+	if ($choix_sc_c != 'rien' and $choix_sc_c !== null) {
 		$ok = insert_base_ieconfig($choix_sc_c,$soyezcreateurs_couleurs);
 	}
-	if ($choix_sc_g != 'rien') {
+	if ($choix_sc_g != 'rien' and $choix_sc_g !== null) {
 		$ok = insert_base_ieconfig($choix_sc_g,$soyezcreateurs_google);
 	}
 			
@@ -119,6 +118,27 @@ function insert_base_ieconfig($choix,$sections){
 			$import['valeur'] = serialize($import['valeur']);
 			$ok = sql_insertq('spip_meta', array('nom' => $import['nom'], 'valeur' => $import['valeur']));
 		}
+		if ($choix == 'fusion_inv') {
+			foreach ($sections as $section) {
+				$import = $section;
+			}
+			$nom = $import['nom'];
+			if (sql_countsel('spip_meta','nom=\''.$nom.'\'') != 0) {
+				$val_exist = sql_fetsel(
+					'nom, valeur',
+					'spip_meta',
+					'nom=\''.$nom.'\''
+				);				
+				$val_exist['valeur'] = unserialize($val_exist['valeur']);
+				
+				$import['valeur'] = array_merge($import['valeur'],$val_exist['valeur']);
+				
+				
+				$t = sql_delete('spip_meta','nom=\''.$import['nom'].'\'');
+			}
+			$import['valeur'] = serialize($import['valeur']);
+			$ok = sql_insertq('spip_meta', array('nom' => $import['nom'], 'valeur' => $import['valeur']));
+		}
 		//invalidation du cache
 		include_spip('inc/invalideur');
 		suivre_invalideur('soyezcreateurs-import-config');
@@ -129,4 +149,14 @@ function insert_base_ieconfig($choix,$sections){
 			return false;
 		}
 	
+}
+
+function getURI(){
+    $adresse = $_SERVER['PHP_SELF'];
+    $i = 0;
+    foreach($_GET as $cle => $valeur){
+        $adresse .= ($i == 0 ? '?' : '&').$cle.($valeur ? '='.$valeur : '');
+        $i++;
+    }
+    return $adresse;
 }

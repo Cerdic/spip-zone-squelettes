@@ -377,7 +377,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ieconfig_soyezcreateurs_import_option_choix' => 'Quel type d’import souhaitez-vous?',
 	'soyezcreateurs_import_ecraser' => 'Avec écrasement de la configuration existante',
 	'soyezcreateurs_import_soyezcreateurs_fusionner' => 'Avec fusion des configurations (import > existant)',
-	'soyezcreateurs_import_soyezcreateurs_rien' => 'Ne pas importer'
+	'soyezcreateurs_import_soyezcreateurs_rien' => 'Ne pas importer',
+	'soyezcreateurs_import_soyezcreateurs_fusionner_inv' => 'En n’écrire que si paramètre manquant (existant > import)',
+	'ieconfig_soyezcreateurs_import_nofound_explication' => 'Aucune configuration trouvé pour cette onglet. Veuillez annuler l’importation et choisir une autre sauvegarde.'
 	
 	
 );
