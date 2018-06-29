@@ -5,15 +5,11 @@ if (!isset($GLOBALS['z_blocs']))
 define('_ZENGARDEN_FILTRE_THEMES','spipr');
 define('_ALBUMS_INSERT_HEAD_CSS',false);
 
-if (
-	defined('_SPIPR_AUTH_DEMO')?
-		_SPIPR_AUTH_DEMO
-		:
-		(isset($GLOBALS['visiteur_session']['statut'])
-    AND $GLOBALS['visiteur_session']['statut']=='0minirezo'
-    AND $GLOBALS['visiteur_session']['webmestre']=='oui')
-	)
-	_chemin(_DIR_PLUGIN_SPIPR_EDUC."demo/");
-
 $GLOBALS['dossier_squelettes'] = _DIR_PLUGIN_SPIPR_EDUC;
-?>
+
+$GLOBALS['oembed_providers'] = array(
+    'https://www.audio-lingua.eu/*' => 'https://www.audio-lingua.eu/oembed.api',
+    'https://scolawebtv.crdp-versailles.fr/*' => 'https://scolawebtv.crdp-versailles.fr/oembed.api/',
+    'https://pod.ac-caen.fr/video*' => 'https://pod.ac-caen.fr/oembed/',
+    'https://learningapps.org/*'=> 'https://learningapps.org/oembed.php',
+);
