@@ -5,50 +5,8 @@
 		
 		//formulaire d'export
 		if ($action == 'form_export'){
-			$saisies = array(
-			array(
-				'saisie' => 'fieldset',
-				'options' => array(
-					'nom' => 'soyezcreateurs_export',
-					'label' => '<:soyezcreateurs:soyezcreateurs:>',
-					'icone' => 'soyezcreateurs-16.png',
-				),
-				'saisies' => array(
-					array(
-						'saisie' => 'explication',
-						'options' => array(
-							'nom' => 'soyezcreateurs_export_explication',
-							'texte' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_explication:>',
-						),
-					),
-					array(
-						'saisie' => 'oui_non',
-						'options' => array(
-							'nom' => 'soyezcreateurs_export_option',
-							'label' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_option:>',
-							'defaut' => '',
-						),
-					),
-					array(
-						'saisie' => 'checkbox',
-						'options' => array(
-							'nom' => 'soyezcreateurs_export_choix',
-							'label' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_option_choix:>',
-							'data' => array(
-								'soyezcreateurs' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs:>',
-								'soyezcreateurs_layout' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_layout:>',
-								'soyezcreateurs_couleurs' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_couleurs:>',
-								'soyezcreateurs_google' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_google:>',
-							),
-							'defaut' => 'soyezcreateurs',
-						),
-						
-							
-					),
-				),
-			),
-		);
-		$flux['data'] = array_merge($flux['data'], $saisies);
+			$saisies = array(form_export());
+			$flux['data'] = array_merge($flux['data'], $saisies);
 		}
 		
 		
@@ -188,4 +146,4 @@
 		}
 
 		return($flux);
-	}
+	}	

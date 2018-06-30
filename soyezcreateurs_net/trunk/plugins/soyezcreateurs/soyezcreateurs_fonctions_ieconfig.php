@@ -16,6 +16,25 @@
 * @return $data
 **/
 
+function soyezcreateurs_tableau_export_spe($input){
+	$data = array();
+	
+	// On calcule le tableau des paramètres de soyezcreateurs
+		$data[$input] = sql_allfetsel(
+			'nom, valeur',
+			'spip_meta',
+			'nom=\''.$input.'\''
+		);
+		
+		$data[$input][0]['valeur'] = unserialize($data[$input][0]['valeur']);
+		
+	return $data;	
+}
+
+
+
+
+
 function soyezcreateurs_tableau_export($input){
 	$data = array();
 	
@@ -159,4 +178,50 @@ function getURI(){
         $i++;
     }
     return $adresse;
+}
+
+function form_export() {
+	$saisies = array(
+				'saisie' => 'fieldset',
+				'options' => array(
+					'nom' => 'soyezcreateurs_export',
+					'label' => '<:soyezcreateurs:soyezcreateurs:>',
+					'icone' => 'soyezcreateurs-16.png',
+				),
+				'saisies' => array(
+					array(
+						'saisie' => 'explication',
+						'options' => array(
+							'nom' => 'soyezcreateurs_export_explication',
+							'texte' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_explication:>',
+						),
+					),
+					array(
+						'saisie' => 'oui_non',
+						'options' => array(
+							'nom' => 'soyezcreateurs_export_option',
+							'label' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_option:>',
+							'defaut' => '',
+						),
+					),
+					array(
+						'saisie' => 'checkbox',
+						'options' => array(
+							'nom' => 'soyezcreateurs_export_choix',
+							'label' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_export_option_choix:>',
+							'data' => array(
+								'soyezcreateurs' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs:>',
+								'soyezcreateurs_layout' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_layout:>',
+								'soyezcreateurs_couleurs' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_couleurs:>',
+								'soyezcreateurs_google' => '<:soyezcreateursprive:soyezcreateurs_export_soyezcreateurs_google:>',
+							),
+							'defaut' => '',
+						),
+						
+							
+					),
+				),
+		);
+		
+	return $saisies;
 }
