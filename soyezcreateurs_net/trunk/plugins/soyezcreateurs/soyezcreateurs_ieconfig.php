@@ -16,7 +16,7 @@
 		}
 		
 		// Formulaire d'import
-			if ($action == 'form_import' && isset($flux['args']['config']['soyezcreateurs'])) {	
+			if ($action == 'form_import' && isset($flux['args']['config']['soyezcreateurs'])) {
 			$url = getURI();
 			$saisies = array(
 					array(
@@ -50,7 +50,7 @@
 						);
 					}
 				}				
-				elseif (strpos($url, '&cfg=soyezcreateurs_layout') and isset($flux['args']['config']['soyezcreateurs']['soyezcreateurs_layout'])) {
+				elseif (strpos($url, '&cfg=soyezcreateurs_layout') and isset($flux['args']['config']['soyezcreateurs'])) {
 					$s1[] = array(
 						'saisie' => 'radio',
 						'options' => array(
@@ -66,7 +66,7 @@
 							)
 						);
 				}
-				elseif (strpos($url, '&cfg=soyezcreateurs_couleurs') and isset($flux['args']['config']['soyezcreateurs']['soyezcreateurs_couleurs'])) {
+				elseif (strpos($url, '&cfg=soyezcreateurs_couleurs') and isset($flux['args']['config']['soyezcreateurs'])) {
 					$s1[] = array(
 						'saisie' => 'radio',
 						'options' => array(
@@ -82,7 +82,7 @@
 							)
 						);
 				}
-				elseif (strpos($url, '&cfg=soyezcreateurs_google') and isset($flux['args']['config']['soyezcreateurs']['soyezcreateurs_google'])) {
+				elseif (strpos($url, '&cfg=soyezcreateurs_google') and isset($flux['args']['config']['soyezcreateurs'])) {
 					$s1[] = array(
 						'saisie' => 'radio',
 						'options' => array(
@@ -98,7 +98,7 @@
 							)
 						);
 				}
-				elseif (strpos($url, '&cfg=soyezcreateurs') and isset($flux['args']['config']['soyezcreateurs']['soyezcreateurs'])) {
+				elseif (strpos($url, '&cfg=soyezcreateurs') and isset($flux['args']['config']['soyezcreateurs'])) {
 					$s1[] = array(
 						'saisie' => 'radio',
 						'options' => array(

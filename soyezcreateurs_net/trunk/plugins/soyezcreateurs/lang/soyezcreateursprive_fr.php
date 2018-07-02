@@ -379,7 +379,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'soyezcreateurs_import_soyezcreateurs_fusionner' => 'Avec fusion des configurations (import > existant)',
 	'soyezcreateurs_import_soyezcreateurs_rien' => 'Ne pas importer',
 	'soyezcreateurs_import_soyezcreateurs_fusionner_inv' => 'En n’écrire que si paramètre manquant (existant > import)',
-	'ieconfig_soyezcreateurs_import_nofound_explication' => 'Aucune configuration trouvé pour cette onglet. Veuillez annuler l’importation et choisir une autre sauvegarde.'
+	'ieconfig_soyezcreateurs_import_nofound_explication' => 'Aucune configuration trouvé pour cette onglet. Veuillez annuler l’importation et choisir une autre sauvegarde.',
+	
+	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés.',
+	'ieconfig_import_spe_couleurs' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
+	'ieconfig_import_spe_couleurs_choix' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
+	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs'
 	
 	
 );

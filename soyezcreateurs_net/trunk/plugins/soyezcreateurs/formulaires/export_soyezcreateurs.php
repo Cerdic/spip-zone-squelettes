@@ -125,16 +125,16 @@ function formulaires_export_soyezcreateurs_traiter_dist() {
 	// On créé le tableau en fonction de l'entête de la page
 	$url = getURI();
 	if (strpos($url, '&cfg=soyezcreateurs_layout')) {
-		$export['soyezcreateurs_layout'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_layout')['soyezcreateurs_layout'];
+		$export['soyezcreateurs']['soyezcreateurs_layout'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_layout')['soyezcreateurs_layout'];
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_couleurs')) {
-		$export['soyezcreateurs_couleurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_couleurs')['soyezcreateurs_couleurs'];
+		$export['soyezcreateurs']['soyezcreateurs_couleurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_couleurs')['soyezcreateurs_couleurs'];
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_google')) {
-		$export['soyezcreateurs_google'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_google')['soyezcreateurs_google'];
+		$export['soyezcreateurs']['soyezcreateurs_google'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_google')['soyezcreateurs_google'];
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs')) {
-		$export['soyezcreateurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs')['soyezcreateurs'];
+		$export['soyezcreateurs']['soyezcreateurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs')['soyezcreateurs'];
 	}
 
 	
