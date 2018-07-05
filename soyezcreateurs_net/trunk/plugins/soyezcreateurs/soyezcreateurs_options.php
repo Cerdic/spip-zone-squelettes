@@ -174,11 +174,3 @@ if (!defined('_DIR_PLUGIN_CRITERE_MOTS')) {
 		return true;
 	}
 }
-
-$GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_soyezcreateurs";
- 
-function header_prive_soyezcreateurs($flux) {
-    $flux .= '<link rel="stylesheet" type="text/css" href="'.find_in_path('prive/css/soyezcreateurs_espace_prive.css').'" media="all" />';
-	#$flux .= '<script type="text/javascript" src="'.find_in_path('soyezcreateurs_espace_prive.js').'"></script>';
-	return $flux;
-}
