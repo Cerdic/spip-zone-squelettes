@@ -384,7 +384,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés.',
 	'ieconfig_import_spe_couleurs' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
 	'ieconfig_import_spe_couleurs_choix' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
-	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs'
+	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs',
+	'ieconfig_import_spe_police' => 'Importation de configuration pré-enregistrés de jeux de polices.',
+	'ieconfig_import_spe_layout' => 'Importation de configuration pré-enregistrés de jeux de positionnement ou de template.'
 	
 	
 );

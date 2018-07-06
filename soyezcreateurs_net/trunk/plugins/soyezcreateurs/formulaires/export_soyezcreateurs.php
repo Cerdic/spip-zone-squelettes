@@ -118,6 +118,7 @@ function formulaires_export_soyezcreateurs_traiter_dist() {
 	include_spip('soyezcreateurs_fonctions_ieconfig');
 	$export = array();
 	$export['nom'] = _request('ieconfig_export_nom');
+	$nom = $export['nom'];
 	if (_request('ieconfig_export_description') != '') {
 		$export['description'] = _request('ieconfig_export_description');
 	}
@@ -126,15 +127,25 @@ function formulaires_export_soyezcreateurs_traiter_dist() {
 	$url = getURI();
 	if (strpos($url, '&cfg=soyezcreateurs_layout')) {
 		$export['soyezcreateurs']['soyezcreateurs_layout'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_layout')['soyezcreateurs_layout'];
+		$site = 'soyezcreateurs_layout';
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_couleurs')) {
 		$export['soyezcreateurs']['soyezcreateurs_couleurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_couleurs')['soyezcreateurs_couleurs'];
+		if (strpos($nom, 'police')) {
+			$site = 'soyezcreateurs_police';
+		}
+		else {
+			$site = 'soyezcreateurs_couleurs';
+		}
+		
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_google')) {
 		$export['soyezcreateurs']['soyezcreateurs_google'] = soyezcreateurs_tableau_export_spe('soyezcreateurs_google')['soyezcreateurs_google'];
+		$site = 'soyezcreateurs_google';
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs')) {
 		$export['soyezcreateurs']['soyezcreateurs'] = soyezcreateurs_tableau_export_spe('soyezcreateurs')['soyezcreateurs'];
+		$site = 'soyezcreateurs_layout';
 	}
 
 	
@@ -145,11 +156,6 @@ function formulaires_export_soyezcreateurs_traiter_dist() {
 
 	// Nom du fichier
 	include_spip('inc/texte');
-	$site = isset($GLOBALS['meta']['nom_site']) ? preg_replace(array(",\W,is", ',_(?=_),', ',_$,'), array(
-		'_',
-		'',
-		'',
-	), couper(translitteration(trim($GLOBALS['meta']['nom_site'])), 30, '')) : 'spip';
 	$filename = $site . '_' . date('Y-m-d_H-i') . '.yaml';
 
 	// Si telechargement

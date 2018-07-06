@@ -17,6 +17,7 @@
 		
 		// Formulaire d'import
 			if ($action == 'form_import' && isset($flux['args']['config']['soyezcreateurs'])) {
+			//var_export($flux);
 			$url = getURI();
 			$saisies = array(
 					array(
@@ -49,7 +50,29 @@
 							)
 						);
 					}
-				}				
+					print_r('hello');
+					$req = _request('ieconfig_import_specifique_couleurs_local');
+					print_r($req.'</br>');
+				}
+				elseif (strpos($url, '?exec=sc_import')) {
+					foreach ($flux['args']['config']['soyezcreateurs'] as $section=>$exist){
+					
+					$s1[] = array(
+						'saisie' => 'radio',
+						'options' => array(
+							'nom' => 'soyezcreateurs_import_choix_'.$section,
+							'label' => '<:soyezcreateursprive:ieconfig_soyezcreateurs_import_explication_'.$section.':>',
+							'datas' => array(
+								'rien' => '<:soyezcreateursprive:soyezcreateurs_import_soyezcreateurs_rien:>',
+								'fusion' => '<:soyezcreateursprive:soyezcreateurs_import_soyezcreateurs_fusionner:>',
+								'ecrase' => '<:soyezcreateursprive:soyezcreateurs_import_ecraser:>',
+								'fusion_inv' => '<:soyezcreateursprive:soyezcreateurs_import_soyezcreateurs_fusionner_inv:>',						
+								),
+							'defaut' => 'fusion',
+							)
+						);
+					}
+				}
 				elseif (strpos($url, '&cfg=soyezcreateurs_layout') and isset($flux['args']['config']['soyezcreateurs'])) {
 					$s1[] = array(
 						'saisie' => 'radio',
