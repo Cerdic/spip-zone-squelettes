@@ -17,7 +17,6 @@
 		
 		// Formulaire d'import
 			if ($action == 'form_import' && isset($flux['args']['config']['soyezcreateurs'])) {
-			//var_export($flux);
 			$url = getURI();
 			$saisies = array(
 					array(
@@ -50,13 +49,9 @@
 							)
 						);
 					}
-					print_r('hello');
-					$req = _request('ieconfig_import_specifique_couleurs_local');
-					print_r($req.'</br>');
 				}
 				elseif (strpos($url, '?exec=sc_import')) {
 					foreach ($flux['args']['config']['soyezcreateurs'] as $section=>$exist){
-					
 					$s1[] = array(
 						'saisie' => 'radio',
 						'options' => array(
