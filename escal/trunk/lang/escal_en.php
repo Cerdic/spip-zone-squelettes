@@ -270,7 +270,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_bienvenue' => 'To contact the technical referent, 
                          <br />please fill in all the fields of this form.',
 	'contact_cases' => 'Check boxes (type "checkbox")',
-	'contact_cases_explication' => '(If you check yes, remember to fill out at least one box wording, otherwise an error would be generated)', # MODIF
+	'contact_cases_explication' => '(If you check yes, remember to fill out at least one box wording, otherwise an error would be generated)',
 	'contact_destinataire' => 'Address of the recipient (by default, that of the webmaster)<br />
                                               To enter several addresses, separate them with commas <br />
                                               Example : tata@yoyo.fr, titi@paris.fr, toto@blague.fr',
@@ -286,19 +286,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_libelle3' => 'Wording in box 3',
 	'contact_libelle4' => 'Wording in box 4',
 	'contact_libelle5' => 'Wording in box 5',
-	'contact_libelle_explication' => 'By leaving a wording empty, the corresponding box will not be displayed.', # MODIF
+	'contact_libelle_explication' => 'By leaving a wording empty, the corresponding box will not be displayed.',
 	'contact_libelle_gen' => 'General wording (no single quote nor quotation marks)',
 	'contact_ligne' => 'Online',
 	'contact_liste' => 'On list',
 	'contact_mail' => 'Your email address:',
 	'contact_message' => 'Your message:',
 	'contact_motif' => 'Subject of your message:',
-	'contact_motif1' => 'Information', # MODIF
-	'contact_motif2' => 'Registration', # MODIF
-	'contact_motif3' => 'Technical problem', # MODIF
-	'contact_motif4' => 'Your opinion about the site', # MODIF
-	'contact_motif5' => 'Other', # MODIF
-	'contact_motif_message' => '<strong>The reason for the message</strong> : Information - Inscription - Technical problem - Your opinion about the site - Other', # MODIF
+	'contact_motif1' => 'Box wording reason 1',
+	'contact_motif2' => 'Box wording reason 2',
+	'contact_motif3' => 'Box wording reason 3',
+	'contact_motif4' => 'Box wording reason 5',
+	'contact_motif5' => 'Box wording reason 5',
+	'contact_motif_message' => '<strong>The reason for the message</strong>',
 	'contact_nom' => 'Your name:',
 	'contact_obli' => ' Mandatory field',
 	'contact_prenom' => 'Your firstname:',

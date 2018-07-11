@@ -270,7 +270,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_bienvenue' => 'Per contattare il responsabile tecnico,
                           <br />compila tutti i campi di questa form.',
 	'contact_cases' => 'Caselle di controllo (tipo "checkbox")',
-	'contact_cases_explication' => '(selezionando SI, ricordati di riempire almeno un etichetta di campo, altrimenti viene generato un errore)', # MODIF
+	'contact_cases_explication' => '(selezionando SI, ricordati di riempire almeno un etichetta di campo, altrimenti viene generato un errore)',
 	'contact_destinataire' => 'Indirizzo del destinatario (per default quello del Webmaster)<br />
                                               Per inserire più di un idirizzo, utilizzare la virgola come separatore <br />
                                               Esempio : mario@rossi.it, pinco@pallino.it, caio@sempronio.it',
@@ -286,19 +286,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_libelle3' => 'Casella etichetta 3',
 	'contact_libelle4' => 'Casella etichetta 4',
 	'contact_libelle5' => 'Casella etichetta 5',
-	'contact_libelle_explication' => 'Lasciando un’etichetta vuota, il testo non compare.', # MODIF
+	'contact_libelle_explication' => 'Lasciando un’etichetta vuota, il testo non compare.',
 	'contact_libelle_gen' => 'Etichetta generale (senza apostrofo o virgolette):',
 	'contact_ligne' => 'On-line',
 	'contact_liste' => 'Lista',
 	'contact_mail' => 'Il tuo indirizzo e-mail:',
 	'contact_message' => 'Messaggio:',
 	'contact_motif' => 'Testo del messaggio:',
-	'contact_motif1' => 'Informazione', # MODIF
-	'contact_motif2' => 'Iscrizione', # MODIF
-	'contact_motif3' => 'Problema tecnico', # MODIF
-	'contact_motif4' => 'Il tuo parere sul sito', # MODIF
-	'contact_motif5' => 'Altro', # MODIF
-	'contact_motif_message' => '<strong>Motivo della segnalazione</strong> : Informazioni - Iscrizione - Problemi tecnici - Opinioni sul sito - Altro', # MODIF
+	'contact_motif1' => 'Etichetta motivo 1',
+	'contact_motif2' => 'Etichetta motivo 2',
+	'contact_motif3' => 'Etichetta motivo 3',
+	'contact_motif4' => 'Etichetta motivo 4',
+	'contact_motif5' => 'Etichetta motivo 5',
+	'contact_motif_message' => '<strong>Motivo della segnalazione</strong>',
 	'contact_nom' => 'Il tuo cognome:',
 	'contact_obli' => 'Campo obbligatorio',
 	'contact_prenom' => 'Il tuo nome:',
@@ -518,7 +518,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout' => 'Layout generale',
 	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Guarda la documentazione">Scelta del layout</a>
             <br />
-            Fai attenzione alla scelta delle larghezze: ad esempio un testo con linee lunghe diventa molto difficile da leggere', # MODIF
+            Fai attenzione alla scelta delle larghezze: ad esempio un testo con linee lunghe diventa molto difficile da leggere',
 	'layout_fixe' => '<strong>Layout fisso</strong> (PMP, MPP, PPM, MP e PM)<br />
                     (larghezza di default: parte centrale da 950 pixel e colonne da 200 pixel)',
 	'layout_fixe_largeur' => 'Larghezza del layout',
@@ -533,7 +533,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'licence_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Une-licence-pour-un-article" title="Documentatione">plugin "Licence"</a>,
             non dovete fare altro, l’icona relativa alla licenza scelta per un determinato articolo apparirà automaticamente nella parte alta dell’articolo stesso.',
 	'licence_plugin' => 'Plugin Licence',
-	'lien_agenda' => 'Visualizzazione dell’agenda a pagina intera', # MODIF
+	'lien_agenda' => 'Visualizzazione a pagina intera',
 	'liens_sociaux_espace' => 'Mostra i social link nella barra degli strumenti',
 	'liens_sociaux_explication' => 'Se è stato attivato il <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Social Links"</a>, 
 è possibile impostarlo qui.',
@@ -897,7 +897,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'signalement_explication' => 'Se avete attivato il <a class="spip_out" href="http://www.mediaspip.net/Documentatione/les-plugins-utilises-par-mediaspip/signal-alert-on-the-validity-of/article/signalement-alerter-sur-la" title="Documentatione">plugin "Signalement"</a>,
             non dovete fare altro, il pulsante di allarme apparirà automaticamente in alto in qualsiasi articolo: ',
 	'signalement_plugin' => 'Plugin Signalement',
-	'site_realise_avec' => 'Sito realizzato con', # MODIF
+	'site_realise_avec' => 'Realizzato con',
 	'site_reference' => 'sito inserito',
 	'sites' => 'Siti',
 	'sites_favoris' => 'Siti preferiti',
