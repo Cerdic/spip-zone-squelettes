@@ -153,10 +153,6 @@
 			_request('soyezcreateurs_import_choix_soyezcreateurs_layout'),
 			_request('soyezcreateurs_import_choix_soyezcreateurs_couleurs'),
 			_request('soyezcreateurs_import_choix_soyezcreateurs_google'),
-			_request('soyezcreateurs_import_option_soyezcreateurs'),
-			_request('soyezcreateurs_import_option_soyezcreateurs_layout'),
-			_request('soyezcreateurs_import_option_soyezcreateurs_couleurs'),
-			_request('soyezcreateurs_import_option_soyezcreateurs_google') ,
 			$flux['args']['config']['soyezcreateurs'])) 
 			{
 				$flux['data'] .= _T('soyezcreateursprive_fr:ieconfig_probleme_import_config').'<br />';

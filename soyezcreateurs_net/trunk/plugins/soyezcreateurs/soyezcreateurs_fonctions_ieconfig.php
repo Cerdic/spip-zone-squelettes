@@ -79,7 +79,7 @@ function soyezcreateurs_tableau_export($input){
 *
 * @return bool
 **/
-function soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c,$choix_sc_g,$import_sc, $import_sc_l,$import_sc_c,$import_sc_g,$config) {
+function soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c,$choix_sc_g,$config) {
 	
 	$config = pipeline('soyezcreateurs_config_import', $config);
 
@@ -225,3 +225,49 @@ function form_export() {
 		
 	return $saisies;
 }
+
+/*Fonction permettant une importation de configuration en spécifiant le chemin du fichier et l'action à accomplir
+/*@param $chemin : chemin du fichier à importer
+/*@param $option : option à appliquer 
+/*Type d'option : 
+/*	- 'rien' : Ne rien faire
+/*	- 'ecrasement' : Écraser complètement la configuraion actuel, les paramètres non renseigné dans le fichier d'importation sont remis à default
+/*	- 'fusion' : Fusionner la configuration actuelle avec le fichier d'importation, les paramètres non renseignés dans le fichier d'importation sont conserver
+/*	- 'fusion_inv' : Fusionner la configuration actuelle avec le fichier d'importation, les paramètres renseignés dans le fichier d'importation sont ignorés s'il sont présent dans la configuration actuelle
+*/
+function sc_ieconfig_importer_fichier($chemin,$option) {
+	include_spip('inc/yaml');
+	$config = yaml_decode_file($chemin);
+	$config = $config['soyezcreateurs'];
+	//S'il existe des configuration de l'onglet principal 
+	if (isset($config['soyezcreateurs'])) {
+		$choix_sc = $option;
+	}
+	else {
+		$choix_sc = 'rien';
+	}
+	//S'il existe des configuration de l'onglet Positionnement
+	if (isset($config['soyezcreateurs_layout'])) {
+		$choix_sc_l = $option;
+	}
+	else {
+		$choix_sc_l = 'rien';
+	}
+	//S'il existe des configuration de l'onglet Couleurs
+	if (isset($config['soyezcreateurs_couleurs'])) {
+		$choix_sc_c = $option;
+	}
+	else {
+		$choix_sc_c = 'rien';
+	}
+	//S'il existe des configuration de l'onglet Référencement
+	if (isset($config['soyezcreateurs_google'])) {
+		$choix_sc_g = $option;
+	}
+	else {
+		$choix_sc_g = 'rien';
+	}
+	//On appelle la fonction d'importation des configurations
+	soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c,$choix_sc_g,$config);
+}
+
