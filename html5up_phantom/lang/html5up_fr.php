@@ -12,10 +12,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_parametrages' => 'Paramétrages',
 	'contact' => 'Restez en contact',
 	'couleur_accent' => 'Accent de couleur',
-	'couleur_accent_explications' => 'C\'est la couleur au survol des liens (par défaut #F56A6A)',
+	'couleur_accent_explications' => 'C\'est la couleur au survol des liens. Par défaut #F56A6A',
 	'contact_tel' => 'Téléphone',
 	'contact_adresse' => 'Adresse',
 	'contact_complement' => 'Complément',
+	'couleur_typo' => 'Couleur de la typographie',
+	'couleur_typo_explications' => 'Par défaut #585858',
+	'couleur_bkg' => 'Couleur d’arrière plan de la page',
+	'couleur_bkg_explications' => 'Par défaut #FFFFFF',
+	'couleur_bkg_footer' => 'Couleur d’arrière plan du pied de page',
+	'couleur_bkg_footer_explications' => 'Par défaut #F6F6F6',
 	
 	// D
 	"design" => 'Design',
