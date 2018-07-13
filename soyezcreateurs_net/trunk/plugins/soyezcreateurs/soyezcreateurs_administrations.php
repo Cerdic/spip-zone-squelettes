@@ -45,6 +45,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				}
 				if (!$id_dictionnaire) {
 					if ($id_dictionnaire = insert_dictionnaire()){
+						autoriser_exception('modifier', 'dictionnaire', $id_dictionnaire);
 						// On lui met des champs par défaut
 						dictionnaire_set($id_dictionnaire, array(
 							'titre' => _T('dictionnaire:importer_acronymes_titre'),
@@ -52,9 +53,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 							'descriptif' => _T('dictionnaire:importer_acronymes_descriptif'),
 							'type_defaut' => 'abbr',
 						));
+						autoriser_exception('modifier', 'dictionnaire', $id_dictionnaire, false);
 					}
 				}
 				if ($id_dictionnaire) {
+					// 0 et pas $id_dictionnaire 
+					// car insert_definition a utilisé les valeurs par défaut
+					autoriser_exception('publierdans', 'dictionnaire', 0);
 					$definition = array(
 						'id_dictionnaire' => $id_dictionnaire,
 						'titre' => 'SPIP',
@@ -69,7 +74,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 						// On crée la définition dans la base SANS calculer le cache
 						include_spip('action/editer_definition');
 						if ($id_definition = insert_definition()){
+							autoriser_exception('modifier', 'definition', $id_definition);
 							definition_set($id_definition, $definition, false);
+							autoriser_exception('modifier', 'definition', $id_definition, false);
 						}
 					}
 					$definition = array(
@@ -86,8 +93,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 						// On crée la définition dans la base SANS calculer le cache
 						include_spip('action/editer_definition');
 						if ($id_definition = insert_definition()){
+							autoriser_exception('modifier', 'definition', $id_definition);
 							definition_set($id_definition, $definition, false);
+							autoriser_exception('modifier', 'definition', $id_definition, false);
 						}
+					autoriser_exception('publierdans', 'dictionnaire', 0, false);
 					}
 				}
 				// On calcule le cache des définitions une seule fois à la fin
