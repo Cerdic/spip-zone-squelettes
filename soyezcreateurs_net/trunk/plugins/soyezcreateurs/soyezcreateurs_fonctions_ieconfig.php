@@ -88,16 +88,16 @@ function soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c
 	$soyezcreateurs_couleurs = $config['soyezcreateurs_couleurs'];
 	$soyezcreateurs_google = $config['soyezcreateurs_google'];
 	
-	if ($choix_sc != 'rien' and $choix_sc !== null) {
+	if ($choix_sc != 'rien' and $choix_sc !== null and isset($soyezcreateurs)) {
 		$ok = insert_base_ieconfig($choix_sc,$soyezcreateurs);		
 	}
-	if ($choix_sc_l != 'rien' and $choix_sc_l !== null) {
+	if ($choix_sc_l != 'rien' and $choix_sc_l !== null and isset($soyezcreateurs_layout)) {
 		$ok = insert_base_ieconfig($choix_sc_l,$soyezcreateurs_layout);
 	}
-	if ($choix_sc_c != 'rien' and $choix_sc_c !== null) {
+	if ($choix_sc_c != 'rien' and $choix_sc_c !== null and isset($soyezcreateurs_couleurs)) {
 		$ok = insert_base_ieconfig($choix_sc_c,$soyezcreateurs_couleurs);
 	}
-	if ($choix_sc_g != 'rien' and $choix_sc_g !== null) {
+	if ($choix_sc_g != 'rien' and $choix_sc_g !== null and isset($soyezcreateurs_google)) {
 		$ok = insert_base_ieconfig($choix_sc_g,$soyezcreateurs_google);
 	}
 			
@@ -239,35 +239,7 @@ function sc_ieconfig_importer_fichier($chemin,$option) {
 	include_spip('inc/yaml');
 	$config = yaml_decode_file($chemin);
 	$config = $config['soyezcreateurs'];
-	//S'il existe des configuration de l'onglet principal 
-	if (isset($config['soyezcreateurs'])) {
-		$choix_sc = $option;
-	}
-	else {
-		$choix_sc = 'rien';
-	}
-	//S'il existe des configuration de l'onglet Positionnement
-	if (isset($config['soyezcreateurs_layout'])) {
-		$choix_sc_l = $option;
-	}
-	else {
-		$choix_sc_l = 'rien';
-	}
-	//S'il existe des configuration de l'onglet Couleurs
-	if (isset($config['soyezcreateurs_couleurs'])) {
-		$choix_sc_c = $option;
-	}
-	else {
-		$choix_sc_c = 'rien';
-	}
-	//S'il existe des configuration de l'onglet Référencement
-	if (isset($config['soyezcreateurs_google'])) {
-		$choix_sc_g = $option;
-	}
-	else {
-		$choix_sc_g = 'rien';
-	}
 	//On appelle la fonction d'importation des configurations
-	soyezcreateurs_importer_configuration($choix_sc,$choix_sc_l,$choix_sc_c,$choix_sc_g,$config);
+	soyezcreateurs_importer_configuration($option,$option,$option,$option,$config);
 }
 
