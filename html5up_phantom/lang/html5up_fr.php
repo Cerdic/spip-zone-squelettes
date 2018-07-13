@@ -20,9 +20,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// D
 	"design" => 'Design',
 	
+	// F
+	'footer' => 'Pied de page',
+	
 	// H
 	'home' => 'accueil',
-	'html5up_phantom_titre' => 'Html5up Phantom ',
 	
 	// L
 	'largeur_page' => 'Largeur de la page',

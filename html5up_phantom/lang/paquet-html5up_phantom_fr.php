@@ -8,7 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// H
-	'html5up_editorial_description' => '',
-	'html5up_editorial_nom' => 'Html5up Editorial ',
-	'html5up_editorial_slogan' => 'Squelette responsive «Editorial» de HTML5UP',
+	'html5up_phantom_description' => 'Intégration à SPIP du modèle Phantom (HTML5UP)',
+	'html5up_phantom_nom' => 'Html5up Phantom',
+	'html5up_phantom_slogan' => 'Squelette responsive «Phantom» de HTML5UP',
 );

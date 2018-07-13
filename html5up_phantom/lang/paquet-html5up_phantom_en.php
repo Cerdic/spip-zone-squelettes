@@ -8,7 +8,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// H
-	'html5up_editorial_description' => '',
-	'html5up_editorial_nom' => 'Html5up Editorial ',
-	'html5up_editorial_slogan' => 'Responsive template «Editorial» from HTML5UP',
+	'html5up_phantom_description' => '',
+	'html5up_phantom_nom' => 'Html5up Editorial ',
+	'html5up_phantom_slogan' => 'Responsive template «Editorial» from HTML5UP',
 );
