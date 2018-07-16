@@ -14,8 +14,8 @@ function soyezcreateurs_saisies_export() {
 						'nom' => 'ieconfig_export_nom',
 						'label' => '<:ieconfig:label_ieconfig_export_nom:>',
 						'obligatoire' => 'oui',
-						'defaut' => 'soyezcreateurs_layout_' . date('Y/m/d'),
-					),
+						'defaut' => 'soyezcreateurs_layout_' . date('Y/m/d')
+					)
 				);
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_couleurs')) {
@@ -25,8 +25,8 @@ function soyezcreateurs_saisies_export() {
 						'nom' => 'ieconfig_export_nom',
 						'label' => '<:ieconfig:label_ieconfig_export_nom:>',
 						'obligatoire' => 'oui',
-						'defaut' => 'soyezcreateurs_couleurs_' . date('Y/m/d'),
-					),
+						'defaut' => 'soyezcreateurs_couleurs_' . date('Y/m/d')
+					)
 				);
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs_google')) {
@@ -36,8 +36,8 @@ function soyezcreateurs_saisies_export() {
 						'nom' => 'ieconfig_export_nom',
 						'label' => '<:ieconfig:label_ieconfig_export_nom:>',
 						'obligatoire' => 'oui',
-						'defaut' => 'soyezcreateurs_google_' . date('Y/m/d'),
-					),
+						'defaut' => 'soyezcreateurs_google_' . date('Y/m/d')
+					)
 				);
 	}
 	elseif (strpos($url, '&cfg=soyezcreateurs')) {
@@ -47,8 +47,8 @@ function soyezcreateurs_saisies_export() {
 						'nom' => 'ieconfig_export_nom',
 						'label' => '<:ieconfig:label_ieconfig_export_nom:>',
 						'obligatoire' => 'oui',
-						'defaut' => 'soyezcreateurs_' . date('Y/m/d'),
-					),
+						'defaut' => 'soyezcreateurs_' . date('Y/m/d')
+					)
 				);
 	}
 	$saisies = array(
@@ -58,7 +58,7 @@ function soyezcreateurs_saisies_export() {
 			'options' => array(
 				'nom' => 'ieconfig_export',
 				'label' => '<:ieconfig:label_ieconfig_export:>',
-				'icone' => 'img/ieconfig-export.png',
+				'icone' => 'img/ieconfig-export.png'
 			),
 			'saisies' => array(
 				$nom,
@@ -67,15 +67,15 @@ function soyezcreateurs_saisies_export() {
 					'options' => array(
 						'nom' => 'ieconfig_export_description',
 						'label' => '<:ieconfig:label_ieconfig_export_description:>',
-						'rows' => 4,
-					),
+						'rows' => 4
+					)
 				),
 				array(
 					'saisie' => 'explication',
 					'options' => array(
 						'nom' => 'ieconfig_export_explication',
-						'texte' => '<:ieconfig:texte_ieconfig_export_explication:>',
-					),
+						'texte' => '<:ieconfig:texte_ieconfig_export_explication:>'
+					)
 				),
 				array(
 					'saisie' => 'selection',
@@ -86,12 +86,12 @@ function soyezcreateurs_saisies_export() {
 						'defaut' => 'telecharger',
 						'datas' => array(
 							'sauvegarder' => '<:ieconfig:item_sauvegarder:>',
-							'telecharger' => '<:ieconfig:item_telecharger:>',
-						),
-					),
-				),
-			),
-		),
+							'telecharger' => '<:ieconfig:item_telecharger:>'
+						)
+					)
+				)
+			)
+		)
 	);
 	return $saisies;
 }
@@ -99,7 +99,7 @@ function soyezcreateurs_saisies_export() {
 function formulaires_export_soyezcreateurs_charger_dist() {
 	$saisies = soyezcreateurs_saisies_export();
 	$contexte = array(
-		'_saisies' => $saisies,
+		'_saisies' => $saisies
 	);
 	
 	$export = array_merge(saisies_charger_champs($saisies), $contexte);
