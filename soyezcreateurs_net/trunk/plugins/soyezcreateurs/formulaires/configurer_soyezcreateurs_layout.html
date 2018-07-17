@@ -325,6 +325,15 @@
 			<fieldset>
 				<h3 class="legend"><:soyezcreateursprive:cfg_menuderoulantgauche:></h3>
 				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{radio,menuderoulant,
+						label=<:soyezcreateursprive:cfg_menuderoulant_label:>,
+						datas=#ARRAY{
+							replie,<:soyezcreateursprive:cfg_menuderoulant_replie:>,
+							deroule,<:soyezcreateursprive:cfg_menuderoulant_deroule:>,
+						},
+						defaut=replie,
+						cacher_option_intro=oui}
+					)]
 					[(#SAISIE{radio,logorubriquenavigation,
 						label=<:soyezcreateursprive:cfg_logorubriquenavigation_label:>,
 						datas=#ARRAY{
@@ -349,8 +358,16 @@
 						},
 						defaut=content}
 					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_logoarticlerubrique:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
 					[(#SAISIE{radio,logoarticlerubrique,
-						label=<:soyezcreateursprive:cfg_logoarticlerubrique_label:>,
+						label=<:soyezcreateursprive:cfg_logoarticlenavigation_label:>,
 						datas=#ARRAY{
 							contenthauttitre,<:soyezcreateursprive:cfg_logonavigation_hauttitre:>,
 							content,<:soyezcreateursprive:cfg_logonavigation_content:>,
@@ -359,14 +376,23 @@
 						},
 						defaut=content}
 					)]
-					[(#SAISIE{radio,menuderoulant,
-						label=<:soyezcreateursprive:cfg_menuderoulant_label:>,
+					[(#SAISIE{input,largeurlogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_largeur:>,
+						defaut=870,
+						size=4}
+					)]
+					[(#SAISIE{input,hauteurlogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_hauteur:>,
+						defaut=200,
+						size=4}
+					)]
+					[(#SAISIE{radio,cadragelogoarticlerubrique,
+						label=<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_label:>,
 						datas=#ARRAY{
-							replie,<:soyezcreateursprive:cfg_menuderoulant_replie:>,
-							deroule,<:soyezcreateursprive:cfg_menuderoulant_deroule:>,
+							entier,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_entier:>,
+							recadre,<:soyezcreateursprive:cfg_cadragelogocontenuautomatique_recadre:>,
 						},
-						defaut=replie,
-						cacher_option_intro=oui}
+						defaut=#CONFIG{soyezcreateurs_layout/cadragelogocontenuautomatique,entier}}
 					)]
 				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
 			</fieldset>
