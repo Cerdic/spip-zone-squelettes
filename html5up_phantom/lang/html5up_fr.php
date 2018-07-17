@@ -7,7 +7,6 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-
 	// C
 	'cfg_titre_parametrages' => 'Paramétrages',
 	'contact' => 'Restez en contact',

@@ -7,6 +7,9 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
+	// A
+	'aide' => 'Aide : <a href="https://contrib.spip.net/?article5019">lire la documentation sur contrib.spip.net</a>',
+	
 	// E
 	'extras_accueil_label' => 'Sur l’accueil du site',
 	'extras_accueil_explications' => 'Cochez cette case pour que cet article apparaisse sur la page d’accueil du site.',
