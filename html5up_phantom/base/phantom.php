@@ -28,7 +28,7 @@ function html5up_phantom_declarer_champs_extras($champs = array()) {
 					'label' => _T('phantom:extras_ordre_accueil_label'), 
 					'explication' => _T('phantom:extras_ordre_accueil_explications'),
 					'obligatoire' => false, // 'true', 'false' ou ''
-					'afficher_si' => '@extras_accueil@==on'
+					'afficher_si' => '@extras_accueil@=="on"'
 			))
 		)
 	);
