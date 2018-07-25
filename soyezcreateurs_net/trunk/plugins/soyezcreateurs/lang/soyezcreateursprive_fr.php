@@ -253,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_parametres_xiti' => 'Paramètres XiTi',
 	'cfg_pas_affichage_rss' => 'Ne pas l’afficher (sauf comme logo du Flux RSS)',
 	'cfg_pas_datepublication' => 'Désactivation de la date de publication',
+	'cfg_pas_datepublication_maj' => 'Désactivation de la date de publication (et n’afficher que la date de mise à jour si DevoilerDate)',
 	'cfg_pas_ephemeride' => 'Éphéméride non affiché',
 	'cfg_pied' => 'Pied de page',
 	'cfg_pictogrammesoutils_avecoutils' => 'Moderne (Webfont + Agenda, Newsletter, Changement de langue, Réseaux sociaux, Lien bandeau de contact, Recherche)',
