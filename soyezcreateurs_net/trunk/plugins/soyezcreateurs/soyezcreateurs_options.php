@@ -13,6 +13,8 @@ if (!defined('_IMG_GD_QUALITE'))
 
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE', true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
+if (!defined('_MEDIAS_RESPONSIVE_MASQUER_LEGENDE'))
+	define('_MEDIAS_RESPONSIVE_MASQUER_LEGENDE', true); // Pour ne pas afficher les légendes sur les <img> avec le plugin https://www.paris-beyrouth.org/Plugin-SPIP-Insertion-avancee-d-images
 #if (!defined('_BONUX_STYLE'))
 #	define('_BONUX_STYLE',1); // https://zone.spip.org/trac/spip-zone/changeset/35480
 if (!defined('_LARGEUR_MODE_IMAGE'))
