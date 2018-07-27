@@ -176,3 +176,5 @@ if (!defined('_DIR_PLUGIN_CRITERE_MOTS')) {
 		return true;
 	}
 }
+
+define('_NOIZETIER_REPERTOIRE_PAGES','contenu/');

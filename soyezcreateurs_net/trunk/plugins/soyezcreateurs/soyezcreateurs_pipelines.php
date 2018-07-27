@@ -23,3 +23,8 @@ function soyezcreateurs_formulaire_traiter($flux){
 	}
 	return $flux;
 }
+
+function soyezcreateurs_noizetier_blocs_defaut($flux) {
+	$flux = array('contenu');
+	return $flux;
+}
