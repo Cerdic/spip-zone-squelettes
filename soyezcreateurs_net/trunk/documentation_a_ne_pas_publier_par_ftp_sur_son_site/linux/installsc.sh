@@ -59,7 +59,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/apropos/trunk apropos
 svn co svn://zone.spip.org/spip-zone/_plugins_/article_pdf article_pdf
 svn co svn://zone.spip.org/spip-zone/_plugins_/autolang/trunk autolang
 svn co svn://zone.spip.org/spip-zone/_plugins_/autorite/trunk autorite
-svn co https://github.com/nursit/bank/tags/v3.5.9 bank
+svn co https://github.com/nursit/bank/tags/v3.6.4 bank
 svn co svn://zone.spip.org/spip-zone/_plugins_/blocsdepliables blocsdepliables
 svn co svn://zone.spip.org/spip-zone/_plugins_/breves_vers_articles breves_vers_articles
 svn co svn://zone.spip.org/spip-zone/_plugins_/campagnes/trunk campagnes
@@ -143,7 +143,7 @@ rm fpdf17.zip
 wget https://github.com/mpdf/mpdf/archive/v6.0.0.zip
 unzip v6.0.0.zip -d mpdf
 rm v6.0.0.zip
-# Pour le plugin ArticlePDF
+# Pour le plugin GIS ?
 wget https://github.com/phayes/geoPHP/archive/1.2.zip
 unzip 1.2.zip
 rm 1.2.zip
