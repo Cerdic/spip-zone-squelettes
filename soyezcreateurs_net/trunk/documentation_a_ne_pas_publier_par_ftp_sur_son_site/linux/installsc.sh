@@ -131,10 +131,6 @@ cd ..
 #Création du dossier /lib et se placer dedans
 mkdir lib
 cd lib
-# Pour le plugin Palette 
-wget http://files.spip.org/contribs/farbtastic_1_3_1.zip
-unzip farbtastic_1_3_1.zip
-rm farbtastic_1_3_1.zip
 # Pour le plugin PhotoSPIP
 wget http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.10.zip
 unzip jquery.imgareaselect-0.9.10.zip
