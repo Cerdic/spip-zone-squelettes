@@ -136,9 +136,9 @@ wget http://files.spip.org/contribs/farbtastic_1_3_1.zip
 unzip farbtastic_1_3_1.zip
 rm farbtastic_1_3_1.zip
 # Pour le plugin PhotoSPIP
-wget http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.8.zip
-unzip jquery.imgareaselect-0.9.8.zip
-rm jquery.imgareaselect-0.9.8.zip
+wget http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.10.zip
+unzip jquery.imgareaselect-0.9.10.zip
+rm jquery.imgareaselect-0.9.10.zip
 # Pour le plugin ArticlePDF
 wget http://www.fpdf.org/fr/download/fpdf17.zip
 unzip fpdf17.zip
