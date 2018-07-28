@@ -642,6 +642,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_annuaire_redacteur' => 'Couleur pour les redacteurs',
 	'noisettes_annuaire_visiteur' => 'Couleur pour les visiteurs',
 	'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur est authentifié',
+	'noisettes_calendrier_couleur' => 'Couleur par défaut des événements',
 	'noisettes_calendrier_events' => 'Liste des événement à venir en dessous',
 	'noisettes_calendrier_explication' => 'Choix de l’affichage :<br /> 
                     - les <strong>événements</strong> créés dans des articles grâce au plugin Agenda<br />

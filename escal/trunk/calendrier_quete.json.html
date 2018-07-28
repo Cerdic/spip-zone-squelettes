@@ -1,5 +1,5 @@
 #SET{start,#ENV{start}|strtotime} 
-#SET{end,#ENV{end}|strtotime} 
+#SET{end,#ENV{end}|strtotime}
 
 #HTTP_HEADER{Content-type:text/javascript;}
     [<BOUCLE_evenements(EVENEMENTS){', '}{par date_debut}{titre_mot?}
@@ -26,7 +26,7 @@
       start,#DATE_DEBUT,
       end,#DATE_FIN,
       url,#URL_EVENEMENT,
-      color,#336699
+      color,[(#CONFIG{escal/config/couleureventscalendrier,#336699}|PtoBR|html2unicode|unicode2charset)]
       }|json_encode)]
     <//B_mot>
     </BOUCLE_evenements>]
