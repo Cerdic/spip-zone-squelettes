@@ -232,7 +232,7 @@ function form_export() {
 /*Type d'option : 
 /*	- 'rien' : Ne rien faire
 /*	- 'ecrasement' : Écraser complètement la configuraion actuel, les paramètres non renseigné dans le fichier d'importation sont remis à default
-/*	- 'fusion' : Fusionner la configuration actuelle avec le fichier d'importation, les paramètres non renseignés dans le fichier d'importation sont conserver
+/*	- 'fusion' : Fusionner la configuration actuelle avec le fichier d'importation, les paramètres non renseignés dans le fichier d'importation sont conservés
 /*	- 'fusion_inv' : Fusionner la configuration actuelle avec le fichier d'importation, les paramètres renseignés dans le fichier d'importation sont ignorés s'il sont présent dans la configuration actuelle
 */
 function sc_ieconfig_importer_fichier($chemin,$option) {
