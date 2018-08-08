@@ -9,7 +9,25 @@
     #ACTION_FORMULAIRE{#ENV{action}}
 
 	
-	
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la taille de police des caracteres  --------------------------------->
+<!--------------------------------------------------------------------------------> 
+            <div class="explication">
+            <:escal:taille_police_explication:>
+            </div>
+
+    <ul>
+            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    <:escal:taille_police:><br />
+                    #SET{name,taillepolice}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:40px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},75})]"  />%
+                            </span> 
+            </li>                              
+	  </ul>
 <!-------------------------------------------------------------------------------->
 <!-- Choisir le layout ----------------------------------------------------------->
 <!-------------------------------------------------------------------------------->

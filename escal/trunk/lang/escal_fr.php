@@ -931,6 +931,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Augmenter la taille des caractères',
 	'taille_diminuer' => 'Diminuer la taille des caractères',
 	'taille_fichier' => 'Taille du fichier :',
+	'taille_police' => 'Taille de la police :',
+	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
+				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
+				Exemples : <br />
+				62.5% &rarr; 1rem = 10px<br />
+				75% &rarr; 1rem = 12px<br />
+				87.5% &rarr; 1rem = 14px<br />
+				100% &rarr; 1rem = 16px<br />',
 	'telechargement' => 'Fichier à télécharger :',
 	'telechargements' => 'Fichiers à télécharger :',
 	'texte_accueil' => 'Vous êtes sur la page de configuration du squelette Escal.<br /><br />
