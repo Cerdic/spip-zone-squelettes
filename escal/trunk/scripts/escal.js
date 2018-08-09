@@ -1,4 +1,4 @@
-<!-- flèche de retour-haut -->
+// flèche de retour-haut 
 
 jQuery(function(){
 	$(function () {
