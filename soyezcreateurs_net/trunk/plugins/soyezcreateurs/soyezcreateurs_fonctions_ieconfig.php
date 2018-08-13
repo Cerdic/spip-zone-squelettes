@@ -237,12 +237,20 @@ function form_export() {
 */
 function sc_ieconfig_importer_fichier($chemin,$option) {
 	include_spip('inc/yaml');
-	$config = yaml_decode_file($chemin);
-	
-	// Gestion des plugins utilisant le pipeline ieconfig_metas
-	foreach (pipeline('ieconfig_metas', array()) as $prefixe => $data) {
-		//Si on veut une importation avec écrasement
-		if (isset($config[$prefixe])) {
+		$config = yaml_decode_file($chemin);
+
+		// On passe via le pipeline ieconfig
+		$message_erreur = pipeline('ieconfig', array(
+			'args' => array(
+				'action' => 'import',
+				'config' => $config,
+			),
+			'data' => '',
+		));
+
+		// Gestion des plugins utilisant le pipeline ieconfig_metas
+		foreach (pipeline('ieconfig_metas', array()) as $prefixe => $data) {
+
 			//Si on veut une importation avec écrasement
 			if ($option === 'ecrase') {
 				
@@ -287,15 +295,17 @@ function sc_ieconfig_importer_fichier($chemin,$option) {
 							$p = substr($meta, 0, -1);
 							foreach ($config[$prefixe] as $m => $v) {
 								if (substr($m, 0, strlen($p)) == $p) {
-									$sc = lire_config($m . '/', $v);
-									$v = array_merge($sc,$v);
+									$save = lire_config($m . '/', $v);
+									$import = ($v);
+									$import = array_merge($save,$import);
 									ecrire_config($m . '/', $v);
 								}
 							}
 						} elseif (isset($config[$prefixe][$meta])) {
-							$sc = lire_config($meta . '/', $config[$prefixe][$meta]);
-							$config[$prefixe][$meta] = array_merge($sc,$config[$prefixe][$meta]);
-							ecrire_config($meta . '/', $config[$prefixe][$meta]);
+							$save = lire_config($meta . '/', $config[$prefixe][$meta]);
+							$import = ($config[$prefixe][$meta]);							
+							$import = array_merge($save,$import);
+							ecrire_config($meta . '/', $import);
 						}
 					}
 				}
@@ -306,21 +316,24 @@ function sc_ieconfig_importer_fichier($chemin,$option) {
 							$p = substr($meta, 0, -1);
 							foreach ($config[$prefixe] as $m => $v) {
 								if (substr($m, 0, strlen($p)) == $p) {
-									$sc = lire_config($m . '/', serialize($v));
-									$v = array_merge($sc,$v);
-									ecrire_config($m . '/', serialize($v));
+									$save = lire_config($m . '/', serialize($v));
+									$import = ($v);
+									$import = array_merge($save,$import);
+									ecrire_config($m . '/', serialize($import));				
 								}
 							}
 						} elseif (isset($config[$prefixe][$meta])) {
-							$sc = lire_config($meta . '/', serialize($config[$prefixe][$meta]));
-							$config[$prefixe][$meta] = array_merge($sc,$config[$prefixe][$meta]);
-							ecrire_config($meta . '/', serialize($config[$prefixe][$meta]));
+							$save = lire_config($meta . '/', serialize($config[$prefixe][$meta]));
+							$import = ($config[$prefixe][$meta]);
+							$import = array_merge($save,$import);
+							ecrire_config($meta . '/', serialize($import));
 						}
 					}
 				}
 			}
 			//Si on veut une importation avec fusion_inv
 			if ($option === 'fusion_inv') {
+
 				if (isset($data['metas_brutes'])) {
 					foreach (explode(',', $data['metas_brutes']) as $meta) {
 						// On teste le cas ou un prefixe est indique (dernier caractere est *)
@@ -328,15 +341,17 @@ function sc_ieconfig_importer_fichier($chemin,$option) {
 							$p = substr($meta, 0, -1);
 							foreach ($config[$prefixe] as $m => $v) {
 								if (substr($m, 0, strlen($p)) == $p) {
-									$sc = lire_config($m . '/', $v);
-									$v = array_merge($v,$sc);
-									ecrire_config($m . '/', $v);
+									$save = lire_config($m . '/', $v);
+									$import = ($v);
+									$import = array_merge($import,$save);
+									ecrire_config($m . '/', $import);
 								}
 							}
 						} elseif (isset($config[$prefixe][$meta])) {
-							$sc = lire_config($meta . '/', $config[$prefixe][$meta]);
-							$config[$prefixe][$meta] = array_merge($config[$prefixe][$meta],$sc);
-							ecrire_config($meta . '/', $config[$prefixe][$meta]);
+							$save = lire_config($meta . '/', $config[$prefixe][$meta]);
+							$import = ($config[$prefixe][$meta]);							
+							$import = array_merge($import,$save);
+							ecrire_config($meta . '/', $import);
 						}
 					}
 				}
@@ -347,29 +362,27 @@ function sc_ieconfig_importer_fichier($chemin,$option) {
 							$p = substr($meta, 0, -1);
 							foreach ($config[$prefixe] as $m => $v) {
 								if (substr($m, 0, strlen($p)) == $p) {
-									$sc = lire_config($m . '/', serialize($v));
-									$v = array_merge($v,$sc);
-									ecrire_config($m . '/', serialize($v));
+									$save = lire_config($m . '/', serialize($v));
+									$import = ($v);
+									$import = array_merge($import,$save);
+									ecrire_config($m . '/', serialize($import));
 								}
 							}
 						} elseif (isset($config[$prefixe][$meta])) {
-							$sc = lire_config($meta . '/', serialize($config[$prefixe][$meta]));
-							$config[$prefixe][$meta] = array_merge($config[$prefixe][$meta],$sc);
-							ecrire_config($meta . '/', serialize($config[$prefixe][$meta]));
+							$save = lire_config($meta . '/', serialize($config[$prefixe][$meta]));
+							$import = ($config[$prefixe][$meta]);
+							$import = array_merge($import,$save);
+							ecrire_config($meta . '/', serialize($import));
 						}
 					}
 				}
 			}
 		}
-	}		
-	if ($message_erreur != '') {
-		return array('message_erreur' => $message_erreur);
-	} else {
-		return array('message_ok' => _T('ieconfig:message_ok_import'));
-	}
-	
-	
-	//On appelle la fonction d'importation des configurations
-	return soyezcreateurs_importer_configuration($option,$option,$option,$option,$config);
+
+		if ($message_erreur != '') {
+			return array('message_erreur' => $message_erreur);
+		} else {
+			return array('message_ok' => _T('ieconfig:message_ok_import'));
+		}
 }
 
