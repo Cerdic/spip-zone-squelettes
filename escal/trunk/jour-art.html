@@ -42,7 +42,7 @@
 
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-
+	<div class="liste-articles-rubrique" > 
 	<BOUCLE_evenements(ARTICLES){date_redac==(#ENV{date}|affdate{'Y-m-d'})}{pagination 5}{lang}>
 	<!-- si un seul évènement, on envoie vers celui-ci-->
 	[(#TOTAL_BOUCLE|>{1}|sinon_interdire_acces{#URL_ARTICLE|parametre_url{lang,#ENV{lang}}})]
@@ -51,7 +51,8 @@
 	<div class="cadre-articles-event">
 		
 		<div class="titre-articles-rubrique">
-			<div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+			<div class="logorub">
+			[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
 			</div>
 		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
 		</div>
@@ -78,7 +79,7 @@
 	</div>
 	
 	</BOUCLE_evenements>
-
+	</div>
 	[<div class="nettoyeur"></div>
 	<p class="pagination">(#PAGINATION)</p>]
 

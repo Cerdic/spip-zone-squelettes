@@ -22,7 +22,9 @@
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelee -->
 	<div id="cadre-rubrique">
-		<div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})] </div>
+		<div class="logorub">
+		[(#LOGO_RUBRIQUE|extraire_attribut{src}|balise_img{logo rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+		</div>
 	  	<div id="titre-rubrique">
                 [(#CONFIG{escal/config/fluxrssrub}|=={oui}|oui)
                 <div class="fluxrss-rubrique">
@@ -67,7 +69,9 @@
     <div class="cadre-articles-rubrique">
     <a class="articles-rubrique" href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
       <div class="titre-articles-rubrique">
-        <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
+        <div class="logorub">
+        [(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique, spip_logos}|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+        </div>
         <div class="titre-articles-rubrique2">[(#TITRE)]</div>
       </div>
 	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)<div class="nettoyeur"></div>]
@@ -126,7 +130,7 @@
                         </div>
                         ]
 				<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
-        [(#LOGO_RUBRIQUE||image_reduire{80})]
+        [(#LOGO_RUBRIQUE|extraire_attribut{src}|balise_img{logo rubrique,spip_logos}|image_reduire{80})]
 				<span class="titre-sous-rubrique">
 					[(#TITRE)]
           </span>
@@ -183,7 +187,7 @@
       	<div class="cadre-sous-rubrique">
   		    <div class="titre-sous-rubrique">
               <a href="#URL_SITE" class="spip_out" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
-              [(#LOGO_SITE||image_reduire{80}||sinon{<img style="float:right;" src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+              [(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{80}|sinon{<img style="float:right;" src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
               #NOM_SITE
               </a>
             </div>

@@ -44,7 +44,7 @@
                 <div id="texte-article" >
   
 				
-			<B_articles>
+<B_articles>
                     <!-- si au moins un article trouvé, on affiche le nombre trouvé -->
                     <div class="cadre-resultat">
                       #GRAND_TOTAL 
@@ -52,15 +52,18 @@
                       [(#GRAND_TOTAL|>{01}|non) <:escal:article_trouve:>] 
                       <:escal:dans_site:>
                       
-	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>]
+							[<p class="pagination">(#PAGINATION)</p>
+							<div class="nettoyeur"></div>]
 
                     </div>
-			<BOUCLE_articles(ARTICLES){lang} {id_mot} {par date}{inverse}{pagination 10}>
-                    <!-- on affiche le ou les article(s) -->
+	<div class="liste-articles-rubrique" > 
+<BOUCLE_articles(ARTICLES){lang} {id_mot} {par date}{inverse}{pagination 10}>
+                    <!-- on affiche le ou les article(s) -->               
     <div class="cadre-articles-rubrique">
       <div class="titre-articles-rubrique">
-        <div class="logorub">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogorub,150}})]</div>
+        <div class="logorub">
+        [(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
+        </div>
         <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
       </div>
       <div class="introduction-articles-rubrique">
@@ -87,8 +90,10 @@
       </div>
       <div class="nettoyeur"></div>
     </div>
-                  </BOUCLE_articles>
-                  </B_articles>
+
+</BOUCLE_articles>
+    </div>
+</B_articles>
 
 
                 </div><!-- fin texte-article -->
