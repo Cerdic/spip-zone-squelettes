@@ -29,13 +29,16 @@ function html5up_phantom_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 	$maj['create'] = array(
 		array('ecrire_config','html5up', array(
-			'couleur_accent' => '#f56a6a'
+			'couleur_accent' => '#f56a6a',
 		))
 	);
-// 	$maj['1.1.1'] = array(
-// 		array('ecrire_config','html5up', lire_config('html5up_phantom')),
-// 		array('effacer_meta','html5up_phantom')
-// 	);
+	$maj['0.0.2'] = array(
+		array('ecrire_config','html5up', array(
+			'couleur_typo' => '#585858',
+			'couleur_bkg' => '#ffffff',
+			'couleur_bkg_footer' => '#f6f6f6',
+		))
+	);
 	cextras_api_upgrade(html5up_phantom_declarer_champs_extras(), $maj['create']);
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
