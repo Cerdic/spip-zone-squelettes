@@ -24,3 +24,10 @@ function html5up_phantom_hexa2rgba($color,$facteur){
 	return $rgba;
 
 }
+function hexa2utf8($color) {
+	// %23585858%3B
+	$color = str_replace('#','%23',$color);
+	$color = $color.'%3B';
+// 	$color = utf8_encode($color);
+	return $color;
+}
