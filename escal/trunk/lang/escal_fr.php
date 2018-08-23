@@ -94,6 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
 	'articles' => 'articles',
 	'articles_associes' => 'Voir les articles associés à ',
+	'articles_site' => 'Voir les articles de ce site',
 	'articles_associes_mot' => 'Articles associés au mot',
 	'articles_auteur' => 'Cet auteur a écrit :',
 	'articles_autres' => 'et les autres',
