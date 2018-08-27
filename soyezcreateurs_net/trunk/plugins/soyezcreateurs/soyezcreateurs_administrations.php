@@ -326,6 +326,9 @@ function soyezcreateurs_vider_tables($nom_meta_base_version) {
 }
 
 function sc_noisettespardefaut() {
+	if (!defined('_DIR_PLUGIN_NOIZETIER')) {
+		return;
+	}
 	include_spip('inc/noizetier_conteneur');
 	include_spip('inc/config');
 	include_spip('inc/ncore_type_noisette');
