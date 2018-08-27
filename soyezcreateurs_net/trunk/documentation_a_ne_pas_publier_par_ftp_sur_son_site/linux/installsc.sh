@@ -143,7 +143,7 @@ rm fpdf17.zip
 wget https://github.com/mpdf/mpdf/archive/v6.0.0.zip
 unzip v6.0.0.zip -d mpdf
 rm v6.0.0.zip
-# Pour le plugin GIS ?
+# Pour le plugin GIS Géométrie
 wget https://github.com/phayes/geoPHP/archive/1.2.zip
 unzip 1.2.zip
 rm 1.2.zip
