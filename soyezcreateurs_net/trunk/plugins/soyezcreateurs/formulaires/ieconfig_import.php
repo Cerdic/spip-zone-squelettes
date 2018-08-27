@@ -354,6 +354,6 @@ function ieconfig_config_locales($prefixeaimporter = null) {
 			}
 		}
 	}
-
+	sort($liste_config);
 	return $liste_config;
 }
