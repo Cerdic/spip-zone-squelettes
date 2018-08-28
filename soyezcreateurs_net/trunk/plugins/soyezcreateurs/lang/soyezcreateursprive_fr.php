@@ -357,39 +357,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_zone_underedito' => 'Affichage en dessous de l’Édito',
 	'cfg_nombres_dessousbreves_label' => 'Nombre d’items affichés dans les DessousBreves',
 	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d’accueil',
-	
-	'ieconfig_soyezcreateurs_export_explication' => 'Exportera la configuration du squelette SoyezCréateurs.',
-	'ieconfig_soyezcreateurs_export_option' => 'Inclure dans l’export ?',
-	'ieconfig_soyezcreateurs_import_explication' => 'Importera la configuration de l’onglet principal.',
-	'ieconfig_soyezcreateurs_import_option' => 'Inclure dans l’import ?',
-	'ieconfig_probleme_import_config' => 'Un probleme est suvenue durant l’import ?',
-	'ieconfig_soyezcreateurs_export_option_soyezcreateurs' => 'Exporter les paramètres principaux ',
-	'soyezcreateurs_export_soyezcreateurs' => 'Exporter les paramètres principaux ',
-	'soyezcreateurs_export_soyezcreateurs_layout' => 'Exporter les paramètres de positionnement ',
-	'soyezcreateurs_export_soyezcreateurs_couleurs' => 'Exporter les paramètres de couleurs ',
-	'soyezcreateurs_export_soyezcreateurs_google' => 'Exporter les paramètres référencement ',
-	'ieconfig_soyezcreateurs_export_option_choix' => 'Choix des paramètres à exporter ?',
-	'ieconfig_formulaire_type_import' => 'Type d’import',
-	'ieconfig_formulaire_type_import_explication' => 'Que voulez vous importer ?',
-	'ieconfig_ne_pas_importer' => 'Ne rien importer',
-	'ieconfig_ne_pas_importer' => 'Ne rien importer',
-	'ieconfig_soyezcreateurs_import_explication_soyezcreateurs' => 'Importera la configuration de l’onglet principal.',
-	'ieconfig_soyezcreateurs_import_explication_soyezcreateurs_layout' => 'Importera la configuration de l’onglet Positionnement.',
-	'ieconfig_soyezcreateurs_import_explication_soyezcreateurs_couleurs' => 'Importera la configuration de l’onglet Couleurs.',
-	'ieconfig_soyezcreateurs_import_explication_soyezcreateurs_google' => 'Importera la configuration de l’onglet Référencement.',
-	'ieconfig_soyezcreateurs_import_option_choix' => 'Quel type d’import souhaitez-vous?',
-	'soyezcreateurs_import_ecraser' => 'Avec écrasement de la configuration existante',
-	'soyezcreateurs_import_soyezcreateurs_fusionner' => 'Avec fusion des configurations (import > existant)',
-	'soyezcreateurs_import_soyezcreateurs_rien' => 'Ne pas importer',
-	'soyezcreateurs_import_soyezcreateurs_fusionner_inv' => 'En n’écrire que si paramètre manquant (existant > import)',
-	'ieconfig_soyezcreateurs_import_nofound_explication' => 'Aucune configuration trouvé pour cette onglet. Veuillez annuler l’importation et choisir une autre sauvegarde.',
-	
-	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés.',
-	'ieconfig_import_spe_couleurs' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
-	'ieconfig_import_spe_couleurs_choix' => 'Importation de configuration pré-enregistrés de jeux de couleurs.',
+		
+	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés <i>(<strong>Attention</strong>, action immédiate !)</i> :',
 	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs',
-	'ieconfig_import_spe_police' => 'Importation de configuration pré-enregistrés de jeux de polices.',
-	'ieconfig_import_spe_layout' => 'Importation de configuration pré-enregistrés de jeux de positionnement ou de template.'
-	
 	
 );

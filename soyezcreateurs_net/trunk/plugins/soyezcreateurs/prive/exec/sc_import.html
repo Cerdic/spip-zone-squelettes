@@ -1,7 +1,9 @@
-<h1><:soyezcreateursprive:ieconfig_import_spe:></h1>
+[(#AUTORISER{webmestre}|sinon_interdire_acces)]
+<h1><:soyezcreateursprive:configurations_rapides_soyezcreateurs:></h1>
+<p class="spip"><:soyezcreateursprive:ieconfig_import_spe:></p>
 <?php
 	$nom = _request('nom');
-	$option = _request('option');
+	$option = '#ENV{option}';
 	if (isset($nom) and isset($option)) {
 		include_spip('soyezcreateurs_fonctions_ieconfig');
 		if(!preg_match('[.a-zA-Z0-9_/\]', $nom)) {
@@ -11,16 +13,28 @@
 ?>
 
 <ul class="spip">
-	[
-	(#AUTORISER{webmestre}|oui)<li><a href="[(#SELF|parametre_url{nom,cfg_config/soyezcreateurs_mode_cognac}|parametre_url{option,fusion})]">Activer mode Cognac de SoyezCréateurs</a> (<strong>Attention</strong>, action immédiate&nbsp;!)</li>
-	]
+<BOUCLE_Types(DATA)
+  {source table,#LISTE{ecrase,fusion,fusion_inv}}>
+<BOUCLE_repertoires(DATA){source ls, #CHEMIN{cfg_config}/#VALEUR/*.yaml}{par basename}>
+	<li><a href="[(#SELF|parametre_url{nom,#FILE}|parametre_url{option,#_Types:VALEUR})]" class="confirmation">[(#FILE|yaml_decode_file|sc_import_nom)]</li>
+</BOUCLE_repertoires>
+</BOUCLE_Types>
 </ul>
 
 <?php
 	if ($result) {
 		$ok = $result['message_ok'];
-		echo "<p class="spip">$ok (#ENV{nom})</p>";
+		echo "<p class=\"spip\">$ok ([(#ENV{nom})] | [(#ENV{option})])</p>";
 
 	}
 ?>
 
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>

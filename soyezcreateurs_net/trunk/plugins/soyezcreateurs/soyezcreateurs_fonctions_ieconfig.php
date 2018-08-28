@@ -20,7 +20,7 @@
 */
 function sc_ieconfig_importer_fichier($chemin, $option = 'ecrase') {
 	include_spip('inc/yaml');
-	$config = yaml_decode_file(find_in_path($chemin.'.yaml'));
+	$config = yaml_decode_file($chemin);
 	
 	// On passe via le pipeline ieconfig
 	$message_erreur = pipeline('ieconfig', array(
