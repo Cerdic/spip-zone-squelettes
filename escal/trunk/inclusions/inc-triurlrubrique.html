@@ -8,7 +8,7 @@ INCLURE toujours places dans une boucle rubrique ]
 
 [(#REM) test sur nombre d'articles]
     <BOUCLE_articles_plusdun(ARTICLES){id_rubrique}{1,1}>
-          [(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]
+          [(#CONFIG{gerer_trad}=={oui}|?{[(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#_contexte_rubrique:URL_RUBRIQUE})]
     </BOUCLE_articles_plusdun></B_articles_plusdun>
    
         <BOUCLE_articles_unseul(ARTICLES){id_rubrique}{0,1}>
@@ -16,13 +16,13 @@ INCLURE toujours places dans une boucle rubrique ]
 [(#REM) test sur presence sous-rubriques]
             <BOUCLE_test_sousrubrique(RUBRIQUES){id_parent}>
             </BOUCLE_test_sousrubrique>
-                [(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]
+                [(#CONFIG{gerer_trad}=={oui}|?{[(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#_contexte_rubrique:URL_RUBRIQUE})]
             </B_test_sousrubrique>
-                    [(#_articles_unseul:URL_ARTICLE|parametre_url{lang,#ENV{lang}})]
+                    [(#CONFIG{gerer_trad}=={oui}|?{[(#_articles_unseul:URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#_articles_unseul:URL_ARTICLE})]
             <//B_test_sousrubrique>
            
         </BOUCLE_articles_unseul></B_articles_unseul>
-              [(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]
+              [(#CONFIG{gerer_trad}=={oui}|?{[(#_contexte_rubrique:URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#_contexte_rubrique:URL_RUBRIQUE})]
         <//B_articles_unseul>
        
     <//B_articles_plusdun>
