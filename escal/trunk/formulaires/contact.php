@@ -1,6 +1,6 @@
 <?php
 
-// Un énorme merci à Arnaud Bérard pour son aide
+// Un énorme merci à Arnaud Bérard pour son aide et à Sandy
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
@@ -55,17 +55,12 @@ function formulaires_contact_verifier_dist(){
           if (!_request('checkbox') AND lire_config('escal/config/checkbox') == 'oui' AND lire_config('escal/config/checkboxoblig') == 'oui' ) 
               $erreurs['checkbox'] = _T('info_obligatoire_02');        
 
-
-        // verification du message        
-        $test_message = nocode(_request('message'));
+	// verification du message  
+			$test_message = _request('message');
             // verifier si un message a ete saisi
             if (!_request('message')) {
                     $erreurs['message'] = _T('escal:contact_alerte_message');       
-            }
-            // Verifier que c'est un message valide
-            else if($test_message==FALSE){
-                    $erreurs['message']=_T('escal:contact_alerte_interdit').$test_message;
-            }                    
+            }                   
 
         // message general si oubli ou erreur
         if (count($erreurs))
@@ -77,17 +72,22 @@ function formulaires_contact_verifier_dist(){
 function formulaires_contact_traiter_dist(){
 
         include_spip('inc/config');
-
+/*
+ * Passage des caractères interdits en entités html
+ * ajout de la commande htmlspecialchars
+ * sur toutes les variables reçues par le formulaire
+ * Sandy-Pascal Andriant 30-08-2018
+ */
         $champs = array(
-            'nom'  => _request('nom'),
-            'prenom' => _request('prenom'),
-            'email' => _request('email'),
-            'message'=> _request('message'),
-            'champsup1'=>_request('champsup1'),
-            'champsup2'=>_request('champsup2'),
-            'sujet'=>_request('sujet'),
-            'checkbox'=>_request('checkbox'),
-            'anstispam'=>_request('Antispam'),
+            'nom'  => htmlspecialchars(_request('nom')),
+            'prenom' => htmlspecialchars(_request('prenom')),
+            'email' => htmlspecialchars(_request('email')),
+            'message' => htmlspecialchars(_request('message')),
+            'champsup1' => htmlspecialchars(_request('champsup1')),
+            'champsup2' => htmlspecialchars(_request('champsup2')),
+            'sujet' => htmlspecialchars(_request('sujet')),
+            'checkbox'=> htmlspecialchars(_request('checkbox')),
+            'anstispam'=> htmlspecialchars(_request('Antispam')),
         );
 
         $nom_site = extraire_multi($GLOBALS['meta']["nom_site"]); 
@@ -167,13 +167,6 @@ function formulaires_contact_traiter_dist(){
         }
 
 
-}
-// Verification basique d'insertion de code pour la fonction verifier
-function nocode($text){
-    if(!preg_match("/[]%~#`$&|}{^[><]/",$text))
-        return trim($text);
-    else
-        return FALSE;
 }
 
 ?>
