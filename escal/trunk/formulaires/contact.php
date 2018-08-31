@@ -1,6 +1,6 @@
 <?php
 
-// Un énorme merci à Arnaud Bérard pour son aide et à Sandy
+// Un énorme merci à Arnaud Bérard pour son aide et à Sandy pour la protection des données transmises
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
