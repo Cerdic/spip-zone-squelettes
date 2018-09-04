@@ -1,4 +1,7 @@
 <?php
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 
@@ -8,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// E
 	'explication_couleur_boites_defaut' => 'Cette couleur sera appliquée sur la boite de présentation du site 
-		et les boites de texte des articles',
+		et les boites de texte des articles. Par défaut <span style="background-color:#d64760; color:#fff">#d64760</span>',
 	
 	// I
 	'img_ss_titre' => 'Image sans titre',
@@ -20,4 +23,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// T
 	'titre_page_configurer' => 'Configuration du squelette Parallelisme',
 );
-?>

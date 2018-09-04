@@ -1,4 +1,7 @@
 <?php
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 function parallelism_insert_head($flux){
     $poptroxjs = find_in_path('js/jquery.poptrox.js');
@@ -49,5 +52,3 @@ function parallelism_insert_head_css($flux) {
     //. "<link rel="stylesheet" type="text/css" media="all" href="$css_icones" />";
     return $flux;
     }
-
-?>
