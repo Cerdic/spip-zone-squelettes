@@ -1,12 +1,9 @@
 #SET{tri,#CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}#SET{senstri,-1}
-<BOUCLE_ClassementAlpha(RUBRIQUES){id_rubrique}{titre_mot=ClassementAlpha}>#SET{tri,titre}#SET{senstri,1}</BOUCLE_ClassementAlpha>
-<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>#SET{tri,num titre}#SET{senstri,1}</BOUCLE_test_numero>
-<//B_ClassementAlpha>
 <B_articles_recents>
 #ANCRE_PAGINATION
 <dl id="listearticlerubrique">
-<BOUCLE_articles_recents(ARTICLES){id_rubrique}{lang}{tri #GET{tri},#GET{senstri}}{archive}{pagination}>
-<INCLURE{fond=noisettes/rubriques/rubrique_automatique_article_bloc,id_article}>
+<BOUCLE_articles_recents(ARTICLES){branche}{lang}{tri #GET{tri},#GET{senstri}}{archive}{pagination}>
+<INCLURE{fond=noisettes/rubriques/rubrique_automatique_article_bloc,id_article,affrub=1}>
 </BOUCLE_articles_recents>
 </dl>
 [<p class="pagination">(#PAGINATION{prive})</p>]

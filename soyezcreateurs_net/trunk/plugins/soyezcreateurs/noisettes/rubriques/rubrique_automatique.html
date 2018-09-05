@@ -2,7 +2,12 @@
 [(#INCLURE{fond=noisettes/plan/plan_branche,id_rubrique=#ENV{id_rubrique}})]
 </BOUCLE_PlanLocal>
 </B_PlanLocal>
+<BOUCLE_Blog(HIERARCHIE){id_rubrique}{tout}{type_mot=_Specialisation_Rubrique}{titre_mot=Blog}{inverse} {0,1}>
+[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_blog,id_rubrique=#ENV{id_rubrique},env,ajax})]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_blog_archives,id_rubrique=#ENV{id_rubrique},env,ajax})]]
+</BOUCLE_Blog>
 [(#ENV{archive}|non)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles,id_rubrique,env,ajax})]]
-[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles_archives,id_rubrique,ajax})]]
+[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique_articles_archives,id_rubrique,env,ajax})]]
+<//B_Blog>
 <//B_PlanLocal>
 #FILTRE{mini_html}
