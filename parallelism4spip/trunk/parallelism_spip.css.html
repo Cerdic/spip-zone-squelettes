@@ -1,0 +1,131 @@
+[(#REM)
+
+	Ce squelette CSS permet de surcharger avec des variables les styles du plugin parallelism
+
+	Note: l'entete "Vary:" sert a repousser l'entete par
+	defaut "Vary: Cookie,Accept-Encoding", qui est (un peu)
+	genant en cas de "rotation du cookie de session" apres
+	un changement d'IP (effet de clignotement).
+
+	ATTENTION: il faut absolument le charset sinon Firefox croit que
+	c'est du text/html !
+	<style>
+]
+#CACHE{3600*100,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+body{font-family : "Luxi sans", "Lucida Grande", Lucida, "Lucida Sans Unicode", sans-serif; 
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+}
+
+/* 
+   les logos peuvent servir de fond particulier aux pages, avec la hiérarchie le logo du site sinon rubrique sinon article 
+   calcule alors la couleur du texte de pied de page et le logo SPIP change de couleur aussi
+*/
+a.avec_spip{display:block; width:44px; height:44px; margin-bottom:-1em; opacity: 0.35; background-repeat:no-repeat;}
+a.avec_spip:hover{opacity:1;}
+a.avec_spip span{display:none}
+[a.avec_spip{background-image: url('(#CHEMIN{spip.png}|image_sepia{b0baba}|image_reduire{44}|extraire_attribut{src})')}]
+
+[body{background-image: url('(#LOGO_SITE_SPIP|extraire_attribut{src})')}]
+<BOUCLE_rub(RUBRIQUES){logo}>[(#SET{colorfond,[(#LOGO_RUBRIQUE|extraire_attribut{src}|couleur_extraire{5,5}|couleur_extreme|couleur_inverser)]})]
+[body.type-page_rubrique#ID_RUBRIQUE{background-image: url('(#LOGO_RUBRIQUE|extraire_attribut{src})')}]
+[body.type-page_rubrique#ID_RUBRIQUE #footer, .type-page_rubrique#ID_RUBRIQUE #footer a, .type-page_rubrique#ID_RUBRIQUE #footer a:visited, .type-page_rubrique#ID_RUBRIQUE ul.icons li a{ color: #(#GET{colorfond}); }]
+[body.type-page_rubrique#ID_RUBRIQUE a.avec_spip{background-image: url('(#CHEMIN{spip.png}|image_sepia{#GET{colorfond}}|image_reduire{44}|extraire_attribut{src})')}]
+</BOUCLE_rub>
+<BOUCLE_art(ARTICLES){tout}>[(#LOGO_ARTICLE_RUBRIQUE|oui)
+[(#SET{colorfond,[(#LOGO_ARTICLE|extraire_attribut{src}|couleur_extraire{5,5}|couleur_extreme|couleur_inverser)]})]
+/* art#ID_ARTICLE [(#GET{colorfond})] */
+[body.type-page_article#ID_ARTICLE{background-image: url('(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src})')}]
+[body.type-page_article#ID_ARTICLE #footer, .type-page_article#ID_ARTICLE #footer a, .type-page_article#ID_ARTICLE #footer a:visited, .type-page_article#ID_ARTICLE ul.icons li a{ color: #(#GET{colorfond}); }]
+[body.type-page_article#ID_ARTICLE a.avec_spip{background-image: url('(#CHEMIN{spip.png}|image_sepia{#GET{colorfond}}|image_reduire{44}|extraire_attribut{src})')}]
+]</BOUCLE_art>
+
+[(#REM) récupération de la couleur de fond des blocs de texte: config plugin > #d64760 ]
+#header { background-color: #CONFIG{parallelism/couleur_boites_defaut, #d64760}; }
+
+a.titre_rubrique {font-size:0.8em}
+a.titre_rubrique:hover {color:#fff; opacity:1; text-decoration:underline;}
+
+h3,
+.h3 {
+  font-size: 1.25em;
+  line-height: 1.2;
+  margin-bottom: 1.2em;
+}
+
+.previsu{
+background-color: #dadada;
+padding: 1em;
+margin: 1em;
+}
+
+#footer{font-size:0.86em;}
+
+ul.icons li.hide, .icon span{display:none}
+
+.poptrox-popup .caption:hover{background:transparent; color:transparent}
+
+/* css pour le contenu de page_unique */
+.page_unique #main{padding:0; width: 46em;}
+.page_unique #main .item{margin:0; box-shadow: none;}
+.page_unique #main .item.intro, .page_unique #main .items > :last-child{
+	width: 100%;
+	padding:1em;
+	border:1em solid #fff;
+}
+
+.page_unique h1{
+	text-align:center;
+}
+.page_unique .contenu_texte{
+	margin:0 auto;
+	background-color: #fff;
+	display: flex;
+	color:#333;
+	padding:1em;
+}
+.page_unique .contenu_texte a{ color:#666; text-decoration:underline;}
+
+.article_parallelism{
+	padding:1em;
+}
+
+/* css pour le formulaire de contact libre cf plugin homonyme */
+
+.page_unique h3 {
+	color:#000;
+}
+
+.formulaire_contact_libre legend{display:none;}
+form {
+ background-color:#FFF;
+ width:100%;
+ margin:0 auto;
+ }
+fieldset {
+margin:0; padding:0;
+ }
+input, textarea, select, option {
+ background-color:#FFF3F3;
+ color:#555;
+ font-family:"Luxi sans", "Lucida Grande", Lucida, "Lucida Sans Unicode", sans-serif;
+ }
+ 
+input{ width:100%;}
+
+ 
+.formulaire_contact_libre{background-color:#fff;padding-left:0;padding-top:0}
+.formulaire_contact_libre label {
+    color: #e3d9d9;
+    padding: 1.5em 0 0.5em 0;
+    display: block;
+}
+.formulaire_contact_libre fieldset legend{display:none}
+.formulaire_spip .boutons input,input.submit{background:#C0C0C0;border-radius:6px; border: 0;color:#FFF;padding:.7em 5em;text-transform:uppercase;position:relative;right:0;font-weight:400}
+.formulaire_spip input.text,.formulaire_spip textarea,.formulaire_spip select{background:#fff;color:#888;padding:.4em .6em;border:1px solid #e2e2e2}
+.formulaire_contact_libre textarea{height:8em}
+.formulaire_contact_libre .editer{padding:0}
+.formulaire_contact_libre .editer > label{line-height:1em}
