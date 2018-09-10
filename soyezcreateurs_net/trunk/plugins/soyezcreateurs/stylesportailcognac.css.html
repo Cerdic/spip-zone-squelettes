@@ -885,6 +885,8 @@ img.editologo {
 }
 .grid-item img {
   max-width: 100%;
+  width: 100%;
+  max-height: 340px;
 }
 .grid-item {
   margin-bottom: 20px;
@@ -941,11 +943,12 @@ img.editologo {
 
 
 /*
-M : [(#GET{masonry}|mult{3}|plus{100})]
+M : [(#GET{masonry}|mult{4}|moins{100})]
 LC: #GET{LargeurContaineur}
 */
 .gutter-sizer { width: 20px; }
-[(#GET{masonry}|mult{3}|plus{100}|<={#GET{LargeurContaineur}}|oui)
+[(#GET{masonry}|mult{4}|moins{100}|<={#GET{LargeurContaineur}}|oui)
+/* M <= LC */
 	.grid-sizer, .grid-item {
 	  width: calc(25% - 20px);
 	}
@@ -972,7 +975,8 @@ LC: #GET{LargeurContaineur}
 	  }
 	}
 ]
-[(#GET{masonry}|mult{3}|plus{100}|<={#GET{LargeurContaineur}}|non)
+[(#GET{masonry}|mult{4}|moins{100}|<={#GET{LargeurContaineur}}|non)
+/* M > LC */
 	.grid-sizer, .grid-item {
 	  width: calc(33.333% - 20px);
 	}
@@ -990,7 +994,7 @@ LC: #GET{LargeurContaineur}
 	width: calc(100% - 20px);
 	}
 ]
-@media only screen and (max-width:[(#GET{masonry}|mult{3}|plus{100})]px) {
+@media only screen and (max-width:[(#GET{masonry}|mult{4}|moins{100})]px) {
   .grid-sizer, .grid-item {
     width: calc(33.333% - 20px);
   }
@@ -1008,7 +1012,7 @@ LC: #GET{LargeurContaineur}
     width: calc(100% - 20px);
   }
 }
-@media only screen and (max-width: [(#GET{masonry}|mult{2}|plus{80})]px) {
+@media only screen and (max-width: [(#GET{masonry}|mult{3}|moins{80})]px) {
   .grid-sizer, .grid-item {
     width: calc(50% - 20px);
   }
@@ -1023,7 +1027,7 @@ LC: #GET{LargeurContaineur}
     width: calc(100% - 20px);
   }
 }
-@media only screen and (max-width: [(#GET{masonry}|mult{1}|plus{60})]px) {
+@media only screen and (max-width: [(#GET{masonry}|mult{2}|moins{60})]px) {
   .grid-sizer, .grid-item {
     width: calc(100% - 20px);
   }
