@@ -1,0 +1,51 @@
+<div class="items">
+
+	<div class="item intro span-2">
+			<h1[ class="(#EDIT{meta-nom_site})"]>#NOM_SITE_SPIP</h1>
+			<p[ class="(#EDIT{meta-slogan_site})"]>#SLOGAN_SITE_SPIP</p>
+	</div>
+	
+	[(#REM) <!-- exclure de la home les images des articles pages uniques -->]
+	<BOUCLE_pagesuniques(ARTICLES){id_rubrique<0}><BOUCLE_exclusion(DOCUMENTS){id_article}{doublons}></BOUCLE_exclusion></BOUCLE_pagesuniques>
+					
+	[(#REM) <!-- Images d'articles -->]
+	<BOUCLE_derniers_articles(ARTICLES){!par date}{0,20}{id_rubrique>0}>
+
+		<BOUCLE_image_art(DOCUMENTS){media==image}{par hasard}{0,1}{id_article}>
+		[(#SET{span,[(#LARGEUR|div{#HAUTEUR}|intval|plus{1})]})]
+		[(#GET{span}|>{3}|oui) #SET{span,3}]
+			
+			<article class="item thumb span-#GET{span}">
+				<a href="#URL_ARTICLE">
+					[<h2>(#INFO_TITRE{article,#ID_ARTICLE})</h2>]
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+			    </a>
+			</article>
+		</BOUCLE_image_art>
+		
+	</BOUCLE_derniers_articles>
+	[(#REM) <!-- si articles alors fermeture div items -->]
+</div>
+</B_derniers_articles>
+	
+		[(#REM) <!-- si aucun article, afficher toutes les images sans articles-->]
+		<B_images>
+		<BOUCLE_images(DOCUMENTS){media==image}{par num titre, date}{inverse}{tout}{doublons}>
+		[(#SET{span,[(#LARGEUR|div{#HAUTEUR}|intval|plus{1})]})]
+		[(#GET{span}|>{3}|oui) #SET{span,3}]
+
+				<article class="item thumb span-#GET{span}">
+					[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,#MODELE{titre_img,env}})</h2>]
+					<a class="image" href="[(#FICHIER|image_passe_partout{1024,1024}|extraire_attribut{src})]">
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+					</a>
+				</article>	
+				[(#REM) <!-- creation 2em ligne -->]
+				[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE|div{2}|intval}|oui)
+				</div>
+				<div class="items">]
+	  </BOUCLE_images>		
+	  </div>
+	  </B_images>
+
+<//B_derniers_articles>

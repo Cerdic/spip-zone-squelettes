@@ -1,0 +1,27 @@
+<BOUCLE_article(ARTICLES){id_article}{tout}>
+
+<div class="items">
+
+	<div class="item intro span-3">
+			<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+	</div>
+	
+</div>
+
+<div class="contenu_texte">
+	<div class="[(#EDIT{texte}) ]article_parallelism">#TEXTE</div>
+</div>
+
+<BOUCLE_image_art(DOCUMENTS){media==image}{par num titre, titre}{id_article}{tout}>
+	<div class="items">			
+			 #SET{span,3}
+			
+			<article class="item thumb span-#GET{span}">
+					[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,#MODELE{titre_img,env}})</h2>]
+					<a class="image" href="[(#FICHIER|image_passe_partout{1024,1024}|extraire_attribut{src})]">
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+					</a>
+			</article>
+	</div>
+</BOUCLE_image_art>
+</BOUCLE_article>

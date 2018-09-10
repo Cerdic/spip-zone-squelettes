@@ -1,0 +1,39 @@
+<section id="footer">
+	<section>
+		<div[ class="(#EDIT{meta-descriptif_site})"]>#DESCRIPTIF_SITE_SPIP</div>
+		<ul class="copyright"><li class="articles"><a href="#URL_SITE_SPIP"><:accueil_site:></a></li>
+			[(#REM) lien vers rubriques racines]
+			<BOUCLE_sommaire(RUBRIQUES){id_parent=0}{par num titre}>
+			<li class="articles"><a href="#URL_RUBRIQUE">#TITRE</a></li>
+			</BOUCLE_sommaire>
+			[(#REM) les pages uniques (credits...)]
+			<BOUCLE_pages(ARTICLES){id_rubrique=-1}{par num titre}><li class="articles"><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_pages>
+		</ul>
+	</section>
+	<section>
+		[(#SET{ref,#NOM_SITE_SPIP [| (#SLOGAN_SITE_SPIP)]})]
+		<BOUCLE_rub(RUBRIQUES){id_rubrique}>#SET{ref,#NOM_SITE_SPIP | #TITRE}</BOUCLE_rub>
+		<BOUCLE_art(ARTICLES){id_article}>#SET{ref,#NOM_SITE_SPIP | #TITRE}</BOUCLE_art>
+		<ul class="icons" id="socialtags">
+			<li><a class="icon fa-twitter" href="http://twitter.com/share?text=[(#GET{ref}|rawurlencode)]&amp;url=[(#SELF|url_absolue)]"><span class="label">Twitter</span></a></li>
+			<li><a class="icon fa-instagram" href="#"><span class="label">Instagram</span></a></li>
+			<li><a class="icon fa-facebook" href="http://www.facebook.com/sharer/sharer.php?u=[(#SELF|url_absolue)]&amp;t=[(#GET{ref}|rawurlencode)]"><span class="label">Facebook</span></a></li>
+			<li><a class="icon fa-google-plus" href="https://plusone.google.com/_/+1/confirm?url=[(#SELF|url_absolue)]"><span class="label">Google+</span></a></li>
+			<li class="hide"><a href="#" class="icon fa-dribbble"><span>Dribbble</span></a></li>
+			<li class="hide"><a href="#" class="icon fa-pinterest"><span>Pinterest</span></a></li>
+			<li><a class="icon fa-envelope" rel="nofollow" href="mailto:?subject=[(#GET{ref}|rawurlencode)]&amp;body=[(#VAL{<:parallelism:signalement_mail:>}|rawurlencode)]&nbsp;#URL_SITE_SPIP/#SELF"><span class="label">Email</span></a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; #NOM_SITE_SPIP
+			<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee> - </B_annee>[(#DATE|annee) ]
+			</li>
+			[(#SESSION{id_auteur}|non) <li><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='icon fa-edit login_modal' title="<:lien_connecter:>"> <:lien_connecter:></a>][
+		(#AUTORISER{ecrire})<li><a class="icon fa-edit" href="#CONST{_DIR_RESTREINT_ABS}" title="<:espace_prive:>"><span><:espace_prive:></span></a></li>][
+		(#SESSION{id_auteur}|oui) <li><a class="icon fa-unlink" href="#URL_LOGOUT" rel="nofollow" title="<:icone_deconnecter:>"><span><:icone_deconnecter:></span></a></li>]
+			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			<li>
+			[<a class="avec_spip" href="https://www.spip.net/" rel="generator" title="<:site_realise_avec_spip:>"><span>(#CHEMIN{spip.png}|image_sepia{AFB1B2}|image_reduire{44}|inserer_attribut{alt,SPIP})</span></a>]
+			</li>
+		</ul>
+	</section>
+</section>

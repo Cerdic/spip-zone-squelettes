@@ -1,0 +1,47 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<div class="items">
+
+	<div class="item intro span-2">
+			<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+			<BOUCLE_rub(RUBRIQUES){id_parent}{" | "}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_rub>
+	</div>
+	
+	[(#REM)<!-- Articles de la rubrique: tri par numéro si il y en a sinon par date inverse -->]
+	<BOUCLE_derniers_articles(ARTICLES){id_rubrique}{par num titre, date}{inverse}>
+	
+		<BOUCLE_image_art(DOCUMENTS){media==image}{par hasard}{0,1}{id_article}>
+		[(#SET{span,[(#LARGEUR|div{#HAUTEUR}|intval|plus{1})]})]
+		[(#GET{span}|>{3}|oui) #SET{span,3}]
+		
+			<article class="item thumb span-#GET{span}">
+				<a href="#URL_ARTICLE">
+					[<h2>(#INFO_TITRE{article,#ID_ARTICLE})</h2>]
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+			    </a>
+			</article>
+		[(#REM) <!-- creation 2em ligne -->]
+			[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE|div{2}|intval}|oui)
+			</div>
+			<div class="items">]
+		</BOUCLE_image_art>
+		</BOUCLE_derniers_articles>
+
+</div>
+
+<B_images>
+<div class="items">
+		<!-- Images de la rubrique -->
+		<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_rubrique=#ENV{id_rubrique}}>#SET{rapport,#HAUTEUR|div{231}}
+			
+		[(#SET{span,[(#LARGEUR|div{#HAUTEUR}|intval|plus{1})]})]
+			
+			<article class="item thumb span-#GET{span}">
+					[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,#MODELE{titre_img,env}})</h2>]
+					<a class="image" href="[(#FICHIER|image_passe_partout{1024,1024}|extraire_attribut{src})]">
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+			</a>
+			</article>
+	</BOUCLE_images>			
+</div>
+</B_images>
+</BOUCLE_rubrique>

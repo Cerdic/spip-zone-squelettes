@@ -1,0 +1,29 @@
+<BOUCLE_article(ARTICLES){id_article}>
+<B_image_art>
+<div class="items">
+
+	<div class="item intro span-2">
+			<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+			[<p[ class="(#EDIT{texte})"]>(#TEXTE)</p>]
+			<p><a href="#URL_RUBRIQUE" class="titre_rubrique">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a></p>
+	</div>
+		
+		<BOUCLE_image_art(DOCUMENTS){media==image}{par num titre, date}{inverse}{id_article}>
+			[(#SET{span,[(#LARGEUR|div{#HAUTEUR}|intval|plus{1})]})]
+			[(#GET{span}|>{3}|oui) #SET{span,3}]
+			
+			<article class="item thumb span-#GET{span}">
+					[<h2 class="#EDIT{titre}">(#TITRE|?{#TITRE,#MODELE{titre_img,env}})</h2>]
+					<a class="image" href="[(#FICHIER|image_passe_partout{1024,1024}|extraire_attribut{src})]">
+					[(#FICHIER|image_recadre{#EVAL{277*#GET{span}}:277,'-','focus'}|image_reduire{0,277}|inserer_attribut{alt,[(#TITRE|attribut_html)]})]
+					</a>
+			</article>
+			[(#REM) <!-- creation 2em ligne -->]
+			[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE|div{2}|intval}|oui)
+			</div>
+			<div class="items">]
+		</BOUCLE_image_art>
+
+</div>
+</B_image_art>
+</BOUCLE_article>
