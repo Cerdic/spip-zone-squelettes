@@ -1,13 +1,9 @@
-[(#REM) contenus connexes]
-
-<B_extra1_article>
-<BOUCLE_extra1_article(ARTICLES){id_article}{doublons}>
-<aside class="container ajax" role="contentinfo">
-	[(#REM) Petition ]
-	[(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
-	
-	[(#REM) Forum & comments ]	
-	<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum)}/>	
-</aside>
-</BOUCLE_extra1_article>
-</B_extra1_article>
+<B_extra1_articles>
+	<BOUCLE_extra1_articles(ARTICLES){id_article}>
+		[(#REM) Jumbotron article connexes ]
+		<nav class="container" role="complementary">
+			[(#PLUGIN{critere_mots}|oui) [(#INCLURE{fond=inclure/articles-connexes-mots,env,ajax,nb=3})] ]		
+			[(#PLUGIN{critere_mots}|non) [(#INCLURE{fond=inclure/articles-connexes-rubrique,env,ajax,nb=3})] ]
+		</nav>
+	</BOUCLE_extra1_articles>
+</B_extra1_articles>

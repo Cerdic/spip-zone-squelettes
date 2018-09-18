@@ -1,25 +1,38 @@
-<div class="container">
-	[(#REM) Fil d'Ariane ]
-	<ol role="navigation" class="breadcrumb" prefix="v: http://rdf.data-vocabulary.org/#">
-		<li typeof="v:Breadcrumb">
-			<a rel="home v:url" property="v:title" href="#URL_SITE_SPIP/" itemprop="url">
-				<span itemprop="title"><:accueil_site:></span>
-			</a>
-		</li>
-		<li typeof="v:Breadcrumb" class="active on">
-			<strong property="v:title" itemprop="title"><:pass_erreur:> 404</strong>
-		</li>
-	</ol>
+<nav class="container">
+	<header class="page-header lead">
+		<p class="h2"><i class="fa fa-sitemap" aria-hidden="true"></i> <:plan_site:></p>
+	</header>
+	
+	
+		<BOUCLE_exclure(RUBRIQUES) {id_rubrique = 5} {doublons}></BOUCLE_exclure>
+		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {doublons}>
 
-	[(#REM) Contenu principal ]
-	<section class="row">
-		<header class="bg-warning col-sm-12 col-md-8 col-lg-8">
-			<h1 class="h1 text-warning"><small><:pass_erreur:> 404</small> Page introuvable ! <big>:-(</big></h1>
-			<p class="text-warning"><:zktx:pass_erreur_404:></p>
-		</header>
-		<section class="well col-sm-12 col-md-4 col-lg-4">
-			[(#ENV{erreur})]
-			#FORMULAIRE_RECHERCHE
-		</section>
-	</section>
-</div>
+			<p class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></p>
+			
+			<ul class="plan">
+				[(#REM) Articles et sous-rubriques ]
+				<B_articles_racine>
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles_racine>
+				</B_articles_racine>
+			
+				<B_rubriques>
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li><a href="#URL_RUBRIQUE">#TITRE</a>
+				
+					<B_articles>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_articles>
+					</ul>
+					</B_articles>
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</B_rubriques>
+			</ul>
+		</BOUCLE_secteurs>
+	
+</nav> [(#REM) .container ]
