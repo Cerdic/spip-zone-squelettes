@@ -883,6 +883,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_rss' => 'Affichage du logo RSS avec lien vers la page du flux',
 	'rubrique_rss2' => 'Affichage du logo RSS avec lien vers la page du flux pour les sous-rubriques',
 	'rubrique_sites_references' => 'Les sites référencés dans cette rubrique',
+	'rubrique_site_reference' => 'Site référencé dans cette rubrique',
 	'rubrique_sous_rubriques' => 'Les sous-rubriques de cette rubrique',
 	'rubrique_taille_logo' => 'Taille des logos pour les rubriques et articles listés',
 	'rubrique_trouvee' => 'rubrique trouvée',

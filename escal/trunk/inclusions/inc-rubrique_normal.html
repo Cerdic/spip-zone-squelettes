@@ -176,6 +176,9 @@
 
 #SET{nbrpagsites,#CONFIG{escal/config/nombresites,5}}
 
+<BOUCLE_test_sites(SITES){id_rubrique}{1,n}>
+
+<!-- si plusieurs sites -->
 <B_derniers_sites>
 		<hr />
   <div class="texte-insert">
@@ -199,6 +202,59 @@
       </BOUCLE_derniers_sites>
 
 </B_derniers_sites>
+
+</BOUCLE_test_sites>
+
+<!-- si un seul site -->
+<BOUCLE_un_site(SITES){id_rubrique}>
+
+		<hr />
+  <div class="texte-insert">
+  <:escal:rubrique_site_reference:>
+  </div>
+				<div id="cadre-titre-article">
+					<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
+						<div class="logorub">
+						[(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{80}|sinon{<img style="float:right;" src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+						</div>
+						<div id="titre-article" class="#EDIT{titre}">#NOM_SITE<br / >#URL_SITE</div>
+						<div id="descriptif-article">[(#DESCRIPTIF)]</div>       
+              </a>
+            <div class="nettoyeur"></div>
+				</div><!-- fin cadre-titre-article -->
+[(#REM) Articles issus de la syndication ]
+#SET{nbrpag,#CONFIG{escal/config/nombreart,5}}
+<B_articles>
+	<!-- si plus de x articles, on pagine -->
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
+<div class="liste-articles-rubrique">
+	<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {!par date} {pagination #GET{nbrpag}}>
+		<div class="cadre-articles-rubrique">
+			<a class="articles-rubrique" href="#URL_ARTICLE" class="spip_out" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+				<div class="titre-articles-rubrique">[(#TITRE)]</div>
+				<div class="introduction-articles-rubrique">[(#DESCRIPTIF)]</div>
+			</a>
+     	<div class="auteur-articles-rubrique">
+			<div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+		</div>
+    </div>      
+  </BOUCLE_articles>
+</div>
+<div class="nettoyeur"></div> 
+	<!-- si plus de x articles, on pagine -->
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) --> ]
+</B_articles>
+
+</BOUCLE_un_site>
+
+<//B_test_sites>
+
 
 </BOUCLE_contexte>
 
