@@ -9,9 +9,11 @@
 		'header',
 		'nav',
 		'footer',
-		'foot_js',
-		'share' //,
+		'foot_js' //,
 	);
+
+	// activer le chargement parallele sur les blocs contenu et more
+	define('_Z_AJAX_PARALLEL_LOAD','extra1,extra2,footer');
 	
 // Titre (BTE PP)
 	$GLOBALS['debut_intertitre'] = '<h2 class=\"h2\">';

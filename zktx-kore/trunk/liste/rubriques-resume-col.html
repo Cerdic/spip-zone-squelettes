@@ -1,7 +1,7 @@
 <BOUCLE_secteur(HIERARCHIE){tout}{id_rubrique}{racine}{0,1}>
 	<B_sous_rubriques_mktg>
 		#ANCRE_PAGINATION
-		<BOUCLE_sous_rubriques_mktg(RUBRIQUES){id_parent} {!par num titre, titre} {pagination #ENV{nb,6}}>
+		<BOUCLE_sous_rubriques_mktg(RUBRIQUES){id_parent} {par num titre, titre} {id_rubrique != #_secteur:ID_RUBRIQUE} {pagination #ENV{nb,3}}>
 			[(#REM) 
 				Affichage :
 				-	mobile xs et sm: 1 colonne ( col-xs-12 col-sm-12 )
@@ -17,7 +17,7 @@
 			<article class="item hentry col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
 				<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
 				[(#LOGO|image_reduire{240,240}|inserer_attribut{class,'img-responsive center-block'}|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
-				<p class="h3 entry-title"><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> <a href="#URL_RUBRIQUE" rel="bookmark">#TITRE</a></p>
+				<p class="h3 entry-title"><i class="fa fa-fw #EXPOSE{fa-folder-open, fa-folder}" aria-hidden="true"></i> <a href="#URL_RUBRIQUE" rel="bookmark">#TITRE</a></p>
 				[<section class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{160}|abs_url)</section>]
 			</article>
 			[(#COMPTEUR_BOUCLE|alterner{'', '', </nav>})] [(#REM) /.row ]

@@ -2,15 +2,24 @@
   Copie du 2014-11-10 12:54:36 par Loiseau2nuit
   Fichier original plugins/comments/inclure/forum.html
 ]
-<div class="container">
-	<div class="row">
-	<a href="#comments" name="comments" id="comments"></a> 
-	<a href="#forum" name="forum" id="forum"></a> 
-	<INCLURE{fond=comments-#CONFIG{comments/comments_fil,list}|replace{'-',''},env,ajax} />[(#ENV{repondre_url}|oui)
-	[<div class="h3"><i class="fa fa-pencil-square-o"></i> (#ENV*{repondre_titre,<:repondre_article:>}|trim)</div>]
-	[<div class="well col-sm-12 col-xs-12 col-md-4 sticky">
-		(#FORMULAIRE_FORUM{#SELF,#ENV{objet},#ENV{id_objet}})
-	</div>]
-	[(#PARAMETRES_FORUM|oui)<INCLURE{fond=comments-feed,env} />]
-]
-</div></div>
+<a href="#comments" name="comments" id="comments"></a><a href="#forum" name="forum" id="forum"></a> 
+<div class="row">
+
+	<section class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+		<INCLURE{fond=comments-#CONFIG{comments/comments_fil,list}|replace{'-',''},env,ajax} />
+	</section>
+
+	[(#ENV{repondre_url}|oui)
+		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-4 sticky">
+			[<div class="h3"><i class="fa fa-pencil-square-o"></i> (#ENV*{repondre_titre,<:repondre_article:>}|trim)</div>]
+			
+			[<div class="well">(#FORMULAIRE_FORUM{#SELF,#ENV{objet},#ENV{id_objet}})</div>]
+			
+			[(#PARAMETRES_FORUM|oui)<INCLURE{fond=comments-feed,env} />]
+		</div>
+	][(#REM) fin _ENV repondre_url ]
+	[(#ENV{repondre_url}|non)
+		<p class="h3"><:zktx:forums_desactives:></p>
+		[<p class="text-center"><:zktx:forums_desactives_partage:></p><nav class="text-center">(#INCLURE{fond=inclure/socialtags,env})</nav>]
+	]
+</div> [(#REM) /.row ]
