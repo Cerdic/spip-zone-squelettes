@@ -113,12 +113,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_premier_message' => 'Mostra solo il primo messaggio di ogni thread, le risposte sono espandibili',
 	'articles_reponses_forum' => 'Risposte del forum dell’articolo',
 	'articles_rubrique' => 'Articoli di rubrica',
+	'articles_site' => 'Vedere gli articoli di questo sito',
 	'articles_trouves' => 'articoli trovati',
 	'aucun' => 'No',
 	'aujourdhui' => 'Oggi: ',
 	'auteurs' => 'autori',
 	'avec' => 'con',
-	'avec_le_squelette' => 'con il modello', # MODIF
+	'avec_le_squelette' => 'con il modello',
 
 	// B
 	'balise_author' => 'Tag "Author": ',
@@ -369,6 +370,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_rainette2' => ': è necessario il plugin "Rainette". Informazioni meteo su una città a scelta.<br />La configurazione di questo blocco si trova in "Plugins di Escal".',
 	'doc_recherche_multi' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article198&lang=fr" title="Guarda la documentazione">Ricerche multi-criterio</a>',
 	'doc_recherche_multi2' => ': ricerca per parole chiave e per gruppi di parole chiave.',
+	'doc_site_escal' => '<a class="doc-escal" href="http://escal.ac-lyon.fr" title="Andare sul sito di ESCAL">Documentazione:  sito di ESCAL</a>',
 	'doc_sites_favoris' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article181&lang=fr" title="Guarda la documentazione">Siti preferiti</a>',
 	'doc_sites_favoris2' => ': miniature scorrevoli dei siti elencati nel settore (o dove si trovano) con la parola chiave "favori".',
 	'doc_stats' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article126&lang=fr" title="Guarda la documentazione">Statistiche</a>',
@@ -534,6 +536,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             non dovete fare altro, l’icona relativa alla licenza scelta per un determinato articolo apparirà automaticamente nella parte alta dell’articolo stesso.',
 	'licence_plugin' => 'Plugin Licence',
 	'lien_agenda' => 'Visualizzazione a pagina intera',
+	'lien_agenda_title' => 'Affiggere l’agenda in piena pagina',
 	'liens_sociaux_espace' => 'Mostra i social link nella barra degli strumenti',
 	'liens_sociaux_explication' => 'Se è stato attivato il <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Social Links"</a>, 
 è possibile impostarlo qui.',
@@ -642,6 +645,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_annuaire_redacteur' => 'Colore per i redattori:',
 	'noisettes_annuaire_visiteur' => 'Colore per i visitatori:',
 	'noisettes_calendrier_ajouter' => 'Link "aggiungi un evento" se il visitatore è autenticato:',
+	'noisettes_calendrier_couleur' => 'Colore per difetto degli avvenimenti',
 	'noisettes_calendrier_events' => 'Lista dei prossimi eventi sotto',
 	'noisettes_calendrier_explication' => 'Scelta di visualizzazione:<br /> 
                     - gli <strong>eventi</strong> creati dentro gli articole che utilizzano il plugin Agenda<br />
@@ -880,6 +884,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_pagin_haut' => 'Visualizza l’impaginazione in alto',
 	'rubrique_rss' => 'Visualizzazione del logo RSS con link alla pagina dei flussi',
 	'rubrique_rss2' => 'Visualizzazione del logo RSS con link alla pagina dei flussi per le sotto-rubriche',
+	'rubrique_site_reference' => 'Sito inserito in campionario in questa rubrica',
 	'rubrique_sites_references' => 'I siti inseriti in questa rubrica',
 	'rubrique_sous_rubriques' => 'Le sotto-rubriche di questa rubrica',
 	'rubrique_taille_logo' => 'Domensione dei loghi per le sezioni e gli articoli elencati',
@@ -929,6 +934,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Aumentare la grandezza dei caratteri',
 	'taille_diminuer' => 'Diminuire la grandezza dei caratteri',
 	'taille_fichier' => 'Dimensioni del file:',
+	'taille_police' => 'Taglia della polizia :',
+	'taille_police_explication' => '<strong>Taglia della polizia :</strong><br />
+				Per aumentare o diminuire la taglia dei caratteri di tutto il sito (definite in rem)<br />
+				Esempi :<br />
+				62.5% → 1rem = 10px<br />
+				75% → 1rem = 12px<br />
+				87.5% → 1rem = 14px<br />
+				100% → 1rem = 16px<br />',
 	'telechargement' => 'File da inviare:',
 	'telechargements' => 'Files da inviare:',
 	'texte_accueil' => 'Benvenuti in Escal!<br /><br />
