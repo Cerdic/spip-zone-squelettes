@@ -3,11 +3,12 @@
 <li><a href="https://contrib.spip.net/Premiers-pas-dans-le-squelette" title="Mode d'emploi"><:soyezcreateurs:commencer:></a></li>
 <li><a href="#URL_ECRIRE{sc_bannieres}">Gérer les bannières (en-tête des pages) et le logo</a></li>[
 (#AUTORISER{webmestre}|oui)<li><a href="#URL_ECRIRE{sc_vide}">Supprimer les articles de démonstration inutiles</a><br />Cette opération est potentiellement <strong>dangereuse</strong> et n'est à faire qu'en comprenant bien ce que vous faites !</li>
-[(#PLUGIN{campagnes}|oui)<li><a href="[(#URL_ECRIRE{sc_aide}|parametre_url{doit,1})]">Créer les emplacements de bannières publicitaires par défaut</a><br />Action <strong>immédiate</strong> !</li>]
+[(#PLUGIN{campagnes}|oui)<li><a href="[(#URL_ECRIRE{sc_aide}|parametre_url{doit_Campagne,1})]">Créer les emplacements de bannières publicitaires par défaut</a><br />Action <strong>immédiate</strong> !</li>]
+[(#PLUGIN{noizetier}|oui)<li><a href="[(#URL_ECRIRE{sc_aide}|parametre_url{doit_Noizetier,1})]">Placer les noizettes du mode Cognac</a><br />Action <strong>immédiate</strong> !</li>]
 [(#PLUGIN{ieconfig}|oui)<li><a href="[(#URL_ECRIRE{sc_import})]"><:soyezcreateursprive:configurations_rapides_soyezcreateurs:></li>]
 ]</ul>
 <?php
-if (autoriser('webmestre') AND _request('doit')==1) {
+if (autoriser('webmestre') AND _request('doit_Campagne')==1) {
 ?>
 <h2>Actions</h2>
 <?php
@@ -22,6 +23,16 @@ if (autoriser('webmestre') AND _request('doit')==1) {
 	echo "<a href=\"".generer_url_entite($id_encart, encart)."\">Bannière de pied de page</a>.</p>";
 ?>
 <p>Les <a href="./?exec=encarts">encarts publicitaires</a> ont été créés.</p>
+<?php
+}
+?>
+<?php
+if (autoriser('webmestre') AND _request('doit_Noizetier')==1) {
+	include_spip('inc/soyezcreateurs_noizetier_config');
+	sc_noisettespardefaut();
+?>
+<h2>Actions</h2>
+<p>Les <a href="[(#URL_ECRIRE{noizetier_page}|parametre_url{page,corps_sommaire_modecognac})]">noizettes par défaut du mode Cognac</a> ont été créées.</p>
 <?php
 }
 ?>
