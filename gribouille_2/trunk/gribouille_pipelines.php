@@ -107,10 +107,10 @@ function gribouille_prepare_recherche($flux) {
 					"spip_rubriques",
 					"statut='publie' 
 						AND " . sql_in('id_rubrique', array_keys($points), '', '', '', '', $serveur) . " 
-						AND " . sql_in('id_secteur', array_values($id_secteurs), 'NOT', '', '', '', $serveur)
+						AND " . sql_in('id_secteur', array_values($id_secteurs_wiki), 'NOT', '', '', '', $serveur)
 				);
 				while ($t = sql_fetch($s, $serveur)) {
-					$p2[ $t['id_article'] ] = '';
+					$p2[ $t['id_rubrique'] ] = '';
 				}
 				$p2           = array_intersect_key($points, $p2);
 				$flux['data'] = $p2;
