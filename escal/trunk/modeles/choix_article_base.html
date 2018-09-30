@@ -14,19 +14,19 @@
 <br />
 <BOUCLE_article (ARTICLES){id_article?}>
 
-<div class="choix-article" style="width: #GET{width}%;">
-<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+<div class="choix-article choix#ID_ARTICLE" style="width: #GET{width}%;">
+<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]" style="background-color:#ENV{couleur}">
 <!-- affichage logo -->
-	<span style="float:left; margin:5px"> [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,80}})] </span>
+	<span class="logo-choix"> [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#CONFIG{escal/config/taillelogoartune,80}})] </span>
 	
 <!-- affichage titre -->
-	<span style="font-size:1.1rem; font-weight:bold; margin-left: 5px;">
+	<span class="titre-choix">
 	[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]
 	</span><br />
 	
 <!-- affichage rubrique -->
 	<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubrique}|=={non}|non}>
-		<span style="font-size:1rem; margin-left:10px;">
+		<span class="rubrique-choix">
 			 <:rubrique:> : [(#TITRE|couper{30})]
 		</span>
 		<br />
@@ -39,6 +39,7 @@
 		[(#TEXTE*|couper{#CONFIG{escal/config/nbrecaracttexte,150}})]      
 	</div>
 	<br />
+
 </a>
 </div>   
     
