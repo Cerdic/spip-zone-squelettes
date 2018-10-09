@@ -79,15 +79,15 @@ function formulaires_contact_traiter_dist(){
  * Sandy-Pascal Andriant 30-08-2018
  */
         $champs = array(
-            'nom'  => htmlspecialchars(_request('nom')),
+            'nom' => htmlspecialchars(_request('nom')),
             'prenom' => htmlspecialchars(_request('prenom')),
             'email' => htmlspecialchars(_request('email')),
             'message' => htmlspecialchars(_request('message')),
             'champsup1' => htmlspecialchars(_request('champsup1')),
             'champsup2' => htmlspecialchars(_request('champsup2')),
             'sujet' => htmlspecialchars(_request('sujet')),
-            'checkbox'=> htmlspecialchars(_request('checkbox')),
-            'anstispam'=> htmlspecialchars(_request('Antispam')),
+            'checkbox' => htmlspecialchars(_request('checkbox')),
+            'anstispam' => htmlspecialchars(_request('Antispam')),
         );
 
         $nom_site = extraire_multi($GLOBALS['meta']["nom_site"]); 
