@@ -33,6 +33,11 @@ function gribouille_calcul_diff($id_objet, $objet, $id_version, $format = 'compl
 	return $ret;
 }
 
+/**
+ * Retourne l'id_secteur du Wiki
+ * 
+ * @return array|mixed
+ */
 function gribouille_secteurs_wiki() {
 	include_spip('inc/filtres');
 	$f = chercher_filtre('info_plugin');
@@ -43,7 +48,76 @@ function gribouille_secteurs_wiki() {
 	}
 }
 
-// un critère qui restreint les boucles articles et rubriques du wiki
+
+/**
+ * Teste si on doit exclure le secteur Wiki 
+ * true quand on vient du wiki
+ * true dans l'espace prive
+ * true dans les crayons
+ * false dans les autres pages (publiques hors wiki)
+ *
+ * @return array|mixed|null
+ */
+function boucle_exclure_secteur() {
+	if (!test_espace_prive() && !_request('action')) {
+		return gribouille_secteurs_wiki();
+	}
+	return null;
+}
+
+/**
+ * Surcharge de la boucle ARTICLES permettant d'exclure les articles du Wiki
+ * @param $id_boucle
+ * @param $boucles
+ *
+ * @return string
+ */
+function boucle_ARTICLES($id_boucle, &$boucles) {
+	$boucle = &$boucles[$id_boucle];
+	$id_table = $boucle->id_table;
+	$secteurs_wiki = join(',',boucle_exclure_secteur());
+
+	if (!$boucle->modificateur['wiki'] && $secteurs_wiki) {
+		$boucle->where[] = array(
+			"'NOT IN'",
+			"'$id_table.id_secteur'",
+			"'($secteurs_wiki)'",
+		);
+	}
+
+	return boucle_DEFAUT_dist($id_boucle, $boucles);
+}
+
+/**
+ * Surcharge de la boucle RUBRIQUES permettant d'exclure les rubriques du Wiki
+ * @param $id_boucle
+ * @param $boucles
+ *
+ * @return string
+ */
+function boucle_RUBRIQUES($id_boucle, &$boucles) {
+	$boucle = &$boucles[$id_boucle];
+	$id_table = $boucle->id_table;
+	$secteurs_wiki = join(',',boucle_exclure_secteur());
+
+	if (!$boucle->modificateur['wiki'] && $secteurs_wiki) {
+		$boucle->where[] = array(
+			"'NOT IN'",
+			"'$id_table.id_secteur'",
+			"'($secteurs_wiki)'",
+		);
+	}
+
+	return boucle_DEFAUT_dist($id_boucle, $boucles);
+}
+
+/**
+ * Critère qui restreint les boucles articles et rubriques du wiki
+ * 
+ * @param $idb
+ * @param $boucles
+ * @param $crit
+ */
 function critere_wiki($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
@@ -58,7 +132,13 @@ function critere_wiki($idb, &$boucles, $crit) {
 	$boucle->modificateur['wiki'] = true;
 }
 
-// un critère qui restreint les versions aux articles du wiki
+/**
+ * Critère qui restreint les versions aux articles du wiki
+ * 
+ * @param $idb
+ * @param $boucles
+ * @param $crit
+ */
 function critere_versions_wiki($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
@@ -74,9 +154,16 @@ function critere_versions_wiki($idb, &$boucles, $crit) {
 	$boucle->modificateur['wiki'] = true;
 }
 
-function masquer_ip($texte){
-	if(preg_match('#^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\z#',$texte,$matches)) {
-		return $matches[1].'.'.$matches[2].'.xx.xx';
+/**
+ * Masque les deux derniers octets d'une adresse IP
+ *
+ * @param $texte
+ *
+ * @return string
+ */
+function masquer_ip($texte) {
+	if (preg_match('#^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\z#', $texte, $matches)) {
+		return $matches[1] . '.' . $matches[2] . '.xx.xx';
 	} else {
 		return $texte;
 	}
