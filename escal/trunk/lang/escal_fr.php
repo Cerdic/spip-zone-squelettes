@@ -25,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Affichage du descriptif',
 	'affichage_form_reponse' => 'Affichage du formulaire de réponse sous l’article',
 	'affichage_image' => 'Affichage de la première image',
+	'affichage_logo_site' => 'Affichage du logo du site s\'il existe',
 	'affichage_nom_auteur' => 'Affichage du nom de l’auteur',
 	'affichage_nombre_comments' => 'Affichage du nombre de commentaires',
 	'affichage_ordre' => 'Ordre d’affichage',
@@ -98,8 +99,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_auteur' => 'Cet auteur a écrit :',
 	'articles_autres' => 'et les autres',
 	'articles_derniers' => 'Les derniers articles',
-	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br /> 
-            Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page, 
+	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br />
+            Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page,
             ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page',
 	'articles_largeur_image' => 'Largeur maximum de l’image : ',
 	'articles_largeur_images' => 'Largeur maximum des images : ',
@@ -162,7 +163,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'barre_outils_dessous' => 'Sous le bandeau',
 	'barre_outils_dessus' => 'Au-dessus du bandeau',
 	'barre_outils_explication1' => 'Place de la barre d’outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)',
-	'barre_outils_explication2' => 'Si vous avez choisi de placer la barre d’outils au-dessus du bandeau, voulez-vous la fixer en haut de la page ?<br /> 
+	'barre_outils_explication2' => 'Si vous avez choisi de placer la barre d’outils au-dessus du bandeau, voulez-vous la fixer en haut de la page ?<br />
                     (Cette option se désactive automatiquement sur les écrans inférieurs à 950px de large)',
 	'barre_outils_identification' => 'Formulaire d’identification simplifiée',
 	'bas' => 'En bas',
@@ -276,7 +277,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_envoyer' => 'Envoyer',
 	'contact_expediteur' => 'Case texte pour l’adresse électronique',
 	'contact_explication1' => 'Pour changer le texte d’un autre élément de la page Contact, utilisez les fichiers de langue.',
-	'contact_explication2' => 'Tous les champs de ce formulaire acceptent le multilinguisme avec la balise &lt;multi&gt; 
+	'contact_explication2' => 'Tous les champs de ce formulaire acceptent le multilinguisme avec la balise &lt;multi&gt;
             <br />exemple : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;',
 	'contact_interdit' => 'Caractères interdits : ',
 	'contact_libelle' => 'Libellé',
@@ -430,13 +431,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_noisettes_apercu' => 'Aperçu de votre texte',
 	'fonds_noisettes_articles' => '<strong>Les articles, le forum des articles, l’agenda</strong><br />par défaut : #FFFFFF / #000000',
 	'fonds_noisettes_bandeau' => '<strong>Le bandeau</strong><br />par défaut : #336699 / #ffffff',
-	'fonds_noisettes_boutons' => '<strong> Les boutons d’identification et de recherche, le formulaire de contact, les lignes paires des tableaux, 
+	'fonds_noisettes_boutons' => '<strong> Les boutons d’identification et de recherche, le formulaire de contact, les lignes paires des tableaux,
 			le portfolio, le post-scriptum, le forum du site, ...</strong><br />par défaut : #EFEFEF / #000000',
 	'fonds_noisettes_contenu' => '<strong>Le contenu des pages</strong><br />par défaut : #ffffff / #000000<br />On peut aussi écrire "transparent", ce qui peut être sympa avec une image de fond.',
 	'fonds_noisettes_derniers_articles' => '<strong>Liste des derniers articles en une</strong><br />par défaut : #DAE6F6 / #000000',
 	'fonds_noisettes_fond' => 'fond :',
 	'fonds_noisettes_forum' => '<strong>Le forum du site</strong><br />par défaut : #DFDFDF / #000000',
-	'fonds_noisettes_menuh' => '<strong>Le menu horizontal, les liens survolés du menu vertical déroulant à droite, l’encart de titre pour les rubriques et les articles, 
+	'fonds_noisettes_menuh' => '<strong>Le menu horizontal, les liens survolés du menu vertical déroulant à droite, l’encart de titre pour les rubriques et les articles,
 			le plan, les en-têtes des forums</strong><br />par défaut : #336699 / #ffffff',
 	'fonds_noisettes_onglets_actifs' => '<strong>Les onglets à la une si actifs</strong><br />par défaut : #336699 / #ffffff',
 	'fonds_noisettes_onglets_inactifs' => '<strong>Les onglets à la une si inactifs</strong><br />par défaut : #82ADE2 / #000000',
@@ -536,7 +537,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_agenda' => '► voir en pleine page',
 	'lien_agenda_title' => 'Afficher l’agenda en pleine page',
 	'liens_sociaux_espace' => 'Afficher les liens sociaux dans la barre d’outils',
-	'liens_sociaux_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Liens sociaux"</a>, 
+	'liens_sociaux_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Liens sociaux"</a>,
 			vous pouvez le paramétrer ici.',
 	'liens_sociaux_pied' => 'Afficher les liens sociaux dans le pied de page',
 	'liens_sociaux_plugin' => 'Plugin Liens sociaux',
@@ -621,7 +622,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             Cette option permet donc de faire apparaitre les rubriques de deuxième niveau dans les menus à la place des secteurs.
             Option valable pour le menu horizontal mais aussi pour les 2 menus verticaux.',
 	'multilinguisme_explication2' => 'Par défaut, ce sont les codes de chaque langue utilisée qui s’affichent mais on peut les remplacer par le nom entier de la langue ou par de petits drapeaux <br />
-            Mais attention, l’anglais n’est pas parlé qu’au Royaume-Uni, l’espagnol n’est pas parlé qu’en Espagne, ... 
+            Mais attention, l’anglais n’est pas parlé qu’au Royaume-Uni, l’espagnol n’est pas parlé qu’en Espagne, ...
             il est donc conseillé d’utiliser les codes de langue',
 	'multilinguisme_niveau' => 'Menus avec rubriques de deuxième niveau',
 	'multilinguisme_nom' => 'Noms des langues',
@@ -645,7 +646,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur est authentifié',
 	'noisettes_calendrier_couleur' => 'Couleur par défaut des événements',
 	'noisettes_calendrier_events' => 'Liste des événement à venir en dessous',
-	'noisettes_calendrier_explication' => 'Choix de l’affichage :<br /> 
+	'noisettes_calendrier_explication' => 'Choix de l’affichage :<br />
                     - les <strong>événements</strong> créés dans des articles grâce au plugin Agenda<br />
                     - des <strong>articles</strong> en prenant en compte leur "date de rédaction antérieure".
                     Les articles concernés sont ceux ayant le mot-clé "agenda" ou ceux de la rubrique ayant le même mot-clé "agenda". ',
@@ -737,7 +738,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     Le titre de l’article s’affiche dans l’onglet.',
 	'onglets_art_accueil_forum' => 'Afficher le forum de l’article d’accueil',
 	'onglets_art_archive' => 'Article archive',
-	'onglets_art_archive_explication' => 'L’article affiché sera un article pris au hasard dans la rubrique ayant le mot-clé "archive" ou dans l’une de ses sous-rubriques.<br /> 
+	'onglets_art_archive_explication' => 'L’article affiché sera un article pris au hasard dans la rubrique ayant le mot-clé "archive" ou dans l’une de ses sous-rubriques.<br />
                     Le titre de l’onglet est "Souvenez-vous !" avec multilinguisme pris en charge dans les langues disponibles avec Escal. ',
 	'onglets_art_archive_forum' => 'Afficher le forum de l’article archive',
 	'onglets_arts_mot' => 'Articles avec mot-clé',
@@ -768,7 +769,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_monart2_titre' => 'Titre de l’onglet "Mon article 2"',
 	'onglets_monart3' => 'Mon article 3',
 	'onglets_monart3_titre' => 'Titre de l’onglet "Mon article 3"',
-	'onglets_monart_explication' => 'sont des articles ayant respectivement les mots-clés "mon-article" "mon-article2" et "mon-article3".<br /> 
+	'onglets_monart_explication' => 'sont des articles ayant respectivement les mots-clés "mon-article" "mon-article2" et "mon-article3".<br />
                     Le titre de l’onglet sera celui de l’article sauf si vous lui donnez un titre différent ci-dessous. Seuls le texte et le PS sont affichés.',
 	'onglets_monart_titre' => 'Titre de l’onglet "Mon article"',
 	'onglets_nombre_articles' => 'Nombre total d’articles à afficher',
@@ -857,7 +858,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rainette_code' => 'Code de la ville :',
 	'rainette_explication' => 'Si vous avez activé le <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
             entrez ci-dessous le code de la ville qui vous intéresse.<br />
-            Ce code est à rechercher sur le web sur <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">ce site</a></strong> 
+            Ce code est à rechercher sur le web sur <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">ce site</a></strong>
             en rajoutant le nom de la ville recherchée à la suite de "where=" dans la barre d’adresse.<br />
             Il doit être de la forme <strong>FRXX0076</strong> (ça c’est Paris !)',
 	'rainette_plugin' => 'Plugin Rainette',
@@ -892,7 +893,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// S
 	'savoirplus' => 'En savoir plus',
-	'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>, 
+	'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
 			vous pouvez paramétrer :',
 	'shoutbox_hauteur' => 'la hauteur du bloc des messages :',
 	'shoutbox_nombre' => 'le nombre de messages à afficher :',
@@ -933,6 +934,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Augmenter la taille des caractères',
 	'taille_diminuer' => 'Diminuer la taille des caractères',
 	'taille_fichier' => 'Taille du fichier :',
+	'taille_logo_site' => 'Taille maximum du logo des sites',
 	'taille_police' => 'Taille de la police :',
 	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
 				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
@@ -944,7 +946,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'telechargement' => 'Fichier à télécharger :',
 	'telechargements' => 'Fichiers à télécharger :',
 	'texte_accueil' => 'Vous êtes sur la page de configuration du squelette Escal.<br /><br />
-	Cette page va vous permettre de personnaliser votre site, 
+	Cette page va vous permettre de personnaliser votre site,
 	du choix des blocs au choix des couleurs, en passant par l’affichage ou non de nombreux éléments.<br /><br />
 	A vous de jouer !',
 	'texte_coupe' => 'On coupe le texte à',

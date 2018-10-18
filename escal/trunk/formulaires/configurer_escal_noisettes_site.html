@@ -100,21 +100,21 @@
                     ]<span class="choix" style="width:100%">
                              <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
                              value="#ENV**{#GET{name}}"  />
-                    </span>                                        
+                    </span>
             #SET{name,groupemot}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
-                    <:escal:noisettes_nav_groupe:>  
+                    <:escal:noisettes_nav_groupe:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix" style="width:80%">
 				<select name="#GET{name}">
-					<option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>                           
-					
+					<option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+
 					<BOUCLE_selection(GROUPES_MOTS){titre !IN 'affichage', 'trombino', 'type_rubrique', 'type_article','Agenda_couleur'}{par titre}>
 					<option value="#TITRE" [(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
 					</BOUCLE_selection>
 					
 				</select>
                     </span>
-                    <br />  
+                    <br />
             #SET{name,nbreartnavmot2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:noisettes_nav_nombre:> 
                     [span class='erreur_message'>(#GET{erreurs})</span>
@@ -607,6 +607,25 @@
                             [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
                     <br /><br />
+             #SET{name,logositeweb}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_logo_site:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+             #SET{name,taillelogositeweb}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:taille_logo_site:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},40})]"  />
+                    </span>
+                    px
+                    <br /><br />                   
              #SET{name,nombresites}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:nombre_sites:>
                     [<span class='erreur_message'>(#GET{erreurs})</span>
