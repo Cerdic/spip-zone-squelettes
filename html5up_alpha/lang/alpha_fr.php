@@ -9,14 +9,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accueil' => 'Accueil',
-
+	'alpha_titre' => 'Configurer Alpha',
 
 	// B
 	'bouton_subscribe' => 'S\'abonner',
 
 	// C
 	'contact' => 'Contact',
-
 
 	// E
 	'explication_config_titre_sommaire' => "Parfois sur la home page le titre du site fait un peu tâche sur l'image",
@@ -30,7 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_soundcloud' => "URL complète du compte soundcloud",
 	'explication_vimeo' => "URL complète du compte vimeo",
 
-	 // L
+	// L
 	'label_config_contenu' => "Sous-titre",
 	'label_doc_home2' => "Id doc home featured",
 	'label_articles_home' => "Id article(s)",
@@ -41,7 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vimeo' => 'Vimeo',
 	'label_instagram' => 'Instagram',
 	'label_config_titre_sommaire' => 'Titre',
-    'label_newsletter_home' => 'Afficher le formulaire d\'inscription à la newsletter',
+	'label_newsletter_home' => 'Afficher le formulaire d\'inscription à la newsletter',
 	'legend1' => "Explications",
 	'legend_home' => "Paramétrages Sommaire ",
 	'legend_footer' => "Paramétrages Pied de page ",
@@ -56,5 +55,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'titre_configurer_alpha' => 'Configurer Html5up Alpha',
 
 );
-
-

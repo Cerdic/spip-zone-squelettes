@@ -9,14 +9,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accueil' => 'Start',
-
+	'alpha_titre' => 'Alpha konfigurieren',
 
 	// B
 	'bouton_subscribe' => 'Abonnieren',
 
 	// C
 	'contact' => 'Kontakt',
-
 
 	// E
 	'explication_config_titre_sommaire' => "Auf der Startseite überlappen Bild und Titel unter Umständen",
@@ -30,7 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_soundcloud' => "Vollständiger URL eines Soundcloud Accounts",
 	'explication_vimeo' => "Vollständiger URL eines Vimeao Accounts",
 
-	 // L
+	// L
 	'label_config_contenu' => "Untertitel",
 	'label_doc_home2' => "ID des hervorgehobenen Home-Dokuments",
 	'label_articles_home' => "Artikel-IDs",
@@ -41,7 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_vimeo' => 'Vimeo',
 	'label_instagram' => 'Instagram',
 	'label_config_titre_sommaire' => 'Titel',
-   'label_newsletter_home' => 'Anmeldeformular des Newsletters anzeigen',
+	'label_newsletter_home' => 'Anmeldeformular des Newsletters anzeigen',
 	'legend1' => "Erläuterungen",
 	'legend_home' => "Einstellungen Startseite ",
 	'legend_footer' => "EInstellungen Fußbereich ",
@@ -55,5 +54,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_calltoaction' => "Trage deine Mailadresse ein, um Updates zu erhalten. ",
 
 );
-
-
