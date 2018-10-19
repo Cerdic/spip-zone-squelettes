@@ -16,8 +16,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	Ce contenu apparaîtra dans les recherches, mais pas sur la fiche.',
 
 	// E
-	'explication_recherche' => 'Commençez par une recherche libre à travers le formulaire. 
-	
+	'explication_recherche' => 'Commençez par une recherche libre à travers le formulaire.
+
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
 	',
 	'connexe' => 'Ressource connexe',
