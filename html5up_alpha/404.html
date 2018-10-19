@@ -1,0 +1,54 @@
+#HTTP_HEADER{HTTP/1.0  #ENV{code,'404 Not Found'}}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html class="404">
+<head>
+	<title><:pass_erreur:> [(#ENV{status, 404}|textebrut)] - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<INCLURE{fond=inclure/head,robots=none} />
+
+</head>
+<body>
+<div id="page-wrapper">
+
+	<!-- Header -->
+	<INCLURE{fond=inclure/header,env} />
+
+	<!-- Main -->
+	
+	
+	<section id="main" class="container">
+		<section class="box special">
+			<header class="major">
+				<h2><:pass_erreur:> [(#ENV{status, 404}|intval)]</h2>
+				<div>[(#ENV{erreur}|non)
+					[(#ENV{fond_erreur}|=={article}|oui)<p><:aucun_article:></p>]
+					[(#ENV{fond_erreur}|=={rubrique}|oui)<p><:aucune_rubrique:></p>]
+					[(#ENV{fond_erreur}|=={breve}|oui)<p><:aucune_breve:></p>]
+					[(#ENV{fond_erreur}|=={auteur}|oui)<p><:aucun_auteur:></p>]
+					[(#ENV{fond_erreur}|=={site}|oui)<p><:aucun_site:></p>]
+					[(#ENV{fond_erreur}|=={forum}|oui)<p><:forum:aucun_message_forum:></p>]
+				]
+				[<p>(#ENV{erreur})</p>]
+				</div>
+			</header>
+			<span class="image featured"><BOUCLE_doc(DOCUMENTS){tout}{id_document=#CONFIG{alpha/doc_home2}}>[(#FICHIER|image_passe_partout{1200,393}|image_reduire{1200}|image_recadre{1200,393,center})]</BOUCLE_doc></span>
+		</section>
+	</section>
+	
+	
+	<!-- Footer -->
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div>
+
+<!-- Scripts -->
+<INCLURE{fond=inclure/scripts} />
+
+</body>
+</html>
