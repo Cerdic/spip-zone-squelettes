@@ -20,7 +20,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
 	',
-
+	'connexe' => 'Ressource connexe',
+	'connexes' => 'Ressources connexes',
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
 
