@@ -102,7 +102,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_derniers' => 'The last articles',
 	'articles_explication' => 'You can define here the maximum width of the pictures in your articles. <br /> 
             This width is 400px by default for classical articles and 850px for full pages articles, 
-            which may be too restrictive if you previously opted to a layout with 2 columns or in full page',
+            which may be too restrictive if you previously opted to a layout with 2 columns or in full page', # MODIF
 	'articles_largeur_image' => 'Maximum width of the picture: ',
 	'articles_largeur_images' => 'Maximum width of the pictures: ',
 	'articles_largeur_images2' => 'Maximum width of the pictures for full page articles (articles with the keyword "pleinepage" which suppresses side blocks) :',
@@ -165,7 +165,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'barre_outils_dessus' => 'Above the banner',
 	'barre_outils_explication1' => 'Location of the toolbar (identification light, languages menu, search form, link button towards the site forum)',
 	'barre_outils_explication2' => 'If you choosed to put the toolbar above the banner, do you want to fix it at the top of the page?<br /> 
-                    (This option will be automatically desactivated on screens with width less than 950px)',
+                    (This option will be automatically desactivated on screens with width less than 950px)', # MODIF
 	'barre_outils_identification' => 'Simplified identification form',
 	'bas' => 'Below',
 	'bienvenue' => 'Welcome',
@@ -279,7 +279,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_expediteur' => 'Text cell for the mail address',
 	'contact_explication1' => 'To replace the text of another item of the Contact page, use languages files.',
 	'contact_explication2' => 'All the fields of this form accept multilingualism with the tag &lt;multi&gt; 
-            <br />example : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;',
+            <br />example : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;', # MODIF
 	'contact_interdit' => 'Illegal characters: ',
 	'contact_libelle' => 'Wording',
 	'contact_libelle1' => 'Wording in box 1',
@@ -433,13 +433,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_noisettes_articles' => '<strong>The articles, the forum of the articles, the calendar</strong><br />by default: #FFFFFF / #000000',
 	'fonds_noisettes_bandeau' => '<strong>The banner</strong><br />by default: #336699 / #ffffff',
 	'fonds_noisettes_boutons' => '<strong> identification and search buttons, the contact form, the even lines of tables, 
-			the portfolio, the postscript, the forum of the website, ...</strong><br />by default: #EFEFEF / #000000',
+			the portfolio, the postscript, the forum of the website, ...</strong><br />by default: #EFEFEF / #000000', # MODIF
 	'fonds_noisettes_contenu' => '<strong>The content of the pages</strong><br />by default: #ffffff / #000000<br />One can also write "transparent", which can be fun with a background picture.',
 	'fonds_noisettes_derniers_articles' => '<strong>The list of the last focus articles</strong><br />by default: #DAE6F6 / #000000',
 	'fonds_noisettes_fond' => 'background:',
 	'fonds_noisettes_forum' => '<strong>The forum of the website</strong><br />by default: #DFDFDF / #000000',
 	'fonds_noisettes_menuh' => '<strong>The horizontal menu, the focus links of the vertical menu scrolling on the right, the container of the title for sections and articles, 
-			thee plan, the forums’ headers</strong><br />by default: #336699 / #ffffff',
+			thee plan, the forums’ headers</strong><br />by default: #336699 / #ffffff', # MODIF
 	'fonds_noisettes_onglets_actifs' => '<strong>The focus tabs if active</strong><br />by default: #336699 / #ffffff',
 	'fonds_noisettes_onglets_inactifs' => '<strong>The focus tabs if inactive</strong><br />by default: #82ADE2 / #000000',
 	'fonds_noisettes_pied' => '<strong>The footer</strong><br />by default: #BBCCDD / #000000',
@@ -539,7 +539,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_agenda_title' => 'Display the agenda in full page',
 	'liens_sociaux_espace' => 'Show social links in the toolbar',
 	'liens_sociaux_explication' => 'If you have activated <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Socials Tags"</a>, 
-			you can configure it here.',
+			you can configure it here.', # MODIF
 	'liens_sociaux_pied' => 'Display social links in the footer',
 	'liens_sociaux_plugin' => 'Plugin Socials tags',
 	'liens_sociaux_texte' => 'Possible text to display:',
@@ -624,7 +624,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             This option is valid for the horizontal menu but also for the 2 vertical menus.',
 	'multilinguisme_explication2' => 'By default, the codes of each used used language are displayed but they can be replaced by the complete name of the language or by small flags <br />
             However, the English language is not spoken only in the United Kingdom, the Spanish language is not spoken only in Spain, ... 
-            it is  therefore advised to use language codes',
+            it is  therefore advised to use language codes', # MODIF
 	'multilinguisme_niveau' => 'Menus with second level sections',
 	'multilinguisme_nom' => 'Names of the languages',
 
@@ -650,7 +650,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication' => 'Choice of the display:<br /> 
                     - the <strong>events</strong> created in articles thanks to the Agenda plugin<br />
                     - Some<strong>articles</strong> by taking into account their date of earlier publishing".
-                    The relevant articles are those with the keyword "agenda" or those of the section having the same keyword "agenda". ',
+                    The relevant articles are those with the keyword "agenda" or those of the section having the same keyword "agenda". ', # MODIF
 	'noisettes_calendrier_explication2' => '(this choice will also apply to the block "Events to come") ',
 	'noisettes_calendrier_lien_agenda' => 'Title with link to full page agenda',
 	'noisettes_calendrier_pagination' => 'Number of articles or events by pagination page',
@@ -740,7 +740,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_art_accueil_forum' => 'To display the forum of the home article',
 	'onglets_art_archive' => 'Archive article',
 	'onglets_art_archive_explication' => 'The displayed article will be an article randomly taken in the section with the keyword "archive" or in one of its sub-sections.<br /> 
-                   The title of the tab is "Remember!" with the multilingualism addressed for the languages available with Escal. ',
+                   The title of the tab is "Remember!" with the multilingualism addressed for the languages available with Escal. ', # MODIF
 	'onglets_art_archive_forum' => 'To display the forum of the archive article',
 	'onglets_arts_mot' => 'Articles with keyword',
 	'onglets_arts_mot_explication' => 'The title of this tab will be that of the keyword.<br />Choice of the keyword:',
@@ -771,7 +771,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_monart3' => 'Mon article 3',
 	'onglets_monart3_titre' => 'Title of the tab "My article 3"',
 	'onglets_monart_explication' => 'are articles with respectively the keywords "mon-article" "mon-article2" and "mon-article3".<br /> 
-                    The title of the tab will be that of the article unless you give it a different title below. Only the text and the PS will be displayed.',
+                    The title of the tab will be that of the article unless you give it a different title below. Only the text and the PS will be displayed.', # MODIF
 	'onglets_monart_titre' => 'Title of the tab "My article"',
 	'onglets_nombre_articles' => 'Total number of articles to display',
 	'onglets_nombre_articles_exergue' => 'Number of articles to display, including the emphasized article',
@@ -861,7 +861,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             enter below the code of the city you are interested in.<br />
             This code is to be searched on the web on <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">this website</a></strong> 
             by adding the name of the town you are looking for following "where=" in the address bar.<br />
-            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)',
+            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)', # MODIF
 	'rainette_plugin' => 'Plugin Rainette',
 	'rappel_discussion' => 'Reminder of the discussion',
 	'recherche' => 'Search',
@@ -895,7 +895,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'savoirplus' => 'To know more',
 	'shoutbox_explication' => 'If you have activated the <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>, 
-			you can set:',
+			you can set:', # MODIF
 	'shoutbox_hauteur' => 'the height of the block of messages :',
 	'shoutbox_nombre' => 'the number of messages to display:',
 	'shoutbox_plugin' => 'Plugin Shoutbox',
@@ -947,7 +947,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_accueil' => 'You are on the configuration page of Escal skeleton.<br /><br />
 	This page will allow you to customize your website, 
 	from the choice of blocks to the choice of colours, through the display or not of many elements.<br /><br />
-	And now, play on!',
+	And now, play on!', # MODIF
 	'texte_coupe' => 'The text is cut at',
 	'texte_sous_image' => 'Text under the logo (otherwise, next to it)',
 	'title_articles_derniers' => 'Last articles',
