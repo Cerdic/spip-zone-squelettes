@@ -11,6 +11,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aucun_resultat' => 'Aucun résultat',
 
 	// C
+	'connexe' => 'Ressource connexe',
+	'connexes' => 'Ressources connexes',
 	'contenu_documents' => 'Contenu des documents liés',
 	'contenu_documents_explication' => 'Mettez ici le contenu des documents liés si votre serveur ne dispose pas de la fonction d’indexation des documents.
 	Ce contenu apparaîtra dans les recherches, mais pas sur la fiche.',
@@ -20,8 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
 	',
-	'connexe' => 'Ressource connexe',
-	'connexes' => 'Ressources connexes',
+
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
 
