@@ -1,4 +1,7 @@
 <?php
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 /**
  * Prend une url et la transforme en supprimant un élèment de tableau passé en paramètre.
