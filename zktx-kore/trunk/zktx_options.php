@@ -1,10 +1,10 @@
 <?php
 // blocs Z !	
 	$GLOBALS['z_blocs'] = array(
+		'content',
 		'head',
 		'head_js',
 		'header',
-		'content',
 		'extra1',
 		'extra2',
 		'footer',
