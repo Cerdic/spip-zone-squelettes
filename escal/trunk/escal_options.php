@@ -1,7 +1,7 @@
 <?php
 
 // Liste des pages de configuration dans l'ordre de presentation
-// Librement inspiré du squellete Sarkaspip
+// Librement inspiré du squelette Sarkaspip
 if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 'accueil
 |generalites!meta:layout:elements:bandeau:menuh:multilinguisme:pied
@@ -14,19 +14,22 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 
     // Header prive
     $GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
-     
+
     function header_prive_perso($flux) {
-        return $flux .= '  
+        return $flux .= '
     	<link rel="stylesheet" type="text/css" href="'.find_in_path('styles/prive_perso.css').'" media="all" />
     	';
     }
-    
 
+// surlignage des recherches
+if (isset($_REQUEST['recherche'])) {
+  $_GET['var_recherche'] = $_REQUEST['recherche'];
+}
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
 
 // les images de plus de 1200 pixels de largeur ou de hauteur ne seront pas enregistrées
 define('_IMG_MAX_WIDTH', 1200);
-define('_IMG_MAX_HEIGHT', 1200); 
+define('_IMG_MAX_HEIGHT', 1200);
 
 // Et pour éviter de faire planter GD2 :
  define('_IMG_GD_MAX_PIXELS', 2000000);

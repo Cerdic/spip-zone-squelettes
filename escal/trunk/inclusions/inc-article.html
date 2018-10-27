@@ -1,6 +1,6 @@
 <!-- affichage des blocs annonce -->
 [(#CONFIG{escal/config/annonceart}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
-[(#CONFIG{escal/config/annoncedefilart}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]  
+[(#CONFIG{escal/config/annoncedefilart}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
 
 
 <BOUCLE_contexte(ARTICLES){id_article}>
@@ -43,7 +43,7 @@
 		       <br />[(#LANG|=={ja}|non)<:par_auteur:>]
 				 <BOUCLE_auteurs_art(AUTEURS){id_article}{par nom}{", "}{lang_select}>
 				 <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
-		       [(#LANG|=={ja}|oui)<:par_auteur:>] 
+		       [(#LANG|=={ja}|oui)<:par_auteur:>]
 		      </B_test>      
 		</div>
 		[(#CONFIG{escal/config/visites}|=={oui}|oui)
@@ -105,7 +105,7 @@
         <div class="signalement outil">        
         #FORMULAIRE_SIGNALEMENT
         </div>        
-        ] 
+        ]
         
     </div>
     
@@ -140,7 +140,7 @@
 <div class="nettoyeur"></div>   
 
 <div id="texte-article" class="surlignable">
-  
+
   	[(#PLUGIN{NOTATION}|oui)
   	<div class="notation">
   	<span style="float:left;padding-right:5px;">Noter cet article : </span>#FORMULAIRE_NOTATION
@@ -150,9 +150,9 @@
 		[<div id="chapo" class="#EDIT{chapo}">(#CHAPO)</div>]
 
 		<!--Affichage du texte de l'article -->
-		
+
 		<BOUCLE_2colonnes(ARTICLES){id_article}{titre_mot="texte2colonnes"}>
-		<div class="container-colonnes">	
+		<div class="container-colonnes">
 			<div id="colonne1" >
 			[<div class="#EDIT{texte}">
 			(#TEXTE*
@@ -170,7 +170,7 @@
                |replace{</centrer>,</div>})
                </div>]
 			</div>
-			
+
 			<div id="colonne2">
 			[<div class="#EDIT{texte}">
 			(#TEXTE*
@@ -189,8 +189,8 @@
                </div>]
 			</div>
 		</div>
-		</BOUCLE_2colonnes>	
-		
+		</BOUCLE_2colonnes>
+
 		</B_2colonnes>	
 			[<div class="#EDIT{texte}">
                 (#TEXTE
@@ -207,59 +207,59 @@
                 |replace{</centrer>,</div>}
                 )
                 </div>]
-           <//B_2colonnes>       
+           <//B_2colonnes>
                 
 					<!-- et hop, un petit div pour récupérer le flux normal d'affichage
 						au cas où l'article se finisse par une image non centrée -->
-					<div class="nettoyeur"></div
+					<div class="nettoyeur"></div>
 
 			<!--Affichage des notes de bas de page  -->
 				[<div id="notes"><strong>Notes : </strong> <br />(#NOTES)</div>]
-				
+
 <!-- affichage carte gis du lieu -->
 	[(#PLUGIN{GIS}|oui)
 	<INCLURE{fond=inclusions/inc-gis}{env}>
-	] 
+	]
 <!-- fin affichage carte gis du lieu --> 
 
-				
-					
+
+
 <!-- affichage des événements -->
 
 
 #SET{tableauprochainement,#ARRAY}
 <BOUCLE_prochainementselection(EVENEMENTS){id_article}{age_fin<1}{par date_debut}>
-[(#ID_EVENEMENT_SOURCE|=={0}|?{				
-#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+[(#ID_EVENEMENT_SOURCE|=={0}|?{
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
 #SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
 })]
 </BOUCLE_prochainementselection>
 
 <B_select>
 <div class="events-associes">
-<hr />	
+<hr />
 <strong><:escal:evenements_associes:></strong>
 
-<div class="container-choix"> 
+<div class="container-choix">
 <BOUCLE_select(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>
-	
+
 <BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{date_fin>=#DATE}{doublons}>
 </BOUCLE_seul>
 <BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
 	<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=0}{doublons}>
 	</BOUCLE_futur>
-</BOUCLE_plusieurs>  
+</BOUCLE_plusieurs>
 
 <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
 #SET{couleur,#DESCRIPTIF}
 </BOUCLE_mot>
 </B_mot>
 #SET{couleur,#CONFIG{escal/config/couleureventscalendrier,#336699}
-<//B_mot>	
+<//B_mot>
 
 <B_affiche>
 	<div class="choix-article" style="width:40%;">
-	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">      	
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">
 <BOUCLE_affiche(EVENEMENTS){!doublons}{0,1}{doublons affiche}{par date}>
 
 	<div class="evenement-date" style="background-color:[(#GET{couleur}|PtoBR)];">
@@ -270,15 +270,15 @@
 		<span class="evenement-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
 		<br />
 	</div>
-				
-	<div class="evenement-donnees"> 
+
+	<div class="evenement-donnees">
 			<div class="donnee-titre">		
 			#TITRE
 			</div>
 			[<div class="donnee-lieu">		
 			<img src="#CHEMIN{images/geoloc.png}" alt="lieu"  />(#ADRESSE|PtoBR)
 			</div>]
-							
+
 		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
 			<div class="donnee-heure">
 				<img src="#CHEMIN{images/heure.png}" alt="horaire"  />
@@ -289,32 +289,32 @@
 				[(#DATE_FIN|nom_jour)]
             		<strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
 				[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
-          	</div>  
+          	</div>
 		]
-	
+
 		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
 			<div class="donnee-heure">
-				[(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non) 
+				[(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non)
 				<img src="#CHEMIN{images/heure.png}" alt="horaire"  />
 				[(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)] - 
 				[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
 				]
-          	</div>  
+          	</div>
 		]
 	</div>
-	
+
 </BOUCLE_affiche>
-	<div class="evenement-donnees">       	
+	<div class="evenement-donnees">
 	<BOUCLE_autres2(EVENEMENTS){!doublons}{id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{doublons affiche}{par date}>
-		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)] 
+		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
 	</BOUCLE_autres2>
-	</div> 
+	</div>
 	</a>
 	</div><!--choix-article-->
-</B_affiche>	
-	
+</B_affiche>
+
 </BOUCLE_select>
-</div><!--container-choix-->	
+</div><!--container-choix-->
 
 <hr />
 
@@ -345,7 +345,7 @@
 <br />
 <!-- affichage des blocs annonce -->
 [(#CONFIG{escal/config/annonceart}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
-[(#CONFIG{escal/config/annoncedefilart}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]  
+[(#CONFIG{escal/config/annoncedefilart}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
 
 
   [(#CONFIG{escal/config/portfolio}|=={non}|non)
