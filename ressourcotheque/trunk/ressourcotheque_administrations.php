@@ -7,7 +7,7 @@ include_spip('base/ressourcotheque');
 function ressourcotheque_upgrade($nom_meta_base_version,$version_cible) {
 
   $maj = array();
-  cextras_api_upgrade(ressourcotheque_declarer_champs_extras(), $maj['create']);	
+  cextras_api_upgrade(ressourcotheque_declarer_champs_extras(), $maj['create']);
 
   include_spip('base/upgrade');
   maj_plugin($nom_meta_base_version, $version_cible, $maj);

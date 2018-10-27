@@ -16,5 +16,5 @@ function parametre_url_supprimer_element_tableau($url,$param, $tableau_original,
 	$url = parametre_url($url,$param,'');//effacons d'abord
 	unset($tableau_original[$index_element_supprimer]);
 	$url = parametre_url($url,$param, $tableau_original);
-	return $url;	
+	return $url;
 }
