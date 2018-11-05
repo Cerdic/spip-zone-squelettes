@@ -10,7 +10,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 **/
 function ressourcotheque_linkcheck_champs_a_traiter($flux) {
 	if ($flux['args']['table'] == 'articles') {
-		$flux['data']['contenu_documents'] = 0;
+		unset ($flux['data']['contenu_documents']);
 	}
 	return $flux;
 }
