@@ -21,7 +21,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche' => 'Commençez par une recherche libre à travers le formulaire.
 
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
-	',
+',
+
+	// G
+	'guide_redaction' => 'Guide de rédaction',
+	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
 
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
