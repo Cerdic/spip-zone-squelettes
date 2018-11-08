@@ -31,7 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// G
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
-
+	'par_auteur' => 'Mise en ligne par',
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
 
