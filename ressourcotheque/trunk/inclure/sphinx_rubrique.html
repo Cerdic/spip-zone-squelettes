@@ -13,24 +13,24 @@
 			</div>
 		<BOUCLE_sphinx(SPHINX)
 		  {index #ENV{source,spip}}
-			{recherche #ENV*{recherche}} 
+			{recherche #ENV*{recherche}}
 			{filtermultijson #ID_RUBRIQUE, properties.id_rubrique, #LISTE{#ID_RUBRIQUE}}
 			{filtermono article, properties.objet, article}
 			{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
 			{pagination 10}
 		>
 		<li class='item'>
-			<article class='entry article hentry'>
+			<article class='entry surlignable article hentry'>
 				[(#COMPTEUR_BOUCLE|=={1}|oui)#SET{max,#SCORE}]
-				
-				
+
+
 				<strong class='h3-like entry-title'>[(#SCORE|mult{100}|div{#GET{max}}|intval)%] <a href="#URI">#TITLE</a></strong>
 				<p class="publication">
 					[<time pubdate="pubdate" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time>]
 						#NOTATION_ETOILE{#PROPERTIES{notes/note_ponderee}}
 				</p>
-			
-				[<div class="introduction entry-content clear">(#SNIPPET|sinon{#SUMMARY}|replace{b>,mark>}|propre)</div>]
+
+				[<div class="introduction entry-content clear">(#SNIPPET|sinon{#SUMMARY}|replace{<b>,''}|replace{</b>,''}|propre)</div>]
 			</article>
 		</li>
 		</BOUCLE_sphinx>
