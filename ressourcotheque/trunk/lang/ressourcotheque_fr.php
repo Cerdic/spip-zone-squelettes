@@ -23,7 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	Par défaut, l\'opérateur booléen ET utilisé entre les mots. Vous pouvez utiliser :
 - <code>-</code> pour l\'opérateur booléen NON;
 - <code>|</code> pour l\'opérateur booléen OU;
-- <code>()</code> pour combiner des termes et avoir une recherche complexe.
+- <code>()</code> pour combiner des termes et faire une recherche complexe.
 
 	Vous pourrez ensuite filtrer les résultats par mots-clef.
 ',
