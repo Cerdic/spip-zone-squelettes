@@ -653,6 +653,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(ce choix s’appliquera aussi au bloc "Evénements à venir") ',
 	'noisettes_calendrier_lien_agenda' => 'Titre avec lien vers l’agenda en pleine page',
 	'noisettes_calendrier_pagination' => 'Nombre d’articles ou d’événements par page de pagination',
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers',
+	'noisettes_calendrier_renvoi_article' => 'l\'article',
+	'noisettes_calendrier_renvoi_evenement' => 'l\'évènement',
 	'noisettes_decouvrir' => 'A découvrir',
 	'noisettes_decouvrir_hasard' => 'Nombre d’articles pris au hasard',
 	'noisettes_decouvrir_moins_vus' => 'Nombre d’articles les moins visités',
@@ -662,7 +665,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Uniquement dans la rubrique en cours et ses sous-rubriques',
 	'noisettes_decouvrir_site' => 'Dans tout le site (on peut exclure des articles ou des rubriques avec le mot-clé "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'Le titre de ce bloc est donné par le titre de l’article avec le mot-clé "edito". Article dont il faut décliner les traductions sur un site multilingue.',
-	'noisettes_events_explication' => 'Attention : le choix de l’affichage des articles ou des événements est le même que celui du bloc "Mini-calendrier" juste au-dessus.',
+	'noisettes_events_explication' => '<strong>Attention</strong> : certains choix du bloc "Mini-calendrier" juste au-dessus s\'appliqueront aussi à ce bloc.',
 	'noisettes_explication' => '<strong>Titres des blocs</strong><br /><br />
               Dans le cas d’un <strong>site multilingue</strong>, si vous voulez changer le titre d’un bloc
               tout en conservant le multilinguisme, vous devez écrire ce titre en suivant cet exemple :<br /><br />

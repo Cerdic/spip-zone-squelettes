@@ -507,7 +507,7 @@
                             <input type="radio" name="#GET{name}" id="#GET{name}_articles" value="articles"
                             [(#ENV{#GET{name}}|=={articles}|oui)checked="checked"] /><label for="#GET{name}_articles"><:articles:></label>
                     </span>
-                    <br /><:escal:noisettes_calendrier_explication2:>                                    
+                    <br /><:escal:noisettes_calendrier_explication2:>                                                     
             <br /><br />
             #SET{name,listeeventscalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:noisettes_calendrier_events:> 
@@ -520,12 +520,25 @@
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
                     </span>
                     <br /><br />
+            #SET{name,url_event}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            		<:escal:noisettes_calendrier_renvoi:><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_evenements" value="evenement"
+                            [(#ENV{#GET{name}}|=={article}|non)checked="checked"] /><label for="#GET{name}_evenements"><:escal:noisettes_calendrier_renvoi_evenement:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_articles" value="article"
+                            [(#ENV{#GET{name}}|=={article}|oui)checked="checked"] /><label for="#GET{name}_articles"><:escal:noisettes_calendrier_renvoi_article:></label>
+                    </span>
+                    <br /><:escal:noisettes_calendrier_explication2:>
+                    <br /><br />
             #SET{name,couleureventscalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:noisettes_calendrier_couleur:> 
                     [<span class='erreur_message'>(#GET{erreurs})</span>
                     ]<span class="choix">
                              <input type="texte" style="width:100px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]"  />
                     </span>
+                    <br /><:escal:noisettes_calendrier_explication2:>
                     <br /><br />                    
             #SET{name,pagincalendrier}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <:escal:noisettes_calendrier_pagination:> 
