@@ -26,8 +26,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 - <code>()</code> pour combiner des termes et faire une recherche complexe.
 
 	Vous pourrez ensuite filtrer les résultats par mots-clé.',
-
 	'explication_recherche_facette' => 'Vous pouvez maintenant affiner les résultats en filtrant par mot-clé.',
+
 	// G
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
