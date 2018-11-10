@@ -663,7 +663,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Solo nella rubrica attuale e nelle sue sotto-rubriche',
 	'noisettes_decouvrir_site' => 'In tutto il sito (possiamo escludere gli articoli con la parola chiave "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'Il titolo di questo blocco è dato dall’articolo con parola chiave "edito". Articolo che deve rifiutare le traduzioni su un sito multilingue.',
-	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.',
+	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.', # MODIF
 	'noisettes_explication' => '<strong>Titoli dei blocchi</strong><br /><br />
               Nel caso di un <strong>sito multilingua</strong>, se desidera si cambiare il titolo di un blocco
               e conservare il multilinguismo, è necessario scrivere il titolo seguento questo esempio:<br /><br />

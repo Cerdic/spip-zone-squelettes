@@ -663,7 +663,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Only in the current section and its sub-sections',
 	'noisettes_decouvrir_site' => 'In the whole website (articles or sections can be excluded with the keyword "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'The title of this block is given by the title of the article with the keyword "edito". Article whose translations should be developed on a multilingual site.',
-	'noisettes_events_explication' => 'Warning : the choice of the display of articles or events is the same as that of the block "Mini-calendar" just above.',
+	'noisettes_events_explication' => 'Warning : the choice of the display of articles or events is the same as that of the block "Mini-calendar" just above.', # MODIF
 	'noisettes_explication' => '<strong>Titles of blocks</strong><br /><br />
               In the case of a <strong>multilingual website</strong>, if you want to change the title of a block
               while keeping  multilingualism, you must write this title by following this example:<br /><br />
