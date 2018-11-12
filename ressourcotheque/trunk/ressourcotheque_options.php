@@ -12,3 +12,5 @@ $GLOBALS['a2a_types_liaisons'] = array(
 if (isset($_REQUEST['recherche'])) {
   $_GET['var_recherche'] = $_REQUEST['recherche'];
 }
+
+define('_TITRER_DOCUMENTS', true );
