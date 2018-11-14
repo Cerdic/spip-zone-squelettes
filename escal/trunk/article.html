@@ -1,7 +1,7 @@
 <BOUCLE_article_principal(ARTICLES){id_article}>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG" >
+<!DOCTYPE html>
+<html lang="#LANG" >
 
 <!-- on teste si l'article a le mot-clé "pleinepage" et si oui, on affiche le saquelette article_pleinepage.html -->
 <BOUCLE_testarticle(ARTICLES){id_article}{titre_mot=pleinepage}>
@@ -18,26 +18,21 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
 
 <!-- si aucune des 2 conditions, on affiche le code de base -->
 
-
-
   <head>
       <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
       <meta name="Description" content="[(#INTRODUCTION|couper{150}|textebrut)]" />
       [<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
       <meta name="Keywords" content=" <BOUCLE_keywords(MOTS){id_article}{","}>[(#TITRE|textebrut)] </BOUCLE_keywords>" />
-      <meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)] </BOUCLE_author>" />
+      <meta name="author" content="Jean-Christophe Villeneuve" , "}{lang_select}>[(#NOM|textebrut)] </BOUCLE_author>" />
       <INCLURE {fond=inclusions/inc-head, env}>
       <BOUCLE_couleur_article(HIERARCHIE){id_rubrique}{id_article}{0,1}>
       [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
-      </BOUCLE_couleur_article>      
-      [(#PLUGIN{METASPLUS}|oui)
-      	<INCLURE{fond=inclure/metasplus-article,id_article} />
-      ]  
+      </BOUCLE_couleur_article> 
       [(#REM) appel de la feuille de style pour l'impression ]
       <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
   </head>
   <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-article article#ID_ARTICLE rubrique#ID_RUBRIQUE">
-  
+
     <div id="ombre-gauche">
       <div id="ombre-droite">
         <div id="conteneur">
@@ -47,7 +42,7 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
           ]
 
           <div id="entete">
-            
+
             <INCLURE {fond=inclusions/inc-entete}{env}>
 
           </div>
@@ -60,7 +55,7 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
           <BOUCLE_article_central(ARTICLES){id_article}{doublons}>
 
             <div id="page">
-              <div id="contenu" class="contenu-article">            
+              <main id="contenu" class="contenu-article">
               
                 <BOUCLE_type_article(MOTS){id_rubrique}{type=type_article}{0,1}>
                   #SET{type, #TITRE}
@@ -71,10 +66,10 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
                 [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-article_#GET{type}}{env})]]
                   <!-- s'il n'y a en a pas, on affiche la noisette normale -->
                 [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-article}{env})]]
-              </div>
+              </main>
             </div>
 
-            [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
+            [(#LANG_DIR|=={ltr}|oui)<section id="navigation">] [(#LANG_DIR|=={rtl}|oui)<section id="extra">]
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
@@ -103,9 +98,9 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
            <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart6}}{id_rubrique}{env}{ajax}></div>
          ]]
 
-            </div>
+            </section>
 
-            [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
+            [(#LANG_DIR|=={ltr}|oui)<section id="extra">] [(#LANG_DIR|=={rtl}|oui)<section id="navigation">]
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
@@ -135,7 +130,7 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
          ]]
               <//B_test2>
 
-            </div>
+            </section>
 
           </BOUCLE_article_central>
 
