@@ -7,16 +7,17 @@
 <li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
 <li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li>
 </ol>]
-<h1>[(#ENV{textes}|=={spip}|oui)<br /><i class="champs">\[Nom Site SPIP\]</i> ]#NOM_SITE_SPIP</h1>
 [(#ENV{textes}|=={oui}|oui)
+<h1>#NOM_SITE_SPIP</h1>
 <p>#DESCRIPTIF_SITE_SPIP</p>
 [<p>(#CONFIG{soyezcreateurs/bandeau_annonce})</p>]
 [<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF_SITE_SPIP*|extraire_multi|echapper_tags)</pre>]
-[<br /><i class="champs">\[Bandeau Annonce\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|extraire_multi|echapper_tags)</pre>]
-[<br /><i class="champs">\[Bandeau Contact\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|extraire_multi|echapper_tags)</pre>]
+<h1><i class="champs">\[Nom Site SPIP\]</i> [(#NOM_SITE_SPIP*|extraire_multi|echapper_tags)]</h1>
+[<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF_SITE_SPIP*|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Bandeau Annonce\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Bandeau Contact\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|extraire_multi|echapper_tags)</pre>]
 ]
 [(#SET{comptemot,
 	[(#NOM_SITE_SPIP|textebrut|str_word_count_utf8
@@ -27,22 +28,24 @@
 [(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
 [(#ENV{textes}|non)<p>==> Hors rubriques :  #GET{comptemot}</p>]
 <BOUCLE_ListeSecteurs(RUBRIQUES){id_parent}{par num titre}>
-<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Rubrique \(#ID_RUBRIQUE\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
+[(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
 		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] 
-[(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]</h[(#PROFONDEUR|plus{1})]>
+[(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
 [(#ENV{textes}|=={oui}|oui)
+<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE">#TITRE</a></h[(#PROFONDEUR|plus{1})]>
 [<p>(#DESCRIPTIF)</p>]
 [<p>(#TEXTE)</p>]
 [<p>(#NOTES)</p>]
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
-[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|extraire_multi|echapper_tags)</pre>]
-[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|extraire_multi|echapper_tags)</pre>]
+<h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE"><i class="champs">\[Rubrique \(#ID_RUBRIQUE\) Titre\]</i> [(#TITRE*|extraire_multi|echapper_tags)]</a></h[(#PROFONDEUR|plus{1})]>
+[<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Texte\]</i> <pre>(#TEXTE*|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Notes\]</i> <pre>(#NOTES*|extraire_multi|echapper_tags)</pre>]
 ]
 <B_ArticlesRacine>
 <ul>
@@ -65,11 +68,11 @@
 [<p>(#NOM_SITE)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<br /><i class="champs">\[chapo\]</i> <pre>(#CHAPO*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
-[<br /><i class="champs">\[PS\]</i> <pre>(#PS*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Nom site\]</i> <pre>(#NOM_SITE*|echapper_tags)</pre>]
+[<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
+[<i class="champs">\[chapo\]</i> <pre>(#CHAPO*|echapper_tags)</pre>]
+[<i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
+[<i class="champs">\[PS\]</i> <pre>(#PS*|echapper_tags)</pre>]
+[<i class="champs">\[Nom site\]</i> <pre>(#NOM_SITE*|echapper_tags)</pre>]
 ]
 <B_Documents>
 <ul>
@@ -84,7 +87,7 @@
 [<p>(#NOTES)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
 ]
 </BOUCLE_Documents>
 </ul>
@@ -106,7 +109,7 @@
 [<p>(#NOTES)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
+[<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
 ]
 </li>
 </BOUCLE_SitesRacine>
