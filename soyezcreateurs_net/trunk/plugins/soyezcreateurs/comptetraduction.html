@@ -14,9 +14,9 @@
 [<p>(#CONFIG{soyezcreateurs/bandeau_contact})</p>]
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF_SITE_SPIP*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Bandeau Annonce\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|echapper_tags)</pre>]
-[<br /><i class="champs">\[Bandeau Contact\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|echapper_tags)</pre>]
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF_SITE_SPIP*|extraire_multi|echapper_tags)</pre>]
+[<br /><i class="champs">\[Bandeau Annonce\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_annonce}|extraire_multi|echapper_tags)</pre>]
+[<br /><i class="champs">\[Bandeau Contact\]</i> <pre>(#CONFIG*{soyezcreateurs/bandeau_contact}|extraire_multi|echapper_tags)</pre>]
 ]
 [(#SET{comptemot,
 	[(#NOM_SITE_SPIP|textebrut|str_word_count_utf8
@@ -40,9 +40,9 @@
 [<p>(#NOTES)</p>]
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
+[<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|extraire_multi|echapper_tags)</pre>]
+[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|extraire_multi|echapper_tags)</pre>]
 ]
 <B_ArticlesRacine>
 <ul>
@@ -53,6 +53,7 @@
 		|plus{[(#CHAPO|textebrut|str_word_count_utf8)]}
 		|plus{[(#TEXTE|textebrut|str_word_count_utf8)]}
 		|plus{[(#PS|textebrut|str_word_count_utf8)]}
+		|plus{[(#NOM_SITE|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
 	)]})] [(#ENV{textes}|non)\(#GET{comptemot}\)][(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
 [(#ENV{textes}|=={oui}|oui)
@@ -61,13 +62,14 @@
 [<p>(#TEXTE)</p>]
 [<p>(#PS)</p>]
 [<p>(#NOTES)</p>]	
+[<p>(#NOM_SITE)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
 [<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
 [<br /><i class="champs">\[chapo\]</i> <pre>(#CHAPO*|echapper_tags)</pre>]
 [<br /><i class="champs">\[Texte\]</i> <pre>(#TEXTE*|echapper_tags)</pre>]
 [<br /><i class="champs">\[PS\]</i> <pre>(#PS*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+[<br /><i class="champs">\[Nom site\]</i> <pre>(#NOM_SITE*|echapper_tags)</pre>]
 ]
 <B_Documents>
 <ul>
@@ -82,8 +84,7 @@
 [<p>(#NOTES)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
 ]
 </BOUCLE_Documents>
 </ul>
@@ -95,7 +96,7 @@
 <B_SitesRacine>
 <ul>
 <BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}{id_mot?}>
-<li><a href="#URL_SITE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Site \(#ID_SITE\) Nom Site\]</i> ]#NOM_SITE</a> [(#SET{comptemot,
+<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Site \(#ID_SYNDIC\) Nom Site\]</i> ]#NOM_SITE</a> [(#SET{comptemot,
 	[(#NOM_SITE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
 		|plus{[(#NOTES|textebrut|str_word_count_utf8)]}
@@ -105,8 +106,7 @@
 [<p>(#NOTES)</p>]	
 ]
 [(#ENV{textes}|=={spip}|oui)
-[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|echapper_tags)</pre>]
-[<br /><i class="champs">\[Notes\]</i> <pre>(#NOTES*|echapper_tags)</pre>]	
+[<br /><i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
 ]
 </li>
 </BOUCLE_SitesRacine>
