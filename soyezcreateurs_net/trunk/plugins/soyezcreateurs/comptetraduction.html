@@ -1,11 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
 <style>
 	.champs { color: #888; }
 </style>
+</head>
+<body>
 
 [(#ENV{textes}|non)<ol>
 <li><a href="[(#SELF|parametre_url{id_mot,113})]">Seulement les textes marqués à traduire</a> / <a href="[(#SELF|parametre_url{id_mot,''})]">Tous</a></li>
 <li><a href="[(#SELF|parametre_url{textes,oui})]">Récupérer les textes</a></li>
 <li><a href="[(#SELF|parametre_url{textes,spip})]">Récupérer les textes au format SPIP</a></li>
+<li><a href="[(#URL_PAGE{comptetraduction_export}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{lang,#ENV{lang,#CONFIG{langue_site}}})]">Récupérer les textes au format SPIP sous Excel</a></li>
 </ol>]
 [(#ENV{textes}|=={oui}|oui)
 <h1>#NOM_SITE_SPIP</h1>
@@ -27,7 +33,7 @@
 )]})]
 [(#SET{totalmots,[(#GET{totalmots}|plus{#GET{comptemot}})]})]
 [(#ENV{textes}|non)<p>==> Hors rubriques :  #GET{comptemot}</p>]
-<BOUCLE_ListeSecteurs(RUBRIQUES){id_parent}{par num titre}>
+<BOUCLE_ListeSecteurs(RUBRIQUES){id_parent}{par id_rubrique}>
 [(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -45,11 +51,10 @@
 <h[(#PROFONDEUR|plus{1})]><a href="#URL_RUBRIQUE"><i class="champs">\[Rubrique \(#ID_RUBRIQUE\) Titre\]</i> [(#TITRE*|extraire_multi|echapper_tags)]</a></h[(#PROFONDEUR|plus{1})]>
 [<i class="champs">\[Descriptif\]</i> <pre>(#DESCRIPTIF*|extraire_multi|echapper_tags)</pre>]
 [<i class="champs">\[Texte\]</i> <pre>(#TEXTE*|extraire_multi|echapper_tags)</pre>]
-[<i class="champs">\[Notes\]</i> <pre>(#NOTES*|extraire_multi|echapper_tags)</pre>]
 ]
 <B_ArticlesRacine>
 <ul>
-<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par date}{lang?}{id_mot?}>
+<BOUCLE_ArticlesRacine(ARTICLES){id_rubrique}{!par id_article}{lang?}{id_mot?}>
 <li><a href="#URL_ARTICLE">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Article \(#ID_ARTICLE\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -76,7 +81,7 @@
 ]
 <B_Documents>
 <ul>
-<BOUCLE_Documents(DOCUMENTS){id_article}{par rang_lien, num titre, titre}>
+<BOUCLE_Documents(DOCUMENTS){id_article}{par id_document}>
 <li><a href="#URL_DOCUMENT">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Document \(#ID_DOCUMENT\) Titre\]</i> ]#TITRE</a> [(#SET{comptemot,
 	[(#TITRE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -98,7 +103,7 @@
 </B_ArticlesRacine>
 <B_SitesRacine>
 <ul>
-<BOUCLE_SitesRacine(SITES){id_rubrique}{!par date}{id_mot?}>
+<BOUCLE_SitesRacine(SITES){id_rubrique}{par id_syndic}{id_mot?}>
 <li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#ENV{textes}|=={spip}|oui)<i class="champs">\[Site \(#ID_SYNDIC\) Nom Site\]</i> ]#NOM_SITE</a> [(#SET{comptemot,
 	[(#NOM_SITE|textebrut|str_word_count_utf8
 		|plus{[(#DESCRIPTIF|textebrut|str_word_count_utf8)]}
@@ -119,3 +124,6 @@
 </BOUCLE_ListeSecteurs>
 
 [(#ENV{textes}|non)<p>==> Total tout compris : #GET{totalmots}</p>]
+
+</body>
+</html>

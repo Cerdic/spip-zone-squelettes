@@ -1,6 +1,4 @@
-
 <?php
-
 /***
 * This simple utf-8 word count function (it only counts)
 * is a bit faster then the one with preg_match_all
@@ -13,7 +11,7 @@
 **/
 
 // Jonny 5's simple word splitter
+
 function str_word_count_utf8($str) {
   return count(preg_split('~[^\p{L}\p{N}\']+~u',$str));
 }
-?>
