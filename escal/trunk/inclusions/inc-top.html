@@ -1,37 +1,38 @@
-	<h1 class="cadre top">
+<aside>
+<h1 class="cadre top">
 	[(#CONFIG{escal/config/titretop}|oui)
-    [(#CONFIG{escal/config/titretop}|propre|_T_ou_typo|PtoBR)]
-  ]
+		[(#CONFIG{escal/config/titretop}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titretop}|non)
-    <:escal:top_articles:>
-  ]
-  </h1>
+		<:escal:top_articles:>
+	]
+</h1>
 
-  <div class="texte top [(#CONFIG{escal/config/toggletop}|=={oui}|oui)toggle]" >
-  
-	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot IN 'forum', 'invisible'}>
-	 <BOUCLE_extract(ARTICLES){id_rubrique}{doublons}>
-	 </BOUCLE_extract>
-  	<BOUCLE_exclure_rub2(RUBRIQUES){branche}>
-  	 <BOUCLE_extract2(ARTICLES){id_rubrique}{doublons}>
-  	 </BOUCLE_extract2>
-  	</BOUCLE_exclure_rub2>
-	</BOUCLE_exclure_rub>
-	
-	<!-- exclusion des articles avec le mot-clé"invisible"  -->
-	<BOUCLE_exclure_art(ARTICLES){titre_mot=invisible}{doublons}>
-	</BOUCLE_exclure_art>
+<div class="texte top [(#CONFIG{escal/config/toggletop}|=={oui}|oui)toggle]" >
+
+<!-- exclusion des articles avec le mot-clé"invisible"  -->  
+<BOUCLE_exclure_rub(RUBRIQUES){titre_mot IN 'forum', 'invisible'}>
+	<BOUCLE_extract(ARTICLES){id_rubrique}{doublons}>
+	</BOUCLE_extract>
+	<BOUCLE_exclure_rub2(RUBRIQUES){branche}>
+		<BOUCLE_extract2(ARTICLES){id_rubrique}{doublons}>
+		</BOUCLE_extract2>
+	</BOUCLE_exclure_rub2>
+</BOUCLE_exclure_rub>
+<BOUCLE_exclure_art(ARTICLES){titre_mot=invisible}{doublons}>
+</BOUCLE_exclure_art>
 	
 #SET{nombretop,#CONFIG{escal/config/nombretop,5}}
-    <B_affichage_articles>
-    <ul>
-    <BOUCLE_affichage_articles(ARTICLES){par visites}{inverse}{0,#GET{nombretop}}{lang}{doublons}>
-    <li>
-    <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]"  title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
-    <div class="popularite"> (<:escal:vu:> <strong>[(#VISITES)]</strong> <:escal:fois:>)</div>
-    </li>
-    </BOUCLE_affichage_articles>
-    </ul>
-    </B_affichage_articles>
+<B_affichage_articles>
+	<ul>
+<BOUCLE_affichage_articles(ARTICLES){par visites}{inverse}{0,#GET{nombretop}}{lang}{doublons}>
+		<li>
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]"  title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
+			<div class="popularite"> (<:escal:vu:> <strong>[(#VISITES)]</strong> <:escal:fois:>)</div>
+		</li>
+</BOUCLE_affichage_articles>
+	</ul>
+</B_affichage_articles>
 
-  </div>
+</div>
+</aside> 

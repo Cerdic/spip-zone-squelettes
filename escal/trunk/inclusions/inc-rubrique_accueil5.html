@@ -1,14 +1,14 @@
 #SET{nbrpagrubaccueil,#CONFIG{escal/config/pagrubaccueil,5}}
 
-<div class="laune" >
+<nav class="laune" >
 
 <BOUCLE_rubrique_accueil(RUBRIQUES){lang}{titre_mot=RubriqueOnglet5}{par date}{inverse}{0,1}> 
 
 [(#CONFIG{escal/config/descriptifrubaccueil}|=={non}|non)
-<div class="descriptif-rubrique-accueil #EDIT{descriptif}">[(#DESCRIPTIF)]</div>
+	[<div class="descriptif-rubrique-accueil #EDIT{descriptif}">(#DESCRIPTIF)</div>]
 ]
 [(#CONFIG{escal/config/texterubaccueil}|=={non}|non)
-<div class="descriptif-rubrique-accueil #EDIT{descriptif}">[(#TEXTE)]</div>
+	[<div class="descriptif-rubrique-accueil #EDIT{descriptif}">(#TEXTE)</div>]
 ]
 
 <B_articles_rubs>
@@ -21,7 +21,7 @@
 	<BOUCLE_articles_rubs(ARTICLES){branche}{par date}{inverse}{pagination #GET{nbrpagrubaccueil}}>
 		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="cadre-rubrique-accueil">
-		
+
 			[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogorubaccueil,25}})]
 			<span class="titre-autres">	
 				[(#TITRE)]
@@ -43,7 +43,7 @@
 				[(#LANG|=={ja}|oui)<:par_auteur:>]
 				</B_test>
 			</span>
-		
+
 			<div class="nettoyeur"></div>
 		</div>
 		</a>		
@@ -56,4 +56,4 @@
 
 </BOUCLE_rubrique_accueil>
 
-</div>
+</nav>

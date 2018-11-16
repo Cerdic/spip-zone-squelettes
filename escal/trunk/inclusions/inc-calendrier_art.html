@@ -13,20 +13,20 @@
 #SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
     <B_articles_agenda>
 
-		  <div id="entete-evenement">
-        <:escal:evenements:>
-		  </div>
+<div id="entete-evenement">
+	<:escal:evenements:>
+</div>
       
-	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>] 
-		<BOUCLE_articles_agenda(ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpageventcalendrier}}>
-			<div class="liste-evenements">
+[<p class="pagination">(#PAGINATION)</p>
+<div class="nettoyeur"></div>]
 
-      [(#DATE_REDAC|annee|=={#GET{annee-en-cours}}|?{[(#DATE_REDAC|affdate{'d-m'})] :,[(#DATE_REDAC|affdate{'d-m-Y'})] :})] 
-			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
-			</div>
-		</BOUCLE_articles_agenda>
-			<div class="liste-evenements">
-			<:escal:evenements_non:>
-			</div>
-		<//B_articles_agenda>
+<BOUCLE_articles_agenda(ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpageventcalendrier}}>
+	<div class="liste-evenements">
+		[(#DATE_REDAC|annee|=={#GET{annee-en-cours}}|?{[(#DATE_REDAC|affdate{'d-m'})] :,[(#DATE_REDAC|affdate{'d-m-Y'})] :})] 
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
+	</div>
+</BOUCLE_articles_agenda>
+	<div class="liste-evenements">
+		<:escal:evenements_non:>
+	</div>
+<//B_articles_agenda>

@@ -1,91 +1,83 @@
-	<div class="forum-article" id="ForumArticle">
+<aside class="forum-article" id="ForumArticle">
 
 [(#CONFIG{escal/config/afficheformreponse}|=={oui}|non)
-			<img class="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
-
-			<div class="repondre-article">
-  			<a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>" rel="nofollow">
-  			<:repondre_article:>
-  			</a>
-			</div>
+	<img class="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
+	<div class="repondre-article">
+		<a href="[(#URL_PAGE{forum,#PARAMETRES_FORUM{#SELF}}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_article:>" rel="nofollow">
+		<:repondre_article:>
+		</a>
+	</div>
 ]
 [(#CONFIG{escal/config/afficheformreponse}|=={oui}|oui)
-			<img class="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
-
-			<div class="repondre-article">
-  			<span class="reponse-article"><:repondre_article:></span>
-			</div>
+	<img class="forum" src="#CHEMIN{images/forum.png}" alt='<:escal:forum:>' />
+	<div class="repondre-article">
+		<span class="reponse-article"><:repondre_article:></span>
+	</div>
 #FORMULAIRE_FORUM
 ]
 
 <BOUCLE_test(FORUMS){id_article}{plat}{par date}{inverse}>
+	<B_thread>
+		<a name="forum#ID_FORUM"></a>
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>] 
+	<BOUCLE_thread(FORUMS){id_thread}{doublons}{pagination 5}>
+		<div class="forum-thread" >
+			<div class="titre-message">
+				#TITRE
+				<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
+          	</div>
+			[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
 
-      <B_thread>
-      <a name="forum#ID_FORUM"></a>
-	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>] 
-			<BOUCLE_thread(FORUMS){id_thread}{doublons}{pagination 5}>
-				<div class="forum-thread" >
-				  <div class="titre-message">
+		<BOUCLE_doc_joints(DOCUMENTS){id_forum}{mode=document}>
+			<span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
+			<div class="nettoyeur"></div>
+		</BOUCLE_doc_joints>
+
+			<div class="reponse">
+				<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>" rel="nofollow">
+					<:escal:repondre_message:>
+				</a>
+			</div>
+		</div>
+
+		<B_reponses>
+			[(#CONFIG{escal/config/togglereponsearticle}|=={oui}|oui)<div class="toggle2">]
+			<a name="forum#ID_FORUM"></a>
+			<div class="decal-reponse">
+				<img width="10" height="13" alt="" src="#CHEMIN{images/forum-droite.gif}"/>
+		<BOUCLE_reponses(FORUMS){id_parent}{par date}>
+				<div class="forum_reponse" >
+					<div class="titre-message">
 						#TITRE
 					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
-          </div>
-
-					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
-
-            <BOUCLE_doc_joints(DOCUMENTS){id_forum}{mode=document}>
-              <span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
-            </BOUCLE_doc_joints>
-
-					<div class="reponse">
-					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>" rel="nofollow">
-					<:escal:repondre_message:>
-					</a>
 					</div>
-
-        </div>
-
-					<B_reponses>
-[(#CONFIG{escal/config/togglereponsearticle}|=={oui}|oui)<div class="toggle2">]
-<a name="forum#ID_FORUM"></a>
-      <div class="decal-reponse">
-						<img width="10" height="13" alt="" src="#CHEMIN{images/forum-droite.gif}"/>
-					<BOUCLE_reponses(FORUMS){id_parent}{par date}>
-						<div class="forum_reponse" >
-    				  <div class="titre-message">
-    						#TITRE
-    					<div class="auteur-message">[<strong>(#NOM)</strong>] [ - <:escal:le:> (#DATE|affdate)]</div>
-              </div>
-
-             	[<div class="#EDIT{texte} texte-message">(#TEXTE)
-    					[<a href="#URL_SITE">(#NOM_SITE)</a>]
-              </div>]
-
-                <BOUCLE_doc_joints2(DOCUMENTS){id_forum}{mode=document}>
-                  <span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
-                </BOUCLE_doc_joints2>
+					[<div class="#EDIT{texte} texte-message">(#TEXTE)
+						[<a href="#URL_SITE">(#NOM_SITE)</a>]
+					</div>]
+				<BOUCLE_doc_joints2(DOCUMENTS){id_forum}{mode=document}>
+					<span class="imageforum">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</span>
+				</BOUCLE_doc_joints2>
 
     					<div class="reponse">
     					<a href="[(#URL_PAGE{message,#PARAMETRES_FORUM{#SELF}}|parametre_url{id_forum,#ID_FORUM}|parametre_url{lang,#ENV{lang}})]" title="<:repondre_message:>" rel="nofollow">
     					<:escal:repondre_message:>
     					</a>
     					</div>
-						</div>
+				</div>
 
-							<BOUCLE_rep_messages(boucle_reponses)>
-							</BOUCLE_rep_messages>
-					</BOUCLE_reponses>
+			<BOUCLE_rep_messages(boucle_reponses)>
+			</BOUCLE_rep_messages>
+		</BOUCLE_reponses>
           	</div>
-[(#CONFIG{escal/config/togglereponsearticle}|=={oui}|oui)</div>]
-        </B_reponses>
+			[(#CONFIG{escal/config/togglereponsearticle}|=={oui}|oui)</div>]
+		</B_reponses>
 
-			</BOUCLE_thread>
-	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>] 
-      </B_thread>
-
+	</BOUCLE_thread>
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>] 
+	</B_thread>
 
 </BOUCLE_test>
 
-
-	</div><!-- fin forum-article -->
+</aside><!-- fin forum-article -->

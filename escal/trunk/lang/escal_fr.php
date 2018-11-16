@@ -254,6 +254,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'choix_trois' => 'Trois',
 	'choix_une' => 'Une',
 	'clic_telechargement' => 'Cliquer pour voir ou télécharger',
+	'clic_suite' => 'Cliquer pour lire la suite',
 	'collegues' => 'Tous les collègues',
 	'colonne_extra' => 'Colonne "extra" (par défaut à droite)',
 	'colonne_nav' => 'Colonne "navigation" (par défaut à gauche)',

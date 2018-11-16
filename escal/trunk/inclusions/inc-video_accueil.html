@@ -1,35 +1,33 @@
-  <h1 class="cadre video-accueil">
-  [(#CONFIG{escal/config/titrevideoaccueil}|oui)
-    [(#CONFIG{escal/config/titrevideoaccueil}|propre|_T_ou_typo|PtoBR)]
-  ]
+<aside>
+<h1 class="cadre video-accueil">
+	[(#CONFIG{escal/config/titrevideoaccueil}|oui)
+		[(#CONFIG{escal/config/titrevideoaccueil}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titrevideoaccueil}|non)
-    <:escal:video:>
-  ]
-  </h1>
+		<:escal:video:>
+	]
+</h1>
 
-  <div class="texte video-accueil" >
+<div class="texte video-accueil" >
+<BOUCLE_article_video(ARTICLES){titre_mot=video-une}>
 
-    <BOUCLE_article_video(ARTICLES){titre_mot=video-une}>
+	<B_video>
+		#ANCRE_PAGINATION
+	<BOUCLE_video(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}{pagination 1}>
+		<div class="video">[(#MODELE{doc_player_mini}{id_document=#ID_DOCUMENT})]</div>
+	</BOUCLE_video>
+		[<p class="pagination" style="text-align:center">(#PAGINATION{page})</p>
+		<div class="nettoyeur"></div>]
+	</B_video>
 
-    <B_video>
-    #ANCRE_PAGINATION
-    <BOUCLE_video(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}{pagination 1}>
-    <div class="video">[(#MODELE{doc_player_mini}{id_document=#ID_DOCUMENT})]</div>
-    </BOUCLE_video>
-	[<p class="pagination" style="text-align:center">(#PAGINATION{page})</p>
-	<div class="nettoyeur"></div>]
-    </B_video>
-    
-    <B_playliste>
-    <ol>
-    <BOUCLE_playliste(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}>
-    <li>[(#TITRE|couper{25,''}|sinon{#FICHIER|basename|couper{20,''}})]</li>
-    </BOUCLE_playliste>
-    </ol>
-    </B_playliste>
+	<B_playliste>
+		<ol>
+	<BOUCLE_playliste(DOCUMENTS){id_article}{mode=document}{extension IN flv,mp4}{par num titre}>
+			<li>[(#TITRE|couper{25,''}|sinon{#FICHIER|basename|couper{20,''}})]</li>
+	</BOUCLE_playliste>
+		</ol>
+	</B_playliste>
 
-
-    </BOUCLE_article_video>
-
-
-  </div><!-- fin texte -->
+</BOUCLE_article_video>
+</div><!-- fin texte -->
+</aside> 

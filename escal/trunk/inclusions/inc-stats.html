@@ -1,132 +1,134 @@
+<aside>
 #CACHE{60}
 
-	<h1 class="cadre stats">
+<h1 class="cadre stats">
 	[(#CONFIG{escal/config/titrestats}|oui)
-    [(#CONFIG{escal/config/titrestats}|propre|_T_ou_typo|PtoBR)]
-  ]
+		[(#CONFIG{escal/config/titrestats}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titrestats}|non)
-    <:escal:statistiques:>
-  ]
-  </h1>
+		<:escal:statistiques:>
+	]
+</h1>
   
   
-  <div class="texte stats [(#CONFIG{escal/config/togglestats}|=={oui}|oui)toggle]" >
+<div class="texte stats [(#CONFIG{escal/config/togglestats}|=={oui}|oui)toggle]" >
 
 <ul>
 
 [(#CONFIG{escal/config/totalvisites}|!={non}|oui)
-<li>
-<:escal:total_visites:>
-<div class="detail">#TOTAL_VISITES <:escal:visiteurs:></div>
-</li>
+	<li>
+		<:escal:total_visites:>
+		<div class="detail">#TOTAL_VISITES <:escal:visiteurs:></div>
+	</li>
 ]
 
 [(#CONFIG{escal/config/totalpagesvisitees}|!={non}|oui)
-<li>
-<:escal:pages_vues:>
-<div class="detail">#NBPAGES_VISITEES <:escal:pages:></div>
-</li>
+	<li>
+		<:escal:pages_vues:>
+		<div class="detail">#NBPAGES_VISITEES <:escal:pages:></div>
+	</li>
 ]
 
 [(#CONFIG{escal/config/moyennevisites}|!={non}|oui)
-<li>
-<:escal:moyenne_visites:> [(#CONFIG{escal/config/periodevisites,365})] <:escal:jours:> :
-<div class="detail">
-#MOY_VISITES <:escal:visites_jour:>
-</div>
-</li>
+	<li>
+		<:escal:moyenne_visites:> [(#CONFIG{escal/config/periodevisites,365})] <:escal:jours:> :
+		<div class="detail">#MOY_VISITES <:escal:visites_jour:></div>
+	</li>
 ]
 
 [(#CONFIG{escal/config/grosjour}|!={non}|oui)
-<li>
-<:escal:gros_jour:>
-<div class="detail"><:escal:le:> [(#JOUR_MAX_VISITES|affdate{'d-m-Y'})] <br /> <:escal:avec:> #VAL_MAX_VISITES <:escal:visiteurs:></div>
-</li>
+	<li>
+		<:escal:gros_jour:>
+		<div class="detail"><:escal:le:> [(#JOUR_MAX_VISITES|affdate{'d-m-Y'})] <br /> <:escal:avec:> #VAL_MAX_VISITES <:escal:visiteurs:></div>
+	</li>
 ]
 
 [(#CONFIG{escal/config/aujourdhui}|=={non}|oui) <!-- ]
-<li>
-<:escal:aujourdhui:>
-<div class="detail">
-<BOUCLE_visites_jour(visites){date==^(#DATE|affdate{Y-m-d})}>
-[(#VISITES) <:escal:visiteurs:>]
-</BOUCLE_visites_jour>
-<:escal:premier_visiteur:>
-<//B_visites_jour>
-</div>
-</li>
+	<li>
+		<:escal:aujourdhui:>
+		<div class="detail">
+			<BOUCLE_visites_jour(visites){date==^(#DATE|affdate{Y-m-d})}>
+				[(#VISITES) <:escal:visiteurs:>]
+			</BOUCLE_visites_jour>
+				<:escal:premier_visiteur:>
+			<//B_visites_jour>
+		</div>
+	</li>
 [(#CONFIG{escal/config/aujourdhui}|=={non}|oui) --> ]
 
 [(#CONFIG{escal/config/visiteursenligne}|!={non}|oui)
-<li>
-<:escal:en_ligne:>
-<div class="detail">[(#VAL{}|escal_visiteurs_connectes_compter)]
-                    [(#VAL{}|escal_visiteurs_connectes_compter|>{01}|oui)  <:escal:visiteurs:>]
-                    [(#VAL{}|escal_visiteurs_connectes_compter|>{01}|non)  <:escal:visiteur:>]
-</div>
-</li>
+	<li>
+		<:escal:en_ligne:>
+		<div class="detail">
+			[(#VAL{}|escal_visiteurs_connectes_compter)]
+			[(#VAL{}|escal_visiteurs_connectes_compter|>{01}|oui)  <:escal:visiteurs:>]
+			[(#VAL{}|escal_visiteurs_connectes_compter|>{01}|non)  <:escal:visiteur:>]
+		</div>
+	</li>
 ]
 
-<li>
-[(#CONFIG{escal/config/cesitecompte}|!={non}|oui)
-<:escal:contenu_site:>
-]
-  <BOUCLE_total_auteurs(AUTEURS){si #CONFIG{escal/config/auteurssite}|!={non}}{tout}{lang_select}> </BOUCLE_total_auteurs>
-  <span class="detail">#TOTAL_BOUCLE <:escal:auteurs:></span>
-  </B_total_auteurs>
+	<li>
+		[(#CONFIG{escal/config/cesitecompte}|!={non}|oui)
+			<:escal:contenu_site:>
+		]
+		
+		<BOUCLE_total_auteurs(AUTEURS){si #CONFIG{escal/config/auteurssite}|!={non}}{tout}{lang_select}> </BOUCLE_total_auteurs>
+			<span class="detail">#TOTAL_BOUCLE <:escal:auteurs:></span>
+		</B_total_auteurs>
+	
+		<BOUCLE_total_rubriques(RUBRIQUES){si #CONFIG{escal/config/rubriquessite}|!={non}}{tout}> </BOUCLE_total_rubriques>
+			<span class="detail">#TOTAL_BOUCLE <:escal:rubriques:></span>
+		</B_total_rubriques>
+	
+		<BOUCLE_total_articles(ARTICLES){si #CONFIG{escal/config/articlessite}|!={non}}{tout}> </BOUCLE_total_articles>
+			<span class="detail">#TOTAL_BOUCLE <:escal:articles:></span>
+		</B_total_articles>
+	
+		<BOUCLE_total_commentaires(FORUMS){si #CONFIG{escal/config/commssite}|!={non}}{tout}> </BOUCLE_total_commentaires>
+			<span class="detail">#TOTAL_BOUCLE <:escal:commentaires:></span>
+		</B_total_commentaires>
+	
+		<BOUCLE_total_mot_clef(MOTS){si #CONFIG{escal/config/motssite}|!={non}}{tout}> </BOUCLE_total_mot_clef>
+			<span class="detail">#TOTAL_BOUCLE <:escal:mots_cles:></span>
+		</B_total_mot_clef>
+	
+		<BOUCLE_total_sites(SITES){si #CONFIG{escal/config/sitessite}|!={non}}{tout}> </BOUCLE_total_sites>
+			<span class="detail">#TOTAL_BOUCLE <:escal:sites_references:></span>
+		</B_total_sites>
+	</li>
 
-  <BOUCLE_total_rubriques(RUBRIQUES){si #CONFIG{escal/config/rubriquessite}|!={non}}{tout}> </BOUCLE_total_rubriques>
-  <span class="detail">#TOTAL_BOUCLE <:escal:rubriques:></span>
-  </B_total_rubriques>
-
-  <BOUCLE_total_articles(ARTICLES){si #CONFIG{escal/config/articlessite}|!={non}}{tout}> </BOUCLE_total_articles>
-  <span class="detail">#TOTAL_BOUCLE <:escal:articles:></span>
-  </B_total_articles>
-
-  <BOUCLE_total_commentaires(FORUMS){si #CONFIG{escal/config/commssite}|!={non}}{tout}> </BOUCLE_total_commentaires>
-  <span class="detail">#TOTAL_BOUCLE <:escal:commentaires:></span>
-  </B_total_commentaires>
-
-  <BOUCLE_total_mot_clef(MOTS){si #CONFIG{escal/config/motssite}|!={non}}{tout}> </BOUCLE_total_mot_clef>
-  <span class="detail">#TOTAL_BOUCLE <:escal:mots_cles:></span>
-  </B_total_mot_clef>
-
-  <BOUCLE_total_sites(SITES){si #CONFIG{escal/config/sitessite}|!={non}}{tout}> </BOUCLE_total_sites>
-  <span class="detail">#TOTAL_BOUCLE <:escal:sites_references:></span>
-  </B_total_sites>
-</li>
-
-	<BOUCLE_exclure_rub1(RUBRIQUES){titre_mot IN pas-au-menu,pas-au-menu-vertical,pas-au-plan,pas-a-la-une,invisible}>
-	 <BOUCLE_extract1(ARTICLES){id_rubrique}{doublons}>
-	 </BOUCLE_extract1>
-  	<BOUCLE_exclure_rub_branche1(RUBRIQUES){branche}>
-  	 <BOUCLE_extract_branche1(ARTICLES){id_rubrique}{doublons}>
-  	 </BOUCLE_extract_branche1>	 
+<BOUCLE_exclure_rub1(RUBRIQUES){titre_mot IN pas-au-menu,pas-au-menu-vertical,pas-au-plan,pas-a-la-une,invisible}>
+	<BOUCLE_extract1(ARTICLES){id_rubrique}{doublons}>
+	</BOUCLE_extract1>
+	<BOUCLE_exclure_rub_branche1(RUBRIQUES){branche}>
+		<BOUCLE_extract_branche1(ARTICLES){id_rubrique}{doublons}>
+		</BOUCLE_extract_branche1>	 
   	</BOUCLE_exclure_rub_branche1>	 
-	</BOUCLE_exclure_rub1>
+</BOUCLE_exclure_rub1>
 
     
 <B_dernier>
-<li>
-<BOUCLE_dernier(ARTICLES){si #CONFIG{escal/config/dernierarticleparu}|!={non}}{lang}{doublons}{statut=publie}{age>0}{par date}{inverse}{0,1}>
-<:escal:article_dernier:>
-<div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
-<div class="detail">"#TITRE"</div>
-</BOUCLE_dernier>
-</li>
+	<li>
+		<BOUCLE_dernier(ARTICLES){si #CONFIG{escal/config/dernierarticleparu}|!={non}}{lang}{doublons}{statut=publie}{age>0}{par date}{inverse}{0,1}>
+			<:escal:article_dernier:>
+			<div class="detail"><:escal:le:> [(#DATE|affdate)]</div>
+			<div class="detail">"#TITRE"</div>
+		</BOUCLE_dernier>
+	</li>
 </B_dernier>
 
 <B_forums>
-<li>
-<:escal:sur_forum:>
-  <BOUCLE_forums(RUBRIQUES){si #CONFIG{escal/config/sujetsforum}|!={non}}{racine}{titre_mot=forum}>
-    <BOUCLE_total_sujets(FORUMS){articles.id_secteur=#ID_SECTEUR}></BOUCLE_total_sujets>
-      <span class="detail">#TOTAL_BOUCLE <:escal:sujets:></span>
-    <//B_total_sujets>
-  </BOUCLE_forums>
-</li>
+	<li>
+		<:escal:sur_forum:>
+		<BOUCLE_forums(RUBRIQUES){si #CONFIG{escal/config/sujetsforum}|!={non}}{racine}{titre_mot=forum}>
+			<BOUCLE_total_sujets(FORUMS){articles.id_secteur=#ID_SECTEUR}></BOUCLE_total_sujets>
+				<span class="detail">#TOTAL_BOUCLE <:escal:sujets:></span>
+			<//B_total_sujets>
+		</BOUCLE_forums>
+	</li>
 </B_forums>
 
 </ul>
 
-  </div>
+</div>
+</aside> 

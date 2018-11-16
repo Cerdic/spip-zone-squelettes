@@ -1,49 +1,50 @@
-  <h1 class="cadre liste-auteurs">
-    <BOUCLE_comptauteurs(AUTEURS){tous}> </BOUCLE_comptauteurs>
-      [(#TOTAL_BOUCLE) <:escal:auteurs:>]
-    </B_comptauteurs>
-    [(#CONFIG{escal/config/lien_trombino_auteurs}|=={non}|non)
-      <a id="savoir-plus" href="#URL_PAGE{trombino-auteurs}"><:en_savoir_plus:></a>
-      ]
-  </h1>
+ <aside>
+ <h1 class="cadre liste-auteurs">
+<BOUCLE_comptauteurs(AUTEURS){tous}> </BOUCLE_comptauteurs>
+	[(#TOTAL_BOUCLE) <:escal:auteurs:>]
+</B_comptauteurs>
+	[(#CONFIG{escal/config/lien_trombino_auteurs}|=={non}|non)
+	<a id="savoir-plus" href="#URL_PAGE{trombino-auteurs}"><:en_savoir_plus:></a>
+	]
+</h1>
 
-  <div class="texte liste-auteurs [(#CONFIG{escal/config/togglelisteauteurs}|=={oui}|oui)toggle]">
+<div class="texte liste-auteurs [(#CONFIG{escal/config/togglelisteauteurs}|=={oui}|oui)toggle]">
 
-
-<ul class="legende">
-<BOUCLE_legende_admin(AUTEURS){statut=0minirezo}{tous}> </BOUCLE_legende_admin>
-[<li class="legende_admin">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_administrateurs:></li>]
-</B_legende_admin>
-
-<BOUCLE_legende_auteur(AUTEURS){statut=1comite}{tous}> </BOUCLE_legende_auteur>
-[<li class="legende_redacteur">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_redacteurs:></li>]
-</B_legende_auteur>
-
-<BOUCLE_legende_visiteur(AUTEURS){statut=6forum}{tous}> </BOUCLE_legende_visiteur>
-[<li class="legende_visiteur">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_visiteurs:></li>]
-</B_legende_visiteur>
-</ul>
+	<ul class="legende">
+		<BOUCLE_legende_admin(AUTEURS){statut=0minirezo}{tous}> </BOUCLE_legende_admin>
+			[<li class="legende_admin">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_administrateurs:></li>]
+		</B_legende_admin>
+		
+		<BOUCLE_legende_auteur(AUTEURS){statut=1comite}{tous}> </BOUCLE_legende_auteur>
+			[<li class="legende_redacteur">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_redacteurs:></li>]
+		</B_legende_auteur>
+		
+		<BOUCLE_legende_visiteur(AUTEURS){statut=6forum}{tous}> </BOUCLE_legende_visiteur>
+			[<li class="legende_visiteur">&nbsp;(#TOTAL_BOUCLE)&nbsp;<:info_visiteurs:></li>]
+		</B_legende_visiteur>
+	</ul>
 
 <p class="interne">Annuaire:
-<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
-[ <a  class="ajax" rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|textebrut|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|textebrut|translitteration|couper{1}|lettre1|unique{titrelien})</a>]
-</BOUCLE_initial_nom>
+	<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
+		[ <a  class="ajax" rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|textebrut|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|textebrut|translitteration|couper{1}|lettre1|unique{titrelien})</a>]
+	</BOUCLE_initial_nom>
 </p>
 
 #SET{paginauteurs,#CONFIG{escal/config/paginauteurs,20}}
 <B_auteurs>
-#ANCRE_PAGINATION
-<div class="auteurs">
+	#ANCRE_PAGINATION
+	<div class="auteurs">
 <BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination #GET{paginauteurs}}{", "}>
-[<span class="admin"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/admin">]
-[<span class="redacteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
-[<span class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
-[&nbsp;(#NOM|textebrut)]</a>
-</span>
+	[<span class="admin"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/admin">]
+	[<span class="redacteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
+	[<span class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
+	[&nbsp;(#NOM|textebrut)]</a>
+	</span>
 </BOUCLE_auteurs>
 	[<p class="pagination pagination-liste-auteurs">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>] 
-</div> 	
+	<div class="nettoyeur"></div>]
+	</div> 	
 </B_auteurs>
 
-</div> 
+</div>
+</aside>

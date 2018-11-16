@@ -1,23 +1,22 @@
-	<h1 class="cadre decouvrir-articles">
+<section>
+<h1 class="cadre decouvrir-articles">
 	[(#CONFIG{escal/config/titredecouvrirarticles}|oui)
-    [(#CONFIG{escal/config/titredecouvrirarticles}|propre|_T_ou_typo||PtoBR)]
-  ]
+	[(#CONFIG{escal/config/titredecouvrirarticles}|propre|_T_ou_typo||PtoBR)]
+	]
 	[(#CONFIG{escal/config/titredecouvrirarticles}|non)
-    <:escal:a_decouvrir:>
-  ]
-	</h1>
+	<:escal:a_decouvrir:>
+	]
+</h1>
 
 <div class="texte decouvrir-articles [(#CONFIG{escal/config/toggledecouvrirarticles}|=={oui}|oui)toggle]" >
 
-                <BOUCLE_exclusion_rubrique(RUBRIQUES){titre_mot=pas-a-decouvrir}{lang}>
-                  <BOUCLE_exclusion_articles1(ARTICLES){branche}{lang}{doublons exclus}>
-                  </BOUCLE_exclusion_articles1>
-                </BOUCLE_exclusion_rubrique>
+<BOUCLE_exclusion_rubrique(RUBRIQUES){titre_mot=pas-a-decouvrir}{lang}>
+	<BOUCLE_exclusion_articles1(ARTICLES){branche}{lang}{doublons exclus}>
+	</BOUCLE_exclusion_articles1>
+</BOUCLE_exclusion_rubrique>
 
-                <BOUCLE_exclusion_articles(ARTICLES){titre_mot=pas-a-decouvrir}{lang}{doublons exclus}>
-                </BOUCLE_exclusion_articles>
-
-
+<BOUCLE_exclusion_articles(ARTICLES){titre_mot=pas-a-decouvrir}{lang}{doublons exclus}>
+</BOUCLE_exclusion_articles>
 
 #SET{nombrerecents,#CONFIG{escal/config/nombreartrecents,2}}
 #SET{nombrehasard,#CONFIG{escal/config/nombrearthasard,2}}
@@ -40,31 +39,33 @@
 
 <B_affichage>
 	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>]
+<div class="nettoyeur"></div>]
 <BOUCLE_affichage(ARTICLES){!doublons}{par hasard}{pagination #GET{nbrpagarticles}}>
 
-		<!-- 	affichage du titre avec lien vers l'article
-					de la date de publication
-					et de l'auteur(s) avec un lien pour lui envoyer un message -->
-		<div class="titre-article-cadre">
-			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+<!-- affichage du titre avec lien vers l'article
+	de la date de publication
+	et de l'auteur(s) avec un lien pour lui envoyer un message -->
+	<div class="titre-article-cadre">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 			[(#TITRE)]
-			</a>
-		</div>
+		</a>
+	</div>
 
-		<div class="date-auteur-cadre">
-            [(#CONFIG{escal/config/datedecouvrir}|=={non}|non)
+	<div class="date-auteur-cadre">
+		[(#CONFIG{escal/config/datedecouvrir}|=={non}|non)
 			[<:escal:publie:> (#DATE|affdate) ]
-            <br />]
-			<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurdecouvrir}|=={non}|non}>
-		  </BOUCLE_test>
-		  [(#LANG|=={ja}|non)<:par_auteur:>]
+			<br />
+		]
+		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurdecouvrir}|=={non}|non}>
+		</BOUCLE_test>
+			[(#LANG|=={ja}|non)<:par_auteur:>]
 			<BOUCLE_auteurs(AUTEURS){id_article}{",<br />"}{lang_select}>
 			[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]</BOUCLE_auteurs>
 			[(#LANG|=={ja}|oui)<:par_auteur:>]
-      </B_test>
-		</div>
+ 		</B_test>
+	</div>
 
 </BOUCLE_affichage>
 
 </div><!-- fin texte -->
+</section>

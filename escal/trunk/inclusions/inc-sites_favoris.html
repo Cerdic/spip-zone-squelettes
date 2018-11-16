@@ -31,65 +31,66 @@ On n'oublie pas de créer les règles CSS correspondantes !
 	top: au moins egal au height defini plus haut
 }
 ]
-
-	<h1 class="cadre sites-favoris">
+<aside>
+<h1 class="cadre sites-favoris">
 	[(#CONFIG{escal/config/titresitesfav}|oui)
-    [(#CONFIG{escal/config/titresitesfav}|propre|_T_ou_typo|PtoBR)]
-  ]
+	[(#CONFIG{escal/config/titresitesfav}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titresitesfav}|non)
-    <:escal:sites_favoris:>
-  ]
-  </h1>      
+	<:escal:sites_favoris:>
+	]
+</h1>      
 
-	<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
+<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
 #SET{nbrsitesfav,#CONFIG{escal/config/nombresitesfav,10}}
-  <div id="sites-defilants">
+	<div id="sites-defilants">
 <!-- affichage si aucun site -->
-      <BOUCLE_sites_favoris0(SITES){titre_mot=favori}{0,1}>   
-      </BOUCLE_sites_favoris0>
-  Ici vous pouvez afficher les logos (ou à défaut une vignette "easy-thumb" automatique) des sites avec le mot-clé "favori".<br /><br />
-  Et les images défilent.
+	<BOUCLE_sites_favoris0(SITES){titre_mot=favori}{0,1}>   
+	</BOUCLE_sites_favoris0>
+		Ici vous pouvez afficher les logos (ou à défaut une vignette "easy-thumb" automatique) des sites avec le mot-clé "favori".<br /><br />
+		Et les images défilent.
       <//B_sites_favoris0>   
 <!-- affichage par défaut : par hasard -->
-      <BOUCLE_sites_favoris_defaut(SITES){si #CONFIG{escal/config/ordresitesfav}|non}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
-      <div class="un-site-defilant">
-        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
-          <span class="titre-site">#NOM_SITE</span><br />
-          [(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
-          |sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
-        </a>
-      </div>
-      </BOUCLE_sites_favoris_defaut>  
+	<BOUCLE_sites_favoris_defaut(SITES){si #CONFIG{escal/config/ordresitesfav}|non}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
+	<div class="un-site-defilant">
+		<a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+			<span class="titre-site">#NOM_SITE</span><br />
+			[(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
+			|sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+		</a>
+	</div>
+	</BOUCLE_sites_favoris_defaut>  
 <!-- affichage par hasard -->
-      <BOUCLE_sites_favoris1(SITES){si #CONFIG{escal/config/ordresitesfav}|=={hasard}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
-      <div class="un-site-defilant">
-        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
-          <span class="titre-site">#NOM_SITE</span><br />
-          [(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
-          |sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
-        </a>
-      </div>
-      </BOUCLE_sites_favoris1>
+	<BOUCLE_sites_favoris1(SITES){si #CONFIG{escal/config/ordresitesfav}|=={hasard}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
+	<div class="un-site-defilant">
+		<a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+			<span class="titre-site">#NOM_SITE</span><br />
+			[(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
+			|sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+		</a>
+	</div>
+	</BOUCLE_sites_favoris1>
 <!-- affichage par date -->
-      <BOUCLE_sites_favoris2(SITES){si #CONFIG{escal/config/ordresitesfav}|=={date}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}>
-      <div class="un-site-defilant">
-        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
-          <span class="titre-site">#NOM_SITE</span><br />
-          [(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
-          |sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
-        </a>
-      </div>
-      </BOUCLE_sites_favoris2>        
+	<BOUCLE_sites_favoris2(SITES){si #CONFIG{escal/config/ordresitesfav}|=={date}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}>
+	<div class="un-site-defilant">
+		<a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+			<span class="titre-site">#NOM_SITE</span><br />
+			[(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
+			|sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+		</a>
+	</div>
+	</BOUCLE_sites_favoris2>        
 <!-- affichage par date inverse -->      
-      <BOUCLE_sites_favoris3(SITES){si #CONFIG{escal/config/ordresitesfav}|=={dateinverse}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}{inverse}>
-      <div class="un-site-defilant">
-        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
-          <span class="titre-site">#NOM_SITE</span><br />
-          [(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
-          |sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
-        </a>
-      </div>
-      </BOUCLE_sites_favoris3>    
+	<BOUCLE_sites_favoris3(SITES){si #CONFIG{escal/config/ordresitesfav}|=={dateinverse}|oui}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}{inverse}>
+	<div class="un-site-defilant">
+		<a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+			<span class="titre-site">#NOM_SITE</span><br />
+			[(#LOGO_SITE|extraire_attribut{src}|balise_img{logo site,spip_logos}|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})],0}
+			|sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+		</a>
+	</div>
+	</BOUCLE_sites_favoris3>    
 
 	</div>
-  </div>
+</div>
+</aside> 

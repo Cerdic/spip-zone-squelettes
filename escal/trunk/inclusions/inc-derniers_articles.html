@@ -1,52 +1,53 @@
+<section>
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}{titre_mot=trombino}>
 </BOUCLE_contexte>
 
 <BOUCLE_testrub(ARTICLES){branche}{0,1}>
 </BOUCLE_testrub>
 
-	<h1 class="cadre derniers-articles">
+<h1 class="cadre derniers-articles">
 	[(#CONFIG{escal/config/titrederniersart}|oui)
-    [(#CONFIG{escal/config/titrederniersart}|propre|_T_ou_typo|PtoBR)]
-  ]
+	[(#CONFIG{escal/config/titrederniersart}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titrederniersart}|non)
-    <:escal:articles_derniers:>
-  ]
-  
+	<:escal:articles_derniers:>
+	]
+
 	[(#LOGO_RUBRIQUE|extraire_attribut{src}|balise_img{logo rubrique,spip_logos}|image_reduire{36})]
-	</h1>
+</h1>
 
 <div class="texte derniers-articles [(#CONFIG{escal/config/togglederniersarticles}|=={oui}|oui)toggle]" >
 #SET{nombrederniersart,#CONFIG{escal/config/nombrederniersart,5}}
 
 <BOUCLE_derniers(ARTICLES){branche} {par date} {inverse} {0,#GET{nombrederniersart}} {doublons}>
 
-		<!-- 	affichage du titre avec lien vers l'article
-					de la date de publication
-					et de l'auteur(s) avec un lien pour lui envoyer un message -->
-		<div class="titre-article-cadre">
-			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+<!-- affichage du titre avec lien vers l'article
+	de la date de publication
+	et de l'auteur(s) avec un lien pour lui envoyer un message -->
+	<div class="titre-article-cadre">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 			[(#TITRE)]
-			</a>
-		</div>
+		</a>
+	</div>
 
-		<div class="date-auteur-cadre">
-			[(#CONFIG{escal/config/datederniersart}|=={non}|non)
-            [<:escal:publie:> (#DATE|affdate) ]
-            <br />]
-			<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurderniersart}|=={non}|non}>
-		  </BOUCLE_test>
-		  [(#LANG|=={ja}|non)<:par_auteur:>]
+	<div class="date-auteur-cadre">
+		[(#CONFIG{escal/config/datederniersart}|=={non}|non)
+			[<:escal:publie:> (#DATE|affdate) ]
+			<br />
+		]
+		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurderniersart}|=={non}|non}>
+		</BOUCLE_test>
+			[(#LANG|=={ja}|non)<:par_auteur:>]
 			<BOUCLE_auteurs(AUTEURS){id_article}{",<br />"}{lang_select}>
 			[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]</BOUCLE_auteurs>
 			[(#LANG|=={ja}|oui)<:par_auteur:>]
-      </B_test>
-		</div>
+		</B_test>
+	</div>
 
 </BOUCLE_derniers>
-
-
 
 </div><!-- fin texte -->
 </B_testrub>
 
 <//B_contexte>
+</section>

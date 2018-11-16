@@ -15,53 +15,50 @@
 ]
 
 <BOUCLE_inc_annonce_defilant_article(ARTICLES){id_article}>
-  <div class="une-annonce-defilante article#ID_ARTICLE" 
-  onclick="location.href='[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]'"
-  onmouseover="this.style.cursor='hand';" 
-  onmouseout="this.style.cursor='pointer';">
-    <div class="annoncedefil">
-      [(#CONFIG{escal/config/affichecompteur}|=={non}|non)
-        <span class="compteur-annonce">#ENV{compteur}/#ENV{total}</span>
-      ]
-      
-	<div class="nettoyeur"></div>
-      
+<div class="une-annonce-defilante article#ID_ARTICLE"
+	title="<:escal:clic_suite:>"
+	onclick="location.href='[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]'"
+	onmouseover="this.style.cursor='hand';"
+	onmouseout="this.style.cursor='pointer';">
+	<div class="annoncedefil">
+		[(#CONFIG{escal/config/affichecompteur}|=={non}|non)
+			<span class="compteur-annonce">#ENV{compteur}/#ENV{total}</span>
+		]
+		<div class="nettoyeur"></div>
 <!-- affichage logo -->
-	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoannonce,150}})]
-<!-- affichage titre -->	
-	<div class="annonce-titre #EDIT{titre}">#TITRE</div>	
+		[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoannonce,150}})]
+<!-- affichage titre -->
+		<h1 class="annonce-titre #EDIT{titre}">#TITRE</h1>
 <!-- affichage descriptif -->
-	<BOUCLE_descriptif_ann(ARTICLES){id_article}{si #CONFIG{escal/config/descriptifannonce}|=={non}|non}>
-	[<div class="#EDIT{descriptif} annonce-descriptif">
-	(#DESCRIPTIF)
-	</div>]
-	</BOUCLE_descriptif_ann>
-	[(#CONFIG{escal/config/textesousimage}|=={non}|non)
-	<div class="nettoyeur"></div>
-	]
-	<br />
+		<BOUCLE_descriptif_ann(ARTICLES){id_article}{si #CONFIG{escal/config/descriptifannonce}|=={non}|non}>
+			[<div class="#EDIT{descriptif} annonce-descriptif">
+				(#DESCRIPTIF)
+			</div>]
+		</BOUCLE_descriptif_ann>
+		[(#CONFIG{escal/config/textesousimage}|=={non}|non)
+			<div class="nettoyeur"></div>
+		]
+		<br />
 <!-- affichage texte -->
-	<BOUCLE_texteann(ARTICLES){id_article}{si #CONFIG{escal/config/texteannonce}|=={non}|non}>
-      <div class="#EDIT{texte} annonce-texte">
-        [(#PLUGIN{COUTEAU_SUISSE}|oui)
-        [(#TEXTE*
-            |appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
-            |replace{<centrer>,<div style="text-align:center;">}
-            |replace{</centrer>,</div>}
-            |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
-        )]
-        ]
-        [(#PLUGIN{COUTEAU_SUISSE}|non)
-        [(#TEXTE
-            |replace{<centrer>,<div style="text-align:center;">}
-            |replace{</centrer>,</div>}
-            |image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
-        )]
-        ]    
-      </div>
-      </BOUCLE_texteann>  
-  
-    </div>
-
-  </div>
+		<BOUCLE_texteann(ARTICLES){id_article}{si #CONFIG{escal/config/texteannonce}|=={non}|non}>
+			<div class="#EDIT{texte} annonce-texte">
+				[(#PLUGIN{COUTEAU_SUISSE}|oui)
+					[(#TEXTE*
+					|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+					|replace{<centrer>,<div style="text-align:center;">}
+					|replace{</centrer>,</div>}
+					|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+					)]
+				]
+				[(#PLUGIN{COUTEAU_SUISSE}|non)
+					[(#TEXTE
+					|replace{<centrer>,<div style="text-align:center;">}
+					|replace{</centrer>,</div>}
+					|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+					)]
+				]
+			</div>
+		</BOUCLE_texteann>
+	</div>
+</div>
 </BOUCLE_inc_annonce_defilant_article>

@@ -1,4 +1,4 @@
-<div id="cadre-plan" >
+<nav id="cadre-plan" >
 
 <!-- exclusion des rubriques avec le mot-clé "pas-au-plan" ou "invisible" et de ses sous-rubriques -->
 	<BOUCLE_exclure_rub_plan(RUBRIQUES){titre_mot IN 'pas-au-plan', 'invisible'}{doublons}>
@@ -8,52 +8,46 @@
     <BOUCLE_exclure_articles(ARTICLES){titre_mot IN 'pas-au-plan', 'invisible'}{doublons}>
     </BOUCLE_exclure_articles>
 
-		<!-- on affiche les secteurs avec leur logo s'ils en ont un sinon le logo du site -->
-		<BOUCLE_secteurs(RUBRIQUES) {racine}{lang}{par num titre, titre}{doublons}>
+<!-- on affiche les secteurs avec leur logo s'ils en ont un sinon le logo du site -->
+	<BOUCLE_secteurs(RUBRIQUES) {racine}{lang}{par num titre, titre}{doublons}>
 		<br />
-      [(#LOGO_RUBRIQUE|extraire_attribut{src}|balise_img{logo rubrique,spip_logos}|image_reduire{36})]
-      <div class="titre-secteur #EDIT{titre}">
-      <a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+		[(#LOGO_RUBRIQUE|extraire_attribut{src}|balise_img{logo rubrique,spip_logos}|image_reduire{36})]
+		<div class="titre-secteur #EDIT{titre}">
+			<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 				[(#TITRE)]
-  		</a>
-      </div>
-
-			<!-- affichage des articles des secteurs s'il y en a -->
-			<B_articles_racine>
+			</a>
+		</div>
+<!-- affichage des articles des secteurs s'il y en a -->
+		<B_articles_racine>
+		<ul>
+		<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+			<li class="plan-article #EDIT{titre}">
+				<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+			</li>
+		</BOUCLE_articles_racine>
+		</ul>
+		</B_articles_racine>
+<!-- affichage des sous-rubriques -->
+		<B_rubriques>
+		<ul>
+		<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}>
+			<li class="plan-rubrique #EDIT{titre}">
+				<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+				<!-- affichage des articles -->
+				<B_articles>
 				<ul>
-					<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
 					<li class="plan-article #EDIT{titre}">
-					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+						<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
 					</li>
-					</BOUCLE_articles_racine>
+				</BOUCLE_articles>
 				</ul>
-			</B_articles_racine>
-
-			<!-- affichage des sous-rubriques -->
-			<B_rubriques>
-				<ul>
-					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}>
-					<li class="plan-rubrique #EDIT{titre}">
-	    		<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
-
-	    		  <!-- affichage des articles -->
-	    			<B_articles>
-    					<ul>
-	    					<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
-	    					<li class="plan-article #EDIT{titre}">
-								<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
-								</li>
-	    					</BOUCLE_articles>
-	    				</ul>
-	    			</B_articles>
-
-					<!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
-					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-					</li>
-					</BOUCLE_rubriques>
-				</ul>
-			</B_rubriques>
-
-		</BOUCLE_secteurs>
-
-</div><!-- fin cadre-plan -->
+				</B_articles>
+				<!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
+				<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+			</li>
+		</BOUCLE_rubriques>
+		</ul>
+		</B_rubriques>
+	</BOUCLE_secteurs>
+</nav><!-- fin cadre-plan -->

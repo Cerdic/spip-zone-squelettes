@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
+<!DOCTYPE html>
+<html lang="#LANG" >
 
 <BOUCLE_testrubrique(RUBRIQUES){id_rubrique}{titre_mot=pleinepage}>
 <INCLURE {fond=rubrique_pleinepage}{env}>
@@ -42,7 +42,7 @@
           <div class="nettoyeur"></div>
           
             <div id="page">
-              <div id="contenu" class="contenu-rubrique">
+              <main id="contenu" class="contenu-rubrique">
               
                 <!-- on cherches si la rubrique est rattachee a un mot clef du groupe type_rubrique-->
                 <!-- si oui, on stocke le mot-cle dans la variable "type" -->
@@ -53,10 +53,10 @@
                   [(#GET{type}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_[(#GET{type}|trim)]}{env})]]
                   <!-- s'il n'y a en a pas, on affiche la noisette normale -->
                   [(#GET{type}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
-              </div>
+              </main>
             </div>
 
-            [(#LANG_DIR|=={ltr}|oui)<div id="navigation">] [(#LANG_DIR|=={rtl}|oui)<div id="extra">]
+            [(#LANG_DIR|=={ltr}|oui)<section id="navigation">] [(#LANG_DIR|=={rtl}|oui)<section id="extra">]
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
@@ -82,9 +82,9 @@
            <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavrub6}}{env}{ajax}></div>
          ]]
 
-            </div>
+            </section>
 
-            [(#LANG_DIR|=={ltr}|oui)<div id="extra">] [(#LANG_DIR|=={rtl}|oui)<div id="navigation">]
+            [(#LANG_DIR|=={ltr}|oui)<section id="extra">] [(#LANG_DIR|=={rtl}|oui)<section id="navigation">]
 
           <!-- affichage du formulaire de recherche-->
             [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
@@ -108,7 +108,7 @@
          [(#CONFIG{escal/config/blocextrarub6}|oui) [(#CONFIG{escal/config/blocextrarub6}|=={rien}|non)
            <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrarub6}}{env}{ajax}></div>
          ]]         
-            </div>
+            </section>
 
             <div id="pied">
               <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>

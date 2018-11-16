@@ -1,28 +1,28 @@
 #SET{nombreartderub,#CONFIG{escal/config/nombreartderub,10}}
 #SET{paginartderub,#CONFIG{escal/config/paginartderub,5}}
 
+<section>
 <BOUCLE_select(RUBRIQUES){titre_mot=articles-de-rubrique}{lang}>
 
-	<h1 class="cadre articles-de-rubrique">
+<h1 class="cadre articles-de-rubrique">
 	[(#CONFIG{escal/config/titreartderub}|oui)
-    [(#CONFIG{escal/config/titreartderub}|propre|_T_ou_typo|PtoBR)]
-  ]
+		[(#CONFIG{escal/config/titreartderub}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titreartderub}|non)
-    #TITRE
-  ]
-	 
-  </h1>
+		#TITRE
+	]
+</h1>
 
-	<div class="texte articles-de-rubrique [(#CONFIG{escal/config/toggleartderub}|=={oui}|oui)toggle]">
+<div class="texte articles-de-rubrique [(#CONFIG{escal/config/toggleartderub}|=={oui}|oui)toggle]">
 
 <B_affich>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-<BOUCLE_affich(ARTICLES){id_rubrique}{lang}{par date}{inverse}{0,#GET{nombreartderub}}{pagination #GET{paginartderub}}>	
- 
-<!-- 	affichage du titre vec lien vers l'article
-					de la date de publication
-					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+<BOUCLE_affich(ARTICLES){id_rubrique}{lang}{par date}{inverse}{0,#GET{nombreartderub}}{pagination #GET{paginartderub}}>
+
+<!-- affichage du titre avec lien vers l'article
+	de la date de publication
+	et de l'auteur(s) avec un lien pour lui envoyer un message -->
 		<div class="titre-article-cadre">
 			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 			[(#TITRE)]
@@ -42,23 +42,23 @@
 			    [(#LANG|=={ja}|oui)<:par_auteur:>]
             </B_test>
 		</div>
-		
-</BOUCLE_affich>	
-	</div> 
-	     
+
+</BOUCLE_affich>
+</div>
+
 </BOUCLE_select>
 
-	<h1 class="cadre articles-de-rubrique">
-  Titre de la rubrique
-  </h1>
+<h1 class="cadre articles-de-rubrique">
+	Titre de la rubrique
+</h1>
 
-	<div class="texte articles-de-rubrique [(#CONFIG{escal/config/toggleartderub}|=={oui}|oui)toggle]" >
-  Ici vous pouvez afficher le titre des articles (avec lien) de la rubrique avec le mot-clé "articles-de-rubrique".<br /><br />
-  Le titre du bloc sera celui de la rubrique ou celui que vous aurez indiqué dans la configuration d'Escal.
-	</div>
-	
+<div class="texte articles-de-rubrique [(#CONFIG{escal/config/toggleartderub}|=={oui}|oui)toggle]" >
+	Ici vous pouvez afficher le titre des articles (avec lien) de la rubrique avec le mot-clé "articles-de-rubrique".<br /><br />
+	Le titre du bloc sera celui de la rubrique ou celui que vous aurez indiqué dans la configuration d'Escal.
+</div>
+
 <//B_select>
-
+</section>
 
 
 <div class="nettoyeur"></div>

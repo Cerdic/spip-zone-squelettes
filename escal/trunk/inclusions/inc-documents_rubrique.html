@@ -1,33 +1,32 @@
+<aside>
 <BOUCLE_docs(RUBRIQUES){id_rubrique}>
 <BOUCLE_test_doc_joints(DOCUMENTS){id_rubrique}{0,1}{mode=document}>
 </BOUCLE_test_doc_joints>
 
-	<h1 class="cadre documents-rubrique">
+<h1 class="cadre documents-rubrique">
 	[(#CONFIG{escal/config/titredocsrub}|oui)
-    [(#CONFIG{escal/config/titredocsrub}|propre|_T_ou_typo|PtoBR)]
-  ]
+	[(#CONFIG{escal/config/titredocsrub}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titredocsrub}|non)
-    <:escal:a_telecharger:>
-  ]
+	<:escal:a_telecharger:>
+	]
+</h1>
 
-  </h1>
-
-	<div class="texte documents-rubrique">
-        <B_doc_joints>
+<div class="texte documents-rubrique">
+<B_doc_joints>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
-            <ul>            
-                <BOUCLE_doc_joints(DOCUMENTS){id_rubrique}{par num titre, titre}{mode=document}{pagination 5}>
-                    
-                    [(#LOGO_DOCUMENT{#URL_DOCUMENT}|image_reduire{50}  )]
-					<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</div></li>
-                    <li>[(#TAILLE|taille_en_octets)] / [(#TYPE_DOCUMENT)]</li>
-                    <div class="nettoyeur"></div> <br />
-                    					
-				</BOUCLE_doc_joints> 
-            </ul>    
-        </B_doc_joints>    				
-	</div>      
+	<ul>            
+<BOUCLE_doc_joints(DOCUMENTS){id_rubrique}{par num titre, titre}{mode=document}{pagination 5}>
+	[(#LOGO_DOCUMENT{#URL_DOCUMENT}|image_reduire{50}  )]
+		<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</div></li>
+		<li>[(#TAILLE|taille_en_octets)] / [(#TYPE_DOCUMENT)]</li>
+		<div class="nettoyeur"></div> <br />                 					
+</BOUCLE_doc_joints> 
+	</ul>    
+</B_doc_joints>    				
+</div>      
 
 </B_test_doc_joints>
 </BOUCLE_docs>
+</aside>

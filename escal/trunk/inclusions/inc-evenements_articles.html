@@ -7,36 +7,36 @@
     <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons articles}>
     </BOUCLE_selection_articles>
 
-	<h1 class="cadre evenements">
+<h1 class="cadre evenements">
 	[(#CONFIG{escal/config/titreevenements}|oui)
-    [(#CONFIG{escal/config/titreevenements}|propre|_T_ou_typo|PtoBR)]
-  ]
+	[(#CONFIG{escal/config/titreevenements}|propre|_T_ou_typo|PtoBR)]
+	]
 	[(#CONFIG{escal/config/titreevenements}|non)
-    <:escal:evenements:>
-  ]
-  </h1>
+	<:escal:evenements:>
+	]
+</h1>
   
   
 
-  <div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
+*<div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
 #SET{nbrpagevenements,#CONFIG{escal/config/paginevenements,5}}
-    <B_affichage_articles>
+<B_affichage_articles>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-      <ul>
-    <BOUCLE_affichage_articles(ARTICLES){lang}{!doublons articles}{par date_redac}{pagination #GET{nbrpagevenements}}>
-      <li>
-        [<:escal:le:> (#DATE_REDAC|affdate) :]
-        <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|PtoBR|textebrut)"]>#TITRE</a>
-      </li>
-    </BOUCLE_affichage_articles>
-      </ul>
+	<ul>
+<BOUCLE_affichage_articles(ARTICLES){lang}{!doublons articles}{par date_redac}{pagination #GET{nbrpagevenements}}>
+	<li>
+		[<:escal:le:> (#DATE_REDAC|affdate) :]
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|PtoBR|textebrut)"]>#TITRE</a>
+	</li>
+</BOUCLE_affichage_articles>
+	</ul>
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>] 
-    </B_affichage_articles>
-      <:escal:evenements_non:>
-    <//B_affichage_articles>
+</B_affichage_articles>
+	<:escal:evenements_non:>
+<//B_affichage_articles>
 
-  </div>
+*</div>
 
 
