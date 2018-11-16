@@ -14,3 +14,9 @@ if (isset($_REQUEST['recherche'])) {
 }
 
 define('_TITRER_DOCUMENTS', true );
+
+if (!test_espace_prive()) {
+	$GLOBALS['meta']['version_html_max'] = 'html5';
+} else {
+	$GLOBALS['meta']['version_html_max'] = 'html4';
+}

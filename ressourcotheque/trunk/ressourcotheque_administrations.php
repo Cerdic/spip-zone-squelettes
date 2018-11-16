@@ -41,9 +41,6 @@ function ressourcotheque_create() {
 	// Configurer mots
 	ecrire_config('articles_mots', 'oui');
 	ecrire_config('config_precise_groupes', 'oui');
-
-	// html 5
-	ecrire_config('version_html_max', 'html5');
 }
 
 function ressourcotheque_vider_tables($nom_meta_base_version) {
