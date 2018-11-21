@@ -21,13 +21,15 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
   <head>
       <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
       <meta name="Description" content="[(#INTRODUCTION|couper{150}|textebrut)]" />
+      <meta name="author" content='<BOUCLE_author(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_author>' />
       [<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
       <INCLURE {fond=inclusions/inc-head, env}>
       <BOUCLE_couleur_article(HIERARCHIE){id_rubrique}{id_article}{0,1}>
       [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
-      </BOUCLE_couleur_article> 
+      </BOUCLE_couleur_article>
       [(#REM) appel de la feuille de style pour l'impression ]
       <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
+
   </head>
   <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-article article#ID_ARTICLE rubrique#ID_RUBRIQUE">
 
@@ -54,7 +56,7 @@ et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie --
 
             <div id="page">
               <main id="contenu" class="contenu-article">
-              
+
                 <BOUCLE_type_article(MOTS){id_rubrique}{type=type_article}{0,1}>
                   #SET{type, #TITRE}
                 </BOUCLE_type_article>
