@@ -20,7 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// E
 	'explication_recherche' => 'Commençez par une recherche libre à travers le formulaire.
 
-	Par défaut, l’opérateur booléen ET utilisé entre les mots. Vous pouvez utiliser :
+	Par défaut, l’opérateur booléen ET est utilisé entre les mots. Vous pouvez utiliser :
 - <code>-</code> pour l’opérateur booléen NON ;
 - <code>|</code> pour l’opérateur booléen OU ;
 - <code>()</code> pour combiner des termes et faire une recherche complexe.
