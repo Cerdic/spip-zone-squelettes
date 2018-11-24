@@ -102,9 +102,9 @@
             ['<' + settings.parentTag + ' aria-haspopup="true" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
                 '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
                 '<span class="' + iconClass + '">',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
+                    '<span class="' + prefix + '_icon-bar">&nbsp;</span>',
+                    '<span class="' + prefix + '_icon-bar">&nbsp;</span>',
+                    '<span class="' + prefix + '_icon-bar">&nbsp;</span>',
                 '</span>',
             '</' + settings.parentTag + '>'
             ].join('')
