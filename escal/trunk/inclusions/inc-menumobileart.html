@@ -1,6 +1,15 @@
-<div class="menudesktop">
-<nav class="menu">
-<ul id="menu">
+<nav class="main-nav" role="navigation">
+
+  <!-- Mobile menu toggle button (hamburger/x icon) -->
+  <input id="main-menu-state" type="checkbox" />
+  <label class="main-menu-btn" for="main-menu-state">
+    <span class="main-menu-btn-icon"></span>
+  </label>
+
+  <h2 class="nav-brand"><a href="#">MENU</a></h2>
+
+  
+<ul id="main-menu" class="sm sm-blue">
 
 [(#CONFIG{escal/config/taillelogorubmenu}|oui)
 #SET{taillelogo,#CONFIG{escal/config/taillelogorubmenu}}
@@ -8,7 +17,6 @@
 [(#CONFIG{escal/config/taillelogorubmenu}|non)
 #SET{taillelogo,20}
 ]
-
 
 	<li class="item-accueil">
 	 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>">
@@ -41,7 +49,6 @@
      [(#CONFIG{escal/config/texterubmenu}|=={non}|non)
      #TITRE
      ]
-     <BOUCLE_testrub1(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-bas.png}" alt="fleche" /></BOUCLE_testrub1>
      </a>
 
     <ul>
@@ -64,8 +71,7 @@
 			<BOUCLE_rubriques1(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
         <li class="#EXPOSE rubrique">
 				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
-						<BOUCLE_testrub2(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub2>
-			    </a>
+						</a>
 
         <ul>
               <!-- affichage des articles des sous-rubriques de niveau 1 -->
@@ -87,8 +93,7 @@
               <BOUCLE_rubriques2(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                 <li class="#EXPOSE rubrique">
       				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
-      						<BOUCLE_testrub3(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub3>
-      			    </a>
+      						</a>
 
 			              <ul>
                       <!-- affichage des articles des sous-rubriques de niveau 2 -->
@@ -110,8 +115,7 @@
                       <BOUCLE_rubriques3(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                       <li class="#EXPOSE rubrique">
               				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
-              						<BOUCLE_testrub4(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub4>
-              			    </a>
+              						</a>
 
               				    <ul>
                             <!-- affichage des articles des sous-rubriques de niveau 3 -->
@@ -133,8 +137,7 @@
                             <BOUCLE_rubriques4(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                             <li class="#EXPOSE rubrique">
                     				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
-                    						<BOUCLE_testrub5(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub5>
-                    			    </a>
+                    						</a>
 
                     				    <ul>
                                   <!-- affichage des articles des sous-rubriques de niveau 4 -->
@@ -156,8 +159,7 @@
                                   <BOUCLE_rubriques5(RUBRIQUES){id_parent}{par num titre, titre}{doublons rubriques}>
                                   <li class="#EXPOSE rubrique">
                           				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
-                          						<BOUCLE_testrub6(RUBRIQUES){id_parent}{0,1}><img class="menufleche" src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_testrub6>
-                          			    </a>
+                          						</a>
 
                           				    <ul>
                                         <!-- affichage des articles des sous-rubriques de niveau 5 -->
@@ -200,4 +202,3 @@
 	</BOUCLE_secteur>
 </ul><!-- fin menu -->
 </nav>
-</div>
