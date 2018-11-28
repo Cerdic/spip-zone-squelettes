@@ -877,7 +877,8 @@ function sc_filesize($file) {
 
 function sc_bandeau_contact() {
 	// N'afficher avec identité Extra (https://contrib.spip.net/Identite-Extra) que si au moins un champ renseigné
-	if (implode('', lire_config('identite_extra')) !== "") {
+	$identite_extra = lire_config('identite_extra');
+	if ((is_array($identite_extra)) && (implode('', $identite_extra) !== "")) {
 		$texte = recuperer_fond('noisettes/footer/footer_identite_extra');
 	} else { // On utilise la vieille configuration du bandeau de contact de SoyezCréateurs
 		$texte = propre(lire_config('soyezcreateurs/bandeau_contact'));
