@@ -1,12 +1,14 @@
 <nav class="ariane">
-#SET{invisible,oui}
+#SET{visible,oui}
+<BOUCLE_contexte(ARTICLES){id_article}>
 <BOUCLE_hierarchie(HIERARCHIE){id_article}>
-	<BOUCLE_testrub(RUBRIQUES){id_rubrique}{titre_mot IN 'pas-au-menu', 'pas-au-menu-vertical', 'invisible'}>
-	#SET{invisible,non}
+	<BOUCLE_testrub(RUBRIQUES){id_rubrique}{titre_mot=invisible}>
+	#SET{visible,non}
     </BOUCLE_testrub>
 </BOUCLE_hierarchie>
-
-<BOUCLE_testget(ARTICLES){id_article}{si #GET{invisible}|=={oui}|oui}>
+</BOUCLE_contexte>
+#GET{visible}
+<BOUCLE_testget(ARTICLES){id_article}{si #GET{visible}|=={oui}|oui}>
 	<BOUCLE_chemin_article(HIERARCHIE){id_article}> 
 		   <img src="#CHEMIN{images/fleche_droite.png}" alt="<:escal:fleche:>" />
 		   <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE)]</a> 
