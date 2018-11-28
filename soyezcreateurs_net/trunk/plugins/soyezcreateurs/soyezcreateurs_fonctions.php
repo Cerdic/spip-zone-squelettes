@@ -874,3 +874,14 @@ function sc_filesize($file) {
 	$size = filesize($file=preg_replace(',[?].*$,','',$file));
 	return $size;
 }
+
+function sc_bandeau_contact() {
+	// N'afficher avec identité Extra (https://contrib.spip.net/Identite-Extra) que si au moins un champ renseigné
+	if (implode('', lire_config('identite_extra')) !== "") {
+		$texte = recuperer_fond('noisettes/footer/footer_identite_extra');
+	} else { // On utilise la vieille configuration du bandeau de contact de SoyezCréateurs
+		$texte = propre(lire_config('soyezcreateurs/bandeau_contact'));
+	}
+	
+	return $texte;
+}
