@@ -30,6 +30,6 @@ function soyezcreateurs_noizetier_blocs_defaut($flux) {
 }
 
 function soyezcreateurs_identite_extra_champs($champs) {
-	$champs = array('adresse', 'code_postal', 'ville', 'pays', 'telephone', 'fax', 'email_contact', 'informations', 'id_article_contact', 'facebook', 'twitter', 'linkedin', 'latitude', 'longitude');
+	$champs = array('adresse', 'code_postal', 'ville', 'pays', 'telephone', 'fax', 'email_contact', 'informations', 'id_article_contact', 'facebook', 'twitter', 'linkedin', 'instagram', 'pinterest', 'viadeo', 'latitude', 'longitude');
 	return $champs;
 }
