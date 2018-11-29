@@ -5,6 +5,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	'cfg_texte_actualite_toutes' => 'Lien vers tous les articles par ordre anti-chronologique',
 	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d’accueil',
 	'cfg_affichage_affiche' => 'Afficher',
 	'cfg_affichage_block' => 'Bloc : logo, titre, descriptif',
@@ -311,6 +312,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_texte_central' => 'Texte central',
 	'cfg_texte_explicationslogin' => 'Texte d’explication (raccourcis typo autorisés)',
 	'cfg_texte_police_choisie' => 'Ce texte est affiché dans la police choisie',
+	'cfg_texte_quoi2neuf' => 'Quoi de neuf',
 	'cfg_textesiplanvide' => 'Texte si le plan est vide',
 	'cfg_textesiplanvide_label' => 'Texte dans le plan du site si le plan est vide de contenu',
 	'cfg_titraille' => 'Titre',
@@ -336,9 +338,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_vignettesauto' => 'Vignettes :',
 	'cfg_vitesse_slider_label' => 'Vitesse défilement',
 	'cfg_vitesse_slider_label_ex' => 'Vitesse de défilement du slideshow (en millisecondes, 5000 minimum conseillé)',
-	'cfg_zone_forum' => 'Configuration textes des forum',
+	'cfg_zone_forum' => 'Configuration des textes',
 	'cfg_zone_forum_invite' => 'Invite à participer aux Forum',
-	'cfg_zone_forum_laisser_vide' => 'Laisser vide pour utiliser le texte par défaut.',
+	'cfg_zone_forum_laisser_vide' => 'Laisser vide pour utiliser le texte par défaut (géré par les chaînes de langue).',
 	'cfg_zone_forum_titre' => 'Titre de l’espace Forum',
 	'cfg_zone_recherche_label' => 'Zone d’affichage du formulaire de recherche',
 	'cfg_zoomsur_label' => 'Nombre de "ZoomSur"',
