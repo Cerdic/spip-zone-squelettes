@@ -31,7 +31,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire_vide' => 'Verzeichnis ist leer',
 	'archives' => 'Archiven',
 	'archives_title' => 'Artikle Archiv anschauen',
-	'articlesordreantichrono' => 'Artikel im Gegenuhrzeiger Reihe',
 	'auteur' => 'Verfasser ',
 	'auteurs_liste' => 'Liste der Verfassers',
 	'auteurs_site' => 'Site Verfassers',

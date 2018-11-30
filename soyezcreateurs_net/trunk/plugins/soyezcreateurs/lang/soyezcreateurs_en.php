@@ -38,7 +38,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archives',
 	'archives_title' => 'View the archived articles',
 	'articlesconnexes' => 'Related articles',
-	'articlesordreantichrono' => 'Articles in chronological order',
 	'auteur' => 'Author',
 	'auteurs_liste' => 'List of authors',
 	'auteurs_site' => 'Site authors',

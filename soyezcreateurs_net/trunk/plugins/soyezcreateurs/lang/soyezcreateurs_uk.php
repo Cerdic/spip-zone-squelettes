@@ -25,7 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Архів',
 	'archives_title' => 'Переглянути архів статей',
 	'articlesconnexes' => 'Відповідні статті ( за темою) ', # MODIF
-	'articlesordreantichrono' => 'Статті у зворотному хронологічному порядку',
 	'auteur' => 'Автор',
 	'auteurs_liste' => 'Список авторів',
 	'auteurs_site' => 'Автори сайту',

@@ -37,7 +37,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archívy',
 	'archives_title' => 'Zobraziť archivované články',
 	'articlesconnexes' => 'Súvisiace články',
-	'articlesordreantichrono' => 'Články v chronologickom poradí',
 	'auteur' => 'Autor',
 	'auteurs_liste' => 'Zoznam autorov',
 	'auteurs_site' => 'Autori stránky',

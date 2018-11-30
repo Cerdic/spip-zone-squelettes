@@ -18,7 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agendamoisde' => 'Agenda van de maand ... ',
 	'alaune' => 'Top info',
 	'articlesconnexes' => 'Samenhangende artikelen', # MODIF
-	'articlesordreantichrono' => 'Artikelen in anti chronologische volgorde',
 	'auteur' => 'Auteur',
 	'auteurs_liste' => 'Lijst van auteurs',
 	'auteurs_site' => 'Auteurs van website',
