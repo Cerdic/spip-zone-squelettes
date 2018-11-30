@@ -881,7 +881,7 @@ function sc_bandeau_contact() {
 	if ((is_array($identite_extra)) && (implode('', $identite_extra) !== "")) {
 		$texte = recuperer_fond('noisettes/footer/footer_identite_extra');
 	} else { // On utilise la vieille configuration du bandeau de contact de SoyezCréateurs
-		$texte = propre(lire_config('soyezcreateurs/bandeau_contact'));
+		$texte = recuperer_fond('noisettes/footer/footer_bandeau_contact');
 	}
 	
 	return $texte;
