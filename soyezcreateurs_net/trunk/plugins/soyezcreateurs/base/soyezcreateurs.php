@@ -278,7 +278,7 @@ function delete_rubrique($titre) {
 	$id_rubrique = id_rubrique($titre);
 	if ($id_rubrique>0) {
 		sql_delete("spip_rubriques", "id_rubrique=$id_rubrique");
-		sql_delete("spip_mots_liens", "id_objet=$id_rubrique AND objet = 'rubrique'");
+		delete_liens_mot($id_rubrique, $type='rubrique');
 	}
 	return $id_rubrique;
 }
@@ -294,7 +294,7 @@ function rename_rubrique($titre, $nouveau_titre) {
 		);
 		spip_log("rename_rubrique) renommage de $titre en $nouveau_titre", _LOG_DEBUG);
 	}
-	return true;
+	return $id_rubrique;
 }
 
 
@@ -513,7 +513,13 @@ function create_lien_mot($id_mot, $id_objet, $type='article') {
 
 function delete_lien_mot($id_mot, $id_objet, $type='article') {
 	sql_delete("spip_mots_liens", "id_mot=$id_mot AND id_objet=$id_objet AND objet = '$type'");
-	spip_log("2. (delete_lien_mot) liaison supprimée (article = $id_objet - mot = $id_mot - $type)", _LOG_DEBUG);
+	spip_log("2. (delete_lien_mot) liaison supprimée (objet = $id_objet - mot = $id_mot - $type)", _LOG_DEBUG);
+}
+
+// Supprimer tous les mots d'un objet
+function delete_liens_mot($id_objet, $type='article') {
+	sql_delete("spip_mots_liens", "id_objet=$id_objet AND objet = '$type'");
+	spip_log("2. (delete_liens_mot) liaisons supprimées (objet = $id_objet - $type)", _LOG_DEBUG);
 }
 
 //fonction qui permet de trouver des liaisons entre rubrique et mot clé
@@ -769,6 +775,7 @@ function poubelle_site($titre_site, $titre_rubrique) {
 					"statut" => 'refuse',
 				), "id_syndic=$id_syndic"
 			);
+			delete_liens_mot($id_syndic, $type='site');
 		}
 	}
 }
@@ -817,6 +824,7 @@ function soyezcreateurs_config_motsclefs() {
 			create_logo('documents/moton100.png', $type='mot', $id_mot, 'png');
 
 	create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.\n\nLes mots clefs affectés à une rubrique restreignes le choix des bannières pour la branche entière à celles affectées à la rubrique. Le fonctionnement pour le reste du site est inchangé ({{toutes}} les bannières sont disponibles pour le reste du site).", 'non', 'non', 'rubriques', 'oui', 'non', 'non');
+	if (!defined('_BYPASS_SC_INSTALL_SAMPLE')) {
 		$id_mot = create_mot("_HeaderBanner", "Ban1", "", "");
 			create_logo('documents/moton110.jpg', $type='mot', $id_mot, 'jpg');
 		$id_mot = create_mot("_HeaderBanner", "Ban2", "", "");
@@ -827,6 +835,10 @@ function soyezcreateurs_config_motsclefs() {
 			create_logo('documents/moton113.jpg', $type='mot', $id_mot, 'jpg');
 		$id_mot = create_mot("_HeaderBanner", "Ban5", "", "");
 			create_logo('documents/moton114.jpg', $type='mot', $id_mot, 'jpg');
+	} else {
+		$id_mot = create_mot("_HeaderBanner", "Ban1", "", "");
+			create_logo('documents/ban400transparente.png', $type='mot', $id_mot, 'png');
+	}
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', '', 'oui', 'non', 'non');
 
@@ -875,7 +887,12 @@ function soyezcreateurs_config_motsclefs() {
 	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'rubriques', 'oui', 'non', 'non');
 
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d'habitude en la matière : sachez ce que vous faites !", 'non', 'non', '', 'oui', 'non', 'non');
-		$id_mot = create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 44.330445,-1.225561)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "44.330445,-1.225561");
+		if (!defined('_BYPASS_SC_INSTALL_SAMPLE')) {
+			$coordonneesgps = "44.330445,-1.225561";
+		} else {
+			$coordonneesgps = "";
+		}
+		$id_mot = create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 44.330445,-1.225561)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", $coordonneesgps);
 		$id_mot = create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
 
 	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s'affichent sur la page d'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'articles,rubriques', 'oui', 'non', 'non');
@@ -948,10 +965,18 @@ function soyezcreateurs_config_motsclefs() {
 	$nouvelle_installation = false;
 	if ( $GLOBALS['meta']['nom_site'] == _T('info_mon_site_spip') ) {
 		ecrire_meta('nom_site', 'Votre site SPIP','non');
-		ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
-		ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
-		ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
-		create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
+		if (lire_meta('slogan_site') == '') {
+			ecrire_meta('slogan_site', '[Todo : Slogan du site]','non');
+		}
+		if (lire_meta('descriptif_site') == '') {
+			ecrire_meta('descriptif_site', '[ToDo : descriptif du site en 20 mots = 2 lignes max ]','non');
+		}
+		if (lire_meta('email_webmaster') == '') {
+			ecrire_meta('email_webmaster', 'vous@domaine.tld','non');
+		}
+		if (!defined('_BYPASS_SC_INSTALL_SAMPLE')) {
+			create_logo('documents/siteon0.jpg', $type='site', 0, 'jpg');
+		}
 		$nouvelle_installation = true;
 	}
 
@@ -963,7 +988,8 @@ function soyezcreateurs_config_motsclefs() {
 		create_rubrique_mot("000. Fourre-tout", "PasDansFildAriane", "_Specialisation_Rubrique");
 		$id_article = create_article(trouve_article_sc("Contact"), "000. Fourre-tout");
 			create_article_mot("Contact", "000. Fourre-tout", "MENURACINEBAS_Systematique", "_Specialisation");
-			ecrire_config('soyezcreateurs/bandeau_contact',"<div id=\"informations\" class=\"row\">
+			if (!defined('_BYPASS_SC_INSTALL_SAMPLE')) {
+				ecrire_config('soyezcreateurs/bandeau_contact',"<div id=\"informations\" class=\"row\">
 	<div id=\"coordonnees\" class=\"avec-padding\">
 		<div class=\"adresse flexbox-flex\">
 			<span class=\"icon-location icon-lg icon-fw texte-blanc\"></span>
@@ -997,66 +1023,69 @@ function soyezcreateurs_config_motsclefs() {
 		<html><!-- Begin Exclude NewsLetter --></html><iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d365312.326488903!2d-1.5056982671874777!3d44.33045219999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5380bbec6fa8d3%3A0x2cd88d7991f88ca4!2sPerdu..!5e0!3m2!1sfr!2sfr!4v1508413717844\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen=\"true\"></iframe><html><!-- End Exclude NewsLetter --></html>
 	</div>
 </div>");
+			}
 		$id_article = create_article(trouve_article_sc("Politique d'accessibilité du site"), "000. Fourre-tout");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
 			create_article_mot("Politique d'accessibilité du site", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
 		$id_article = create_article(trouve_article_sc("Mentions légales"), "000. Fourre-tout");
 			create_article_mot("Mentions légales", "000. Fourre-tout", "MentionsLegales", "_Specialisation");
-		$id_article = create_article(trouve_article_sc("10. Premiers pas dans le squelette SoyezCreateurs"), "000. Fourre-tout");
-			create_logo('documents/arton1.jpg', $type='art', $id_article, 'jpg');
-			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "ALaUne", "_Specialisation");
-			create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
-		$id_doc = create_document('documents/contact.jpg',
-			null,
-			'image',
-			array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...'));
-		$article = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
-		$article['texte'] = str_replace('<img1', "<img$id_doc", $article['texte']);
-		$article['texte'] = str_replace('<doc1', "<doc$id_doc", $article['texte']);
-		$article['texte'] = str_replace('<emb1', "<emb$id_doc", $article['texte']);
-		$id_doc2 = create_document('documents/arton1.jpg',
-			null,
-			'image',
-			array('titre' => 'Exemple d\'image', 'descriptif' => 'Avec un descriptif de l\'image en dessous.'));
-		$article['texte'] = str_replace("<img$id_doc|center", "<img$id_doc2|center", $article['texte']);
-		$article['texte'] = str_replace("<doc$id_doc|center", "<doc$id_doc2|center", $article['texte']);
-		$article['texte'] = str_replace("<emb$id_doc|center", "<emb$id_doc2|center", $article['texte']);
-		$id_article = create_article($article, "000. Fourre-tout");
-			$id_doc = create_document('documents/spip_decroche_la_lune.jpg',
-				array('type' => 'article', 'id_objet' => $id_article),
-				'document',
-				array('titre' => 'Décrochez la lune avec SPIP !', 'statut' => 'publie'));
-			$id_doc = create_document('documents/arton1.jpg',
-				array('type' => 'article', 'id_objet' => $id_article),
-				'document',
-				array('titre' => 'Arbre dans la lumière', 'statut' => 'publie'));
-			$id_doc = create_document('documents/arton7.png',
-				array('type' => 'article', 'id_objet' => $id_article),
-				'document',
-				array('titre' => 'Casier de typographe avec lettres au plomb', 'statut' => 'publie'));
-			create_logo('documents/arton7.png', $type='art', $id_article, 'png');
-			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "ALaUne", "_Specialisation");
-			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Courrier_libre", "_Specialisation");
-			create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
-			if ($nouvelle_installation) {
-				$sites = array();
-				$sites['nom_site'] = "MàJ SoyezCréateurs";
-				$sites['url_site'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
-				$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
-				$sites['url_syndic'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
-				$sites['statut'] = 'publie';
-				$id_site = create_site($sites, "000. Fourre-tout");
-				$sites = array();
-				$sites['nom_site'] = "SoyezCréateurs";
-				$sites['url_site'] = "https://contrib.spip.net/?rubrique1237";
-				$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
-				$sites['url_syndic'] = "https://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
-				$sites['statut'] = 'publie';
-				$id_site = create_site($sites, "000. Fourre-tout");
-			}
+		if (!defined('_BYPASS_SC_INSTALL_SAMPLE')) {
+			$id_article = create_article(trouve_article_sc("10. Premiers pas dans le squelette SoyezCreateurs"), "000. Fourre-tout");
+				create_logo('documents/arton1.jpg', $type='art', $id_article, 'jpg');
+				create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "ALaUne", "_Specialisation");
+				create_article_mot("10. Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
+			$id_doc = create_document('documents/contact.jpg',
+				null,
+				'image',
+				array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...'));
+			$article = trouve_article_sc("20. Raccourcis Typographiques de SPIP, mode d'emploi");
+			$article['texte'] = str_replace('<img1', "<img$id_doc", $article['texte']);
+			$article['texte'] = str_replace('<doc1', "<doc$id_doc", $article['texte']);
+			$article['texte'] = str_replace('<emb1', "<emb$id_doc", $article['texte']);
+			$id_doc2 = create_document('documents/arton1.jpg',
+				null,
+				'image',
+				array('titre' => 'Exemple d\'image', 'descriptif' => 'Avec un descriptif de l\'image en dessous.'));
+			$article['texte'] = str_replace("<img$id_doc|center", "<img$id_doc2|center", $article['texte']);
+			$article['texte'] = str_replace("<doc$id_doc|center", "<doc$id_doc2|center", $article['texte']);
+			$article['texte'] = str_replace("<emb$id_doc|center", "<emb$id_doc2|center", $article['texte']);
+			$id_article = create_article($article, "000. Fourre-tout");
+				$id_doc = create_document('documents/spip_decroche_la_lune.jpg',
+					array('type' => 'article', 'id_objet' => $id_article),
+					'document',
+					array('titre' => 'Décrochez la lune avec SPIP !', 'statut' => 'publie'));
+				$id_doc = create_document('documents/arton1.jpg',
+					array('type' => 'article', 'id_objet' => $id_article),
+					'document',
+					array('titre' => 'Arbre dans la lumière', 'statut' => 'publie'));
+				$id_doc = create_document('documents/arton7.png',
+					array('type' => 'article', 'id_objet' => $id_article),
+					'document',
+					array('titre' => 'Casier de typographe avec lettres au plomb', 'statut' => 'publie'));
+				create_logo('documents/arton7.png', $type='art', $id_article, 'png');
+				create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "ALaUne", "_Specialisation");
+				create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Courrier_libre", "_Specialisation");
+				create_article_mot("20. Raccourcis Typographiques de SPIP, mode d'emploi", "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+				if ($nouvelle_installation) {
+					$sites = array();
+					$sites['nom_site'] = "MàJ SoyezCréateurs";
+					$sites['url_site'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?action=follow_copy&amp;mode=follow_copy&amp;rev=&amp;stop_rev=&amp;limit=100";
+					$sites['descriptif'] = "Les dernières mises à jour de SoyezCréateurs sur la Zone de SPIP.";
+					$sites['url_syndic'] = "https://zone.spip.org/trac/spip-zone/log/_squelettes_/soyezcreateurs_net?format=rss&amp;stop_rev=&amp;limit=100&amp;mode=follow_copy";
+					$sites['statut'] = 'publie';
+					$id_site = create_site($sites, "000. Fourre-tout");
+					$sites = array();
+					$sites['nom_site'] = "SoyezCréateurs";
+					$sites['url_site'] = "https://contrib.spip.net/?rubrique1237";
+					$sites['descriptif'] = "La documentation sur le squelette SoyezCreateurs disponible sur la zone.";
+					$sites['url_syndic'] = "https://contrib.spip.net/spip.php?page=backend&amp;id_rubrique=1237";
+					$sites['statut'] = 'publie';
+					$id_site = create_site($sites, "000. Fourre-tout");
+				}
 
-		$id_parent = $id_rubrique;
-
+		}
+		
+		$id_parent = id_rubrique('000. Fourre-tout');
 		$id_rubrique = create_rubrique("05. Saint du jour", $id_parent, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
 				$sites = array();
 				$sites['nom_site'] = "Nominis (Saint du jour)";
@@ -1074,7 +1103,7 @@ function soyezcreateurs_config_motsclefs() {
 		$id_rubrique = create_rubrique("20. NewsLetter", $id_parent, "Pour éviter que les articles servant à la création de vos lettres se retrouvent dans la navigation du site, placez-les dans cette rubrique.\n\nPour faire une lettre, il vous faudra le plugin [CleverMail->https://contrib.spip.net/CleverMail], et utiliser les squelettes : {{lettre_libre}} et {{lettre_libre_txt}}. Utilisez le mot clef {Courrier_libre} pour désigner l'article servant pour le prochain courrier.");
 
 		$id_rubrique = create_rubrique("30. Outils", $id_parent, "Navigations par les outils : un article de redirection par outil, numérotés.\nChaque article doit avoir le mot clef de _Specialisation : Outils");
-		if ($nouvelle_installation) {
+		if ($nouvelle_installation && (!defined('_BYPASS_SC_INSTALL_SAMPLE'))) {
 			$id_article = create_article(trouve_article_sc("10. Outil 1"), "30. Outils");
 				create_logo('documents/arton13.jpg', $type='art', $id_article, 'jpg');
 				create_logo('documents/artoff13.jpg', $type='art', $id_article, 'jpg','off');
@@ -1108,15 +1137,6 @@ function soyezcreateurs_config_motsclefs() {
 					create_logo('documents/siteon2.png', $type='site', $id_site, 'png');
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
-				$sites['nom_site'] = "15. Google+";
-				$sites['url_site'] = "https://plus.google.com/GGGGGGGGGG?rel=author";
-				$sites['descriptif'] = "Retrouvez-nous sur Google+";
-				$sites['url_syndic'] = "";
-				$sites['statut'] = 'prop';
-				$id_site = create_site($sites, "80. Réseaux sociaux");
-					create_logo('documents/siteon9.png', $type='site', $id_site, 'png');
-					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
-				$sites = array();
 				$sites['nom_site'] = "20. Twitter";
 				$sites['url_site'] = "https://twitter.com/";
 				$sites['descriptif'] = "Retrouvez-nous sur Twitter";
@@ -1145,7 +1165,7 @@ function soyezcreateurs_config_motsclefs() {
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 
 
-	if ($nouvelle_installation) {
+	if ($nouvelle_installation && (!defined('_BYPASS_SC_INSTALL_SAMPLE'))) {
 		$id_rubrique = create_rubrique("100. Rubriques", '0', "Clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.");
 			create_rubrique_mot("100. Rubriques", "MenuHaut", "_Specialisation_Rubrique");
 
@@ -1218,7 +1238,7 @@ function soyezcreateurs_config_motsclefs() {
 		create_rubrique_mot("999. Citations", "PasDansPlan", "_Specialisation_Rubrique_ou_Article");
 		create_rubrique_mot("999. Citations", "SecteurPasDansQuoiDeNeuf", "_Specialisation_Rubrique");
 		create_rubrique_mot("999. Citations", "PasDansFildAriane", "_Specialisation_Rubrique");
-		if ($nouvelle_installation) {
+		if ($nouvelle_installation && (!defined('_BYPASS_SC_INSTALL_SAMPLE'))) {
 			$id_article = create_article(trouve_article_sc("Conseil n°3"), "999. Citations");
 			$id_article = create_article(trouve_article_sc("Conseil n°2"), "999. Citations");
 			$id_article = create_article(trouve_article_sc("Conseil n°1"), "999. Citations");
