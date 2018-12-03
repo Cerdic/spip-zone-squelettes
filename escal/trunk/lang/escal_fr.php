@@ -249,15 +249,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'Un peu de style',
 	'cfg_page_textes' => 'Les textes',
 	'cfg_page_titre_contenu' => 'Titres et contenus',
-	'choix_article' => 'le modèle choix_article d\'Escal',
+	'choix_article' => 'le modèle choix_article d’Escal',
 	'choix_article_choix' => 'Choix des articles',
 	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules',
 	'choix_article_colonne' => 'Nombre de colonnes',
 	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3',
 	'choix_article_fond' => 'Couleur du fond',
 	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
-										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
-										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).',
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).',
 	'choix_blocs_lateraux' => 'Choix des blocs latéraux',
 	'choix_deux' => 'Deux',
 	'choix_trois' => 'Trois',
