@@ -48,3 +48,26 @@ function zvide_recuperer_fond($flux)
 
 	return $flux;
 }
+
+/**
+ * Modifier la liste des blocs pouvant accueillir des noisettes.
+ *
+ * Suppression de head et head_js
+ *
+ * @pipeline noizetier_blocs_defaut
+ *
+ * @param array $blocs
+ *        Liste blocs par défaut concernés par le NoiZetier
+ *
+ * @return array
+ *        Liste des blocs modifiés. On supprime les blocs head et head_js.
+ */
+function zvide_noizetier_blocs_defaut($blocs) {
+
+	static $blocs_exclus = array('head', 'head_js');
+	if ($blocs) {
+		$blocs = array_diff($blocs, $blocs_exclus);
+	}
+
+	return $blocs;
+}
