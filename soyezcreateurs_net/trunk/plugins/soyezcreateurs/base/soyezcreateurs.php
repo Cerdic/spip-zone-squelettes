@@ -982,6 +982,9 @@ function soyezcreateurs_config_motsclefs() {
 		$nouvelle_installation = true;
 	}
 
+	// Il y a des sites où la rubrique existe en fait déjà et porte un autre nom
+	rename_rubrique('000. Contenus transversaux', '000. Fourre-tout');
+
 	$id_rubrique = create_rubrique("000. Fourre-tout", '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 		create_rubrique_mot("000. Fourre-tout", "AfficherArticlesMenu", "_Specialisation_Rubrique");
 		create_rubrique_mot("000. Fourre-tout", "PasDansMenu", "_Specialisation_Rubrique");
