@@ -1,72 +1,48 @@
 <BOUCLE_extra1(MOTS) {id_mot} {doublons}>
 
-[(#REM) Articles lies au mot-cle ]
-  <B_articles>
-  <nav class="articles col-sm-4">
-    #ANCRE_PAGINATION
-    <span class="h4"><:articles:></span>
-    <ul class="list-group">
-      <BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 50}>
-      <li class="list-group-item[ active (#EXPOSE)]">
-        <h4 class="h4 list-group-item-heading"><a href="#URL_ARTICLE">#TITRE</a></h4>
-        <p class="small">[<time pubdate class="published" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time>][, <:par_auteur:> (#LESAUTEURS)]</p>
-      </li>
-      </BOUCLE_articles>
-    </ul>
-    [<nav class="pagination">(#PAGINATION)</nav>]
-  </nav>
-  </B_articles>
+<div class="container">
+  <div class="row">
+    [(#REM) Breves liees au mot-cle ]
+    <B_breves>
+    <nav class="breves col-lg-4">
+      <span class="h4"><:breves:breves:></span>
+      <ul class="list-group">
+        <BOUCLE_breves(BREVES) {id_mot} {par titre} {pagination 50}>
+        <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_BREVE">#TITRE</a></li>
+        </BOUCLE_breves>
+      </ul>
+      [<nav class="pagination">(#PAGINATION)</nav>]
+    </nav>
+    </B_breves>
+    
+    [(#REM) Sites web lies au mot-cle ]
+    <B_sites>
+    <aside class="sites col-lg-4">
+      <span class="h4"><:sites_web:></span>
+      <ul class="list-group">
+        <BOUCLE_sites(SITES) {id_mot} {par nom_site} {pagination 50}>
+        <li class="list-group-item[ active (#EXPOSE)]"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+        </BOUCLE_sites>
+      </ul>
+      [<nav class="pagination">(#PAGINATION)</nav>]
+    </aside>
+    </B_sites>
 
-  [(#REM) Rubriques liees au mot-cle ]
-  <B_rubriques>
-  <nav class="rubriques col-sm-4">
-    <span class="h4"><:rubriques:></span>
-    <ul class="list-group">
-      <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre} {pagination 50}>
-      <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_RUBRIQUE">#TITRE</a></li>
-      </BOUCLE_rubriques>
-    </ul>
-    [<nav class="pagination">(#PAGINATION)</nav>]
-  </nav>
-  </B_rubriques>
+    [(#REM) Sur le Web ]
+    <B_syndic>
+    <aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <span class="h4"><:nouveautes_web:></span>
+      <ul class="list-group">
+        <BOUCLE_syndic(SYNDIC_ARTICLES){id_mot}{age<180}{!par date}{pagination 8}>
+        <li class="list-group-item">
+          [<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr> &ndash; ]
+          <a class="spip_out" rel="external" href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"]>#TITRE</a>
+        </li>
+        </BOUCLE_syndic>
+      </ul>
+    </aside>
+    </B_syndic>
 
-  [(#REM) Breves liees au mot-cle ]
-  <B_breves>
-  <nav class="breves col-sm-4">
-    <span class="h4"><:breves:breves:></span>
-    <ul class="list-group">
-      <BOUCLE_breves(BREVES) {id_mot} {par titre} {pagination 50}>
-      <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_BREVE">#TITRE</a></li>
-      </BOUCLE_breves>
-    </ul>
-    [<nav class="pagination">(#PAGINATION)</nav>]
-  </nav>
-  </B_breves>
-  
-  [(#REM) Sites web lies au mot-cle ]
-  <B_sites>
-  <aside class="sites col-sm-4">
-    <span class="h4"><:sites_web:></span>
-    <ul class="list-group">
-      <BOUCLE_sites(SITES) {id_mot} {par nom_site} {pagination 50}>
-      <li class="list-group-item[ active (#EXPOSE)]"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
-      </BOUCLE_sites>
-    </ul>
-    [<nav class="pagination">(#PAGINATION)</nav>]
-  </aside>
-  </B_sites>
-
-  [(#REM) Liens des forums ]
-  <B_forums_liens>
-  <aside class="forums col-sm-4">
-    <span class="h4"><:messages_forum:></span>
-    <ul class="list-group">
-      <BOUCLE_forums_liens(FORUMS) {id_mot} {plat} {par date}{inverse} {pagination 50}>
-      <li class="list-group-item[ active (#EXPOSE)]">[<time pubdate class="published" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time><span class="sep"> &ndash; </span>]<a href="#URL_FORUM">[(#TEXTE|couper{80}|abs_url)]</a></li>
-      </BOUCLE_forums_liens>
-    </ul>
-    [<nav class="pagination">(#PAGINATION)</nav>]
-  </aside>
-  </B_forums_liens>
-
+  </div>
+</div>
 </BOUCLE_extra1>

@@ -1,33 +1,16 @@
 <BOUCLE_content(RUBRIQUES){id_rubrique}>
 	[(#REM) Fil d'Ariane ]
-	<ol role="navigation" class="breadcrumb" prefix="v: http://rdf.data-vocabulary.org/#">
+	<ol role="navigation" class="container breadcrumb" prefix="v: http://rdf.data-vocabulary.org/#">
 		<li typeof="v:Breadcrumb"><i class="fa fa-home" aria-hidden="true"></i> <a rel="home v:url" property="v:title" href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
 		<BOUCLE_ariane(HIERARCHIE){id_rubrique}>
 			<li typeof="v:Breadcrumb"><i class="fa fa-folder" aria-hidden="true"></i> <a rel="v:url" property="v:title" href="[(#URL_RUBRIQUE|url_absolue)]">[<span itemprop="name">(#TITRE|couper{80})</span>]</a></li>
 		</BOUCLE_ariane>
 		[<li typeof="v:Breadcrumb" class="on active"><i class="fa fa-folder-open" aria-hidden="true"></i> <strong property="v:title">(#TITRE|couper{80})</strong></li>]
 	</ol>
-
-	[<article class="page-header lead #EDIT{texte}">(#TEXTE|abs_url)</article>]
+	[<section class="container">(#INCLURE{fond=inclure/portfolio,id_rubrique})</section>]
+	[<article class="container page-header lead #EDIT{texte}">(#TEXTE|abs_url)</article>]
+	[(#REM) Gestion du portfolio et des documents ]
+	[<section class="container">(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
 	[<p class="h3">Notes :</p>
 	<footer class="text-muted">(#NOTES|abs_url)</footer>]
-
-	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
-		<header class="page-header"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>,nb=9} /></header>
-	</BOUCLE_articles>
-	</B_articles>
-	<//B_articles>
-
-	<BOUCLE_sous_rub(RUBRIQUES){id_rubrique}{0,1}>
-		<header class="page-header"><INCLURE{fond=liste/rubriques-resume-col,env,ajax,titre=<:sous_rubriques:>} /></header>
-	</BOUCLE_sous_rub>
-	</B_sous_rub>
-	<//B_sous_rub>
-
-	
-	[(#REM) Gestion du portfolio et des documents ]
-	[<section>(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
-
-
-
 </BOUCLE_content>

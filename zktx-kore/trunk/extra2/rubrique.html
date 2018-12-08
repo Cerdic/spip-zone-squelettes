@@ -1,0 +1,56 @@
+<BOUCLE_extra2_rubrique(RUBRIQUES){id_rubrique}>
+<div class="container">
+	<div class="row">
+
+		[(#REM) Menu de navigation rubriques 
+			SI la rubrique a des mots clés qui lui sont attachés
+			ALORS on les affiche ici sous forme de navigation thématique
+			SINON on affiche le menu rubriques standard
+		]
+		<nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<B_mots>
+				<span class="h4"><:mots_clefs:></span>
+				<ul class="list-group">
+					<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+					<li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+					</BOUCLE_mots>
+				</ul>		
+			</B_mots>
+			[(#REM) Menu de navigation par rubriques ]
+			[(#INCLURE{fond=inclure/rubriques,id_rubrique})]
+			<//B_mots>
+		</nav>
+		
+		[(#REM) Breves du secteur ]
+		<B_breves>
+		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			#ANCRE_PAGINATION
+			<span class="h4"><:breves:breves:></span>
+			<ul class="list-group">
+					<BOUCLE_breves(BREVES) {id_rubrique}{!par date}{pagination 5}>
+					<li class="list-group-item[ active (#EXPOSE)]">[<time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time> &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+			</ul>
+			[(#PAGINATION)]
+		</aside>
+		</B_breves>
+		
+		[(#REM) Sur le Web ]
+		<B_syndic>
+		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<span class="h4"><:nouveautes_web:></span>
+			<ul class="list-group">
+				<BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique}{age<180}{!par date}{pagination 8}>
+				<li class="list-group-item">
+					[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr> &ndash; ]
+					<a class="spip_out" rel="external" href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"]>#TITRE</a>
+				</li>
+				</BOUCLE_syndic>
+			</ul>
+		</aside>
+		</B_syndic>
+
+	</div> [(#REM) .row ]
+</div> [(#REM) .container ]
+</BOUCLE_extra2_rubrique>
+

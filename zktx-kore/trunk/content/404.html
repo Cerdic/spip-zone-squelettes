@@ -2,37 +2,35 @@
 	<header class="page-header lead">
 		<p class="h2"><i class="fa fa-sitemap" aria-hidden="true"></i> <:plan_site:></p>
 	</header>
-	
-	
-		<BOUCLE_exclure(RUBRIQUES) {id_rubrique = 5} {doublons}></BOUCLE_exclure>
-		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {doublons}>
 
-			<p class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></p>
+	<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {doublons}>
+
+		<p class="h3"><a href="#URL_RUBRIQUE">#TITRE</a></p>
+		
+		<ul class="plan">
+			[(#REM) Articles et sous-rubriques ]
+			<B_articles_racine>
+			<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+			<li><a href="#URL_ARTICLE">#TITRE</a></li>
+			</BOUCLE_articles_racine>
+			</B_articles_racine>
+		
+			<B_rubriques>
+			<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+			<li><a href="#URL_RUBRIQUE">#TITRE</a>
 			
-			<ul class="plan">
-				[(#REM) Articles et sous-rubriques ]
-				<B_articles_racine>
-				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-				<li><a href="#URL_ARTICLE">#TITRE</a></li>
-				</BOUCLE_articles_racine>
-				</B_articles_racine>
-			
-				<B_rubriques>
-				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-				<li><a href="#URL_RUBRIQUE">#TITRE</a>
-				
-					<B_articles>
-					<ul>
-						<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-						<li><a href="#URL_ARTICLE">#TITRE</a></li>
-						</BOUCLE_articles>
-					</ul>
-					</B_articles>
-					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-				</li>
-				</BOUCLE_rubriques>
-			</B_rubriques>
-			</ul>
-		</BOUCLE_secteurs>
+				<B_articles>
+				<ul>
+					<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+					<li><a href="#URL_ARTICLE">#TITRE</a></li>
+					</BOUCLE_articles>
+				</ul>
+				</B_articles>
+				<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+			</li>
+			</BOUCLE_rubriques>
+		</B_rubriques>
+		</ul>
+	</BOUCLE_secteurs>
 	
 </nav> [(#REM) .container ]
