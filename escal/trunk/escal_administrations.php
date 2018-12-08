@@ -8,45 +8,46 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 /**
- * Fonction d'installation du plugin et de mise à jour.
+ * Fonction d'installation du plugin et de mise ï¿½ jour.
  * Vous pouvez :
- * - créer la structure SQL,
- * - insérer du pre-contenu,
+ * - crï¿½er la structure SQL,
+ * - insï¿½rer du pre-contenu,
  * - installer des valeurs de configuration,
- * - mettre à jour la structure SQL 
- *  Merci à Arnaud Bérard pour son aide précieuse 
+ * - mettre ï¿½ jour la structure SQL
+ *  Merci ï¿½ Arnaud Bï¿½rard pour son aide prï¿½cieuse
 **/
 function escal_upgrade($nom_meta_base_version, $version_cible) {
     $maj = array();
     include_spip('escal_fonctions');
     include_spip('inc/config');
     include_spip('action/editer_objet');
-    
+
     $maj['create'] = array(
         array('install_groupe_mots'),
+        array('install_contenus'),
         array('escal_configuration'),
         array('ecrire_config', 'escal', array())
     );
-    
+
     $maj['1.0.13'] =array(
-        array('update_groupe_mots') 
+        array('update_groupe_mots')
     );
-    
+
     include_spip('base/upgrade');
     maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
 
 
 /**
- * Fonction de désinstallation du plugin.
- * - nettoyer toutes les données ajoutées par le plugin et son utilisation
- * - supprimer les tables et les champs créés par le plugin. 
+ * Fonction de dï¿½sinstallation du plugin.
+ * - nettoyer toutes les donnï¿½es ajoutï¿½es par le plugin et son utilisation
+ * - supprimer les tables et les champs crï¿½ï¿½s par le plugin.
 **/
 function escal_vider_tables($nom_meta_base_version) {
     include_spip('escal_fonctions');
-    
+
     uninstal_escal();
-    
+
     effacer_config('escal');
     effacer_config($nom_meta_base_version);
 }

@@ -5,7 +5,7 @@
  * Licence GNU/GPL
  */
 
-if (!defined('_ECRIRE_INC_VERSION')) return; 
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 // =======================================================================================================================================
 // Paramétrage à l'installation d'Escal
@@ -16,12 +16,12 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * escal_configuration()
  * teste et configure certaines options de spip pour escal
  * penser à incrementer la valeur de schema dans paquet.xml et celle de $maj dans escal_administrations.php en cas de mise à jour des mots cles
-*/  
+*/
 
 
 function escal_configuration(){
     include_spip('inc/config');
-    
+
     // active l'utilsation des mots clefs
     $articles_mots = lire_config('articles_mots');
     if($articles_mots == 'non')
@@ -31,7 +31,7 @@ function escal_configuration(){
     if(lire_config('rubriques_descriptif') == 'non')
         ecrire_meta('rubriques_descriptif','oui') ;
     if(lire_config('articles_descriptif') == 'non')
-       ecrire_meta('articles_descriptif','oui') ;  
+       ecrire_meta('articles_descriptif','oui') ;
 }
 
 
@@ -52,7 +52,7 @@ function shema_escal(){
                 'tables_liees'=>'evenements',
                 'minirezo'=>'oui',
                 'comite'=>'oui'
-            )   
+            )
         ),
         'mots'=> array(
             // Agenda_couleur
@@ -80,7 +80,7 @@ function shema_escal(){
                 'titre'=>'Marron',
                 'descriptif'=>'#7F3D00',
                 'type'=>'Agenda_couleur'
-                ),                                                   
+                ),
             // affichage
             array(
                 'titre'=>'acces-direct',
@@ -91,7 +91,7 @@ function shema_escal(){
                 'titre'=>'accueil',
                 'descriptif'=> _T('escal:mot_accueil'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=> 'actus',
                 'descriptif'=> _T('escal:mot_actus'),
@@ -101,7 +101,7 @@ function shema_escal(){
                 'titre'=>'agenda',
                 'descriptif'=> _T('escal:mot_agenda'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=>'annonce',
                 'descriptif'=> _T('escal:mot_annonce'),
@@ -111,7 +111,7 @@ function shema_escal(){
                 'titre'=>'annonce-defilant',
                 'descriptif'=> _T('escal:mot_annonce_defilant'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=>'annuaire',
                 'descriptif'=> _T('escal:mot_annuaire'),
@@ -166,17 +166,17 @@ function shema_escal(){
                 'titre'=>'citations',
                 'descriptif'=> _T('escal:mot_citations'),
                 'type'=>'affichage'
-            ),                        
+            ),
             array(
                 'titre'=>'edito',
                 'descriptif'=> _T('escal:mot_edito'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=>'favori',
                 'descriptif'=> _T('escal:mot_favori'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=>'forum',
                 'descriptif'=> _T('escal:mot_forum'),
@@ -276,29 +276,29 @@ function shema_escal(){
                 'titre'=>'texte2colonnes',
                 'descriptif'=> _T('escal:mot_texte2colonnes'),
                 'type'=>'affichage'
-            ),            
+            ),
             array(
                 'titre'=>'video-une',
                 'descriptif'=> _T('escal:mot_video_une'),
                 'type'=>'affichage'
-            )           
+            )
         )
     );
-    
+
     return $schema;
 }
 
 // Fonction de mise a jour du schema
 function update_groupe_mots(){
     include_spip('action/editer_objet');
-    
+
     // chargement du array des groupe et mots
     $schema = shema_escal();
-    
+
     // en qu'elle version de escal est on ?
     // si on a une meta escal_base_version, c'est qu'on est sur une version avec instalation auto
     $meta = lire_config('escal_base_version');
-    
+
     // si la meta est présente
     if($meta!=''){
         // Maj des groupes
@@ -315,9 +315,9 @@ function update_groupe_mots(){
                 //echo "Insert Le groupe n'éxiste pas => ".$grp_titre."\n";
                 $id = sql_insertq('spip_groupes_mots',$schema['groupes'][$i]);
             }
-            
-        }    
-        
+
+        }
+
         //Maj des mots : on boucle sur le tableau mots
         for ($i= 0 , $nbr_mot = count($schema['mots']) ; $i < $nbr_mot ; ++$i){
             // test la présence du mot sur le champ titre
@@ -356,7 +356,7 @@ function install_groupe_mots() {
     for ($i= 0 , $nbr_mot = count($schema['groupes']) ; $i < $nbr_mot ; ++$i){
         $id = sql_insertq('spip_groupes_mots',$schema['groupes'][$i]);
     }
-    
+
     // installation des mots
     for ($i= 0 , $nbr_mot = count($schema['mots']) ; $i < $nbr_mot ; ++$i){
         // on extrait du array le groupe dont dépend le mot
@@ -367,7 +367,7 @@ function install_groupe_mots() {
             objet_modifier('mot',$id_mot,$schema['mots'][$i]);
         }
     }
-    
+
 }
 
 // Fonction de désinstalation des groupes et mots de Escal
@@ -384,6 +384,55 @@ function uninstal_escal(){
         sql_delete("spip_groupes_mots","id_groupe='$id_grp'");
     }
 }
+
+// fonction install_contenus
+// - créer une rubrique "Rubrique cachée"
+// - créer un article "Edito" et un article "Accès direct"
+// - associer le mot-clé "invisible" à cette rubrique
+// - associer le mot-clé "edito" à l'article "Edito"
+// - associer le mot-clé "acces-direct" à l'article "Accès direct"
+function install_contenus(){
+    include_spip('action/editer_objet');
+    include_spip('action/editer_liens');
+    // créer une rubrique "Rubrique cachée"
+    $rubrique_contenu = array(
+      'titre'=>'Rubrique cachée'
+    );
+    $id_rubrique = objet_inserer('rubrique',null,$rubrique_contenu);
+    // créer dans cette rubrique, un article "Edito"
+    $article_edito_contenu = array(
+      'titre'=>'Article Édito'
+    );
+    $article_edito = objet_inserer('article',$id_rubrique,$article_edito_contenu);
+    objet_modifier('article',$article_edito,array('statut'=>'publie'));
+    // un article "Accès direct"
+    $article_acces_direct_contenu = array(
+      'titre'=>'Accès direct'
+    );
+    $article_acces_direct = objet_inserer('article',$id_rubrique,$article_acces_direct_contenu);
+    objet_modifier('article',$article_acces_direct,array('statut'=>'publie'));
+
+    // Ajout des liaisons
+    // recupérer l'id_mot invisible
+    $id_mot_invisible = sql_getfetsel("id_mot","spip_mots","titre='invisible'");
+    if($id_mot_invisible){
+      objet_associer(array('mot'=>$id_mot_invisible),array('rubrique'=>$id_rubrique));
+    }
+    // recupérer l'id_mot edito
+    $id_mot_edito = sql_getfetsel("id_mot","spip_mots","titre='edito'");
+    if($id_mot_edito){
+      objet_associer(array('mot'=>$id_mot_edito),array('article'=>$article_edito));
+    }
+    // recupérer l'id_mot acces-direct
+    $id_mot_acces_direct = sql_getfetsel("id_mot","spip_mots","titre='acces-direct'");
+    if($id_mot_acces_direct){
+      objet_associer(array('mot'=>$id_mot_acces_direct),array('article'=>$article_acces_direct));
+    }
+
+    // spip_log("Rubrique: $id_rubrique, Acces direct: $article_acces_direct",'Escal');
+
+}
+
 
 // =======================================================================================================================================
    // pour gerer les classes des differents liens dans les articles
@@ -417,7 +466,7 @@ return inc_lien_dist($lien, $texte, $class, $title, $hlang, $rel, $connect);
 }
 }
 // balises issues da la contrib  "Balises de comptage" de Franck
-// http://contrib.spip.net/Balises-de-comptage 
+// http://contrib.spip.net/Balises-de-comptage
 // =======================================================================================================================================
 // balise #TOTAL_VISITES
 // =======================================================================================================================================
@@ -541,18 +590,18 @@ else citations($txt);
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
  *   remplacement des caractères accentués
- *    exemple trouvé là: 
+ *    exemple trouvé là:
  *    http://be.php.net/manual/fr/function.strtr.php#52098
- *   +-------------------------------------+ 
- *  
+ *   +-------------------------------------+
+ *
 */
 
 
 function lettre1($texte) {
 	$texte = $texte{0}; // première lettre
-		$texte = 
+		$texte =
 strtr($texte, "\xA1\xAA\xBA\xBF\xC0\xC1\xC2\xC3\xC5\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD8\xD9\xDA\xDB\xDD\xE0\xE1\xE2\xE3\xE5\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF8\xF9\xFA\xFB\xFD\xFF", "!ao?AAAAACEEEEIIIIDNOOOOOUUUYaaaaaceeeeiiiidnooooouuuyy");
-	$texte = strtr($texte, 
+	$texte = strtr($texte,
 array("\xC4"=>"Ae", "\xC6"=>"AE", "\xD6"=>"Oe", "\xDC"=>"Ue", "\xDE"=>"TH", "\xDF"=>"ss", "\xE4"=>"ae", "\xE6"=>"ae", "\xF6"=>"oe", "\xFC"=>"ue", "\xFE"=>"th"));
 	$texte = strtoupper($texte); // tout en majuscules
 	return $texte;
@@ -580,7 +629,7 @@ $GLOBALS['diapo_vignette']=60;
 $GLOBALS['diapo_grand']=400;
 
 //largeur maxi de la grande image avec vignettes sur les côtés:
-$GLOBALS['diapo_petit']=300;  
+$GLOBALS['diapo_petit']=300;
 //hauteur maxi de la grande image avec vignettes sur les côtés :
 $GLOBALS['diapo_petit_h']=300;
 
@@ -671,7 +720,7 @@ foreach($arr_elements as $element) {
 }
 	return $truncate;
 }
-   
+
 // =======================================================================================================================================
 // traitement json
 // =======================================================================================================================================
@@ -688,14 +737,14 @@ if (!function_exists('json_decode')) {
         return $json->decode($content);
     }
 }
- 
+
 if (!function_exists('json_encode')) {
     function json_encode($content) {
         require_once 'classes/JSON.php';
         $json = new Services_JSON;
         return $json->encode($content);
     }
-} 
+}
 
 
 
@@ -739,7 +788,7 @@ function decouper_en_XD_parties($texte,$nb_parties,$partie_a_retourner){
                 $partie_a_retourner = 1;
         }
 
-       
+
 //var_dump($nb_parties);
         $longueur = strlen($texte);                                                                 // Longueur totale de la chaine de caractere
         $partie = $longueur/$nb_parties;                                        // Taille en caracteres d'une partie
@@ -750,9 +799,9 @@ function decouper_en_XD_parties($texte,$nb_parties,$partie_a_retourner){
         $mots_cesure[0] = 0;                                                                                        // Premiere borne = 0
         $j = 1;
 
-       
+
                         while($j < $nb_parties){                                                                        // On recherche la fin du dernier mot de la partie pour ne pas le couper (=cesure)
-                $i = $partie*($j);                                                                                        // On debute la recherche a partie, et ensuite on incremente de la taille d'une partie pour trouver le mot suivant                         
+                $i = $partie*($j);                                                                                        // On debute la recherche a partie, et ensuite on incremente de la taille d'une partie pour trouver le mot suivant
                 while(!isset($decoupe[$i])){                                                // On part du caractere ou on devrait couper,
                         $i++;                                                                                                                                        // et on avance jusqu'a trouver la fin du mot
                 }
@@ -764,19 +813,19 @@ function decouper_en_XD_parties($texte,$nb_parties,$partie_a_retourner){
         ###*/
                 while(!preg_match('`\.$`',"$decoupe[$i]")){   //tant que le mot ne se termine pas par un point...
                         $i++;                                                                                                                                                                //incrementation d'un caractere
-                        while(!isset($decoupe[$i])){                                               
-                        $i++;                                                                                                                               
+                        while(!isset($decoupe[$i])){
+                        $i++;
                         }
                 }
                 $i++;
-                        while(!isset($decoupe[$i])){                                               
-                        $i++;                                                                                                                               
+                        while(!isset($decoupe[$i])){
+                        $i++;
                         }
         //echo $decoupe[$i];
-               
-        /*### FIN DU CORRECTIF ###*/       
-               
-               
+
+        /*### FIN DU CORRECTIF ###*/
+
+
                 $mots_cesure[$j] = $i;                                                                        // On range la valeur en caractere du mot clef pour la cesure
                 $j++;                                                                                                                                                // On passe a la partie suivante
         }
