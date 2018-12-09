@@ -1,3 +1,13 @@
+<?php // Contournement du bug https://core.spip.net/issues/3712
+if (!function_exists('sc_ouinon_default')) {
+	function sc_ouinon_default($cfg) {
+		if (is_null(lire_config($cfg))) {
+			ecrire_config($cfg,'on');
+		}
+		return true;
+	}
+}
+?>
 <div class="formulaire_spip formulaire_configurer_sc">
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
@@ -357,6 +367,11 @@
 							never,<:soyezcreateursprive:cfg_logonavigation_never:>,
 						},
 						defaut=content}
+					)]
+					<?php sc_ouinon_default('soyezcreateurs_layout/aff_logoaccueil'); ?>
+					[(#SAISIE{oui_non,aff_logoaccueil,
+						label=<:soyezcreateursprive:cfg_aff_logoaccueil_label:>,
+						defaut=on}
 					)]
 				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
 			</fieldset>

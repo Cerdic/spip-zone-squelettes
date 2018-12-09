@@ -8,6 +8,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_texte_actualite_toutes' => 'Lien vers tous les articles par ordre anti-chronologique',
 	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d’accueil',
 	'cfg_affichage_affiche' => 'Afficher',
+	'cfg_aff_logoaccueil_label' => 'Affichage du logo de rubrique sur la page d’accueil',
 	'cfg_affichage_block' => 'Bloc : logo, titre, descriptif',
 	'cfg_affichage_impression' => 'Affichage complet',
 	'cfg_affichage_impression_ex' => 'Affichage d’un lien en haut de page, permettant d’afficher la totalité du contenu de la branche (articles compris) en vue d’une impression',
