@@ -14,18 +14,14 @@
 
 [(#REM) Sinon, liste des autres documents joints ]
 <B_documents_joints>
-<aside class="menu" id="documents_joints">
-	<h2><:medias:titre_documents_joints:></h2>
-	<ul class="spip">
+	<span class="h4"><:medias:titre_documents_joints:></span>
+	<div class="list-group" id="documents_joints" role="contentinfo">
 		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[
-		<li>
-			<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" class="spip_doc[ (#EXTENSION|attribut_html)]"><strong class="#EDIT{titre} titre">[(#TITRE|sinon{[(#FICHIER|basename|couper{80})]})]</strong>
-			<small class="info_document">([<abbr title="<:info_document:> #TYPE_DOCUMENT" class="ext">(#EXTENSION|strtoupper)</abbr> - ][<span>(#TAILLE|taille_en_octets)</span>])</small></a>
-			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
-		]</li>
-		</BOUCLE_documents_joints>
-	</ul>
-</aside><!--#documents_joints-->
+			<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" class="list-group-item[ (#EXTENSION|attribut_html)]">
+				<h4 class="h4 list-group-item-heading #EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename|couper{80})]})]</h4>
+				<p class="list-group-item-text">
+					[<span class="#EDIT{descriptif}">(#DESCRIPTIF|couper{60})</span><br/>][<abbr title="<:info_document:> #TYPE_DOCUMENT">(#EXTENSION|strtoupper)</abbr> ][<span class="badge">(#TAILLE|taille_en_octets)</span>]</p>
+			</a>]</BOUCLE_documents_joints>
+	</div><!--#documents_joints-->
 </B_documents_joints>
-
 <//B_documents_decompte>

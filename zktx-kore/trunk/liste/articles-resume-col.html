@@ -4,7 +4,6 @@
 	[<div class="h2 container">(#ENV{titre,<:derniers_articles:>})</div>]
 	#ANCRE_PAGINATION
 	<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot?}{par num titre}{!par date}{pagination #ENV{nb,6}}>
-		
 		[(#REM) 
 			Affichage :
 			-	mobile xs et sm: 1 colonne ( col-xs-12 col-sm-12 )
@@ -17,8 +16,8 @@
 			- filtre |alterner : https://www.spip.net/fr_article4145.html
 		]
 		
-		[(#COMPTEUR_BOUCLE|alterner{<div class="row">,'', ''})]
-			<article class="item hentry col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+		[(#COMPTEUR_BOUCLE|alterner{<div class="row">, ''})]
+			<article class="item hentry col-sm-6 text-center">
 				<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
 				[(#LOGO|image_reduire{240,240}|image_recadre{240,240,center}|inserer_attribut{class,'img-responsive center-block'}|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]}|inserer_attribut{role,"img"})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
 				<div class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
@@ -40,7 +39,7 @@
 					</ul>
 				</B_lesmots>	
 			</article>
-		[(#COMPTEUR_BOUCLE|alterner{'', '', </div>})] [(#REM) /.row ]
+		[(#COMPTEUR_BOUCLE|alterner{'', </div>})] [(#REM) /.row ]
 	</BOUCLE_articles>
 	[<nav class="container text-center clearfix">(#PAGINATION{page_precedent_suivant})</nav>]
 </B_articles>
