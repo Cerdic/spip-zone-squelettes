@@ -30,7 +30,13 @@ function soyezcreateurs_noizetier_blocs_defaut($flux) {
 }
 
 function soyezcreateurs_identite_extra_champs($champs) {
-	define('_CHAMPS_INDENTITE_EXTRA_SC', 'adresse,code_postal,ville,pays,telephone,fax,email_contact,informations,id_article_contact,facebook,twitter,linkedin,instagram,pinterest,viadeo,latitude,longitude');
+	define('_CHAMPS_INDENTITE_EXTRA_SC', 'adresse,code_postal,ville,pays,telephone,fax,email_contact,informations,id_article_contact,latitude,longitude');
 	$champs = explode(',', _CHAMPS_INDENTITE_EXTRA_SC);
+	$champs[] = 'facebook';
+	$champs[] = 'twitter';
+	$champs[] = 'linkedin';
+	$champs[] = 'instagram';
+	$champs[] = 'pinterest';
+	$champs[] = 'viadeo';
 	return $champs;
 }
