@@ -396,18 +396,23 @@ function install_contenus(){
     include_spip('action/editer_liens');
     // créer une rubrique "Rubrique cachée"
     $rubrique_contenu = array(
-      'titre'=>'Rubrique cachée'
+      'titre'=> _T('escal:rubrique_cachee_titre'),
+      'descriptif'=> _T('escal:rubrique_cachee_descriptif')
     );
     $id_rubrique = objet_inserer('rubrique',null,$rubrique_contenu);
     // créer dans cette rubrique, un article "Edito"
     $article_edito_contenu = array(
-      'titre'=>'Article Édito'
+      'titre'=> _T('escal:article_edito_titre'),
+      'descriptif'=> _T('escal:article_edito_descriptif'),
+      'texte'=> _T('escal:article_edito_texte')
     );
     $article_edito = objet_inserer('article',$id_rubrique,$article_edito_contenu);
     objet_modifier('article',$article_edito,array('statut'=>'publie'));
-    // un article "Accès direct"
+    // créer dans cette rubrique, un article "Accès direct"
     $article_acces_direct_contenu = array(
-      'titre'=>'Accès direct'
+      'titre'=> _T('escal:article_acces_direct_titre'),
+      'descriptif'=> _T('escal:article_acces_direct_descriptif'),
+      'texte'=> _T('escal:article_acces_direct_texte')
     );
     $article_acces_direct = objet_inserer('article',$id_rubrique,$article_acces_direct_contenu);
     objet_modifier('article',$article_acces_direct,array('statut'=>'publie'));

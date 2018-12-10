@@ -8,13 +8,13 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 /**
- * Fonction d'installation du plugin et de mise � jour.
+ * Fonction d'installation du plugin et de mise a jour.
  * Vous pouvez :
- * - cr�er la structure SQL,
- * - ins�rer du pre-contenu,
+ * - creer la structure SQL,
+ * - inserer du pre-contenu,
  * - installer des valeurs de configuration,
- * - mettre � jour la structure SQL
- *  Merci � Arnaud B�rard pour son aide pr�cieuse
+ * - mettre a jour la structure SQL
+ *  Merci a Arnaud Berard pour son aide precieuse
 **/
 function escal_upgrade($nom_meta_base_version, $version_cible) {
     $maj = array();
@@ -39,9 +39,9 @@ function escal_upgrade($nom_meta_base_version, $version_cible) {
 
 
 /**
- * Fonction de d�sinstallation du plugin.
- * - nettoyer toutes les donn�es ajout�es par le plugin et son utilisation
- * - supprimer les tables et les champs cr��s par le plugin.
+ * Fonction de desinstallation du plugin.
+ * - nettoyer toutes les donnees ajoutees par le plugin et son utilisation
+ * - supprimer les tables et les champs crees par le plugin.
 **/
 function escal_vider_tables($nom_meta_base_version) {
     include_spip('escal_fonctions');
