@@ -880,7 +880,6 @@ function sc_bandeau_contact() {
 	// N'afficher avec identité Extra (https://contrib.spip.net/Identite-Extra) que si au moins un champ renseigné
 	$identite_extra = lire_config('identite_extra');
 	$champs = explode(',', _CHAMPS_INDENTITE_EXTRA_SC);
-	echo implode($champs,',');
 	if ((is_array($identite_extra)) && (implode('', $identite_extra) !== '')) {
 		foreach($champs as $champ) {
 			if (array_key_exists($champ, $identite_extra) && $identite_extra[$champ]!== '') {
