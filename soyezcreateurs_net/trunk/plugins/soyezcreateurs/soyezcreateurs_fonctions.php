@@ -876,11 +876,21 @@ function sc_filesize($file) {
 }
 
 function sc_bandeau_contact() {
+	$texte = '';
 	// N'afficher avec identité Extra (https://contrib.spip.net/Identite-Extra) que si au moins un champ renseigné
 	$identite_extra = lire_config('identite_extra');
-	if ((is_array($identite_extra)) && (implode('', $identite_extra) !== "")) {
-		$texte = recuperer_fond('noisettes/footer/footer_identite_extra');
-	} else { // On utilise la vieille configuration du bandeau de contact de SoyezCréateurs
+	$champs = explode(',', _CHAMPS_INDENTITE_EXTRA_SC);
+	echo implode($champs,',');
+	if ((is_array($identite_extra)) && (implode('', $identite_extra) !== '')) {
+		foreach($champs as $champ) {
+			if (array_key_exists($champ, $identite_extra) && $identite_extra[$champ]!== '') {
+				$texte = recuperer_fond('noisettes/footer/footer_identite_extra');
+				break;
+			}
+		}
+	}
+	if ($texte === '') {
+		// On utilise la vieille configuration du bandeau de contact de SoyezCréateurs
 		$texte = recuperer_fond('noisettes/footer/footer_bandeau_contact');
 	}
 	
