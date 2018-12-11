@@ -22,7 +22,7 @@ function critere_recherche($idb, &$boucles, $crit) {
 	else {
 		$quoi = '@$Pile[0]["recherche"]';
 	}
-	$tout         = $boucle->modificateur["tout"] ? 1 : 0;
+	$tout = !empty($boucle->modificateur["tout"]) ? 1 : 0;
 	$boucle->hash .= '
 	// RECHERCHE
 	$prepare_recherche = charger_fonction(\'prepare_recherche\', \'inc\');
@@ -101,7 +101,8 @@ function inc_prepare_recherche($recherche, $table = 'articles', $cond = false, $
 										'jointures' => true,
 									),
 									$serveur);
-		$points = $points[ $x ];
+
+		$points = isset($points[ $x ]) ? $points[ $x ] : [];
 
 		// permettre aux plugins de modifier le resultat
 		$points = pipeline('prepare_recherche', array(
