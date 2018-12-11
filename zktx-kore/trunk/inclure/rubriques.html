@@ -9,16 +9,16 @@
 	on l'affiche si son parent est expose ou est la racine du site.
 ]
 <B_rubriques>
-<span class="h4"><:rubriques:></span>
+<p class="h4"><:rubriques:></p>
 <ul class="list-group">
 <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre}{titre != ZKTX}>
-	<li class="list-group-item">
-		<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+	<li class="list-group-item[ active (#EXPOSE)]">
+		<a rel="category" href="[(#URL_RUBRIQUE|abs_url)]">[(#TITRE|couper{80})]</a>
 
 		<B_sous_rubriques>
-		<ul>
+		<ul class="list-group">
 			<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-				<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				<li class="list-group-item[ active (#EXPOSE)]"><a rel="category" href="[(#URL_RUBRIQUE|abs_url)]">[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 			</B_test_expose></BOUCLE_sous_rubriques>
 		</ul>
 		</B_sous_rubriques>

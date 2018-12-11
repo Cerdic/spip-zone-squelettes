@@ -18,7 +18,7 @@
 [(#SET{couleur_foncer_2,[(#GET{couleur}|couleur_foncer|couleur_foncer)]})]
 [(#SET{couleur_inverser,[(#GET{couleur}|couleur_inverser)]})]
 
-[(#REM) Liens ]
+[(#REM) Recolorisation de la couleur "primary" ]
 a:link, a:visited, a:active, a:hover, a:focus, button, .btn, button:hover, .btn:hover {
   -webkit-transition: All .6s ease-in;
   moz-transition: All .6s ease-in;
@@ -27,9 +27,12 @@ a:link, a:visited, a:active, a:hover, a:focus, button, .btn, button:hover, .btn:
 }
 a, a:active, a:visited { color: [#(#GET{couleur_foncer_1})]; }
 a:focus, a:hover, a:active { color: [#(#GET{couleur})]; }
-/*a.btn, a.fa { text-decoration:none!important; }*/
+.btn:hover { text-decoration:none; }
+.btn-primary, .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  color:#FFFFFF!important;
+  background-color: [#(#GET{couleur})]!important;
+}
 .btn-primary {
-  background-color: [#(#GET{couleur})];
   background-image: -webkit-gradient(linear,left 0,left 100%,from([#(#GET{couleur})]),to([#(#GET{couleur_foncer_1})]));
   background-image: -webkit-linear-gradient(top,[#(#GET{couleur})] 0,[#(#GET{couleur_foncer_1})] 100%);
   background-image: -moz-linear-gradient(top,[#(#GET{couleur})] 0,[#(#GET{couleur_foncer_1})] 100%);
@@ -48,8 +51,7 @@ a:focus, a:hover, a:active { color: [#(#GET{couleur})]; }
 [(#REM) btn sociaux aux couleurs officielles 
 	à adapter (color ou background-color)
 	selon icons utilisés (socicon-*, fa-* ou fa-*-square)
-]
-	[(#REM) les + utilisés]
+]	[(#REM) les + utilisés]
 	a.btn-social {color:#FFFFFF!important;}
 	.btn-fb {background-color:#47639E;}
 	.btn-tw {background-color:#55ACEE;}
@@ -57,7 +59,6 @@ a:focus, a:hover, a:active { color: [#(#GET{couleur})]; }
 	.btn-gp {background-color:#DD4B39;}
 	.btn-yt {background-color:#e02a20;}
 	.btn-ig {background-color:#000000;}
-
 	[(#REM) services streaming]
 	.btn-bcp {background-color:#619aa9;}
 	.btn-scd {background-color:#fe3801;}
@@ -65,22 +66,31 @@ a:focus, a:hover, a:active { color: [#(#GET{couleur})]; }
 	.btn-spy {background-color:#7bb342;}
 	.btn-itu {background-color:#ff5e51;}
 
-p { margin:1em 0; }
 
-.pull-left {margin-right:1em;}
-.pull-right {margin-left:1em;}
-
+[(#REM) Navigations ]
 .navbar-brand {padding:10px 15px;}
-
 .top { position:fixed; bottom:1em; right:1em;}
 
 
-.bs-content, .bs-extra {padding:20px 0;}
-.bs-header {padding:80px 0;}
-.bs-footer {padding:40px 0;}
+[(#REM) Elements ]
+p { margin:1em 0; }
 
-.breadcrumb, .well, .jumbotron {background-color: [#(#GET{couleur_eclaircir_1})];}
-.bs-header .jumbotron {background-color:[#(#GET{couleur_foncer_2})];}
+
+[(#REM) Utilities ]
+.pull-left {margin-right:1em;}
+.pull-right {margin-left:1em;}
+
+
+[(#REM) Blocks de pages ]
+.bs-content { padding:20px 0; }
+.bs-header  { padding:80px 0; }
+.bs-extra   { padding:20px 0; background-color: #EFEFEF; }
+.bs-extra.extra2 { background-color: [#(#GET{couleur_eclaircir_2})]; } 
+.bs-extra.extra3 { background-color: [#(#GET{couleur_eclaircir_1})]; }
+.bs-footer  { padding:40px 0; }
+.breadcrumb, .well, .jumbotron { background-color: [#(#GET{couleur_eclaircir_1})]; }
+.bs-header .jumbotron, .bs-footer { background-color:[#(#GET{couleur_foncer_2})]; color: #FFFFFF; }
+.bs-footer a, .bs-header .jumbotron a { color:[#(#GET{couleur})]; }
 
 .bs-header {
   color:#FFFFFF;
@@ -95,13 +105,9 @@ p { margin:1em 0; }
                             |extraire_attribut{src}
                           )');]
 }
-.bs-extra { background-color: #EFEFEF; }
-.bs-extra#extra2 { background-color: [#(#GET{couleur_eclaircir_2})]; }
-.bs-footer { background-color: [#(#GET{couleur_foncer_2})]; color: #FFFFFF; }
 
 <BOUCLE_article_bs_header(ARTICLES){tout}>
   .bs-header.article#ID_ARTICLE { 
-
     background-color: [#(#GET{couleur})]; 
     [background-image:url('(#LOGO_ARTICLE_SURVOL
                               |sinon{#LOGO_RUBRIQUE_SURVOL}
@@ -112,8 +118,6 @@ p { margin:1em 0; }
                           )');]
   }
 </BOUCLE_article_bs_header>
-
-
 <BOUCLE_rubrique_bs_header(RUBRIQUES){tout}>
   .bs-header.rubrique#ID_RUBRIQUE { 
 
@@ -124,10 +128,8 @@ p { margin:1em 0; }
                               |image_gamma{-50}
                               |extraire_attribut{src}
                           )');]
-
   }
 </BOUCLE_rubrique_bs_header>
-
 <BOUCLE_mot_bs_header(MOTS){tout}>
   .bs-header.mot#ID_MOT { 
     [background-image:url('(#LOGO_MOT_SURVOL
@@ -138,6 +140,3 @@ p { margin:1em 0; }
                           )');]
   }
 </BOUCLE_mot_bs_header>
-
-
-

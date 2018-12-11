@@ -7,9 +7,9 @@
 			ALORS on les affiche ici sous forme de navigation thématique
 			SINON on affiche le menu rubriques standard
 		]
-		<nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<nav class="col-md-4">
 			<B_mots>
-				<span class="h4"><:mots_clefs:></span>
+				<p class="h4"><:mots_clefs:></p>
 				<ul class="list-group">
 					<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
 					<li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
@@ -17,15 +17,15 @@
 				</ul>		
 			</B_mots>
 			[(#REM) Menu de navigation par rubriques ]
-			[(#INCLURE{fond=inclure/rubriques,id_rubrique})]
+			[(#INCLURE{fond=inclure/rubriques,id_rubrique,env})]
 			<//B_mots>
 		</nav>
 		
 		[(#REM) Breves du secteur ]
 		<B_breves>
-		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<aside class="col-md-4">
 			#ANCRE_PAGINATION
-			<span class="h4"><:breves:breves:></span>
+			<p class="h4"><:breves:breves:></p>
 			<ul class="list-group">
 					<BOUCLE_breves(BREVES) {id_rubrique}{!par date}{pagination 5}>
 					<li class="list-group-item[ active (#EXPOSE)]">[<time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time> &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
@@ -34,20 +34,20 @@
 			[(#PAGINATION)]
 		</aside>
 		</B_breves>
-		
+
 		[(#REM) Sur le Web ]
 		<B_syndic>
-		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-			<span class="h4"><:nouveautes_web:></span>
+		<nav class="col-md-4">
+			<p class="h4"><:nouveautes_web:></p>
 			<ul class="list-group">
 				<BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique}{age<180}{!par date}{pagination 8}>
 				<li class="list-group-item">
-					[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr> &ndash; ]
-					<a class="spip_out" rel="external" href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"]>#TITRE</a>
+					[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr> ][<span class="small">@ (#NOM_SITE)</span><br/>]
+					<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a>
 				</li>
 				</BOUCLE_syndic>
 			</ul>
-		</aside>
+		</nav>
 		</B_syndic>
 
 	</div> [(#REM) .row ]

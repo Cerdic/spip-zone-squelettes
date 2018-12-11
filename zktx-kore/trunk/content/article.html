@@ -13,7 +13,6 @@
 				[<nav class="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center">(#INCLURE{fond=inclure/socialtags,env})</nav>]
 				[(#REM) contenu de l'article ]
 				<div class="col-lg-11">
-					[<p class="#EDIT{hyperlien} hyperlien"><a target="_blank" class="btn btn-lg btn-primary" href="(#URL_SITE)">[(#NOM_SITE|sinon{"<:voir_en_ligne:>"})]</a></p>]
 					[<section class="#EDIT{texte} surlignable">(#TEXTE|image_reduire{750,0}|abs_url)</section>]
 					[<aside class="well #EDIT{ps}">(#PS)</aside>]
 				</div>
@@ -26,12 +25,18 @@
 				car on part du principe que l'auteur principal du site est
 				- soit déjà suffisement référencé 
 				- soit il est juste webmaster et n'intervient pas en rédaction
-			]
-			<B_auteur>
+			]<B_auteur>
 			<BOUCLE_auteur(AUTEURS){id_article}{!id_auteur = 1}>
 				<INCLURE{fond=inclure/panel-auteur}{env}{id_auteur}
 			</BOUCLE_auteur>
 			</B_auteur>
+
+			[<div class="#EDIT{hyperlien} well">
+				<p class="h4"><i class="fa fa-fw fa-external-link" title="<:zktx:source:>"></i>[ (#NOM_SITE)]</p>
+				<p class="text-right">
+					<a class="btn btn-default spip_out" href="(#URL_SITE)"><:voir_en_ligne:></a>
+				</p>
+			</div>]
 			
 			[(#REM) portfolio & documents ]
 			[(#INCLURE{fond=inclure/documents}{id_article})]
