@@ -74,14 +74,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_onglets' => 'Onglets',
 	'article' => 'article',
 	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé',
-	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d\'un article avec le mot-clé "acces-direct".<br /><br />
-								Le titre du bloc sera celui de l\'article.',
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.',
 	'article_acces_direct_titre' => 'Accès direct',
 	'article_archive' => 'Souvenez-vous !',
 	'article_dernier' => 'Dernier article paru : ',
 	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé',
-	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d\'un article avec le mot-clé "edito".<br /><br />
-						Le titre du bloc sera celui de l\'article.',
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.',
 	'article_edito_titre' => 'Edito',
 	'article_forum' => 'Forum de l’article',
 	'article_imprimer' => 'Imprimer',
@@ -901,7 +901,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'repondre_message' => 'Répondre à ce message',
 	'rubrique' => 'La rubrique',
 	'rubrique_articles' => 'Les articles de cette rubrique',
-	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n\'apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles',
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles',
 	'rubrique_cachee_titre' => 'Rubrique cachée',
 	'rubrique_contenu' => 'Cette rubrique contient',
 	'rubrique_date' => 'Affichage de la date de publication et de la date de modification des articles',
