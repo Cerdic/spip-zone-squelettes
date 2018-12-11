@@ -1,32 +1,49 @@
-#CACHE{0}
-[(#REM) 
-  état = dev => CACHE{0}
-  état = prod => CACHE{3600*24*30}
-]
+#CACHE{0} [(#REM) dev => 0 ; prod => 3600*24*30 ]
 #HTTP_HEADER{Content-Type: text/css; charset=#CHARSET}
 
+[(#REM) Couleur principale & nuances
+- utilise le plugin couleur_rubrique d'ARNO*
+- sinon utilise la variable 'couleur_primary' suivante
+]<BOUCLE_couleur_r(RUBRIQUES){tout}>
+  [(#SET{[couleur_r(#ID_RUBRIQUE)],[(#ID_RUBRIQUE|couleur_rubrique)] })]
+</BOUCLE_couleur_r>
+<BOUCLE_couleur_a(ARTICLES){tout}>
+  [(#SET{[couleur_a(#ID_ARTICLE)],[(#ID_RUBRIQUE|couleur_rubrique)] })]
+</BOUCLE_couleur_a>
+[(#SET{couleur_primary,337AB7})]
+[(#SET{couleur,[(#GET{couleur_a#ID_ARTICLE}|sinon{[(#GET{couleur_r#ID_RUBRIQUE})]}|sinon{[(#ID_RUBRIQUE|couleur_site)]}|sinon{[(#GET{couleur_primary})]})] })]
+[(#SET{couleur_eclaircir_2,[(#GET{couleur}|couleur_eclaircir|couleur_eclaircir)]})]
+[(#SET{couleur_eclaircir_1,[(#GET{couleur}|couleur_eclaircir)]})]
+[(#SET{couleur_foncer_1,[(#GET{couleur}|couleur_foncer)]})]
+[(#SET{couleur_foncer_2,[(#GET{couleur}|couleur_foncer|couleur_foncer)]})]
+[(#SET{couleur_inverser,[(#GET{couleur}|couleur_inverser)]})]
+
+[(#REM) Liens ]
 a:link, a:visited, a:active, a:hover, a:focus, button, .btn, button:hover, .btn:hover {
   -webkit-transition: All .6s ease-in;
   moz-transition: All .6s ease-in;
   o-transition: All .6s ease-in;
   transition: All .6s ease-in;
 }
-
-a:link, a:visited { 
-  [color: #(#ID_RUBRIQUE
-    |couleur_rubrique
-    |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-    |couleur_foncer
-  );]
+a, a:active, a:visited { color: [#(#GET{couleur_foncer_1})]; }
+a:focus, a:hover, a:active { color: [#(#GET{couleur})]; }
+/*a.btn, a.fa { text-decoration:none!important; }*/
+.btn-primary {
+  background-color: [#(#GET{couleur})];
+  background-image: -webkit-gradient(linear,left 0,left 100%,from([#(#GET{couleur})]),to([#(#GET{couleur_foncer_1})]));
+  background-image: -webkit-linear-gradient(top,[#(#GET{couleur})] 0,[#(#GET{couleur_foncer_1})] 100%);
+  background-image: -moz-linear-gradient(top,[#(#GET{couleur})] 0,[#(#GET{couleur_foncer_1})] 100%);
+  background-image: linear-gradient(to bottom,[#(#GET{couleur})] 0,[#(#GET{couleur_foncer_1})] 100%);
+  background-repeat: repeat-x;
+  border-color: [#(#GET{couleur_foncer_2})];
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff[#(#GET{couleur})]',endColorstr='#ff[#(#GET{couleur_foncer_1})]',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-a:active, a:hover, a:focus {
-  [color: #(#ID_RUBRIQUE
-    |couleur_rubrique
-    |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-  );]
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+  border-color: [#(#GET{couleur_foncer_2})]!important;
+  background-color: [#(#GET{couleur_foncer_1})]!important;
+  background-position: 0 -15px!important;
 }
-
-a.btn, a.fa { text-decoration:none!important; }
 
 [(#REM) btn sociaux aux couleurs officielles 
 	à adapter (color ou background-color)
@@ -48,92 +65,49 @@ a.btn, a.fa { text-decoration:none!important; }
 	.btn-spy {background-color:#7bb342;}
 	.btn-itu {background-color:#ff5e51;}
 
-
-
 p { margin:1em 0; }
 
 .pull-left {margin-right:1em;}
 .pull-right {margin-left:1em;}
 
-
-
-[(#SET{grad, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]})] })]
-[(#SET{grad_foncer, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]}|couleur_foncer)] })]
-[(#SET{grad_bordure, [#(#ID_RUBRIQUE|couleur_rubrique|sinon{[(#ID_RUBRIQUE|couleur_site)]}|couleur_foncer|couleur_foncer)] })]
-
-.btn-primary {
-  background-image: -webkit-gradient(linear,left 0,left 100%,from(#GET{grad}),to(#GET{grad_foncer}));
-  background-image: -webkit-linear-gradient(top,#GET{grad} 0,#GET{grad_foncer} 100%);
-  background-image: -moz-linear-gradient(top,#GET{grad} 0,#GET{grad_foncer} 100%);
-  background-image: linear-gradient(to bottom,#GET{grad} 0,#GET{grad_foncer} 100%);
-  background-repeat: repeat-x;
-  border-color: #GET{grad_bordure};
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff#GET{grad}',endColorstr='#ff#GET{grad_foncer}',GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-  color: #fff;
-  border-color: #GET{grad_bordure};
-  background-color: #GET{grad_foncer};
-  background-position: 0 -15px;
-}
-
 .navbar-brand {padding:10px 15px;}
 
 .top { position:fixed; bottom:1em; right:1em;}
 
-[.breadcrumb {
-  background-color: #(#ID_RUBRIQUE
-    |couleur_rubrique
-    |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-    |couleur_eclaircir
-  ); 
-}]
 
-.bs-header, .bs-content, .bs-footer {padding:40px 0;}
-.bs-header {padding-top:80px;}
+.bs-content, .bs-extra {padding:20px 0;}
+.bs-header {padding:80px 0;}
+.bs-footer {padding:40px 0;}
 
-.bs-header .jumbotron {background-color:[#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EEEEEE"}|couleur_foncer|couleur_foncer)];}
+.breadcrumb, .well, .jumbotron {background-color: [#(#GET{couleur_eclaircir_1})];}
+.bs-header .jumbotron {background-color:[#(#GET{couleur_foncer_2})];}
 
 .bs-header {
   color:#FFFFFF;
-  background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"808080"})];   
+  background-color: [#(#GET{couleur})];   
   [background-position:50% 50%;
   background-size:cover;
   background-attachment:fixed;
   background-repeat:no-repeat;
   background-image:url('(#LOGO_SITE_SPIP_SURVOL
                             |image_reduire{1900,0}
-                            |image_sepia{ [(#ID_RUBRIQUE|couleur_site|sinon{"EFEFEF"})] }
-                            |image_gamma{-100}
+                            |image_gamma{-50}
                             |extraire_attribut{src}
                           )');]
 }
-.bs-footer { 
-  background-color: [#(#ID_RUBRIQUE{0}|couleur_site|sinon{"EFEFEF"}|couleur_foncer|couleur_foncer)]; 
-  color: #FFFFFF;
-}
-
-
+.bs-extra { background-color: #EFEFEF; }
+.bs-extra#extra2 { background-color: [#(#GET{couleur_eclaircir_2})]; }
+.bs-footer { background-color: [#(#GET{couleur_foncer_2})]; color: #FFFFFF; }
 
 <BOUCLE_article_bs_header(ARTICLES){tout}>
   .bs-header.article#ID_ARTICLE { 
 
-    background-color: [#(#ID_RUBRIQUE
-                        |couleur_rubrique
-                        |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                        |sinon{"EFEFEF"}
-                      )]; 
+    background-color: [#(#GET{couleur})]; 
     [background-image:url('(#LOGO_ARTICLE_SURVOL
                               |sinon{#LOGO_RUBRIQUE_SURVOL}
                               |sinon{#LOGO_SITE_SPIP_SURVOL}
                               |image_reduire{1900,0}
-                              |image_sepia{ [(#ID_RUBRIQUE
-                                                |couleur_rubrique
-                                                |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                                                |sinon{"EFEFEF"}
-                                            )] }
-                              |image_gamma{-100}
+                              |image_gamma{-50}
                               |extraire_attribut{src}
                           )');]
   }
@@ -143,20 +117,11 @@ p { margin:1em 0; }
 <BOUCLE_rubrique_bs_header(RUBRIQUES){tout}>
   .bs-header.rubrique#ID_RUBRIQUE { 
 
-    background-color: [#(#ID_RUBRIQUE
-                        |couleur_rubrique
-                        |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                        |sinon{"EFEFEF"}
-                      )]; 
+    background-color: [#(#GET{couleur})]; 
     [background-image:url('(#LOGO_RUBRIQUE_SURVOL
                               |sinon{#LOGO_SITE_SPIP_SURVOL}
                               |image_reduire{1900,0}
-                              |image_sepia{ [(#ID_RUBRIQUE
-                                                |couleur_rubrique
-                                                |sinon{ [(#ID_RUBRIQUE|couleur_site)] }
-                                                |sinon{"EFEFEF"}
-                                            )] }
-                              |image_gamma{-100}
+                              |image_gamma{-50}
                               |extraire_attribut{src}
                           )');]
 
@@ -168,8 +133,7 @@ p { margin:1em 0; }
     [background-image:url('(#LOGO_MOT_SURVOL
                               |sinon{ #LOGO_SITE_SPIP_SURVOL }
                               |image_reduire{1900,0}
-                              |image_sepia{ [(#ID_RUBRIQUE|couleur_site|sinon{"EFEFEF"})] }
-                              |image_gamma{-100}
+                              |image_gamma{-50}
                               |extraire_attribut{src}
                           )');]
   }

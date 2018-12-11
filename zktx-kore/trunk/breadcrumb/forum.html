@@ -1,0 +1,17 @@
+#SET{objet,''}#SET{id_objet,''}
+
+[(#ENV{id_rubrique}|oui)#SET{objet,rubrique}#SET{id_objet,#ENV{id_rubrique}}]
+[(#ENV{id_syndic}|oui)#SET{objet,site}#SET{id_objet,#ENV{id_syndic}}]
+[(#ENV{id_breve}|oui)#SET{objet,breve}#SET{id_objet,#ENV{id_breve}}]
+[(#ENV{id_article}|oui)#SET{objet,article}#SET{id_objet,#ENV{id_article}}]
+[(#ENV{id_objet}|oui)#SET{objet,#ENV{objet}}#SET{id_objet,#ENV{id_objet}}]
+
+[(#GET{objet}|oui)
+#INCLURE{fond=breadcrumb/inc-objet,id_objet=#GET{id_objet},objet=#GET{objet},expose=''}
+][(#GET{objet}|non)
+
+]<BOUCLE_for(FORUMS){id_forum}>
+<li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="#URL_FORUM">[(#TITRE|couper{80}) ]</a></li>
+</BOUCLE_for>
+<li typeof="v:Breadcrumb" class="active"><span property="v:title"><:poster_message:></span></li>
+
