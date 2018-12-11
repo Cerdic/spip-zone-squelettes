@@ -100,7 +100,7 @@ function boucle_RUBRIQUES($id_boucle, &$boucles) {
 	$id_table = $boucle->id_table;
 	$secteurs_wiki = join(',',boucle_exclure_secteur());
 
-	if (!$boucle->modificateur['wiki'] && $secteurs_wiki) {
+	if (empty($boucle->modificateur['wiki']) && $secteurs_wiki) {
 		$boucle->where[] = array(
 			"'NOT IN'",
 			"'$id_table.id_secteur'",
