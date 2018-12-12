@@ -62,7 +62,7 @@ function boucle_exclure_secteur() {
 	if (!test_espace_prive() && !_request('action')) {
 		return gribouille_secteurs_wiki();
 	}
-	return null;
+	return array();
 }
 
 /**
