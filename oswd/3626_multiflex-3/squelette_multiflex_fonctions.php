@@ -17,6 +17,10 @@ function balise_KRVB($p){
 	$kv = interprete_argument_balise(5, $p);
 	$kb = interprete_argument_balise(6, $p);
 	
+	if (! is_numeric($kr)) $kr = 0;
+	if (! is_numeric($kv)) $kv = 0;
+	if (! is_numeric($kb)) $kb = 0;
+
 	$p->code = "calculer_balise_KRVB($r, $v, $b, $kr, $kv, $kb)";
 	return $p;
 }
@@ -46,13 +50,17 @@ function calculer_balise_KRVB($r,$v,$b,$kr,$kv,$kb){
 	if ($v<0) $v=0;
 	if ($b<0) $b=0;
 	
-	
-	return '#'.couleur_dec_to_hex(round($r), round($v), round($b));
+	if (function_exists("_couleur_dec_to_hex"))
+		// À partir de Spip 3.2.
+		return '#'._couleur_dec_to_hex(round($r), round($v), round($b));
+	else
+		// Jusqu'à Spip 3.1 inclus.
+		return '#'.couleur_dec_to_hex(round($r), round($v), round($b));
 }
 
 
 
-//https://contrib.spip.net/balise-TITRE-PARENT
+//http://contrib.spip.net/balise-TITRE-PARENT
 include_spip('public/balises');
 
 // Le filtre [(#ID_RUBRIQUE|titre_parent)]
