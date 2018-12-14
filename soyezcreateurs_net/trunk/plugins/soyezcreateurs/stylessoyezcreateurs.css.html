@@ -1464,8 +1464,50 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99[(#GET{c_head
 #header #citations dd { border-bottom: none; border-right: none; }
 #header #citations dd p { text-align:right; }
 #header #logo { clear: left; float: left; height: 50px; }
-#header #logo a, #header #logo a, #header #logo a { transform: scale(0.95); display: inline-block;}
-#header #logo a:hover, #header #logo a:focus, #header #logo a:active { background-color: transparent !important; display: inline-block; transform: scale(1.00); }
+#header #logo a { position: relative; display: inline-block; }
+#header #logo span { position: relative; display: inline-block; -webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform;
+	transition-property: transform;
+}
+#header #logo a:before {
+	pointer-events: none;
+	position: absolute;
+	content: '';
+	bottom: -10px;
+	left: 5%;
+	height: 10px;
+	width: 90%;
+	filter: alpha(opacity=0);
+	opacity: 0;
+  	background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 60%);
+  	background: -webkit-radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 60%);
+  	background: -moz-radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 60%);
+  	background: -o-radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 60%);
+	-o-transition-duration: 0.3s;
+	-ms-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-o-transition-property: transform, opacity;
+	-ms-transition-property: transform, opacity;
+	-webkit-transition-property: transform, opacity;
+	transition-property: transform, opacity;
+}
+#header #logo a:hover:before, 
+#header #logo a:focus:before, 
+#header #logo a:active:before {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+#header #logo a:hover, #header #logo a:focus, #header #logo a:active { background-color: transparent !important; }
+#header #logo a:hover span, 
+#header #logo a:focus span, 
+#header #logo a:active span {
+	-o-transform: translateY(-10px);
+	-ms-transform: translateY(-10px);
+	-webkit-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
 
 /* xiti et compteurs */
 #xiti { position: absolute; bottom: 10px; left: 18px; z-index: -1; }
