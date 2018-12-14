@@ -1,0 +1,41 @@
+[(#REM)
+/*
+ * Paiement Bancaire
+ * module de paiement bancaire multi prestataires
+ * stockage des transactions
+ *
+ * Auteurs :
+ * Cedric Morin, Nursit.com
+ * (c) 2012-2018 - Distribue sous licence GNU/GPL
+ *
+ */
+]
+[(#SET{titretop,<:bank:titre_reglement_annule|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{template=bank}
+	{title=<:bank:titre_reglement_annule|texte_script:>}
+	{titretop=#GET{titretop}}
+	{type=bank}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1><:bank:titre_reglement_annule:></h1></div>
+</div>
+]
+<BOUCLE_message(TRANSACTIONS){id_transaction}{transaction_hash}>[
+	(#MESSAGE|propre)
+]</BOUCLE_message>
+<p><:bank:confirme_reglement_annule:></p>
+<//B_message>
+</main>
+</div><!-- Fin de .texte -->
+
+
+
+<INCLURE{fond=noisettes/footer/footer}
+	{template=bank}
+	{titretop=#GET{titretop}}
+>
+#FILTRE{mini_html}
