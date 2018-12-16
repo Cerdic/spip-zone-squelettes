@@ -8,6 +8,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 include_spip('inc/meta');
+include_spip('inc/sc_utils');
 
 /*
  * Fonction d'installation, mise a jour de la base
@@ -225,23 +226,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 3.1.50 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			if (lire_config('soyezcreateurs/mode_affichage') == 'portailcognac') {
 				spip_log("SoyezCreateurs maj 3.1.50 Portailcognac", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
-				$id_zoomsur = id_mot('ZoomSur',id_groupe('_ModePortail'));
-				$id_edito = id_mot('EDITO',id_groupe('_Specialisation'));
-				// Trouver les articles attachés à EDITO et ZoomSur
-				$Articles_ZoomSur = sql_allfetsel('id_objet', "spip_mots_liens", "id_mot=$id_zoomsur AND objet='article'");
-				$Articles_EDITO = sql_allfetsel('id_objet', "spip_mots_liens", "id_mot=$id_edito AND objet='article'");
-				if ($Articles_ZoomSur) {
-					foreach ($Articles_ZoomSur as $Article_ZoomSur) {
-						create_lien_mot($id_edito, $Article_ZoomSur['id_objet'], 'article');
-						delete_lien_mot($id_zoomsur, $Article_ZoomSur['id_objet'], 'article');
-					}
-				}
-				if ($Articles_EDITO) {
-					foreach ($Articles_EDITO as $Article_EDITO) {
-						create_lien_mot($id_zoomsur, $Article_EDITO['id_objet'], 'article');
-						delete_lien_mot($id_edito, $Article_EDITO['id_objet'], 'article');
-					}
-				}
+				sc_mig_mot('ZoomSur', '_ModePortail', 'EDITO', '_Specialisation', true);
 			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.1.50','non');
 		}

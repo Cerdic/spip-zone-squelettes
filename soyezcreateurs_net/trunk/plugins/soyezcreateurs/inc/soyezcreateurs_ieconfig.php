@@ -8,6 +8,7 @@
  *    Auteur :  RIEDELAndreas
 */
 
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 /*Fonction permettant une importation de configuration en spécifiant le chemin du fichier et l'action à accomplir
 /*@param $chemin : chemin du fichier à importer
