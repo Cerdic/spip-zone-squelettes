@@ -260,11 +260,17 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.1.54','<')) {
 			spip_log("SoyezCreateurs maj 3.1.54 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_Specialisation_Rubrique", "Blog", "Affecter ce mot clef à une rubrique pour que sa branche se comporte comme un blog.", "Avec ce mot clef : affichage des articles par ordre anti-chronologique pour tous les articles de la branche (et non de la rubrique en cours seulement).\n\nHéritage de la propriété pour les sous-rubriques.");
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.54','non');
+			
+		}
+		if (version_compare($current_version,'3.1.55','<')) {
+			spip_log("SoyezCreateurs maj 3.1.55 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+			$id_mot = create_mot("_TypeRubrique", "Mosaique", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type de Mosaïque.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles, avec le logo de l'article.");
+
 			// On termine en invalidant les caches
 			include_spip('inc/invalideur');
 			suivre_invalideur("soyezcreateurs");
-			ecrire_meta($nom_meta_base_version,$current_version='3.1.54','non');
-			
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.55','non');
 		}
 		
 		
