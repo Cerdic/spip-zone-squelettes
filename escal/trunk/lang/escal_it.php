@@ -102,7 +102,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_derniers' => 'Gli ultimi articoli',
 	'articles_explication' => 'Qui è possibile impostare la larghezza massima delle immagini nei tuoi articoli. <br /> 
             L’impostazione predefinita è 400 pixel in articoli convenzionali e 850 pixel in articoli a pieno schermo, 
-            che può essere troppo restrittiva se si è scelto un layout in due colonne o a schermo intero', # MODIF
+            che può essere troppo restrittiva se si è scelto un layout in due colonne o a schermo intero',
 	'articles_largeur_image' => 'Larghezza massima dell’immagine :',
 	'articles_largeur_images' => 'Larghezza massima delle immagini : ',
 	'articles_largeur_images2' => 'Larghezza massima delle immagini per le voci a schermo intero (elementi con la parola chiave "pleinepage", che sopprime blocchi laterali) :',
@@ -165,7 +165,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'barre_outils_dessus' => 'sopra la copertina',
 	'barre_outils_explication1' => 'Posizionare la barra degli strumenti (login, menù delle lingue, motore di ricerca, collegamento al forum)',
 	'barre_outils_explication2' => 'Se hai scelto di collocare la barra degli strumenti sopra la copertina, vuoi fissarla alla parte superiore della pagina?<br /> 
-                    (questa opzione viene disattivata automaticamente su schermi di larghezza inferiore a 950 pixel)', # MODIF
+                    (questa opzione viene disattivata automaticamente su schermi di larghezza inferiore a 950 pixel)',
 	'barre_outils_identification' => 'Modulo di identificazione semplificato',
 	'bas' => 'Giù',
 	'bienvenue' => 'Benvenuto',
@@ -279,7 +279,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_expediteur' => 'Testo per l’indirizzo mail',
 	'contact_explication1' => 'Per modificare il testo di un altro elemento della pagina di contatto, utilizzare il file di lingua.',
 	'contact_explication2' => 'Tutti i campi di questo modulo accettano il multilinguismo con il tag &lt;multi&gt; 
-            <br />esempio : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;', # MODIF
+            <br />esempio : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;',
 	'contact_interdit' => 'Caratteri non ammessi: ',
 	'contact_libelle' => 'Etichetta del campo:',
 	'contact_libelle1' => 'Casella etichetta 1',
@@ -433,13 +433,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_noisettes_articles' => '<strong>Gli articoli, il forum degli articoli, il calendario</strong><br /> per default: #FFFFFF / #000000',
 	'fonds_noisettes_bandeau' => '<strong>La copertina</strong><br />per default: #336699 / #ffffff',
 	'fonds_noisettes_boutons' => '<strong>I pulsanti di ricerca e di login, il modulo di contatto, le linee pari delle tabelle, 
-			il portfolio, il post-scriptum, il forum del sito...</strong><br /> per default: #EFEFEF / #000000', # MODIF
+			il portfolio, il post-scriptum, il forum del sito...</strong><br /> per default: #EFEFEF / #000000',
 	'fonds_noisettes_contenu' => '<strong>Il contenuto delle pagine</strong><br />per default: #ffffff / #000000<br />Possiamo anche scrivere "transparent" (trasparente), che può essere divertente con un’immagine di sfondo.',
 	'fonds_noisettes_derniers_articles' => '<strong>Elenco degli articoli recenti</strong><br /> per default: #DAE6F6 / #000000',
 	'fonds_noisettes_fond' => 'sfondo: ',
 	'fonds_noisettes_forum' => '<strong>Il forum del sito</strong><br /> per default: #DFDFDF / #000000',
 	'fonds_noisettes_menuh' => '<strong>Il menù orizzontale, i link del menù a discesa verticale a destra, l’inserto per rubriche ed articoli, 
-			la mappa, l’intestazione del forum</strong><br /> per default: #336699 / #ffffff', # MODIF
+			la mappa, l’intestazione del forum</strong><br /> per default: #336699 / #ffffff',
 	'fonds_noisettes_onglets_actifs' => '<strong>Le schede attive</strong><br /> per default: #336699 / #ffffff',
 	'fonds_noisettes_onglets_inactifs' => '<strong>Le schede inattive</strong><br /> per default: #82ADE2 / #000000',
 	'fonds_noisettes_pied' => '<strong>Il piè di pagina</strong><br />per default: #BBCCDD / #000000',
@@ -539,7 +539,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_agenda_title' => 'Affiggere l’agenda in piena pagina',
 	'liens_sociaux_espace' => 'Mostra i social link nella barra degli strumenti',
 	'liens_sociaux_explication' => 'Se è stato attivato il <a class="spip_out" href="https://contrib.spip.net/Liens-sociaux" title="Documentation">plugin "Social Links"</a>, 
-è possibile impostarlo qui.', # MODIF
+è possibile impostarlo qui.',
 	'liens_sociaux_pied' => 'Mostra i link sociali nel piè di pagina',
 	'liens_sociaux_plugin' => 'Plugin Link sociali',
 	'liens_sociaux_texte' => 'Possibile testo da visualizzare:',
@@ -624,7 +624,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             Opzione valida per il menù orizzontale, ma anche per 2 menù verticali.',
 	'multilinguisme_explication2' => 'Per default, questi sono i codici per ogni lingua visualizza, ma possono essere sostituiti dal nome completo della lingua o da delle bandiere.<br />
             Ma attenzione: l’inglese non è parlato nel Regno Unito, lo spagnolo non è parlato in Spagna ecc... 
-            quindi si consiglia di utilizzare i codici delle lingue', # MODIF
+            quindi si consiglia di utilizzare i codici delle lingue',
 	'multilinguisme_niveau' => 'Menù con voci di secondo livello',
 	'multilinguisme_nom' => 'Nomi delle lingue',
 
@@ -650,7 +650,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication' => 'Scelta di visualizzazione:<br /> 
                     - gli <strong>eventi</strong> creati dentro gli articole che utilizzano il plugin Agenda<br />
                     - gli <strong>articoli</strong> tenendo conto della "data di pubblicazione precedente".
-                    Gli articoli in questione sono quelli con la parola chiave "agenda" o quelli della sezione con la stessa parola chiave "agenda". ', # MODIF
+                    Gli articoli in questione sono quelli con la parola chiave "agenda" o quelli della sezione con la stessa parola chiave "agenda". ',
 	'noisettes_calendrier_explication2' => '(questa scelta si applicherà anche al blocco "Prossimi eventi") ',
 	'noisettes_calendrier_lien_agenda' => 'Titolo con il link all’agenda a pagina intera',
 	'noisettes_calendrier_pagination' => 'Numero di articoli o di eventi per pagina:',
@@ -663,7 +663,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Solo nella rubrica attuale e nelle sue sotto-rubriche',
 	'noisettes_decouvrir_site' => 'In tutto il sito (possiamo escludere gli articoli con la parola chiave "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'Il titolo di questo blocco è dato dall’articolo con parola chiave "edito". Articolo che deve rifiutare le traduzioni su un sito multilingue.',
-	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.', # MODIF
+	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.',
 	'noisettes_explication' => '<strong>Titoli dei blocchi</strong><br /><br />
               Nel caso di un <strong>sito multilingua</strong>, se desidera si cambiare il titolo di un blocco
               e conservare il multilinguismo, è necessario scrivere il titolo seguento questo esempio:<br /><br />
@@ -740,7 +740,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_art_accueil_forum' => 'Visualizza il forum dell’articolo di accoglienza:',
 	'onglets_art_archive' => 'Archivio articoli',
 	'onglets_art_archive_explication' => 'L’articolo visualizzato sarà un articolo preso a caso dalla sezione o da una selle sue sotto-sezioni, che ha la parola chiave "archive".<br /> 
-                    Il titolo della scheda è "Souvenez-vous !".<br />Il multilinguismo è supportato nelle lingue disponibili in Escal. ', # MODIF
+                    Il titolo della scheda è "Souvenez-vous !".<br />Il multilinguismo è supportato nelle lingue disponibili in Escal. ',
 	'onglets_art_archive_forum' => 'Visualizza il forum dell’archivio articoli:',
 	'onglets_arts_mot' => 'Articoli con parole chiave',
 	'onglets_arts_mot_explication' => 'Il titolo della scheda sarà la parola chiave stessa.<br />Scelta della parola chiave:',
@@ -771,7 +771,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_monart3' => 'Mio articolo 3',
 	'onglets_monart3_titre' => 'Titolo della scheda "Mio articolo 3"',
 	'onglets_monart_explication' => 'sono articoli che contengono rispettivamente le parole chiave "mon-article", "mon-article2" e "mon-article3".<br /> 
-                    Il titolo della scheda sarà quello dell’articolo, a meno che non ne venga impostato uno diverso qui di seguito. Viene visualizzato solo il testo ed il Post Scriptum (PS).', # MODIF
+                    Il titolo della scheda sarà quello dell’articolo, a meno che non ne venga impostato uno diverso qui di seguito. Viene visualizzato solo il testo ed il Post Scriptum (PS).',
 	'onglets_monart_titre' => 'Titolo della scheda "Mio articolo"',
 	'onglets_nombre_articles' => 'Numero totale di articoli da visualizzare:',
 	'onglets_nombre_articles_exergue' => 'Numero di articoli da visualizzare, compreso l’articolo in evidenza:',
@@ -861,7 +861,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             inserite qui sotto il codice della città che vi interessa.<br />
             Il codice della città deve essere cercato su <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">questo sito</a></strong> 
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
-            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).', # MODIF
+            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rappel_discussion' => 'Ultima discussione',
 	'recherche' => 'Ricerca',
@@ -895,7 +895,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'savoirplus' => 'Per saperne di più',
 	'shoutbox_explication' => 'Se avete attivato il <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentatione">plugin "Shoutbox"</a>, 
-			è possibile impostare:', # MODIF
+			è possibile impostare:',
 	'shoutbox_hauteur' => 'l’altezza del blocco dei messaggi: ',
 	'shoutbox_nombre' => 'il numero del messaggi da visualizzare: ',
 	'shoutbox_plugin' => 'Plugin Shoutbox',
@@ -947,7 +947,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_accueil' => 'Benvenuti in Escal!<br /><br />
 	Le numerose impostazioni presenti in queste pagine vi permetteranno di personalizzare il vostro sito: 
 	potrete scegliere blocchi, colori, rendere visibili oppure nascondere numerosi elementi e molto altro ancora.<br /><br />
-	Buon lavoro!', # MODIF
+	Buon lavoro!',
 	'texte_coupe' => 'Limita il testo a ',
 	'texte_sous_image' => 'Testo sotto il logo (in caso contrario, accanto ad esso)',
 	'title_articles_derniers' => 'Ultimi articoli',
