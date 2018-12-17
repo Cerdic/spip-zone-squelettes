@@ -1,0 +1,39 @@
+#ENV*{bloc_ancre}
+#SET{bornes,#ENV{page_courante}|bornes_pagination{#ENV{nombre_pages},10}}
+#SET{premiere, #GET{bornes}|reset}
+#SET{derniere, #GET{bornes}|end}
+#SET{pages,#GET{premiere}|range{#GET{derniere}}}
+
+<B_pages>
+	<span
+  class='label label-default'><:zpip:pagination_pages:></span>[
+
+	(#SET{item, #ENV{page_courante}|moins{2}|mult{#ENV{pas}} })
+
+	][<span
+	class="prev[(#ENV{page_courante}|<={1}|oui)disabled]">(#ENV{url}
+	|parametre_url{#ENV{debut},#GET{item}}
+	|ancre_url{#ENV{ancre}}
+	|lien_ou_expose{<:zpip:pagination_prev:>,#ENV{page_courante}|<={1},'','',nofollow}
+	|inserer_attribut{rel,prev}
+	)</span>]<span
+	class="pages">[<a
+	href='[(#ENV{url}|parametre_url{#ENV{debut},''})]##ENV{ancre}'
+	rel='nofollow'>(#GET{premiere}|>{1}|?{1})</a>...]
+	<BOUCLE_pages(POUR){tableau #GET{pages}}>[
+		(#SET{item, #VALEUR|moins{1}|mult{#ENV{pas}} })
+		][(#ENV{url}
+		|parametre_url{#ENV{debut},#GET{item}}
+		|ancre_url{#ENV{ancre}}
+		|lien_ou_expose{#VALEUR,#VALEUR|=={#ENV{page_courante}},lien_pagination,'',nofollow})][(#VALEUR|<{#GET{derniere}}|?{})]</BOUCLE_pages>[...<a
+	href='[(#ENV{url}|parametre_url{#ENV{debut},#ENV{nombre_pages}|moins{1}|mult{#ENV{pas}}})]##ENV{ancre}'
+	rel='nofollow'>(#GET{derniere}|<{#ENV{nombre_pages}}|?{#ENV{nombre_pages}})</a>]</span>[
+	(#SET{item, #ENV{page_courante}|mult{#ENV{pas}} })
+	][<span
+	class="next[(#ENV{page_courante}|>={#ENV{nombre_pages}}|oui)disabled]">(#ENV{url}
+	|parametre_url{#ENV{debut},#GET{item}}
+	|ancre_url{#ENV{ancre}}
+	|lien_ou_expose{<:zpip:pagination_next:>,#ENV{page_courante}|>={#ENV{nombre_pages}},'','',nofollow}
+	|inserer_attribut{rel,next}
+	)</span>]
+</B_pages>
