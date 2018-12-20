@@ -10,13 +10,12 @@ function sc_noisettespardefaut() {
 	if (!defined('_DIR_PLUGIN_NOIZETIER')) {
 		return;
 	}
-	include_spip('inc/noizetier_conteneur');
-	include_spip('inc/config');
-	include_spip('inc/ncore_type_noisette');
+
 	include_spip('inc/ncore_noisette');
-	include_spip('ncore/ncore');
-	include_spip('ncore/noizetier');
+	include_spip('inc/noizetier_conteneur');
+
 	$conteneur = array();
+
 	//Liste tous les noisettes de tous les conteneurs existant
 	$liste_noisettes = noizetier_noisette_lister('noizetier', $conteneur, '', $cle = 'rang_noisette');
 	if (!isset($liste_noisettes['contenu/corps_sommaire_modecognac'])) {//S'il n'y a pas de noisettes dans contenu/corps
