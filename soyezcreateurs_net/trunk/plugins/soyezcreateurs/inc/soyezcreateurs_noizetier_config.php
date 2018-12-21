@@ -12,6 +12,7 @@ function sc_noisettespardefaut() {
 	}
 
 	include_spip('inc/ncore_noisette');
+	include_spip('inc/noizetier');
 	include_spip('inc/noizetier_conteneur');
 
 	$conteneur = array();
