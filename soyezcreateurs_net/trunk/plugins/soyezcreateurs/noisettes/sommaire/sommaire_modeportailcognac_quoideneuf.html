@@ -1,11 +1,16 @@
 			<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
 			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#FORMATQUOI2NEUF|non)
 			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
 			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
 			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
 			#SET{facteur,''}#SET{largeur,308}
 			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
 			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,969}})]
+			]
+			[(#FORMATQUOI2NEUF|=={1}|?{#SET{facteur,''}#SET{largeur,308}})]
+			[(#FORMATQUOI2NEUF|=={2}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#FORMATQUOI2NEUF|=={3}|?{#SET{facteur,3}#SET{largeur,969}})]
 			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus alaune #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
@@ -62,12 +67,17 @@
 			<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
 			<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{doublons ev}{lang}>
 			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#FORMATQUOI2NEUF|non)
 			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
 			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
 			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
 			#SET{facteur,''}#SET{largeur,308}
 			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
 			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,969}})]
+			]
+			[(#FORMATQUOI2NEUF|=={1}|?{#SET{facteur,''}#SET{largeur,308}})]
+			[(#FORMATQUOI2NEUF|=={2}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#FORMATQUOI2NEUF|=={3}|?{#SET{facteur,3}#SET{largeur,969}})]
 			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus quoideneuf #EDIT{titre}">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
