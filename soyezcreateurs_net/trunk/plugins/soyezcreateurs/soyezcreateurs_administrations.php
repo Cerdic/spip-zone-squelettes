@@ -266,11 +266,17 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.1.55','<')) {
 			spip_log("SoyezCreateurs maj 3.1.55 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
 			$id_mot = create_mot("_TypeRubrique", "Mosaique", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type de Mosaïque.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles, avec le logo de l'article.");
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.55','non');
+		}
+		
+		if (version_compare($current_version,'3.1.56','<')) {
+			spip_log("SoyezCreateurs maj 3.1.56 Début", 'soyezcreateurs_install'._LOG_INFO_IMPORTANTE);
+			cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(),$maj['3.1.56']);
 
 			// On termine en invalidant les caches
 			include_spip('inc/invalideur');
 			suivre_invalideur("soyezcreateurs");
-			ecrire_meta($nom_meta_base_version,$current_version='3.1.55','non');
+			ecrire_meta($nom_meta_base_version,$current_version='3.1.56','non');
 		}
 		
 		
@@ -316,6 +322,7 @@ function soyezcreateurs_changer_cfg($cfg) {
  * @param unknown_type $nom_meta_base_version
  */
 function soyezcreateurs_vider_tables($nom_meta_base_version) {
+	cextras_api_vider_tables(soyezcreateurs_declarer_champs_extras());
 	effacer_meta('soyezcreateurs');
 	effacer_meta('soyezcreateurs_couleurs');
 	effacer_meta('soyezcreateurs_google');
