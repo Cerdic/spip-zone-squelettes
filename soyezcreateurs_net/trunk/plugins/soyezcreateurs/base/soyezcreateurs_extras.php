@@ -4,7 +4,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function soyezcreateurs_declarer_champs_extras($champs = array()) {
 
 	// Table : spip_articles
-	if (!is_array($champs['spip_articles'])) {
+	if (!isset($champs['spip_articles'])) {
 		$champs['spip_articles'] = array();
 	}
 
