@@ -7,6 +7,28 @@
 			</div>
 			[<section class="#EDIT{bio}" id="bio">(#BIO|abs_url)</section>]
 			[<p class="#EDIT{hyperlien}" id="hyperlien"><i class="fa fa-fw fa-globe" aria-hidden="true"></i> <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+			[(#REM) Articles de l'auteur ]
+			<B_articles_auteur>
+			<nav class="list-group">
+				<p class="h3"><:articles_auteur:></p>
+				<BOUCLE_articles_auteur(ARTICLES){id_auteur} {!par date} {0,3} {doublons}>
+				 <a href="[(#URL_ARTICLE|abs_url)]" class="list-group-item[ active (#EXPOSE)]">
+				 	[<figure class="pull-left">(#LOGO
+				 		|image_reduire{100,100}
+				 		|image_recadre{70,70,centrer}
+				 		|inserer_attribut{alt,#TITRE}
+						|inserer_attribut{class,"img-responsive img-thumbnail"}
+				 	)</figure>]
+				 	<strong class="list-group-item-heading">#TITRE</strong>
+				 	<p class="list-group-item-text">
+				 		[<span class="#EDIT{soustitre}">(#SOUSTITRE|sinon{#DESCRIPTIF}|sinon{#INTRODUCTION}|couper{140})</span>]
+				 		[<br/><span class="text-muted"><i class="fa fa-calendar-o" aria-hidden="true"></i> <time[ title="(#DATE|affdate{'c'})"] class="pubdate" [datetime="(#DATE|date_iso)"] itemprop="pubdate">(#DATE|affdate)</time>][ | <i class="fa fa-comments-o" aria-hidden="true"></i> (#COMPTEUR{forums})</span>]
+				 	</p>
+				 </a>
+				</BOUCLE_articles_auteur>
+			</nav>
+			</B_articles_auteur>
 		</div>
 		<div class="col-md-6">
 			<section class="well" id="formulaire">#FORMULAIRE_ECRIRE_AUTEUR</section>	

@@ -1,47 +1,26 @@
 [(#REM) Auteurs / Extra 1 !]
 <BOUCLE_extra1(AUTEURS){id_auteur}>
-	<div class="container">
-		<div class="row">
-
-			[(#REM) Articles dans la meme rubrique ]
-			<B_articles_auteur>
-			<nav class="col-sm-6 articles list-group">
-				<div class="h2"><:articles_auteur:></div>
-				<BOUCLE_articles_auteur(ARTICLES){id_auteur} {!par date} {0,3} {doublons}>
-				 <a href="#URL_ARTICLE" class="list-group-item [ active (#EXPOSE)]">
-				 	[<figure class="pull-left">
-				 	(#LOGO_ARTICLE_NORMAL
-				 		|image_reduire{600,600}
-				 		|image_recadre{80,80,centrer}
-				 		|inserer_attribut{alt,#TITRE}
-						|inserer_attribut{class,thumbnail}
-						|inserer_attribut{class,img-responsive}
-				 	)</figure>]
-				 	<span class="list-group-item-heading h4">#TITRE</span>
-				 	[<p class="list-group-item-text">
-				 		(#DESCRIPTIF|sinon{[(#INTRODUCTION|couper{120})]})
-				 		[<small[ title="(#DATE|affdate{'c'})"] class="pubdate">&nbsp;|&nbsp;(#DATE|affdate)</small>]
-				 	</p>]
-				 	
-				 </a>
-				</BOUCLE_articles_auteur>
-			</nav>
-			</B_articles_auteur>
-			
-			[(#REM) Autres auteurs ]
-			<B_auteurs>
-			<aside class="col-sm-4 auteurs">
-				#ANCRE_PAGINATION
-				<sapn class="h4"><:info_auteurs:></span>
-				<ul class="list-group">
-					<BOUCLE_auteurs(AUTEURS) {par nom} {pagination #ENV{nb,8}}>
-					<li class="list-group-item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
-					</BOUCLE_auteurs>
-				</ul>
-				[<p class="pagination">(#PAGINATION)</p>]
-			</aside>
-			</B_auteurs>
-			
-		</div>
-	</div>
+<section class="container">
+	<header class="page-header">
+		<p class="h1"><:info_auteurs:></p>
+	</header>
+	[(#REM) Autres auteurs ]
+	<B_auteurs>
+	#ANCRE_PAGINATION
+	<nav class="row">
+		<BOUCLE_auteurs(AUTEURS) {par nom} {pagination #ENV{nb,8}}>		
+			<a href="[(#URL_AUTEUR|abs_url)]" class="col-xs-6 col-sm-4 col-md-2[ active (#EXPOSE)]">
+				<figure>[(#LOGO_AUTEUR|sinon{#LOGO}
+						|image_reduire{140,0}
+						|image_recadre{140,140,centrer}
+						|inserer_attribut{alt,#NOM}
+						|inserer_attribut{class,"img-responsive img-circle center-block"}
+					)][<figcaption class="h4 text-center">(#NOM)</figcaption>]
+				</figure>
+			</a>
+		</BOUCLE_auteurs>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</nav>
+	</B_auteurs>	
+</section>
 </BOUCLE_extra1>
