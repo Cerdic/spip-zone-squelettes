@@ -1,1 +1,39 @@
-[(#REM) Rien ! ]
+<div class="container">
+	<div class="row">
+
+		[(#REM) Menu de navigation par rubriques ]
+		[<nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4">(#INCLURE{fond=inclure/rubriques,id_rubrique})</nav>]
+
+		[(#REM) Breves du secteur ]
+		<B_breves>
+		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ajax">
+			#ANCRE_PAGINATION
+			<p class="h4"><:breves:breves:></p>
+			<ul class="list-group">
+					<BOUCLE_breves(BREVES){tout}{!par date}{pagination 5}>
+					<li class="list-group-item[ active (#EXPOSE)]">[<time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time><span class="divider"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</aside>
+		</B_breves>
+
+		[(#REM) Liens des forums ]
+		<B_forums_liens>
+		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ajax">
+			#ANCRE_PAGINATION
+			<p class="h4"><:derniers_commentaires:></p>
+			<ul class="list-group">
+				<BOUCLE_forums_liens(FORUMS?){plat}{!par date}{pagination 8}>
+				<li class="list-group-item">
+					[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr> &ndash; ]
+					<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80}|abs_url)]</a>
+				</li>
+				</BOUCLE_forums_liens>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</aside>
+		</B_forums_liens>
+
+	</div>
+</div>
