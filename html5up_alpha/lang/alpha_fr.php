@@ -19,7 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// E
 	'explication_articles_home' => "Le(s) numéro(s) d'article(s) SPIP ou de page(s) unique(s) séparés par une virgule. Pour les mettre dans l'ordre voulu ajouter un 1. 2. dans le titre de l'article (les articles sont triés par num titre)." ,
-	'explication_config_contenu' => "Le squelette utilise les sous titre pour les articles, n'oubliez pas de les activer dans <a href='?exec=configurer_contenu'>configurer contenu</a>",
+	'explication_config_contenu' => "Le squelette utilise les sous titres pour les articles, n'oubliez pas de les activer dans <a href='?exec=configurer_contenu'>configurer contenu</a>",
 	'explication_config_titre_sommaire' => "Parfois sur la home page le titre du site fait un peu tâche sur l'image",
 	'explication_doc_home' => "L'id SPIP du document qui sera utilisé pour la grande image du haut. Le thème original utilise une image de taille <b>1800 × 905 pixels</b> ",
 	'explication_doc_home2' => "L'id SPIP du document qui sera utilisé pour l'image <i>featured</i>. Le thème Alpha original utilise une image de taille  <b>1200 × 393 pixels</b>",
