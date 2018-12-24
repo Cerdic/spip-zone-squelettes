@@ -34,7 +34,23 @@ $bannieres[] = array(
 	'hachures' => '[(#LOGO_MOT_SURVOL|extraire_attribut{src}|timestamp|url_absolue)]'
 	);
 ?>
-</BOUCLE_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
+</BOUCLE_HeaderBanner>
+<?php
+if ('#LOGO_SITE_SPIP_SURVOL') {
+	$bannieres[] = array(
+		'banniere' => '[(#LOGO_SITE_SPIP_SURVOL|image_reduire{1920,0}|extraire_attribut{src}|timestamp|url_absolue)]',
+		'hauteur' => '[(#LOGO_SITE_SPIP_SURVOL|image_reduire{1920,0}|hauteur)]',
+		'hauteurrelative' => '[(#LOGO_SITE_SPIP_SURVOL|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]'
+		);
+} else {
+	$bannieres[] = array(
+		'banniere' => '[(#CHEMIN{images/bandeauhaut_#CONFIG{soyezcreateurs/default_banniere,lentilles}.png}|image_sepia{[(#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}|=={transparent}|?{#7f7f7f,#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}})]}|extraire_attribut{src}|timestamp|url_absolue)]',
+		'hauteur' => '[(#CHEMIN{images/bandeauhaut_#CONFIG{soyezcreateurs/default_banniere,lentilles}.png}|hauteur)]',
+		'hauteurrelative' => '[(#CHEMIN{images/bandeauhaut_#CONFIG{soyezcreateurs/default_banniere,lentilles}.png}|image_reduire{1920,0}|hauteur|div{#CONFIG{soyezcreateurs_layout/largeurconteneur,960}}|mult{100})]'
+		);
+}
+?>
+<//B_HeaderBanner><//B_HeaderBannerTemplate><//B_HeaderBannerRubrique>
 <?php
 if (count($bannieres) > 0) {
 $banniere = $bannieres[mt_rand(0, count($bannieres) - 1)];;
@@ -45,7 +61,7 @@ if ($banniere['banniere']!='') {
 #header:before {
 	background-image: <?php if ($banniere['hachures']!='') { ?>url("<?php echo($banniere['hachures']); ?>"), <?php } ?>url("<?php echo($banniere['banniere']); ?>");
 	background-repeat: <?php if ($banniere['hachures']!='') { ?>repeat, <?php } ?>no-repeat;
-	background-position-x: center;
+	background-position: top right;
 	display: block;
 	content: "";
 	width: 100%;

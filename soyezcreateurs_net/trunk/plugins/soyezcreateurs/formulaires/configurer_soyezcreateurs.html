@@ -227,16 +227,18 @@ if (!function_exists('sc_ouinon_default')) {
 				<h3 class="legend"><:soyezcreateursprive:cfg_apparence_header:></h3>
 					<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{0,1}>[(#SET{headerbanner,[(#LOGO_MOT_NORMAL|image_reduire{300,0})]})]</BOUCLE_HeaderBanner>
 					[(#LOGO_SITE_SPIP_SURVOL|non|et{#GET{headerbanner}|non})
-						[(#SET{c_header_bk,#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}})]
-						[(#SET{bandeg,<:soyezcreateursprive:cfg_banniere_degrade:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];">&nbsp;</span>})]
-						[(#SET{banmet,<:soyezcreateursprive:cfg_banniere_metal:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];">&nbsp;</span>})]
-						[(#SET{banlen,<:soyezcreateursprive:cfg_banniere_lentilles:><span style="display:block; [height: [(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|hauteur)]px; background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat right;]">&nbsp;</span>})]
+						[(#SET{c_header_bk,[(#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}|=={transparent}|?{#7f7f7f,#CONFIG{soyezcreateurs_couleurs/header_bk,#ffffff}})]})]
+						[(#SET{bandeg,<:soyezcreateursprive:cfg_banniere_degrade:>[<br />(#CHEMIN{images/bandeauhaut_degrade.png}|image_reduire{360,0}|image_sepia{[(#GET{c_header_bk})]})]})]
+						[(#SET{banmet,<:soyezcreateursprive:cfg_banniere_metal:>[<br />(#CHEMIN{images/bandeauhaut_metal.png}|image_reduire{360,0}|image_sepia{[(#GET{c_header_bk})]})]})]
+						[(#SET{banlen,<:soyezcreateursprive:cfg_banniere_lentilles:>[<br />(#CHEMIN{images/bandeauhaut_lentilles.png}|image_reduire{360,0}|image_sepia{[(#GET{c_header_bk})]})]})]
+						[(#SET{bantra,<:soyezcreateursprive:cfg_banniere_transparente:>[<br />(#CHEMIN{images/bandeauhaut_transparent.png}|image_reduire{360,0}|image_sepia{[(#GET{c_header_bk})]})]})]
 						[<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">(#SAISIE{radio,default_banniere,
 							label=<:soyezcreateursprive:cfg_choix_banniere_label:>,
 							datas=#ARRAY{
 								degrade,#GET{bandeg},
 								metal,#GET{banmet},
 								lentilles,#GET{banlen},
+								transparent,#GET{bantra},
 							},
 							defaut=lentilles}
 						)</[(#VAL{ul}|saisie_balise_structure_formulaire)]>]
@@ -249,7 +251,7 @@ if (!function_exists('sc_ouinon_default')) {
 							invisible,<:soyezcreateursprive:cfg_afficher_titre_invisible:>,
 							visible,<:soyezcreateursprive:cfg_afficher_titre_visible:>,
 						},
-						explication=[(#ENV{afficher_titre}|=={visible}|?{#NOM_SITE_SPIP})<br />][(#LOGO_SITE_SPIP_SURVOL|image_reduire{300,0}|sinon{#GET{headerbanner}})],
+						explication=[(#ENV{afficher_titre}|=={visible}|?{#NOM_SITE_SPIP})<br />][(#LOGO_SITE_SPIP_SURVOL|image_reduire{360,0}|sinon{#GET{headerbanner}})],
 						defaut=visible}
 					)]
 					]

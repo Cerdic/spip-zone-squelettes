@@ -47,7 +47,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$maj['3.1.53'] = array( array('soyezcreateurs_3_1_53') );
 	$maj['3.1.54'] = array( array('soyezcreateurs_3_1_54') );
 	$maj['3.1.55'] = array( array('soyezcreateurs_3_1_55') );
-	$maj['3.1.56'] = array( array('soyezcreateurs_3_1_56') );
+	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(),$maj['3.1.57']);
+	
+	//`À rajouter à la fin systématiquement en changeant le n° de version
+	$maj['3.1.57'][] = array('soyezcreateurs_finalisationinstall');
+	echo '<pre>';
+	print_r($maj);
+	echo '</pre>';
+	#die;
 	
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -290,12 +297,10 @@ function soyezcreateurs_3_1_55() {
 	$id_mot = create_mot("_TypeRubrique", "Mosaique", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type de Mosaïque.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles, avec le logo de l'article.");
 }
 
-function soyezcreateurs_3_1_56() {
-	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(),$maj['3.1.56']);
-
+function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
 	include_spip('inc/invalideur');
-	suivre_invalideur("soyezcreateurs");
+	suivre_invalideur("soyezcreateurs");	
 }
 
 /*
