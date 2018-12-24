@@ -12,6 +12,40 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 include_spip("inc/lang");
 include_spip('inc/meta');
 
+
+// Déclaration des champs extra nécessaires à SoyezCréateurs
+function soyezcreateurs_declarer_champs_extras($champs = array()) {
+
+	// Table : spip_articles
+	if (!isset($champs['spip_articles']) or !is_array($champs['spip_articles'])) {
+		$champs['spip_articles'] = array();
+	}
+
+	$champs['spip_articles']['formatquoi2neuf'] = array(
+			'saisie' => 'selection',
+			'options' => array(
+				'nom' => 'formatquoi2neuf',
+				'label' => 'Largeur tuiles accueil',
+				'explication' => 'Largeur d\'affichage des images de la zone ALaUne/Agenda/Quoi de neuf du mode Cognac',
+				'datas' => array(
+					0 => 'Automatique en fonction des proportions de l\'image (défaut)',
+					1 => '1 colonne',
+					2 => '2 colonnes',
+					3 => '3 colonnes',
+				),
+				'defaut' => '0',
+				'cacher_option_intro' => 'on',
+				'sql' => 'ENUM(\'0\',\'1\',\'2\',\'3\') NOT NULL DEFAULT \'0\'',
+				'rechercher_ponderation' => '2',
+				'versionner' => 'on',
+			),
+			'verifier' => array(
+			),
+		);
+
+	return $champs;
+}
+
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {
 	ecrire_meta('activer_logos_survol', 'oui','non');

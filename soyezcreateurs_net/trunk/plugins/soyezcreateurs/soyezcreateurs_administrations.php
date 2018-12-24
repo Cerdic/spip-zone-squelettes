@@ -10,7 +10,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 include_spip('inc/meta');
 include_spip('inc/sc_utils');
 include_spip('inc/cextras');
-include_spip('base/soyezcreateurs_extras');
+include_spip('base/soyezcreateurs');
 /*
  * Fonction d'installation, mise a jour de la base
  *
@@ -47,14 +47,10 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$maj['3.1.53'] = array( array('soyezcreateurs_3_1_53') );
 	$maj['3.1.54'] = array( array('soyezcreateurs_3_1_54') );
 	$maj['3.1.55'] = array( array('soyezcreateurs_3_1_55') );
-	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(),$maj['3.1.57']);
+	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(), $maj['3.1.58']);
 	
-	//`À rajouter à la fin systématiquement en changeant le n° de version
-	$maj['3.1.57'][] = array('soyezcreateurs_finalisationinstall');
-	echo '<pre>';
-	print_r($maj);
-	echo '</pre>';
-	#die;
+	// À rajouter à la fin systématiquement en changeant le n° de version
+	$maj['3.1.58'][] = array('soyezcreateurs_finalisationinstall');
 	
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -300,7 +296,7 @@ function soyezcreateurs_3_1_55() {
 function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
 	include_spip('inc/invalideur');
-	suivre_invalideur("soyezcreateurs");	
+	suivre_invalideur("soyezcreateurs");
 }
 
 /*
@@ -309,11 +305,11 @@ function soyezcreateurs_finalisationinstall() {
  * @param unknown_type $nom_meta_base_version
  */
 function soyezcreateurs_vider_tables($nom_meta_base_version) {
-	cextras_api_vider_tables(soyezcreateurs_declarer_champs_extras());
 	effacer_meta('soyezcreateurs');
 	effacer_meta('soyezcreateurs_couleurs');
 	effacer_meta('soyezcreateurs_google');
 	effacer_meta('soyezcreateurs_layout');
+	cextras_api_vider_tables(soyezcreateurs_declarer_champs_extras());
 	effacer_meta($nom_meta_base_version);
 }
 
