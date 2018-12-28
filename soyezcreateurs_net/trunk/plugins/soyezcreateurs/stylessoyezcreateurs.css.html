@@ -961,7 +961,7 @@ table.programmation caption { text-align: left; }
 #menuhaut { background-color: #GET{c_menuhaut_bk}; color: #GET{c_menuhaut};
 	[(#GET{c_menuhaut_bk}|!={transparent}|oui|et{[(#GET{d_menuhaut_degrade}|non)]})
 	padding-top: 8px; padding-left: 8px; background: #GET{c_menuhaut_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas_menu.png}|image_sepia{[(#GET{c_menuhaut_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|embarque_fichier)) repeat-x bottom];]
-	font-size: #CONFIG{soyezcreateurs_couleurs/fontsizemenuhaut,1.2}em;
+	font-size: 0;
 }
 
 /* Menu Navigation Haute */
@@ -971,18 +971,19 @@ table.programmation caption { text-align: left; }
 /* Menu Déroulant du haut */
 #menuhaut ul { text-align: center; }
 #menuhaut ul ul { text-align: left; padding-left: 0;}
-#menuh > li a {background: #GET{c_menu_a_bk}; color:#GET{c_menu_a}; }
+#menuh > li a {background: #GET{c_menu_a_bk}; color:#GET{c_menu_a}; display: block; line-height: 1em; }
 #menuh strong a, #menuh ul strong a {background: #GET{c_menu_a_strong_bk};color: #GET{c_menu_a_strong}; text-shadow:none;}
-#menuh ul a {background:#GET{c_menu_a_bk};color:#GET{c_menu_a};font-size:1.2em; text-transform:none}
+#menuh ul a {background:#GET{c_menu_a_bk};color:#GET{c_menu_a};font-size:1.2em; text-transform:none; }
 .arrows-sprite, #menuh.drop .sf-sub-indicator, #menuh.drop ul li > a .sf-sub-indicator, #menuh.drop li.hover > a .sf-sub-indicator, #menuh.drop ul li.hover > a .sf-sub-indicator { background: url([(#CHEMIN{images/arrows_menuh.png}|embarque_fichier)]) no-repeat; }
 #menuh, #menuh ul { list-style: none; margin: 0; position: relative; }
-#menuh li { position: relative; margin-top: 1%; }
+#menuh li { position: relative; }
 #menuh li li { margin-top: auto; }
 #menuh li li:first-child { border-top: 1px #GET{c_menu_a_hover_bk} solid; }
 #menuh li li a { border-left: 1px solid #GET{c_menu_a_hover_bk}; border-bottom: 1px solid #GET{c_menu_a_hover_bk}; border-right: 1px solid #GET{c_menu_a_hover_bk}; }
 #menuh li li li a { padding-left: 24px; }
 #menuh li li li li a { padding-left: 32px; }
-#menuh > li { display:inline-block;line-height: 1.7em; margin-right:0.4em; position:relative; vertical-align:middle; }
+#menuh > li { display:inline-block; position:relative; vertical-align:middle; font-size: #CONFIG{soyezcreateurs_couleurs/fontsizemenuhaut,1.2}em; line-height: 1em; }
+#menuh > li:not(:last-child) {  margin-right:0.4em; }
 #menuh > li:first-child { margin-left: 0; }
 #menuh > li > a { background: #GET{c_menu_a_bk}; color: #GET{c_menu_a}; font-weight: bold; }
 #menuh ul a { color: #GET{c_menu_a}; }
@@ -1016,7 +1017,7 @@ table.programmation caption { text-align: left; }
   .sidr ul li ul li ul li ul li ul li a { padding-left: 111px;}
   ]
   #menuhaut ul { text-align: left; }
-  #menuh > li { display: block; float: none; margin-top: 0.4em; margin-left: 0; }
+  #menuh > li { display: block; float: none; margin-left: 0; }
   #menuh.drop { padding: 1%; }
   #menuh.drop ul { width: auto !important; position: relative; margin-top: 0; }
   #menuh.drop ul ul { left: auto !important; }
@@ -2424,12 +2425,11 @@ a.button.triadeC:focus,
 .portailcognac #menuhaut #menuh {
   display: inline-block;
   text-align: center;
-  padding: .5rem 0 .2em 0;
 }
 
 .portailcognac #menuhaut #menuh a {
   background-color: #GET{c_menuhaut_bk};
-  padding: 0 2rem .35rem;
+  padding: calc(.35rem + 3px) 2rem .35rem;
   font-size: 27px;
   color: #GET{c_menuhaut};
   font-weight: 400;
@@ -2454,7 +2454,7 @@ a.button.triadeC:focus,
   width: 300px;
   box-shadow: -4px 4px 4px rgba(170, 170, 170, 0.3);
 }
-.portailcognac #menuhaut #menuh > li:not(:first-child) {
+.portailcognac #menuhaut #menuh > li:not(:nth-child(2)) {
   border-left: 1px solid #222;
 }
 .portailcognac #menuhaut #menuh .sf-sub-indicator {
