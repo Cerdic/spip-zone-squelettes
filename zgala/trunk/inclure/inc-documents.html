@@ -1,0 +1,16 @@
+[(#REM) Liste des autres documents joints à l'exclusion des images
+		-- On peut arriver avec id_article ou id_rubrique. On les réaffecte sur objet, id_objet.
+		-- Par contre, on considère que si on a un id_article non vide c'est qu'on veut les documents de l'article et
+		-- si id_article est vide c'est qu'on souhaite les documents de la rubrique ]
+[(#ENV{id_article}|oui)[(#VAL{article}|setenv{objet})][(#ENV{id_article}|setenv{id_objet})]]
+[(#ENV{id_rubrique}|et{#ENV{id_article}|non}|oui)[(#VAL{rubrique}|setenv{objet})][(#ENV{id_rubrique}|setenv{id_objet})]]
+<B_documents_joints>
+<div class="liste documents documents_joints">
+<h2 class="h2"><:medias:titre_documents_joints:></h2>
+<ul class="liste-items">
+<BOUCLE_documents_joints(DOCUMENTS) {objet?}{id_objet?} {extension !IN gif,jpg,png} {par rang_lien, num titre, date} {vu=non}{doublons}>
+	<li class="item">#INCLURE{fond=inclure/resume/document, id_document}</li>
+</BOUCLE_documents_joints>
+</ul>
+</div>
+</B_documents_joints>

@@ -1,0 +1,115 @@
+/*-------------------------------------------------------
+SYSTEME DE BOITES - STRUCTURE
+---------------------------------------------------------
+
+Copyright (c) 2009, Nicole Sullivan. All rights reserved.
+Code licensed under the BSD License:
+version: 0.2
+---------------------------------------------------------
+*/
+
+@import "var_box.less";
+
+/* box standard */
+.box {
+	margin:@box-vertical-margin @box-horizontal-margin;
+	.inner {
+		position:relative;
+		b {
+			display:inline;
+			font-size:inherit;
+			position:static;
+		}
+	}
+	b {
+		display:block;
+		font-size:1%;
+		position:relative;
+		background-repeat:no-repeat;
+		z-index:10;
+	}
+	.tl {
+		background-position: left top;
+	}
+	.tr {
+		background-position: right top;
+		float:right;
+	}
+	.bl {
+		background-position: left bottom;
+		margin-top:-@box-corner-size;
+	}
+	.br {
+		background-position: right bottom;
+		float:right;
+		margin-top:-@box-corner-size;
+	}
+	.top {
+		background-position:center top;
+	}
+	.bottom {
+		_zoom:1;
+		background-position:center bottom;
+	}
+}
+.bd {
+	padding:@box-body-vertical-padding @box-body-horizontal-padding;
+}
+.ft {
+	padding:@box-footer-vertical-padding @box-footer-horizontal-padding;
+}
+.hd {
+	padding:@box-header-vertical-padding @box-header-horizontal-padding;
+}
+.box .tl, .box .tr, .box .bl, .box .br {
+	float:left;
+	height:@box-corner-size;
+	width:@box-corner-size;
+}
+
+/* box de type complex */
+.top-corner(@h, @w) {
+	height:@h;
+	margin-bottom:-@h;
+	overflow:hidden;
+	width:@w;
+}
+.complex {
+	/* this zoom required for IE5.5 only*/
+	*position:relative;
+	*zoom:1;
+	overflow:hidden;
+	.tl, .tr {
+		/* position/zoom required for IE7, 6, 5.5 */
+		.top-corner(32000px, @box-corner-size);
+	}
+	.bl, .br { /* pas de style particulier */ }
+	.top {
+		height:@box-complex-top-height;
+	}
+	.bottom {
+		height:@box-complex-bottom-height;
+	}
+}
+
+/* box de type pop */
+.pop {
+	background-position:left top;
+	margin: @box-pop-top-margin @box-pop-right-margin @box-pop-bottom-margin @box-pop-left-margin;
+	overflow:visible;
+	.inner {
+		background-position:right bottom;
+		bottom:-@box-pop-inner-padding;
+		padding:@box-pop-inner-padding;
+		right:-@box-pop-inner-padding;
+	}
+	.tl, .br {
+		display:none;
+	}
+	.bl {
+		bottom:-@box-corner-size;
+	}
+	.tr {
+		right:-@box-corner-size;
+	}
+}
