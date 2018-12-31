@@ -17,7 +17,7 @@ function formulaires_configurer_zgala_verifier() {
 	$erreurs = array();
 
 	if ((intval(_request('layout')) < 1) or (intval(_request('layout')) > 40)) {
-			$erreurs['layout'] = _T('zgala:form_erreur_saisie_layout');
+			$erreurs['layout'] = _T('zgala:saisie_layout_erreur');
 	}
 
 	return $erreurs;
