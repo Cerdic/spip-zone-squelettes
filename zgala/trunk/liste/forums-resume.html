@@ -1,1 +1,14 @@
+<B_forums_resume>
+#ANCRE_PAGINATION
 <h2 class="h2">[(#ENV{titre,<:derniers_commentaires:>})]</h2>
+<ul class="liste-items">
+<BOUCLE_forums_resume(FORUMS?) {plat}{par date}{inverse} {0, #ENV{max_forums}}{pagination #ENV{nb,5}}>
+	<li class="item">
+		[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>
+		<span class="sep"> &ndash; </span>]
+		<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a>
+	</li>
+</BOUCLE_forums_resume>
+</ul>
+[<div class="pagination">(#PAGINATION)</div>]
+</B_forums_resume>
