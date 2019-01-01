@@ -1,7 +1,7 @@
 #SET{selection, vedette}
 <BOUCLE_vedette(SELECTIONS){identifiant=#GET{selection}}>
 	[(#SET{url, [<a[ href="(#URL_ECRIRE{selection,id_selection=#ID_SELECTION})"]><strong>(#GET{selection})</strong></a>]})]
-	[(#SET{articles, <:zgala:type_noisette_preview_vedette_ok_sans_article:>})]
+	[(#SET{articles, <:zgala:preview_vedette_ok_sans_article:>})]
 	#SET{liste_articles, #ARRAY}
 	<B_vedette_contenu>
 	<BOUCLE_vedette_contenu(SELECTIONS_CONTENUS){id_selection}{objet=article}{0, #ENV{max_articles}}>
@@ -9,12 +9,12 @@
 		[(#SET{liste_articles, #GET{liste_articles}|push{#GET{url_article}}})]
 	</BOUCLE_vedette_contenu>
 		[(#SET{liste_articles, [(#GET{liste_articles}|implode{', '})]})]
-		[(#SET{articles, #VAL{zgala:type_noisette_preview_vedette_ok_avec_article}|_T{#ARRAY{articles, #GET{liste_articles}}}})]
+		[(#SET{articles, #VAL{zgala:preview_vedette_ok_avec_article}|_T{#ARRAY{articles, #GET{liste_articles}}}})]
 	</B_vedette_contenu>
-	<:zgala:type_noisette_preview_vedette_ok{selection=#GET{url}, articles=#GET{articles}, max=#ENV{max_articles}}:>
+	<:zgala:preview_vedette_ok{selection=#GET{url}, articles=#GET{articles}, max=#ENV{max_articles}}:>
 </BOUCLE_vedette>
 	[(#SET{url, [<a[ href="(#URL_ECRIRE{selections})"]><strong>(#GET{selection})</strong></a>]})]
 	#BOITE_OUVRIR{'','notice'}
-		<:zgala:type_noisette_preview_selection_nok{selection=#GET{url}}:>
+		<:zgala:preview_selection_nok{selection=#GET{url}}:>
 	#BOITE_FERMER
 <//B_vedette>

@@ -1,15 +1,15 @@
 #SET{selection, bienvenue}
 <BOUCLE_bienvenue(SELECTIONS){identifiant=#GET{selection}}>
 	[(#SET{url, [<a[ href="(#URL_ECRIRE{selection,id_selection=#ID_SELECTION})"]><strong>(#GET{selection})</strong></a>]})]
-	[(#SET{article, <:zgala:type_noisette_preview_bienvenue_ok_sans_article:>})]
+	[(#SET{article, <:zgala:preview_bienvenue_ok_sans_article:>})]
 	<BOUCLE_bienvenue_contenu(SELECTIONS_CONTENUS){id_selection}{objet=article}{0,1}>
 		[(#SET{url_article, <a[ href="(#URL_ECRIRE{article,id_article=#ID_OBJET})"]><strong>#ID_OBJET</strong></a>})]
-		[(#SET{article, #VAL{zgala:type_noisette_preview_bienvenue_ok_avec_article}|_T{#ARRAY{article, #GET{url_article}}}})]
+		[(#SET{article, #VAL{zgala:preview_bienvenue_ok_avec_article}|_T{#ARRAY{article, #GET{url_article}}}})]
 	</BOUCLE_bienvenue_contenu>
-	<:zgala:type_noisette_preview_bienvenue_ok{selection=#GET{url}, article=#GET{article}}:>
+	<:zgala:preview_bienvenue_ok{selection=#GET{url}, article=#GET{article}}:>
 </BOUCLE_bienvenue>
 	[(#SET{url, [<a[ href="(#URL_ECRIRE{selections})"]><strong>(#GET{selection})</strong></a>]})]
 	#BOITE_OUVRIR{'','notice'}
-		<:zgala:type_noisette_preview_selection_nok{selection=#GET{url}}:>
+		<:zgala:preview_selection_nok{selection=#GET{url}}:>
 	#BOITE_FERMER
 <//B_bienvenue>
