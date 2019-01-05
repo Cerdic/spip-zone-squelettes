@@ -856,12 +856,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// R
 	'rainette' => 'Rainette',
-	'rainette_code' => 'Codice della città:',
+	'rainette_code' => 'Codice della città:', # MODIF
 	'rainette_explication' => 'Se avete attivato il <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentatione">plugin "Rainette"</a>,
             inserite qui sotto il codice della città che vi interessa.<br />
             Il codice della città deve essere cercato su <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">questo sito</a></strong> 
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
-            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).',
+            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).', # MODIF
 	'rainette_plugin' => 'Plugin Rainette',
 	'rappel_discussion' => 'Ultima discussione',
 	'recherche' => 'Ricerca',

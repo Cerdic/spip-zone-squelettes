@@ -884,7 +884,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rainette' => 'Rainette',
 	'rainette_code' => 'Code ou nom de la ville : (selon le service choisi)',
 	'rainette_explication' => 'Si vous avez activé le <strong><a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure" title="Documentation">plugin "Rainette V3"</a></strong>,
-            choisissez le service à utiliser (service à paramétrer dans la configuration du plugin Rainette, notamment en indiquant la clé d\'inscription)
+            choisissez le service à utiliser (service à paramétrer dans la configuration du plugin Rainette, notamment en indiquant la clé d’inscription)
             puis indiquez le code (pour le service weather.com) ou le nom de la ville (pour les autres services)  qui vous intéresse.<br /><br />
             Pour <strong>weather.com</strong>, ce code est à rechercher sur le web sur <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">ce site</a></strong>
             en rajoutant le nom de la ville recherchée à la suite de "where=" dans la barre d’adresse.<br />
