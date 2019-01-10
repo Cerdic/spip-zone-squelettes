@@ -49,10 +49,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$maj['3.1.55'] = array( array('soyezcreateurs_3_1_55') );
 	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(), $maj['3.1.58']);
 	$maj['3.1.59'] = array( array('soyezcreateurs_3_1_59') );
-	
-	// À rajouter à la fin systématiquement en changeant le n° de version
-	$maj['3.1.60'][] = array('soyezcreateurs_finalisationinstall');
-	
+	$maj['3.1.61'] = array( 
+		array('soyezcreateurs_3_1_59'),
+		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */
+	);
+		
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
@@ -300,10 +301,15 @@ function soyezcreateurs_3_1_59() {
 	ecrire_config('socialtags/wopen','oui');
 }
 
+function soyezcreateurs_3_1_61() {
+	$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "MasquerTelechargement", "Ne pas lister les documents à télécharger à la fin de l'article ou de la rubrique", "Affecter ce mot clef aux articles ou rubriques où vous ne voulez pas que les documents joints soient listés.");
+}
+
 function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
 	include_spip('inc/invalideur');
 	suivre_invalideur("soyezcreateurs");
+	
 }
 
 /*
