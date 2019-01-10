@@ -86,7 +86,7 @@ function formulaires_contact_traiter_dist(){
             'champsup1' => htmlspecialchars(_request('champsup1')),
             'champsup2' => htmlspecialchars(_request('champsup2')),
             'sujet' => htmlspecialchars(_request('sujet')),
-            'checkbox' => htmlspecialchars(_request('checkbox')),
+            'checkbox' => _request('checkbox'),
             'anstispam' => htmlspecialchars(_request('Antispam')),
         );
 
@@ -117,7 +117,7 @@ function formulaires_contact_traiter_dist(){
         }
 
         if (lire_config('escal/config/checkbox') == 'oui') {
-            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."</strong>" ;
+            $message .= "<strong>"._T_ou_typo(lire_config('escal/config/titrecheckbox'))."&nbsp;:&nbsp;"."</strong>"."\n" ;
             if (is_array($champs['checkbox'])) {
               $message .= implode(" - ",$champs['checkbox'])."\n\n";
             }
