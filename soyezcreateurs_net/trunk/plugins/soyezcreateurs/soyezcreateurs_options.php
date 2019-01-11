@@ -11,6 +11,9 @@ $GLOBALS['mutualisation_afficher_config'] = (isset($GLOBALS['mutualisation_affic
 if (!defined('_IMG_GD_QUALITE'))
 	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP
 
+if (!defined('_CHAMPS_INDENTITE_EXTRA_SC'))
+	define('_CHAMPS_INDENTITE_EXTRA_SC', 'adresse,code_postal,ville,pays,telephone,fax,email_contact,informations,id_article_contact,latitude,longitude');
+
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE', true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents
 if (!defined('_MEDIAS_RESPONSIVE_MASQUER_LEGENDE'))
