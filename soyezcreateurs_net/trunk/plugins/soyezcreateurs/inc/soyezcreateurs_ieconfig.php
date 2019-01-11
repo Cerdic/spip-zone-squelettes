@@ -92,11 +92,19 @@ function sc_ieconfig_importer_fichier($chemin, $option = 'ecrase') {
 						$import = $config[$prefixe][$meta];
 					}
 					if ($option === 'fusion') {
-						$import = array_merge(lire_config($meta . '/'), $config[$prefixe][$meta]);
+						$lameta = lire_config($meta . '/');
+						if (!is_array($lameta)) {
+							$lameta = array();
+						}
+						$import = array_merge($lameta, $config[$prefixe][$meta]);
 					}
 					if ($option === 'fusion_inv') {
-						$import_plus = array_diff_key($config[$prefixe][$meta], lire_config($meta . '/'));
-						$import_base = array_diff_key(lire_config($meta . '/'), $import_plus);
+						$lameta = lire_config($meta . '/');
+						if (!is_array($lameta)) {
+							$lameta = array();
+						}
+						$import_plus = array_diff_key($config[$prefixe][$meta], $lameta);
+						$import_base = array_diff_key($lameta, $import_plus);
 						$import = (array_merge($import_plus, $import_base));
 					}
 					ksort($import);
