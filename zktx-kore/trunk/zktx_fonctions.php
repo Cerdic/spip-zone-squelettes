@@ -1,11 +1,11 @@
 <?php
-// Balise #LOGO
+// Balise #LOGOA
 // http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039
-	function balise_LOGO_dist($p) {
+	function balise_LOGOA_dist($p) {
 		$_id_article = champ_sql('id_article', $p);
 		$_id_rubrique= champ_sql('id_rubrique', $p);
 
-		$p->code = "recuperer_fond('balises/logo',array('id_article'=>$_id_article,'id_rubrique'=>$_id_rubrique))";
+		$p->code = "recuperer_fond('balises/logoa',array('id_article'=>$_id_article,'id_rubrique'=>$_id_rubrique))";
 		$p->interdire_scripts = false;
 		return $p;
 	}
