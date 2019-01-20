@@ -1002,6 +1002,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// V
 	'version' => 'Version actuelle :',
+	'version_maj' => 'Version disponible :',
 	'video' => 'Vidéo',
 	'videos' => 'Vidéos',
 	'visites' => 'Visites',
