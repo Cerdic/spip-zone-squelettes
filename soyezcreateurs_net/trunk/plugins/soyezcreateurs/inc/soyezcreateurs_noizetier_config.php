@@ -14,6 +14,13 @@ function sc_noisettespardefaut() {
 	include_spip('inc/ncore_noisette');
 	include_spip('ncore/noizetier');
 	include_spip('inc/noizetier_conteneur');
+	
+	// Rechargement des pages : on force le recalcul complet, c'est le but.
+	include_spip('inc/noizetier_page');
+	page_noizetier_charger(true);
+	// Rechargement des noisettes : on force le recalcul complet, c'est le but.
+	include_spip('inc/ncore_type_noisette');
+	type_noisette_charger('noizetier', true);
 
 	$conteneur = array();
 
