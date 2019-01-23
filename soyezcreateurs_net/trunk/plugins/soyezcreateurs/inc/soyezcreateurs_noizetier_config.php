@@ -35,5 +35,7 @@ function sc_noisettespardefaut() {
 		foreach ($noisettes as $noisette) {
 			$id_noisette = noisette_ajouter('noizetier', $noisette, $conteneur);
 		}
+		page_noizetier_charger(true);
+		type_noisette_charger('noizetier', true);
 	}
 }
