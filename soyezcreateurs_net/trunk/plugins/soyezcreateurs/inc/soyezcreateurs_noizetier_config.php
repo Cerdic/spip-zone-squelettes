@@ -15,13 +15,6 @@ function sc_noisettespardefaut() {
 	include_spip('ncore/noizetier');
 	include_spip('inc/noizetier_conteneur');
 	
-	// Rechargement des pages : on force le recalcul complet, c'est le but.
-	include_spip('inc/noizetier_page');
-	page_noizetier_charger(true);
-	// Rechargement des noisettes : on force le recalcul complet, c'est le but.
-	include_spip('inc/ncore_type_noisette');
-	type_noisette_charger('noizetier', true);
-
 	$conteneur = array();
 
 	//Liste tous les noisettes de tous les conteneurs existant
@@ -35,7 +28,24 @@ function sc_noisettespardefaut() {
 		foreach ($noisettes as $noisette) {
 			$id_noisette = noisette_ajouter('noizetier', $noisette, $conteneur);
 		}
-		page_noizetier_charger(true);
-		type_noisette_charger('noizetier', true);
+		
+		sc_noizetier_vidercache();
 	}
+}
+
+function sc_noizetier_vidercache() {
+	// On recharge les pages du noiZetier dont la liste ou l'activité a pu changer. Inutile de forcer un
+	// rechargement complet.
+	include_spip('inc/noizetier_page');
+	page_noizetier_charger();
+	// On recharge les types de noisettes dont la liste ou l'activité a pu changer. Inutile de forcer un
+	// rechargement complet.
+	include_spip('inc/ncore_type_noisette');
+	type_noisette_charger('noizetier');
+
+	// Suppression des caches N-Core nécessaires à la compilation des noisettes
+	include_spip('inc/ncore_cache');
+	cache_supprimer('noizetier', _NCORE_NOMCACHE_TYPE_NOISETTE_CONTEXTE);
+	cache_supprimer('noizetier', _NCORE_NOMCACHE_TYPE_NOISETTE_AJAX);
+	cache_supprimer('noizetier', _NCORE_NOMCACHE_TYPE_NOISETTE_INCLUSION);
 }
