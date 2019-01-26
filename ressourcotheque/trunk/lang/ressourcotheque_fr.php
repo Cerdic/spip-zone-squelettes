@@ -39,5 +39,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'types_ressources' => 'Types de ressources disponibles',
 
 	// Z
-	'zip' => 'Zip de l’ensemble des documents joints'
+	'zip' => 'Zip de l’ensemble des documents joints',
+
+	//
+	'modifier_profil' => 'Modifier le profil',
+	'modifier_mon_profil' => 'Modifier mon profil',
+	'contacter' => 'Contacter'
 );
