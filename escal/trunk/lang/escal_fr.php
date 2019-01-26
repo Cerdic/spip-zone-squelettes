@@ -568,7 +568,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Mentions légales',
 	'mentions_activer' => 'Activer le lien vers la page "Mentions légales"',
 	'mentions_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
-            vous pouvez faire apparaitre le lien vers la page dédiée dans le pied de page du site.',
+            vous pouvez faire apparaître le lien vers la page dédiée dans le pied de page du site.
+            <br />
+            Pour cela vous devez aller dans "Généralités" &rarr; "Pied de page" ',
 	'mentions_plugin' => 'Plugin Mentions légales',
 	'menu' => 'Au menu',
 	'menu_horizontal' => 'Menu horizontal',
@@ -857,6 +859,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_affichage' => 'Affichage des liens ci-dessus',
 	'pied_lien_contact' => 'Lien vers la page contact',
 	'pied_lien_icone' => 'Sous forme d’icônes',
+	'pied_lien_mentions' => 'Lien vers la page des mentions légales',
+	'pied_lien_mentions_choix' => 'Choix de la page à afficher',
+	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l\'avez activé',
+	'pied_lien_mentions_choix2' => 'Un article de votre choix',
+	'pied_lien_mentions_article' => 'Numéro de l\'article choisi',
 	'pied_lien_plan' => 'Lien vers le plan du site',
 	'pied_lien_prive' => 'Lien vers l’espace privé',
 	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)',

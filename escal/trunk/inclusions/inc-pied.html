@@ -50,14 +50,23 @@
 </a>
 ]
 
-[(#PLUGIN{SPIP_PROPRIO}|oui)
-[(#CONFIG{escal/config/mentions}|=={non}|non)
-<!-- un lien vers la page des mentions legales -->
-<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_PAGE{mentions-legales}|parametre_url{lang,#ENV{lang}})],#URL_PAGE{mentions-legales}})]" title="<:escal:title_mentions:>">
-[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/legal.png}" alt="<:escal:mentions:>" />]
-[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:mentions:>]
-</a>
-]
+[(#CONFIG{escal/config/lienmentions}|=={oui}|oui)
+	[(#CONFIG{escal/config/lienmentionschoix}|=={plugin}|oui)
+		[(#PLUGIN{SPIP_PROPRIO}|oui)
+			<!-- un lien vers la page des mentions legales -->
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_PAGE{mentions-legales}|parametre_url{lang,#ENV{lang}})],#URL_PAGE{mentions-legales}})]" title="<:escal:title_mentions:>">
+			[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/legal.png}" alt="<:escal:mentions:>" />]
+			[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:mentions:>]
+			</a>
+		]
+	]
+	[(#CONFIG{escal/config/lienmentionschoix}|=={article}|oui)
+		<!-- un lien vers la page des mentions legales -->
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE{#CONFIG{escal/config/lienmentionsarticle}}|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE{#CONFIG{escal/config/lienmentionsarticle}}})]" title="<:escal:title_mentions:>">
+		[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/legal.png}" alt="<:escal:mentions:>" />]
+		[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:mentions:>]
+		</a>
+	]
 ]
 
 [(#CONFIG{escal/config/lienecrire}|=={non}|non)
@@ -130,3 +139,4 @@
 
 [(#REM) appel des javascripts ]
 <INCLURE {fond=inclusions/inc-javascripts}>
+[(#CONFIG{escal/config/mentions}|=={non}|non)
