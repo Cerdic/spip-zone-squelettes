@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact' => 'Contact',
 
 	// E
-    'explication_articles_home' => "La page sommaire affiche les rubriques de premier niveau. Vous pouvez avoir besoin d'ajouter un ou des articles cette liste de rubriques. Saisissez le (ou les) numéro(s) d'article(s) SPIP ou de page(s) unique(s) séparés par une virgule. Pour les mettre dans l'ordre voulu ajouter un 1. 2. dans le titre de l'article (les articles sont triés par num titre)." ,
+    'explication_articles_home' => "La page sommaire affiche les rubriques de premier niveau. Vous pouvez avoir besoin d'ajouter un ou des articles à cette liste de rubriques. Saisissez le (ou les) numéro(s) d'article(s) SPIP ou de page(s) unique(s) séparés par une virgule. Pour les mettre dans l'ordre voulu ajouter un 1. 2. dans le titre de l'article (les articles sont triés par num titre)." ,
     'explication_articles_apres' => "La page sommaire affiche les rubriques de premier niveau. Vous pouvez avoir besoin d'ajouter un ou des articles APRES cette liste de rubriques. Saisissez le (ou les) numéro(s) d'article(s) SPIP ou de page(s) unique(s) séparés par une virgule. Pour les mettre dans l'ordre voulu ajouter un 1. 2. dans le titre de l'article (les articles sont triés par num titre)." ,
 	'explication_config_contenu' => "Le squelette utilise les sous titres pour les articles, n'oubliez pas de les activer dans <a href='?exec=configurer_contenu'>configurer contenu</a>",
 	'explication_config_titre_sommaire' => "Parfois sur la home page le titre du site fait un peu tâche sur l'image",
@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
     'label_articles_home' => "Id article(s) avant liste des secteurs",
-    'label_articles_home' => "Id article(s) après liste des secteurs",
+    'label_articles_home_apres' => "Id article(s) après liste des secteurs",
 	'label_config_contenu' => "Sous-titre",
 	'label_config_titre_sommaire' => 'Titre',
 	'label_doc_home' => "Id doc home",
