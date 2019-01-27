@@ -13,6 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// C
 	'connexe' => 'Ressource connexe',
 	'connexes' => 'Ressources connexes',
+	'contacter' => 'Contacter',
 	'contenu_documents' => 'Contenu des documents liés',
 	'contenu_documents_explication' => 'Mettez ici le contenu des documents liés si votre serveur ne dispose pas de la fonction d’indexation des documents.
 	Ce contenu apparaîtra dans les recherches, mais pas sur la fiche.',
@@ -32,6 +33,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
 
+	// M
+	'modifier_mon_profil' => 'Modifier mon profil',
+	'modifier_profil' => 'Modifier le profil',
+
 	// P
 	'par_auteur' => 'Mise en ligne par',
 
@@ -39,10 +44,5 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'types_ressources' => 'Types de ressources disponibles',
 
 	// Z
-	'zip' => 'Zip de l’ensemble des documents joints',
-
-	//
-	'modifier_profil' => 'Modifier le profil',
-	'modifier_mon_profil' => 'Modifier mon profil',
-	'contacter' => 'Contacter'
+	'zip' => 'Zip de l’ensemble des documents joints'
 );
