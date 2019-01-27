@@ -551,7 +551,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Menzioni legali',
 	'mentions_activer' => 'Attivare il link alla pagina "Mentions légales":',
 	'mentions_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentatione">plugin "Mentions légales"</a>,
-            è possibile far apparire il link verso la pagina dedicata al piè di pagina del sito.',
+            è possibile far apparire il link verso la pagina dedicata al piè di pagina del sito.', # MODIF
 	'mentions_plugin' => 'Plugin Mentions légales',
 	'menu' => 'Menù',
 	'menu_horizontal' => 'Menù orizzontale',

@@ -571,7 +571,7 @@ an image (example: url("squelette/images/mon_image.jpg") ',
 	'mentions' => 'Legal notices',
 	'mentions_activer' => 'To activate the link towards the page "Legal notices"',
 	'mentions_explication' => 'If you have activated the <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Legal notices"</a>,
-            you can show the link towards the dedicated page in the footer of the website.',
+            you can show the link towards the dedicated page in the footer of the website.', # MODIF
 	'mentions_plugin' => 'Legal notices plugin',
 	'menu' => 'On the menu',
 	'menu_horizontal' => 'Horizontal menu',
