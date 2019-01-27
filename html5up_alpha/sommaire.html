@@ -76,7 +76,25 @@
 				</div>
 				[(#GET{divdeux}|=={0}|?{"</div><div class='row'>"})]
 				</BOUCLE_rub123>
-			</div>
+
+				<BOUCLE_articles_apres(ARTICLES){par num titre}{id_article IN #CONFIG{alpha/articles_home_apres}|explode{','}} >
+				#SET{CPT,#GET{CPT}|plus{1}}
+				#SET{divdeux,#GET{CPT}|fmod{2}}
+				<div class="6u 12u(narrower)">
+					<section class="box special">
+						<span class="image featured">[(#LOGO_ARTICLE_RUBRIQUE|image_passe_partout{619,275}|image_reduire{619}|image_recadre{619,275,center}|inserer_attribut{class,spip_logos})]</span>
+						<h3>#TITRE</h3>
+						#INTRODUCTION
+						<ul class="actions">
+							<li><a href="#URL_ARTICLE" class="button alt"><:alpha:read_more:></a></li>
+						</ul>
+					</section>
+				</div>
+				[(#GET{divdeux}|=={0}|?{"</div><div class='row'>"})]
+				</BOUCLE_articles_apres>
+
+
+		</div>
 
 		</section>
 
