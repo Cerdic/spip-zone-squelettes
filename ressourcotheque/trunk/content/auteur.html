@@ -12,7 +12,10 @@
 		[<div class="#EDIT{bio} bio surlignable">(#BIO|adaptive_images)</div>]
 		[<div class="#EDIT{pgp} pgp">(#PGP)</div>]
 		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-		<INCLURE{fond=inclure/ecrire-auteur,id_auteur} />
+		#_SESSION_SI{id_auteur,==,#ID_AUTEUR}
+		#_SESSION_SINON
+			#FORMULAIRE_ECRIRE_AUTEUR
+		#_SESSION_FIN
 	</div>
 
 	#_AUTORISER_SI{modifier,auteur,env}
