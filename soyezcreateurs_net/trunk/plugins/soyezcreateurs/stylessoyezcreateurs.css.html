@@ -61,8 +61,14 @@ body { background: transparent; }
 	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#ffffff})}
 #SET{c_menuhaut,(#CONFIG{soyezcreateurs_couleurs/menuhaut,#017ca5})}
 	#SET{c_menuhaut_bk,(#CONFIG{soyezcreateurs_couleurs/menuhaut_bk,#ffffff})}
-#SET{c_menubas,(#CONFIG{soyezcreateurs_couleurs/menubase,#017ca5})}
+#SET{c_menubas,(#CONFIG{soyezcreateurs_couleurs/menubas,#017ca5})}
 	#SET{c_menubas_bk,(#CONFIG{soyezcreateurs_couleurs/menubas_bk,#ffffff})}
+#SET{c_menubas_hover,#(#CONFIG{soyezcreateurs_couleurs/menubas,#017ca5}|couleur_extreme)}
+	#SET{c_menubas_hover_bk,#(#CONFIG{soyezcreateurs_couleurs/menubas_bk,#ffffff}|couleur_extreme)}
+[(#GET{c_menubas}|=={#FFFFFF}|oui)#SET{c_menubas_hover,#EFEFEF}}]
+[(#GET{c_menubas}|=={#000000}|oui)#SET{c_menubas_hover,#333333}}]
+[(#GET{c_menubas_bk}|=={#FFFFFF}|oui)#SET{c_menubas_hover_bk,#EFEFEF}}]
+[(#GET{c_menubas_bk}|=={#000000}|oui)#SET{c_menubas_hover_bk,#333333}}]
 #SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,#017ca5})}
 	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,#ffffff})}
 #SET{c_datemajsite,(#CONFIG{soyezcreateurs_couleurs/datemajsite,#595959})}
@@ -769,12 +775,12 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #menu ul ul { padding: 0; margin: 0; margin-left:10px;}
 #menu li a { display: block; padding: 5px 0 5px 20px; padding-right:0; padding-left:20px; margin: 4px 0; background-color: #GET{c_menu_a_bk}; border-left: none; color: #GET{c_menu_a}; font-size: 1em; font-weight: bold; text-align: left; text-decoration: none; }
 #menu ul ul li a { padding: 2px 0 2px 20px; padding-right:0; padding-left:20px; background-color: #[(#GET{c_menu_a_bk}|couleur_inverserluminosite{10,true})]; font-size: 1em; text-decoration: none; }
-#menu strong li a, #menuhaut strong li a, #menufooter strong li a { background: #GET{c_menu_a_strong_bk}; color: #GET{c_menu_a_strong}; }
-#menu li strong a:visited, #menu li strong a:link, #menufooter li strong a:visited, #menufooter li strong a:link {
+#menu strong li a { background: #GET{c_menu_a_strong_bk}; color: #GET{c_menu_a_strong}; }
+#menu li strong a:visited, #menu li strong a:link {
 	margin-left: 2px; background: #GET{c_menu_a_strong_bk}; color: #GET{c_menu_a_strong};
 }
-#menu li a:hover, #menu li a:focus, #cadre_outils li a:hover, #cadre_outils li a:focus, #menuhaut li a:hover, #menuhaut li a:focus, #menufooter li a:hover, #menufooter li a:focus, #artrecents a:hover, #artrecents a:focus, #artrecents .odd a:hover, #artrecents .odd a:focus { background-color: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; text-decoration: none; }
-#menu li a:active, #cadre_outils li a:active, #menuhaut li a:active, #menufooter li a:active, #artrecents a:active { background-color: #GET{c_menu_a_active_bk}; color: #GET{c_menu_a_active}; }
+#menu li a:hover, #menu li a:focus, #cadre_outils li a:hover, #cadre_outils li a:focus, #menuhaut li a:hover, #menuhaut li a:focus, #artrecents a:hover, #artrecents a:focus, #artrecents .odd a:hover, #artrecents .odd a:focus { background-color: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; text-decoration: none; }
+#menu li a:active, #cadre_outils li a:active, #menuhaut li a:active { background-color: #GET{c_menu_a_active_bk}; color: #GET{c_menu_a_active}; }
 #menu form { padding: 0; margin: 0; }
 #menu h2 { [background: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true});] color: #GET{c_menu_a}; border-left: none; padding: 5px 10px 5px 2px; padding-right:10px; padding-left:2px; margin-top: 5px; margin-bottom: 5px; font-size: 1.2em; font-weight: bold; text-align: left; }
 /* selects dans zone de recherche */
@@ -844,8 +850,10 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 }
 #menufooter ul { padding: 0; margin: 0; list-style-type: none; }
 #menufooter ul li { display: inline; margin: 0; list-style: none; }
-#menufooter li a, #menufooter li a:visited { display: inline-block; padding: 0.5em 1em; text-decoration: none; white-space: nowrap; }
-#menufooter li a:hover, #menufooter li a:focus { background-color: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; }
+#menufooter a, #menufooter a:link, #menufooter a:visited { background: transparent; color: #GET{c_menubas}; display: inline-block; padding: 0.5em 1em; text-decoration: none; white-space: nowrap; }
+#menufooter a:hover, #menufooter a:focus { background: #GET{c_menubas_hover_bk}; color: #GET{c_menubas_hover}; }
+#menufooter strong a, #menufooter strong a:visited, #menufooter strong a:link { background: #GET{c_menubas_hover_bk}; color: #GET{c_menubas_hover}; }
+#menufooter a:hover, #menufooter a:focus, #menufooter a:active, #artrecents a:active { background: #GET{c_menubas_hover_bk}; color: #GET{c_menubas_hover}; text-decoration: none; }
 /* bandeau de contact dans le footer */
 #footer #bandeaucontact { padding: 1px 10px; color: #GET{c_footer}; text-align: center; }
 #footer #bandeaucontact p { text-align: center; font-size: 1.2em; }
@@ -992,9 +1000,9 @@ table.programmation caption { text-align: left; }
 #menuh > li > a { background: #GET{c_menu_a_bk}; color: #GET{c_menu_a}; font-weight: bold; }
 #menuh ul a { color: #GET{c_menu_a}; }
 #menuh a { display: block; font-size: #CONFIG{soyezcreateurs_couleurs/fontsizemenuhaut,1.2}rem; padding: 8px 16px; position: relative; text-decoration: none; }
-#menuh li.hover > a { background: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; }
-#menuh li.hover > a, #menuh li > a:focus, #menuh a:hover, #menuh a:focus { background: #GET{c_menu_a_hover_bk}; color: #GET{c_menu_a_hover}; }
-#menuh .active > a, #menuh a:active, #menuh li > a:active { background: #GET{c_menu_a_active_bk}; color: #GET{c_menu_a_active}; }
+#menuh li.hover > a { background: #GET{c_menuhaut_bk}; color: #GET{c_menuhaut}; }
+#menuh li.hover > a, #menuh li > a:focus, #menuh a:hover, #menuh a:focus { background: #GET{c_menuhaut_bk}; color: #GET{c_menuhaut}; }
+#menuh .active > a, #menuh a:active, #menuh li > a:active { background: #GET{c_menuhaut_bk}; color: #GET{c_menuhaut}; }
 #menuh.drop { padding: 0 1%; }
 #menuh.drop ul, .hasJS #menuh ul { width: 200px; position: absolute; margin-top: -99999px; z-index: 999; }
 #menuh.drop ul ul { left: 200px; top: 0; }
