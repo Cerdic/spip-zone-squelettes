@@ -566,7 +566,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'mediaspipplayer_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
 	- activer le <a class="spip_out" href="https://player.mediaspip.net/" title="Documentation">plugin "Lecteur de médias de MediaSPIP"</a> <br/>
-	- associer le mot-clé "video-une" aux articles contenant vos vidéos' ,
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos',
 	'meme_rub' => 'Dans la même rubrique',
 	'mentions' => 'Mentions légales',
 	'mentions_activer' => 'Activer le lien vers la page "Mentions légales"',
