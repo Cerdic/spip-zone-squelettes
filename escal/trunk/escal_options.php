@@ -12,9 +12,12 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |plugins!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:liens_sociaux:facebook:signalement:shoutbox
 ');
 
-    // Header prive
+	// Header prive
+	 if (isset($GLOBALS['spip_pipeline']['header_prive'])) {
     $GLOBALS['spip_pipeline']['header_prive'] .= "|header_prive_perso";
-
+	 } else {
+    $GLOBALS['spip_pipeline']['header_prive'] = "header_prive_perso";
+	 }
     function header_prive_perso($flux) {
         return $flux .= '
     	<link rel="stylesheet" type="text/css" href="'.find_in_path('styles/prive_perso.css').'" media="all" />
