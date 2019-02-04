@@ -49,8 +49,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$maj['3.1.55'] = array( array('soyezcreateurs_3_1_55') );
 	cextras_api_upgrade(soyezcreateurs_declarer_champs_extras(), $maj['3.1.58']);
 	$maj['3.1.59'] = array( array('soyezcreateurs_3_1_59') );
-	$maj['3.1.61'] = array( 
-		array('soyezcreateurs_3_1_59'),
+	$maj['3.1.62'] = array( 
+		array('soyezcreateurs_3_1_61'),
+		array('soyezcreateurs_3_1_62'),
 		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */
 	);
 		
@@ -272,7 +273,6 @@ function soyezcreateurs_3_1_51() {
 	$id_groupe_origine = id_groupe('_Specialisation');
 	$id_mot = id_mot('PasDansRecherche', $id_groupe_origine);
 	$id_groupe_dest = id_groupe('_Specialisation_Rubrique_ou_Article');
-	$id_mot = id_mot('PasDansRecherche', $id_groupe_origine);
 	remplacer_mot($id_mot, 'PasDansRecherche', 'Permet de masquer un article, ou le contenu d’une rubrique des résultats de la recherche', 'À affecter aux articles ou aux rubriques qui ne doivent pas être affichés dans les résultats de la recherche', $id_groupe_dest, '_Specialisation_Rubrique_ou_Article');
 }
 
@@ -303,6 +303,13 @@ function soyezcreateurs_3_1_59() {
 
 function soyezcreateurs_3_1_61() {
 	$id_mot = create_mot("_Specialisation_Rubrique_ou_Article", "MasquerTelechargement", "Ne pas lister les documents à télécharger à la fin de l'article ou de la rubrique", "Affecter ce mot clef aux articles ou rubriques où vous ne voulez pas que les documents joints soient listés.");
+}
+
+function soyezcreateurs_3_1_62() {
+	$id_groupe_origine = id_groupe('_Specialisation');
+	$id_mot = id_mot('MenuFooter', $id_groupe_origine);
+	$id_groupe_dest = id_groupe('_Specialisation_Rubrique_ou_Article');
+	remplacer_mot($id_mot, 'MenuFooter', 'Affecter ce mot clef aux articles et rubriques devant être affichés dans le menu de pied de page.', "Les liens vers les articles seront faits triés par numéro de titre. Puis les rubriques par numéro de titre aussi.\n\nIl est bien sûr possible de faire des articles de redirection…", $id_groupe_dest, '_Specialisation_Rubrique_ou_Article');
 }
 
 function soyezcreateurs_finalisationinstall() {
