@@ -559,13 +559,13 @@ function escal_visiteurs_connectes_compter(){
 	return $a;
 }
 function balise_JOUR_MAX_VISITES($p) {
-	$arg="date";
+	$arg="'date'";
 	$p->code = "generer_jour_val_max_visites($arg)";
 	$p->interdire_scripts = false;
 	return $p;
 }
 function balise_VAL_MAX_VISITES($p) {
-	$arg="val";
+	$arg="'val'";
 	$p->code = "generer_jour_val_max_visites($arg)";
 	$p->interdire_scripts = false;
 	return $p;
