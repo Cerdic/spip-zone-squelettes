@@ -564,10 +564,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lire_suite' => 'Lire la suite ...',
 
 	// M
-	'mediaspipplayer_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
-	- activer le <a class="spip_out" href="https://player.mediaspip.net/" title="Documentation">plugin "Lecteur de médias de MediaSPIP"</a> <br/>
-	- associer le mot-clé "video-une" aux articles contenant vos vidéos',
-	'meme_rub' => 'Dans la même rubrique',
 	'mentions' => 'Mentions légales',
 	'mentions_activer' => 'Activer le lien vers la page "Mentions légales"',
 	'mentions_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
@@ -1016,6 +1012,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'version_ok' => 'Vous avez la dernière version disponible',
 	'video' => 'Vidéo',
 	'videos' => 'Vidéos',
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- paramétrer ce plugin avec une largeur à "100%" et une hauteur à "auto" <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos',
+	'meme_rub' => 'Dans la même rubrique',
 	'visites' => 'Visites',
 	'visites_jour' => 'visites par jour',
 	'visiteur' => 'visiteur',
