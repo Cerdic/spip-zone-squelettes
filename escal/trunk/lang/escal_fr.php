@@ -1015,7 +1015,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'videos' => 'Vidéos',
 	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
 	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
-	- paramétrer ce plugin avec une largeur à "100%" et une hauteur à "auto" <br/>
 	- associer le mot-clé "video-une" aux articles contenant vos vidéos',
 	'visites' => 'Visites',
 	'visites_jour' => 'visites par jour',
