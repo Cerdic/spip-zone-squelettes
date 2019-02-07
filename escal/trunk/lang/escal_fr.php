@@ -400,7 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="Voir la documentation">A la une</a>',
 	'doc_une2' => ' : Une boite avec des onglets pour les derniers articles du site, le plan du site, un article, les articles d’une rubrique...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="Voir la documentation">Vidéos</a>',
-	'doc_videos2' => ' : affiche les vidéos au format flv ou mp4 des articles avec le mot-clé "video-une".',
+	'doc_videos2' => ' : affiche les vidéos au format mp4,ogv,mkv,m4v ou webm des articles avec le mot-clé "video-une".',
 	'documentation' => 'Documentation',
 	'documentation_voir' => 'Voir la documentation',
 	'droite' => 'A droite',
