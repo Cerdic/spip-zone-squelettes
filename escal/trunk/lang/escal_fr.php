@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_rubrique' => 'Affichage de la rubrique mère',
 	'affichage_soustitre' => 'Affichage du Soustitre',
 	'affichage_surtitre' => 'Affichage du Surtitre',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l\'article en contient au moins une',
 	'affichage_visites_inter' => 'Séparateur entre visites et popularité',
 	'affichage_visites_popularite' => 'Affichage du nombre de visites et de la popularité',
 	'agenda' => 'Agenda',
@@ -91,8 +92,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_libre4' => 'Article libre 4',
 	'article_libre5' => 'Article libre 5',
 	'article_licence' => 'Licence :',
+	'article_logo' => 'Taille maximum du logo de l\'article',
 	'article_mise_en_ligne' => 'Article mis en ligne le',
-	'article_modifie' => 'dernière modification le',
+	'article_modifie' => 'Dernière modification le',
 	'article_trouve' => 'article trouvé',
 	'article_une' => 'Mettre cet article à la une',
 	'articlepdf_afficher' => 'Afficher l’icône dans les rubriques',
@@ -787,12 +789,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_derniers_arts2' => 'Derniers articles bis',
 	'onglets_derniers_arts3' => 'Derniers articles ter',
 	'onglets_derniers_arts_explication1' => 'Ils peuvent s’afficher de 3 façons :',
-	'onglets_derniers_arts_explication2' => ' Voir la documentation pour plus de détails.<br /><br />
+	'onglets_derniers_arts_explication2' => ' Voir la <strong><a href="http://escal.ac-lyon.fr/spip/spip.php?article17">documentation</a></strong> pour plus de détails.<br /><br />
 			Le titre de cet onglet sera "Les derniers articles" sauf si vous lui donnez un autre titre ci-dessous.',
 	'onglets_derniers_ter_mot' => 'Articles à la une de "Derniers articles", "Derniers articles ter" et "Articles avec mot-clé"',
 	'onglets_derniers_ter_mot_hauteur' => 'Hauteur des cadres en px <br />(à adapter en fonction de vos choix précédents)',
 	'onglets_deux' => 'Deuxième_onglet',
 	'onglets_exergue_bis' => 'Article en exergue et articles de "Derniers articles bis"',
+	'onglets_derniers_exergue' => 'L\'article en exergue',
+	'onglets_derniers_autres' => 'Les autres articles',
+	'onglets_derniers_article' => 'Paramétrage de chaque article',
+	'onglets_derniers_presentation' => 'Présentation générale',
 	'onglets_monart' => 'Mon article',
 	'onglets_monart2' => 'Mon article 2',
 	'onglets_monart2_titre' => 'Titre de l’onglet "Mon article 2"',
@@ -1006,6 +1012,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'A la une',
 	'une_bloc' => 'Le bloc "A la une"',
+	'une_derniers' => 'Derniers articles',
+	'une_derniers_bis' => 'Derniers articles bis',
+	'une_derniers_ter' => 'Derniers articles ter',
+	'une_mots_cles' => 'Articles avec mots-clés',
 
 	// V
 	'version' => 'Version actuelle :',

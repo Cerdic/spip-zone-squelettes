@@ -3,14 +3,14 @@
 
 <nav class="laune" >
 
-<BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexergue}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
-	{tri #CONFIG{escal/config/ordrealaune,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
+<BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexerguemotcle}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
+	{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
 <div id="section-#ID_ARTICLE" class="fragment">
 
 <!-- affichage logo -->
-	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexergue,50}})]
+	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexerguemotcle,50}})]
 <!-- affichage surtitre -->
-	[(#CONFIG{escal/config/surtitreune}|=={non}|non)
+	[(#CONFIG{escal/config/surtitreunemotcle}|=={non}|non)
 		<div class="surtitre-article #EDIT{surtitre}">[(#SURTITRE)]</div>
 	]
 <!-- affichage titre -->
@@ -21,11 +21,11 @@
 		</a>
 	</div>
 <!-- affichage soustitre -->
-	[(#CONFIG{escal/config/soustitreune}|=={non}|non)
+	[(#CONFIG{escal/config/soustitreunemotcle}|=={non}|non)
 		<div class="soustitre-article #EDIT{texte}">[(#SOUSTITRE)]</div>
 	]        
 <!-- affichage auteur -->
-	<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurune}|=={non}|non}>
+	<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurunemotcle}|=={non}|non}>
 	</BOUCLE_test>
 		<div class="auteur-articles-rubrique">
 			[(#LANG|=={ja}|non)<:par_auteur:>]
@@ -36,45 +36,45 @@
 		</div>
       </B_test>
 <!-- affichage date de publication -->
-	[(#CONFIG{escal/config/datepubune}|=={non}|non)
+	[(#CONFIG{escal/config/datepubunemotcle}|=={non}|non)
 		<div class="auteur-articles-rubrique">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
 	]
 <!-- affichage date derniere modification -->
-	[(#CONFIG{escal/config/datemodifune}|=={non}|non)
+	[(#CONFIG{escal/config/datemodifunemotcle}|=={non}|non)
 		<div class="auteur-articles-rubrique">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div> 
 	]        
 <!-- affichage rubrique -->
-	<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueune}|=={non}|non}>
+	<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueunemotcle}|=={non}|non}>
 		<div class="rubrique #EDIT{titre}">
 			<:rubrique:> : [(#TITRE)]
 		</div>
 	</BOUCLE_Rub>
 <!-- affichage descriptif -->
-	[(#CONFIG{escal/config/descriptifune}|=={non}|non)
+	[(#CONFIG{escal/config/descriptifunemotcle}|=={non}|non)
 		<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
 	]
 <!-- affichage chapeau -->
-	[(#CONFIG{escal/config/chapeauune}|=={non}|non)
+	[(#CONFIG{escal/config/chapeauunemotcle}|=={non}|non)
 		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
 	]
 <!-- affichage premiere image -->
 	<div class="image-une" >
-		<BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageune}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{titre==^[0-9]+\.}{par num titre}>
+		<BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageunemotcle}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{titre==^[0-9]+\.}{par num titre}>
 			<img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
 		</BOUCLE_image>
-		<BOUCLE_image_alt(DOCUMENTS){si #CONFIG{escal/config/imageune}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}>
+		<BOUCLE_image_alt(DOCUMENTS){si #CONFIG{escal/config/imageunemotcle}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}>
 			<img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
 		</BOUCLE_image_alt>
 		<//B_image>
 	</div>
 <!-- affichage texte -->
-	[(#CONFIG{escal/config/texteune}|=={non}|non)
+	[(#CONFIG{escal/config/texteunemotcle}|=={non}|non)
 		<div class="texte #EDIT{texte}">
 			[(#PLUGIN{COUTEAU_SUISSE}|non)
-				[(#TEXTE|couper{#CONFIG{escal/config/tailletexteune,300}}|propre)]
+				[(#TEXTE|couper{#CONFIG{escal/config/tailletexteunemotcle,300}}|propre)]
 			]
 			[(#PLUGIN{COUTEAU_SUISSE}|oui)
-				[(#TEXTE*|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}|couper{#CONFIG{escal/config/tailletexteune,300}}|propre)]
+				[(#TEXTE*|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}|couper{#CONFIG{escal/config/tailletexteunemotcle,300}}|propre)]
 			]
 		</div>
 	]
@@ -84,8 +84,8 @@
 	<div class="suite">
 		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 			<strong>
-				[(#CONFIG{escal/config/texteune}|=={non}|non)<:escal:lire_suite:>]
-				[(#CONFIG{escal/config/texteune}|=={non}|oui)<:escal:lire_article:>]
+				[(#CONFIG{escal/config/texteunemotcle}|=={non}|non)<:escal:lire_suite:>]
+				[(#CONFIG{escal/config/texteunemotcle}|=={non}|oui)<:escal:lire_article:>]
 			</strong>
 		</a>
 	</div>
@@ -96,28 +96,28 @@
 <B_articles_une>
 	#ANCRE_PAGINATION  
 	<div class="derniers-art-ter">
-	<ul class="anchors">
+	<ul class="anchors motcle">
 	<BOUCLE_articles_une(ARTICLES){lang}{doublons}
 		{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
-		{tri #CONFIG{escal/config/ordrealaune,date}, inverse}
-		{0,#CONFIG{escal/config/nombrearticlesune,50}|moins{1}}
-		{pagination #CONFIG{escal/config/paginarticlesune,5}}>
+		{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}
+		{0,#CONFIG{escal/config/nombrearticlesunemotcle,50}|moins{1}}
+		{pagination #CONFIG{escal/config/paginarticlesunemotcle,5}}>
 	<li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
 	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 
 <!-- affichage logo -->
-      [(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexergue,40}})]
+      [(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartunemotcle,40}})]
 <!-- affichage titre -->
-			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitre,27}})]</span><br />
+			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitremotcle,27}})]</span><br />
 <!-- affichage date de publication ou de derniere modification -->
-      [(#CONFIG{escal/config/dateuneautres}|=={non}|non)
+      [(#CONFIG{escal/config/dateuneautresmotcle}|=={non}|non)
       <span class="rubrique-autres">
       [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[(#DATE_MODIF|affdate)],[(#DATE|affdate)]})]
       <br />
       </span> 
       ]
 <!-- affichage auteur -->
-      <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautres}|=={non}|non}>
+      <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautresmotcle}|=={non}|non}>
       </BOUCLE_testauteur>
         <span class="rubrique-autres">
           [(#LANG|=={ja}|non)<:par_auteur:>]
@@ -127,7 +127,7 @@
         </span>
       </B_testauteur>
 <!-- affichage rubrique -->
-			<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubrique}|=={non}|non}>
+			<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubriquemotcle}|=={non}|non}>
 			 <span class="rubrique-autres">
 			 <:rubrique:> : [(#TITRE|couper{30})]
 			 </span>
@@ -135,31 +135,31 @@
 			<br /><br />
 		<div class="nettoyeur"></div>
 <!-- affichage descriptif -->
-			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptif}|=={oui}|oui}>
+			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptifmotcle}|=={oui}|oui}>
 			 [<div class="descriptif-autres">
 			 (#DESCRIPTIF)
 			 </div>]
 			</BOUCLE_descriptif_art>
 			<br />			
 <!-- affichage texte article -->
-			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersart}|=={oui}|oui}>
+			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersartmotcle}|=={oui}|oui}>
 			     <div class="texte-autres">
 					[(#PLUGIN{COUTEAU_SUISSE}|oui)
 						[(#TEXTE*
 							|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
-							|couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+							|couper{#CONFIG{escal/config/nbrecaracttextemotcle,150}}
 					)]
 					]
 					[(#PLUGIN{COUTEAU_SUISSE}|non)
 						[(#TEXTE
-							|couper{#CONFIG{escal/config/nbrecaracttexte,150}}
+							|couper{#CONFIG{escal/config/nbrecaracttextemotcle,150}}
 						)]
 					]      
 			     </div>
 			</BOUCLE_texteart>
 			<br />
 <!-- affichage nombre de commentaires -->
-			<BOUCLE_comment(FORUMS){id_article}{0,1}{si #CONFIG{escal/config/affichcomm}|=={oui}|oui}>
+			<BOUCLE_comment(FORUMS){id_article}{0,1}{si #CONFIG{escal/config/affichcommmotcle}|=={oui}|oui}>
       			<BOUCLE_nbre_comm(FORUMS){id_article}{tout}>
 				</BOUCLE_nbre_comm>
 					<span class="commentaires">
@@ -173,7 +173,7 @@
 	</ul>
 	</div>
 	<div class="nettoyeur"></div>
-	[<p class="pagination pagination-une">(#PAGINATION{#CONFIG{escal/config/modelepaginarticlesune}})</p>
+	[<p class="pagination pagination-une">(#PAGINATION{#CONFIG{escal/config/modelepaginarticlesunemotcle}})</p>
 	<div class="nettoyeur"></div>]  
 </B_articles_une>
 
