@@ -383,7 +383,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="Guarda la documentazione">In primo piano</a>',
 	'doc_une2' => ' : Un contenitore con le schede degli ultimi articoli, la mappa del sito, la sezione, le sezioni di un argomento ecc...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="Guarda la documentazione">Video</a>',
-	'doc_videos2' => ': visualizza i video in formato .flv o .mp4 degli articoli con parola chiave "video-une".',
+	'doc_videos2' => ': visualizza i video in formato .flv o .mp4 degli articoli con parola chiave "video-une".', # MODIF
 	'documentation' => 'Documentazione',
 	'documentation_voir' => 'Guarda la documentazione',
 	'droite' => 'A destra',

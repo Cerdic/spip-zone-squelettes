@@ -403,7 +403,7 @@ an image (example: url("squelette/images/mon_image.jpg") ',
 	'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="To see the documentation">In the spotlight</a>',
 	'doc_une2' => ' : A box with tabs for the last articles of the website, the site map, an article, the articles of a section...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="To see the documentation">Videos</a>',
-	'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-une".',
+	'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-une".', # MODIF
 	'documentation' => 'Documentation',
 	'documentation_voir' => 'To see the documentation',
 	'droite' => 'On the right',
