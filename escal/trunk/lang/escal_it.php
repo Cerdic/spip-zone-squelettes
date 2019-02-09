@@ -85,7 +85,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_libre5' => 'Articolo libero 5',
 	'article_licence' => 'Licenza',
 	'article_mise_en_ligne' => 'Articolo pubblicato online il',
-	'article_modifie' => 'Ultima modifica il',
+	'article_modifie' => 'Ultima modifica il', # MODIF
 	'article_trouve' => 'articolo trovato',
 	'article_une' => 'Mettere in prima pagina questo articolo',
 	'articlepdf_afficher' => 'Mostra l’icona:',
@@ -760,7 +760,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_derniers_arts3' => 'Ultimi articoli ter',
 	'onglets_derniers_arts_explication1' => 'Questi possono essere visualizzati in 3 modi:',
 	'onglets_derniers_arts_explication2' => 'Guarda la documentazione per ulteriori dettagli.<br /><br />
-			Il titolo della scheda sarà "Ultime notizie", a meno che non gli venga dato un titolo diverso qui sotto:',
+			Il titolo della scheda sarà "Ultime notizie", a meno che non gli venga dato un titolo diverso qui sotto:', # MODIF
 	'onglets_derniers_ter_mot' => 'Notizie principali di "Ultimi articoli", "Ultimi articoli ter" e "Articoli con parola chiave"',
 	'onglets_derniers_ter_mot_hauteur' => 'Altezza del riquadro in pixel <br />(da adattare in base alle scelte precedenti)',
 	'onglets_deux' => 'Seconda scheda',
@@ -967,6 +967,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'In primo piano',
 	'une_bloc' => 'Il blocco "In primo piano"',
+	'une_derniers' => 'Ultimi articoli',
+	'une_derniers_bis' => 'Ultimi articoli bis',
+	'une_derniers_ter' => 'Ultimi articoli ter',
 
 	// V
 	'video' => 'Vídeo',

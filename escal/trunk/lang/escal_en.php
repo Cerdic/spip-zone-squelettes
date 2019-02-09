@@ -94,7 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_libre5' => 'Free article 5',
 	'article_licence' => 'License',
 	'article_mise_en_ligne' => 'Article published on',
-	'article_modifie' => 'last modification on',
+	'article_modifie' => 'last modification on', # MODIF
 	'article_trouve' => 'article found',
 	'article_une' => 'Put this article on the front page',
 	'articlepdf_afficher' => 'To display the icon in the sections',
@@ -789,7 +789,7 @@ an image (example: url("squelette/images/mon_image.jpg") ',
 	'onglets_derniers_arts3' => 'Last articles ter',
 	'onglets_derniers_arts_explication1' => 'They can be displayed in 3 possible ways:',
 	'onglets_derniers_arts_explication2' => ' See the documentation for more details.<br /><br />
-			The title of this tab will be "The last articles" unless you give it another title below.',
+			The title of this tab will be "The last articles" unless you give it another title below.', # MODIF
 	'onglets_derniers_ter_mot' => 'Front page articles from "Last articles", "Last articles ter" and "Articles with keyword"',
 	'onglets_derniers_ter_mot_hauteur' => 'Height of the frames in px <br />(to be adapted according to your previous choices)',
 	'onglets_deux' => 'Second tab',
@@ -999,6 +999,9 @@ an image (example: url("squelette/images/mon_image.jpg") ',
 	// U
 	'une' => 'Front page',
 	'une_bloc' => 'The "front page" block',
+	'une_derniers' => 'Last articles',
+	'une_derniers_bis' => 'Last articles bis',
+	'une_derniers_ter' => 'Last articles ter',
 
 	// V
 	'version' => 'Current version:',
