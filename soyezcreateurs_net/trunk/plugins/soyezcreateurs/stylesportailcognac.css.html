@@ -798,9 +798,14 @@ img.editologo {
   -webkit-transition: all .25s ease;
   transition: all .25s ease;
   background-color: #eae9e5;
+  color: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];
   float: left;
   margin-right: 20px;
 }
+.grid-item a {
+  color: inherit;
+}
+
 .grid-item .content-actus:hover,
 .grid-item .content-actus:focus {
   /* Si le fond est clair, on va le prendre comme couleur de fond, sinon, la couleur d'écriture Texte : #GET{c_header}([(#GET{c_header}|couleur_extreme)])/ Fond : #GET{c_header_bk}([(#GET{c_header_bk}|couleur_extreme)]) */
@@ -840,7 +845,7 @@ img.editologo {
   margin: 0;
   font-size: 21px;
   font-weight: 400;
-  color: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];
+  color: inherit;
   line-height: 21px;
   padding: 10px;
   text-align: right;
@@ -1083,6 +1088,16 @@ LC: #GET{LargeurContaineur}
 #pratique {
   margin-bottom: 4em;
 }
+
+<BOUCLE_CouleursRubriques(MOTS){type=_CouleurRubrique}{par id_mot}>
+.grid-item .couleurrubrique#ID_MOT,
+#projets .couleurrubrique#ID_MOT { [background-color: #(#TEXTE|textebrut);][ color: #(#TEXTE|textebrut|couleur_extreme|inverser);] }
+.grid-item .couleurrubrique#ID_MOT:hover,
+.grid-item .couleurrubrique#ID_MOT:focus,
+#projets .couleurrubrique#ID_MOT:hover,
+#projets .couleurrubrique#ID_MOT:focus  { [background-color: #(#TEXTE|textebrut|couleur_eclaircir);] }
+</BOUCLE_CouleursRubriques>
+
 
 [(#PLUGIN{lesscss}|oui)
 	[(#CHEMIN{images/stylesportailcognac_perso.less.html}|?{'/* Surcharge eventuelle */'})
