@@ -51,7 +51,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$maj['3.1.59'] = array( array('soyezcreateurs_3_1_59') );
 	$maj['3.1.62'] = array( 
 		array('soyezcreateurs_3_1_61'),
-		array('soyezcreateurs_3_1_62'),
+		array('soyezcreateurs_3_1_62')
+	);
+	$maj['3.1.63'] = array( 
+		array('soyezcreateurs_3_1_63')
+	);
+	$maj['3.1.64'] = array( 
+		array('soyezcreateurs_3_1_64'),
 		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */
 	);
 		
@@ -311,6 +317,23 @@ function soyezcreateurs_3_1_62() {
 	$id_groupe_dest = id_groupe('_Specialisation_Rubrique_ou_Article');
 	remplacer_mot($id_mot, 'MenuFooter', 'Affecter ce mot clef aux articles et rubriques devant être affichés dans le menu de pied de page.', "Les liens vers les articles seront faits triés par numéro de titre. Puis les rubriques par numéro de titre aussi.\n\nIl est bien sûr possible de faire des articles de redirection…", $id_groupe_dest, '_Specialisation_Rubrique_ou_Article');
 }
+
+function soyezcreateurs_3_1_63() {
+	$id_mot = create_mot("_Specialisation_Rubrique", "BandeauPartenaires", "Mettre ce mot clef à la rubrique destinée à contenir les liens vers les partenaires à afficher dans le pied de page", "Mettre dans la rubrique des sites référencés avec Nom du site, descriptif, Logo, URL (RSS si vous voulez).");
+	$id_parent = id_rubrique('000. Fourre-tout');
+	if (!$id_parent > 0) {
+		$id_parent = id_rubrique('000. Contenus transversaux');
+	}
+	if ($id_parent > 0) {
+		$id_rubrique = create_rubrique("40. Partenaires", $id_parent, "Mettre dans cette rubrique les sites des partenaires");
+			create_rubrique_mot("40. Partenaires", "BandeauPartenaires", "_Specialisation_Rubrique");
+	}
+}
+
+function soyezcreateurs_3_1_64() {
+	ecrire_config('bigup/max_file_size','64');
+}
+
 
 function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
