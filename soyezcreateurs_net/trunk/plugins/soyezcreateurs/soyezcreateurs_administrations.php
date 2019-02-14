@@ -58,6 +58,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	);
 	$maj['3.1.64'] = array( 
 		array('soyezcreateurs_3_1_64'),
+	);
+	$maj['3.1.65'] = array( 
+		array('soyezcreateurs_3_1_65'),
 		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */
 	);
 		
@@ -334,6 +337,11 @@ function soyezcreateurs_3_1_64() {
 	ecrire_config('bigup/max_file_size','64');
 }
 
+function soyezcreateurs_3_1_65() {
+	ecrire_config('orthotypo/caps','0');
+	ecrire_config('orthotypo/fines','0');
+	ecrire_config('orthotypo/corrections','1');
+}
 
 function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
