@@ -1,0 +1,64 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+
+	<header class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="#EDIT{titre}">#TITRE</h1>
+	</header>
+
+	<div class="main clear">
+		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+
+		[(#REM) Affiche un plan de la rubrique ]
+		<B_sous_rubriques>
+		<div class="liste menu rubriques">
+			<h2 class="h2"><:sous_rubriques:></h2>
+			<ul class="menu-items menu-liste inline">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li class="item menu-entree span2" >
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</div>
+		</B_sous_rubriques>
+		
+		<B_articles_selection>
+		<div class="liste dossiers">
+		<h2 class="h2 hide"><:spipr_dane:sommaire:></h2>
+				<BOUCLE_articles_selection(ARTICLES pb_selection){par ordre}{spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{0,1}>
+				#SET{sommaire,#ID_ARTICLE}
+				<article class="entry hentry cartouche">
+					[(#LOGO_ARTICLE|image_reduire{200})]
+					[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+					<h1><span class="#EDIT{titre}">#TITRE</span>[
+						<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
+					]</h1>
+					<div class="main">
+						[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|adaptive_images)</div>]
+						[<div class="#EDIT{texte} texte surlignable">(#TEXTE|adaptive_images)</div>]
+					</div>
+				</article>
+				</BOUCLE_articles_selection>
+		</div>
+		</B_articles_selection>		
+		
+		[(#REM) Articles du secteur ]
+		<div class="liste articles articles-dossier clear offset">
+			<INCLURE{fond=liste/articles-dossier,nb=20,env,article_exclu=#GET{sommaire},ajax,titre=<:spipr_dane:contenu_dossier:>} />
+		</div>
+		
+	</div>
+
+	<aside>
+		[(#REM) Gestion du portfolio et des documents ]
+		[(#INCLURE{fond=inclure/documents,id_rubrique})]
+	</aside>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+		[<p class="publication"><time datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt)</time></p>]
+	</footer>
+
+</section>
+</BOUCLE_content>

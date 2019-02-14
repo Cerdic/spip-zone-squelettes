@@ -1,0 +1,61 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+
+	<header class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="#EDIT{titre}">#TITRE</h1>
+	</header>
+
+	<div class="main clear">
+		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+
+		<div class="liste selection span8 offset">
+			<INCLURE{fond=inclure/selection-carousel,id_rubrique,nb=5}>
+		</div>
+		
+		#SET{avec_rubriques,0}
+		[(#REM) Affiche un plan de la rubrique ]
+		<B_sous_rubriques>
+		#SET{avec_rubriques,1}
+		<div class="liste rubriques span3 offset clear">
+			<h2 class="h2"><:sous_rubriques:></h2>
+			<ul class="liste-items">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li class="item" >
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</div>
+		</B_sous_rubriques>
+		
+		#SET{avec_articles,0}
+		
+		[(#REM) Articles du secteur ]
+		<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+		#SET{avec_articles,1}
+		<div class="liste articles[ (#GET{avec_rubriques}|=={1}|?{'span5','offset clear'})]">
+			<INCLURE{fond=liste/articles-resume,env,nb=10,coupe=180,ajax,titre=<:spipr_dane:articles_rubrique:>} />
+		</div>
+		</BOUCLE_articles>
+		
+	</div>
+
+	<aside class="clear">
+		[(#REM) Gestion du portfolio et des documents ]
+		[(#INCLURE{fond=inclure/documents,id_rubrique})]
+
+		[(#REM) Sites de la rubrique ]
+		<div class="liste sites clear">
+			<INCLURE{fond=liste/sites-resume,nb=12,env,largeur_logo=180,hauteur_logo=120,titre=<:spipr_dane:sur_web:>,ajax}>
+		</div>
+
+	</aside>
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+		[<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</time></p>]
+	</footer>
+
+</section>
+</BOUCLE_content>

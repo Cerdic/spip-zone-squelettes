@@ -1,0 +1,45 @@
+<BOUCLE_content(ARTICLES){id_article}>
+<article>
+	<header class="cartouche">
+		[(#LOGO_ARTICLE|image_reduire{200,200})]
+		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+		<h1><span class="#EDIT{titre}">#TITRE</span>[
+			<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
+		]</h1>
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|adaptive_images)</div>]
+		[<div class="#EDIT{texte} texte surlignable">(#TEXTE|adaptive_images)</div>]
+
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div>
+
+	<footer>
+		[<div class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|adaptive_images)</div>]
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
+
+	<aside>
+		[(#REM) Gestion du portfolio et des documents ]
+		[(#INCLURE{fond=inclure/documents,id_article})]
+		
+		[(#PLUGIN{agenda}|oui)<INCLURE{fond=inclure/agenda-evenements-article,env} />]
+		
+		<div class="liste pagination_precedent_suivant">
+			<ul class="liste-items inline">
+				<BOUCLE_article_precedent(ARTICLES pb_selection){id_rubrique}{!spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{par num titre,titre}{precedent}>
+				<li class="item span4 precedent offset"><a href="#URL_ARTICLE"><span class="normal">Page précédente</span> <span class="big">#TITRE</span></a></li>
+				</BOUCLE_article_precedent>
+			 
+				<BOUCLE_article_suivant(ARTICLES pb_selection){id_rubrique}{!spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{par num titre,titre}{suivant}>
+				<li class="item span4 right suivant"><a href="#URL_ARTICLE"><span class="normal">Page suivante</span> <span class="big">#TITRE</span></a></li>
+				</BOUCLE_article_suivant>
+			</ul>
+		</div>
+		<br class="clear"/>
+		
+	</aside>
+
+</article>
+</BOUCLE_content>
