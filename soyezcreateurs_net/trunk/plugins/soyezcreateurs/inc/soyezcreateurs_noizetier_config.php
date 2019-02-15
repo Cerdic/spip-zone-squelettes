@@ -34,6 +34,11 @@ function sc_noisettespardefaut() {
 }
 
 function sc_noizetier_vidercache() {
+	// Supprime la meta du plugin Cache Factory de façon à mettre à jour la configuration des
+	// plugins utilisateur si besoin.
+	include_spip('inc/cache');
+	cache_effacer_configuration();
+	
 	// On recharge les pages du noiZetier dont la liste ou l'activité a pu changer. Inutile de forcer un
 	// rechargement complet.
 	include_spip('inc/noizetier_page');
