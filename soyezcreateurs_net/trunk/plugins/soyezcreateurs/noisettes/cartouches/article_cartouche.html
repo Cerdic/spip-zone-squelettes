@@ -28,13 +28,12 @@
 [[(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints,id_article,cartouche=_cartouche})]
 ]
 
-<BOUCLE_MotsExclus1(MOTS){type==^_}{doublons 1}> </BOUCLE_MotsExclus1>
 <B_MotsClefsArticle>
 [(#GET{div_artrecents}|non)<div id="artrecents"[ class="(#ENV{classe})"]>[(#SET{div_artrecents,1})]]
 <h2><:mots_clefs:></h2>
 <ul>
-<BOUCLE_MotsClefsArticle(MOTS){id_article}{doublons 1}>
-<li class="[(#COMPTEUR_BOUCLE|alterner{'odd',''})]"><BOUCLE_PluginsMotsArborescents(CONDITION){si #PLUGIN{motsar}}><BOUCLE_MotsArborescents(HIERARCHIE_MOTS){id_mot}><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a> / </BOUCLE_MotsArborescents></BOUCLE_PluginsMotsArborescents><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a></li>
+<BOUCLE_MotsClefsArticle(MOTS){id_article}{type==^[^_]}>
+<li class="[(#COMPTEUR_BOUCLE|alterner{'odd',''})]"><BOUCLE_PluginsMotsArborescents(CONDITION){si #PLUGIN{motsar}}><BOUCLE_MotsArborescents(HIERARCHIE_MOTS){id_mot}><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a> &gt; </BOUCLE_MotsArborescents></BOUCLE_PluginsMotsArborescents><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a></li>
 </BOUCLE_MotsClefsArticle>
 </ul>
 <BOUCLE_EstDansUnMenuHaut(RUBRIQUES){id_rubrique}{titre_mot=MenuHaut}>
