@@ -131,17 +131,35 @@
 	<div id="letexte">
 
 <BOUCLE_groupes(GROUPES_MOTS){par titre}{titre==(#ENV{filtremot,'^[^_]'})}>
-<h2 style="clear:both;"><a href="[(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})]">[(#TITRE)]</a></h2>
+<h2 class="#EDIT{titre}"><a href="[(#URL_PAGE{mot}|parametre_url{id_groupe,#ID_GROUPE})]">[(#TITRE)]</a></h2>
 
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
 [<div class="#EDIT{texte}">(#TEXTE)</div>]
 
+<BOUCLE_PluginsMotsArborescents(CONDITION){si #PLUGIN{motsar}}>
+<BOUCLE_motsracine(MOTS){id_groupe}{racine}{par titre}>
+<h3 class="#EDIT{titre}"><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h3>
+[<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+	<B_enfants>
+	<ul class="spip">
+	<BOUCLE_enfants(MOTS){id_parent}{par num titre, titre}>
+		<li><span class="#EDIT{titre}">#TITRE</span>[<br />
+		<span class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</span>][<br />
+		<span class="#EDIT{texte}">(#TEXTE)</span>]
+		<BOUCLE_recursif(BOUCLE_enfants) />
+		</li>
+	</BOUCLE_enfants>
+	</ul>
+	</B_enfants>
+</BOUCLE_motsracine>
+</BOUCLE_PluginsMotsArborescents>
 <BOUCLE_mots(MOTS){id_groupe}{par titre}>
 <h3><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h3>
 [<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
 [<div class="#EDIT{texte}">(#TEXTE)</div>]
 </BOUCLE_mots>
-</B_mots>
+<//B_PluginsMotsArborescents>
 
 </BOUCLE_groupes>
 	</div><!-- Fin de #LeTexte -->
