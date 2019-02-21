@@ -21,6 +21,29 @@
 				</div>
 			</div>
 			</BOUCLE_articles_recentsAlaUne>
+			<BOUCLE_Breves(BREVES){!par date}{age<120}{lang}>
+			[(#SET{logo,[(#LOGO_BREVE_SURVOL|sinon{#LOGO_BREVE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#FORMATQUOI2NEUF|non)
+			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
+			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
+			[(#SET{ratio,[(#GET{largeur}|div{#GET{hauteur}})]})]
+			#SET{facteur,''}#SET{largeur,308}
+			[(#GET{ratio}|>{1.8764}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#GET{ratio}|>{2.8088}|?{#SET{facteur,3}#SET{largeur,969}})]
+			]
+			[(#FORMATQUOI2NEUF|=={1}|?{#SET{facteur,''}#SET{largeur,308}})]
+			[(#FORMATQUOI2NEUF|=={2}|?{#SET{facteur,2}#SET{largeur,638}})]
+			[(#FORMATQUOI2NEUF|=={3}|?{#SET{facteur,3}#SET{largeur,969}})]
+			<div class="grid-item[ grid-item-x(#GET{facteur})]">
+				<div class="content-actus alaune #EDIT{titre}<BOUCLE_RubriqueColoreeBreve(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueBreve(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriqueBreve></BOUCLE_RubriqueColoreeBreve>">
+					<a href="#URL_BREVE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						<div class="h2"><span class="titre-actus">#TITRE</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+					</a>
+				</div>
+			</div>
+			</BOUCLE_Breves>
 			<B_AgendaDerniersAjouts>
 			<div class="grid-item[ (#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1demie}|?{grid-item-demie})]">
 			<BOUCLE_AgendaDerniersAjouts(EVENEMENTS)
