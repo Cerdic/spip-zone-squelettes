@@ -3,6 +3,7 @@
 	{title=(#CONFIG{soyezcreateurs/texte_actualite_toutes}|sinon{<:soyezcreateurs:actualite_toutes:>}|texte_script)}
 	{titretop=#GET{titretop}}
 	{type=antichrono}
+	{idbody=antichrono}
 >
 <div class="texte">
 <main id="main" role="main">
@@ -51,6 +52,23 @@
 	</B_MoisBreves>
 	</BOUCLE_AnneeBreves>
 </B_AnneeBreves>
+
+<B_AnneeSites>
+	<BOUCLE_AnneeSites(SITES){!par date}{fusion YEAR(date)}>
+	<B_MoisSites>
+		<BOUCLE_MoisSites(SITES){annee_relatif=0}
+		{!par date}
+		{fusion MONTH(date)}>
+		<B_SitesDuMois>
+			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
+			{!par date}>
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites}}}
+			</BOUCLE_SitesDuMois>
+		</B_SitesDuMois>
+		</BOUCLE_MoisSites>
+	</B_MoisSites>
+	</BOUCLE_AnneeSites>
+</B_AnneeSites>
 
 <B_AnneeObjet>
 	<BOUCLE_AnneeObjet(DATA)
