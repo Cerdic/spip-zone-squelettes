@@ -27,7 +27,7 @@
 		<B_ArticlesDuMois>
 			<BOUCLE_ArticlesDuMois(ARTICLES){doublons articles}{mois_relatif=0}
 			{!par date}{lang}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,''}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,'',type,''}}}
 			</BOUCLE_ArticlesDuMois>
 		</B_ArticlesDuMois>
 		</BOUCLE_Mois>
@@ -35,6 +35,7 @@
 	</BOUCLE_Annee>
 </B_Annee>
 
+[(#SET{breve,<:breves:breve|lcfirst:>})]
 <B_AnneeBreves>
 	<BOUCLE_AnneeBreves(BREVES){!par date}{doublons brevesannees}{fusion YEAR(date_heure)}{lang}>
 	<B_MoisBreves>
@@ -45,7 +46,7 @@
 		<B_BrevesDuMois>
 			<BOUCLE_BrevesDuMois(BREVES){doublons breves}{mois_relatif=0}
 			{!par date}{lang}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves,type,#GET{breve}}}}
 			</BOUCLE_BrevesDuMois>
 		</B_BrevesDuMois>
 		</BOUCLE_MoisBreves>
@@ -53,6 +54,7 @@
 	</BOUCLE_AnneeBreves>
 </B_AnneeBreves>
 
+[(#SET{site,<:sites:site:>})]
 <B_AnneeSites>
 	<BOUCLE_AnneeSites(SITES){!par date}{fusion YEAR(date)}>
 	<B_MoisSites>
@@ -62,7 +64,7 @@
 		<B_SitesDuMois>
 			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
 			{!par date}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites,type,#GET{site}}}}
 			</BOUCLE_SitesDuMois>
 		</B_SitesDuMois>
 		</BOUCLE_MoisSites>
@@ -90,7 +92,7 @@
 				{month=#_ListeMois:VALEUR}
 				{!par date}
 			>
-			<li[ class="(#CLASS)"]>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+			<li[ class="(#CLASS)"]>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>[ <span class="secondary-information">((#TYPE))</span>]</li>
 			</BOUCLE_ObjetsDuMois>
 		</ul>
 		</B_ObjetsDuMois>
