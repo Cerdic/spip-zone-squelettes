@@ -1,14 +1,34 @@
 <BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
 <!-- Autres mots-clefs du meme groupe -->
 <div id="artrecents"[ class="(#ENV{classe})"]>
-<h2 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h2>
+<h2 class="#EDIT{titre}" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)] <span class="secondary-information">(<:mots_clefs_meme_groupe:>)</span></h2>
+<BOUCLE_PluginsMotsArborescents(CONDITION){si #PLUGIN{motsar}}>
+<B_MotsArboduGroupe>
+<ul>
+<BOUCLE_MotsArboduGroupe(MOTS) {id_groupe} {racine} {par num titre, titre}>
+	<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_MOT|!={#ENV{id_mot}}|?{<a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]
+	<B_Enfants>
+	<ul>
+	<BOUCLE_Enfants(MOTS) {id_parent}  {par num titre, titre}>
+		<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_MOT|!={#ENV{id_mot}}|?{<a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]
+		<BOUCLE_recursifgroupe(BOUCLE_Enfants) />
+		</li>
+	</BOUCLE_Enfants>
+	</ul>
+	</B_Enfants>
+	</li>
+</BOUCLE_MotsArboduGroupe>
+</ul>
+</B_MotsArboduGroupe>
+</BOUCLE_PluginsMotsArborescents>
 <B_MotsduGroupe>
 <ul>
-<BOUCLE_MotsduGroupe(MOTS) {id_groupe}{par num titre}>
-	<li>[(#ID_MOT|!={#ENV{id_mot}}|?{<a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]</li>
+<BOUCLE_MotsduGroupe(MOTS) {id_groupe}{par num titre, titre}>
+	<li class="#EDIT{titre}[ (#COMPTEUR_BOUCLE|alterner{'odd',''})]">[(#ID_MOT|!={#ENV{id_mot}}|?{<a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]</li>
 </BOUCLE_MotsduGroupe>
 </ul>
 </B_MotsduGroupe>
+<//B_PluginsMotsArborescents>
 </div>
 </BOUCLE_groupe>
 #FILTRE{mini_html}
