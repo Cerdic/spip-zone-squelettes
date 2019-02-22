@@ -27,7 +27,7 @@
 		<B_ArticlesDuMois>
 			<BOUCLE_ArticlesDuMois(ARTICLES){doublons articles}{mois_relatif=0}
 			{!par date}{lang}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,''}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,''}}}
 			</BOUCLE_ArticlesDuMois>
 		</B_ArticlesDuMois>
 		</BOUCLE_Mois>
@@ -45,7 +45,7 @@
 		<B_BrevesDuMois>
 			<BOUCLE_BrevesDuMois(BREVES){doublons breves}{mois_relatif=0}
 			{!par date}{lang}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves}}}
 			</BOUCLE_BrevesDuMois>
 		</B_BrevesDuMois>
 		</BOUCLE_MoisBreves>
@@ -62,7 +62,7 @@
 		<B_SitesDuMois>
 			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
 			{!par date}>
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites}}}
 			</BOUCLE_SitesDuMois>
 		</B_SitesDuMois>
 		</BOUCLE_MoisSites>
@@ -76,32 +76,28 @@
 		{!par date}
 		{fusion year}
 	>
-	<B_MoisObjet>
+	<B_ListeMois>
 	<h2>[(#YEAR)]</h2>
-		<BOUCLE_MoisObjet(DATA)
-			{source table,#GET{listeliens}}
-			{year=#YEAR}
-			{!par date}
-			{fusion lemois}
+		<BOUCLE_ListeMois(DATA)
+			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
 		>
 		<B_ObjetsDuMois>
 		<h3>[(#LEMOIS|ucfirst)]</h3>
 		<ul class="spip">
 			<BOUCLE_ObjetsDuMois(DATA)
 				{source table,#GET{listeliens}}
-				{year=#YEAR}
-				{lemois=#LEMOIS}
-				{!par date}
+				{year=#_AnneeObjet:YEAR}
+				{month=#_ListeMois:VALEUR}
+				
 			>
 			<li[ class="(#CLASS)"]>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 			</BOUCLE_ObjetsDuMois>
 		</ul>
 		</B_ObjetsDuMois>
-		</BOUCLE_MoisObjet>
-	</B_MoisObjet>
+		</BOUCLE_ListeMois>
+	</B_ListeMois>
 	</BOUCLE_AnneeObjet>
 </B_AnneeObjet>
-
 
 </div>
 </main>
