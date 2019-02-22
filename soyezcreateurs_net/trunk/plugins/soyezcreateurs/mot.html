@@ -104,11 +104,31 @@
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
 [<div class="#EDIT{texte}">(#TEXTE)</div>]
 
+<BOUCLE_PluginsMotsArborescentsGroupe(CONDITION){si #PLUGIN{motsar}}>
+<BOUCLE_motsdugroupeseulracine(MOTS){id_groupe}{racine}{par titre}>
+<h2><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+[<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+	<B_enfantsgroupe>
+	<ul class="spip">
+	<BOUCLE_enfantsgroupe(MOTS){id_parent}{par num titre, titre}>
+		<li><span class="#EDIT{titre}">#TITRE</span>[<br />
+		<span class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</span>][<br />
+		<span class="#EDIT{texte}">(#TEXTE)</span>]
+		<BOUCLE_recursifgroupe(BOUCLE_enfantsgroupe) />
+		</li>
+	</BOUCLE_enfantsgroupe>
+	</ul>
+	</B_enfantsgroupe>
+
+</BOUCLE_motsdugroupeseulracine>
+</BOUCLE_PluginsMotsArborescentsGroupe>
 <BOUCLE_motsdugroupeseul(MOTS){id_groupe}{par titre}>
 <h2><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
 [<div class="#EDIT{descriptif} descriptif"><strong><:soyezcreateurs:descriptif:></strong>: (#DESCRIPTIF)</div>]
 [<div class="#EDIT{texte}">(#TEXTE)</div>]
 </BOUCLE_motsdugroupeseul>
+<//B_PluginsMotsArborescentsGroupe>
 	</div><!-- Fin de #LeTexte -->
 </main>
 </div><!-- Fin de .texte -->
