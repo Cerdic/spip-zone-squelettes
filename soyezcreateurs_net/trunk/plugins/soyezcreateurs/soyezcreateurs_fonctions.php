@@ -895,3 +895,9 @@ function sc_bandeau_contact() {
 	
 	return $texte;
 }
+
+if (!defined('_DIR_PLUGIN_MOTSAR')) {
+	function critere_branche_mot_dist($idb, &$boucles, $crit){
+		// Ne rien faire
+	}
+}
