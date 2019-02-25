@@ -34,14 +34,27 @@
 <B_RubriquesArticles>
 <!-- Articles de meme mot clef -->
 <h2><:articles:></h2>
-<BOUCLE_RubriquesArticles(RUBRIQUES){racine}><B_articles>
+<BOUCLE_RubriquesArticles(RUBRIQUES){racine}>
+	<BOUCLE_PluginsMotsArborescentsMots(CONDITION){si #PLUGIN{motsar}}>
+	<B_articlesarbo>
+	<h3 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h3>
+	<ul class="spip">
+	<BOUCLE_articlesarbo(ARTICLES) {branche_mot}{id_secteur}>
+		<li><a href="#ARTICLE_URL" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a><B_MotsAssociesMot> <span class="secondary-information">(<BOUCLE_MotsAssociesMot(MOTS){type==^[^_]}{id_article}{par titre}{" / "}><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a></BOUCLE_MotsAssociesMot>)</span></B_MotsAssociesMot></li>
+	</BOUCLE_articlesarbo>
+	</ul>	
+	</B_articlesarbo>
+	</BOUCLE_PluginsMotsArborescentsMots>
+	<B_articles>
 	<h3 [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h3>
 	<ul class="spip">
 	<BOUCLE_articles(ARTICLES) {id_mot}{id_secteur}>
-		<li><a href="#ARTICLE_URL" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+		<li><a href="#ARTICLE_URL" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a><B_MotsAssocies> <span class="secondary-information">(<BOUCLE_MotsAssocies(MOTS){type==^[^_]}{id_article}{par titre}{" / "}><a href="[(#PLUGIN{critere_mots}|?{[(#URL_PAGE{mots_filtres}|parametre_url{mots,#ARRAY{mots,#ID_MOT}})],#URL_MOT})]" rel="tag"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|sc_replace{'_',' '})]</a></BOUCLE_MotsAssocies>)</span></B_MotsAssocies></li>
 	</BOUCLE_articles>
 	</ul>	
-</B_articles></BOUCLE_RubriquesArticles>
+	</B_articles>
+	<//B_PluginsMotsArborescentsMots>
+</BOUCLE_RubriquesArticles>
 
 <!-- Rubriques liees au mot-cle -->
 <B_rubriques>
