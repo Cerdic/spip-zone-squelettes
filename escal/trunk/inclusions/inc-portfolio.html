@@ -18,8 +18,11 @@
 		                            #LOGO_DOCUMENT{#URL_DOCUMENT}
 		                        ]
 		                    </li>
-						<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</div></li>
-						<li>[(#TAILLE|taille_en_octets)] / [(#TYPE_DOCUMENT)]</li>
+						<li class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</li>
+						[(#CONFIG{escal/config/descriptifdoc}|=={oui}|oui)
+							[<li class="descriptif-doc">(#DESCRIPTIF|couper{#CONFIG{escal/config/descriptifdoccouper,300}})</li>]
+						]
+						<li class="taille-doc">[(#TAILLE|taille_en_octets)] / [(#TYPE_DOCUMENT)]</li>
 					</ul>
                 	</td>
 				[(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]

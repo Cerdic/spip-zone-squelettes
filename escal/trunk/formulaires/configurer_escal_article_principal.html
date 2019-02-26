@@ -11,7 +11,7 @@
 
 
      <ul>
-<legend><strong><:escal:annonces:></strong></legend>    
+<legend><strong><:escal:annonces:></strong></legend>
           <li class="editer [ (#GET{erreurs}|oui)erreur]">
             #SET{name,annonceart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
                     <div class="explication">
@@ -23,7 +23,7 @@
                                                
                             <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
                             [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:haut:></label>
-                            
+
                             <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
                             [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:bas:></label>
                     </span>
@@ -39,14 +39,14 @@
                                                
                             <input type="radio" name="#GET{name}" id="#GET{name}_haut" value="haut"
                             [(#ENV{#GET{name}}|=={haut}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:haut:></label>
-                            
+
                             <input type="radio" name="#GET{name}" id="#GET{name}_bas" value="bas"
                             [(#ENV{#GET{name}}|=={bas}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:bas:></label>
                     </span>
                     <div class="nettoyeur"></div>
                     </div>                                 
            </li>
-               
+
 <legend><strong><:escal:articles_les:></strong></legend>     
 <!-- Taille du logo -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
@@ -131,6 +131,7 @@
                     </span>                                    
             </div>
             </li>
+<!-- Réponses des forums d’articles --> 
 <legend><strong><:escal:articles_reponses_forum:></strong></legend>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
@@ -156,7 +157,7 @@
             <div class="nettoyeur"></div>
             </div>
             </li>
-            
+<!-- Portfolio -->           
 <legend><strong><:escal:portfolio:></strong></legend>
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
@@ -168,6 +169,23 @@
                             [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
                             <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
                             [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
+            #SET{name,descriptifdoc}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <span style="margin-left: 20px;"><:escal:articles_portfolio_descriptif:></span>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
+            #SET{name,descriptifdoccouper}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <span style="margin-left: 20px;"><:escal:texte_coupe:></span>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},300})]"  /><:escal:caracteres:>
                     </span>
             <div class="nettoyeur"></div>
             </div>
