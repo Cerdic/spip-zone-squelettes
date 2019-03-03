@@ -979,7 +979,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Augmenter la taille des caractères',
 	'taille_diminuer' => 'Diminuer la taille des caractères',
 	'taille_fichier' => 'Taille du fichier :',
+	'taille_icones_pied' => 'Taille des icones',
 	'taille_logo_site' => 'Taille maximum du logo des sites',
+	'taille_outils_article' => 'Taille des icones de la barre d\'outils',
 	'taille_police' => 'Taille de la police :',
 	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
 				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
