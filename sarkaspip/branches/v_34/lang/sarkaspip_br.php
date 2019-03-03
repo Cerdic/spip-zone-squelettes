@@ -184,6 +184,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'An holl pennadoù sindikadet',
 	'filtre_titre' => 'Sil',
 	'forum' => 'Forom',
+	'forum_ferme' => 'Forom serret',
 	'forum_sujet_reponses' => 'Respontoù',
 	'forums_meme_groupe' => 'Forom ar strollad',
 	'fourni_par_weather_com' => 'dre weather.com®',
