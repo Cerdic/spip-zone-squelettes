@@ -1,5 +1,5 @@
 			<BOUCLE_articles_recentsAlaUne(ARTICLES){lang}{!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,4})}{doublons}{titre_mot=AlaUne}>
-			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
 			[(#FORMATQUOI2NEUF|non)
 			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
 			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
@@ -14,7 +14,7 @@
 			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus alaune #EDIT{titre}<BOUCLE_RubriqueColoreealaune(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriquealaune(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriquealaune></BOUCLE_RubriqueColoreealaune>">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
 						<div class="h2"><span class="titre-actus">#TITRE</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
 					</a>
@@ -22,7 +22,7 @@
 			</div>
 			</BOUCLE_articles_recentsAlaUne>
 			<BOUCLE_Breves(BREVES){!par date}{age<120}{lang}>
-			[(#SET{logo,[(#LOGO_BREVE_SURVOL|sinon{#LOGO_BREVE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#SET{logo,[(#LOGO_BREVE_SURVOL|sinon{#LOGO_BREVE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
 			[(#FORMATQUOI2NEUF|non)
 			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
 			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
@@ -37,7 +37,7 @@
 			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus alaune #EDIT{titre}<BOUCLE_RubriqueColoreeBreve(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueBreve(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriqueBreve></BOUCLE_RubriqueColoreeBreve>">
 					<a href="#URL_BREVE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
 						<div class="h2"><span class="titre-actus">#TITRE</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
 					</a>
@@ -56,7 +56,7 @@
 			<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 				<div class="content-actus #EDIT{titre}<BOUCLE_RubriqueColoreeactus(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueactus(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriqueactus></BOUCLE_RubriqueColoreeactus>">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]}|extraire_attribut{src})" alt="" width="308" height="[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{340,108})]" />]
+						[<img src="(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{#CHEMIN{images/placeholder.jpg}}|image_focus{308,[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340},108})]}|extraire_attribut{src})" alt="" width="308" height="[(#CONFIG{soyezcreateurs/nombres_agenda_par_bloc,2}|=={1}|?{#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340},108})]" />]
 						<div class="agenda flexbox-flex">
 							<div class="date debutfin">
 								<time class="debut ladate" itemprop="startDate" title="#DATE_DEBUT" datetime="#DATE_DEBUT">
@@ -89,7 +89,7 @@
 			<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
 			<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} />
 			<BOUCLE_articles_QuoideNeuf(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,5})}{doublons}{doublons ev}{lang}>
-			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,340})]})]})]
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
 			[(#FORMATQUOI2NEUF|non)
 			[(#SET{largeur,[(#GET{logo}|largeur|sinon{1})]})]
 			[(#SET{hauteur,[(#GET{logo}|hauteur|sinon{1})]})]
@@ -104,7 +104,7 @@
 			<div class="grid-item[ grid-item-x(#GET{facteur})]">
 				<div class="content-actus quoideneuf #EDIT{titre}<BOUCLE_RubriqueColoree(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubrique(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubrique></BOUCLE_RubriqueColoree>">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#GET{logo}|image_focus{#GET{largeur},340}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="340" />]
+						[<img src="(#GET{logo}|image_focus{#GET{largeur},#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="#GET{largeur}" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
 						<div class="h2"><span class="titre-actus">#TITRE</span>
 							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
 					</a>
@@ -117,7 +117,7 @@
 				{!par date}
 				{0,1}
 			>
-			<div class="grid-item grid-item-x2">
+			<div class="grid-item grid-item[(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}|>={340}|?{-x2})]">
 				<div class="content-actus quoideneuf #EDIT{titre}<BOUCLE_RubriqueColoreeVideoALaUne(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueVideoALaUne(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriqueVideoALaUne></BOUCLE_RubriqueColoreeVideoALaUne>">
 					<B_VideoALaUne>
 					<div class="VideoALaUne">
@@ -127,7 +127,7 @@
 						{!par date}
 						{0,1}
 					>
-					[(#MODELE{emb,largeur=638,hauteur=340,allowFullScreen=true,wmode=transparent,allowscriptaccess=always})]
+					[(#MODELE{emb,largeur=638,hauteur=[(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})],allowFullScreen=true,wmode=transparent,allowscriptaccess=always})]
 					</BOUCLE_VideoALaUne>
 					</div><!-- /VideoALaUne -->
 					</B_VideoALaUne>

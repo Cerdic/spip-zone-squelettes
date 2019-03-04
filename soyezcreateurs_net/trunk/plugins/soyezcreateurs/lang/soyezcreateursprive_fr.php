@@ -122,6 +122,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_hauteur_banner' => 'Hauteur de la bannière',
 	'cfg_hauteur_banner_explication' => '0 (défaut) pour une hauteur proportionnelle aux images, valeur en pixel pour fixer une hauteur"',
 	'cfg_hauteur_gis' => 'Hauteur des cartographies (format NNNpx)',
+	'cfg_hauteur_quoi2neuf_label' => 'Hauteur des vignettes du « Quoi de neuf »',
 	'cfg_hauteur_slider_label' => 'Hauteur du carrousel',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vidéo d’accueil (0 pour hauteur automatique)',
 	'cfg_header' => 'Header',
