@@ -200,7 +200,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords2' => 'Pages article et rubrique, forums des articles, page contact, annuaire',
 	'bords3' => 'Tableaux',
 	'bords4' => 'Menu vertical déroulant vers la droite',
-	'bords5' => 'Items menu horizontal survolés, identification, recherche, événement calendrier',
+	'bords5' => 'Items menu horizontal survolés, identification, recherche',
 	'bords6' => 'Forum du site',
 
 	// C
