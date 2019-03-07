@@ -190,7 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords2' => 'Articoli e rubriche, forum degli articoli, contatti, elenco',
 	'bords3' => 'Tabelle',
 	'bords4' => 'Menù a discesa verticale a destra',
-	'bords5' => 'Voci di menù orizzontale sorvolato, login, ricerca, calendario eventi',
+	'bords5' => 'Voci di menù orizzontale sorvolato, login, ricerca, calendario eventi', # MODIF
 	'bords6' => 'Forum del sito',
 
 	// C

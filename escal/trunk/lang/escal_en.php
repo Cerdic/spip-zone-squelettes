@@ -199,7 +199,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords2' => 'Article and section pages, forums of the articles, contact page, directory',
 	'bords3' => 'Table',
 	'bords4' => 'Vertical drop-down menu to the right',
-	'bords5' => 'Items of the horizontal menu flew over, identification, search, calendar event',
+	'bords5' => 'Items of the horizontal menu flew over, identification, search, calendar event', # MODIF
 	'bords6' => 'Website forum ',
 
 	// C
