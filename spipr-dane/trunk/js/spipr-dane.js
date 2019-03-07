@@ -15,7 +15,7 @@ $(function() {
         $('.bouton_print').on("click",function(){ window.print();});
         
         // Bouton backtotop : on l'ajoute au dom + comportement d'apparition et de clic
-        $( "body" ).append( "<div id='backtotop' title='Haut de page'><span>▲</span></div>" );
+        $( "body" ).append( "<div id='backtotop' title='Haut de page'><span><i class='fa fa-long-arrow-up'></i></span></div>" );
         $(window).scroll(function() {
                 if($('html').scrollTop() > 300 || $('body').scrollTop() > 300) { $('#backtotop').fadeIn();}
                 else { $('#backtotop').fadeOut(); }
