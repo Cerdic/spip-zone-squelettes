@@ -52,8 +52,6 @@ $(function() {
             $('#carousel-pause').show();
             return false;
         });
-        //compatibilite avec le plugins menus
-        $('.menu-conteneur > div >  ul.nav').addClass('span12')/*.find('.dropdown-menu').children('li').children('ul').show()*/;
         // menu XL
         if($('.menu-xl').length){
             var style='';
