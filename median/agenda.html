@@ -1,0 +1,141 @@
+#CACHE{7200}[
+(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+]
+<BOUCLE_rubrique_encadrant(RUBRIQUES) {titre_mot=agenda}>
+[(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {doublons}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body class="page_rubrique">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{40})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{40})]</div>
+
+
+        [(#REM) rubrique avec plusieurs articles (ou 0!) ]
+          [(#REM) pas d'article_rubrique, nb article != 1 => affichage "standard" de la rubrique ]
+            <div id="extra">
+                [(#LOGO_RUBRIQUE||image_reduire{200,200})]
+            </div>
+        	<div id="conteneur">
+        		[(#REM) Contenu principal : contenu de la rubrique ]
+        		<div id="contenu">
+        		    <div class="cartouche">
+
+				<h1>Agenda</h1>
+
+				<h2><:perso:evenementsfuturs:></h2>
+				<ul>
+<BOUCLE_prochains_evenements(EVENEMENTS){age<0} {par date} >
+		<li>
+		<strong><a href="#URL_ARTICLE">[(#DATE_DEBUT|affdate)] - [(#TITRE|supprimer_numero|couper{80})]</a></strong>
+			<div id="block_#ID_EVENEMENT">
+				<ul>
+			  	<li>Date : [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+			  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+			[(#HORAIRE|=={oui}|?{
+			   [(#REM) memes heures ?]
+			     [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave 
+			[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+			   [(#REM) pas memes heures ?]
+			     [(#DATE_DEBUT|!={#DATE_FIN}|?{de 
+			[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave; 
+			[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+			,''})]
+			,
+			  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+			[(#HORAIRE|=={oui}|?{&agrave; partir de
+			  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au 
+			[(#DATE_FIN|nom_jour)]
+			  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+			  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]</li>
+						
+			<li>[Lieu&nbsp;: (#LIEU|supprimer_tags)]</li>
+			<li>[Description&nbsp;: (#DESCRIPTIF|supprimer_tags)]</li>
+				</ul>
+			</div>
+		</li>	
+	</BOUCLE_prochains_evenements>				
+				</ul>
+				
+				<h2><:perso:evenementspasses:></h2>
+				<ul>
+<BOUCLE_evenements_passes(EVENEMENTS){age>0} {par date} {inverse}>
+		<li>
+		<strong><a href="#URL_ARTICLE">[(#DATE_DEBUT|affdate)] - [(#TITRE|supprimer_numero|couper{80})]</a></strong>
+			<div id="block_#ID_EVENEMENT">
+				<ul>
+			  	<li>Date : [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+			  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+			[(#HORAIRE|=={oui}|?{
+			   [(#REM) memes heures ?]
+			     [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave 
+			[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+			   [(#REM) pas memes heures ?]
+			     [(#DATE_DEBUT|!={#DATE_FIN}|?{de 
+			[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave; 
+			[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+			,''})]
+			,
+			  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+			[(#HORAIRE|=={oui}|?{&agrave; partir de
+			  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au 
+			[(#DATE_FIN|nom_jour)]
+			  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+			  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]</li>
+						
+			<li>[Lieu&nbsp;: (#LIEU|supprimer_tags)]</li>
+			<li>[Description&nbsp;: (#DESCRIPTIF|supprimer_tags)]</li>
+			<br>
+				</ul>
+			</div>
+		</li>	
+	</BOUCLE_evenements_passes>	
+	</ul>
+        		</div><!-- fin contenu -->
+        	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+
+</BOUCLE_rubrique_encadrant>

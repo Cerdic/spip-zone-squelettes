@@ -1,36 +1,30 @@
-[(#PLUGIN{top_bando}|non)
-    [(#REM) recup une éventuelle url pour le logo de sommet de page ]
-        #SET{url_top_logo, #URL_SITE_SPIP}
-        [(#CONFIG{median/top_logo_url}|oui)
-          [(#SET{url_top_logo, [(#CONFIG{median/top_logo_url})] })]
-        ]
-    
-    [(#REM) recup une éventuelle config pour l'image typo qui fait le titre si pas de logo ]
-        #SET{top_logo_police, Bookosb.ttf}
-        [(#CONFIG{median/top_logo_police}|oui)
-          [(#SET{top_logo_police, [(#CONFIG{median/top_logo_police})] })] ]
-        #SET{top_logo_taille, 28}
-        [(#CONFIG{median/top_logo_taille}|oui)
-          [(#SET{top_logo_taille, [(#CONFIG{median/top_logo_taille})] })] ]
-        #SET{top_logo_couleur, 005C49}
-        [(#CONFIG{median/top_logo_couleur}|oui)
-          [(#SET{top_logo_couleur, [(#CONFIG{median/top_logo_couleur}|suprime_diese)] })] ]
-        #SET{top_logo_largeur, 800}
-        [(#CONFIG{median/top_logo_largeur}|oui)
-          [(#SET{top_logo_largeur, [(#CONFIG{median/top_logo_largeur})] })] ]
-        
-      [<div id="entete" class="entete_img"><a rel="start home" href="#GET{url_top_logo}" title="<:accueil_site:>" class="accueil accueil_img">
-      (#LOGO_SITE_SPIP||image_reduire{862,})]
-      
-      [<div id="entete"><a rel="start home" href="#GET{url_top_logo}" title="<:accueil_site:>" class="accueil">
-      (#LOGO_SITE_SPIP||?{'',' '})[<span id="nom_site_spip">
-            (#NOM_SITE_SPIP|image_typo{police=#GET{top_logo_police},taille=#GET{top_logo_taille},couleur=#GET{top_logo_couleur},largeur=#GET{top_logo_largeur}}
-                           |inserer_attribut{alt,#NOM_SITE_SPIP}
-                           |inserer_attribut{title,#NOM_SITE_SPIP})</span>] ]
-    </a>
-    [(#REM)#MENU_LANG]
-    </div>
-]
-[(#PLUGIN{top_bando}|oui)
-	[<div id="entete" class="entete_img">(#INCLURE{fond=top_bando})</div>]
-]
+[(#REM) recup une éventuelle url pour le logo de sommet de page ]
+	#SET{url_top_logo, #URL_SITE_SPIP}
+	[(#CONFIG{median/top_logo_url}|oui)
+	  [(#SET{url_top_logo, [(#CONFIG{median/top_logo_url})] })]
+	]
+[(#REM) recup une éventuelle config pour l'image typo qui fait le titre si pas de logo ]
+	#SET{top_logo_police, Bookosb.ttf}
+	[(#CONFIG{median/top_logo_police}|oui)
+	  [(#SET{top_logo_police, [(#CONFIG{median/top_logo_police})] })] ]
+	#SET{top_logo_taille, 28}
+	[(#CONFIG{median/top_logo_taille}|oui)
+	  [(#SET{top_logo_taille, [(#CONFIG{median/top_logo_taille})] })] ]
+	#SET{top_logo_couleur, 005C49}
+	[(#CONFIG{median/top_logo_couleur}|oui)
+	  [(#SET{top_logo_couleur, [(#CONFIG{median/top_logo_couleur}|suprime_diese)] })] ]
+	#SET{top_logo_largeur, 800}
+	[(#CONFIG{median/top_logo_largeur}|oui)
+	  [(#SET{top_logo_largeur, [(#CONFIG{median/top_logo_largeur})] })] ]
+	
+  [<div id="entete" class="entete_img"><a rel="start home" href="#GET{url_top_logo}" title="<:accueil_site:>" class="accueil accueil_img">
+  (#LOGO_SITE_SPIP||image_reduire{862,})]
+  
+  [<div id="entete"><a rel="start home" href="#GET{url_top_logo}" title="<:accueil_site:>" class="accueil">
+  (#LOGO_SITE_SPIP||?{'',' '})[<span id="nom_site_spip">
+		(#NOM_SITE_SPIP|image_typo{police=#GET{top_logo_police},taille=#GET{top_logo_taille},couleur=#GET{top_logo_couleur},largeur=#GET{top_logo_largeur}}
+					   |inserer_attribut{alt,#NOM_SITE_SPIP}
+					   |inserer_attribut{title,#NOM_SITE_SPIP})</span>] ]
+</a>
+[(#REM)#MENU_LANG]
+</div>

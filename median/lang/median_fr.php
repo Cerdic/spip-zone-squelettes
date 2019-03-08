@@ -60,6 +60,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'defaut_texte_acces_restreint' => 'Voulez vous cr&eacute;er un compte?',
 'descriptif_configuration' => 'parametres de configuration du squelette Median',
 'diaporama_accueil' => 'Diaporama de la page d\'accueil',
+'documents_joints' => 'Documents joints',
 
 // E
 'erreur_install_groupe_technique' => 'erreur cr&eacute;ation du groupe de mots cl&eacute;s techniques pour le squelette Median',
