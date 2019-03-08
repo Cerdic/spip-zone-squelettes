@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+		<INCLURE{fond=inclure/head} />
+	</head>
+	<body class="pas_surlignable page_sommaire">
+		<!-- Wrapper -->
+		<div id="wrapper" class="fade-in">
+
+			<!-- Intro -->
+			<div id="intro">
+				[<h1>(#CONFIG{html5up/titre_sommaire}|sinon{#NOM_SITE_SPIP})</h1>][(#CONFIG{html5up/slogan_accueil}|=={on}|oui)
+				[<p>(#SLOGAN_SITE_SPIP)</p>]][(#CONFIG{html5up/descriptif_accueil}|=={on}|oui)
+				[<p>(#DESCRIPTIF_SITE_SPIP)</p>]]
+				<a href="#header" class="button icon solo fa-arrow-down scrolly"><:massively:continue:></a>
+			</div>
+
+			<!-- Header -->
+			[<header id="header">
+				<a href="#URL_SITE_SPIP" class="logo">(#NOM_SITE_SPIP)</a>
+			</header>]
+
+			<!-- Nav -->
+			<INCLURE{fond=inclure/nav,env,type-page=sommaire} />
+
+			<!-- Main -->
+			<div id="main">
+				<!-- Featured Post -->
+				<BOUCLE_major(ARTICLES){id_article IN #CONFIG{html5up/major}|picker_selected{article}}>
+				<article class="post featured">
+					<header class="major">
+						[<span class="date">(#DATE|affdate)</span>]
+						<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+						[<div class="introduction">(#INTRODUCTION)</div>]
+					</header>
+					[<a href="#URL_ARTICLE" class="image main">(#LOGO_ARTICLE|image_reduire{1200,*}|vider_attribut{class})</a>]
+					<ul class="actions special">
+						<li><a href="#URL_ARTICLE" class="button large"><:massively:lire_la_suite:></a></li>
+					</ul>
+				</article>
+				</BOUCLE_major>
+				<!-- Posts -->
+				<INCLURE{fond=inclure/liste/articles,env,ajax} />
+			</div>
+
+			<!-- Footer -->
+			<INCLURE{fond=inclure/footer} />
+
+		</div>
+	</body>
+</html>

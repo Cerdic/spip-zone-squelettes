@@ -1,0 +1,97 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+	<h3 class="titrem"><:html5up:cfg_titre_parametrages:></h3>
+
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	<form method="post" action="#ENV{action}">
+	<div>
+		#ACTION_FORMULAIRE
+
+		<fieldset>
+			<legend><:html5up:design:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{input,couleur_accent,
+					label=<:html5up:couleur_accent:>,
+					explication=<:html5up:couleur_accent_explications:>,
+					class=palette,
+					type=color,
+					defaut=#F56A6A})]
+				[(#SAISIE{input,couleur_typo,
+					label=<:html5up:couleur_typo:>,
+					explication=<:html5up:couleur_typo_explications:>,
+					class=palette,
+					type=color,
+					defaut=#585858})]
+				[(#SAISIE{input,couleur_bkg,
+					label=<:html5up:couleur_bkg:>,
+					explication=<:html5up:couleur_bkg_explications:>,
+					class=palette,
+					type=color,
+					defaut=#FFFFFF})]
+				[(#SAISIE{input,couleur_bkg_footer,
+					label=<:html5up:couleur_bkg_footer:>,
+					explication=<:html5up:couleur_bkg_footer_explications:>,
+					class=palette,
+					type=color,
+					defaut=#F6F6F6})]
+			</div>
+		</fieldset>
+		<fieldset>
+		<legend><:zcore:accueil:></legend>
+			<div class="editer-groupe">
+				[(#SAISIE{input, titre_sommaire, 
+					label=<:html5up:titre_sommaire_accueil:>,
+					explication=<:html5up:titre_sommaire_accueil_explications:>})]
+				[(#SAISIE{case, slogan_accueil, 
+					label=<:html5up:slogan_accueil:>,
+					explication=<:html5up:slogan_accueil_explications:>})]
+				[(#SAISIE{case, descriptif_accueil, 
+					label=<:html5up:descriptif_accueil:>,
+					explication=<:html5up:descriptif_accueil_explications:>})]
+				[(#SAISIE{selecteur_article, major, 
+					label=<:html5up:major:>,
+					explication=<:html5up:major_explications:>})]
+			</div>
+		</fieldset>
+		<fieldset>
+		<legend><:html5up:footer:></legend>
+			<h4><:html5up:reseaux_sociaux:></h4>
+			<div class="editer-groupe">
+				<div class="editer pleine_largeur">
+					<span class="explication">
+						[(#PLUGIN{sociaux}|non)
+							<:html5up:reseaux_sociaux_activer:>
+						][(#PLUGIN{sociaux}|oui)
+						<a href="#URL_ECRIRE{configurer_sociaux}"><:html5up:reseaux_sociaux_configurer:></a>
+						]
+					</span>
+				</div>
+			</div>
+			<h4>Contact</h4>
+			<div class="editer-groupe">
+
+				<div class="editer pleine_largeur">
+					<span class="explication">
+						[(#PLUGIN{contact}|non)
+							Activer le plugin «Formulaire de contact avancé» pour afficher un formulaire de contact
+						][(#PLUGIN{contact}|oui)
+						<a href="#URL_ECRIRE{configurer_contact}">Configurer le plugin : Contact</a>
+						]
+					</span>
+				</div>
+
+				[(#SAISIE{input,contact_telephone,
+					label=<:html5up:contact_tel:>})]
+				[(#SAISIE{textarea,contact_adresse,
+					label=<:html5up:contact_adresse:>,
+					rows=4})]
+
+			</div>
+		</fieldset>
+		<input type="hidden" name="_meta_casier" value="html5up" />
+		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	</div>
+	</form>
+</div>
