@@ -113,17 +113,24 @@
 				<div class="autres_rubriques">
 				<BOUCLE_autres_rub(RUBRIQUES){id_parent}{doublons}>
 					[<h2[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
-							[(#REM) Une boucle recursive pour le mini plan]
-							<B_miniplan>
-							<ul>
-								<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-								<li[ style="(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})"]>
-									<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
-									<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-								</li>
-								</BOUCLE_miniplan>
-							</ul>
-							</B_miniplan>
+					[(#REM) Une boucle recursive pour le mini plan]
+					<B_miniplan>
+					<ul>
+						<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+						<li[ style="(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})"]>
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+							<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+						</li>
+						</BOUCLE_miniplan>
+					</ul>
+					</B_miniplan>
+					<B_articles_niv1>
+						<ul>
+						<BOUCLE_articles_niv1(ARTICLES){id_rubrique}>
+							[<li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></li>]
+						</BOUCLE_articles_niv1>
+					</ul>
+					</B_articles_niv1>
 				</BOUCLE_autres_rub>
 				</div>
 				</B_autres_rub>
