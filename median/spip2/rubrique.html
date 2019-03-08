@@ -1,0 +1,330 @@
+#CACHE{7200}[
+(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles, sites et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_sites_int(BREVES) {doublons} {id_rubrique}></BOUCLE_sites_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récursivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles, sites et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+(#REM)]<BOUCLE_sites_exclus(SITES) {titre_mot=_invisible_} {doublons}></BOUCLE_sites_exclus>[
+
+(#REM) début affichage
+]<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {doublons}>[
+  (#REM) la rubrique n'a t'elle qu'un seul article? si l'article unique est une redirection, faire le transfert
+    ]<BOUCLE_test_unique(ARTICLES) {id_rubrique}{lang}>[(#TOTAL_BOUCLE|=={1}|oui)[(#SET{art_unique, #ID_ARTICLE})][(#CHAPO**|match{^=http}|oui)[(#CHAPO**|substr{1}|redirige_page)]]]</BOUCLE_test_unique>
+          
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body class="page_rubrique">
+<div id="page">
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{40})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{40})]</div>
+
+    [(#REM) existe t'il des sous-rubriques? ]
+    <BOUCLE_test_ssrub(RUBRIQUES) {id_parent} {0,1}>
+        #SET{existe_ssrub, 1}
+    </BOUCLE_test_ssrub>
+        #SET{pas_ssrub, 1}
+    <//B_test_ssrub>
+    
+    [(#REM) existe t'il des sites? ]
+    <BOUCLE_test_sites(SITES) {id_rubrique} {0,1}>
+        #SET{existe_site, 1}
+    </BOUCLE_test_sites>
+        #SET{pas_site, 1}
+    <//B_test_sites>
+    
+    [(#REM) la rubrique à t'elle un ordre de tri par date ou date inverse? ]
+    #SET{classement, titre} #SET{num, titre} #SET{inverse, 0}
+    <BOUCLE_classement1(MOTS){id_rubrique}{titre = classement_date} {0,1}>#SET{classement, date} #SET{num, 0}</BOUCLE_classement1>
+    <BOUCLE_classement2(MOTS){id_rubrique}{titre = classement_date_inverse} {0,1}>#SET{classement, date} #SET{inverse, 1} #SET{num, 0}</BOUCLE_classement2>
+    
+[(#REM)       
+existe_ssrub: #GET{existe_ssrub}<br>
+pas_ssrub: #GET{pas_ssrub}<br>
+existe_site:#GET{existe_site}<br>
+pas_site: #GET{pas_site}<br>
+art_unique: #GET{art_unique}<br>
+] 
+        <BOUCLE_art_unique(CONDITION){si #GET{art_unique}|et{#GET{pas_ssrub}}|et{#GET{pas_site}}}>
+        [(#REM) si pas de ss-rub et pas de sites et un seul article l'afficher directement ]
+          
+          [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
+          <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article=#GET{art_unique}}>
+            [(#REM) recuperer le texte qui explique qu'il faut se logguer ]
+                #SET{txt_restrict, This page's access is restricted to the identified's contributors. Please log in. }
+                [(#CONFIG{median/texte_acces_restreint}|oui)
+                    [(#SET{txt_restrict, [(#CONFIG{median/texte_acces_restreint})] })] ]
+            
+            [(#REM) recuperer le texte qui explique la creation d'un compte si mot-cle form_account_creation ]
+                #SET{txt_account_creation, 'Want create an acount?'}
+                [(#CONFIG{median/texte_creation_compte}|oui)
+                    [(#SET{txt_account_creation, [(#CONFIG{median/texte_creation_compte})] })] ]
+
+            [(#SESSION{login}|?{' '}) [(#INCLURE{fond=inc-article}{id_article=#GET{art_unique}}{inclure_rub=unique}{env})] ]
+            [(#SESSION{login}|?{'',' '}) 
+                [<h2 class="restrict_exp">(#GET{txt_restrict})</h2>]
+                [<div class="login_public">(#FORMULAIRE_LOGIN{lang=en})</div>] 
+            ]
+          </BOUCLE_restrict_access>
+            [(#INCLURE{fond=inc-article}{id_article=#GET{art_unique}}{inclure_rub=unique}{env})]
+          <//B_restrict_access>
+          
+        </BOUCLE_art_unique>
+        
+        [(#REM) rubrique avec plusieurs articles (ou 0!) ]
+          [(#REM) pas d'article_rubrique, nb article != 1 => affichage "standard" de la rubrique ]
+            <div id="extra">
+                [(#LOGO_RUBRIQUE||image_reduire{175,200})]
+            </div>
+        	<div id="conteneur">
+        		[(#REM) Contenu principal : contenu de la rubrique ]
+        		<div id="contenu">
+        		    <div class="cartouche">
+        			    [<h1 class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</h1>]
+          
+                    [(#REM) afficher l'article avec mot-clé edito_rubrique si il existe ]
+                    <BOUCLE_art_rub(ARTICLES){id_rubrique}{titre_mot=edito_rubrique}{!par date} {0,1} {doublons}>
+
+                      [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
+                      <BOUCLE_restrict_access2(ARTICLES) {titre_mot=restricted_access}{id_article}>
+                        [(#SESSION{login}|oui)
+            				[<p class="#EDIT{soustitre} soustitre">(#_art_rub:SOUSTITRE)</p>]
+                            [(#REM) <div class="#EDIT{descriptif} soustitre">#_art_rub:DESCRIPTIF</div>]
+            			    [<div class="#EDIT{chapo} soustitre">(#_art_rub:CHAPO)</div>]                        
+            			  </div><!-- fin cartouche -->
+                            [<div class="#EDIT{texte} texte">(#_art_rub:TEXTE|image_reduire{360,500})</div>]
+                        ]
+                        
+                        [(#SESSION{login}|non) 
+                            [(#REM) recuperer le texte qui explique qu'il faut se logguer ]
+                            #SET{txt_restrict, This page's access is restricted to the identified's contributors. Please log in. }
+                            [(#CONFIG{median/texte_acces_restreint}|oui)
+                                [(#SET{txt_restrict, [(#CONFIG{median/texte_acces_restreint})] })] ]
+                            
+                            [<h2 class="restrict_exp">(#GET{txt_restrict})</h2>]
+                            [<div class="login_public">(#FORMULAIRE_LOGIN{lang=en})</div>] 
+                        ]
+                        <BOUCLE_non_logue(CONDITION){si #SESSION{login}|non}>
+                            [(#REM) si mot cle form_account_creation proposer le formulaire de creation de compte ]
+                            <BOUCLE_test_cc(ARTICLES){id_article}{titre_mot=form_account_creation}{0,1}>
+                                [(#REM) recuperer le texte qui explique la creation d'un compte si mot-cle form_account_creation ]
+                                #SET{txt_account_creation, 'Want create an acount?'}
+                                [(#CONFIG{median/texte_creation_compte}|oui)
+                                    [(#SET{txt_account_creation, [(#CONFIG{median/texte_creation_compte})] })] ]
+                                    
+                                <h2 class="restrict_exp">#GET{txt_account_creation}</h2>
+                                 <div class="formulaire_i2">
+                                    [(#PLUGIN{inscription2}|oui) #FORMULAIRE_INSCRIPTION2 ]
+                                    [(#PLUGIN{inscription2}|non) #FORMULAIRE_INSCRIPTION ]
+                                 </div>
+                            </BOUCLE_test_cc>
+                        </BOUCLE_non_logue>
+                        
+                      </BOUCLE_restrict_access2>
+            				[<p class="#EDIT{soustitre} soustitre">(#_art_rub:SOUSTITRE)</p>]
+                            [(#REM) <div class="#EDIT{descriptif} soustitre">#_art_rub:DESCRIPTIF</div>]
+            			    [<div class="#EDIT{chapo} soustitre">(#_art_rub:CHAPO)</div>]                        
+            			  </div><!-- fin cartouche -->
+                            [<div class="#EDIT{texte} texte">(#_art_rub:TEXTE|image_reduire{360,500})</div>]
+                      <//B_restrict_access2>
+
+                    </BOUCLE_art_rub>
+                        [(#REM) sinon afficher le descriptif et/ou le texte explicatif de la rubrique ]
+        			  </div><!-- fin cartouche -->
+        			    [<div class="#EDIT{descriptif} texte">(#DESCRIPTIF)</div>]
+
+
+					[(#REM) Portfolio : album d'images à droite si pas mot clé port_folio_dessous ]
+					   #SET{nb_img, #SURTITRE|sinon{3}}
+						<BOUCLE_portfolio_dessous(MOTS){id_rubrique}{titre=port_folio_dessous}{0,1}>
+						</BOUCLE_portfolio_dessous>
+						  <B_documents_portfolio_droite>
+						  [(#REM) si mot clé port_folio_left faire flotter à gauche ]
+						  <BOUCLE_flotte_gauche(MOTS){id_rubrique}{titre=port_folio_left}{0,1}>
+							<div id="documents_portfolio_gauche">
+						  </BOUCLE_flotte_gauche>
+							<div id="documents_portfolio_droite">
+						  <//B_flotte_gauche>
+								<!--<h2><:info_portfolio:></h2>-->
+								<BOUCLE_documents_portfolio_droite(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons} {0, #GET{nb_img}}>
+								[(#MODELE{doc_pf_droite}{id_document}{align}{nb_img=#GET{nb_img}})]
+							</BOUCLE_documents_portfolio_droite>
+							</div>
+							</B_documents_portfolio_droite>
+						<//B_portfolio_dessous>
+
+
+                        [<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{360,500})</div>]
+                    <//B_art_rub>
+                    
+        		</div><!-- fin contenu -->
+        	</div><!-- fin conteneur -->
+
+			[(#REM) Portfolio : album d'images en position bas de page pour toutes les images après celles à droite ]
+            <B_documents_portfolio>
+                <div id="documents_portfolio">
+            <!--<h2><:info_portfolio:></h2>-->
+            <BOUCLE_documents_portfolio(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+            [(#MODELE{doc_pf}{id_document}{align})]
+            </BOUCLE_documents_portfolio>
+            </div>
+            </B_documents_portfolio>
+            <br class="nettoyeur" />
+
+          
+    [(#SET{larg_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
+    [(#SET{ht_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]    
+    <div class="contre-encart">
+            
+        [(#REM) les mots clés attachés à la rubrique et aux articles de la rubrique ]
+        [<div id="keywords">
+            (#MODELE{rubrique_mots}{id_rubrique})
+        </div>]
+            
+        [(#REM) Documents joints a la rubrique ]
+        <B_documents_joints>
+        <div id="documents_joints">
+        	<h2><:titre_documents_joints:></h2>
+        	<ul>
+        		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
+					<li style="[background-image: url((#LOGO_DOCUMENT||image_reduire{0,[(#GET{ht_logo})]}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF*)</div>]
+					</li>
+        		</BOUCLE_documents_joints>
+        	</ul>
+        </div>
+        </B_documents_joints>
+
+        
+        [(#REM) Articles de la rubrique ]
+        <B_articles>
+        <div class="liste-articles">
+        	#ANCRE_PAGINATION
+        	<h2 ><:median:articles_rubrique:></h2>
+        	<ul>
+        		<BOUCLE_articles(ARTICLES) {id_rubrique} {lang} {par num #GET{num}}{par #GET{classement}} {inverse #GET{inverse}}{pagination}{doublons}>
+        		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                })]
+                	[<h3 class="titre"><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]               
+                      [(#DESCRIPTIF|sinon{
+                          [(#CHAPO|match{.*[(#URL_SITE_SPIP)].*}|?{'',' '})
+                            [(#CHAPO|sinon{[<p>(#TEXTE|couper{140}|image_reduire{360,500})</p>]})]
+                          ]
+                      })]
+        		      <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+                </li>
+        		</BOUCLE_articles>
+        	</ul>
+        	[<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_articles>
+        
+        [(#REM) Sites de la rubrique ]
+        <B_sites>
+        <div class="liste-articles">
+        	#ANCRE_PAGINATION
+        	<h2 ><:sur_web:></h2>
+        	<ul>
+        		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination}{doublons}>
+        		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_SITE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_SITE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                })]
+        			[<h3 class="titre"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">(#NOM_SITE)</a></h3>]
+                    <B_syndic>
+                    <ul class="liste-sites">
+                        <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+                        <li style="background: url('#CHEMIN{externe.png}') no-repeat 3px center;"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+                        </BOUCLE_syndic>
+                    </ul>
+                    </B_syndic>
+        		      <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"><:median:visiter_site:></a></div>
+                </li>
+        		</BOUCLE_sites>
+        	</ul>
+        	[<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_sites>
+
+        [(#REM) Plan des sous-rubriques ]
+        <B_sous_rubriques>
+        		<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+        <div class="plan_rubriques">
+        		    
+        		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <h2 class="menu-titre" style="[padding-left: 2.2em; background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));]; background-position: 3px center;[padding-left: (#GET{larg_logo}|plus{5})px;]">
+        		    ,
+                    <h2 class="menu-titre" style="[padding-left: 2.2em; background-image: url((#LOGO_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));] background-position: 3px center;[padding-left: (#GET{larg_logo}|plus{5})px;]">
+                })]
+                    <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+                </h2>
+                        [(#DESCRIPTIF|image_reduire{360,500}|sinon{[<p>(#TEXTE|couper{140}|image_reduire{360,500})</p>]})]
+                        <div class="read_more" style="background-image: url('#CHEMIN{logo_access_section.jpg}');"><a href="#URL_RUBRIQUE"><:median:acces_rubrique:></a></div>
+        			[(#REM) Une boucle recursive pour le mini plan]
+        			<B_miniplan>
+        			<ul>
+        				<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+                		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                            <li style="[background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                		    ,
+                            <li style="[background-image: url((#LOGO_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                        })]
+        					<h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
+                                [(#DESCRIPTIF|image_reduire{360,500}|sinon{[<p>(#TEXTE|couper{140}|image_reduire{360,500})</p>]})]
+                                <div class="read_more" style="background-image: url('#CHEMIN{logo_access_section.jpg}');"><a href="#URL_RUBRIQUE"><:median:acces_rubrique:></a></div>
+        					<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+        				</li>
+        				</BOUCLE_miniplan>
+        			</ul>
+        			</B_miniplan>
+        	</div>
+        		</BOUCLE_sous_rubriques>
+        </B_sous_rubriques>
+                    
+    </div><!-- fin contre-encart -->
+
+
+  <//B_art_unique> [(#REM) fin de la partie remplacée par l'article unique ]
+  
+  
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>

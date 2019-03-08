@@ -1,0 +1,44 @@
+[(#REM)	Liste des mots-cles attachés à une rubrique, ses articles, ses ss-rubriques et leurs articles ]
+  [(#SET{array_mots, #ARRAY})]
+    <BOUCLE_rub(RUBRIQUES) {id_parent=#ID_RUBRIQUE}>
+        <BOUCLE_rubrique_mots(MOTS){id_rubrique} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
+            [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
+                [(#SET_PUSH{array_mots,[(#TITRE)]})]  
+            ]
+        </BOUCLE_rubrique_mots>
+        <BOUCLE_articles2(ARTICLES){id_rubrique}>
+        	<BOUCLE_mots_art2(MOTS) {id_article} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
+                [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
+                    [(#SET_PUSH{array_mots,[(#TITRE)]})]  
+                ]
+        	</BOUCLE_mots_art2>
+        </BOUCLE_articles2>
+    </BOUCLE_rub>
+    
+    <BOUCLE_rubrique(MOTS){id_rubrique} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
+        [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
+            [(#SET_PUSH{array_mots,[(#TITRE)]})]  
+        ]
+    </BOUCLE_rubrique>
+    <BOUCLE_articles(ARTICLES){id_rubrique}>
+    	<BOUCLE_mots_art(MOTS) {id_article} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
+            [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
+                [(#SET_PUSH{array_mots,[(#TITRE)]})]  
+            ]
+    	</BOUCLE_mots_art>
+    </BOUCLE_articles>
+    
+
+<BOUCLE_affiche(CONDITION){si #GET{array_mots}}>
+	[(#SET{array_mots,[(#GET{array_mots}|trier_alphabetique)]})]
+  <h2><:mots_clefs:></h2>
+	<ul>
+  <BOUCLE_mots(POUR){tableau #GET{array_mots}}>
+      <li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]>
+      <BOUCLE_recup_mot(MOTS){titre=#VALEUR}{0,1}>
+          <a href="#URL_MOT" rel="tag">[(#TITRE)]</a>
+      </BOUCLE_recup_mot>
+      </li>
+  </BOUCLE_mots>
+	</ul>
+</BOUCLE_affiche>

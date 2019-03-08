@@ -1,0 +1,36 @@
+#CACHE{0}
+      #SET{nb_tofs, 0}
+      #SET{max_tofs, 20}
+      [(#SET{largeur_diaporama, [(#CONFIG{median/orientation_images_diaporama}|=={vertical}|?{[(#CONFIG{median/taille_diaporama,110}|div{1.5}|plus{30})],[(#CONFIG{median/taille_diaporama,110}|plus{30})]})]})]
+      <B_art_tofs>
+[(#REM) le nécessaire pour le diaporama innerfade ]
+<script src="#CHEMIN{jquery.innerfade.js}" type="text/javascript"></script>
+[(#SET{vitesse_diaporama, [(#CONFIG{median/vitesse_diaporama}|sinon{10000})]})]
+[(#SET{hauteur_diaporama, [(#CONFIG{median/orientation_images_diaporama}|=={vertical}|?{[(#CONFIG{median/taille_diaporama,110}|plus{10})],[(#CONFIG{median/taille_diaporama,110}|div{1.5}|plus{10})]})]})]
+<script type="text/javascript">
+  $(document).ready( function(){
+      $('#defile_tofs').innerfade({ speed: 'slow', timeout: [(#GET{vitesse_diaporama})], type: 'sequence', containerheight: '[(#GET{hauteur_diaporama})]px' });
+  });
+</script>
+      <div id="tof_hazard">
+      <ul id="defile_tofs" class="innerfade" style="width: #GET{largeur_diaporama}px;">
+      <BOUCLE_art_tofs(ARTICLES){titre_mot=photos_sommaire}{par hasard}>
+          <BOUCLE_limite_nb(CONDITION){si #GET{nb_tofs}|<{#GET{max_tofs}}}>
+              <BOUCLE_tof_auhazard(DOCUMENTS){id_article}{extension IN png,jpg,gif} {par hasard} {0,20}>
+				[(#CONFIG{median/orientation_images_diaporama}|!={vertical}|?{
+                  [(#LARGEUR|>{#HAUTEUR}|oui)<li>
+                      <a href="#URL_DOCUMENT" class="nyroceros" title="#TITRE">[(#FICHIER|image_reduire{[(#CONFIG{median/taille_diaporama,110})],0}|inserer_attribut{alt, #TITRE}|inserer_attribut{class, encadrement})]</a>
+                    </li>[(#SET{nb_tofs, #GET{nb_tofs}|plus{1} })]
+                  ]
+                  ,
+                  [(#HAUTEUR|>{#LARGEUR}|oui)<li>
+                      <a href="#URL_DOCUMENT" class="nyroceros" title="#TITRE">[(#FICHIER|image_reduire{0,[(#CONFIG{median/taille_diaporama,110})]}|inserer_attribut{alt, #TITRE}|inserer_attribut{class, encadrement})]</a>
+                    </li>[(#SET{nb_tofs, #GET{nb_tofs}|plus{1} })]
+                  ]
+                })]
+              </BOUCLE_tof_auhazard>
+          </BOUCLE_limite_nb>
+      </BOUCLE_art_tofs>
+      </ul>
+      </div>
+      </B_art_tofs>

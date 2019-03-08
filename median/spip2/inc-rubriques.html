@@ -1,0 +1,46 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>
+  [(#REM) choper en doublon récursivement les sous-rubriques, et les articles inclus dans des rubriques avec le mot clé invisible ]
+  <BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>
+    <BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>
+  </BOUCLE_rubriques_int>    
+</BOUCLE_rubriques_exclues>
+
+[(#REM) récupérer le nombre d'items 1er niveau du menu de nav et calculer le %tage pour la largeur ]
+<BOUCLE_nb_rub(RUBRIQUES){par num titre, titre}{racine}{!titre_mot=_invisible_} ></BOUCLE_nb_rub>
+  [(#SET{largeur_rub_nav, [(#TOTAL_BOUCLE|plus{1}|pourcentage)]})]
+<//B_nb_rub>
+
+[(#REM) construire les ul/li imbriqués de la barre de nav: récupérer les rubriques avec le mot clé barre_navigation pour les items 1er niveau ]
+<B_rubriques>
+<div class="rubriques jqueryslidemenu" id="myslidemenu">
+	<ul class="sf-menu">
+	  <li style="width: #GET{largeur_rub_nav}%;"><a href="#URL_SITE_SPIP"[ class="(#SOMMAIRE)"]><:median:accueil:></a></li>
+  <BOUCLE_rubriques(RUBRIQUES) {par num titre, titre} {doublons} {racine} >
+		[(#REM) bidouille compliquée pour arriver exactement à 100% de largeur ]
+    [(#COMPTEUR_BOUCLE|!={#TOTAL_BOUCLE}|?{' '}) [(#SET{larg,#GET{largeur_rub_nav}})] ]
+    [(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{' '}) [(#SET{larg,[(#GET{largeur_rub_nav}|restant_pourcentage{#TOTAL_BOUCLE})]})] ]
+    <li style="width: #GET{larg}%;">
+              <BOUCLE_test_expose(RUBRIQUES) {id_enfant} {tout}>#EXPOSE{' '}</BOUCLE_test_expose>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"][ (#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|oui)style="border-right: none;"]>[(#TITRE|supprimer_numero|couper{40})]</a>
+
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons} >
+              <li style="width: 220px;"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|couper{40})]</a>
+                <BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
+              </li>
+            </BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</div>
+</B_rubriques>

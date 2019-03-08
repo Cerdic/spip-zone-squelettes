@@ -1,0 +1,66 @@
+<BOUCLE_test_sl(CONDITION){si #PLUGIN{spiplistes}|oui}><BOUCLE_nb_listes(LISTES){statut != inact}{0,1}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+  [(#REM) Fil d'Ariane ]
+  <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; #TITRE</div>
+
+	<div id="conteneur">
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
+  
+    
+      <BOUCLE_article_principal(ARTICLES) {titre_mot=page_souscription} {0,1}>
+			<div class="cartouche">
+				#DEBUT_SURLIGNE
+				[<h1 class="#EDIT{titre} titre">(#TITRE)</h1>]
+				#FIN_SURLIGNE
+			</div>
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div> <!-- <br class="nettoyeur" /> --> ]
+        
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+        
+      </BOUCLE_article_principal>
+        #DEBUT_SURLIGNE
+        <h1 class="#EDIT{titre} titre"><:spipliste:bienvenue_sur_la_liste_:></h1>
+        #FIN_SURLIGNE
+      <//B_article_principal>
+
+    <div id="form_subscribe">
+    #FORMULAIRE_ABONNEMENT
+    </div>
+
+    
+  
+        
+		</div><!-- fin contenu -->
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}{connexion}{env=#ENV}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_nb_listes></BOUCLE_test_sl>
