@@ -473,7 +473,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Immagine di sfondo',
 	'fonds_textes' => 'Altri testi',
 	'fonds_textes_alerte' => 'Gli avvisi della pagina contatti',
-	'fonds_textes_comment' => '(ad esempio in caso di campi obbligatori non riempiti)',
 	'fonds_textes_explication' => 'Devi scegliere il colore di alcuni testi specifici...',
 	'fonds_textes_forum' => 'Il forum del sito',
 	'fonds_textes_liens' => 'I link',
