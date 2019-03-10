@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<BOUCLE_contenu(RUBRIQUES){id_rubrique}>
+<html>
+	<head>
+		<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+		[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+		[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+		<INCLURE{fond=inclure/head} />
+		[(#REM) Lien vers le flux RSS des articles la rubrique ]
+		<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+	</head>
+	<body class="page_rubrique is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Intro -->
+			<header id="header">
+				[<span class="h1">(#NOM_SITE_SPIP)</span>]
+			</header>
+
+			<!-- Menu -->
+			<INCLURE{fond=inclure/nav,env} />
+
+			<!-- Main -->
+			<div id="main">
+				<section class="post">
+					<header class="major">
+						[<span class="date">(#DATE|affdate)</span>]
+						[<h1>(#TITRE)</h1>]
+					</header>
+
+					[<div class="texte #EDIT{texte}">(#TEXTE|image_reduire{1400})</div>]
+					[<div class="notes">(#NOTES)</div>]
+
+					<INCLURE{fond=inclure/documents,id_article,id_rubrique=#NULL,ajax,env} />
+				</section>
+				<!-- sousmenu des articles -->
+				
+				<!-- Featured Post -->
+				[<article class="post featured">
+					<header class="major">
+						[<span class="date">(#DATE|affdate)</span>]
+						<div class="introduction #EDIT{texte}">(#TEXTE|image_reduire{900,*})</div>
+					</header>
+				</article>]
+				<!-- Posts -->
+				<INCLURE{fond=inclure/liste/articles,env,ajax,id_rubrique} />
+			</div>
+
+
+			<!-- Footer -->
+			<INCLURE{fond=inclure/footer} />
+
+		</div>
+	</body>
+</html>
+</BOUCLE_contenu>

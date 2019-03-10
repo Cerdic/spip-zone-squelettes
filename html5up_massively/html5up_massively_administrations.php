@@ -33,10 +33,6 @@ function html5up_massively_upgrade($nom_meta_base_version, $version_cible) {
 			'couleur_bkg_footer' => '#F5F5F5',
 		))
 	);
-// 	$maj['0.0.2'] = array(
-// 		array('ecrire_config','html5up', array(
-// 		))
-// 	);
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
