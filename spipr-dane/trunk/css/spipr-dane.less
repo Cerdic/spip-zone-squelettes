@@ -17,10 +17,6 @@
 	     url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
 	     url('fonts/OpenSans-Regular-webfont.svg#webfont') format('svg');
 }
-small.fine{ /* r√®gle le souci des espaces ins√©cables avec la typo ? */
-    display: inline !important;
-    font-family: arial;
-} 
 
 body{
     background-color:@white;font-family:@sansFontFamily;
@@ -79,6 +75,7 @@ h3.spip{
     font-family:@sansFontLightFamily;
     font-size:1.8em;
     font-weight: normal;
+    border-bottom: 1px solid darken(@white, 3%);
 }
 table.spip{
     thead{
@@ -149,8 +146,6 @@ ol.spip ol.spip{margin-bottom:.5em;}
 .navbar .nav > li.item-picto > a {padding: 9px 15px;}
 /* icones en sprite css */
 [class^="icon-nav"], [class*=" icon-nav"]{
- //   & when (@navbarLinkColor = @black) {background-image:url("img/sprite.png");}
-//    & when (@navbarLinkColor = @white) {background-image:url("img/sprite-white.png");}
     height:22px;
     width:22px;
     background-repeat:no-repeat;
@@ -391,6 +386,30 @@ ol.spip ol.spip{margin-bottom:.5em;}
             }
         }
     }
+    //// Navbar menu XL ////
+    .menu-xl{
+        &.dropdown {
+            position: unset;
+            .dropdown-menu {
+                top: unset;
+                margin-left: 0;
+                ul { 
+                    margin-left: 0;
+                    .texte_libre {
+                        background: @grayLighter;
+                        color: darken(@linkColor, 20%);
+                    }
+                }
+            }
+        }
+        > ul.dropdown-menu ul {
+            margin-left: 0;
+            .texte_libre {
+                background: #F0F0F0;
+                color: #333;
+            }
+        }
+    }
 }
 #content,#aside,#asidebis{
     .spip_out{
@@ -509,7 +528,7 @@ ol.spip ol.spip{margin-bottom:.5em;}
             border-color:@white;
             color:@white;
         }
-        .icon-fast-forward{
+        .icon-fast-forward,.icon-fast-backward{
             background-image:url("img/@{iconWhiteSpritePath}");
         }
     }
@@ -1004,7 +1023,7 @@ ul.nuage{
     }
     ul.liste-items,ul.menu-items{
         li.item{
-            padding:1em 1em 1em 1.5em;
+            padding:1em 1em 1em 1em;
             border:none;
             border-left: 7px solid transparent;
             transition:all 0.2s ease-in-out 0s;
@@ -1111,7 +1130,8 @@ ul.nuage{
     }
     &.favoris{
         .item {
-            background-image: none !important;
+            display: inline-table;
+            border-left: none !important;
             a{display: inline-block;}
         }
     }
