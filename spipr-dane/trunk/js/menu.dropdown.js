@@ -9,7 +9,7 @@ jQuery(function(){
 			.children('.menu-items').addClass('dropdown-menu').removeClass('nav')
 			.siblings('a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').append('<b class="caret"></b>').dropdown()
 			.siblings('.menu-items')
-			.find('.menu-items').hide();
-		jQuery(this).find('.menu-items').eq(0).show();
+			/*.find('.menu-items').hide()*/;
+		jQuery(this).find('.menu-items').eq(0).addClass('span12').show();
 	});
 });
