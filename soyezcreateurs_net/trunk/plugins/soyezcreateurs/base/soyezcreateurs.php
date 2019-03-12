@@ -684,6 +684,7 @@ function create_auteur($nom, $email='', $bio='') {
 
 function create_document($chemin, $objet, $mode, $champs='non', $id_document='non') {
 	include_spip('action/ajouter_documents');
+	include_spip('inc/autoriser');
 	$chemin = find_in_path($chemin);
 	$type = $objet['type'];
 	$id_objet = $objet['id_objet'];
