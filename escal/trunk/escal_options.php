@@ -9,7 +9,7 @@ if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
 |choix_blocs!sommaire_lateral:rubrique_lateral:article_lateral:forumsite_lateral:autres_lateral
 |parametrage_blocs!deplier_replier:titre_contenu
 |style!fonds:bords:arrondis
-|plugins!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:liens_sociaux:facebook:signalement:shoutbox
+|plugins!galleria:rainette:mentions:articlepdf:spipdf:licence:spip400:socialtags:liens_sociaux:qrcode:facebook:signalement:shoutbox
 ');
 
 	// Header prive
