@@ -897,9 +897,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'publie' => 'Publié le',
 	'puce' => 'puce',
 
-	//Q
+	// Q
 	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
-	un QrCode correspondant à l\'URL de l\'article s\'affichera automatiquement en bas de la <strong>version imprimable</strong> de l\'article',
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article',
 	'qrcode_plugin' => 'Plugin QrCode',
 
 	// R
