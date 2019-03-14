@@ -26,6 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_form_reponse' => 'Affichage du formulaire de réponse sous l’article',
 	'affichage_image' => 'Affichage de la première image',
 	'affichage_logo_site' => 'Affichage du logo du site s’il existe',
+	'affichage_mots_cles' => 'Affichage des mots-clés associés à l\'article',
 	'affichage_nom_auteur' => 'Affichage du nom de l’auteur',
 	'affichage_nombre_comments' => 'Affichage du nombre de commentaires',
 	'affichage_ordre' => 'Ordre d’affichage',
@@ -710,7 +711,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 			(Il faut avoir coché "Accepter les inscriptions" dans l’espace privé : Configuration - Interactivité)',
 	'noisettes_identification_visiteur' => 'Afficher le formulaire d’inscription de nouveaux <strong>visiteurs</strong><br />
 			(Il faut avoir coché "Accepter l’inscription de visiteurs du site public" dans l’espace privé : Configuration - Interactivité)',
-	'noisettes_multi_choix' => 'Choix des groupes de mots-clés',
+	'noisettes_multi_choix' => '<strong>Choix des groupes de mots-clés :</strong>',
 	'noisettes_multi_choix2' => 'Choisissez un groupe',
 	'noisettes_multi_groupe1' => 'Premier groupe (obligatoire)',
 	'noisettes_multi_groupe2' => 'Deuxième groupe (facultatif)',
