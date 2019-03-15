@@ -675,7 +675,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 			(Ricordati di controllare di aver abilitato "Accetta le iscrizioni" dentro al menù "Configurazione - Interattività" nello spazio provato di SPIP)',
 	'noisettes_identification_visiteur' => 'Visualizza la form di iscrizione di nuovi <strong>visitatori</strong><br />
 			(Ricordati di controllare di aver abilitato "Accetta l’iscrizione di utenti del sito pubblico" dentro al menù "Configurazione - Interattività" nello spazio provato di SPIP)',
-	'noisettes_multi_choix' => 'Scelta dei gruppi di parole chiave',
+	'noisettes_multi_choix' => 'Scelta dei gruppi di parole chiave', # MODIF
 	'noisettes_multi_choix2' => 'scegli un gruppo...',
 	'noisettes_multi_groupe1' => 'Primo gruppo (obbligatorio):',
 	'noisettes_multi_groupe2' => 'Secondo gruppo (facoltativo):',
@@ -832,7 +832,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_icone' => 'icone',
 	'pied_lien_plan' => 'Link alla Mappa del Sito',
 	'pied_lien_prive' => 'Link all’Area Riservata',
-	'pied_lien_puce' => 'Visualizza l’ultima pulce (scegliere NO se non viene visualizzato nessun link o se si visualizzano come icone)',
 	'pied_lien_rss' => 'Icona con link alla pagina dei feed RSS',
 	'pied_lien_squelette' => 'Link al codice sorgente della pagina',
 	'pied_lien_texte' => 'testi',
