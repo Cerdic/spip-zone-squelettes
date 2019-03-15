@@ -60,20 +60,21 @@
 <BOUCLE_articles(ARTICLES){lang} {id_mot} {par date}{inverse}{pagination 10}>
                     <!-- on affiche le ou les article(s) -->               
     <div class="cadre-articles-rubrique">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">       		  
       <div class="titre-articles-rubrique">
         <div class="logorub">
         [(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
         </div>
-        <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+        #TITRE
       </div>
       <div class="introduction-articles-rubrique">
         [(#INTRODUCTION|supprimer_tags|couper{150})]
-        <br/>
-        <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-        <!--<a href="#URL_ARTICLE[(#CONFIG{multi_secteurs}=={oui}|oui)|parametre_url{lang,#ENV{lang}}]" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
-        -->
-        <br/>
       </div>
+      </a>
       <div class="auteur-articles-rubrique">
         [(#CONFIG{escal/config/daterub}|=={non}|non)
             <div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
@@ -88,6 +89,7 @@
           [(#LANG|=={ja}|oui)<:par_auteur:>]
           </B_test>
       </div>
+      
       <div class="nettoyeur"></div>
     </div>
 

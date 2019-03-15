@@ -55,7 +55,10 @@
       les autres sont masques par un javascript -->
 <BOUCLE_dernier_endate(ARTICLES){!doublons selection1}{tri #CONFIG{escal/config/ordrealaune,date}, inverse} >
 <div id="section-#ID_ARTICLE" class="fragment">
-
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			] 
 <!-- affichage logo -->
 	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoartexergue,100}})]
 <!-- affichage surtitre -->
@@ -72,7 +75,7 @@
 <!-- affichage soustitre -->
 	[(#CONFIG{escal/config/soustitreune}|=={non}|non)
 		<div class="soustitre-article #EDIT{texte}">[(#SOUSTITRE)]</div>
-	]        
+	]    
 <!-- affichage auteur -->
 	<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurune}|=={non}|non}>
 	</BOUCLE_test>
@@ -151,6 +154,10 @@
 	<ul class="anchors">
 <BOUCLE_autres_articles_une (ARTICLES){!doublons selection2}{par #CONFIG{escal/config/ordrealaune,date}}{inverse}>
 		<li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
 			<a href="#URL_SITE_SPIP#section-#ID_ARTICLE" tabindex="#ID_ARTICLE" title="<:escal:article_une:>" onclick="javascript:self.location.assign('#onglet')">
 <!-- affichage logo -->
 				[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoartune,80}})]

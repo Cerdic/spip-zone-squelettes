@@ -61,12 +61,17 @@
 <div class="liste-articles-rubrique">
 <BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}> 
 	<div class="cadre-articles-rubrique">
+			<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesrubrique}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
 		<a class="articles-rubrique" href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 			<div class="titre-articles-rubrique">
 				<div class="logorub">
 					[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique, spip_logos}|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
 				</div>
 				<div class="titre-articles-rubrique2">[(#TITRE)]</div>
+	
 			</div>
 	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)<div class="nettoyeur"></div>]
 	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui)<div class="nettoyeur"></div>]

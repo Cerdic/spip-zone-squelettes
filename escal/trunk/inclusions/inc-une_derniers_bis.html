@@ -19,7 +19,10 @@
 	#ANCRE_PAGINATION      
 <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{!par date}{0,#CONFIG{escal/config/nombrearticlesunebis,50}}{pagination #CONFIG{escal/config/paginarticlesune,5}}{"<hr class='separation' />"}>
 <div class="fragment rub#ID_RUBRIQUE secteur#ID_SECTEUR">
-
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			] 
 <!-- affichage logo -->
 	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartbis,100}})]
 <!-- affichage surtitre -->
@@ -36,7 +39,7 @@
 <!-- affichage soustitre -->
     [(#CONFIG{escal/config/soustitreunebis}|=={non}|non)
 		<div class="soustitre-article #EDIT{texte}">[(#SOUSTITRE)]</div>
-		]       
+		]    
 <!-- affichage auteur -->
 	<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurunebis|=={non}|non}}>
 	</BOUCLE_test>

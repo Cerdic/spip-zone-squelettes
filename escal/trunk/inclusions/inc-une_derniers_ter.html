@@ -39,6 +39,10 @@
 ************** -->
 <BOUCLE_dernier_endate(ARTICLES){lang}{doublons}{doublons exergue}{si #CONFIG{escal/config/articleexergueter}|=={non}|non}{tri #CONFIG{escal/config/ordrealauneter,date}, inverse}{0,1}>
 <div id="section-#ID_ARTICLE" class="fragment art-exergue">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]    
 	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 <!-- affichage logo -->
 		[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexergueter,100}})]
@@ -53,7 +57,7 @@
 <!-- affichage soustitre -->
 		[(#CONFIG{escal/config/soustitreuneter}|=={non}|non)
 			<div class="soustitre-article #EDIT{texte}">[(#SOUSTITRE)]</div>
-		]        
+		]   
 <!-- affichage auteur -->
 		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneter}|=={non}|non}>
 		</BOUCLE_test>
@@ -135,6 +139,10 @@
 			[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitreter,27}}|sinon{#FICHIER|basename|couper{#CONFIG{escal/config/nbrecaracttitreter,27}}})]
 			</a>
 </BOUCLE_video>
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
 
 			      <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 <!-- affichage logo -->
@@ -142,30 +150,7 @@
 <!-- affichage titre -->
 				<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitreter,27}})]</span><br /><br />
 
-<!-- affichage mots-clés associés -->
-<div class="mot-cles">
 
-<BOUCLE_mots1(MOTS){id_article}{type=#CONFIG{escal/config/motsclester1}}>
-<span>#TITRE</span>
-</BOUCLE_mots1>
-
-<BOUCLE_mots2(MOTS){id_article}{type=#CONFIG{escal/config/motsclester2}}>
-<span>#TITRE</span>
-</BOUCLE_mots2>
-
-<BOUCLE_mots3(MOTS){id_article}{type=#CONFIG{escal/config/motsclester3}}>
-<span>#TITRE</span>
-</BOUCLE_mots3>
-
-<BOUCLE_mots4(MOTS){id_article}{type=#CONFIG{escal/config/motsclester4}}>
-<span>#TITRE</span>
-</BOUCLE_mots4>
-
-<BOUCLE_mots5(MOTS){id_article}{type=#CONFIG{escal/config/motsclester5}}>
-<span>#TITRE</span>
-</BOUCLE_mots5>
-
-</div>
 <br /><br />
 
 				

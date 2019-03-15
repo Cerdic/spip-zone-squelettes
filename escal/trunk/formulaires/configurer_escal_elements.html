@@ -12,9 +12,119 @@
 <!-------------------------------------------------------------------------------->
 <!-- Choisir la présence ou l'absence d'un élément sur toutes les pages du site -->
 <!-------------------------------------------------------------------------------->
-            <div class="explication"><:escal:elements_explication:></div>
+<div class="explication"><:escal:elements_explication:></div>
 
-     <ul>
+<ul>
+<!-- mots-clés -->
+	<li class="editer [ (#GET{erreurs}|oui)erreur]">
+		<label><strong><:escal:mots_clefs:></strong></label>
+			<br />
+			<div class="explication">
+			<:escal:affichage_mots_cles:>
+
+			<br /><br />
+
+			<div style="margin-left: 50px;">
+				#SET{name,motsclesune}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<:escal:affichage_mots_cles_une:>              
+					[<span class='erreur_message'>(#GET{erreurs})</span>
+					]<span class="choix droite">
+						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+							[(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+							[(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+					</span>
+				<br /><br />
+				#SET{name,motsclesrubrique}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<:escal:affichage_mots_cles_rubrique:>              
+					[<span class='erreur_message'>(#GET{erreurs})</span>
+					]<span class="choix droite">
+						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+							[(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+							[(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+					</span>
+				<br /><br />
+				#SET{name,motsclesarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					<:escal:affichage_mots_cles_article:>              
+					[<span class='erreur_message'>(#GET{erreurs})</span>
+					]<span class="choix droite">
+						<input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+							[(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+						<input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+							[(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+					</span>
+			</div>
+			<br /><br />
+
+			<:escal:noisettes_multi_choix:> <br /><br />
+			<div style="margin-left: 50px;">
+				#SET{name,motscles1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    	<:escal:noisettes_multi_groupe1:>
+                    	[<span class='erreur_message'>(#GET{erreurs})</span>
+                    	]<span class="choix droite">
+                    	<select name="#GET{name}" id="#GET{name}" size="1">
+                      		<option value=""><:escal:noisettes_multi_choix2:></option>
+                    		<BOUCLE_groupes1(GROUPES_MOTS){par num titre, titre}{titre !IN affichage, trombino, type_rubrique, Agenda_couleur}>
+                      			<option value="#TITRE"[(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+                    		</BOUCLE_groupes1>
+                    	</select>
+                    	</span>
+					<div class="nettoyeur"></div>
+				#SET{name,motscles2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	                    <:escal:noisettes_multi_groupe2:>
+	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+	                    ]<span class="choix droite">
+	                    <select name="#GET{name}" id="#GET{name}" size="1">
+		                    <option value=""><:escal:noisettes_multi_non:></option>
+		                    <BOUCLE_groupes2(GROUPES_MOTS){par num titre, titre}{titre !IN affichage, trombino, type_rubrique, Agenda_couleur}>
+		                        <option value="#TITRE"[(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+		                    </BOUCLE_groupes2>
+	                    </select>
+	                    </span>
+	            		<div class="nettoyeur"></div>
+				#SET{name,motscles3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	                    <:escal:noisettes_multi_groupe3:>
+	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+	                    ]<span class="choix droite">
+	                    <select name="#GET{name}" id="#GET{name}" size="1">
+		                    <option value=""><:escal:noisettes_multi_non:></option>
+		                    <BOUCLE_groupes3(GROUPES_MOTS){par num titre, titre}{titre !IN affichage, trombino, type_rubrique, Agenda_couleur}>
+		                        <option value="#TITRE"[(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+		                    </BOUCLE_groupes3>
+		                    </select>
+	                    </span>
+	            		<div class="nettoyeur"></div>
+				#SET{name,motscles4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	                    <:escal:noisettes_multi_groupe4:>
+	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+	                    ]<span class="choix droite">
+	                    <select name="#GET{name}" id="#GET{name}" size="1">
+		                    <option value=""><:escal:noisettes_multi_non:></option>
+		                    <BOUCLE_groupes4(GROUPES_MOTS){par num titre, titre}{titre !IN affichage, trombino, type_rubrique, Agenda_couleur}>
+		                        <option value="#TITRE"[(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+		                    </BOUCLE_groupes4>
+	                    </select>
+	                    </span>
+					<div class="nettoyeur"></div>
+				#SET{name,motscles5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	                    <:escal:noisettes_multi_groupe5:>
+	                    [<span class='erreur_message'>(#GET{erreurs})</span>
+	                    ]<span class="choix droite">
+	                    <select name="#GET{name}" id="#GET{name}" size="1">
+		                    <option value=""><:escal:noisettes_multi_non:></option>
+		                    <BOUCLE_groupes5(GROUPES_MOTS){par num titre, titre}{titre !IN affichage, trombino, type_rubrique, Agenda_couleur}>
+		                        <option value="#TITRE"[(#ENV{#GET{name}}|=={#TITRE}|?{'selected="selected"',''})]>#TITRE</option>
+		                    </BOUCLE_groupes5>
+	                    </select>
+	                    </span>
+	            		<div class="nettoyeur"></div>
+                    </div>
+                    
+			</div>
+	</li>
+
+     
 <!-- favicon -->
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
                     <label><strong><:escal:favicon:></strong></label>
