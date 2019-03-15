@@ -8,27 +8,23 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// A
-	'aide' => 'Aide : <a href="https://contrib.spip.net/?article5019">lire la documentation sur contrib.spip.net</a>',
-	
-	// E
-	'extras_accueil_label' => 'Sur l’accueil du site',
-	'extras_accueil_explications' => 'Cochez cette case pour que cet article apparaisse sur la page d’accueil du site.',
-	'extras_ordre_accueil_label' => 'Ordre sur la page accueil',
-	'extras_ordre_accueil_explications' => 'Associez un chiffre qui permettra de trier entre eux et dans l’ordre croissant les articles choisis pour la page d’accueil.',
+	'aide' => 'Aide : <a href="https://contrib.spip.net/?article5123">lire la documentation sur contrib.spip.net</a>',
 	
 	// H
-	'html5up_phantom_titre' => 'Html5up Phantom ',
+	'html5up_massively_titre' => 'Html5up Massively ',
 	
-	// L
-	'largeur_page' => 'Largeur de la page',
-	'largeur_page_explications' => 'Si les lignes de texte vous parraissent trop longues à la lecture, vous pouvez choisir la largeur maximum du contenu des pages (max-width). Exprimez ici la valeur et son unité (%,px,vw...).',
-	
-	// P
-	'phantom_label' => 'Page accueil du site',
+	// M
+	'major' => 'Un article sur la page accueil',
+	'major_explications' => 'Choisissez un article pour le mettre en évidence sur la page d’accueil',
 	
 	// S
-	'suivre' => 'Suivre',
+	'slogan_accueil' => 'Le slogan du site',
+	'slogan_accueil_explications' => 'Oui, afficher le slogan du site sur la page accueil.',
+	'descriptif_accueil' => 'Le descriptif du site',
+	'descriptif_accueil_explications' => 'Oui, afficher le descriptif du site sur la page accueil.',
 	
 	// T
-	'titre_page_configurer_html5up_phantom' => 'Configurer le squelette Phantom',
+	'titre_page_configurer_html5up_massively' => 'Configurer le squelette Massively',
+	'titre_sommaire_accueil' => 'Titre sur la page d’accueil',
+	'titre_sommaire_accueil_explications' => 'Ce titre est utilisé sur la page d’accueil et dans le premier item du menu. Si ce champ n’est pas renseigné, c’est le titre du site qui est utilisé.',
 );

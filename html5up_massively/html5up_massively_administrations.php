@@ -33,6 +33,23 @@ function html5up_massively_upgrade($nom_meta_base_version, $version_cible) {
 			'couleur_bkg_footer' => '#F5F5F5',
 		))
 	);
+	
+	$config_enluminures = array(
+		'titraille1open' => '<h2 class="spip">',
+		'titraille1close' => '</h2>',
+		'titraille2open' => '<h3 class="spip">',
+		'titraille2close' => '</h3>',
+		'titraille3open' => '<h4 class="spip">',
+		'titraille3close' => '</h4>',
+		'titraille4open' => '<h5 class="spip">',
+		'titraille4close' => '</h5>',
+		'titraille5open' => '<h6 class="spip">',
+		'titraille5close' => '</h6>'
+	);
+	$maj['0.1.3'] = array(
+		array('ecrire_config', 'bte', $config_enluminures)
+	);
+	
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }

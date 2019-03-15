@@ -46,7 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// R
 	'rechercher' => 'Suchen',
-	'reseaux_sociaux' => 'Soziale Netzwerke',
+	'reseaux_sociaux' => 'Netzwerke',
 	'reseaux_sociaux_activer' => 'Aktivieren sie das Plugin «Links zu sozialen Netzwerken» um diese Links anzuzeigen.',
 	'reseaux_sociaux_configurer' => 'Plugin konfigurieren: Links zu sozialen Netzwerken',
 	
