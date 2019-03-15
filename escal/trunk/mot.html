@@ -40,24 +40,36 @@
                   <div id="titre-article">
                     <:escal:articles_associes_mot:> "<strong>[(#TITRE)]</strong>"
                   </div>
+			
+<B_compte>
+<!-- si au moins un article trouvé, on affiche le nombre trouvé -->
+	<div class="cadre-resultat">
+		#GRAND_TOTAL 
+		[(#GRAND_TOTAL|>{01}|oui) <:escal:articles_trouves:>]
+		[(#GRAND_TOTAL|>{01}|non) <:escal:article_trouve:>] 
+		<:escal:dans_site:>
+	</div>
+<BOUCLE_compte(ARTICLES){lang}{id_mot}>
+</BOUCLE_compte>
+
                 </div>
                 <div id="texte-article" >
-  
-				
+
+<BOUCLE_contexte_rubrique(RUBRIQUES){lang}>
+    <BOUCLE_articles_aumoinsun(ARTICLES){id_rubrique}{id_mot}{0,1}>
+	<BOUCLE_Rub(RUBRIQUES){id_rubrique}>
+		<div class="rubrique-mere #EDIT{titre}">
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+			[(#TITRE)]
+			</a>
+		</div>
+	</BOUCLE_Rub>
+
 <B_articles>
-                    <!-- si au moins un article trouvé, on affiche le nombre trouvé -->
-                    <div class="cadre-resultat">
-                      #GRAND_TOTAL 
-                      [(#GRAND_TOTAL|>{01}|oui) <:escal:articles_trouves:>]
-                      [(#GRAND_TOTAL|>{01}|non) <:escal:article_trouve:>] 
-                      <:escal:dans_site:>
-
-							[<p class="pagination">(#PAGINATION)</p>
-							<div class="nettoyeur"></div>]
-
-                    </div>
-	<div class="liste-articles-rubrique" > 
-<BOUCLE_articles(ARTICLES){lang} {id_mot} {par date}{inverse}{pagination 10}>
+	<div class="liste-articles-rubrique" >
+		[<p class="pagination">(#PAGINATION)</p>
+		div class="nettoyeur"></div>]
+<BOUCLE_articles(ARTICLES){lang} {id_mot}{id_rubrique} {par date}{inverse}{pagination 10}>
                     <!-- on affiche le ou les article(s) -->               
     <div class="cadre-articles-rubrique">
 <!-- affichage mots-clés associés -->
@@ -96,7 +108,8 @@
 </BOUCLE_articles>
     </div>
 </B_articles>
-
+</BOUCLE_articles_aumoinsun>
+</BOUCLE_contexte_rubrique>
 
                 </div><!-- fin texte-article -->
               </div><!-- fin cadre-article -->
