@@ -14,7 +14,11 @@
 </aside>
 
 <div id="cadre-titre-article">
-
+<!-- affichage mots-clés associés -->
+<!-- affichage mots-clés associés -->
+	[(#CONFIG{escal/config/motsclesarticles}|=={oui}|oui)
+		<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+	]
 <!-- affichage du logo de l'article ou de sa rubrique avec lien vers cette rubrique -->
 	<div class="logorub">
 		[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
@@ -24,10 +28,7 @@
 	[<div id="surtitre-article" class="#EDIT{surtitre}">(#SURTITRE)</div>]
 	[<div id="titre-article" class="#EDIT{titre}">(#TITRE)</div>]
 	[<div id="soustitre-article" class="#EDIT{soustitre}">(#SOUSTITRE)</div>]
-		<!-- affichage mots-clés associés -->
-			[(#CONFIG{escal/config/motsclesarticles}|=={oui}|oui)
-				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
-			]
+
 	[<div id="descriptif-article">(#DESCRIPTIF)</div>]
 	<div id="auteur-article">  
 		<BOUCLE_date(ARTICLES){id_article}{titre_mot=article-sans-date}>
