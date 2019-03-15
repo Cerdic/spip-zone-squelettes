@@ -28,6 +28,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'couleur_typo_footer_explications' => 'Par défaut #717981',
 	'couleur_typo_copyright' => 'Couleur de la typographie à la fin du pied de page.',
 	'couleur_typo_copyright_explications' => 'Couleur de la typographie de la dernière ligne en bas de page (copyright).',
+	'couleur_bkg_texte' => 'Couleur de fond sous le contenu',
+	'couleur_bkg_texte_explications' => 'Couleur par défaut #FFFFFF',
 	'courriel' => 'Courriel',
 	
 	// D
