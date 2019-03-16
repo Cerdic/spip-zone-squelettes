@@ -1,4 +1,4 @@
-<nav class="laune" >
+<nav class="laune ter" >
 
 <!-- on extrait tous les articles des rubriques a qui on a donné le mot-cle "pas-a-la-une" ou "invisible" 
 	on les stocke dans "doublons" et on n'affiche rien ici -->
@@ -42,7 +42,16 @@
 <!-- affichage mots-clés associés -->
 			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
 				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
-			]    
+			]
+<!-- affichage rubrique -->
+			<span class="rubrique-autres">
+				<BOUCLE_Rub(HIERARCHIE){id_rubrique}{tout}{si #CONFIG{escal/config/affichrubriqueter}|=={non}|non}>
+					 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+					 [(#TITRE|couper{30})]
+					 </a>		 
+				</BOUCLE_Rub>
+			</span>
+			<div class="nettoyeur"></div>		   
 	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 <!-- affichage logo -->
 		[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexergueter,100}})]
@@ -77,12 +86,6 @@
 		[(#CONFIG{escal/config/datemodifuneter}|=={non}|non)
 			<div class="auteur-articles-rubrique">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div> 
 		]        
-<!-- affichage rubrique -->
-		<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueuneter}|=={non}|non}>
-			<div class="rubrique #EDIT{titre}">
-				<:rubrique:> : [(#TITRE)]
-			</div>
-		</BOUCLE_Rub>
 <!-- affichage descriptif -->
 		[(#CONFIG{escal/config/descriptifuneter}|=={non}|non)
 			<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
@@ -143,20 +146,25 @@
 			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
 				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
 			]
+<!-- affichage rubrique -->
+			<span class="rubrique-autres">
+				<BOUCLE_Rub_suite(HIERARCHIE){id_rubrique}{tout}{si #CONFIG{escal/config/affichrubriqueter}|=={non}|non}>
+					 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+					 [(#TITRE|couper{30})]
+					 </a>		 
+				</BOUCLE_Rub_suite>
+			</span>
+			<div class="nettoyeur"></div>
 
 			      <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 <!-- affichage logo -->
       			[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartuneter,40}})]
 <!-- affichage titre -->
 				<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitreter,27}})]</span><br /><br />
-
-
-<br /><br />
-
-				
+				<br /><br />			
 <!-- affichage date de publication ou de derniere modification -->
 				[(#CONFIG{escal/config/dateuneautrester}|=={non}|non)
-					<span class="rubrique-autres">
+					<span class="date-autres">
 						[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],[<:escal:article_mise_en_ligne:> (#DATE|affdate)]})]
 						<br />
 					</span> 
@@ -164,21 +172,13 @@
 <!-- affichage auteur -->
       			<BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautrester}|=={non}|non}>
       			</BOUCLE_testauteur>
-					<span class="rubrique-autres">
+					<span class="auteur-autres">
 						[(#LANG|=={ja}|non)<:par_auteur:>]
 						<BOUCLE_auteurs_art2(AUTEURS){id_article}{", "}{lang_select}>#NOM</BOUCLE_auteurs_art2>
 						[(#LANG|=={ja}|oui)<:par_auteur:>]
 						<br />
 					</span>
 				</B_testauteur>
-<!-- affichage rubrique -->
-				<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubriqueter}|=={non}|non}>
-					 <span class="rubrique-autres">
-					 	<:rubrique:> : [(#TITRE|couper{30})]
-					 </span>
-				</BOUCLE_Rub_suite>
-				<br /><br />
-				<div class="nettoyeur"></div>
 <!-- affichage descriptif -->
 				<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptifter}|=={oui}|oui}>
 					[<div class="descriptif-autres">
