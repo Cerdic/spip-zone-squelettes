@@ -5,8 +5,11 @@
 
 <BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexerguemotcle}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
 	{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
-<div id="section-#ID_ARTICLE" class="fragment">
-
+<div id="section-#ID_ARTICLE" class="fragment art-exergue">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
 <!-- affichage logo -->
 	[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique,spip_logos}|image_reduire{#CONFIG{escal/config/taillelogoartexerguemotcle,50}})]
 <!-- affichage surtitre -->
@@ -103,6 +106,10 @@
 		{0,#CONFIG{escal/config/nombrearticlesunemotcle,50}|moins{1}}
 		{pagination #CONFIG{escal/config/paginarticlesunemotcle,5}}>
 	<li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
 	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 
 <!-- affichage logo -->
