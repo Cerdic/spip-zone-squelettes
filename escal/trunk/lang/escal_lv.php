@@ -104,6 +104,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'bultina',
 	'fois' => 'reizes',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'E-pasts apstiprinajumu nupat nosutets uz webmaster no vietnes, lai apstiprinatu savu re?istraciju.',
 	'format' => 'Faila tips:',
 	'forum' => 'Forums',
@@ -145,6 +146,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'lapas',
 	'pages_vues' => 'Lapu skaits apmekleja:',
 	'photos_hasard' => 'Daži fotografijas <br /> nejauši',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Vietnes karte',
 	'poster_message' => 'Rakstet jaunu zinu',
 	'premier_visiteur' => 'Jums ir pirma!',

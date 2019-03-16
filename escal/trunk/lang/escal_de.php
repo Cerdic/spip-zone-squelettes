@@ -103,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'Pfeil',
 	'fois' => 'mal',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Ein Bestätigungse-mail wurde gerade dem Webmaster geschickt, um Ihre Einschreibung zu bestätigen.',
 	'format' => 'Format :',
 	'forum' => 'Forum',
@@ -144,6 +145,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'Seiten',
 	'pages_vues' => 'Zahl der besichtigten Seiten : ',
 	'photos_hasard' => 'einige Fotos<br />Beliebige...',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Sitemap',
 	'poster_message' => 'einen neuen Brief aufgeben',
 	'premier_visiteur' => 'Sie sind der Erste !',

@@ -24,11 +24,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_debut' => 'Affichage du debut du texte',
 	'affichage_descriptif' => 'Affichage du descriptif',
 	'affichage_form_reponse' => 'Affichage du formulaire de réponse sous l’article',
+	'affichage_image' => 'Affichage de la première image',
 	'affichage_mots_cles' => '<strong>Affichage des mots-clés associés aux articles</strong>',
 	'affichage_mots_cles_article' => 'Pour la page article',
 	'affichage_mots_cles_rubrique' => 'Pour la page rubrique',
-	'affichage_mots_cles_une' => 'Pour la page d\'accueil',
-	'affichage_image' => 'Affichage de la première image',
+	'affichage_mots_cles_une' => 'Pour la page d’accueil',
 	'affichage_nom_auteur' => 'Affichage du nom de l’auteur',
 	'affichage_nombre_comments' => 'Affichage du nombre de commentaires',
 	'affichage_ordre' => 'Ordre d’affichage',
@@ -938,9 +938,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_police' => 'Taille de la police :',
 	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
 				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
-				Exemples : <br />
-				62.5% &rarr; 1rem = 10px<br />
-				80% &rarr; 1rem = 16px<br />
+				Exemples : <br />
+				62.5% → 1rem = 10px<br />
+				80% → 1rem = 16px<br />
 				',
 	'telechargement' => 'Fichier à télécharger :',
 	'telechargements' => 'Fichiers à télécharger :',

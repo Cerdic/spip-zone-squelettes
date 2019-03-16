@@ -104,6 +104,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'pijl',
 	'fois' => 'keer',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Een bevestigings e-mail was verzonden naar de webmaster van de site om uw registratie te valideren. ',
 	'format' => 'bestandstype :',
 	'forum' => 'Forum',
@@ -145,6 +146,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'pagina’s',
 	'pages_vues' => 'Aantal bezochte pagina’s: ',
 	'photos_hasard' => 'Sommige foto’s <br /> in willekeurige volgorde',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Sitemap',
 	'poster_message' => 'Plaats een nieuw bericht',
 	'premier_visiteur' => 'U bent de eerste!',

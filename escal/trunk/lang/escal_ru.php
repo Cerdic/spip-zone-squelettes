@@ -141,6 +141,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'стрелка',
 	'fois' => 'раз',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Письмо-подтверждение (e-mail) было отправлено веб-мастеру сайта для подтверждения вашей регистрации. ',
 	'format' => 'Тип файла:',
 	'forum' => 'Форум',
@@ -182,6 +183,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'страниц',
 	'pages_vues' => 'Количество посещенных страниц: ',
 	'photos_hasard' => 'Случайное фото',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Карта сайта',
 	'poster_message' => 'Разместить новое сообщение',
 	'premier_visiteur' => 'Вы - первый!',

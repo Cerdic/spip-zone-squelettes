@@ -101,6 +101,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => '矢印',
 	'fois' => '回',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'あなたの登録を有効にする為にサイトのウェブマスターからただいま確認のメールが送信されました。 ',
 	'format' => 'フォーマット :',
 	'forum' => 'フォーラム',
@@ -142,6 +143,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'ページ一覧',
 	'pages_vues' => 'このページを訪れた人 :',
 	'photos_hasard' => 'フォトアルバム<br />au hasard',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'サイトマップ',
 	'poster_message' => '新しいメッセージを投稿する',
 	'premier_visiteur' => '最初の訪問者です！',

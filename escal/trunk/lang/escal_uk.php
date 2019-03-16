@@ -140,6 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'стрілка',
 	'fois' => 'разів',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Лист-підтвердження був відправлений веб-майстру сайту для підтвердження вашої реєстрації. ',
 	'format' => 'Тип файлу:',
 	'forum' => 'Форум',
@@ -181,6 +182,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'сторінок',
 	'pages_vues' => 'Кількість відвіданих сторінок: ',
 	'photos_hasard' => 'Фото навмання',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Мапа сайту',
 	'poster_message' => 'Нове повідомлення',
 	'premier_visiteur' => 'Ви - перші!',

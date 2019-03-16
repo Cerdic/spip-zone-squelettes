@@ -103,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'shigjetë ',
 	'fois' => 'kohë ',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Një email konfirmimi është dërguar webmasteri i faqes, në mënyrë që të vërtetoni regjistrimin tuaj. ',
 	'format' => 'formati:',
 	'forum' => 'Forum',
@@ -144,6 +145,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'Faqet',
 	'pages_vues' => 'Numri i faqeve të vizituara:',
 	'photos_hasard' => 'Disa fotografi<br />në mënyrë të rastësishme',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'sitemap',
 	'poster_message' => 'Posto një mesazh të ri',
 	'premier_visiteur' => 'Ju jeni të parët!',

@@ -97,6 +97,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// F
 	'fleche' => 'sago',
 	'fois' => 'fojoj',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Retmesaĝo al la retejestro ĵus konfirmis vian aliĝon. ',
 	'format' => 'Dosiertipo :',
 	'forum' => 'Forumo',
@@ -135,6 +136,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pages' => 'paĝoj',
 	'pages_vues' => 'Nombro de vizititaj paĝoj : ',
 	'photos_hasard' => 'Bildoj hazarde',
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
 	'plan_site' => 'Paĝarmapo',
 	'poster_message' => 'Sendi novan mesaĝon',
 	'premier_visiteur' => 'Vi estas la unua vizitanto !',
