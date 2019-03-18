@@ -9,6 +9,9 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	// C
+	'cfg_page_qrcode' => 'QrCode', # MODIF
+
 	// F
 	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
 
@@ -18,5 +21,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_mentions_choix' => 'Choix de la page à afficher', # MODIF
 	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l’avez activé', # MODIF
 	'pied_lien_mentions_choix2' => 'Un article de votre choix', # MODIF
-	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)' # MODIF
+	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)', # MODIF
+
+	// Q
+	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article' # MODIF
 );

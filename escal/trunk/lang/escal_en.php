@@ -233,6 +233,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_parametrage_blocs' => 'Configuration of side blocks',
 	'cfg_page_pied' => 'Footer',
 	'cfg_page_plugins' => 'Some plugins in Escal',
+	'cfg_page_qrcode' => 'QrCode', # MODIF
 	'cfg_page_rainette' => 'Rainette',
 	'cfg_page_rubrique' => 'The sections',
 	'cfg_page_rubrique_lateral' => 'The sections',
@@ -857,6 +858,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'premier_visiteur' => 'You are the first !',
 	'publie' => 'Published on',
 	'puce' => 'bullet point',
+
+	// Q
+	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
 
 	// R
 	'rainette' => 'Rainette',

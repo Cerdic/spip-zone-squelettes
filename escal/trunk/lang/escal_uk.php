@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_multilinguisme' => 'Багатомовність',
 	'cfg_page_pages_noisettes' => 'Інші сторінки',
 	'cfg_page_pied' => 'Підвал (footer)',
+	'cfg_page_qrcode' => 'QrCode', # MODIF
 	'cfg_page_rainette' => 'Rainette (погода)',
 	'cfg_page_rubrique' => 'Рубрики',
 	'cfg_page_rubrique_lateral' => 'Рубрики',
@@ -193,6 +194,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'premier_visiteur' => 'Ви - перші!',
 	'publie' => 'Опубліковано на ',
 	'puce' => 'пункт списку',
+
+	// Q
+	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
 
 	// R
 	'rappel_discussion' => 'Нагадування про дискусію',

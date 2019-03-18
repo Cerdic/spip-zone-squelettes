@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'calendrier' => 'Kalendaro',
+	'cfg_page_qrcode' => 'QrCode', # MODIF
 	'clic_telechargement' => 'Alklaku por vidi aŭ elŝuti',
 	'collegues' => 'Ĉiuj kolegoj',
 	'contact' => 'Kontaktoj',
@@ -147,6 +148,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'premier_visiteur' => 'Vi estas la unua vizitanto !',
 	'publie' => 'Publikigita la',
 	'puce' => 'bulosigno',
+
+	// Q
+	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
 
 	// R
 	'rappel_discussion' => 'Lasta diskuto',
