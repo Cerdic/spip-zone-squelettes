@@ -1,12 +1,12 @@
 jQuery(function($){
 
 	// le menu des articles
-	var h = $('#sousnav').height();
-	$('body').prepend('<style>#sousnav nav.fermer { margin-top:-' + h + 'px; }</style>');
+	var h = $('#sousnavmasquee').height();
+	$('body').prepend('<style>#sousnavmasquee nav.fermer { margin-top:-' + h + 'px; }</style>');
 	// afficher/masquer le menu
-	$('#sousnavToggle').on('click', function(){
+	$('#sousnavmasqueeToggle').on('click', function(){
 		$(this).toggleClass('active');
-		$('#sousnav nav').toggleClass('fermer');
+		$('#sousnavmasquee nav').toggleClass('fermer');
 		return false;
 	});
 	

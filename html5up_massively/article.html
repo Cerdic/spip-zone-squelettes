@@ -28,11 +28,13 @@
 			<div id="main">
 				<section class="post">
 					
-					<BOUCLE_articles(ARTICLES){id_rubrique}{1,2}> </BOUCLE_articles>
-					<a href="#sousnav" id="sousnavToggle">Articles</a>
-					<div id="sousnav">
-						<INCLURE{fond=inclure/sousnav,env,ajax,id_rubrique} />
-					</div>
+					<BOUCLE_articles(ARTICLES){id_rubrique}{1,2}> </BOUCLE_articles>[(#CONFIG{html5up/sousnavmasquee}|=={on}|oui)
+					<a href="#sousnavmasquee" id="sousnavmasqueeToggle">Articles</a>
+					<div id="sousnavmasquee">
+						<INCLURE{fond=inclure/sousnav,env,ajax,id_rubrique,id_article,masquee=oui} />
+					</div>][(#CONFIG{html5up/sousnavmasquee}|=={on}|non)<div id="sousnav">
+						<INCLURE{fond=inclure/sousnav,env,ajax,id_rubrique,id_article} />
+					</div>]
 					</B_articles>
 					
 					<header class="major">
