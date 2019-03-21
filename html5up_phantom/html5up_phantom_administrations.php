@@ -6,7 +6,7 @@
  * @copyright  2017
  * @author     chankalan
  * @licence    GNU/GPL
- * @package    SPIP\Html5up_editorial\Installation
+ * @package    SPIP\Html5up_phantom\Installation
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) {
@@ -17,7 +17,7 @@ include_spip('inc/cextras');
 include_spip('base/phantom');
 
 /**
- * Fonction d'installation et de mise à jour du plugin Html5up Editorial .
+ * Fonction d'installation et de mise à jour du plugin Html5up Phantom .
  *
  * @param string $nom_meta_base_version
  *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
@@ -46,7 +46,7 @@ function html5up_phantom_upgrade($nom_meta_base_version, $version_cible) {
 
 
 /**
- * Fonction de désinstallation du plugin Html5up Editorial .
+ * Fonction de désinstallation du plugin Html5up Phantom .
  *
  * @param string $nom_meta_base_version
  *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
