@@ -840,7 +840,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_mentions_choix2' => 'Un article de votre choix',
 	'pied_lien_plan' => 'Lien vers le plan du site',
 	'pied_lien_prive' => 'Lien vers l’espace privé',
-	'pied_lien_puce' => 'Afficher la dernière puce (choisir non si aucun des liens ci-dessus ou si vous les affichez sous forme d’icones)',
 	'pied_lien_rss' => 'Icône avec lien vers la page de flux RSS',
 	'pied_lien_squelette' => 'Lien vers le squelette de la page',
 	'pied_lien_texte' => 'Sous forme de textes',
