@@ -27,6 +27,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Visualizzazione della descrizione',
 	'affichage_form_reponse' => 'Visualizzazione del modulo di risposta sotto l’articolo',
 	'affichage_image' => 'Visualizzazione della prima immagine',
+	'affichage_mots_cles' => '<strong>Affissione delle parole chiave associate agli articoli</strong>',
+	'affichage_mots_cles_article' => 'Per il pagina articolo',
+	'affichage_mots_cles_rubrique' => 'Per la pagina rubrico',
+	'affichage_mots_cles_une' => 'Per la pagina di accoglienza',
 	'affichage_nom_auteur' => 'Visualizzazione del nome dell’autore',
 	'affichage_nombre_comments' => 'Visualizzazione del numero dei commenti',
 	'affichage_ordre' => 'Ordine di visualizzazione',
@@ -85,7 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_libre5' => 'Articolo libero 5',
 	'article_licence' => 'Licenza',
 	'article_mise_en_ligne' => 'Articolo pubblicato online il',
-	'article_modifie' => 'Ultima modifica il', # MODIF
+	'article_modifie' => 'Ultima modifica il',
 	'article_trouve' => 'articolo trovato',
 	'article_une' => 'Mettere in prima pagina questo articolo',
 	'articlepdf_afficher' => 'Mostra l’icona:',
@@ -109,12 +113,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les' => 'Articoli',
 	'articles_logo' => 'Dimensione massima del logo degli articoli',
 	'articles_plus_vus' => 'Articoli più popolari',
-	'articles_portfolio' => 'Visualizza il portfolio (si sovrappone al blocco "Per scaricare")', # MODIF
+	'articles_portfolio' => 'Visualizza il portfolio (si sovrappone al blocco "Per scaricare")',
 	'articles_premier_message' => 'Mostra solo il primo messaggio di ogni thread, le risposte sono espandibili',
 	'articles_reponses_forum' => 'Risposte del forum dell’articolo',
 	'articles_rubrique' => 'Articoli di rubrica',
 	'articles_trouves' => 'articoli trovati',
-	'aucun' => 'No', # MODIF
+	'aucun' => 'No',
 	'aujourdhui' => 'Oggi: ',
 	'auteurs' => 'autori',
 	'avec' => 'con',
@@ -189,7 +193,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords2' => 'Articoli e rubriche, forum degli articoli, contatti, elenco',
 	'bords3' => 'Tabelle',
 	'bords4' => 'Menù a discesa verticale a destra',
-	'bords5' => 'Voci di menù orizzontale sorvolato, login, ricerca, calendario eventi', # MODIF
+	'bords5' => 'Voci di menù orizzontale sorvolato, login, ricerca, calendario eventi',
 	'bords6' => 'Forum del sito',
 
 	// C
@@ -233,7 +237,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_parametrage_blocs' => 'IMPOSTAZIONI DEI BLOCCHI LATERALI',
 	'cfg_page_pied' => 'Pié di pagina',
 	'cfg_page_plugins' => 'PLUGINS DI ESCAL',
-	'cfg_page_qrcode' => 'QrCode', # MODIF
+	'cfg_page_qrcode' => 'QrCode',
 	'cfg_page_rainette' => 'Rainette',
 	'cfg_page_rubrique' => 'Le rubriche',
 	'cfg_page_rubrique_lateral' => 'Le rubriche',
@@ -383,7 +387,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="Guarda la documentazione">In primo piano</a>',
 	'doc_une2' => ' : Un contenitore con le schede degli ultimi articoli, la mappa del sito, la sezione, le sezioni di un argomento ecc...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="Guarda la documentazione">Video</a>',
-	'doc_videos2' => ': visualizza i video in formato .flv o .mp4 degli articoli con parola chiave "video-une".', # MODIF
+	'doc_videos2' => ': visualizza i video in formato .flv o .mp4 degli articoli con parola chiave "video-une".',
 	'documentation' => 'Documentazione',
 	'documentation_voir' => 'Guarda la documentazione',
 	'droite' => 'A destra',
@@ -473,7 +477,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Immagine di sfondo',
 	'fonds_textes' => 'Altri testi',
 	'fonds_textes_alerte' => 'Gli avvisi della pagina contatti',
-	'fonds_textes_comment' => '(ad esempio in caso di campi obbligatori non riempiti)', # MODIF
+	'fonds_textes_comment' => '(ad esempio in caso di campi obbligatori non riempiti)',
 	'fonds_textes_explication' => 'Devi scegliere il colore di alcuni testi specifici...',
 	'fonds_textes_forum' => 'Il forum del sito',
 	'fonds_textes_liens' => 'I link',
@@ -551,7 +555,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Menzioni legali',
 	'mentions_activer' => 'Attivare il link alla pagina "Mentions légales":',
 	'mentions_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentatione">plugin "Mentions légales"</a>,
-            è possibile far apparire il link verso la pagina dedicata al piè di pagina del sito.', # MODIF
+            è possibile far apparire il link verso la pagina dedicata al piè di pagina del sito.',
 	'mentions_plugin' => 'Plugin Mentions légales',
 	'menu' => 'Menù',
 	'menu_horizontal' => 'Menù orizzontale',
@@ -663,7 +667,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Solo nella rubrica attuale e nelle sue sotto-rubriche',
 	'noisettes_decouvrir_site' => 'In tutto il sito (possiamo escludere gli articoli con la parola chiave "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'Il titolo di questo blocco è dato dall’articolo con parola chiave "edito". Articolo che deve rifiutare le traduzioni su un sito multilingue.',
-	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.', # MODIF
+	'noisettes_events_explication' => 'Attenzione: la scelta di visualizzazione di articoli ed eventi è la stessa del blocco "Mini calendario" qui sopra.',
 	'noisettes_explication' => '<strong>Titoli dei blocchi</strong><br /><br />
               Nel caso di un <strong>sito multilingua</strong>, se desidera si cambiare il titolo di un blocco
               e conservare il multilinguismo, è necessario scrivere il titolo seguento questo esempio:<br /><br />
@@ -676,7 +680,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 			(Ricordati di controllare di aver abilitato "Accetta le iscrizioni" dentro al menù "Configurazione - Interattività" nello spazio provato di SPIP)',
 	'noisettes_identification_visiteur' => 'Visualizza la form di iscrizione di nuovi <strong>visitatori</strong><br />
 			(Ricordati di controllare di aver abilitato "Accetta l’iscrizione di utenti del sito pubblico" dentro al menù "Configurazione - Interattività" nello spazio provato di SPIP)',
-	'noisettes_multi_choix' => 'Scelta dei gruppi di parole chiave', # MODIF
+	'noisettes_multi_choix' => '<strong>Scelta dei gruppi di parole chiave</strong>',
 	'noisettes_multi_choix2' => 'scegli un gruppo...',
 	'noisettes_multi_groupe1' => 'Primo gruppo (obbligatorio):',
 	'noisettes_multi_groupe2' => 'Secondo gruppo (facoltativo):',
@@ -760,7 +764,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_derniers_arts3' => 'Ultimi articoli ter',
 	'onglets_derniers_arts_explication1' => 'Questi possono essere visualizzati in 3 modi:',
 	'onglets_derniers_arts_explication2' => 'Guarda la documentazione per ulteriori dettagli.<br /><br />
-			Il titolo della scheda sarà "Ultime notizie", a meno che non gli venga dato un titolo diverso qui sotto:', # MODIF
+			Il titolo della scheda sarà "Ultime notizie", a meno che non gli venga dato un titolo diverso qui sotto:',
 	'onglets_derniers_ter_mot' => 'Notizie principali di "Ultimi articoli", "Ultimi articoli ter" e "Articoli con parola chiave"',
 	'onglets_derniers_ter_mot_hauteur' => 'Altezza del riquadro in pixel <br />(da adattare in base alle scelte precedenti)',
 	'onglets_deux' => 'Seconda scheda',
@@ -831,14 +835,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_affichage' => 'Visualizza questi link come',
 	'pied_lien_contact' => 'Link alla Pagina Contatti',
 	'pied_lien_icone' => 'icone',
-	'pied_lien_mentions' => 'Lien vers la page des mentions légales', # MODIF
-	'pied_lien_mentions_article' => 'Numéro de l’article choisi', # MODIF
-	'pied_lien_mentions_choix' => 'Choix de la page à afficher', # MODIF
-	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l’avez activé', # MODIF
-	'pied_lien_mentions_choix2' => 'Un article de votre choix', # MODIF
+	'pied_lien_mentions' => 'Legame verso la pagina delle menzioni legali',
+	'pied_lien_mentions_article' => 'Numero dell’articolo scelto',
+	'pied_lien_mentions_choix' => 'Scelta della pagina ad affiggere',
+	'pied_lien_mentions_choix1' => 'Quella del plugin "Mentions légales" se l’avete attivato',
+	'pied_lien_mentions_choix2' => 'Un articolo della vostra scelta',
 	'pied_lien_plan' => 'Link alla Mappa del Sito',
 	'pied_lien_prive' => 'Link all’Area Riservata',
-	'pied_lien_puce' => 'Visualizza l’ultima pulce (scegliere NO se non viene visualizzato nessun link o se si visualizzano come icone)', # MODIF
 	'pied_lien_rss' => 'Icona con link alla pagina dei feed RSS',
 	'pied_lien_squelette' => 'Link al codice sorgente della pagina',
 	'pied_lien_texte' => 'testi',
@@ -860,17 +863,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'puce' => 'pulce',
 
 	// Q
-	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
-	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+	'qrcode_explication' => 'Se avete attivato il plugin <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	il QrCode dell’URL dei vostri articoli si mostrerà in basso della versione stampabile degli articoli',
 
 	// R
 	'rainette' => 'Rainette',
-	'rainette_code' => 'Codice della città:', # MODIF
+	'rainette_code' => 'Codice della città:',
 	'rainette_explication' => 'Se avete attivato il <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentatione">plugin "Rainette"</a>,
             inserite qui sotto il codice della città che vi interessa.<br />
             Il codice della città deve essere cercato su <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">questo sito</a></strong> 
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
-            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).', # MODIF
+            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rappel_discussion' => 'Ultima discussione',
 	'recherche' => 'Ricerca',
@@ -949,7 +952,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				62.5% → 1rem = 10px<br />
 				75% → 1rem = 12px<br />
 				87.5% → 1rem = 14px<br />
-				100% → 1rem = 16px<br />', # MODIF
+				100% → 1rem = 16px<br />',
 	'telechargement' => 'File da inviare:',
 	'telechargements' => 'Files da inviare:',
 	'texte_accueil' => 'Benvenuti in Escal!<br /><br />

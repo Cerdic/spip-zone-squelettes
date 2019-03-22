@@ -27,6 +27,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Display of the description',
 	'affichage_form_reponse' => 'Display response form under article',
 	'affichage_image' => 'Display of the first picture',
+	'affichage_mots_cles' => '<strong>Display of keywords associated with articles</strong>',
+	'affichage_mots_cles_article' => 'For the article page',
+	'affichage_mots_cles_rubrique' => 'For the section page',
+	'affichage_mots_cles_une' => 'For the home page',
 	'affichage_nom_auteur' => 'Display of the the author’s name',
 	'affichage_nombre_comments' => 'Display of the number of comments',
 	'affichage_ordre' => 'Display order',
@@ -85,7 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_libre5' => 'Free article 5',
 	'article_licence' => 'License',
 	'article_mise_en_ligne' => 'Article published on',
-	'article_modifie' => 'last modification on', # MODIF
+	'article_modifie' => 'last modification on',
 	'article_trouve' => 'article found',
 	'article_une' => 'Put this article on the front page',
 	'articlepdf_afficher' => 'To display the icon in the sections',
@@ -109,12 +113,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les' => 'The articles',
 	'articles_logo' => 'Maximum size of the articles’ logo',
 	'articles_plus_vus' => 'The most seen articles',
-	'articles_portfolio' => 'Display the portfolio (constitute an overlap with the "Download" block)', # MODIF
+	'articles_portfolio' => 'Display the portfolio (constitute an overlap with the "Download" block)',
 	'articles_premier_message' => 'Only display the first message of each thread, answers being drop-down',
 	'articles_reponses_forum' => 'Answers to the forums of articles',
 	'articles_rubrique' => 'Articles of section',
 	'articles_trouves' => 'articles found',
-	'aucun' => 'None', # MODIF
+	'aucun' => 'None',
 	'aujourdhui' => 'Today: ',
 	'auteurs' => 'authors',
 	'avec' => 'with',
@@ -189,7 +193,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords2' => 'Article and section pages, forums of the articles, contact page, directory',
 	'bords3' => 'Table',
 	'bords4' => 'Vertical drop-down menu to the right',
-	'bords5' => 'Items of the horizontal menu flew over, identification, search, calendar event', # MODIF
+	'bords5' => 'Items of the horizontal menu flew over, identification, search, calendar event',
 	'bords6' => 'Website forum ',
 
 	// C
@@ -233,7 +237,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_parametrage_blocs' => 'Configuration of side blocks',
 	'cfg_page_pied' => 'Footer',
 	'cfg_page_plugins' => 'Some plugins in Escal',
-	'cfg_page_qrcode' => 'QrCode', # MODIF
+	'cfg_page_qrcode' => 'QrCode',
 	'cfg_page_rainette' => 'Rainette',
 	'cfg_page_rubrique' => 'The sections',
 	'cfg_page_rubrique_lateral' => 'The sections',
@@ -383,7 +387,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_une' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article5&lang=fr" title="To see the documentation">In the spotlight</a>',
 	'doc_une2' => ' : A box with tabs for the last articles of the website, the site map, an article, the articles of a section...',
 	'doc_videos' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article197&lang=fr" title="To see the documentation">Videos</a>',
-	'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-une".', # MODIF
+	'doc_videos2' => ' : displays the videos in the flv or mp4 format of the articles with the keyword "video-une".',
 	'documentation' => 'Documentation',
 	'documentation_voir' => 'To see the documentation',
 	'droite' => 'On the right',
@@ -473,7 +477,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Background picture',
 	'fonds_textes' => 'Other texts',
 	'fonds_textes_alerte' => 'The warnings of the contact page',
-	'fonds_textes_comment' => '(in the case of a blank filled field for example)', # MODIF
+	'fonds_textes_comment' => '(in the case of a blank filled field for example)',
 	'fonds_textes_explication' => 'You just have to choose your colours for some specific texts...',
 	'fonds_textes_forum' => 'The forum of the website',
 	'fonds_textes_liens' => 'The links',
@@ -551,7 +555,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Legal notices',
 	'mentions_activer' => 'To activate the link towards the page "Legal notices"',
 	'mentions_explication' => 'If you have activated the <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Legal notices"</a>,
-            you can show the link towards the dedicated page in the footer of the website.', # MODIF
+            you can show the link towards the dedicated page in the footer of the website.',
 	'mentions_plugin' => 'Legal notices plugin',
 	'menu' => 'On the menu',
 	'menu_horizontal' => 'Horizontal menu',
@@ -663,7 +667,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_decouvrir_rubrique' => 'Only in the current section and its sub-sections',
 	'noisettes_decouvrir_site' => 'In the whole website (articles or sections can be excluded with the keyword "pas-a-decouvrir")',
 	'noisettes_edito_explication' => 'The title of this block is given by the title of the article with the keyword "edito". Article whose translations should be developed on a multilingual site.',
-	'noisettes_events_explication' => '<strong>Warning</strong>: the choice of the display of articles or events is the same as that of the block "Mini-calendar" just above.', # MODIF
+	'noisettes_events_explication' => '<strong>Warning</strong>: the choice of the display of articles or events is the same as that of the block "Mini-calendar" just above.',
 	'noisettes_explication' => '<strong>Titles of blocks</strong><br /><br />
               In the case of a <strong>multilingual website</strong>, if you want to change the title of a block
               while keeping  multilingualism, you must write this title by following this example:<br /><br />
@@ -676,7 +680,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 			("To accept the inscriptions" must have been checked in the private space: Configuration - Interactivity)',
 	'noisettes_identification_visiteur' => 'To display the inscription form  of new <strong>visitors</strong><br />
 			("To accept the inscription of visitors of the public website" must have been checked in the private space: Configuration - Interactivity)',
-	'noisettes_multi_choix' => 'Choice of the groups of keywords', # MODIF
+	'noisettes_multi_choix' => '<strong>Choice of the groups of keywords</strong>',
 	'noisettes_multi_choix2' => 'Select a group',
 	'noisettes_multi_groupe1' => 'First group (mandatory)',
 	'noisettes_multi_groupe2' => 'Second group (optional)',
@@ -760,7 +764,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_derniers_arts3' => 'Last articles ter',
 	'onglets_derniers_arts_explication1' => 'They can be displayed in 3 possible ways:',
 	'onglets_derniers_arts_explication2' => ' See the documentation for more details.<br /><br />
-			The title of this tab will be "The last articles" unless you give it another title below.', # MODIF
+			The title of this tab will be "The last articles" unless you give it another title below.',
 	'onglets_derniers_ter_mot' => 'Front page articles from "Last articles", "Last articles ter" and "Articles with keyword"',
 	'onglets_derniers_ter_mot_hauteur' => 'Height of the frames in px <br />(to be adapted according to your previous choices)',
 	'onglets_deux' => 'Second tab',
@@ -831,14 +835,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_affichage' => 'Display of the above links',
 	'pied_lien_contact' => 'Link towards the contact page',
 	'pied_lien_icone' => 'As icons',
-	'pied_lien_mentions' => 'Lien vers la page des mentions légales', # MODIF
-	'pied_lien_mentions_article' => 'Numéro de l’article choisi', # MODIF
-	'pied_lien_mentions_choix' => 'Choix de la page à afficher', # MODIF
-	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l’avez activé', # MODIF
-	'pied_lien_mentions_choix2' => 'Un article de votre choix', # MODIF
+	'pied_lien_mentions' => 'Link to the Legal Information page',
+	'pied_lien_mentions_article' => 'Number of the chosen article',
+	'pied_lien_mentions_choix' => 'Choice of page to display',
+	'pied_lien_mentions_choix1' => 'The "Mentions légales" plugin page if you have activated it',
+	'pied_lien_mentions_choix2' => 'An article of your choice',
 	'pied_lien_plan' => 'Link towards the website map',
 	'pied_lien_prive' => 'Link towards the private space',
-	'pied_lien_puce' => 'Display the final bullet (choice no if any of the above links or if you display them as icons)', # MODIF
 	'pied_lien_rss' => 'Icon with a link towards the RSS feeds page',
 	'pied_lien_squelette' => 'Link towards the skeleton of the page',
 	'pied_lien_texte' => 'As texts',
@@ -860,17 +863,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'puce' => 'bullet point',
 
 	// Q
-	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
-	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+	'qrcode_explication' => 'If you have activated the plugin <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
+	a qrcode corresponding to the article URL will automatically appear at the bottom of the <strong>printable version</strong> of the article',
 
 	// R
 	'rainette' => 'Rainette',
-	'rainette_code' => 'City code:', # MODIF
+	'rainette_code' => 'City code:',
 	'rainette_explication' => 'If you have activated the <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
             enter below the code of the city you are interested in.<br />
             This code is to be searched on the web on <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">this website</a></strong> 
             by adding the name of the town you are looking for following "where=" in the address bar.<br />
-            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)', # MODIF
+            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rappel_discussion' => 'Reminder of the discussion',
 	'recherche' => 'Search',
@@ -949,7 +952,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				62.5% → 1rem = 10px<br />
 				75% → 1rem = 12px<br />
 				87.5% → 1rem = 14px<br />
-				100% → 1rem = 16px<br />', # MODIF
+				100% → 1rem = 16px<br />',
 	'telechargement' => 'File to download:',
 	'telechargements' => 'Files to download:',
 	'texte_accueil' => 'You are on the configuration page of Escal skeleton.<br /><br />
