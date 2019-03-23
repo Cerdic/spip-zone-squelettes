@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Escal
  * Licence GNU/GPL
@@ -7,6 +6,10 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
+function test($version) {
+	return preg_replace('/0*([^.]+)(\.?)/','$1$2', $version);
+}
+ 
 // =======================================================================================================================================
 // Paramétrage à l'installation d'Escal
 // Merci à Arnaud Bérard pour son aide précieuse
@@ -22,7 +25,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 function escal_configuration(){
     include_spip('inc/config');
 
-    // active l'utilsation des mots clefs
+    // active l'utilisation des mots clefs
     $articles_mots = lire_config('articles_mots');
     if($articles_mots == 'non')
         ecrire_meta('articles_mots','oui');
