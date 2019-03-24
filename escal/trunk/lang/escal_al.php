@@ -24,5 +24,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Q
 	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
-	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article' # MODIF
+	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+
+	// V
+	'version' => 'Version actuelle :', # MODIF
+	'version_maj' => 'Version disponible :', # MODIF
+	'version_ok' => 'Vous avez la dernière version disponible' # MODIF
 );

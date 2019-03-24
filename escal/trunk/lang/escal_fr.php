@@ -978,9 +978,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'une_bloc' => 'Le bloc "A la une"',
 
 	// V
-	'version' => 'Version actuelle :',
- 	'version_maj' => 'Version disponible :',
- 	'version_ok' => 'Vous avez la dernière version disponible',
+	'version' => 'Version actuelle :',
+	'version_maj' => 'Version disponible :',
+	'version_ok' => 'Vous avez la dernière version disponible',
 	'video' => 'Vidéo',
 	'videos' => 'Vidéos',
 	'visites' => 'Visites',

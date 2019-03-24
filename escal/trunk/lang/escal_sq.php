@@ -212,6 +212,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'traductions_article' => 'Përkthime të këtij neni:',
 
 	// V
+	'version' => 'Version actuelle :', # MODIF
+	'version_maj' => 'Version disponible :', # MODIF
+	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'visites_jour' => 'vizita në ditë',
 	'visiteur' => 'vizitorët',
 	'visiteurs' => 'vizitorët',

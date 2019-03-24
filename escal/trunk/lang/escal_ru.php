@@ -250,6 +250,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'traductions_article' => 'Перевод этой статьи:',
 
 	// V
+	'version' => 'Version actuelle :', # MODIF
+	'version_maj' => 'Version disponible :', # MODIF
+	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Видео',
 	'visites_jour' => 'посещений в день',
 	'visiteur' => 'посетитель',

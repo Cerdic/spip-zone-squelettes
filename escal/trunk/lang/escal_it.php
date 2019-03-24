@@ -980,6 +980,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'une_bloc' => 'Il blocco "In primo piano"',
 
 	// V
+	'version' => 'Version actuelle :', # MODIF
+	'version_maj' => 'Version disponible :', # MODIF
+	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Vídeo',
 	'videos' => 'Video',
 	'visites' => 'Visite',
