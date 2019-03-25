@@ -5,10 +5,6 @@
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
-
-function test($version) {
-	return preg_replace('/0*([^.]+)(\.?)/','$1$2', $version);
-}
  
 // =======================================================================================================================================
 // Paramétrage à l'installation d'Escal
