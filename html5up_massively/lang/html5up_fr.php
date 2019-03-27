@@ -45,6 +45,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'largeur_page' => 'Largeur de la page',
 	'largeur_page_explications' => 'Si les lignes de texte vous parraissent trop longues à la lecture, vous pouvez choisir la largeur maximum du contenu des pages (max-width). Exprimez ici la valeur et son unité (%,px,vw...).',
 	
+	// M
+	'mode_accueil' => 'Mode de la page d\'accueil',
+	'mode_accueil_blog' => 'Mode blog (derniers articles publiés)',
+	'mode_accueil_explications' => 'Choisissez le mode d\'affichage de la page d\'accueil',
+	'mode_accueil_site' => 'Mode site (rubriques à la racine)',
+	
 	// P
 	'phone' => 'Téléphone',
 	
