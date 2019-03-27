@@ -9,6 +9,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// A
 	'aide' => 'Aide : <a href="https://contrib.spip.net/?article5123">lire la documentation sur contrib.spip.net</a>',
+	'age_articles_recents' => 'Âge des articles récents',
+	'age_articles_recents_explications' => 'Renseignez en nombre de jours l’âge maximum des articles pour être affichés sur la page d’accueil. Par défaut 90.',
+	'arriereplan' => 'arrière-plan',
 	
 	// H
 	'html5up_massively_titre' => 'Html5up Massively ',
