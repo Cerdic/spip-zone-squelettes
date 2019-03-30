@@ -62,6 +62,7 @@ $GLOBALS['marqueur'] = (isset($GLOBALS['marqueur'])?$GLOBALS['marqueur']:'').':s
 	(isset($GLOBALS['meta']['boutonstexte'])?$GLOBALS['meta']['boutonstexte']:'').
 	(isset($GLOBALS['meta']['btv2'])?$GLOBALS['meta']['btv2']:'').
 	(isset($GLOBALS['meta']['bte'])?$GLOBALS['meta']['bte']:'').
+	(isset($_COOKIE['spip_lang'])?$_COOKIE['spip_lang']:'').
 	$GLOBALS['meta']['nom_site'].
 	$GLOBALS['meta']['slogan_site'].
 	$GLOBALS['meta']['descriptif_site'].
