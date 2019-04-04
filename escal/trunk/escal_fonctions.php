@@ -6,19 +6,7 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-if (!defined('_ECRIRE_INC_VERSION')) return;
 
-// ============================
-// Nuage de tags
-// ============================
-function coef($texte, $max, $nbrMax= 2, $minFont= 0.8) {
-	return ($texte/$max*$nbrMax + $minFont);
-}
-
-function max_mot($texte, $max) {
-	return max($texte, $max);
-}
- 
 // =======================================================================================================================================
 // Paramétrage à l'installation d'Escal
 // Merci à Arnaud Bérard pour son aide précieuse
