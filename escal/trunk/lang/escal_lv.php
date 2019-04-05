@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Majas',
 	'actus' => 'Jaunumi',
 	'adresse_non' => 'šis autors nesniedza savu e-pasta adresi',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Darba karteba',
 	'alerte_javascript' => 'šilapa nevar stradat pareizi bez JavaScript. Ludzu, aktivizejiet to.',
 	'alt_telechargements' => 'Lejupielades',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Forums Raksta',
 	'article_imprimer' => 'Drukāt',
 	'article_licence' => 'Licence',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Raksts publicets',
 	'article_modifie' => 'pēdējās izmaiņas', # MODIF
 	'article_trouve' => 'pants atrasts',
@@ -139,6 +141,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'Saistetie atslegvardi',
 	'mots_cles' => 'atslegvardi',
 	'moyenne_visites' => 'Videjais',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Autors \\ s lapas',

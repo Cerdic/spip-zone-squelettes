@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Главная',
 	'actus' => 'Новости',
 	'adresse_non' => 'Этот автор не сообщил свой e-mail',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Расписание',
 	'alerte_javascript' => 'Эта страница не может правильно работать без JavaScript. Please reactivate it.',
 	'alt_telechargements' => 'Загрузки',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Форум статьи',
 	'article_imprimer' => 'Печать',
 	'article_licence' => 'Лицензия',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Статья опубликована ',
 	'article_modifie' => 'последние изменения', # MODIF
 	'article_trouve' => 'найдена статья',
@@ -176,6 +178,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'Связанные ключи',
 	'mots_cles' => 'ключи',
 	'moyenne_visites' => 'В среднем',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Авторы страниц',

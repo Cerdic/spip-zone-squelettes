@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Home',
 	'actus' => 'Nieuws',
 	'adresse_non' => 'Deze auteur heeft zijn e-mail adres niet gespecificeerd',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Deze pagina kan niet goed werken zonder JavaScript, Gelieve het te activeren',
 	'alt_telechargements' => 'Downloads',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Forum van het artikel',
 	'article_imprimer' => 'Print',
 	'article_licence' => 'Licentie',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Artikel gepubliceerd de',
 	'article_modifie' => 'laatst gewijzigd de', # MODIF
 	'article_trouve' => 'Artikel gevonden',
@@ -139,6 +141,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'bijbehorende trefwoorden',
 	'mots_cles' => 'de trefwoorden',
 	'moyenne_visites' => 'gemiddeld aantal bezoekers sinds',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Pagina’s van de auteur',

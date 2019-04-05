@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'ホーム',
 	'actus' => 'ニュース',
 	'adresse_non' => 'この記事には記者のメールアドレスが書かれていません',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => '予定',
 	'alerte_javascript' => 'Cこのページを見るにはJavaScriptを有効にする必要があります。再度試して下さい。',
 	'alt_telechargements' => 'ダウンロード',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'この記事のフォーラム',
 	'article_imprimer' => '印刷',
 	'article_licence' => 'ライセンス :',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => '投稿日',
 	'article_modifie' => '最後に更新されたのは', # MODIF
 	'article_trouve' => '検索された記事',
@@ -136,6 +138,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => '関連キーワード',
 	'mots_cles' => 'キーワード',
 	'moyenne_visites' => '平均訪問数',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => '管理者用ページ',

@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'i mirëpritur ',
 	'actus' => 'lajm',
 	'adresse_non' => 'ky autor nuk ka dhënë adresën e tij të postës elektronike',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'ditar',
 	'alerte_javascript' => 'Kjo faqe nuk mund të funksionojë si duhet pa JavaScript. Ju lutem ri',
 	'alt_telechargements' => 'Shkarkime',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Forumi Neni',
 	'article_imprimer' => 'shtyp',
 	'article_licence' => 'leje :',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Neni regjistrimit online',
 	'article_modifie' => 'Rifreskimi i fundit', # MODIF
 	'article_trouve' => 'Artikulli gjetur',
@@ -138,6 +140,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'Keywords ngjashme',
 	'mots_cles' => 'Keyword',
 	'moyenne_visites' => 'mesatarisht që nga viti',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Page Author',

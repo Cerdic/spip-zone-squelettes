@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Empfang',
 	'actus' => 'Nachrichten',
 	'adresse_non' => 'dieser Verfasser hat keine E-Mail-Adresse erteilt',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Terminkalender',
 	'alerte_javascript' => 'ohne JavaScript kann diese Seite nicht richtig arbeiten. Setzen Sie es bitte wieder in Betrieb',
 	'alt_telechargements' => 'Herunterladen',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Artikelforum',
 	'article_imprimer' => 'drucken',
 	'article_licence' => 'Lizenz',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'On-line gesetzt am',
 	'article_modifie' => 'zuletzt geändert am', # MODIF
 	'article_trouve' => 'gefundener Artikel',
@@ -138,6 +140,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'verbundenen Stichwörter',
 	'mots_cles' => 'Stichwörter',
 	'moyenne_visites' => 'Besuchenanzahldurchschnitt seit',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Verfasserseite',

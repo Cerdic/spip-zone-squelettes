@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Hejmpaĝo',
 	'actus' => 'Aktualaĵoj',
 	'adresse_non' => 'Tiu ĉi redaktoro ne donis sian retpoŝtadreson',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Agendo',
 	'alerte_javascript' => 'Tiu ĉi paĝo ne bone funkcias sen Ĝavoskripto. Bv. ĝin aktivigi.',
 	'alt_telechargements' => 'Elŝutaĵoj',
@@ -24,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Forumo pri la artikolo',
 	'article_imprimer' => 'Presi',
 	'article_licence' => 'Permesilo',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Artikolo publikigita je',
 	'article_modifie' => 'laste redaktita ', # MODIF
 	'article_trouve' => 'trovita artikolo',
@@ -129,6 +131,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'meteo_titre_conditions' => 'Meteorologiaj kondiĉoj super',
 	'mots_clefs' => 'Ŝlosilvortoj',
 	'mots_clefs_associes' => 'Asociigitaj ŝlosilvortoj',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Aŭtorpaĝo',

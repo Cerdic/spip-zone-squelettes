@@ -9,11 +9,21 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	// A
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
+
 	// C
 	'cfg_page_qrcode' => 'QrCode', # MODIF
 
 	// F
 	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'pied_lien_mentions' => 'Lien vers la page des mentions légales', # MODIF

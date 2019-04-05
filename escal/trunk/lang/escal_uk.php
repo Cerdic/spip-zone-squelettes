@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Головна',
 	'actus' => 'Новини',
 	'adresse_non' => 'Цей автор не повідомив свій e-mail',
+	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Розклад',
 	'alerte_javascript' => 'Ця сторінка не може правильно працювати без JavaScript. Please reactivate it.',
 	'alt_telechargements' => 'Завантаження',
@@ -27,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_forum' => 'Форум статті',
 	'article_imprimer' => 'Друк',
 	'article_licence' => 'Ліцензія',
+	'article_logo' => 'Taille maximum du logo de l’article', # MODIF
 	'article_mise_en_ligne' => 'Стаття опублікована ',
 	'article_modifie' => 'Нові зміни ', # MODIF
 	'article_trouve' => 'знайдено статтю',
@@ -175,6 +177,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mots_clefs_associes' => 'Пов’язані ключі',
 	'mots_cles' => 'ключі',
 	'moyenne_visites' => 'В середньому',
+
+	// O
+	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
+	'onglets_derniers_autres' => 'Les autres articles', # MODIF
+	'onglets_derniers_exergue' => 'L’article en exergue', # MODIF
+	'onglets_derniers_presentation' => 'Présentation générale', # MODIF
 
 	// P
 	'page_auteur' => 'Сторінки авторів',
