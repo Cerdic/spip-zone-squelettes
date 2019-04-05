@@ -594,6 +594,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 	// Remplissage des cellules du mois
 	$jour = 1;
 	$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
+	$secteur_agenda = calcul_rubrique_specialisee('agenda', 'secteur', 'in');
 	while (date('m', $date) == $mois_choisi) {
 		if ((date('w', $date) == $jour_debut) && ($jour != 1))
 			$body .= '</tr><tr>';
@@ -607,7 +608,8 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		else {
 			// Il y a un ou plusieurs evenements, on construit le lien et la bulle d'info
 			$index_evt1 = $mini_evenements[date('d-m-Y', $date)][0];
-			$lien = 'spip.php?page=evenement&amp;id_article='.$evenements[$index_evt1]['id'];
+			// $lien = 'spip.php?page=evenement&amp;id_article='.$evenements[$index_evt1]['id'];
+			$lien = 'spip.php?page=agenda&amp;id_rubrique=' . $secteur_agenda . '&amp;jour=' . date('Y-m-d', $date);
 			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;'.$evenements[$index_evt1]['titre'];
 			if (count($mini_evenements[date('d-m-Y', $date)]) > 1)
 				$bulle .= '...('.strval(count($mini_evenements[date('d-m-Y', $date)])).'&nbsp;'._T('sarkaspip:plusieurs_evenements_jour').')';

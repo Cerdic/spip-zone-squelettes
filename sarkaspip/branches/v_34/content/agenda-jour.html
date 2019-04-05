@@ -1,0 +1,36 @@
+<BOUCLE_evenements_jour(ARTICLES) {id_secteur}{date_redac LIKE (#ENV{jour})%}{par date_redac}>
+			[(#REM) <!-- Contenu de l'evenement --> ]
+			<div id="evenement" class="article">
+				[(#REM) <!-- Titre, logo, texte de l'article 
+				id_evenement n'est necessaire que si on utilise le plugin agenda et est passe dans l'url
+				sinon, n'a pas de valeur
+				--> ]
+				
+				[(#INCLURE{fond=noisettes/article/inc_article_description}
+					{id_article}
+					{id_evenement}
+					{avec_popularite=non}
+					{taille_logo=#CONFIG{sarkaspip_article/taille_logo, 150}}
+					{page=evenement})]
+				
+				
+				[(#REM) <!-- Documents (sauf images) du portfolio de l'article --> ]
+				[(#INCLURE{fond=noisettes/document/inc_documents_joints}
+					{id_article}
+					{avec_descriptif=#CONFIG{sarkaspip_article/avec_descriptif, non}})]
+	
+				[(#REM) <!-- Images du portfolio de l'article --> ]
+				#SET{plugin, aucun}
+				#SET{diaporama, non}
+				[(#CONFIG{sarkaspip_article/mode_galerie, 0}|!={0}|oui)
+					[(#SET{plugin, mediabox})]
+				]
+				[(#CONFIG{sarkaspip_article/mode_galerie, 0}|=={2}|oui)
+					[(#SET{diaporama, oui})]
+				]
+				[(#INCLURE{fond=noisettes/document/inc_images_jointes}
+					{id_article}
+					{effet_galerie=#GET{plugin}}
+					{avec_diaporama=#GET{diaporama}})]
+			</div>
+</BOUCLE_evenements_jour>
