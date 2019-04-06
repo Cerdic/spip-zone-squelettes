@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Visualizzazione della descrizione',
 	'affichage_form_reponse' => 'Visualizzazione del modulo di risposta sotto l’articolo',
 	'affichage_image' => 'Visualizzazione della prima immagine',
+	'affichage_logo_site' => 'Affichage du logo du site s’il existe', # MODIF
 	'affichage_mots_cles' => '<strong>Affissione delle parole chiave associate agli articoli</strong>',
 	'affichage_mots_cles_article' => 'Per il pagina articolo',
 	'affichage_mots_cles_rubrique' => 'Per la pagina rubrico',
@@ -70,17 +71,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_centre_sommaire' => 'Il blocco centrale della pagina di riepilogo',
 	'arrondis_explication1' => 'Per 4 angoli arrotondati identici è sufficiente inserire il valore dell’arrotondamento desiderato. Esempio: 10 pixel <br />
     Per angoli non arrotondati inserire il valore 0<br />
-    Per angoli arrotondati in modo diverso, l’ordine dei valori indica:',
+    Per angoli arrotondati in modo diverso, l’ordine dei valori indica:', # MODIF
 	'arrondis_explication2' => 'Per ripristinare i valori di default, svuotare il campo corrispondente e salvare due volte.<br /><br />
     Per testare e generare il codice corrispondente: <a href="http://www.cssmatic.com/border-radius" title="Genera CSS">CSSmatic</a><br />
     Altre informazioni sulle forme ellittiche:
-    <a href="http://www.alsacreations.com/astuce/lire/979-ovale-forme-elliptique-css3-sans-image.html" title="Per saperne di più">Alsacréations (articolo in francese)</a>',
+    <a href="http://www.alsacreations.com/astuce/lire/979-ovale-forme-elliptique-css3-sans-image.html" title="Per saperne di più">Alsacréations (articolo in francese)</a>', # MODIF
 	'arrondis_identification_recherche' => 'Identificazione e ricerca',
 	'arrondis_menus' => 'I menù',
 	'arrondis_onglets' => 'Schede',
 	'article' => 'articolo',
+	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé', # MODIF
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.', # MODIF
+	'article_acces_direct_titre' => 'Accès direct', # MODIF
 	'article_archive' => 'Ricordate!',
 	'article_dernier' => 'Ultimo articolo pubblicato: ',
+	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé', # MODIF
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.', # MODIF
+	'article_edito_titre' => 'Edito', # MODIF
 	'article_forum' => 'Forum di discussione dell’articolo',
 	'article_imprimer' => 'Stampare',
 	'article_libre1' => 'Articolo libero 1',
@@ -100,7 +109,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             apparirà automaticamente nelle pagine "articolo".   <br />
             Può essere visualizzato anche nelle pagine "rubrica.',
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
-	'articles' => 'articoli',
 	'articles_associes' => 'Vedere gli articoli associati a ',
 	'articles_associes_mot' => 'Vedere gli articoli associati a questa parola',
 	'articles_auteur' => 'Questo autore ha scritto:',
@@ -116,9 +124,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_logo' => 'Dimensione massima del logo degli articoli',
 	'articles_plus_vus' => 'Articoli più popolari',
 	'articles_portfolio' => 'Visualizza il portfolio (si sovrappone al blocco "Per scaricare")',
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
 	'articles_premier_message' => 'Mostra solo il primo messaggio di ogni thread, le risposte sono espandibili',
 	'articles_reponses_forum' => 'Risposte del forum dell’articolo',
 	'articles_rubrique' => 'Articoli di rubrica',
+	'articles_site' => 'Vedere gli articoli di questo sito', # MODIF
 	'articles_trouves' => 'articoli trovati',
 	'aucun' => 'No',
 	'aujourdhui' => 'Oggi: ',
@@ -256,10 +266,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'UN PO’ DI STILE',
 	'cfg_page_textes' => 'Testi',
 	'cfg_page_titre_contenu' => 'Titolo e contenuti',
+	'choix_article' => 'le modèle choix_article d’Escal', # MODIF
+	'choix_article_choix' => 'Choix des articles', # MODIF
+	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules', # MODIF
+	'choix_article_colonne' => 'Nombre de colonnes', # MODIF
+	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3', # MODIF
+	'choix_article_fond' => 'Couleur du fond', # MODIF
+	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).', # MODIF
 	'choix_blocs_lateraux' => 'Scelta dei blocchi laterali',
 	'choix_deux' => 'Due',
 	'choix_trois' => 'Tre',
 	'choix_une' => 'Uno',
+	'clic_suite' => 'Cliquer pour lire la suite', # MODIF
 	'clic_telechargement' => 'Cliccare per vedere o scaricare',
 	'collegues' => 'Tutti i colleghi',
 	'colonne_extra' => 'Colonne "extra" (a destra per default)',
@@ -412,7 +432,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'escal' => 'Escal',
 	'espace_redacteurs' => 'Spazio redattori',
 	'et' => 'e',
-	'evenements' => 'Prossimi eventi',
 	'evenements_ajouter' => 'Aggiungere un evento<br />(Accesso riservato)',
 	'evenements_associes' => 'Eventi correlati :',
 	'evenements_non' => 'Nessun evento in programma',
@@ -479,9 +498,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Immagine di sfondo',
 	'fonds_textes' => 'Altri testi',
 	'fonds_textes_alerte' => 'Gli avvisi della pagina contatti',
-	'fonds_textes_comment' => '(ad esempio in caso di campi obbligatori non riempiti)',
+	'fonds_textes_comment1' => '(ad esempio in caso di campi obbligatori non riempiti)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
 	'fonds_textes_explication' => 'Devi scegliere il colore di alcuni testi specifici...',
 	'fonds_textes_forum' => 'Il forum del sito',
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'fonds_textes_liens' => 'I link',
 	'fonds_textes_liens_survol' => 'I link su cui passa il mouse',
 	'fonds_textes_liens_vus' => 'I link visitati',
@@ -561,13 +582,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_plugin' => 'Plugin Mentions légales',
 	'menu' => 'Menù',
 	'menu_horizontal' => 'Menù orizzontale',
+	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil', # MODIF
 	'menu_horizontal_affichage' => 'Visualizzazione del menù orizzontale',
 	'menu_horizontal_articles' => 'Con visualizzazione di articoli',
+	'menu_horizontal_choix' => 'Choix du menu horizontal', # MODIF
+	'menu_horizontal_choix_bloc' => 'Méga menu déroulant', # MODIF
+	'menu_horizontal_choix_liste' => 'Liste déroulante', # MODIF
 	'menu_horizontal_fixer' => 'Fissare il menù in alto durante lo scroll del sito',
 	'menu_horizontal_hauteur' => 'Altezza del logo della rubrica (in pixel)	(assicurati che i tuoi loghi abbiano un’altezza almeno uguale al valore scelto)',
 	'menu_horizontal_logo' => 'Visualizzaione del logo della rubrica (se esiste)',
+	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
 	'menu_horizontal_secteur' => 'Per le rubriche di primo livello (= settori):',
 	'menu_horizontal_titre' => 'Visualizzazione del titolo della rubrica',
+	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'menu_vertical_depliant' => 'Menù verticale a volantino',
 	'menu_vertical_deroulant' => 'Menù a discesa sulla destra',
 	'message_non' => '(Nessun messaggio per il momento)',
@@ -660,6 +687,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(questa scelta si applicherà anche al blocco "Prossimi eventi") ',
 	'noisettes_calendrier_lien_agenda' => 'Titolo con il link all’agenda a pagina intera',
 	'noisettes_calendrier_pagination' => 'Numero di articoli o di eventi per pagina:',
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'l’article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'l’évènement', # MODIF
 	'noisettes_decouvrir' => 'Scoprire',
 	'noisettes_decouvrir_hasard' => 'Numero di articoli presi a caso:',
 	'noisettes_decouvrir_moins_vus' => 'Numero di articoli meno visitati:',
@@ -846,7 +876,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_squelette' => 'Link al codice sorgente della pagina',
 	'pied_lien_texte' => 'testi',
 	'pied_lien_xhtml' => 'Icona con link al validatore XHTML',
-	'plan_site' => 'Mappa del sito',
 	'pointeur' => 'Puntatori del mouse',
 	'pointeur_defaut' => 'puntatore di sistema',
 	'pointeur_explication' => 'Da qui è possibile cambiare le immagini dei puntatori. Queste immagini devono:<br />
@@ -865,6 +894,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Se avete attivato il plugin <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	il QrCode dell’URL dei vostri articoli si mostrerà in basso della versione stampabile degli articoli',
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
 	'rainette' => 'Rainette',
@@ -875,6 +905,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
             Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).',
 	'rainette_plugin' => 'Plugin Rainette',
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Ultima discussione',
 	'recherche' => 'Ricerca',
 	'recherche_articles_non' => 'Nessuno articolo trovato per questa ricerca',
@@ -888,19 +919,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Reset',
 	'reinitialiser_tout' => 'Reset completo',
 	'repondre_message' => 'Rispondere al messaggio',
-	'rubrique' => 'La rubrica',
 	'rubrique_articles' => 'Gli articoli di questa rubrica',
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles', # MODIF
+	'rubrique_cachee_titre' => 'Rubrique cachée', # MODIF
 	'rubrique_contenu' => 'Questa rubrica contiene',
 	'rubrique_date' => 'Visualizzazione della data di pubblicazione e di modifica degli articoli',
 	'rubrique_pagin_bas' => 'Visualizza l’impaginazione in basso',
 	'rubrique_pagin_haut' => 'Visualizza l’impaginazione in alto',
 	'rubrique_rss' => 'Visualizzazione del logo RSS con link alla pagina dei flussi',
 	'rubrique_rss2' => 'Visualizzazione del logo RSS con link alla pagina dei flussi per le sotto-rubriche',
+	'rubrique_site_reference' => 'Sito inserito in campionario in questa rubrica', # MODIF
 	'rubrique_sites_references' => 'I siti inseriti in questa rubrica',
 	'rubrique_sous_rubriques' => 'Le sotto-rubriche di questa rubrica',
 	'rubrique_taille_logo' => 'Domensione dei loghi per le sezioni e gli articoli elencati',
 	'rubrique_trouvee' => 'rubrica trovata',
-	'rubriques' => 'rubriche',
 	'rubriques_trouvees' => 'rubriche trovate',
 
 	// S
@@ -945,6 +977,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Aumentare la grandezza dei caratteri',
 	'taille_diminuer' => 'Diminuire la grandezza dei caratteri',
 	'taille_fichier' => 'Dimensioni del file:',
+	'taille_icones_pied' => 'Taille des icones', # MODIF
+	'taille_logo_site' => 'Taille maximum du logo des sites', # MODIF
+	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'taille_police' => 'Taglia della polizia :',
 	'taille_police_explication' => '<strong>Taglia della polizia :</strong><br />
 				Per aumentare o diminuire la taglia dei caratteri di tutto il sito (definite in rem)<br />
@@ -978,13 +1013,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'In primo piano',
 	'une_bloc' => 'Il blocco "In primo piano"',
+	'une_derniers' => 'Ultimi articoli', # MODIF
+	'une_derniers_bis' => 'Ultimi articoli bis', # MODIF
+	'une_derniers_ter' => 'Ultimi articoli ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
 
 	// V
-	'version' => 'Version actuelle :', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Vídeo',
 	'videos' => 'Video',
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites' => 'Visite',
 	'visites_jour' => 'visite per giorno',
 	'visiteur' => 'visitatore',

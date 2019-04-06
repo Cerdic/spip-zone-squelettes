@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Acogida',
 	'actus' => 'Actu',
 	'adresse_non' => 'Este autor no comunicó su correo electrónico',
+	'affichage_logo_site' => 'Affichage du logo du site s’il existe', # MODIF
 	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Agenda',
 	'alerte_javascript' => 'Esta página no puede funcionar correctamente sin JavaScript. Por favor, reactívelo.',
@@ -23,8 +24,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire' => 'Anuario',
 	'annuaire_invitation' => '¿ Usted, utilizan ESCAL?<br />Entonces añada su sitio en esta página.',
 	'article' => 'artículo',
+	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé', # MODIF
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.', # MODIF
+	'article_acces_direct_titre' => 'Accès direct', # MODIF
 	'article_archive' => '¡ Recuerde!',
 	'article_dernier' => 'Último artículo publicado: ',
+	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé', # MODIF
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.', # MODIF
+	'article_edito_titre' => 'Edito', # MODIF
 	'article_forum' => 'Foro del artículo',
 	'article_imprimer' => 'Imprimir',
 	'article_licence' => 'Licencia',
@@ -33,12 +42,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_modifie' => 'última modificación el', # MODIF
 	'article_trouve' => 'artículo hallado',
 	'article_une' => 'Poner este artículo en primera plana',
-	'articles' => 'artículos',
 	'articles_associes' => 'Ver los artículos asociados con ',
 	'articles_associes_mot' => 'Artículos asociados con la palabra',
 	'articles_auteur' => 'Este autor escribió:',
 	'articles_autres' => 'y los otros',
 	'articles_derniers' => 'Los últimos artículos',
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
+	'articles_site' => 'Voir les articles de ce site', # MODIF
 	'articles_trouves' => 'artículos halladdos',
 	'aujourdhui' => 'Hoy: ',
 	'auteurs' => 'autores',
@@ -52,6 +62,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// C
 	'calendrier' => 'Calendario',
 	'cfg_page_qrcode' => 'QrCode', # MODIF
+	'choix_article' => 'le modèle choix_article d’Escal', # MODIF
+	'choix_article_choix' => 'Choix des articles', # MODIF
+	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules', # MODIF
+	'choix_article_colonne' => 'Nombre de colonnes', # MODIF
+	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3', # MODIF
+	'choix_article_fond' => 'Couleur du fond', # MODIF
+	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).', # MODIF
+	'clic_suite' => 'Cliquer pour lire la suite', # MODIF
 	'clic_telechargement' => 'Clicar para ver o descargar',
 	'collegues' => 'Todos los colegas',
 	'commentaires' => 'comentarios',
@@ -100,14 +120,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'escal' => 'Escal',
 	'espace_redacteurs' => 'Espacio de redactores',
 	'et' => 'y',
-	'evenements' => 'Acontecimientos por ocurrir',
 	'evenements_ajouter' => 'Añadir un acontecimiento<br />(Acceso reservado)',
 	'evenements_non' => 'Ningunos acontecimientos que vienen',
 
 	// F
 	'fleche' => 'flecha',
 	'fois' => 'veces',
-	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment1' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Un correo electrónico de confirmación acaba de ser enviado al webmaster del sitio con el fin de validar su inscripción. ',
 	'format' => 'Formato :',
 	'forum' => 'Foro',
@@ -135,12 +156,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'mentions' => 'Menciones legales',
 	'menu' => 'Al menú',
+	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil', # MODIF
+	'menu_horizontal_choix' => 'Choix du menu horizontal', # MODIF
+	'menu_horizontal_choix_bloc' => 'Méga menu déroulant', # MODIF
+	'menu_horizontal_choix_liste' => 'Liste déroulante', # MODIF
+	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
+	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'message_non' => '(ningún mensaje por el momento)',
 	'meteo_titre_conditions' => 'Condiciones meteorológicas a',
 	'mots_clefs' => 'Las palabras clave',
 	'mots_clefs_associes' => 'Palabras clave asociadas',
 	'mots_cles' => 'palabras clave',
 	'moyenne_visites' => 'Media desde hace',
+
+	// N
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'l’article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'l’évènement', # MODIF
 
 	// O
 	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
@@ -160,7 +192,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_mentions_choix' => 'Choix de la page à afficher', # MODIF
 	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l’avez activé', # MODIF
 	'pied_lien_mentions_choix2' => 'Un article de votre choix', # MODIF
-	'plan_site' => 'Mapa del sitio',
 	'poster_message' => 'Enviar un nuevo mensaje',
 	'premier_visiteur' => '¡ Usted es el primero!',
 	'publie' => 'Publicado el',
@@ -169,8 +200,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Recuerdo de la discusión',
 	'recherche' => 'Búsqueda',
 	'recherche_articles_non' => 'Ningún artículo hallado para esta búsqueda',
@@ -183,11 +216,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rechercher' => 'Buscar ...',
 	'repondre_message' => 'Responder este mensaje',
 	'rubrique_articles' => 'Los artículos de esta rúbrica',
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles', # MODIF
+	'rubrique_cachee_titre' => 'Rubrique cachée', # MODIF
 	'rubrique_contenu' => 'Esta rúbrica contiene',
+	'rubrique_site_reference' => 'Site référencé dans cette rubrique', # MODIF
 	'rubrique_sites_references' => 'Los sitios referanciados en esta rúbrica',
 	'rubrique_sous_rubriques' => 'Las subrúbricas de esta rúbrica',
 	'rubrique_trouvee' => 'rúbrica hallada',
-	'rubriques' => 'rúbricas',
 	'rubriques_trouvees' => 'rúbricas halladas',
 
 	// S
@@ -207,6 +242,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Aumentar la talla carácteres',
 	'taille_diminuer' => 'Disminuir la talla carácteres',
 	'taille_fichier' => 'Tamaño del archivo:',
+	'taille_icones_pied' => 'Taille des icones', # MODIF
+	'taille_logo_site' => 'Taille maximum du logo des sites', # MODIF
+	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'telechargement' => 'Archivo por descargar:',
 	'telechargements' => 'Archivos por descargar:',
 	'title_articles_derniers' => 'últimos artículos',
@@ -220,11 +258,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'total_visites' => 'Número total de visitas: ',
 	'traductions_article' => 'Traducciones de este artículo:',
 
+	// U
+	'une_derniers' => 'Derniers articles', # MODIF
+	'une_derniers_bis' => 'Derniers articles bis', # MODIF
+	'une_derniers_ter' => 'Derniers articles ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
+
 	// V
-	'version' => 'Version actuelle :', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Vídeo',
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites_jour' => 'visitas al día',
 	'visiteur' => 'visitante',
 	'visiteurs' => 'visitantes',

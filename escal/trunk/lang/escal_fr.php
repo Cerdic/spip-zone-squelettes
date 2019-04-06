@@ -1,23 +1,13 @@
 <?php
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 // Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_squelettes_/escal/trunk/lang/
-// Fichier produit par LangOnet à partir de la langue source fr
-// Module: escal
-// Langue: fr
-// Date: 05-04-2019 09:12:46
-// Items: 862
-
-// Fichier produit par LangOnet à partir de la langue source fr
-// Module: escal
-// Langue: fr
-// Date: 05-04-2019 20:06:44
-// Items: 864
-
-if (!defined('_ECRIRE_INC_VERSION')) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// A
+	// A
 	'a_decouvrir' => 'A découvrir',
 	'a_telecharger' => 'A télécharger',
 	'acces_direct' => 'Accès direct',
@@ -91,14 +81,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé" ',
 	'article_acces_direct_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
 	                                 Le titre du bloc sera celui de l’article.<br /><br />
-							   Plus d\'infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article24&lang=fr">cet article</a> ',
+							   Plus d’infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article24&lang=fr">cet article</a> ',
 	'article_acces_direct_titre' => 'Accès direct',
 	'article_archive' => 'Souvenez-vous !',
 	'article_dernier' => 'Dernier article paru : ',
 	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé',
 	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
 	                          Le titre du bloc sera celui de l’article.<br /><br />
-	                          Plus d\'infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article23&lang=fr">cet article</a>',
+	                          Plus d’infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article23&lang=fr">cet article</a>',
 	'article_edito_titre' => 'Edito',
 	'article_forum' => 'Forum de l’article',
 	'article_imprimer' => 'Imprimer',
@@ -119,7 +109,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             s’affichera automatiquement dans les pages "article".   <br />
             On peut aussi l’afficher dans les pages "rubrique".',
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
-	'articles_min' => 'articles',
 	'articles_associes' => 'Voir les articles associés à ',
 	'articles_associes_mot' => 'Articles associés au mot',
 	'articles_auteur' => 'Cet auteur a écrit :',
@@ -133,6 +122,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_largeur_images2' => 'Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :',
 	'articles_les' => 'Les articles',
 	'articles_logo' => 'Taille maximum du logo des articles',
+	'articles_min' => 'articles',
 	'articles_plus_vus' => 'Articles les plus vus',
 	'articles_portfolio' => 'Afficher le portfolio (doublon avec le bloc "A telecharger")',
 	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe',
@@ -147,7 +137,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'avec' => 'avec',
 	'avec_le_squelette' => 'Habillage',
 
-// B
+	// B
 	'balise_author' => 'Balise "Author"',
 	'balise_author_explication' => 'Vous, sans doute ?',
 	'balise_keyword' => 'Balise "Keyword"',
@@ -219,7 +209,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bords5' => 'Items menu horizontal survolés, identification, recherche, événement calendrier',
 	'bords6' => 'Forum du site',
 
-// C
+	// C
 	'cadres' => 'Cadres et images',
 	'cadres_bords' => 'Bord des cadres présents',
 	'cadres_images' => 'Largeur des images',
@@ -278,15 +268,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_textes' => 'Les textes',
 	'cfg_page_titre_contenu' => 'Titres et contenus',
 	'chercher_parmi_les_signataires' => 'Chercher parmi les signataires',
-	'choix_article' => 'Une liste d\'articles',
+	'choix_article' => 'Une liste d’articles',
 	'choix_article_choix' => 'Choix des articles',
 	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules',
 	'choix_article_colonne' => 'Nombre de colonnes',
 	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3',
 	'choix_article_fond' => 'Fond des articles',
 	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
-272	                                     <br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
-273	                                     <br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).',
+272	                                     <br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+273	                                     <br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).',
 	'choix_blocs_lateraux' => 'Choix des blocs latéraux',
 	'choix_deux' => 'Deux',
 	'choix_trois' => 'Trois',
@@ -353,7 +343,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contenu_site' => 'Ce site compte : ',
 	'copyright' => 'Tous droits réservés',
 
-// D
+	// D
 	'dans_site' => 'dans ce site',
 	'deplier_replier' => 'Déplier et replier',
 	'deplier_replier_explication' => 'En cochant "Oui" le bloc sera repliée et un bouton permettra de la déplier et de la replier à nouveau.',
@@ -426,7 +416,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'documentation_voir' => 'Voir la documentation',
 	'droite' => 'A droite',
 
-// E
+	// E
 	'edito' => 'Édito',
 	'elements' => 'Éléments',
 	'elements_explication' => 'Choisir la présence ou l’absence d’un élément sur toutes les pages du site',
@@ -444,12 +434,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'escal' => 'Escal',
 	'espace_redacteurs' => 'Espace rédacteurs',
 	'et' => 'et',
-	'evenements_venir' => 'Évènements à venir',
 	'evenements_ajouter' => 'Ajouter un évènement<br />(Accès réservé)',
 	'evenements_associes' => 'Événements associés :',
 	'evenements_non' => 'Pas d’évènements à venir',
+	'evenements_venir' => 'Évènements à venir',
 
-// F
+	// F
 	'facebook_bouton' => 'Aspect du bouton',
 	'facebook_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Modeles-Facebook" title="Documentation">plugin "Modèles Facebook"</a>,
             le bouton "J’aime" apparaitra dans le pied de page.<br />
@@ -512,7 +502,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_textes' => 'Autres textes',
 	'fonds_textes_alerte' => 'Les alertes de la page contact',
 	'fonds_textes_comment1' => ' (en cas de champ non rempli par exemple)',
-	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...',
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...',
 	'fonds_textes_explication' => 'Il vous reste à choisir vos couleurs pour quelques textes spécifiques...',
 	'fonds_textes_forum' => 'Le forum du site',
 	'fonds_textes_input' => 'Les zones de saisie de SPIP',
@@ -533,7 +523,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forums' => 'forums',
 	'forums_trouves' => 'messages de forum trouvés',
 
-// G
+	// G
 	'galleria_caracteres' => 'Taille des caractères du titre de l’image',
 	'galleria_couleur_encart' => 'Couleur de fond de l’encart d’information (par défaut : #336699)',
 	'galleria_couleur_gallerie' => 'Couleur de fond de la galerie (par défaut : #FFFFFF)',
@@ -546,18 +536,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'groupe_affichage' => 'Groupe de mots-clés techniques utilisés dans le plugin Escal',
 	'groupe_agenda_couleur' => 'Groupe de mots-clés pour la couleur des événements de l’agenda dans le plugin Escal',
 
-// H
+	// H
 	'haut' => 'En haut',
 	'haut_page' => 'Haut de page',
 	'hebergeur' => 'Hébergeur :',
 
-// I
+	// I
 	'identification' => 'Identification',
 
-// J
+	// J
 	'jours' => 'jours',
 
-// L
+	// L
 	'layout' => 'Mise en page',
 	'layout_explication' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article1&lang=fr" title="Voir la documentation"><strong>Choisir le layout</strong></a>
             <br />
@@ -587,7 +577,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lire_article' => 'Lire l’article ...',
 	'lire_suite' => 'Lire la suite ...',
 
-// M
+	// M
 	'meme_rub' => 'Dans la même rubrique',
 	'mentions' => 'Mentions légales',
 	'mentions_activer' => 'Activer le lien vers la page "Mentions légales"',
@@ -675,7 +665,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'multilinguisme_niveau' => 'Menus avec rubriques de deuxième niveau',
 	'multilinguisme_nom' => 'Noms des langues',
 
-// N
+	// N
 	'nav_mot_cle' => 'Navigation par mots-clés',
 	'noisette_article' => 'Blocs spécifiques à la page article',
 	'noisette_commun' => 'Blocs communs à plusieurs pages',
@@ -702,8 +692,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_lien_agenda' => 'Titre avec lien vers l’agenda en pleine page',
 	'noisettes_calendrier_pagination' => 'Nombre d’articles ou d’événements par page de pagination',
 	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers',
-	'noisettes_calendrier_renvoi_article' => 'l\'article',
-	'noisettes_calendrier_renvoi_evenement' => 'l\évènement',
+	'noisettes_calendrier_renvoi_article' => 'l’article',
+	'noisettes_calendrier_renvoi_evenement' => 'l\\évènement',
 	'noisettes_decouvrir' => 'A découvrir',
 	'noisettes_decouvrir_hasard' => 'Nombre d’articles pris au hasard',
 	'noisettes_decouvrir_moins_vus' => 'Nombre d’articles les moins visités',
@@ -783,7 +773,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nombre_sites_pagination' => 'Nombre de sites par page de pagination',
 	'nombre_sujets_pagination' => 'Nombre de sujets par page de pagination',
 
-// O
+	// O
 	'onglets_art_accueil' => 'Article d’accueil',
 	'onglets_art_accueil_explication' => 'L’article affiché sera celui qui a le mot-clé "accueil" sinon ce sera le dernier publié.<br />
                     Le titre de l’article s’affiche dans l’onglet.',
@@ -850,7 +840,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_un' => 'Premier_onglet',
 	'ou' => 'ou ',
 
-// P
+	// P
 	'page_accueil' => 'La page d’accueil',
 	'page_article' => 'La page article',
 	'page_auteur' => 'page de l’auteur',
@@ -905,12 +895,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'publie' => 'Publié le',
 	'puce' => 'puce',
 
-// Q
+	// Q
 	'qrcode_explication' => 'Si vous avez activé le plugin <a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a>,
 						le QrCode de l’URL de vos articles s’affichera en bas de la version imprimable des articles',
 	'qrcode_plugin' => 'Plugin QrCode',
 
-// R
+	// R
 	'rainette' => 'Rainette',
 	'rainette_code' => 'Code de la ville :',
 	'rainette_explication' => 'Si vous avez activé le <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
@@ -933,12 +923,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Réinitialiser',
 	'reinitialiser_tout' => 'Tout réinitialiser',
 	'repondre_message' => 'Répondre à ce message',
-	'rubrique_la' => 'La rubrique',
 	'rubrique_articles' => 'Les articles de cette rubrique',
 	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles',
 	'rubrique_cachee_titre' => 'Rubrique cachée',
 	'rubrique_contenu' => 'Cette rubrique contient',
 	'rubrique_date' => 'Affichage de la date de publication et de la date de modification des articles',
+	'rubrique_la' => 'La rubrique',
 	'rubrique_pagin_bas' => 'Afficher la pagination en bas',
 	'rubrique_pagin_haut' => 'Afficher la pagination en haut',
 	'rubrique_rss' => 'Affichage du logo RSS avec lien vers la page du flux',
@@ -951,7 +941,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubriques_min' => 'rubriques',
 	'rubriques_trouvees' => 'rubriques trouvées',
 
-// S
+	// S
 	'savoirplus' => 'En savoir plus',
 	'secondes' => 'secondes',
 	'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
@@ -991,14 +981,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sur_forum' => 'Sur le forum c’est :',
 	'sur_web' => 'Sur le web',
 
-// T
+	// T
 	'taille_augmenter' => 'Augmenter la taille des caractères',
 	'taille_diminuer' => 'Diminuer la taille des caractères',
 	'taille_fichier' => 'Taille du fichier :',
 	'taille_icone_pied' => 'Taille des icônes :',
 	'taille_icones_pied' => 'Taille des icones',
 	'taille_logo_site' => 'Taille maximum du logo des sites',
-	'taille_outils_article' => 'Taille des icônes de la barre d\'outils:',
+	'taille_outils_article' => 'Taille des icônes de la barre d’outils :',
 	'taille_police' => 'Taille de la police :',
 	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
 				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
@@ -1028,7 +1018,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'total_visites' => 'Nombre total de visites : ',
 	'traductions_article' => 'traductions de cet article :',
 
-// U
+	// U
 	'une' => 'A la une',
 	'une_bloc' => 'Le bloc "A la une"',
 	'une_derniers' => 'Derniers articles',
@@ -1036,7 +1026,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'une_derniers_ter' => 'Derniers articles ter',
 	'une_mots_cles' => 'Articles avec mots-clés',
 
-// V
+	// V
 	'version_actuelle' => 'Version actuelle :',
 	'version_maj' => 'Version disponible :',
 	'version_ok' => 'Vous avez la dernière version disponible',
@@ -1052,6 +1042,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'votre_nom' => 'Votre nom ?',
 	'vu' => 'vu',
 
-// W
-	'webmestre' => 'Webmestre',
+	// W
+	'webmestre' => 'Webmestre'
 );

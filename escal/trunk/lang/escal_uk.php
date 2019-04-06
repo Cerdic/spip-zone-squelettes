@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Головна',
 	'actus' => 'Новини',
 	'adresse_non' => 'Цей автор не повідомив свій e-mail',
+	'affichage_logo_site' => 'Affichage du logo du site s’il existe', # MODIF
 	'affichage_video' => 'Remplacer tous ces éléments par une vidéo si l’article en contient au moins une', # MODIF
 	'agenda' => 'Розклад',
 	'alerte_javascript' => 'Ця сторінка не може правильно працювати без JavaScript. Please reactivate it.',
@@ -23,8 +24,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire' => 'Каталог',
 	'annuaire_invitation' => 'Ви також використовуєте ESCAL? <br />Додайте свій сайт на цій сторінці.',
 	'article' => 'стаття',
+	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé', # MODIF
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.', # MODIF
+	'article_acces_direct_titre' => 'Accès direct', # MODIF
 	'article_archive' => 'Пам’ятай!',
 	'article_dernier' => 'Остання опублікована стаття: ',
+	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé', # MODIF
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.', # MODIF
+	'article_edito_titre' => 'Edito', # MODIF
 	'article_forum' => 'Форум статті',
 	'article_imprimer' => 'Друк',
 	'article_licence' => 'Ліцензія',
@@ -33,12 +42,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_modifie' => 'Нові зміни ', # MODIF
 	'article_trouve' => 'знайдено статтю',
 	'article_une' => 'Поставте цю статтю на першу сторінку',
-	'articles' => 'статті',
 	'articles_associes' => 'Див. пов’язані статті ',
 	'articles_associes_mot' => 'Статті, пов’язані з ключем',
 	'articles_auteur' => 'Цей автор написав:',
 	'articles_autres' => 'та інші',
 	'articles_derniers' => 'Нові статті',
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
+	'articles_site' => 'Voir les articles de ce site', # MODIF
 	'articles_trouves' => 'знайдено статті',
 	'aujourdhui' => 'Сьогодні: ',
 	'auteurs' => 'автори',
@@ -88,6 +98,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_spip400' => 'Spip 400',
 	'cfg_page_spipdf' => 'spiPDF',
 	'cfg_page_textes' => 'Тексти',
+	'choix_article' => 'le modèle choix_article d’Escal', # MODIF
+	'choix_article_choix' => 'Choix des articles', # MODIF
+	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules', # MODIF
+	'choix_article_colonne' => 'Nombre de colonnes', # MODIF
+	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3', # MODIF
+	'choix_article_fond' => 'Couleur du fond', # MODIF
+	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).', # MODIF
+	'clic_suite' => 'Cliquer pour lire la suite', # MODIF
 	'clic_telechargement' => 'Клацніть аби подивитися або завантажити',
 	'collegues' => 'Усі колеги',
 	'commentaires' => 'коментарі',
@@ -136,14 +156,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'escal' => 'Escal',
 	'espace_redacteurs' => 'Для редакторів',
 	'et' => 'і',
-	'evenements' => 'Майбутні події',
 	'evenements_ajouter' => 'Додати подію<br />(Захищений доступ)',
 	'evenements_non' => 'Не очікується подій',
 
 	// F
 	'fleche' => 'стрілка',
 	'fois' => 'разів',
-	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment1' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'form_pet_envoi_mail_confirmation' => 'Лист-підтвердження був відправлений веб-майстру сайту для підтвердження вашої реєстрації. ',
 	'format' => 'Тип файлу:',
 	'forum' => 'Форум',
@@ -171,12 +192,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'mentions' => 'Legal notices',
 	'menu' => 'В меню',
+	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil', # MODIF
+	'menu_horizontal_choix' => 'Choix du menu horizontal', # MODIF
+	'menu_horizontal_choix_bloc' => 'Méga menu déroulant', # MODIF
+	'menu_horizontal_choix_liste' => 'Liste déroulante', # MODIF
+	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
+	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'message_non' => '(зараз нема повідомлень)',
 	'meteo_titre_conditions' => 'Погода в',
 	'mots_clefs' => 'Ключі',
 	'mots_clefs_associes' => 'Пов’язані ключі',
 	'mots_cles' => 'ключі',
 	'moyenne_visites' => 'В середньому',
+
+	// N
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'l’article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'l’évènement', # MODIF
 
 	// O
 	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
@@ -196,7 +228,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_mentions_choix' => 'Choix de la page à afficher', # MODIF
 	'pied_lien_mentions_choix1' => 'Celle du plugin "Mentions légales" si vous l’avez activé', # MODIF
 	'pied_lien_mentions_choix2' => 'Un article de votre choix', # MODIF
-	'plan_site' => 'Мапа сайту',
 	'poster_message' => 'Нове повідомлення',
 	'premier_visiteur' => 'Ви - перші!',
 	'publie' => 'Опубліковано на ',
@@ -205,8 +236,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Нагадування про дискусію',
 	'recherche' => 'Пошук',
 	'recherche_articles_non' => 'Не знайдено статей на цей запит',
@@ -219,11 +252,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rechercher' => 'Пошук...',
 	'repondre_message' => 'Відповісти на повідомлення',
 	'rubrique_articles' => 'Статті цієї рубрики',
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles', # MODIF
+	'rubrique_cachee_titre' => 'Rubrique cachée', # MODIF
 	'rubrique_contenu' => 'Ця рубрика містить',
+	'rubrique_site_reference' => 'Site référencé dans cette rubrique', # MODIF
 	'rubrique_sites_references' => 'Сайти, які посилаються на цю рубрику',
 	'rubrique_sous_rubriques' => 'Підрубрики цієї рубрики',
 	'rubrique_trouvee' => ' рубрику знайдено',
-	'rubriques' => 'рубрики',
 	'rubriques_trouvees' => 'рубрик знайдено',
 
 	// S
@@ -243,6 +278,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Збільшити розмір символів',
 	'taille_diminuer' => 'Зменшити розмір символів',
 	'taille_fichier' => 'Розмір файлу',
+	'taille_icones_pied' => 'Taille des icones', # MODIF
+	'taille_logo_site' => 'Taille maximum du logo des sites', # MODIF
+	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'telechargement' => 'Файл до завантаження:',
 	'telechargements' => 'Файли до завантаження:',
 	'title_articles_derniers' => 'Останні статті',
@@ -256,11 +294,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'total_visites' => 'Загальна кількість відвідувань:',
 	'traductions_article' => 'Переклади цієї статті:',
 
+	// U
+	'une_derniers' => 'Derniers articles', # MODIF
+	'une_derniers_bis' => 'Derniers articles bis', # MODIF
+	'une_derniers_ter' => 'Derniers articles ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
+
 	// V
-	'version' => 'Version actuelle :', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Відео',
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites_jour' => 'відвідувань на день',
 	'visiteur' => 'відвідувач',
 	'visiteurs' => 'відвідувачі',
