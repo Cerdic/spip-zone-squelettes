@@ -9,16 +9,19 @@
 <INCLURE{fond=noisettes/rubriques/rubrique_automatique_article_bloc,id_article}>
 </BOUCLE_articles_recents>
 </dl>
-[<p class="pagination">(#PAGINATION{prive})</p>]
+[<p class="pagination"><:articles:>&nbsp;: (#PAGINATION{prive})</p>]
 </B_articles_recents>
-[(#REM) Vérifier qu'il y a des articles dans la branche :
-- si oui, afficher le plan local
-- si non, afficher les sites de la branche
-]
-<BOUCLE_ArticlesDansBranche(ARTICLES){branche}{0,1} {lang}>
-[(#INCLURE{fond=noisettes/plan/plan_branche,id_rubrique=#ENV{id_rubrique},env})]
-</BOUCLE_ArticlesDansBranche>
 [(#INCLURE{fond=noisettes/sites_branche,id_rubrique=#ENV{id_rubrique},env})]
-<//B_ArticlesDansBranche>
 <//B_articles_recents>
+<BOUCLE_RubriqueEnCours(RUBRIQUES){id_rubrique}>
+<B_rubriques_recents>
+#ANCRE_PAGINATION
+<dl id="listerubriquerubrique">
+<BOUCLE_rubriques_recents(RUBRIQUES){id_parent}{par num titre, titre}{pagination}>
+<INCLURE{fond=noisettes/rubriques/rubrique_automatique_rubrique_bloc,id_rubrique}>
+</BOUCLE_rubriques_recents>
+</dl>
+[<p class="pagination"><:rubriques:>&nbsp;: (#PAGINATION{prive})</p>]
+</B_rubriques_recents>
+</BOUCLE_RubriqueEnCours>
 #FILTRE{mini_html}
