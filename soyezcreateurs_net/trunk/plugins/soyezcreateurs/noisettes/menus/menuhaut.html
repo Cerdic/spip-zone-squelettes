@@ -19,8 +19,12 @@
 			>[(#REM) Contournement du "bug" qui fait planter PHP si <B OUCLE_SsSousMenuhaut(BOUCLE_SousMenuHautRecursif) /> est encadrée par une autre Boucle ]
 			<BOUCLE_LancerRecursion(RUBRIQUES){id_rubrique}{!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|=={arborescent}}{!lang_select}>
 				<B_SousMenuHautRecursif><ul>
+				<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,id_article,pas2ul=1,mot=AfficherArticlesMenuHaut,
+					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
+					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
+					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}>
 				<BOUCLE_SousMenuHautRecursif(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
-				<li><INCLURE{fond=noisettes/menus/rubrique_li,
+				<li><BOUCLE_SsSousMenuhaut(BOUCLE_SousMenuHautRecursif) /><INCLURE{fond=noisettes/menus/rubrique_li,
 					id_rubrique,
 					rubriqueencours=#ENV{rubriqueencours},
 					letitre=#TITRE,
@@ -30,12 +34,8 @@
 					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
 					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
 					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}
-				><BOUCLE_SsSousMenuhaut(BOUCLE_SousMenuHautRecursif) /></li>
+				></li>
 				</BOUCLE_SousMenuHautRecursif>
-				<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,id_article,pas2ul=1,mot=AfficherArticlesMenuHaut,
-					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
-					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
-					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}>
 				</ul>
 				</B_SousMenuHautRecursif>
 					[(#REM) Cas où il n'y a que des articles et pas de sous rubrique au menu haut racine]
@@ -48,6 +48,10 @@
 				<//B_SousMenuHautRecursif>
 			</BOUCLE_LancerRecursion>
 				<B_SousMenuHaut><ul>
+				<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,id_article,pas2ul=1,mot=AfficherArticlesMenuHaut,
+					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
+					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
+					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}>
 				<BOUCLE_SousMenuHaut(RUBRIQUES){!titre_mot=PasDansMenuHaut}{si #CONFIG{soyezcreateurs/deepmenu,deroulant}|match{deroulant|arborescent}}{id_parent}{par num titre}{!lang_select}>
 				<li><INCLURE{fond=noisettes/menus/rubrique_li,
 					id_rubrique,
@@ -61,10 +65,6 @@
 					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}
 				></li>
 				</BOUCLE_SousMenuHaut>
-				<INCLURE{fond=noisettes/menus/menuarticles,id_rubrique,id_article,pas2ul=1,mot=AfficherArticlesMenuHaut,
-					largeurlogomenuhaut=#CONFIG{soyezcreateurs_layout/largeurlogomenuhautderoulant,16},
-					hauteurlogomenuhaut=#CONFIG{soyezcreateurs_layout/hauteurlogomenuhautderoulant,16},
-					logomenuderoulant=#CONFIG{soyezcreateurs_layout/logomenuderoulant,oui}}>
 				</ul>
 				</B_SousMenuHaut>
 					[(#REM) Cas où il n'y a que des articles et pas de sous rubrique au menu haut racine]
