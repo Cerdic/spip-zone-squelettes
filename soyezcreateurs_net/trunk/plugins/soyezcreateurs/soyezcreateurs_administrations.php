@@ -61,7 +61,10 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	);
 	$maj['3.1.65'] = array( 
 		array('soyezcreateurs_3_1_65'),
-		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */
+	);
+	$maj['3.1.66'] = array( 
+		array('soyezcreateurs_3_1_66'),
+		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */		
 	);
 		
 	include_spip('base/upgrade');
@@ -341,6 +344,10 @@ function soyezcreateurs_3_1_65() {
 	ecrire_config('orthotypo/caps','0');
 	ecrire_config('orthotypo/fines','0');
 	ecrire_config('orthotypo/corrections','1');
+}
+
+function soyezcreateurs_3_1_66() {
+	supprimer_mot_groupe("_Specialisation_Rubrique_ou_Article", "GrosLogo");
 }
 
 function soyezcreateurs_finalisationinstall() {
