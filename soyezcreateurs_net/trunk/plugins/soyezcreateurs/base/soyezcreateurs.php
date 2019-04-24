@@ -469,10 +469,14 @@ function remplacer_article($id_article, $id_rubrique, $texte) {
 	return true;
 }
 
-function poubelle_article($titre_article, $titre_rubrique) {
+function poubelle_article($id_or_titre_article, $titre_rubrique) {
 	$id_rubrique = id_rubrique($titre_rubrique);
 	if ($id_rubrique) {
-		$id_article = id_article($titre_article, $id_rubrique);
+		if (is_int($id_or_titre_article)) {
+			$id_article = $id_or_titre_article;
+		} else {
+			$id_article = id_article($id_or_titre_article, $id_rubrique);
+		}
 		if ($id_article) {
 			include_spip('action/editer_objet');
 			objet_modifier(
