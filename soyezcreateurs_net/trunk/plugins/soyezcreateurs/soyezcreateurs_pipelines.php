@@ -31,8 +31,6 @@ function soyezcreateurs_noizetier_blocs_defaut($flux) {
 
 function soyezcreateurs_identite_extra_champs($champs) {
 	$champs = explode(',', _CHAMPS_INDENTITE_EXTRA_SC);
-	$champs[] = 'latitude';
-	$champs[] = 'longitude';
 	$champs[] = 'facebook';
 	$champs[] = 'twitter';
 	$champs[] = 'linkedin';

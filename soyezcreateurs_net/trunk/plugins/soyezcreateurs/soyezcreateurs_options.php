@@ -16,7 +16,7 @@ if (!defined('_CORRECTION_LIENS_INTERNES_LIEN_SITES'))
 	define('_CORRECTION_LIENS_INTERNES_LIEN_SITES', 'refsite');
 
 if (!defined('_CHAMPS_INDENTITE_EXTRA_SC'))
-	define('_CHAMPS_INDENTITE_EXTRA_SC', 'adresse,code_postal,ville,pays,telephone,fax,email_contact,informations,id_article_contact');
+	define('_CHAMPS_INDENTITE_EXTRA_SC', 'adresse,code_postal,ville,pays,telephone,fax,email_contact,informations,id_article_contact,id_image_pied,latitude,longitude');
 
 if (!defined('_ACCESSIBILITE_CONSERVER_BULLE'))
 	define('_ACCESSIBILITE_CONSERVER_BULLE', true); // Pour conserver les bulles d'aide volontaire sur les liens vers les documents

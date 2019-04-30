@@ -32,6 +32,14 @@
                     </div>]
                     [(#IDENTITE_ID_ARTICLE_CONTACT|oui)<p class="#EDIT{meta-identite_extra/id_article_contact}"><a class="button triadeC texte-blanc float-center avec-margin" href="#URL_ARTICLE{#IDENTITE_ID_ARTICLE_CONTACT}"><span class="icon-envelope icon-lg avec-padding-right05"></span>Nous écrire</a></p>]
             </div>
+            <B_Id_Image_Pied>
+			<div id="carte" class="avec-padding">
+				<BOUCLE_Id_Image_Pied(DOCUMENTS){id_document=#IDENTITE_ID_IMAGE_PIED}{tous}>
+					[(#SET{Image_Pied,[(#FICHIER|copie_locale|image_reduire{450,0})]})]
+					<img src="[(#GET{Image_Pied}|extraire_attribut{src})]" width="450" height="[(#GET{Image_Pied}|hauteur)]" alt="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">
+				</BOUCLE_Id_Image_Pied>
+            </div>
+			</B_Id_Image_Pied>
             [(#IDENTITE_LATITUDE|oui)[(#PLUGIN{GIS}|oui)<div id="carte" class="avec-padding">
 				#INCLURE{fond=modeles/carte_gis,
 					id_map=carto_bc,
@@ -45,4 +53,5 @@
 					lon=#IDENTITE_LONGITUDE,
 					height=250px}
             </div>]]
+			<//B_Id_Image_Pied>
     </div>
