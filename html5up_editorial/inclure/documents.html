@@ -1,7 +1,7 @@
 [(#REM) Portfolio : album d'images ]
 <B_documents_portfolio>
 <div class="liste documents documents_portfolio">
-	<h2 class="h2"><:medias:info_portfolio:></h2>
+	[(#ENV{masquer_titres}|!={oui}|oui)<h2 class="h2"><:medias:info_portfolio:></h2>]	
 	<div class="box alt">
 		<div class="row uniform">
 	<BOUCLE_documents_portfolio(DOCUMENTS){id_article?}{id_rubrique?}{objet?}{id_objet?}{mode=document}{extension IN png,jpg,gif}{tri #PLUGIN{ordoc}|?{rang_lien,num titre}}{par date}{vu=non}{doublons}>[
@@ -27,7 +27,7 @@
 ]
 <B_documents_joints>
 <div class="liste documents documents_joints">
-	<h2 class="h2"><:medias:titre_documents_joints:></h2>
+	[(#ENV{masquer_titres}|!={oui}|oui)<h2 class="h2"><:medias:titre_documents_joints:></h2>]
 	<ul class="liste-items">
 		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?}{objet?}{id_objet?}{extension !IN gif,jpg,png}{vu=non}{tri #PLUGIN{ordoc}|?{rang_lien,num titre}}{par date}{doublons}>
 		<li class="item box">#INCLURE{fond=inclure/resume/document,id_document}</li>
