@@ -6,6 +6,6 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-    'alpha_description' => "Ce plugin permet de reprendre le design proposé sur Html5Up .",
-    'alpha_slogan' => "Thème Alpha https://html5up.net/alpha"
+    'alpha_description' => "Ce plugin permet de reprendre le design Alpha proposé sur Html5Up https://html5up.net/alpha.",
+    'alpha_slogan' => "Squelette adapté du thème Alpha de HTML5 UP"
 );
