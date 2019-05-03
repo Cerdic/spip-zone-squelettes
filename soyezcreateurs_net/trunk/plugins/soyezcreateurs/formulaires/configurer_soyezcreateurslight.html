@@ -1,0 +1,130 @@
+<?php // Contournement du bug https://core.spip.net/issues/3712
+if (!function_exists('sc_ouinon_default')) {
+	function sc_ouinon_default($cfg) {
+		if (is_null(lire_config($cfg))) {
+			ecrire_config($cfg,'on');
+		}
+		return true;
+	}
+}
+?>
+<div class="formulaire_spip formulaire_configurer_#FORM">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}">
+		<div>
+			#ACTION_FORMULAIRE{#ENV{action}}
+			
+
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_blocslibres:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,bloc_header,
+						label=<:soyezcreateursprive:cfg_texte_bloc_header:>,
+						rows=3,
+						cols=40,
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_bandeau_annonce:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,bandeau_annonce,
+						label=<:soyezcreateursprive:cfg_texte_bandeau_annonce:>,
+						rows=3,
+						cols=40,
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_bandeau_contact:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,bandeau_contact,
+						label=<:soyezcreateursprive:cfg_texte_bandeau_label:>,
+						rows=3,
+						cols=40,
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			[(#PLUGIN{ACCESRESTREINT}|oui)<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_explicationslogin:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,explicationslogin,
+						label=<:soyezcreateursprive:cfg_texte_explicationslogin:>,
+						rows=10,
+						cols=40,
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>]
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_numero_cnil:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,numero_cnil,
+						label=<:soyezcreateursprive:cfg_numero_cnil_label:>,
+						size=20}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_textesiplanvide:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,textesiplanvide,
+						label=<:soyezcreateursprive:cfg_textesiplanvide_label:>,
+						rows=3,
+						cols=40,
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_realisation:></h3>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{textarea,realisation,
+						label=<:soyezcreateursprive:cfg_realisation:>,
+						rows=3,
+						cols=40,
+						defaut='&#91;pyrat.net|Visiter le site du créateur de ce squelette->https://www.pyrat.net/&#93;',
+						class=inserer_barre_edition}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<fieldset>
+				<h3 class="legend"><:soyezcreateursprive:cfg_zone_forum:></h3>
+				<p><:soyezcreateursprive:cfg_zone_forum_laisser_vide:></p>
+				<[(#VAL{ul}|saisie_balise_structure_formulaire)] class="editer-groupe">
+					[(#SAISIE{input,zone_forum_titre,
+						label=<:soyezcreateursprive:cfg_zone_forum_titre:>,
+						defaut='',
+						explication=(<:soyezcreateurs:forum_vosreponses:>)}
+					)]
+					[(#SAISIE{input,zone_forum_invite,
+						label=<:soyezcreateursprive:cfg_zone_forum_invite:>,
+						defaut='',
+						explication=(<:soyezcreateurs:forum_repondre:>)}
+					)]
+					[(#SAISIE{input,texte_quoi2neuf,
+						label=<:soyezcreateursprive:cfg_texte_quoi2neuf:>,
+						defaut='',
+						explication=(<:soyezcreateurs:quoideneuf:>)}
+					)]
+					[(#SAISIE{input,texte_actualite_toutes,
+						label=<:soyezcreateursprive:cfg_texte_actualite_toutes:>,
+						defaut='',
+						explication=(<:soyezcreateurs:actualite_toutes:>)}
+					)]
+				</[(#VAL{ul}|saisie_balise_structure_formulaire)]>
+			</fieldset>
+			<input type="hidden" name="_meta_casier" value="soyezcreateurs" />
+			<p class="boutons">
+				<input type="submit" name="enregistrer" value="<:bouton_enregistrer|attribut_html:>" />
+			</p>
+		</div>
+	</form>
+</div>
