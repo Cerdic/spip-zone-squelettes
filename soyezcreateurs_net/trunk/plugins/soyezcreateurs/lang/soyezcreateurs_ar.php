@@ -86,6 +86,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'newsletter_recevoir' => 'تلقي النشرة الإخبارية للموقع', # RELIRE
 
 	// O
+	'ordreantichronologique' => 'عكس التسلسل الزمني', # RELIRE
 	'ou_sommes_nous' => 'حدد موقعنا على الخريطة !',
 
 	// P
@@ -113,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// T
 	'themes' => 'المواضيع',
+	'tousarticlesantichrono' => 'كل المقالات حسب عكس التسلسل الزمني ', # RELIRE
 
 	// V
 	'voirarticlespar' => 'شاهد المقالات بـ', # RELIRE
@@ -125,6 +127,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_apr' => 'ابريل',
 	'wdcalendar_aug' => 'أغسطس',
 	'wdcalendar_cancel' => 'إلغاء',
+	'wdcalendar_current_date' => 'اضغط لعرض التاريخ الحالي', # RELIRE
 	'wdcalendar_day_letter' => 'ي',
 	'wdcalendar_day_plural' => 'أيام',
 	'wdcalendar_dec' => 'ديسمبر',
