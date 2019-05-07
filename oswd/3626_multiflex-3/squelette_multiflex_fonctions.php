@@ -27,6 +27,7 @@ function balise_KRVB($p){
 
 function calculer_balise_KRVB($r,$v,$b,$kr,$kv,$kb){
 	include_spip('inc/filtres_images');
+	include_spip('inc/filtres_images_mini');
 	
 	if ($r == 255 && $v == 255 && $b == 255) return '#ffffff';
 	if ($r == 0 && $v == 0 && $b == 0) return '#000000';
