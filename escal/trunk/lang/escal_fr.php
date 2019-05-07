@@ -426,6 +426,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'envoi_mail_nom' => 'Nom : ',
 	'envoi_mail_prenom' => 'Prénom : ',
 	'envoyer_message' => 'Envoyer un message à ',
+	'erreur401' => 'Erreur 401',
+	'erreur401_message' => 'Vous n\'avez pas les autorisations suffisantes pour accéder à la page ou au document demandé... <br />
+						Veuillez contacter le webmestre du site pour y accéder
+						en utilisant la page [Contact|Page contact->@url@] de ce site.',
 	'erreur404' => 'Erreur 404',
 	'erreur404_message' => 'La page que vous demandez n’existe pas ou plus sur le site.
                     Si vous pensez qu’il s’agit d’une erreur dans le site,
