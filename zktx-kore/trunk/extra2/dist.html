@@ -2,11 +2,11 @@
 	<div class="row">
 
 		[(#REM) Menu de navigation par rubriques ]
-		[<nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4">(#INCLURE{fond=inclure/rubriques,id_rubrique})</nav>]
+		[<nav class="col-sm-6 col-md-3">(#INCLURE{fond=inclure/rubriques,id_rubrique})</nav>]
 
 		[(#REM) Breves du secteur ]
 		<B_breves>
-		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ajax">
+		<aside class="col-sm-6 col-md-3 ajax">
 			#ANCRE_PAGINATION
 			<p class="h4"><:breves:breves:></p>
 			<ul class="list-group">
@@ -20,7 +20,7 @@
 
 		[(#REM) Liens des forums ]
 		<B_forums_liens>
-		<aside class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ajax">
+		<aside class="col-sm-6 col-md-3 ajax">
 			#ANCRE_PAGINATION
 			<p class="h4"><:derniers_commentaires:></p>
 			<ul class="list-group">
@@ -34,6 +34,20 @@
 			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
 		</aside>
 		</B_forums_liens>
+
+		[(#REM) Sites Web de la rubrique ]
+		<B_sites>
+		<nav class="col-sm-6 col-md-3">
+			<p class="h4"><:sites_web:></p>
+			#ANCRE_PAGINATION
+			<ul class="list-group">
+				<BOUCLE_sites(SITES){tout}{par nom_site}{pagination 10}>
+				<li class="list-group-item"><a href="#URL_SITE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</nav>
+		</B_sites>
 
 	</div>
 </div>

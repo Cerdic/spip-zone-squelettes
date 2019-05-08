@@ -1,7 +1,14 @@
-<BOUCLE_content(RUBRIQUES){id_rubrique}>
-	[<section class="container">(#INCLURE{fond=inclure/portfolio,id_rubrique})</section>]
-	[<article class="container page-header lead #EDIT{texte}">(#TEXTE|abs_url)</article>]
-	[<section class="container">(#INCLURE{fond=inclure/documents,id_rubrique})</section>]
-	[<p class="h3">Notes :</p>
-	<footer class="text-muted">(#NOTES|abs_url)</footer>]
-</BOUCLE_content>
+<BOUCLE_content_rubrique(RUBRIQUES){id_rubrique}>
+	<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+		<header class="visible-xs-block container"><INCLURE{fond=liste/articles-resume-xs,env,ajax,titre=<:articles_rubrique:>,nb=8} /></header>
+		<header class="hidden-xs container"><INCLURE{fond=liste/articles-resume-col,env,ajax,titre=<:articles_rubrique:>,nb=8} /></header>
+	</BOUCLE_articles>
+	</B_articles>
+	<//B_articles>
+	
+	<BOUCLE_sous_rub(RUBRIQUES){id_parent}{0,1}>
+		<header class="container"><INCLURE{fond=liste/rubriques-resume-col,env,ajax,titre=<:sous_rubriques:>,nb=6} /></header>
+	</BOUCLE_sous_rub>
+	</B_sous_rub>
+	<//B_sous_rub>
+</BOUCLE_content_rubrique>

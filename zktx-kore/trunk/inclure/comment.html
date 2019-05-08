@@ -3,21 +3,19 @@
   Fichier original plugins/comments/inclure/comment.html
 ]
 <BOUCLE_comment(FORUMS){id_forum}>
-<blockquote class="comment hreview[ (#ID_PARENT|?{reply})]">
+<div class="comment[ (#ID_PARENT|?{reply})]">
 	<a href="#comment#ID_FORUM" name="comment#ID_FORUM" id="comment#ID_FORUM"></a>
 	<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
-	[(#INCLURE{fond=modeles/comment-meta,env})]
-	<div class="comment-content description">
-		[<div class="comment-texte #EDIT{texte}">(#TEXTE|lignes_longues)</div>]
-		[<div class="comment-notes">(#NOTES|safehtml|lignes_longues)</div>]
-		<B_doc><div class="comment-doc"><BOUCLE_doc(DOCUMENTS){id_forum}>
+	[<div class="panel-heading">(#INCLURE{fond=modeles/comment-meta,env})</div>]
+	<div class="panel-body">
+		[<div class="#EDIT{texte}">(#TEXTE|lignes_longues)</div>]
+		[(#NOTES|safehtml|lignes_longues)]
+		<B_doc><BOUCLE_doc(DOCUMENTS){id_forum}>
 		[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-			[(#MODELE{emb, lien=#URL_DOCUMENT}|image_reduire{300})]
-		,
-			[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+			[(#MODELE{emb, lien=#URL_DOCUMENT}|image_reduire{300})],[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
 		})]
-		</BOUCLE_doc></div></B_doc>
+		</BOUCLE_doc></B_doc>
 	</div>
-	[(#BOUTONS_ADMIN_FORUM)]
-</blockquote><!--.comment-->
+	[<div class="panel-footer">(#BOUTONS_ADMIN_FORUM)</div>]
+</div><!--.comment-->
 </BOUCLE_comment> 
