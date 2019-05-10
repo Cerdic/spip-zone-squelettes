@@ -15,6 +15,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => 'الذهاب إلى النص',
 	'accueil' => 'الصفحة الرئيسية',
 	'accueil_site' => 'عودة الى الصفحة الرئيسية', # RELIRE
+	'actualite_toutes' => 'آخر المقالات المنشورة ', # RELIRE
 	'agenda' => 'مفكرة', # RELIRE
 	'agenda_exporter_ical' => 'حول الى صيغة iCal',
 	'agenda_fsd' => 'من @djour_l@ @djour@ @dmois_l@ @dannee@ الساعة @dheure@<html>:</html>@dminutes@ إلى @fjour_l@ @fjour@ @fmois_l@ @fannee@ الساعة @fheure@<html>:</html>@fminutes@',
