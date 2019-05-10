@@ -64,6 +64,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	);
 	$maj['3.1.66'] = array( 
 		array('soyezcreateurs_3_1_66'),
+	);
+	$maj['3.1.67'] = array( 
+		array('soyezcreateurs_3_1_67'),
 		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */		
 	);
 		
@@ -348,6 +351,14 @@ function soyezcreateurs_3_1_65() {
 
 function soyezcreateurs_3_1_66() {
 	supprimer_mot_groupe("_Specialisation_Rubrique_ou_Article", "GrosLogo");
+}
+
+function soyezcreateurs_3_1_67() {
+	// Initialisation Sigles du dictionnaire
+	if (defined('_DIR_PLUGIN_DICTIONNAIRES')) {
+		sql_updateq('spip_dictionnaires', array('statut' => 'actif'), "statut='1'");
+		sql_updateq('spip_dictionnaires', array('statut' => 'inactif'), "statut='0'");
+	}
 }
 
 function soyezcreateurs_finalisationinstall() {
