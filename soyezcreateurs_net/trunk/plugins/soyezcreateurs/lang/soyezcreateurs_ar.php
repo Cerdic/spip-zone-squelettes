@@ -26,8 +26,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd' => '@djour_l@ @djour@ @dmois_l@ @dannee@ من @dheure@<html>:</html>@dminutes@ إلى @fheure@<html>:</html>@fminutes@',
 	'agenda_sd_h' => '@djour_l@ @djour@ @dmois_l@ @dannee@ الساعة @dheure@<html>:</html>@dminutes@', # RELIRE
 	'agenda_sinscrire' => 'سجل لهذه المناسبة', # RELIRE
-	'agendamoisde' => 'مفكرة شهر', # RELIRE
+	'agendamoisde' => 'مفكرة شهر',
 	'alaune' => 'أبرز الأحداث',
+	'annuaire' => 'دليل', # RELIRE
+	'annuaire_vide' => '.الدليل فارغ', # RELIRE
 	'archives' => 'أرشيف',
 	'archives_title' => 'عرض مقالات الأرشيف',
 	'articlesconnexes' => 'مقالات ذات صلة',
@@ -96,9 +98,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'plan_menu' => 'خريطة الموقع',
-	'plus_loin' => 'انظر أيضا', # RELIRE
-	'plus_loin_title' => 'موقع المراجع', # RELIRE
-	'precisezrecherche' => 'حدد بحثك', # RELIRE
+	'plus_loin' => 'انظر أيضا',
+	'plus_loin_title' => 'موقع المراجع',
+	'precisezrecherche' => 'حدد بحثك',
 	'publiele' => 'نشر بتاريخ',
 
 	// Q
@@ -122,7 +124,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// T
 	'themes' => 'المواضيع',
-	'tousarticlesantichrono' => 'كل المقالات حسب عكس التسلسل الزمني ', # RELIRE
+	'tousarticlesantichrono' => 'كل المقالات من الأحدث إلى الأقدم ',
 	'toutleplan' => 'الموقع بأكمله على صفحة', # RELIRE
 
 	// V
@@ -137,7 +139,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_apr' => 'ابريل',
 	'wdcalendar_aug' => 'أغسطس',
 	'wdcalendar_cancel' => 'إلغاء',
-	'wdcalendar_current_date' => 'اضغط لعرض التاريخ الحالي', # RELIRE
+	'wdcalendar_current_date' => 'اضغط لعرض التاريخ الحالي',
 	'wdcalendar_day' => 'يوم',
 	'wdcalendar_day_letter' => 'ي',
 	'wdcalendar_day_plural' => 'أيام',
