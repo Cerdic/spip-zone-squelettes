@@ -14,6 +14,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 $GLOBALS['z_blocs'] = array('content', 'head', 'head_js', 'breadcrumb', 'header', 'footer');
+$GLOBALS['meta']['version_html_max'] = 'html5';
 
 // stocker la langue d'arrivee pour que le sommaire affiche la langue souhaitee
 // et on ajoute la langue dans le contexte systematiquement.
