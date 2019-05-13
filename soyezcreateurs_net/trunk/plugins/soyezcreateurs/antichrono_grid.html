@@ -1,0 +1,160 @@
+[(#SET{titretop,[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|texte_script)}
+	{titretop=#GET{titretop}}
+	{type=antichrono}
+	{idbody=antichrono}
+>
+<div class="texte">
+<main id="main" role="main">
+[(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
+<div class="cartouche">
+<div class="titrepage"><h1>[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})]</h1></div>
+</div>
+]
+<div id="letexte">
+<div class="chapo"><p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a></p></div>
+<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){id_rubrique}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} /><BOUCLE_ExclureBreveDuPlan(BREVES){id_rubrique}{doublons brevesannees}{doublons brevesmois}{doublons breves}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
+<BOUCLE_ExclureArticlesDuPlan2(ARTICLES){titre_mot=PasDansPlan}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} />
+[(#SET{logoyear,[(#CHEMIN{images/calendar-year.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]
+[(#SET{logomonth,[(#CHEMIN{images/calendar-month.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]
+
+#SET{listeliens,#ARRAY}
+<B_Annee>
+	<BOUCLE_Annee(ARTICLES){!par date}{doublons articlesannees}{fusion YEAR(date)}{lang}>
+	<B_Mois>
+		<BOUCLE_Mois(ARTICLES){annee_relatif=0}
+		{!par date}{lang}
+		{doublons articlesmois}
+		{fusion MONTH(date)}>
+		<B_ArticlesDuMois>
+			<BOUCLE_ArticlesDuMois(ARTICLES){doublons articles}{mois_relatif=0}
+			{!par date}{lang}>
+			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,'',type,'',logo,#GET{logo}}}}
+			</BOUCLE_ArticlesDuMois>
+		</B_ArticlesDuMois>
+		</BOUCLE_Mois>
+	</B_Mois>
+	</BOUCLE_Annee>
+</B_Annee>
+
+[(#SET{breve,<:breves:breve|lcfirst:>})]
+<B_AnneeBreves>
+	<BOUCLE_AnneeBreves(BREVES){!par date}{doublons brevesannees}{fusion YEAR(date_heure)}{lang}>
+	<B_MoisBreves>
+		<BOUCLE_MoisBreves(BREVES){annee_relatif=0}
+		{!par date}{lang}
+		{doublons brevesmois}
+		{fusion MONTH(date_heure)}>
+		<B_BrevesDuMois>
+			<BOUCLE_BrevesDuMois(BREVES){doublons breves}{mois_relatif=0}
+			{!par date}{lang}>
+			[(#SET{logo,[(#LOGO_BREVE_SURVOL|sinon{#LOGO_BREVE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves,type,#GET{breve},logo,#GET{logo}}}}
+			</BOUCLE_BrevesDuMois>
+		</B_BrevesDuMois>
+		</BOUCLE_MoisBreves>
+	</B_MoisBreves>
+	</BOUCLE_AnneeBreves>
+</B_AnneeBreves>
+
+[(#SET{site,<:sites:site:>})]
+<B_AnneeSites>
+	<BOUCLE_AnneeSites(SITES){!par date}{fusion YEAR(date)}>
+	<B_MoisSites>
+		<BOUCLE_MoisSites(SITES){annee_relatif=0}
+		{!par date}
+		{fusion MONTH(date)}>
+		<B_SitesDuMois>
+			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
+			{!par date}>
+			[(#SET{logo,[(#LOGO_SITE_SURVOL|sinon{#LOGO_SITE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites,type,#GET{site},logo,#GET{logo}}}}
+			</BOUCLE_SitesDuMois>
+		</B_SitesDuMois>
+		</BOUCLE_MoisSites>
+	</B_MoisSites>
+	</BOUCLE_AnneeSites>
+</B_AnneeSites>
+
+<BOUCLE_Min2anness(DATA)
+		{source table,#GET{listeliens}}
+		{!par date}
+		{fusion year}
+		{1,1}
+	> </BOUCLE_Min2anness>
+<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
+	<B_Sommaire>
+	<ul>
+	<BOUCLE_Sommaire(DATA)
+		{source table,#GET{listeliens}}
+		{!par date}
+		{fusion year}
+	>
+		<li><a href="#annee_#YEAR">#YEAR</a></li>
+	</BOUCLE_Sommaire>
+	</ul>
+	</B_Sommaire>
+</div>
+</B_Min2anness>
+
+
+<B_AnneeObjet>
+<div class="masonry">
+	<BOUCLE_AnneeObjet(DATA)
+		{source table,#GET{listeliens}}
+		{!par date}
+		{fusion year}
+	>
+	<B_ListeMois>
+	<div id="annee_#YEAR" class="grid-item masonry-brick">
+		<div class="content-actus alaune year">
+			[<img src="(#GET{logoyear}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+			<div class="h2"><span class="titre-actus">[(#YEAR)]</span></div>
+		</div>
+	</div>
+
+		<BOUCLE_ListeMois(DATA)
+			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
+		>
+		<B_ObjetsDuMois>
+		<div class="grid-item masonry-brick">
+			<div class="content-actus alaune month">
+				[<img src="(#GET{logomonth}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+				<div class="h2"><span class="titre-actus">[(#YEAR|concat{-,#_ListeMois:VALEUR#VAL,-01}|nom_mois|ucfirst)]</span></div>
+			</div>
+		</div>
+			<BOUCLE_ObjetsDuMois(DATA)
+				{source table,#GET{listeliens}}
+				{year=#_AnneeObjet:YEAR}
+				{month=#_ListeMois:VALEUR}
+				{!par date}
+			>
+			<div class="grid-item masonry-brick[ (#CLASS)]">
+				<div class="content-actus alaune <BOUCLE_RubriqueColoreealaune(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriquealaune(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriquealaune></BOUCLE_RubriqueColoreealaune>">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#LOGO|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+						<div class="h2"><span class="titre-actus">#TITRE[ <span class="secondary-information">((#TYPE))</span>]</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+					</a>
+				</div>
+			</div>
+
+			</BOUCLE_ObjetsDuMois>
+		</B_ObjetsDuMois>
+		</BOUCLE_ListeMois>
+	</B_ListeMois>
+	</BOUCLE_AnneeObjet>
+</div>
+</B_AnneeObjet>
+
+</div>
+</main>
+</div><!-- Fin de .texte -->
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{template=Plan}
+>
+#FILTRE{mini_html}

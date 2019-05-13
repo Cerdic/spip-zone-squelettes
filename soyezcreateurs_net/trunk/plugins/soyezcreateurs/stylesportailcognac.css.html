@@ -40,8 +40,6 @@
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,180})}
 #SET{LargeurMilieu,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|moins{#GET{LargeurMenuDroit}}|div{2})}
 
-#SET{masonry,308}
-
 #miettesdepain, .boutonstexte {display: none; }
 
 div#content { width: 100%; }
@@ -571,15 +569,6 @@ select {
   display: block;
   clear: both;
 }
-.grid-item .h2 .icon:before {
-  font-size: 30px;
-}
-.grid-item-x2 {
-  width: calc(50% - 20px) ;
-}
-.grid-item-x3 {
-  width: calc(75% - 20px) ;
-}
 .VideoALaUne figcaption { display: none; }
 .VideoALaUne .spip_documents.spip_documents_center { margin-bottom: 0; }
 .VideoALaUne .spip_documents .oembed {
@@ -789,42 +778,7 @@ img.editologo {
   padding-left: 20px;
   text-align: center;
 }
-.grid {
-  text-align: center;
-}
-.grid-item {
-  margin-bottom: 20px;
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-  background-color: #eae9e5;
-  color: [(#GET{c_header_bk}|couleur_extreme|=={000000}|?{#GET{c_header_bk},#GET{c_header}})];
-  float: left;
-  margin-right: 20px;
-}
-.grid-item a {
-  color: inherit;
-}
 
-.grid-item .content-actus:hover,
-.grid-item .content-actus:focus {
-  /* Si le fond est clair, on va le prendre comme couleur de fond, sinon, la couleur d'écriture Texte : #GET{c_header}([(#GET{c_header}|couleur_extreme)])/ Fond : #GET{c_header_bk}([(#GET{c_header_bk}|couleur_extreme)]) */
-  background-color: rgba([(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}}|sc_rgb)], 0.2);
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-}
-.grid-item .content-actus {
-  /* Si le fond est clair, on va le prendre comme couleur de fond, sinon, la couleur d'écriture Texte : #GET{c_header}([(#GET{c_header}|couleur_extreme)])/ Fond : #GET{c_header_bk}([(#GET{c_header_bk}|couleur_extreme)]) */
-  background-color: #[(#GET{c_header_bk}|couleur_extreme|=={ffffff}|?{#GET{c_header_bk},#GET{c_header}}|couleur_foncerluminosite{20})];
-}
-.grid-item .content-actus:nth-child(2) {
-  margin-top: 16px;
-}
-.grid-item header {
-  font-size: 1.5em;
-  font-weight: 300;
-  line-height: 21px;
-  overflow: auto;
-}
 .agenda strong {
   font-size: 1.8em;
   vertical-align: bottom;
@@ -836,20 +790,6 @@ img.editologo {
   padding: 0 .25em;
 }
 .agenda {height: 95px; }
-.grid-item .h2 {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 95px;
-  margin: 0;
-  font-size: 21px;
-  font-weight: 400;
-  color: inherit;
-  line-height: 21px;
-  padding: 10px;
-  text-align: right;
-  border: none;
-}
 .grid-item .agenda .h2 {
   font-size: 18px;
 }
@@ -872,26 +812,6 @@ img.editologo {
   justify-content: left;
 }
 
-.grid-item .h2 .icon {
-  font-size: 0;
-  align-self: center;
-  padding: 7px 0 7px 7px;
-}
-.grid-item .h2 .titre-actus {
-    width: 100%;
-    align-self: center;
-    padding: 10px 10px 10px 0;
-    border-right: 1px solid;
-}
-.grid-item img {
-  max-width: 100%;
-  width: 100%;
-  max-height: [(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px;
-  background-color: #GET{c_body_bk};
-}
-.grid-item {
-  margin-bottom: 20px;
-}
 /* Affichage des dates. cf https://codepen.io/jpyrat/pen/EmZrpR */
 .date {
   width: 95px;
@@ -942,100 +862,6 @@ img.editologo {
   display: block;
 }
 
-
-/*
-M : [(#GET{masonry}|mult{4}|moins{100})]
-LC: #GET{LargeurContaineur}
-*/
-.gutter-sizer { width: 20px; }
-[(#GET{masonry}|mult{4}|moins{100}|<={#GET{LargeurContaineur}}|oui)
-/* M <= LC */
-	.grid-sizer, .grid-item {
-	  width: calc(25% - 20px);
-	}
-	.grid-item {
-	  height: calc([(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px + 65px);
-	}
-	.grid-item-demie {
-	  height: calc(127px + 65px);
-	  margin-bottom: 0;
-	}
-	.grid-item-x2 {
-	  width: calc(50% - 20px);
-	}
-	.grid-item-x3 {
-	  width: calc(75% - 20px);
-	}
-	@media only screen and (max-width: #GET{LargeurContaineur}px) {
-	  .grid-item {
-		height: calc([(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px + 90px);
-	  }
-	  .grid-item-demie {
-		height: calc(127px + 90px);
-		margin-bottom: 0;
-	  }
-	}
-]
-[(#GET{masonry}|mult{4}|moins{100}|<={#GET{LargeurContaineur}}|non)
-/* M > LC */
-	.grid-sizer, .grid-item {
-	  width: calc(33.333% - 20px);
-	}
-	.grid-item {
-	height: calc([(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px + 90px);
-	}
-	.grid-item-demie {
-	height: calc(127px + 90px);
-	margin-bottom: 0;
-	}
-	.grid-item-x2 {
-	width: calc(66.666% - 20px);
-	}
-	.grid-item-x3 {
-	width: calc(100% - 20px);
-	}
-]
-@media only screen and (max-width:[(#GET{masonry}|mult{4}|moins{100})]px) {
-  .grid-sizer, .grid-item {
-    width: calc(33.333% - 20px);
-  }
-  .grid-item {
-    height: calc([(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px + 90px);
-  }
-  .grid-item-demie {
-    height: calc(127px + 90px);
-	margin-bottom: 0;
-  }
-  .grid-item-x2 {
-    width: calc(66.666% - 20px);
-  }
-  .grid-item-x3 {
-    width: calc(100% - 20px);
-  }
-}
-@media only screen and (max-width: [(#GET{masonry}|mult{3}|moins{80})]px) {
-  .grid-sizer, .grid-item {
-    width: calc(50% - 20px);
-  }
-  .grid-item {
-    height: calc([(#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340})]px + 90px);
-  }
-  .grid-item-demie {
-    height: calc(127px + 90px);
-	margin-bottom: 0;
-  }
-  .grid-item-x2 {
-    width: calc(100% - 20px);
-  }
-}
-@media only screen and (max-width: [(#GET{masonry}|mult{2}|moins{60})]px) {
-  .grid-sizer, .grid-item {
-    width: calc(100% - 20px);
-  }
-  .grid-item {
-    height: auto;
-  }
-}
 #projets {
   margin: 0;
   padding: 0;
@@ -1088,16 +914,6 @@ LC: #GET{LargeurContaineur}
 #pratique {
   margin-bottom: 4em;
 }
-
-<BOUCLE_CouleursRubriques(MOTS){type=_CouleurRubrique}{par id_mot}>
-.grid-item .couleurrubrique#ID_MOT,
-#projets .couleurrubrique#ID_MOT { [background-color: #(#TEXTE|textebrut);][ color: #(#TEXTE|textebrut|couleur_extreme|couleur_inverser);] }
-.grid-item .couleurrubrique#ID_MOT:hover,
-.grid-item .couleurrubrique#ID_MOT:focus,
-#projets .couleurrubrique#ID_MOT:hover,
-#projets .couleurrubrique#ID_MOT:focus  { [background-color: #(#TEXTE|textebrut|couleur_eclaircir);] }
-</BOUCLE_CouleursRubriques>
-
 
 [(#PLUGIN{lesscss}|oui)
 	[(#CHEMIN{images/stylesportailcognac_perso.less.html}|?{'/* Surcharge eventuelle */'})
