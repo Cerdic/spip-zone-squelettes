@@ -1,11 +1,11 @@
 [(#ENV{appel_formulaire}|oui)
 	<div class="titre item-picto btcontact"><:menus_dane:menu_contact_icone:></div>
 	<div class="infos"><:menus_dane:description_menu_contact_icone:></div>
+    <div>#ENV{page}</div>
 ]
 [(#ENV{appel_menu}|oui)
-	<li class="item menu-entree [ (#ENV{css})][(#ENV{env/type}|=={page}|et{#ENV{env/composition}|=={contact}}|ou{#ENV{env/type-page}|=={contact}|oui}|oui)on active]">
-		<a href="#URL_PAGE{contact}" class="item-fa" title="<:menus_dane:menu_contact_title:>">
-            <i class="fa fa-envelope-o"></i>
-        </a>
+    [(#SET{page, #ENV{page}|match{^(auteur|article)}|?{spip.php?#ENV{page}, #URL_PAGE{#ENV{page, contact}}}})]
+    <li class="item menu-entree [ (#ENV{css})][(#ENV{env/type}|=={page}|et{#ENV{env/composition}|=={contact}}|ou{#ENV{env/type-page}|=={contact}|oui}|oui)on active]">
+        <a href="#GET{page}" class="item-fa" title="<:menus_dane:menu_contact_title:>"><i class="fa fa-envelope-o"></i></a>
 ]
 

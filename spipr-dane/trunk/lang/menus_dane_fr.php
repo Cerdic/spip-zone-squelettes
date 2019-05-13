@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // E
 	'entree_nom_fa' => 'Entrez ici le nom du pictogramme choisi sur https://fontawesome.com/v4.7.0/icons/ (obligatoire)',
 	'entree_lien' => 'Entrez ici l\'url vers laquelle le lien doit pointer. S\'il s\'agit d\'un objet Spip, saisissez  "objet|xx". Exemple article|23, rubrique|5 (obligatoire)',
+	'entree_page' => 'Vous pouvez entrer le nom d\'une page exixtante (contact par exemple) ou de la page d\'un auteur ou d\'un article, sous la forme auteurN ou articleN, où N est le numéro (id) de l\'article ou de l\'auteur.',
     
     // L
     'label_menu_alt' =>'Texte au survol du lien',
