@@ -8,12 +8,22 @@
 	<BOUCLE_sous_rubriques(RUBRIQUES){par num titre, titre}{lang}{id_parent}>
 		<INCLURE{fond=inclure/sections/intro-rubrique, id_rubrique, position=#GET{i}, spot=1} />
 		#SET{i,#GET{i}|plus{1}}
+		
 	</BOUCLE_sous_rubriques>
 
 </BOUCLE_rubrique_langue>
 
-	<BOUCLE_rubriques(RUBRIQUES){par num titre, titre}{lang}{racine}>
-		<INCLURE{fond=inclure/sections/intro-rubrique, id_rubrique, position=#COMPTEUR_BOUCLE, spot=1} />
+	[(#REM) Si une rubrique héro est configurée, on la rentre dans la variable rubrique_hero
+	][(#SET{rubrique_hero,#CONFIG{html5up_solid_state/rubrique_hero}|table_valeur{0}|replace{\[^\d\]}})]
+
+	
+	[(#REM) Liste des rubriques hors rubrique héro]
+	<BOUCLE_rubriques(RUBRIQUES) {id_rubrique != #GET{rubrique_hero}} {par num titre, titre} {lang} {racine}>
+		[(#SET{position,#COMPTEUR_BOUCLE})]
+		<INCLURE{fond=inclure/sections/intro-rubrique, id_rubrique, position=#GET{position}, spot=1} />
 	</BOUCLE_rubriques>
 
+	[(#REM) La rubrique héro]
+	<INCLURE{fond=inclure/sections/rubrique-hero, env, ajax, id_rubrique=#GET{rubrique_hero}, position=#GET{position}|plus{1}} />
+	
 <//B_rubrique_langue>
