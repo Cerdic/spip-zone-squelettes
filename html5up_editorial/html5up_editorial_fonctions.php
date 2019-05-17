@@ -26,7 +26,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
  *         |vider_attribut{class})]
  *
  */
-function html5up_image_reduire($img, $width = 416, $height = 256) {
+function html5up_image_reduire($img, $width = 416, $height = 256,$alt = '') {
 	if (defined('_DIR_PLUGIN_CENTRE_IMAGE')) {
 		$img = filtrer('image_recadre', $img, "$width:$height", '-', 'focus');
 	}
@@ -36,5 +36,6 @@ function html5up_image_reduire($img, $width = 416, $height = 256) {
 	$img = vider_attribut($img, 'width');
 	$img = vider_attribut($img, 'height');
 	$img = vider_attribut($img, 'class');
+	$img = inserer_attribut($img, 'alt', $alt);
 	return $img;
 }
