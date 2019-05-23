@@ -31,7 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'connexiontitle' => 'De gereserveerde ruimte bereiken',
 	'copyright_cnil' => 'Copyright CNIL nº',
 	'copyright_realisation' => 'Copyright : ',
-	'copyright_spip' => 'Deze website gebruikt het skelet : <a href=\'http://www.pyrat.net/\' title=\'De website van de producent van dit skelet bezoeken\'>Pyrat.net</a> Voortgestuwd; door <a href=\'http://www.spip.net/\' title=\'De website van SPIP bezoeken, software van beleid van inhoud web in vergunning vrij LPG\'>SPIP</a>', # MODIF
+	'copyright_spip' => 'Deze website gebruikt het skelet : <a href=\'https://www.pyrat.net/\' title=\'De website van de producent van dit skelet bezoeken\'>Pyrat.net</a> Voortgestuwd; door <a href=\'http://www.spip.net/\' title=\'De website van SPIP bezoeken, software van beleid van inhoud web in vergunning vrij LPG\'>SPIP</a>',
 
 	// D
 	'deconnexion' => 'uitschakelen',
