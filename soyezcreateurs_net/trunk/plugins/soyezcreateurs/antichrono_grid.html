@@ -1,19 +1,19 @@
-[(#SET{titretop,[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|sc_nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|concat{' ',<:soyezcreateurs:actualite_toutes_blocs:>}|sc_nettoyer_marqueur|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
-	{title=(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|texte_script)}
+	{title=(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>}|concat{' \(',<:soyezcreateurs:actualite_toutes_blocs:>,'\)'}|texte_script)}
 	{titretop=#GET{titretop}}
-	{type=antichrono}
+	{type=antichrono_grid}
 	{idbody=antichrono}
 >
 <div class="texte">
 <main id="main" role="main">
 [(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
 <div class="cartouche">
-<div class="titrepage"><h1>[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})]</h1></div>
+<div class="titrepage"><h1>[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_blocs:>)</h1></div>
 </div>
 ]
 <div id="letexte">
-<div class="chapo"><p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a></p></div>
+<div class="chapo"><p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a> ou <a href="#URL_PAGE{antichrono}">[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_arbo:>)</a></p></div>
 <BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){id_rubrique}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} /><BOUCLE_ExclureBreveDuPlan(BREVES){id_rubrique}{doublons brevesannees}{doublons brevesmois}{doublons breves}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
 <BOUCLE_ExclureArticlesDuPlan2(ARTICLES){titre_mot=PasDansPlan}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} />
 [(#SET{logoyear,[(#CHEMIN{images/calendar-year.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]

@@ -5,7 +5,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	'cfg_texte_actualite_toutes' => 'Lien vers tous les articles par ordre anti-chronologique',
+	'cfg_texte_actualite_toutes' => 'Lien vers tous les articles par ordre antichronologique',
 	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d’accueil',
 	'cfg_affichage_affiche' => 'Afficher',
 	'cfg_aff_logoaccueil_label' => 'Affichage du logo de rubrique sur la page d’accueil',
@@ -247,6 +247,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_ordre_quoideneuf_date_modif' => 'Par date inverse de modification',
 	'cfg_ordre_quoideneuf_label' => 'Classement',
 	'cfg_page' => 'Page',
+	'cfg_page_antichrono' => 'Mode d’affichage du plan antichronologique',
+	'cfg_page_antichrono_arbo' => 'Arborescence',
+	'cfg_page_antichrono_blocs' => 'Blocs en grille avec logos',
 	'cfg_pagemargehaute_label' => 'Marge haute',
 	'cfg_pagemargebasse_label' => 'Marge basse',
 	'cfg_parametres_addthis' => 'Paramètres AddThis',
