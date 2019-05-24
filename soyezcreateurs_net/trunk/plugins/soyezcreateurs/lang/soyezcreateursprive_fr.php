@@ -297,7 +297,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux' => 'Sous-menus locaux',
 	'cfg_sousmenulocaux_ex' => 'Modifie le menu principal pour éventuellement ne pas faire apparaître les sous-rubriques, sauf pour la branche en cours',
 	'cfg_sousmenulocaux_label' => 'Affichage des sous-rubriques dans le menu principal',
-	'cfg_sponsor' => 'Vous appréciez ce squelette, vous pouvez le manifester en utilisant cet identifiant pour les pubs et la recherche : @id@ (les squelettes correspondant sont à télécharger sur <a href="http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html">ads_column.html</a> et <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html">ads_search.html</a> et à installer dans votre dossier squelettes).',
+	'cfg_sponsor' => 'Vous appréciez ce squelette, vous pouvez le manifester en utilisant cet identifiant pour les pubs et la recherche : @id@ (les squelettes correspondant sont à télécharger sur <a href="https://www.pyrat.net/squelettes/noisettes/extra/ads_column.html">ads_column.html</a> et <a href="https://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html">ads_search.html</a> et à installer dans votre dossier squelettes).',
 	'cfg_systematiquement' => 'Systématiquement',
 	'cfg_taille_logocontenuprincipal' => 'Taille maximum des logos placés à côté des titres d’une page (article, rubrique, site…)',
 	'cfg_taille_logos_alaune_blog' => 'Taille maximum des logos à la une en mode blog',

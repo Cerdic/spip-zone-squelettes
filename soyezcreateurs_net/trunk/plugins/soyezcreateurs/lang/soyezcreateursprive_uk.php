@@ -199,7 +199,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux' => 'Місцеві підменю',
 	'cfg_sousmenulocaux_ex' => 'Змінює  головне меню, щоб  при бажанні не показувати під-рубрики, за винятком для поточної філії ( гілки )',
 	'cfg_sousmenulocaux_label' => 'Афішування ( показ )під-рубрик в головному меню',
-	'cfg_sponsor' => 'Вам сподобався цей кістяк, ви можете його проявляти, використовуючи даний ідентифікатор для реклами і пошуку: @ @ ID (відповідні скелети завантажити на <HREF = "http://www.pyrat.net/squelettes/noisettes/ додаткових / ads_column.html "> ads_column.html </ A> і <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html </> і встановити у вашому скелети файл).',
+	'cfg_sponsor' => 'Вам сподобався цей кістяк, ви можете його проявляти, використовуючи даний ідентифікатор для реклами і пошуку: @ @ ID (відповідні скелети завантажити на <HREF = "https://www.pyrat.net/squelettes/noisettes/ додаткових / ads_column.html "> ads_column.html </ A> і <a href="https://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html </> і встановити у вашому скелети файл).',
 	'cfg_systematiquement' => 'Систематично',
 	'cfg_taille_logos_max' => 'Максимальний розмір логотипів меню і панелі інструментів', # MODIF
 	'cfg_texte_bandeau_annonce' => 'Текст банера оголошення у верхній частині сайту',

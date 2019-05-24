@@ -231,7 +231,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux' => 'Preložené podmenu',
 	'cfg_sousmenulocaux_ex' => 'Zmeňte hlavné menu, aby sa nemuseli zobrazovať podrubriky mimo aktívnej vetvy',
 	'cfg_sousmenulocaux_label' => 'Podrubriky zobrazovať v hlavnom menu',
-	'cfg_sponsor' => 'To, že sa vám páči táto šablóna, môžete ukázať použitím tohto identifikátora pre puby a vyhľadávanie: @id@ (šablóny určené na stiahnutie na <a href = "http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> a <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> a nainštalovať ich do priečinka so šablónami).',
+	'cfg_sponsor' => 'To, že sa vám páči táto šablóna, môžete ukázať použitím tohto identifikátora pre puby a vyhľadávanie: @id@ (šablóny určené na stiahnutie na <a href = "https://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> a <a href="https://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> a nainštalovať ich do priečinka so šablónami).',
 	'cfg_systematiquement' => 'Systematicky',
 	'cfg_taille_logos_alaune_blog' => 'Maximálna veľkosť loga v prednej časti v režime Blog',
 	'cfg_taille_logos_derniers_art_blog' => 'Maximálna veľkosť loga najnovších článkov v režime Blog',

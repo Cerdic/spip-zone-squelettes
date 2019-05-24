@@ -227,7 +227,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux' => 'Localised sub-menus',
 	'cfg_sousmenulocaux_ex' => 'Modify the main menu to possibly not show the sub-sections except for the current branch',
 	'cfg_sousmenulocaux_label' => 'Display sub-sections in the main menu',
-	'cfg_sponsor' => 'You like this template, you can show by using this identifier to pubs and research: @id@ (skeletons corresponding to download at <a href = "http://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> and <a href="http://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> and install in your templates folder).',
+	'cfg_sponsor' => 'You like this template, you can show by using this identifier to pubs and research: @id@ (skeletons corresponding to download at <a href = "https://www.pyrat.net/squelettes/noisettes/extra/ads_column.html"> ads_column.html</a> and <a href="https://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html"> ads_search.html</a> and install in your templates folder).',
 	'cfg_systematiquement' => 'Systematically',
 	'cfg_taille_logos_alaune_blog' => 'Maximum size of the logos on the front page in blog type',
 	'cfg_taille_logos_derniers_art_blog' => 'Maximum size of the logos of the last articles in blog type',
