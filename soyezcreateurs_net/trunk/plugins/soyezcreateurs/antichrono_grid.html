@@ -30,8 +30,10 @@
 		<B_ArticlesDuMois>
 			<BOUCLE_ArticlesDuMois(ARTICLES){doublons articles}{mois_relatif=0}
 			{!par date}{lang}>
+			#SET{couleurrubrique,''}
+			<BOUCLE_RubriqueColoreeArticles(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueArticles(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>#SET{couleurrubrique,couleurrubrique#ID_MOT}</BOUCLE_CouleurRubriqueArticles></BOUCLE_RubriqueColoreeArticles>
 			[(#SET{logo,[(#LOGO_ARTICLE_SURVOL|sinon{#LOGO_ARTICLE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,'',type,'',logo,#GET{logo}}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#ARTICLE_URL,descriptif,#DESCRIPTIF,titre,#TITRE,class,'',type,'',logo,#GET{logo},couleurrubrique,#GET{couleurrubrique}}}}
 			</BOUCLE_ArticlesDuMois>
 		</B_ArticlesDuMois>
 		</BOUCLE_Mois>
@@ -50,8 +52,10 @@
 		<B_BrevesDuMois>
 			<BOUCLE_BrevesDuMois(BREVES){doublons breves}{mois_relatif=0}
 			{!par date}{lang}>
+			#SET{couleurrubrique,''}
+			<BOUCLE_RubriqueColoreeBreves(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueBreves(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>#SET{couleurrubrique,couleurrubrique#ID_MOT}</BOUCLE_CouleurRubriqueBreves></BOUCLE_RubriqueColoreeBreves>
 			[(#SET{logo,[(#LOGO_BREVE_SURVOL|sinon{#LOGO_BREVE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves,type,#GET{breve},logo,#GET{logo}}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,#URL_BREVE,descriptif,#DESCRIPTIF,titre,#TITRE,class,iconbreves,type,#GET{breve},logo,#GET{logo},couleurrubrique,#GET{couleurrubrique}}}}
 			</BOUCLE_BrevesDuMois>
 		</B_BrevesDuMois>
 		</BOUCLE_MoisBreves>
@@ -69,8 +73,10 @@
 		<B_SitesDuMois>
 			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
 			{!par date}>
+			#SET{couleurrubrique,''}
+			<BOUCLE_RubriqueColoreeSites(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriqueSites(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}>#SET{couleurrubrique,couleurrubrique#ID_MOT}</BOUCLE_CouleurRubriqueSites></BOUCLE_RubriqueColoreeSites>
 			[(#SET{logo,[(#LOGO_SITE_SURVOL|sinon{#LOGO_SITE_NORMAL}|sinon{[(#CHEMIN{images/placeholder.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]})]
-			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites,type,#GET{site},logo,#GET{logo}}}}
+			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites,type,#GET{site},logo,#GET{logo},couleurrubrique,#GET{couleurrubrique}}}}
 			</BOUCLE_SitesDuMois>
 		</B_SitesDuMois>
 		</BOUCLE_MoisSites>
@@ -132,7 +138,7 @@
 				{!par date}
 			>
 			<div class="grid-item masonry-brick[ (#CLASS)]">
-				<div class="content-actus alaune <BOUCLE_RubriqueColoreealaune(HIERARCHIE){id_rubrique}{tout}{type_mot=_CouleurRubrique}{inverse} {0,1}><BOUCLE_CouleurRubriquealaune(MOTS){id_rubrique}{type=_CouleurRubrique}{0,1}> couleurrubrique#ID_MOT</BOUCLE_CouleurRubriquealaune></BOUCLE_RubriqueColoreealaune>">
+				<div class="content-actus alaune[ (#COULEURRUBRIQUE)]">
 					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
 						[<img src="(#LOGO|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
 						<div class="h2"><span class="titre-actus">#TITRE[ <span class="secondary-information">((#TYPE))</span>]</span>
