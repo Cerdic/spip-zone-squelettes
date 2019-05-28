@@ -13,7 +13,13 @@
 </div>
 ]
 <div id="letexte">
-<div class="chapo"><p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a> ou <a href="#URL_PAGE{antichrono_grid}">[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_blocs:>)</a></p></div>
+	<div class="onglets">
+		<ul>
+			<li><a href="#URL_PAGE{plan}" title="<:plan_site|attribut_html:>"><:plan_site:></a></li>
+			<li><strong>[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_arbo:>)</strong></li>
+			<li><a href="#URL_PAGE{antichrono_grid}">[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_blocs:>)</a></li>
+		</ul>
+	</div>
 <BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){id_rubrique}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} /><BOUCLE_ExclureBreveDuPlan(BREVES){id_rubrique}{doublons brevesannees}{doublons brevesmois}{doublons breves}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
 <BOUCLE_ExclureArticlesDuPlan2(ARTICLES){titre_mot=PasDansPlan}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} />
 #SET{listeliens,#ARRAY}
@@ -72,56 +78,12 @@
 	</BOUCLE_AnneeSites>
 </B_AnneeSites>
 
-<BOUCLE_Min2anness(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-		{1,1}
-	> </BOUCLE_Min2anness>
-<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
-	<B_Sommaire>
-	<ul>
-	<BOUCLE_Sommaire(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-	>
-		<li><a href="#annee_#YEAR">#YEAR</a></li>
-	</BOUCLE_Sommaire>
-	</ul>
-	</B_Sommaire>
-</div>
-</B_Min2anness>
-
-
-<B_AnneeObjet>
-	<BOUCLE_AnneeObjet(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-	>
-	<B_ListeMois>
-	<h2 id="annee_#YEAR">[(#YEAR)]</h2>
-		<BOUCLE_ListeMois(DATA)
-			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
-		>
-		<B_ObjetsDuMois>
-		<h3>[(#YEAR|concat{-,#_ListeMois:VALEUR#VAL,-01}|nom_mois|ucfirst)]</h3>
-		<ul class="spip">
-			<BOUCLE_ObjetsDuMois(DATA)
-				{source table,#GET{listeliens}}
-				{year=#_AnneeObjet:YEAR}
-				{month=#_ListeMois:VALEUR}
-				{!par date}
-			>
-			<li[ class="(#CLASS)"]>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>[ <span class="secondary-information">((#TYPE))</span>]</li>
-			</BOUCLE_ObjetsDuMois>
-		</ul>
-		</B_ObjetsDuMois>
-		</BOUCLE_ListeMois>
-	</B_ListeMois>
-	</BOUCLE_AnneeObjet>
-</B_AnneeObjet>
+<INCLURE{
+	fond=noisettes/plan/inc_antichrono,
+	listeliens=#GET{listeliens},
+	env,
+	ajax
+} />
 
 </div>
 </main>

@@ -1,0 +1,58 @@
+<BOUCLE_FirstYear(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+		{0,1}
+	>#SET{firstyear,#YEAR}</BOUCLE_FirstYear>
+<BOUCLE_Min2anness(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+		{1,1}
+	> </BOUCLE_Min2anness>
+<div class="onglets">
+	<B_Sommaire>
+	<ul>
+	<BOUCLE_Sommaire(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+	>
+		<li>[(#ENV{year,#GET{firstyear}}|=={#YEAR}|?{<strong>,<a href="[(#SELF|parametre_url{'year',[(#YEAR|!={#GET{firstyear}}|?{#YEAR,''})]})]" class="ajax">})]#YEAR[(#ENV{year}|=={#YEAR}|?{</strong>,</a>})]</li>
+	</BOUCLE_Sommaire>
+	</ul>
+	</B_Sommaire>
+</div>
+</B_Min2anness>
+
+
+<B_AnneeObjet>
+	<BOUCLE_AnneeObjet(DATA)
+		{source table,#ENV{listeliens}}
+		{year=#ENV{year,#GET{firstyear}}}
+		{!par date}
+		{fusion year}
+	>
+	<B_ListeMois>
+	<h2 id="annee_#YEAR">[(#YEAR)]</h2>
+		<BOUCLE_ListeMois(DATA)
+			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
+		>
+		<B_ObjetsDuMois>
+		<h3>[(#YEAR|concat{-,#_ListeMois:VALEUR#VAL,-01}|nom_mois|ucfirst)]</h3>
+		<ul class="spip">
+			<BOUCLE_ObjetsDuMois(DATA)
+				{source table,#ENV{listeliens}}
+				{year=#_AnneeObjet:YEAR}
+				{month=#_ListeMois:VALEUR}
+				{!par date}
+			>
+			<li[ class="(#CLASS)"]>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a>[ <span class="secondary-information">((#TYPE))</span>]</li>
+			</BOUCLE_ObjetsDuMois>
+		</ul>
+		</B_ObjetsDuMois>
+		</BOUCLE_ListeMois>
+	</B_ListeMois>
+	</BOUCLE_AnneeObjet>
+</B_AnneeObjet>
+#FILTRE{mini_html}
