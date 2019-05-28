@@ -84,76 +84,12 @@
 	</BOUCLE_AnneeSites>
 </B_AnneeSites>
 
-<BOUCLE_Min2anness(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-		{1,1}
-	> </BOUCLE_Min2anness>
-<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
-	<B_Sommaire>
-	<ul>
-	<BOUCLE_Sommaire(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-	>
-		<li><a href="#annee_#YEAR">#YEAR</a></li>
-	</BOUCLE_Sommaire>
-	</ul>
-	</B_Sommaire>
-</div>
-</B_Min2anness>
-
-
-<B_AnneeObjet>
-<div class="masonry petitestuiles">
-	<BOUCLE_AnneeObjet(DATA)
-		{source table,#GET{listeliens}}
-		{!par date}
-		{fusion year}
-	>
-	<B_ListeMois>
-	<div id="annee_#YEAR" class="grid-item masonry-brick">
-		<div class="content-actus alaune year">
-			[<img src="(#GET{logoyear}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
-			<div class="h2"><span class="titre-actus">[(#YEAR)]</span></div>
-		</div>
-	</div>
-
-		<BOUCLE_ListeMois(DATA)
-			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
-		>
-		<B_ObjetsDuMois>
-		<div class="grid-item masonry-brick">
-			<div class="content-actus alaune month">
-				[<img src="(#GET{logomonth}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
-				<div class="h2"><span class="titre-actus">[(#YEAR|concat{-,#_ListeMois:VALEUR#VAL,-01}|nom_mois|ucfirst)]</span></div>
-			</div>
-		</div>
-			<BOUCLE_ObjetsDuMois(DATA)
-				{source table,#GET{listeliens}}
-				{year=#_AnneeObjet:YEAR}
-				{month=#_ListeMois:VALEUR}
-				{!par date}
-			>
-			<div class="grid-item masonry-brick[ (#CLASS)]">
-				<div class="content-actus alaune[ (#COULEURRUBRIQUE)]">
-					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
-						[<img src="(#LOGO|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
-						<div class="h2"><span class="titre-actus">#TITRE[ <span class="secondary-information">((#TYPE))</span>]</span>
-							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
-					</a>
-				</div>
-			</div>
-
-			</BOUCLE_ObjetsDuMois>
-		</B_ObjetsDuMois>
-		</BOUCLE_ListeMois>
-	</B_ListeMois>
-	</BOUCLE_AnneeObjet>
-</div>
-</B_AnneeObjet>
+<INCLURE{
+	fond=noisettes/plan/inc_antichrono_grid,
+	listeliens=#GET{listeliens},
+	env,
+	ajax
+} />
 
 </div>
 </main>

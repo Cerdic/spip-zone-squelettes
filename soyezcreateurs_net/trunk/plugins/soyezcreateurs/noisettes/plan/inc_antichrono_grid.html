@@ -1,0 +1,72 @@
+#SET{currentyear,#DATE|annee}
+<BOUCLE_Min2anness(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+		{1,1}
+	> </BOUCLE_Min2anness>
+	<B_Sommaire>
+<div class="onglets">
+	<ul id='liste_tabs'>
+	<BOUCLE_Sommaire(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+	>
+		<li>[(#ENV{year,#GET{currentyear}}|=={#YEAR}|?{<strong>,<a href="[(#SELF|parametre_url{'year',[(#YEAR|!={#GET{currentyear}}|?{#YEAR,''})]})]" class="ajax">})]#YEAR[(#ENV{year}|=={#YEAR}|?{</strong>,</a>})]</li>
+	</BOUCLE_Sommaire>
+	</ul>
+</div>
+	</B_Sommaire>
+</B_Min2anness>
+
+
+<B_AnneeObjet>
+<div class="masonry petitestuiles">
+	<BOUCLE_AnneeObjet(DATA)
+		{source table,#ENV{listeliens}}
+		{year=#ENV{year,#GET{currentyear}}}
+		{!par date}
+		{fusion year}
+	>
+	<B_ListeMois>
+	<div id="annee_#YEAR" class="grid-item masonry-brick">
+		<div class="content-actus alaune year">
+			[<img src="(#GET{logoyear}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+			<div class="h2"><span class="titre-actus">[(#YEAR)]</span></div>
+		</div>
+	</div>
+
+		<BOUCLE_ListeMois(DATA)
+			{liste 12,11,10,9,8,7,6,5,4,3,2,1}
+		>
+		<B_ObjetsDuMois>
+		<div class="grid-item masonry-brick">
+			<div class="content-actus alaune month">
+				[<img src="(#GET{logomonth}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+				<div class="h2"><span class="titre-actus">[(#YEAR|concat{-,#_ListeMois:VALEUR#VAL,-01}|nom_mois|ucfirst)]</span></div>
+			</div>
+		</div>
+			<BOUCLE_ObjetsDuMois(DATA)
+				{source table,#ENV{listeliens}}
+				{year=#_AnneeObjet:YEAR}
+				{month=#_ListeMois:VALEUR}
+				{!par date}
+			>
+			<div class="grid-item masonry-brick[ (#CLASS)]">
+				<div class="content-actus alaune[ (#COULEURRUBRIQUE)]">
+					<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|attribut_html)"]>
+						[<img src="(#LOGO|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}}|extraire_attribut{src})" alt="" width="308" height="#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}" />]
+						<div class="h2"><span class="titre-actus">#TITRE[ <span class="secondary-information">((#TYPE))</span>]</span>
+							<span class="icon icon-arrow-right2 icon-lg">&#10140;</span></div>
+					</a>
+				</div>
+			</div>
+
+			</BOUCLE_ObjetsDuMois>
+		</B_ObjetsDuMois>
+		</BOUCLE_ListeMois>
+	</B_ListeMois>
+	</BOUCLE_AnneeObjet>
+</div>
+</B_AnneeObjet>
