@@ -1,4 +1,9 @@
-#SET{currentyear,#DATE|annee}
+<BOUCLE_FirstYear(DATA)
+		{source table,#ENV{listeliens}}
+		{!par date}
+		{fusion year}
+		{0,1}
+	>#SET{firstyear,#YEAR}</BOUCLE_FirstYear>
 [(#SET{logoyear,[(#CHEMIN{images/calendar-year.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]
 [(#SET{logomonth,[(#CHEMIN{images/calendar-month.jpg}|image_focus{308,#CONFIG{soyezcreateurs/hauteur_quoi2neuf,340}})]})]
 <BOUCLE_Min2anness(DATA)
@@ -15,7 +20,7 @@
 		{!par date}
 		{fusion year}
 	>
-		<li>[(#ENV{year,#GET{currentyear}}|=={#YEAR}|?{<strong>,<a href="[(#SELF|parametre_url{'year',[(#YEAR|!={#GET{currentyear}}|?{#YEAR,''})]})]" class="ajax">})]#YEAR[(#ENV{year}|=={#YEAR}|?{</strong>,</a>})]</li>
+		<li>[(#ENV{year,#GET{firstyear}}|=={#YEAR}|?{<strong>,<a href="[(#SELF|parametre_url{'year',[(#YEAR|!={#GET{firstyear}}|?{#YEAR,''})]})]" class="ajax">})]#YEAR[(#ENV{year}|=={#YEAR}|?{</strong>,</a>})]</li>
 	</BOUCLE_Sommaire>
 	</ul>
 </div>
@@ -27,7 +32,7 @@
 <div class="masonry petitestuiles">
 	<BOUCLE_AnneeObjet(DATA)
 		{source table,#ENV{listeliens}}
-		{year=#ENV{year,#GET{currentyear}}}
+		{year=#ENV{year,#GET{firstyear}}}
 		{!par date}
 		{fusion year}
 	>
