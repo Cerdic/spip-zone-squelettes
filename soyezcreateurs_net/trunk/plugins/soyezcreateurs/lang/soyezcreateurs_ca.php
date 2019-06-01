@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'accessibilite_menu' => 'Anar al menú',
+	'accessibilite_onglets' => 'Mont d’ an ivinelloù',
 	'accessibilite_recherche' => 'Anar a la cerca',
 	'accessibilite_texte' => 'Anar al text',
 	'accueil' => 'Inici',
