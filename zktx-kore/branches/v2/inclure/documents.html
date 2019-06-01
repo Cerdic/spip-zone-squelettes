@@ -1,0 +1,27 @@
+[(#REM) Afficher en grand le document demande dans l'URL ]
+<BOUCLE_afficher_document(DOCUMENTS) {id_document}{id_article} {mode=document}{extension IN png,jpg,gif}>
+[(#MODELE{emb,lien=#URL_DOCUMENT}|image_reduire{500,*})]
+</BOUCLE_afficher_document>
+
+
+[(#REM) Si un seul document est joint a l'article, et si le texte est vide, on incruste automatiquement ce document ]
+<BOUCLE_documents_decompte(DOCUMENTS spip_documents_liens articles) {id_article} {mode=document}{texte=''}{extension !IN gif,jpg,png} {vu=non}>
+	[(#TOTAL_BOUCLE|=={1}
+		|?{[(#INCLURE{fond=modeles/emb, id_document}
+		|trim)]})]
+</BOUCLE_documents_decompte>
+
+
+[(#REM) Sinon, liste des autres documents joints ]
+<B_documents_joints>
+	<span class="h4"><:medias:titre_documents_joints:></span>
+	<div class="list-group" id="documents_joints" role="contentinfo">
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[
+			<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" class="list-group-item[ (#EXTENSION|attribut_html)]">
+				<h4 class="h4 list-group-item-heading #EDIT{titre}">[(#TITRE|sinon{[(#FICHIER|basename|couper{80})]})]</h4>
+				<p class="list-group-item-text">
+					[<span class="#EDIT{descriptif}">(#DESCRIPTIF|couper{60})</span><br/>][<abbr title="<:info_document:> #TYPE_DOCUMENT">(#EXTENSION|strtoupper)</abbr> ][<span class="badge">(#TAILLE|taille_en_octets)</span>]</p>
+			</a>]</BOUCLE_documents_joints>
+	</div><!--#documents_joints-->
+</B_documents_joints>
+<//B_documents_decompte>

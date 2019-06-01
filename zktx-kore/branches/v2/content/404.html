@@ -1,0 +1,69 @@
+[(#REM) Page 404 :
+	* on propose un menu de rubriques identique à celui du site mais sans les tests exposés pour rester déplié
+	* une liste des mots-clés  pour navigation thématique
+]<div class="container">
+	<header class="page-header lead">
+		<p class="h2"><:zktx:contents_at_glance:></p>
+	</header>
+
+	<div class="row">
+
+			[(#REM) Le Blog ]
+			<nav class="col-xs-12 col-md-6 list-group">
+				<p class="h4"><i class="fa fa-fw fa-lg fa-fire" aria-hidden="true"></i> <:articles_recents:></p>
+				<B_articles_rubrique>
+				<BOUCLE_articles_rubrique(ARTICLES){tout}{compteur forums} {!par date} {0,10}{doublons}>
+				 <a href="[(#URL_ARTICLE|abs_url)]" class="list-group-item [ active (#EXPOSE)]">
+				 	[<figure class="pull-left">
+				 	(#LOGO
+				 		|image_reduire{100,100}
+				 		|image_recadre{80,80,centrer}
+				 		|inserer_attribut{alt,#TITRE}
+						|inserer_attribut{class,"img-responsive img-thumbnail"}
+				 	)</figure>]
+				 	<strong class="list-group-item-heading">#TITRE</strong>
+				 	<p class="list-group-item-text">
+				 		[(#DESCRIPTIF|sinon{[(#INTRODUCTION)]}|couper{140})]
+				 		[<br/><i class="fa fa-fw fa-calendar-o"></i> <time[ title="(#DATE|affdate{'c'})"] class="pubdate" [datetime="(#DATE|date_iso)"] itemprop="pubdate">(#DATE|affdate)</time>][ | <i class="fa fa-fw fa-comments-o" aria-hidden="true"></i> (#COMPTEUR{forums})]
+				 	</p>
+				 </a>
+				</BOUCLE_articles_rubrique>
+				</B_articles_rubrique>
+			</nav>
+	
+		<nav class="col-xs-12 col-md-3">
+			<p class="h4"><i class="fa fa-fw fa-lg fa-sitemap" aria-hidden="true"></i> <:plan_site:></p>
+			<B_rubriques>
+			<ul class="list-group">
+			<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre}{titre != ZKTX}>
+				<li class="list-group-item">
+					<a[ href="(#URL_RUBRIQUE|abs_url)"]>[(#TITRE|couper{80})]</a>
+			
+					<B_sous_rubriques>
+					<ul>
+						<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date}>
+							<li><a[ href="(#URL_RUBRIQUE|abs_url)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+						</BOUCLE_sous_rubriques>
+					</ul>
+					</B_sous_rubriques>
+			
+				</li>
+			</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
+		</nav>
+
+		<nav class="col-xs-12 col-md-3">
+			<p class="h4"><i class="fa fa-fw lg fa-tags" aria-hidden="true"></i> <:mots:mots:></p>
+			<B_ts_les_mots>
+			<ul class="list-group">
+				<BOUCLE_ts_les_mots(MOTS){tout}{par titre}>
+				<li class="list-group-item">[<a[ href="(#URL_MOT|abs_url)"]>(#TITRE|couper{80})</a>]</li>
+				</BOUCLE_ts_les_mots>
+			</ul>
+			</B_ts_les_mots>
+		</nav>
+	
+	</div> [(#REM) .row ]
+</div> [(#REM) .container ]
+

@@ -1,0 +1,25 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+  [(#REM) Breves dans la meme rubrique ]
+  <B_breves>
+  <nav class="col-sm-4 breves">
+      <h2 class="h2"><:autres_breves:></h2>
+      <ul class="liste-items">
+          <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {0,10}>
+           <li class="list-group-item[ active (#EXPOSE)]">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+          </BOUCLE_breves>
+      </ul>
+  </nav>
+  </B_breves>
+
+  [(#REM) Menu de navigation mots-cles ]
+  <B_mots>
+  <nav class="col-sm-4 mots">
+      <div class="h2"><:mots_clefs:></div>
+      <ul class="liste-group">
+      <BOUCLE_mots(MOTS) {id_breve} {par titre}>
+           <li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+      </BOUCLE_mots>
+      </ul>
+  </nav>
+  </B_mots>
+</BOUCLE_breve_principal>

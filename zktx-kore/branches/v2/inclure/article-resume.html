@@ -1,0 +1,24 @@
+[(#REM)
+  Squelette Presentation d'un article dans une liste
+  (c) 2009 Zpip
+  Distribue sous licence GPL
+]
+<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+<li class="item hentry">
+<article>
+	<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
+	[(#LOGO|image_passe_partout{102,102}|image_recadre{100,100,center}|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
+	<div class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</div>
+	<div class="info-publi">
+		[<span class="glyphicon glyphicon-time"></span>  <time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate)</time>]
+		[, <span class="glyphicon glyphicon-user"></span> <span class="author">(#LESAUTEURS)</span>]
+	</div>
+	[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION|couper{160})</div>]
+	<div class="meta-publi">
+	<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />	
+		[(#TOTAL_BOUCLE|oui) <a title="[(#TOTAL_BOUCLE|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]" [ href="(#URL_ARTICLE|ancre_url{forum})"]>[<span class="glyphicon glyphicon-comment"></span> (#TOTAL_BOUCLE)]&nbsp;</a>	]
+	<//B_nb_commentaires>
+	</div>
+</article>
+</li>
+</BOUCLE_articles>

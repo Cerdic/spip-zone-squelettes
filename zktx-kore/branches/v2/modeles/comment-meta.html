@@ -1,0 +1,25 @@
+[(#REM)
+  Copie du 2014-11-10 10:12:51 par Loiseau2nuit
+  Fichier original plugins/comments/modeles/comment-meta.html
+]
+<BOUCLE_comment(FORUMS){id_forum}>
+	<p class="h3 panel-title reviewer vcard">
+		<BOUCLE_auteur(AUTEURS){tout}{id_auteur}>
+			[(#PLUGIN{gravatar}|oui)[<span class="pull-right"> (#MODELE{gravatar})</span>]]
+			[<i class="fa fa-user-circle" aria-hidden="true"></i> <a href="#URL_AUTEUR" class="url spip_in"><span class="fn n strong">(#NOM)</span></a>]
+		</BOUCLE_auteur>
+			[(#PLUGIN{gravatar}|oui)[<span class="pull-right"> (#MODELE{gravatar}{email=#EMAIL*})</span>]]
+			[<i class="fa fa-user-circle-o" aria-hidden="true"></i> [<a rel="external nofollow" href="(#URL_SITE)" class="#EDIT{hyperlien} url spip_out">]<span class="#EDIT{qui} fn n strong">(#NOM|sinon{[(#PLUGIN{gravatar}|oui)?]})</span>[</a>(#URL_SITE|oui)]]
+		<//B_auteur>	
+		[(#CONFIG{comments/permalink}|=={aucun}|non) - 
+			<a rel="self bookmark" href="#forum#ID_FORUM" title="<:comments:permalink:>" class="permalink #CONFIG{comments/permalink}">
+				[(#CONFIG{comments/permalink}|=={picto}|?{[<img src="(#CHEMIN{img/permalink.gif})" alt="#" />],[(#CONFIG{comments/permalink}|=={compteur}|?{[#(#ENV{compteur})],#})]})]
+			</a>
+		[(#ENV{thread}|oui)[<a rel="in-reply-to" class="permalink in-reply-to" href="#forum(#ID_PARENT|?{#ID_PARENT})">^</a>]] ]
+	</p>
+	<p class="h3 panel-title">[<i class="fa fa-calendar-o" aria-hidden="true"></i> <abbr class="dtreviewed"[ title="(#DATE|date_iso)"]>(#DATE|affdate_jourcourt)</abbr>][ <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;(#DATE|heures)][:(#DATE|minutes)]</p>
+</BOUCLE_comment> 
+
+
+
+

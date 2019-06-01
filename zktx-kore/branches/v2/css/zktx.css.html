@@ -1,0 +1,160 @@
+#CACHE{0} [(#REM) dev => 0 ; prod => 3600*24*30 ]
+#HTTP_HEADER{Content-Type: text/css; charset=#CHARSET}
+
+[(#REM) Couleur principale & nuances
+- utilise le plugin couleur_rubrique d'ARNO*
+- sinon utilise la variable 'couleur_primary' suivante
+]<BOUCLE_couleur_r(RUBRIQUES){tout}>
+  [(#SET{[couleur_r(#ID_RUBRIQUE)],[(#ID_RUBRIQUE|couleur_rubrique)] })]
+</BOUCLE_couleur_r>
+<BOUCLE_couleur_a(ARTICLES){tout}>
+  [(#SET{[couleur_a(#ID_ARTICLE)],[(#ID_RUBRIQUE|couleur_rubrique)] })]
+</BOUCLE_couleur_a>
+[(#SET{couleur_primary,337AB7})]
+[(#SET{couleur,[(#GET{couleur_a#ID_ARTICLE}|sinon{[(#GET{couleur_r#ID_RUBRIQUE})]}|sinon{[(#ID_RUBRIQUE|couleur_site)]}|sinon{[(#GET{couleur_primary})]})] })]
+[(#SET{couleur_eclaircir_2,[(#GET{couleur}|couleur_eclaircir|couleur_eclaircir)]})]
+[(#SET{couleur_eclaircir_1,[(#GET{couleur}|couleur_eclaircir)]})]
+[(#SET{couleur_foncer_1,[(#GET{couleur}|couleur_foncer)]})]
+[(#SET{couleur_foncer_2,[(#GET{couleur}|couleur_foncer|couleur_foncer)]})]
+[(#SET{couleur_inverser,[(#GET{couleur}|couleur_inverser)]})]
+
+body,h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
+
+body { padding:0; }
+
+[(#REM) Links ]
+a:link, a:visited, a:hover, a:focus, button, .btn, button:hover, .btn:hover {
+  -webkit-transition: All .6s ease-in;
+  moz-transition: All .6s ease-in;
+  o-transition: All .6s ease-in;
+  transition: All .6s ease-in;
+}
+a, a:visited { color: [#(#GET{couleur_foncer_1})]; }
+a:focus, a:hover { color: [#(#GET{couleur})]; }
+
+[(#REM) Colour primary ]
+.btn {background-image: none;}
+.btn:hover { text-decoration:none; }
+
+.btn-primary,
+.label-primary, .panel-primary>.panel-heading ,
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover, 
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover,
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover  {
+  color:#FFFFFF!important;
+  background-color: [#(#GET{couleur})];
+  border-color: [#(#GET{couleur})];
+  background-image: none;
+}
+.panel-primary { border-color: [#(#GET{couleur})];  }
+.pagination>li>a, .pagination>li>span, 
+.list-group-item.active>.badge, .nav-pills>.active>a>.badge { color: [#(#GET{couleur})]; }
+.badge { background-color: [#(#GET{couleur_eclaircir_1})]; }
+
+
+[(#REM) Buttons ]
+.btn-primary {background-image: none;}
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+  border-color: [#(#GET{couleur_foncer_2})]!important;
+  background-color: [#(#GET{couleur_foncer_1})]!important;
+  background-position: 0 -15px!important;
+}
+
+[(#REM) btn sociaux aux couleurs officielles 
+	à adapter (color ou background-color)
+	selon icons utilisés (socicon-*, fa-* ou fa-*-square)
+]	[(#REM) les + utilisés]
+	a.btn-social {color:#FFFFFF!important;}
+	.btn-fb {background-color:#47639E;}
+	.btn-tw {background-color:#55ACEE;}
+	.btn-li {background-color:#0077B5;}
+	.btn-gp {background-color:#DD4B39;}
+	.btn-yt {background-color:#e02a20;}
+	.btn-ig {background-color:#000000;}
+	[(#REM) services streaming]
+	.btn-bcp {background-color:#619aa9;}
+	.btn-scd {background-color:#fe3801;}
+	.btn-dzr {background-color:#32323d;}
+	.btn-spy {background-color:#7bb342;}
+	.btn-itu {background-color:#ff5e51;}
+
+
+[(#REM) Navigations ]
+.navbar-brand {padding:10px 15px;}
+.top { position:fixed; bottom:0.4em; right:0.4em;}
+
+
+[(#REM) Elements ]
+p { margin:1em 0; }
+
+
+[(#REM) Utilities ]
+.pull-left {margin-right:1em;}
+.pull-right {margin-left:1em;}
+
+
+[(#REM) Blocks de pages ]
+.bs-content { padding:20px 0; }
+.bs-header  { padding:80px 0; }
+.bs-extra   { padding:20px 0; background-color: #EFEFEF; }
+.bs-extra.extra2 { background-color: [#(#GET{couleur_eclaircir_2})]; } 
+.bs-extra.extra3 { background-color: [#(#GET{couleur_eclaircir_1})]; }
+.bs-footer  { padding:40px 0; }
+.breadcrumb, .jumbotron { background-color: [#(#GET{couleur_eclaircir_1})]; }
+.well { 
+  background-image:none; 
+  background-color: [#(#GET{couleur_eclaircir_2})]; 
+}
+.extra2 .well {background-color: [#(#GET{couleur_eclaircir_1})]; }
+
+.bs-header .jumbotron, .bs-footer { background-color:[#(#GET{couleur_foncer_2})]; color: #FFFFFF; }
+.bs-footer a, .bs-header .jumbotron a { color:[#(#GET{couleur})]; }
+
+.bs-header {
+  color:#FFFFFF;
+  background-color: [#(#GET{couleur})];   
+  [background-position:50% 50%;
+  -webkit-background-size:cover;
+  background-size:cover;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-image:url('(#LOGO_SITE_SPIP_SURVOL
+                            |image_reduire{1920,0}
+                            |image_gamma{-20}
+                            |extraire_attribut{src}
+                          )');]
+}
+
+<BOUCLE_article_bs_header(ARTICLES){tout}>
+  .bs-header.article#ID_ARTICLE { 
+    background-color: [#(#GET{couleur})]; 
+    [background-image:url('(#LOGO_ARTICLE_SURVOL
+                              |sinon{#LOGO_RUBRIQUE_SURVOL}
+                              |sinon{#LOGO_SITE_SPIP_SURVOL}
+                              |image_reduire{1920,0}
+                              |image_gamma{-20}
+                              |extraire_attribut{src}
+                          )');]
+  }
+</BOUCLE_article_bs_header>
+<BOUCLE_rubrique_bs_header(RUBRIQUES){tout}>
+  .bs-header.rubrique#ID_RUBRIQUE { 
+    background-color: [#(#GET{couleur})]; 
+    [background-image:url('(#LOGO_RUBRIQUE_SURVOL
+                              |sinon{#LOGO_SITE_SPIP_SURVOL}
+                              |image_reduire{1920,0}
+                              |image_gamma{-20}
+                              |extraire_attribut{src}
+                          )');]
+  }
+</BOUCLE_rubrique_bs_header>
+<BOUCLE_mot_bs_header(MOTS){tout}>
+  .bs-header.mot#ID_MOT { 
+    [background-image:url('(#LOGO_MOT_SURVOL
+                              |sinon{ #LOGO_SITE_SPIP_SURVOL }
+                              |image_reduire{1920,0}
+                              |image_gamma{-20}
+                              |extraire_attribut{src}
+                          )');]
+  }
+</BOUCLE_mot_bs_header>

@@ -1,0 +1,33 @@
+<BOUCLE_sidebar_a(ARTICLES){id_article}>
+	[(#REM) un panel pour présenter l'auteur, 
+			sauf si c'est le n°1 {!id_auteur = 1}
+			car on part du principe que l'auteur principal du site est
+			- soit déjà suffisement référencé/nommé dans son propre site
+			- soit est webmaster et n'intervient pas -- ou peu & de 
+				manière anonyme -- en rédaction
+		]<B_auteur>
+		<BOUCLE_auteur(AUTEURS){id_article}{!id_auteur = 1}>
+			<INCLURE{fond=inclure/panel-auteur}{env}{id_auteur}
+		</BOUCLE_auteur>
+		</B_auteur>
+		
+		[<div class="#EDIT{hyperlien} well">
+			<p class="h4"><i class="fa fa-fw fa-external-link" title="<:zktx:source:>"></i>[ (#NOM_SITE)]</p>
+			<p class="text-right">
+				<a class="btn btn-default spip_out" href="(#URL_SITE)"><:voir_en_ligne:></a>
+			</p>
+		</div>]
+		
+		[(#REM) portfolio & documents ]
+		[(#INCLURE{fond=inclure/documents}{id_article})]
+		
+		[(#REM) Notes de bas de page ]			
+		[<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="h3 panel-title"><:zktx:notes:></p>
+			</div>
+			<div class="panel-body">
+			(#NOTES)
+			</div>
+		</div>]
+</BOUCLE_sidebar_a>

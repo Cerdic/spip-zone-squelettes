@@ -1,0 +1,47 @@
+[(#REM) liste/articles-resume-col.html ]
+<B_articles>
+	[<div class="page-header">
+		<div class="h1 center-block"><p class="text-center text-uppercase text-muted"><i class="fa fa-fw fa-fire" aria-hidden="true"></i> (#ENV{titre,<:derniers_articles:>})</p></div>
+	</div>]
+	#ANCRE_PAGINATION
+	<BOUCLE_articles(ARTICLES){id_rubrique?}{id_mot?}{par num titre}{!par date}{pagination #ENV{nb,6}}>
+		[(#REM) 
+			Affichage :
+			-	mobile xs et sm: 1 colonne ( col-xs-12 col-sm-12 )
+			-	tablettes et large: 3 colonnes ( .col-md-4 .col-lg-4 )	
+
+			Cf grilles css boostrap : 
+			- https://getbootstrap.com/docs/3.3/css/#grid
+
+			Adapter les 2 COMPTEUR_BOUCLE selon nombre de colonnes
+			- filtre |alterner : https://www.spip.net/fr_article4145.html
+		]
+		
+			[(#COMPTEUR_BOUCLE|alterner{<div class="row">, ''})]
+				<article class="item hentry col-sm-6 text-center">
+					<!-- [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{100,100})] -->
+					[(#LOGOA|image_reduire{240,240}|image_recadre{240,240,center}|inserer_attribut{class,'img-responsive center-block'}|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut) ][(#TITRE|textebrut)]}|inserer_attribut{role,"img"})] [(#REM) http://romy.tetue.net/logos-automatiques-articles-SPIP#forum2039 ]
+					<div class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
+					[<p class="#EDIT{soustitre} entry-content">(#SOUSTITRE|sinon{#INTRODUCTION}|couper{160}|abs_url)</p>]
+					<ul class="small list-inline text-muted">
+						[<li><i class="fa fa-fw fa-calendar-o" aria-hidden="true"></i> <time class="published" datetime="[(#DATE|date_iso)]" itemprop="datePublished">(#DATE|affdate)</time></li>]
+						[<li><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span class="author">(#LESAUTEURS)</span></li>] 
+						<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
+							[(#TOTAL_BOUCLE|oui) [ <li><i class="fa fa-fw fa-comments-o" aria-hidden="true"></i> (#TOTAL_BOUCLE)</li>] ]
+						<//B_nb_commentaires>
+					</ul>	
+					<B_lesmots>
+						<ul class="list-inline text-muted">
+							<li><i class="fa fa-fw fa-tags" aria-hidden="true"></i></li>
+							<BOUCLE_lesmots(MOTS){id_article}>
+								[<li><span class="label label-default">(#URL_MOT|abs_url|lien_ou_expose{#TITRE, [(#ID_MOT|=={#ENV{id_mot}})],supa_class,#TITRE,category})</span></li>]
+							</BOUCLE_lesmots>
+							</li>
+						</ul>
+					</B_lesmots>	
+				</article>
+			[(#COMPTEUR_BOUCLE|alterner{'', </div>})] [(#REM) /.row ]
+		
+	</BOUCLE_articles>
+	[<nav class="container text-center clearfix">(#PAGINATION{page_precedent_suivant})</nav>]
+</B_articles>

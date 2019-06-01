@@ -1,0 +1,27 @@
+<BOUCLE_header(RUBRIQUES){id_rubrique}>
+<header class="bs-header rubrique#ID_RUBRIQUE" id="header" role="banner">
+	<figure class="container">
+		[(#REM) 
+			Logos & Bootstrap :
+				on peut passer un |inserer_attribut{class,""}  
+				avec, au choix, la class img-thumbnail img-circle, img-square, ...
+				Mobile: vous disposez aussi de la class img-responsive
+				> voir http://getbootstrap.com/css/#images
+		]
+		[(#LOGO_RUBRIQUE_NORMAL
+			|sinon{[(#LOGO_RUBRIQUE_NORMAL{0})]}
+			|sinon{[(#LOGO_SITE_SPIP_NORMAL)]}
+			|image_reduire{320,320}
+			|inserer_attribut{alt,[(#TITRE|textebrut|attribut_html)]}
+			|inserer_attribut{class,"img-responsive center-block"}
+			|inserer_attribut{role,"img"}
+		)]
+		<figcaption class="text-center">
+			[(#MENU_LANG)]
+			<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+			[<div class="jumbotron #EDIT{descriptif}">(#DESCRIPTIF|abs_url)</div>]
+		</figcaption>
+	</figure>
+	<p class="text-center h1 lead"><a href="#content" class="skip content btn btn-lg btn-block btn-link" title="<:zktx:go_to_content:>"><i class="fa fa-fw fa-5x fa-angle-down" aria-hidden="true"></i></a></p>
+</header>
+</BOUCLE_header>

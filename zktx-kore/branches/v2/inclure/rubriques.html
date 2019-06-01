@@ -1,0 +1,29 @@
+[(#REM)
+  Copie du 2014-08-06 14:39:42 par Loiseau2nuit
+  Fichier original squelettes-dist/inclure/rubriques.html
+  Ajout des class bootstrap
+]
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site.
+]
+<B_rubriques>
+<p class="h4"><:rubriques:></p>
+<ul class="list-group">
+<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre}{titre != ZKTX}>
+	<li class="list-group-item[ active (#EXPOSE)]">
+		<a rel="category" href="[(#URL_RUBRIQUE|abs_url)]">[(#TITRE|couper{80})]</a>
+
+		<B_sous_rubriques>
+		<ul class="list-group">
+			<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+				<li class="list-group-item[ active (#EXPOSE)]"><a rel="category" href="[(#URL_RUBRIQUE|abs_url)]">[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+			</B_test_expose></BOUCLE_sous_rubriques>
+		</ul>
+		</B_sous_rubriques>
+
+	</li>
+</BOUCLE_rubriques>
+</ul>
+</B_rubriques>

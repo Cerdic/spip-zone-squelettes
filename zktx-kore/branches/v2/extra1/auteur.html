@@ -1,0 +1,26 @@
+[(#REM) Auteurs / Extra 1 !]
+<BOUCLE_extra1(AUTEURS){id_auteur}>
+<section class="container">
+	<header class="page-header">
+		<p class="h1"><:info_auteurs:></p>
+	</header>
+	[(#REM) Autres auteurs ]
+	<B_auteurs>
+	#ANCRE_PAGINATION
+	<nav class="row">
+		<BOUCLE_auteurs(AUTEURS) {par nom} {pagination #ENV{nb,8}}>		
+			<a href="[(#URL_AUTEUR|abs_url)]" class="col-xs-6 col-sm-4 col-md-2[ active (#EXPOSE)]">
+				<figure>[(#LOGO_AUTEUR|sinon{#LOGO}
+						|image_reduire{140,0}
+						|image_recadre{140,140,centrer}
+						|inserer_attribut{alt,#NOM}
+						|inserer_attribut{class,"img-responsive img-circle center-block"}
+					)][<figcaption class="h4 text-center">(#NOM)</figcaption>]
+				</figure>
+			</a>
+		</BOUCLE_auteurs>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</nav>
+	</B_auteurs>	
+</section>
+</BOUCLE_extra1>

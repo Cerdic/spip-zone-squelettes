@@ -1,0 +1,72 @@
+<BOUCLE_extra2_rubrique(RUBRIQUES){id_rubrique}>
+<div class="container">
+	<div class="row">
+
+		[(#REM) Menu de navigation rubriques 
+			SI la rubrique a des mots clés qui lui sont attachés
+			ALORS on les affiche ici sous forme de navigation thématique
+			SINON on affiche le menu rubriques standard
+		]
+		<nav class="col-sm-6 col-md-3">
+			<B_mots>
+				<p class="h4"><:mots_clefs:></p>
+				<ul class="list-group">
+					<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+					<li class="list-group-item[ active (#EXPOSE)]"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+					</BOUCLE_mots>
+				</ul>		
+			</B_mots>
+			[(#REM) Menu de navigation par rubriques ]
+			[(#INCLURE{fond=inclure/rubriques,id_rubrique,env})]
+			<//B_mots>
+		</nav>
+		
+		[(#REM) Breves du secteur ]
+		<B_breves>
+		<aside class="col-sm-6 col-md-3">
+			<p class="h4"><:breves:breves:></p>
+			#ANCRE_PAGINATION
+			<ul class="list-group">
+					<BOUCLE_breves(BREVES) {id_rubrique}{!par date}{pagination 8}>
+					<li class="list-group-item[ active (#EXPOSE)]">[<time class="published" pubdate datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time> &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</aside>
+		</B_breves>
+
+		[(#REM) Sites Web de la rubrique ]
+		<B_sites>
+		<nav class="col-sm-6 col-md-3">
+			<p class="h4"><:sites_web:></p>
+			#ANCRE_PAGINATION
+			<ul class="list-group">
+				<BOUCLE_sites(SITES){id_rubrique}{par nom_site}{pagination 10}>
+				<li class="list-group-item"><a href="#URL_SITE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</nav>
+		</B_sites>
+		
+		[(#REM) articles syndiqués ]
+		<B_syndic>
+		<nav class="col-sm-6 col-md-3">
+			<p class="h4"><:nouveautes_web:></p>
+			#ANCRE_PAGINATION
+			<ul class="list-group">
+				<BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique}{age<180}{!par date}{pagination 8}>
+				<li class="list-group-item">
+					[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr> ][<span class="small">@ (#NOM_SITE)</span><br/>]
+					<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a>
+				</li>
+				</BOUCLE_syndic>
+			</ul>
+			[<nav class="text-center clearfix ajax">(#PAGINATION{precedent_suivant})</nav>]
+		</nav>
+		</B_syndic>
+
+	</div> [(#REM) .row ]
+</div> [(#REM) .container ]
+</BOUCLE_extra2_rubrique>
+
