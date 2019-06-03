@@ -1,8 +1,17 @@
-<BOUCLE_article_head(ARTICLES) {id_article}>
+<BOUCLE_article_head(ARTICLES) {id_article}{id_rubrique}>
 [(#PLUGINS{metas}|?{ 
 	[(#INCLURE{fond=inclure/metas}{env})] ,
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
 	[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
 })]
+[(#REM) Lien vers le flux RSS de la rubrique d'origine ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+[(#REM) Lien vers les flux RSS des mots clés de l'article ]
+<B_rss_mots>
+	<BOUCLE_rss_mots(MOTS){id_article}>
+		<link rel="alternate" type="application/rss+xml"[ title="(#TITRE|attribut_html)"] href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+	</BOUCLE_rss_mots>
+</B_rss_mots>
+<//B_rss_mots>
 </BOUCLE_article_head>
