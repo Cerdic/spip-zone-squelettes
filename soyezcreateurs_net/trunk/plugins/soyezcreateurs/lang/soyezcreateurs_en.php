@@ -17,6 +17,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Home',
 	'accueil_site' => 'Back to Home of the site',
 	'actualite_toutes' => 'Latest articles',
+	'actualite_toutes_arbo' => 'list',
+	'actualite_toutes_blocs' => 'visuals',
 	'agenda' => 'Calendar',
 	'agenda_exporter_ical' => 'Export in iCal format',
 	'agenda_fsd' => 'From @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
@@ -84,7 +86,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_prenom' => 'Who are you?',
 	'forum_repondre' => 'Add your testimony',
 	'forum_vosreponses' => 'Your testimonies',
-	'forum_votre_email_explication' => 'Your email address (<strong>This will not be made public on the site,</strong>, but is necessary in order to send replies to you)', # MODIF
+	'forum_votre_email_explication' => 'Your email address (<strong>This will not be made public on the site,</strong>, but is necessary in order to send replies to you)',
 	'forum_votre_prenom' => 'Your firstname:',
 
 	// L
