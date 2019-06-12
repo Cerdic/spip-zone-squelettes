@@ -10,9 +10,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// C
 	'cfg_titre_parametrages' => 'Paramétrages',
 	'couleur_fond' => 'Couleur fond',
-	'couleur_fond_explication' => 'Couleur du fond de la page',
+	'couleur_fond_explication' => 'Couleur du fond de la page (préférer une couleur claire)',
 	'couleur_principale' => 'Couleur principale',
-	'couleur_principale_explication' => 'Couleur de la colonne de gauche',
+	'couleur_principale_explication' => 'Couleur de la colonne de gauche (préférer une couleur vive)',
 	'couleur_texte' => 'Couleur du texte',
 	'couleur_titres' => 'Couleur des titres',
 
