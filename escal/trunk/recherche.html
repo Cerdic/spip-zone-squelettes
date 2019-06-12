@@ -58,8 +58,9 @@
 	<div class="liste-articles-rubrique">
 <BOUCLE_articles(ARTICLES){recherche}{lang}{!par points}{pagination 5}>
 	<div class="cadre-articles-rubrique">
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}}|parametre_url{recherche,#ENV{recherche}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
-			[<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}}|parametre_url{recherche,#ENV{recherche}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">(#TITRE)</a>]
+			#TITRE
 		</div>
 		<div class="introduction-articles-rubrique">
 			[(#INTRODUCTION|supprimer_tags|couper{150})]
@@ -70,12 +71,14 @@
 			</BOUCLE_test>
 				<br />[(#LANG|=={ja}|non)<:par_auteur:>]
 				<BOUCLE_auteurs(AUTEURS) {id_article}{", "}{lang_select}>
-					[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]
+					#NOM)
 				</BOUCLE_auteurs>
 				[(#LANG|=={ja}|oui)<:par_auteur:>]
 			</B_test>
 		</div>
+	</a>
 	</div>
+	
 </BOUCLE_articles>
       	</div>
 </B_articles>
@@ -101,12 +104,14 @@
 	<div class="liste-articles-rubrique">
 <BOUCLE_forums(FORUMS){recherche}{!par points}{pagination 5}>
 	<div class="cadre-articles-rubrique">
+	<a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM}|parametre_url{recherche,#ENV{recherche}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
-			[<a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM}|parametre_url{recherche,#ENV{recherche}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">(#TITRE)</a>]
+			#TITRE
 		</div>
 		<div class="introduction-articles-rubrique">
 			[(#TEXTE|supprimer_tags|couper{150})]
 		</div>
+	</a>
 	</div>
 </BOUCLE_forums>
 	</div>                 
@@ -133,12 +138,14 @@
 	<div class="liste-articles-rubrique">
 <BOUCLE_rubriques(RUBRIQUES){recherche}{lang}{!par points}{pagination 5}>
 	<div class="cadre-articles-rubrique">
+	<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
-			[<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">(#TITRE)</a>]
+			#TITRE
 		</div>
 		<div class="introduction-articles-rubrique">
 			[(#INTRODUCTION|supprimer_tags|couper{150})]
 		</div>
+	</a>
 	</div>
 </BOUCLE_rubriques>
 	</div>
@@ -165,12 +172,14 @@
 	<div class="liste-articles-rubrique">
 <BOUCLE_sites(SITES){recherche}{!par points}{pagination 5}>
 	<div class="cadre-articles-rubrique">
+	<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
 		<div class="titre-articles-rubrique">
-			<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a>
+			#NOM_SITE
 		</div>
 		<div class="introduction-articles-rubrique">
 			[(#DESCRIPTIF|couper{150})]
 		</div>
+	</a>
 	</div>
 </BOUCLE_sites>
 	</div>
