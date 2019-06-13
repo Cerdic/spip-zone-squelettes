@@ -40,7 +40,7 @@
 							<h2 class="#EDIT{titre}">#TITRE</h2>
 						</header>
 						<div class="content">
-							
+
 							<div class="#EDIT{texte}">#TEXTE</div>
 
 							<BOUCLE_article(ARTICLES){id_rubrique}{par titre, num titre}>
@@ -58,11 +58,43 @@
 
 				</BOUCLE_rubriques>
 
-
-				<!-- Copyright -->
-					<div class="copyright">&copy; #NOM_SITE_SPIP. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
-
+				<footer id="footer">
+					<nav class="copyright">
+						[(#PLUGIN{menus}|oui) <INCLURE{fond=inclure/menu, env, identifiant=pied} /> ]
+						<ul class="menu-liste menu-items">
+								<li class="menu-entree item">
+									<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee>-</B_annee>
+									<span>[(#DATE|annee) ] &mdash; #NOM_SITE_SPIP</span>
+								</li>
+								<li class="menu-entree item"><a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a></li>
+								<?php
+							if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+							?>
+								<li class="menu-entree item"><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></li>
+								<?php
+								if (include_spip('inc/autoriser') AND autoriser('ecrire')) {
+							?>
+								<li class="menu-entree item"><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></li>
+								<?php
+								}
+							} else {
+							?>
+								<li class="menu-entree item"><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a></li>
+								<?php
+							}
+							?>
+								<li class="menu-entree item"><a href="https://html5up.net/" title="<:html5up_paradigm_shift:theme_graphique_par_html5up|attribut_html:>" class="spip_out">HTML5 UP</a></li>
+						
+								<li class="menu-entree item">
+									<small class="generator">
+										<a href="https://www.spip.net/" rel="generator" title="<:site_realise_avec_spip|attribut_html:>" class="spip_out">
+											[<img src="(#CHEMIN{images/spip.svg})" alt="SPIP" width="16" height="16" />]
+										</a>
+									</small>
+								</li>
+							</ul>
+					</nav>
+				</footer>
 			</div>
-
 	</body>
 </html>
