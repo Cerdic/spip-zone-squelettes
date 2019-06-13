@@ -32,30 +32,43 @@
 			</section>
 
 			<BOUCLE_rubriques(RUBRIQUES){par titre, num titre}{racine}>
-				<section [(#COMPTEUR_BOUCLE|=={1}|oui) id="first"]>
-					<header>
-						<h2 class="#EDIT{titre}">#TITRE</h2>
-					</header>
-					<div class="content">
+			<section [(#COMPTEUR_BOUCLE|=={1}|oui) id="first"]>
+				<header>
+					<h2 class="#EDIT{titre}">#TITRE</h2>
+				</header>
+				<div class="content">
 
-						[<div class="#EDIT{texte}">(#TEXTE|image_reduire{750,0})</div>]
+					[<div class="#EDIT{texte}">(#TEXTE|image_reduire{750,0})</div>]
 
-						<BOUCLE_article(ARTICLES){id_rubrique}{par titre, num titre}>
-						<section>
-							<header>
-								<h3 class="#EDIT{titre}">#TITRE</h3>
-								<div class="#EDIT{chapo}">#CHAPO</div>
-							</header>
-							<div class="content">
-								[<div class="#EDIT{texte}">(#TEXTE|image_reduire{750,0})</div>]
-								<INCLURE{fond=inclure/portfolio,id_article} />
-							</div>
-						</section>
-						</BOUCLE_article>
-					</div>
+					<BOUCLE_article(ARTICLES){id_rubrique}{par titre, num titre}>
+					<section>
+						<header>
+							<h3 class="#EDIT{titre}">#TITRE</h3>
+							<div class="#EDIT{chapo}">#CHAPO</div>
+						</header>
+						<div class="content">
+							[<div class="#EDIT{texte}">(#TEXTE|image_reduire{750,0})</div>]
+							<INCLURE{fond=inclure/portfolio,id_article} />
+						</div>
+					</section>
+					</BOUCLE_article>
+				</div>
 
-				</section>
+			</section>
 			</BOUCLE_rubriques>
+
+
+			[(#PLUGIN{contact}|oui)
+			<section>
+				<header>
+					<h2><:contact:titre_court:></h2>
+					[(#PLUGIN{identite_extra}|oui)
+						#MODELE{identite_extra}	]
+				</header>
+				<div class="content">
+					<div class="ajax">#FORMULAIRE_CONTACT</div>
+				</div>
+			</section>]
 
 			<INCLURE{fond=inclure/footer,self=#SELF} />
 
