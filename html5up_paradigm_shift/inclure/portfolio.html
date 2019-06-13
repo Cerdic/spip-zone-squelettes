@@ -1,0 +1,43 @@
+<B_documents_portfolio>
+<div class="liste images">
+	<div class="liste-items gallery portfolio">
+		<BOUCLE_documents_portfolio(DOCUMENTS)
+			{id_article?}
+			{id_rubrique?}
+			{id_evenement?}
+			{objet?}
+			{id_objet?}
+			{extension IN png,jpg,gif}
+			{par rang_lien, num titre, date}
+			{vu=non}
+			{doublons documents}
+		>[(#REM)
+		
+			On affiche la première image en pleine largeur
+
+		][(#COMPTEUR_BOUCLE|=={1}|?{
+			[(#SET{largeur_image,#ENV{largeur_image,721}})][
+			(#SET{class,landscape})]
+
+		,		
+			[(#SET{largeur_image,#ENV{largeur_image,346}})][
+			(#SET{class,''})]
+		})]
+		[<a href="(#URL_DOCUMENT)"
+			type="#MIME_TYPE"
+			rel="documents_portfolio[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)]"
+			title="[(#TITRE|attribut_html|couper{60})] [<:medias:label_credits:> (#CREDITS|attribut_html|couper{40})]"
+			[class="(#GET{class})"]
+			><figure>[(#FICHIER|image_recadre{#GET{largeur_image}:503, -, focus}
+					   |image_reduire{#GET{largeur_image},0}
+					   |inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})]})]
+					   [<figcaption>
+							<p>(#TITRE)</p>
+							[<p>(#CREDITS)</p>][
+							(#DESCRIPTIF)]
+					   </figcaption>]
+			</figure></a>
+		]</BOUCLE_documents_portfolio>
+	</div>
+</div>
+</B_documents_portfolio>

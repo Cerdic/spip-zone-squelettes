@@ -5,7 +5,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {return;}
 
 // Activer HTML5 depuis le squelette
 $GLOBALS['meta']['version_html_max'] = 'html5';
-// Intertitres commençant par h2 + surcharge de la config de Enluminures typo
+// Intertitres commençant par h4 + surcharge de la config de Enluminures typo
 $GLOBALS['debut_intertitre'] = '<h4 class="spip">';
 $GLOBALS['fin_intertitre'] = '</h4>';
 $GLOBALS['debut_intertitre_2'] = '<h5 class="spip">';
