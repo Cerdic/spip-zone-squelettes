@@ -1,0 +1,31 @@
+<footer id="footer">
+
+	[(#PLUGIN{sociaux}|oui)<INCLURE{fond=inclure/sociaux}>]
+
+<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee>-</B_annee>
+				[(#DATE|annee) ] &mdash; #NOM_SITE_SPIP | 
+				<a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a> | 
+<?php
+if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+?>				<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a> | 
+	<?php
+	if (include_spip('inc/autoriser') AND autoriser('ecrire')) {
+?>			<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a> 
+	<?php
+	}
+} else {
+?>	<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a> 
+	<?php
+}
+?>
+<br /> 
+
+		<:html5up_spectral:site_realise_avec|attribut_html:><a href="https://www.spip.net/" rel="generator" title="<:site_realise_avec_spip|attribut_html:>" class="spip_out"> SPIP</a>
+		| <a href="http://html5up.net" title="Spectral | HTML5 UP | by @ajlkn">Design</a> sous licence <a href="https://creativecommons.org/licenses/by/3.0/"> CC BY 3.0</a>  
+		| Porté en <a href="https://contrib.spip.net/Spectral-HTML5UP" title="by cent20">Plugin SPIP</a> sous licence <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU / GPL</a>
+	
+	
+</footer>
+
+
+
