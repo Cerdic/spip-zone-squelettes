@@ -1,0 +1,13 @@
+[(#ENV{appel_formulaire}|oui)
+	<div class="titre item-logo"><:menus_dane:menu_liste_sites_logo:></div>
+	<div class="infos"><:menus_dane:description_menu_liste_sites_logo:></div>
+]
+[(#ENV{appel_menu}|oui)#SET{sites, #ENV{sites}|explode{','}}]
+<B_site_logo>
+    [(#SET{span, #ENV{class}|match{span}|?{#COMPTEUR_BOUCLE,''}})]
+    <BOUCLE_site_logo(SYNDIC){id_syndic IN #GET{sites}}{si #ENV{appel_menu}}>
+	<li class="menu-entree menu-logo item">
+		<a  href="[(#URL_SITE)]" title="[(#ENV{titre,#NOM_SITE})]" class="item-fa">[(#LOGO_SITE|image_reduire{#ENV{largeur,0},#ENV{hauteur,0}})] </a>
+    [</li>(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|non)]
+    </BOUCLE_site_logo>
+</B_site_logo>
