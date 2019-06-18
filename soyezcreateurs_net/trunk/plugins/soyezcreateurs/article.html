@@ -53,6 +53,9 @@
 ]})
 ]
 
+[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul,id_article,lang}>]
+[(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail,id_article,lang}>]]
+
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
 [<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
@@ -75,10 +78,6 @@
 ]
 
 [<div class="notes">(#NOTES)</div>]
-
-[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul,id_article,lang}>]
-[(#CONFIG{soyezcreateurs/agendafuturseul,oui}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail,id_article,lang}>]]
-
 [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" title="<:voir_en_ligne|attribut_html:>[ (#NOM_SITE|sinon{[(#URL_SITE|couper{80})]}|attribut_html)]">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 [<div id="carto">
 (#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis,id_article,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_article,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisarticles,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
