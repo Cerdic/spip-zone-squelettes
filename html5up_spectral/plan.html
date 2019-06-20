@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<INCLURE{fond=inclure/head}>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header & Menu -->
+				<INCLURE{fond=inclure/header_menu}>		
+			
+				<!-- Main -->
+					<article id="main">
+						<header>
+							
+							<h2><:plan_site:></h2>
+							<p>#SOUSTITRE</p>
+						</header>
+						
+						<section class="wrapper style5">							
+							<div class="inner">
+								
+							<B_rubriques>
+							
+								<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date}>
+								
+									<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+									
+									<B_articles>
+									<ul class="spip">
+										<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date}>
+										<li><a href="#URL_ARTICLE">#TITRE</a></li>
+										</BOUCLE_articles>
+									</ul>
+									</B_articles>
+									
+									<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+								
+								</BOUCLE_rubriques>
+							
+							</B_rubriques>	
+								
+							<h3><a href="#URL_RUBRIQUE"><:mots_clefs:></a></h3>	
+							<BOUCLE_motscles(MOTS)>
+								<B_mot_ayant_un_article>
+								[<a href="#URL_MOT" class="image" style="padding: 10px">(#LOGO_MOT|image_reduire{*,64})</a>]
+								<BOUCLE_mot_ayant_un_article(ARTICLES) {id_mot}>
+								</BOUCLE_mot_ayant_un_article>							
+							</BOUCLE_motscles>
+								
+							</div>
+						</section>
+						
+					</article>
+					
+				<!-- Footer -->
+				<INCLURE{fond=inclure/footer}>
+
+			</div>
+
+		<!-- Scripts -->
+			<INCLURE{fond=inclure/script}>
+
+	</body>
+</html>
