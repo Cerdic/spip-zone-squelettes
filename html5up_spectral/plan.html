@@ -19,30 +19,43 @@
 							<p>#SOUSTITRE</p>
 						</header>
 						
+						
+						
+						<B_racine>
+						
+						<BOUCLE_racine(RUBRIQUES){racine}>
+						<section class="wrapper alt style2">
+						<section class="spotlight">
+							[<div class="image"><img src="(#LOGO_RUBRIQUE|extraire_attribut{src})" alt="" /></div>]						
+							<div class="content">
+								<h2>#TITRE</h2>
+								#DESCRIPTIF 
+							</ul>
+							</div>
+						</section>						
+						</section>
+						
+						<B_articles>
 						<section class="wrapper style5">							
 							<div class="inner">
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date}>
+								<h4><a href="#URL_ARTICLE">#TITRE</a></h4>
+								</BOUCLE_articles>
+							</div>
+						</section>
+						</B_articles>
+						
+						
+						
+						</BOUCLE_racine>
+						</B_racine>
+						Publiez un article dans une rubique racine pour afficher du contenu.
+						<//B_racine>
+						
+						<section class="wrapper style3 special">							
+							<div class="inner">						
 								
-							<B_rubriques>
-							
-								<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date}>
-								
-									<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
-									
-									<B_articles>
-									<ul class="spip">
-										<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date}>
-										<li><a href="#URL_ARTICLE">#TITRE</a></li>
-										</BOUCLE_articles>
-									</ul>
-									</B_articles>
-									
-									<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-								
-								</BOUCLE_rubriques>
-							
-							</B_rubriques>	
-								
-							<h3><a href="#URL_RUBRIQUE"><:mots_clefs:></a></h3>	
+							<h2><:mots_clefs:></h2>	
 							<BOUCLE_motscles(MOTS)>
 								<B_mot_ayant_un_article>
 								[<a href="#URL_MOT" class="image" style="padding: 10px">(#LOGO_MOT|image_reduire{*,64})</a>]
