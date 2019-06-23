@@ -32,7 +32,7 @@
 							<h2>#TITRE</h2>
 							#INTRODUCTION
 							<ul class="actions special">
-								<li><a href="#URL_ARTICLE" class="button primary">Lire la suite</a></li>
+								<li><a href="#URL_ARTICLE" class="button primary"><:html5up_spectral:lire_la_suite|attribut_html:></a></li>
 							</ul>
 							</header>
 						
@@ -69,35 +69,54 @@
 					</section>
 
 				<!-- Three -->
+				[(#REM) mots_sommaire.html contient une autre version de cette partie, à tester et inclure dès qu'il y a assez de mots clés ]				
+				
+				
 					<section id="three" class="wrapper style3 special">
 						<div class="inner">
 							<header class="major">
 								<h2><:mots_clefs:></h2>
 							</header>
-							<ul class="features">
-								<BOUCLE_groupes_de_mots(GROUPES_MOTS){par titre}>
-								<li>
-								<h3><a href="#URL_PAGE{groupes_mot,id_groupe=#ID_GROUPE}" class="button fit ">#TITRE</a></h3>
-								#DESCRIPTIF									
-								</li>
-								</BOUCLE_groupes_de_mots>										
-							</ul>
+							<BOUCLE_motscles_site(MOTS)>
+								<B_mot_ayant_un_article>
+								[<a href="#URL_MOT" class="image" style="padding: 10px">(#LOGO_MOT|image_reduire{*,96})</a>]
+								<BOUCLE_mot_ayant_un_article(ARTICLES) {id_mot}>
+								</BOUCLE_mot_ayant_un_article>							
+							</BOUCLE_motscles_site>
 						</div>
 					</section>
 
 				<!-- CTA -->
+					
 					<section id="cta" class="wrapper style4">
 						<div class="inner">
+							
+							
+							<BOUCLE_contact(ARTICLES){id_article=5}>
 							<header>
-								<h2>Article héros 3 </h2>
-								<p>en cours de codage </p>
+								<h2>#TITRE</h2>
+								<p>#DESCRIPTIF </p>
 							</header>
 							<ul class="actions stacked">
-								<li><a href="#" class="button fit primary">Activate</a></li>
-								<li><a href="#" class="button fit">Learn More</a></li>
+								<li><a href="[(#NOM_SITE_SPIP|=={NSI.DEV}|?{'https://www.stjeanpaul2.fr/contact/',''})][(#NOM_SITE_SPIP|=={NSI.XYZ}|?{'https://www.stjeanpaul2.fr/contact/',''})]" class="button fit primary"><:html5up_spectral:contact|attribut_html:></a></li>
+								<li><a href="#URL_ARTICLE" class="button fit"><:html5up_spectral:lire_la_suite|attribut_html:></a></li>
 							</ul>
+							</BOUCLE_contact>
+							</B_contact>
+							<header>
+								<h2>Titre en attente</h2>
+								<p>Descriptif en attente </p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary"><:html5up_spectral:contact|attribut_html:></a></li>
+								<li><a href="#" class="button fit"><:html5up_spectral:lire_la_suite|attribut_html:></a></li>
+							</ul>	
+							<//B_contact>
+							
+							
 						</div>
 					</section>
+					
 
 				<!-- Footer -->
 				<INCLURE{fond=inclure/footer}>

@@ -14,9 +14,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_exemple' => 'Exemple',
 	'cfg_exemple_explication' => 'Explication de cet exemple',
 	'cfg_titre_parametrages' => 'Paramétrages',
+	'contact' => 'Contact',
+
+	// L
+	'lire_la_suite' => 'Lire la suite',
+	
+
 
 	// S
 	'site_realise_avec' => 'Site réalisé avec',
+	
+	
+	
+	
 
 	// T
 	'titre_page_configurer_html5up_spectral' => 'Configuration du squelette Spectral ( HTML5UP ) pour SPIP',
