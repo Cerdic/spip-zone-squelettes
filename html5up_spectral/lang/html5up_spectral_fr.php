@@ -7,6 +7,10 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	// A
+	'article_pied_deux' => 'Article pied de page ligne 2',
+	'article_pied_explications' => 'Ajoute le titre d\'un article dans le pied de page et un lien vers cet article.',
+
 	// H
 	'html5up_spectral_titre' => 'Html5Up Spectral',
 	'hero' => 'L\'article héro',
@@ -17,37 +21,48 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_exemple_explication' => 'Explication de cet exemple',
 	'cfg_titre_parametrages' => 'Paramétrages',
 	'contact' => 'Contact',
+	'cc_by' => 'cc by',
+	'credits' => 'Crédits',
+	
 
 
 	// L
 	'jeux_de_couleur' => 'Jeux de couleur',
+	'lien_contact' => 'URL du lien précédement',	
+	'lien_contact_lire' => 'URL de contact, lien externe éventuellement <br>par defaut : #',		
+	
 
 	// L
 	'lire_la_suite' => 'Lire la suite',
 	
 	// M
-	'major' => 'Un 1er article majeur',
-	'major_explications' => 'C\'est le second article mis en avant sur la page d\'accueil, <br>sous les rubriques au dessus des mots clés, <br>Titre & descriptif affiché. Pas de lien html',
 	'major_deux' => 'Un 2ème article majeur',
-	'major_explications_deux' => 'C\'est le troisième article mis en avant sur la page d\'accueil, <br>sous les mots clés avant le pied de page, <br>Titre & descriptif affiché. Deux liens box',
+	'major_explications_deux' => 'C\'est le deuxième article mis en avant sur la page d\'accueil, <br>sous les mots clés avant le pied de page, <br>Titre & descriptif affiché. Deux liens box',
+	'mentions_legales' => 'Mentions légales',
+
 		
 	// N
-	'nb_rubriques' => 'Nombre de rubrique',
-	'nb_rubriques_explications' => 'Nombre de rubrique affichée sur la page d\'accueil, <br>par defaut : 3 , triées par numéro',
-
+	
 	// O
 	
 	// P
 	'page_accueil' => 'Page d\'accueil du site',
+	'plugin_spip' => 'plugin SPIP',
+	'porte_dev' => 'porté en',	
+	'parcourir_rubriques_explications' => 'Titre des liens vers les rubrique affichée sur la page d\'accueil, <br>La page sommaire liste les rubriques racines sauf celle commençant par un "9"<br>par defaut : Parcourir , triées par numéro, 5 au maximum',
+	'pied_de_page' => 'Pied de page',
+	
 	
 
+
 	// S
-	'site_realise_avec' => 'Site réalisé avec',	
-	
+	'site_realise_avec' => 'Réalisé avec',	
+	'licenced' => 'sous licence',		
 
 	// T
 	'titre_page_configurer_html5up_spectral' => 'Configuration du squelette HTML5UP - Spectral',
 	'theme_graphique_par_html5up' => 'Thème graphique par HTML5 UP',
+	'theme_graphique' => 'thème',
 	'titre_lien' => 'Titre du lien',
 	'titre_lien_explications_lire' => 'Texte utilisé pour le lien box qui suit l\'article précédent. <br>par defaut : Lire la suite',
 	'titre_lien_explications_contact' => 'Texte utilisé pour le lien box qui suit l\'article précédent. <br>par defaut : CONTACT',

@@ -25,7 +25,7 @@
 
 				<!-- One -->
 					
-					<BOUCLE_hero(ARTICLES){id_article=1}>[(#REM) codage en dur, à passer en paramètre de config]
+					<BOUCLE_hero(ARTICLES){id_article=#CONFIG{html5up_spectral/hero}|picker_selected{article}}>
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">					
@@ -50,14 +50,14 @@
 					<section id="two" class="wrapper alt style2">
 						
 						<B_racine>
-						<BOUCLE_racine(RUBRIQUES){racine}>
+						<BOUCLE_racine(RUBRIQUES){racine}{0,5}{par titre}{titre!==^[9]}>
 							<section class="spotlight">
 							[<div class="image"><img src="(#LOGO_RUBRIQUE|extraire_attribut{src})" alt="" /></div>]						
 							<div class="content">
 								<h2>#TITRE</h2>
 								#DESCRIPTIF 
 								<ul class="actions special">
-								<li><a href="#URL_RUBRIQUE" class="button fit">Parcourir</a></li>
+								<li><a href="#URL_RUBRIQUE" class="button fit">[(#CONFIG{html5up_spectral/parcourir_rubriques}|sinon{Parcourir})]</a></li>
 							</ul>
 							</div>
 						</section>						
@@ -92,14 +92,14 @@
 						<div class="inner">
 							
 							
-							<BOUCLE_contact(ARTICLES){id_article=5}>[(#REM) codage en dur, à passer en paramètre de config]
+							<BOUCLE_contact(ARTICLES){id_article IN #CONFIG{html5up_spectral/major_deux}|picker_selected{article}}>							
 							<header>
 								<h2>#TITRE</h2>
 								<p>#DESCRIPTIF </p>
 							</header>
-							<ul class="actions stacked">[(#REM) codage en dur, à passer en paramètre de config]
-								<li><a href="[(#NOM_SITE_SPIP|=={nsi.dev}|?{'https://www.stjeanpaul2.fr/contact/',''})][(#NOM_SITE_SPIP|=={nsi.xyz}|?{'https://www.stjeanpaul2.fr/contact/',''})]" class="button fit primary"><:html5up_spectral:contact|attribut_html:></a></li>
-								<li><a href="#URL_ARTICLE" class="button fit"><:html5up_spectral:lire_la_suite|attribut_html:></a></li>
+							<ul class="actions stacked">
+								<li><a href="[(#CONFIG{html5up_spectral/lien_contact}|sinon{#})]" class="button fit primary">[(#CONFIG{html5up_spectral/titre_lien_contact}|sinon{<:html5up_spectral:contact:>})]</a></li>
+								<li><a href="#URL_ARTICLE" class="button fit">[(#CONFIG{html5up_spectral/titre_lien_contact_b}|sinon{<:html5up_spectral:lire_la_suite|attribut_html:>})]</a></li>
 							</ul>
 							</BOUCLE_contact>
 							</B_contact>
@@ -108,8 +108,8 @@
 								<p>Descriptif en attente </p>
 							</header>
 							<ul class="actions stacked">
-								<li><a href="#" class="button fit primary"><:html5up_spectral:contact|attribut_html:></a></li>
-								<li><a href="#" class="button fit"><:html5up_spectral:lire_la_suite|attribut_html:></a></li>
+								<li><a href="#" class="button fit primary">[(#CONFIG{html5up_spectral/titre_lien_contact}|sinon{<:html5up_spectral:contact:>})]</a></li>
+								<li><a href="#" class="button fit">[(#CONFIG{html5up_spectral/titre_lien_contact_b}|sinon{<:html5up_spectral:lire_la_suite|attribut_html:>})]</a></li>
 							</ul>	
 							<//B_contact>
 							
