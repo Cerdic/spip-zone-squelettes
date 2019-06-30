@@ -1,4 +1,6 @@
-[(#CACHE{0})][(#HTTP_HEADER{Content-type: text/html; charset=#CHARSET})][(#SET{c_header,[(#CONFIG{soyezcreateurs_couleurs/header_lettre,02265a}|replace{#,''})]})][(#SET{c_header_bk,[(#CONFIG{soyezcreateurs_couleurs/header_lettre_bk,ffffff}|replace{#,''})]})][(#SET{c_titraille_links,[(#CONFIG{soyezcreateurs_couleurs/titraille_lettre,02265a}|replace{#,''})]})]<BOUCLE_Lettre(CM_LISTS){lst_id}><B_articles>#SET{news,''}
+[(#CACHE{0})][(#HTTP_HEADER{Content-type: text/html; charset=#CHARSET})][(#SET{c_header,[(#CONFIG{soyezcreateurs_couleurs/header_lettre,02265a}|replace{#,''})]})][(#SET{c_header_bk,[(#CONFIG{soyezcreateurs_couleurs/header_lettre_bk,ffffff}|replace{#,''})]})][(#SET{c_titraille_links,[(#CONFIG{soyezcreateurs_couleurs/titraille_lettre,02265a}|replace{#,''})]})]<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}><BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons} /></BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}><BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}{lang} /></BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons} /><BOUCLE_Lettre(CM_LISTS){lst_id}><B_articles>#SET{news,''}
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -244,7 +246,7 @@
 						    <h3>[(#DATE|affdate)]</h3>
 							<!-- CutHere -->
                            
-							<BOUCLE_articles(ARTICLES){age_relatif<=0}{par date}{inverse}{0,20}>
+							<BOUCLE_articles(ARTICLES){age_relatif<=0}{par date}{inverse}{0,20}{doublons}>
 							[<h2><a href="[(#URL_ARTICLE|url_absolue)]">(#TITRE)</a></h2>]
 							<p>[par (#LESAUTEURS|textebrut)][ le (#DATE|affdate)]</p>
 							[<div class="chapo">
