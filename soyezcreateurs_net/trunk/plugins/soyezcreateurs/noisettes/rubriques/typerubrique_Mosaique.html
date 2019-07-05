@@ -15,6 +15,10 @@
 [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,720},0})</div>]
 	[(#ENV{archive}|non)[(#INCLURE{fond=noisettes/rubriques/ListeMosaique,id_rubrique})]]
 	[(#ENV{archive}|oui)[(#INCLURE{fond=noisettes/rubriques/ListeMosaique_Archives,id_rubrique})]]
+	[(#REM) Vérification de la présence du plugin GIS dans la rubrique et si oui on inclut la carte grace au modèle, qui est dans la page carte_gis.html]
+	[<div id="carto">
+	(#PLUGIN{GIS}|oui)[(#INCLURE{fond=json/gis_articles_plus_sites_branche,id_rubrique,limit=1}|oui)[(#INCLURE{fond=modeles/carte_gis,id_rubrique,objets=articles_plus_sites_branche,autocenterandzoom=oui,hauteur=#CONFIG{soyezcreateurs_layout/hauteurgisrubriques,400px},cluster=[(#PLUGIN{GISGEOM}|?{'non','oui'})],maxClusterRadius=40,clusterShowCoverageOnHover=oui,clusterSpiderfyOnMaxZoom=oui,fullscreen=oui,zoom_wheel=non})]]
+	</div>]
 	</div><!-- Fin de #LeTexte -->
 </main>
 </div><!-- Fin de .texte -->
