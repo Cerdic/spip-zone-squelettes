@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'page_accueil' => 'Page d\'accueil du site',
 	'plugin_spip' => 'plugin SPIP',
 	'porte_dev' => 'porté en',	
-	'parcourir_rubriques_explications' => 'Titre des liens vers les rubrique affichée sur la page d\'accueil, <br>La page sommaire liste 5 rubriques racines maximum"<br>par defaut : Parcourir',
+	'parcourir_rubriques_explications' => 'Titre des liens vers les rubrique affichée sur la page d\'accueil, <br>La page sommaire liste 5 rubriques racines maximum. <br>par defaut : Parcourir',
 	'pied_de_page' => 'Pied de page',
 	
 	
