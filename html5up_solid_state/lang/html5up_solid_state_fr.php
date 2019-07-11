@@ -10,6 +10,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// C
 	'cfg_titre_parametrages' => 'Paramétrages',
 
+	// D
+	'documentation_texte' => 'Lire la documentation sur <a href=\'https://contrib.spip.net/5161\'>SPIP Contrib</a>.',
+	'documentation_titre' => 'Documentation',
+
 	// E
 	'en_savoir_plus' => 'En savoir plus',
 
