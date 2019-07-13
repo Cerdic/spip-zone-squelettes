@@ -11,6 +11,9 @@ $GLOBALS['mutualisation_afficher_config'] = (isset($GLOBALS['mutualisation_affic
 if (!defined('_IMG_GD_QUALITE'))
 	define('_IMG_GD_QUALITE', 95); // Haute qualité pour les images réduites ; voir https://contrib.spip.net/Astuces-SPIP
 
+if (!defined('_CRITERE_MOTS_ARBO_BRANCHE'))
+	define('_CRITERE_MOTS_ARBO_BRANCHE', true);
+
 // Pour que le plugin Correction liens internes fasse bien un lien interne pour les sites web
 if (!defined('_CORRECTION_LIENS_INTERNES_LIEN_SITES'))
 	define('_CORRECTION_LIENS_INTERNES_LIEN_SITES', 'refsite');
