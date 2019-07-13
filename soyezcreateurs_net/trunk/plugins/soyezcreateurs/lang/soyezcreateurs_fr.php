@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Erreur !',
 	'erreur_documentexistepas' => 'Erreur : ce document n’existe pas !',
 	'erreur_excuses_404' => 'Nous sommes désolés...',
-	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n’a pu être trouvée parce que :</p><ol><li>elle n’était plus d’actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d’accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>',
+	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n’a pu être trouvée parce que :</p><ol class="spip"><li>elle n’était plus d’actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d’accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>',
 
 	// F
 	'forum' => 'Forum',
