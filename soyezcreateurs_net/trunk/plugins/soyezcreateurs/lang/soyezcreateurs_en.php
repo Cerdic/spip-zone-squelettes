@@ -76,7 +76,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Error !',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
 	'erreur_excuses_404' => 'Sorry...',
-	'erreur_excuses_404_explications' => '<p>The page that you’re looking for couldn’t be located because :</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
+	'erreur_excuses_404_explications' => '<p>The page that you’re looking for couldn’t be located because :</p><ol class="spip"><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
 	'forum' => 'Forum',
