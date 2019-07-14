@@ -72,7 +72,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Error!',
 	'erreur_documentexistepas' => 'Error: aquest document no existeix!',
 	'erreur_excuses_404' => 'Ho sentim molt...',
-	'erreur_excuses_404_explications' => '<p>La pàgina que busqueu no s’ha trobat perquè:</p><ol><li>ja no és actual,</li><li>l’enllaç cap a la pàgina que busqueu està obsoleta,</li><li>la pàgina cercada ha estat desplaçada.</li></ol><p>Gràcies per començar la vostra cerca a la <a href="@urlsite@">Pàgina d’inici: @nomsite@</a>, o cercar una paraula clau amb el formulari de més avall.</p>',
+	'erreur_excuses_404_explications' => '<p>La pàgina que busqueu no s’ha trobat perquè:</p><ol class="spip"><li>ja no és actual,</li><li>l’enllaç cap a la pàgina que busqueu està obsoleta,</li><li>la pàgina cercada ha estat desplaçada.</li></ol><p>Gràcies per començar la vostra cerca a la <a href="@urlsite@">Pàgina d’inici: @nomsite@</a>, o cercar una paraula clau amb el formulari de més avall.</p>',
 
 	// F
 	'forum' => 'Fòrum',
