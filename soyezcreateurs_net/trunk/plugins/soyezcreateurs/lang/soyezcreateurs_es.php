@@ -55,9 +55,6 @@ Ir a la búsqueda',
 	'copyright_realisation' => 'Réalisation : ',
 	'copyright_spip' => 'Squelette <a href=\'https://www.pyrat.net/\' title=\'Visiter le site du créateur de ce squelette\'>SoyezCréateurs</a> propulsé par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 
-	// E
-	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n’a pu être trouvée parce que :</p><ol><li>elle n’était plus d’actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d’accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>',
-
 	// F
 	'forum' => 'Forum',
 
