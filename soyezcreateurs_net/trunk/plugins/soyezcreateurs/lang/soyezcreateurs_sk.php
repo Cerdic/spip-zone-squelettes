@@ -73,7 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Chyba!',
 	'erreur_documentexistepas' => 'Chyba: tento dokument neexistuje!',
 	'erreur_excuses_404' => 'Prepáčte...',
-	'erreur_excuses_404_explications' => '<p>Stránku, ktorú hľadáte, sa nepodarilo nájsť, lebo:</p><ol><li>už nie je aktuálna,</li><li>odkaz na stránku je zastaralý,</li><li>alebo sa presunula referenčná stránka.</li></ol><p>Prosím, skúste nájsť informácie prostredníctvom <a href="@urlsite@">úvodnej stránky: @nomsite@</a> alebo tak, že vo formulári nižšie vyhľadáte podľa kľúčového slova.</p>',
+	'erreur_excuses_404_explications' => '<p>Stránku, ktorú hľadáte, sa nepodarilo nájsť, lebo:</p><ol class="spip"><li>už nie je aktuálna,</li><li>odkaz na stránku je zastaralý,</li><li>alebo sa presunula referenčná stránka.</li></ol><p>Prosím, skúste nájsť informácie prostredníctvom <a href="@urlsite@">úvodnej stránky: @nomsite@</a> alebo tak, že vo formulári nižšie vyhľadáte podľa kľúčového slova.</p>',
 
 	// F
 	'forum' => 'Diskusné fórum',
