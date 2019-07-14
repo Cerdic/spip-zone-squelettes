@@ -77,8 +77,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur_documentexistepas' => 'Fazi : n’eus ket eus an teul-se !',
 	'erreur_excuses_404' => 'Glac’haret omp...',
 	'erreur_excuses_404_explications' => '<p>N’eo ket bet kavet ar bajenn a glaskit
-rak :
- :</p><ol><li>Diamzeriet eo,</li><li>-	Diamzeriet eo liamm ar bajenn,
+rak :</p><ol class="spip"><li>Diamzeriet eo,</li><li>-	Diamzeriet eo liamm ar bajenn,
 dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez da gregiñ ho furchadenn war ar  <a href="@urlsite@">bajenn degemer : @nomsite@</a>, pe da glask ur ger-alc’hwez gant ar skrid-stur amañ dindan.</p>',
 
 	// F
