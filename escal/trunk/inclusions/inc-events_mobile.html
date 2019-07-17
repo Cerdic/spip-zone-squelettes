@@ -1,20 +1,22 @@
     #SET{tableauprochainement,#ARRAY}
     <BOUCLE_prochainementselection(EVENEMENTS){age_fin<=1}{par date_debut}>
-    [(#ID_EVENEMENT_SOURCE|=={0}|?{				
-    	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},				
+    [(#ID_EVENEMENT_SOURCE|=={0}|?{
+    	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
     	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
     })]
     </BOUCLE_prochainementselection>
-    
-    
+
+
 <B_evenements_agenda>
 	[<p class="pagination">(#PAGINATION)</p>
-	<div class="nettoyeur"></div>] 
+	<div class="nettoyeur"></div>]
 	<hr />
 <BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{lang}{pagination 5}{statut=publie}>
 
 <BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{doublons}>
 </BOUCLE_seul>
+<BOUCLE_jour(EVENEMENTS){id_evenement=#ID_EVENEMENT}{date_fin=#DATE_DEBUT}{doublons}>
+</BOUCLE_jour>
 <BOUCLE_autres2(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{doublons}>
 </BOUCLE_autres2>
 
@@ -26,7 +28,7 @@
 #SET{couleur,#336699}
 <//B_mot>
 
- 
+
 <BOUCLE_affiche(EVENEMENTS){!doublons}{0,1}{doublons affiche}{par date}>
 	<div class="mobile-event">
 		<div class="mobile-event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
@@ -39,28 +41,28 @@
 		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
 		<br />
 		</div>
-				
-		<div class="mobile-event-description">	
-			
+
+		<div class="mobile-event-description">
+
 		<div class="mobile-event-titre">
 		#TITRE
 		</div>
-		
+
 		[(#LOGO_EVENEMENT|oui)
 		<div class="mobile-event-logo">
 		[(#LOGO_EVENEMENT|extraire_attribut{src}|balise_img{logo événement,spip_logos}|image_reduire{150,100})]
 		</div>
 		]
-		
+
 		[<div class="mobile-event-descriptif">
 		(#DESCRIPTIF)
 		</div>]
-		
+
 		[<span class="mobile-event-lieu"><strong>Lieu :</strong><br />(#LIEU)</span><br /><br />]
 		
           [<div class="mobile-event-adresse"><strong>Adresse :</strong><br />(#ADRESSE|PtoBR)</div>]
-</BOUCLE_affiche>	        
-          
+</BOUCLE_affiche>
+
           <B_autres>
           <strong>Autres dates :</strong>
           <ul>
@@ -74,12 +76,12 @@
           </BOUCLE_autres>
           </ul>
           </B_autres>
-          
+
         	</div>
 		
 	</div>
 
-	
+
 	<div class="nettoyeur"></div>
 	<hr />
 </BOUCLE_evenements_agenda>
