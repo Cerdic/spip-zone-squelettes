@@ -51,7 +51,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'read_more' => 'Lire la suite',
 
 	// T
-	'texte_calltoaction' => "Pour avoir des nouvelles régulières, laisse ton mail ",
+	'texte_calltoaction' => "Pour avoir des nouvelles régulières, inscrivez votre mail ",
 	'titre_calltoaction' => "Newsletter",
 	'texte_config_titre_sommaire' => "Le titre du site apparait sur la page d'accueil ? ",
 	'titre_configurer_alpha' => 'Configurer Html5up Alpha',
