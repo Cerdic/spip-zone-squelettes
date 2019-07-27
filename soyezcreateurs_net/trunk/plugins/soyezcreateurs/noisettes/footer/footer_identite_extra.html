@@ -40,7 +40,7 @@
 				</BOUCLE_Id_Image_Pied>
             </div>
 			</B_Id_Image_Pied>
-            [(#IDENTITE_LATITUDE|oui)[(#PLUGIN{GIS}|oui)<div id="carte" class="avec-padding">
+            [(#IDENTITE_ID_GIS|non)[(#IDENTITE_LATITUDE|oui)[(#PLUGIN{GIS}|oui)<div id="carte" class="avec-padding">
 				#INCLURE{fond=modeles/carte_gis,
 					id_map=carto_bc,
 					objets=identite_carto,
@@ -51,6 +51,16 @@
 					zoom_molette=non,
 					lat=#IDENTITE_LATITUDE,
 					lon=#IDENTITE_LONGITUDE,
+					height=250px}
+            </div>]]]
+            [(#IDENTITE_ID_GIS|oui)[(#PLUGIN{GIS}|oui)<div id="carte" class="avec-padding">
+				#INCLURE{fond=modeles/carte_gis,
+					id_map=carto_bc,
+					id_gis=#IDENTITE_ID_GIS,
+					scale=oui,
+					overview=oui,
+					autocenterandzoom=oui,
+					zoom_molette=non,
 					height=250px}
             </div>]]
 			<//B_Id_Image_Pied>
