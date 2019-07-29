@@ -20,8 +20,9 @@
 			<li><a href="#URL_PAGE{antichrono_grid}">[(#CONFIG{soyezcreateurs/texte_actualite_toutes}|typo|sinon{<:soyezcreateurs:actualite_toutes:>})] (<:soyezcreateurs:actualite_toutes_blocs:>)</a></li>
 		</ul>
 	</div>
-<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){id_rubrique}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} /><BOUCLE_ExclureBreveDuPlan(BREVES){id_rubrique}{doublons brevesannees}{doublons brevesmois}{doublons breves}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
+<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} /><BOUCLE_ExclureSitesDuPlan(SITES){branche}{doublons sitesannees}{doublons sitesmois}{doublons sites} /><BOUCLE_ExclureBreveDuPlan(BREVES){id_rubrique}{doublons brevesannees}{doublons brevesmois}{doublons breves}{lang} /></BOUCLE_ExclureRubriquesDuPlan>
 <BOUCLE_ExclureArticlesDuPlan2(ARTICLES){titre_mot=PasDansPlan}{doublons articlesannees}{doublons articlesmois}{doublons articles}{lang} />
+
 #SET{listeliens,#ARRAY}
 <B_Annee>
 	<BOUCLE_Annee(ARTICLES){!par date}{doublons articlesannees}{fusion YEAR(date)}{lang}>
@@ -62,13 +63,14 @@
 
 [(#SET{site,<:sites:site:>})]
 <B_AnneeSites>
-	<BOUCLE_AnneeSites(SITES){!par date}{fusion YEAR(date)}>
+	<BOUCLE_AnneeSites(SITES){!par date}{doublons sitesannees}{fusion YEAR(date)}>
 	<B_MoisSites>
 		<BOUCLE_MoisSites(SITES){annee_relatif=0}
 		{!par date}
+		{doublons sitesmois}
 		{fusion MONTH(date)}>
 		<B_SitesDuMois>
-			<BOUCLE_SitesDuMois(SITES){mois_relatif=0}
+			<BOUCLE_SitesDuMois(SITES){doublons sites}{mois_relatif=0}
 			{!par date}>
 			#SET{listeliens,  #GET{listeliens}|push{#ARRAY{year,(#DATE|annee),month,(#DATE|mois),lemois,(#DATE|nom_mois),date,#DATE,url,(#ID_SYNDIC|generer_url_entite{'site'}),descriptif,#DESCRIPTIF,titre,#NOM_SITE,class,iconsites,type,#GET{site}}}}
 			</BOUCLE_SitesDuMois>
