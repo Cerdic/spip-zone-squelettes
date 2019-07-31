@@ -6,10 +6,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function image_focus($img, $largeur, $hauteur, $position = 'center') {
 	if (!$img) return('');
 	
-	if (strncmp($img, '<img', 4) !==0) {
-		$img = "<img src='$img' />";
-	}
-	
 	include_spip('filtres_images_lib_mini');
 	include_spip('filtres/images_transforme');
 	$largeurimg = largeur($img);
@@ -26,6 +22,9 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 		}
 		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	} else  {
+		// On commence par réduire à 2 fois la taille finale pour travailler sur de plus petites images
+		$img = filtrer('image_reduire', $img, $largeur*2, $hauteur*2, $position, 'transparent');
+		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '-', 'focus', 'transparent');
 		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_reduire', $img, $largeur, $hauteur, $position, 'transparent');

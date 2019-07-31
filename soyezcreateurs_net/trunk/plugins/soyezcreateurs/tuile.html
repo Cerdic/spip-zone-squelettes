@@ -1,0 +1,14 @@
+<?php
+$filename="[(#ENV{logo}|image_focus{#ENV{width},#ENV{height}}|extraire_attribut{src}|supprimer_timestamp)]";
+$filename=preg_replace(',[?].*$,','',$filename);
+if (exif_imagetype($filename) > 0) {
+	$size = getimagesize($filename);
+	$fp = fopen($filename, "rb");
+	if ($size && $fp) {
+		header("Content-type: {$size['mime']}");
+		fpassthru($fp);
+		exit;
+	} else {
+		exit;
+	}
+}
