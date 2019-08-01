@@ -1,14 +1,25 @@
-<?php
-$filename="[(#ENV{logo}|image_focus{#ENV{width},#ENV{height}}|extraire_attribut{src}|supprimer_timestamp)]";
-$filename=preg_replace(',[?].*$,','',$filename);
-if (exif_imagetype($filename) > 0) {
-	$size = getimagesize($filename);
-	$fp = fopen($filename, "rb");
-	if ($size && $fp) {
-		header("Content-type: {$size['mime']}");
-		fpassthru($fp);
-		exit;
-	} else {
-		exit;
-	}
+<BOUCLE_Securite(CONDITION)
+	{si #ENV{width}|>{0}}
+	{si #ENV{height}|>{0}}
+	{si #ENV{logo}|mb_strtolower|strncmp{'http',4}|!={0}}
+	{si #ENV{logo}|exif_imagetype|>{0}}
+><?php
+/* Sécurité
+On a vérifié :
+- que largeur et hauteur sont > 0
+- que l'image est locale et pas distante
+- que c'est bien une image
+On  peut faire le traitement
+*/
+$filename='[(#ENV{logo}|image_focus{[(#ENV{width}|intval)],[(#ENV{height}|intval)]}|extraire_attribut{src}|supprimer_timestamp|texte_script)]';
+$size = filesize($filename);
+$type= image_type_to_mime_type(exif_imagetype($filename));
+$fp = fopen($filename, "rb");
+if ($size && $type && $fp) {
+	header('Content-type: ' . $type);
+	header('Content-Length: ' . $size);
+	fpassthru($fp);
+	exit;
 }
+echo 'Alert!';
+?></BOUCLE_Securite>#HTTP_HEADER{Content-Type: image/gif}[(#INCLURE{images/1.gif})]<//B_Securite>

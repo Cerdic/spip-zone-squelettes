@@ -22,8 +22,8 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 		}
 		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	} else  {
-		// On commence par réduire à 2 fois la taille finale pour travailler sur de plus petites images
-		$img = filtrer('image_reduire', $img, $largeur*2, $hauteur*2, $position, 'transparent');
+		// On commence par réduire pour travailler sur de plus petites images
+		$img = filtrer('image_reduire', $img, 3840, 0);
 		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '-', 'focus', 'transparent');
 		$img = filtrer('image_graver', $img);
