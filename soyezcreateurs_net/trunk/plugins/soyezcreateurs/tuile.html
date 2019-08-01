@@ -14,11 +14,11 @@ On  peut faire le traitement
 $filename='[(#ENV{logo}|image_focus{[(#ENV{width}|intval)],[(#ENV{height}|intval)]}|extraire_attribut{src}|supprimer_timestamp|texte_script)]';
 $size = filesize($filename);
 $type= image_type_to_mime_type(exif_imagetype($filename));
-$fp = fopen($filename, "rb");
-if ($size && $type && $fp) {
+if ($size && $type) {
 	header('Content-type: ' . $type);
 	header('Content-Length: ' . $size);
-	fpassthru($fp);
+	header('Expires: 3600');
+	readfile($filename);
 	exit;
 }
 ?></BOUCLE_Securite>#HTTP_HEADER{Content-Type: image/gif}[(#INCLURE{images/1.gif})]
