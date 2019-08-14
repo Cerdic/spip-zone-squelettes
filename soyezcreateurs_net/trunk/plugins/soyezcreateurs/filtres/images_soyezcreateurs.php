@@ -13,12 +13,15 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 	} else if (($largeurimg <= $largeur) OR ($hauteurimg <= $hauteur)) {
 		if ($largeurimg <= $largeur) {
 			$img = filtrer('image_recadre', $img, "$largeurimg:$hauteur", '-', 'focus', 'transparent');
+			$img = filtrer('image_graver', $img);
 		} else {
 			$img = filtrer('image_recadre', $img, "$largeur:$hauteurimg", '-', 'focus', 'transparent');
+			$img = filtrer('image_graver', $img);
 		}
 		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	} else  {
 		$img = filtrer('image_recadre', $img, "$largeur:$hauteur", '-', 'focus', 'transparent');
+		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_reduire', $img, $largeur, $hauteur, $position, 'transparent');
 	}
 	
