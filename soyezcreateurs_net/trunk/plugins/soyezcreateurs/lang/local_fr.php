@@ -4,6 +4,6 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Modification de l'interface d'admin
-'texte_descriptif_rapide' => 'Bulle d’aide <i>(et chapeau si le chapeau vide)</i> + Meta Description <i>(pour les moteurs de recherche)</i>',
+'texte_descriptif_rapide' => 'Bulle d’aide <i>(et chapeau si le chapeau vide)</i> + Meta Description <i>(pour les moteurs de recherche. Si vide, replis sur la Bulle d’aide de la rubrique mère, sinon la description du site)</i>',
 
 );

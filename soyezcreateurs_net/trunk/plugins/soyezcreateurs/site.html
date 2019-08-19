@@ -5,7 +5,7 @@
 [(#SET{title,[(#TITRE|typo|supprimer_tags|texte_script) - ][(#NOM_SITE|typo|supprimer_tags|texte_script) ]})]
 <BOUCLE_NoIndexSite(MOTS){id_syndic}{titre=NoIndex}>#SET{noindex,1}</BOUCLE_NoIndexSite>
 <INCLURE{fond=noisettes/header/header}
-	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
+	{metadescription=(#DESCRIPTIF|sinon{#INFO_DESCRIPTIF{rubrique,#ID_RUBRIQUE}}|supprimer_tags|attribut_html)}
 	{title=#GET{title}(<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{rubriqueencours=#ID_RUBRIQUE}
@@ -21,7 +21,7 @@
 </BOUCLE_ArticleSyndiqueTitre>
 [(#SET{title,[(#NOM_SITE|typo|supprimer_tags|texte_script) ]})]
 <INCLURE{fond=noisettes/header/header}
-	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
+	{metadescription=(#DESCRIPTIF|sinon{#INFO_DESCRIPTIF{rubrique,#ID_RUBRIQUE}}|supprimer_tags|attribut_html)}
 	{title=#GET{title}(<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{rubriqueencours=#ID_RUBRIQUE}
