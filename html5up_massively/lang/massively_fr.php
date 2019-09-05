@@ -13,6 +13,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'age_articles_recents_explications' => 'Renseignez en nombre de jours l’âge maximum des articles pour être affichés sur la page d’accueil. Par défaut 90.',
 	'arriereplan' => 'arrière-plan',
 	
+	// D
+	'descriptif_accueil' => 'Le descriptif du site',
+	'descriptif_accueil_explications' => 'Oui, afficher le descriptif du site sur la page accueil.',
+	
 	// H
 	'html5up_massively_titre' => 'Html5up Massively ',
 	
@@ -23,8 +27,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'slogan_accueil' => 'Le slogan du site',
 	'slogan_accueil_explications' => 'Oui, afficher le slogan du site sur la page accueil.',
-	'descriptif_accueil' => 'Le descriptif du site',
-	'descriptif_accueil_explications' => 'Oui, afficher le descriptif du site sur la page accueil.',
+	'sousnavmasquee' => 'Masquer la navigation des articles',
+	'sousnavmasquee_explications' => 'Un bouton de menu sera présent pour afficher la liste des articles de la même rubrique.',
 	
 	// T
 	'titre_page_configurer_html5up_massively' => 'Configurer le squelette Massively',
