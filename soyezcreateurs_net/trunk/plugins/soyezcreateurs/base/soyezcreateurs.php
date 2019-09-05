@@ -734,7 +734,8 @@ function create_site($site, $rubrique) {
 					"url_syndic" => $site['url_syndic'],
 					"descriptif" => $site['descriptif'],
 					"statut" => $site['statut'] ? $site['statut']:'prop',
-					"syndication" => $site['url_syndic'] ? 'oui':'non'
+					"syndication" => $site['url_syndic'] ? 'oui':'non',
+					"oubli" => $site['oubli'] ? 'oui':'non'
 				), "id_syndic=$id_site"
 			);
 		} else {
@@ -746,7 +747,8 @@ function create_site($site, $rubrique) {
 					"url_syndic" => $site['url_syndic'],
 					"descriptif" => $site['descriptif'],
 					"statut" => $site['statut'] ? $site['statut']:'prop',
-					"syndication" => $site['url_syndic'] ? 'oui':'non'
+					"syndication" => $site['url_syndic'] ? 'oui':'non',
+					"oubli" => $site['oubli'] ? 'oui':'non'
 				)
 			);
 			include_spip('inc/rubriques');
@@ -1132,10 +1134,11 @@ function soyezcreateurs_config_motsclefs() {
 		$id_rubrique = create_rubrique("05. Saint du jour", $id_parent, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
 				$sites = array();
 				$sites['nom_site'] = "Nominis (Saint du jour)";
-				$sites['url_site'] = "http://nominis.cef.fr/";
+				$sites['url_site'] = "https://nominis.cef.fr/";
 				$sites['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
-				$sites['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
+				$sites['url_syndic'] = "https://nominis.cef.fr/rss/nominis.php";
 				$sites['statut'] = 'prop';
+				$sites['oubli'] = 'oui';
 				$id_site = create_site($sites, "05. Saint du jour");
 					create_site_mot($id_site, "SaintDuJour", "_Specialisation_Sites");
 

@@ -67,6 +67,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	);
 	$maj['3.1.67'] = array( 
 		array('soyezcreateurs_3_1_67'),
+	);
+	$maj['3.1.70'] = array( 
+		array('soyezcreateurs_3_1_70'),
 		array('soyezcreateurs_finalisationinstall') /* À rajouter à la fin systématiquement */		
 	);
 		
@@ -360,6 +363,22 @@ function soyezcreateurs_3_1_67() {
 		sql_updateq('spip_dictionnaires', array('statut' => 'inactif'), "statut='0'");
 	}
 }
+function soyezcreateurs_3_1_70() {
+	$id_rubrique = id_rubrique("05. Saint du jour");
+	if ($id_rubrique > 0) {
+		$id_site = id_site('Nominis (Saint du jour)', $id_rubrique);
+		if ($id_site > 0) {
+			sql_updateq(
+					"spip_syndic", array(
+						"url_site" => "https://nominis.cef.fr/",
+						"url_syndic" => "https://nominis.cef.fr/rss/nominis.php",
+						"oubli" => 'oui'
+					), "id_syndic=$id_site"
+				);
+		}
+	}
+}
+
 
 function soyezcreateurs_finalisationinstall() {
 	// On termine en invalidant les caches
