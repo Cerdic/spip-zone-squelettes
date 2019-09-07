@@ -592,7 +592,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_horizontal_hauteur' => 'Altezza del logo della rubrica (in pixel)	(assicurati che i tuoi loghi abbiano un’altezza almeno uguale al valore scelto)',
 	'menu_horizontal_logo' => 'Visualizzaione del logo della rubrica (se esiste)',
 	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
-	'menu_horizontal_secteur' => 'Per le rubriche di primo livello (= settori):',
+	'menu_horizontal_secteur' => 'Per le rubriche di primo livello (= settori):', # MODIF
 	'menu_horizontal_titre' => 'Visualizzazione del titolo della rubrica',
 	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'menu_vertical_depliant' => 'Menù verticale a volantino',

@@ -593,7 +593,7 @@ an image (example: url("squelette/images/mon_image.jpg") ', # MODIF
 	'menu_horizontal_hauteur' => 'Height of section logos in pixels	(Make sure that your logos have a height at least equal to the choosen value)',
 	'menu_horizontal_logo' => 'Display of the section logo if any',
 	'menu_horizontal_logo_accueil' => 'Display of the logo', # MODIF
-	'menu_horizontal_secteur' => 'For top level sections (= sector) :',
+	'menu_horizontal_secteur' => 'For top level sections (= sector) :', # MODIF
 	'menu_horizontal_titre' => 'Display of the title of the section',
 	'menu_horizontal_titre_accueil' => 'Display of the word "Home"', # MODIF
 	'menu_vertical_depliant' => 'Drop-down vertical menu',
