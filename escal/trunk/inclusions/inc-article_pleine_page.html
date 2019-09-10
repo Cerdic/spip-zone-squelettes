@@ -204,7 +204,7 @@
 
 <!-- affichage des événements -->
 	#SET{tableauprochainement,#ARRAY}
-	<BOUCLE_prochainementselection(EVENEMENTS){id_article}{age_fin<1}{par date_debut}>
+	<BOUCLE_prochainementselection(EVENEMENTS){id_article}{!evenement_passe}{age_fin<1}{par date_debut}>
 	[(#ID_EVENEMENT_SOURCE|=={0}|?{
 	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
 	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
@@ -219,10 +219,8 @@
 	<div class="container-choix">
 <BOUCLE_select(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>
 
-	<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{date_fin>=#DATE}{doublons}>
+	<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{!evenement_passe}{doublons}>
 	</BOUCLE_seul>
-	<BOUCLE_jour(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=0}{date_fin=#DATE_DEBUT}{doublons}>
-	</BOUCLE_jour>
 	<BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
 		<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=0}{doublons}>
 		</BOUCLE_futur>

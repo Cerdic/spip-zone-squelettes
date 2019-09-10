@@ -8,7 +8,7 @@
 </h1>
 
 #SET{tableauprochainement,#ARRAY}
-<BOUCLE_prochainementselection(EVENEMENTS){age_fin<=0}{par date_debut}>
+<BOUCLE_prochainementselection(EVENEMENTS){!evenement_passe}{par date_debut}>
 [(#ID_EVENEMENT_SOURCE|=={0}|?{
 #SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
 #SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
@@ -22,11 +22,8 @@
 	<div class="nettoyeur"></div>] 
 <BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{"<hr />"}{pagination #GET{nbrpagevent}}{lang}>
 
-<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{date_fin>=#DATE}{doublons}>
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{!evenement_passe}{doublons}>
 </BOUCLE_seul>
-
-<BOUCLE_jour(EVENEMENTS){id_evenement=#ID_EVENEMENT}{age<=0}{date_fin=#DATE_DEBUT}{doublons}>
-</BOUCLE_jour>
 
 <BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
 	<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=0}{doublons}>
