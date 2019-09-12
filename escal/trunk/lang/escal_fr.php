@@ -600,6 +600,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_horizontal_hauteur' => 'Hauteur des logos de rubrique en pixels	(Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie)',
 	'menu_horizontal_logo' => 'Affichage du logo de la rubrique s’il existe',
 	'menu_horizontal_logo_accueil' => 'Affichage du logo',
+	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides',
 	'menu_horizontal_secteur' => '<strong>Pour les rubriques de premier niveau (= secteur) :</strong><br />
 							→ s’applique aussi au menu sur mobile',
 	'menu_horizontal_titre' => 'Affichage du titre de la rubrique',
@@ -908,16 +909,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// R
 	'rainette' => 'Rainette',
 	'rainette_code' => 'Code de la ville :',
-	'rainette_explication' => 'Si vous avez activé le <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
+	'rainette_explication' => 'Si vous avez activé le 
+	<a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure" title="Documentation">plugin "Rainette"</a>,
             entrez ci-dessous le code de la ville qui vous intéresse.<br />
-            Ce code est à rechercher sur le web sur <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">ce site</a></strong>
-            en rajoutant le nom de la ville recherchée à la suite de "where=" dans la barre d’adresse.<br />
-            Il doit être de la forme <strong>FRXX0076</strong> (ça c’est Paris !)',
+            Pour connaitre le code à rentrer, plus d\'explications sur la 
+            <a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-mae#L-indication-du-lieu" title="Documentation">documentation du plugin</a>',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choix du service météo',
 	'rappel_discussion' => 'Rappel de la discussion',
 	'recherche' => 'Recherche',
-	'recherche_articles_non' => 'Aucun article trouvé pour cette recherche',
+	'recherche_articles_non > Aucun artile trouvé pour cette recherche',
 	'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 	'recherche_multi' => 'Recherche multi-critères',
 	'recherche_multi_resultat' => 'Résultat de la recherche :',
