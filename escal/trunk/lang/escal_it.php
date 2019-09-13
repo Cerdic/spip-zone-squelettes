@@ -903,12 +903,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             inserite qui sotto il codice della città che vi interessa.<br />
             Il codice della città deve essere cercato su <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">questo sito</a></strong> 
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
-            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).',
+            Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).', # MODIF
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Ultima discussione',
 	'recherche' => 'Ricerca',
-	'recherche_articles_non' => 'Nessuno articolo trovato per questa ricerca',
 	'recherche_forum_non' => 'Nessuno messaggio di forum trovato per questa ricerca',
 	'recherche_multi' => 'Ricerca multi-criterio',
 	'recherche_multi_resultat' => 'Risultato della ricerca:',

@@ -904,12 +904,11 @@ an image (example: url("squelette/images/mon_image.jpg") ', # MODIF
             enter below the code of the city you are interested in.<br />
             This code is to be searched on the web on <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">this website</a></strong> 
             by adding the name of the town you are looking for following "where=" in the address bar.<br />
-            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)',
+            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)', # MODIF
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Reminder of the discussion',
 	'recherche' => 'Search',
-	'recherche_articles_non' => 'No article found for this entry',
 	'recherche_forum_non' => 'no online message board found for this entry',
 	'recherche_multi' => 'Multi-criteria<br />search',
 	'recherche_multi_resultat' => 'Search result:',

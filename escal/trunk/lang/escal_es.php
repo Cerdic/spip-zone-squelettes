@@ -206,7 +206,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Recuerdo de la discusión',
 	'recherche' => 'Búsqueda',
-	'recherche_articles_non' => 'Ningún artículo hallado para esta búsqueda',
 	'recherche_forum_non' => 'Ningún mensaje de foro hallado para esta búsqueda',
 	'recherche_multi' => 'Multi-criterios<br />de búsqueda',
 	'recherche_multi_resultat' => 'Resultado de la búsqueda:',

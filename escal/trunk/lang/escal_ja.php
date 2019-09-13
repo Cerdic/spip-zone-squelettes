@@ -203,7 +203,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'ディスカッションを呼び出す',
 	'recherche' => '検索',
-	'recherche_articles_non' => 'お探しの記事は見つかりませんでした',
 	'recherche_forum_non' => '検索条件に一致する投稿がありません',
 	'recherche_multi' => '複数の言葉で検索する',
 	'recherche_multi_resultat' => '検索結果 :',
