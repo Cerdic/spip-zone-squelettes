@@ -7,6 +7,8 @@
  */
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_SPIP3')) define('_SPIP3', intval($GLOBALS['spip_version_branche'])>=3 ? true : false);
+
 
 // demander a SPIP de definir 'type' dans le contexte du premier squelette
 define('_DEFINIR_CONTEXTE_TYPE',true);
