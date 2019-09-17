@@ -111,7 +111,19 @@
 				<!-- Menu -->
 					<ul class="menu">
 						<li>&copy; [(#NOM_SITE_SPIP|textebrut)]</li>
-						<li>Made in Vallee Verte Haute-Savoie by <a href="http://ticplus.fr/">tic+</a></li>
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li><a href="https://www.spip.net/" title="<:site_realise_avec_spip:>"><:site_realise_avec_spip:></a></li>
+						<?php
+						if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+						?><li><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></li><?php
+							if (include_spip('inc/autoriser') AND autoriser('ecrire')){
+							?><li><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></li><?php
+							}
+						}
+						else {
+						?><li><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a></li><?php
+						}
+						?>										
 					</ul>
 
 			</footer>
