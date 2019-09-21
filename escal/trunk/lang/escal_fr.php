@@ -25,7 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Affichage du descriptif',
 	'affichage_form_reponse' => 'Affichage du formulaire de réponse sous l’article',
 	'affichage_image' => 'Affichage de la première image',
-	'affichage_logo_site' => 'Affichage du logo du site s’il existe',
 	'affichage_mots_cles' => '<strong>Affichage des mots-clés associés aux articles</strong>',
 	'affichage_mots_cles_article' => 'Pour la page article',
 	'affichage_mots_cles_rubrique' => 'Pour la page rubrique',
@@ -68,28 +67,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_calendrier' => 'Calendrier (partie événements à venir)',
 	'arrondis_centre_sommaire' => 'Le bloc central de la page sommaire',
 	'arrondis_explication1' => 'Pour des arrondis identiques aux 4 coins, indiquez simplement la valeur de l’arrondi que vous désirez. Exemple : 10px <br />
-    			Pour des coins sans arrondis inscrivez la valeur 0<br />
-    			Pour des coins aux arrondis différents, ordre des valeurs à indiquer :',
+    Pour des coins sans arrondis inscrivez la valeur 0<br />
+    Pour des coins aux arrondis différents, ordre des valeurs à indiquer :',
 	'arrondis_explication2' => 'Pour réinitialiser une valeur par défaut, videz la case correspondante et validez 2 fois.<br /><br />
-    			Pour faire des tests et générer le code correspondant : <a href="http://www.cssmatic.com/border-radius" title="Générer le css">CSSmatic</a><br />
-    			Pour une utilisation plus poussée avec des formes élliptiques :
-    			<a href="http://www.alsacreations.com/astuce/lire/979-ovale-forme-elliptique-css3-sans-image.html" title="En savoir plus">Alsacréations</a>',
+    Pour faire des tests et générer le code correspondant : <a href="http://www.cssmatic.com/border-radius" title="Générer le css">CSSmatic</a><br />
+    Pour une utilisation plus poussée avec des formes élliptiques :
+    <a href="http://www.alsacreations.com/astuce/lire/979-ovale-forme-elliptique-css3-sans-image.html" title="En savoir plus">Alsacréations</a>',
 	'arrondis_identification_recherche' => 'Identification et recherche',
 	'arrondis_menus' => 'Les menus',
 	'arrondis_onglets' => 'Onglets',
 	'article' => 'article',
-	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé" ',
-	'article_acces_direct_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
-	                                 Le titre du bloc sera celui de l’article.<br /><br />
-							   Plus d’infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article24&lang=fr">cet article</a> ',
-	'article_acces_direct_titre' => 'Accès direct',
 	'article_archive' => 'Souvenez-vous !',
 	'article_dernier' => 'Dernier article paru : ',
-	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé',
-	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
-	                          Le titre du bloc sera celui de l’article.<br /><br />
-	                          Plus d’infos dans <a href="http://escal.ac-lyon.fr/spip/spip.php?article23&lang=fr">cet article</a>',
-	'article_edito_titre' => 'Edito',
 	'article_forum' => 'Forum de l’article',
 	'article_imprimer' => 'Imprimer',
 	'article_libre1' => 'Article libre 1',
@@ -109,6 +98,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             s’affichera automatiquement dans les pages "article".   <br />
             On peut aussi l’afficher dans les pages "rubrique".',
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
+	'articles' => 'articles',
 	'articles_associes' => 'Voir les articles associés à ',
 	'articles_associes_mot' => 'Articles associés au mot',
 	'articles_auteur' => 'Cet auteur a écrit :',
@@ -122,14 +112,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_largeur_images2' => 'Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :',
 	'articles_les' => 'Les articles',
 	'articles_logo' => 'Taille maximum du logo des articles',
-	'articles_min' => 'articles',
 	'articles_plus_vus' => 'Articles les plus vus',
 	'articles_portfolio' => 'Afficher le portfolio (doublon avec le bloc "A telecharger")',
-	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe',
 	'articles_premier_message' => 'N’afficher que le premier message de chaque fil de discussion, les réponses étant dépliables',
 	'articles_reponses_forum' => 'Réponses des forums d’articles',
 	'articles_rubrique' => 'Articles de rubrique',
-	'articles_site' => 'Voir les articles de ce site',
 	'articles_trouves' => 'articles trouvés',
 	'aucun' => 'Aucun',
 	'aujourdhui' => 'Aujourd’hui : ',
@@ -182,7 +169,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'barre_outils_explication1' => 'Place de la barre d’outils (identification light, menu de langues, formulaire de recherche, bouton-lien vers le forum du site)',
 	'barre_outils_explication2' => 'Si vous avez choisi de placer la barre d’outils au-dessus du bandeau, voulez-vous la fixer en haut de la page ?<br />
                     (Cette option se désactive automatiquement sur les écrans inférieurs à 950px de large)',
-	'barre_outils_identification' => 'Formulaire d’identification simplifiée',
+	'barre_outils_identification' => 'Bouton de connexion/déconnexion',
 	'bas' => 'En bas',
 	'bienvenue' => 'Bienvenue',
 	'bloc_choix' => 'Choix des blocs',
@@ -211,11 +198,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'cadres' => 'Cadres et images',
-
-	// 0
-	'0' => 'recherche_articles_non > Aucun artile trouvé pour cette recherche',
-
-	// C
 	'cadres_bords' => 'Bord des cadres présents',
 	'cadres_images' => 'Largeur des images',
 	'cadres_images_largeur' => 'Largeur maximum des images pour les articles utilisés dans certains blocs latéraux (Accès direct, Edito, Photos au hasard, Articles libres 1 à 5) ',
@@ -272,21 +254,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'Un peu de style',
 	'cfg_page_textes' => 'Les textes',
 	'cfg_page_titre_contenu' => 'Titres et contenus',
-	'chercher_parmi_les_signataires' => 'Chercher parmi les signataires',
-	'choix_article' => 'Une liste d’articles',
-	'choix_article_choix' => 'Choix des articles',
-	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules',
-	'choix_article_colonne' => 'Nombre de colonnes',
-	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3',
-	'choix_article_fond' => 'Fond des articles',
-	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
-272	                                     <br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
-273	                                     <br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).',
 	'choix_blocs_lateraux' => 'Choix des blocs latéraux',
 	'choix_deux' => 'Deux',
 	'choix_trois' => 'Trois',
 	'choix_une' => 'Une',
-	'clic_suite' => 'Cliquer pour lire la suite',
 	'clic_telechargement' => 'Cliquer pour voir ou télécharger',
 	'collegues' => 'Tous les collègues',
 	'colonne_extra' => 'Colonne "extra" (par défaut à droite)',
@@ -431,10 +402,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'envoi_mail_nom' => 'Nom : ',
 	'envoi_mail_prenom' => 'Prénom : ',
 	'envoyer_message' => 'Envoyer un message à ',
-	'erreur401' => 'Erreur 401',
-	'erreur401_message' => 'Vous n’avez pas les autorisations suffisantes pour accéder à la page ou au document demandé... <br />
-						Veuillez contacter le webmestre du site pour y accéder
-						en utilisant la page [Contact|Page contact->@url@] de ce site.',
 	'erreur404' => 'Erreur 404',
 	'erreur404_message' => 'La page que vous demandez n’existe pas ou plus sur le site.
                     Si vous pensez qu’il s’agit d’une erreur dans le site,
@@ -443,10 +410,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'escal' => 'Escal',
 	'espace_redacteurs' => 'Espace rédacteurs',
 	'et' => 'et',
+	'evenements' => 'Évènements à venir',
 	'evenements_ajouter' => 'Ajouter un évènement<br />(Accès réservé)',
 	'evenements_associes' => 'Événements associés :',
 	'evenements_non' => 'Pas d’évènements à venir',
-	'evenements_venir' => 'Évènements à venir',
 
 	// F
 	'facebook_bouton' => 'Aspect du bouton',
@@ -510,11 +477,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Image de fond',
 	'fonds_textes' => 'Autres textes',
 	'fonds_textes_alerte' => 'Les alertes de la page contact',
-	'fonds_textes_comment1' => ' (en cas de champ non rempli par exemple)',
-	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...',
+	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)',
 	'fonds_textes_explication' => 'Il vous reste à choisir vos couleurs pour quelques textes spécifiques...',
 	'fonds_textes_forum' => 'Le forum du site',
-	'fonds_textes_input' => 'Les zones de saisie de SPIP',
 	'fonds_textes_liens' => 'Les liens',
 	'fonds_textes_liens_survol' => 'Les liens survolés',
 	'fonds_textes_liens_vus' => 'Les liens visités',
@@ -529,7 +494,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'format' => 'Format :',
 	'forum' => 'Forum',
 	'forum_trouve' => 'message de forum trouvé',
-	'forums' => 'forums',
 	'forums_trouves' => 'messages de forum trouvés',
 
 	// G
@@ -595,21 +559,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_plugin' => 'Plugin Mentions légales',
 	'menu' => 'Au menu',
 	'menu_horizontal' => 'Menu horizontal',
-	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil',
 	'menu_horizontal_affichage' => 'Affichage du menu horizontal',
 	'menu_horizontal_articles' => 'Avec affichage des articles',
-	'menu_horizontal_choix' => 'Choix du menu horizontal',
-	'menu_horizontal_choix_bloc' => 'Méga menu déroulant',
-	'menu_horizontal_choix_liste' => 'Listes déroulantes',
 	'menu_horizontal_fixer' => 'Fixer le menu en haut de page lors du scroll vers le bas',
 	'menu_horizontal_hauteur' => 'Hauteur des logos de rubrique en pixels	(Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie)',
 	'menu_horizontal_logo' => 'Affichage du logo de la rubrique s’il existe',
-	'menu_horizontal_logo_accueil' => 'Affichage du logo',
-	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides',
-	'menu_horizontal_secteur' => '<strong>Pour les rubriques de premier niveau (= secteur) :</strong><br />
-							→ s’applique aussi au menu sur mobile',
+	'menu_horizontal_secteur' => 'Pour les rubriques de premier niveau (= secteur) :',
 	'menu_horizontal_titre' => 'Affichage du titre de la rubrique',
-	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"',
 	'menu_vertical_depliant' => 'Menu vertical dépliant',
 	'menu_vertical_deroulant' => 'Menu vertical déroulant à droite',
 	'message_non' => '(pas de message pour le moment)',
@@ -702,9 +658,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(ce choix s’appliquera aussi au bloc "Evénements à venir") ',
 	'noisettes_calendrier_lien_agenda' => 'Titre avec lien vers l’agenda en pleine page',
 	'noisettes_calendrier_pagination' => 'Nombre d’articles ou d’événements par page de pagination',
-	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers',
-	'noisettes_calendrier_renvoi_article' => 'l’article',
-	'noisettes_calendrier_renvoi_evenement' => 'l’évènement',
 	'noisettes_decouvrir' => 'A découvrir',
 	'noisettes_decouvrir_hasard' => 'Nombre d’articles pris au hasard',
 	'noisettes_decouvrir_moins_vus' => 'Nombre d’articles les moins visités',
@@ -891,6 +844,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_squelette' => 'Lien vers le squelette de la page',
 	'pied_lien_texte' => 'Sous forme de textes',
 	'pied_lien_xhtml' => 'Icône avec lien vers validateur XHTML',
+	'plan_site' => 'Plan du site',
 	'pointeur' => 'Pointeurs de souris',
 	'pointeur_defaut' => 'Pointeur par défaut',
 	'pointeur_explication' => 'Vous pouvez changer ici l’image des pointeurs. Ces images doivent :<br />
@@ -909,20 +863,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Si vous avez activé le plugin <a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a>,
 						le QrCode de l’URL de vos articles s’affichera en bas de la version imprimable des articles',
-	'qrcode_plugin' => 'Plugin QrCode',
 
 	// R
 	'rainette' => 'Rainette',
 	'rainette_code' => 'Code de la ville :',
-	'rainette_explication' => 'Si vous avez activé le 
-	<a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure" title="Documentation">plugin "Rainette"</a>,
+	'rainette_explication' => 'Si vous avez activé le <a  class="spip_out" href="http://contrib.spip.net/Rainette-la-meteo-au-quotidien" title="Documentation">plugin "Rainette"</a>,
             entrez ci-dessous le code de la ville qui vous intéresse.<br />
-            Pour connaitre le code à rentrer, plus d’explications sur la 
-            <a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-mae#L-indication-du-lieu" title="Documentation">documentation du plugin</a>',
+            Ce code est à rechercher sur le web sur <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">ce site</a></strong>
+            en rajoutant le nom de la ville recherchée à la suite de "where=" dans la barre d’adresse.<br />
+            Il doit être de la forme <strong>FRXX0076</strong> (ça c’est Paris !)',
 	'rainette_plugin' => 'Plugin Rainette',
-	'rainette_service' => 'Choix du service météo',
 	'rappel_discussion' => 'Rappel de la discussion',
 	'recherche' => 'Recherche',
+	'recherche_articles_non' => 'Aucun article trouvé pour cette recherche',
 	'recherche_forum_non' => 'Aucun message de forum trouvé pour cette recherche',
 	'recherche_multi' => 'Recherche multi-critères',
 	'recherche_multi_resultat' => 'Résultat de la recherche :',
@@ -933,27 +886,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Réinitialiser',
 	'reinitialiser_tout' => 'Tout réinitialiser',
 	'repondre_message' => 'Répondre à ce message',
+	'rubrique' => 'La rubrique',
 	'rubrique_articles' => 'Les articles de cette rubrique',
-	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles',
-	'rubrique_cachee_titre' => 'Rubrique cachée',
 	'rubrique_contenu' => 'Cette rubrique contient',
 	'rubrique_date' => 'Affichage de la date de publication et de la date de modification des articles',
-	'rubrique_la' => 'La rubrique',
 	'rubrique_pagin_bas' => 'Afficher la pagination en bas',
 	'rubrique_pagin_haut' => 'Afficher la pagination en haut',
 	'rubrique_rss' => 'Affichage du logo RSS avec lien vers la page du flux',
 	'rubrique_rss2' => 'Affichage du logo RSS avec lien vers la page du flux pour les sous-rubriques',
-	'rubrique_site_reference' => 'Site référencé dans cette rubrique',
 	'rubrique_sites_references' => 'Les sites référencés dans cette rubrique',
 	'rubrique_sous_rubriques' => 'Les sous-rubriques de cette rubrique',
 	'rubrique_taille_logo' => 'Taille des logos pour les rubriques et articles listés',
 	'rubrique_trouvee' => 'rubrique trouvée',
-	'rubriques_min' => 'rubriques',
+	'rubriques' => 'rubriques',
 	'rubriques_trouvees' => 'rubriques trouvées',
 
 	// S
 	'savoirplus' => 'En savoir plus',
-	'secondes' => 'secondes',
 	'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
 			vous pouvez paramétrer :',
 	'shoutbox_hauteur' => 'la hauteur du bloc des messages :',
@@ -996,9 +945,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_diminuer' => 'Diminuer la taille des caractères',
 	'taille_fichier' => 'Taille du fichier :',
 	'taille_icone_pied' => 'Taille des icônes :',
-	'taille_icones_pied' => 'Taille des icones',
 	'taille_logo_site' => 'Taille maximum du logo des sites',
-	'taille_outils_article' => 'Taille des icônes de la barre d’outils :',
+	'taille_outils_article' => 'Taille des icônes de la barre d\'outils:',
 	'taille_police' => 'Taille de la police :',
 	'taille_police_explication' => '<strong>Taille de la police :</strong><br />
 				Pour augmenter ou diminuer la taille des caractères de tout le site (définies en rem)<br />
@@ -1031,20 +979,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'A la une',
 	'une_bloc' => 'Le bloc "A la une"',
-	'une_derniers' => 'Derniers articles',
-	'une_derniers_bis' => 'Derniers articles bis',
-	'une_derniers_ter' => 'Derniers articles ter',
-	'une_mots_cles' => 'Articles avec mots-clés',
 
 	// V
-	'version_actuelle' => 'Version actuelle :',
+	'version' => 'Version actuelle :',
 	'version_maj' => 'Version disponible :',
 	'version_ok' => 'Vous avez la dernière version disponible',
 	'video' => 'Vidéo',
 	'videos' => 'Vidéos',
-	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
-	        - activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
-	        - associer le mot-clé "video-une" aux articles contenant vos vidéos',
 	'visites' => 'Visites',
 	'visites_jour' => 'visites par jour',
 	'visiteur' => 'visiteur',
