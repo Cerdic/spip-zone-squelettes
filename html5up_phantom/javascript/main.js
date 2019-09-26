@@ -159,7 +159,7 @@
 			.append('<a class="close" href="#menu">Close</a>');
 
 		$body
-			.on('click', 'a[href="#menu"]', function(event) {
+			.on('click', '#menu-trigger', function(event) {
 
 				event.stopPropagation();
 				event.preventDefault();
