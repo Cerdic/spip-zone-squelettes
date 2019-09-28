@@ -42,7 +42,7 @@
                 
                 <div id="texte-article" >
                   
-
+#SET{nbrpag,#CONFIG{escal/config/nombreart,5}}
 <!-- on affiche le ou les article(s) -->
 <B_articles>
 	<h2><:articles:></h2>
@@ -56,7 +56,7 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
 	<div class="liste-articles-rubrique">
-<BOUCLE_articles(ARTICLES){recherche}{lang}{!par points}{pagination 5}>
+<BOUCLE_articles(ARTICLES){recherche}{lang}{!par points}{pagination #GET{nbrpag}}>
 	<div class="cadre-articles-rubrique">
 	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}}|parametre_url{recherche,#ENV{recherche}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
@@ -102,7 +102,7 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
 	<div class="liste-articles-rubrique">
-<BOUCLE_forums(FORUMS){recherche}{!par points}{pagination 5}>
+<BOUCLE_forums(FORUMS){recherche}{!par points}{pagination #GET{nbrpag}}>
 	<div class="cadre-articles-rubrique">
 	<a href="[(#URL_PAGE{forumSite-sujet}|parametre_url{id_forum,#ID_FORUM}|parametre_url{recherche,#ENV{recherche}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
@@ -136,7 +136,7 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
 	<div class="liste-articles-rubrique">
-<BOUCLE_rubriques(RUBRIQUES){recherche}{lang}{!par points}{pagination 5}>
+<BOUCLE_rubriques(RUBRIQUES){recherche}{lang}{!par points}{pagination #GET{nbrpag}}>
 	<div class="cadre-articles-rubrique">
 	<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 		<div class="titre-articles-rubrique">
@@ -170,7 +170,7 @@
 	[<p class="pagination">(#PAGINATION)</p>
 	<div class="nettoyeur"></div>]
 	<div class="liste-articles-rubrique">
-<BOUCLE_sites(SITES){recherche}{!par points}{pagination 5}>
+<BOUCLE_sites(SITES){recherche}{!par points}{pagination #GET{nbrpag}}>
 	<div class="cadre-articles-rubrique">
 	<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
 		<div class="titre-articles-rubrique">
