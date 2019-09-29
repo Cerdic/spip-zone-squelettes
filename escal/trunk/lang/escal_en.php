@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Display of the description', # MODIF
 	'affichage_form_reponse' => 'Display response form under article', # MODIF
 	'affichage_image' => 'Display of the first picture', # MODIF
+	'affichage_logo_site' => 'Dispaly oh the logo website if it exists', # MODIF
 	'affichage_mots_cles' => '<strong>Display of keywords associated with articles</strong>', # MODIF
 	'affichage_mots_cles_article' => 'For the article page', # MODIF
 	'affichage_mots_cles_rubrique' => 'For the section page', # MODIF
@@ -79,8 +80,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_menus' => 'The menus', # MODIF
 	'arrondis_onglets' => 'Tabs', # MODIF
 	'article' => 'article', # MODIF
+	'article_acces_direct_descriptif' => 'This article will be the one that appears in the "Direct acces" block if you leave it activated', # MODIF
+	'article_acces_direct_texte' => 'Here you can view the content of an article with the keyword "acces-direct".<br /><br />
+								The title of the block will be the title of the article.', # MODIF
+	'article_acces_direct_titre' => 'Direct acces', # MODIF
 	'article_archive' => 'Remember!', # MODIF
 	'article_dernier' => 'Last published article: ', # MODIF
+	'article_edito_descriptif' => 'This article will be the one that appears in the "Edito" block if you leave it activated', # MODIF
+	'article_edito_texte' => 'Here you can view the content of an article with the keyword "Edito".<br /><br />
+						The title of the block will be the title of the article.', # MODIF
+	'article_edito_titre' => 'Editorial', # MODIF
 	'article_forum' => 'Forum of the article', # MODIF
 	'article_imprimer' => 'Print', # MODIF
 	'article_libre1' => 'Free article 1', # MODIF
@@ -100,11 +109,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             will be automatically displayed in the "article" pages.   <br />
             It may also be displayed in the "section" pages.', # MODIF
 	'articlepdf_plugin' => 'Plugin ArticlePDF', # MODIF
-	'articles' => 'articles', # MODIF
 	'articles_associes' => 'See associated articles with ', # MODIF
 	'articles_associes_mot' => 'Articles associated with the word', # MODIF
 	'articles_auteur' => 'This author wrote:', # MODIF
-	'articles_autres' => 'and the others', # MODIF
 	'articles_derniers' => 'The last articles', # MODIF
 	'articles_explication' => 'You can define here the maximum width of the pictures in your articles. <br /> 
             This width is 400px by default for classical articles and 850px for full pages articles, 
@@ -114,11 +121,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_largeur_images2' => 'Maximum width of the pictures for full page articles (articles with the keyword "pleinepage" which suppresses side blocks) :', # MODIF
 	'articles_les' => 'The articles', # MODIF
 	'articles_logo' => 'Maximum size of the articles’ logo', # MODIF
+	'articles_min' => 'articles', # MODIF
 	'articles_plus_vus' => 'The most seen articles', # MODIF
 	'articles_portfolio' => 'Display the portfolio (constitute an overlap with the "Download" block)', # MODIF
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
 	'articles_premier_message' => 'Only display the first message of each thread, answers being drop-down', # MODIF
 	'articles_reponses_forum' => 'Answers to the forums of articles', # MODIF
 	'articles_rubrique' => 'Articles of section', # MODIF
+	'articles_site' => 'See the articles of this site', # MODIF
 	'articles_trouves' => 'articles found', # MODIF
 	'aucun' => 'None', # MODIF
 	'aujourdhui' => 'Today: ', # MODIF
@@ -256,11 +266,22 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'A bit of style', # MODIF
 	'cfg_page_textes' => 'The texts', # MODIF
 	'cfg_page_titre_contenu' => 'Titles and contents', # MODIF
+	'chercher_parmi_les_signataires' => 'Chercher parmi les signataires', # MODIF
+	'choix_article' => 'The model "choix_article" of Escal', # MODIF
+	'choix_article_choix' => 'Item selection', # MODIF
+	'choix_article_choix_explication' => 'Numbers of articles separated by commas', # MODIF
+	'choix_article_colonne' => 'Number of columns ', # MODIF
+	'choix_article_colonne_explication' => 'Input a number of 1 to 3', # MODIF
+	'choix_article_fond' => 'Background color', # MODIF
+	'choix_article_fond_explication' => 'a colour (name, hexa or rgb)
+										<br/>a linear-gradient (example: Linear-gradient(#DAE6F6, #336699))
+										<br/>
+an image (example: url("squelette/images/mon_image.jpg") ', # MODIF
 	'choix_blocs_lateraux' => 'Choice of side blocks', # MODIF
 	'choix_deux' => 'Two', # MODIF
 	'choix_trois' => 'Three', # MODIF
 	'choix_une' => 'One', # MODIF
-	'clic_telechargement' => 'Click to see or download', # MODIF
+	'clic_suite' => 'Click to read the suite', # MODIF
 	'collegues' => 'All the colleagues', # MODIF
 	'colonne_extra' => '"Extra" column (on the right by default)', # MODIF
 	'colonne_nav' => '"Navigation" column (on the left by default)', # MODIF
@@ -404,6 +425,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'envoi_mail_nom' => 'Name: ', # MODIF
 	'envoi_mail_prenom' => 'Firstname: ', # MODIF
 	'envoyer_message' => 'Send a message to ', # MODIF
+	'erreur401' => 'Erreur 401', # MODIF
+	'erreur401_message' => 'Vous n’avez pas les autorisations suffisantes pour accéder à la page ou au document demandé... <br />
+						Veuillez contacter le webmestre du site pour y accéder
+						en utilisant la page [Contact|Page contact->@url@] de ce site.', # MODIF
 	'erreur404' => 'Error 404', # MODIF
 	'erreur404_message' => 'The page you want does not exist, is no longer online or has moved.
                     If you think this is wrong,
@@ -411,11 +436,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     by using the [Contact|Contact page->@url@] page of this site.', # MODIF
 	'escal' => 'Escal', # MODIF
 	'espace_redacteurs' => 'Editors area', # MODIF
-	'et' => 'and', # MODIF
-	'evenements' => 'Events to come', # MODIF
 	'evenements_ajouter' => 'Add an event<br />(Reserved access)', # MODIF
 	'evenements_associes' => 'Événements associés :', # MODIF
 	'evenements_non' => 'No events to come', # MODIF
+	'evenements_venir' => 'Events to come', # MODIF
 
 	// F
 	'facebook_bouton' => 'The appearance of the button', # MODIF
@@ -479,9 +503,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Background picture', # MODIF
 	'fonds_textes' => 'Other texts', # MODIF
 	'fonds_textes_alerte' => 'The warnings of the contact page', # MODIF
-	'fonds_textes_comment' => '(in the case of a blank filled field for example)', # MODIF
+	'fonds_textes_comment1' => '(in the case of a blank filled field for example)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
 	'fonds_textes_explication' => 'You just have to choose your colours for some specific texts...', # MODIF
 	'fonds_textes_forum' => 'The forum of the website', # MODIF
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'fonds_textes_liens' => 'The links', # MODIF
 	'fonds_textes_liens_survol' => 'The focus links', # MODIF
 	'fonds_textes_liens_vus' => 'The visited links', # MODIF
@@ -496,6 +522,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'format' => 'File type:', # MODIF
 	'forum' => 'Forum', # MODIF
 	'forum_trouve' => 'online message board found', # MODIF
+	'forums' => 'forums', # MODIF
 	'forums_trouves' => 'online message boards found', # MODIF
 
 	// G
@@ -555,22 +582,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'meme_rub' => 'In the same section', # MODIF
 	'mentions' => 'Legal notices', # MODIF
-	'mentions_activer' => 'To activate the link towards the page "Legal notices"', # MODIF
 	'mentions_explication' => 'If you have activated the <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Legal notices"</a>,
             you can show the link towards the dedicated page in the footer of the website.', # MODIF
 	'mentions_plugin' => 'Legal notices plugin', # MODIF
 	'menu' => 'On the menu', # MODIF
 	'menu_horizontal' => 'Horizontal menu', # MODIF
+	'menu_horizontal_accueil' => 'For the link to home', # MODIF
 	'menu_horizontal_affichage' => 'Display of the horizontal menu', # MODIF
 	'menu_horizontal_articles' => 'With the display of articles', # MODIF
+	'menu_horizontal_choix' => 'Horizontal menu selection', # MODIF
+	'menu_horizontal_choix_bloc' => 'Drop-down mega menu ', # MODIF
+	'menu_horizontal_choix_liste' => 'Drop-down list ', # MODIF
 	'menu_horizontal_fixer' => 'To fix the menu at the top of the page when scrolling down', # MODIF
 	'menu_horizontal_hauteur' => 'Height of section logos in pixels	(Make sure that your logos have a height at least equal to the choosen value)', # MODIF
 	'menu_horizontal_logo' => 'Display of the section logo if any', # MODIF
+	'menu_horizontal_logo_accueil' => 'Display of the logo', # MODIF
+	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides', # MODIF
 	'menu_horizontal_secteur' => 'For top level sections (= sector) :', # MODIF
 	'menu_horizontal_titre' => 'Display of the title of the section', # MODIF
+	'menu_horizontal_titre_accueil' => 'Display of the word "Home"', # MODIF
 	'menu_vertical_depliant' => 'Drop-down vertical menu', # MODIF
 	'menu_vertical_deroulant' => 'Drop-down vertical menu on the right', # MODIF
-	'message_non' => '(no message for the moment)', # MODIF
 	'meteo_titre_conditions' => 'Weather conditions in', # MODIF
 	'mini_calendrier' => 'Mini calendar', # MODIF
 	'mot_acces_direct' => 'to choose the article which will be displayed in the "Direct access" block', # MODIF
@@ -660,6 +692,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(this choice will also apply to the block "Events to come") ', # MODIF
 	'noisettes_calendrier_lien_agenda' => 'Title with link to full page agenda', # MODIF
 	'noisettes_calendrier_pagination' => 'Number of articles or events by pagination page', # MODIF
+	'noisettes_calendrier_renvoi' => 'For events using the Calendar plugin, the link links to', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'the article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'the event', # MODIF
 	'noisettes_decouvrir' => 'To discover', # MODIF
 	'noisettes_decouvrir_hasard' => 'Number of random articles', # MODIF
 	'noisettes_decouvrir_moins_vus' => 'Number of least visited articles', # MODIF
@@ -758,7 +793,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_bis_pagination' => 'Pagination model (try them!)', # MODIF
 	'onglets_choix' => 'Choice of tabs', # MODIF
 	'onglets_cinq' => 'Fifth_tab', # MODIF
-	'onglets_derniers' => 'Front page articles in "Last articles" ', # MODIF
 	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
 	'onglets_derniers_arts' => 'Last articles', # MODIF
 	'onglets_derniers_arts2' => 'Last articles bis', # MODIF
@@ -845,8 +879,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_rss' => 'Icon with a link towards the RSS feeds page', # MODIF
 	'pied_lien_squelette' => 'Link towards the skeleton of the page', # MODIF
 	'pied_lien_texte' => 'As texts', # MODIF
-	'pied_lien_xhtml' => 'Icon with a link towards the XHTML validator', # MODIF
-	'plan_site' => 'Site map', # MODIF
 	'pointeur' => 'Mouse pointers', # MODIF
 	'pointeur_defaut' => 'Default pointer', # MODIF
 	'pointeur_explication' => 'You can change here the picture of pointers. These pictures must:<br />
@@ -865,6 +897,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'If you have activated the plugin <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	a qrcode corresponding to the article URL will automatically appear at the bottom of the <strong>printable version</strong> of the article', # MODIF
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
 	'rainette' => 'Rainette', # MODIF
@@ -875,6 +908,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             by adding the name of the town you are looking for following "where=" in the address bar.<br />
             This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)', # MODIF
 	'rainette_plugin' => 'Plugin Rainette', # MODIF
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Reminder of the discussion', # MODIF
 	'recherche' => 'Search', # MODIF
 	'recherche_articles_non' => 'No article found for this entry', # MODIF
@@ -888,23 +922,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Reset', # MODIF
 	'reinitialiser_tout' => 'Reset all', # MODIF
 	'repondre_message' => 'Reply to this message', # MODIF
-	'rubrique' => 'The section', # MODIF
 	'rubrique_articles' => 'Articles of this section', # MODIF
+	'rubrique_cachee_descriptif' => 'Section for special items that will not appear in the menu, the site map, or the latest articles', # MODIF
+	'rubrique_cachee_titre' => 'Hidden section', # MODIF
 	'rubrique_contenu' => 'This section contains', # MODIF
 	'rubrique_date' => 'Display of the publication date and of the modification date of the articles', # MODIF
+	'rubrique_la' => 'The section', # MODIF
 	'rubrique_pagin_bas' => 'Display pagination at the bottom', # MODIF
 	'rubrique_pagin_haut' => 'Display pagination at the top', # MODIF
 	'rubrique_rss' => 'Display of the RSS logo with a link towards the feeds page', # MODIF
 	'rubrique_rss2' => 'Display of the RSS logo with a link towards the feeds page for the sub-sections', # MODIF
+	'rubrique_site_reference' => 'Site referenced in this section', # MODIF
 	'rubrique_sites_references' => 'Referenced sites in this section', # MODIF
 	'rubrique_sous_rubriques' => 'Sub-sections of this section', # MODIF
 	'rubrique_taille_logo' => 'Size of the logos for the listed sections and articles', # MODIF
 	'rubrique_trouvee' => 'section found', # MODIF
-	'rubriques' => 'sections', # MODIF
+	'rubriques_min' => 'sections', # MODIF
 	'rubriques_trouvees' => 'sections found', # MODIF
 
 	// S
 	'savoirplus' => 'To know more', # MODIF
+	'secondes' => 'secondes', # MODIF
 	'shoutbox_explication' => 'If you have activated the <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>, 
 			you can set:', # MODIF
 	'shoutbox_hauteur' => 'the height of the block of messages :', # MODIF
@@ -945,7 +983,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Increase the size of the characters', # MODIF
 	'taille_diminuer' => 'Decrease the size of the characters', # MODIF
 	'taille_fichier' => 'File size', # MODIF
-	'taille_icone_pied' => 'Taille des icônes :', # MODIF
+	'taille_icones_pied' => 'Taille des icones', # MODIF
 	'taille_logo_site' => 'Maximum logo websites size', # MODIF
 	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'taille_police' => 'Font size:', # MODIF
@@ -968,9 +1006,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'title_contact' => 'Contact the technical referent', # MODIF
 	'title_escal' => 'Link to the official site of Escal', # MODIF
 	'title_espace_redacteurs' => 'The private space for writers and administrators', # MODIF
-	'title_haut_page' => 'Go back to the top of the page', # MODIF
 	'title_mentions' => 'Legal notices of the site', # MODIF
-	'title_w3c' => 'Valid XHTML 1.0 Strict site', # MODIF
 	'titre' => 'Title', # MODIF
 	'titre_coupe' => 'Number of characters displayed for the titles of articles', # MODIF
 	'titre_noisette' => 'Title of the block', # MODIF
@@ -981,18 +1017,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'Front page', # MODIF
 	'une_bloc' => 'The "front page" block', # MODIF
+	'une_derniers' => 'Last articles', # MODIF
+	'une_derniers_bis' => 'Last articles bis', # MODIF
+	'une_derniers_ter' => 'Last articles ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
 
 	// V
-	'version' => 'Current version:', # MODIF
+	'version_actuelle' => 'Current version:', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Video', # MODIF
 	'videos' => 'Videos', # MODIF
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites' => 'Visits', # MODIF
 	'visites_jour' => 'visits a day', # MODIF
 	'visiteur' => 'visitor', # MODIF
 	'visiteurs' => 'visitors', # MODIF
-	'votre_nom' => 'Your name ?', # MODIF
 	'vu' => 'seen', # MODIF
 
 	// W

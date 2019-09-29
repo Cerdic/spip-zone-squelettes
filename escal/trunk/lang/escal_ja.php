@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Affichage du descriptif', # MODIF
 	'affichage_form_reponse' => 'Affichage du formulaire de réponse sous l’article', # MODIF
 	'affichage_image' => 'Affichage de la première image', # MODIF
+	'affichage_logo_site' => 'Affichage du logo du site s’il existe', # MODIF
 	'affichage_mots_cles' => '<strong>Affichage des mots-clés associés aux articles</strong>', # MODIF
 	'affichage_mots_cles_article' => 'Pour la page article', # MODIF
 	'affichage_mots_cles_rubrique' => 'Pour la page rubrique', # MODIF
@@ -79,8 +80,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_menus' => 'Les menus', # MODIF
 	'arrondis_onglets' => 'Onglets', # MODIF
 	'article' => '記事', # MODIF
+	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé', # MODIF
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.', # MODIF
+	'article_acces_direct_titre' => 'Accès direct', # MODIF
 	'article_archive' => '記事アーカイブ', # MODIF
 	'article_dernier' => '最新記事', # MODIF
+	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé', # MODIF
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.', # MODIF
+	'article_edito_titre' => 'Edito', # MODIF
 	'article_forum' => 'この記事のフォーラム', # MODIF
 	'article_imprimer' => '印刷', # MODIF
 	'article_libre1' => 'Article libre 1', # MODIF
@@ -100,11 +109,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             s’affichera automatiquement dans les pages "article".   <br />
             On peut aussi l’afficher dans les pages "rubrique".', # MODIF
 	'articlepdf_plugin' => 'Plugin ArticlePDF', # MODIF
-	'articles' => '記事一覧', # MODIF
 	'articles_associes' => '関連した記事', # MODIF
 	'articles_associes_mot' => 'キーワードを含む記事', # MODIF
 	'articles_auteur' => 'この記事を書いた人', # MODIF
-	'articles_autres' => 'その他記事', # MODIF
 	'articles_derniers' => '最近の記事', # MODIF
 	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br />
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page,
@@ -114,11 +121,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_largeur_images2' => 'Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :', # MODIF
 	'articles_les' => 'Les articles', # MODIF
 	'articles_logo' => 'Taille maximum du logo des articles', # MODIF
+	'articles_min' => '記事一覧', # MODIF
 	'articles_plus_vus' => 'Articles les plus vus', # MODIF
 	'articles_portfolio' => 'Afficher le portfolio (doublon avec le bloc latéral "A telecharger")', # MODIF
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
 	'articles_premier_message' => 'N’afficher que le premier message de chaque fil de discussion, les réponses étant dépliables', # MODIF
 	'articles_reponses_forum' => 'Réponses des forums d’articles', # MODIF
 	'articles_rubrique' => 'Articles de rubrique', # MODIF
+	'articles_site' => 'Voir les articles de ce site', # MODIF
 	'articles_trouves' => '検索された記事一覧', # MODIF
 	'aucun' => 'Aucun bloc', # MODIF
 	'aujourdhui' => '今日', # MODIF
@@ -256,11 +266,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'Un peu de style', # MODIF
 	'cfg_page_textes' => 'Les textes', # MODIF
 	'cfg_page_titre_contenu' => 'Titres et contenus', # MODIF
+	'chercher_parmi_les_signataires' => 'Chercher parmi les signataires', # MODIF
+	'choix_article' => 'le modèle choix_article d’Escal', # MODIF
+	'choix_article_choix' => 'Choix des articles', # MODIF
+	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules', # MODIF
+	'choix_article_colonne' => 'Nombre de colonnes', # MODIF
+	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3', # MODIF
+	'choix_article_fond' => 'Couleur du fond', # MODIF
+	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).', # MODIF
 	'choix_blocs_lateraux' => 'Choix des blocs latéraux', # MODIF
 	'choix_deux' => 'Deux', # MODIF
 	'choix_trois' => 'Trois', # MODIF
 	'choix_une' => 'Une', # MODIF
-	'clic_telechargement' => '閲覧orダウンロードするにはここをクリック', # MODIF
+	'clic_suite' => 'Cliquer pour lire la suite', # MODIF
 	'collegues' => 'すべての同僚', # MODIF
 	'colonne_extra' => 'Colonne "extra" (par défaut à droite)', # MODIF
 	'colonne_nav' => 'Colonne "navigation" (par défaut à gauche)', # MODIF
@@ -403,16 +423,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'envoi_mail_nom' => '姓 : ', # MODIF
 	'envoi_mail_prenom' => '名 : ', # MODIF
 	'envoyer_message' => 'へメッセージを送る', # MODIF
+	'erreur401' => 'Erreur 401', # MODIF
+	'erreur401_message' => 'Vous n’avez pas les autorisations suffisantes pour accéder à la page ou au document demandé... <br />
+						Veuillez contacter le webmestre du site pour y accéder
+						en utilisant la page [Contact|Page contact->@url@] de ce site.', # MODIF
 	'erreur404' => '404 エラー', # MODIF
 	'erreur404_message' => '<p>恐れ入りますが、下記のお問い合わせ先から、サイト責任者にお知らせ下さい。</p>
                     <p>[お問い合わせ|お問い合わせページ->@url@] </p>', # MODIF
 	'escal' => 'Escal', # MODIF
 	'espace_redacteurs' => '管理ページ', # MODIF
-	'et' => 'と', # MODIF
-	'evenements' => '今後\\のイベント', # MODIF
 	'evenements_ajouter' => 'イベントを追加する<br />管理ページ', # MODIF
 	'evenements_associes' => 'Événements associés :', # MODIF
 	'evenements_non' => '今後のイベントはございません', # MODIF
+	'evenements_venir' => '今後\\のイベント', # MODIF
 
 	// F
 	'facebook_bouton' => 'Aspect du bouton', # MODIF
@@ -476,9 +499,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Image de fond', # MODIF
 	'fonds_textes' => 'Autres textes', # MODIF
 	'fonds_textes_alerte' => 'Les alertes de la page contact', # MODIF
-	'fonds_textes_comment' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment1' => '(en cas de champ non rempli par exemple)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
 	'fonds_textes_explication' => 'Il vous reste à choisir vos couleurs pour quelques textes spécifiques...', # MODIF
 	'fonds_textes_forum' => 'Le forum du site', # MODIF
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'fonds_textes_liens' => 'Les liens', # MODIF
 	'fonds_textes_liens_survol' => 'Les liens survolés', # MODIF
 	'fonds_textes_liens_vus' => 'Les liens visités', # MODIF
@@ -493,6 +518,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'format' => 'フォーマット :', # MODIF
 	'forum' => 'フォーラム', # MODIF
 	'forum_trouve' => 'フォーラムの投稿が見つかりました。', # MODIF
+	'forums' => 'forums', # MODIF
 	'forums_trouves' => 'フォーラムの投稿が見つかりました。', # MODIF
 
 	// G
@@ -552,7 +578,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'meme_rub' => 'Dans la même rubrique', # MODIF
 	'mentions' => '法律上の記載事項', # MODIF
-	'mentions_activer' => 'Activer le lien vers la page "Mentions légales"', # MODIF
 	'mentions_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentation">plugin "Mentions légales"</a>,
             vous pouvez faire apparaître le lien vers la page dédiée dans le pied de page du site.
             <br />
@@ -560,17 +585,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_plugin' => 'Plugin Mentions légales', # MODIF
 	'menu' => 'メニュー', # MODIF
 	'menu_horizontal' => 'Menu horizontal', # MODIF
+	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil', # MODIF
 	'menu_horizontal_affichage' => 'Affichage du menu horizontal', # MODIF
 	'menu_horizontal_articles' => 'Avec affichage des articles', # MODIF
+	'menu_horizontal_choix' => 'Choix du menu horizontal', # MODIF
+	'menu_horizontal_choix_bloc' => 'Méga menu déroulant', # MODIF
+	'menu_horizontal_choix_liste' => 'Liste déroulante', # MODIF
 	'menu_horizontal_fixer' => 'Fixer le menu en haut de page lors du scroll vers le bas', # MODIF
 	'menu_horizontal_hauteur' => 'Hauteur des logos de rubrique en pixels	(Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie)', # MODIF
 	'menu_horizontal_logo' => 'Affichage du logo de la rubrique s’il existe', # MODIF
+	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
+	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides', # MODIF
 	'menu_horizontal_secteur' => '<strong>Pour les rubriques de premier niveau (= secteur) :</strong><br />
 							→ s’applique aussi au menu sur mobile', # MODIF
 	'menu_horizontal_titre' => 'Affichage du titre de la rubrique', # MODIF
+	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'menu_vertical_depliant' => 'Menu vertical dépliant', # MODIF
 	'menu_vertical_deroulant' => 'Menu vertical déroulant à droite', # MODIF
-	'message_non' => '(現在メッセージはありません)', # MODIF
 	'meteo_titre_conditions' => '現在の天気', # MODIF
 	'mini_calendrier' => 'Mini calendrier', # MODIF
 	'mot_acces_direct' => 'pour choisir l’article qui sera affiché dans le bloc "Accès direct"', # MODIF
@@ -660,6 +691,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(ce choix s’appliquera aussi au bloc "Evénements à venir") ', # MODIF
 	'noisettes_calendrier_lien_agenda' => 'Titre avec lien vers l’agenda en pleine page', # MODIF
 	'noisettes_calendrier_pagination' => 'Nombre d’articles ou d’événements par page de pagination', # MODIF
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'l’article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'l’évènement', # MODIF
 	'noisettes_decouvrir' => 'A découvrir', # MODIF
 	'noisettes_decouvrir_hasard' => 'Nombre d’articles pris au hasard', # MODIF
 	'noisettes_decouvrir_moins_vus' => 'Nombre d’articles les moins visités', # MODIF
@@ -758,7 +792,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_bis_pagination' => 'Modèle de pagination (essayez-les !)', # MODIF
 	'onglets_choix' => 'Choix des onglets', # MODIF
 	'onglets_cinq' => 'Cinquième_onglet', # MODIF
-	'onglets_derniers' => 'Articles à la une de "Derniers articles" ', # MODIF
 	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
 	'onglets_derniers_arts' => 'Derniers articles', # MODIF
 	'onglets_derniers_arts2' => 'Derniers articles bis', # MODIF
@@ -845,8 +878,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_rss' => 'Icône avec lien vers la page de flux RSS', # MODIF
 	'pied_lien_squelette' => 'Lien vers le squelette de la page', # MODIF
 	'pied_lien_texte' => 'Sous forme de textes', # MODIF
-	'pied_lien_xhtml' => 'Icône avec lien vers validateur XHTML', # MODIF
-	'plan_site' => 'サイトマップ', # MODIF
 	'pointeur' => 'Pointeurs de souris', # MODIF
 	'pointeur_defaut' => 'Pointeur par défaut', # MODIF
 	'pointeur_explication' => 'Vous pouvez changer ici l’image des pointeurs. Ces images doivent :<br />
@@ -865,6 +896,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Si vous activez le <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	un QrCode correspondant à l’URL de l’article s’affichera automatiquement en bas de la <strong>version imprimable</strong> de l’article', # MODIF
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
 	'rainette' => 'Rainette', # MODIF
@@ -875,6 +907,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             en rajoutant le nom de la ville recherchée à la suite de "where=" dans la barre d’adresse.<br />
             Il doit être de la forme <strong>FRXX0076</strong> (ça c’est Paris !)', # MODIF
 	'rainette_plugin' => 'Plugin Rainette', # MODIF
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'ディスカッションを呼び出す', # MODIF
 	'recherche' => '検索', # MODIF
 	'recherche_articles_non' => 'お探しの記事は見つかりませんでした', # MODIF
@@ -888,23 +921,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Réinitialiser', # MODIF
 	'reinitialiser_tout' => 'Tout réinitialiser', # MODIF
 	'repondre_message' => 'このメッセージに返信する', # MODIF
-	'rubrique' => 'La rubrique', # MODIF
 	'rubrique_articles' => 'このセクションの記事一覧', # MODIF
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles', # MODIF
+	'rubrique_cachee_titre' => 'Rubrique cachée', # MODIF
 	'rubrique_contenu' => 'この項目が含むもの', # MODIF
 	'rubrique_date' => 'Affichage de la date de publication et de la date de modification des articles', # MODIF
+	'rubrique_la' => 'La rubrique', # MODIF
 	'rubrique_pagin_bas' => 'Afficher la pagination en bas', # MODIF
 	'rubrique_pagin_haut' => 'Afficher la pagination en haut', # MODIF
 	'rubrique_rss' => 'Affichage du logo RSS avec lien vers la page du flux', # MODIF
 	'rubrique_rss2' => 'Affichage du logo RSS avec lien vers la page du flux pour les sous-rubriques', # MODIF
+	'rubrique_site_reference' => 'Site référencé dans cette rubrique', # MODIF
 	'rubrique_sites_references' => 'この項目が出典されたサイト一覧', # MODIF
 	'rubrique_sous_rubriques' => 'この項目の下位項目一覧', # MODIF
 	'rubrique_taille_logo' => 'Taille des logos pour les rubriques et articles listés', # MODIF
 	'rubrique_trouvee' => '検索項目', # MODIF
-	'rubriques' => '項目一覧', # MODIF
+	'rubriques_min' => '項目一覧', # MODIF
 	'rubriques_trouvees' => '検索項目一覧', # MODIF
 
 	// S
 	'savoirplus' => 'En savoir plus', # MODIF
+	'secondes' => 'secondes', # MODIF
 	'shoutbox_explication' => 'Si vous avez activé le <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentation">plugin "Shoutbox"</a>,
 			vous pouvez paramétrer :', # MODIF
 	'shoutbox_hauteur' => 'la hauteur du bloc des messages :', # MODIF
@@ -946,7 +983,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'フォントを大きくする', # MODIF
 	'taille_diminuer' => 'フォントを小さくする', # MODIF
 	'taille_fichier' => 'ファイルサイズ :', # MODIF
-	'taille_icone_pied' => 'Taille des icônes :', # MODIF
+	'taille_icones_pied' => 'Taille des icones', # MODIF
 	'taille_logo_site' => 'Taille maximum du logo des sites', # MODIF
 	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'taille_police' => 'Taille de la police :', # MODIF
@@ -968,9 +1005,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'title_contact' => '技術担当に問い合わせる', # MODIF
 	'title_escal' => 'Escalオフィシャルサイトとリンクしています', # MODIF
 	'title_espace_redacteurs' => '管理者専用ページ', # MODIF
-	'title_haut_page' => 'ページの先頭に戻る', # MODIF
 	'title_mentions' => 'サイトの法律上の記載事項', # MODIF
-	'title_w3c' => 'XHTML 1.0 有効', # MODIF
 	'titre' => 'Titre', # MODIF
 	'titre_coupe' => 'Nombre de caractères affichés pour le titre des articles', # MODIF
 	'titre_noisette' => 'Titre du bloc', # MODIF
@@ -981,18 +1016,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'A la une', # MODIF
 	'une_bloc' => 'Le bloc "A la une"', # MODIF
+	'une_derniers' => 'Derniers articles', # MODIF
+	'une_derniers_bis' => 'Derniers articles bis', # MODIF
+	'une_derniers_ter' => 'Derniers articles ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
 
 	// V
-	'version' => 'Version actuelle :', # MODIF
+	'version_actuelle' => 'Version actuelle :', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => '動画', # MODIF
 	'videos' => 'Vidéos', # MODIF
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites' => 'Visites', # MODIF
 	'visites_jour' => '１日の訪問数', # MODIF
 	'visiteur' => '訪問者', # MODIF
 	'visiteurs' => '訪問者一覧', # MODIF
-	'votre_nom' => 'あなたのお名前は ?', # MODIF
 	'vu' => '閲覧済み', # MODIF
 
 	// W

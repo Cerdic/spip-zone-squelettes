@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_descriptif' => 'Visualizzazione della descrizione', # MODIF
 	'affichage_form_reponse' => 'Visualizzazione del modulo di risposta sotto l’articolo', # MODIF
 	'affichage_image' => 'Visualizzazione della prima immagine', # MODIF
+	'affichage_logo_site' => 'Affichage du logo du site s’il existe', # MODIF
 	'affichage_mots_cles' => '<strong>Affissione delle parole chiave associate agli articoli</strong>', # MODIF
 	'affichage_mots_cles_article' => 'Per il pagina articolo', # MODIF
 	'affichage_mots_cles_rubrique' => 'Per la pagina rubrico', # MODIF
@@ -79,8 +80,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'arrondis_menus' => 'I menù', # MODIF
 	'arrondis_onglets' => 'Schede', # MODIF
 	'article' => 'articolo', # MODIF
+	'article_acces_direct_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Accès direct" si vous le laissez activé', # MODIF
+	'article_acces_direct_texte' => '	Ici vous pouvez afficher le contenu d’un article avec le mot-clé "acces-direct".<br /><br />
+								Le titre du bloc sera celui de l’article.', # MODIF
+	'article_acces_direct_titre' => 'Accès direct', # MODIF
 	'article_archive' => 'Ricordate!', # MODIF
 	'article_dernier' => 'Ultimo articolo pubblicato: ', # MODIF
+	'article_edito_descriptif' => 'Cet article sera celui qui apparaîtra dans le bloc "Edito" si vous le laissez activé', # MODIF
+	'article_edito_texte' => 'Ici vous pouvez afficher le contenu d’un article avec le mot-clé "edito".<br /><br />
+						Le titre du bloc sera celui de l’article.', # MODIF
+	'article_edito_titre' => 'Edito', # MODIF
 	'article_forum' => 'Forum di discussione dell’articolo', # MODIF
 	'article_imprimer' => 'Stampare', # MODIF
 	'article_libre1' => 'Articolo libero 1', # MODIF
@@ -100,11 +109,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             apparirà automaticamente nelle pagine "articolo".   <br />
             Può essere visualizzato anche nelle pagine "rubrica.', # MODIF
 	'articlepdf_plugin' => 'Plugin ArticlePDF', # MODIF
-	'articles' => 'articoli', # MODIF
 	'articles_associes' => 'Vedere gli articoli associati a ', # MODIF
 	'articles_associes_mot' => 'Vedere gli articoli associati a questa parola', # MODIF
 	'articles_auteur' => 'Questo autore ha scritto:', # MODIF
-	'articles_autres' => 'e gli altri', # MODIF
 	'articles_derniers' => 'Gli ultimi articoli', # MODIF
 	'articles_explication' => 'Qui è possibile impostare la larghezza massima delle immagini nei tuoi articoli. <br /> 
             L’impostazione predefinita è 400 pixel in articoli convenzionali e 850 pixel in articoli a pieno schermo, 
@@ -114,11 +121,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_largeur_images2' => 'Larghezza massima delle immagini per le voci a schermo intero (elementi con la parola chiave "pleinepage", che sopprime blocchi laterali) :', # MODIF
 	'articles_les' => 'Articoli', # MODIF
 	'articles_logo' => 'Dimensione massima del logo degli articoli', # MODIF
+	'articles_min' => 'articoli', # MODIF
 	'articles_plus_vus' => 'Articoli più popolari', # MODIF
 	'articles_portfolio' => 'Visualizza il portfolio (si sovrappone al blocco "Per scaricare")', # MODIF
+	'articles_portfolio_descriptif' => 'Afficher le descriptif du document s’il existe', # MODIF
 	'articles_premier_message' => 'Mostra solo il primo messaggio di ogni thread, le risposte sono espandibili', # MODIF
 	'articles_reponses_forum' => 'Risposte del forum dell’articolo', # MODIF
 	'articles_rubrique' => 'Articoli di rubrica', # MODIF
+	'articles_site' => 'Vedere gli articoli di questo sito', # MODIF
 	'articles_trouves' => 'articoli trovati', # MODIF
 	'aucun' => 'No', # MODIF
 	'aujourdhui' => 'Oggi: ', # MODIF
@@ -256,11 +266,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_page_style' => 'UN PO’ DI STILE', # MODIF
 	'cfg_page_textes' => 'Testi', # MODIF
 	'cfg_page_titre_contenu' => 'Titolo e contenuti', # MODIF
+	'chercher_parmi_les_signataires' => 'Chercher parmi les signataires', # MODIF
+	'choix_article' => 'le modèle choix_article d’Escal', # MODIF
+	'choix_article_choix' => 'Choix des articles', # MODIF
+	'choix_article_choix_explication' => 'Numéros des articles séparés par des virgules', # MODIF
+	'choix_article_colonne' => 'Nombre de colonnes', # MODIF
+	'choix_article_colonne_explication' => 'Entrer un chiffre de 1 à 3', # MODIF
+	'choix_article_fond' => 'Couleur du fond', # MODIF
+	'choix_article_fond_explication' => 'soit une couleur (nom, code hexa ou code rgb)
+										<br/>soit un dégradé (exemple : linear-gradient(#DAE6F6, #336699) )
+										<br/>soit une image (exemple : url("squelettes/images/mon_image.jpg") no-repeat).', # MODIF
 	'choix_blocs_lateraux' => 'Scelta dei blocchi laterali', # MODIF
 	'choix_deux' => 'Due', # MODIF
 	'choix_trois' => 'Tre', # MODIF
 	'choix_une' => 'Uno', # MODIF
-	'clic_telechargement' => 'Cliccare per vedere o scaricare', # MODIF
+	'clic_suite' => 'Cliquer pour lire la suite', # MODIF
 	'collegues' => 'Tutti i colleghi', # MODIF
 	'colonne_extra' => 'Colonne "extra" (a destra per default)', # MODIF
 	'colonne_nav' => 'Colonne "navigazione" (a sinistra per default)', # MODIF
@@ -404,6 +424,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'envoi_mail_nom' => 'Cognome: ', # MODIF
 	'envoi_mail_prenom' => 'Nome: ', # MODIF
 	'envoyer_message' => 'Mandare un messaggio a ', # MODIF
+	'erreur401' => 'Erreur 401', # MODIF
+	'erreur401_message' => 'Vous n’avez pas les autorisations suffisantes pour accéder à la page ou au document demandé... <br />
+						Veuillez contacter le webmestre du site pour y accéder
+						en utilisant la page [Contact|Page contact->@url@] de ce site.', # MODIF
 	'erreur404' => 'Errore 404', # MODIF
 	'erreur404_message' => 'La pagina che cerchi non esiste o non è più sul sito.
                     Se pensi che possa trattarsi di un errore nel sito,
@@ -411,11 +435,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     utilizzando il pagina [Contatto|Pagina contatto->@url@] di questo sito.', # MODIF
 	'escal' => 'Escal', # MODIF
 	'espace_redacteurs' => 'Spazio redattori', # MODIF
-	'et' => 'e', # MODIF
-	'evenements' => 'Prossimi eventi', # MODIF
 	'evenements_ajouter' => 'Aggiungere un evento<br />(Accesso riservato)', # MODIF
 	'evenements_associes' => 'Eventi correlati :', # MODIF
 	'evenements_non' => 'Nessun evento in programma', # MODIF
+	'evenements_venir' => 'Prossimi eventi', # MODIF
 
 	// F
 	'facebook_bouton' => 'Aspetto del pulsante:', # MODIF
@@ -479,9 +502,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_image' => 'Immagine di sfondo', # MODIF
 	'fonds_textes' => 'Altri testi', # MODIF
 	'fonds_textes_alerte' => 'Gli avvisi della pagina contatti', # MODIF
-	'fonds_textes_comment' => '(ad esempio in caso di campi obbligatori non riempiti)', # MODIF
+	'fonds_textes_comment1' => '(ad esempio in caso di campi obbligatori non riempiti)', # MODIF
+	'fonds_textes_comment2' => ' : identification, recherche, newsletter, inscription ...', # MODIF
 	'fonds_textes_explication' => 'Devi scegliere il colore di alcuni testi specifici...', # MODIF
 	'fonds_textes_forum' => 'Il forum del sito', # MODIF
+	'fonds_textes_input' => 'Les zones de saisie de SPIP', # MODIF
 	'fonds_textes_liens' => 'I link', # MODIF
 	'fonds_textes_liens_survol' => 'I link su cui passa il mouse', # MODIF
 	'fonds_textes_liens_vus' => 'I link visitati', # MODIF
@@ -496,6 +521,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'format' => 'Formato :', # MODIF
 	'forum' => 'Forum', # MODIF
 	'forum_trouve' => 'messaggio di forum trovato', # MODIF
+	'forums' => 'forums', # MODIF
 	'forums_trouves' => 'messaggi di forum trovati', # MODIF
 
 	// G
@@ -555,22 +581,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// M
 	'meme_rub' => 'Nella stessa rubrica', # MODIF
 	'mentions' => 'Menzioni legali', # MODIF
-	'mentions_activer' => 'Attivare il link alla pagina "Mentions légales":', # MODIF
 	'mentions_explication' => 'Se avete attivato il <a class="spip_out" href="http://contrib.spip.net/Mentions-Legales" title="Documentatione">plugin "Mentions légales"</a>,
             è possibile far apparire il link verso la pagina dedicata al piè di pagina del sito.', # MODIF
 	'mentions_plugin' => 'Plugin Mentions légales', # MODIF
 	'menu' => 'Menù', # MODIF
 	'menu_horizontal' => 'Menù orizzontale', # MODIF
+	'menu_horizontal_accueil' => 'Pour le lien vers l’accueil', # MODIF
 	'menu_horizontal_affichage' => 'Visualizzazione del menù orizzontale', # MODIF
 	'menu_horizontal_articles' => 'Con visualizzazione di articoli', # MODIF
+	'menu_horizontal_choix' => 'Choix du menu horizontal', # MODIF
+	'menu_horizontal_choix_bloc' => 'Méga menu déroulant', # MODIF
+	'menu_horizontal_choix_liste' => 'Liste déroulante', # MODIF
 	'menu_horizontal_fixer' => 'Fissare il menù in alto durante lo scroll del sito', # MODIF
 	'menu_horizontal_hauteur' => 'Altezza del logo della rubrica (in pixel)	(assicurati che i tuoi loghi abbiano un’altezza almeno uguale al valore scelto)', # MODIF
 	'menu_horizontal_logo' => 'Visualizzaione del logo della rubrica (se esiste)', # MODIF
+	'menu_horizontal_logo_accueil' => 'Affichage du logo', # MODIF
+	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides', # MODIF
 	'menu_horizontal_secteur' => 'Per le rubriche di primo livello (= settori):', # MODIF
 	'menu_horizontal_titre' => 'Visualizzazione del titolo della rubrica', # MODIF
+	'menu_horizontal_titre_accueil' => 'Affichage du mot "Accueil"', # MODIF
 	'menu_vertical_depliant' => 'Menù verticale a volantino', # MODIF
 	'menu_vertical_deroulant' => 'Menù a discesa sulla destra', # MODIF
-	'message_non' => '(Nessun messaggio per il momento)', # MODIF
 	'meteo_titre_conditions' => 'Il meteo a', # MODIF
 	'mini_calendrier' => 'Mini calendrier', # MODIF
 	'mot_acces_direct' => 'per selezionare la voce da visualizzare nel blocco "Accès direct"', # MODIF
@@ -660,6 +691,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_calendrier_explication2' => '(questa scelta si applicherà anche al blocco "Prossimi eventi") ', # MODIF
 	'noisettes_calendrier_lien_agenda' => 'Titolo con il link all’agenda a pagina intera', # MODIF
 	'noisettes_calendrier_pagination' => 'Numero di articoli o di eventi per pagina:', # MODIF
+	'noisettes_calendrier_renvoi' => 'Pour les événements avec utilisation du plugin Agenda, le lien renvoie vers', # MODIF
+	'noisettes_calendrier_renvoi_article' => 'l’article', # MODIF
+	'noisettes_calendrier_renvoi_evenement' => 'l’évènement', # MODIF
 	'noisettes_decouvrir' => 'Scoprire', # MODIF
 	'noisettes_decouvrir_hasard' => 'Numero di articoli presi a caso:', # MODIF
 	'noisettes_decouvrir_moins_vus' => 'Numero di articoli meno visitati:', # MODIF
@@ -758,7 +792,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_bis_pagination' => 'Modello di impaginazione (provali!)', # MODIF
 	'onglets_choix' => 'Scelta delle schede', # MODIF
 	'onglets_cinq' => 'Quinta scheda', # MODIF
-	'onglets_derniers' => 'Articoli in evidenza da "Derniers articles" ', # MODIF
 	'onglets_derniers_article' => 'Paramétrage de chaque article', # MODIF
 	'onglets_derniers_arts' => 'Ultimi articoli', # MODIF
 	'onglets_derniers_arts2' => 'Ultimi articoli bis', # MODIF
@@ -845,8 +878,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'pied_lien_rss' => 'Icona con link alla pagina dei feed RSS', # MODIF
 	'pied_lien_squelette' => 'Link al codice sorgente della pagina', # MODIF
 	'pied_lien_texte' => 'testi', # MODIF
-	'pied_lien_xhtml' => 'Icona con link al validatore XHTML', # MODIF
-	'plan_site' => 'Mappa del sito', # MODIF
 	'pointeur' => 'Puntatori del mouse', # MODIF
 	'pointeur_defaut' => 'puntatore di sistema', # MODIF
 	'pointeur_explication' => 'Da qui è possibile cambiare le immagini dei puntatori. Queste immagini devono:<br />
@@ -865,6 +896,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Q
 	'qrcode_explication' => 'Se avete attivato il plugin <strong><a  class="spip_out" href="https://contrib.spip.net/Qrcode" title="Documentation">plugin "QrCode"</a></strong>,
 	il QrCode dell’URL dei vostri articoli si mostrerà in basso della versione stampabile degli articoli', # MODIF
+	'qrcode_plugin' => 'Plugin QrCode', # MODIF
 
 	// R
 	'rainette' => 'Rainette', # MODIF
@@ -875,6 +907,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
             con l’aggiunta del nome della città desiderata dopo <strong>"where="</strong> nella barra degli indirizzi.<br />
             Il codice da inserire sarà simile a <strong>ITXX0067</strong> (che corrisponde alla città di Roma).', # MODIF
 	'rainette_plugin' => 'Plugin Rainette', # MODIF
+	'rainette_service' => 'Choix du service météo', # MODIF
 	'rappel_discussion' => 'Ultima discussione', # MODIF
 	'recherche' => 'Ricerca', # MODIF
 	'recherche_articles_non' => 'Nessuno articolo trovato per questa ricerca', # MODIF
@@ -888,23 +921,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reinitialiser' => 'Reset', # MODIF
 	'reinitialiser_tout' => 'Reset completo', # MODIF
 	'repondre_message' => 'Rispondere al messaggio', # MODIF
-	'rubrique' => 'La rubrica', # MODIF
 	'rubrique_articles' => 'Gli articoli di questa rubrica', # MODIF
+	'rubrique_cachee_descriptif' => 'Rubrique pour les articles spéciaux qui n’apparaîtront ni dans le menu, ni dans le plan du site, ni dans les derniers articles', # MODIF
+	'rubrique_cachee_titre' => 'Rubrique cachée', # MODIF
 	'rubrique_contenu' => 'Questa rubrica contiene', # MODIF
 	'rubrique_date' => 'Visualizzazione della data di pubblicazione e di modifica degli articoli', # MODIF
+	'rubrique_la' => 'La rubrica', # MODIF
 	'rubrique_pagin_bas' => 'Visualizza l’impaginazione in basso', # MODIF
 	'rubrique_pagin_haut' => 'Visualizza l’impaginazione in alto', # MODIF
 	'rubrique_rss' => 'Visualizzazione del logo RSS con link alla pagina dei flussi', # MODIF
 	'rubrique_rss2' => 'Visualizzazione del logo RSS con link alla pagina dei flussi per le sotto-rubriche', # MODIF
+	'rubrique_site_reference' => 'Sito inserito in campionario in questa rubrica', # MODIF
 	'rubrique_sites_references' => 'I siti inseriti in questa rubrica', # MODIF
 	'rubrique_sous_rubriques' => 'Le sotto-rubriche di questa rubrica', # MODIF
 	'rubrique_taille_logo' => 'Domensione dei loghi per le sezioni e gli articoli elencati', # MODIF
 	'rubrique_trouvee' => 'rubrica trovata', # MODIF
-	'rubriques' => 'rubriche', # MODIF
+	'rubriques_min' => 'rubriche', # MODIF
 	'rubriques_trouvees' => 'rubriche trovate', # MODIF
 
 	// S
 	'savoirplus' => 'Per saperne di più', # MODIF
+	'secondes' => 'secondes', # MODIF
 	'shoutbox_explication' => 'Se avete attivato il <a class="spip_out" href="https://contrib.spip.net/Shoutbox-pour-SPIP" title="Documentatione">plugin "Shoutbox"</a>, 
 			è possibile impostare:', # MODIF
 	'shoutbox_hauteur' => 'l’altezza del blocco dei messaggi: ', # MODIF
@@ -945,7 +982,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'taille_augmenter' => 'Aumentare la grandezza dei caratteri', # MODIF
 	'taille_diminuer' => 'Diminuire la grandezza dei caratteri', # MODIF
 	'taille_fichier' => 'Dimensioni del file:', # MODIF
-	'taille_icone_pied' => 'Taille des icônes :', # MODIF
+	'taille_icones_pied' => 'Taille des icones', # MODIF
 	'taille_logo_site' => 'Taille maximum du logo des sites', # MODIF
 	'taille_outils_article' => 'Taille des icones de la barre d’outils', # MODIF
 	'taille_police' => 'Taglia della polizia :', # MODIF
@@ -968,9 +1005,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'title_contact' => 'Contattare il responsabile tecnico', # MODIF
 	'title_escal' => 'Link verso il sito ufficiale di Escal', # MODIF
 	'title_espace_redacteurs' => 'Lo spazio privato degli autori ed amministratori', # MODIF
-	'title_haut_page' => 'Risalire in cima alla pagina', # MODIF
 	'title_mentions' => 'Menzioni legali del sito', # MODIF
-	'title_w3c' => 'Sito valido XHTML 1.0 Strict', # MODIF
 	'titre' => 'Titolo', # MODIF
 	'titre_coupe' => 'Numero di caratteri visualizzati per il titolo dell’articolo:', # MODIF
 	'titre_noisette' => 'Titolo del blocco:', # MODIF
@@ -981,18 +1016,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// U
 	'une' => 'In primo piano', # MODIF
 	'une_bloc' => 'Il blocco "In primo piano"', # MODIF
+	'une_derniers' => 'Ultimi articoli', # MODIF
+	'une_derniers_bis' => 'Ultimi articoli bis', # MODIF
+	'une_derniers_ter' => 'Ultimi articoli ter', # MODIF
+	'une_mots_cles' => 'Articles avec mots-clés', # MODIF
 
 	// V
-	'version' => 'Version actuelle :', # MODIF
+	'version_actuelle' => 'Version actuelle :', # MODIF
 	'version_maj' => 'Version disponible :', # MODIF
 	'version_ok' => 'Vous avez la dernière version disponible', # MODIF
 	'video' => 'Vídeo', # MODIF
 	'videos' => 'Video', # MODIF
+	'videos_explication' => 'Pour afficher vos vidéos ici, vous devez <br/>
+	- activer le <a class="spip_out" href="https://contrib.spip.net/Plugin-Video-s" title="Documentation">plugin "Vidéo(s)"</a> <br/>
+	- associer le mot-clé "video-une" aux articles contenant vos vidéos', # MODIF
 	'visites' => 'Visite', # MODIF
 	'visites_jour' => 'visite per giorno', # MODIF
 	'visiteur' => 'visitatore', # MODIF
 	'visiteurs' => 'visitatori', # MODIF
-	'votre_nom' => 'Il vostro nome?', # MODIF
 	'vu' => 'visto', # MODIF
 
 	// W

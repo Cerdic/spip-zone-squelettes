@@ -596,7 +596,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_horizontal_hauteur' => 'Hauteur des logos de rubrique en pixels	(Veillez à ce que vos logos aient une hauteur au moins égale à la valeur choisie)',
 	'menu_horizontal_logo' => 'Affichage du logo de la rubrique s’il existe',
 	'menu_horizontal_logo_accueil' => 'Affichage du logo',
-	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides',
+	'menu_horizontal_notice' => 'Attention : ne pas mettre ces 2 valeurs à "non" pour ne pas vous retrouver avec des entrées de menu vides',
 	'menu_horizontal_secteur' => '<strong>Pour les rubriques de premier niveau (= secteur) :</strong><br />
 							→ s’applique aussi au menu sur mobile',
 	'menu_horizontal_titre' => 'Affichage du titre de la rubrique',
@@ -905,7 +905,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rainette_explication' => 'Si vous avez activé le
 	<a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure" title="Documentation">plugin "Rainette"</a>,
             entrez ci-dessous le code de la ville qui vous intéresse.<br />
-            Pour connaitre le code à rentrer, plus d\'explications sur la
+            Pour connaitre le code à rentrer, plus d’explications sur la
             <a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-mae#L-indication-du-lieu" title="Documentation">documentation du plugin</a>',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choix du service météo',
