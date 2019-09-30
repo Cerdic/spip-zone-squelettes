@@ -5,7 +5,20 @@
 <div id="galleria#GET{artUID}">
 <BOUCLE_galleria (DOCUMENTS){id_article=#ENV{id}}{extension==jpg|gif|png} {pagination #ENV{pagesize,30}} {mode=#ENV{mode,image}}{par num titre, titre}>
 [(#PLUGIN{PHOTO_INFOS}|oui)
+
+[(#CONFIG{escal/config/metadonnees}|non)
     #SET{title,#INCLURE{fond=inclusions/inc-exif}{fichier=#FICHIER} }
+]
+[(#CONFIG{escal/config/metadonnees}|=={metadonnees}|oui)
+    #SET{title,#INCLURE{fond=inclusions/inc-exif}{fichier=#FICHIER} }
+]
+[(#CONFIG{escal/config/metadonnees}|=={titre}|oui)
+    #SET{title,#TITRE|textebrut}
+]
+[(#CONFIG{escal/config/metadonnees}|=={meta_et_titre}|oui)
+    #SET{title,#INCLURE{fond=inclusions/inc-exif2}{fichier=#FICHIER}{titre=#TITRE|textebrut} }
+]
+    
 ]
 [(#PLUGIN{PHOTO_INFOS}|non)
     #SET{title,#TITRE|textebrut}

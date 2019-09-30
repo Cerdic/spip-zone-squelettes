@@ -72,7 +72,21 @@
                     </div>
             </li>
             
-            
+              #SET{name,metadonnees}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:metadonnees_explication:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_metadonnees" value="metadonnees"
+                            [(#ENV{#GET{name}}|=={metadonnees}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_metadonnees"><:escal:metadonnees:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_titre" value="titre"
+                            [(#ENV{#GET{name}}|=={titre}|oui)checked="checked"] /><label for="#GET{name}_titre"><:escal:titre:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_meta_et_titre" value="meta_et_titre"
+                            [(#ENV{#GET{name}}|=={meta_et_titre}|oui)checked="checked"] /><label for="#GET{name}_meta_et_titre"><:escal:metadonnees_titre:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+                    </div>
+            </li>
 
     </ul>
 
