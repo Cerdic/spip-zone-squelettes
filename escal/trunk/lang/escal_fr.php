@@ -605,7 +605,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'menu_vertical_deroulant' => 'Menu vertical déroulant à droite',
 	'metadonnees' => 'Metadonnées',
 	'metadonnees_explication' => 'Si vous avez activé le plugin <a class="spip_out" href="http://contrib.spip.net/Galleria-fr" title="Documentation">Metadonnées</a>
-							vous pouvez choisir d\'afficher les métadonnées de vos photos ou bien leur titre ou bien les 2',
+							vous pouvez choisir d’afficher les métadonnées de vos photos ou bien leur titre ou bien les 2',
 	'metadonnees_titre' => 'Titre et Metadonnées',
 	'meteo_titre_conditions' => 'Conditions météo à',
 	'mini_calendrier' => 'Mini calendrier',
