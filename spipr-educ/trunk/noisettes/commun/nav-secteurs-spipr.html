@@ -1,0 +1,49 @@
+<BOUCLE_test_doublon_rubrique(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param5,#PARAMETRE5}
+</BOUCLE_test_doublon_rubrique>
+#SET{listeRubs, #GET{param5}|explode{','}}
+<BOUCLE_doublon_rubrique(RUBRIQUES){id_rubrique IN #GET{listeRubs}} {doublons}>
+</BOUCLE_doublon_rubrique>
+
+<div class="navbar">
+<div class="menu menu-container navbar-inner">
+	<ul class="menu-items menu-liste nav span12">
+		
+		<BOUCLE_graphisme_menu_icones(spipr_educ){nom = graphisme_menu_icones} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+		[(#PARAMETRE1|=={oui}|?{[<li class="item menu-entree item-picto home"><a href="(#URL_SITE_SPIP)/" class="icon-nav-home"> </a></li>],[<li><a href="(#URL_SITE_SPIP)/">Accueil</a></li>]})]
+		[(#PARAMETRE2|=={oui}|?{[(#PLUGIN{agenda}|oui)<li class="item menu-entree item-picto btagenda"><a href="#URL_PAGE{agenda}" class="icon-nav-calendar" title="<:agenda:agenda:>"></a></li>],''})]
+		[(#PARAMETRE3|=={oui}|?{[<li class="item menu-entree item-picto btcontact"><a href="(#URL_PAGE{contact})" class="icon-nav-contact" title="<:contact:>"></a></li>],''})]
+		[(#PARAMETRE4|=={oui}|?{[<li class="item menu-entree item-picto btsites "><a href="(#URL_PAGE{sites})" class="icon-nav-star" title="<:spipr_educ:sites:>" ></a></li>],''})]
+		</BOUCLE_graphisme_menu_icones>
+		
+		<BOUCLE_rubriques(RUBRIQUES) {racine}{par num titre, titre} {doublons}>
+		<B_sous-rubriques>
+		<li class="item item-#ID_RUBRIQUE menu-entree dropdown[ (#EXPOSE{on active})]">
+			<a href="#URL_RUBRIQUE" class="dropdown-toggle" data-toggle="dropdown"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#TITRE)] <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<BOUCLE_sous-rubriques(RUBRIQUES){id_parent}{par num titre,titre} {doublons}>
+				<li class="item menu-entree[ (#EXPOSE{on active})]">
+					<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#TITRE)]</a>
+					<B_sous-sous-rubriques>
+						<ul class="menu-items">
+							<BOUCLE_sous-sous-rubriques(RUBRIQUES){id_parent}{par num titre,titre} {doublons}>
+								<li class="item menu-entree[ (#EXPOSE{on active})]"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#TITRE)]</a></li>
+							</BOUCLE_sous-sous-rubriques>
+						</ul>
+					</B_sous-sous-rubriques>
+				</li>
+				</BOUCLE_sous-rubriques>
+				<li class="divider"></li>
+				<li class="item menu-entree tout_voir"><a href="#URL_RUBRIQUE"><:spipr_educ:tout_voir:></a></li>
+			</ul>
+		</li>
+		</B_sous-rubriques>
+		<li class="item menu-entree item-#ID_RUBRIQUE[ (#EXPOSE{on active})]"><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html|couper{100})"]>[(#TITRE)]</a></li>
+		<//B_sous-rubriques>
+		</BOUCLE_rubriques>
+	</ul>
+</div>
+</div>

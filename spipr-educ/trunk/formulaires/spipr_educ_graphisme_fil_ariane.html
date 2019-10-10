@@ -1,0 +1,52 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Paramètres du fil d'ariane</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formcouleurariane">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<p>
+		On choisira des valeurs hexadécimales, exemple : <em>#330099</em>
+	</p>
+	
+	<fieldset>
+		<legend>Couleurs</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="breadcrumbBackground">Couleur de fond</label>
+				<input type='text' name='breadcrumbBackground' id='breadcrumbBackground' value="[(#ENV**{breadcrumbBackground})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="breadcrumbShadow">Couleur de l'ombre du texte</label>
+				<input type='text' name='breadcrumbShadow' id='breadcrumbShadow' value="[(#ENV**{breadcrumbShadow})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="breadcrumbDividerColor">Couleur du caractère séparateur ></label>
+				<input type='text' name='breadcrumbDividerColor' id='breadcrumbDividerColor' value="[(#ENV**{breadcrumbDividerColor})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="breadcrumbActiveColor">Couleur du texte de l'élément actif</label>
+				<input type='text' name='breadcrumbActiveColor' id='breadcrumbActiveColor' value="[(#ENV**{breadcrumbActiveColor})]" class="text palette" />
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Règles CSS</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="breadcrumbCSS" style="padding-bottom:16px;">Règles CSS ou LESS spécifiques pour le fil d'ariane (s'applique sur <em>.breadcrumb</em>)</label>
+				<textarea name='breadcrumbCSS' id='breadcrumbCSS' class="text" rows="6">[(#ENV**{breadcrumbCSS})]</textarea>
+			</div>
+		</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_graphisme_fil_ariane' value='ok' />
+	
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

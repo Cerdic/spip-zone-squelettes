@@ -1,0 +1,55 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Couleurs des tableaux</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formcouleurtableaux">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	<p>
+		On choisira des valeurs hexadécimales pour les couleurs, exemple : <em>#330099</em>
+	</p>
+
+	<fieldset>
+		<legend>Couleurs de fond</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="tableBackground">Couleur de fond des lignes impaires</label>
+				<input type='text' name='tableBackground' id='tableBackground' value="[(#ENV**{tableBackground})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="tableBackgroundAccent">Couleur de fond des lignes paires</label>
+				<input type='text' name='tableBackgroundAccent' id='tableBackgroundAccent' value="[(#ENV**{tableBackgroundAccent})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="tableBackgroundHover">Couleur de fond des lignes au survol</label>
+				<input type='text' name='tableBackgroundHover' id='tableBackgroundHover' value="[(#ENV**{tableBackgroundHover})]" class="text palette" />
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Bordures</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<input type='radio' class="radio" name='bordures_verticales' value='non' id='bordures_verticales_non'[ (#ENV**{bordures_verticales}|=={non}|oui)checked="checked"] />
+				<label for='bordures_verticales_non'>Tableau avec bordures horizontales uniquement</label>
+			</div>
+			<div class="choix" style="padding-bottom:14px;">
+				<input type='radio' class="radio" name='bordures_verticales' value='oui' id='bordures_verticales_oui'[ (#ENV**{bordures_verticales}|=={oui}|oui)checked="checked"] />
+				<label for='bordures_verticales_oui'>Tableau avec bordures horizontales et verticales</label>
+			</div>
+			<div class="choix">
+				<label for="tableBorder">Couleur des bordures du tableau</label>
+				<input type='text' name='tableBorder' id='tableBorder' value="[(#ENV**{tableBorder})]" class="text palette" />
+			</div>
+		</div>
+	</fieldset>
+
+	<input type='hidden' name='hidden_graphisme_tableaux' value='ok' />
+	
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

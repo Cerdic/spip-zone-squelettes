@@ -1,0 +1,136 @@
+<?php
+if ('#ENV{presence_fichier}'=='oui') {
+?>
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Définir des images de fond dans divers secteurs du site</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formconfigfichier">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+		<fieldset>
+			<legend>Fichier image</legend>			
+			<ul class="editer-groupe">
+				<li class="choix">
+					<label for="nomfichier">Choix du fichier</label>
+					<select name="nomfichier">
+					<?php
+					$dir = opendir(_DIR_IMG."spipr_educ");
+					while ($nom_fichier = readdir($dir)) {
+						if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+							echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+						}
+					}
+					?>
+					</select>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>Secteur de l'image</legend>
+			<ul class="editer-groupe">
+				<li class="choix">
+					<label for="secteurfichier">Choix du secteur</label>
+					<select name="secteurfichier">
+						<option value="fond_ecran">&Eacute;cran</option>
+						<option value="fond_page">Page</option>
+						<option value="fond_entete">Entête</option>
+						<option value="fond_barre_menu">Menu horizontal</option>
+						<option value="fond_breadcrumb">Fil d'ariane</option>
+						<option value="fond_pied">Pied de page</option>
+					</select>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>Position verticale</legend>
+			<ul class="editer-groupe">
+				<li class="choix">
+					<input type='radio' class="radio" name='positionverticale' value='top' id='positionverticale_haut' checked />
+					<label for='positionverticale_haut'>En haut</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionverticale' value='center' id='positionverticale_centre' />
+					<label for='positionverticale_centre'>Au centre</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionverticale' value='bottom' id='positionverticale_bas' />
+					<label for='positionverticale_bas'>En bas</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionverticale' value='choix' id='positionverticale_choix' />
+					<label for='positionverticale_choix'>Choisir la position en pixels ou en pourcentage (exemple : <b>30px</b> ou <b>20%</b>)</label>
+					<input type='text' class='text' name='positionverticale_valeur' id='positionverticale_valeur'>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>Position horizontale</legend>
+			<ul class="editer-groupe">
+				<li class="choix">
+					<input type='radio' class="radio" name='positionhorizontale' value='left' id='positionhorizontale_gauche' checked />
+					<label for='positionhorizontale_haut'>&Agrave; gauche</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionhorizontale' value='center' id='positionhorizontale_centre' />
+					<label for='positionhorizontale_centre'>Au centre</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionhorizontale' value='right' id='positionhorizontale_droite' />
+					<label for='positionhorizontale_droite'>&Agrave; droite</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='positionhorizontale' value='choix' id='positionhorizontale_choix' />
+					<label for='positionhorizontale_choix'>Choisir la position en pixels ou en pourcentage (exemple : <b>30px</b> ou <b>20%</b>)</label>
+					<input type='text' class='text' name='positionhorizontale_valeur' id='positionhorizontale_valeur'>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>L'image doit-elle être répétée ?</legend>
+			<ul class="editer-groupe">
+				<li class="choix">
+					<input type='radio' class="radio" name='repetition' value='no-repeat' id='repetition_non' checked />
+					<label for='repetition_non'>Aucune répétition</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='repetition' value='repeat-x' id='repetition_horizontale' />
+					<label for='repetition_horizontale'>Répétition horizontale uniquement</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='repetition' value='repeat-y' id='repetition_verticale' />
+					<label for='repetition_verticale'>Répétition verticale uniquement</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='repetition' value='repeat' id='repetition_oui' />
+					<label for='repetition_oui'>Répétition horizontale et verticale</label>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>Arrière plan</legend>
+			<ul class="editer-groupe">
+				<li class="choix">
+					<input type='radio' class="radio" name='attachement' value='scroll' id='attachement_normal' checked />
+					<label for="attachement_normal">L'image se déplace avec l'arrière plan</label>
+				</li>
+				<li class="choix">
+					<input type='radio' class="radio" name='attachement' value='fixed' id='attachement_fixe' />
+					<label for="attachement_fixe">L'image est fixe sur l'écran</label>
+				</li>
+			</ul>
+		</fieldset>
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>
+<?php
+}
+else {
+?>
+<div class='box notice'><b class='top'><b class='tl'></b><b class='tr'></b></b><div class='inner'><div class='bd'>Pour pouvoir insérer des images de fond, vous devez tout d'abord téléverser une image sur le serveur en utilisant le formulaire ci-dessous.</div></div></div>
+<?php
+}
+?>

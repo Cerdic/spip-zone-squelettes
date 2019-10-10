@@ -1,0 +1,56 @@
+#CACHE{0}
+<B_test>
+[(#REM)Pour l'instant on teste uniquement avec les blocs de la distribution, on recodera plus tard pour les blocs persos lorsque le module d'insertion sera développé]
+<div class='box note'><div class='inner'><div class='bd'>
+<h3>Ajout des éléments non affichés</h3>
+
+<p>Vous allez pouvoir ajouter des éléments dans #ENV{page_texte} : choisissez un élément et le secteur dans lequel l'ajouter.</p>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+#SET{tableau_secteur, #ARRAY{header,Entête,breadcrumb,Fil d'ariane,content,Colonne de contenus,aside,Colonne secondaire,extra,Colonne tertiaire,footer,Pied de page,head,Entêtes html,head_js,Déclarations Javascript}}
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}restaurer'>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<fieldset>
+		<legend>Choix du bloc</legend>
+		<div class="editer-groupe">
+			<BOUCLE_test(spipr_educ){parametre1=#ENV{page}} {nom_sauvegarde='en_cours_d_utilisation_SPIPr'} {parametre2='off'} {par nom}>
+			<div class="choix">
+				<label for="id_#NOM">
+				<input type="radio"  class="radio" id="id_#NOM" name="id_bloc" value="#ID" />
+				<?php 
+					if ('#TYPE'=='bloc de base') {echo _T('spipr_educ:'.#NOM);}
+					else echo 'Bloc personnel : <b>#NOM</b>';?>
+				</label>
+			</div>
+			</BOUCLE_test>
+		</div>
+	</fieldset>
+	<B_test2>
+	<fieldset>
+		<legend>Choix du secteur</legend>
+		<div class="editer-groupe">
+			<BOUCLE_test2(DATA){source table,#GET{tableau_secteur}}>
+			<div class="choix">
+				<label for="secteur_#CLE">
+				<input type="radio"  class="radio" id="secteur_#CLE" name="nom_secteur" value="#CLE" />
+				#VALEUR
+				</label>
+			</div>			
+			</BOUCLE_test2>
+		</div>
+	</fieldset>
+	</B_test2>
+	<p class='boutons'><input type='submit' class='submit' value='Ajouter' /></p>
+</form>
+</div>
+
+</div></div></div>
+</B_test>

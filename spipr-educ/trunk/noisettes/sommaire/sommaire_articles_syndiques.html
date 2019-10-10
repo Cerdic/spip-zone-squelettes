@@ -1,0 +1,22 @@
+<BOUCLE_pagination_sommaire_articles_syndiques(spipr_educ)
+	{nom=sommaire_articles_syndiques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:nouveau_web:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_sommaire_articles_syndiques>
+
+[(#REM) Sur le Web ]
+<B_syndic>
+<div class="liste syndic_articles" id="sommaire_articles_syndiques">
+	#ANCRE_PAGINATION
+	[<h2 class="h2">(#GET{titreBloc})</h2>]
+	<ul class="liste-items">
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date} {inverse} {pagination #GET{nb}}>
+		<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+		</BOUCLE_syndic>
+	</ul>
+	[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+	<div class="clearfix"></div>
+</div>
+</B_syndic>

@@ -1,0 +1,615 @@
+Dimension des frames selon tailles et type :
+
+Sur largeur 1200px :
+
+@gridColumns:             12;
+@gridColumnWidth1200:     70px;
+@gridGutterWidth1200:     30px;
+@gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
+(12 * 70) + 30 * 11 = 840 + 330 = 1170
+
+- layout 7 :
+Base : Width total : 1170px
+
+.core(@NcolContent = 6, @NcolAside = 3, @NcolExtra = 3, @gridColumnWidth = 70px, @gridGutterWidth = 30px) {
+
+    #container{margin:0 auto}
+    #wrapper{float:left;width:100%=1170px;margin-left: 0;}
+    #content{
+      float: inherit;
+      margin:0;
+      width: (70 * 6) + (30 * (5)) = 420 + 150 = 570;
+      margin-left correspond à la largeur de aside + 1 largeur de Gutter :(70 * 3) + (30 * (3));
+      margin-right correspond à la largeur de extra + 1 largeur de Gutter:(70 * 3) + (30 * (3));
+    }
+    #aside{
+      clear: none;
+      float: left;
+      width: (70 * 3) + (30 * (2)) = 210 + 60 = 270;
+      margin-left: -((70 * (12 = @NcolAside+@NcolExtra+@NcolContent)) + (30 * (@NcolAside+@NcolExtra+@NcolContent - 1)));
+	   = - (840 + 330) = -1170
+    }
+    #extra{
+      clear: none;
+      float: left;
+      width: (70 * 3) + (30 * (2)) = 270;
+      margin-left: -((70 * 3) + (30 * (3 - 1)));
+	   = -(210 + 60) = -270
+    }
+
+    #footer{clear:left;width:100%}
+  }
+}
+
+Passage en charte académique :
+- prévoir un écart de 30px à gauche de aside => #aside margin-left=-1140
+- prévoir un écart de 30px à droite de extra et une réduction de largeur de 60px pour compenser les 2 écarts précédents => #extra width=210 et margin-left=-240
+- déplacer #contenu de 30px vers la droite => #content margin-left=330
+
+En CSS :
+@media (min-width: 1200px) {
+#aside {
+margin-left:-1140px;
+}
+#extra {
+width:210px;
+margin-left:-240px;
+}
+#content {
+margin-left:330px;
+}
+}
+
+Layout 8 : Idem mais inverser #extra et #aside mais en grossisant 
+
+En CSS :
+@media (min-width: 1200px) {
+#extra {
+margin-left:-1140px;
+width:210px;
+}
+#aside {
+margin-left:-300px;
+}
+#content {
+margin-left:270px;
+}
+}
+
+Layout 9 :
+@media (min-width: 1200px) {
+#extra {
+width:210px;
+margin-left:-240px;
+}
+#aside {
+margin-left:-540px;
+}
+#content {
+margin-left:30px;
+}
+}
+
+Layout 10 :
+@media (min-width: 1200px) {
+#extra {
+width:210px;
+margin-left:-540px;
+}
+#aside {
+margin-left:-300px;
+}
+#content {
+margin-left:30px;
+}
+}
+
+Layout 11 :
+@media (min-width: 1200px) {
+#extra {
+width:210px;
+margin-left:-840px;
+}
+#aside {
+margin-left:-1140px;
+}
+#content {
+margin-left:570px;
+}
+}
+Layout 12 :
+@media (min-width: 1200px) {
+#extra {
+width:210px;
+margin-left:-1140px;
+}
+#aside {
+margin-left:-900px;
+}
+#content {
+margin-left:570px;
+}
+}
+
+Layout 33 :
+@media (min-width: 1200px) {
+#extra {
+width:310px;
+margin-right:30px;
+}
+#aside {
+width:310px;
+margin-right:30px;
+}
+#content {
+margin-left:30px;
+}
+}
+Layout 34 :
+@media (min-width: 1200px) {
+#extra {
+width:310px;
+margin-left:30px;
+}
+#aside {
+width:310px;
+margin-left:30px;
+}
+#content {
+margin-right:30px;
+}
+}
+Layout 35 :
+@media (min-width: 1200px) {
+#extra {
+width:770px;
+margin-left:30px;
+}
+#aside {
+width:310px;
+margin-right:30px;
+}
+#content {
+margin-left:30px;
+}
+}
+Layout 36 :
+@media (min-width: 1200px) {
+#extra {
+width:770px;
+margin-left:30px;
+}
+#aside {
+width:310px;
+margin-right:30px;
+}
+#content {
+margin-left:30px;
+}
+}
+Layout 37 :
+@media (min-width: 1200px) {
+#extra {
+width:1110px;
+margin-right:30px;
+margin-left:30px;
+}
+#aside {
+width:310px;
+margin-right:30px;
+}
+#content {
+margin-left:30px;
+}
+}
+Layout 38 :
+@media (min-width: 1200px) {
+#extra {
+width:1110px;
+margin-right:30px;
+margin-left:30px;
+}
+#aside {
+width:310px;
+margin-left:30px;
+}
+#content {
+margin-left:30px;
+margin-right:30px;
+}
+}
+
+Sur largeur 980px à 1200px :
+
+@gridColumns:             12;
+@gridColumnWidth:     60px;
+@gridGutterWidth:     20px;
+@gridRowWidth:        (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+(12 * 60) + 20 * 11 = 720 + 220 = 940
+
+- layout 7 :
+Base : Width total : 940px
+
+.core(@NcolContent = 6, @NcolAside = 3, @NcolExtra = 3, @gridColumnWidth = 60px, @gridGutterWidth = 20px) {
+
+    #container{margin:0 auto}
+    #wrapper{float:left;width:100%=940px;margin-left: 0;}
+    #content{
+      float: inherit;
+      margin:0;
+      width: (60 * 6) + (20 * (5)) = 360 + 100 = 460;
+      margin-left correspond à la largeur de aside + 1 largeur de Gutter :(60 * 3) + (20 * (3)) soit 240px;
+      margin-right correspond à la largeur de extra + 1 largeur de Gutter:(60 * 3) + (20 * (3)) soit 240px;
+    }
+    #aside{
+      clear: none;
+      float: left;
+      width: (60 * 3) + (20 * (2)) = 180 + 40 = 220;
+      margin-left: -((60 * (12 = @NcolAside+@NcolExtra+@NcolContent)) + (20 * (@NcolAside+@NcolExtra+@NcolContent - 1)));
+	   = - (720 + 220) = -940
+    }
+    #extra{
+      clear: none;
+      float: left;
+      width: (60 * 3) + (20 * (2)) = 220;
+      margin-left: -((60 * 3) + (20 * (3 - 1)));
+	   = -(180 + 40) = -220
+    }
+
+    #footer{clear:left;width:100%}
+  }
+}
+
+Passage en charte académique :
+- prévoir un écart de 20px à gauche de aside => #aside margin-left=-920
+- prévoir un écart de 20px à droite de extra et une réduction de largeur de 40px pour compenser les 2 écarts précédents => #extra width=180 et margin-left=-200
+- déplacer #contenu de 20px vers la droite => #content margin-left=260
+
+En CSS :
+@media (min-width: 980px) and (max-width: 1199px) {
+#aside {
+margin-left:-920px;
+}
+#extra {
+width:180px;
+margin-left:-200px;
+}
+#content {
+margin-left:260px;
+}
+}
+
+Layout 8 : Idem mais inverser #extra et #aside mais en grossisant 
+
+En CSS :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+margin-left:-920px;
+width:180px;
+}
+#aside {
+margin-left:-240px;
+}
+#content {
+margin-left:220px;
+}
+}
+
+Layout 9 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:180px;
+margin-left:-200px;
+}
+#aside {
+margin-left:-440px;
+}
+#content {
+margin-left:20px;
+}
+}
+
+Layout 10 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:180px;
+margin-left:-440px;
+}
+#aside {
+margin-left:-240px;
+}
+#content {
+margin-left:20px;
+}
+}
+
+Layout 11 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:180px;
+margin-left:-680px;
+}
+#aside {
+margin-left:-920px;
+}
+#content {
+margin-left:460px;
+}
+}
+
+Layout 12 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:180px;
+margin-left:-920px;
+}
+#aside {
+margin-left:-720px;
+}
+#content {
+margin-left:460px;
+}
+}
+
+Layout 33 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:250px;
+margin-right:20px;
+}
+#aside {
+width:250px;
+margin-right:20px;
+}
+#content {
+margin-left:20px;
+}
+}
+
+Layout 34 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:250px;
+margin-left:20px;
+}
+#aside {
+width:250px;
+margin-left:20px;
+}
+#content {
+margin-right:20px;
+}
+}
+Layout 35 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:620px;
+margin-left:20px;
+}
+#aside {
+width:250px;
+margin-right:20px;
+}
+#content {
+margin-left:20px;
+}
+}
+Layout 36 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:620px;
+margin-right:20px;
+}
+#aside {
+width:250px;
+margin-left:20px;
+}
+#content {
+margin-right:20px;
+}
+}
+
+Layout 37 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:900px;
+margin-right:20px;
+margin-left:20px;
+}
+#aside {
+width:250px;
+margin-right:20px;
+}
+#content {
+margin-left:20px;
+}
+}
+Layout 38 :
+@media (min-width: 980px) and (max-width: 1199px) {
+#extra {
+width:900px;
+margin-right:20px;
+margin-left:20px;
+}
+#aside {
+width:250px;
+margin-left:20px;
+}
+#content {
+margin-right:20px;
+}
+}
+
+Sur largeur 768px à 979px :
+
+@gridColumnWidth768:      42px;
+@gridGutterWidth768:      20px;
+@gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
+12 * 42 + 20 * 11 = 504 + 220 = 724
+
+- layout 33 :
+Base : Width total : 724px
+
+.core(@NcolContent = 8, @NcolAside = 4, @NcolExtra = 4, @gridColumnWidth = 42px, @gridGutterWidth = 20px) {
+
+    #container{margin:0 auto}
+    #wrapper{float:none;width:100%=724;margin-left: 0;}
+    #content,#aside,#extra,#footer {.box-sizing(border-box);}
+    #content{
+      float:left;
+      width:(@gridColumnWidth * @NcolContent) + (@gridGutterWidth * (@NcolContent - 1));
+			42 * 8 + 20 * 7 = 336 + 140 = 476 px
+      margin-left:0;
+      margin-right:0;
+    }
+    #aside{
+      float: right;
+      width: (@gridColumnWidth * @NcolAside) + (@gridGutterWidth * (@NcolAside - 1));
+			42 * 4 + 20 * 3 = 168 + 60 = 228 px
+      margin-left:0;
+    }
+    #extra{
+      float: right;
+      clear: right;
+      width: (@gridColumnWidth * @NcolExtra) + (@gridGutterWidth * (@NcolExtra - 1));
+			42 * 4 + 20 * 3 = 168 + 60 = 228 px
+      margin-left:0;
+    }
+
+    #footer{clear:both;width:100%}
+}
+
+Passage en charte académique :
+- prévoir un écart de 10px à gauche de content => #content {margin-left:10px;}
+- prévoir un écart de 10px à droite de extra et aside et une réduction de largeur de 20px pour compenser les 2 écarts précédents => #extra {width:208px; margin-right:10px;} #aside {width:208px; margin-right:10px;}
+- ajouter une marge de 10px gauche/droite dans l'entête et le pied pour aligner avec les colonnes de contenu => .header .spip_logos {margin-left:10px;}
+.footer {padding-left:20px;padding-right:10px;}
+
+En CSS :
+@media (min-width: 768px) and (max-width: 979px) {
+#aside {width:208px; margin-right:10px;}
+#extra {width:208px; margin-right:10px;}
+#content {margin-left:10px;}
+.header .spip_logos {margin-left:10px;}
+.footer {padding-left:10px;padding-right:10px;}
+}
+
+- Layout 34 :
+
+@media (min-width: 768px) and (max-width: 979px) {
+#aside {width:208px; margin-left:10px;}
+#extra {width:208px; margin-left:10px;}
+#content {margin-right:10px;}
+.header .spip_logos {margin-left:10px;}
+.footer {padding-left:10px;padding-right:10px;}
+}
+
+35, 36, 37, et 38 directement dans le fichier php.
+
+- Layout 39 :
+
+.core(@NcolContent, @NcolAside, @NcolExtra, @gridColumnWidth, @gridGutterWidth) {
+
+    #container{margin:0 auto}
+    #wrapper {float: none;}
+    #content,#aside,#extra,#footer {.box-sizing(border-box);}
+    #content{
+      float: none;
+      width:(@gridColumnWidth * @NcolContent) + (@gridGutterWidth * (@NcolContent - 1));
+	  724px
+      margin-left:0;
+      margin-right:0;
+    }
+    #aside{
+      clear: none;
+      float: left;
+      width: (@gridColumnWidth * @NcolAside) + (@gridGutterWidth * (@NcolAside - 1));
+	  42 * 6 + 20 * 5 = 240 + 12 + 100 = 352
+      margin: 0;
+    }
+    #extra{
+      clear: none;
+      float: right;
+      width: (@gridColumnWidth * @NcolExtra) + (@gridGutterWidth * (@NcolExtra - 1));
+	  42 * 6 + 20 * 5 = 240 + 12 + 100 = 352
+      margin: 0;
+    }
+
+    #footer{clear:both;width:100%}
+  }
+  
+A modifier en :
+@media (min-width: 768px) and (max-width: 979px) {
+#content {width:704px; margin-left:10px; margin-right:10px;}
+#aside {margin-left:10px; width:342px;}
+#extra {margin-right:10px; width:342px;}
+#footer{padding-left:10px;padding-right:10px;}
+.header .spip_logos {margin-left:10px;}
+}
+
+- Layout 40 :
+@media (min-width: 768px) and (max-width: 979px) {
+#content {width:704px; margin-left:10px; margin-right:10px;}
+#aside {margin-right:10px; width:342px;}
+#extra {margin-left:10px; width:342px;}
+#footer{padding-left:10px;padding-right:10px;}
+.header .spip_logos {margin-left:10px;}
+}
+
+Pour une largeur comprise entre 450px et 767px :
+-Layout 27 :
+
+  .core(@WcolContent, @WcolAside, @WcolExtra, @gridColumnWidth, @gridGutterWidth) {
+
+    #container{margin:0 auto}
+    #wrapper {float: none;}
+    #content,#aside,#extra,#footer {.box-sizing(border-box);}
+    #content{
+      float: none;
+      width: @WcolContent;
+	  auto;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    #aside{
+      clear: both;
+      float: left;
+      width: @WcolAside;
+	  48%
+      margin: 0;
+    }
+    #extra{
+      clear: none;
+      float: right;
+      width: @WcolExtra;
+	  48%
+      margin: 0;
+    }
+
+    #footer{clear:both;width:100%}
+  }
+
+@media (min-width: 451px) and (max-width: 767px) {
+#content {width:96%; margin-left:1.99%; margin-right:1.99%;}
+#extra {width:46%; margin-right:1.99%;}
+#aside {width:46%; margin-left:1.99%;}
+#footer{padding-left:1.99%; padding-right:1.99%;}
+.header .spip_logos {margin-left:1.99%;}
+}
+
+-Layout 28 :
+@media (min-width: 451px) and (max-width: 767px) {
+#content {width:96%; margin-left:1.99%; margin-right:1.99%;}
+#extra {width:46%; margin-left:1.99%;}
+#aside {width:46%; margin-right:1.99%;}
+#footer{padding-left:1.99%; padding-right:1.99%;}
+.header .spip_logos {margin-left:1.99%;}
+}
+
+Pour une largeur inférieure ou égale à 449px :
+
+@media (max-width: 450px) {
+#content, #aside, #extra {width:94%; margin-left:1.99%; margin-right:1.99%; padding-left:0; padding-right:0;}
+#footer{padding-left:1.99%; padding-right:1.99%;}
+.header .spip_logos {margin-left:1.99%;}
+}

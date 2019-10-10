@@ -1,3 +1,15 @@
+<BOUCLE_test_doublon_rubrique(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param3,#PARAMETRE3}
+</BOUCLE_test_doublon_rubrique>
+
+#SET{listeRubs, #GET{param3}|explode{','}}
+
+<BOUCLE_doublon_rubrique(RUBRIQUES){id_rubrique IN #GET{listeRubs}} {doublons}>
+</BOUCLE_doublon_rubrique>
+
 <section>
 	<header class="cartouche">
 		<h1><:plan_site:></h1>
@@ -5,7 +17,7 @@
 
 	<div class="main">
 
-	<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+	<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {doublons} >
 
 		<h2 class="h2"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 
@@ -21,7 +33,7 @@
 
 		<B_rubriques>
 		<ul class="plan">
-			<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+			<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre} {doublons}>
 			<li>
 				<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 

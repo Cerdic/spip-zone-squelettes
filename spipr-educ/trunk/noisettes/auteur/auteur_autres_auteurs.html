@@ -1,0 +1,24 @@
+<BOUCLE_pagination_auteur_autres_auteurs(spipr_educ)
+	{nom=auteur_autres_auteurs}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=auteur}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:autres_auteurs:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_auteur_autres_auteurs>
+
+<BOUCLE_auteur_autres_auteurs(AUTEURS){id_auteur}>
+	[(#REM) Autres auteurs]
+	<B_auteurs>
+	<div class="liste auteurs" id="auteur_autres_auteurs">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_auteurs(AUTEURS) {exclus} {par nom} {pagination #GET{nb}}>
+			<li class="item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
+			</BOUCLE_auteurs>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+	</B_auteurs>
+</BOUCLE_auteur_autres_auteurs>

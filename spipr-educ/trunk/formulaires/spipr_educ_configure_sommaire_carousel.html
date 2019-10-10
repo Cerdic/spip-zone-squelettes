@@ -1,0 +1,136 @@
+#CACHE{0}
+#SET{listeArticlesUne, #ENV{carouselOrdreArticles}|explode{','}}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;">Paramètres graphiques du caroussel de la page d'accueil
+</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configuresommaireeditorialhero'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+		<B_ordre_articles>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Ordre des articles à la Une</h3>
+				<BOUCLE_ordre_articles(ARTICLES){id_article IN #GET{listeArticlesUne}}>
+					<div class='cadre' style='display:block; border:1px solid #8F8FBD; margin:0 10px 10px 10px; height:24px; line-height:24px; vertical-align:middle; padding:8px;' onmouseover="this.style.background='#eee';" onmouseout="this.style.background='';">
+						<div style="width:68%; display:block; float:left; height:24px; line-height:24px; vertical-align:middle;">
+							<a href="#URL_ECRIRE{article,id_article=#ID_ARTICLE}" title="[Voir la page de l'article : (#TITRE|textebrut)]">[(#TITRE|textebrut|couper{80}) ]</a>
+						</div>
+						<div style="width:24%; display:block; float:right; text-align:right;">
+							<?php
+								// Si on a deux valeurs au moins, on affiche les flèches pour monter et descendre
+								if (#TOTAL_BOUCLE>1) {
+									//Si on est sur le premier élément et qu'il y a plus d'un élément , n'afficher que la flèche du bas
+									if ((#COMPTEUR_BOUCLE==1) AND (#TOTAL_BOUCLE>1)) { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_ARTICLE" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+									<?php }
+									// Si on est sur le dernier élément, n'afficher que la flèche du haut suivie d'un espace vide
+									elseif (#COMPTEUR_BOUCLE==#TOTAL_BOUCLE) { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_ARTICLE" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+										<img src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/spipr_edu_vide.png";?>" />
+									<?php }
+									// Sinon, on affiche les deux flèches
+									else { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_ARTICLE" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_ARTICLE" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+									<?php }
+								}
+								// On termine par la possibilité de supprimer une entrée
+							?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/suppression_bloc.png";?>" name="supprimer_site_#ID_ARTICLE" alt="Retirer cet article de la Une" title="Retirer cet article de la Une" />
+						</div>
+					</div>
+				</BOUCLE_ordre_articles>
+			</fieldset>
+		</li>
+		</B_ordre_articles>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Paramètres généraux</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="carouselTitre">Titre du caroussel</label>
+						<input type='text' name='carouselTitre' id='carouselTitre' value="#ENV{carouselTitre}" class="text" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselBackground">Couleur de fond</label>
+						<input type='text' name='carouselBackground' id='carouselBackground' value="#ENV{carouselBackground}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselColor">Couleur des textes</label>
+						<input type='text' name='carouselColor' id='carouselColor' value="#ENV{carouselColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselBorder">Couleur de la bordure</label>
+						<input type='text' name='carouselBorder' id='carouselBorder' value="#ENV{carouselBorder}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselHeaderColor">Couleur du titre</label>
+						<input type='text' name='carouselHeaderColor' id='carouselHeaderColor' value="#ENV{carouselHeaderColor}" class="text palette" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">&Eacute;léments de navigation</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="carouselArrowColor">Couleur des flèches de navigation</label>
+						<input type='text' name='carouselArrowColor' id='carouselArrowColor' value="#ENV{carouselArrowColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselArrowBackground">Couleur de fond des flèches de navigation</label>
+						<input type='text' name='carouselArrowBackground' id='carouselArrowBackground' value="#ENV{carouselArrowBackground}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselArrowHoverColor">Couleur des flèches de navigation au survol</label>
+						<input type='text' name='carouselArrowHoverColor' id='carouselArrowHoverColor' value="#ENV{carouselArrowHoverColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselArrowHoverBackground">Couleur de fond des flèches de navigation au survol</label>
+						<input type='text' name='carouselArrowHoverBackground' id='carouselArrowHoverBackground' value="#ENV{carouselArrowHoverBackground}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselPointColor">Couleur des points indicateurs</label>
+						<input type='text' name='carouselPointColor' id='carouselPointColor' value="#ENV{carouselPointColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselPointHoverColor">Couleur des points indicateurs au survol du bloc</label>
+						<input type='text' name='carouselPointHoverColor' id='carouselPointHoverColor' value="#ENV{carouselPointHoverColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselPointActiveColor">Couleur du point de l'indicateur actif</label>
+						<input type='text' name='carouselPointActiveColor' id='carouselPointActiveColor' value="#ENV{carouselPointActiveColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="carouselPointActiveHoverColor">Couleur du point de l'indicateur actif au survol du bloc</label>
+						<input type='text' name='carouselPointActiveHoverColor' id='carouselPointActiveHoverColor' value="#ENV{carouselPointActiveHoverColor}" class="text palette" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">CSS</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="carouselCSS">Règles CSS ou LESS spécifiques pour le caroussel de la page de sommaire (s'appliquent sur <em>.carousel</em>)</label>
+						<textarea name='carouselCSS' id='carouselCSS' class="text" rows="6">[(#ENV**{carouselCSS})]</textarea>
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+	</ul>
+	
+	<input type='hidden' name='hidden_carousel' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>

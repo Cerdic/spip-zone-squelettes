@@ -1,0 +1,48 @@
+<?php
+	include_spip('inc/spipr_educ_definitions_themes');
+	$themes_proposes=spipr_educ_definition_themes();
+?>
+
+<script type="text/javascript">
+<!--
+function affvign(){
+	chemin = "#ENV{chemin}vignettes/"
+	if(document.images){
+		vignette_theme=document.formthemes.theme_choix.options[document.formthemes.theme_choix.selectedIndex].value
+		document.vignette_theme.src = chemin+vignette_theme+".png"
+	}
+}
+window.onerror = null;
+//-->
+</script>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_themes">
+<h3 class='titrem'><div style="text-align:center;">Sélectionnez un des thèmes proposés</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formthemes">
+
+<p>Choisissez un des thèmes proposés ci-dessous, vous pourrez ensuite adapter sa couleur en vous rendant dans le second onglet "Couleur du thème" ci-dessus.</p>
+<p>Les choix effectués dans ce module affecteront les sections "Graphisme des pages" et "CSS - LESS" mais pas les dispositions des différents blocs dans les colonnes.</p>
+<p>Il peut être prudent d'effectuer une sauvegarde de votre habillage avant de modifier le thème (lien "Sauvegarde - restauration" à gauche).</p>
+
+	<div style="text-align:center;">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+		<p><select name="theme_choix" onChange = "affvign()">
+		<?php
+		foreach ($themes_proposes as $cle => $nom_theme) {
+			echo '<option value="'.$cle.'"';
+			if ('#ENV{theme_actuel}'==$nom_theme) echo ' selected';
+			echo '>'._T('spipr_educ:'.$nom_theme).'</option>';
+		}
+		?>
+		</select></p>
+		<p><img name = "vignette_theme" src= "#ENV{chemin}#ENV{theme_actuel}/images/#ENV{theme_actuel}.png" width="528"></p>
+		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='Choisir' /></p>
+	</div>
+</form>
+</div>

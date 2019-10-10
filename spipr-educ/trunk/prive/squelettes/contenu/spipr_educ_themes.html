@@ -1,0 +1,20 @@
+#CACHE{0}
+[(#AUTORISER{configurer}|sinon_interdire_acces)]
+
+
+<h1 class='titre' style="text-align:center;">Choix du thème graphique</h1>
+
+<h2 class='titre' style="text-align:center;">Thèmes disponibles</h2>
+	#FORMULAIRE_SPIPR_EDUC_THEMES
+
+<BOUCLE_theme(spipr_educ)
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=theme}>
+	#SET{theme,#NOM}
+</BOUCLE_theme>
+
+<h2 class='titre' style="text-align:center;">Couleurs disponibles</h2>
+
+[(#GET{theme}|=={theme_de_base}|?{[<div class="ajax">(#FORMULAIRE_SPIPR_EDUC_THEMES_COULEUR_BASE)</div>],''})]
+[(#GET{theme}|=={terra}|?{[<div class="ajax">(#FORMULAIRE_SPIPR_EDUC_THEMES_TERRA)</div>],''})]
+[(#GET{theme}|=={spipr_institution}|?{[<div class="ajax">(#FORMULAIRE_SPIPR_EDUC_THEMES_INSTITUTION)</div>],''})]

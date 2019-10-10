@@ -1,0 +1,32 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">[(#ENV{secteur_majuscule}) ]([(#ENV{page_abrege})])</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="bloc_#ENV{page}_#ENV{secteur}">
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+[(#REM) Ajouter une boucle ici pour ne pas afficher le texte qui suit si le bloc est vide et inscrire un texte alternatif dans ce cas]
+
+<BOUCLE_y_a_personne(spipr_educ) {type IN bloc de base, bloc personnel} {nom_sauvegarde = en_cours_d_utilisation_SPIPr} {parametre1 = #ENV{page}} {parametre2 = #ENV{secteur}} {0,1}>
+
+<p style="text-align:center;">Configuration des blocs affichés #ENV{secteur_complet}[ (#ENV{page_complet}).]</p>
+
+<?php
+include_spip('inc/spipr_educ_deplacement_bloc');
+spipr_educ_presente_formulaire_deplacement('#ENV{page}','#ENV{secteur}');
+?>
+
+</BOUCLE_y_a_personne>
+</B_y_a_personne>
+<p style="text-align:center;">Il n'y a actuellement aucun bloc affiché #ENV{secteur_complet}[ (#ENV{page_complet}).]</p>
+<//B_y_a_personne>
+
+<?php 	
+if ('#ENV{deplie}'=='ok') {spipr_educ_presente_formulaire_ajout_bloc_deplie('#ENV{page}','#ENV{secteur}');}
+else {spipr_educ_presente_formulaire_ajout_bloc_replie('#ENV{page}','#ENV{secteur}');}
+?>
+
+</form>
+</div>

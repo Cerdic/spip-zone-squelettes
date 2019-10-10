@@ -1,0 +1,1263 @@
+// Quelques inclusions utiles
+@import "css/responsive-utilities.less";
+@import "css/spip.variables.less";
+@import "css/mixins.less";
+
+
+/* Ici les variables issues de bootstrap2, fichier d'origine variables.less, on réorganise et y ajoute certains éléments si nécessaire... */
+//
+// Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
+
+// Grays
+// -------------------------
+@black:                 #000;
+@grayDarker:            #222;
+@grayDark:              #333;
+@gray:                  #555;
+@grayLight:             #999;
+@grayLighter:           #eee;
+@white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+@blue:                  #049cdb;
+@blueDark:              #0064cd;
+@green:                 #46a546;
+@red:                   #9d261d;
+@yellow:                #ffc40d;
+@orange:                #f89406;
+@pink:                  #c3325f;
+@purple:                #7a43b6;
+
+
+// Scaffolding
+// -------------------------
+
+@import "css/scaffolding.less";
+@import "css/type.less";
+
+<BOUCLE_graphisme_couleur_fond(spipr_educ){nom = graphisme_couleur_fond} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@bodyBackground: (#PARAMETRE8|?{#PARAMETRE8, "#fff"}); // Couleur générale de l'écran]
+[.container {background-color:(#PARAMETRE1|?{#PARAMETRE1, "#fff"});} // Fond de page]
+[#header {background-color:(#PARAMETRE2);}	// Entête, non proposé par défaut]
+[#wrapper {background-color:(#PARAMETRE3);} // 3 colonnes de contenu, non proposé par défaut]
+[#content {background-color:(#PARAMETRE4);} // Colonne de contenus, non proposé par défaut]
+[#aside {background-color:(#PARAMETRE5);} // Colonne secondaire, non proposé par défaut]
+[#extra {background-color:(#PARAMETRE6);} // Colonne tertiaire, non proposé par défaut]
+[#footer {background-color:(#PARAMETRE7);} // Pied de page, non proposé par défaut]
+</BOUCLE_graphisme_couleur_fond>
+
+
+<BOUCLE_graphisme_couleur_textes(spipr_educ){nom = graphisme_couleur_textes} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@textColor: (#PARAMETRE1|?{#PARAMETRE1, "@grayDark"}); // Couleur du texte]
+[@linkColor: (#PARAMETRE2|?{#PARAMETRE2, "#08c"}); // Couleur des liens]
+[@linkColorHover: (#PARAMETRE3|?{#PARAMETRE3, "darken(@linkColor, 15%)"}); // Couleur des liens lors du survol]
+[.header .accueil #nom_site_spip {color: (#PARAMETRE4|?{#PARAMETRE4, "@linkColor"});} // Couleur du titre du site dans l'entête]
+[#slogan_site_spip {color: (#PARAMETRE5|?{#PARAMETRE5, "@textColor"});}]
+[@headingsColor: (#PARAMETRE6|?{#PARAMETRE6, "inherit"});]
+</BOUCLE_graphisme_couleur_textes>
+
+<BOUCLE_graphisme_typographie(spipr_educ){nom = graphisme_typographie} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@sansFontFamily: (#PARAMETRE1|?{#PARAMETRE1, '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif'}); // Typo sans]
+[@serifFontFamily: (#PARAMETRE2|?{#PARAMETRE2, 'Georgia, Cambria, "Times New Roman", Times, serif'}); // Typo serif]
+[@monoFontFamily: (#PARAMETRE3|?{#PARAMETRE3, '"Courier New", Courier, monospace'}); // Typo serif]
+[@headingsFontFamily: (#PARAMETRE4|?{#PARAMETRE4, '@baseFontFamily'}); // Typo des titres]
+[@baseFontSize: (#PARAMETRE5|?{#PARAMETRE5, '14'})px; // Hauteur de base des caractères]
+@baseFontFamily:        @serifFontFamily; 	// Police de base
+@altFontFamily:         @sansFontFamily;	// Police alternative
+[@baseLineHeight: (#PARAMETRE6|?{#PARAMETRE6, '20'})px; // Hauteur de base des lignes]
+</BOUCLE_graphisme_typographie>
+
+@headingsFontWeight:    normal;    // Voir s'il faut aussi pouvoir paramétrer cela...
+
+
+// Component sizing
+// -------------------------
+// Based on 14px font-size and 20px line-height
+
+@fontSizeLarge:         @baseFontSize * 1.25; // ~18px
+@fontSizeSmall:         @baseFontSize * 0.85; // ~12px
+@fontSizeMini:          @baseFontSize * 0.75; // ~11px
+
+@paddingLarge:          11px 19px; // 44px
+@paddingSmall:          2px 10px;  // 26px
+@paddingMini:           0 6px;   // 22px
+
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     6px;
+@borderRadiusSmall:     3px;
+
+
+// Tables
+// -------------------------
+
+@import "css/tables.less";
+
+<BOUCLE_graphisme_tableaux(spipr_educ){nom = graphisme_tableaux} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@tableBackground: (#PARAMETRE1|?{#PARAMETRE1, "#ffffff"}); // Couleur de fond des lignes impaires]
+[@tableBackgroundAccent: (#PARAMETRE2|?{#PARAMETRE2, "#f9f9f9"}); // Couleur de fond des lignes paires]
+[@tableBackgroundHover: (#PARAMETRE3|?{#PARAMETRE3, "#f5f5f5"}); // Couleur de fond des lignes au survol]
+[@tableBorder: (#PARAMETRE5|?{#PARAMETRE5, "#dddddd"}); // Couleur des bordures]
+[(#PARAMETRE4|=={oui}|?{'
+// On prend le contenu de la classe table-bordered dans tables.css et appliqué à table.spip
+table.spip {
+  border: 1px solid @tableBorder;
+  border-collapse: separate; // Done so we can round those corners!
+  *border-collapse: collapse; // IE7 can t round corners anyway
+  border-left: 0;
+  .border-radius(@baseBorderRadius);
+  th,
+  td {
+    border-left: 1px solid @tableBorder;
+  }
+  // Prevent a double border
+  caption + thead tr:first-child th,
+  caption + tbody tr:first-child th,
+  caption + tbody tr:first-child td,
+  colgroup + thead tr:first-child th,
+  colgroup + tbody tr:first-child th,
+  colgroup + tbody tr:first-child td,
+  thead:first-child tr:first-child th,
+  tbody:first-child tr:first-child th,
+  tbody:first-child tr:first-child td {
+    border-top: 0;
+  }
+  // For first th/td in the first row in the first thead or tbody
+  thead:first-child tr:first-child > th:first-child,
+  tbody:first-child tr:first-child > td:first-child,
+  tbody:first-child tr:first-child > th:first-child {
+    .border-top-left-radius(@baseBorderRadius);
+  }
+  // For last th/td in the first row in the first thead or tbody
+  thead:first-child tr:first-child > th:last-child,
+  tbody:first-child tr:first-child > td:last-child,
+  tbody:first-child tr:first-child > th:last-child {
+    .border-top-right-radius(@baseBorderRadius);
+  }
+  // For first th/td (can be either) in the last row in the last thead, tbody, and tfoot
+  thead:last-child tr:last-child > th:first-child,
+  tbody:last-child tr:last-child > td:first-child,
+  tbody:last-child tr:last-child > th:first-child,
+  tfoot:last-child tr:last-child > td:first-child,
+  tfoot:last-child tr:last-child > th:first-child {
+    .border-bottom-left-radius(@baseBorderRadius);
+  }
+  // For last th/td (can be either) in the last row in the last thead, tbody, and tfoot
+  thead:last-child tr:last-child > th:last-child,
+  tbody:last-child tr:last-child > td:last-child,
+  tbody:last-child tr:last-child > th:last-child,
+  tfoot:last-child tr:last-child > td:last-child,
+  tfoot:last-child tr:last-child > th:last-child {
+    .border-bottom-right-radius(@baseBorderRadius);
+  }
+
+  // Clear border-radius for first and last td in the last row in the last tbody for table with tfoot
+  tfoot + tbody:last-child tr:last-child td:first-child {
+    .border-bottom-left-radius(0);
+  }
+  tfoot + tbody:last-child tr:last-child td:last-child {
+    .border-bottom-right-radius(0);
+  }
+
+  // Special fixes to round the left border on the first td/th
+  caption + thead tr:first-child th:first-child,
+  caption + tbody tr:first-child td:first-child,
+  colgroup + thead tr:first-child th:first-child,
+  colgroup + tbody tr:first-child td:first-child {
+    .border-top-left-radius(@baseBorderRadius);
+  }
+  caption + thead tr:first-child th:last-child,
+  caption + tbody tr:first-child td:last-child,
+  colgroup + thead tr:first-child th:last-child,
+  colgroup + tbody tr:first-child td:last-child {
+    .border-top-right-radius(@baseBorderRadius);
+  }
+
+}
+',''})]
+</BOUCLE_graphisme_tableaux>
+
+// Pagination
+// -------------------------
+
+@import "css/pagination.less";
+
+<BOUCLE_graphisme_pagination(spipr_educ){nom = graphisme_pagination} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@paginationBackground: (#PARAMETRE1|?{#PARAMETRE1, "#ffffff"}); // Couleur de fond]
+[@paginationActiveBackground: (#PARAMETRE2|?{#PARAMETRE2, "#dddddd"}); // Couleur de fond de la pagination en cours]
+[@paginationBorder: (#PARAMETRE3|?{#PARAMETRE3, "#f5f5f5"}); // Couleur des bordures]
+[.pagination {(#PARAMETRE5)}]
+</BOUCLE_graphisme_pagination>
+
+
+//  Breadcrumb
+// -------------------------
+
+@import "css/breadcrumbs.less";
+
+<BOUCLE_graphisme_breadcrumb(spipr_educ){nom = graphisme_fil_ariane} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+.breadcrumb {
+	[background-color: (#PARAMETRE1|?{#PARAMETRE1, "#fefefe"}); // Couleur de fond]
+	.border-radius(@baseBorderRadius);
+	> li {
+	[text-shadow: 0 1px 0 (#PARAMETRE2|?{#PARAMETRE2, "#ffffff"}); // Couleur de l'ombre]
+    > .divider {
+		[color: (#PARAMETRE3|?{#PARAMETRE3, "#cccccc"}); // Couleur du séparateur >]
+    }
+	}
+	> .active {
+		[color: (#PARAMETRE4|?{#PARAMETRE4, "#999999"}); // Couleur de l'élément actif]
+	}
+	[(#PARAMETRE5|?{#PARAMETRE5,''}) // Insertion de règle CSS spécifique pour .breadcrumb]
+}
+</BOUCLE_graphisme_breadcrumb>
+
+// Navbar
+// -------------------------
+@import "css/navbar.less";
+@import "css/responsive-navbar.less";
+
+
+<BOUCLE_graphisme_menu_horizontal(spipr_educ){nom = graphisme_menu_horizontal} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+@navbarCollapseWidth:             767px;
+@navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
+
+[@navbarHeight: (#PARAMETRE10|?{#PARAMETRE10, "38"})px; // Hauteur du menu]
+
+// Devrait logiquement être inutile sous SPIPr-educ qui utilise l'habillage inverse
+@navbarBackgroundHighlight:       #ffffff;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+@navbarBorder:                    darken(@navbarBackground, 12%);
+
+@navbarText:                      #777;
+@navbarLinkColor:                 #777;
+@navbarLinkColorHover:            @grayDark;
+@navbarLinkColorActive:           @gray;
+@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
+
+@navbarBrandColor:                @navbarLinkColor;
+
+// Inverted navbar : celle utilisée dans SPIPr-educ
+[@navbarInverseBackground: (#PARAMETRE1|?{#PARAMETRE1, "#111111"}); // Couleur de fond basse]
+[@navbarInverseBackgroundHighlight: (#PARAMETRE2|?{#PARAMETRE2, "#222222"}); // Couleur de fond haute]
+[@navbarInverseBorder: (#PARAMETRE3|?{#PARAMETRE3, "#252525"}); // Couleur de bordure]
+[@navbarInverseText: (#PARAMETRE4|?{#PARAMETRE4, "#999999"}); // Couleur des textes]
+[@navbarInverseLinkColor: (#PARAMETRE5|?{#PARAMETRE5, "#999999"}); // Couleur des liens]
+[@navbarInverseLinkColorHover: (#PARAMETRE6|?{#PARAMETRE6, "#ffffff"}); // Couleur des liens au survol]
+[@navbarInverseLinkColorActive: (#PARAMETRE7|?{#PARAMETRE7, "#ffffff"}); // Couleur des liens du secteur actif]
+[@navbarInverseLinkBackgroundHover: (#PARAMETRE8|?{#PARAMETRE8, "#797979"}); // Couleur de fond des liens au survol]
+[@navbarInverseLinkBackgroundActive: (#PARAMETRE9|?{#PARAMETRE9, "#111111"}); // Couleur de fond du secteur actif]
+
+@navbarInverseSearchBackground:          lighten(@navbarInverseBackground, 25%);
+@navbarInverseSearchBackgroundFocus:     @white;
+@navbarInverseSearchBorder:              @navbarInverseBackground;
+@navbarInverseSearchPlaceholderColor:    #ccc;
+@navbarInverseBrandColor:                @navbarInverseLinkColor;
+</BOUCLE_graphisme_menu_horizontal>
+
+/* Pour NavBar, en provenance de SPIPr-educ */
+/* surcharge des règles issue de bootstrap + on surcharge les images dans le /img de notre dossier css */
+
+#nav > .navbar-inner {padding-left: 0;padding-right: 0}
+
+[class^="icon-"],
+[class*=" icon-"]{
+	background-image:url("@{iconSpritePath}");
+	margin-top: 3px;
+}
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:focus > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > li > a:focus > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:focus > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"],
+.dropdown-submenu:focus > a > [class*=" icon-"]{
+	background-image:url("@{iconWhiteSpritePath}");
+}
+
+.navbar .nav > li > a {
+	padding: 9px 10px;
+}
+.navbar .nav > li.item-picto > a {
+	padding: 9px 15px;
+}
+
+/* icones en sprite css */
+[class^="icon-nav"], [class*=" icon-nav"]{
+    background-image:url("#URL_SITE_SPIP/[(#CHEMIN{css/img/sprite.png})]");
+    height:22px;
+    width:22px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    vertical-align:text-top; 
+    margin:0;
+    &:hover{background-color:@grayDark;}
+}
+.item-picto{
+	display:inline-block;
+}
+
+#nav{
+	.menu-container{
+        // border-top:1px solid @blue;
+        // border-bottom:1px solid @blue;
+        .border-radius(0);
+        .nav{
+            margin:0 auto;
+            float:none;
+            .dropdown-menu {
+                min-width: 240px;
+                .border-radius(@baseBorderRadius);
+                .box-shadow(0 2px 2px rgba(0,0,0,.2));
+            }
+            .item{                
+                // li.item{
+                //    text-transform:none;
+                //    background:none;
+                //    list-style: none;
+                //    a{
+                //        display: block;
+                //        &:hover,&:focus,&:active{background-color:@blue;color:@white;}
+                //    }
+                // }
+                &.tout_voir{text-align:right;}
+                // .on,&.on{font-weight: normal;}
+                &.item-picto {
+                    >a{
+                        &.icon-nav-home{
+                            background-position:12px -30px;
+                            &:hover,&:focus,&:active{background-position:12px 9px;}
+                        }
+                        &.icon-nav-calendar{
+                            background-position:-25px -30px;
+                            &:hover,&:focus,&:active{background-position:-27px 9px;}
+                        }
+                        &.icon-nav-contact{
+                            background-position:-187px -30px;
+                            &:hover,&:focus,&:active{background-position:-187px 9px;}
+                        }
+                        &.icon-nav-themes{
+                            background-position:-266px -30px;
+                            &:hover,&:focus,&:active{background-position:-266px 9px;}
+                        }
+                        &.icon-nav-star{
+                            background-position:-228px -30px;
+                            &:hover,&:focus,&:active{background-position:-228px 9px;}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Dropdowns
+// -------------------------
+
+@import "css/dropdowns.less";
+
+<BOUCLE_graphisme_menu_deroulant(spipr_educ){nom = graphisme_menu_deroulant} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+
+[@dropdownBackground: (#PARAMETRE1|?{#PARAMETRE1, "#ffffff"}); // Couleur de fond des items]
+[@dropdownBorder: (#PARAMETRE2|?{#PARAMETRE2, "#aaaaaa"}); // Couleur de fond de la bordure]
+[@dropdownDividerTop: (#PARAMETRE3|?{#PARAMETRE3, "#e5e5e5"}); // Couleur des lignes de séparation horizontale hautes]
+[@dropdownDividerBottom: (#PARAMETRE4|?{#PARAMETRE4, "#ffffff"}); // Couleur des lignes de séparation horizontale basses]
+[@dropdownLinkColor: (#PARAMETRE5|?{#PARAMETRE5, "#333333"}); // Couleur des items]
+[@dropdownLinkColorHover: (#PARAMETRE6|?{#PARAMETRE6, "#ffffff"}); // Couleur des items]
+[@dropdownLinkColorActive: (#PARAMETRE7|?{#PARAMETRE7, "#ffffff"}); // Couleur des items]
+[@dropdownLinkBackgroundActive: (#PARAMETRE8|?{#PARAMETRE8, "#0088cc"}); // Couleur des items]
+[@dropdownLinkBackgroundHover: (#PARAMETRE9|?{#PARAMETRE9, "#0088cc"}); // Couleur des items]
+[#nav .menu-container .nav .item .on,&.on (#PARAMETRE10|=={non}|?{'{font-weight: normal;}',''})]
+</BOUCLE_graphisme_menu_deroulant>
+
+// Buttons
+// -------------------------
+
+
+@import "css/buttons.less";
+
+@btnBackground:                     @white;
+@btnBackgroundHighlight:            darken(@btnBackground, 10%);
+@btnBorder:                         #bbb;
+
+@btnPrimaryBackground:              @linkColor;
+@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+
+@btnInfoBackground:                 #5bc0de;
+@btnInfoBackgroundHighlight:        #2f96b4;
+
+@btnSuccessBackground:              #62c462;
+@btnSuccessBackgroundHighlight:     #51a351;
+
+@btnWarningBackground:              lighten(@orange, 15%);
+@btnWarningBackgroundHighlight:     @orange;
+
+@btnDangerBackground:               #ee5f5b;
+@btnDangerBackgroundHighlight:      #bd362f;
+
+@btnInverseBackground:              #444;
+@btnInverseBackgroundHighlight:     @grayDarker;
+
+
+// Forms
+// -------------------------
+
+@inputBackground:               @white;
+@inputBorder:                   #ccc;
+@inputBorderRadius:             @baseBorderRadius;
+@inputDisabledBackground:       @grayLighter;
+@formActionsBackground:         #f5f5f5;
+@inputHeight:                   @baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+
+
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+@zindexDropdown:          1000;
+@zindexPopover:           1010;
+@zindexTooltip:           1030;
+@zindexFixedNavbar:       1030;
+@zindexModalBackdrop:     1040;
+@zindexModal:             1050;
+
+
+// Sprite icons path
+// -------------------------
+@iconSpritePath:          "[(#CHEMIN{css/img/glyphicons-halflings.png})]";
+@iconWhiteSpritePath:     "[(#CHEMIN{css/img/glyphicons-halflings-white.png})]";
+
+
+// Input placeholder text color
+// -------------------------
+@placeholderText:         @grayLight;
+
+
+// Hr border color
+// -------------------------
+@hrBorder:                @grayLighter;
+
+
+// Horizontal forms & lists
+// -------------------------
+@horizontalComponentOffset:       180px;
+
+
+// Wells
+// -------------------------
+@wellBackground:                  #f5f5f5;
+
+
+// Hero unit
+// -------------------------
+// A définir directement depuis la partie structure car élément spécifique (voir s'il faut un style commun avec l'éditorial ou non)
+
+@import "css/hero-unit.less";
+
+<BOUCLE_graphisme_editorial_hero(spipr_educ){nom = graphisme_editorial_hero} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@heroUnitBackground: (#PARAMETRE1|?{#PARAMETRE1, "#eeeeee"}); // Couleur de fond]
+[@heroUnitHeadingColor: (#PARAMETRE2|?{#PARAMETRE2, "#0088cc"}); // Couleur de fond des titres]
+[@heroUnitLeadColor: (#PARAMETRE3|?{#PARAMETRE3, "#333333"}); // Couleur de fond des textes]
+.hero-unit .postmeta {clear: both;}
+[#sommaire_article_hero .item, #sommaire_editorial .item {(#PARAMETRE4)}]
+</BOUCLE_graphisme_editorial_hero>
+
+// Form states and alerts
+// -------------------------
+@warningText:             #c09853;
+@warningBackground:       #fcf8e3;
+@warningBorder:           darken(spin(@warningBackground, -10), 3%);
+
+@errorText:               #b94a48;
+@errorBackground:         #f2dede;
+@errorBorder:             darken(spin(@errorBackground, -10), 3%);
+
+@successText:             #468847;
+@successBackground:       #dff0d8;
+@successBorder:           darken(spin(@successBackground, -10), 5%);
+
+@infoText:                #3a87ad;
+@infoBackground:          #d9edf7;
+@infoBorder:              darken(spin(@infoBackground, -10), 7%);
+
+
+// Tooltips and popovers
+// -------------------------
+@tooltipColor:            #fff;
+@tooltipBackground:       #000;
+@tooltipArrowWidth:       5px;
+@tooltipArrowColor:       @tooltipBackground;
+
+@popoverBackground:       #fff;
+@popoverArrowWidth:       10px;
+@popoverArrowColor:       #fff;
+@popoverTitleBackground:  darken(@popoverBackground, 3%);
+
+// Special enhancement for popovers
+@popoverArrowOuterWidth:  @popoverArrowWidth + 1;
+@popoverArrowOuterColor:  rgba(0,0,0,.25);
+
+
+
+// GRID
+// --------------------------------------------------
+
+
+// Default 940px grid
+// -------------------------
+@gridColumns:             12;
+@gridColumnWidth:         60px;
+@gridGutterWidth:         20px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// 1200px min
+@gridColumnWidth1200:     70px;
+@gridGutterWidth1200:     30px;
+@gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
+
+// 768px-979px
+@gridColumnWidth768:      42px;
+@gridGutterWidth768:      20px;
+@gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
+
+
+// Fluid grid
+// -------------------------
+@fluidGridColumnWidth:    percentage(@gridColumnWidth/@gridRowWidth);
+@fluidGridGutterWidth:    percentage(@gridGutterWidth/@gridRowWidth);
+
+// 1200px min
+@fluidGridColumnWidth1200:     percentage(@gridColumnWidth1200/@gridRowWidth1200);
+@fluidGridGutterWidth1200:     percentage(@gridGutterWidth1200/@gridRowWidth1200);
+
+// 768px-979px
+@fluidGridColumnWidth768:      percentage(@gridColumnWidth768/@gridRowWidth768);
+@fluidGridGutterWidth768:      percentage(@gridGutterWidth768/@gridRowWidth768);
+
+
+
+
+/* Quelques éléments spécifiques à SPIPr */
+
+.header {position: relative;}
+.header .spip_logos {float:left;margin: @paddingLarge;margin-left: 0;margin-top:0;}
+.header .accueil {}
+#logo_site_spip {line-height: 1em;}
+#slogan_site_spip {display: block;}
+
+.header .formulaire_menu_lang {width: 100%;}
+.header .formulaire_menu_lang select {width: 100%;}
+
+
+
+.formulaire_recherche,.secondary .formulaire_recherche {padding-right: 42px+2*14px;} /* provisionner la largeur du bouton+padding sur le input.search */
+.formulaire_recherche form .input-append {width:100%;}
+.formulaire_recherche form input.search {width:100%;}
+
+.footer {
+	.clearfix;
+	margin-top:4em;
+	padding-top: 2em;
+	border-top:2px solid;
+	padding-bottom: 2em;
+	margin-bottom:0;
+	text-align: left;
+	position:relative;
+	.colophon {padding-right: 100px}
+	.generator {position: absolute;top:2em;right:0;max-width: 100px;}
+}
+
+.cartouche {margin-bottom: @emLineHeight;}
+.content.primary {min-height: 320px;}
+.content {
+  .postmeta .tags .inline {display: inline;}
+}
+
+.icone{
+    display: inline-block;
+    vertical-align: middle;
+    padding:5px;
+    width: 30px;
+    height: 30px;
+    .border-radius(20px);
+    background-color: @blue ;
+    &:hover,&:active,&:focus{background-color: @blue ;}
+}
+
+
+[(#REM) Styles du carousel]
+//
+// Carousel
+// --------------------------------------------------
+
+@import "css/carousel.less";
+
+<BOUCLE_graphisme_carousel(spipr_educ){nom = graphisme_carousel} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+/* Carousel base class */
+.carousel{
+    position: relative;
+    font-size:1.1em;
+    margin:0 0 1em 0;
+    padding:0 0 0 0;
+	[border: 1px solid (#PARAMETRE3|?{#PARAMETRE3, "#eeeeee"}); // Couleur de la bordure]
+    height:240px;
+	[color: (#PARAMETRE2|?{#PARAMETRE2, "#333333"}); // Couleur des textes]
+	[background-color: (#PARAMETRE1|?{#PARAMETRE1, "#eeeeee"}); // Couleur de fond]
+    .carousel-inner {
+        overflow: hidden;
+        width: 100%;
+        position: relative;    
+        > .item {
+            strong.h3-like{
+				font-weight:normal;
+				a span.titre {
+					[color: (#PARAMETRE4|?{#PARAMETRE4, "#0088cc"}); // Couleur du titre]
+				}
+				> span.spip_logo.spip_logos {
+					&, span.img {float:right; margin-right:0; padding-right:0;}
+				}
+			}
+            overflow:auto;
+            display: none;
+            position: relative;
+            .transition(.6s ease-in-out left);
+            // Account for jankitude on images
+            > img,
+            > a > img {
+                display: block;
+            }
+            article{
+                width:100%;
+                height:240px;
+                overflow:hidden;
+                margin-bottom:0;
+                .introduction{padding:0 1em 1em 2em;}
+                a{
+                    display:block;
+                    padding:0 0 0 1em ;
+                    font-size:1.5em;
+                    font-weight:bold;
+                    line-height:1em;
+                    &:hover{text-decoration:none;}
+                    .spip_logos{margin:0;}
+                    .titre{display: block;padding-top:.8em;}
+                }
+            }            
+        }
+        > .active,
+        > .next,
+        > .prev { display: block; }
+        > .active {
+            left: 0;
+        }
+        > .next,
+        > .prev {
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        > .next {
+            left: 100%;
+        }
+        > .prev {
+            left: -100%;
+        }
+        > .next.left,
+        > .prev.right {
+            left: 0;
+        }
+        > .active.left {
+            left: -100%;
+        }
+        > .active.right {
+            left: 100%;
+        }
+    }
+    // Left/right controls for nav
+    // ---------------------------
+    .carousel-control {
+		z-index:1100;
+		[color: (#PARAMETRE5|?{#PARAMETRE5, "#ffffff"}); // Couleur des flèches gauche et droite de navigation]
+        // background-color: @color2;
+		[background-color: (#PARAMETRE6|?{#PARAMETRE6, "#bbbbbb"}); // Couleur de fond des flèches de navigation]
+        // &:hover,&:focus{background-color: darken(@color1,10%);}
+		[&:hover,&:focus{color: (#PARAMETRE10|?{#PARAMETRE10, "#ffffff"});} // Couleur des flèches de navigation au survol]
+		[&:hover,&:focus{background-color: (#PARAMETRE7|?{#PARAMETRE7, "#aaaaaa"});} // Couleur de fond des flèches de navigation au survol]
+        position: absolute;
+        bottom: 5px;
+        top:inherit;
+        left: 5px;
+        height:30px;
+        width:30px;
+        margin: 0;
+        padding: 8px 12px 12px 8px;
+        font-size:30px;
+        font-family:helvetica,arial,sans-serif;
+        font-weight: 100;
+        line-height:1;
+        text-align: center;
+        border: 0;
+        .border-radius(30px);
+        .opacity(0);
+        transition:opacity 0.3s ease-in-out  0.2s;
+        // Reposition the right one
+        &.right {
+          left: auto;
+          right: 5px;
+          padding: 8px 8px 12px 12px;
+        }
+        // Hover/focus state
+        &:hover,&:focus {
+            text-decoration: none;
+        }
+    }
+    ol.carousel-indicators,ul.carousel-stop{
+        display:block;
+		z-index: 5;
+        margin: 0;
+        list-style: none;
+        li{
+            // color: lighten(@color2,5%);
+			[color: (#PARAMETRE8|?{#PARAMETRE8, "#bbbbbb"}); // Couleur des points indicateurs]
+            cursor: pointer;
+            display: inline;
+            text-indent: inherit;
+            height: auto;
+            width: auto;
+            background-color: transparent !important;
+            float: none;
+            // &:hover,&:active,&:focus{color: darken(@color1,20%);background: none;}
+			&:hover,&:active,&:focus{
+				color: @red; // Inutile ?
+				background: none;
+			}
+        }
+    }
+	.container-carousel-indicators {
+		display:block;
+		position:absolute;
+		bottom:18px;
+		width:100%;
+		height:24px;
+	}
+<BOUCLE_graphisme_carousel_2(spipr_educ){nom = graphisme_carousel_2} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+    ol.carousel-indicators{
+        position: absolute;
+        left: 46%;
+        li{
+            font-size:1.5em;
+            margin:0 5px 0 5px;
+            padding: 0 0 0 0;
+            display: inline-block;
+            .border-radius(5px);
+            // &.active{color: lighten(@color1,10%);}
+			[&.active{color: (#PARAMETRE1|?{#PARAMETRE1, "#dddddd"});} // Couleur du point de l'indicateur actif]
+        }
+    }
+    .carousel-stop{
+        position: absolute;
+        bottom:4px;
+        left:38%;
+        margin-left: 0;
+        margin-bottom: 0;
+        font-family: helvetica,arial,sans-serif;
+        li{
+            font-size:1.5em;
+        }
+    }
+    &:hover{
+        .carousel-indicators,.carousel-stop{
+            li{
+                // color: @color2;
+				color: #bbb;
+                // &.active,&.active:hover{color: @color1;}
+				[&.active,&.active:hover {color: (#PARAMETRE2|?{#PARAMETRE2, "#0088cc"});} // Couleur du point de l'indicateur actif lors du survol du bloc]
+                // &:hover,&:active,&:focus{color: darken(@color1,10%);}
+</BOUCLE_graphisme_carousel_2>
+				[&:hover,&:active,&:focus{color: (#PARAMETRE9|?{#PARAMETRE9, "#005577"});} // Couleur des point de l'indicateur lors du survol du bloc]
+            }
+        }
+        .carousel-control {
+            .opacity(70);
+            transition: opacity 0.3s ease-in-out  0;
+        }
+    }
+	<BOUCLE_graphisme_carousel_css(spipr_educ){nom = graphisme_carousel_2} {type = graphisme} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+    #PARAMETRE3
+	</BOUCLE_graphisme_carousel_css>
+}
+</BOUCLE_graphisme_carousel>
+
+// Des styles pour le boutons de retour au haut de page en provenance de SPIPr-Dane
+// -----------------------------------------------------
+// On définira plus tard les couleurs en s'appuyant sur celles du site (définies précédemment)
+#backtotop {
+		display:none;
+		bottom:20px;
+		right:10px;
+		height:40px;
+		padding-top:10px;
+		width:50px;
+		text-align:center;
+		position:fixed;
+		z-index:1;
+		color:#fafafa;
+		font-size:30px;
+		background-color:#3b597a;
+		cursor:pointer;
+		font-family:helvetica,arial,sans-serif;
+		-webkit-border-radius:25px;
+		-moz-border-radius:25px;
+		border-radius:25px;
+		opacity:0.6;
+		filter:alpha(opacity=60);
+}
+#backtotop:hover {
+	opacity:1;
+	filter:alpha(opacity=100);
+	background-color:#d13827;
+}
+
+
+[(#REM) Gestion des layoutgala]
+
+[(#REM) Gestion du layout pour une largeur comprise entre 980 et 1200px]
+<BOUCLE_layout_grand(SPIPR_EDUC){nom = layout_grand} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@import "css/layoutgala/(#PARAMETRE1)";]
+[#layoutgala(#PARAMETRE1)] > .core(#PARAMETRE2,#PARAMETRE3,#PARAMETRE4,@gridColumnWidth,@gridGutterWidth);
+</BOUCLE_layout_grand>
+
+[(#REM) Gestion du layout pour une largeur supérieure à 1200px]
+<BOUCLE_layout1200(SPIPR_EDUC){nom = layout_1200} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@import "css/layoutgala/(#PARAMETRE1)";]
+@media (min-width: 1200px) {
+[#layoutgala(#PARAMETRE1)] > .core(#PARAMETRE2,#PARAMETRE3,#PARAMETRE4,@gridColumnWidth1200,@gridGutterWidth1200);
+}
+</BOUCLE_layout1200>
+
+[(#REM) Gestion du layout pour une largeur comprise entre 768 et 979px]
+<BOUCLE_layout_moyen(SPIPR_EDUC){nom = layout_moyen} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@import "css/layoutgala/(#PARAMETRE1)";]
+@media (min-width: 768px) and (max-width: 979px) {
+[#layoutgala(#PARAMETRE1)] > .core(#PARAMETRE2,#PARAMETRE3,#PARAMETRE4,@gridColumnWidth768,@gridGutterWidth768);
+}
+</BOUCLE_layout_moyen>
+
+[(#REM) Gestion du layout pour une largeur inférieure à 768px]
+<BOUCLE_layout_petit(SPIPR_EDUC){nom = layout_petit} {nom_sauvegarde = en_cours_d_utilisation_SPIPr}>
+[@import "css/layoutgala/(#PARAMETRE1)";]
+@media (max-width: 767px) {
+[#layoutgala(#PARAMETRE1)] > .core(#PARAMETRE2,#PARAMETRE3,#PARAMETRE4,@gridColumnWidth768,@gridGutterWidth768);
+}
+</BOUCLE_layout_petit>
+
+[(#REM) Pour une largeur inférieure à 450 pixels, on verticalise tout : colonnes secondaireet tertiaire en pleine largeur, l'une en-dessous de l'autre.
+On agrandit par ailleurs la hauteur du carousel, l'image utilisant toute la hauteur initialement disponible.]
+@media (max-width: 450px) {
+	#aside {float:none;width:100%;}
+	#extra {float:none;width:100%;}
+	#aside .carousel,#aside .carousel .carousel-inner .item article, #content .carousel,#content .carousel .carousel-inner .item article, #extra .carousel,#extra .carousel .carousel-inner .item article {height:400px;}
+}
+
+[(#REM) Intégrer ici le module de marges : tout d'abord un test pour savoir s'il en faut, ensuite extraire les CSS nécessaires]
+<BOUCLE_marges(SPIPR_EDUC){nom = graphisme_marges} {nom_sauvegarde = en_cours_d_utilisation_SPIPr} {parametre1 = oui}>
+<?php
+	include_spip('inc/spipr_educ_gestion_margin');
+	echo spipr_educ_gestion_margin();
+?>
+</BOUCLE_marges>
+
+[(#REM) Règles CSS ou LESS spécifiques aux formulaires]
+<BOUCLE_formulaires(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_formulaires}>
+	#formulaire_contact, div#formulaire_forum, div#formulaire_inscription, .formulaire_login {
+		&, & p.boutons, & fieldset, & legend, & label{
+			&, & p {
+				[background-color:(#PARAMETRE1);]
+				[color:(#PARAMETRE2);]
+			}
+		}
+	}
+	#formulaire_contact, div#formulaire_forum, div#formulaire_inscription, .formulaire_login {
+		[border:1px solid (#PARAMETRE3);]
+		[(#PARAMETRE4)]
+	}
+</BOUCLE_formulaires>
+
+
+[(#REM) Règles CSS ou LESS spécifiques aux blocs particuliers]
+
+	#SET{blocs_specifiques,#ARRAY{0,'sommaire_derniers_articles',1,'sommaire_dernieres_breves',2,'sommaire_articles_syndiques',3,'sommaire_evenements',4,'sommaire_forums',5,'rubrique_articles',6,'rubrique_breves',7,'rubrique_sites',8,'rubrique_evenements',9,'article_evenements',10,'article_meme_rubrique',11,'breve_evenements',12,'breve_meme_rubrique',13,'site_articles_syndiques',14,'site_autres_sites',15,'site_evenements',16,'auteur_articles',17,'auteur_autres_auteurs',18,'auteur_evenements',19,'autre_evenements',20,'sommaire_nuage'}}
+
+	<BOUCLE_css_blocs_specifiques(DATA){source table,#GET{blocs_specifiques}}>
+		#SET{valeur_bloc,#VALEUR}
+		<BOUCLE_bloc_specifique(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom=#GET{valeur_bloc}}>
+			[#(#GET{valeur_bloc}){#PARAMETRE6}]
+		</BOUCLE_bloc_specifique>
+	</BOUCLE_css_blocs_specifiques>
+	
+	[(#REM) On passe au menu vertical]
+	<BOUCLE_menu_vertical(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_menu_vertical}>
+		#sommaire_menu_navigation.well,
+		#rubrique_menu_navigation.well,
+		#article_menu_navigation.well,
+		#auteur_menu_navigation.well,
+		#autre_menu_navigation.well,
+		#breve_menu_navigation.well,
+		#site_menu_navigation.well
+		{
+			[border-color:(#PARAMETRE1);]
+			[background-color:(#PARAMETRE2);]
+			[color:(#PARAMETRE3);]
+			a {
+				[color:(#PARAMETRE4);]
+				&:hover {
+					[color:(#PARAMETRE5);]
+					[background-color:(#PARAMETRE6);]
+				}
+			}
+			li.active a.on {
+					[color:(#PARAMETRE7);]
+					[background-color:(#PARAMETRE8|?{#PARAMETRE8, "@linkColor"});]
+			}
+			#PARAMETRE9
+		}
+	</BOUCLE_menu_vertical>
+
+[(#REM) Règles CSS ou LESS concernant des blocs personnels]
+	#SET{blocs_accessibilite,#ARRAY{0,'sommaire_dyslexie',1,'rubrique_dyslexie',2,'article_dyslexie',3,'breve_dyslexie',4,'site_dyslexie',5,'auteur_dyslexie',6,'autre_dyslexie'}}
+	
+	<BOUCLE_css_blocs_accessibilite(DATA){source table,#GET{blocs_accessibilite}}>
+		#SET{valeur_bloc,#VALEUR}
+		<BOUCLE_css_accessibilite(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom=#GET{valeur_bloc}}>
+			[div#(#GET{valeur_bloc}){
+				[background-color:(#PARAMETRE5);]
+				[&, legend {
+					color:(#PARAMETRE6);
+				}]
+				[border:1px solid (#PARAMETRE7);]
+				#PARAMETRE8
+			}]
+		</BOUCLE_css_accessibilite>
+	</BOUCLE_css_blocs_accessibilite>
+	
+	
+	[(#REM) Règles CSS ou LESS concernant des blocs personnels]
+	#SET{blocs_personnels,#ARRAY{0,'sommaire_bloc_perso_1',1,'sommaire_bloc_perso_2',2,'sommaire_bloc_perso_3',3,'article_bloc_perso_1',4,'article_bloc_perso_2',5,'article_bloc_perso_3',6,'rubrique_bloc_perso_1',7,'rubrique_bloc_perso_2',8,'rubrique_bloc_perso_3',9,'breve_bloc_perso_1',10,'breve_bloc_perso_2',11,'breve_bloc_perso_3',12,'site_bloc_perso_1',13,'site_bloc_perso_2',14,'site_bloc_perso_3',15,'auteur_bloc_perso_1',16,'auteur_bloc_perso_2',17,'auteur_bloc_perso_3',18,'autre_bloc_perso_1',19,'autre_bloc_perso_2',20,'autre_bloc_perso_3'}}
+
+	<BOUCLE_css_blocs_personnels(DATA){source table,#GET{blocs_personnels}}>
+		#SET{valeur_bloc,#VALEUR}
+		<BOUCLE_css_personnels(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom=#GET{valeur_bloc}}{type=graphisme}>
+			[div#(#GET{valeur_bloc}){
+				[background-color:(#PARAMETRE1);]
+				[border:1px solid (#PARAMETRE2);]
+				h2.h2 {
+					[color:(#PARAMETRE3);]
+					[background-color:(#PARAMETRE4);]
+				}
+				[.item {color:(#PARAMETRE5);}]
+				#PARAMETRE6
+			}]
+		</BOUCLE_css_personnels>
+	</BOUCLE_css_blocs_personnels>
+
+[(#REM) Images de fond]
+#SET{les_secteurs_de_fond, #ARRAY{fond_ecran,body,fond_page,.container,fond_entete,#header,fond_barre_menu,#nav .navbar-inner,fond_breadcrumb,ul.breadcrumb,fond_pied,#footer}}
+<BOUCLE_image_fond(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom IN fond_ecran,fond_page,fond_entete,fond_barre_menu,fond_breadcrumb,fond_pied}>
+[(#PARAMETRE1|?{
+[(#GET{les_secteurs_de_fond}|table_valeur{#NOM}) {
+	[background-image : url(#URL_SITE_SPIP/(#EVAL{_DIR_IMG})spipr_educ/#PARAMETRE1)];
+	background-position : [(#PARAMETRE5|?{#PARAMETRE5,#PARAMETRE4})] [(#PARAMETRE3|?{#PARAMETRE3,#PARAMETRE2})];
+	background-repeat : #PARAMETRE6;
+	background-attachment : #PARAMETRE7;
+}]
+, ""})]
+</BOUCLE_image_fond>
+
+[(#REM) Styles pour le bloc de prise en charge de la police dyslexie et l'interlignage double]
+.dyslexie {
+	&, legend, code, pre, .spip_code, input, button, select, textarea, .navbar-search .search-query, #fancybox-title, .panorama-panel h2, .panorama-title, h2.panorama-carte a, h2.panorama-panier a, .documents-lieu h2, .portfolio-container .portfolio-title, h1, .h1, .h1-like, h2, .h2, .h2-like, h3, .h3, .h3-like, h4, .h4, .h4-like, h5, .h5, .h5-like, h6, .h6, .h6-like, .secondary h1, .secondary .h1, .secondary .h1-like, .secondary h2, .secondary .h2, .secondary .h2-like, .secondary h3, .secondary .h3, .secondary .h3-like, .secondary h4, .secondary .h4, .secondary .h4-like, .secondary h5, .secondary .h5, .secondary .h5-like, .ui-widget button, .ui-widget,
+	{
+		font-family : opendyslexic, arial;
+	}
+}
+.accessibilite_interlignage {
+	&, h1 small, .h1 small, .h1-like small, h2 small, .h2 small, .h2-like small, h3 small, .h3 small, .h3-like small, h4 small, .h4 small, .h4-like small, h5 small, .h5 small, .h5-like small, h6 small, .h6 small, .h6-like small, blockquote small, .lead, #descriptif_site_spip, .hero-unit, div#content p,
+	{
+		line-height:2;
+	}
+}
+ul#liste_dyslexie, ul#liste_interlignage {
+	list-style: none;
+	li {
+		input {float:left; width:15%;}
+		label {float:left; width:80%;}
+	}
+}
+
+[(#REM) Style du bloc des logos des sites partenaires]
+<BOUCLE_bloc_logos(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_bloc_logos} {type = graphisme}>
+#bloc_logos {
+	[background-color:(#PARAMETRE7);]
+	[border:1px solid (#PARAMETRE8);]
+	[h2.h2 {
+		color:(#PARAMETRE6);
+	}]
+	ul {
+		text-align:center;
+		padding-bottom:0;
+		margin-bottom:0;
+		a img {
+			[min-height:(#PARAMETRE1)px;]
+			[max-height:(#PARAMETRE2)px;]
+			[min-width:(#PARAMETRE3)px;]
+			max-width:90%;
+			margin:5%;
+		}
+	}
+	#PARAMETRE9
+}
+</BOUCLE_bloc_logos>
+
+[(#REM) Style du bloc des liens des sites partenaires]
+<BOUCLE_bloc_liens_partenaires(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_liens_partenaires} {type = graphisme}>
+#liens_partenaires {
+	[(#PARAMETRE8|=={oui}|?{'padding:6px;',''})]
+	[background-color:(#PARAMETRE3);]
+	[border:1px solid (#PARAMETRE4);]
+	[h2.h2 {
+		color:(#PARAMETRE2);
+	}]
+	[color:(#PARAMETRE5);]
+	a {
+		[(#PARAMETRE8|=={oui}|?{'margin:0 10px;',''})]
+		[color:(#PARAMETRE5);]
+		&:hover {
+			[color:(#PARAMETRE6);]
+			[background-color:(#PARAMETRE9);]
+		}
+	}
+	ul {
+		padding-left:10px;
+		padding-right:10px;
+		a {
+			[color:(#PARAMETRE5);]
+			&:hover {
+				[color:(#PARAMETRE6);]
+			}
+		}
+	}
+	#PARAMETRE7
+}
+</BOUCLE_bloc_liens_partenaires>
+
+[(#REM) Style du bloc du compteur graphique du sommaire]
+<BOUCLE_sommaire_compteur(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = sommaire_compteur} {type = graphisme}>
+#compteurgraphiquetotalspipreduc.list {
+	[background-color:(#PARAMETRE1);]
+	[border:1px solid (#PARAMETRE2);]
+	h2.h2{
+		[color:(#PARAMETRE3);]
+		[background-color:(#PARAMETRE4);]
+	}
+	#PARAMETRE5
+}
+</BOUCLE_sommaire_compteur>
+
+[(#REM) Style du bloc du compteur graphique des articles]
+<BOUCLE_article_compteur(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = article_compteur} {type = graphisme}>
+#compteurgraphiquespipreduc.list {
+	[background-color:(#PARAMETRE1);]
+	[border:1px solid (#PARAMETRE2);]
+	h2.h2{
+		[color:(#PARAMETRE3);]
+		[background-color:(#PARAMETRE4);]
+	}
+	#PARAMETRE5
+}
+</BOUCLE_article_compteur>
+
+[(#REM) Ajouter un margin en-dessous du bloc d'accessibilité]
+#sommaire_dyslexie,#article_dyslexie,#rubrique_dyslexie,#breve_dyslexie,#auteur_dyslexie,#site_dyslexie,#autre_dyslexie {margin-bottom:30px;}
+
+[(#REM) Un peu d'espace sous les liens de traduction]
+#article_cartouche div.postmeta {margin-bottom:16px;}
+
+[(#REM) Open-dys, Generated by Font Squirrel (https://www.fontsquirrel.com) on June 20, 2016]
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-bolditalic-webfont.svg})#opendyslexicaltabold_italic]') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.svg})#opendyslexicaltaitalic]') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.svg})#opendyslexicaltaregular]') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})?#iefix']) format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.svg})#opendyslexicaltaregular]') format('svg');
+    font-weight:normal;
+    font-style:normal;
+    font-variant:normal;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-italic-webfont.svg})#opendyslexicaltaitalic]') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicalta-regular-webfont.svg})#opendyslexicaltaregular]') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-bolditalic-webfont.svg})#opendyslexicbold_italic]') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.svg})#opendyslexicitalic]') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.svg})#opendyslexicmonoregular]') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-regular-webfont.svg})#opendyslexicregular]') format('svg');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.ttf})]') format('truetype'),
+		 url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexic-italic-webfont.svg})#opendyslexicitalic]') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'opendyslexic';
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.eot})]');
+    src: url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.eot})?#iefix]') format('embedded-opentype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.woff2})]') format('woff2'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.woff})]') format('woff'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.ttf})]') format('truetype'),
+         url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.svg})#opendyslexicmonoregular]') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+[(#REM) Règles CSS ou LESS spécifiques, toujours en dernier]
+<BOUCLE_css_perso(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_css}>
+#PARAMETRE1
+</BOUCLE_css_perso>

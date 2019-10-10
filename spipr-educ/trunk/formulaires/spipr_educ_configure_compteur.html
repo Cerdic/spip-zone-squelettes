@@ -1,0 +1,69 @@
+#CACHE{0}
+<div style="padding:16px;">
+<h2 class='titre'><div style="text-align:center;">Configuration du bloc :
+<?php echo _T('spipr_educ:#ENV{nom}');?>
+</div></h3>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{nom}configureblocperso'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">&Eacute;léments textuels</h3>
+				<ul class="editer-groupe">
+					<li class="editer obligatoire">
+						<label for="titreBloc">Titre du bloc (par défaut <em>Visites</em>)</label>
+						<input type='text' name='titreBloc' id='titreBloc' value="#ENV{titreBloc,'Visites'}" class="text" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Réglages graphiques</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="blocFond">Couleur de fond du bloc</label>
+						<input type='text' name='blocFond' id='blocFond' value="#ENV{blocFond}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="blocBordure">Couleur de la bordure du bloc</label>
+						<input type='text' name='blocBordure' id='blocBordure' value="#ENV{blocBordure}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="titreCouleur">Couleur du titre</label>
+						<input type='text' name='titreCouleur' id='titreCouleur' value="#ENV{titreCouleur}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="titreFond">Couleur de fond du titre</label>
+						<input type='text' name='titreFond' id='titreFond' value="#ENV{titreFond}" class="text palette" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">CSS</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="blocCSS">Règles CSS ou LESS spécifiques pour ce bloc (s'appliquent sur <em>[#(#ENV**{nom})]</em>)</label>
+						<textarea name='blocCSS' id='blocCSS' class="text" rows="6">[(#ENV**{blocCSS})]</textarea>
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+	</ul>
+	
+	<input type='hidden' name='[hidden_(#ENV**{nom})]' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>
+</div>

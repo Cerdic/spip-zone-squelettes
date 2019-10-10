@@ -1,0 +1,83 @@
+<BOUCLE_pagination_spipr_educ_evenement_sommaire(spipr_educ)
+	{nom=sommaire_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}>
+	[(#ENV{page}|=={sommaire}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_sommaire>
+
+<BOUCLE_pagination_spipr_educ_evenement_article(spipr_educ)
+	{nom=article_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=article}>
+	[(#ENV{page}|=={article}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_article>
+
+<BOUCLE_pagination_spipr_educ_evenement_breve(spipr_educ)
+	{nom=breve_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=breve}>
+	[(#ENV{page}|=={breve}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_breve>
+
+<BOUCLE_pagination_spipr_educ_evenement_rubrique(spipr_educ)
+	{nom=rubrique_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=rubrique}>
+	[(#ENV{page}|=={rubrique}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_rubrique>
+
+<BOUCLE_pagination_spipr_educ_evenement_site(spipr_educ)
+	{nom=site_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=site}>
+	[(#ENV{page}|=={site}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_site>
+
+<BOUCLE_pagination_spipr_educ_evenement_auteur(spipr_educ)
+	{nom=auteur_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=auteur}>
+	[(#ENV{page}|=={auteur}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_auteur>
+
+<BOUCLE_pagination_spipr_educ_evenement_autre(spipr_educ)
+	{nom=autre_evenements}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=autre}>
+	[(#ENV{page}|=={autre}|?{
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:agenda:evenements:>}})]
+	,''})]
+</BOUCLE_pagination_spipr_educ_evenement_autre>
+
+<B_liste_evenements>
+<div class="liste"[ id="(#ENV{id_bloc})"]>
+[<h2>(#GET{titreBloc})</h2>]
+#ANCRE_PAGINATION
+<ul class="liste-items evenements short">
+<BOUCLE_liste_evenements(EVENEMENTS){par date_debut}{!evenement_passe #ENV{date_debut,#ENV{date}}}{id_evenement!=#ENV{id_evenement,0}}{pagination #GET{nb}}>
+<li class="item evenement">#INCLURE{fond=noisettes/commun/spipr_educ_evenement,id_evenement}</li>
+</BOUCLE_liste_evenements>
+</ul>
+[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+<div class="clearfix"></div>
+</div>
+</B_liste_evenements>

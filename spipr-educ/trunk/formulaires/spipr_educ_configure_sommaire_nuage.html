@@ -1,0 +1,63 @@
+#CACHE{0}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;">Paramètres graphiques du nuage de mots-clés (nécessite l'activation du plugin <em>Nuage</em>)
+</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configuresommairenuage'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+	
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Titre du bloc</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="nuageTitre">Titre du bloc (par défaut <em>Mots-clés</em>)</label>
+						<input type='text' name='nuageTitre' id='nuageTitre' value="#ENV{nuageTitre}" class="text" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Groupes de mots-clés à afficher dans le nuage</h3>
+				<ul class="editer-groupe">
+				#SET{tableau_nuage,#ENV**{array_nuage}|explode{|}}
+				<BOUCLE_extraction_groupes(GROUPES_MOTS){par titre}>
+					<li class="choix">
+						<input type='checkbox' name='groupe#ID_GROUPE' id='groupe#ID_GROUPE' value="oui" [(#GET{tableau_nuage}|find{#ID_GROUPE}|oui)checked="checked" ]/>
+						<label for="groupe#ID_GROUPE">#TITRE</label>
+					</li>
+				</BOUCLE_extraction_groupes>
+					<li> Créez au moins un groupe de mots-clés pour pouvoir configurer ce bloc.</li>
+				<//B_extraction_groupes>
+				</ul>
+				
+			</fieldset>
+		</li>
+		
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">CSS</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="nuageCSS">Règles CSS ou LESS spécifiques pour le nuage de mots-clés (s'appliquent sur <em>[#(#ENV**{nom})]</em>)</label>
+						<textarea name='nuageCSS' id='nuageCSS' class="text" rows="6">[(#ENV**{nuageCSS})]</textarea>
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+	</ul>
+	
+	<input type='hidden' name='hidden_nuage' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>

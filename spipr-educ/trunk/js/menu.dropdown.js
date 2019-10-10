@@ -7,6 +7,8 @@ jQuery(function(){
 			.find('.menu-items').eq(0)
 			.children('.item').children('.menu-items').parent().addClass('dropdown')
 			.children('.menu-items').addClass('dropdown-menu').removeClass('nav')
-			.siblings('a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').append('<b class="caret"></b>').dropdown();
+			.siblings('a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').append('<b class="caret"></b>').dropdown()
+			.siblings('.menu-items')
+			.find('.menu-items').hide();
 	});
 });

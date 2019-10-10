@@ -1,25 +1,8 @@
-<BOUCLE_breve_principal(BREVES) {id_breve}>
-  [(#REM) Breves dans la meme rubrique ]
-  <B_breves>
-  <div class="liste breves">
-      <h2 class="h2"><:autres_breves:></h2>
-      <ul class="liste-items">
-          <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {0,10}>
-          <li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a></li>
-          </BOUCLE_breves>
-      </ul>
-  </div>
-  </B_breves>
-
-  [(#REM) Menu de navigation mots-cles ]
-  <B_mots>
-  <div class="liste mots">
-      <h2 class="h2"><:mots_clefs:></h2>
-      <ul class="liste-items">
-      <BOUCLE_mots(MOTS) {id_breve} {par titre}>
-          <li class="item"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
-      </BOUCLE_mots>
-      </ul>
-  </div>
-  </B_mots>
-</BOUCLE_breve_principal>
+<BOUCLE_breve_extra(spipr_educ)
+	{type IN bloc de base, bloc personnel}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=breve}
+	{parametre2=extra}
+	{par num parametre3}>
+	<INCLURE{fond=noisettes/breve/#NOM}{ajax}{env}>
+</BOUCLE_breve_extra>

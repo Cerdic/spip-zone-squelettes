@@ -1,0 +1,67 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Couleurs des paginations</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formcouleurtextes">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<p>
+		On choisira des valeurs hexadécimales, exemple : <em>#330099</em>
+	</p>
+	
+	<fieldset>
+		<legend>Couleurs</legend>
+		
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="paginationBackground">Couleur de fond</label>
+				<input type='text' name='paginationBackground' id='paginationBackground' value="[(#ENV**{paginationBackground})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="paginationActiveBackground">Couleur de fond de la pagination en cours</label>
+				<input type='text' name='paginationActiveBackground' id='paginationActiveBackground' value="[(#ENV**{paginationActiveBackground})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="paginationBorder">Couleur des bordures</label>
+				<input type='text' name='paginationBorder' id='paginationBorder' value="[(#ENV**{paginationBorder})]" class="text palette" />
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Alignement</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix" style="padding-bottom:10px;">
+				<input type='radio' class="radio" name='alignement_pagination' value='left' id='alignement_pagination_left'[ (#ENV**{alignement_pagination}|=={left}|oui)checked="checked"] />
+				<label for='alignement_pagination_left'>Paginations alignées à gauche</label>
+			</div>
+			<div class="choix" style="padding-bottom:10px;">
+				<input type='radio' class="radio" name='alignement_pagination' value='center' id='alignement_pagination_center'[ (#ENV**{alignement_pagination}|=={center}|oui)checked="checked"] />
+				<label for='alignement_pagination_center'>Paginations centrées</label>
+			</div>
+			<div class="choix">
+				<input type='radio' class="radio" name='alignement_pagination' value='right' id='alignement_pagination_right'[ (#ENV**{alignement_pagination}|=={right}|oui)checked="checked"] />
+				<label for='alignement_pagination_right'>Paginations alignées à droite</label>
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Règles CSS</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="paginationCSS" style="padding-bottom:16px;">Règles CSS ou LESS spécifiques pour le fil d'ariane (s'applique sur <em>.pagination</em>)</label>
+				<textarea name='paginationCSS' id='paginationCSS' class="text" rows="6">[(#ENV**{paginationCSS})]</textarea>
+			</div>
+		</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_graphisme_pagination' value='ok' />
+	
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

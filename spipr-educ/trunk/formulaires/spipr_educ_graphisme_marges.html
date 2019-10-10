@@ -1,0 +1,34 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Ajout de marges</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formcouleurtableaux">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	<p>
+		Par défaut, certaines colonnes de contenus "collent" aux bordures de la page.<br />En ajoutant des marges, vous pourrez décoller ces colonnes de quelques pixels.
+	</p>
+
+	<fieldset>
+		<legend>Ajout de marges</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<input type='radio' class="radio" name='marges' value='non' id='marges_non'[ (#ENV**{marges}|=={non}|oui)checked="checked"] />
+				<label for='marges_non'>Pas d'ajout de marges</label>
+			</div>
+			<div class="choix">
+				<input type='radio' class="radio" name='marges' value='oui' id='marges_oui'[ (#ENV**{marges}|=={oui}|oui)checked="checked"] />
+				<label for='marges_oui'>Ajout de marges</label>
+			</div>
+		</div>
+	</fieldset>
+
+	<input type='hidden' name='hidden_graphisme_marges' value='ok' />
+	
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

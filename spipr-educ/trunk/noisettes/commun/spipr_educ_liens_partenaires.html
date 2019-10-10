@@ -1,0 +1,45 @@
+<BOUCLE_parametres_sommaire_liens_partenaires(spipr_educ)
+	{nom=options_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param3,#PARAMETRE3}
+</BOUCLE_parametres_sommaire_liens_partenaires>
+<BOUCLE_graphisme_liens_partenaires(spipr_educ)
+	{nom=graphisme_liens_partenaires}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=graphisme}>
+	[(#PARAMETRE1|?{#SET{titre,#PARAMETRE1},#SET{titre,'Partenaires'}})]
+	#SET{orientation_liens,#PARAMETRE8}
+</BOUCLE_graphisme_liens_partenaires>
+
+#SET{listeBlocs, #GET{param3}|explode{','}}
+
+<?php
+if ('#GET{orientation_liens}'!='oui') {
+?>
+<B_bloc_liens>
+<div class="liste" id="liens_partenaires">
+[<h2 class="h2">(#GET{titre})</h2>]
+	<ul class="liste-items">
+	<BOUCLE_bloc_liens(SITES) {id_syndic IN #GET{listeBlocs}}>
+		<li>
+			<a href="#URL_SITE">#NOM_SITE</a>
+		</li>
+	</BOUCLE_bloc_liens>
+	</ul>
+</div>
+</B_bloc_liens>
+<?php
+}
+else {
+?>
+<B_bloc_liens_horizontaux>
+<div class="liste" id="liens_partenaires">
+	<BOUCLE_bloc_liens_horizontaux(SITES) {id_syndic IN #GET{listeBlocs}} {' | '}>
+		<a href="#URL_SITE">#NOM_SITE</a>
+	</BOUCLE_bloc_liens_horizontaux>
+</div>
+</B_bloc_liens_horizontaux>
+<?php
+}
+?>

@@ -1,0 +1,115 @@
+<div style="padding:8px;">
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center; padding:8px;">Paramétrages du bloc des logos des sites partenaires</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="spipr_educ_sites_partenaires_logo">
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+#SET{listeBlocs, #ENV{sites_def}|explode{','}}
+<?php
+	$tab=explode(",",'#ENV{sites_def}');
+	$longueur_tab=count($tab);
+?>
+
+<B_bloc_logos>
+	<fieldset>
+	<legend>Disposition des sites</legend>
+	<div class="editer-groupe">
+	<BOUCLE_bloc_logos(SITES) {id_syndic IN #GET{listeBlocs}}>
+		<div class='cadre' style='display:block; border:1px solid #8F8FBD; margin:0 10px 10px 10px; height:24px; line-height:24px; vertical-align:middle; padding:8px;' onmouseover="this.style.background='#eee';" onmouseout="this.style.background='';">
+			<div style="width:68%; display:block; float:left; height:24px; line-height:24px; vertical-align:middle;">
+				<a href="#URL_ECRIRE{site,id_syndic=#ID_SYNDIC}" title="[Voir la page du site : (#NOM_SITE|textebrut)]">[(#NOM_SITE|textebrut|couper{80}) ] [<div style="display:block; float:left; height:24px; line-height:24px; vertical-align:middle; padding:0 8px;">(#LOGO_SITE|image_reduire{0,24})</div>]</a>
+			</div>
+			<div style="width:24%; display:block; float:right; text-align:right;">
+				<?php
+					// Si on a deux valeurs au moins, on affiche les flèches pour monter et descendre
+					if (#TOTAL_BOUCLE>1) {
+						//Si on est sur le premier élément et qu'il y a plus d'un élément , n'afficher que la flèche du bas
+						if ((#COMPTEUR_BOUCLE==1) AND (#TOTAL_BOUCLE>1)) { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_SYNDIC" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+						<?php }
+						// Si on est sur le dernier élément, n'afficher que la flèche du haut suivie d'un espace vide
+						elseif (#COMPTEUR_BOUCLE==#TOTAL_BOUCLE) { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_SYNDIC" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+							<img src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/spipr_edu_vide.png";?>" />
+						<?php }
+						// Sinon, on affiche les deux flèches
+						else { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_SYNDIC" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_SYNDIC" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+						<?php }
+					}
+					// On termine par la possibilité de supprimer une entrée
+				?>
+				<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/suppression_bloc.png";?>" name="supprimer_site_#ID_SYNDIC" alt="Supprimer ce site" title="Supprimer ce site" />
+			</div>
+		</div>
+	</BOUCLE_bloc_logos>
+	</div>
+	</fieldset>
+</B_bloc_logos>
+
+	<fieldset>
+	<legend>Configuration du bloc</legend>
+	<div class="editer-groupe">
+		<div class="choix" style="padding:6px;">
+			<label for="logoTitre">Titre du bloc (par défaut <em>Partenaires</em>)</label>
+			<input type='text' name='logoTitre' id='logoTitre' value="#ENV{logoTitre,'Partenaires'}" class="text" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="couleurTitre">Couleur du titre du bloc</label>
+			<input type='text' name='couleurTitre' id='couleurTitre' value="#ENV{couleurTitre}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="backgroundLogo">Couleur de fond du bloc</label>
+			<input type='text' name='backgroundLogo' id='backgroundLogo' value="#ENV{backgroundLogo}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="couleurBordure">Couleur de la bordure du bloc</label>
+			<input type='text' name='couleurBordure' id='couleurBordure' value="#ENV{couleurBordure}" class="text palette" />
+		</div>
+	</div>
+	</fieldset>
+	
+	<fieldset>
+	<legend>Dimensions des logos générés</legend>
+	<div class="editer-groupe">
+		<div class="choix" style="padding:6px;">
+			<label for="largeur_mini">Largeur minimale des logos générés</label>
+			<input type='number' name='largeur_mini' id='largeur_mini' value="#ENV{largeur_mini,60}" class="number" min="50" max="500" step="5" style="width:3em;" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="largeur_maxi">Largeur maximale des logos générés</label>
+			<input type='number' name='largeur_maxi' id='largeur_maxi' value="#ENV{largeur_maxi,200}" class="number" min="50" max="500" step="5" style="width:3em;" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="hauteur_mini">Hauteur minimale des logos générés</label>
+			<input type='number' name='hauteur_mini' id='hauteur_mini' value="#ENV{hauteur_mini,50}" class="number" min="50" max="500" step="5" style="width:3em;" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="hauteur_maxi">Hauteur maximale des logos générés</label>
+			<input type='number' name='hauteur_maxi' id='hauteur_maxi' value="#ENV{hauteur_maxi,200}" class="number" min="50" max="500" step="5" style="width:3em;" />
+		</div>
+	</div>
+	</fieldset>
+	
+	<fieldset>
+	<legend>CSS</legend>
+	<div class="editer-groupe">
+		<div class="choix">
+			<label for="logoCSS">Règles CSS ou LESS spécifiques pour ce bloc (s'appliquent sur <em>#bloc_logos</em>)</label>
+			<textarea name='logoCSS' id='logoCSS' class="text" rows="6">#ENV{logoCSS}</textarea>
+		</div>
+	</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_sites_partenaires_logo' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>
+</div>

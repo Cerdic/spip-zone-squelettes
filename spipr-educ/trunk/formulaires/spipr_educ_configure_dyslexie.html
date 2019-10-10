@@ -1,0 +1,59 @@
+#CACHE{0}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;margin-top:10px;">Paramètres graphiques du bloc d'accessibilité<br />
+[(#ENV{nom}|=={sommaire_dyslexie}|?{'de la page de sommaire',''})]
+[(#ENV{nom}|=={rubrique_dyslexie}|?{'des pages de type rubrique',''})]
+[(#ENV{nom}|=={article_dyslexie}|?{'des pages de type article',''})]
+[(#ENV{nom}|=={breve_dyslexie}|?{'des pages de type brève',''})]
+[(#ENV{nom}|=={site_dyslexie}|?{'des pages de type site',''})]
+[(#ENV{nom}|=={auteur_dyslexie}|?{'des pages de type auteur',''})]
+[(#ENV{nom}|=={autre_dyslexie}|?{'des pages de type autre',''})]
+</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configureaccessibilite'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Couleurs</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="dysBackground">Couleur de fond du bloc</label>
+						<input type='text' name='dysBackground' id='dysBackground' value="#ENV{dysBackground}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="dysColor">Couleur du texte</label>
+						<input type='text' name='dysColor' id='dysColor' value="#ENV{dysColor}" class="text palette" />
+					</li>
+					<li class="editer facultatif">
+						<label for="dysBorder">Couleur de la bordure</label>
+						<input type='text' name='dysBorder' id='dysBorder' value="#ENV{dysBorder}" class="text palette" />
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+		
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">CSS</h3>
+				<ul class="editer-groupe">
+					<li class="editer facultatif">
+						<label for="dysCSS">Règles CSS ou LESS spécifiques pour ce bloc (s'appliquent sur <em>[#(#ENV{nom})]</em>)</label>
+						<textarea name='dysCSS' id='dysCSS' class="text" rows="6">[(#ENV**{dysCSS})]</textarea>
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+	</ul>
+	
+	<input type='hidden' name='hidden_dys' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>

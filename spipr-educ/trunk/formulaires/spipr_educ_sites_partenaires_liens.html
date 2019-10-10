@@ -1,0 +1,118 @@
+<div style="padding:8px;">
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center; padding:8px;">Paramétrages du bloc des liens des sites partenaires</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="spipr_educ_sites_partenaires_liens">
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+#SET{listeBlocs, #ENV{sites_def}|explode{','}}
+<?php
+	$tab=explode(",",'#ENV{sites_def}');
+	$longueur_tab=count($tab);
+?>
+
+<B_bloc_logos>
+	<fieldset>
+	<legend>Disposition des sites</legend>
+	<div class="editer-groupe">
+	<BOUCLE_bloc_logos(SITES) {id_syndic IN #GET{listeBlocs}}>
+		<div class='cadre' style='display:block; border:1px solid #8F8FBD; margin:0 10px 10px 10px; height:24px; line-height:24px; vertical-align:middle; padding:8px;' onmouseover="this.style.background='#eee';" onmouseout="this.style.background='';">
+			<div style="width:68%; display:block; float:left; height:24px; line-height:24px; vertical-align:middle;">
+				<a href="#URL_ECRIRE{site,id_syndic=#ID_SYNDIC}" title="[Voir la page du site : (#NOM_SITE|textebrut)]">[(#NOM_SITE|textebrut|couper{80}) ]</a>
+			</div>
+			<div style="width:24%; display:block; float:right; text-align:right;">
+				<?php
+					// Si on a deux valeurs au moins, on affiche les flèches pour monter et descendre
+					if (#TOTAL_BOUCLE>1) {
+						//Si on est sur le premier élément et qu'il y a plus d'un élément , n'afficher que la flèche du bas
+						if ((#COMPTEUR_BOUCLE==1) AND (#TOTAL_BOUCLE>1)) { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_SYNDIC" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+						<?php }
+						// Si on est sur le dernier élément, n'afficher que la flèche du haut suivie d'un espace vide
+						elseif (#COMPTEUR_BOUCLE==#TOTAL_BOUCLE) { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_SYNDIC" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+							<img src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/spipr_edu_vide.png";?>" />
+						<?php }
+						// Sinon, on affiche les deux flèches
+						else { ?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_SYNDIC" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_SYNDIC" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+						<?php }
+					}
+					// On termine par la possibilité de supprimer une entrée
+				?>
+				<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/suppression_bloc.png";?>" name="supprimer_site_#ID_SYNDIC" alt="Supprimer ce site" title="Supprimer ce site" />
+			</div>
+		</div>
+	</BOUCLE_bloc_logos>
+	</div>
+	</fieldset>
+</B_bloc_logos>
+	<fieldset>
+	<legend>Le bloc doit-il être présenté sous forme horizontale ?</legend>
+		<div class="editer-groupe">
+			<div class="choix">
+				<input type='radio' class="radio" name='orientation_liens' value='oui' id='orientation_liens_oui'[ (#ENV**{orientation_liens}|=={oui}|oui)checked="checked"] />
+				<label for='orientation_liens_oui'>Oui (pour un bandeau des liens dans l'entête par exemple, le titre n'est pas affiché dans ce cas)</label>
+			</div>
+			<div class="choix">
+				<input type='radio' class="radio" name='orientation_liens' value='non' id='orientation_liens_non'[ (#ENV**{orientation_liens}|=={non}|oui)checked="checked"] />
+				<label for='orientation_liens_non'>Non, sous forme verticale</label>
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+	<legend>Configuration du bloc</legend>
+	<div class="editer-groupe">
+		<div class="choix" style="padding:6px;">
+			<label for="liensTitre">Titre du bloc (par défaut <em>Partenaires</em>)</label>
+			<input type='text' name='liensTitre' id='liensTitre' value="#ENV{liensTitre,'Partenaires'}" class="text" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="liensColor">Couleur du titre du bloc</label>
+			<input type='text' name='liensColor' id='liensColor' value="#ENV{liensColor}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="backgroundBloc">Couleur de fond du bloc</label>
+			<input type='text' name='backgroundBloc' id='backgroundBloc' value="#ENV{backgroundBloc}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="bordureBloc">Couleur de la bordure du bloc</label>
+			<input type='text' name='bordureBloc' id='bordureBloc' value="#ENV{bordureBloc}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="couleurLiens">Couleur des liens</label>
+			<input type='text' name='couleurLiens' id='couleurLiens' value="#ENV{couleurLiens}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="couleurLiensHover">Couleur des liens au survol</label>
+			<input type='text' name='couleurLiensHover' id='couleurLiensHover' value="#ENV{couleurLiensHover}" class="text palette" />
+		</div>
+		<div class="choix" style="padding:6px;">
+			<label for="couleurFondHover">Couleur de fond des liens au survol</label>
+			<input type='text' name='couleurFondHover' id='couleurFondHover' value="#ENV{couleurFondHover}" class="text palette" />
+		</div>
+	</div>
+	</fieldset>
+	
+	<fieldset>
+	<legend>CSS</legend>
+	<div class="editer-groupe">
+		<div class="choix">
+			<label for="liensCSS">Règles CSS ou LESS spécifiques pour ce bloc (s'appliquent sur <em>#liens_partenaires</em>)</label>
+			<textarea name='liensCSS' id='liensCSS' class="text" rows="6">#ENV{liensCSS}</textarea>
+		</div>
+	</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_sites_partenaires_liens' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>
+</div>

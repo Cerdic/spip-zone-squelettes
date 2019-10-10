@@ -1,0 +1,24 @@
+<BOUCLE_pagination_article_meme_rubrique(spipr_educ)
+	{nom=article_meme_rubrique}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=article}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:meme_rubrique:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_article_meme_rubrique>
+
+<BOUCLE_article_meme_rubrique(ARTICLES){id_article}>
+	[(#REM) Articles dans la meme rubrique ]
+	<B_articles_rubrique>
+	<div class="liste articles" id="article_meme_rubrique">
+	#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{pagination #GET{nb}}>
+			<li class="item"><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+			</BOUCLE_articles_rubrique>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+	</B_articles_rubrique>
+</BOUCLE_article_meme_rubrique>

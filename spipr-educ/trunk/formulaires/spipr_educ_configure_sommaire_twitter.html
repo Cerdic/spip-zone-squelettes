@@ -1,0 +1,44 @@
+#CACHE{0}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;">Configuration du bloc :
+<?php echo _T('spipr_educ:#ENV{nom}');?>
+</div></h2>
+<p>
+	Quelques informations pour configurer ce bloc :
+	<ul class="spip">
+		<li class="spip">concernant le nom du fil Twitter : on écrira par exemple <span style="font-weight:bold;">educationfrance</span> pour<br />le fil correspondant à la page <em>https://twitter.com/educationfrance </em> </li>
+		<li class="spip">la couleur doit être indiquée sous forme hexadécimale, exemple <span style="font-weight:bold;">#9900bb</span></li>
+		<li class="spip">la hauteur doit être un nombre, indiquer <span style="font-weight:bold;">500</span> pour 500 pixels</li>
+	</ul>
+</p>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configuresommairetwitter'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<fieldset>
+		<div class="editer-groupe" style="margin:0 6px;">
+				<div class="choix">
+					<label for="nom_fil_twitter">Nom du fil Twitter (obligatoire)</label>
+					<input type='text' name='nom_fil_twitter' id='nom_fil_twitter' value="#ENV{nom_fil_twitter}" class="text" />
+				</div>
+				<div class="choix">
+					<label for="couleur_fil_twitter">Couleur des liens (facultatif)</label>
+					<input type='text' name='couleur_fil_twitter' id='couleur_fil_twitter' value="#ENV{couleur_liens_twitter}" class="text palette" />
+				</div>
+				<div class="choix">
+					<label for="hauteur_fil_twitter">Hauteur du bloc (facultatif)</label>
+					<input type='text' name='hauteur_fil_twitter' id='hauteur_fil_twitter' value="#ENV{hauteur_fil_twitter}" class="text" />
+				</div>
+		</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_fil_twitter' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

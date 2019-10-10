@@ -1,24 +1,8 @@
-
-<div class="container ">
-	<p class="colophon">
-		[(#DATE|annee)] - #NOM_SITE_SPIP
-	</p>
-	<ul class="liste-items center">
-		<li class="item"><a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a></li>
-		<li class="item"><a href="#URL_PAGE{mentions}" ><:spipr_educ:mentions:></a></li>
-		<li class="item"><a href="#URL_PAGE{contact}"><:spipr_educ:contact:></a></li>
-		<li class="item"><a href="#URL_PAGE{backend}"><:spipr_educ:flux_rss:></a></li>
-	</ul>
-	<ul class="liste-items right">
-	<?php if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {?>
-		<li class="item"><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></li><?php if (include_spip('inc/autoriser') AND autoriser('ecrire')){ ?>
-		<li class="item"><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></li>
-	<?php }
-	}
-	else { ?>
-		<li class="item">
-			<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>
-		</li>
-	<?php } ?>
-	</ul>
-</div>
+<BOUCLE_autre_footer(spipr_educ)
+	{type IN bloc de base, bloc personnel}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=autre}
+	{parametre2=footer}
+	{par num parametre3}>
+	<INCLURE{fond=noisettes/autre/#NOM}{ajax}{env}>
+</BOUCLE_autre_footer>

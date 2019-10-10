@@ -1,0 +1,35 @@
+#CACHE{0}
+<div style="padding:16px;">
+<h2 class='titre'><div style="text-align:center;">Configuration du bloc :
+<?php echo _T('spipr_educ:#ENV{nom}');?>
+</div></h2>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configureblocliste'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+		<li class="editer facultatif">
+			<label for="blocTitre">Titre du bloc</label>
+			<input type='text' name='blocTitre' id='blocTitre' value="#ENV{blocTitre}" class="text" />
+		</li>
+        <li class="editer facultatif">
+			<label for="pagination">Nombre d'éléments affichés (5 par défaut)</label>
+			<input type='number' name='pagination' id='pagination' value="#ENV{pagination,5}" class="number" min="1" max="30" style="width:3em;" />
+		</li>
+		<li class="editer facultatif">
+			<label for="blocCSS" style="word-wrap:break-word; width:40%;">Règles CSS ou LESS spécifiques pour ce bloc (s'appliquent sur <em>[#(#ENV**{nom})]</em>)</label>
+			<textarea name='blocCSS' id='blocCSS' class="text" rows="6" style="width:80%;">[(#ENV**{blocCSS})]</textarea>
+		</li>
+	</ul>
+	<input type='hidden' name='hidden_pagination' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>
+</div>

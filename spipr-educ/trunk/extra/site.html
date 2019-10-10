@@ -1,25 +1,8 @@
-[(#REM) Autres sites web ]
-<B_sites>
-<div class="liste sites">
-    #ANCRE_PAGINATION
-    <h2 class="h2"><:sites_web:></h2>
-    <ul class="liste-items">
-        <BOUCLE_sites(SITES) {par nom_site} {pagination 20}>
-        <li class="item"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
-        </BOUCLE_sites>
-    </ul>
-    [<div class="pagination">(#PAGINATION)</div>]
-</div>
-</B_sites>
-
-[(#REM) Menu de navigation mots-cles ]
-<B_mots>
-<div class="liste mots">
-    <h2 class="h2"><:mots_clefs:></h2>
-    <ul class="liste-items">
-        <BOUCLE_mots(MOTS) {id_syndic} {par titre}>
-        <li class="item"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
-        </BOUCLE_mots>
-    </ul>
-</div>
-</B_mots>
+<BOUCLE_site_extra(spipr_educ)
+	{type IN bloc de base, bloc personnel}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=site}
+	{parametre2=extra}
+	{par num parametre3}>
+	<INCLURE{fond=noisettes/site/#NOM}{ajax}{env}>
+</BOUCLE_site_extra>

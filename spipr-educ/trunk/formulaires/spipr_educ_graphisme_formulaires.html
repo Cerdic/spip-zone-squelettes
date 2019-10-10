@@ -1,0 +1,49 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Couleurs des formulaires</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formcouleurformulaires">
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<p>
+		On choisira des valeurs hexadécimales, exemple : <em>#330099</em>
+	</p>
+	
+	<fieldset>
+		<legend>Couleurs</legend>
+		
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="formulairesBackground">Couleur de fond</label>
+				<input type='text' name='formulairesBackground' id='formulairesBackground' value="[(#ENV**{formulairesBackground})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="formulairesColor">Couleur des textes</label>
+				<input type='text' name='formulairesColor' id='formulairesColor' value="[(#ENV**{formulairesColor})]" class="text palette" />
+			</div>
+			<div class="choix">
+				<label for="formulairesBorder">Couleur des bordures</label>
+				<input type='text' name='formulairesBorder' id='formulairesBorder' value="[(#ENV**{formulairesBorder})]" class="text palette" />
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Règles CSS</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+			<div class="choix">
+				<label for="formulairesCSS" style="padding-bottom:16px;">Règles CSS ou LESS spécifiques pour les formulaires (s'applique sur <em>#formulaire_contact</em>, <em>div#formulaire_forum</em>, <em>div#formulaire_inscription</em>, <em>.formulaire_login</em>)</label>
+				<textarea name='formulairesCSS' id='formulairesCSS' class="text" rows="6">[(#ENV**{formulairesCSS})]</textarea>
+			</div>
+		</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_graphisme_formulaires' value='ok' />
+	
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>

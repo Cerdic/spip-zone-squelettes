@@ -1,0 +1,168 @@
+ [(#REM) La base dans spipr_dane, à aménager
+ Virer les références à sélection d'article, remplacer par le mot-clés "a la une" pour une transition depuis eva.
+ Placer la largeur et la hauteur dans des paramètres du bloc : formulaire spécifique dans lequel on ajoutera par la suite quelques éléments complémentaires tels que les couleurs, bordures...
+ 
+ Idéé : pour chaque logo, calculer son format pour savoir comment le découper - s'il est supérieur au format attendu, alors on 
+ 
+ ]
+ <BOUCLE_liste_une(spipr_educ)
+	{nom=options_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param3,#PARAMETRE3}
+</BOUCLE_liste_une>
+#SET{listeUne, #GET{param3}|explode{','}}
+ 
+#SET{nb,5}
+<BOUCLE_nb_sommaire_carousel(spipr_educ)
+	{nom=sommaire_carousel}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}
+	{parametre5!=''}>
+	#SET{nb,#PARAMETRE5}
+</BOUCLE_nb_sommaire_carousel>
+
+#SET{titreCarousel,''}
+<BOUCLE_titreCarousel(spipr_educ)
+	{nom=graphisme_carousel_2}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre4!=''}>
+	#SET{titreCarousel,#PARAMETRE4}
+</BOUCLE_titreCarousel>
+
+#SET{mon_tableau,#ARRAY}
+#SET{largeur_image,680}
+#SET{hauteur_image,279}
+#SET{largeur_image980,555}
+#SET{hauteur_image980,228}
+#SET{largeur_image768,436}
+#SET{hauteur_image768,178}
+
+[(#ID_RUBRIQUE|>{0}|oui)#SET{id_rubrique,#ID_RUBRIQUE}]
+[(#ID_RUBRIQUE|>{0}|non)#SET{id_rubrique,0}]
+<B_articles_selection>
+<h2 class="h2 titre-du-carousel">[(#GET{titreCarousel}|?{#GET{titreCarousel},<:spipr_educ:a_la_une:>})][(#REM) <span class="icone icone-rss" >[(#CHEMIN{img/selection.png}|balise_img|image_reduire{50})]</span>]</h2>
+<div id="carousel" class="carousel slide"  data-ride="carousel">
+	<div class="carousel-inner">
+		<BOUCLE_articles_selection(ARTICLES){id_article IN #GET{listeUne}}{lang}{0,#GET{nb}}>
+		<div class="carousel-item item[ (#COMPTEUR_BOUCLE|=={1}|?{'active',''})] hentry dir_#LANG" >
+			<article class="entry hentry">
+				<strong class="h3-like entry-title plus_de_1200">
+					
+					<?php
+					$hauteur_logo='[(#LOGO_ARTICLE|hauteur)]';
+					$largeur_logo='[(#LOGO_ARTICLE|largeur)]';
+					if ($hauteur_logo AND $largeur_logo) {
+						$format_logo=$largeur_logo/$hauteur_logo;
+						$format_attendu=#GET{largeur_image}/#GET{hauteur_image};
+						if ($format_logo>=$format_attendu) { ?>
+							[(#LOGO_ARTICLE|image_reduire{0,#GET{hauteur_image}}|image_recadre{[(#GET{largeur_image})],[(#GET{hauteur_image})],center}|responsive_logo)]
+						<?php }
+						else { ?>
+							[(#LOGO_ARTICLE|image_reduire{#GET{largeur_image},0}|image_recadre{[(#GET{largeur_image})],[(#GET{hauteur_image})],center}|responsive_logo)]
+						<?php }
+					}
+				?>
+					
+				<a href="#URL_ARTICLE" rel="bookmark"><span class="titre">#TITRE</span></a>
+				</strong>
+				
+				<strong class="h3-like entry-title de_980_a_1200">
+					
+					<?php
+						if ($format_logo>=$format_attendu) { ?>
+							[(#LOGO_ARTICLE|image_reduire{0,#GET{hauteur_image980}}|image_recadre{[(#GET{largeur_image980})],[(#GET{hauteur_image980})],center}|responsive_logo)]
+						<?php }
+						else { ?>
+							[(#LOGO_ARTICLE|image_reduire{#GET{largeur_image980},0}|image_recadre{[(#GET{largeur_image980})],[(#GET{hauteur_image980})],center}|responsive_logo)]
+						<?php }
+					?>
+					
+				<a href="#URL_ARTICLE" rel="bookmark"><span class="titre">#TITRE</span></a>
+				</strong>
+				
+				<strong class="h3-like entry-title de_768_a_980">
+					
+					<?php
+						if ($format_logo>=$format_attendu) { ?>
+							[(#LOGO_ARTICLE|image_reduire{0,#GET{hauteur_image768}}|image_recadre{[(#GET{largeur_image768})],[(#GET{hauteur_image768})],center}|responsive_logo)]
+						<?php }
+						else { ?>
+							[(#LOGO_ARTICLE|image_reduire{#GET{largeur_image768},0}|image_recadre{[(#GET{largeur_image768})],[(#GET{hauteur_image768})],center}|responsive_logo)]
+						<?php }
+					?>
+					
+				<a href="#URL_ARTICLE" rel="bookmark"><span class="titre">#TITRE</span></a>
+				</strong>
+				
+				<strong class="h3-like entry-title moins_de_768">
+					[<div class="logo_moins_de_768">
+						<img src="#URL_SITE_SPIP/<?php echo _NOM_PERMANENTS_ACCESSIBLES;?>(#LOGO_ARTICLE|fichier)" /></div>]
+					[<div class="titre_moins_de_768"><a href="#URL_ARTICLE" rel="bookmark"><span class="titre">(#TITRE)</span></a></div>]
+				</strong>
+				
+				<div class="introduction plus_de_1200 #EDIT{introduction}">#INTRODUCTION{300}</div>
+				<div class="introduction de_980_a_1200 #EDIT{introduction}">#INTRODUCTION{200}</div>
+				<div class="introduction de_768_a_980 #EDIT{introduction}">#INTRODUCTION{120}</div>
+				
+				<br class="clear"/>
+			</article>
+		</div>#SET{mon_tableau, #GET{mon_tableau}|push{#COMPTEUR_BOUCLE}}
+		</BOUCLE_articles_selection>
+	</div>	
+	<B_combien>
+	<ul class="carousel-stop" id="carousel_pause_lecture">
+		<li id="carousel-pause-cancel" title="<:spipr_educ:pause_carousel_cancel:>"  date-slide="cycle">
+			<img src="#CHEMIN{img/lecture.png}" alt="<:spipr_educ:pause_carousel_cancel:>" />
+		</li>
+		<li id="carousel-pause" title="<:spipr_educ:pause_carousel:>"  date-slide="pause">
+			<img src="#CHEMIN{img/pause.png}" alt="<:spipr_educ:pause_carousel:>" />
+		</li>
+	</ul>
+	<div class="container-carousel-indicators">
+	<ol class="carousel-indicators">
+		<BOUCLE_combien(DATA){si #GET{mon_tableau}|table_valeur{1}}{source tableau,#GET{mon_tableau}}>
+		<li data-target="#carousel" data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class="(#COMPTEUR_BOUCLE|=={1}|?{'active',''})"] >&bull;</li>
+		</BOUCLE_combien>
+	</ol>
+	</div>
+	<a class="left carousel-control" href="#carousel" data-slide="prev">&lsaquo;</a>
+	<a class="right carousel-control" href="#carousel" data-slide="next">&rsaquo;</a>
+	</B_combien>
+</div>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('.carousel').carousel({
+            interval: 4000
+			, pause: 'hover'
+        });
+		
+		
+			$('#carousel_pause_lecture').click(function() {
+				$('#carousel_pause_lecture > i').toggleClass('fa-pause fa-play');
+				$('#carousel').attr('data-slide',$(this).attr('data-slide')==='pause'?'cycle':'pause' );
+			});
+			
+			[(#REM) Début du script à adapter pour play/pause
+			//
+			$(document).on('click', '#carousel_pause_lecture', function() {
+			var $el = $(this);
+			var isPlaying = $el.hasClass('isPlaying');
+			var isPaused = $el.hasClass('isPaused');
+			if (isPaused) {
+			  // we know it's paused, so play it
+			  $('#bannerRotator').carousel('cycle');
+			  $el.removeClass('isPaused');
+			  $el.addClass('isPlaying');
+			} else if (isPlaying) {
+			  // we know it's playing, so pause it
+			  $('#bannerRotator').carousel('pause');
+			  $el.removeClass('isPlaying');
+			  $el.addClass('isPaused');
+			}
+		  });
+		]
+		
+    });    
+</script>
+</B_articles_selection>

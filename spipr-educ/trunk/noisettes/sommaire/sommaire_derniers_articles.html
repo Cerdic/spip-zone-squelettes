@@ -1,0 +1,45 @@
+<BOUCLE_titre_sommaire_derniers_articles(spipr_educ)
+	{nom=sommaire_derniers_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:derniers_articles:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_titre_sommaire_derniers_articles>
+
+
+<BOUCLE_liste_rubs(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param1,#PARAMETRE1}
+</BOUCLE_liste_rubs>
+#SET{listeRubs, #GET{param1}|explode{','}}
+
+<BOUCLE_liste_rubs2(RUBRIQUES) {id_rubrique IN #GET{listeRubs}}>
+	<BOUCLE_liste_arts(ARTICLES) {id_rubrique} {doublons}>
+	</BOUCLE_liste_arts>
+</BOUCLE_liste_rubs2>
+
+<BOUCLE_liste_arts2(spipr_educ)
+	{nom=options_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param01,#PARAMETRE1}
+</BOUCLE_liste_arts2>
+#SET{listeArts, #GET{param01}|explode{','}}
+<BOUCLE_liste_arts3(ARTICLES) {id_article IN #GET{listeArts}} {doublons}>
+</BOUCLE_liste_arts3>
+
+<B_articles>
+	<div class="liste long articles" id="sommaire_derniers_articles">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_articles(ARTICLES){lang}{!par date} {doublons} {pagination #GET{nb}}>
+			<li class="item">#INCLURE{fond=inclure/resume/article,id_article}</li>
+			</BOUCLE_articles>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_articles>
