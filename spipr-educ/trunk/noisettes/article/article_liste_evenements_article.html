@@ -1,0 +1,21 @@
+<BOUCLE_article_evenements_article(spipr_educ)
+	{nom=article_evenements_article}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=article}>
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:article_evenements_article:>}})]
+</BOUCLE_article_evenements_article>
+
+<B_liste_evenements>
+<div class="liste"[ id="(#ENV{id_bloc})"]>
+[<h2>(#GET{titreBloc})</h2>]
+#ANCRE_PAGINATION
+<ul class="liste-items evenements short">
+<BOUCLE_liste_evenements(EVENEMENTS){id_article}{par date_debut}{pagination #GET{nb}}>
+<li class="item evenement">#INCLURE{fond=noisettes/commun/spipr_educ_evenement,id_evenement}</li>
+</BOUCLE_liste_evenements>
+</ul>
+[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+<div class="clearfix"></div>
+</div>
+</B_liste_evenements>
