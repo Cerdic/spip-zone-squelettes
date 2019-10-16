@@ -1,0 +1,55 @@
+[(#AUTORISER{webmestre}|sinon_interdire_acces)]
+<h1><:soyezcreateursprive:configurations_rapides_soyezcreateurs:></h1>
+<p class="spip"><:soyezcreateursprive:ieconfig_import_spe:></p>
+<?php
+	$fichier = _request('fichier');
+	if (isset($fichier) AND !preg_match('[.a-zA-Z0-9_/\]', $fichier)) {
+		$importer = charger_fonction('importer', "echanger/formulaire/yaml", true);
+
+		try {
+			$erreur_ou_id = $importer($fichier);
+		} catch (Exception $e) {
+			$erreur_ou_id = $e->getMessage();
+		}
+
+		if (!is_numeric($erreur_ou_id)) {
+			$retours['message_erreur'] = $erreur_ou_id;
+		} else {
+			$id_formulaire = intval($erreur_ou_id);
+			// Tout a fonctionné. En fonction de la config, on attribue l'auteur courant
+			$auteurs = lire_config('formidable/auteur');
+			if ($auteurs == 'on') {
+				if ($id_auteur = session_get('id_auteur')) {
+					// association (par défaut) du formulaire et de l'auteur courant
+					objet_associer(array('formulaire'=>$id_formulaire), array('auteur'=>$id_auteur));
+				}
+			}
+			$retours['redirect'] = generer_url_ecrire('formulaire', "id_formulaire=$id_formulaire");
+		}
+
+	}
+?>
+
+<ul class="spip">
+<BOUCLE_repertoires(DATA){source ls, #CHEMIN{documents/formidable/}*.yaml}{par basename}>
+[(#SET{nom,#FILE|yaml_decode_file|sc_import_nom})]
+	<li><a href="[(#SELF|parametre_url{fichier,#FILE}|parametre_url{nom,#GET{nom}})]" class="confirmation">#GET{nom}</a></li>
+</BOUCLE_repertoires>
+</ul>
+
+<?php
+	if ($retours) {
+		$ok = $retours['message_erreur'];
+		echo "<p class=\"spip\">[(#ENV{nom})]&nbsp;: $ok</p>";
+	}
+?>
+
+<script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
