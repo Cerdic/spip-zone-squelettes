@@ -21,7 +21,7 @@ function sc_noisettespardefaut() {
 	$liste_noisettes = noizetier_noisette_lister('noizetier', $conteneur, '', $cle = 'rang_noisette');
 	if (!isset($liste_noisettes['contenu/corps_sommaire_modecognac'])) {//S'il n'y a pas de noisettes dans contenu/corps
 		//Liste des noisettes à inserer
-		$noisettes = array('sommaire_modeportailcognac_zoomsur', 'sommaire_modeportailcognac_cycloshow', 'sommaire_modeportailcognac_sc_edito', 'sommaire_modeportailcognac_quoideneuf', 'sommaire_modeportailcognac_dessousBreves', 'sommaire_modeportailcognac_goodies');
+		$noisettes = array('sommaire_modeportailcognac_zoomsur', 'sommaire_modeportailcognac_cycloshow', 'sommaire_modeportailcognac_sc_edito', 'sommaire_modeportailcognac_quoideneuf', 'sommaire_modeportailcognac_bandeau', 'sommaire_modeportailcognac_dessousBreves', 'sommaire_modeportailcognac_goodies');
 		$conteneur = conteneur_noizetier_decomposer('contenu/corps_sommaire_modecognac');
 
 		//Insersion des noisettes
