@@ -6,9 +6,6 @@ function escal_porte_plume_barre_pre_charger($barres){
 	$barre_edition = &$barres['edition'];
 	$barre_forum = &$barres['forum'];
 
-	$module_barre = "barre_outils";
-	if (intval($GLOBALS['spip_version_branche'])>2)
-	$module_barre = "barreoutils";
 
 	// Ajouts Escal
 					
@@ -111,13 +108,13 @@ function escal_porte_plume_barre_pre_charger($barres){
 
 function escal_porte_plume_lien_classe_vers_icone($flux){
 	return array_merge($flux, array(
-		'outil_ajouts_escal' => array('escal16.png','0'),
-		'outil_escal_aide' => array('aide.png','0'),
-		'outil_escal_important' => array('important.png','0'),
-		'outil_escal_avertissement' => array('avertissement.png','0'),
-		'outil_escal_info' => array('info.png','0'),
-		'outil_escal_centrer' => array('centrer.png','0'),
-		'outil_fleche' => array('fleche.png','0'),
+		'outil_ajouts_escal' => 'escal16.png',
+		'outil_escal_aide' => 'aide.png',
+		'outil_escal_important' => 'important.png',
+		'outil_escal_avertissement' => 'avertissement.png',
+		'outil_escal_info' => 'info.png',
+		'outil_escal_centrer' => 'centrer.png',
+		'outil_fleche' => 'fleche.png',
 	));
 }
 

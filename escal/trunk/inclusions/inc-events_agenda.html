@@ -84,15 +84,19 @@
         [(#MODELE{choix_article_base})]
         </BOUCLE_art>
         
-      <div class="meta-publi">
-        [(#INSCRIPTION|?{' ',''})
-        <hr />
-        <span class="inscrits">#NB_INSCRITS</span> inscrits [pour <span class="inscrits">(#PLACES)</span> places]
-        <INCLURE {fond=inclusions/inc-evenements_inscription}{id_evenement=#ID_EVENEMENT}>
-        ]
-      
-      #FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
-      </div>
+	<div class="meta-publi">
+	[(#PLUGIN{RESERVATIONS_MULTIPLES}|non)     
+		[(#INSCRIPTION|?{' ',''})
+		<hr />
+		<span class="inscrits">#NB_INSCRITS</span> inscrits [pour <span class="inscrits">(#PLACES)</span> places]
+		<INCLURE {fond=inclusions/inc-evenements_inscription}{id_evenement=#ID_EVENEMENT}>
+	] 
+		#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
+	]
+	[(#PLUGIN{RESERVATIONS_MULTIPLES}|oui)     
+		#FORMULAIRE_RESERVATION{#ENV{id_evenement}, #ENV{#ARRAY{id_evenement_source,''}}
+	]
+	</div>
 
 <!-- affichage carte gis du lieu -->
 	[(#PLUGIN{GIS}|oui)
