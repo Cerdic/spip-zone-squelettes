@@ -1,0 +1,44 @@
+[(#REM)
+	page 404
+
+	param:
+	- (rien)
+
+
+]#HTTP_HEADER{HTTP/1.0  #ENV{code,'404 Not Found'}}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}<!DOCTYPE html>
+<html lang="#LANG">
+<head>
+	<INCLURE{fond=inc/inc_head,no-bot} />
+	<title><:pass_erreur:> [(#ENV{status, 404}|intval) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+</head>
+
+
+
+<body><div class="main main-article" id="top">
+<INCLURE{fond=inc/inc_header} />
+
+<!-- content -->
+<div class="content container">
+	<div class="row">
+		<!-- content-main -->
+		<div class="col-md-9 content-main">
+			<!-- content -->
+			<div class="content-main-wrapper">
+				<h1 class="article-title"><:pass_erreur:> [(#ENV{status, 404}|intval)]</h1>
+
+				<p><:ueno:404_sorry:></p>
+				[<img src="(#CHEMIN{img/404.png})" alt="<:pass_erreur:> 404" >]
+			 </div>
+			<!-- #content -->
+		</div>
+		<!-- #content-main -->
+
+
+	</div>
+</div>
+<!-- #content -->
+
+<INCLURE{fond=inc/inc_footer} />
+</div></body>

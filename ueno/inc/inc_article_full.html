@@ -1,0 +1,76 @@
+[(#REM)
+	article entier
+
+	param:
+	- id_article
+
+]<BOUCLE_findArt(ARTICLES){id_article}>
+<!-- Fil d'Ariane -->
+<a name="contenu" accesskey="2"></a>
+<div class="ariane theme secteur-#ID_SECTEUR <INCLURE{fond=inc/inc_couleur,id_rubrique=#ID_SECTEUR} />">
+	<ul>
+		<li class="home"><a href="#URL_SITE_SPIP"><:ueno:accueil_site:></a><span>/</span></li>
+		<BOUCLE_ariane(HIERARCHIE){id_article}><li[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|oui) class="on"]><a href="#URL_RUBRIQUE">[(#TITRE|couper{50})]</a>[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|non)<span>/</span>]</li></BOUCLE_ariane>
+	</ul>
+</div>
+
+<!-- content -->
+<div class="content-main-wrapper">
+
+	[<div class="#EDIT{surtitre}  article-surtitre">(#SURTITRE)</div>]
+	[<h1 class="#EDIT{titre} article-titre">(#TITRE)</h1>]
+
+	<BOUCLE_agenda(EVENEMENTS ?){par date}{id_article}><div class="date">[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ - <strong>(#LIEU)</strong>]</div></BOUCLE_agenda>
+
+
+	[<h2 class="#EDIT{soustitre}  article-soustitre">(#SOUSTITRE)</h2>]
+	[<div class="#EDIT{descriptif}  article-descriptif">(#DESCRIPTIF)</div>]
+
+	<div class="logo">[<img src="(#LOGO_ARTICLE|image_reduire{520,0}|extraire_attribut{src})" alt="[(#TITRE|textebrut)]" />]</div></BOUCLE_trad_logo>
+	[<div class="#EDIT{chapo} article-chapo">(#CHAPO)</div>]
+	[<div class="#EDIT{texte} article-texte">(#TEXTE|image_reduire{1000,0})</div>]
+	[<div class="hypertxt"><strong>URL: </strong> <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a></div>]
+	[<div class="#EDIT{ps} article-ps">(#PS)</div>]
+	[<div class="article-notes">(#NOTES)</div>]
+
+	[(#REM) Portfolio: album d'images avec visionneuse fancybox]
+	<B_doc><div class="portfolio">
+	<BOUCLE_doc(DOCUMENTS){id_article}{extension IN png,jpg,gif}{mode=document}{par num titre, date}{vu=non}>
+	<div class="portfolio-item">[<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE" rel="fancy-g1"[ title="(#TITRE|attribut_html) [ - (#DESCRIPTIF|attribut_html)]"]>(#FICHIER|copie_locale|image_reduire{0,160}|image_recadre{110,110,center}|image_aplatir{jpg,ffffff})</a>]</div></BOUCLE_doc>
+	</div></B_doc>
+	<BOUCLE_doc_exclure_img(DOCUMENTS){id_article}{extension IN png,jpg,gif}{mode=document}{doublons}> </BOUCLE_doc_exclure_img>
+
+
+
+	[<!-- autre doc -->(#REM) Autres documents joints a l'article]
+	<B_docjoint><div class='spacer'></div>
+	<BOUCLE_docjoint(DOCUMENTS){id_article}{mode=document}{doublons}>
+	<div class="docjoint">
+		<div><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE" download>#LOGO_DOCUMENT</a>
+		<small>#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)]</small></div>
+		[<strong><a href="#URL_DOCUMENT">(#TITRE)</a></strong><br />]
+		[(#DESCRIPTIF)]
+	</div>
+	</BOUCLE_docjoint>
+	<div class="spacer"></div>
+
+
+	<!-- article meta -->
+	<div class="date">
+		[(#CONFIG{ueno/affiche_date_article}|oui)	[<:ueno:posted:> (#DATE|affdate)]]
+		[(#CONFIG{ueno/affiche_auteur_article}|oui)	[<:par:> (#LESAUTEURS)]]
+	</div>
+
+
+</div>
+<!-- #content -->
+
+[(#CONFIG{ueno/affiche_forum_article}|oui)
+	<!-- article forum ? -->
+	[<div id="forum">
+			<a href="(#PARAMETRES_FORUM|url_reponse_forum)" class="btn-more"><:comment:></a>
+			<div class="spacer"></div>
+			<INCLURE{fond=inc/inc_forum}{id_article}{lang}>
+	</div>]
+]
+</BOUCLE_findArt>

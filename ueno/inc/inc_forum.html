@@ -1,0 +1,21 @@
+[(#REM)
+    version simplifie de dist/inc_forum
+    - uniquement pour les articles
+    - pas de fils
+]
+[(#PARAMETRES_FORUM|?) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+
+[(#REM) Messages du forum ]
+<B_forums><ul id="forums">
+<BOUCLE_forums(FORUMS){id_article}{!par date}>
+	<li class="[(#COMPTEUR_BOUCLE|alterner{odd,even})]">
+		<a name="forum#ID_FORUM"></a>
+		[<strong>(#DATE|affdate_court)<br /><small>[(#DATE|heures)]:[(#DATE|minutes)]</small></strong> ]
+		<h4>#TITRE</h4>
+		[<span class="forum-auteur"><:par:> (#NOM|couper{80})</span><br />]
+		<div class="forum-contenu">
+		[(#TEXTE|lignes_longues)]
+		[<p class="#EDIT{hyperlien} forum-lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+	</li></BOUCLE_forums>
+</ul></B_forums>

@@ -1,0 +1,67 @@
+[(#REM)
+	plan du site (caché)
+
+
+
+]<html lang="#LANG">
+<head>
+	<INCLURE{fond=inc/inc_head,no-bot=oui} />
+	<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<link rel="canonical" href="(#URL_PAGE{plan}|url_absolue)" />]
+</head>
+
+<body><div class="main main-article" id="top">
+<INCLURE{fond=inc/inc_header} />
+
+<!-- content -->
+<div class="content container">
+	<div class="row">
+		<!-- content-main -->
+		<div class="col-md-9 content-main">
+			<h1><:plan_site:></h1>
+			<!-- Fil d'Ariane -->
+			<a name="contenu" accesskey="2"></a>
+			<div class="ariane theme secteur-#ID_SECTEUR <INCLURE{fond=inc/inc_couleur,id_rubrique=#ID_SECTEUR} />">
+				<ul>
+					<li class="home"><a href="#URL_SITE_SPIP"><:ueno:accueil_site:></a><span>/</span></li>
+					<li class="on"><a href="#SELF"><:plan_site:></a></li>
+				</ul>
+			</div>
+
+
+			<!-- content -->
+			<div class="content-main-wrapper">
+
+				<h1 class="article-titre"><:plan_site:></h1>
+
+				<!-- content: plan -->
+				<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}>
+					 <h2><a href="#URL_RUBRIQUE">[(#TITRE)]</a></h2>
+
+					 <!-- Articles et sous-rubriques -->
+					 <B_rubriques><ul><BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre}>
+						<li><a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques></li>
+					</BOUCLE_rubriques></ul></B_rubriques>
+				</BOUCLE_secteurs>
+
+
+			</div>
+			<!-- #content -->
+
+
+		</div>
+		<!-- #content-main -->
+
+		<!-- content-sidebar -->
+		<div class="col-md-3 content-sidebar">
+			<INCLURE{fond=inc/inc_sidebar} />
+		</div>
+		<!-- #content-sidebar -->
+	</div>
+</div>
+<!-- #content -->
+
+<INCLURE{fond=inc/inc_footer} />
+</div></body>
+</html></BOUCLE_art>

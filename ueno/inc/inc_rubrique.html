@@ -1,0 +1,42 @@
+[(#REM)
+	rubrique presentation "actu"
+	- on liste les sous-rubrique
+	- on liste les articles par date avec pagination
+
+	param:
+	- id_rubrique
+	- env           support de la pagination / ajax
+
+]<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+
+#SET{theme-col, theme-col-000}
+
+<!-- Fil d'Ariane -->
+<a name="contenu" accesskey="2"></a>
+<div class="ariane theme secteur-#ID_SECTEUR <INCLURE{fond=inc/inc_couleur,id_rubrique=#ID_SECTEUR} />">
+	<ul>
+		<li class="home"><a href="#URL_SITE_SPIP"><:ueno:accueil_site:></a><span>/</span></li>
+		<BOUCLE_ariane(HIERARCHIE){id_rubrique}{tout}><li[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|oui) class="on"]><a href="#URL_RUBRIQUE">[(#TITRE|couper{50})]</a>[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|non)<span>/</span>]</li></BOUCLE_ariane>
+	</ul>
+</div>
+
+<!-- content -->
+<div class="content-main-wrapper">
+
+	<!-- rubrique -->
+	[<h1 class="#EDIT{titre} article-titre">(#TITRE)</h1>]
+	[<div class="logo">(#LOGO_RUBRIQUE|image_reduire{800,0}|inserer_attribut{alt,#TITRE})</div>]
+	[<div class="article-texte #EDIT{texte}">(#TEXTE)</div>]
+
+
+	<!-- rubrique > sous-rubriques -->
+	<BOUCLE_ss_rub(RUBRIQUES){id_parent}{par num titre, titre}>
+	<h2 class="rubrique-title theme #GET{theme-col}"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+	</BOUCLE_ss_rub>
+
+	<!-- rubrique > articles-->
+	<INCLURE{fond=inc/inc_liste_articles, id_rubrique, ajax, env}>
+
+</div>
+<!-- #content -->
+</BOUCLE_rub>

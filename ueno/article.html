@@ -1,0 +1,39 @@
+[(#REM)
+	page article
+
+	param:
+	- id_article
+
+]<BOUCLE_art(ARTICLES){id_article}><!DOCTYPE html>
+<html lang="#LANG">
+<head>
+	<INCLURE{fond=inc/inc_head} />
+	<title>[(#TITRE|couper{50,'&nbsp;\[...\]'}|textebrut)] - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{130}|attribut_html)" />]
+	[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+</head>
+
+<body><div class="main main-article" id="top">
+<INCLURE{fond=inc/inc_header, id_rubrique, env} />
+
+<!-- content -->
+<div class="content container">
+	<div class="row">
+		<!-- content-main -->
+		<div class="col-md-9 content-main">
+			<INCLURE{fond=inc/inc_article_full, id_article} />
+		</div>
+		<!-- #content-main -->
+
+		<!-- content-sidebar -->
+		<div class="col-md-3 content-sidebar">
+			<INCLURE{fond=inc/inc_sidebar, id_article} />
+		</div>
+		<!-- #content-sidebar -->
+	</div>
+</div>
+<!-- #content -->
+
+<INCLURE{fond=inc/inc_footer} />
+</div></body>
+</html></BOUCLE_art>

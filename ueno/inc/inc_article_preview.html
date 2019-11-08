@@ -1,0 +1,44 @@
+[(#REM)
+	article preview
+
+	param:
+	- id_article
+	- article_preview_short	(facultatif)		affichage allegé
+
+
+]<BOUCLE_art(ARTICLES){id_article}>
+<!-- article-preview #ID_ARTICLE-->
+<div class="article-preview[(#ENV{article_preview_short}|oui) article-preview-short]">
+	<BOUCLE_secteur(HIERARCHIE){id_article}{0,1}>
+	<div class="article-preview-theme">
+		<a href="#URL_RUBRIQUE" class="theme <INCLURE{fond=inc/inc_couleur,id_rubrique=#ID_SECTEUR} />">#TITRE</a>
+	</div>
+	</BOUCLE_secteur>
+	<a href="#URL_ARTICLE" class="article-preview-texte">
+			[<div class="article-surtitre">(#SURTITRE|couper{100})</div>]
+			<h1 class="article-preview-titre">#TITRE</h1>
+			<div class="article-preview-img">
+				[(#ENV{article_preview_short}|non)
+					[(#LOGO_ARTICLE|image_reduire{1000,0})]
+				]
+				<BOUCLE_illus(DOCUMENTS){extension IN jpg,png,gif}{id_article}{0,1}{par num titre}
+							{si #LOGO_ARTICLE|non}
+							{si #ENV{article_preview_short}|non}>
+				 	[(#FICHIER|image_reduire{1000,0})]
+				</BOUCLE_illus>
+			</div>
+			[(#ENV{article_preview_short}|non)
+				<div class="article-preview-intro">
+					[(#INTRODUCTION|couper{300})]
+				</div>
+			]
+	</a>
+	[(#ENV{article_preview_short}|non)
+	<div class="article-preview-meta">
+		[(#CONFIG{ueno/affiche_date_article_preview}|oui)	[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)]]
+		[(#CONFIG{ueno/affiche_auteur_article_preview}|oui)	[<:par:> (#LESAUTEURS)]]
+	</div>]
+</div>
+<!-- #article-preview -->
+</BOUCLE_art>
+#FILTRE{trim}

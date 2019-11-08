@@ -1,0 +1,26 @@
+[(#REM)
+	sidebar
+
+	Parametre:
+	(aucun)
+
+]<div class="row">
+
+	<BOUCLE_sidebar(ARTICLES){id_article IN #CONFIG{ueno/sidebar_articles}|picker_selected{article}}>
+	<div class="bloc">
+		<a href="#URL_ARTICLE">
+			<div class="bloc-title">#TITRE</div>
+			<div class="bloc-illus">
+				[(#LOGO_ARTICLE|image_reduire{500,0}|inserer_attribut{alt,[(#_news:TITRE|couper{20}|textebrut)]})]
+				<BOUCLE_illus0(DOCUMENTS){extension IN jpg,png,gif}{id_article}{0,1}{par num titre}{si #LOGO_ARTICLE|non}>
+				[(#FICHIER|image_reduire{300,0}|inserer_attribut{alt,[(#_news:TITRE|couper{20}|textebrut)]})]
+				</BOUCLE_illus0>
+			</div>
+			[<div class="bloc-intro">
+				(#INTRODUCTION|couper{220})
+			</div>]
+		</a>
+	</div>
+	</BOUCLE_sidebar>
+
+</div>

@@ -1,0 +1,52 @@
+[(#REM)
+	header : banniere et barre de navigation
+
+	param:
+	- id_rubrique (facultatif)  expose les rubriques
+
+
+]<!-- header -->
+<header role="banner" class="container">
+	<!-- header-row-1 -->
+	<div class="row banner-row-1">
+		<div class="col banner-wrapper">
+			<div class="row">
+				<!-- header-main -->
+				<div class="[(#CONFIG{ueno/affiche_recherche}|=={on}|?{col-md-9,col-md-12})] header-main">
+					<div class="banner-title">
+						[<div class="banner-desc">(#DESCRIPTIF_SITE_SPIP)</div>]
+						<a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a>
+					</div>
+					<div class="banner-nav">
+						<B_art_lien>
+						<ul class="nav">
+							<li><a href="#URL_SITE_SPIP" class="banner-nav-home"><:ueno:accueil_site:></a></li>
+						<BOUCLE_art_lien(ARTICLES){id_article IN #CONFIG{ueno/header_articles}|picker_selected{article}}>
+							<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_art_lien>
+						</ul>
+						</B_art_lien>
+					</div>
+				</div>
+				<!-- #header-main -->
+
+				[(#CONFIG{ueno/affiche_recherche}|=={on}|oui)
+				<!-- header-sidebar -->
+				<div class="col-md-3 align-items-end header-sidebar">
+					#FORMULAIRE_RECHERCHE
+				</div>
+				<!-- #header-sidebar -->]
+			 </div>
+		</div>
+	</div>
+
+	<!-- header-row-2 -->
+	[<div class="row banner-row-2">
+		<div class="col">
+			(#SLOGAN_SITE_SPIP)
+		</div>
+	</div>]
+
+</header>
+<!-- #header -->
+#FILTRE{trim}
