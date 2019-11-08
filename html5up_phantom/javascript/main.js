@@ -31,7 +31,8 @@
 			$body.addClass('is-touch');
 
 	// Forms.
-		var $form = $('form');
+// 		var $form = $('form');
+		var $form = $('#footer form'); // dans SPIP on veut liberer les formulaires qui ne sont pas en pied de page
 
 		// Auto-resizing textareas.
 			$form.find('textarea').each(function() {
