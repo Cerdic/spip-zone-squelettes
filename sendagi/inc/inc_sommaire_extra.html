@@ -1,0 +1,40 @@
+[(#REM)
+	selection orange de la page d'accueil
+
+	correspond à  la section editoriale: "accueil-extra"
+]
+
+<BOUCLE_selection_home_extra(SELECTIONS){identifiant=accueil-extra}>
+<B_selection>
+<!-- home-row-2 -->
+<div class="home-row-2">
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1">
+
+				<div class="row">
+					<BOUCLE_selection(SELECTIONS_CONTENUS){id_selection}{par rang}>
+					<div class="col-md-6">
+						[(#URL|non) <div class="publication-item">]
+						[<a href="(#URL)" class="publication-item">]
+							<div class="publication-titre">#TITRE</div>
+							[<div class="publication-chapo">
+								(#DESCRIPTIF|couper{600})
+							</div>]
+							[<div class="publication-illus">
+								(#LOGO_SELECTIONS_CONTENU|image_reduire{800,0}|inserer_attribut{class,publication-img})
+							</div>]
+						</a>
+						[(#URL|?{</a>,</div>})]
+					</div>
+					</BOUCLE_selection>
+				 </div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- #home-row-2 -->
+</B_selection>
+</BOUCLE_selection_home_extra>
