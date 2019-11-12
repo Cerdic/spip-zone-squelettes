@@ -1,0 +1,60 @@
+<BOUCLE_titre_sommaire_derniers_sites(spipr_educ)
+	{nom=sommaire_derniers_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:derniers_sites:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_titre_sommaire_derniers_sites>
+
+
+<BOUCLE_parametres_bloc_logos(spipr_educ)
+	{nom=options_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param2,#PARAMETRE2}
+</BOUCLE_parametres_bloc_logos>
+#SET{listeBlocs, #GET{param2}|explode{','}}
+<BOUCLE_bloc_logos(SITES) {id_syndic IN #GET{listeBlocs}} {doublons}>
+</BOUCLE_bloc_logos>
+
+
+<BOUCLE_parametres_sommaire_liens_partenaires(spipr_educ)
+	{nom=options_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param3,#PARAMETRE3}
+</BOUCLE_parametres_sommaire_liens_partenaires>
+#SET{listeBlocs2, #GET{param3}|explode{','}}
+<BOUCLE_bloc_liens(SITES) {id_syndic IN #GET{listeBlocs2}} {doublons}>
+</BOUCLE_bloc_liens>
+
+
+<BOUCLE_liste_rubs(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param1,#PARAMETRE1}
+</BOUCLE_liste_rubs>
+#SET{listeRubs, #GET{param1}|explode{','}}
+<BOUCLE_liste_rubs2(RUBRIQUES) {id_rubrique IN #GET{listeRubs}}>
+	<BOUCLE_liste_sites(SITES) {id_rubrique} {doublons}>
+	</BOUCLE_liste_sites>
+</BOUCLE_liste_rubs2>
+
+
+<B_sites>
+	<div class="liste long" id="sommaire_derniers_sites">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_sites(SITES){syndication=non}{!par date} {doublons} {pagination #GET{nb}}>
+			<li class="item">#INCLURE{fond=inclure/resume/site,id_syndic}</li>
+			</BOUCLE_sites>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_sites>
+[(#REM) Façon d'éviter les erreurs 404 sur un site nu]
+&nbsp;
+<//B_articles>

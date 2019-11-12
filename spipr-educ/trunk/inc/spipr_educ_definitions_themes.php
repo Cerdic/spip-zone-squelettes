@@ -660,6 +660,7 @@ function spipr_educ_modif_couleur_theme($theme,$theme_de_couleur) {
 			$gris5='#cccccc';
 			$gris6='#bbbbbb';
 			$gris7='#aaaaaa';
+			$gris78='#999999';
 			$gris8='#777777';
 			$gris9='#666666';
 			$gris10='#555555';
@@ -1062,12 +1063,23 @@ border-left:none; border-right:none;}
 	.plus_de_1200,.de_980_a_1200,.de_768_a_980 {display:none;}
 	.carousel .carousel-stop {left:42%;}
 	.carousel ol.carousel-indicators{left:50%;}
+	body {padding-left:0; padding-right:0;}
 }
 ',
 					'parametre2' => '','parametre3' => '','parametre4' => '','parametre5' => '','parametre6' => '','parametre7' => '','parametre8' => '','parametre9' => '','parametre10' => '',
 				),
 				"type='graphisme' AND nom='graphisme_css' AND nom_sauvegarde='en_cours_d_utilisation_SPIPr'"
 			);
+			
+			// Textes des formulaires plus visibles
+			sql_updateq(
+				'spip_spipr_educ',
+				array(
+					'parametre2' => $gris78,
+				),
+				"type='graphisme' AND nom='graphisme_formulaires' AND nom_sauvegarde='en_cours_d_utilisation_SPIPr'"
+			);
+			
 			// Placer le carousel en bas de l'entête du sommaire
 			sql_updateq(
 				'spip_spipr_educ',
@@ -1078,7 +1090,7 @@ border-left:none; border-right:none;}
 			);
 			include_spip('inc/spipr_educ_deplacement_bloc');
 			spipr_educ_bloc_ranger('sommaire','header');
-			
+
 			// Ensemble des entrées dont les 10 paramètres sont vidés
 			$a_vider=array(
 				// Les blocs perso

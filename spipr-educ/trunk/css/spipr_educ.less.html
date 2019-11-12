@@ -894,8 +894,12 @@ On agrandit par ailleurs la hauteur du carousel, l'image utilisant toute la haut
 
 [(#REM) Règles CSS ou LESS spécifiques aux formulaires]
 <BOUCLE_formulaires(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom = graphisme_formulaires}>
-	#formulaire_contact, div#formulaire_forum, div#formulaire_inscription, .formulaire_login {
-		&, & p.boutons, & fieldset, & legend, & label{
+	#formulaire_contact, div#formulaire_forum, div#formulaire_inscription, .formulaire_login, .formulaire_spip {
+		textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+			[color:(#PARAMETRE2);]
+		}
+		&, & p.boutons, & fieldset, & legend, & label, select,
+		{
 			&, & p {
 				[background-color:(#PARAMETRE1);]
 				[color:(#PARAMETRE2);]
@@ -1031,12 +1035,11 @@ ul#liste_dyslexie, ul#liste_interlignage {
 		text-align:center;
 		padding-bottom:0;
 		margin-bottom:0;
+		li {padding:5%;}
 		a img {
-			[min-height:(#PARAMETRE1)px;]
-			[max-height:(#PARAMETRE2)px;]
-			[min-width:(#PARAMETRE3)px;]
-			max-width:90%;
-			margin:5%;
+			[min-height:(#PARAMETRE3)px;]
+			[min-width:(#PARAMETRE1)px;]
+			max-width:100%;
 		}
 	}
 	#PARAMETRE9
@@ -1255,6 +1258,11 @@ ul#liste_dyslexie, ul#liste_interlignage {
          url('[#URL_SITE_SPIP/(#CHEMIN{css/font/opendyslexicmono-regular-webfont.svg})#opendyslexicmonoregular]') format('svg');
     font-weight: 400;
     font-style: normal;
+}
+
+[(#REM) Contraindre le fil Twitter dans sa colonne sous Safari]
+.twitter-timeline {
+	width:100vw !important;
 }
 
 [(#REM) Règles CSS ou LESS spécifiques, toujours en dernier]
