@@ -8,25 +8,17 @@
  
       
 $(document).ready(function(){
-    
-    // print
-    $(".print a").click(function() {
-           window.print();
-           return false;
-    }); 
-    
 
-    // Lien en spip_out s'ouvre ds une nouvelle fenetre
-    // voir aussi http://blog.gaboweb.com/2009/07/02/target_blank-automatique-jquery-respecter-normes-xhtml-strictes/   
-    $("a.spip_out").click(function(){
-          window.open(this.href);   
-          return false;       
-    });
-      
-    // clic externe nouvelle fenetre
-    $("a[rel*=external]").click(function(){
-              this.target= "_blank";
-    });
+	// print
+	$(".print a").click(function() {
+		window.print();
+		return false;
+	});
+
+
+	// Lien en spip_out et external s'ouvre ds une nouvelle fenetre + secu referer
+	$('a.spip_out,a[rel*=external]').attr('target','_blank').attr('rel','external noopener noreferrer');
+
 
 	// menu recherche desktop
 	$(".btn-nav-search").bind('click', function (e) {
