@@ -13,18 +13,7 @@ $(document).ready(function(){
 	});
 
 	// Lien en spip_out s'ouvre ds une nouvelle fenetre
-	// voir aussi http://blog.gaboweb.com/2009/07/02/target_blank-automatique-jquery-respecter-normes-xhtml-strictes/
-	$('a.spip_out').click(function(){
-		$(this).attr('rel','external noopener noreferrer'); // securité : https://www.mail-archive.com/spip-zone@rezo.net/msg40738.html
-		window.open(this.href);
-		return false;
-	});
-
-	// clic externe nouvelle fenetre
-	$("a[rel*=external]").click(function(){
-		$(this).attr('rel','external noopener noreferrer'); // securité : https://www.mail-archive.com/spip-zone@rezo.net/msg40738.html
-		this.target= "_blank";
-	});
+	$('a.spip_out,a[rel*=external]').attr('target','_blank').attr('rel','external noopener noreferrer');
 
 	// carousel
 	$('.owl-carousel').owlCarousel({
