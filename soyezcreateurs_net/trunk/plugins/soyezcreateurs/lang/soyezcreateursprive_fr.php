@@ -287,6 +287,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_cartouchetitre_contenu' => 'En haut du contenu',
 	'cfg_position_cartouchetitre_haut' => 'En-dessous du menu haut',
 	'cfg_position_datemajsite' => 'Position de la date de mise à jour du site',
+	'cfg_position_evenements' => 'Position de la liste des événements de l’agenda d’un article',
 	'cfg_position_flux_rss' => 'Flux RSS',
 	'cfg_position_flux_rss_label' => 'Position de l’icone de flux RSS',
 	'cfg_position_liens_nav' => 'Liens de navigation génériques (position et affichage)',
