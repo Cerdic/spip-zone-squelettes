@@ -51,7 +51,3 @@ function escal_vider_tables($nom_meta_base_version) {
     effacer_config('escal');
     effacer_config($nom_meta_base_version);
 }
-
-
-
-?>

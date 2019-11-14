@@ -40,4 +40,3 @@ function formulaires_recherche_multi_traiter_dist(){
 
 	return array('message_ok' => 'oui');
 }
-?>

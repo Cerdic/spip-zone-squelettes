@@ -124,4 +124,4 @@ function escal_ieconfig_metas($table){
 	$table['escal']['metas_brutes'] = 'escal,escal_base_version';
 	return $table;
 }
-?>
+

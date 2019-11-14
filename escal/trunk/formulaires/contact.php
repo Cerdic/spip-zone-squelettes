@@ -168,5 +168,3 @@ function formulaires_contact_traiter_dist(){
 
 
 }
-
-?>

@@ -29,4 +29,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'escal_slogan' => 'Skelet 2 ose 3 kolona përbërë nga shumë lajthi',
 
 );
-?>

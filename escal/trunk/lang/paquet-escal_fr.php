@@ -27,7 +27,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 -* un plan du site
 -* un fichier backend pour la syndication du site
 -* une feuille de style spéciale pour l&#39;impression des articles
--* une zone de connexion en page d&#39;accueil (2 choix possibles d&#39;affichage)
--* un ensemble valide XHTML Strict 1.0',
+-* une zone de connexion en page d&#39;accueil (2 choix possibles d&#39;affichage)',
 	'escal_slogan' => 'Squelette 2 ou 3 colonnes composé de nombreuses noisettes'
 );

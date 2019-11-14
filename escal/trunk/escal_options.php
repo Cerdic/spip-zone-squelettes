@@ -101,5 +101,3 @@ function _T_ou_typo($valeur, $mode_typo='toujours') {
 }
 }
 
-
-?>

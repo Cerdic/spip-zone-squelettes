@@ -631,29 +631,6 @@ function nofollow($texte){
 }
 
 // =======================================================================================================================================
-// paramètres pour le plugin diapo
-// =======================================================================================================================================
-
-//nombre de vignettes par page
-$GLOBALS['diapo_vignettes']=15;
-
-//largeur et hauteur maxi des vignettes :
-$GLOBALS['diapo_vignette']=60;
-
-//largeur maxi de la grande image avec vignettes en haut :
-$GLOBALS['diapo_grand']=400;
-
-//largeur maxi de la grande image avec vignettes sur les côtés:
-$GLOBALS['diapo_petit']=300;
-//hauteur maxi de la grande image avec vignettes sur les côtés :
-$GLOBALS['diapo_petit_h']=300;
-
-//diaporama : temps de pause en millisecondes :
-$GLOBALS['diapo_temps']=3000;
-
-
-
-// =======================================================================================================================================
 // fonction couperpropre
 // =======================================================================================================================================
 
@@ -851,4 +828,4 @@ function decouper_en_XD_parties($texte,$nb_parties,$partie_a_retourner){
 
         return propre($partie_isolee);
 }
-?>
+
