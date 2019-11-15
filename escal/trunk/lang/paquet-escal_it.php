@@ -30,6 +30,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 -* un file di back-end per i siti in syndication;
 -* un foglio di stile dedicato alla stampa degli articoli;
 -* la form di login dalla home page (2 scelte di visualizzaione possibile);
--* un set "XHTML Strict 1.0" valido.',
+-* un set "XHTML Strict 1.0" valido.', # MODIF
 	'escal_slogan' => 'Template da 2 o 3 colonne composto da svariati blocchi'
 );

@@ -30,6 +30,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 -* një fotografi backend për faqen syndication
 -* une feuille de style spéciale pour l&#39;impression des articles
 -* një zonë lidhje në faqen kryesore (2 zgjedhje viewing)
--* vendosur një XHTML valide 1.0 strikte',
+-* vendosur një XHTML valide 1.0 strikte', # MODIF
 	'escal_slogan' => 'Skelet 2 ose 3 kolona përbërë nga shumë lajthi'
 );

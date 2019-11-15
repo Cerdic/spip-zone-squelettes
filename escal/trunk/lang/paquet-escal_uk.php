@@ -30,6 +30,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 - * RSS-файл для синдикації сайту;
 - * спеціальна таблиця стилів для друку статей;
 - * зона зв&#39;язку з домашньою сторінкою (2 варіанти перегляду);
-- * валідний XHTML Strict 1.0 ',
+- * валідний XHTML Strict 1.0 ', # MODIF
 	'escal_slogan' => 'Squelette 2 ou 3 colonnes composé de nombreuses noisettes'
 );
