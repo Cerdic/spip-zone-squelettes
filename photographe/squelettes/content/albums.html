@@ -5,15 +5,15 @@
 			<BOUCLE_albums_orphelins(ALBUMS){orphelins}{par num titre,titre}>
 			<li class="item">
 				<BOUCLE_vignette(DOCUMENTS){id_album}{extension IN jpg,gif,png}{!par date}{0,1}>
-				[(#SET{vignette,[(#FICHIER
-					|image_passe_partout{300,200}
-					|image_recadre{300,200}
-					|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html)]}
-					|inserer_attribut{class,thumb round border})]})]
+				#SET{vignette,#FICHIER|balise_img}
 				</BOUCLE_vignette>
 
 				<a href="#URL_ALBUM">
-					#GET{vignette}
+					[(#LOGO_ALBUM|sinon{#GET{vignette}}
+						|image_reduire{1200,0}
+						|image_recadre{3:2,-,focus}
+						|inserer_attribut{alt,''}
+						|inserer_attribut{class,thumb round border})]
 				</a>
 				<strong class="titre">
 					<a href="#URL_ALBUM">#TITRE</a>
