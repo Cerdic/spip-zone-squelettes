@@ -9,6 +9,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'aide' => '<a href="https://contrib.spip.net/?article4947" class="spip_out">Consultez la documentation.</a>',
+    'article_nombre_colonnes_label' => 'Colonnes d\'article',
+    'article_nombre_colonnes_explications' => 'Indiquez le nombre de colonnes pour l\'affichage des articles.',
 	'article_suivants_titre' => 'Autres articles',
 	'article_suivants_titre_explications' => 'C\'est le titre au-dessus de la liste des articles en bas de la page d\'accueil.',
 	'articles_suivants_total' => 'Total d\'autres articles',
@@ -23,7 +25,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'choixnavigation_mots' => 'Par mots clés',
     'choixnavigation_rubriques' => 'Par rubriques',
     'contact' => 'Restez en contact',
-	'couleur' => 'Couleur',
+    'content' => 'Colonne droite',
+    'couleur' => 'Couleur',
 	'couleur_accent' => 'Accent de couleur',
 	'couleur_accent_explications' => 'C\'est la couleur principale de votre site (par défaut #F56A6A)',
 	'contact_tel' => 'Téléphone',
