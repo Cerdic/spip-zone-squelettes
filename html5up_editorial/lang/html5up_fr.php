@@ -18,7 +18,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'cfg_titre_parametrages' => 'Paramétrages',
-	'contact' => 'Restez en contact',
+    'choixnavigation_explications' => 'C\'est la navigation dans la colonne gauche, par rubriques ou par mots clés.',
+    'choixnavigation_label' => 'Navigation en colonne gauche',
+    'choixnavigation_mots' => 'Par mots clés',
+    'choixnavigation_rubriques' => 'Par rubriques',
+    'contact' => 'Restez en contact',
 	'couleur' => 'Couleur',
 	'couleur_accent' => 'Accent de couleur',
 	'couleur_accent_explications' => 'C\'est la couleur principale de votre site (par défaut #F56A6A)',
