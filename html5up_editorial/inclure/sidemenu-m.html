@@ -1,0 +1,34 @@
+[(#REM)
+Navigation par groupes et mots clés. ]
+<B_groupes>
+	<nav id="menu">
+		<header class="major">
+			<h2>Menu</h2>
+		</header>
+
+		<ul>
+			<li><a class="accueil" href="#URL_SITE_SPIP"><:accueil_site:></a></li>
+
+			<BOUCLE_groupes(GROUPES_MOTS){par num titre, titre}>
+			[(#REM) si plus d'un article, la liste des articles, si au moins une sous-rubrique, la liste des sous-rubriques ]
+			#SET{smenu#ID_GROUPE,non}
+			<BOUCLE_test_articles(ARTICLES){id_groupe}{1,2}>
+			</BOUCLE_test_articles>#SET{smenu#ID_GROUPE,oui}</B_test_articles>
+			<BOUCLE_test_mots(MOTS){id_groupe}{0,1}>
+			</BOUCLE_test_mots>#SET{smenu#ID_GROUPE,oui}</B_test_mots>
+
+			<li>
+				[(#GET{smenu#ID_GROUPE}|=={oui}|non)
+				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>]
+				[(#GET{smenu#ID_GROUPE}|=={oui}|oui)
+				<span class="opener[ (#EXPOSE) active]">#TITRE</span>
+				<ul>
+					<INCLURE{fond=inclure/sidemenu-mots,env,id_groupe,rubrique_on} />
+				</ul>]
+			</li>
+			</BOUCLE_groupes>
+
+		</ul>
+
+	</nav>
+</B_groupes>

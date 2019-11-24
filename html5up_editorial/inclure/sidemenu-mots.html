@@ -1,0 +1,15 @@
+[(#REM)
+Sous-menus de la navigation par groupes et mots clés. ]
+<BOUCLE_groupes(GROUPES_MOTS){id_groupe}>
+<BOUCLE_mots(MOTS){id_groupe}{par num titre, titre}>
+#SET{listearticles#ID_MOT,non}
+<BOUCLE_test_articles(ARTICLES){id_mot}{1,2}>
+</BOUCLE_test_articles>#SET{listearticles#ID_MOT,oui}</B_test_articles>
+<li>
+	<a href="#URL_MOT"[(#EXPOSE|ou{#ENV{rubrique_on}|=={#ID_MOT}}|oui) class="on"]>#TITRE</a>
+	<ul>
+		[(#GET{listearticles#ID_MOT}|=={oui}|oui)<INCLURE{fond=inclure/sidemenu-articles,env,id_mot,id_article} />]
+	</ul>
+</li>
+</BOUCLE_mots>
+</BOUCLE_groupes>
