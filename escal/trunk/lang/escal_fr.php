@@ -306,6 +306,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_explication1' => 'Pour changer le texte d’un autre élément de la page Contact, utilisez les fichiers de langue.',
 	'contact_explication2' => 'Tous les champs de ce formulaire acceptent le multilinguisme avec la balise &lt;multi&gt;
             <br />exemple : &lt;multi&gt; [fr]Exemple [en]Example [es]Ejemplo &lt;/multi&gt;',
+	'contact_fichier' => 'Proposer de joindre un fichier',
+	'contact_fichier2' => 'Joindre un fichier',
 	'contact_interdit' => 'Caractères interdits : ',
 	'contact_libelle' => 'Libellé',
 	'contact_libelle1' => 'Libellé case 1',
