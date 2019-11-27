@@ -9,7 +9,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 // ============================
 // Nuage de tags
 // ============================
-function coef($texte, $max, $nbrMax= 2, $minFont= 0.8) {
+function coef($texte, $max, $nbrMax= 1, $minFont= 0.8) {
 	return ($texte/$max*$nbrMax + $minFont);
 }
 
