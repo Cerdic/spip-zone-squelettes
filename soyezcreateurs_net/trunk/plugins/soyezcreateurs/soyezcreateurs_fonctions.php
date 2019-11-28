@@ -519,7 +519,7 @@ function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $
 		}
 		$evts = $evenements[$amj];
 		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'grand');
-		$ligne .= '<td valign="top" class="'.($amj == date("Ymd")?"agendathisday": $aff['class']).'">' . $aff['ligne'] . '</td>';
+		$ligne .= '<td valign="top" class="'.$aff['class'].($amj == date('Ymd')?' agendathisday':'').'">' . $aff['ligne'] . '</td>';
 	}
 	$jour_mois_suivant=0;
 	// affichage de la fin de semaine hors periode
@@ -584,7 +584,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 
 		$evts = $evenements[$amj];
 		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'mini');
-		$ligne .= '<td class="'.($amj == date("Ymd")?"agendathisday": $aff['class']).'">' . $aff['ligne'] . '</td>';
+		$ligne .= '<td class="'.$aff['class'].($amj == date('Ymd')?' agendathisday':'').'">' . $aff['ligne'] . '</td>';
 	}
 	$jour_mois_suivant=1;
 	// affichage de la fin de semaine hors periode
