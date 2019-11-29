@@ -43,7 +43,8 @@ function sarkaspipr_afficher_noisettes($define, $flux, $ajax=true){
 	$noisettes = explode(':', $define);
 	foreach ($noisettes as $_fond) {
 		if (find_in_path($_fond.'.html')) {
-			$contexte = $ajax ? array_merge($flux['args'], array('ajax' => true)) : $flux['args'];
+			$args = ((isset($flux['args']) and is_array($flux['args']) and $flux['args']) ? $flux['args'] : array());
+			$contexte = $ajax ? array_merge($args, array('ajax' => true)) : $args;
 			$html = recuperer_fond($_fond, $contexte);
 			$flux['data'] .= $html;
 		}
