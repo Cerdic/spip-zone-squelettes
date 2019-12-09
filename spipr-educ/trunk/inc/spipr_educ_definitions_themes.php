@@ -1065,6 +1065,21 @@ border-left:none; border-right:none;}
 	.carousel ol.carousel-indicators{left:50%;}
 	body {padding-left:0; padding-right:0;}
 }
+
+/* ------------------------------------------ */
+/* ----- Modèle competences CRCN ---- */
+/* ------------------------------------------ */
+
+div.competences {
+margin-bottom:30px;
+padding:10px;
+box-shadow:0 0 4px #888;
+h4.h4 {font-size:1.2em;}
+p.legifrance {
+font-size:0.9em;
+margin:10px 0 0 0;
+}
+}
 ',
 					'parametre2' => '','parametre3' => '','parametre4' => '','parametre5' => '','parametre6' => '','parametre7' => '','parametre8' => '','parametre9' => '','parametre10' => '',
 				),
