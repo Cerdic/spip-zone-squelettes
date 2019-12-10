@@ -193,6 +193,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'article_compteur'=>"Compteur de visites (plugin \"Compteur graphique\")",
 'article_spipr_dane_js'=>"Bouton de retour en haut, stop/pause du Caroussel",
 'article_evenements_article'=>"Les événements liés à cet article",
+'article_competences_crcn'=>"Compétences numériques (plugin \"CRCN\")",
 'rubrique_menu_navigation'=>"Menu de navigation vertical des rubriques",
 'rubrique_recherche'=>"Formulaire de recherche",
 'rubrique_breadcrumb'=>"Fil d'ariane SPIPr-édu",

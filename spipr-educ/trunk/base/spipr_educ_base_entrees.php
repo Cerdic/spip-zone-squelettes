@@ -106,6 +106,27 @@ foreach (spipr_educ_toutes_les_noisettes_initialisation() as $def_bloc) {
 				'parametre10'=>$valeurs[9]
 			));
 			spipr_educ_bloc_ranger($valeurs[0],$valeurs[1]);
+			// On style un peu le bloc de présentation des compétences à la première installation
+			if ($intitule=='article_competences_crcn') {
+				sql_updateq(
+				'spip_spipr_educ',
+				array(
+					'parametre5' => 'oui',
+					'parametre6' => '24',
+					'parametre7' => 'div.competences {
+	margin-bottom:30px;
+	padding:10px;
+	box-shadow:0 0 4px #888;
+	h4.h4 {font-size:1.2em;}
+	p.legifrance {
+		font-size:0.9em;
+		margin:10px 0 0 0;
+	}
+}',
+),
+					"nom='article_competences_crcn' AND type='bloc de base' AND nom_sauvegarde='$Nom_sauve'"
+				);
+			}
 		}
 	}
 }
@@ -136,7 +157,7 @@ foreach (spipr_educ_definition_graphisme() as $def) {
 			'parametre10'=>''
 		));
 	}
-
+	
 // Ici l'entrée permettant de stocker le nom du thème et sa couleur
 	$test_theme=sql_select('id',$Table,"type='theme' AND nom_sauvegarde='$Nom_sauve'");
 	$tab_theme=sql_fetch($test_theme);

@@ -59,6 +59,7 @@ function spipr_educ_noisettes_article_initialisation() {
 		'article_bloc_perso_2'=>array('article','off',1,'cfg'),
 		'article_bloc_perso_3'=>array('article','off',1,'cfg'),
 		'article_compteur'=>array('article','off',1,'cfg'),
+		'article_competences_crcn'=>array('article','off',1,'cfg'),
 	);
 	return $def_art;	
 }

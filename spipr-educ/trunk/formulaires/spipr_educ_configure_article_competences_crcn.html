@@ -1,0 +1,51 @@
+#CACHE{0}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;">Configuration du bloc :
+<?php echo _T('spipr_educ:#ENV{nom}');?>
+</div></h2>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configurearticlecompetencescrcn'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<fieldset>
+	<legend>Faut-il afficher un lien vers la liste des domaines et compétences sur le site Légifrance ?</legend>
+		<div class="editer-groupe">
+			<div class="choix">
+				<input type='radio' class="radio" name='legifrance' value='oui' id='legifrance_oui'[ (#ENV**{legifrance}|=={oui}|oui)checked="checked"] />
+				<label for='legifrance_oui'>Oui</label>
+			</div>
+			<div class="choix">
+				<input type='radio' class="radio" name='legifrance' value='non' id='legifrance_non'[ (#ENV**{legifrance}|=={non}|oui)checked="checked"] />
+				<label for='legifrance_non'>Non</label>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset>
+	<legend>Hauteur des logos</legend>
+		<div class="editer-groupe">
+			<div class="choix">
+				<label for="hauteur">Quelle est la hauteur des logos représentant les domaines de compétences (24 par défaut)?</label>
+				<input type='number' name='hauteur' id='hauteur' value="#ENV{hauteur,24}" class="number" min="18" max="60" style="width:3em;" />
+			</div>
+		</div>
+	<fieldset>
+	<legend>CSS</legend>
+	<div class="editer-groupe">
+		<div class="choix">
+			<label for="CSS">Règles CSS ou LESS spécifiques pour ce bloc</label>
+			<textarea name='CSS' id='CSS' class="text" rows="6">#ENV{CSS}</textarea>
+		</div>
+	</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_competences_crcn' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+</form>
+</div>
