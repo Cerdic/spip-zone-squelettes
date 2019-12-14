@@ -58,8 +58,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadrestexte' => 'Requadres de contingut',
 	'cfg_cartouche' => 'Requadre "Què hi ha de nou", "Contingut"...',
 	'cfg_choix_banniere_label' => 'Tria del banner (si no hi ha logotip de canvi d’imatge pel lloc)',
-	'cfg_code_pub_google' => 'Codi Google per la banda de publicitat',
-	'cfg_code_recherche_google' => 'Codi Google per la cerca i els botons del programari patrocinat',
 	'cfg_code_stats_google' => 'Codi Google pels estats amb Google Analytics (format: UA-xxxxx-x)',
 	'cfg_colonne_date' => 'Publicació al costat de la data d’actualització del lloc',
 	'cfg_colonne_extra' => 'secundària (a sobre de les citacions)',
@@ -202,7 +200,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_sousmenulocaux' => 'Submenú local',
 	'cfg_sousmenulocaux_ex' => 'Modifica el menú principal per, eventualment, no fer aparèixer les subseccions, excepte per la branca en curs',
 	'cfg_sousmenulocaux_label' => 'Visualització de subseccions al menú principal ',
-	'cfg_sponsor' => 'Aprecieu aquest esquelet, podeu manifestar-ho utilitzant aquest identificador per les publicitats i les cerques: @id@ (els esquelets corresponents els podeu descarregar a <a href="https://www.pyrat.net/squelettes/noisettes/extra/ads_column.html">ads_column.html</a> i a <a href="https://www.pyrat.net/squelettes/noisettes/navigation/ads_search.html">ads_search.html</a> i instal·lar-los a la vostra carpeta esquelets).',
 	'cfg_systematiquement' => 'Sistemàticament',
 	'cfg_taille_logos_max' => 'Mida màxima dels logos del menú alt i de la caixa d’eines', # MODIF
 	'cfg_texte_bandeau_annonce' => 'Text de la cibertira d’anuncis al capdamunt del lloc ',
