@@ -1,4 +1,5 @@
 <BOUCLE_mot_principal(MOTS){id_mot}>
+[(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={recadre}|oui)[(#SET{logo_objet,[(#LOGO_MOT_NORMAL|sinon{#LOGO_GROUPE_NORMAL}|sinon{#LOGO_RUBRIQUE_NORMAL}|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_focus{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]][(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={entier}|oui)[(#SET{logo_objet,[(#LOGO_MOT_NORMAL|sinon{#LOGO_GROUPE_NORMAL}|sinon{#LOGO_RUBRIQUE_NORMAL}|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]]
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 [(#SET{title,<:soyezcreateurs:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
@@ -14,8 +15,10 @@
 <main id="main" role="main">
 <!-- Contenu : Le mot choisi -->
 [(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
-<div class="cartouche">
-<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[<img src="(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|extraire_attribut{src})" class="logo_article" alt="" width="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|largeur)]" height="[(#LOGO_MOT_NORMAL|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}}|hauteur)]" />][(#TITRE)]</h1></div>
+<div class="cartouche surlignable">
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contenthauttitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
+	<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={content}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]][(#TITRE)]</h1></div>
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contentbastitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
 </div>
 ]
 <div id="letexte">
@@ -95,6 +98,7 @@
 
 </BOUCLE_mot_principal>
 <BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
+[(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={recadre}|oui)[(#SET{logo_objet,[(#LOGO_GROUPE_NORMAL|sinon{#LOGO_RUBRIQUE_NORMAL}|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_focus{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]][(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={entier}|oui)[(#SET{logo_objet,[(#LOGO_GROUPE_NORMAL|sinon{#LOGO_RUBRIQUE_NORMAL}|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]]
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 [(#SET{title,<:soyezcreateurs:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
@@ -108,8 +112,10 @@
 <main id="main" role="main">
 <!-- Contenu : Tous les mots -->
 [(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
-<div class="cartouche">
-<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[(#TITRE)]</h1></div>
+<div class="cartouche surlignable">
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contenthauttitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
+	<div class="titrepage"><h1 class="#EDIT{titre} titre-texte">[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={content}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]][(#TITRE)]</h1></div>
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contentbastitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
 </div>
 ]
 <!-- Autres mots-clefs du meme groupe -->
@@ -147,6 +153,7 @@
 </main>
 </div><!-- Fin de .texte -->
 </BOUCLE_Groupe_principal>
+[(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={recadre}|oui)[(#SET{logo_objet,[(#LOGO_RUBRIQUE_NORMAL|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_focus{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]][(#CONFIG{soyezcreateurs_layout/cadragelogocontenuprincipal,entier}|=={entier}|oui)[(#SET{logo_objet,[(#LOGO_RUBRIQUE_NORMAL|sinon{#CHEMIN{images/nature-2683474_1920.jpg}}|image_reduire{#CONFIG{soyezcreateurs_layout/largeurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/largeurlogocontenuautomatique,64}},#CONFIG{soyezcreateurs_layout/hauteurlogocontenuprincipal,#CONFIG{soyezcreateurs_layout/hauteurlogocontenuautomatique,64}}})]})]]
 [(#SET{titretop,<:soyezcreateurs:mots_title|sc_nettoyer_marqueur|texte_script:>})]
 <INCLURE{fond=noisettes/header/header}
 	{title=<:soyezcreateurs:mots_title|texte_script:>}
@@ -159,7 +166,9 @@
 <!-- Contenu : Tous les mots -->
 [(#CONFIG{soyezcreateurs_layout/positioncartouchetitre,contenu}|=={contenu}|oui)
 <div class="cartouche">
-<div class="titrepage"><h1 class="titre-texte"><:soyezcreateurs:mots_title:></h1></div>
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contenthauttitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contenthauttitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
+	<div class="titrepage"><h1 class="titre-texte">[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={content}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]<:soyezcreateurs:mots_title:></h1></div>
+	[(#CONFIG{soyezcreateurs_layout/logoarticlenavigation,content}|=={contentbastitre}|oui)[<img src="(#GET{logo_objet}|extraire_attribut{src})" class="logo_objet contentbastitre" alt="" width="[(#GET{logo_objet}|largeur)]" height="[(#GET{logo_objet}|hauteur)]" />]]
 </div>
 ]
 	<div id="letexte">
