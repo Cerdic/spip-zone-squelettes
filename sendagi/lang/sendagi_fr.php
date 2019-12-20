@@ -12,7 +12,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 '404_sorry' => 'Désolé, cette page n\'existe plus.',
 
 // A
-'actu_facebook' => 'Retrouvez l\'actualités de la revue Chimères sur Facebook',
 'actu_toutes' => 'Tous les actualités',
 'articles_web' => 'Articles web',
 'articles_web_tous' => 'Tous les articles web',
@@ -44,9 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 
-
 // D
-'dernier_numero' => 'Dernier Numéro',
 'date_parution' => 'Date de parution',
 
 // L
@@ -55,10 +52,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // M
 'menu' => 'Menu',
-
-// N
-'numero_tous' => 'Tous les numéros',
-'numeros_derniers' => 'Les numéros',
 
 
 // O
