@@ -29,6 +29,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_soundcloud' => "URL complète du compte soundcloud",
 	'explication_twitter' => "URL complète du compte twitter",
 	'explication_vimeo' => "URL complète du compte vimeo",
+	'explication_youtube' => "URL complète de la chaîne Youtube",
+
 
 	// L
     'label_articles_home' => "Id article(s) avant liste des secteurs",
@@ -43,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_soundcloud' => 'Soundcloud',
 	'label_twitter' => 'Twitter',
 	'label_vimeo' => 'Vimeo',
+	'label_youtube' => "Youtube",
 	'legend1' => "Explications",
 	'legend_footer' => "Paramétrages Pied de page ",
 	'legend_home' => "Paramétrages Sommaire ",
