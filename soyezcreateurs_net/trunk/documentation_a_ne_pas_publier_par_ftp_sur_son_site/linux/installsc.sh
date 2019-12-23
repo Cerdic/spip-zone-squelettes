@@ -13,13 +13,19 @@ cd _soyezcreateurs_
 svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite/trunk accessibilite
 svn co svn://zone.spip.org/spip-zone/_plugins_/agenda/trunk agenda
 svn co svn://zone.spip.org/spip-zone/_plugins_/ancres_douces ancresdouces
+mkdir  bigup
+cd bigup
+git clone https://github.com/marcimat/bigup.git
+cd ..
 svn co svn://zone.spip.org/spip-zone/_plugins_/boutonstexte/trunk boutonstexte
 svn co svn://zone.spip.org/spip-zone/_plugins_/calendrier_mini/trunk calendriermini
 svn co svn://zone.spip.org/spip-zone/_plugins_/carto_itineraire/trunk carto_itineraire
 svn co svn://zone.spip.org/spip-zone/_plugins_/centre_image/trunk centre_images
+svn co svn://zone.spip.org/spip-zone/_plugins_/champs_extras_core/trunk champs_extras_core
 svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_changement_langue/trunk changement_langue
 svn co svn://zone.spip.org/spip-zone/_plugins_/citations_bien_balisees citations_bien_balisees
 svn co svn://zone.spip.org/spip-zone/_plugins_/corbeille/trunk corbeille
+svn co svn://zone.spip.org/spip-zone/_plugins_/correction_liens_internes/trunk correction_liens_internes
 svn co svn://zone.spip.org/spip-zone/_plugins_/crayons/trunk crayons
 svn co svn://zone.spip.org/spip-zone/_plugins_/cvt-upload/trunk cvt-upload
 svn co svn://zone.spip.org/spip-zone/_plugins_/dictionnaires/trunk dictionnaires
@@ -34,20 +40,19 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/memoization/trunk memoization
 svn co svn://zone.spip.org/spip-zone/_plugins_/nemequittepas nemequittepas
 svn co svn://zone.spip.org/spip-zone/_plugins_/n-core/trunk n-core
 svn co svn://zone.spip.org/spip-zone/_plugins_/noizetier/trunk noizetier
-svn co svn://zone.spip.org/spip-zone/_plugins_/nospam nospam
+svn co svn://zone.spip.org/spip-zone/_plugins_/nospam/trunk nospam
 svn co svn://zone.spip.org/spip-zone/_plugins_/notifications/trunk notifications
-svn co svn://zone.spip.org/spip-zone/_plugins_/oembed oembed
+svn co svn://zone.spip.org/spip-zone/_plugins_/oembed/trunk oembed
 svn co svn://zone.spip.org/spip-zone/_plugins_/orthotypo/trunk orthotypo
 svn co svn://zone.spip.org/spip-zone/_plugins_/palette/trunk palette
 svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_partout/trunk porteplumepartout
 svn co svn://zone.spip.org/spip-zone/_plugins_/saisies/trunk saisies
 svn co svn://zone.spip.org/spip-zone/_plugins_/savecfg/trunk savecfg
 svn co svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs soyezcreateurs
-svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-3 spip_bonux
-svn co svn://zone.spip.org/spip-zone/_plugins_/typo_guillemets typo_guillemets
+svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bonux/trunk spip_bonux
+svn co svn://zone.spip.org/spip-zone/_plugins_/spout/trunk spout
 svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_enluminures_typographiques/trunk typoenluminee
-svn co svn://zone.spip.org/spip-zone/_plugins_/uploadhtml5/trunk uploadhtml5
-svn co svn://zone.spip.org/spip-zone/_plugins_/verifier verifier
+svn co svn://zone.spip.org/spip-zone/_plugins_/verifier/trunk verifier
 svn co svn://zone.spip.org/spip-zone/_plugins_/yaml/trunk yaml
 cd ../..
 
