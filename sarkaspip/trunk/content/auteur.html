@@ -1,20 +1,18 @@
 <BOUCLE_auteur_principal(AUTEURS) {tout}{id_auteur}>
-	<section  class='auteur auteur_#ID_AUTEUR'>
-		[(#REM) <!-- Informations sur l'auteur --> ]
-			<INCLURE{fond=noisettes/auteur/description}{id_auteur}>
-		<aside>
+			[(#REM) <!-- Informations sur l'auteur --> ]
+			<div class="auteur">
+				<INCLURE{fond=noisettes/auteur/inc_auteur_description}{id_auteur}>
+			</div>
 			[(#REM) <!-- articles publies par l'auteur --> ]
-			[(#CONFIG{sarkaspip/auteur/position_articles, 1}|=={1}|oui)
-				<INCLURE{fond=noisettes/auteur/liste-articles}{ajax}{id_auteur}>
+			[(#CONFIG{sarkaspip_auteur/position_articles, 1}|=={1}|oui)
+				<INCLURE{fond=noisettes/auteur/inc_auteur_articles}{ajax}{id_auteur}>
 			]
 			[(#REM) <!-- albums publies par l'auteur --> ]
-			[(#CONFIG{sarkaspip/auteur/position_albums, 1}|=={1}|oui)
-				<INCLURE{fond=noisettes/auteur/liste-albums}{ajax}{id_auteur}>
+			[(#CONFIG{sarkaspip_auteur/position_albums, 1}|=={1}|oui)
+				<INCLURE{fond=noisettes/auteur/inc_auteur_albums}{ajax}{id_auteur}>
 			]
 			[(#REM) <!-- Formumaire de contact de l'auteur --> ]
-			[(#CONFIG{sarkaspip/auteur/position_contact, 1}|=={1}|oui)
-				[(#FORMULAIRE_ECRIRE_AUTEUR)]
+			[(#CONFIG{sarkaspip_auteur/position_contact, 1}|=={1}|oui)
+				[<div class="formulaire">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
 			]
-		</aside>
-	</section>
 </BOUCLE_auteur_principal>

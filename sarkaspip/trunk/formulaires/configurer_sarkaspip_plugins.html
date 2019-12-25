@@ -5,7 +5,6 @@
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
-		<input type="hidden" name="_meta_casier" value="sarkaspip/plugins" />
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_plugins_info:></legend>
@@ -29,10 +28,10 @@
 			<fieldset>
 				<legend>[<:sarkaspip_config:cfg_lgd_plugin:>&nbsp;(#PLUGIN{#VALEUR, nom}|extraire_multi)]</legend>
 				<ul class="editer-groupe">
-					[(#SET{name,[config_(#VALEUR|strtolower)]})]#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+					[(#SET{name,[config_(#VALEUR|strtolower)]})]#SET{defaut,defaut}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">[
 						<label><:sarkaspip_config:cfg_inf_plugins_config:>&nbsp;&#171;&nbsp;(#PLUGIN{#VALEUR, nom}|extraire_multi)&nbsp;&#187;</label>][
-						<span class='erreur_message'>(#GET{erreurs})</span>
+						<span class="erreur_message">(#GET{erreurs})</span>
 						]
 						#SET{val,sarkaspip}
 						<div class="choix">
@@ -51,6 +50,6 @@
 	</BOUCLE_plugins>
 
 
-		<INCLURE{fond=formulaires/inc/cfg_boutons}>
+		<INCLURE{fond=formulaires/inclure/cfg_boutons}>
 	</div></form>
 </div>

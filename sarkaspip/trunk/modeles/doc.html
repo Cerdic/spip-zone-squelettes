@@ -1,3 +1,64 @@
-<BOUCLE_doc (DOCUMENTS) {id_document}{mode?}{tout}{!media==#CONFIG{sarkaspip/modeles/exclusif_doc, non}|=={oui}|?{image,zzz}}>
-[(#INCLURE{fond=[(#EVAL{_DIR_PLUGIN_MEDIAS}|substr{#EVAL{_DIR_RACINE}|strlen})modeles/doc],env,largeur=#ENV{largeur,#EVAL{_SARKASPIP_CONFIG_IMG_TAILLE_MAX_EMBED}},mode_force=#MEDIA|=={image}|et{#MODE|=={document}}|?{image,#MODE}})]
+<BOUCLE_doc (DOCUMENTS) {id_document}{mode?}{tout}>
+[(#REM)
+<!-- 
+	Modele pour <doc> en dl/dt/dd
+	cf. http://pompage.net/pompe/listesdefinitions/
+
+	La largeur de la legende est egale a la largeur de l'image
+	avec un minimum de 120px, et un maximum de 350px (cf define dans le fichier sarkaspip_options.php.
+
+	Dans le cas d'une simple image (mode=image), on affiche
+	le document lui-meme, sans lien de telechargement
+	
+	Si on choisit le mode de fonctionnement du modele "exclusif image" (recommande) alors les images ne seront pas affichees.
+	Sinon, en mode non exclusif, le fonctionnement sera classique (compatible versions precedentes)
+ -->
+]
+[(#MODE|=={image}|oui)
+	#SET{affichage, image}
+]
+[(#MODE|=={image}|non)
+	[(#EXTENSION|match{jpg|png|gif}|oui)
+		#SET{affichage, image}
+	]
+	[(#EXTENSION|match{jpg|png|gif}|non)
+		#SET{affichage, logo}
+	]
+]
+#SET{document_a_afficher,oui}
+[(#GET{affichage}|=={image}|oui)
+	#SET{fichier,#URL_DOCUMENT}
+	#SET{url,#ENV{lien}}
+	[(#CONFIG{sarkaspip_modeles/exclusif_doc, non}|=={oui}|oui)
+		#SET{document_a_afficher,non}
+	]
+]
+[(#GET{affichage}|=={logo}|oui)
+	[(#SET{fichier,[(#LOGO_DOCUMENT|extraire_attribut{src})]})]
+	#SET{url,#ENV{lien,#URL_DOCUMENT}}
+]
+
+[(#ENV{taille}|oui)
+	#SET{fichier,#GET{fichier}|image_reduire{#ENV{taille,#CONFIG{sarkaspip_modeles/max_vignette_doc,0}}}}
+	#SET{width,#GET{fichier}|largeur}
+	#SET{height,#GET{fichier}|hauteur}
+]
+[(#ENV{taille}|non)
+	#SET{fichier,#GET{fichier}|image_reduire{#CONFIG{sarkaspip_modeles/max_vignette_doc,0}}}
+	#SET{width,#GET{fichier}|largeur}
+	#SET{height,#GET{fichier}|hauteur}
+]
+#SET{fichier,#GET{fichier}|extraire_attribut{src}}
+
+[(#GET{document_a_afficher}|=={oui}|oui)
+<dl class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+	<dt>
+		[<a href="(#GET{url})"[ class="(#ENV{lien_class})"] title='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]'[ (#ENV{lien}|?{'',type="#MIME_TYPE"})]>]
+			<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]' />
+		[(#GET{url}|?{</a>})]
+	</dt>[
+	<dt class='#EDIT{titre} spip_doc_titre'[ style='width:(#GET{width}|min{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MAX}}|max{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MIN}})px;']><strong>(#TITRE)</strong></dt>][
+	<dd class='#EDIT{descriptif} spip_doc_descriptif'[ style='width:(#GET{width}|min{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MAX}}|max{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MIN}})px;']>(#DESCRIPTIF|PtoBR)[(#NOTES|PtoBR)]</dd>]
+</dl>
+]
 </BOUCLE_doc>

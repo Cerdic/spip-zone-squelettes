@@ -5,36 +5,35 @@
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 	<form method="post" action="#ENV{action}"><div>
-		<input type="hidden" name="_meta_casier" value="sarkaspip/album" />
 		#ACTION_FORMULAIRE{#ENV{action}}
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_description:></legend>
 			<ul class="editer-groupe">
-				<INCLURE{fond=formulaires/inc/cfg_logo}
+				<INCLURE{fond=formulaires/inclure/cfg_logo}
 					{explication=<:sarkaspip_config:cfg_inf_album_sans_logo:>}
 					{env}>
-				<INCLURE{fond=formulaires/inc/cfg_cartouche}
-					{explication_popularite=<:sarkaspip_config:cfg_inf_album_popularite:>}
-					{explication_socialbar=<:sarkaspip_config:cfg_inf_album_socialbar:>}
+				<INCLURE{fond=formulaires/inclure/cfg_cartouche}
+					{label_popularite=<:sarkaspip_config:cfg_inf_article_popularite:>}
+					{label_notation=<:sarkaspip_config:cfg_inf_article_notation:>}
+					{label_socialtags=<:sarkaspip_config:cfg_inf_article_socialtags:>}
 					{env}>
 			</ul>
 		</fieldset>
-<!--
+
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_documents_joints:></legend>
 			<ul class="editer-groupe">
-				<INCLURE{fond=formulaires/inc/cfg_descriptif_document}{env}>
+				<INCLURE{fond=formulaires/inclure/cfg_descriptif_document}{env}>
 			</ul>
 		</fieldset>
--->
-<!--
+
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_album_carrousel:></legend>
 			<ul class="editer-groupe">
 				#SET{name,position_carrousel}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 					<label><:sarkaspip_config:cfg_inf_album_carrousel_position:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
+					<span class="erreur_message">(#GET{erreurs})</span>
 					]
 					#SET{val,0}
 					<div class="choix">
@@ -57,7 +56,7 @@
 					#SET{name,modele_carrousel}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 						<label><:sarkaspip_config:cfg_inf_album_carrousel_position:></label>[
-						<span class='erreur_message'>(#GET{erreurs})</span>
+						<span class="erreur_message">(#GET{erreurs})</span>
 						]
 						#SET{val,1}
 						<div class="choix">
@@ -78,14 +77,14 @@
 					#SET{name,taille_carrousel}#SET{defaut,10}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 					<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]" id="bloc_modele_2">
 						<label for="#GET{name}"><:sarkaspip_config:cfg_lbl_carrousel_taille:></label>[
-						<span class='erreur_message'>(#GET{erreurs})</span>
+						<span class="erreur_message">(#GET{erreurs})</span>
 						]<input type="text" name="#GET{name}" class="text" value="#ENV*{#GET{name},#GET{defaut}}" id="#GET{name}" [(#HTML5|et{#GET{obli}})required='required']/>
 					</li>
 					</ul></fieldset>
 				</li>
 				<li class="fieldset suite" id="bloc_modele_3"><fieldset>
 					<ul class="editer-groupe">
-						<INCLURE{fond=formulaires/inc/cfg_pagination}
+						<INCLURE{fond=formulaires/inclure/cfg_pagination}
 							{suffixe=_carrousel}
 							{defaut_pas=20}
 							{choix=sans_position}
@@ -93,7 +92,7 @@
 						#SET{name,survol_carrousel}#SET{defaut,non}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 						<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 							<label><:sarkaspip_config:cfg_inf_album_carrousel_hover:></label>[
-							<span class='erreur_message'>(#GET{erreurs})</span>
+							<span class="erreur_message">(#GET{erreurs})</span>
 							]
 							#SET{val,oui}
 							<div class="choix">
@@ -110,15 +109,14 @@
 				</li>
 			</ul>
 		</fieldset>
--->
-<!--
+
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_album_zoom:></legend>
 			<ul class="editer-groupe">
 				#SET{name,afficher_zoom}#SET{defaut,oui}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 					<label><:sarkaspip_config:cfg_inf_album_carrousel_hover:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
+					<span class="erreur_message">(#GET{erreurs})</span>
 					]
 					#SET{val,oui}
 					<div class="choix">
@@ -131,13 +129,13 @@
 						<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_lbl_non:></label>
 					</div>
 				</li>
-				<INCLURE{fond=formulaires/inc/cfg_effet_image}
+				<INCLURE{fond=formulaires/inclure/cfg_effet_image}
 					{explication=<:sarkaspip_config:cfg_inf_album_zoom_effet:>}
 					{choix=album}
 					{env}>
 			</ul>
 		</fieldset>
--->
+
 		<fieldset>
 			<legend><:sarkaspip_config:cfg_lgd_album_exif:></legend>
 			[(#PLUGIN{PHOTO_INFOS}|oui)
@@ -145,7 +143,7 @@
 				#SET{name,afficher_exif}#SET{defaut,non}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
 				<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 					<label><:sarkaspip_config:cfg_inf_album_carrousel_hover:></label>[
-					<span class='erreur_message'>(#GET{erreurs})</span>
+					<span class="erreur_message">(#GET{erreurs})</span>
 					]
 					#SET{val,oui}
 					<div class="choix">
@@ -165,8 +163,50 @@
 					<p class="notice"><:sarkaspip_config:cfg_inf_plugin_inactif{lbl_plugin=#GET{plugin}}:></p>
 			]
 		</fieldset>
-
-		<INCLURE{fond=formulaires/inc/cfg_boutons}>
+		<fieldset>
+			<legend><:sarkaspip_config:cfg_lgd_commentaires:></legend>
+			<p><:sarkaspip_config:cfg_inf_album_commentaires:></p>
+			<ul class="editer-groupe">
+			<INCLURE{fond=formulaires/inclure/cfg_presentation_commentaires}
+				{defaut_presentation=2}
+				{defaut_tri=2}
+				{defaut_auteur=1}
+				{defaut_mail=2}
+				{env}>
+			<INCLURE{fond=formulaires/inclure/cfg_sens_tri}
+				{explication=<:sarkaspip_config:cfg_inf_commentaires_sens_tri:>}
+				{suffixe=_commentaires}
+				{label_sens_normal=<:sarkaspip_config:cfg_lbl_tri_chrono:>}
+				{label_sens_inverse=<:sarkaspip_config:cfg_lbl_tri_antichrono:>}
+				{defaut_sens=1}
+				{env}>
+			<li class="editer pleine_largeur">
+				<p class="explication"><:sarkaspip_config:cfg_inf_commentaires_lien_auteur:></p>
+			</li>
+			#SET{name,auteur_commentaires}#SET{defaut,1}#SET{obli,''}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+			<li class="editer long_label editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+				<label></label>[
+				<span class="erreur_message">(#GET{erreurs})</span>
+				]
+				#SET{val,1}
+				<div class="choix">
+					<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_inf_lien_auteur_oui:></label>
+				</div>
+				#SET{val,2}
+				<div class="choix">
+					<input type="radio" name="#GET{name}" class="radio" id="#GET{name}_#GET{val}" value="#GET{val}"[(#ENV{#GET{name},#GET{defaut}}|=={#GET{val}}|oui)checked="checked"] />
+					<label for="#GET{name}_#GET{val}"><:sarkaspip_config:cfg_inf_lien_auteur_non:></label>
+				</div>
+			</li>
+			<INCLURE{fond=formulaires/inclure/cfg_pagination}
+				{defaut_pas=20}
+				{defaut_position=2}
+				{suffixe=_commentaires}
+				{env}>
+			</ul>
+		</fieldset>
+		<INCLURE{fond=formulaires/inclure/cfg_boutons}>
 	</div></form>
 </div>
 
@@ -210,4 +250,3 @@
 		});
 	});
 /*]]>*/</script>
-<style>li.fieldset.suite>fieldset {padding-left: 30px;border-top:0;}</style>

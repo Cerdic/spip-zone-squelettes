@@ -1,16 +1,23 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}{si #PLUGIN{RECOMMANDER}}>
-<section class="article recommander">
-	<header class="cartouche">
-		<h1><:sarkaspip:recommander_article:>
-		<small>#TITRE</small></h1>
-	</header>
-
-	<div class="main">
-		<INCLURE{fond=inclure/resume/article,id_article} />
-		[(#REM) <!-- Formulaire de recommandation --> ]
-		<div class="ajax">
-			#FORMULAIRE_RECOMMANDER{#TITRE,#URL_ARTICLE,#ENV{texte,''},#ENV{subject,''}}
+		<div class="titre"><h1><:sarkaspip:recommander_article:></h1></div>
+        [(#REM) <!-- Resume du texte de l'article auquel le commentaire s'adresse --> ]
+		[(#CONFIG{sarkaspip_article/position_extrait, 1}|=={1}|oui)
+		<div id="article_commentaire" class="portfolio">
+			<INCLURE{fond=noisettes/article/inc_article_introduction}
+				{id_article}
+				{afficher_mere=non}
+				{afficher_commentaires=non}
+				{logo_rubrique=non}
+				{avec_lire_suite=non}
+				{taille_logo=#CONFIG{sarkaspip_article/taille_logo_extrait, 150}}
+				{taille_introduction=#CONFIG{sarkaspip_article/intro_article, 300}}>
 		</div>
-	</div>
-</section>
+		]
+		
+		[(#REM) <!-- Formulaire de recommandation --> ]
+		<div class="formulaire">
+			<div class="ajax">
+				#FORMULAIRE_RECOMMANDER{#TITRE,#URL_ARTICLE,#INTRODUCTION}
+			</div>
+		</div>
 </BOUCLE_article_principal>

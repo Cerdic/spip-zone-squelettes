@@ -1,24 +1,27 @@
 <?php
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// extrait automatiquement de https://trad.spip.net/tradlang_module/sarkaspip?lang_cible=it
+// ** ne pas modifier le fichier **
 
-// Ceci est un fichier langue de SPIP -- This is a SPIP language file
-// Module: sarkaspip
-// Langue: it
-
-if (!defined('_ECRIRE_INC_VERSION')) return;
+if (!defined('_ECRIRE_INC_VERSION')) {
+	return;
+}
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// 0
+	// 0
 	'0_article' => 'Nessun articolo',
 	'0_auteur' => 'Nessun autore',
 	'0_breve' => 'Nessuna breve',
 	'0_site_web' => 'Nessun sito',
-// 1
+
+	// 1
 	'1_article' => 'Articolo',
 	'1_auteur' => 'Autore',
 	'1_breve' => 'Breve',
 	'1_site_web' => 'Sito Web',
-// A
+
+	// A
 	'acceder_espace_membre' => 'Connettersi come membro del sito',
 	'acceder_espace_prive' => 'Accedere allo spazio privato',
 	'accueil_site' => 'Home',
@@ -27,105 +30,97 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'albums_galerie' => 'Galleria',
 	'ancre_haut_page' => 'Top ↑',
 	'annonces' => 'Annunci',
-	'aout' => 'Agosto',
 	'articles' => 'Articoli',
 	'articles_aleatoires' => 'A caso',
 	'articles_auteur' => 'Articoli di questo autore',
 	'articles_meme_rubrique' => 'dans la rubrique...',
 	'articles_recents' => 'Articoli recenti',
 	'articles_rubrique' => 'Articoli di questa rubrica',
-	'aucun_article' => 'Nessuna articolo a questo indirizzo',
 	'aujourdhui' => 'oggi',
 	'auteurs' => 'Autori',
-	'avril' => 'Aprile',
-// B
+
+	// B
 	'bouton_referencement' => 'Proponi un sito',
 	'breves' => 'Brevi',
-// C
+
+	// C
 	'contact' => 'Contatti',
 	'contacter_site' => 'Contatta il webmaster',
 	'copyright_site' => '©',
-// D
+
+	// D
 	'date' => 'Data',
 	'date_aujourdhui' => 'oggi',
-	'decembre' => 'Dicembre',
-	'depuis_debut' => 'dall\'inizio',
-	'dimanche_abrege' => 'Do',
+	'depuis_debut' => 'dall’inizio',
 	'docu_article' => 'Documenti allegati a questo articolo',
-// E
+
+	// E
 	'erreur' => 'errore',
 	'espace_prive' => 'Redazione',
-// F
-	'fevrier' => 'Febbraio',
+
+	// F
 	'forum' => 'Forum',
-// G
+
+	// G
 	'galerie' => 'Galleria',
-// H
+
+	// H
 	'herbier_sites' => 'herbier',
 	'hier' => 'ieri',
 	'hit_parade' => 'Top Articoli',
-// I
-	'info_afficher_album' => 'Vedi quest\'album',
-	'info_langues' => 'Lingue del sito',
+
+	// I
+	'info_afficher_album' => 'Vedi quest’album',
 	'inscription' => 'Iscrizione',
 	'inscrire_a_newsletter' => 'Iscriversi alla newsletter',
 	'inscrire_au_site' => 'Iscriversi al sito',
 	'intitule_referencement' => 'Proponi un sito da referenziare in questa rubrica',
-	'item_choisir_langue' => 'Lingua del sito (spazio privato)',
-// J
-	'janvier' => 'Gennaio',
-	'jeudi_abrege' => 'Gi',
-	'juillet' => 'Luglio',
-	'juin' => 'Giugno',
-// K
+
+	// K
 	'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
 	'kezako_gpl' => 'Lo squelette SARKA-SPIP è distribuito sotto licenza GPL',
 	'kezako_haut_page' => 'Ritorno alla parte superiore della pagina',
 	'kezako_sarkaspip' => 'Questo sito utilizza lo squelette SARKA-SPIP',
 	'kezako_spip' => 'Sito realizzato con SPIP, un CMS gratuito sotto licenza GPL',
 	'kezako_squelette' => 'Visualizza il modello della pagina',
-// L
+
+	// L
 	'licence_gpl' => 'GPL',
-	'lire_suite_article' => 'leggi il seguito dell\'articolo',
+	'lire_suite_article' => 'leggi il seguito dell’articolo',
 	'login_membre' => 'Connessione',
 	'login_motpasseoublie' => 'password dimenticata; ?',
 	'login_retoursitepublic' => 'torna al sito pubblico',
 	'login_sinscrire' => 'iscriviti',
 	'logout_membre' => 'Disconnessione',
-	'lundi_abrege' => 'Lu',
-// M
-	'mai' => 'Maggio',
+
+	// M
 	'maj' => 'Ultimo aggiornamento',
-	'mardi_abrege' => 'Ma',
-	'mars' => 'Marzo',
-	'mercredi_abrege' => 'Me',
 	'message' => 'Messaggio',
 	'message_bonjour' => 'Buongiorno, caro(cara)',
 	'mots_clefs' => 'Parole chiave',
 	'msg_0_article_publie' => 'Nessuna articolo pubblicato fino a ora',
 	'msg_0_evt_agenda' => 'Nessun evento definito in agenda',
-	'msg_0_evt_annee' => 'Nessun evento per l\'anno in questa categoria',
+	'msg_0_evt_annee' => 'Nessun evento per l’anno in questa categoria',
 	'msg_0_evt_saison' => 'Nessun evento per la stagione in questa categoria',
-// N
+
+	// N
 	'newsletter' => 'Newsletter',
 	'nom' => 'Nome',
-	'novembre' => 'Novembre',
-// O
-	'octobre' => 'Ottobre',
-// P
+
+	// P
 	'par_auteur' => 'di ',
 	'plan_site' => 'Mappa del sito',
 	'plusieurs_evenements_jour' => 'eventi in questo giorno',
 	'popularite_article' => 'popolarità',
-// R
+
+	// R
 	'realisation_squelette' => 'Collettivo Sarka-SPIP',
 	'recherche_mots_resultat' => 'Parole chiave trovate ed articoli associati',
 	'rechercher' => 'Ricerca',
 	'requete' => 'Inserisci la/e parola/e',
 	'resultats_recherche' => 'Risultati della ricerca',
-// S
-	'samedi_abrege' => 'Sa',
-	'septembre' => 'Settembre',
+
+	// S
 	'signatures_petition' => 'Firme',
 	'signer_petition' => 'Firma la petizione',
 	'site_realise_avec_spip' => 'Sito realizzato con SPIP',
@@ -141,17 +136,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sur_web' => 'Sul Web',
 	'syndiquer_rubrique' => 'Metti in syndication questa rubrica',
 	'syndiquer_site' => 'Metti in syndication tutto il sito',
-// T
+
+	// T
 	'top_articles' => 'Più popolari',
 	'tri_par_auteur' => 'Per autore',
 	'tri_par_date' => 'Per data',
 	'tri_par_rubrique' => 'Per rubrica',
-// U
-// V
-	'vendredi_abrege' => 'Ve',
+
+	// V
 	'verifier_xhtml' => 'Verificare la validità XHTML di questa pagina',
-// W
+
+	// W
 	'web_france' => 'Web francofono',
-	'web_monde' => 'Web Mondiale',
+	'web_monde' => 'Web Mondiale'
 );
-?>

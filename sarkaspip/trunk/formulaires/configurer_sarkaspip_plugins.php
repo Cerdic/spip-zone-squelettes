@@ -1,4 +1,7 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_configurer_sarkaspip_plugins_traiter() {
 
 	// On simule le traitement normal du cvt configurer
@@ -8,14 +11,14 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 
 	// Post traitement de configuration des plugins concernes
 	include_spip('inc/config');
-	if (lire_config('sarkaspip/plugins/config_boutonstexte') == 'sarkaspip') {
+	if (lire_config('sarkaspip_plugins/config_boutonstexte') == 'sarkaspip') {
 		ecrire_config('boutonstexte/', array(	'selector'=>_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR,
 												'txtOnly' => _SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY));
 	}
 	else
 		effacer_config('boutonstexte');
 
-	if (lire_config('sarkaspip/plugins/config_mediabox') == 'sarkaspip') {
+	if (lire_config('sarkaspip_plugins/config_mediabox') == 'sarkaspip') {
 		ecrire_config('mediabox/', array(	'active' => _SARKASPIP_CONFIG_MEDIABOX_ACTIF,
 											'traiter_toutes_images'=>_SARKASPIP_CONFIG_MEDIABOX_TOUT,
 											'selecteur_commun'=>_SARKASPIP_CONFIG_MEDIABOX_IMAGE,
@@ -25,7 +28,7 @@ function formulaires_configurer_sarkaspip_plugins_traiter() {
 	else
 		effacer_config('mediabox');
 
-	if (lire_config('sarkaspip/plugins/config_socialtags') == 'sarkaspip') {
+	if (lire_config('sarkaspip_plugins/config_socialtags') == 'sarkaspip') {
 		ecrire_config('socialtags/', array(	'jsselector'=>_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR,
 											'tags' => explode(':', _SARKASPIP_CONFIG_SOCIALTAGS_TAGS)));
 	}

@@ -1,20 +1,14 @@
 <?php
+
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 function formulaires_restauration_cfg_charger_dist(){
 	$configs = array();
 
-	$pages_cfg = array();
-	$sections = explode('|',_SARKASPIP_PAGES_CONFIG);
-	foreach ($sections as $_section){
-		$_section = explode("!",$_section);
-		$_section = end($_section);
-		$pages_cfg = array_merge($pages_cfg, array_map('trim',explode(":",$_section)));
-	}
-
-	foreach ($pages_cfg as $_config) {
-		if ($_config != 'maintenance') {
-			$item = "sarkaspip_{$_config}";
-			$configs[$_config] = _T("sarkaspip_config:$item");
-		}
+	$pages = lister_pages_configuration();
+	foreach ($pages as $_page) {
+		$item = "sarkaspip_{$_page}";
+		$configs[$_page] = _T("sarkaspip_config:$item");
 	}
 
 	$dir_cfg = sous_repertoire(_DIR_TMP,"sarkaspip");
@@ -55,8 +49,10 @@ function formulaires_restauration_cfg_traiter_dist(){
 
 	include_spip('inc/config');
 	$dirs = explode('/', dirname($fichier));
-	$config = end($dirs);
-	$ok = ecrire_config("sarkaspip/$config", unserialize($contenu));
+	$page = end($dirs);
+
+	include_spip('inc/sarkaspip_configuration');
+	$ok = creer_config(array($page), 'restauration', array($page => unserialize($contenu)));
 	
 	if (!$ok)
 		$retour['message_nok'] = _T('sarkaspip_config:cfg_msg_fichier_restauration_nok');

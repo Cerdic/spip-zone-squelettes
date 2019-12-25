@@ -1,22 +1,25 @@
 [(#AUTORISER{webmestre}|sinon_interdire_acces)]
+
+[(#REM) <!-- Titre de la page --> ]
 [<h1 class="grostitre">(#VAL{sarkaspip_config:cfg_titre_}|concat{#ENV{cfg, accueil}}|_T)</h1>]
-[(#ENV{cfg, accueil}|=={accueil}|non)
+
+[(#REM) <!-- Description de la page --> ]
 [<p>(#VAL{sarkaspip_config:cfg_descr_}|concat{#ENV{cfg, accueil}}|_T)</p>]
+
+[(#REM) <!-- Formulaire de configuration --> ]
+[(#SET{configurer, [(#ENV{type-page})_[(#ENV{cfg, accueil})]]})]
+[(#ENV{cfg, accueil}|=={maintenance}|non)
+	[<div[(#CONFIG{sarkaspip_maintenance/debug_arbo}|!={oui}|oui) class="ajax"]>(#FORMULAIRE_{#GET{configurer}})</div>]]
+[(#ENV{cfg, accueil}|=={maintenance}|oui)
+	[<div class="noajax">(#FORMULAIRE_SAUVEGARDE_CFG)</div>]
+	[<div class="ajax">(#FORMULAIRE_RESTAURATION_CFG)</div>]
+	[<div class="noajax">(#FORMULAIRE_RAZ_CFG)</div>]
+	[<div class="noajax">(#FORMULAIRE_CONFIGURER_SARKASPIP_MAINTENANCE)</div>]
 ]
 
-#SET{page,configurer_sarkaspip-#ENV{cfg, accueil}}
-[(#GET{page}|tester_url_ecrire|non)#SET{page,''}]
-
-[(#GET{page}|non)
-	[(#SET{configurer, [(#ENV{type-page})_[(#ENV{cfg, accueil})]]})]
-	[<div class='ajax'>(#FORMULAIRE_{#GET{configurer}})</div>]
-]
-[(#GET{page}|oui)
-	<INCLURE{fond=prive/squelettes/contenu/#GET{page},env} />
-]
-[(#ENV{cfg, accueil}|=={accueil}|oui)
 [(#REM) <!-- Boite d'information sur la page de configuration affichee --> ]
-#BOITE_OUVRIR{#CHEMIN_IMAGE{sarka-spip-24.gif}|balise_img{'',cadre-icone}, simple}
+[(#ENV{cfg, accueil}|=={accueil}|oui)
+#BOITE_OUVRIR{#CHEMIN_IMAGE{sarka-spip-24.gif}|balise_img{'',cadre-icone}, info}
 	<div class="liste">
 		<p><:sarkaspip_config:cfg_inf_versions:></p>
 		<ul>
@@ -25,8 +28,7 @@
 			<li>PHP #VERSION_PHP</li>
 		</ul>
 	</div>
-#BOITE_FERMER
-]
+#BOITE_FERMER]
 
 [(#REM) <!-- Boite de debug des variables et de l'environnement --> ]
-[(#INCLURE{fond=formulaires/inc/cfg_debug, env})]
+[(#INCLURE{fond=formulaires/inclure/cfg_debug, env})]
