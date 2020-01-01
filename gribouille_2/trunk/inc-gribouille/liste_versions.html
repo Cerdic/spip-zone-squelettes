@@ -7,7 +7,7 @@
 		<BOUCLE_rev(VERSIONS){id_objet=#ENV{id_objet}}{objet=#ENV{objet}}{par date}{inverse}>
 		<li>
 			[(#SET{date, <abbr title="[(#DATE|date_iso)]">[(#DATE|date_relative)]</abbr>})]
-			#SET{titre, #ID_VERSION|concat{' - ',#INFO_NOM{auteur,#ID_AUTEUR}|sinon{#ID_AUTEUR|=={-1}|?{#GET{auteur},#ID_AUTEUR|masquer_ip}},', ',#TITRE_VERSION|sinon{#GET{date}}}}
+			#SET{titre, #ID_VERSION|concat{' - ',#ID_AUTEUR|is_numeric|?{#INFO_NOM{auteur,#ID_AUTEUR},''}|sinon{#ID_AUTEUR|=={-1}|?{#GET{auteur},#ID_AUTEUR|masquer_ip}},', ',#TITRE_VERSION|sinon{#GET{date}}}}
 			[(#SELF|parametre_url{id_version,#ID_VERSION}|lien_ou_expose{#GET{titre}, #ENV{id_version}|=={#ID_VERSION}}|inserer_attribut{rel,nofollow})]
 			#SET{auteur,#INFO_NOM{auteur,#ID_AUTEUR}}
 		</li>
