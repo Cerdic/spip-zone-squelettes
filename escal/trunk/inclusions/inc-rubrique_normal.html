@@ -59,7 +59,7 @@
 	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
 
 <div class="liste-articles-rubrique">
-<BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}> 
+<BOUCLE_articles_rubs(ARTICLES){id_rubrique}{si #PLUGIN{tri_par_rubrique}|oui}{tri_rubrique}{pagination #GET{nbrpag}}> 
 	<div class="cadre-articles-rubrique">
 			<!-- affichage mots-clés associés -->
 			[(#CONFIG{escal/config/motsclesrubrique}|=={oui}|oui)
@@ -109,6 +109,69 @@
 		<div class="nettoyeur"></div>]
 	[(#CONFIG{escal/config/paginbas}|=={non}|oui) --> ]
 </B_articles_rubs>
+
+<B_articles_rubs2>
+<!-- affichage des articles de la rubrique -->
+	<div class="texte-insert">
+	<:escal:rubrique_articles:>
+	</div>
+<!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
+
+<div class="liste-articles-rubrique">
+<BOUCLE_articles_rubs2(ARTICLES){id_rubrique}{si #PLUGIN{tri_par_rubrique}|non}{par num titre}{par date}{inverse}{pagination #GET{nbrpag}}> 
+	<div class="cadre-articles-rubrique">
+			<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesrubrique}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+		<a class="articles-rubrique" href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+			<div class="titre-articles-rubrique">
+				<div class="logorub">
+					[(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src}|balise_img{logo article ou rubrique, spip_logos}|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+				</div>
+				<div class="titre-articles-rubrique2">[(#TITRE)]</div>
+	
+			</div>
+	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui)<div class="nettoyeur"></div>]
+			<div class="introduction-articles-rubrique">
+				[(#INTRODUCTION{#CONFIG{escal/config/nbrecaracttexterub,150}}|supprimer_tags)]
+			</div>
+		</a>
+		<div class="auteur-articles-rubrique">
+			[(#CONFIG{escal/config/daterub}|=={non}|non)
+				<div id="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+				<div id="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+			]
+		<BOUCLE_test2(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurrub}|=={non}|non}>
+          </BOUCLE_test2>
+			<br />[(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs_art2(AUTEURS){id_article}{", "}{lang_select}>
+			<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art2>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+		</B_test2>
+		</div>
+	</div>
+	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)
+		[(#COMPTEUR_BOUCLE|alterner{'','<div class="nettoyeur"></div>'})]
+	]
+	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui)
+		[(#COMPTEUR_BOUCLE|alterner{'','','<div class="nettoyeur"></div>'})]
+	]
+      
+</BOUCLE_articles_rubs2>
+</div>
+<div class="nettoyeur"></div> 
+<!-- si plus de x articles, on pagine (x est defini plus haut avec {pagination x} ) -->
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) --> ]
+</B_articles_rubs2>
 
 <B_SsRubriques>
 <!-- Afficher les sous-rubriques associées à cette rubrique -->
