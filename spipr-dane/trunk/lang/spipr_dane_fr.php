@@ -2,8 +2,8 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     /* présents dans les squelettes de spipr_dane */
-'academie'=>'Académie de Caen',
-'site_academie'=>'Visiter le site de l\'académie de Caen (nouvelle fenêtre)',
+'academie'=>'Académie de Normandie',
+'site_academie'=>'Visiter le site de l\'académie (nouvelle fenêtre)',
 'a_la_une'=>'À la une',
 'dane'=>'Dane',
 'title_bouton_dane'=>'Retrouver les services et le site de la Dane',
@@ -51,7 +51,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'precedent'=>'Précédent',
 
     /* chaines pour paramétrer le widget twitter */
-'compte_twitter'=>'DaneCaen',
+'compte_twitter'=>'DaneNormandie',
 'tweets_options'=>'noborders nofooter noheader transparent',
 'tweets_de'=>'Tweets de',
 'tweets_height'=>'300',
@@ -66,7 +66,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'voir_rubrique' => 'Voir la rubrique',
 'tous_droits_reserves' => ' - Licence « Creative Commons BY-SA »',
 'extrait_de' => ' ',
-'copyright' => 'Académie de Caen – ',
+'copyright' => 'Académie de Normandie – ',
 
     /* dossiers, grappes */
 'les_grappes'=>'Les dossiers',
