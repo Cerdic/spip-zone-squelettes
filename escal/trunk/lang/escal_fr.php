@@ -10,6 +10,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// A
 	'a_decouvrir' => 'A découvrir',
 	'a_telecharger' => 'A télécharger',
+	'accessibilite' => 'Accessibilité',
+	'accessibilite_explication' => 'Affichage d\'un bouton de paramétrage d\'accessibilité au-dessus du bandeau',
 	'acces_direct' => 'Accès direct',
 	'accueil' => 'Accueil',
 	'actus' => 'Actus',

@@ -15,6 +15,23 @@
 <div class="explication"><:escal:elements_explication:></div>
 
 <ul>
+<!-- bouton d'accessibilté -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:accessibilite:></strong></label>
+                    <br />
+                    <div class="explication">
+                    <:escal:accessibilite_explication:>
+            #SET{name,accessibilite}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+              <br /><br />
+                    </div>
+             </li>
 <!-- mots-clés -->
 	<li class="editer [ (#GET{erreurs}|oui)erreur]">
 		<label><strong><:escal:mots_clefs:></strong></label>
