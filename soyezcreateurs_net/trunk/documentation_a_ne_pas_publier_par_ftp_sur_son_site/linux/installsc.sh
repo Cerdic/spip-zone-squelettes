@@ -64,7 +64,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/apropos/trunk apropos
 svn co svn://zone.spip.org/spip-zone/_plugins_/article_pdf article_pdf
 svn co svn://zone.spip.org/spip-zone/_plugins_/autolang/trunk autolang
 svn co svn://zone.spip.org/spip-zone/_plugins_/autorite/trunk autorite
-svn co https://github.com/nursit/bank/tags/v3.6.4 bank
+svn co https://github.com/nursit/bank/tags/4.3.0 bank
 svn co svn://zone.spip.org/spip-zone/_plugins_/blocsdepliables blocsdepliables
 svn co svn://zone.spip.org/spip-zone/_plugins_/breves_vers_articles breves_vers_articles
 svn co svn://zone.spip.org/spip-zone/_plugins_/campagnes/trunk campagnes
@@ -95,7 +95,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/mailshot/trunk mailshot
 svn co svn://zone.spip.org/spip-zone/_plugins_/mailsubscribers/trunk mailsubscribers
 svn co svn://zone.spip.org/spip-zone/_plugins_/mesfavoris/trunk mesfavoris
 svn co https://github.com/nursit/Migration/tags/v1.0.1 migration
-svn co svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens mll
+svn co svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens/trunk mll
 svn co svn://zone.spip.org/spip-zone/_plugins_/multilang/trunk multilang
 svn co svn://zone.spip.org/spip-zone/_plugins_/navigation_bar_cef/trunk navigation_bar_cef
 svn co svn://zone.spip.org/spip-zone/_plugins_/newsletters/trunk newsletters
@@ -113,7 +113,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/querypath/trunk querypath
 svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/trunk rainette
 svn co svn://zone.spip.org/spip-zone/_plugins_/rechremp/trunk rechercher_remplacer
 svn co svn://zone.spip.org/spip-zone/_plugins_/sedna/trunk sedna
-svn co svn://zone.spip.org/spip-zone/_plugins_/sidr sidr
+svn co svn://zone.spip.org/spip-zone/_plugins_/sidr/trunk sidr
 svn co svn://zone.spip.org/spip-zone/_plugins_/skeleditor/trunk skeleditor
 svn co svn://zone.spip.org/spip-zone/_plugins_/slick/trunk slick
 svn co svn://zone.spip.org/spip-zone/_plugins_/smush_images/trunk smush_images
@@ -122,7 +122,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bible/trunk spip-bible
 svn co svn://zone.spip.org/spip-zone/_plugins_/spip_hop/trunk spip_hop
 svn co svn://zone.spip.org/spip-zone/_plugins_/spipdf/trunk spipdf
 svn co svn://zone.spip.org/spip-zone/_plugins_/spiperipsum spiperipsum
-svn co svn://zone.spip.org/spip-zone/_plugins_/splickrbox splickr
+svn co svn://zone.spip.org/spip-zone/_plugins_/splickrbox/trunk splickr
 svn co svn://zone.spip.org/spip-zone/_plugins_/svp_stats/trunk svp_stats
 svn co svn://zone.spip.org/spip-zone/_plugins_/thumbsites/trunk thumbsites
 svn co svn://zone.spip.org/spip-zone/_plugins_/transaction transaction
