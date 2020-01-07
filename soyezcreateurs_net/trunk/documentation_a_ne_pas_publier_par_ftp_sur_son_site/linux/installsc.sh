@@ -12,7 +12,7 @@ mkdir _soyezcreateurs_
 cd _soyezcreateurs_
 svn co svn://zone.spip.org/spip-zone/_plugins_/accessibilite/trunk accessibilite
 svn co svn://zone.spip.org/spip-zone/_plugins_/agenda/trunk agenda
-svn co svn://zone.spip.org/spip-zone/_plugins_/ancres_douces ancresdouces
+svn co svn://zone.spip.org/spip-zone/_plugins_/ancres_douces/trunk ancresdouces
 mkdir  bigup
 cd bigup
 git clone https://github.com/marcimat/bigup.git
