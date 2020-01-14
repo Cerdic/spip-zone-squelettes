@@ -1,0 +1,26 @@
+[(#REM) Deconnection ]
+<?php if (isset($GLOBALS['visiteur_session']['nom']) AND $GLOBALS['visiteur_session']['nom']) { ?>
+<div id="[(#ENV{nom_bloc})]" class="list">
+	<h2 class="h2"><?=$GLOBALS['visiteur_session']['nom'] ?></h2>
+	<ul class="liste-items">
+		<li class="item">
+			<span style="font-weight:bolder;">
+				<?php switch($GLOBALS['visiteur_session']['statut']) {
+					case '0minirezo':echo 'Administrateur';break;
+					case '1comite':echo 'Rédacteur';break;
+					case '6forum':echo 'Visiteur';break;
+				} ?>
+			</span>
+		</li>
+		<li class="item"><a href='#URL_LOGOUT'>Se déconnecter</a></li>
+	</ul>
+</div>
+<?php } ?>
+
+<?php if (isset($GLOBALS["visiteur_session"]['statut']) AND $GLOBALS["visiteur_session"]['statut']) { } 
+else { ?>
+	<div id="[(#ENV{nom_bloc})]">
+		<h2 class="h2">Accès restreint</h2>
+		<div class="texte">#LOGIN_PUBLIC</div>
+	</div>
+<?php } ?>

@@ -29,6 +29,7 @@ function spipr_educ_noisettes_sommaire_initialisation() {
 		'sommaire_bloc_perso_2'=>array('sommaire','off',1,'cfg'),
 		'sommaire_bloc_perso_3'=>array('sommaire','off',1,'cfg'),
 		'sommaire_compteur'=>array('sommaire','off',1,'cfg'),
+		'sommaire_acces_restreint'=>array('sommaire','off',1),
 	);
 	return $def_som;	
 }

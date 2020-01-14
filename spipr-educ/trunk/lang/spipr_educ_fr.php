@@ -167,6 +167,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sommaire_bloc_logos'=>"Logos des partenaires",
 'sommaire_compteur'=>"Compteur de visites (plugin \"Compteur graphique\")",
 'sommaire_spipr_dane_js'=>"Bouton de retour en haut, stop/pause du Caroussel",
+'sommaire_acces_restreint'=>"Formulaire de connexion (plugin \"Accès Restreint\")",
 'article_menu_navigation'=>"Menu de navigation vertical des rubriques",
 'article_recherche'=>"Formulaire de recherche",
 'article_breadcrumb'=>"Fil d'ariane SPIPr-édu",
@@ -304,7 +305,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Thèmes
 'theme_de_base' => "Thème de base SPIPr-educ",
 'terra' => "Thème Terra",
-'spipr_institution' => "Académie de Rouen",
+'spipr_institution' => "Académie de Normandie (déclinaison Rouen)",
 
 // Couleurs des thèmes
 'bleu_clair' => "Bleu clair",
