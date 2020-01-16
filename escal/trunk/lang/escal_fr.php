@@ -13,6 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'acces_direct' => 'Accès direct',
 	'accessibilite' => 'Accessibilité',
 	'accessibilite_explication' => 'Affichage d’un bouton de paramétrage d’accessibilité au-dessus du bandeau',
+	'accessibilite_logo' => 'Choix de la couleur du logo',
 	'accueil' => 'Accueil',
 	'actus' => 'Actus',
 	'adresse_non' => 'Cet auteur n’a pas fourni son adresse e-mail',
