@@ -915,7 +915,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure" title="Documentation">plugin "Rainette"</a>,
             entrez ci-dessous le code de la ville qui vous intéresse.<br />
             Pour connaitre le code à rentrer, plus d’explications sur la
-            <a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-mae#L-indication-du-lieu" title="Documentation">documentation du plugin</a>',
+            <a  class="spip_out" href="https://contrib.spip.net/Rainette-v3-une-evolution-majeure#L-indication-du-lieu" title="Documentation">documentation du plugin</a>',
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choix du service météo',
 	'rappel_discussion' => 'Rappel de la discussion',
