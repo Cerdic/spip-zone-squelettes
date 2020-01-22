@@ -912,7 +912,7 @@ you can choose to display the metadata of your photos or their title or the 2',
             enter below the code of the city you are interested in.<br />
             This code is to be searched on the web on <strong><a class="spip_out" href="http://wxdata.weather.com/wxdata/weather/search/search?where=">this website</a></strong> 
             by adding the name of the town you are looking for following "where=" in the address bar.<br />
-            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)',
+            This name must look like <strong>FRXX0076</strong> (this code is that of Paris!)', # MODIF
 	'rainette_plugin' => 'Plugin Rainette',
 	'rainette_service' => 'Choice of weather service',
 	'rappel_discussion' => 'Reminder of the discussion',
