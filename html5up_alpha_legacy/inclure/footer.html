@@ -1,0 +1,32 @@
+<footer id="footer">
+	<ul class="icons">
+		[<li><a href="(#CONFIG{alpha/footer_twitter})" class="icon fa-twitter"><span class="label">Twitter</span></a></li>]
+		[<li><a href="(#CONFIG{alpha/footer_facebook})" class="icon fa-facebook"><span class="label">Facebook</span></a></li>]
+		[<li><a href="(#CONFIG{alpha/footer_instagram})" class="icon fa-instagram"><span class="label">Instagram</span></a></li>]
+		[<li><a href="(#CONFIG{alpha/footer_vimeo})" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>]
+		[<li><a href="(#CONFIG{alpha/footer_youtube})" class="icon fa-youtube"><span class="label">Youtube</span></a></li>]
+		[<li><a href="(#CONFIG{alpha/footer_soundcloud})" class="icon fa-soundcloud"><span class="label">Soundclound</span></a></li>]
+	</ul>
+
+    <ul class="copyright">
+        <li><a href="#URL_SITE_SPIP"><:alpha:accueil:></a></li>
+        <BOUCLE_mentions(ARTICLES){page=mentions}><li><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_mentions>
+        <li><a rel="contents" href="#URL_PAGE{plan}" class="first"><:plan_site:></a></li>
+        <li><a href="https://www.spip.net/" title="<:site_realise_avec_spip:>"><:site_realise_avec_spip:></a></li>
+		<?php
+		if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+		?><li><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></li><?php
+			if (include_spip('inc/autoriser') AND autoriser('ecrire')){
+			?><li><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></li><?php
+			}
+		}
+		else {
+		?><li><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a></li><?php
+		}
+		?>
+    </ul>
+    <ul class="copyright">
+        <li>&copy; #NOM_SITE_SPIP</li>
+		<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+</footer>

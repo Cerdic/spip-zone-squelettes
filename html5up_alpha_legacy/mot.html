@@ -1,0 +1,55 @@
+<BOUCLE_mot(MOTS){id_mot}>
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html class="article">
+<head>
+	<title>[(#TITRE|textebrut|entites_html)]</title>
+	<INCLURE{fond=inclure/head} />
+
+</head>
+<body>
+<div id="page-wrapper">
+
+	<!-- Header -->
+	<INCLURE{fond=inclure/header,env} />
+
+	<!-- Main -->
+
+	<section id="main" class="container">
+		<header>
+			[<h2 class="#EDIT{titre}">(#TITRE)</h2>]
+		</header>
+		<div class="box">
+			[<span class="image featured">(#LOGO_MOT|image_recadre{1280:420,-,focus}|image_reduire{1280})</span>]
+			[<div class="#EDIT{texte}">(#TEXTE|image_reduire{1152})</div>]
+			<hr/>
+		
+		<B_articles>	
+			[(#REM) Articles lies au mot-cle ]
+			<B_articles>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {id_mot} {!par popularite} {pagination 10}>
+					<li dir="#LANG_DIR" class="hentry clearfix text-#LANG_LEFT">
+					<strong><a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{150,*}) ]#TITRE</a></strong>
+					<br /><small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS|supprimer_tags)]</small>
+					#INTRODUCTION
+					</li>
+				</BOUCLE_articles>
+				</ul>
+			</B_articles>
+		</div>
+	
+	</section>
+	
+	<!-- Footer -->
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div>
+
+</body>
+</html>
+</BOUCLE_mot>

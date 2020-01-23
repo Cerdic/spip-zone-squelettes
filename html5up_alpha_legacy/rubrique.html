@@ -1,0 +1,62 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html class="rubrique">
+<head>
+	<title>[(#TITRE|textebrut|entites_html)]</title>
+	<INCLURE{fond=inclure/head} />
+</head>
+<body>
+<div id="page-wrapper">
+
+	<!-- Header -->
+	<INCLURE{fond=inclure/header,env} />
+
+	<!-- Main -->
+	<section id="main" class="container">
+	
+		<header>
+			<h2 class="#EDIT{titre}">#TITRE</h2>
+		</header>
+		
+		<div>
+			[(#REM) N'afficher ce bloc que s'il y a une image ou un texte à afficher ]
+			[(#LOGO_RUBRIQUE|ou{#TEXTE}|oui)
+			<div class="box">
+				[<span class="image featured">(#LOGO_RUBRIQUE|image_recadre{1280:420,-,focus}|image_reduire{1280})</span>]
+				[<div class="#EDIT{texte}">(#TEXTE|image_reduire{1152})</div>]
+			</div>]
+
+			<div class="row">
+
+				<BOUCLE_art(ARTICLES){par num titre}{id_rubrique}>
+				<div class="6u 12u(narrower)">
+					<section class="box special">
+						<span class="image featured">[(#LOGO_ARTICLE_RUBRIQUE|image_recadre{619:275,-,focus}|image_reduire{619}|inserer_attribut{class,spip_logos})]</span>
+						<h3>#TITRE</h3>
+						#INTRODUCTION
+						<ul class="actions">
+							<li><a href="#URL_ARTICLE" class="button alt"><:alpha:read_more:></a></li>
+						</ul>
+					</section>
+				</div>
+				[(#COMPTEUR_BOUCLE|alterner{"","</div><div class='row'>})]
+				</BOUCLE_art>
+
+			</div>
+		</div>
+
+	</section>
+
+	<!-- Footer -->
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div>
+
+</body>
+</html>
+</BOUCLE_rubrique>
