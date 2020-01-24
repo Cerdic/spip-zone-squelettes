@@ -1,0 +1,107 @@
+[(#REM)
+	rubrique presentation "equipe"
+	- on liste les sous-rubrique
+	- on liste les articles par date avec pagination
+
+	param:
+	- id_rubrique
+	- env           support de la pagination / ajax
+
+]<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+<!-- headline -->
+<div class="headline-wrapper">
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-10 col-sm-10 offset-md-1 headline">
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  #headline >
+
+<!-- content -->
+<div class="content container">
+
+	<!-- row 1 -->
+	<div class="row">
+		<!-- content-main -->
+		<div class="col-md-8 offset-md-1 content-main order-2 order-md-1">
+
+			<!-- Fil d'Ariane -->
+			<a name="contenu" accesskey="2"></a>
+
+			<!-- content -->
+			<div class="content-main-wrapper article-texte">
+				<div class="ariane">
+					<ul>
+						<li class="home"><a href="#URL_SITE_SPIP"><:accueil_site:></a><span>/</span></li>
+						<BOUCLE_ariane(HIERARCHIE){id_rubrique}{tout}><li[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|oui) class="on"]><a href="#URL_RUBRIQUE">[(#TITRE|couper{50})]</a>[(#ID_RUBRIQUE|=={#_findArt:ID_RUBRIQUE}|non)<span>/</span>]</li></BOUCLE_ariane>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- #content-main -->
+
+		<!-- content-side -->
+		<div class="col-md-3 content-sidebar order-1 order-md-2">
+			<div class="content-sidebar-logo">
+				[(#LOGO_RUBRIQUE|image_passe_partout{600,600}|image_recadre{600,600}|inserer_attribut{class,img-rounded})]
+			</div>
+		</div>
+		<!-- #content-side -->
+	</div>
+	<!-- #row 1 -->
+
+	<!-- row 2 -->
+	<div class="row">
+		<!-- content-main -->
+		<div class="col-md-10 offset-md-1 content-main order-2 order-md-1">
+
+ 				[<div class="spip #EDIT{texte} texte">(#TEXTE)</div>]
+
+				<!-- rubrique > sous-rubriques -->
+				<BOUCLE_ss_rub(RUBRIQUES){id_parent}{par num titre, titre}>
+				<h2 class="rubrique-title theme #GET{theme-col}"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+				</BOUCLE_ss_rub>
+
+				<!-- trombinoscope : articles -->
+				<div class="trombi">
+					<BOUCLE_art(ARTICLES){id_rubrique}{par num titre, titre}>
+					<div class="trombi-item">
+						<a href="#URL_ARTICLE" class="trombi-link">
+							<div class="trombi-illus">
+								[(#LOGO_ARTICLE|image_passe_partout{300,300}|image_recadre{300,300}|inserer_attribut{class,img-rounded})]
+								[(#LOGO_ARTICLE|non)
+								[(#CHEMIN{img/auteur-generique.png}|image_passe_partout{300,300}|image_recadre{300,300}|inserer_attribut{class,img-rounded})]
+								]
+							</div>
+							<div class="trombi-titre">#TITRE</div>
+							[<div class="trombi-chapo">
+								(#INTRODUCTION|couper{110})
+							</div>]
+						</a>
+					</div>
+					</BOUCLE_art>
+
+				</div>
+				<!-- #trombinoscope -->
+
+
+			</div>
+			<!-- #content -->
+		</div>
+		<!-- #content-main -->
+
+
+
+	</div>
+	<!-- #row2 -->
+
+
+
+</div>
+<!-- #content -->
+
+
+</BOUCLE_rub>
