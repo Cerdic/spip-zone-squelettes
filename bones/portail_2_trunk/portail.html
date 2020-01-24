@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>#TITRE_SITE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<meta name="generator" content="#NOM_SITE_SPIP">
+
+
+
+<style type="text/css">
+body{padding: 20px;background-color: #FFF;
+    font: 76% Verdana,Arial,sans-serif}
+div.news{width: 250px;background: #F0F0E7;margin-bottom: 20px}
+h3{font-size: 100%;margin:0;padding: 0 0 3px;background: #FFC5FF;color: #000;text-align: center}
+p{margin:0;padding: 5px 10px;line-height: 1.3;text-align: justify}
+a {
+	color : #2E78A7;
+	text-decoration : none;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="css/niftyCorners.css">
+<link rel="stylesheet" type="text/css" href="css/niftyPrint.css" media="print">
+<script type="text/javascript" src="css/nifty.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+if(!NiftyCheck())
+    return;
+RoundedTop("div.news","#FFF","#FFC5FF");
+RoundedBottom("div.news","#FFF","#F0F0E7");
+}
+</script>
+</head>
+<body> 
+ <BOUCLE_sites(SITES) {syndication=oui}{par nom_site}>
+
+<div class="news">
+<h3>[(#LOGO_SITE_RUBRIQUE||reduire_image{40,40})] <br /><a href="#URL_SITE">[(#NOM_SITE*)]</a> .</h3>
+                  <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic}{par date} {inverse} {0,5}>
+<p><a href="#URL_ARTICLE">#PUCE[(#TITRE*|supprimer_numero)]</a></p>
+ <B_mots>
+
+<small>tags:</small>
+<BOUCLE_mots(MOTS) {id_syndic} {par titre}>
+<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>&quot;#TITRE&quot;</a>
+</BOUCLE_mots>
+</B_mots>
+
+
+
+                  </BOUCLE_syndic>
+             <a href="#URL_SYNDIC"><img src="ecrire/img_pack/xml.gif" name="xml" id="xml" /></a>
+                </B_syndic>
+
+</div>
+  </BOUCLE_sites>
+
+</body>
+</html>
