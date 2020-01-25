@@ -96,7 +96,7 @@
 		]
 <!-- affichage premiere image -->
  		<div class="image-uneter" >
-			<BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageuneter}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{titre==^[0-9]+\.}{par num titre}>
+			<BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageuneter}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{titre==^[0-9]+\.}{par sinum titre, num titre, titre}>
 				<img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
 			</BOUCLE_image>
 			<BOUCLE_image_alt(DOCUMENTS){si #CONFIG{escal/config/imageuneter}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}>
@@ -136,7 +136,7 @@
 
 
 <BOUCLE_video(DOCUMENTS){id_article}{si #CONFIG{escal/config/affichvideo}|=={oui}|oui}
-	{extension IN mp4,ogv,mkv,m4v,webm,dist_daily,dist_youtu,dist_vimeo}{par num titre}{0,1}>
+	{extension IN mp4,ogv,mkv,m4v,webm,dist_daily,dist_youtu,dist_vimeo}{par sinum titre, num titre, titre}{0,1}>
 		    #MODELE{video,document=#ID_DOCUMENT,autoplay=oui}
 		    	<a href="#URL_ARTICLE" class="titre-autres" style="display:block;text-align:center;">
 			[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitreter,27}}|sinon{#FICHIER|basename|couper{#CONFIG{escal/config/nbrecaracttitreter,27}}})]
