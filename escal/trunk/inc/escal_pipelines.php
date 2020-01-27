@@ -83,7 +83,7 @@ function escal_porte_plume_barre_pre_charger($barres){
 		array(
 		// balise code
 			'id'          => 'barre_code',
-			'name'        => _T($module_barre.':barre_code'),
+			'name' => _T('barreoutils:barre_code'),
 			'className'   => 'outil_barre_code',
 			'openWith'    => '&lt;code&gt;',
 			'closeWith'   => '&lt;/code&gt;',
@@ -93,7 +93,7 @@ function escal_porte_plume_barre_pre_charger($barres){
 				// balise cadre
 					array(
 					'id'          => 'barre_cadre',
-					'name'        => _T($module_barre.':barre_cadre'),
+					'name' => _T('barreoutils:barre_cadre'),
 					'className'   => 'outil_barre_cadre',
 					'openWith'    => "\n&lt;cadre&gt;",
 					'closeWith'   => "&lt;/cadre&gt;\n",
