@@ -3,10 +3,11 @@
 <BOUCLE_RubriqueBandeauPartenaires(RUBRIQUES){titre_mot=BandeauPartenaires}>
 <B_SitesBandeauPartenaires>
 	<div class="flexbox-wrap-space-around">
-	<BOUCLE_SitesBandeauPartenaires(SITES){id_rubrique}{par num nom_site}>
-		[<div class="flexbox--center #EDIT{nom_site}">
-			<a href="#URL_SITE" class="spip_out" title="[(#NOM_SITE|supprimer_tags|attribut_html)][ : (#DESCRIPTIF|supprimer_tags|attribut_html)]"><img src="(#LOGO_SITE_NORMAL|image_reduire{0,60}|extraire_attribut{src})" alt="[(#NOM_SITE|supprimer_tags|attribut_html)]" /></a>
-		</div>]
+	<BOUCLE_SitesBandeauPartenaires(SITES){id_rubrique}{par num nom_site}{logo}>
+		<div class="flexbox--center #EDIT{nom_site}">
+			[(#SET{picto,[(#LOGO_SITE_NORMAL|image_reduire{0,60})]})]
+			<a href="#URL_SITE" class="spip_out" title="[(#NOM_SITE|supprimer_tags|attribut_html)][ : (#DESCRIPTIF|supprimer_tags|attribut_html)]"><img src="[(#GET{picto}|extraire_attribut{src})]" width="[(#GET{picto}|largeur)]" height="[(#GET{picto}|hauteur)]" alt="[(#NOM_SITE|supprimer_tags|attribut_html)]" loading="lazy" /></a>
+		</div>
 	</BOUCLE_SitesBandeauPartenaires>
 	</div>
 </B_SitesBandeauPartenaires>
