@@ -549,6 +549,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// I
 	'identification' => 'Identification',
+	'indentation' => 'Indentation de la première ligne des paragraphes :',
 
 	// J
 	'jours' => 'jours',
