@@ -38,14 +38,14 @@ function sc_noizetier_vidercache() {
 	// plugins utilisateur si besoin.
 	// Recharge la configuration des plugins utilisateur :
 	// -- on lit la meta pour obtenir la liste des plugins
-	include_spip('inc/cache');
+	include_spip('inc/ezcache_cache');
 	$configuration = configuration_cache_lire();
 	if ($configuration) {
 		$plugins = array_keys($configuration);
 		// -- on supprime la meta
 		configuration_cache_effacer();
 		// -- on reconfigure chaque plugin
-		include_spip('cache/cache');
+		include_spip('ezcache/ezcache');
 		foreach ($plugins as $_plugin) {
 			if (defined('_DIR_PLUGIN_' . strtoupper($_plugin))) {
 				cache_cache_configurer($_plugin);
