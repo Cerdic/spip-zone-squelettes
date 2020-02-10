@@ -1,40 +1,42 @@
-[(#REM) adapté depuis le fichier head du squelette html5up_landed]
-<meta charset="#CHARSET" />
-<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
-#SET{title_seo,#NOM_SITE_SPIP}
-#SET{description, #DESCRIPTIF_SITE_SPIP}
-#SET{title,#GET{title_seo} - #GET{description}|couper{154}|supprimer_tags}
-#SET{description, #DESCRIPTIF_SITE_SPIP}
-#SET{url, #URL_SITE_SPIP|url_absolue{#URL_SITE_SPIP}}
-[(#ENV{id_rubrique}|oui) 
-	#SET{title,#GET{title_seo} - #INFO_TITRE{rubrique,#ENV{id_rubrique}}}
-	#SET{description, #INTRODUCTION}
-	#SET{url, #URL_RUBRIQUE{#ENV{id_rubrique}|url_absolue{#URL_SITE_SPIP}}}
-]
-[(#ENV{id_article}|oui) 
-	#SET{title,#GET{title_seo} - #INFO_TITRE{article,#ENV{id_article}}}
-	#SET{description, #INTRODUCTION}
-	#SET{url, #URL_ARTICLE{#ENV{id_article}|url_absolue{#URL_SITE_SPIP}}}
-]
-<title>[(#GET{title}|couper{100}|supprimer_tags)] </title>
-[<meta name="description" content="(#GET{description}|couper{154}|supprimer_tags)" />]
-[<link rel="canonical" href="(#GET{url})" />]
+[(#REM) Fierement fabrique avec SPIP ]
 <meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+[(#REM) Divers ]
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+[(#REM) Lien vers le flux RSS du site ]
 [<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
 
-[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ; ]
-#INSERT_HEAD
+[<link rel="stylesheet" href="(#CSS{css/fontawesome-all.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/fonts.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/main.css})" type="text/css" />]
 
+[<link rel="stylesheet" href="(#CSS{css/spip.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.form.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.comment.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.list.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.petition.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.pagination.css})" type="text/css" />]
+[<link rel="stylesheet" href="(#CSS{css/spip.portfolio.css})" type="text/css" />]
+
+[<link rel="stylesheet" href="(#PRODUIRE{fond=css/styles_config.css}|direction_css)" />]
+
+[(#REM) Balise permettant aux plugins d'inserer des fichiers CSS ]
 #INSERT_HEAD_CSS
 
-[<link rel="stylesheet" href="(#CHEMIN{assets/css/main.css}|timestamp)" />]
-[<link rel="stylesheet" href="(#PRODUIRE{fond=assets/css/html5up_spectral.spip.css}|direction_css)" />]
+[(#REM) Feuille de style du theme ]
+[<link rel="stylesheet" href="(#CSS{css/theme.css})" type="text/css" />]
+
+[(#REM) Feuille de style CSS pour l'impression, n'existe pas par defaut ]
+[<link rel="stylesheet" href="(#CSS{css/print.css})" type="text/css" media="print" />]
+
+[(#REM) Feuille de style personnalisee pour surcharger les precedentes ]
+[<link rel="stylesheet" href="(#CSS{css/perso.css})" type="text/css" />]
+
+[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
+#INSERT_HEAD
+
+[(#REM) Vos scripts ]
+[<script src="(#CHEMIN{javascript/perso.js})" type="text/javascript"></script>]
+
 [<noscript><link rel="stylesheet" href="(#CHEMIN{assets/css/noscript.css}|timestamp)" /></noscript>]
-[<link rel="stylesheet" href="(#CHEMIN{css/perso.css}|direction_css|timestamp)" type="text/css" />]
-
-[(#REM) Favicon ]
-[<link rel="icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />
-[<link rel="shortcut icon" type="image/x-icon" href="(#CHEMIN{favicon.ico})" />]]
-
-

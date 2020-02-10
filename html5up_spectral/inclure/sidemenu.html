@@ -1,0 +1,32 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+<B_rubriques>
+<nav id="nav">
+	<ul>
+		<li class="special">
+			<a href="#menu" class="menuToggle"><span>Menu</span><i class="fas fa-bars"></i></a>
+			<div id="menu">
+				<ul>
+					<li><a class="accueil" href="#URL_SITE_SPIP"><:accueil_site:></a></li>
+					<BOUCLE_rubriques(RUBRIQUES){par num titre, titre}{racine}>
+					<li>
+						<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>
+						<B_srubriques><ul>
+						<BOUCLE_srubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+							<li>
+								<a href="#URL_RUBRIQUE"[(#EXPOSE|ou{#ENV{rubrique_on}|=={#ID_RUBRIQUE}}|oui) class="on"]>#TITRE</a>
+								<BOUCLE_srubriques_re(BOUCLE_srubriques)></BOUCLE_srubriques_re>
+							</li>
+						</BOUCLE_srubriques>
+						</ul></B_srubriques>
+					</li>
+					</BOUCLE_rubriques>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</nav>
+</B_rubriques>
