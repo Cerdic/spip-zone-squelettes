@@ -1,0 +1,82 @@
+
+<section id="banner">
+	<div class="inner">
+		[<h2>(#CONFIG{html5up/titre_sommaire}|sinon{#NOM_SITE_SPIP})</h2>][(#CONFIG{html5up/slogan_accueil}|=={on}|oui)
+		[<p>(#SLOGAN_SITE_SPIP)</p>]][(#CONFIG{html5up/descriptif_accueil}|=={on}|oui)
+		[(#DESCRIPTIF_SITE_SPIP)]]<BOUCLE_accueil(ARTICLES){page=accueil}>
+			[<div class="#EDIT{texte}">(#TEXTE|image_reduire{700,*})</div>]
+		</BOUCLE_accueil>
+	</div>
+	<a[(#CONFIG{html5up/hero}|picker_selected{article}|oui) href="#one"][(#CONFIG{html5up/hero}|picker_selected{article}|non) href="#two"] class="more scrolly"><:html5up:en_savoir_plus:><br />
+	<i class="fas fa-arrow-down"></i></a>
+</section>
+#SET{exclus,#ARRAY}
+<!-- One -->
+<BOUCLE_hero(ARTICLES){id_article IN #CONFIG{html5up/hero}|picker_selected{article}}>
+<section id="one" class="wrapper style1 special">
+	<div class="inner">
+		<header class="major">
+			[<h2>(#TITRE)</h2>]
+			[<div class="chapo #EDIT{chapo}">(#CHAPO)</div>]
+		</header>
+		[<div class="texte #EDIT{texte}">(#TEXTE)</div>]
+	</div>
+</section>
+</BOUCLE_hero>
+<!-- liste rubriques -->
+#SET{rubaccueil,#CONFIG{html5up/rubriques_accueil}|picker_selected{rubrique}}
+<B_rubriques>
+<section id="two" class="wrapper alt style2">
+	<BOUCLE_rubriques(RUBRIQUES){id_rubrique IN #GET{rubaccueil}}>
+	<section class="spotlight">
+		[<div class="image"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE|html5up_image_reduire{980,*,#TITRE*,2B343D})</a></div>]
+		<div class="content">
+			[<h2><a href="#URL_RUBRIQUE">(#TITRE)</a></h2>]
+			[<div class="introduction">(#INTRODUCTION|couper{150})</div>]
+		</div>
+	</section>
+	</BOUCLE_rubriques>
+</section>
+</B_rubriques>
+
+	<B_rubriquesdef>
+	<section id="two" class="wrapper alt style2">
+		<BOUCLE_rubriquesdef(RUBRIQUES){racine}{par titre}{0,#CONFIG{html5up/rubriques_accueil_nb,5}}>
+		<section class="spotlight">[(#SET{alt,[(#TITRE|attribut_html)]})]
+			[<div class="image"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE|html5up_image_reduire{980,*,#GET{alt},#273038})</a></div>]
+			<div class="content">
+				[<h2><a href="#URL_RUBRIQUE">(#TITRE)</a></h2>]
+				[<div class="introduction">(#INTRODUCTION|couper{150})</div>]
+			</div>
+		</section>
+		</BOUCLE_rubriquesdef>
+	</section>
+	</B_rubriquesdef>
+<//B_rubriques>
+
+<!-- Three -->
+<BOUCLE_major(ARTICLES){id_article IN #CONFIG{html5up/major}|picker_selected{article}}>
+<section id="three" class="wrapper style3 special">
+	<div class="inner">
+		<header class="major">
+			[<h2>(#TITRE)</h2>]
+			[<div class="chapo #EDIT{chapo}">(#CHAPO)</div>]
+		</header>
+		[<div class="texte #EDIT{texte}">(#TEXTE)</div>]
+	</div>
+</section>
+</BOUCLE_major>
+<BOUCLE_minor(ARTICLES){id_article IN #CONFIG{html5up/minor}|picker_selected{article}}>
+<!-- CTA -->
+<section id="cta" class="wrapper style4">
+	<div class="inner">
+		<header>
+			[<h2>(#TITRE)</h2>]
+			[<p>(#INTRODUCTION)</p>]
+		</header>
+		[<ul class="actions stacked">
+			<li><a href="(#URL_ARTICLE)" class="button fit"><:html5up:lire_la_suite:></a></li>
+		</ul>]
+	</div>
+</section>
+</BOUCLE_minor>
