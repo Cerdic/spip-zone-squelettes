@@ -1,3 +1,88 @@
-<BOUCLE_principale_article(ARTICLES){id_article}>
-<INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#COMPOSITION} />
-</BOUCLE_principale_article>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<INCLURE{fond=inclure/head,id_article}>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header & Menu -->
+				<INCLURE{fond=inclure/header_menu}>		
+			
+				<!-- Main -->
+					<BOUCLE_principale(ARTICLES){id_article}>
+					<article id="main">
+						<header>
+							
+							<h2>[(#TITRE|supprimer_numero)]</h2>
+							<p>#SOUSTITRE</p>
+						</header>
+						
+						
+						<section class="wrapper style4 alt">
+							<div class="inner">						
+							<p>					
+							 <br /><a href="#URL_SITE_SPIP"><:accueil_site:></a> &gt;
+							 <B_FilAriane>							 
+							 <BOUCLE_FilAriane(HIERARCHIE){id_article}{id_rubrique !IN #CONFIG{html5up_spectral/rubrique_exclure}|picker_selected{rubrique}}>
+							<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a> &gt; 
+							</BOUCLE_FilAriane>
+							[(#TITRE|supprimer_numero)]
+							</p>		
+							</div>
+						</section>
+						
+						
+						
+						<section class="wrapper style5">	
+							
+						
+							<div class="inner">
+							<p>	Par #LESAUTEURS en [(#DATE*|affdate_mois_annee)]</p>				
+							
+								[(#TEXTE|image_reduire{800,*})] 
+								[(#REM) adaptive_images{640} crash la première page, enquête en cours]									
+							</div>
+							[<ul class="actions special">
+								<li><a href="#URL_SITE" class="button primary">(#NOM_SITE)</a></li>
+							</ul>]
+							
+							
+						</section>
+						
+
+						<B_motscles>
+						<section class="wrapper style3 special">							
+							<div class="inner">						
+								
+							<h2><:mots_clefs:></h2>								
+							
+							<BOUCLE_motscles(MOTS){id_article}>
+								[<a href="#URL_MOT" class="image" style="padding: 10px">(#LOGO_MOT|image_reduire{*,64})</a>]
+							</BOUCLE_motscles>
+							</div>
+						</section>					
+							
+						</B_motscles>
+
+						
+						
+						
+					</article>
+					
+					
+					
+					</BOUCLE_principale>
+
+				<!-- Footer -->
+				<INCLURE{fond=inclure/footer}>
+
+			</div>
+
+		<!-- Scripts -->
+			<INCLURE{fond=inclure/script}>
+
+	</body>
+</html>

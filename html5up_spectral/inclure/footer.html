@@ -1,0 +1,40 @@
+<footer id="footer">
+
+	[(#PLUGIN{sociaux}|oui)<INCLURE{fond=inclure/sociaux}>]
+
+<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee>-</B_annee>
+				[(#DATE|annee) ] &mdash; #NOM_SITE_SPIP | 
+				<a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a> |			
+				
+			
+<?php
+if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+?>				<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a> | 
+	<?php
+	if (include_spip('inc/autoriser') AND autoriser('ecrire')) {
+?>			<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a> 
+	<?php
+	}
+} else {
+?>	<a href="#URL_ECRIRE" rel="nofollow" class='login_modal'><:lien_connecter:></a> 
+	<?php
+}
+?>
+<BOUCLE_pied(ARTICLES){id_article IN #CONFIG{html5up_spectral/pied}|picker_selected{article}}><br /><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_pied>
+<BOUCLE_pied_bis(ARTICLES){id_article IN #CONFIG{html5up_spectral/pied_bis}|picker_selected{article}}> | <a href="#URL_ARTICLE">#TITRE</a></BOUCLE_pied_bis>
+<BOUCLE_pied_tri(ARTICLES){id_article IN #CONFIG{html5up_spectral/pied_tri}|picker_selected{article}}> | <a href="#URL_ARTICLE">#TITRE</a></BOUCLE_pied_tri>
+<BOUCLE_pied_quad(ARTICLES){id_article IN #CONFIG{html5up_spectral/pied_quad}|picker_selected{article}}> | <a href="#URL_ARTICLE">#TITRE</a></BOUCLE_pied_quad>
+<BOUCLE_pied_cinq(ARTICLES){id_article IN #CONFIG{html5up_spectral/pied_cinq}|picker_selected{article}}> | <a href="#URL_ARTICLE">#TITRE</a></BOUCLE_pied_cinq>
+
+
+<br /> 
+		<:html5up_spectral:site_realise_avec|attribut_html:><a href="https://www.spip.net/" rel="generator" title="<:site_realise_avec_spip|attribut_html:>" class="spip_out"> SPIP</a>
+		, <a href="http://html5up.net" title="Spectral | HTML5 UP | by @ajlkn"><:html5up_spectral:theme_graphique:></a> <:html5up_spectral:licenced:> <a href="https://creativecommons.org/licenses/by/3.0/"><:html5up_spectral:cc_by:></a>  
+		<:html5up_spectral:porte_dev:> <a href="https://contrib.spip.net/Spectral-HTML5UP" title="by cent20"><:html5up_spectral:plugin_spip:></a>. 
+
+
+	
+</footer>
+
+
+
