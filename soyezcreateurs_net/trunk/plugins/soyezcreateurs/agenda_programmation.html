@@ -2,7 +2,7 @@
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 [(#REM) Trouver, par rapport à la date du jour, la date de début de la période ]
 [(#SET{date_debut,[(#ENV{date_debut,#DATE}|programmation_debut{#ENV{jour_debut}}|affdate{'Y-m-d'})]})]
-[(#SET{periode,[(#GET{date_debut}|agenda_affdate_debut_fin{[(#GET{date_debut}|programmation_datedecalejours{[(#ENV{duree,7}|moins{1})]})],non, abbr}|typo)]})]
+[(#SET{periode,[(#GET{date_debut}|affdate_debut_fin{[(#GET{date_debut}|programmation_datedecalejours{[(#ENV{duree,7}|moins{1})]})],non, abbr}|typo)]})]
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)] - #GET{periode}})]
 <INCLURE{fond=noisettes/header/header}
 	{title=(#TITRE|attribut_html|texte_script) - (#GET{periode})}
