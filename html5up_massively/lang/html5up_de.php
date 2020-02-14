@@ -30,7 +30,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'en_savoir_plus' => 'weiterlesen',
 	
 	// H
-	'html5up_editorial_titre' => 'Html5up Editorial ',
 	'hero' => 'Superartikel',
 	'hero_explications' => 'Der erste hervorgehobene Artikel auf der Startseite.',
 	'heroside' => 'Superartikel der linken Spalte',
@@ -55,6 +54,4 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// T
 	'theme_graphique_par_html5up' => 'Design von HTML5 UP',
-	'titre_page_configurer_html5up_editorial' => 'Einstellungen des Design Editorial',
-	'titre_page_configurer_html5up_solid_state' => 'Skelett Solid State konfigurieren',
 );

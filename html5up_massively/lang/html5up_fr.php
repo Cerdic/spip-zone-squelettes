@@ -65,5 +65,4 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// T
 	'theme_graphique_par_html5up' => 'Thème graphique par HTML5 UP',
-	'titre_page_configurer_html5up_phantom' => 'Configurer le squelette Phantom',
 );

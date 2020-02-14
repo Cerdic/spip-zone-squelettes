@@ -27,7 +27,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contact_complement' => 'Further information',
 
 	// H
-	'html5up_editorial_titre' => 'Html5up Editorial ',
 	'hero' => 'Article heroin',
 	'hero_explications' => 'It is the first article put forward on the homepage.',
 	'heroside' => 'Article heroin in left column',
@@ -48,5 +47,4 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// T
 	'theme_graphique_par_html5up' => 'Design by HTML5 UP',
-	'titre_page_configurer_html5up_editorial' => 'Configure the Editorial template',
 );
