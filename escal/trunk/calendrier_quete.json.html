@@ -1,12 +1,8 @@
-#SET{start,#ENV{start}|strtotime} 
+#SET{start,#ENV{start}|strtotime}
 #SET{end,#ENV{end}|strtotime}
 
 #HTTP_HEADER{Content-type:text/javascript;}
-    [<BOUCLE_evenements(EVENEMENTS){', '}{par date_debut}{titre_mot?}
-    {agendafull date_debut, date_fin, periode,
-		#VAL{Y}|date{#GET{start}}, #VAL{m}|date{#GET{start}}, #VAL{d}|date{#GET{start}},
-		#VAL{Y}|date{#GET{end}}, #VAL{m}|date{#GET{end}}, #VAL{d}|date{#GET{end}}} 
-      >
+    [<BOUCLE_evenements(EVENEMENTS){', '}{par date_debut}{titre_mot?}>
     <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
       [(#ARRAY{
       id,#ID_EVENEMENT,
