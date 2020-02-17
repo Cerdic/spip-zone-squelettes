@@ -463,11 +463,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_annonce' => '<strong>Attention</strong> : quand vous réinitialisez une ou plusieurs couleurs, pensez à valider ensuite pour enregistrer cette réinitialisation.',
 	'fonds_couleurs' => '<strong>Couleurs</strong> : on peut indiquer
 	   <ul style="margin-left:30px;list-style:circle;">
-        <li>une couleur en code hexadécimal &rarr; exemple : #0000FF </li>
-        <li>une couleur nommée &rarr; exemple : grey </li>
-        <li>une couleur en code RGB &rarr; exemple : rgb(24,125,255) </li>
-        <li>une couleur en code RGB avec transparence &rarr; exemple : rgba(24,125,255,0.5) </li>
-        <li>ou toute autre code couleur : HSL, HSB, CMJN ... </li>
+        <li>une couleur en code hexadécimal → exemple : #0000FF </li>
+        <li>une couleur nommée → exemple : grey </li>
+        <li>une couleur en code RGB → exemple : rgb(24,125,255) </li>
+        <li>une couleur en code RGB avec transparence → exemple : rgba(24,125,255,0.5) </li>
+        <li>ou toute autre code couleur : HSL, HSB, CMJN ... </li>
         </ul>',
 	'fonds_noisettes' => 'Les fonds et les textes des blocs',
 	'fonds_noisettes_annonce' => '<strong> Les annonces en une, le surlignage des mots recherchés</strong><br />par défaut : #EC7942 / #ffffff',
