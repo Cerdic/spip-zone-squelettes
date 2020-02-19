@@ -8,6 +8,9 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 	
 	$largeurimg = largeur($img);
 	$hauteurimg = largeur($img);
+	
+	$GLOBALS['Smush_Debraye'] = true;
+	
 	if (($largeurimg <= $largeur) AND ($hauteurimg <= $hauteur)) {
 		$img = filtrer('image_recadre', $img, $largeur, $hauteur, $position, 'transparent');
 	} else if (($largeurimg <= $largeur) OR ($hauteurimg <= $hauteur)) {
@@ -24,6 +27,8 @@ function image_focus($img, $largeur, $hauteur, $position = 'center') {
 		$img = filtrer('image_graver', $img);
 		$img = filtrer('image_reduire', $img, $largeur, $hauteur, $position, 'transparent');
 	}
+	
+	$GLOBALS['Smush_Debraye'] = false;
 	
 	return $img;
 }
