@@ -1,7 +1,7 @@
 <BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
 </BOUCLE_exclure_art2>
 
-<nav class="laune" >
+<nav role="navigation" role="navigation" class="laune" >
 
 <BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexerguemotcle}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
 	{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
@@ -85,7 +85,9 @@
 	<div class="nettoyeur"></div>
           
 	<div class="suite">
-		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})] 
+		title="[(#DESCRIPTIF|textebrut|entites_html)]"
+		aria-label="<:escal:lire_tout:> '#TITRE'">
 			<strong>
 				[(#CONFIG{escal/config/texteunemotcle}|=={non}|non)<:escal:lire_suite:>]
 				[(#CONFIG{escal/config/texteunemotcle}|=={non}|oui)<:escal:lire_article:>]

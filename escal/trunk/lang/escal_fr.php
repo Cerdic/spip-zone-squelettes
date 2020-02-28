@@ -591,6 +591,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'liens_sociaux_texte' => 'Texte éventuel à afficher : ',
 	'lire_article' => 'Lire l’article ...',
 	'lire_suite' => 'Lire la suite ...',
+	'lire_tout' => 'Lire tout l\'article ',
 
 	// M
 	'meme_rub' => 'Dans la même rubrique',
