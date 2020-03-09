@@ -1,0 +1,125 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="squelettes/styles/layout.css" type="text/css" />
+#INSERT_HEAD
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="header">
+    <div id="topnav">
+      <ul><BOUCLE_menu_haut(RUBRIQUES){id_rubrique!=1}{tout}{par num titre}{inverse}>
+        <li><a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a><span></span>
+        <ul><BOUCLE_art_haut(ARTICLES){id_rubrique}{tout}{par date}>
+          
+            <li><a href="#URL_ARTICLE">#TITRE</a></li>
+            
+          
+        </BOUCLE_art_haut></ul></li></BOUCLE_menu_haut>
+        
+        <li><a href="#URL_SITE_SPIP">Accueil</a><span></span></li>
+      </ul>
+    </div>
+    <div id="logo">
+      <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+      <p>Apprendre SPIP en douceur</p>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="breadcrumb">
+   [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+
+  </div>
+</div>
+<div class="wrapper col4">
+  <div id="container">
+    <div id="content">
+      [<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h1 class="#EDIT{titre} entry-title">#TITRE</h1>
+     [<img class="imgr" src="(#LOGO_ARTICLE|image_reduire{125,125}|extraire_attribut{src})" alt=""  />]
+	  <div class="surlignable">
+				
+				
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+      </div>
+      <div class="surlignable">
+			[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+			[<div class="#EDIT{texte} texte entry-content">(#TEXTE|image_reduire{500,0})</div>]
+	  </div> 
+
+      <div id="contenu">
+	   <a name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Partager</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> 
+<iframe src="http://www.facebook.com/plugins/like.php?href=#URL_SITE_SPIP/#SELF&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+		<!-- [<p>(#INCLURE{fond=noisettes/socialtags}{id_article})</p>] -->
+</div>
+      <div id="comments">
+	  <h2>R&eacute;actions:</h2>
+       [(#REM) Forum de l'article ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc-forum}{id_article} />
+		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
+      </div>
+      
+    </div>
+    <div id="column">
+      <div class="subnav">
+        <h2>RUBRIQUES</h2>
+		 <ul>
+                        
+                       <BOUCLE_menu(RUBRIQUES){id_rubrique!=1}{tout}> <li><a href="#URL_RUBRIQUE" title="#TITRE" [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a>
+					   
+					   </li></BOUCLE_menu>
+                        </ul>
+                    
+       
+      </div>
+      <div class="holder">
+        <h2 class="title"><img src="squelettes/images/cam.jpg" alt="" />Article les plus lus</h2>
+          <B_hitparade2>
+          <BOUCLE_hitparade2(ARTICLES) {id_rubrique} {doublons}{par popularite}{inverse}{0,5}>
+        <p>[(#TITRE)]</p>
+        <p>[(#CHAPO)]</p>
+        <p class="readmore"><a href="#URL_ARTICLE"[ title="(#TITRE|couper{60}|texte_backend)"]>Lire la suite &raquo;</a></p>
+        </BOUCLE_hitparade2>  
+   </B_hitparade2>
+
+      </div>
+      <div class="holder">
+        <h2>Sph&egrave;re de mots clés</h2>
+        <INCLURE{fond=tagsphere}>
+        
+      </div>
+	 
+      <div class="flickrbox">
+        <h2 class="title">Flickr</h2>
+		
+        <ul>
+          <li><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+          <li><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+          <li class="last"><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+          <li><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+          <li><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+          <li class="last"><a href="#"><img src="images/demo/80x80.gif" alt="" /></a></li>
+        </ul>
+        <br class="clear" />
+      </div>
+</div>
+    <div class="clear"></div>
+</div>
+</div>
+<div class="wrapper col5">
+  <INCLURE{fond=inc-pied}>
+    
+        
+    <br class="clear" />
+  </div>
+</div>
+<INCLURE{fond=inc-footer}>
+</BOUCLE_principale>
