@@ -13,7 +13,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// B
 	'bouton_subscribe' => 'S\'abonner',
-	'bouton_calculer_css' => 'Recalculer les CSS',
 
 	// C
 	'contact' => 'Contact',
