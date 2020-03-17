@@ -9,7 +9,8 @@ function ressourcotheque_declarer_champs_extras($champs = array()) {
 						'label' => _T('ressourcotheque:contenu_documents'),
 						'conteneur_class'=>'pleine_largeur',
 						'explication' => _T('ressourcotheque:contenu_documents_explication'),
-            'sql' => "LONGTEXT NOT NULL DEFAULT ''",
+						'sql' => "LONGTEXT NOT NULL DEFAULT ''",
+						'versionner' => true,
 						'defaut' => '',// Valeur par défaut
 						'rechercher' => true
       ),
@@ -22,6 +23,7 @@ function ressourcotheque_declarer_champs_extras($champs = array()) {
 						'conteneur_class'=>'pleine_largeur',
 						'explication' => _T('ressourcotheque:guide_redaction_explication'),
             'sql' => "LONGTEXT NOT NULL DEFAULT ''",
+						'versionner' => true,
 						'defaut' => '',// Valeur par défaut
 						'rechercher' => true,
 						'traitements' => '_TRAITEMENT_RACCOURCIS',
