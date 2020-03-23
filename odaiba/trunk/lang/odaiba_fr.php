@@ -43,6 +43,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_homepage_article' => 'Article de la page d\'accueil',
 'cfg_homepage_article_explication' => 'Choissisez l\'article qui sera affiché comme page d\'accueil du site',
 'cfg_accueil' => 'Page d\'accueil du site',
+'cfg_couleurs' => 'Couleurs',
+'cfg_couleur_bg_aside' => 'Couleur de fond de la barre menu latérale',
+'cfg_couleur_bg_aside_rwd' => 'Couleur de fond de barre menu (smartphone)',
+'cfg_couleur_bg_footer' => 'Couleur de fond du pied de page',
+'cfg_couleur_a' => 'Couleur des liens',
+'cfg_couleur_a_hover' => 'Couleur des liens en rollover',
+
 
 
 // D
