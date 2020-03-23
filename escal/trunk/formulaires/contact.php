@@ -92,7 +92,7 @@ function formulaires_contact_traiter_dist(){
 
         $nom_site = extraire_multi($GLOBALS['meta']["nom_site"]); 
         $email_webmaster = $GLOBALS['meta']['email_webmaster'];
-        $email_to= lire_config('escal/config/destinataire').",".$email_webmaster;
+        $email_to= lire_config('escal/config/destinataire').",".$email_webmaster.",".$champs['email'];
         $sujet = _T('escal:page_contact2')." ".$nom_site;
         $email_from = $champs['email'];
 
