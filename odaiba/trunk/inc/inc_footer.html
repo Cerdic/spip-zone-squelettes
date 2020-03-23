@@ -6,9 +6,14 @@
 
 
 ]
+
+#SET{is_footer_visible,false}
+[(#CONFIG{odaiba/affiche_recherche}|oui)   #SET{is_footer_visible,true}]
+<BOUCLE_is_art_lien(ARTICLES){id_article IN #CONFIG{odaiba/footer_articles}|picker_selected{article}}{0,1}>#SET{is_footer_visible,true}</BOUCLE_is_art_lien>
+
 <!-- footer -->
-<footer class="footer">
-	<div class="container"">
+<footer class="footer[(#GET{is_footer_visible}|=={false}|oui) footer--transparent]">
+	<div class="container">
 		[<div class="go-top">
 			<a href="#top"><img src="(#CHEMIN{img/but-top.png})" alt="haut de page" width="50" height="50" /></a>
 		</div>]
@@ -32,3 +37,4 @@
 	</div>
 </footer>
 <!-- #footer -->
+#FILTRE{trim}

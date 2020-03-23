@@ -19,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'articles_tous' => 'Tous les articles',
 
 // C
+'cfg_affiche_menu_lien_accueil' => 'Afficher le lien "Accueil" dans le menu principal',
 'cfg_affiche_recherche' => 'Afficher le moteur de recherche',
 'cfg_footer' => 'Pied de page',
 'cfg_titre_parametrages' => 'Choisir les contenus à afficher',
@@ -29,19 +30,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_affiche_date_article' => 'Afficher la date de publication',
 'cfg_affiche_auteur_article' => 'Afficher les noms des auteurs',
 'cfg_intro' => 'Cette page vous permet de personnaliser votre squelette Odaiba.',
-
 'cfg_lien_doc' => 'Documentation en ligne',
 'cfg_page_demo' => 'Le squelette est livré avec une page démonstration qui permet de tester la mise en page avec des contenus factices :',
 'cfg_page_demo_home' => 'Démo accueil',
 'cfg_page_demo_article' => 'Démo article',
 'cfg_presentation' => 'Présentation',
 'cfg_affiche_ariane' => 'Afficher le fil d\'ariane',
+'cfg_menus' => 'Menus',
 'cfg_menu_rwd' => 'Menu responsive',
 'cfg_menu_rwd_lateral' => 'Menu responsive latéral coulissant',
 'cfg_menu_rwd_fixe' => 'Menu responsive fixe en haut',
 'cfg_homepage_article' => 'Article de la page d\'accueil',
 'cfg_homepage_article_explication' => 'Choissisez l\'article qui sera affiché comme page d\'accueil du site',
 'cfg_accueil' => 'Page d\'accueil du site',
+
 
 // D
 'date_parution' => 'Date de parution',
