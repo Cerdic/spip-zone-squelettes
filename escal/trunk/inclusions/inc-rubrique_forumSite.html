@@ -15,10 +15,10 @@
 	
 	<table class="forum">
 		<tr>
-			<th  colspan="2">Rubriques</th>
-			<th>Sujets</th>
-			<th>Messages</th>
-			<th>Derniers Messages</th>
+			<th  colspan="2"><:rubriques:></th>
+			<th><:escal:forum_site_sujets:></th>
+			<th><:escal:forum_site_reponses:></th>
+			<th><:escal:forum_site_derniers:></th>
 		</tr>
 
 		<!--Traitement des articles de la rubrique principale
@@ -27,10 +27,10 @@
 			<B_artRacine>
 			<!--Creation d'un titre-->
 			<tr class="rub-forum">
-      <td colspan="5">Avant de commencer</td>
+      <td colspan="5"><:escal:forum_site_avant:></td>
       </tr>
 			<!--listing des articles sous le titre-->
-			<BOUCLE_artRacine(ARTICLES){id_rubrique}{par titre}>
+			<BOUCLE_artRacine(ARTICLES){id_rubrique}{par sinum titre, num titre, titre}>
 			<tr class="art-forum">
 				<td style="width:40px">
 				[(#LOGO_ARTICLE||oui) [(#LOGO_ARTICLE|image_reduire{64})] ]		
@@ -68,11 +68,16 @@
 
 
 		<!--traitement des sous rubriques et de leurs articles-->
-		<BOUCLE_sousRub(RUBRIQUES){id_parent}{par titre}>
+		<BOUCLE_sousRub(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}>
 			<tr class="rub-forum">
-      <td colspan="5">[(#TITRE)]</td>
+      <td colspan="5">
+      [(#TITRE)]
+      [<div class="descriptif">
+      (#DESCRIPTIF)
+      </div>]
+      </td>
       </tr>
-			<BOUCLE_artSousRub(ARTICLES){id_rubrique}{par titre}>
+			<BOUCLE_artSousRub(ARTICLES){id_rubrique}{par sinum titre, num titre, titre}>
       <tr class="art-forum">
         <td>
         [(#LOGO_ARTICLE||oui) [(#LOGO_ARTICLE|image_reduire{64})] ]
