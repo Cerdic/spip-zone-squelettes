@@ -520,6 +520,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'form_recherche_place' => 'Place du formulaire', # MODIF
 	'format' => 'formati:', # MODIF
 	'forum' => 'Forum', # MODIF
+	'forum_site_sujets' => 'tema', # MODIF
 	'forum_trouve' => 'esazhi forumi gjetur', # MODIF
 	'forums' => 'forums', # MODIF
 	'forums_trouves' => 'mesazhi forum gjetur', # MODIF

@@ -517,6 +517,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'form_recherche_place' => 'Place du formulaire', # MODIF
 	'format' => 'フォーマット :', # MODIF
 	'forum' => 'フォーラム', # MODIF
+	'forum_site_sujets' => 'テーマ', # MODIF
 	'forum_trouve' => 'フォーラムの投稿が見つかりました。', # MODIF
 	'forums' => 'forums', # MODIF
 	'forums_trouves' => 'フォーラムの投稿が見つかりました。', # MODIF
