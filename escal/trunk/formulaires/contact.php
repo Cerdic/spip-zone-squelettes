@@ -92,7 +92,7 @@ function formulaires_contact_traiter_dist(){
 
         $nom_site = extraire_multi($GLOBALS['meta']["nom_site"]); 
         $email_webmaster = $GLOBALS['meta']['email_webmaster'];
-        $email_to= lire_config('escal/config/destinataire').",".$email_webmaster.",".$champs['email'];
+		$email_to= lire_config('escal/config/destinataire').",".$email_webmaster;
         $sujet = _T('escal:page_contact2')." ".$nom_site;
         $email_from = $champs['email'];
 
@@ -141,13 +141,14 @@ function formulaires_contact_traiter_dist(){
             </body></html>'; 
 
     $envoyer_mail = charger_fonction('envoyer_mail','inc');
-
+#	Envoi avec copie du message à l'expéditeur, ajout de : "Cc: ".$champs['email'] dans l'array 'headers'. Sandy-Pascal ANDRIANT 24-03-2020
     $corps= array(
         'from'=>$email_from,
         'texte'=>supprimer_tags($message),
         'html'=> $message_html,
     	   'headers'=> array(
-             "X-Originating-IP: ".$GLOBALS['ip']
+             "X-Originating-IP: ".$GLOBALS['ip'],
+			 "Cc: ".$champs['email']
          ),
     );
 
