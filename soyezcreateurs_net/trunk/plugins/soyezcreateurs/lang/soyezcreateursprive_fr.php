@@ -372,6 +372,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichage_zone_underedito' => 'Affichage en dessous de l’Édito',
 	'cfg_nombres_dessousbreves_label' => 'Nombre d’items affichés dans les DessousBreves',
 	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d’accueil',
+	'cfg_nom_site' => 'Titre site',
 		
 	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés <i>(<strong>Attention</strong>, action immédiate !)</i> :',
 	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs',
