@@ -429,10 +429,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 						Veuillez contacter le webmestre du site pour y accéder
 						en utilisant la page [Contact|Page contact->@url@] de ce site.', # MODIF
 	'erreur404' => 'Error 404', # MODIF
-	'erreur404_message' => 'De pagina die u opvraagt is onbestaand, niet meer online, of verplaatst.
-                    Als u denkt dat dit fout is,
-                    kan u de webmaster contacteren 
-                    met de [Contact|Contactpagina->@url@] pagina van deze site.', # MODIF
+	'erreur404_message' => 'De pagina die je opvraagt bestaat niet, is niet meer online, of werd verplaatst.
+Wanneer je denkt dat dit fout is, kun je contact opnemen met de webmaster op de [Contact|Contactpagina->@url@] pagina van deze site.',
 	'escal' => 'Escal', # MODIF
 	'espace_redacteurs' => 'Editors area', # MODIF
 	'evenements_ajouter' => 'Voeg een evenement toe<br />(Voorbehouden toegang)', # MODIF
