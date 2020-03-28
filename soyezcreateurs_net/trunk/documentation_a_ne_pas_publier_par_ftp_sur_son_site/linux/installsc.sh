@@ -48,6 +48,8 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/palette/trunk palette
 svn co svn://zone.spip.org/spip-zone/_plugins_/porte_plume_partout/trunk porteplumepartout
 svn co svn://zone.spip.org/spip-zone/_plugins_/saisies/trunk saisies
 svn co svn://zone.spip.org/spip-zone/_plugins_/savecfg/trunk savecfg
+svn co svn://zone.spip.org/spip-zone/_plugins_/sidr/trunk sidr
+svn co svn://zone.spip.org/spip-zone/_plugins_/slick/trunk slick
 svn co svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/trunk/plugins/soyezcreateurs soyezcreateurs
 svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bonux/trunk spip_bonux
 svn co svn://zone.spip.org/spip-zone/_plugins_/spout/trunk spout
@@ -113,9 +115,7 @@ svn co svn://zone.spip.org/spip-zone/_plugins_/querypath/trunk querypath
 svn co svn://zone.spip.org/spip-zone/_plugins_/rainette/trunk rainette
 svn co svn://zone.spip.org/spip-zone/_plugins_/rechremp/trunk rechercher_remplacer
 svn co svn://zone.spip.org/spip-zone/_plugins_/sedna/trunk sedna
-svn co svn://zone.spip.org/spip-zone/_plugins_/sidr/trunk sidr
 svn co svn://zone.spip.org/spip-zone/_plugins_/skeleditor/trunk skeleditor
-svn co svn://zone.spip.org/spip-zone/_plugins_/slick/trunk slick
 svn co svn://zone.spip.org/spip-zone/_plugins_/smush_images/trunk smush_images
 svn co svn://zone.spip.org/spip-zone/_plugins_/socialtags socialtags
 svn co svn://zone.spip.org/spip-zone/_plugins_/spip-bible/trunk spip-bible
