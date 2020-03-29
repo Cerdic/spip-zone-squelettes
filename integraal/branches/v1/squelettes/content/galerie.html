@@ -1,0 +1,35 @@
+[(#PLUGIN{albums}|sinon_interdire_acces{#URL_PAGE{404}})]
+<B_albums>
+<section>
+
+	<header class="cartouche">
+		<h1>Galerie</h1>
+	</header>
+
+	<div class="main">
+
+		<div class="liste albums">
+			<ul class="liste-items albums">
+				<BOUCLE_albums(ALBUMS){!par date}>
+				<li class="item">
+					<article class="entry album">
+						[(#LOGO_ALBUM
+							|image_passe_partout{150,150}
+							|image_recadre{150,150,center,transparent}
+							|image_aplatir{jpg,#ffffff}
+							|inserer_attribut{class,spip_logos}
+							|inserer_attribut{alt,[(#TITRE|attribut_html|couper{60})]}
+						)]
+						<strong class="entry-title">#TITRE</strong>
+						[<div class="entry-content">
+							<p>(#DESCRIPTIF|couper{150})</p>
+						</div>]
+					</article>
+				</li>
+				</BOUCLE_albums>
+			</ul>
+		</div>
+
+	</div>
+
+</section>

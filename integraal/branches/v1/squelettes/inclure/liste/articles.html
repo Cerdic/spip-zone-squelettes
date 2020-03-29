@@ -1,0 +1,78 @@
+[(#REM)
+
+	Liste d'articles
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- resume (string) : fond à utiliser pour les résumés dans inclure/resume | défaut = article
+
+	- titre (string) : titre personnalisé, '' pour ne pas afficher
+	- titre_singulier (string) : chaîne de langue pour le nombre de résultats au singulier
+	- titre_pluriel (string) : chaîne de langue pour le nombre de résultats au pluriel
+	- message_aucun (string) : message affiché si aucun item, '' pour ne pas afficher
+
+	- id_article (int) : identifiant d'un article
+	- id_rubrique (int) : pour restreindre aux articles d'une rubrique
+	- branche (int) : pour restreindre aux articles d'une branche
+	- recherche (string) : pour restreindre aux articles correspondant à un terme de recherche
+	- articles_exclus (array) : exclure des articles
+
+	- par (string) : champ utilisé pour le tri | défaut = titre
+	- pagination (int) : nombre pour la pagination | défaut = 5
+	- masquer_pagination (string) : "oui" pour ne pas afficher la pagination
+
+	- hauteur_logo (int) : hauteur max du logo
+	- largeur_logo (int) : largeur max du logo
+
+]
+[(#SET{defaut_tri,#ARRAY{
+	titre,1,
+	num titre,1,
+	date,#ENV{date_sens,-1},
+	id_article,1,
+	points,-1
+}})
+]<B_articles>
+#ANCRE_PAGINATION
+
+[<h2 class="titre-liste">
+	(#ENV{titre}|is_null|?{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,info_un_article},#ENV{titre_pluriel,info_nb_articles}},#ENV*{titre}})
+</h2>]
+
+<ul class="liste-items">
+
+	<BOUCLE_articles(ARTICLES)
+		{id_article?}
+		{id_rubrique?}
+		{branche?}
+		{recherche?}
+		{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}
+		{!id_article IN #ENV{articles_exclus,#ARRAY}}
+		{pagination #ENV{pagination,5}}
+	>
+	<li class="item">
+		<INCLURE{fond=inclure/resume/#ENV{resume,article},
+			id_article,
+			largeur_logo,
+			hauteur_logo}>
+	</li>
+	</BOUCLE_articles>
+
+</ul>
+
+[(#ENV{masquer_pagination}|!={oui}|oui)
+	[<div class="pagination">
+		(#PAGINATION{
+			#ENV{modele_pagination,page_precedent_suivant},
+			label_precedent=#ENV{label_precedent},
+			label_suivant=#ENV{label_suivant}
+		})
+	</div>]
+]
+</B_articles>
+
+[(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:info_aucun_article:>, #ENV{message_aucun}})]})]
+[<p class="aucun-resultat">(#GET{message_aucun})</p>]
+<//B_articles>

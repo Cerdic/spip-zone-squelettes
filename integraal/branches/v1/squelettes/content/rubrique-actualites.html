@@ -1,0 +1,46 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+
+
+	[(#REM) Cartouche ]
+	<header class="cartouche">
+		<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+		[<p class="info-publi">
+			<span class="published">
+				<:dernier_ajout:> : (#DATE|affdate_jourcourt)
+			</span>
+		</p>]
+	</header>
+
+
+	[(#REM) Contenu principal ]
+	<div class="main">
+
+		[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+		<BOUCLE_articles(ARTICLES){id_rubrique}{0,1}>
+			<div class="liste actualites">
+				<INCLURE{fond=liste/articles, env, ajax, par=date, nb=5} />
+			</div>
+		</BOUCLE_articles>
+
+	</div>
+
+
+	[(#REM) Contenus liés ]
+	[<aside>
+		[(#REM) Gestion du portfolio et des documents ]
+		(#INCLURE{fond=inclure/documents, id_rubrique})
+	</aside>]
+
+
+	[(#REM) Compléments ]
+	<footer>
+		[<div class="notes">
+			<h2><:info_notes:></h2>
+			(#NOTES)
+		</div>]
+	</footer>
+
+</section>
+</BOUCLE_content>

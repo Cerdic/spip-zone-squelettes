@@ -1,0 +1,100 @@
+/**
+ * Module : illustrations et galeries
+ */
+
+// Toutes les images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// =================================
+// Documents insérés dans les textes
+// =================================
+
+// Conteneur et variantes (<dl>)
+.spip_documents {
+  margin-top: 0;
+  margin-bottom: $bs * 2;
+  text-align: center;
+  font-family: $typo-font-alt;
+  font-size: .9em;
+
+  // Flottantes
+  &_left,
+  &_right {}
+  @include g-state(tablet-up) {
+    &_left,
+    &_right {
+      max-width: 50%;
+    }
+    &_left {
+      float: left;
+      padding-right: $bs;
+    }
+    &_right {
+      float: right;
+      padding-left: $bs;
+    }
+  }
+
+  // Centrées
+  &_center {}
+
+}
+
+// La balise conteneur de l'image (sans classe... youpi)
+.spip_documents dt:first-of-type {
+  margin-bottom: $bs/2;
+}
+
+// Titre, descriptif et cie
+[class^=spip_doc_] {
+  width: auto !important; // Obligé, taille en dur dans le HTML ...
+  margin-bottom: $bs/2;
+  margin-left: 0;
+}
+
+// Titre (<dt>)
+.spip_doc_titre {}
+
+// Descriptif (<dd>)
+.spip_doc_descriptif {}
+
+// Crédits (<dd>)
+.spip_doc_credits {}
+
+
+// =========
+// Galleries
+// =========
+
+
+.liste.images {
+
+  margin-bottom: $bs;
+
+  // Image mise en avant
+  .zoom {
+    margin-bottom: $bs/2;
+    display: flex;
+    justify-content: center;
+  }
+
+  // Liste de miniatures
+  .liste-items {
+    // Fallback
+    display: flex;
+    flex: row wrap;
+    justify-content: space-between;
+    // Grid
+    display: grid;
+    grid-gap: $bs/2;
+    grid-template-columns: repeat(auto-fit, minmax(18%, 1fr));
+    // Miniature
+    a {
+      text-align: center;
+    }
+  }
+
+}

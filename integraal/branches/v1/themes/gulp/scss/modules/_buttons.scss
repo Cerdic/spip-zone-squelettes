@@ -1,0 +1,86 @@
+/**
+ * Module : boutons
+ *
+ * Basé sur https://github.com/alexwolfe/Buttons
+ *
+ * @Notes
+ * Cette librairie génère par défaut une classe .button et ses variantes (couleurs, tailles et formes).
+ * Supprimer ou commenter les variantes non utilisées.
+ * Pour cibler d'autres éléments, il faut utiliser @extend.
+ */
+
+/**
+ * ==================
+ * 1) Setup de la lib
+ * ==================
+**/
+
+/**
+ * Surcharger les options
+**/
+$ubtn-namespace:  '.button';
+$ubtn-bgcolor:     color(principale);
+$ubtn-font-color:  color(texte);
+$ubtn-font-weight: 300;
+$ubtn-font-size:   $typo-font-size;
+$ubtn-height:      $bs * 2;
+$ubtn-font-family: $typo-font-text;
+/* Variantes de couleur (génère une classe pour chaque entrée) */
+$ubtn-colors: ('rouge' color(principale) white) ('sombre' color(sombre) white);
+/* Variantes de formes pour types/shapes (génère une classe pour chaque entrée) */
+$ubtn-shapes: (
+  square:  0,
+  box:     10px,
+  rounded: 3px,
+  pill:    200px,
+  circle:  100%
+);
+/* Variantes de tailles pour types/sizes (génère une classe pour chaque entrée) */
+$ubtn-sizes: (
+  giant:   2,
+  jumbo:   1.5,
+  large:   1.25,
+  default: 1,
+  small:   .75,
+  tiny:    .5
+);
+
+/**
+ * Génèrer les classes de base en fonction des options
+**/
+$ubtn-use-compass: false;
+@import 'frameworks/buttons/options';
+@import 'frameworks/buttons/mixins';
+@import 'frameworks/buttons/base';
+@import 'frameworks/buttons/layout';
+
+/**
+ * Générer les classes des variantes (optionnelles, supprimer celles non utilisées)
+**/
+@import 'frameworks/buttons/types/shapes'; // .button-[square|box|...] cf. $ubtn-shapes
+@import 'frameworks/buttons/types/sizes'; // .button-[large|small|...] cf. $ubtn-sizes
+@import 'frameworks/buttons/types/border'; // .button-border
+@import 'frameworks/buttons/types/borderless'; // .button-borderless
+@import 'frameworks/buttons/types/raised'; // .button-raised
+@import 'frameworks/buttons/types/3d'; // .button-3d
+@import 'frameworks/buttons/types/glow'; // .button-glow
+@import 'frameworks/buttons/types/dropdown'; // .button-dropdown .button-dropdown-list
+@import 'frameworks/buttons/types/groups'; // .button-group
+@import 'frameworks/buttons/types/wrapper'; // .button-wrap
+@import 'frameworks/buttons/types/longshadow'; // .button-longshadow, .button-longshadow-left
+
+
+/**
+ * =====================================================
+ * 2) Boutonnifiages complémentaires (à coups d'@extend)
+ * =====================================================
+**/
+
+
+/* Compléments à la classe générique pour afficher un bouton (= $ubtn-namespace) */
+.button {}
+
+/* Les vrais boutons utilisent la classe générique */
+button, input.submit, input[type=submit]{
+	@extend .button;
+}

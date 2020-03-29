@@ -1,0 +1,52 @@
+/**
+ * Layout général
+ *
+ * Placement des blocs principaux
+ */
+
+/* Les .container et leurs variantes */
+.container {
+	@include g-container();
+	max-width: em(960);
+	margin: 0 auto;
+	padding: 0 $bs;
+
+	// Pleine largeur
+	&_fluid {
+		max-width: 100%;
+	}
+
+	// Largeur limitée à 80 caractères
+	&_text {
+		max-width: 45em;
+	}
+
+	// Pour annuler un container
+	&_none {
+		max-width: 100%;
+		margin: initial;
+		padding: initial;
+	}
+}
+
+/* Layout */
+// En grand écran, on passe à deux colonnes
+// Attention souci de markup : .container ne peut être à la fois un .container et un .row
+.central {
+	@extend .container;
+}
+
+#container {
+	@extend .container_none;
+	@include gridle(row);
+}
+
+#wrapper {
+	@include gridle( 12 desktop-up 9);
+	line-height: $typo-line-height !important; // Fix Temporaire...
+}
+
+#aside {
+	@include gridle( 12 desktop-up 3);
+	line-height: $typo-line-height !important; // Fix Temporaire...
+}
