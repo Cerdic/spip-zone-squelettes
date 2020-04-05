@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+  <script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+  <title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+  [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+  <INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_sommaire">
+<div class="page">
+
+	<header class="entete clearfix" role="banner">
+	<div class="wrapper">
+		<INCLURE{fond=inclure/header,home=oui} />
+		<INCLURE{fond=inclure/nav,env} />
+	</div>
+	</header>
+	
+	<main class="main clearfix" role="main">
+		<div class="wrapper hfeed">
+		<article class="content" id="content">
+			<header class="cartouche none">
+				<h1 class="h1">#NOM_SITE_SPIP</h1>[
+				<p class="slogan">(#SLOGAN_SITE_SPIP)</p>]
+			</header>
+		[(#SET{rows,#CONFIG{bazar/nomsrows}|explode{','}})]
+		<B_row>
+		<BOUCLE_row(DATA){source table, #GET{rows}}>
+		<div class="row row_#VALEUR[ nb_tile_(#CONFIG{bazar/nb_#VALEUR})] clearfix">
+		<BOUCLE_article(ARTICLES){id_rubrique=#CONFIG{bazar/rubrique_#VALEUR}}{0,#CONFIG{bazar/nb_#VALEUR}}{par num titre}{!par date}{doublons}>
+			<BOUCLE_doclogo(DOCUMENTS){id_article}{extension IN jpg,gif,png}{par date}{0,1}>
+			[(#SET{logo#ID_ARTICLE,#FICHIER|image_reduire{2000,2000}|extraire_attribut{src}})]
+			[(#SET{largeur#ID_ARTICLE,#FICHIER|image_reduire{2000,2000}|extraire_attribut{width}})]
+			[(#SET{hauteur#ID_ARTICLE,#FICHIER|image_reduire{2000,2000}|extraire_attribut{height}})]
+			</BOUCLE_doclogo>
+			<a class="tile" style="[(#CONFIG{bazar/bkg_#VALEUR}|=={oui}|oui)[background-image:url('(#GET{logo#ID_ARTICLE})');]][background-color:(#COULEUR);][color:#(#COULEUR|sinon{#ffffff}|couleur_inverser);]" href="#URL_ARTICLE">[(#REM)http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element]
+				<section class="clearfix">
+				<h2 class="h1">#TITRE</h2>
+				[(#CONFIG{bazar/logo_#VALEUR}|=={oui}|oui)[<img src="(#GET{logo#ID_ARTICLE})" alt="#TITRE" class="img_article" width="#GET{largeur}" height="#GET{hauteur}" style="max-width:#GET{largeur#ID_ARTICLE}px !important;" />]]
+				[(#CONFIG{bazar/intro_#VALEUR}|=={oui}|oui)
+				[(#SET{couper,#CONFIG{bazar/couper_#VALEUR}|sinon{600}})]
+				[<div class="introduction">(#INTRODUCTION{#GET{couper}})</div>]]
+				</section>
+			</a>
+		</BOUCLE_article>
+		</div>
+		</BOUCLE_row>
+		</B_row>
+			
+		</article><!--.content-->
+		</div><!--.wrapper-->
+		
+		<aside class="aside row">
+		
+			<BOUCLE_groupemots(GROUPES_MOTS){par num titre, titre}>
+			<B_mots>
+			<div class="tile menu menu_mots">
+				<section class="clearfix">
+					<h2>#TITRE</h2>
+					<ul>
+					<BOUCLE_mots(MOTS){id_groupe}>
+						<li><a href="#URL_MOT">#TITRE</a></li>
+					</BOUCLE_mots>
+					</ul>
+				</section>
+			</div>
+			</B_mots>
+			</BOUCLE_groupemots>
+		
+			[(#REM) Breves ]
+			<B_breves>
+			<div class="tile menu menu_breves">
+				<section class="clearfix">
+					<h2><:dernieres_breves:></h2>
+					<ul>
+						<BOUCLE_breves(BREVES) {!par date} {0,3}>
+						<li dir="#LANG_DIR" class="text-#LANG_LEFT">
+							[<small>(#DATE|affdate_jourcourt)</small>]
+							<h3><a href="#URL_BREVE">#TITRE</a></h3>
+							#INTRODUCTION
+						</li>
+						</BOUCLE_breves>
+					</ul>
+				</section>
+			</div>
+			</B_breves>
+			
+			[(#REM) Liens des forums ]
+			<B_forums_liens>
+			<div class="tile menu menu_comments">
+				<section class="clearfix">
+					<h2><:derniers_commentaires:></h2>
+					<ul>
+						<BOUCLE_forums_liens(FORUMS?) {plat} {!par date} {0,5}>
+						[<li>[(#NOM|sinon{...})&nbsp;: ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>(#TEXTE|couper{80})</a></li>]
+						</BOUCLE_forums_liens>
+					</ul>
+				</section>
+			</div>
+			</B_forums_liens>
+			
+			[(#REM) Sur le Web ]
+			<B_syndic>
+			<div class="tile menu">
+				<section class="clearfix">
+					<h2><:nouveautes_web:></h2>
+					<ul>
+						<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {0,5}>
+						<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+						</BOUCLE_syndic>
+					</ul>
+				</section>
+			</div>
+			</B_syndic>
+			
+		</aside><!--.aside-->
+	</main><!--.main-->
+	
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+	
+</div><!--.page-->
+</body>
+</html>

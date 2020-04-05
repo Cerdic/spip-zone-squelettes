@@ -1,0 +1,16 @@
+#SET{touslesmots,#ARRAY}
+<BOUCLE_articles(ARTICLES){id_rubrique}>
+<BOUCLE_touslesmots(MOTS){id_article}{unique}>
+#SET{touslesmots,#GET{touslesmots}|push{#ID_MOT}}
+</BOUCLE_touslesmots>
+</BOUCLE_articles>
+<B_mots>
+<div class="menu"[ style='float:(#ENV{align}|match{left|right});']>
+	<h2><:mots_clefs:></h2>
+	<ul>
+		<BOUCLE_mots(MOTS) {id_mot IN #GET{touslesmots}} {par titre}>
+		<li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+		</BOUCLE_mots>
+	</ul>
+</div>
+</B_mots>
