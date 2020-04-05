@@ -1,0 +1,60 @@
+[(#REM)
+	Tutoriel pour implémenter le framework ecommerce pour SPIP.
+	Étape 0 : Préambule > explications.
+]
+#SET{plugins,#ARRAY{
+	prix,#ARRAY{nom,API prix,slogan,"API pour connaître le prix d'un objet.",url,https://plugins.spip.net//prix},
+	paniers,#ARRAY{nom,Paniers,slogan,"Créer des sélections d'objets ayant un prix.",url,https://plugins.spip.net//paniers},
+	commandes,#ARRAY{nom,Commandes,slogan,"Gérer des commandes.",url,https://plugins.spip.net//commandes},
+	bank,#ARRAY{nom,Banque & paiement,slogan,"Un module de paiement bancaire multi prestataires <em>(à installer manuellement)</em>.",url,http://github.com/nursit/bank}}}
+#SET{pluginsplus,#ARRAY{
+	produits,#ARRAY{nom,Produits,slogan,"Gestion des produits.",url,https://plugins.spip.net//produits},
+	clients,#ARRAY{nom,Clients,slogan,"Gestion des clients.",url,https://plugins.spip.net//clients},
+	coordonnees,#ARRAY{nom,Coordonnées,slogan,"Gestion des adresses, emails et numéros de téléphone.",url,https://plugins.spip.net//coordonnees},
+	contacts,#ARRAY{nom,Contacts et organisations,slogan,"Gestionnaire de contacts.",url,https://plugins.spip.net//contacts},
+	abonnements,#ARRAY{nom,Abonnements,slogan,"Donner des droits pendant un certain temps.",url,https://plugins.spip.net//abonnements}}}
+
+<h1>Tutoriel : les bases pour implémenter le framework ecommerce pour SPIP dans vos squelettes.</h1>
+
+Sous SPIP, il existe un framework permettant de faire du ecommerce. Il est complètement fonctionnel, modulaire, extensible, et permet de faire de la vente dans le confort de notre CMS favori. Il répondra aux besoins simples de ecommerce, sans toutefois être comparable pour l'instant aux solutions exclusivement dédiées au sujet, comme [Prestashop->http://www.prestashop.com], [Thelia->http://www.thelia.fr/] et cie.
+
+Ce plugin s'adresse aux gens qui écrivent des squelettes, il a un objectif didactique : montrer par l'exemple {les bases} de la mise en oeuvre du framework, en expliquant les éléments à placer dans vos squelettes. On va s'en tenir aux 3 étapes {minimales} du «tunnel de commande» : ajouter des objets au panier &rarr; valider celui-ci &rarr; payer la commande. C'est relativement simple : en peu de squelettes, au moyen de quelques boutons d'actions et formulaires, vous avez déjà le minimum nécessaire pour vendre des choses sur votre site. À partir de là, vous pourrez étoffer selon vos besoins pour gérer les taxes, les coordonnées, les clients, et toutes ces sortes de choses.
+
+{{{Une suite de plugins}}}
+
+Le framework se compose d'une suite de plugins complémentaires, chacun prenant en charge un aspect. Il faut au moins 5 plugins pour avoir quelque chose de fonctionnel, ils ont normalement été installés automatiquement avec l'activation de ce plugin, exception faite de «Banque & paiement» qui doit être installé manuellement, étant développé sur github : [http://github.com/nursit/bank->http://github.com/nursit/bank]. Les plugins listés après sont optionnels.
+
+<div class='plugins'>
+
+	<B_plugins>
+	<dl class='liste-plugins necessaires'>
+		<dt>Plugins nécessaires</dt>
+	<BOUCLE_plugins(DATA){source table, #GET{plugins}}>
+		<dd>[(#CHEMIN_IMAGE{#PLUGIN{#CLE}|?{ok-16,erreur-16}}|balise_img) ][<a href="[(#VALEUR{url})]">(#VALEUR{nom})</a>][ : (#VALEUR{slogan})]</dd>
+	</BOUCLE_plugins>
+	</dl>
+	</B_plugins>
+
+	<B_pluginsplus>
+	<dl class='liste-plugins optionnels'>
+		<dt>Plugins complémentairess</dt>
+	<BOUCLE_pluginsplus(DATA){source table, #GET{pluginsplus}}>
+		<dd>[(#PLUGIN{#CLE}|oui)[(#CHEMIN_IMAGE{ok-16}|balise_img) ]][<a href="[(#VALEUR{url})]">(#VALEUR{nom})</a>][ : (#VALEUR{slogan})]</dd>
+	</BOUCLE_pluginsplus>
+	</dl>
+	</B_pluginsplus>
+
+</div>
+
+{{{Des choses à vendre}}}
+
+On peut vendre ce qu'on veut pourvu qu'il s'agisse d'objets éditoriaux SPIP : ils peuvent correspondre à des objets physiques, des abonnements, des services, etc. Pour cette démo, on va faire semblant de vendre des objets physiques. Une mini table <code class='table'>spip_produits_demos</code> a été créée à l'installation de ce plugin, elles contient 3 produits factices. À noter qu'il existe un plugin [Produits->https://plugins.spip.net//produits] dédié à la gestion des produits.
+
+{{{Configuration}}}
+
+[<a href="[(#CHEMIN{demo/images/bank-configuration-1.jpg})]" type='image/jpeg' class='mediabox img right'>(#CHEMIN{demo/images/bank-configuration-1.jpg}|image_reduire{150}|inserer_attribut{alt,'configuration des systèmes de paiement'})</a>] Il nous faut configurer les systèmes de paiement sur la [page de configuration->[(#URL_ECRIRE{configurer_bank})]] du plugin «Banque & paiement». On distingue 2 sortes de paiements : les paiements à l'acte et les paiements des abonnements. Pour cette démo, on ne va tester que la 1ère catégorie : il faut qu'il y ait au moins un mode de paiement à l'acte d'actif. De plus, on ne veut pas faire de paiement réel : pour chaque mode activé, cochez l'option «<code>Utiliser en mode TEST (aucun paiement réel)</code>» si elle est présente. Une autre possibilité est de choisir le mode de paiement «Simulation», qui est accessible en plaçant le code suivant dans le fichier <code class='fichier'>config/mes_options.php</code> : <code class='php'>define\('_SIMU_BANK_ALLOWED',true\);</code>
+
+{{{Commencer}}}
+
+Quand tout est installé et configuré, rendez-vous à la [1ère étape->[(#SELF|parametre_url{etape,produits})]].
+

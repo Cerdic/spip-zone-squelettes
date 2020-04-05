@@ -1,0 +1,50 @@
+[(#REM)
+	Tutoriel pour implémenter le framework ecommerce pour SPIP.
+	Étape 0 : Préambule.
+	Présentation du framework et test de la présence des trucs nécessaire pour faire marcher la démo.
+]
+<style>
+	.center {text-align: center; }
+</style>
+
+<p>Vérifications préliminaires :</p>
+
+
+[(#REM) Vérifier si au moins un presta de paiement à l'acte est activé ]
+<B_prestas_actifs>
+	<table style='width:100%'>
+		<thead>
+			<th>Prestataire(s)</th>
+			<th>Activé ?</th>
+			<th>Mode test activé ?</th>
+		</thead>
+		<tbody>
+		<BOUCLE_prestas_actifs(DATA){source tableau,#REM|tutocommerce_prestas_actif}>
+			<tr>
+				[<td><span style="text-transform:uppercase;">(#VALEUR)</span>]
+				<td class='center'>[(#CONFIG{bank_paiement/config_#VALEUR/actif}|=={1}|?{<img src='prive/themes/spip/images/ok-24.png' alt='ok'>,<img src='prive/themes/spip/images/war-24.png' alt='pas ok'>})]</td>
+				<td  class='center'>
+					[(#CONFIG{bank_paiement/config_#VALEUR/mode_test}|is_null|oui)
+						[(#EVAL{defined("_SIMU_BANK_ALLOWED")}|?{"<img src='prive/themes/spip/images/ok-24.png' alt='ok'><br>Mode Simulation activé","<img src='prive/themes/spip/images/warning-24.png' alt='pas ok'><br>vous devez activer le mode simulation pour ce prestataire"})]</p>
+					]
+					[(#CONFIG{bank_paiement/config_#VALEUR/mode_test}|is_null|non)
+						[(#CONFIG{bank_paiement/config_#VALEUR/mode_test}|=={1}|?{"<img src='prive/themes/spip/images/ok-24.png' alt='ok'>",<img src='prive/themes/spip/images/warning-24.png' alt='pas ok'>})]
+					]
+				</td>
+			</tr>
+		</BOUCLE_prestas_actifs>
+		</tbody>
+	</table>
+</B_prestas_actifs>
+	<div class='notice'>Dans <a href='ecrire/?exec=configurer_bank'>Paiement en ligne</a>, selectionner au moins un prestataire et l'activer.
+		Si le mode TEST, n'est pas prévu pour ce prestataire, choisir le mode de paiement « Simulation », qui est accessible en plaçant le code suivant dans le fichier config/mes_options.php : define('_SIMU_BANK_ALLOWED',true);</div>
+<//B_prestas_actifs>
+
+
+
+[(#REM) Message pour passer à l'étape suivante si tout est en ordre ]
+[<div class='verification'>(#REM|tutocommmerce_tout_en_ordre|>{0}|?{
+
+	[Vous avez [(#REM|tutocommmerce_tout_en_ordre|singulier_ou_pluriel{produitdemo:presta_ok_un, produitdemo:presta_ok_plus}) ] tout est OK. Passer à l'étape 1 : <a href="(#SELF|parametre_url{etape,produits})" class="lien-etape-suivante">ajouter des objets au panier</a>.],
+	"<div class='notice'>Oups ! Réglez ce qui ne va pas avant de passer à l'étape 1.</div>"
+})</div>]

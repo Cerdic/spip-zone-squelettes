@@ -1,0 +1,63 @@
+[(#REM) 
+	Tutoriel pour implémenter le framework ecommerce sous SPIP : squelette général.
+	Le «vrai» contenu se trouve dans inc-produits.html, inc-panier.html et inc-paiement.html.
+]
+#SET{etapes,#ARRAY{preambule,"Préambule",produits,"Produits",panier,"Panier",paiement,"Paiement",retour,"Retour"}}
+#SET{etape,#ENV{etape}|in_array{#GET{etapes}|array_keys}|?{#ENV{etape},preambule}}
+#SET{url_propre,#URL_PAGE{demo/tutocommerce}}
+<!DOCTYPE html>
+<html lang="#LANG">
+<head>
+	<meta charset="#CHARSET">
+	<title>Tutoriel pour implémenter le framework ecommerce sous SPIP[ / (#GET{etapes/#ENV{etape}})]</title>
+	[<link rel="stylesheet" href="(#CHEMIN{css/reset.css}|direction_css)" type="text/css" />]
+	[<link rel="stylesheet" href="(#CHEMIN{css/typo.css}|direction_css)" type="text/css" />]
+	[<link rel="stylesheet" href="(#PRODUIRE{fond=demo/css/style-tutocommerce.css}|direction_css)" type="text/css" />]
+	#INSERT_HEAD_CSS
+	#INSERT_HEAD
+	<!-- script pour afficher ou cacher les annotations -->
+	<script>
+		$( document ).ready(function() {
+			$( "#menu-annotations" ).click(function() {
+				$( ".note" ).toggle("fast");
+				$( ".etiquette" ).toggle("fast");
+				$( ".outline" ).toggleClass("off");
+			});
+		});
+	</script>
+</head>
+<body class='#GET{etape}'>
+
+	[(#REM) 1. Démo ]
+	<div class='zone-demo'>
+
+		[(#REM) Menu de navigation ]
+		<B_menu>
+		<ul class='menu'>
+			<BOUCLE_menu(DATA){source table, #GET{etapes}}>
+			<li>[(#GET{url_propre}|parametre_url{etape,#CLE}|lien_ou_expose{[(#COMPTEUR_BOUCLE|moins{1}|>{0}|oui)[(#COMPTEUR_BOUCLE|moins{1})]. ][(#VALEUR)],#GET{etape}|=={#CLE}})]</li>
+			</BOUCLE_menu>
+		</ul>
+		</B_menu>
+
+		[(#REM) Contenu de la démo ]
+		[(#INCLURE{fond=demo/inc-#GET{etape}, env})]
+
+	</div><!-- .zone-demo -->
+
+
+	[(#REM) 2. Explications relatives à la démo ]
+	<div class='zone-explications'>
+
+		[(#REM) Option pour cacher les annotations ]
+		<a id='menu-annotations' href='\#'>Afficher / cacher les annotations</a>
+
+		[(#REM) texte ]
+		[(#INCLURE{fond=demo/inc-#GET{etape}-explications, env}|propre)]
+
+	</div><!-- .zone-explications -->
+
+</body>
+</html>
+
+

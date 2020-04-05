@@ -1,0 +1,34 @@
+[(#REM)
+	Tutoriel pour implémenter le framework ecommerce sous SPIP.
+	Étape 1 : Produits > explications.
+]
+<h1>Étape 1 : ajout d'objets au panier.</h1>
+
+Cette page liste les objets à vendre. Pour cette démo, on imagine vendre des objets physiques : il s'agit de produits factices qui ont été installés automatiquement dans la table <code class='table'>spip_produits_demos</code>. Tant qu'il s'agit d'objets éditoriaux SPIP, on peut vendre ce qu'on veut : abonnements, services, objets virtuels etc.
+
+{{{Ajouter au panier}}}
+Pour ajouter un objet au panier, il suffit de placer un bouton d'action <code class='parametre'>remplir_panier</code> dans le squelette. Le 2ème paramètre à passer à <code class='balise'>\#URL_ACTION_AUTEUR</code> est de la forme : <code class='parametre'>objet-id_objet-quantite</code> (voir le code en ligne : [remplir_panier.php->https://zone.spip.org/trac/spip-zone/browser/_plugins_/paniers/trunk/action/remplir_panier.php]).
+
+<cadre class='spip'>[(\#BOUTON_ACTION{
+	\<:paniers:action_ajouter:>,
+	\#URL_ACTION_AUTEUR{
+		remplir_panier,
+		article-\#ID_ARTICLE-1,
+		\#SELF}
+})]</cadre>
+
+Le bouton d'action créé ou met à jour le panier lié au visiteur en cours, dans les tables <code class='table'>spip_paniers</code> et <code class='table'>spip_paniers_liens</code>. On peut boucler dessus si besoin, par exemple pour afficher un lien vers le panier quand celui-ci est rempli.
+
+<cadre class='spip'>\<BOUCLE_panier(paniers_liens){id_panier=\#SESSION{id_panier}}{0,1}>
+<a href="\#URL_PAGE{panier}">voir le panier</a>
+\</BOUCLE_panier></cadre>
+
+{{{Gestion des prix}}}
+
+Le plugin [API Prix->https://plugins.spip.net//prix.html] permet de gérer les prix des objets. On le définit soit par le biais d'une fonction dans un fichier <code class='fichier'>prix/{objet}.php</code>, soit via un champ normalisé <code>prix</code> et/ou <code>prix_ht</code> (voir le code en ligne : [prix.php->https://zone.spip.org/trac/spip-zone/browser/_plugins_/prix/inc/prix.php\#L24]). Dans les squelettes, les prix affichés par les balises <code class='balise'>\#PRIX</code> et <code class='balise'>\#PRIX_HT</code> sont formatés automatiquement en incluant la devise grâce au filtre <code class='filtre'>|prix_formater</code>. Lorsque vous avez besoin du prix brut, pensez à ajouter un étoile pour empêcher le traitement : <code class='balise'>\#PRIX*</code>. On peut définir la devise et son écriture au moyen des variables de personnalisation <code class='variable'>PRIX_DEVISE</code> et <code class='variable'>DEVISE_DEFAUT</code>, par défaut ce sont des Euros (voir le code en ligne : [prix_fonctions.php->https://zone.spip.org/trac/spip-zone/browser/_plugins_/prix/prix_fonctions.php\#L47] et pour rappel : [Les variables de personnalisation->https://www.spip.net/fr_article1825.html]).
+Les produits factices de cette page possèdent un champ <code>prix</code> correspondant au prix TTC. Leur prix HT est calculé en fonction de ce dernier, selon une TVA de 20%, le tout étant défini dans le fichier <code class='fichier'>prix/produitdemo.php</code>.
+
+{{{Remarques complémentaires}}}
+
+Et si on veut donner la possibilité de choisir une déclinaison, une taille, une couleur etc. ? Pour l'instant, ce n'est pas possible nativement : un panier contient une liste d'objets et leur quantités, mais ne permet pas de stocker des informations supplémentaires. Il faudrait dans ce cas étendre la table <code class='table'>spip_paniers_liens</code> et utiliser un formulaire personnalisé à la place du bouton d'action.
+
