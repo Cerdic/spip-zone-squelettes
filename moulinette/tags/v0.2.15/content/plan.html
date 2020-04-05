@@ -1,0 +1,55 @@
+<section class="content-section">
+<div class="container">
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<header class="cartouche">
+			<h1><:plan_site:></h1>
+		</header>
+		<div class="main">
+		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+
+			<h2 class="h2">[(#ID_RUBRIQUE|=={#CONFIG{moulinette/accueil}}|?{
+							<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
+						,
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+						})]</h2>
+
+			[(#REM) Articles et sous-rubriques ]
+			<B_articles_racine>
+			<ul class="plan">
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles_racine>
+			</ul>
+			</B_articles_racine>
+
+			<B_rubriques>
+			<ul class="plan">
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li>
+					<strong>[(#ID_RUBRIQUE|=={#CONFIG{moulinette/accueil}}|?{
+							<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
+						,
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+						})]</strong>
+
+					<B_articles>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date}>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_articles>
+					</ul>
+					</B_articles>
+
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
+
+		</BOUCLE_secteurs>
+		</div>
+	</div>
+	</div>
+</div>
+</section>

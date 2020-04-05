@@ -1,0 +1,86 @@
+[(#REM)<style>/*
+	Ce squelette definit les styles  du squelette Moulinette
+	Note: l'entete "Vary:" sert a repousser l'entete par
+	defaut "Vary: Cookie,Accept-Encoding", qui est (un peu)
+	genant en cas de "rotation du cookie de session" apres
+	un changement d'IP (effet de clignotement).
+
+	ATTENTION: il faut absolument le charset sinon Firefox croit que
+	c'est du text/html et iso-8859-15 car bug vieux navigateurs
+*/]
+#CACHE{3600*100,cache-client}
+#HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+[(#REM) styles issus de la configuration ]
+[body, 
+section.content-section, 
+.top-nav-collapse, 
+.list-group-item, 
+.formulaire_spip, 
+.formulaire_spip fieldset legend, 
+.comment-meta, 
+.comment-content, 
+.comments-posts, 
+.modererforum .submit { 
+	background-color:(#CONFIG{moulinette/backgroundcolor}); 
+}]
+[
+.list-group-item, 
+.navbar-custom.top-nav-collapse, 
+.formulaire_spip, 
+.comment-content, 
+.formulaire_spip fieldset legend, 
+.modererforum .submit { 
+	border-color:#(#CONFIG{moulinette/backgroundcolor}|couleur_inverser|couleur_extreme{0.45});
+}]
+[
+body, 
+.intro, 
+.formulaire_spip fieldset, 
+.list-group-item, 
+.navbar-custom.top-nav-collapse, 
+.formulaire_spip, 
+.comment-content, 
+.modererforum .submit legend, 
+.formulaire_spip fieldset legend, 
+.formulaire_spip .editer > label, 
+.formulaire_spip .explication { 
+	color:(#CONFIG{moulinette/color}); 
+}]
+[
+a, 
+.navbar-custom a, 
+.btn-circle, 
+.comment-meta .permalink { 
+	color:(#CONFIG{moulinette/colorlink}); 
+}][
+a:hover, 
+a:active, 
+a:focus, 
+.navbar-custom a:hover, 
+.navbar-custom a:active, 
+.navbar-custom a:focus, 
+.btn-circle:hover, 
+.btn-circle:focus  { 
+	color:(#CONFIG{moulinette/colorlinkhover}); 
+}]
+@media (max-width:767px) {
+	[.navbar-custom { background-color:(#CONFIG{moulinette/backgroundcolor}); }]
+}
+
+[(#REM) styles issus de la programmation ]
+<BOUCLE_rubriques(RUBRIQUES)>
+[.header-(#ID_RUBRIQUE) {
+	[ background-image:url('(#LOGO_RUBRIQUE|image_reduire{2000,*}|image_aplatir{jpg,ffffff,80}|extraire_attribut{src})');]
+	[ background-color:(#COULEUR);] 
+	[background-attachment:fixed; (#CONFIG{moulinette/backgroundimagefixed}|=={oui}|oui)]
+}]
+</BOUCLE_rubriques>
+<BOUCLE_articles(ARTICLES)>
+[#(#TITRE|title2anchor{#ID_ARTICLE}) {
+	[ background-image:url('(#LOGO_ARTICLE|image_reduire{2000,*}|image_aplatir{jpg,ffffff,80}|extraire_attribut{src})');]
+	[ background-color:(#COULEUR);] 
+	[background-attachment:fixed; background-size:cover; (#CONFIG{moulinette/backgroundimagefixed}|=={oui}|oui)]
+}]
+</BOUCLE_articles>

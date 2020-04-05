@@ -1,0 +1,32 @@
+[(#SET{rubrique,#ENV{id_rubrique}})]
+[(#SI_PAGE{sommaire}) [(#SET{rubrique,#CONFIG{moulinette/accueil}})] ]
+<BOUCLE_plusdune(RUBRIQUES){statut=publie}{1,2}>[(#REM) un lien vers le plan des rubriques seulement s'il y en a plus d'une publiée ]
+</BOUCLE_plusdune>
+#SET{plusdune,oui}</B_plusdune>
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique=#GET{rubrique}}>
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+			<i class="fa fa-bars"></i>
+		</button>[(#GET{plusdune}|=={oui}|oui)
+		[(#ENV{id_rubrique}|!={#CONFIG{moulinette/accueil}}|oui)<a href="#URL_SITE_SPIP" class="goto-home btn"><i class="fa fa-home"></i></a>]
+		<a href="#plan" class="goto-plan btn"><i class="fa fa-bars"></i></a>]
+		<INCLURE{fond=breadcrumb/rubrique,env,id_rubrique=#GET{rubrique}} />
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		<ul class="nav navbar-nav">
+			<li class="hidden"><a href="#page-top"></a></li>
+			<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}{!par date}>
+			<li><a class="page-scroll"[ href="#(#TITRE|title2anchor{#ID_ARTICLE})"]>#TITRE</a></li>
+			</BOUCLE_articles>
+		</ul>
+	</div><!-- fin .navbar-right -->
+</div> <!--fin .container-->
+</BOUCLE_rubrique>
+<div class="container">
+	<div class="navbar-header">
+		<a href="#URL_SITE_SPIP/" class="btn"><:accueil_site:></a><span class="divider"> / </span>
+	</div>
+</div>
+<//B_rubrique>

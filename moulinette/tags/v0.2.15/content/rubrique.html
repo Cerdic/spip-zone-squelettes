@@ -1,0 +1,69 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+	<!-- Intro Header -->
+	<header class="intro header-#ID_RUBRIQUE">
+	<div class="intro-body">
+		<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="#EDIT{titre}">#TITRE</h1>
+				[<p class="publication hide"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</time></p>]
+				[<div class="#EDIT{texte} intro-text">(#TEXTE|adaptive_images)</div>]
+				[<div class="container notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+				<BOUCLE_premierarticle(ARTICLES){id_rubrique}{par num titre, titre}{!par date}{0,1}>
+				[<a class="btn btn-circle page-scroll" href="#(#TITRE|title2anchor{#ID_ARTICLE})"><i class="fa fa-angle-double-down"></i></a>]
+				</BOUCLE_premierarticle>[(#REM) si aucun article, on devrait trouver quelque chose de publié dans la rubrique, brève ou site ]
+				<a class="btn btn-circle page-scroll" href="#aside"><i class="fa fa-angle-double-down"></i></a>
+				<//B_premierarticle>
+			</div>
+		</div>
+		</div><!--fin .container-->
+	</div>
+	</header>
+	
+	<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, titre}{!par date}>
+	<section[ id="(#TITRE|title2anchor{#ID_ARTICLE})"] class="content-section">
+		<INCLURE{fond=inclure/article-moulinette,id_article} />
+	</section>
+	</BOUCLE_articles>
+	
+	<BOUCLE_plusdune(RUBRIQUES){statut=publie}{1,2}>[(#REM) on affiche le plan des rubriques seulement s'il y en a plus d'une publiée ]
+	</BOUCLE_plusdune>
+	[(#REM) les rubriques du site ]
+	<section class="content-section" id="plan">
+	<div class="container menu rubriques">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+			<h2><:moulinette:menu:></h2>
+			<B_plan>
+				<ul class="list-group">
+					<BOUCLE_plan(RUBRIQUES){racine}{par titre, num titre}{!par date}>
+					<li class="list-group-item">[(#ID_RUBRIQUE|=={#CONFIG{moulinette/accueil}}|?{
+						<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
+					,
+						<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+					})]<INCLURE{fond=liste/articles-titre,id_rubrique} />
+						[(#REM) Une boucle recursive pour le mini plan]
+						<B_miniplan>
+						<ul class="list-group">
+							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+							<li class="list-group-item">[(#ID_RUBRIQUE|=={#CONFIG{moulinette/accueil}}|?{
+									<a href="#URL_SITE_SPIP">[(#TITRE)]</a>
+								,
+									<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+								})]<INCLURE{fond=liste/articles-titre,id_rubrique} />
+								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+							</li>
+							</BOUCLE_miniplan>
+						</ul>
+						</B_miniplan>
+					</li>
+					</BOUCLE_plan>
+				</ul>
+			</B_plan>
+			</div>
+		</div>
+	</div>
+	</section>
+	</B_plusdune>
+
+</BOUCLE_content>
