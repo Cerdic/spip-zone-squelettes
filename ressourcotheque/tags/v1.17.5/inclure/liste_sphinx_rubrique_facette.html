@@ -1,0 +1,56 @@
+#SET{tri,#ENV{tri,nb}}
+#SET{sens_tri,#ENV{sens_tri,DESC}}
+#SET{groupby,#ENV{critere}}
+
+[(#ENV{critere}|match{'\x28'}|oui)
+	#SET{groupby,valeur}
+]
+
+#SET{groupby,#ENV{critere}}
+
+[(#ENV{critere}|match{'\x28'}|oui)
+	#SET{groupby,valeur}
+]
+
+<B_resultats_facette>
+	<h2>#ENV{titre}</h2>
+		<div class='liste'>
+			<ul class='liste-items'>
+				<BOUCLE_resultats_facette(SPHINX)
+					{index #ENV{source,spip}}
+					{recherche #ENV*{recherche}}
+
+					{filtermultijson #ID_RUBRIQUE, properties.id_rubrique, #LISTE{#ID_RUBRIQUE}}
+					{filtermono article, properties.objet, article}
+					
+					{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
+
+
+					
+					{select GROUPBY() AS facette}
+					{facette!=''}
+
+					{groupby #GET{groupby}}
+					{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
+
+				>
+			[
+			<li class='item'>
+				[(#ENV{tags}|?{
+					[(#ENV{tags}|find{#FACETTE}|?{
+						#SET{tags,#ENV{tags}},
+						#SET{tags,#ENV{tags}|push{#FACETTE}}
+					})],
+					#SET{tags,#LISTE{#FACETTE}}
+					}
+				)]
+				#SET{url,#SELF|parametre_url{tags,#GET{tags}}}
+				<a href="#GET{url}">
+					(#FACETTE)
+				</a>
+			</li>
+			]
+		</BOUCLE_resultats_facette>
+		</ul>
+	</div>
+</B_resultats_facette>
