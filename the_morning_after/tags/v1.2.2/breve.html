@@ -1,0 +1,85 @@
+<BOUCLE_principale(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
+</head>
+
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <INCLURE{fond=inc-entete}>
+	
+		
+	<div id="topbanner_single" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:article:>
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="post_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-11 first">
+        		 
+				<BOUCLE_parent(RUBRIQUES){id_rubrique}><h2 class="post_cat #EDIT{titre}">#TITRE</h2></BOUCLE_parent>
+
+				<h2 class="post_name #EDIT{titre}" id="post-#ID_BREVE #EDIT{soustitre}">#TITRE</h2>
+
+				<div class="post_meta">
+
+					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr><BOUCLE_forum(FORUMS){id_breve}{0,1}> <span class="dot">&sdot;</span> <a href="#SELF#comments" rel="noindex nofollow"><:forum:forum:></a></BOUCLE_forum>
+					[(#PLUGIN{socialtags}|oui)
+						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+						]	
+
+					[(#REM) Inclure le modele des liens de traductions ]
+					#MODELE{article_traductions}
+
+				</div>
+				
+				<div class="surlignable">
+					[<div class="#EDIT{texte} texte entry-content">[<div class="captionright">(#LOGO_BREVE||image_reduire{200,200})</div>](#TEXTE|image_reduire{500,0})</div>]
+				</div>
+
+
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+				<B_tags>
+				<div class="post_meta">
+            		<img src="#CHEMIN{images/bg/tag_green.png}" class="posttag" alt="<:tags:>" style="border: 0px;" />
+					<BOUCLE_tags(MOTS){id_breve}{", "}>
+						<a href="#URL_MOT" rel="tag">#TITRE</a>
+					</BOUCLE_tags>
+					
+            	</div>
+				</B_tags>
+				
+				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+
+				[(#PLUGIN{socialtags}|oui)
+						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+						]	
+				<div id="comments">   <!-- start comments -->
+					[(#REM) Forum de la breve ]
+					<a href="#forum" name="forum" id="forum"></a>
+
+					<INCLURE{fond=inc-forum}{id_breve}{ajax}{env} />
+					
+				</div> <!-- end comments -->
+				
+				
+            </div> <!-- end first -->
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+</BOUCLE_principale>

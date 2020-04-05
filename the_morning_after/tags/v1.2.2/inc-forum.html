@@ -1,0 +1,72 @@
+<h2 class="post_comm ajax" id="#comments"><:discussion:></h2>
+
+[(#REM) Nombre total de messages ]
+<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}> </BOUCLE_decompte>[<h3 class="mast5">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})][ - (#PARAMETRES_FORUM|non)<:forum_ferme:>]</h3>]</B_decompte><h3 class="mast5">Pas de <:message:>[ - (#PARAMETRES_FORUM|non)<:forum_ferme:>]</h3><//B_decompte>
+
+[(#REM) Messages du forum ]
+<B_forums>
+<ol id="commentlist">
+
+	<BOUCLE_forums(FORUMS){id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
+
+	<li id="comment-#ID_FORUM">
+
+		<div class="commentcont">
+				<strong class="#EDIT{titre} forum-titre"><a href="#SELF#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+				<div class="#EDIT{texte}">
+				[(#TEXTE|lignes_longues)]
+				</div>
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+				<BOUCLE_doc(DOCUMENTS){id_forum}>
+				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#EMBED_DOCUMENT|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+				</BOUCLE_doc>
+
+				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#SELF#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
+				
+				[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}{id_forum}>]
+				
+				<B_forums_fils>
+		<ol>
+			<BOUCLE_forums_fils(FORUMS) {id_parent} {par date}>
+
+			<li id="comment-#ID_FORUM">
+
+		<div class="commentcont">
+				<strong class="#EDIT{titre} forum-titre"><a href="#SELF#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+				<div class="#EDIT{texte}">
+				[(#TEXTE|lignes_longues)]
+				</div>
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+				<BOUCLE_doc2(DOCUMENTS){id_forum}>
+				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#EMBED_DOCUMENT|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+				</BOUCLE_doc2>
+
+				<cite>[<:par_auteur:> <span class="#EDIT{qui} commentauthor">(#NOM|couper{80})</span>][ | <a href="#SELF#comment-#ID_FORUM">(#DATE|affdate)][,&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></cite>
+				
+				[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}{id_forum}>]
+				
+				<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
+				
+				</li>
+
+			</BOUCLE_forums_fils>
+		</ol>
+		</B_forums_fils>
+	</li>
+	</BOUCLE_forums>
+
+</ol>
+</B_forums>
+[(#PARAMETRES_FORUM|oui)<INCLURE{fond=inc/repondre}{ajax}{env}>]
+

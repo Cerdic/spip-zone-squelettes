@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title><:poster_message:> - [(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	<meta name="robots" content="none" />
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+       <INCLURE{fond=inc-entete}>
+
+
+		<div id="topbanner_single" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:poster_message:>
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="post_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-11 first">
+        		 
+				<h2 class="post_cat"><:en_reponse:></h2>
+
+
+            <BOUCLE_forum_parent(FORUMS) {id_forum}>
+            <h3><a href="#URL_FORUM">#TITRE</a></h3>
+            <small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+            [<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+            </BOUCLE_forum_parent>
+            
+            <BOUCLE_article(ARTICLES) {id_article}>
+            [(#LOGO_ARTICLE||image_reduire{150,100})]
+			<h2 class="post_name #EDIT{titre}" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE">#TITRE</a></h2>
+				<div class="post_meta">
+					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]
+				</div>
+
+			[<div class="introduction">(#INTRODUCTION)</div>]
+            </BOUCLE_article>
+            
+            <BOUCLE_breve(BREVES) {id_breve}>
+            [(#LOGO_BREVE||image_reduire{150,100})]
+            <h2 class="post_name #EDIT{titre}" id="breve-#ID_BREVE">#TITRE</h2>
+				<div class="post_meta">
+					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>
+				</div>
+            [<div class="introduction">(#INTRODUCTION)</div>]
+            </BOUCLE_breve>
+            
+            <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+            <h2 class="post_name #EDIT{titre}"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+            [<div class="texte">(#TEXTE)</div>]
+            </BOUCLE_rubrique>
+            
+            <BOUCLE_syndic(SITES) {id_syndic}>
+            <h2 class="post_name #EDIT{nom_site}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h2>
+            [<div class="texte">(#DESCRIPTIF)</div>]
+            </BOUCLE_syndic>
+            
+            <//B_forum_parent>
+
+
+			#FORMULAIRE_FORUM
+            	
+            </div> <!-- end first -->
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
