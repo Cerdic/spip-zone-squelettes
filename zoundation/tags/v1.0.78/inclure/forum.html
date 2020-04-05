@@ -1,0 +1,60 @@
+[(#REM) Cette balise (invisible) provoque le recalcul du forum
+la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+[(#PARAMETRES_FORUM|?{''})]
+<a href="#forum" name="forum" id="forum"></a>
+<section class="comments comments-thread" id="comments">
+  [(#REM) Nombre total de messages ]
+  <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />
+  [<h4>
+    (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+    [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]
+  </h4>]
+  <//B_decompte>
+
+  [(#REM) Messages du forum ]
+  <B_forums>
+    <ul class="comments-items">
+
+      <BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
+
+        <li class="comment-item[ (#COMPTEUR_BOUCLE|alterner{'odd','even'})][ (#COMPTEUR_BOUCLE|=={1}|oui)first][ (#EXPOSE)]">
+          <article class="comment comment-message">
+            <header class="comment-meta">
+              <INCLURE{fond=inclure/inc-header-forum, env, id_forum} />
+            </header>
+            <section class="comment-content">
+              <INCLURE{fond=inclure/inc-content-forum, env, id_forum} />
+            </section>
+          </article>
+
+          <B_forums_fils>
+            <ul class="comments-items">
+              <BOUCLE_forums_fils(FORUMS) {id_parent} {par date}>
+
+                <li class="comment-item[ (#COMPTEUR_BOUCLE|alterner{'odd','even'})][ (#COMPTEUR_BOUCLE|=={1}|oui)first][ (#EXPOSE)]">
+                  <article class="comment comment-message">
+                    <header class="comment-meta">
+                      <INCLURE{fond=inclure/inc-header-forum, env, id_forum} />
+                    </header>
+                    <section class="comment-content">
+                      <INCLURE{fond=inclure/inc-content-forum, env, id_forum} />
+                    </section>
+                  </article>
+
+                  <BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
+
+                </li>
+
+              </BOUCLE_forums_fils>
+            </ul>
+          </B_forums_fils>
+
+        </li>
+      </BOUCLE_forums>
+
+    </ul>
+  </B_forums>
+</section>
+
+<h2><:forum:form_pet_message_commentaire:></h2>
+#FORMULAIRE_FORUM

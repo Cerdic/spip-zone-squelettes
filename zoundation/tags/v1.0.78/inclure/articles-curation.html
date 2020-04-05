@@ -1,0 +1,36 @@
+[(#REM) Squelettes Curation, on affiche en plus le lien contenu dans l'article ]
+
+<B_articles>
+	<BOUCLE_articles(ARTICLES) {id_rubrique ?} {par date} {inverse} {pagination 5}>
+		<article class="callout clearfix">
+
+			<div class="meta-publi float-right">
+				[<span>(#DATE|affdate_jourcourt)</span>],
+				[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]
+			</div>
+
+			[<p class=subheader>(#SURTITRE)</p>]
+			<h2>
+				<a href="#URL_ARTICLE">
+					[(#LOGO_ARTICLE_RUBRIQUE
+					|image_reduire{150,100}
+					|inserer_attribut{class, thumbnail spip_logos}
+					|inserer_attribut{alt, #TITRE|attribut_html})]
+
+					#TITRE
+				</a>
+			</h2>
+			[<p class="subheader">(#SOUSTITRE)</p>]
+
+			[<div[ class="(#EDIT{intro})"]>
+				(#INTRODUCTION{160})
+			</div>]
+
+			[<section class="[(#EDIT{hyperlien}) ]hyperlien callout">
+				<:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+			</section>]
+
+		</article>
+	</BOUCLE_articles>
+	[<nav class="pagination">(#PAGINATION)</nav>]
+</B_articles>

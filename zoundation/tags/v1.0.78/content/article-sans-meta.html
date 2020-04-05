@@ -1,0 +1,56 @@
+<BOUCLE_content(ARTICLES){id_article}>
+
+	<article class="content-principal">
+		<header class="cartouche">
+			[(#LOGO_ARTICLE
+			|image_reduire{200,200}
+			|inserer_attribut{class, thumbnail spip_logos}
+			|inserer_attribut{alt, #TITRE|attribut_html})]
+
+			[<p class="[(#EDIT{surtitre}) ]subheader surtitre">(#SURTITRE)</p>]
+			<h1 class="[(#EDIT{titre}) ]titre">#TITRE</h1>
+			[<p class="[(#EDIT{soustitre}) ]subheader soustitre">(#SOUSTITRE)</p>]
+
+			[(#REM) Inclure le modele des liens de traductions ]
+			#MODELE{article_traductions}
+		</header>
+
+		[<section class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{720,0}|iframe_responsive)</section>]
+		[<section class="#EDIT{texte} texte surlignable">(#TEXTE|image_reduire{720,0}|iframe_responsive)</section>]
+		[<section class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></section>]
+		[<section class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|image_reduire{720,0})</section>]
+
+		[(#PLUGIN{gis}|oui)
+		[(#INCLURE{fond=modeles/carte_gis_objet,
+		autocenterandzoom=oui,
+		zoom=17,
+		objet=article,
+		id_objet=#ID_ARTICLE})]
+		]
+
+
+		[(#REM) Gestion du portfolio et des documents ]
+		<INCLURE{fond=inclure/documents, id_article} />
+
+		[<footer>
+			<aside class="notes">
+				<h2><:info_notes:></h2>
+				(#NOTES)
+			</aside>
+		</footer>]
+
+		<INCLURE{fond=inclure/mots_article, id_article} />
+	</article>
+
+	[(#REM) Petition :
+	La petition ayant une PAGINATION il faut absolument {env}
+	et pourquoi pas ajax
+	][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+
+	[(#REM) Forum de l'article ]
+
+	[(#CONFIG{forums_publics}|!={non}|oui)
+	[(#SET{repondre_url, #PARAMETRES_FORUM|url_reponse_forum})]
+	<INCLURE{fond=inclure/forum,id_article,repondre_url=#GET{repondre_url},repondre_titre=<:repondre_article:>} />]
+
+</BOUCLE_content>

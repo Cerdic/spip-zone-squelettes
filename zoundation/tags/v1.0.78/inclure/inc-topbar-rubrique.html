@@ -1,0 +1,44 @@
+[(#REM)
+Permet de transformer une rubrique en élément section "top bar"
+]
+
+[(#CONFIG{foundation_6/javascript}|non)
+	<:foundation_6:erreur_js{squelette=#SQUELETTE}|erreur_squelette:>
+]
+
+[(#REM) Title bar qui déclenchera le menu responsive ]
+[(#SET{id_topbar, rubrique[-(#ID_RUBRIQUE)][-(#ID_PARENT)][-(#ID_SECTEUR)]})]
+<div class="title-bar" data-responsive-toggle="#GET{id_topbar}" data-hide-for="large">
+	<button class="menu-icon" type="button" data-toggle></button>
+	<div class="title-bar-title" data-toggle>Menu</div>
+</div>
+
+<nav class="top-bar[ (#ENV{class})]" id="#GET{id_topbar}">
+	<div class="top-bar-left">
+		<ul class="dropdown menu vertical large-horizontal" data-responsive-menu="drilldown large-dropdown" data-parent-link="true">
+			[(#REM) La racine du site. ]
+			<BOUCLE_rubriques(RUBRIQUES) {id_secteur ?} {id_parent ?} {id_rubrique ?} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
+
+				<li[ class="(#EXPOSE)"]>
+					<a href="#URL_RUBRIQUE" [title="(#TITRE|attribut_html|couper{80})"]>
+						[(#TITRE|couper{80})]
+					</a>
+					[(#REM) Ici on va mettre les sous-rubriques dans des dropdowns. ]
+					<B_sous_rubrique>
+						<ul class="menu vertical">
+							<BOUCLE_sous_rubrique(RUBRIQUES) {id_parent} {id_rubrique !IN #CONFIG{zoundation/rubrique_exclue_menu}|picker_selected{rubrique}} {par num titre, titre}>
+								<li[ class="(#EXPOSE)"]>
+									<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+
+									[(#REM) On génère autant de dropdow qu'il faut ]
+									<BOUCLE_recurcive(BOUCLE_sous_rubrique)></BOUCLE_recurcive>
+								</li>
+							</BOUCLE_sous_rubrique>
+						</ul>
+					</B_sous_rubrique>
+				</li>
+			</BOUCLE_rubriques>
+		</ul>
+
+	</div>
+</nav>

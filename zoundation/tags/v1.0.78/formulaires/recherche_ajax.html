@@ -1,0 +1,15 @@
+[(#REM) On reprend le formulaire de recherche de base ]
+<INCLURE{fond=formulaires/recherche, env, name=recherche_#ENV{ajax_bloc}} />
+<script type="text/javascript">
+ // Chaque input déclenche la recherche ajax
+ $("#recherche_#ENV{ajax_bloc}").on("input", function () {
+	 ajaxReload(
+		 "#ENV{ajax_bloc}",
+		 {
+			 args: {
+				 recherche: $(this).val() // Envoyer le contenu du formulaire dans le contexte de recherche SPIP
+			 }
+		 }
+	 );
+ });
+</script>

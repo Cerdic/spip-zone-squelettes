@@ -1,0 +1,27 @@
+<BOUCLE_content(AUTEURS){id_auteur}>
+	<article class="content-principal">
+		<section class="clearfix">
+			<header class="cartouche">
+				[(#LOGO_AUTEUR
+				|image_reduire{200,200}
+				|inserer_attribut{class, thumbnail spip_logos}
+				|inserer_attribut{alt, #NOM|attribut_html})]
+
+				<h1 class="#EDIT{qui} fn">#NOM</h1>
+			</header>
+
+			[<div class="#EDIT{bio} texte bio">(#BIO)</div>]
+			[<p class="#EDIT{hyperlien} hyperlien">
+				<:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+			</p>]
+		</section>
+
+		<h2><:articles_auteur:></h2>
+
+		<INCLURE{fond=liste/articles-auteur, id_auteur, env, ajax} />
+
+	</article>
+
+	[<section class="notes"><hr />(#NOTES)</section>]
+
+</BOUCLE_content>

@@ -1,0 +1,56 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+
+	<article class="column-block content-principal">
+
+		<header>
+			[(#LOGO_RUBRIQUE
+			|image_reduire{200,200}
+			|inserer_attribut{class, thumbnail spip_logos}
+			|inserer_attribut{alt, #TITRE|attribut_html})]
+			<h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+		</header>
+
+		[<section[ class="(#EDIT{descriptif})"]>(#DESCRIPTIF)</section>]
+		[<section[ class="(#EDIT{texte})"]>(#TEXTE)</section>]
+
+		<INCLURE{fond=inclure/mots_rubrique, id_rubrique} />
+	</article>
+
+	<INCLURE{fond=inclure/article-rubrique-block-grid, env, card=oui, ajax} />
+
+	[(#PIPELINE{zoundation_rubrique, #ARRAY{data, '', args, #ENV*|unserialize}})]
+
+	[(#REM) Gestion du portfolio et des documents ]
+	<INCLURE{fond=inclure/documents,id_rubrique} />
+
+	[(#REM) Breves du secteur ]
+	<B_breves>
+		<aside class="liste breves">
+			#ANCRE_PAGINATION
+			<h3><:breves:breves:></h3>
+			<ul class="liste-items">
+				<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
+					<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE">#TITRE</a></li>
+				</BOUCLE_breves>
+			</ul>
+			[<nav class="pagination">(#PAGINATION{foundation})</nav>]
+		</aside>
+	</B_breves>
+
+	[(#REM) Sites de la rubrique ]
+	<B_sites>
+		<aside class="row[ (#BLOCKGRID{#ARRAY{large-up, 3, medium-up, 3, small-up, 1}})]">
+			<BOUCLE_sites(SITES) {id_rubrique} {par date}{inverse}>
+				<div class="column column-block">
+					<INCLURE{fond=inclure/site-card, id_syndic} />
+				</div>
+			</BOUCLE_sites>
+		</aside>
+	</B_sites>
+
+	[<section class="notes"><hr />(#NOTES)</section>]
+
+	[(#REM) Proposer un site ]
+	#FORMULAIRE_SITE
+
+</BOUCLE_content>

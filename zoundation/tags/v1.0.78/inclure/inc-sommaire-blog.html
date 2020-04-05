@@ -1,0 +1,43 @@
+<B_article_blog>
+	#ANCRE_PAGINATION
+	<BOUCLE_article_blog(ARTICLES){id_secteur ?IN #ENV{id_secteur}}{par date}{inverse}{pagination}{'<hr/>'}>
+
+		[<div class="text-center">
+		(#LOGO_ARTICLE
+		|image_passe_partout{1200,300}
+		|image_recadre{1200,300}
+		|vider_attribut{class})
+		</div>]
+
+		<article class="row">
+
+			<div class="#COLONNES{#ARRAY{large,2}}">
+
+				<div class="callout">
+					<p class="text-center">
+						[(#DATE|jour)]
+						<br />
+						[(#DATE|nom_mois)]
+						<br />
+						[(#DATE|annee)]
+					</p>
+				</div>
+
+			</div>
+			<div class="#COLONNES{#ARRAY{large,10}}">
+				[<p class=subheader>(#SURTITRE)</p>]
+				<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+				[<p class="subheader">(#SOUSTITRE)</p>]
+			</div>
+
+			<div class="#COLONNES{#ARRAY{large,12}}">
+
+				#INTRODUCTION
+
+				<INCLURE{fond=inclure/mots_article, id_article} />
+			</div>
+		</article>
+
+	</BOUCLE_article_blog>
+	[<nav class="pagination">(#PAGINATION{foundation})</nav>]
+</B_article_blog>

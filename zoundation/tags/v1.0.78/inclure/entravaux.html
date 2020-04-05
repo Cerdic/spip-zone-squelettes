@@ -1,0 +1,49 @@
+[(#HTTP_HEADER{HTTP/1.1 503 Service Temporarily Unavailable})]
+[(#HTTP_HEADER{Status: 503 Service Temporarily Unavailable})]
+[(#HTTP_HEADER{Retry-After: 7200})]
+
+<!DOCTYPE html>
+[(#REM) http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/]
+<!--[if lt IE 7 ]> <html class="[(#GET{class})][ (#LANG_DIR)][ (#LANG)] no-js ie ie6 lte9 lte8 lte7" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"> <![endif]-->
+<!--[if IE 7 ]>    <html class="[(#GET{class})][ (#LANG_DIR)][ (#LANG)] no-js ie ie7 lte9 lte8 lte7" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"> <![endif]-->
+<!--[if IE 8 ]>    <html class="[(#GET{class})][ (#LANG_DIR)][ (#LANG)] no-js ie ie8 lte9 lte8" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"> <![endif]-->
+<!--[if IE 9 ]>    <html class="[(#GET{class})][ (#LANG_DIR)][ (#LANG)] no-js ie ie9 lte9" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="[(#GET{class})][ (#LANG_DIR)][ (#LANG)] no-js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+    <head>
+        <title><:entravaux:en_travaux:></title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+        <INCLURE{fond=inclure/css/head-foundation, env} />
+    </head>
+    <body class="page_entravaux">
+        <hr />
+        <div class="row">
+            <div class="large-6 medium-6 small-12 large-centered medium-centered small-centered columns">
+                <div class="callout">
+                    [<a rel="start home" href="#URL_SITE_SPIP/">
+                    (#LOGO_SITE_SPIP
+					|image_reduire{300,100}
+					|inserer_attribut{alt, #NOM_SITE_SPIP|attribut_html}
+					|inserer_attribut{class, float-center})
+                    </a>]
+
+                    <h1 id="nom_site_spip" class="h1">
+	                      <a rel="start home" href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a>
+                    </h1>
+
+                    <h2><:info_travaux_titre:></h2>
+
+		                [(#CONFIG{entravaux_message,<:entravaux:info_travaux_texte:>}|propre)]
+		                [(#SESSION{id_auteur}|non)
+		                <p class="retour">&#91;<a href="#URL_PAGE{login_sos}"><:lien_connecter:></a>&#93;</p>
+		                ]
+		                [(#SESSION{id_auteur}|oui)
+		                <p class="retour">&#91;<a href="#URL_ECRIRE{accueil}"><:espace_prive:></a>&#93; &#91;<a href="#URL_LOGOUT"><:icone_deconnecter:></a>&#93;</p>
+		                ]
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

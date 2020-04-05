@@ -1,0 +1,20 @@
+<BOUCLE_adresse(ADRESSES spip_adresses_liens){id_adresse ?}{id_commande?}{type ?}>
+	<div class="callout">
+		<div class="row">
+			<div class="#COLONNES{#ARRAY{large, 8}}">
+				[<h3>(#ENV{type_titre}|?{[(#TYPE|coordonnees_lister_types_adresses)], #TITRE})</h3>]
+				<INCLURE{fond=inclure/adresse-detail, id_adresse} />
+			</div>
+			<div class="#COLONNES{#ARRAY{large, 4}}">
+				[(#AUTORISER{modifier, adresse, #ID_ADRESSE}|oui|et{#ENV{editer}|oui})
+				<div class="button-group small">
+					[(#MODELE{reveal, href=#URL_PAGE{editer_adresse, id_adresse=#ID_ADRESSE}|parametre_url{redirect, #ENV{redirect}}, data-id=modifier_adresse-#ID_ADRESSE, titre=<:coordonnees:modifier_adresse:>, class=button, animation-in=slide-in-down, animation-out=slide-out-up})]
+
+					[(#AUTORISER{supprimer, adresse, #ID_ADRESSE}|oui)
+					<a href="#URL_ACTION_AUTEUR{supprimer_adresse, #ID_ADRESSE, #SELF}" class="button alert"><span class="fi-x"></span> <:lien_supprimer|ucfirst:></a>]
+				</div>]
+
+			</div>
+		</div>
+	</div>
+</BOUCLE_adresse>

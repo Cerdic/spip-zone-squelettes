@@ -1,0 +1,45 @@
+[(#REM)
+Afficher les articles d'une rubrique sous forme de "block grid" Foundation
+Voir http://foundation.zurb.com/sites/docs/grid.html#block-grids
+]
+[(#SET{defaut_tri,#ARRAY{
+	titre,1,
+	num titre,1,
+	date,#ENV{date_sens,-1},
+	id_article,1,
+	points,-1
+ }})]
+
+<div class="row [(#BLOCKGRID{#ARRAY{small-up, 2*, medium-up, 2*, large-up, 3*}})]">
+	<B_rubrique-block-grid>
+		#ANCRE_PAGINATION
+		<BOUCLE_rubrique-block-grid(ARTICLES)
+				{recherche ?}
+				{id_rubrique ?IN #ENV{id_rubrique}}
+				{pagination 6}
+				{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}>
+			<div class="column column-block">
+				[(#ENV{card}|oui)
+				<INCLURE{fond=inclure/article-card, id_article, logo_defaut=oui} />]
+
+				[(#ENV{card}|non)
+				[<h3><a href="#URL_ARTICLE">(#TITRE)</a></h3>]
+				[(#LOGO_ARTICLE
+					|sinon{#LOGO_SITE_SPIP}
+					|image_passe_partout{175,175}
+					|image_recadre{175,175}
+					|vider_attribut{class})]
+				[(#INTRODUCTION{300})]
+				]
+
+			</div>
+		</BOUCLE_rubrique-block-grid>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</B_rubrique-block-grid>
+	<div class="column column-block">
+		<div class="callout warning">
+			<:info_aucun_article:>
+		</div>
+	</div>
+	<//B_rubrique-block-grid>
+</div>

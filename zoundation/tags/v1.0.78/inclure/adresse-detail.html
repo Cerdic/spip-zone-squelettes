@@ -1,0 +1,25 @@
+<BOUCLE_adresse-detail(ADRESSES spip_adresses_liens){id_adresse}>
+	<dl>
+		[(#ENV{type_titre}|non)
+		[<dt class="show-for-sr"><:coordonnees:label_type_adresse:></dt>
+		<dd>(#TYPE|coordonnees_lister_types_adresses)</dd>]]
+
+		[<dt class="show-for-sr"><:coordonnees:label_voie:></dt>
+		<dd>(#VOIE)[ (#COMPLEMENT)]</dd>]
+
+		[<dt class="show-for-sr"><:coordonnees:label_boite_postale:></dt>
+		<dd><:coordonnees:label_boite_postale:> : (#BOITE_POSTALE)</dd>]
+
+		[<dt class="show-for-sr"><:coordonnees:label_ville:></dt>
+		<dd>[(#CODE_POSTAL) ](#VILLE) [\((#REGION)\)]</dd>]
+
+		<B_pays_adresse>
+			<dt class="show-for-sr"><:coordonnees:label_pays:></dt>
+			<dd>
+				<BOUCLE_pays_adresse(PAYS){code=#PAYS*}>
+					#NOM
+				</BOUCLE_pays_adresse>
+			</dd>
+		</B_pays_adresse>
+	</dl>
+</BOUCLE_adresse-detail>
