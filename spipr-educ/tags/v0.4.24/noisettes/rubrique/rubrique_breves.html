@@ -1,0 +1,24 @@
+<BOUCLE_pagination_rubrique_breves(spipr_educ)
+	{nom=rubrique_breves}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=rubrique}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:breves:breves:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_rubrique_breves>
+
+<BOUCLE_rubrique_breves(RUBRIQUES){id_rubrique}>
+	[(#REM) Breves du secteur ]
+	<B_breves>
+	<div class="liste breves" id="rubrique_breves">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse} {pagination #GET{nb}}>
+				<li class="item short">#INCLURE{fond=inclure/resume/breve,id_breve}</li>
+			</BOUCLE_breves>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+	</B_breves>
+</BOUCLE_rubrique_breves>

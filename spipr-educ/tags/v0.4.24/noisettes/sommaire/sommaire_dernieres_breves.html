@@ -1,0 +1,22 @@
+<BOUCLE_pagination_sommaire_dernieres_breves(spipr_educ)
+	{nom=sommaire_dernieres_breves}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=sommaire}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:dernieres_breves:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_sommaire_dernieres_breves>
+[(#REM) Breves dans la meme rubrique ]
+<B_breves>
+	<div class="liste breves" id="sommaire_dernieres_breves">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_breves(BREVES){par date}{lang}{inverse}{pagination #GET{nb}}>
+				<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a>
+				[<div class="introduction">(#INTRODUCTION{200})</div>]</li>
+			</BOUCLE_breves>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_breves>

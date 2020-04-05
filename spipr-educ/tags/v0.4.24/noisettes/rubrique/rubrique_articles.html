@@ -1,0 +1,21 @@
+<BOUCLE_pagination_rubrique_articles(spipr_educ)
+	{nom=rubrique_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=rubrique}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:derniers_articles:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_rubrique_articles>
+
+<B_articles>
+	<div class="liste articles" id="rubrique_articles">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_articles(ARTICLES){id_rubrique}{lang}{!par date} {!id_article IN #ENV{articles_exclus,#ARRAY}} {pagination #GET{nb}}>
+			<li class="item">#INCLURE{fond=inclure/resume/article,id_article}</li>
+			</BOUCLE_articles>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_articles>

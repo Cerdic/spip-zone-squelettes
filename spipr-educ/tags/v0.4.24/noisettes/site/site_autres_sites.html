@@ -1,0 +1,22 @@
+<BOUCLE_pagination_site_autres_sites(spipr_educ)
+	{nom=site_autres_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=site}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:sites_web:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_site_autres_sites>
+
+[(#REM) Autres sites web ]
+<B_sites>
+	<div class="liste sites" id="site_autres_sites">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_sites(SITES) {par nom_site} {exclus} {pagination #GET{nb}}>
+			<li class="item"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
+			</BOUCLE_sites>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_sites>

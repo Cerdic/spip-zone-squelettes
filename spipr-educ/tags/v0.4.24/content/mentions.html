@@ -1,0 +1,18 @@
+[(#PLUGIN{spip_proprio}|oui) [(#MODELE{mentions_legales})]]
+
+<BOUCLE_mentions(spipr_educ)
+	{nom=options_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param4,#PARAMETRE4}
+</BOUCLE_mentions>
+#SET{listeMentions, #GET{param4}|explode{','}}
+
+<B_mentions_articles>
+<div style="margin:30px 0;">
+	<BOUCLE_mentions_articles(ARTICLES){id_article IN #GET{listeMentions}}>
+	[(#INCLURE{fond=noisettes/article/article_cartouche,id_article=#ID_ARTICLE,env})]
+	[(#INCLURE{fond=noisettes/article/article_contenu,id_article=#ID_ARTICLE,env})]
+	</BOUCLE_mentions_articles>
+</div>
+</B_mentions_articles>

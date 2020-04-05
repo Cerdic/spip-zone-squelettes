@@ -1,0 +1,90 @@
+#CACHE{0}
+#SET{listeArticlesEdito, #ENV{editoOrdreArticles}|explode{','}}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h2 class='titre'><div style="text-align:center;">Configuration des blocs <em>éditorial</em> et <em>article pris au hasard</em>
+</div></h2>
+<p>
+	Attention, le choix des couleurs effectué ci-dessous impactera les couleurs de deux blocs :
+	<ul class="spip">
+		<li class="spip">les articles placés en éditorial</li>
+		<li class="spip">l'article au hasard et mis en valeur</li>
+	</ul>
+</p>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}configuresommaireeditorialhero'><div>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<ul class="editer-groupe">
+		<B_ordre_articles>
+		<li class="fieldset">
+			<fieldset>
+				<h3 class="legend">Ordre des articles placés en éditorial</h3>
+				<BOUCLE_ordre_articles(ARTICLES){id_article IN #GET{listeArticlesEdito}}>
+					<div class='cadre' style='display:block; border:1px solid #8F8FBD; margin:0 10px 10px 10px; height:24px; line-height:24px; vertical-align:middle; padding:8px;' onmouseover="this.style.background='#eee';" onmouseout="this.style.background='';">
+						<div style="width:68%; display:block; float:left; height:24px; line-height:24px; vertical-align:middle;">
+							<a href="#URL_ECRIRE{article,id_article=#ID_ARTICLE}" title="[Voir la page de l'article : (#TITRE|textebrut)]">[(#TITRE|textebrut|couper{80}) ]</a>
+						</div>
+						<div style="width:24%; display:block; float:right; text-align:right;">
+							<?php
+								// Si on a deux valeurs au moins, on affiche les flèches pour monter et descendre
+								if (#TOTAL_BOUCLE>1) {
+									//Si on est sur le premier élément et qu'il y a plus d'un élément , n'afficher que la flèche du bas
+									if ((#COMPTEUR_BOUCLE==1) AND (#TOTAL_BOUCLE>1)) { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_ARTICLE" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+									<?php }
+									// Si on est sur le dernier élément, n'afficher que la flèche du haut suivie d'un espace vide
+									elseif (#COMPTEUR_BOUCLE==#TOTAL_BOUCLE) { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_ARTICLE" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+										<img src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/spipr_edu_vide.png";?>" />
+									<?php }
+									// Sinon, on affiche les deux flèches
+									else { ?>
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_superieur_bloc.png";?>" name="monter_site_#ID_ARTICLE" alt="Remonter d'un niveau" title="Remonter d'un niveau" />
+										<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/niveau_inferieur_bloc.png";?>" name="descendre_site_#ID_ARTICLE" alt="Descendre d'un niveau" title="Descendre d'un niveau" />
+									<?php }
+								}
+								// On termine par la possibilité de supprimer une entrée
+							?>
+							<input type="image" src="<?php echo _DIR_PLUGIN_SPIPR_EDUC."img/suppression_bloc.png";?>" name="supprimer_site_#ID_ARTICLE" alt="Retirer cet article de la Une" title="Retirer cet article de la Une" />
+						</div>
+					</div>
+				</BOUCLE_ordre_articles>
+			</fieldset>
+		</li>
+		</B_ordre_articles>
+        <li class="fieldset">
+			<fieldset>
+			<h3 class="legend">Choix des couleurs</h3>
+			<label for="heroUnitBackground">Couleur de fond</label>
+			<input type='text' name='heroUnitBackground' id='heroUnitBackground' value="#ENV{heroUnitBackground}" class="text palette" />
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+			<label for="heroUnitHeadingColor">Couleur des titres</label>
+			<input type='text' name='heroUnitHeadingColor' id='heroUnitHeadingColor' value="#ENV{heroUnitHeadingColor}" class="text palette" />
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+			<label for="heroUnitLeadColor">Couleur des textes</label>
+			<input type='text' name='heroUnitLeadColor' id='heroUnitLeadColor' value="#ENV{heroUnitLeadColor}" class="text palette" />
+			</fieldset>
+		</li>
+		<li class="fieldset">
+			<fieldset>
+			<label for="heroUnitCSS" style="word-wrap:break-word;">Règles CSS ou LESS spécifiques pour le caroussel de la page de sommaire (s'applique sur <em>#sommaire_article_hero .item</em> et <em>#sommaire_editorial .item</em>)</label>
+			<textarea name='heroUnitCSS' id='heroUnitCSS' class="text" rows="6">[(#ENV**{heroUnitCSS})]</textarea>
+			</fieldset>
+		</li>
+	</ul>
+	<input type='hidden' name='hidden_editorial_hero' value='ok' />
+	<p class='boutons'><input type='submit' class='submit' value='Valider' /></p>
+	</div>
+</form>
+</div>

@@ -1,0 +1,106 @@
+<!-- On teste ici s'il y a lieu de générer une liste des partenaires ou non : incidence CSS -->
+<BOUCLE_partenaires(SITES){titre_mot=partenaire_pied}{0,1}>
+#SET{partenaires,2}
+</BOUCLE_partenaires>
+</B_partenaires>
+#SET{partenaires,1}
+<//B_partenaires>
+
+<ul id="pied">
+	<li class="pied_cat avec_separateur">
+		<div class="pied_label">Rectorat de Rouen</div>
+		<ul class="pied_liste">
+			<li class="pied_niv2">25, rue de Fontenelle<br />76 037 Rouen</li>
+			<li class="pied_niv2 ecart_gauche">T&eacute;l. 02 32 08 90 00<br />
+			<a href="http://www.ac-rouen.fr" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Site Web</a></li>
+		</ul>
+		<div class="nettoyeur" style="margin:0;"></div>
+	</li>
+	<li class="pied_cat avec_separateur">
+		<div class="pied_label">Directions des services départementaux de l'éducation nationale</div>
+		<ul class="pied_liste liste_DSDEN">
+			<li class="pied_niv2 avec_separateur_niv2">
+				<a href="http://www.ia27.ac-rouen.fr/" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Eure</a>
+			</li>
+			<li class="pied_niv2">
+				<a href="http://www.ia76.ac-rouen.fr/" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Seine-Maritime</a>
+			</li>
+		</ul>
+		<div class="nettoyeur" style="margin:0;"></div>
+	</li>
+	<li class="pied_cat avec_separateur">
+		<div class="pied_label">Services</div>
+		<ul class="pied_liste">
+			<li class="pied_niv2 avec_separateur_niv2">
+				<a href="https://webmail.ac-rouen.fr/rouen/index.html" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Webmail</a><br />
+			</li>
+			<li class="pied_niv2 avec_separateur_niv2">
+				<a href="https://bv.ac-rouen.fr/iprofipel/index-acc.html" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">I-prof</a><br />
+			</li>
+			<li class="pied_niv2 avec_separateur_niv2">
+				<a href="http://portail-metier.ac-rouen.fr/" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Portail Métier</a><br />
+			</li>
+			<li class="pied_niv2 avec_separateur_niv2">
+				<a href="http://www.ac-rouen.fr/espaces-pedagogiques/disciplines/" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Les sites disciplinaires</a><br />
+			</li>
+			<li class="pied_niv2">
+				<a href="http://www.education.gouv.fr/pid285/le-bulletin-officiel.html" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Bulletin officiel</a><br />
+			</li>
+		</ul>
+		<div class="nettoyeur" style="margin:0;"></div>
+	</li>
+	<li class="pied_cat[(#GET{partenaires}|=={2}|?{' avec_separateur',''})]">
+		<div class="pied_label">Minist&egrave;re</div>
+		<ul class="pied_liste">
+			<li class="pied_niv2">
+				<a href="http://www.education.gouv.fr" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Minist&egrave;re de l'éducation nationale</a>
+				<br /><a href="http://www.enseignementsup-recherche.gouv.fr" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">Minist&egrave;re de l'enseignement sup&eacute;rieur et de la recherche</a>
+				<br /><a href="http://eduscol.education.fr/" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">&eacute;du<b>scol</b> : portail national des professionnels de l'&eacute;ducation</a>
+			</li>
+		</ul>
+		<div class="nettoyeur" style="margin:0;"></div>
+	</li>
+	[(#REM) Revoir si ça a un intérêt de remettre ça en place...]
+	<B_sites_partenaires>
+	<li class="pied_cat">
+		<div class="pied_label"><:partenaires:></div>
+		<ul class="pied_liste">
+		<BOUCLE_sites_partenaires(SITES){titre_mot=partenaire_pied}{par date}>
+			<li class="pied_niv2 [(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{'','avec_separateur_niv2'})]">
+				<a href="#URL_SITE" title="Ce lien ouvre une fen&ecirc;tre externe" target="_blank">#NOM_SITE</a>
+			</li>
+		</BOUCLE_sites_partenaires>
+		</ul>
+		<div class="nettoyeur" style="margin:0;"></div>
+	</li>
+	</B_sites_partenaires>
+</ul>
+
+<ul id="footer-plain">
+    <li>
+        <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',#CONFIG{eva_mentions/idwebmaster}}|parametre_url{'lang',#LANG})]"><:contact:></a>
+    </li>
+    <li>
+        <a href="#URL_PAGE{rss}" title="<:pipr_educ:flux_rss:>"><:spipr_educ:flux_rss:></a>
+    </li>
+    <li>
+        <a href="#URL_PAGE{plan}[#(#ID_RUBRIQUE)]"><:plan_site:></a>
+    </li>
+    <li>
+        <a href="[(#URL_PAGE{mentions}|parametre_url{'lang',#LANG})]"><:spipr_educ:mentions:></a>
+    </li>
+	<li>
+        <a href="ecrire" title="<:spipr_educ:redaction:>"><:spipr_educ:redaction:></a>
+    </li>
+	<!-- Gestion de la session -->
+	[<li>(#SESSION{id_auteur}|?{' '}) <a href="#URL_LOGOUT"><:icone_deconnecter:></a></li>]
+	[<li>(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{'lang',#LANG})]" class='login_modal'><:lien_connecter:></a></li>]
+    <li style="float:right;padding-right:0;">
+		<BOUCLE_copy(ARTICLES){lang_select=non}{par date}{0,1}>
+			[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] © [(#NOM_SITE_SPIP|supprimer_tags)] -
+			<:tous_droits:>
+		</BOUCLE_copy>
+    </li>
+	<div class="nettoyeur" style="margin:0;padding:0;"></div>
+
+</ul>

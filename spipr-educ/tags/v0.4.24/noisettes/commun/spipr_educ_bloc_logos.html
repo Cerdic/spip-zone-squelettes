@@ -1,0 +1,29 @@
+<BOUCLE_parametres_bloc_logos(spipr_educ)
+	{nom=options_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param2,#PARAMETRE2}
+</BOUCLE_parametres_bloc_logos>
+<BOUCLE_graphisme_bloc_logos(spipr_educ)
+	{nom=graphisme_bloc_logos}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=graphisme}>
+	[(#PARAMETRE2|?{#SET{largeurmaxlogo,#PARAMETRE2},#SET{largeurmaxlogo,200}})]
+	[(#PARAMETRE4|?{#SET{hauteurmaxlogo,#PARAMETRE4},#SET{hauteurmaxlogo,200}})]
+	[(#PARAMETRE5|?{#SET{titre,#PARAMETRE5},#SET{titre,'Partenaires'}})]
+</BOUCLE_graphisme_bloc_logos>
+
+#SET{listeBlocs, #GET{param2}|explode{','}}
+<B_bloc_logos>
+<div class="liste" id="bloc_logos">
+[<h2 class="h2">(#GET{titre})</h2>]
+	<ul class="liste-items">
+	<BOUCLE_bloc_logos(SITES) {id_syndic IN #GET{listeBlocs}}>
+		[<li  style="display:inline-block;">
+			<a href="#URL_SITE" title="[(#NOM_SITE|textebrut)]">(#LOGO_SITE||image_reduire{#GET{largeurmaxlogo},#GET{hauteurmaxlogo}})</a>
+		</li>]
+	</BOUCLE_bloc_logos>
+	</ul>
+</div>
+</B_bloc_logos>
+

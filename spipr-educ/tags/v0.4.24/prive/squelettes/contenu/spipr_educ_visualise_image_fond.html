@@ -1,0 +1,27 @@
+<BOUCLE_image(SPIPR_EDUC){nom_sauvegarde = en_cours_d_utilisation_SPIPr}{nom=#ENV{nom}}>
+#SET{les_secteurs_de_fond, #ARRAY{fond_ecran,Fond d'écran,fond_page,Intérieur de page,fond_entete,Entête,fond_barre_menu,Menu horizontal,fond_breadcrumb,Fil d'ariane,fond_pied,Pied de page}}
+<div style="display:block; height:auto; text-align:left;">
+<img src="#EVAL{_DIR_IMG}spipr_educ/#PARAMETRE1" alt="[Image insérée dans le secteur \"(#GET{les_secteurs_de_fond}|table_valeur{#ENV{nom}})\"]" style="max-width:500px; height:auto;"/>
+<div style="display:block; width:100%; height:1px;"></div>
+	<div style="display:block; width:100%; height:auto; margin-left:auto; margin-right:auto;">
+		Cette image <b>#PARAMETRE1</b> est affichée :
+		<ul class="spip">
+			<li>dans le secteur "[(#GET{les_secteurs_de_fond}|table_valeur{#ENV{nom}})]"</li>
+			<li>alignée
+			[(#PARAMETRE3|?{[à (#PARAMETRE3) du haut],[(#PARAMETRE2|=={top}|?{' en haut ',''})][(#PARAMETRE2|=={bottom}|?{' en bas ',''})][(#PARAMETRE2|=={center}|?{' centré horizontalement ',''})]})]
+			[(#PARAMETRE5|?{[à (#PARAMETRE5) de la gauche],[(#PARAMETRE4|=={left}|?{' à gauche ',''})][(#PARAMETRE4|=={right}|?{'à droite',''})][(#PARAMETRE4|=={center}|?{' centré verticalement',''})]})] du secteur
+			</li>
+			<li>
+			[(#PARAMETRE6|=={repeat}|?{'répétée horizontalement et verticalement',''})]
+			[(#PARAMETRE6|=={repeat-x}|?{'répétée horizontalement',''})]
+			[(#PARAMETRE6|=={repeat-y}|?{'répétée verticalement',''})]
+			[(#PARAMETRE6|=={no-repeat}|?{'non répétée',''})]
+			</li>
+			<li>
+			[(#PARAMETRE7|=={scroll}|?{'se déplaçant avec le contenu ',''})]
+			[(#PARAMETRE7|=={fixed}|?{'en arrière plan fixe',''})]
+			</li>
+		</ul>
+	</div>
+</div>
+</BOUCLE_image>

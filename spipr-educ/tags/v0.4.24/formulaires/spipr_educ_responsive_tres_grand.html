@@ -1,0 +1,51 @@
+<script type="text/javascript">
+<!--
+function affvign(){
+	chemin = "<?php echo _DIR_PLUGIN_SPIPR_EDUC.'prive/themes/spip/images/LayoutGala/'; ?>"
+	if(document.images){
+		validevign=document.formvignette.layoutgala_plus_1200.options[document.formvignette.layoutgala_plus_1200.selectedIndex].value
+		document.vignetteaff.src = chemin+validevign+".png"
+	}
+}
+window.onerror = null;
+//-->
+</script>
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Largeur sup&eacute;rieure &agrave; 1200 pixels</div></h3>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method='post' action='#ENV{action}' name ="formvignette">
+
+<p style="text-align:center;">Choisissez une structure pour les navigateurs dont la largeur est sup&eacute;rieure à 1200 pixels.</p>
+
+	<div style="text-align:center;">
+		[(#REM) declarer les hidden qui declencheront le service du formulaire
+		parametre : url d'action ]
+		#ACTION_FORMULAIRE{#ENV{action}}
+
+		[(#REM) On recupere les variables necessaires au traitement du bloc]
+		#SET{layout,layout_actuel}
+		[(#REM) LA ligne du dessous risque de déconner... Passer par le fichier php correspondant]
+		#SET{chemin,chemin_vignettes}
+		#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+		<?php 
+			include_spip('inc/spipr_educ_structure_responsive');
+			$nom_lay=spipr_educ_noms_des_structures();
+			$tab = spipr_educ_definition_des_structures();
+			$choix_layout=$tab['tres_grand'];
+		?>
+		<p><select name="layoutgala_plus_1200" onChange = "affvign()">
+		<?php
+		foreach ($choix_layout as $cle => $inutile) {
+			echo '<option value="'.$inutile.'" ';
+			if ('#ENV{#GET{layout}}'==$inutile) {echo 'selected';}
+			echo '>'.$nom_lay[$inutile].'</option>';
+		}
+		?>
+		</select></p>
+		<p><img name = "vignetteaff" src= "#ENV{#GET{chemin}}#ENV{#GET{layout}}.png" width="528"></p>
+		<p class='boutons'><span class='image_loading'>&nbsp;</span><input type='submit' class='submit' value='Choisir' /></p>
+	</div>
+</form>
+</div>

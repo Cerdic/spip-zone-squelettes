@@ -1,0 +1,33 @@
+<head>
+	<style type="text/css">
+	.checkbox:checked + .label_barre{
+		font-weight: bold;
+	}
+   </style>
+</head> 
+
+<form method='post' action='#ENV{action}' name ='formoptionssites' style='clear:both;'>
+
+#BOITE_OUVRIR{#CHEMIN_IMAGE{spipr_dist-16.png}|balise_img{'',cadre-icone}|concat{Placer ce site dans :},'simple','section'}
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	#SET{tableau_bloc_logos,#ENV**{bloc_logos}|explode{','}}
+	#SET{tableau_liste_partenaires,#ENV**{liste_partenaires}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='bloc_logos' value='oui' id='bloc_logos'[ (#GET{tableau_bloc_logos}|find{#ENV{id_syndic}}|oui)checked="checked"] />
+			<label for='bloc_logos' class='label_barre'>Le bloc des logos des partenaires</label>
+		</div>
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='liste_partenaires' value='oui' id='liste_partenaires'[ (#GET{tableau_liste_partenaires}|find{#ENV{id_syndic}}|oui)checked="checked"] />
+			<label for='liste_partenaires' class='label_barre'>La liste des sites partenaires</label>
+		</div>
+	
+	<input type='hidden' name='hidden_options_sites' value='ok' />
+
+#BOITE_PIED
+#BOUTON_ACTION{Valider,#SELF}
+#BOITE_FERMER
+</form>

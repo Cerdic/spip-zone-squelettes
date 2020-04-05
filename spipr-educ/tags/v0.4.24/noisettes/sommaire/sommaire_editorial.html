@@ -1,0 +1,18 @@
+<BOUCLE_liste_edito(spipr_educ)
+	{nom=options_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param2,#PARAMETRE2}
+</BOUCLE_liste_edito>
+#SET{listeEdito, #GET{param2}|explode{','}}
+
+<B_sommaire_editorial>
+<div id="sommaire_editorial">
+	<BOUCLE_sommaire_editorial(ARTICLES){id_article IN #GET{listeEdito}}{lang}>
+	<div class="hero-unit item hentry">
+		<h1 class="entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{500,100}|responsive_logo)]</a></h1>
+		[<div class="#EDIT{texte} texte entry-content">(#TEXTE)</div>]
+	</div>
+	</BOUCLE_sommaire_editorial>
+</div>
+</B_sommaire_editorial>

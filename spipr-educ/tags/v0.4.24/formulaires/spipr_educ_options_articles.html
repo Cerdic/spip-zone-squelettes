@@ -1,0 +1,52 @@
+<head>
+	<style type="text/css">
+	.checkbox:checked + .label_barre{
+		font-weight: bold;
+	}
+   </style>
+</head> 
+
+<form method='post' action='#ENV{action}' name ='formoptionsarticles' style='clear:both;'>
+
+#BOITE_OUVRIR{#CHEMIN_IMAGE{spipr_dist-16.png}|balise_img{'',cadre-icone}|concat{Options de l'article :},'simple','section'}
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	#SET{tableau_articles_editorial,#ENV**{articles_editorial}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='articles_editorial' value='oui' id='articles_editorial'[ (#GET{tableau_articles_editorial}|find{#ENV{id_article}}|oui)checked="checked"] />
+			<label for='articles_editorial' class='label_barre'>Ajouter cet article en éditorial dans la page de sommaire</label>
+		</div>
+	
+	#SET{tableau_articles_une,#ENV**{articles_une}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='articles_une' value='oui' id='articles_une'[ (#GET{tableau_articles_une}|find{#ENV{id_article}}|oui)checked="checked"] />
+			<label for='articles_une' class='label_barre'>Ajouter cet article dans la Une de la page de sommaire</label>
+		</div>
+	
+	#SET{tableau_articles_exclu_sommaire,#ENV**{articles_exclu_sommaire}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='articles_exclu_sommaire' value='oui' id='articles_exclu_sommaire'[ (#GET{tableau_articles_exclu_sommaire}|find{#ENV{id_article}}|oui)checked="checked"] />
+			<label for='articles_exclu_sommaire' class='label_barre'>Exclure cet article de la page de sommaire</label>
+		</div>
+		#SET{EnvArt,#ENV**{article_mentions}}
+		<BOUCLE_ment(ARTICLES){id_article=#GET{EnvArt}}>
+		#SET{TitreArt,#TITRE}
+		</BOUCLE_ment>
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='article_mentions' value='oui' id='article_mentions'[ (#ENV{article_mentions}|=={#ENV{id_article}}|?{'checked="checked"',''})] />
+			<label for='article_mentions' class='label_barre'>Faire de cet article les mentions légales du site
+			<?php if (('#ENV**{article_mentions}'!='#ENV**{id_article}') AND ('#ENV**{article_mentions}'!='')) { ?>
+				</br>Attention, l'article <a href="[(#URL_PAGE{article}|parametre_url{id_article,#ENV{article_mentions}})]">#GET{TitreArt}</a> est déjà déclaré en tant que mentions légales du site. En cochant, vous le remplacerez par l'article de cette page.
+			<?php } ?>
+			</label>
+		</div>
+	
+	<input type='hidden' name='hidden_options_articles' value='ok' />
+
+#BOITE_PIED
+#BOUTON_ACTION{Valider,#SELF}
+#BOITE_FERMER
+</form>

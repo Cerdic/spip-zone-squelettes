@@ -1,0 +1,35 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site.]
+
+<BOUCLE_test_doublon_rubrique(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param2,#PARAMETRE2}
+</BOUCLE_test_doublon_rubrique>
+#SET{listeRubs, #GET{param2}|explode{','}}
+<BOUCLE_doublon_rubrique(RUBRIQUES){id_rubrique IN #GET{listeRubs}} {doublons}>
+</BOUCLE_doublon_rubrique>
+
+<B_rubriques>
+<div class="well"[ id="(#ENV{skel})"]>
+	<ul class="nav nav-list">
+	<li class="nav-header"><:rubriques:></li>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre} {doublons}>
+		<li class="#EXPOSE{active}">
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul class="nav nav-list">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li class="#EXPOSE{active}"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</B_test_expose></BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+</div>
+</B_rubriques>

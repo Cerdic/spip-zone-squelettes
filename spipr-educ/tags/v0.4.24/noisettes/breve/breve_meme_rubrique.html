@@ -1,0 +1,21 @@
+<BOUCLE_pagination_breve_meme_rubrique(spipr_educ)
+	{nom=breve_meme_rubrique}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=breve}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:autres_breves:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_breve_meme_rubrique>
+[(#REM) Breves dans la meme rubrique ]
+<B_breves>
+	<div class="liste breves" id="breve_meme_rubrique">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_breves(BREVES){id_rubrique}{exclus}{par date}{inverse}{pagination #GET{nb}}>
+				<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+			</BOUCLE_breves>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+</B_breves>

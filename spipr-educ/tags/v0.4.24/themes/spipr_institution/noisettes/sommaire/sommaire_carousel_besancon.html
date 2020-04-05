@@ -1,0 +1,63 @@
+[(#SET{Nb_actu,5})]
+
+[(#REM) tableau de la liste des articles a la une ]
+[(#SET{article_bandeau, #ARRAY})]
+
+[(#REM) Article a la une ]
+<BOUCLE_array_une(ARTICLES) {titre_mot=a la une} {!par date}>
+    [(#SET{article_bandeau, #GET{article_bandeau}|push{#ID_ARTICLE}})]
+    [(#SET{Nb_une,#COMPTEUR_BOUCLE})]
+</BOUCLE_array_une>
+
+<B_articles_une>
+<div id="bandeau-actu">
+
+    [(#REM) Affichage articles à la Une ]
+
+    <div id="txt_ctrl">
+        <ul id="bandeau_txt_liste">
+
+            <BOUCLE_articles_une(ARTICLES) {id_article IN #GET{article_bandeau}}>
+                <li id="txt_bandeau_ct_#COMPTEUR_BOUCLE" class="txt_bandeau_ct"[ (#COMPTEUR_BOUCLE|!={1}|?{'style="display:none;"',''})]>
+                    <a href="#URL_ARTICLE##ID_ARTICLE" title="[(#TITRE|supprimer_numero|attribut_html)]">
+                    <div class="accroche_une">
+                        <h2 class="titre">[(#TITRE|supprimer_numero|texte_backend)]</h2>
+                        <div class="Chapo_aLaUne">[(#CHAPO|textebrut)][(#CHAPO|textebrut|match{.*(\?|!|\.)$}|?{'','.'})]</div>
+                    </div>
+                    </a>
+                </li>
+            </BOUCLE_articles_une>
+		</ul>
+
+ 
+    [(#REM) Bandeau à la Une avec commandes de défilement ]
+    <div id="image_bandeau_ctrl">
+        <a class="play_bt" title="Lancer le défilement des actualités">&nbsp;</a>
+        <a class="pause_bt" title="Arrêter le défilement des actualités">&nbsp;</a>
+        <div class="image_bandeau_ctrl_item">
+            <ul class="list_item">
+            <BOUCLE_bouton_bandeau(ARTICLES) {id_article IN #GET{article_bandeau}}>
+                <li id="item_bt_#COMPTEUR_BOUCLE" class="item_bt[ (#COMPTEUR_BOUCLE|=={1}|?{'selected',''})]">
+                    <a href="/?img_bandeau=#COMPTEUR_BOUCLE"[ title="(#TITRE|supprimer_numero|attribut_html)"]><span>&nbsp;</span></a>
+                </li>
+            </BOUCLE_bouton_bandeau>
+            </ul>
+        </div><!-- fin de #image_bandeau_ctrl_item -->
+    </div><!-- fin de #image_bandeau_ctrl -->
+    </div>
+
+
+        <ul id="bandeau_img_liste">
+
+            <BOUCLE_articles_une_img(ARTICLES) {id_article IN #GET{article_bandeau}}>
+                <li id="img_bandeau_ct_#COMPTEUR_BOUCLE" class="img_bandeau_ct"[ (#COMPTEUR_BOUCLE|!={1}|?{'style="display:none;"',''})]>
+                        <a href="#URL_ARTICLE##ID_ARTICLE" title="[(#TITRE|supprimer_numero|attribut_html)]">
+                            [(#LOGO_ARTICLE_NORMAL||image_recadre{680,279}|inserer_attribut{'alt',[(#_articles_une_img:TITRE|supprimer_numero|texte_backend)]})]
+                        </a>
+                </li>
+            </BOUCLE_articles_une_img>
+        </ul>
+
+
+</div>
+</B_articles_une>

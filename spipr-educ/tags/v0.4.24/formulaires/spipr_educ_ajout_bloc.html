@@ -1,0 +1,44 @@
+#CACHE{0}
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Ajout d'un bloc personnel</div></h3>
+
+<p>Pour ajouter un bloc personnel, placez-le dans le répertoire <b>noisettes/#ENV{page}</b> situé à la racine de votre site ou dans le plugin SPIPr-éduc, indiquez son nom ci-dessous (sans l'extension html) et choisissez le secteur dans lequel l'insérer.</p>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+#SET{tableau_secteur, #ARRAY{header,Entête,breadcrumb,Fil d'ariane,content,Colonne de contenus,aside,Colonne secondaire,extra,Colonne tertiaire,footer,Pied de page,head,Entêtes html,head_js,Déclarations Javascript}}
+
+<form method='post' action='#ENV{action}' name ='form#ENV{page}ajouter'>
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<fieldset>
+		<legend>Nom du bloc</legend>
+		<div class="editer-groupe">
+			<div class="choix">
+				<label for="nom_bloc">Nom du bloc (sans l'extension html)</label>
+				<input type='text' name='nom_bloc' id='nom_bloc' value="" class="text" />
+			</div>
+		</div>
+	</fieldset>
+	<B_test>
+	<fieldset>
+		<legend>Choix du secteur</legend>
+		<div class="editer-groupe">
+			<BOUCLE_test(DATA){source table,#GET{tableau_secteur}}>
+			<div class="choix">
+				<label for="ajout_secteur_#CLE">
+				<input type="radio"  class="radio" id="ajout_secteur_#CLE" name="nom_secteur" value="#CLE" />
+				#VALEUR
+				</label>
+			</div>			
+			</BOUCLE_test>
+		</div>
+	</fieldset>
+	</B_test>
+	<p class='boutons'><input type='submit' class='submit' value='Ajouter' /></p>
+</form>
+</div></div>

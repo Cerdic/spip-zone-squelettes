@@ -1,0 +1,32 @@
+<BOUCLE_pagination_rubrique_sites(spipr_educ)
+	{nom=rubrique_sites}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=rubrique}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:spipr_educ:nouveau_web:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_rubrique_sites>
+
+<BOUCLE_rubrique_sites(RUBRIQUES){id_rubrique}>
+	[(#REM) Sites de la rubrique ]
+	<B_sites>
+	<div class="liste sites" id="rubrique_sites">
+		#ANCRE_PAGINATION
+		[<h2 class="h2">(#GET{titreBloc})</h2>]
+		<ul class="liste-items">
+			<BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #GET{nb}}>
+				<li class="item short">#INCLURE{fond=inclure/resume/site,id_syndic}
+				<B_syndic>
+					<ul class="spip">
+					<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+						<li class="short with-publication-inline">#INCLURE{fond=inclure/resume/syndic_article,id_syndic_article}</li>
+					</BOUCLE_syndic>
+					</ul>
+				</B_syndic>
+				</li>
+			</BOUCLE_sites>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+	</B_sites>
+</BOUCLE_rubrique_sites>

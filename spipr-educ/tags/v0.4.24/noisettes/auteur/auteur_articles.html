@@ -1,0 +1,24 @@
+<BOUCLE_pagination_auteur_articles(spipr_educ)
+	{nom=auteur_articles}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{parametre1=auteur}>
+	[(#PARAMETRE7|?{#SET{titreBloc,#PARAMETRE7},#SET{titreBloc,<:articles_auteur:>}})]
+	[(#PARAMETRE5|?{#SET{nb,#PARAMETRE5},#SET{nb,5}})]
+</BOUCLE_pagination_auteur_articles>
+
+<BOUCLE_auteur_articles(AUTEURS){id_auteur}>
+	[(#REM) Articles de l'auteur ]
+	<B_articles>
+	<div class="liste articles" id="auteur_articles">
+		#ANCRE_PAGINATION
+		<h2 class="h2">[(#GET{titreBloc})] (#GRAND_TOTAL)</h2>
+		<ul class="liste-items">
+			<BOUCLE_articles(ARTICLES) {id_auteur} {!par popularite} {pagination #GET{nb}}>
+			<li class="item"><a href="#URL_ARTICLE">#TITRE</a></li>
+			</BOUCLE_articles>
+		</ul>
+		[<div class="pagination[ (#ALIGNEMENTPAGINATION)]">(#PAGINATION)</div>]
+		<div class="clearfix"></div>
+	</div>
+	</B_articles>
+</BOUCLE_auteur_articles>

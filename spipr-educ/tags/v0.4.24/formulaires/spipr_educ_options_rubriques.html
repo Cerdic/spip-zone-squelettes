@@ -1,0 +1,52 @@
+<head>
+	<style type="text/css">
+	.checkbox:checked + .label_barre{
+		font-weight: bold;
+	}
+   </style>
+</head> 
+
+<form method='post' action='#ENV{action}' name ='formoptionsrubriques' style='clear:both;'>
+
+#BOITE_OUVRIR{#CHEMIN_IMAGE{spipr_dist-16.png}|balise_img{'',cadre-icone}|concat{Exclure des contenus de cette rubrique :},'simple','section'}
+
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	#SET{tableau_rubriques_exclues_sommaire,#ENV**{rubriques_exclues_sommaire}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='rubriques_exclues_sommaire' value='oui' id='rubriques_exclues_sommaire'[ (#GET{tableau_rubriques_exclues_sommaire}|find{#ENV{id_rubrique}}|oui)checked="checked"] />
+			<label for='rubriques_exclues_sommaire' class='label_barre'>Exclure de la page de sommaire les contenus de cette rubrique</label>
+		</div>
+	
+	#SET{tableau_rubriques_exclues_menu_horizontal,#ENV**{rubriques_exclues_menu_horizontal}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='rubriques_exclues_menu_horizontal' value='oui' id='rubriques_exclues_menu_horizontal'[ (#GET{tableau_rubriques_exclues_menu_horizontal}|find{#ENV{id_rubrique}}|oui)checked="checked"] />
+			<label for='rubriques_exclues_menu_horizontal' class='label_barre'>Exclure du menu de navigation horizontal cette rubrique et ses sous-rubriques</label>
+		</div>
+	
+	#SET{tableau_rubriques_exclues_menu,#ENV**{rubriques_exclues_menu}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='rubriques_exclues_menu' value='oui' id='rubriques_exclues_menu'[ (#GET{tableau_rubriques_exclues_menu}|find{#ENV{id_rubrique}}|oui)checked="checked"] />
+			<label for='rubriques_exclues_menu' class='label_barre'>Exclure du menu de navigation vertical cette rubrique et ses sous-rubriques</label>
+		</div>
+
+	#SET{tableau_rubriques_exclues_plan,#ENV**{rubriques_exclues_plan}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='rubriques_exclues_plan' value='oui' id='rubriques_exclues_plan'[ (#GET{tableau_rubriques_exclues_plan}|find{#ENV{id_rubrique}}|oui)checked="checked"] />
+			<label for='rubriques_exclues_plan' class='label_barre'>Exclure du plan du site cette rubrique et ses sous-rubriques</label>
+		</div>
+		
+	#SET{tableau_rubriques_exclues_rss,#ENV**{rubriques_exclues_rss}|explode{','}}
+		<div class="choix">
+			<input type='checkbox' class="checkbox" name='rubriques_exclues_rss' value='oui' id='rubriques_exclues_rss'[ (#GET{tableau_rubriques_exclues_rss}|find{#ENV{id_rubrique}}|oui)checked="checked"] />
+			<label for='rubriques_exclues_rss' class='label_barre'>Exclure des flux RSS les articles de cette rubrique et de ses sous-rubriques</label>
+		</div>
+
+	<input type='hidden' name='hidden_options_rubriques' value='ok' />
+
+#BOITE_PIED
+#BOUTON_ACTION{Valider,#SELF}
+#BOITE_FERMER
+</form>

@@ -1,0 +1,95 @@
+
+[(#REM) Exclusion des rubriques à ne pas afficher ]
+<BOUCLE_test_doublon_rubrique(spipr_educ)
+	{nom=options_rubriques}
+	{nom_sauvegarde=en_cours_d_utilisation_SPIPr}
+	{type=gestion bloc}>
+	#SET{param5,#PARAMETRE5}
+</BOUCLE_test_doublon_rubrique>
+#SET{listeRubs, #GET{param5}|explode{','}}
+<BOUCLE_doublon_rubrique(RUBRIQUES){id_rubrique IN #GET{listeRubs}} {doublons}>
+</BOUCLE_doublon_rubrique>
+
+[(#SET{secteur,#ID_SECTEUR})]
+
+<BOUCLE_principale_menu_secteurs(RUBRIQUES){racine} {par num titre} {par num titre, titre} {doublons}>
+
+[(#GET{secteur}|=={#ID_SECTEUR}|?{[(#SET{sous_rubrique_active,'sous_rubrique_active'})],''})]
+
+<div class="encart_menu_rub[ (#GET{sous_rubrique_active})]" id="#ID_SECTEUR">
+	<div class="plan_rubriques">
+		<ul>
+	        [(#REM) Exclusion des rubriques à ne pas afficher ]
+	        <BOUCLE_rubriques(RUBRIQUES) {id_parent} {doublons} {par num titre, titre}>
+ 
+		    [(#REM) affiche un plan de la rubrique mélange des articles et rubriques ]
+
+		    [(#REM) Tests CHAPO* dans les boucles articles pour ouvrir un target blank pour les redirections (article virtuelle) ]
+
+		    [(#REM) Boucle article avant la dernière rubrique ]
+			<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique=#ID_SECTEUR} {doublons melange} {par num titre, titre}>
+			<li class="rub">
+				<span><a href="#URL_ARTICLE" class="sous_rub sous_rub_link">[(#TITRE|supprimer_numero)]</a></span>
+			</li>
+			[(#REM) retour à la ligne toute les trois rubriques ]
+			</BOUCLE_articles_rubrique>
+
+
+		    [(#REM) Les rubriques de la rubrique en cours ]
+			<li class="rub">
+				<span><a href="<BOUCLE_check_id_parent(RUBRIQUES) {id_parent} {0,1}>#_rubriques:URL_RUBRIQUE</BOUCLE_check_id_parent>[(#URL_RUBRIQUE)]<//B_check_id_parent>" class="sous_rub_link">[(#TITRE|supprimer_numero)]</a></span>
+
+				[(#REM) Plan des sous rubriques ]
+				<ul class="sous_rubriques_CE">
+
+				    [(#REM) Plan des sous sous rubriques possedants des rubriques mélangées avec des articles ]
+				    <BOUCLE_rubrique_in(RUBRIQUES){id_parent}{0,1}>
+                
+				        <BOUCLE_plan_sous_rubrique(RUBRIQUES) {meme_parent} {par num titre, titre}>
+
+						<BOUCLE_plan_article_sous_rubrique(ARTICLES) {id_rubrique=#_rubriques:ID_RUBRIQUE} {doublons melange} {par num titre} {par titre}>
+						<li>
+							<a href="[(#URL_ARTICLE)]" class="sous_sous_rub">[(#TITRE|supprimer_tags|supprimer_numero)]</a>
+						</li>
+						</BOUCLE_plan_article_sous_rubrique>
+
+			    		<li>
+						    <a href="[(#URL_RUBRIQUE)]" class="sous_sous_rub">[(#TITRE|supprimer_numero)]</a>
+					    </li>
+
+				        </BOUCLE_plan_sous_rubrique>
+
+					    <BOUCLE_plan_article_sous_rubrique_fin(ARTICLES) {id_rubrique=#_rubriques:ID_RUBRIQUE} {par num titre} {par titre} {doublons melange}>
+			    		<li>
+						<a href="[(#URL_ARTICLE)]" class="sous_sous_rub">[(#TITRE|supprimer_numero)]</a>
+					    </li>
+					    </BOUCLE_plan_article_sous_rubrique_fin>
+
+				    </BOUCLE_rubrique_in>
+
+					   [(#REM) Plan des sous rubriques ne possedants que des articles ]
+					    <BOUCLE_plan_article_sous_rubrique_num(ARTICLES){id_rubrique}{doublons melange}{par num titre, titre}>
+			    		<li>
+						    <a href="[(#URL_ARTICLE)]" class="sous_sous_rub">[(#TITRE|supprimer_numero)]</a>
+					    </li>
+					    </BOUCLE_plan_article_sous_rubrique_num>
+
+					<//B_rubrique_in>
+				</ul>
+			</li>
+			</BOUCLE_rubriques>
+
+			<BOUCLE_article_fin(ARTICLES) {id_rubrique=#ID_SECTEUR} {par num titre, titre} {doublons melange}>
+			<li class="rub">
+				<span><a href="#URL_ARTICLE" class="sous_rub sous_rub_link">[(#TITRE|supprimer_numero)]</a></span>
+			</li>
+			</BOUCLE_article_fin>
+		</ul>
+		[(#TOTAL_BOUCLE|!={#COMPTEUR_BOUCLE}|?{'</div>',''})]<!-- fin de plan de rubrique ##ID_SECTEUR, div automatiquement ajouté pour le dernier bloc. A creuser pour en comprendre l'origine -->
+    <br class="nettoyeur" />
+    <div class="acces">
+        <span><a href="[(#URL_RUBRIQUE)]">Consultez la rubrique : [(#TITRE|supprimer_numero)]</a></span><a href="" class="fermer_menu">FERMER</a>
+    </div><!-- fin acces -->
+</div><!--fin de encart-menu-rub ##ID_SECTEUR -->
+</BOUCLE_principale_menu_secteurs>
+</div>

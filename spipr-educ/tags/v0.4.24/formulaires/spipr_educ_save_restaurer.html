@@ -1,0 +1,74 @@
+<?php
+if ('[(#ENV**{sauvegarde_presente})]'!='non') {
+?>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM formulaire_#FORM-#ENV{id,nouveau}">
+<h3 class='titrem'><div style="text-align:center;">Restaurer un habillage ou supprimer une sauvegarde d'habillage</div></h3>
+
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+
+<form method='post' action='#ENV{action}' name ="save_restaurer">
+	[(#REM) declarer les hidden qui declencheront le service du formulaire
+	parametre : url d'action ]
+	#ACTION_FORMULAIRE{#ENV{action}}
+	
+	<?php
+	$test_retour=sql_select('*','spip_spipr_educ',"type='theme'");
+	while ($tab_retour = sql_fetch($test_retour)){
+		if (_request('sauvegarde')==$tab_retour['id']) {
+			if (_request('Supprimer')=='Supprimer la sauvegarde') {
+			?>
+			#BOITE_OUVRIR{'','notice'}
+			Confirmez la suppression de la sauvegarde : <b>
+			<?php echo $tab_retour['nom_sauvegarde'];?></b>
+			<input type='hidden' name='hidden_confirme_supp' value='<?php echo $tab_retour['id'];?>' />
+			<p style="text-align:right;"><input type='submit' class='submit' value='Confirmer la suppression' name='confirme_supp' style='margin:10px;' /></p>
+			#BOITE_FERMER
+			<?php }
+			if (_request('Restaurer')=='Restaurer la sauvegarde') {
+			?>
+			#BOITE_OUVRIR{'','notice'}
+			Confirmez la restauration de la sauvegarde : <b>
+			<?php echo $tab_retour['nom_sauvegarde'];?></b>
+			<input type='hidden' name='hidden_confirme_restaure' value='<?php echo $tab_retour['id'];?>' />
+			<p style="text-align:right;"><input type='submit' class='submit' value='Confirmer la restauration' name='confirme_rest' style='margin:10px;' /></p>
+			#BOITE_FERMER
+			<?php } ?>
+	<?php } } ?>
+	
+
+	<fieldset>
+		<legend>Choix de la sauvegarde à restaurer ou supprimer</legend>
+		<div class="editer-groupe" style="margin:0 6px;">
+
+			<?php
+			$test_save=sql_select('*','spip_spipr_educ',"type='theme'");
+			while ($tab_save = sql_fetch($test_save)){
+				$nom=$tab_save['nom_sauvegarde'];
+				$id=$tab_save['id'];
+				if ($nom!='en_cours_d_utilisation_SPIPr') {
+				?>
+				<div class="choix" style="padding-bottom:10px;">
+					<input type='radio' class="radio" name='<?php echo "sauvegarde"; ?>' value='<?php echo $id; ?>' id='<?php echo "sauvegarde".$id; ?>' />
+					<label for='<?php echo "sauvegarde".$id; ?>'><?php echo $nom; ?></label>
+				</div>
+				<?php
+				}
+			}
+			?>
+			
+		</div>
+	</fieldset>
+	
+	<input type='hidden' name='hidden_save_restaurer' value='ok' />
+	
+	<p class='boutons'>
+		<input type='submit' class='submit' value='Restaurer la sauvegarde' name='Restaurer' />
+		<input type='submit' class='submit' value='Supprimer la sauvegarde' name='Supprimer' />
+	</p>
+
+</form>
+</div>
+
+<?php } ?>
