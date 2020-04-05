@@ -1,0 +1,55 @@
+<BOUCLE_article(ARTICLES){id_article}><!DOCTYPE HTML>
+<html>
+	<head>
+		<title>#INFO_TITRE{article,#ID_ARTICLE}&nbsp;|&nbsp;#NOM_SITE_SPIP</title>
+		<meta name="viewport" content="width=1120,user-scalable=no" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+
+		<INCLURE{fond=inclure/head, env}>
+			
+		<style type='text/css'>
+		[(#REM) récupération de la couleur de fond des blocs de texte: config plugin > #d64760 ]
+			#header { background-color: #CONFIG{parallelism/couleur_boites_defaut, #d64760}; }
+		
+		[(#REM) récupération d'un éventuel logo pour l'image de fond ]
+			[(#SET{fond,[(#LOGO_ARTICLE_RUBRIQUE|?{#LOGO_ARTICLE_RUBRIQUE,[(#LOGO_SITE_SPIP|?{#LOGO_SITE_SPIP,non})]})]})]
+			
+		[(#REM) si on utilise un logo comme image-background, calculer la couleur du texte de pied de page]
+		[(#GET{fond}|!={non}|oui)
+			[body, a, a:visited { color: #(#GET{fond}|couleur_extraire{5,5}|couleur_extreme|couleur_inverser); }]]
+		</style>
+	</head>
+	<body[ (#GET{fond}|!={non}|oui)style="background-image: url([(#GET{fond}|image_reduire{800,800}|extraire_attribut{src})]);"][
+	(#PAGE|oui) class="page_unique"]>
+
+		<div id="wrapper">
+
+			<div id="main">
+				<div id="reel">
+					<!-- Header Item -->
+					
+						<div id="header" class="item" data-width="400">
+							<h1 class="#EDIT{titre}">#TITRE</h1>
+							[<div[ class="(#EDIT{texte})"]>(#TEXTE)</div>]
+							<a href="#URL_RUBRIQUE">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>
+						</div>
+					
+					<!-- Thumb Items -->
+					<BOUCLE_images(DOCUMENTS){extension==jpg|png|gif}{par num titre, titre}{id_article}{tout}>#SET{rapport,#HAUTEUR|div{231}}
+						<article class="item thumb" data-width="[(#LARGEUR|div{#GET{rapport}}|intval)]">
+							#MODELE{titre_img,env}
+							<a href="[(#FICHIER|image_reduire{1024}|extraire_attribut{src})]">[(#FICHIER|image_reduire{0,212}|inserer_attribut{alt,[(#TITRE|?{#TITRE,<:parallelism:img_ss_titre:>})]})]</a>
+						</article>
+					</BOUCLE_images>		
+
+				</div>
+			</div>
+		
+		#INCLURE{fond=inc-pied,env}
+
+		</div>
+
+	</body>
+</html></BOUCLE_article>
