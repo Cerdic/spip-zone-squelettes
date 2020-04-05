@@ -1,0 +1,23 @@
+<B_articles>
+<div class="menu menu_articles" id="articles_recents">
+	<h2 class="offscreen"><:articles_recents:></h2>
+	#ANCRE_PAGINATION
+	<ul>
+		<BOUCLE_articles(ARTICLES) {!par date} {pagination 8}>
+		<li class="hentry clearfix">
+		<div class="date_comments">
+		<div class="date_bloc">
+		<div class="date_name gradient_black">[(#DATE|nom_mois|couper{3, ''})].</div><div class="date_number gradient_blue">[(#DATE|jour)]</div>
+		</div>
+		<BOUCLE_combien(FORUMS) {id_article} {plat}></BOUCLE_combien>[<div class="nb_comments">(#TOTAL_BOUCLE)</div>]<//B_combien>
+		</div>
+		[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|inserer_attribut{class, logos_recents}|image_reduire{190,*})]
+			<h1><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h1>
+			[<div class="#EDIT{intro} _introduction">(#INTRODUCTION|couper{190, '...'})</div>]
+			<B_mots><div class="bar_tags"><span class="tags_title"><:mots_clefs:></span> &nbsp; <BOUCLE_mots(MOTS) {id_article} {par titre}><a href="#URL_MOT" rel="tag">#TITRE &nbsp; </a></BOUCLE_mots></div></B_mots>
+		</li>
+		</BOUCLE_articles>
+	</ul>
+	[<p class="pagination">(#PAGINATION|{page})</p>]
+</div><!--#articles_recents-->
+</B_articles>

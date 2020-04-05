@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_sommaire">
+<div class="page">
+
+	<INCLURE{fond=inclure/header}{home=oui} />
+	<INCLURE{fond=inclure/nav,env} />
+	
+	<div class="main">
+		
+		<div class="aside">
+		
+		
+		
+		[(#REM) Bloc logo site et descriptif. ]
+		<div class="aside_bloc_content">
+	    [(#ENV{home,'non'}|=={oui}|?{
+	    <h1 id="logo">[(#LOGO_SITE_SPIP)]</h1>
+	    ,
+	    <strong class="h1" id="logo"><a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">[(#LOGO_SITE_SPIP|inserer_attribut{class, 'logos_100'})]</a></strong>
+	    })]
+		[<b>(#NOM_SITE_SPIP)</b>]
+		[<div style="font-size: 0.80em; line-height: 1.3em; margin-top: 0.4em;">(#DESCRIPTIF_SITE_SPIP)</div>]
+		</div>
+		
+		
+		
+		[(#REM) Liens des forums ]
+		<div class="aside_bloc_content">
+		<div class="left_bloc_title"><:derniers_commentaires:></div>
+		<B_forums_liens>
+		#ANCRE_PAGINATION
+		<BOUCLE_forums_liens(FORUMS?) {plat} {!par date} {pagination 3}>
+		<p class="small_text"><strong>[(#NOM|sinon{<:anonyme:>}),]</strong> [(#DATE|date_relative)]<br />
+		[<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>(#TEXTE|couper{73, '...'})</a>]
+		</p>
+		</BOUCLE_forums_liens>
+		[<div class="pagination_round" align="center">(#PAGINATION|{page})</div>]
+		</B_forums_liens>
+		</div>
+		
+		
+		[(#REM) Sur le Web ]
+		<B_syndic>
+		<div class="aside_bloc_content">
+		<div class="left_bloc_title"><:sur_web:></div>
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {0,5}{lang}>
+		<div class="small_text_2">
+		[(#LOGO_SITE|inserer_attribut{class, logos_small}|image_reduire{34,*})]
+		<b>[(#NOM_SITE),]</b> [(#DATE|affdate_jourcourt)]<br />
+		<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a>
+		</div>
+		</BOUCLE_syndic>
+		</div>
+		</B_syndic>
+		
+		
+		[(#REM) Les plus visitées ]
+		<div class="aside_bloc_content">
+        <div class="left_bloc_title"><:les_plus_vues:></div>
+		<ol style="list-style-type: decimal; margin-left: 1.7em; font-size: 0.75em; line-height: 1.25em; ">
+        <BOUCLE_most_viewed(ARTICLES) {!par visites} {0,5}>
+        <li style="margin-bottom: 0.8em; "><a href="#URL_ARTICLE">#TITRE</a></li>
+        </BOUCLE_most_viewed>
+		</ol>
+		</div>
+		
+		
+		[(#REM) Au hasard ]
+		<div class="aside_bloc_content">
+        <div class="left_bloc_title"><:au_hasard:></div>
+        <ol style="list-style-type: decimal; margin-left: 1.7em; font-size: 0.75em; line-height: 1.25em; ">
+		<BOUCLE_hasard(ARTICLES) {par hasard} {0,5}>
+        <li style="margin-bottom: 0.8em; "><a href="#URL_ARTICLE">#TITRE</a></li>
+        </BOUCLE_hasard>
+		</ol>
+		</div>
+		
+		
+
+		</div><!--.aside-->
+		
+		
+		
+		
+		
+		
+		<div class="wrapper hfeed">
+		<div class="content_sommaire" id="content_sommaire">
+			<INCLURE{fond=inclure/recents,env,ajax} />
+		</div><!--.content-->
+		</div><!--.wrapper-->
+		
+		
+	</div><!--.main-->
+	
+	
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+	
+	
+</div><!--.page-->
+</body>
+</html>

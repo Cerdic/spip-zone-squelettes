@@ -1,0 +1,128 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_article">
+<div class="page">
+
+	<INCLURE{fond=inclure/header} />
+	<INCLURE{fond=inclure/nav,env} />
+	
+	<div class="main">
+	
+	
+		<div class="aside">
+		
+		<INCLURE{fond=inclure/navsub, id_rubrique} />
+		
+		[<div class="aside_bloc_content" style="text-align:center;">
+		<a href="[(#LOGO_ARTICLE|extraire_attribut{src}|url_absolue)]" class="mediabox">
+		(#LOGO_ARTICLE|inserer_attribut{class, 'logos_100'})
+		<img src="#CHEMIN{img/agrandir.png}" alt="++" />
+		</a>
+		</div>]
+		
+			
+		[(#REM) Articles dans la meme rubrique ]
+		<div class="aside_bloc_content">
+		<div class="left_bloc_title"><:meme_rubrique:></div>
+		<B_articles_rubrique>
+		#ANCRE_PAGINATION
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!par date} {pagination 5}>
+		<p class="small_text">
+		<a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a><br />
+		[(#DATE|date_interface)]
+		</p>
+		</BOUCLE_articles_rubrique>
+		[<div class="pagination_round" align="center">(#PAGINATION|{page})</div>]
+		</B_articles_rubrique>
+		</div>
+			
+			
+		</div><!--.aside-->
+	
+	
+	
+	
+	
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div class="wrapper hfeed">
+		<div class="content hentry" id="content">
+			
+			
+			
+			
+			<p class="arbo"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+	
+			
+			<div class="cartouche">
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h1 class="#EDIT{titre} surlignable"><strong>#TITRE</strong></h1>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[<span class="sep">, </span><span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+				
+				<B_mots><div class="bar_tags2"><span class="tags_title"><:mots_clefs:></span> &nbsp; <BOUCLE_mots(MOTS) {id_article} {par titre}><a href="#URL_MOT" rel="tag">#TITRE &nbsp; </a></BOUCLE_mots></div></B_mots>
+		
+				
+				[(#REM) Inclure le modele des liens de traductions ]
+				#MODELE{article_traductions}
+			</div>
+			
+			[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{460,*})</div>]
+			[<div class="article_text">(#TEXTE|image_reduire{516,*})</div>]
+		
+		
+		    <small>
+			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{ps} ps surlignable"><hr class="hr2" /><b>P.-S.</b> (#PS|image_reduire{450,*})</div>]
+			
+		
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents,id_article, env})]
+	
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument {env}
+			et pourquoi pas ajax
+			][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+			
+			[<div class="notes"><hr />(#NOTES)</div>]
+			</small>
+			
+		    [(#REM) Forum de l'article ]
+			<small>
+			<a href="#forum" name="forum" id="forum"></a>
+			<INCLURE{fond=inclure/forum,id_article} />
+			</small>
+			[<h3><:forum:form_pet_message_commentaire:></h3>
+			<small>
+			(#FORMULAIRE_FORUM)]
+			</small>
+			
+
+
+
+	
+		</div><!--.content-->
+		</div><!--.wrapper-->
+	
+	
+	</div><!--.main-->
+
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div><!--.page-->
+</body>
+</html>
+</BOUCLE_principale>
