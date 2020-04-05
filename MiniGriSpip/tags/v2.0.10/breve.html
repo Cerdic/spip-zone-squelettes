@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG"></BOUCLE_lang>
+
+    <head>
+      <title>[(#TITRE|textebrut)]</title>
+      #INCLURE{fond=inc/head}
+    </head>
+    <body dir="#LANG_DIR">
+      <!-- Bloc principal englobant tous les autres -->
+      <div id="mgs_page">
+        <!-- Bloc d'en tete -->
+        <div id="mgs_tete">
+          <!-- Bloc bandeau nom du site et menus generaux -->
+          #INCLURE{fond=inc/bandeau}
+        
+          <!-- Bloc hierarchie de navigation -->
+          <div id="mgs_hierarchie">
+            <a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+            <BOUCLE_ariane(HIERARCHIE) {id_rubrique} {tout}>
+              &gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+            </BOUCLE_ariane>
+            [ &gt; <b>(#TITRE|textebrut|supprimer_numero|couper{80})</b>]
+          </div> <!-- /hierarchie -->
+        </div> <!-- /tete -->
+
+        <!-- Bloc central avec les menus et le contenu -->
+        <div id="mgs_corps">
+          <!-- Bloc menus de navigation -->
+          <div id="mgs_navigation">
+
+            <!-- formulaire de recherche -->
+            #INCLURE{fond=inc/recherche}
+
+            <!-- Bloc liste hierarchique de toutes les rubirques existantes -->
+            #INCLURE{fond=inc/menu_rubriques,id_rubrique}
+
+            <!-- Bloc liste des 10 dernieres breves -->
+            #INCLURE{fond=inc/dernieres_breves,env} <!-- /menu -->
+
+            <!-- Bloc liste des 10 dernieres syndications -->
+	    [(#REM) un inclure dynamique pour un cache plus court]
+            <INCLURE{fond=inc/articles_syndiques,env}>
+
+            <!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->
+	    #INCLURE{fond=inc/pied,lang}
+
+          </div> <!-- /navigation -->
+
+          <!-- Bloc du contenu principal -->
+          <div class="contenu" id="mgs_principal">
+          
+            <!-- Bloc du contenu -->
+            <div class="mgs_menu">
+              <ul class="general">
+                <li class="mgs_menu_titre"><:mgs:breve:></li>
+              </ul>
+              
+              <!-- Bloc du contenu de l'article/breve -->
+              <div class="mgs_article">
+                [<div class="mgs_logo #EDIT{logo}">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{60})</div>]
+                <h2 class="mgs_titre #EDIT{titre}">&nbsp;&nbsp;#TITRE</h2>
+                <p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+                [<div class="mgs_texte #EDIT{texte}">(#TEXTE|image_reduire{500,0})</div>]
+                [<div class="mgs_ps #EDIT{ps}"><:voir_en_ligne:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>.</div>]
+                [<div class="mgs_notes">(#NOTES)</div>]
+              </div> <!-- /article -->
+            </div> <!-- /menu -->
+            <br />
+            <!-- Inclusion des Forums -->
+            <INCLURE{fond=inc/forum}{id_breve} {self=#SELF}>
+          </div> <!-- /contenu -->
+        </div> <!-- /corps -->
+      </div> <!-- /page -->
+    </body>
+  </html>
+</BOUCLE_breve_principal>

@@ -1,0 +1,32 @@
+[(#REM)
+  Copie du 2012-08-26 20:44:41 par François Rygaert
+  Fichier original plugins/auto/minigrispip/v002.000.008/inc/docs-joints.html
+]
+<div class="bloc clearfix" id="documents_portfolio">
+<ul>
+        <BOUCLE_documents_joints(DOCUMENTS) {id_article}{extension==jpg|png|gif} {mode=document} {vu=non} {doublons images}{par titre, fichier}>
+	<li class="mgs_images">[(#LOGO_DOCUMENT|#URL_DOCUMENT|image_recadre{100,100,center})][<br />(#TITRE)][(#DESCRIPTIF)]</li>
+        </BOUCLE_documents_joints>
+</ul>
+</div>
+
+<B_liste_documents>
+<div class="mgs_bloc" id="">
+
+	<ul class="general">
+		<!-- Liste des documents joints -->
+		<BOUCLE_liste_documents(DOCUMENTS) {id_rubrique ?} {id_article ?} {mode=document} {doublons images} {doublons embed} {pagination 5}>
+		<li class="mgs_menu_item_article">
+			<div class="mgs_pictos">
+				<a href="#URL_DOCUMENT">
+					[(#LOGO_DOCUMENT||image_reduire{60})]
+					[<strong>(#TITRE)</strong><br />][<em>(#DESCRIPTIF)</em>]
+					<small>[(#FICHIER|fileofurl)][ - (#TYPE_DOCUMENT)][ - (#TAILLE|taille_en_octets)][<em> - ((#DATE|affdate{'d/m'}))</em>]</small>
+				</a>
+			</div>
+		</li>
+		</BOUCLE_liste_documents>
+		[<li class="mgs_menu_titre">(#PAGINATION)</li>]
+	</ul>
+</div> <!-- /mgs_bloc -->
+</B_liste_documents>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
+  <head>
+    <title>[#NOM_SITE_SPIP]</title>
+    #INCLURE{fond=inc/head}
+  </head>
+  <body dir="#LANG_DIR">
+    <!-- Bloc principal englobant tous les autres -->
+    <div id="mgs_page">
+      <!-- Bloc d'en tete -->
+      <div id="mgs_tete">
+        <!-- Bloc bandeau nom du site et menus generaux -->
+          #INCLURE{fond=inc/bandeau}
+        <!-- Bloc hierarchie de navigation -->
+        <div id="mgs_hierarchie">
+          <a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <b>(#RECHERCHE)</b>]
+        </div> <!-- /hierarchie -->
+      </div> <!-- /tete -->
+      
+      <!-- Bloc central avec les menus et le contenu -->
+      <div id="mgs_corps">
+        <!-- Bloc menus de navigation -->
+        <div id="mgs_navigation">
+            <!-- formulaire de recherche -->
+            #INCLURE{fond=inc/recherche}
+
+            <!-- Bloc liste hierarchique de toutes les rubirques existantes -->
+            #INCLURE{fond=inc/menu_rubriques,id_rubrique}
+
+            <!-- Bloc liste des 10 dernieres breves -->
+            #INCLURE{fond=inc/dernieres_breves} <!-- /menu -->
+
+            <!-- Bloc liste des 10 dernieres syndications -->
+	    [(#REM) un inclure dynamique pour un cache plus court]
+            <INCLURE{fond=inc/articles_syndiques,env}>
+
+
+          <!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->
+          #INCLURE{fond=inc/pied,lang}
+
+        </div> <!-- /navigation -->
+
+        <!-- Bloc du contenu principal -->
+        <div id="mgs_principal" class="contenu">
+          <!-- Bloc texte recherche -->
+          <div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:resultats_recherche:> : &#171;&nbsp;#RECHERCHE&nbsp;&#187;</li>
+            </ul>
+          </div> <!-- /menu -->
+
+          <!-- Bloc liste des articles trouves -->
+          <B_articles_rech>
+          <div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:mgs:articles_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs:articles_tri_point:></small>
+              [&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
+              <BOUCLE_articles_rech(ARTICLES) {recherche} {par points} {inverse} {pagination}>
+                <li class="mgs_menu_item_article">
+                  [<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
+                  <h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_ARTICLE">#TITRE</a></h3>
+                  <p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+                  <div class="mgs_chemin">
+                    <BOUCLE_chemin_art(HIERARCHIE) {id_rubrique} {tout}>
+                      &gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+                    </BOUCLE_chemin_art>
+                  </div>
+                </li>
+              </BOUCLE_articles_rech>
+              [<li class="mgs_menu_titre"><:mgs:articles_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs:articles_tri_point:></small>
+              &nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
+            </ul>
+          </div> <!-- /menu -->
+          </B_articles_rech>
+
+          <!-- Bloc liste des breves trouves -->
+          <B_breves_rech>
+          <div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:mgs:breves_trouvees:>#GRAND_TOTAL&nbsp;<small><:mgs:breves_tri_point:></small>
+              [&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
+              <BOUCLE_breves_rech(BREVES) {recherche} {par points} {inverse} {pagination 5}>
+                <li class="mgs_menu_item_article">
+                  [<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
+                  <h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_BREVE">#TITRE</a></h3>
+                  <p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+                  <div class="mgs_chemin"></div>
+                </li>
+              </BOUCLE_breves_rech>
+              [<li class="mgs_menu_titre"><:mgs:breves_trouvees:>#GRAND_TOTAL&nbsp;<small><:mgs:breves_tri_point:></small>
+              &nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
+            </ul>
+          </div> <!-- /menu -->
+          </B_breves_rech>
+
+          <!-- Bloc liste des forums trouves -->
+          <B_forums_rech>
+          <div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:mgs:forums_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs:forums_tri_point:></small>
+              [&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]</li>
+              <BOUCLE_forums_rech(FORUMS) {recherche} {par points} {inverse} {pagination 5}>
+                <li class="mgs_menu_item_forum">
+                  <h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_FORUM">#TITRE</a></h3>
+                  <p class="mgs_infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+                  <div class="mgs_chemin">
+                    <BOUCLE_chemin_for(HIERARCHIE) {id_rubrique} {tout}>
+                      &gt; <a href="#URL_RUBRIQUE">[(#TITRE|textebrut|supprimer_numero|couper{80})]</a>
+                    </BOUCLE_chemin_for>
+                  </div>
+                </li>
+              </BOUCLE_forums_rech>
+              [<li class="mgs_menu_titre"><:mgs:forums_trouves:>#GRAND_TOTAL&nbsp;<small><:mgs:forums_tri_point:></small>
+              &nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;</li>]
+            </ul>
+          </div> <!-- /menu -->
+          </B_forums_rech>
+        </div> <!-- /contenu -->
+      </div> <!-- /corps -->
+    </div> <!-- /page -->
+  </body>
+</html>
+

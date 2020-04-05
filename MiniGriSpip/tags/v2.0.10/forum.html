@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
+
+  <head>
+    <title>[(#TITRE|textebrut)] <:poster_message:></title>
+          #INCLURE{fond=inc/head}
+  </head>
+  <body dir="#LANG_DIR">
+    <!-- Bloc principal englobant tous les autres -->
+    <div id="mgs_page">
+      <!-- Bloc d'en tete -->
+      <div id="mgs_tete">
+        <!-- Bloc bandeau nom du site et menus generaux -->
+          #INCLURE{fond=inc/bandeau}
+        
+        <!-- Bloc hierarchie de navigation -->
+        <div id="mgs_hierarchie">
+          <a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+          <BOUCLE_contexte_article(ARTICLES) {id_article}>
+            <BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+              &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_article>
+            &gt; <a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+          </BOUCLE_contexte_article>
+          </B_contexte_article>
+          <BOUCLE_contexte_breve(BREVES) {id_breve}>
+            <BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+              &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_breve>
+            &gt; <a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+          </BOUCLE_contexte_breve>
+          <//B_contexte_breve>
+        </div> <!-- /hierarchie -->
+      </div> <!-- /tete -->
+      
+      <!-- Bloc central avec les menus et le contenu -->
+      <div id="mgs_corps">
+        <!-- Bloc menus de navigation -->
+        <div id="mgs_navigation">
+            <!-- formulaire de recherche -->
+            #INCLURE{fond=inc/recherche}
+
+            <!-- Bloc liste hierarchique de toutes les rubirques existantes -->
+            #INCLURE{fond=inc/menu_rubriques,id_rubrique}
+                    <!-- Bloc d'inscription au site si option active -->
+          [<div class="mgs_menu">
+            <div class="formulaire">
+              (#FORMULAIRE_INSCRIPTION)
+            </div> <!-- /formulaire -->
+          </div> <!-- /menu -->]
+
+            <!-- Bloc liste des 10 dernieres breves -->
+            #INCLURE{fond=inc/dernieres_breves} <!-- /menu -->
+
+            <!-- Bloc liste des 10 dernieres syndications -->
+	    [(#REM) un inclure dynamique pour un cache plus court]
+            <INCLURE{fond=inc/articles_syndiques,env}>
+
+            <!-- Bloc d'inclusion du pied de page (logos Rss et Spip) -->
+            #INCLURE{fond=inc/pied,lang}
+
+        </div> <!-- /navigation -->
+
+        <!-- Bloc du contenu principal -->
+        <div id="mgs_principal" class="contenu">
+          <!-- Bloc principal du contenu -->
+          <div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:en_reponse:></li>
+              <B_article>
+                <li class="mgs_menu_item_article">
+                <!-- Extrait de l'article a repondre -->
+                <BOUCLE_article(ARTICLES) {id_article}>
+                  [<div class="mgs_logo">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE|image_reduire{45})</div>]
+                  <h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_ARTICLE">#TITRE</a></h3>
+                  <p class="mgs_infos">[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+                  [<div class="mgs_texte">(#INTRODUCTION)</div>]
+                  <h4 class="mgs_repondre"></h4>
+                </BOUCLE_article>
+                </li>
+              </B_article>
+                
+              <B_breve>
+                <li class="mgs_menu_item_article">
+                <!-- Extrait de la breve a repondre -->
+                <BOUCLE_breve(BREVES) {id_breve}>
+                  [<div class="mgs_logo">(#LOGO_BREVE_RUBRIQUE|right|#URL_BREVE|image_reduire{45})</div>]
+                  <h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_BREVE">#TITRE</a></h3>
+                  <p class="mgs_infos">[(#DATE|affdate)]</p>
+                  [<div class="mgs_texte">(#INTRODUCTION)</div>]
+                  <h4 class="mgs_repondre"></h4>
+                </BOUCLE_breve>
+                </li>
+              </B_breve>
+                
+              <B_forum_parent>
+                <li class="mgs_menu_item_forum">
+                <!-- Contenu du precedent message de forum a repondre -->
+                <BOUCLE_forum_parent(FORUMS) {id_forum}>
+                  <div class="mgs_forum_message">
+                    <div class="mgs_forum_chapo">
+                      <h3 class="mgs_titre">&nbsp;&nbsp;
+                      <small><:mgs:reponse_message:> : ##ID_FORUM</small><br />
+                      &nbsp;&nbsp;<a href="#URL_FORUM">#TITRE</a></h3>
+                      <p class="mgs_infos">[(#DATE|affdate)][(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</p>
+                    </div>
+                    [<div class="mgs_forum_texte"><div class="mgs_texte">(#TEXTE)</div></div>]
+                    <h4 class="mgs_repondre"></h4>
+                  </div>
+                </BOUCLE_forum_parent>
+                </li>
+              </B_forum_parent>
+              </ul>
+          </div> <!-- /menu -->
+          
+          <!-- Formulaire pour un nouveau message -->
+<div class="mgs_menu">
+            <ul class="general">
+              <li class="mgs_menu_titre"><:poster_message:> :</li>
+<div class="mgs_forum_message">#FORMULAIRE_FORUM</div>
+		</ul>
+</div>
+        </div> <!-- /contenu -->
+      </div> <!-- /corps -->
+    </div> <!-- /page -->
+  </body>
+</html>
