@@ -1,0 +1,134 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configlayout.gif}|balise_img{'',cadre-icone})]<:escal:layout:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+	
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la taille de police des caracteres  --------------------------------->
+<!--------------------------------------------------------------------------------> 
+            <div class="explication">
+            <:escal:taille_police_explication:>
+            </div>
+
+    <ul>
+            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    <:escal:taille_police:><br />
+                    #SET{name,taillepolice}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:40px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},75})]"  />%
+                            </span> 
+            </li>                              
+	  </ul>
+<!-------------------------------------------------------------------------------->
+<!-- Choisir le layout ----------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+            <div class="explication">
+            <:escal:layout_explication:>
+            </div>
+
+    <ul>
+            #SET{name,layout}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication">
+                    <:escal:layout_fixe:><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMP" value="PMP"
+                            [(#ENV{#GET{name}}|=={PMP}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label  for="#GET{name}_PMP"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPP" value="MPP"
+                            [(#ENV{#GET{name}}|=={MPP}|oui)checked="checked"] /><label for="#GET{name}_MPP"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PPM" value="PPM"
+                            [(#ENV{#GET{name}}|=={PPM}|oui)checked="checked"] /><label for="#GET{name}_PPM"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MP" value="MP"
+                            [(#ENV{#GET{name}}|=={MP}|oui)checked="checked"] /><label for="#GET{name}_MP"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PM" value="PM"
+                            [(#ENV{#GET{name}}|=={PM}|oui)checked="checked"] /><label for="#GET{name}_PM"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+                    <br /><br />
+                    <:escal:layout_fluide:><br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMPfluide" value="PMPfluide"
+                            [(#ENV{#GET{name}}|=={PMPfluide}|oui)checked="checked"] /><label  for="#GET{name}_PMPfluide"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPPfluide" value="MPPfluide"
+                            [(#ENV{#GET{name}}|=={MPPfluide}|oui)checked="checked"] /><label  for="#GET{name}_MPPfluide"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PPMfluide" value="PPMfluide"
+                            [(#ENV{#GET{name}}|=={PPMfluide}|oui)checked="checked"] /><label  for="#GET{name}_PPMfluide"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPfluide" value="MPfluide"
+                            [(#ENV{#GET{name}}|=={MPfluide}|oui)checked="checked"] /><label for="#GET{name}_MPfluide"><img src="#CHEMIN{images/layoutMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMfluide" value="PMfluide"
+                            [(#ENV{#GET{name}}|=={PMfluide}|oui)checked="checked"] /><label for="#GET{name}_PMfluide"><img src="#CHEMIN{images/layoutPM.gif}" alt="" /></label>
+                    <br /><br />
+                   <:escal:layout_mixte:><br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PMPmixte" value="PMPmixte"
+                            [(#ENV{#GET{name}}|=={PMPmixte}|oui)checked="checked"] /><label  for="#GET{name}_PMPmixte"><img src="#CHEMIN{images/layoutPMP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_MPPmixte" value="MPPmixte"
+                            [(#ENV{#GET{name}}|=={MPPmixte}|oui)checked="checked"] /><label  for="#GET{name}_MPPmixte"><img src="#CHEMIN{images/layoutMPP.gif}" alt="" /></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_PPMmixte" value="PPMmixte"
+                            [(#ENV{#GET{name}}|=={PPMmixte}|oui)checked="checked"] /><label  for="#GET{name}_PPMmixte"><img src="#CHEMIN{images/layoutPPM.gif}" alt="" /></label>
+                      <hr />
+                      <:escal:layout_fixe_si:><br />
+                      #SET{name,largeurlayoutbase}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                      
+                      <:escal:layout_fixe_largeur:>
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},950})]"  />px
+                            </span>
+                      <br />                       
+                      #SET{name,colonnelayoutbase}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                      <:escal:layout_largeur_colonnes:>
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},200})]"  />px
+                            </span>
+                      <br /><br />
+                      <:escal:layout_fluide_si:> <br />                          
+                      #SET{name,largeurmaxlayoutfluide}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                      <:escal:layout_fluide_largeur:>
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2000})]"  />px
+                            </span>                            
+                      <br /><br />
+                      <:escal:layout_mixte_si:> <br />                          
+                      #SET{name,colonnelayoutmixte}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                      <:escal:layout_largeur_colonnes:>
+                            [<span class='erreur_message'>(#GET{erreurs})</span>
+                            ]<span class="choix">
+                                     <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},200})]"  />px
+                            </span>
+             
+                    </span></div>
+             </li>
+
+    </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

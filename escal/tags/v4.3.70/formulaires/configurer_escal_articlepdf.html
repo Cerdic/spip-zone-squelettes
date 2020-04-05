@@ -1,0 +1,47 @@
+<!-- Article PDF -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configpdf.png}|balise_img{'',cadre-icone})]<:escal:articlepdf_plugin:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article187&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a>    
+    
+            <div class="explication">
+           <:escal:articlepdf_explication:>
+            </div>
+            <br />
+
+    <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+            #SET{name,rubpdf}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:articlepdf_afficher:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <div class="nettoyeur"></div>
+            </div>
+            </li>
+    </ul>
+    
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+    
+    </div>
+    </form>
+    </div>

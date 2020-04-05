@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="#LANG" >
+
+<BOUCLE_article_principal(ARTICLES){id_article}>
+
+  <head>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
+      <meta name="Description" content="[(#INTRODUCTION|couper{150}|textebrut)]" />
+      [<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+      <meta name="Keywords" content=" <BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>" />
+      <meta name="author" content='<BOUCLE_author(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_author>' />
+      <INCLURE {fond=inclusions/inc-head, env}>
+      <BOUCLE_couleur_article(HIERARCHIE){id_rubrique}{id_article}{0,1}>
+      [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
+      </BOUCLE_couleur_article>
+
+      [(#REM) appel de la feuille de style pour l'impression ]
+      <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
+  </head>
+  <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-article-pleinepage article#ID_ARTICLE rubrique#ID_RUBRIQUE">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_article}{env}>
+          ]
+          
+          <div id="entete">
+            
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace_article}{env}>
+          ]
+          <div class="nettoyeur"></div>
+
+          <BOUCLE_article_central(ARTICLES){id_article}{doublons}>
+
+            <div id="page">
+              <main role="main" id="contenu" >
+                [(#INCLURE{fond=inclusions/inc-article_pleine_page}{env})]
+              </main>
+            </div> 
+
+
+
+          </BOUCLE_article_central>
+          
+            <div id="page">
+              <div id="contenu">
+              <div id="cadre-rubrique">
+              <div id="titre-rubrique" style="margin:20px 0 20px 20px;">
+                <:escal:erreur404:>
+                </div>
+              </div>
+
+               [(#PLUGIN{SPIP_400}|non)
+              <div class="texte">
+              <:escal:erreur404_message:>
+              </div>
+              ]
+
+               [(#PLUGIN{SPIP_400}|oui)
+              <INCLURE{fond=inclure/inc-erreur}{env}{status=#ENV{status,404}}>
+              ]
+              </div>
+            </div>
+
+          <//B_article_central>
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+            </div>
+        </div>
+        <!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+  
+  </BOUCLE_article_principal>
