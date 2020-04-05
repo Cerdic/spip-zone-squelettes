@@ -1,0 +1,18 @@
+<B_lesevenements>
+<div class="liste evenements">
+<div class="ics_icon"><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]" title="<:agenda:agenda:>">[(#CHEMIN{img/ics_agenda.png}|balise_img{<:agenda:agenda:>})]</a></div>
+<h2 class="h2">[(#GRAND_TOTAL|singulier_ou_pluriel{scolaspip:evenement_associe,scolaspip:evenements_associes,nb})]</h2>
+#ANCRE_PAGINATION
+<ul class="liste-items">
+    <BOUCLE_lesevenements(EVENEMENTS ?){!evenement_passe}{par date_debut}{id_article}{pagination 10}>
+    <li class="item hentry">#MODELE{evenement_vevent}</li>
+    </BOUCLE_lesevenements>
+</ul>
+[<p class="pagination">(#PAGINATION{page})</p>]
+</div>
+</B_lesevenements>
+<B_lesevenements_passes>
+<h2 class="h2">[(#GRAND_TOTAL|singulier_ou_pluriel{scolaspip:evenement_passe,scolaspip:evenements_passes,nb})]</h2>
+<p><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]"><:scolaspip:evenements_a_retrouver:></a></p>
+<BOUCLE_lesevenements_passes(EVENEMENTS ?){evenement_passe}{id_article}>
+</BOUCLE_lesevenements_passes>

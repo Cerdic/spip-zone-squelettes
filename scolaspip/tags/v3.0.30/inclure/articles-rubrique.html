@@ -1,0 +1,23 @@
+[(#REM)
+  Listes d'article dans scolaspip
+  Distribue sous licence GPL
+]
+<B_articles>
+<div class="liste articles">
+#ANCRE_PAGINATION
+<h2 class="h2">[(#ENV{titre,<:articles_rubrique:>})]</h2>
+<ul class="liste-items">
+<BOUCLE_articles(ARTICLES){id_rubrique}{!par date} {pagination 10}{!mots.titre=Exclu}>
+	<li class="item hentry">
+		<h3 class="h3 entry-title"><a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE|image_reduire{120,40})]#TITRE</a></h3>	
+		<div class="info-publi[(#CONFIG{scolaspip_plus/affichedate}|!={non}|oui)[(#CONFIG{scolaspip_plus/afficheauteurs}|!={non}|oui) invisible]]">
+		[<abbr class="published[(#CONFIG{scolaspip_plus/affichedate}|=={non}|?{'',' invisible'})]" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]
+		[<span class="auteurs[(#CONFIG{scolaspip_plus/afficheauteurs}|=={non}|?{'',' invisible'})]"><:par_auteur:> (#LESAUTEURS)</span>]
+		</div>		
+		[<div class="#EDIT{intro} introduction entry-content[(#CONFIG{scolaspip_plus/afficheintroduction}|=={non}|?{'',' invisible'})]" >(#INTRODUCTION{120})</div>]
+	</li>
+</BOUCLE_articles>
+</ul>
+[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_articles>

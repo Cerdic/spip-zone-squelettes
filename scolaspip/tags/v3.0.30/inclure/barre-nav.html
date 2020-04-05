@@ -1,0 +1,35 @@
+<div class="menu menu-liste menu-container" id="menuhorizontal">
+    <div class="recherche">#FORMULAIRE_RECHERCHE</div>
+    <ul class="menu-items menu-liste menuder">
+	<li class="item menu-entree home"><a href="#URL_SITE_SPIP" class="intitule" title="<:accueil_site:>">[(#CHEMIN{img/picto-home.png}|balise_img{<:accueil_site:>})]</a></li>
+	[(#PLUGIN{agenda}|?{' '})<li class="item menu-entree[(#CONFIG{scolaspip_plus/boutonagenda}|=={oui}|?{' invisible',''})]"><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]" title="<:scolaspip:agenda_complet:>"><:agenda:agenda:></a></li>]
+	<BOUCLE_articles_selectionnes(ARTICLES){mots.titre IN Dans le menu horizontal,article_bandeau}{par num titre, titre}>
+	<li class="item menu-entree"><a href="#URL_ARTICLE">[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_ARTICLE|image_reduire{30,20})]})][(#TITRE|couper{30})]</a></li>
+	</BOUCLE_articles_selectionnes>
+	<BOUCLE_rubriques_selectionnes(RUBRIQUES){mots.titre=Dans le menu horizontal}{par num titre, titre}>
+	<li class="item menu-entree[ (#EXPOSE)]">
+	    <a href="#URL_RUBRIQUE">[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{30})]</a>
+	    <B_sous_rubriques>
+	    <ul>
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+		<li[ class=" (#EXPOSE)"]><a href="#URL_RUBRIQUE" <BOUCLE_test_sousrub(RUBRIQUES){id_parent}{0,1}>class="daddy"</BOUCLE_test_sousrub>>[(#TITRE|couper{80})]</a><BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques></li>
+		</BOUCLE_sous_rubriques>
+	    </ul>
+	    </B_sous_rubriques>
+	</li>
+	</BOUCLE_rubriques_selectionnes>
+	<li class="item menu-entree[(#CONFIG{scolaspip_plus/boutonliens}|=={oui}|?{' invisible',''})]">
+	    <a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>"><:scolaspip:liens:></a>
+	    <B_sites_selectionnes_deroulants>
+	    <ul>
+		<BOUCLE_sites_selectionnes_deroulants(SITES){si #CONFIG{scolaspip_plus/liens_deroulants}|!={non}}{mots.titre IN Dans le menu horizontal,site_bandeau}{par num nom_site, nom_site}>
+		<li><a href="#URL_SITE" title="<:scolaspip:lien_externe:>[ - (#DESCRIPTIF|couper{100}|attribut_html)]" class="spip_out">[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_SITE|image_reduire{30,20})]})][(#NOM_SITE|couper{20})]</a></li>
+		</BOUCLE_sites_selectionnes_deroulants>
+	    </ul>
+	    </B_sites_selectionnes_deroulants>
+	</li>
+	<BOUCLE_sites_selectionnes(SITES){si #CONFIG{scolaspip_plus/liens_deroulants}|=={non}}{mots.titre IN Dans le menu horizontal,site_bandeau}{par num nom_site, nom_site}>
+	<li class="item menu-entree"><a href="#URL_SITE" title="<:scolaspip:lien_externe:>[ - (#DESCRIPTIF|couper{100}|attribut_html)]" class="spip_out">[(#CONFIG{scolaspip_plus/afficher_logos_menu_horizontal}|!={non}|?{[(#LOGO_SITE|image_reduire{30,20})]})][(#NOM_SITE|couper{20})]</a></li>
+	</BOUCLE_sites_selectionnes>
+    </ul>
+</div>

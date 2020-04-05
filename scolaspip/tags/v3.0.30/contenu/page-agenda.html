@@ -1,0 +1,22 @@
+[(#REM)
+  Squelette content/agenda.html de scolaspip surchargeant le squelette du plugin agenda
+  Distribue sous licence GPL
+]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]"><:agenda:agenda:></a>[<span class="sep"> &gt; </span><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE_DEBUT|affdate{Y-m-01}})]"><strong class="on">(#ENV{date_debut}|nom_mois)]</strong></a></p>
+
+<B_ev>
+	<div class="liste evenements">
+	<div class="ics_icon"><a href="#URL_PAGE{agenda-ical}" title="<:scolaspip:evenement_abonnement_ics:>[ «&nbsp;(#NOM_SITE_SPIP|attribut_html)&nbsp;»]">[(#CHEMIN{img/ics_agenda_plus.png}|balise_img{<:agenda:agenda:>})]</a></div>
+	[<h1 class="h1">(#TOTAL_BOUCLE|singulier_ou_pluriel{agenda:info_un_evenement,agenda:info_nombre_evenements})[ <:scolaspip:en_mois:> (#ENV{date_debut}|nom_mois)][ (#ENV{date_debut}|annee)][(#ENV{date_debut}|affdate{'d'}|=={'01'}|non) <:scolaspip:a_partir_du:> [(#ENV{date_debut}|jour)]]</h1>]
+		<ul class="liste-items">
+		<BOUCLE_ev(EVENEMENTS ?){!evenement_passe #ENV{date_debut,#ENV{date}}}{!evenement_a_venir #ENV{date_debut,#ENV{date}}|agenda_moisdecal{1,'Y-m-d H:i:00'}}{par date_debut}{id_article?}{id_rubrique?}{id_mot?}{id_evenement_source?}>
+			<li class="item">
+				#MODELE{evenement_vevent}
+				<a href="#URL_ARTICLE"><:scolaspip:voir_la_page:></a>
+			</li>
+		</BOUCLE_ev>
+		</ul>
+	</div>
+</B_ev>
+<h1 class="h1"><:agenda:info_aucun_evenement:>[ <:scolaspip:a_partir_du:> (#ENV{date_debut}|affdate)]</h1>
+<//B_ev>

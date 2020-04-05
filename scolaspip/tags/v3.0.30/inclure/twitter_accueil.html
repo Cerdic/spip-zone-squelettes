@@ -1,0 +1,23 @@
+[(#SET{compte,#CONFIG{scolaspip_accueil/compte_twitter,crdp_versailles}})]
+
+<B_tweets>
+<div class="tweets">
+        [(#CHEMIN{img/twitter.png}|balise_img{<:scolaspip:twitter:>}|inserer_attribut{class,twitter})]
+        <h2 class="h2">Tweets de <a href="http://twitter.com/#!/#GET{compte}" class="spip_out">#GET{compte}</a></h2>
+        <ul class="liste-items">
+                <BOUCLE_tweets(DATA) {source json, https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=#GET{compte}&count=#CONFIG{scolaspip_accueil/nb_tweets}}{pagination #CONFIG{scolaspip_accueil/pagination_tweets},3}{scolaspip_nb_tweets}>
+                <li class="item tweet">
+                <small><small>[(#VAL{"Y/m/d H:i:s"}|date{[(#VALEUR{created_at}|strtotime)]}|affdate{"j/m à H:i"})]</small></small> :
+                [(#VALEUR{retweeted_status/text}|oui)[(#VALEUR{retweeted_status/text}|scolaspip_regex_twitter)][ <small>(RT <a href="http://twitter.com/[(#VALEUR{retweeted_status/user/screen_name})]" class="spip_out">(#VALEUR{retweeted_status/user/screen_name})</a>)</small>]]
+                [(#VALEUR{retweeted_status/text}|non)[(#VALEUR{text}|scolaspip_regex_twitter)]]
+                </li>
+                </BOUCLE_tweets>
+        </ul>
+        [<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_tweets>
+<div class="tweets">
+        <h2 class="h2">Tweets de <a href="http://twitter.com/#!/#GET{compte}" class="spip_out">#GET{compte}</a></h2>
+        <p>#GET{compte}&nbsp;:<:scolaspip:aucun_tweet:>.</p>
+</div>
+<//B_tweets>

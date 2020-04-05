@@ -1,0 +1,25 @@
+#HTTP_HEADER{Content-type:text/calendar; charset=utf-8}
+#HTTP_HEADER{Content-Disposition:inline;filename=even#ID_EVENEMENT.ics}
+#CACHE{3600}BEGIN:VCALENDAR
+VERSION:2.0
+X-WR-TIMEZONE:Europe/Paris
+CALSCALE:GREGORIAN
+PRODID:-//SPIP/Plugin #PLUGIN{AGENDA,nom}//NONSGML v1.0//FR
+X-WR-CALNAME;VALUE=TEXT:[(#NOM_SITE_SPIP|filtrer_ical)] -- Agenda[
+X-WR-CALDESC:(#DESCRIPTIF_SITE_SPIP|supprimer_tags|filtrer_ical)]
+X-WR-RELCALID:[(#URL_SITE_SPIP|filtrer_ical)]
+<BOUCLE_evenement2(EVENEMENTS ?) {id_evenement}>BEGIN:VEVENT
+SUMMARY:[(#TITRE|textebrut|filtrer_ical)]
+UID:evenement#ID_EVENEMENT @ [(#URL_SITE_SPIP|filtrer_ical)][
+DTSTAMP:(#DATE_DEBUT|date_ical)][(#HORAIRE|=={oui}|?{[
+DTSTART:(#DATE_DEBUT|date_ical)][
+DTEND:(#DATE_FIN|date_ical)],[
+DTSTART;VALUE=DATE:(#DATE_DEBUT|affdate{Ymd})][
+DTEND;VALUE=DATE:(#DATE_FIN|agenda_jourdecal{1,Ymd})]})][
+LOCATION:(#LIEU|PtoBR|textebrut|filtrer_ical)][
+DESCRIPTION:(#DESCRIPTIF|supprimer_tags|textebrut|filtrer_ical)]
+CATEGORIES:
+URL:[(#URL_ARTICLE|parametre_url{id_evenement,#ID_EVENEMENT}|url_absolue|filtrer_ical)]
+STATUS:CONFIRMED
+END:VEVENT</BOUCLE_evenement2>
+END:VCALENDAR

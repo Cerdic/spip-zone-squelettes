@@ -1,0 +1,173 @@
+<p><:scolaspip:scolaspip_accueil_texte:></p>
+
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+<form method="post" action="#ENV{action}"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+
+	<fieldset>
+		<legend><:scolaspip:descriptifdusite_legend:></legend>
+		<ul>
+			<li class="editer long_label">
+				<label><:scolaspip:descriptifdusite_texte:></label>
+				<div class="choix">
+					<input type="radio" id="descriptifdusiteoui" name="descriptifdusite" value="oui" [(#ENV{descriptifdusite, oui}|=={oui}|oui) checked="checked"] />
+					<label for="descriptifdusiteoui"><:item_oui:></label>
+					<input type="radio" id="descriptifdusitenon" name="descriptifdusite" value="non" [(#ENV{descriptifdusite, non}|=={non}|oui) checked="checked"] />
+					<label for="descriptifdusitenon"><:item_non:></label>
+				</div>
+			</li>
+		</ul>
+		[(#DESCRIPTIF_SITE_SPIP*|strlen|?{'',<span class="notice"><:scolaspip:descriptif_site_vide:></span>})]
+	</fieldset>
+	<fieldset>
+		<legend><:scolaspip:calendrier_legend:></legend>
+		<ul[(#PLUGIN{agenda}|non) style="background:#ddd;"]>
+			<li class="editer long_label">
+				<label><:scolaspip:calendrier_texte:></label>
+				<div class="choix">
+					<input type="radio" id="calendrieroui" name="calendrier" value="oui" [(#ENV{calendrier, oui}|=={oui}|oui) checked="checked"][(#PLUGIN{agenda}|non) disabled="disabled"]/>
+					<label for="calendrieroui"><:item_oui:></label>
+					<input type="radio" id="calendriernon" name="calendrier" value="non" [(#ENV{calendrier, non}|=={non}|oui) checked="checked"][(#PLUGIN{agenda}|non) disabled="disabled"]/>
+					<label for="calendriernon"><:item_non:></label>
+				</div>
+			</li>
+		</ul>
+		[(#PLUGIN{agenda}|non) <span class="notice"><:scolaspip:activer_agenda:></span>]
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:evens_legend:></legend>
+		<ul[(#PLUGIN{agenda}|non) style="background:#ddd;"]>
+			<li class="editer long_label">
+				<label><:scolaspip:evens_texte:></label>
+				<div class="choix">
+					<input type="radio" id="evenementsoui" name="evenements" value="oui" [(#ENV{evenements, oui}|=={oui}|oui) checked="checked"] onclick="$('#evenements_complements').show('fast');"[(#PLUGIN{agenda}|non) disabled="disabled"]/>
+					<label for="evenementsoui"><:item_oui:></label>
+					<input type="radio" id="evenementsnon" name="evenements" value="non" [(#ENV{evenements, non}|=={non}|oui) checked="checked"] onclick="$('#evenements_complements').hide('fast');"[(#PLUGIN{agenda}|non) disabled="disabled"]/>
+					<label for="evenementsnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="evenements_complements" [(#PLUGIN{agenda}|non) style="display:none"] [(#ENV{evenements}|=={non}|oui)style='display:none;']>
+					<input type="text" id="nb_evenements" name="nb_evenements" size="2" value="#ENV{nb_evenements,10}" />
+					<label for="nb_evenements"><:scolaspip:nb_evens_texte:></label>
+					<br class="clear"/>
+					<input type="text" id="pagination_evenements" name="pagination_evenements" size="2" value="#ENV{pagination_evenements,5}" />
+					<label for="pagination_evenements"><:scolaspip:pagination_evens_texte:></label>
+				</div>
+			</li>
+		</ul>
+		[(#PLUGIN{agenda}|non) <span class="notice"><:scolaspip:activer_agenda:></span>]
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:breves_legend:></legend>
+		<ul[(#CONFIG{activer_breves}|=={non}|oui) style="background:#ddd;"]>
+			<li class="editer long_label">
+				<label><:scolaspip:breves_texte:></label>
+				<div class="choix">
+					<input type="radio" id="brevesoui" name="breves" value="oui" [(#ENV{breves, oui}|=={oui}|oui) checked="checked"] onclick="$('#breves_complements').show('fast');"[(#CONFIG{activer_breves}|=={non}|oui) disabled="disabled"]/>
+					<label for="brevesoui"><:item_oui:></label>
+					<input type="radio" id="brevesnon" name="breves" value="non" [(#ENV{breves, non}|=={non}|oui) checked="checked"] onclick="$('#breves_complements').hide('fast');"[(#CONFIG{activer_breves}|=={non}|oui) disabled="disabled"]/>
+					<label for="brevesnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="breves_complements" [(#CONFIG{activer_breves}|=={non}|oui) style="display:none"] [(#ENV{breves}|=={non}|oui)style='display:none;']>
+					<input type="text" id="nb_breves" name="nb_breves" size="2" value="#ENV{nb_breves,10}" />
+					<label for="nb_breves"><:scolaspip:nb_breves_texte:></label>
+					<br class="clear"/>
+					<input type="text" id="pagination_breves" name="pagination_breves" size="2" value="#ENV{pagination_breves,5}" />
+					<label for="pagination_breves"><:scolaspip:pagination_breves_texte:></label>
+				</div>
+			</li>
+		</ul>
+		[(#CONFIG{activer_breves}|=={non}|oui) <span class="notice"><:scolaspip:activer_breves:></span>]
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:articles_legend:></legend>
+		<ul>
+			<li class="editer long_label">
+				<label><:scolaspip:articles_texte:></label>
+				<div class="choix">
+					<input type="radio" id="articlesoui" name="articles" value="oui" [(#ENV{articles, oui}|=={oui}|oui) checked="checked"] onclick="$('#articles_complements').show('fast');"/>
+					<label for="articlesoui"><:item_oui:></label>
+					<input type="radio" id="articlesnon" name="articles" value="non" [(#ENV{articles, non}|=={non}|oui) checked="checked"] onclick="$('#articles_complements').hide('fast');"/>
+					<label for="articlesnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="articles_complements" [(#ENV{articles}|=={non}|oui)style='display:none;']>
+					<input type="text" id="nb_articles" name="nb_articles" size="2" value="#ENV{nb_articles,10}" />
+					<label for="nb_articles"><:scolaspip:nb_articles_texte:></label>
+					<br class="clear"/>
+					<input type="text" id="pagination_articles" name="pagination_articles" size="2" value="#ENV{pagination_articles,5}" />
+					<label for="pagination_articles"><:scolaspip:pagination_articles_texte:></label>
+				</div>
+			</li>
+		</ul>
+
+	</fieldset>
+	
+	<fieldset>
+		<legend><:scolaspip:forums_legend:></legend>
+		<ul>
+			<li class="editer long_label">
+				<label><:scolaspip:forums_texte:></label>
+				<div class="choix">
+					<input type="radio" id="forumsoui" name="forums" value="oui" [(#ENV{forums, oui}|=={oui}|oui) checked="checked"] onclick="$('#forums_complements').show('fast');"/>
+					<label for="forumsoui"><:item_oui:></label>
+					<input type="radio" id="forumsnon" name="forums" value="non" [(#ENV{forums, non}|=={non}|oui) checked="checked"] onclick="$('#forums_complements').hide('fast');"/>
+					<label for="forumsnon"><:item_non:></label>
+				</div>
+				<br class="clear"/>
+				<div id="forums_complements" [(#ENV{forums}|=={non}|oui)style='display:none;']>
+					<input type="text" id="nb_forums" name="nb_forums" size="2" value="#ENV{nb_forums,10}" />
+					<label for="nb_forums"><:scolaspip:nb_forums_texte:></label>
+					<br class="clear"/>
+					<input type="text" id="pagination_forums" name="pagination_forums" size="2" value="#ENV{pagination_forums,5}" />
+					<label for="pagination_forums"><:scolaspip:pagination_forums_texte:></label>
+				</div>
+			</li>
+		</ul>
+		
+	</fieldset>
+	<fieldset>
+		<legend><:scolaspip:compte_twitter:></legend>
+		<p>Cette option n'est plus fonctionnelle (suite à un changement chez Twitter). Nous conseillons de la mettre à «&nbsp;non&nbsp;».</p>
+		<ul>
+			<li class="editer long_label">
+				<label><:scolaspip:afficher_compte_twitter:></label>
+				<div class="choix">
+					<input type="radio" id="afficher_compte_twitteroui" name="afficher_compte_twitter" value="oui" [(#ENV{afficher_compte_twitter, oui}|=={oui}|oui) checked="checked"] onclick="$('#li_compte_twitter').show('fast');"/>
+					<label for="afficher_compte_twitteroui"><:item_oui:></label>
+					<input type="radio" id="afficher_compte_twitternon" name="afficher_compte_twitter" value="non" [(#ENV{afficher_compte_twitter, non}|=={non}|oui) checked="checked"] onclick="$('#li_compte_twitter').hide('fast');"/>
+					<label for="afficher_compte_twitternon"><:item_non:></label>
+				</div>
+				<div id="li_compte_twitter" [(#ENV{afficher_compte_twitter}|=={non}|oui)style='display:none;'] [(#ENV{afficher_compte_twitter}|=={''}|oui)style='display:none;']>
+					<input type="text" id="compte_twitter" name="compte_twitter" size="15" value="#ENV{compte_twitter,crdp_versailles}" />
+					<label for="compte_twitter"><:scolaspip:compte_twitter_identifiant:></label>
+					<br class="clear"/>
+					<input type="text" id="nb_tweets" name="nb_tweets" size="2" value="#ENV{nb_tweets,12}" />
+					<label for="nb_tweets"><:scolaspip:nb_tweets_texte:></label>
+					<br class="clear"/>
+					<input type="text" id="pagination_tweets" name="pagination_tweets" size="2" value="#ENV{pagination_tweets,3}" />
+					<label for="pagination_tweets"><:scolaspip:pagination_tweets_texte:></label>
+				</div>
+			</li>
+		</ul>
+	</fieldset>
+
+	<p class="boutons">
+		<input style="display:none;" type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+		<input type="submit" name="reinit" class="submit" value="<:scolaspip:reset:>" onclick='return confirm("<:scolaspip:reinitialisation:>");'/>
+		<input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+</div></form>
+
+</div>
+<style type="text/css">
+	fieldset p{margin-bottom:0;}	
+</style>

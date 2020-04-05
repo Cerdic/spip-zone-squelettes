@@ -1,0 +1,46 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+<B_rubriques>
+<div class="menu rubriques" >
+		<h2 id="montre_ou_masque_tout" class="bouton_sommaire" title="<:scolaspip:rubriques_afficher_masquer:>"><:scolaspip:sommaire:> [(#CHEMIN{img/deplierhaut.png}|balise_img{+}|inserer_attribut{class,imageplus})]</h2>
+		<BOUCLE_rubriques(RUBRIQUES) {racine}{!mots.titre=Dans le menu horizontal}{!mots.titre=Exclu}{par num titre, titre}>
+		<ul class="menu-items menu-liste niveau1">
+				<BOUCLE_sous_rubriques_presentes(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}> </BOUCLE_sous_rubriques_presentes>
+				<li class="item menu-entree">
+						[(#EXPOSE |== {'on'} |? {[(#CHEMIN{img/deplierbas.png}|balise_img{-}|inserer_attribut{class,imageplus bouton_sommaire bouton_niveau1}|inserer_attribut{title,<:scolaspip:rubriques_masquer:>})],[(#CHEMIN{img/deplierhaut.png}|balise_img{+}|inserer_attribut{class,imageplus bouton_sommaire bouton_niveau1}|inserer_attribut{title,<:scolaspip:rubriques_afficher:>})]} )]
+						<a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]</a>
+						<B_sous_rubriques>
+						<ul class="ss-rubrique dd[(#EXPOSE)] menu-items menu-liste">
+								<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent}{!mots.titre=Exclu}{par num titre, titre}>
+								<li class="item menu-entree" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{50})]</a><BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques></li>
+								</BOUCLE_sous_rubriques>
+						</ul>
+						</B_sous_rubriques>
+				</li>
+				</B_sous_rubriques_presentes>
+				<li class="item menu-entree"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#CHEMIN{img/deplierbas.png}|balise_img{-})]&nbsp;[(#CONFIG{scolaspip_plus/afficher_logos_rubrique_menu_vertical}|=={oui}|?{[(#LOGO_RUBRIQUE|image_reduire{30,20})]})][(#TITRE|couper{50})]</a></li>
+				<//B_sous_rubriques_presentes>
+		</ul>
+		</BOUCLE_rubriques>
+</div>
+</B_rubriques>
+
+<B_sites_selectionnes>
+<div class="menu sites" id="site_menu" ><h2><a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>" ><:scolaspip:sites:></a></h2>
+		<ul>
+		<BOUCLE_sites_selectionnes(SITES){mots.titre IN Site à la une, site_menu}{par num nom_site,nom_site} >
+		<li><a rel="start" href="#URL_SITE" class="spip_out" title="<:scolaspip:lien_externe:>[ - (#NOM_SITE|couper{30}|attribut_html)][ - (#DESCRIPTIF|couper{80}|attribut_html)]">
+		[(#LOGO_SITE||?{[(#LOGO_SITE||image_reduire{180,50}|inserer_attribut{alt,[(#NOM_SITE|textebrut)]})],<span>#NOM_SITE</span>})]
+		</a></li>
+		</BOUCLE_sites_selectionnes>
+		</ul>
+		<br class="nettoyeur"/>
+</div>
+</B_sites_selectionnes>
+
+[(#PLUGIN{socialtags}|?{' '})
+<div id="socialtags">
+		<h2 class="h2"><:scolaspip:partager:></h2>
+</div>]
