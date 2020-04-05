@@ -1,0 +1,51 @@
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml 
+version="1.0"[ encoding="(#CHARSET)"]?>[
+(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<rss version="2.0" [(#REM) rss 2.0.9)]
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+>
+
+<channel[ xml:lang="(#LANG)"]>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<link>#URL_SITE_SPIP/</link>
+	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
+	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
+
+[	<image>
+		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP||image_reduire{144,400}|extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<link>#URL_SITE_SPIP/</link>
+		[<height>(#LOGO_SITE_SPIP||image_reduire{144,400}|extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||image_reduire{144,400}|extraire_attribut{width})</width>]
+	</image>
+]
+
+<BOUCLE_10recents(ARTICLES) {lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{0,10}{unique}{doublons}{!titre_mot=restricted_access}>
+<INCLURE{fond=inc-rss-item}{id_article}>
+</BOUCLE_10recents>
+
+<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?} {par date}{inverse}{age<3}{unique}{doublons}{!titre_mot=restricted_access}>
+<INCLURE{fond=inc-rss-item}{id_article}>
+</BOUCLE_tres_recents>
+
+</channel>
+
+</rss>

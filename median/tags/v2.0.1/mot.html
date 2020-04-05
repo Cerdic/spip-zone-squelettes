@@ -1,0 +1,160 @@
+[(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<BOUCLE_principale(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS des articles du mot cle ]
+<link rel="alternate" type="application/rss+xml"[ title="(#TITRE|attribut_html)"] href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+</head>
+
+<body class="page_mot">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+  [(#REM) Fil d'Ariane ]
+  <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+
+[(#SET{larg_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
+[(#SET{ht_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
+
+	<div id="conteneur">
+		[(#REM) Contenu principal : titre et descriptif du mot ]
+		<div id="contenu">
+          <div class="cartouche">
+            [(#LOGO_MOT||image_reduire{200,200})]
+            <h1 class="#EDIT{titre}">#TITRE</h1>
+            [<div class="#EDIT{descriptif} soustitre">(#DESCRIPTIF)</div>]
+          </div>
+          [<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+		</div><!-- fin contenu -->
+	</div><!-- fin conteneur -->
+  
+
+	[(#REM) Contenu principal : contenu du mot-cle ]
+    <div class="contre-encart">
+
+        [(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+        <B_mots_freres>
+        <div id="keywords">
+            #ANCRE_PAGINATION
+            <h2><:mots_clefs_meme_groupe:>: #TYPE</h2>
+            <ul>
+                <BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20} {doublons}>
+                <li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
+                </BOUCLE_mots_freres>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_mots_freres>
+
+        [(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
+        <B_groupes_freres>
+        <div id="groupes_mots">
+            <h2><:autres_groupes_mots_clefs:></h2>
+            <ul>
+                <BOUCLE_groupes_freres(GROUPES_MOTS) {!id_groupe} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}} {par titre} {doublons} >
+                <BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
+                <li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_MOT">#TYPE</a></li>
+                </BOUCLE_mot_cousin>
+                </BOUCLE_groupes_freres>
+            </ul>
+        </div>
+        </B_groupes_freres>
+        
+        
+        <div class="liste-articles">
+
+        [(#REM) Articles lies au mot-cle ]
+        <B_articles>
+            #ANCRE_PAGINATION
+            <h2><:median:pages_pertinentes:></h2>
+            <ul>
+                <BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10} {doublons}>
+    		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+            })]
+                <h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+                      [(#DESCRIPTIF|sinon{  
+                        [(#CHAPO|sinon{[(#TEXTE|couper{140})]})]
+                      })]
+        		      <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+                    </li>                    
+                </BOUCLE_articles>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_articles>
+
+        [(#REM) Rubriques liees au mot-cle ]
+        <B_rubriques>
+        <div class="plan_rubriques">
+            <h2><:median:rubriques_pertinentes:></h2>
+            <ul>
+                <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre} {doublons}>
+    		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+            })]
+                    <h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
+                        [(#DESCRIPTIF|sinon{[<p>(#TEXTE|couper{140})</p>]})]
+                        <div class="read_more" style="background-image: url('#CHEMIN{logo_access_section.jpg}');"><a href="#URL_RUBRIQUE"><:median:acces_rubrique:></a></div>
+                </li>
+                </BOUCLE_rubriques>
+            </ul>
+        </div>
+        </B_rubriques>
+
+        [(#REM) Sites web lies au mot-cle ]
+        <B_sites>
+        <div class="liste-articles">
+            <h2><:sites_web:></h2>
+            <ul>
+                <BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+				<li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+            </ul>
+        </div>
+        </B_sites>
+
+	</div><!--#contre-encart-->
+
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_principale>

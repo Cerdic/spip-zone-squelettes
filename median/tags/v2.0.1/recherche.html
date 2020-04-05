@@ -1,0 +1,152 @@
+[(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_recherche pas_surlignable">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]</div>
+	
+  #SET{larg_logo, 20}
+  #SET{ht_logo, 20}    
+
+	[(#REM) Contenu principal : Resultats de la recherche ]
+	<div id="conteneur">
+	<div id="contenu">
+		
+		[<div class="cartouche">
+			<h1><:resultats_recherche:></h1>
+			<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+		</div>]
+		
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+	
+
+  <div class="contre-encart">
+  
+		[(#REM) Mots-cles trouves ]
+		<B_mots>
+		<div id="keywords">
+			#ANCRE_PAGINATION
+			<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
+				<li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_MOT">#TITRE</a></li>
+				</BOUCLE_mots>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_mots>
+		
+		[(#REM) Articles trouves ]
+		<B_articles>
+		<div class="liste-articles">
+			#ANCRE_PAGINATION
+			<h2><:median:pages_pertinentes:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination}{doublons}>
+				<li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+                <h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+                    [(#ENV{sans_resume}|?{'',' '})
+                      [(#DESCRIPTIF|sinon{  
+                        [(#CHAPO|sinon{[<p>(#TEXTE|couper{140})</p>]})]
+                      })]
+        		      <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+                    ]
+            </li>
+				</BOUCLE_articles>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_articles>
+		
+		[(#REM) Rubriques trouvees ]
+		<B_rubriques>
+		<div class="plan_rubriques">
+			#ANCRE_PAGINATION
+			<h2><:median:rubriques_pertinentes:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}{doublons}>
+				<li style="[background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+                    <h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
+                    [(#ENV{sans_resume}|?{'',' '})
+                        [(#DESCRIPTIF|sinon{[<p>(#TEXTE|couper{140})</p>]})]
+                        <div class="read_more" style="background-image: url('#CHEMIN{logo_access_section.jpg}');"><a href="#URL_RUBRIQUE"><:median:acces_rubrique:></a></div>
+                    ]
+            </li>
+				</BOUCLE_rubriques>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_rubriques>
+				
+		[(#REM) Messages trouves ]
+		<B_messages>
+		<div class="liste-articles">
+			#ANCRE_PAGINATION
+			<h2><:messages_forum:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+				<li><a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
+				</BOUCLE_messages>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_messages>
+		
+		[(#REM) Sites web trouves ]
+		<B_sites>
+		<div class="liste-articles">
+			#ANCRE_PAGINATION
+			<h2><:sites_web:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+				<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_sites>
+	
+  </div><!--#contre-encart -->	
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+    
+</div><!--#page-->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<BOUCLE_doc (DOCUMENTS) {id_document} {tout}>
+[(#REM)
+
+	Modele pour <doc> en dl/dt/dd
+	cf. http://pompage.net/pompe/listesdefinitions/
+
+	La largeur de la legende est egale a la largeur de l'image
+	avec un minimum de 120px, et un maximum de 350px.
+
+	Dans le cas d'une simple image (mode=image), on affiche
+	le document lui-meme, sans lien de telechargement
+]
+
+[(#REM) MODE|=={image}|?{' '})
+	#SET{fichier,#URL_DOCUMENT}
+	#SET{width,#LARGEUR}
+	#SET{height,#HAUTEUR}
+	#SET{url,#ENV{lien}}
+]  
+  
+[(#MODE|=={image}|?{' '})
+  [(#REM) construire le titre de l'image: titre + descriptif sinon rien ]
+  [(#SET{title_alt, [(#TITRE|supprimer_numero|supprimer_tags|texte_backend) ][&nbsp;&nbsp;(#DESCRIPTIF|supprimer_tags|texte_backend|couper{40}|PtoBR)]})]
+	[(#SET{logo_pf, [(#LOGO_DOCUMENT||image_reduire{120,0})]})]
+]
+[(#MODE|=={image}|?{'',' '})
+  [(#SET{title_alt, #TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]})]
+  [(#SET{desc_doc, [(#DESCRIPTIF|PtoBR)] [(#NOTES|PtoBR)]})]
+	[(#SET{logo_pf, [(#LOGO_DOCUMENT||image_reduire{80,80})]})]
+]
+
+  [(#SET{fichier,[(#GET{logo_pf}||extraire_attribut{src})]})]
+	[(#SET{width,[(#GET{logo_pf}||extraire_attribut{width})]})]
+	[(#SET{height,[(#GET{logo_pf}||extraire_attribut{height})]})]
+  
+	#SET{url,#ENV{lien,#URL_DOCUMENT}}
+
+
+<dl class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+<dt>[<a href="(#GET{url})"[ class="(#ENV{lien_class})"] title='#GET{title_alt}'[ (#ENV{lien}|?{'',type="#MIME_TYPE"})]>]<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='#GET{title_alt}' />[(#GET{url}|?{</a>})]</dt>[
+<dt class='#EDIT{titre} spip_doc_titre'[ style='width:(#GET{width}|min{350}|max{120})px;']><strong>(#TITRE|supprimer_numero)</strong></dt>][
+<dd class='#EDIT{descriptif} spip_doc_descriptif'[ style='width:(#GET{width}|min{350}|max{120})px;']>(#GET{desc_doc})</dd>]
+</dl>
+</BOUCLE_doc>

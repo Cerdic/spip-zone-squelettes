@@ -1,0 +1,188 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+[(#REM) la totale pour faire fonctionner le mot clé _invisible_ ]
+[(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent ]
+<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>
+  <BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>
+  <BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>
+
+  [(#REM) choper en doublon les sous-rubriques, récursivement, et les articles inclus dans des rubriques avec le mot clé invisible ]
+  <BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>
+    <BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>
+    <BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>
+  </BOUCLE_rubriques_int>
+
+</BOUCLE_rubriques_exclues>
+
+[(#REM) choper en doublon les articles et brèves ayant le mot clé invisible ]
+<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>
+<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>
+
+#SET_DOUBLONS
+
+<body class="page_sommaire">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques = barre de navigation ]
+  [(#INCLURE{fond=inc-rubriques}{sommaire=on})]
+
+	[(#REM) bloc rechercher ]
+	<div id="rechercher">
+		#FORMULAIRE_RECHERCHE
+  </div><!-- #rechercher -->
+
+
+	[(#REM) Contenu principal ]
+	<div class="hfeed" id="conteneur">
+	<div id="contenu">
+
+		<div class="cartouche invisible">
+			<h1 class="invisible">#NOM_SITE_SPIP</h1>
+		</div>
+
+    <div class="cartouche">
+    [(#REM) afficher l'article défini comme article accueil ]
+    <BOUCLE_aa(ARTICLES){id_article=(#CONFIG{median/id_aa})}>
+      #DEBUT_SURLIGNE
+      [(#CONFIG{median/logo}|=={on}|?{[(#LOGO_ARTICLE||image_reduire{200,200})],''})]
+      [(#CONFIG{median/titre}|=={on}|?{[<h1 class="#EDIT{titre} sommaire">(#TITRE)</h1>],'<br/>'})]
+
+      [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire]
+      [(#INCLURE{fond=inc-photo_hasard})]
+
+      [(#REM) la liste des derniers articles (quand le système de doublons fonctionnera...)
+		INCLURE{fond=inc-derniers_articles})]
+
+      [(#CONFIG{median/soustitre}|=={on}|?{[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>],'<br/>'})]
+      [(#CONFIG{median/chapo}|=={on}|?{[<div class="#EDIT{chapo} soustitre">(#CHAPO)</div>],'<br/>'})]
+      #FIN_SURLIGNE
+
+      [(#CONFIG{median/texte}|=={on}|?{[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>],''})]
+    </BOUCLE_aa>
+
+      [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire ]
+      [(#INCLURE{fond=inc-photo_hasard})]
+      
+      [(#REM) si aa ne sort rien, afficher le descriptif du site ]
+		  [<div class="soustitre" id="desc_site">(#DESCRIPTIF_SITE_SPIP)</div>]
+    <//B_aa>
+    </div> <!-- fin cartouche -->
+
+    <br class="nettoyeur" />
+    [(#REM) les blocs sous le texte d'accueil: articles avec mot clé: bloc_sommaire ]
+    [(#REM) configurer le nombre d'articles sur la page d'accueil par défaut ]
+    #SET{nb_art, 4}
+    [(#CONFIG{median/nb_blocs_sommaire}|oui) [(#SET{nb_art, [(#CONFIG{median/nb_blocs_sommaire})] })] ]
+    #SET{longueur_texte_court, 140}
+    #SET{longueur_texte_long, 300}
+    #SET{larg_logo, 187}
+    #SET{ht_logo, 100}
+    #SET{class_bloc, txt_bloc}
+
+    [(#REM) on chope d'abord les articles avec le mot clé + titre AVEC numéro ]
+    <BOUCLE_blocs_art(ARTICLES){titre_mot=bloc_sommaire}{lang}{doublons} {par num titre, titre} {0,#GET{nb_art}} {titre==^[0-9]+\.}>
+        #SET{longueur_texte, #GET{longueur_texte_court}}
+        <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|modulo{4}|!={0}|oui)bloc_milieu]">
+            <div class="cont_bloc">
+                [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|sinon{#SET{longueur_texte, #GET{longueur_texte_long}}})]
+                <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+                <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
+            </div>
+            <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+        </div>
+    </BOUCLE_blocs_art>
+        #SET{nb_blocs, #TOTAL_BOUCLE}
+    </B_blocs_art>
+
+    [(#REM) si pas suffisament d'articles on chope ensuite les articles avec le mot clé SANS numéro dans le titre ]
+    <BOUCLE_test_nbblocs1(CONDITION){si #GET{nb_blocs}|<{#GET{nb_art}}}>
+        #SET{nb_complement, #GET{nb_art}|moins{#GET{nb_blocs}}}
+        <BOUCLE_blocs_art2(ARTICLES){titre_mot=bloc_sommaire}{lang}{doublons} {par num titre, titre} {0,#GET{nb_complement}}>
+            #SET{longueur_texte, #GET{longueur_texte_court}}
+            <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|plus{#GET{nb_blocs}}|modulo{4}|!={0}|oui)bloc_milieu]">
+                <div class="cont_bloc">
+                    [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|sinon{#SET{longueur_texte, #GET{longueur_texte_long}}})]
+                    <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+                    <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
+                </div>
+                    <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+            </div>
+        </BOUCLE_blocs_art2>
+            [(#SET{nb_blocs, [(#GET{nb_blocs}|plus{#TOTAL_BOUCLE})]})]
+        </B_blocs_art2>
+    </BOUCLE_test_nbblocs1>
+
+
+    [(#REM) si pas suffisament d'articles avec le mot clé bloc_sommaire prendre les derniers publiés ]
+    <BOUCLE_test_nbblocs2(CONDITION){si #GET{nb_blocs}|<{#GET{nb_art}}}>
+      #SET{nb_complement, #GET{nb_art}|moins{#GET{nb_blocs}}}
+      <BOUCLE_complement_blocs(ARTICLES) {!par date} {lang} {0, #GET{nb_complement}} {doublons}>
+        #SET{longueur_texte, #GET{longueur_texte_court}}
+        <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|plus{#GET{nb_blocs}}|modulo{4}|!={0}|oui)bloc_milieu]">
+            <div class="cont_bloc">
+                [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|sinon{#SET{longueur_texte, #GET{longueur_texte_long}}})]
+                <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+                <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
+            </div>
+                <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
+        </div>
+      </BOUCLE_complement_blocs>
+    </BOUCLE_test_nbblocs2>
+
+    <br class="nettoyeur" />
+
+  <B_total_coord>
+  <div id="coordonnees">
+    [(#REM) les mots clés avec les éléments pour le contact ]
+    <BOUCLE_total_coord(GROUPES_MOTS){titre=Coordonnees}{0,1}>
+      <B_coordonnees>
+      [<h2><img src="#CHEMIN{logo_contact.png}" alt="logo contact" /> <span class="#EDIT{texte}">(#TEXTE|?{#TEXTE*,<:median:contact:>})</span></h2>]
+      <BOUCLE_coordonnees(MOTS){id_groupe}{par num titre}>
+          [<div class="texte_coord" [ style="background-image: url('(#LOGO_MOT||extraire_attribut{src})');"]> [<span class="#EDIT{titre} titre_coord">(#TITRE|supprimer_numero) :</span>]
+              <span class="#EDIT{descriptif}">(#DESCRIPTIF*)</span>
+          </div>]
+      </BOUCLE_coordonnees>
+    </BOUCLE_total_coord>
+ 	</div>
+  </B_total_coord><!-- #coordonnees -->
+
+    [(#PLUGIN{nuage}|oui)
+        [(#SET{titre_cloud, <:mots_clefs:>})]
+        [(#CONFIG{median/texte_titre_nuage}|oui)
+            [(#SET{titre_cloud, [(#CONFIG{median/texte_titre_nuage})] })]
+        ]
+        [(#CONFIG{median/groupes_mots_techniques}|oui)
+          [(#SET{gmt, [(#CONFIG{median/groupes_mots_techniques}|implode{|})]})]
+        ]
+
+        [<div id="tag_cloud">
+            <h2> #GET{titre_cloud}:</h2>
+            [(#REM) afficher le nuage de tags pseudo-circulaire si ?encercler=XX ]
+            [(#ENV{encercler}|?{' '})
+                [(#MODELE{encercler}{lignes=5})]
+            ]
+            (#MODELE{nuage}{notid=#GET{gmt}})
+        </div>]
+    ]
+
+	</div><!-- #contenu -->
+	</div><!-- #conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=sommaire}>
+
+</div><!-- #page -->
+</body>
+</html>

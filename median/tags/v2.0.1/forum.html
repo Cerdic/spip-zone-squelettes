@@ -1,0 +1,142 @@
+#CACHE{7200}[
+(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_forum">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+  
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+	[(#REM) Contenu : poster un message dans le forum ]
+    <div id="conteneur">
+    <div id="contenu">
+    
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+    
+            <BOUCLE_contexte_article(ARTICLES) {id_article}>
+            <BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+            &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_article>
+            &gt; <a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_article>
+            </B_contexte_article>
+    
+            <BOUCLE_contexte_breve(BREVES) {id_breve}>
+            <BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+            &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_breve>
+            &gt; <a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_breve>
+    
+            <BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+            <BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+            &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_rubrique>
+            &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_rubrique>
+    
+            <BOUCLE_contexte_site(SITES) {id_syndic}>
+            <BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+            &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+            </BOUCLE_ariane_site>
+            &gt; <a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_site>
+    
+            <//B_contexte_site>
+            <//B_contexte_rubrique>
+            <//B_contexte_breve>
+            <//B_contexte_article>
+    
+            <BOUCLE_contexte_forum(FORUMS) {id_forum}>
+            &gt; <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_forum>
+    
+            &gt; <strong class="on"><:poster_message:></strong>
+            
+        </div><!--#hierarchie-->
+
+        <div class="cartouche">
+            <h1><:poster_message:></h1>
+        </div>
+
+        <div class="menu articles">
+            <h2><:en_reponse:></h2>
+        
+            <BOUCLE_forum_parent(FORUMS) {id_forum}>
+            <h3><a href="#URL_FORUM">#TITRE</a></h3>
+            <small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+            [<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+            </BOUCLE_forum_parent>
+            
+            <BOUCLE_article(ARTICLES) {id_article}>
+            [(#LOGO_ARTICLE||image_reduire{150,100})]
+            <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+            <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+            [<div class="introduction">(#INTRODUCTION)</div>]
+            </BOUCLE_article>
+            
+            <BOUCLE_breve(BREVES) {id_breve}>
+            [(#LOGO_BREVE||image_reduire{150,100})]
+            <h3><a href="#URL_BREVE">#TITRE</a></h3>
+            <small>[(#DATE|affdate_jourcourt)]</small>
+            [<div class="introduction">(#INTRODUCTION)</div>]
+            </BOUCLE_breve>
+            
+            <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+            <h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+            [<div class="texte">(#TEXTE)</div>]
+            </BOUCLE_rubrique>
+            
+            <BOUCLE_syndic(SITES) {id_syndic}>
+            <h3><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></h3>
+            [<div class="texte">(#DESCRIPTIF)</div>]
+            </BOUCLE_syndic>
+            
+            <//B_forum_parent>
+        
+        </div>
+
+        #FORMULAIRE_FORUM
+
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>

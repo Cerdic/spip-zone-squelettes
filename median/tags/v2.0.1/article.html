@@ -1,0 +1,84 @@
+[(#REM) la totale pour faire fonctionner le mot clé _invisible_, 
+        y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
+  ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
+(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+  ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
+    ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
+    ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
+  ]</BOUCLE_rubriques_int>[(#REM)
+]</BOUCLE_rubriques_exclues>[
+(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
+(#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+
+(#REM) début affichage
+]<BOUCLE_article_principal(ARTICLES) {id_article} {lang} {doublons}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+  [(#REM) Menu de navigation par rubriques ]
+  <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+  [(#REM) bloc rechercher ]
+  <div id="rechercher">
+    #FORMULAIRE_RECHERCHE
+  </div><!--#rechercher-->
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{40})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{40})]</div>
+
+  [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
+  <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article}{lang}{0,1}>
+    [(#SESSION{login}|oui) [(#INCLURE{fond=inc-article}{id_article}{env})] ]
+    
+    [(#REM) si pas loggué envoyer les formulaires selon config ]
+        [(#SESSION{login}|non)
+            [(#REM) recuperer le texte qui explique qu'il faut se logguer ]
+            #SET{txt_restrict, This page's access is restricted to the identified's contributors. Please log in. }
+            [(#CONFIG{median/texte_acces_restreint}|oui)
+                [(#SET{txt_restrict, [(#CONFIG{median/texte_acces_restreint})] })] ]
+                
+            [<h2 class="restrict_exp">(#GET{txt_restrict})</h2>]
+            [<div class="login_public">(#FORMULAIRE_LOGIN)</div>]
+        ]    
+    <BOUCLE_non_logue(CONDITION){si #SESSION{login}|non}>
+        [(#REM) si mot cle form_account_creation proposer le formulaire de creation de compte ]
+        <BOUCLE_test_cc(ARTICLES){id_article}{titre_mot=form_account_creation}{0,1}>
+            [(#REM) recuperer le texte qui explique la creation d'un compte si mot-cle form_account_creation ]
+            #SET{txt_account_creation, 'Want create an acount?'}
+            [(#CONFIG{median/texte_creation_compte}|oui)
+                [(#SET{txt_account_creation, [(#CONFIG{median/texte_creation_compte})] })] ]
+                
+            <h2 class="restrict_exp">#GET{txt_account_creation}</h2>
+             <div class="formulaire_i2">
+                [(#PLUGIN{inscription2}|oui) #FORMULAIRE_INSCRIPTION2 ]
+                [(#PLUGIN{inscription2}|non) #FORMULAIRE_INSCRIPTION ]
+             </div>
+        </BOUCLE_test_cc>
+    </BOUCLE_non_logue>
+  </BOUCLE_restrict_access>
+  
+    [(#INCLURE{fond=inc-article}{id_article}{env})]
+  <//B_restrict_access>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

@@ -1,0 +1,48 @@
+<div id="pied">
+	[<div class="texte_pied">(#CONFIG{median/texte_pied}|trim)</div>]
+	#SET{sep,''}
+	<div class="pied_standard">
+		<a class="spip_pied" href="https://www.spip.net/" title="<:site_realise_avec_spip:>"><img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a>
+		[(#CONFIG{median/afficher_logo_xhtml}|=={oui}|oui)
+			<a class="spip_pied" href="http://validator.w3.org/check?uri=referer"><img src="#CHEMIN{valid-xhtml10.png}" alt="Valid XHTML 1.0 Strict" height="15" width="80" /></a> 
+		]
+		[(#CONFIG{median/afficher_contact_pied}|=={non}|non)
+			<a href="#URL_PAGE{contact}"><:median:contact_us:></a>
+			[(#SET{sep,|})]
+		]
+		<BOUCLE_test_sl(CONDITION){si #PLUGIN{spiplistes}|oui}>
+			[(#CONFIG{median/afficher_souscrire_pied|=={non}|non)
+				[(#INCLURE{fond=inc-pied-spipliste})]
+			]
+		</BOUCLE_test_sl>
+		[(#CONFIG{median/afficher_login_pied}|=={non}|non)
+			[(#GET{sep})]
+			[(#SESSION{id_auteur}|?{' '}) <a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a> ]
+			[(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a> ]
+			[(#SET{sep,|})]
+		]
+		[(#AUTORISER{ecrire})
+			[(#GET{sep})] <a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>
+			[(#SET{sep,|})]
+		] 
+		[(#CONFIG{median/afficher_plan_pied}|=={non}|non)
+			[(#GET{sep})] <a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a>
+			[(#SET{sep,|})]
+		]
+		<BOUCLE_afficher_mentions(CONDITION){si #CONFIG{median/afficher_mentions_pied}|=={oui}}>
+			<BOUCLE_id_mention(ARTICLES){id_article = #CONFIG{median/id_mentions}}>
+				[(#GET{sep})] <a href="#URL_ARTICLE">#TITRE</a>
+				[(#SET{sep,|})]
+			</BOUCLE_id_mention>
+		</BOUCLE_afficher_mentions>
+		[(#CONFIG{median/afficher_rss_pied}|=={non}|non)
+			[(#GET{sep})] <a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />&nbsp;RSS&nbsp;2.0</a>
+			[(#SET{sep,|})]
+		]
+	</div>	
+</div>
+
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON

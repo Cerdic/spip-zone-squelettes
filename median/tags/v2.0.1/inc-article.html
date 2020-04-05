@@ -1,0 +1,147 @@
+#CACHE{86400}
+[(#REM) gérer le cas où l'article a le mot clé _invisible_ ]
+<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>
+
+<BOUCLE_article_principal(ARTICLES) {id_article=#ID_ARTICLE} {doublons}>
+
+	  <div id="conteneur">
+		  <div id="contenu">
+    
+        <div class="cartouche">
+				#DEBUT_SURLIGNE
+            [(#LOGO_ARTICLE_RUBRIQUE||image_reduire{0,50}|inserer_attribut{alt, logo}|inserer_attribut{class,encadrement_fin gauche})]
+            [<h1 class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</h1>]
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+            [(#REM) <div class="#EDIT{descriptif} soustitre">#DESCRIPTIF</div>]
+			    [<div class="#EDIT{chapo} soustitre">(#CHAPO)</div>]
+				#FIN_SURLIGNE
+            
+			[<small class="droite">(#PLUGIN{article_pdf}|oui)[(#ARTICLE_PDF)]</small>]
+			[<small class="droite">(#PLUGIN{spipodf}|oui)[(#MODELE{spipoasis,id_article=#ID_ARTICLE,petitlogo=oui})]</small>]
+            <B_auteur_ext>
+                <p><small><:par_auteur:>
+            <BOUCLE_auteur_ext(AUTEURS){id_article}>
+						[(#COMPTEUR_BOUCLE|>{1}|?{[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{'&amp;&nbsp;',',&nbsp;'})]})]<a href="#URL_AUTEUR" title="author's page">#NOM</a></BOUCLE_auteur_ext>
+                ([(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)])</small></p>
+
+            </B_auteur_ext>
+			</div>
+
+		   [(#REM) Portfolio : album d'images à droite si pas mot clé port_folio_dessous ]
+		   #SET{nb_img, #SURTITRE|sinon{3}}
+			<BOUCLE_portfolio_dessous(MOTS){id_article}{titre=port_folio_dessous}{0,1}>
+			</BOUCLE_portfolio_dessous>
+			
+          <B_documents_portfolio_droite>
+          [(#REM) si mot clé port_folio_left faire flotter à gauche ]
+          <BOUCLE_flotte_gauche(MOTS){id_article}{titre=port_folio_left}{0,1}>
+            <div id="documents_portfolio_gauche">
+          </BOUCLE_flotte_gauche>
+            <div id="documents_portfolio_droite">
+          <//B_flotte_gauche>
+				<!--<h2><:info_portfolio:></h2>-->
+				<BOUCLE_documents_portfolio_droite(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons} {0, #GET{nb_img}}>
+				[(#MODELE{doc_pf_droite}{id_document}{align}{nb_img=#GET{nb_img}})]
+            </BOUCLE_documents_portfolio_droite>
+			</div>
+			</B_documents_portfolio_droite>
+        <//B_portfolio_dessous>
+        
+        
+			#DEBUT_SURLIGNE
+			
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{360,500})</div>]
+			#FIN_SURLIGNE
+        
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+                
+		  </div><!-- fin contenu -->
+	  </div><!-- fin conteneur -->
+    
+		[(#REM) Portfolio : album d'images en position bas de page pour toutes les images après celles à droite ]
+		<B_documents_portfolio>
+			<div id="documents_portfolio">
+		<!--<h2><:info_portfolio:></h2>-->
+		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+		[(#MODELE{doc_pf}{id_document}{align})]
+				</BOUCLE_documents_portfolio>
+		</div>
+		</B_documents_portfolio>
+		<br class="nettoyeur" />
+
+        <div class="bloc_complements">
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints" class="espacement_d" [(#INCLURE_RUB|=={edito_rubrique}|?{' '}) style="float: none !important;"]>
+				<h2><:median:documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+					<li style="[background-image: url((#LOGO_DOCUMENT||image_reduire{0,20}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF*)</div>]
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+
+			[(#REM) si on est dans le cas d'un article avec mot-clé edito_rubrique = contenu de la page rubrique 
+					ne pas afficher les mots clés et les autre pages de la rubrique ]
+			<BOUCLE_art_edito_rubrique(CONDITION){si (#INCLURE_RUB|=={edito_rubrique})}>
+			</BOUCLE_art_edito_rubrique>
+						
+				[(#REM) les mots clés attachés à cet article ]
+				[<div id="keywords" class="espacement_d">
+					(#MODELE{article_mots})
+				</div>]
+				
+				[(#REM) les autres articles de la rubrique et les sous-rubriques ]
+				<B_autres_art>
+				<div id="autres_articles" class="espacement_d">
+					#SET{autres_art, 1}
+					<h2><:median:articles_rubrique:></h2>
+					<ul>
+				<BOUCLE_autres_art(ARTICLES){id_rubrique} {lang} {doublons}>
+					[<li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></li>]
+				</BOUCLE_autres_art>
+					</ul>
+				</div>
+				</B_autres_art>
+				
+				<B_autres_rub>
+					#SET{autres_rub, 1}
+				<div class="autres_rubriques">
+				<BOUCLE_autres_rub(RUBRIQUES){id_parent}{doublons}>
+					[<h2[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
+					[(#REM) Une boucle recursive pour le mini plan]
+					<B_miniplan>
+					<ul>
+						<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+						<li[ style="(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})"]>
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+							<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+						</li>
+						</BOUCLE_miniplan>
+					</ul>
+					</B_miniplan>
+					<B_articles_niv1>
+						<ul>
+						<BOUCLE_articles_niv1(ARTICLES){id_rubrique}>
+							[<li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></li>]
+						</BOUCLE_articles_niv1>
+					</ul>
+					</B_articles_niv1>
+				</BOUCLE_autres_rub>
+				</div>
+				</B_autres_rub>
+		
+			[(#REM) fin de la partie pas affichée si article edito_rubrique ]
+			<//B_art_edito_rubrique>
+		</div>
+            
+	[(#REM) Forum de l'article ]
+	<a href="#forum" name="forum" id="forum"></a>
+	[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
+	<INCLURE{fond=inc-forum}{id_article}>
+        
+</BOUCLE_article_principal>

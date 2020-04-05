@@ -1,0 +1,19 @@
+<BOUCLE_doc (DOCUMENTS) {id_document} {tout}>
+[(#REM) grosse modif du modèle <doc> pour l'affichage des vignettes du port-folio avec le titre + recadrage ]
+
+	[(#SET{logo_pf, [(#URL_DOCUMENT||image_reduire{180,180})]})]
+  
+  [(#SET{fichier,[(#GET{logo_pf}||extraire_attribut{src})]})]
+	[(#SET{width,[(#GET{logo_pf}||extraire_attribut{width})]})]
+	[(#SET{height,[(#GET{logo_pf}||extraire_attribut{height})]})]
+  
+	#SET{url,#ENV{lien,#URL_DOCUMENT}}
+  
+  [(#REM) construire le titre de l'image: titre + descriptif sinon rien ]
+  [(#SET{title_alt, [(#TITRE|supprimer_numero|supprimer_tags|texte_backend) ][&nbsp;&nbsp;(#DESCRIPTIF|supprimer_tags|texte_backend|couper{40}|PtoBR)]})]
+
+<dl class='spip_document_#ID_DOCUMENT spip_documents_pf[ (#ENV{class})] spip_lien_ok'>
+<dt class="vignette_pf">[<a href="(#GET{url})"[ class="(#ENV{lien_class})"][ title='(#GET{title_alt})'][ (#ENV{lien}|?{'',type="#MIME_TYPE"})]>][<img src='(#GET{fichier})'[ width='(#GET{width})'][ height='(#GET{height})'][ alt='(#GET{title_alt})'] />][(#GET{url}|?{</a>})]</dt>
+
+</dl>
+</BOUCLE_doc>
