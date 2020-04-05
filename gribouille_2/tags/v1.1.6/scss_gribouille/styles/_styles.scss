@@ -1,0 +1,404 @@
+//----------------------------------------
+//  Contenu principal
+//----------------------------------------
+
+.container {
+  max-width: 70em;
+  margin:    0 auto;
+}
+
+// -------- HEADER ---------------------
+
+.header {
+  margin-bottom:  2em;
+  padding-bottom: 2em;
+  border-bottom:  1px solid $couleur-gris4;
+}
+
+.header_tools {
+  @include media($bp-medium-up) {
+    @include flex();
+    justify-content: space-between;
+  }
+}
+
+.header_breadcrumb {
+  @include media($bp-medium) {
+    margin-bottom: 1.5em;
+  }
+}
+
+.formulaire_spip.formulaire_recherche {
+  margin-bottom: 0;
+  .search, .submit,
+  input[type="search"], input[type="submit"] {
+    display: inline-block;
+  }
+  input[type="search"] {
+    width: 12em;
+  }
+  // pour masquer la loupe svg de galactic
+  svg {
+    display: none;
+  }
+}
+
+.header_breadcrumb ol {
+  list-style: none;
+  margin:     0;
+  li {
+    margin:  0;
+    display: inline-block;
+    &:not(:last-child):after {
+      content: ' >';
+    }
+  }
+}
+
+// -------- CONTENU ---------------------
+
+.page {
+  .texte {
+    overflow: hidden;
+  }
+}
+
+// dans les articles : deux colonnes
+.contenu {
+  @include media($bp-medium-up) {
+    @include flex();
+    justify-content: space-between;
+    & > div {
+      margin: 0 1em;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .chapo {
+    font-weight: bold;
+  }
+  &.contenu__auteur {
+    & > div {
+      width: 50%;
+    }
+  }
+}
+
+.logo_gribouille {
+  float: right;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.liste-articles,
+.extra_rubrique ul,
+.contenu_sommaire ul {
+  list-style:  none;
+  margin-left: 0;
+  li {
+    line-height:   $typo-line-height*0.9;
+    margin-bottom: 0.5em;
+  }
+}
+
+.contenu_sommaire {
+  width:       15em;
+  min-width:   15em;
+  margin-left: 2em;
+  .nav-sommaire {
+    margin: 0;
+    border: none;
+    h2 {
+      @extend .h2;
+      text-transform: none;
+    }
+    @include media($bp-medium) {
+      display: none;
+    }
+    ul {
+      padding-left: 0.8em;
+      text-indent:  -1em;
+      li:before {
+        content: "\2219";
+      }
+    }
+  }
+}
+
+.contenu_date_auteurs {
+  margin-top:  1.5em;
+  padding-top: 1em;
+  color:       $couleur-gris4;
+  font-style:  italic;
+}
+
+.extra_rubrique {
+  margin-top:  1.5em;
+  padding-top: 1.5em;
+  border-top:  thin solid $couleur-gris5;
+  @include media($bp-medium-up) {
+    @include flex();
+    & > div {
+      width:  33%;
+      margin: 0 1em;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.liste-articles {
+  a {
+    display:     block;
+    font-weight: bold;
+  }
+}
+
+.liste-articles_tri {
+  @include media($bp-medium-up) {
+    @include flex();
+    align-items:     flex-end;
+    justify-content: space-between;
+  }
+  .tri {
+    @include media($bp-medium-up) {
+      font-size:     80%;
+      padding-right: 1em;
+    }
+  }
+}
+
+.liste-articles_info {
+  display:   block;
+  font-size: 80%;
+  margin: 0.5em 0;
+}
+
+.recherche_resultats {
+  list-style: square;
+  margin-left: 1em;
+  li {
+    margin-bottom: 1em;
+  }
+}
+
+// blocs de code
+div.spip_code, div.coloration_code {
+  background: transparent;
+  margin-bottom: 1.5em;
+  // pour les lignes vraiment trop longues
+  word-break: break-all;
+  pre {
+    padding: 0;
+    margin: 0;
+    background: none;
+    font-size: 0.95em;
+    -moz-tab-size: 4;
+    tab-size: 4;
+  }
+  ol {
+    list-style-type: none;
+    margin: 0 0 em(8px) 0;
+    padding: em(24px);
+    background: #003E4B;
+    font-size: 0.95em;
+    color: white;
+  }
+  p.download {
+    text-align: right;
+  }
+  p.download a,
+  a.download,
+  a .download__span {
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 1em;
+    background-color: $couleur-nav;
+    font-size: 0.9em;
+    color: white;
+  }
+}
+
+// code inline
+span.spip_code, span.coloration_code {
+  * {
+    color: #2360B4 !important;
+  }
+  display: inline-block;
+  padding: 0 0.25em;
+  background: #F4F4F4;
+}
+
+//  Surcharges du plugin precode
+.precode {
+  pre, pre[class] {
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: #003E4B;
+    padding: 0;
+  }
+  pre code {
+    padding: 1.5em;
+  }
+  pre::before,
+  pre.spip::before,
+  pre.spip2::before,
+  pre.html::before,
+  pre.css::before,
+  pre.less::before,
+  pre.sass::before,
+  pre.scss::before,
+  pre.js::before,
+  pre.php::before,
+  pre.xml::before {
+    color: white;
+  }
+}
+
+// -------- FOOTER ---------------------
+
+.footer {
+  margin-top:  2em;
+  padding-top: 2em;
+  border-top:  1px solid $couleur-gris4;
+}
+
+.ajout-page {
+  margin-bottom: 1.5em;
+  p, .formulaire_spip {
+    margin-bottom: 0.5em;
+  }
+  .formulaire_spip {
+    label {
+      width:   15em;
+      display: inline-block;
+    }
+    input.text, input[type=" text "] {
+      width:   16em;
+      display: inline-block;
+    }
+  }
+}
+
+// -------- Comparaison d'articles ---------------------
+
+.diff-para-deplace {
+  background: #E8E8FF;
+}
+
+.diff-para-ajoute {
+  background: #D0FFC0;
+  color:      #000;
+}
+
+.diff-para-supprime {
+  background:      #FFD0C0;
+  color:           #904040;
+  text-decoration: line-through;
+}
+
+.diff-deplace {
+  background: #E8E8FF;
+}
+
+.diff-ajoute {
+  background: #D0FFC0;
+}
+
+.diff-supprime {
+  background:      #FFD0C0;
+  color:           #802020;
+  text-decoration: line-through;
+}
+
+.diff-para-deplace .diff-ajoute {
+  border:     1px solid #808080;
+  background: #B8FFB8;
+}
+
+.diff-para-deplace .diff-supprime {
+  border:     1px solid #808080;
+  background: #FFB8B8;
+}
+
+.diff-para-deplace .diff-deplace {
+  border:     1px solid #808080;
+  background: #B8B8FF;
+}
+
+//----------------------------------------
+//  Surcharges SPIP
+//----------------------------------------
+
+.spip-admin-bloc, .spip-admin-float {
+  right:     20px !important;
+  font-size: 0.8em;
+}
+
+.spip-admin-boutons {
+  border-radius: 0.3em !important;
+  padding:       0.5em !important;
+}
+
+table.spip {
+  width:           100%;
+  max-width:       100%;
+  border:          none;
+  background:      none;
+  margin:          1.5em 0;
+  border-collapse: collapse;
+  line-height:     inherit;
+  th {
+    border:      none;
+    border-top:  1px solid #D7D7D7;
+    background:  #F6F6F6;
+    padding:     .5em;
+    line-height: normal;
+  }
+  thead th {
+    border-top:    none;
+    border-bottom: 2px solid #353535;
+  }
+  td {
+    border:     none;
+    border-top: 1px solid #D7D7D7;
+    padding:    .5em;
+  }
+  tr:not(even) {
+    background: #FCFCFC;
+  }
+  tbody tr:last-child td,
+  tbody tr:last-child th {
+    border-bottom: 1px solid #D7D7D7;
+  }
+  tbody tr:hover td {
+    color: #434343;
+  }
+
+}
+
+.markItUp .markItUpHeader {
+  // une barre d'édition " flat " comme le thème, sans dégradé ni arrondis
+  background:    $couleur-gris5 !important;
+  border-color:  darken($couleur-gris5, 5%) !important;
+  border-bottom: none;
+  border-radius: 0 !important;
+}
+
+.formulaire_spip button.crayon-submit {
+  color: #264409;
+  &:hover,
+  &:focus {
+    background-color: #496328;
+    color: white;
+  }
+}

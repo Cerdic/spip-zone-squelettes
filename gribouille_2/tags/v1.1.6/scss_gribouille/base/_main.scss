@@ -1,0 +1,343 @@
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+}
+
+html {
+	font-size:                100.01%;
+	-ms-text-size-adjust:     100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	line-height: $typo-line-height;
+	background:  white;
+}
+
+/* Titraille / Intertitres */
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+	display:     block;
+	font-size:   100%;
+	font-style:  normal;
+	font-weight: bold;
+	line-height: 1.2;
+	padding:     0;
+	margin:      0 0 0.8em 0;
+}
+
+/* Hyperlinks
+[fr] Signaletique des hyperliens : http://letrainde13h37.fr/43/signaletique-hyperliens/ */
+a {
+	background: transparent;
+	color:      inherit;
+	&:link {
+		transition: .3s;
+	}
+	&:visited {
+		color: inherit;
+	}
+	&:focus {
+		outline:     thin dotted;
+		text-shadow: none;
+	}
+	&:hover {
+		outline: 0;
+		cursor:  pointer;
+	}
+	&:active {
+		outline: 0;
+	}
+	&:after,
+	&:before {
+		font-size: 90%;
+		opacity:   .9;
+	}
+	&[hreflang]:after {
+		content: "\0000a0[" attr(hreflang) "]";
+		font-weight: normal;
+	}
+	/* External Links */
+	&.spip_out:after {
+		content: "\0000a0\279A";
+	}
+	&[hreflang].spip_out:after {
+		content: "\0000a0[" attr(hreflang) "]\0000a0\279A";
+	}
+	/* Linked images */
+	& img {
+		border: 0;
+	}
+	&:focus img,
+	&:active img {
+		-moz-transform: translateY(1px);
+		-webkit-transform: translateY(1px);
+		-o-transform: translateY(1px);
+		-ms-transform: translate(1px);
+		transform: translateY(1px);
+	}
+}
+
+ul, ol {
+	list-style: none;
+	margin:     0;
+	padding:    0;
+}
+
+ul, ol {
+	margin-left: $typo-margin-vertical;
+}
+
+ul {
+	list-style-type: square;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+ul ul, ol ol {
+	margin-bottom: 0;
+}
+
+dt {
+	font-weight: bold;
+}
+
+em, i {
+	font-style: italic;
+}
+
+strong, b {
+	font-weight: bold;
+}
+
+small,
+.small {
+	@include small();
+}
+
+p,
+ul,
+ol,
+dl,
+dd,
+blockquote,
+address,
+pre,
+table,
+fieldset,
+.pagination {
+	@include text-block();
+}
+
+img {
+	max-width:              100% !important;
+	height:                 auto !important;
+	width:                  auto \9
+	!important; /* IE7-8 need help adjusting responsive images */
+	vertical-align:         middle;
+	border:                 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+abbr[title],
+acronym[title] {
+	text-decoration: none;
+	border-bottom: .1em dotted;
+	cursor: help;
+}
+@media print {
+	abbr[title] {
+		border-bottom: 0;
+	}
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+}
+
+dfn {
+	font-weight: bold;
+	font-style: italic;
+}
+s,
+strike,
+del {
+	opacity: .5;
+	text-decoration: line-through;
+}
+ins {
+	background-color: rgba(255, 255, 204, 0.5);
+	text-decoration: none;
+}
+u {
+	text-decoration: underline;
+}
+sup,
+.sup,
+sub,
+.sub {
+	position: relative;
+	font-size: 80%;
+	font-variant: normal;
+	line-height: 0;
+	vertical-align: baseline;
+}
+sup,
+.sup {
+	top: -0.5em;
+}
+sub,
+.sub {
+	bottom: -0.25em;
+}
+pre {
+	white-space: pre-wrap;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+kbd {
+	white-space: nowrap;
+	padding: .1em .3em;
+	background-color: #eee;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px #ffffff inset;
+	color: #333;
+}
+samp {
+	font-weight: bold;
+}
+var {
+	font-style: italic;
+}
+
+/* Typography for small screens
+[fr] http://www.alsacreations.com/astuce/lire/1177 */
+@media (max-width: em(640px)) {
+	/* fixer une largeur maximale  de 100 % aux elements potentiellement problematiques */
+	img,
+	table,
+	td,
+	blockquote,
+	code,
+	pre,
+	textarea,
+	input,
+	iframe,
+	object,
+	embed,
+	video {
+		max-width: 100% !important;
+	}
+	/* gestion des mots longs */
+	textarea,
+	table,
+	td,
+	th,
+	pre,
+	code,
+	samp {
+		word-wrap: break-word;
+		/* cesure forcee */
+	}
+	pre,
+	code,
+	samp {
+		white-space: pre-line;
+		/* passage a la ligne specifique pour les elements a chasse fixe */
+	}
+}
+
+/* orientation iOS5 font-size fix */
+@media (orientation: landscape) and (max-device-width: em(640px)) {
+	html,
+	body {
+		-webkit-text-size-adjust: 100%;
+	}
+}
+
+/*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+	background:  #B3D4FC;
+	text-shadow: none;
+}
+
+::selection {
+	background:  #B3D4FC;
+	text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+	display:    block;
+	height:     1px;
+	border:     0;
+	border-top: 1px solid #CCC;
+	margin:     1em 0;
+	padding:    0;
+	clear:      both;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+	vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+	border:  0;
+	margin:  0;
+	padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+	resize: vertical;
+}
+
+input[type="search"] {
+	box-sizing: border-box;
+}
+
+address {
+	font-style: normal;
+}

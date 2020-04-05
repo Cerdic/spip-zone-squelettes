@@ -1,0 +1,134 @@
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+
+	@page  {
+		margin: 2cm .5cm;
+	}
+	
+	#spip-admin,
+	#boussole_spip,
+	.contentNav,
+	.menu-lang,
+	.header__search,
+	.page__footer,
+	.debug_info {
+		display: none !important;
+	}
+
+	.page__wrapper {
+		border-top: none;
+	}
+	
+	.contentMain__breadcrumb nav {
+		padding: 0;
+	}
+	.contentMain__main {
+		padding-left:  0;
+		padding-right: 0;
+	}
+
+	h1, .h1 {
+		font-size: $body-font-size*1.6;
+	}
+	h2, .h2 {
+		font-size: $body-font-size*1.35;
+	}
+	h3, .h3 {
+		font-size: $body-font-size*1.2;
+	}
+
+	.article__statut {
+		margin:     0;
+		text-align: left;
+		p, p.traductions {
+			padding:       0;
+			margin-bottom: 0.5em;
+		}
+	}
+
+	*,
+	*:before,
+	*:after {
+		background:  transparent !important;
+		color:       #000 !important;
+		/* Black prints faster:
+										  http://www.sanbeiji.com/archives/953 */
+		box-shadow:  none !important;
+		text-shadow: none !important;
+	}
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+	a:after {
+		content: '';
+	}
+	a[rel="external"]:after,
+	a.spip_out:after {
+		content: " (" attr(href) ")";
+	}
+
+	/*
+	 * Don't show links that are fragment identifiers,
+	 * or use the `javascript:` pseudo protocol
+	 */
+
+	a[href^="#"]:after,
+	a[href^="javascript:"]:after {
+		content: "";
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	/* éviter saut de page hasardeux */
+	blockquote, ul, ol {
+		page-break-inside: avoid;
+	}
+	h1, h2, h3, caption {
+		page-break-after: avoid;
+	}
+
+	/*
+	 * Printing Tables:
+	 * http://css-discuss.incutio.com/wiki/Printing_Tables
+	 */
+
+	thead {
+		display: table-header-group;
+	}
+
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows:  3;
+	}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+
+	.noprint,
+	.no-print {
+		display: none;
+	}
+
+}

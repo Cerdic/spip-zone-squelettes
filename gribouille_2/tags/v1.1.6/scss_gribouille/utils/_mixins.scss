@@ -1,0 +1,69 @@
+@function em($px, $base: $body-font-size) {
+	@return ($px / $base) * 1em;
+}
+
+@mixin flex() {
+	display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -ms-flexbox; /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Chrome */
+	display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+/* Paragraphes et blocs de texte */
+@mixin text-block() {
+	margin-top:    0;
+	margin-bottom: $typo-margin-vertical;
+}
+
+@mixin small() {
+	font-size: 1em*$small-font-zize;
+}
+
+@mixin ombre() {
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .15);
+}
+
+/* Modules et boites */
+@mixin module-block() {
+	margin-top:    1.5em;
+	margin-bottom: 1.5em;
+}
+
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+@mixin media($query) {
+	@media screen and ($query) {
+		@content;
+	}
+}
+
+@function breakpoint($query, $dimension) {
+	@return $query+": "+$dimension;
+}
+
+@mixin vendor-prefix($name, $value) {
+	@each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+		#{$vendor}#{$name}: #{$value};
+	}
+}
+
+@mixin bouton($couleur, $texte:#FFF) {
+	display:          inline-block;
+	height:           em(30px);
+	line-height:      em(30px);
+	padding:          0 1em;
+	background-color: $couleur;
+	border:           none;
+	box-shadow:       none;
+	text-align:       center;
+	text-decoration:  none;
+	color:            $texte;
+	transition:       background 0.3s;
+	cursor:           pointer;
+	&:hover,
+	&:focus {
+		background-color: darken($couleur, 20%);
+	}
+}

@@ -1,0 +1,23 @@
+[(#SET{defaut_tri,#ARRAY{titre,1,maj,-1,popularite,-1,points,-1}})]
+<BOUCLE_principale(RUBRIQUES){id_rubrique}{wiki}>
+<B_recherche>
+	#ANCRE_PAGINATION
+	<div class="liste-articles_tri">
+		<h2>#GRAND_TOTAL [(#VAL{<:gribouille:pages:>}|_T|strtolower)]</h2>
+		<p class="tri">[(#TRI{points,<:gribouille:tri_par_points:>,ajax})] | [(#TRI{titre,<:gribouille:tri_par_titre:>,ajax})] | [(#TRI{popularite,<:gribouille:tri_par_popularite:>,ajax})] | [(#TRI{maj,<:gribouille:tri_par_maj:>,ajax})]</p>
+	</div>
+	<ul class="liste-articles recherche_resultats">
+		<BOUCLE_recherche(ARTICLES){recherche}{wiki}{tri #ENV{par,points},#GET{defaut_tri}}{pagination #ENV{nb,10}}{wiki}>
+		<li>
+			<a href="#URL_ARTICLE"[ hreflang="(#LANG)"]>#TITRE</a>
+			[<span class="liste-articles_info"><:gribouille:mis_a_jour:> (#MAJ|date_relative)</span>]
+			<INCLURE{fond=inc-gribouille/chemin-article,id_rubrique}>
+			[(#INTRODUCTION{300}|supprimer_tags)]
+		</li>
+		</BOUCLE_recherche>
+	</ul>
+	[<p class="pagination">(#PAGINATION{page_precedent_suivant})</p>]
+</B_recherche>
+<p><:avis_aucun_resultat:></p>
+<//B_recherche>
+</BOUCLE_principale>

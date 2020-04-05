@@ -1,0 +1,67 @@
+<BOUCLE_article(ARTICLES){id_article}{wiki}>
+#SET{diff, #VAL{#ID_ARTICLE}|gribouille_calcul_diff{'article',#ENV{id_version}}}
+<!DOCTYPE html>
+<html lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>#TITRE</title>
+	<INCLURE{fond=inc-gribouille/head}>
+	[(#ENV{id_version}|oui)
+	<meta name="robots" content="noindex">
+	]
+</head>
+<body class="article">
+<div class="container">
+
+	<INCLURE{fond=inc-gribouille/entete,id_rubrique,id_article}>
+	
+	[(#ENV{id_version}|?{
+	<h1>[(#GET{diff/titre})]</h1>,
+	<h1 class="[(#ENV{id_version}|non)[(#EDIT{titre}) ]]page_name">[(#TITRE|safehtml)]</h1>
+	})]
+
+	[(#ENV{id_version}|oui)
+	<INCLURE{fond=inc-gribouille/entete_revision,id_version=#ENV{id_version},objet=article,id_objet=#ENV{id_article}}>
+	]
+	
+	<div class="page">
+		
+		<div class="contenu">
+			<div class="contenu_texte">
+				[(#ENV{id_version}|oui)
+					[<div class="chapo">(#GET{diff/chapo})</div>]
+					[<div class="texte">
+						[(#LOGO_ARTICLE|image_reduire{240}|inserer_attribut{class,logo_gribouille})]
+						(#GET{diff/texte})
+					</div>]
+					[<div class="ps">(#GET{diff/ps})</div>]
+				]
+				[(#ENV{id_version}|non)
+					[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
+					[<div class="#EDIT{texte} texte">
+						[(#LOGO_ARTICLE|image_reduire{180}|inserer_attribut{class,logo_gribouille})]
+						(#TEXTE|safehtml|ancres_sommaire|sinon{<p><em><:gribouille:click_ajout_texte:></em></p>})
+						[<div class="notes">(#NOTES|safehtml)</div>]
+					</div>]
+					[<div class="#EDIT{ps} ps">(#PS|safehtml)</div>]
+					<div class="contenu_date_auteurs">
+						<INCLURE{fond=inc-gribouille/article-auteurs,id_article}>		
+						[ - <:gribouille:mis_a_jour:>(#MAJ|affdate_heure)]
+					</div>
+				]
+			</div>
+			<div class="contenu_sommaire">
+				[(#ENV{id_version}|non)
+				[(#SOMMAIRE{#TEXTE})]
+				]
+				<INCLURE{fond=inc-gribouille/liste_versions, env, id_version=#ENV{id_version}, objet=article, id_objet=#ENV{id_article}}>
+			</div>
+		</div>
+			
+	</div>
+
+	<INCLURE{fond=inc-gribouille/pied,id_rubrique,url=#URL_ARTICLE}>
+
+</div>
+</body>
+</html>
+</BOUCLE_article>

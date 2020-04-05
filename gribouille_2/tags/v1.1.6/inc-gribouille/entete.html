@@ -1,0 +1,34 @@
+<div class="header">
+	<BOUCLE_racine(RUBRIQUES){id_rubrique}{wiki}>
+	<BOUCLE_h_titre(HIERARCHIE){id_rubrique=#ID_SECTEUR}{tout}>
+	[(#ENV{accueil}|?{
+	<h1 class="wikititre">#TITRE</h1>,
+	<p class="h1 wikititre"><a href="#URL_RUBRIQUE">#TITRE</a></p>
+	})]
+	
+	</BOUCLE_h_titre>
+	</BOUCLE_racine>
+
+	<div class="header_tools">
+		<div class="header_breadcrumb">
+			<BOUCLE_r(RUBRIQUES){id_rubrique}{wiki}>
+			#SET{id_secteur,#ID_SECTEUR}
+			<nav aria-label="breadcrumb" role="navigation">
+				<ol>
+					<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
+					<BOUCLE_h(HIERARCHIE){id_rubrique}{tout}>
+					<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_h>
+				</ol>
+			</nav>
+			</BOUCLE_r>
+		</div>
+		
+		<div class="header_search">
+			<BOUCLE_recherche(RUBRIQUES){id_rubrique}{wiki}> 
+			#FORMULAIRE_RECHERCHE{#URL_PAGE{recherche_gribouille,id_secteur=#ID_SECTEUR}}
+			</BOUCLE_recherche>
+		</div>
+	</div>
+	
+</div>
