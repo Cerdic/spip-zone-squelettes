@@ -1,0 +1,32 @@
+<!-- affichage de la liste des articles agenda -->
+
+#SET{annee-en-cours,#DATE|annee} 
+      
+<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}{lang}>
+<BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}{lang}>
+</BOUCLE_selection_articles1>
+</BOUCLE_selection_rubrique>
+
+<BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{lang}{age_redac<=0}{doublons evenements}{lang}>
+</BOUCLE_selection_articles>
+
+#SET{nbrpageventcalendrier,#CONFIG{escal/config/pagincalendrier,5}}
+    <B_articles_agenda>
+
+		  <div id="entete-evenement">
+        <:escal:evenements:>
+		  </div>
+      
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+		<BOUCLE_articles_agenda(ARTICLES){!doublons evenements}{par date_redac}{pagination #GET{nbrpageventcalendrier}}>
+			<div class="liste-evenements">
+
+      [(#DATE_REDAC|annee|=={#GET{annee-en-cours}}|?{[(#DATE_REDAC|affdate{'d-m'})] :,[(#DATE_REDAC|affdate{'d-m-Y'})] :})] 
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
+			</div>
+		</BOUCLE_articles_agenda>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+		<//B_articles_agenda>

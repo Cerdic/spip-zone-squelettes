@@ -1,0 +1,121 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des actus
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#articles-defilants",
+        element   : "div.un-article-defilant",
+        tempo     : [(#CONFIG{escal/config/tempoactus, 5})]
+      }
+    )
+  }
+) ;
+</script>
+
+	<h1 class="cadre perso">
+	[(#CONFIG{escal/config/titreperso}|oui)
+    [(#CONFIG{escal/config/titreperso}|propre|_T_ou_typo|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titreperso}|non)
+    Ma noisette
+  ]
+  </h1>
+
+	<div class="texte perso [(#CONFIG{escal/config/toggleperso}|=={oui}|oui)toggle]">
+
+#SET{nombreartperso,#CONFIG{escal/config/nombreartperso,5}}
+#SET{paginperso,#CONFIG{escal/config/paginperso,5}}
+#SET{couperperso,#CONFIG{escal/config/couperperso,80}}
+
+<BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=special}>
+<BOUCLE_selection_articles1(ARTICLES){branche}{doublons special}>
+</BOUCLE_selection_articles1>
+</BOUCLE_selection_rubrique>
+
+<BOUCLE_selection_articles(ARTICLES){titre_mot=special}{doublons special}>
+</BOUCLE_selection_articles>
+
+<BOUCLE_testmotcle(ARTICLES){!doublons special}>
+</BOUCLE_testmotcle>
+</B_testmotcle>
+  Ici vous pouvez afficher les articles avec le mot-clé "special".<br /><br />
+<//B_testmotcle>
+
+[(#CONFIG{escal/config/choixperso}|non)
+  Le type d'affichage de cette noisette se fait dans l'interface de configuration d'Escal.
+]
+
+#SET{defaut_tri,#ARRAY{
+tri,1,
+date,-1,
+num titre,1
+}}
+
+  <B_perso1>
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+	<BOUCLE_perso1(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedateauteur}|oui}{!doublons special} {lang} {tri #CONFIG{escal/config/ordreperso},#GET{defaut_tri}} {0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+		<!-- 	affichage du titre avec lien vers l'article
+					de la date de publication
+					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[<:escal:le:> (#DATE|affdate) ]
+			<BOUCLE_test(AUTEURS){id_article}{lang_select}>
+		  </BOUCLE_test>
+		  [(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs(AUTEURS){id_article}{",<br />"}{lang_select}>
+			[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]</BOUCLE_auteurs>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+      </B_test>
+		</div>
+	</BOUCLE_perso1>
+	
+	<B_perso2>
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+	<BOUCLE_perso2(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listesimple}|oui}{!doublons special}{lang}{tri #CONFIG{escal/config/ordreperso},#GET{defaut_tri}}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+		<!-- 	affichage du titre avec lien vers l'article -->
+		<div class="titre-article-cadre">
+			<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+	</BOUCLE_perso2>
+
+	<B_perso3>
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+  <BOUCLE_perso3(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listetexte}|oui}{!doublons special}{lang}{tri #CONFIG{escal/config/ordreperso},#GET{defaut_tri}}{0,#GET{nombreartperso}}{pagination #GET{paginperso}}>
+  <div class="titre-article-cadre" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+  <div class="intro">
+  [(#INTRODUCTION|couper{#GET{couperperso}}|propre)]
+  </div>
+  </div>
+  </BOUCLE_perso3>
+
+  
+  <B_perso4>
+	<div id="articles-defilants">
+  <BOUCLE_perso4(ARTICLES){si #CONFIG{escal/config/choixperso}|=={listedefilante}|oui}{!doublons special}{lang}{tri #CONFIG{escal/config/ordreperso},#GET{defaut_tri}}>
+  <div class="un-article-defilant" >
+  <a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})] [title="(#DESCRIPTIF|textebrut|entites_html)"]">#TITRE</a>
+  <div class="intro">
+  [(#INTRODUCTION|couper{#GET{couperperso}}|propre)]
+  </div>
+  </div>
+  </BOUCLE_perso4>
+  </div>
+  </B_perso4>
+  
+	</div><!-- fin texte -->
+<div class="nettoyeur"></div>

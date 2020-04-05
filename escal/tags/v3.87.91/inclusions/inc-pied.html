@@ -1,0 +1,152 @@
+<div id="pied-gauche">
+
+<!-- citations -->
+<BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}{si #CONFIG{escal/config/citations}|=={oui}|oui}>
+[(#TEXTE|citations)]
+</BOUCLE_citations>
+<br /><br />
+
+
+[(#PLUGIN{FB_MODELES}|oui)
+    [(#MODELE{
+    fb_like,
+    send=#CONFIG{escal/config/sendfacebook,oui},
+    layout=#CONFIG{escal/config/boutonfacebook,button_count},
+    show_faces=non
+    })]
+]
+
+</div>
+
+<div id="liens">
+
+[(#CONFIG{escal/config/lienplan}|=={non}|non)
+<!-- un lien vers le plan du site -->
+<a href="[(#URL_PAGE{plan}|parametre_url{lang,#ENV{lang}})]" title="<:escal:plan_site:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/sitemap.png}" alt="<:escal:plan_site:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:plan_site:>]
+</a>
+]
+
+[(#CONFIG{escal/config/liencontact}|=={non}|non)
+<!-- un lien vers la page contact -->
+<a href="[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})]" title="<:escal:title_contact:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/arobase.png}" alt="<:escal:contact:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:contact:>]
+</a>
+]
+
+[(#PLUGIN{SPIP_PROPRIO}|oui)
+[(#CONFIG{escal/config/mentions}|=={non}|non)
+<!-- un lien vers la page des mentions legales -->
+<a href="[(#URL_PAGE{mentions-legales}|parametre_url{lang,#ENV{lang}})]" title="<:escal:title_mentions:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/legal.png}" alt="<:escal:mentions:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:mentions:>]
+</a>
+]
+]
+
+[(#CONFIG{escal/config/lienecrire}|=={non}|non)
+<!-- un lien vers l'espace privé de SPIP -->
+<a href="ecrire/" title="<:escal:title_espace_redacteurs:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/ecrire.png}" alt="<:escal:espace_redacteurs:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:escal:espace_redacteurs:>]
+</a>
+]
+
+[(#CONFIG{escal/config/liensquelette}|=={non}|non)
+<a href="#ENV{skel}" title="<:voir_squelette:>" rel="nofollow">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img src="#CHEMIN{images/squelette.png}" alt="<:squelette:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" /><:squelette:>]
+</a>
+]
+[(#CONFIG{escal/config/dernierepuce}|=={non}|non)
+<img src="#CHEMIN{images/pucebleue.gif}" alt="<:escal:puce:>" />
+]
+<br /><br />
+
+[(#CONFIG{escal/config/lienRSS}|=={non}|non)
+<!-- un lien vers la page de syndication -->
+<a href="#URL_PAGE{backend}">
+<img src="#CHEMIN{images/rss.png}" alt="RSS" title="<:syndiquer_site:>" />
+</a>
+]
+[(#CONFIG{escal/config/lienXHTML}|=={non}|non)
+<a href="https://validator.w3.org/unicorn/?ucn_lang=fr">
+<img src="#CHEMIN{images/valid-xhtml10-blue.png}" alt="Valid XHTML 1.0 Strict" title="<:escal:title_w3c:>" height="20" width="60" />
+</a>
+]
+
+
+<br /><br />
+
+<!-- Copyright -->
+
+<BOUCLE_copy(ARTICLES){par date}{0,1}{si #CONFIG{escal/config/copyright}|=={oui}|oui}>
+[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] &copy; [(#NOM_SITE_SPIP)] - 
+<BOUCLE_trad(ARTICLES){lang=#ENV{lang}}{0,1}><:escal:copyright:></BOUCLE_trad>
+</BOUCLE_copy>
+
+</div>
+
+
+<!-- affichage du retour vers le haut de la page -->
+	<div id="scrollHaut"><a href="#top"><img src="#CHEMIN{images/to_top.png}"/></a></div>
+
+<!-- realise avec -->
+<div id="credits">
+[(#LANG|=={ja}|oui) <a href="https://www.spip.net" title="<:ecrire:version:> #SPIP_VERSION">SPIP</a> <:escal:site_realise_avec:> ]
+[(#LANG|=={ja}|non) <:escal:site_realise_avec:> <a href="https://www.spip.net" title="<:ecrire:version:> #SPIP_VERSION">SPIP</a> ]
+<br /> 
+<:escal:avec_le_squelette:> <a href="http://escal.ac-lyon.fr/" title="<:escal:title_escal:>" >ESCAL-V3</a><br />
+<:version:> #PLUGIN{escal, version}<br />
+<a href="https://contrib.spip.net/Escal-V3">Version Escal-V4 disponible pour SPIP3.2</a>
+[(#CONFIG{escal/config/hebergeur}|=={oui}|oui)
+  <:escal:hebergeur:>
+  [(#CONFIG{escal/config/urlhebergeur}|oui)<a href="#CONFIG{escal/config/urlhebergeur}" title="site de l'hébergeur">]
+    #CONFIG{escal/config/nomhebergeur}
+  [(#CONFIG{escal/config/urlhebergeur}|oui)</a>]
+]
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#CONFIG{escal/config/menufixe}|=={oui}|oui)
+<!-- javascript pour fixer le menu -->
+    <script type="text/javascript">
+		// listen for scroll
+		var positionElementInPage = $('.menu').offset().top;
+		$(window).scroll(
+			function() {
+				if ($(window).scrollTop() >= positionElementInPage) {
+					// fixed
+					$('.menu').addClass("floatable");
+				} else {
+					// relative
+					$('.menu').removeClass("floatable");
+				}
+			}
+		);
+	</script>
+]
+<!-- javascript pour le menu sur mobile -->
+<script src="#CHEMIN{scripts/jquery.slicknav.js}" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#menumobile').slicknav();
+	});
+</script>
+<!-- javascript pour la flèche de retour-haut sur mobile -->
+<script>
+jQuery(function(){
+$(function () {
+$(window).scroll(function () { //Fonction appelée quand on descend la page
+if ($(this).scrollTop() > 200 ) {  // Quand on est à 200pixels du haut de page,
+$('#scrollHaut').css('right','10px'); // Replace à 10pixels de la droite l'image
+} else { 
+$('#scrollHaut').removeAttr( 'style' ); // Enlève les attributs CSS affectés par javascript
+}
+});
+});
+});
+</script>

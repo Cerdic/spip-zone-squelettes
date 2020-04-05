@@ -1,0 +1,33 @@
+<h1 class="cadre identification a-droite" >
+
+[(#REM) si l'auteur est identifie, on lui souhaite bienvenue]
+		[(#SESSION{id_auteur}|oui) <:escal:bienvenue:><br />#SESSION{nom}]
+		[(#SESSION{id_auteur}|non) <:escal:identification:>]
+
+[(#REM) affichage de l'icone pour ce cadre]
+    <!--
+    <img src="#CHEMIN{images/identification.png}"  width="36" height="36" alt="<:escal:identification:>" />
+    -->
+</h1>
+
+<div class="texte identification [(#CONFIG{escal/config/toggleidentification}|=={oui}|oui)toggle]" >
+
+[(#REM) formulaire d'identification]
+		#FORMULAIRE_LOGIN
+
+[(#SESSION{id_auteur}|non) 
+[(#CONFIG{escal/config/inscription}|=={oui}|oui)
+		<span id="inscription">#FORMULAIRE_INSCRIPTION</span>
+]
+[(#CONFIG{escal/config/inscription_visiteur}|=={oui}|oui)
+		<span id="inscription">[(#FORMULAIRE_INSCRIPTION{6forum})]</span>
+]
+]
+
+[(#REM) si l'auteur est identifie, on lui permet de se deconnecter ou d'acceder a l'espace auteur]	
+<div id="liensilogue">
+	[<a (#SESSION{id_auteur}|oui) href="#URL_LOGOUT" title="<:icone_deconnecter:>"><:icone_deconnecter:></a>]
+    [<a(#AUTORISER{ecrire}) href="#EVAL{_DIR_RESTREINT_ABS}" title="<:escal:espace_redacteurs:>"><:escal:espace_redacteurs:></a>]
+</div>		
+
+</div>

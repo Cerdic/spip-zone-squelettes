@@ -1,0 +1,42 @@
+<!-- Rainette -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configrainette.png}|balise_img{'',cadre-icone})]<:escal:rainette_plugin:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <div class="explication">
+            <:escal:rainette_explication:>
+            </div>
+            
+    <ul>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+
+            #SET{name,ville}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:rainette_code:><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix">
+                            <input type="text" name="#GET{name}"  value="#ENV{ville}" />
+                    </div>
+
+            </div>
+            </li>
+    </ul>
+    
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

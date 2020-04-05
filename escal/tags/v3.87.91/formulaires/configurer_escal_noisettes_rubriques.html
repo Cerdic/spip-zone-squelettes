@@ -1,0 +1,167 @@
+<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{confignoisettes.png}|balise_img{'',cadre-icone})]<:escal:noisette_rubrique:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+	<ul>
+<!-- inc-derniers_articles -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article26&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:derniers_articles:></strong></a></label>
+            <div class="explication">
+            #SET{name,titrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:titre_noisette:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:98%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
+             #SET{name,nombrederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:nombre_articles:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />
+            #SET{name,datederniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_date_pub:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,auteurderniersart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_nom_auteur:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>        
+                    <br /><br />
+            </div>
+            </li>	
+            
+<!-- inc-decouvrir_articles -->
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article180&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:noisettes_decouvrir:></strong></a></label>
+            <div class="explication">
+            #SET{name,titredecouvrirarticles}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:titre_noisette:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:98%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            <br /><br />
+             #SET{name,siteourub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:noisettes_decouvrir_ou:><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_site" value="site"
+                            [(#ENV{#GET{name}}|=={site}|oui)checked="checked"] /><label for="#GET{name}_site"><:escal:noisettes_decouvrir_site:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_rub" value="rub"
+                            [(#ENV{#GET{name}}|=={site}|non)checked="checked"] /><label for="#GET{name}_rub"><:escal:noisettes_decouvrir_rubrique:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+             #SET{name,nombreartrecents}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:noisettes_decouvrir_recents:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br />
+             #SET{name,nombrearthasard}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:noisettes_decouvrir_hasard:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br />
+             #SET{name,nombreartplusvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:noisettes_decouvrir_plus_vus:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br />
+             #SET{name,nombreartmoinsvus}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:noisettes_decouvrir_moins_vus:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_oui" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2})]"  />
+                    </span>
+                    <br />
+            #SET{name,pagindecouvrir}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:nombre_articles_pagination:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                     <div class="nettoyeur"></div>
+            #SET{name,auteurdecouvrir}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_nom_auteur:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+            #SET{name,datedecouvrir}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_date_pub:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <div class="nettoyeur"></div>                    
+
+            </div>
+            </li>
+            
+<!-- inc-documents_rubrique -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article191&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:a_telecharger:></strong></a></label>
+            <div class="explication">
+            #SET{name,titredocsrub}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:titre_noisette:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:98%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}"
+                             value="#ENV**{#GET{name}}"  />
+                    </span>
+            </div>
+            </li>
+     </ul>
+     
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

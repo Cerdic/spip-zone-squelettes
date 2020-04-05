@@ -1,0 +1,115 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmenu.png}|balise_img{'',cadre-icone})]<:escal:menu_horizontal:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+	
+
+<!-------------------------------------------------------------------------------->
+<!-- Choisir la présence ou l'absence d'un menu sur toutes les pages du site ----->
+<!-------------------------------------------------------------------------------->
+
+     <ul>
+<!-- menu horizontal -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article29&lang=fr" title="<:escal:documentation_voir:>"><:escal:documentation:></strong></a></label>
+                    <br />
+            <div class="explication">
+            
+	<:escal:menu_horizontal_affichage:><br />
+            #SET{name,menuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}          
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    
+	<:escal:menu_horizontal_articles:><br /> 
+            #SET{name,articlesmenuH}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    
+	<:escal:menu_horizontal_fixer:><br />
+            #SET{name,menufixe}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+          </div>
+		</li>
+		
+		<li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:menu_horizontal_secteur:></strong></label>
+                    <br />
+            <div class="explication">                                     
+	<:escal:menu_horizontal_titre:><br />
+            #SET{name,texterubmenu}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    
+	<:escal:menu_horizontal_logo:><br />
+            #SET{name,logorubmenu}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}               
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+                    
+	<:escal:menu_horizontal_hauteur:><br />
+            #SET{name,taillelogorubmenu}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},20})]"  />
+                    </span>
+                    
+
+            </div>
+            </li>
+     </ul>
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
+    
+    

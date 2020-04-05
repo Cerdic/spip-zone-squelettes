@@ -1,0 +1,47 @@
+	<h1 class="cadre sites" >
+	[(#CONFIG{escal/config/titresites}|oui)
+    [(#CONFIG{escal/config/titresites}|propre|_T_ou_typo|PtoBR)]
+  ]
+	[(#CONFIG{escal/config/titresites}|non)
+    <:escal:sur_web:>
+  ]
+	</h1>
+
+  <div class="texte sites [(#CONFIG{escal/config/togglesites}|=={oui}|oui)toggle]">
+
+
+<BOUCLE_testsites(SITES)>&nbsp;</BOUCLE_testsites>
+</B_testsites>
+  Ici vous pouvez afficher les sites référencés ou syndiqués sur votre propre site.
+<//B_testsites>
+
+<BOUCLE_exclusion(SITES){si #CONFIG{escal/config/exclurefav}|=={oui}}{titre_mot=favori}{doublons}>
+</BOUCLE_exclusion>
+<BOUCLE_exclusion2(SITES){titre_mot=site-exclu}{doublons}>
+</BOUCLE_exclusion2>
+
+          <BOUCLE_derniers_sites(SITES){si #CONFIG{escal/config/sitessyndic}|=={oui}|non}{doublons}{par nom_site}{0,#CONFIG{escal/config/nombresites,5}} >
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites>
+    		      <ul>
+    				   <BOUCLE_articles_sites(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,#CONFIG{escal/config/nombreartsites,5}}>
+    				   <li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites>
+    				   </ul>
+    				   </B_articles_sites>
+          </BOUCLE_derniers_sites>
+
+          <BOUCLE_derniers_sites2(SITES){si #CONFIG{escal/config/sitessyndic}|=={oui}|oui}{doublons}{syndication=oui}{par nom_site}{0,#CONFIG{escal/config/nombresites,5}} >
+    		    <div class="titre-site"><a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
+    		    <div class="descriptif-site"> [(#DESCRIPTIF|couper{50})]</div>
+    		      <B_articles_sites2>
+    		      <ul>
+    				   <BOUCLE_articles_sites2(SYNDIC_ARTICLES){par date}{inverse}{id_syndic}{0,#CONFIG{escal/config/nombreartsites,5}}>
+    				   <li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE|couper{30})]</a></li>
+    				   </BOUCLE_articles_sites2>
+    				   </ul>
+    				   </B_articles_sites2>
+          </BOUCLE_derniers_sites2> 
+
+  </div>

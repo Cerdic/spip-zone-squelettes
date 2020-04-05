@@ -1,0 +1,63 @@
+[(#REM)<!--
+	Ce sous-modele est celui utilise par defaut par Rainette pour presenter les conditions temps reel d'une ville
+	Il est appelee par le filtre rainette_croaaaaa_conditions
+ -->
+]
+#CACHE{300}
+
+<div class="rainette_conditions">
+	<div class="statut">
+		<div class="cadre">
+			<div class="maj">
+		  			<:rainette:derniere_maj|ucfirst:>&nbsp;:[&nbsp;(#ENV{donnees/derniere_maj, #VAL{Y-m-d H:i:s}|date}|affdate_heure)]<br/>
+					[<:rainette:station_observation|ucfirst:>&nbsp;:&nbsp;(#ENV{donnees/station})]
+						[(#ENV{donnees/station}|non)
+						[<:rainette:lieu|ucfirst:>&nbsp;:&nbsp;
+							(#RAINETTE_INFOS{#ENV{extras/lieu}, ville, #ENV{extras/service}})[,
+							(#RAINETTE_INFOS{#ENV{extras/lieu}, pays, #ENV{extras/service}})]
+						]
+					]			
+		    </div>
+			<div class="icone">[(#ENV{donnees/icone}|rainette_afficher_icone{grand})]</div>
+			<div class="t_reelle">[(#ENV{donnees}|table_valeur{temperature_reelle, '', #EVAL{true}}|rainette_afficher_unite{temperature, -1, #ENV{extras/service}})]</div>
+			<br />
+			<div class="resume">[(#ENV{donnees/resume}|rainette_afficher_resume)]</div>
+		</div>
+	</div>
+<div class="nettoyeur"></div>
+<ul>
+ <li class="meteo">Plus d'infos
+    <div class="popup">
+		<div class="details plus">
+		<br/>
+		<span>T° <:rainette:temperature_ressentie:>&nbsp;:
+			[&nbsp;(#ENV{donnees}|table_valeur{temperature_ressentie, '', #EVAL{true}}|rainette_afficher_unite{temperature, -1, #ENV{extras/service}})]
+			</span><br/><br/>
+    		<span><:rainette:vent|ucfirst:>&nbsp;:
+			[(#ENV{donnees}|table_valeur{vitesse_vent, '', #EVAL{true}}|rainette_afficher_unite{vitesse, -1, #ENV{extras/service}})]
+			[ - (#ENV{donnees}|table_valeur{direction_vent}|rainette_afficher_direction)]
+			</span><br/><br/>
+		<span><:rainette:humidite|ucfirst:>&nbsp;:
+			[(#ENV{donnees}|table_valeur{humidite, '', #EVAL{true}}|rainette_afficher_unite{pourcentage, -1, #ENV{extras/service}})]
+			</span><br/><br/>
+		<span><:rainette:pression|ucfirst:>&nbsp;:
+			[(#ENV{donnees}|table_valeur{pression, '', #EVAL{true}}|rainette_afficher_unite{pression, -1, #ENV{extras/service}})]
+			[ (#ENV{donnees/tendance_pression}|rainette_afficher_tendance{symbole})]
+			</span><br/><br/>
+		<span><:rainette:point_rosee|ucfirst:>&nbsp;:
+			[(#ENV{donnees}|table_valeur{point_rosee, '', #EVAL{true}}|rainette_afficher_unite{temperature, -1, #ENV{extras/service}})]
+			</span><br/><br/>
+		<span><:rainette:visibilite|ucfirst:>&nbsp;:
+			[(#ENV{donnees}|table_valeur{visibilite, '', #EVAL{true}}|rainette_afficher_unite{distance, -1, #ENV{extras/service}})]
+			</span><br/><br/>
+	  </div>
+    </div>
+</li>
+ <li class="meteo">Prévisions à 3 jours
+    <div class="popup">
+    [(#MODELE{rainette_previsions, lieu=#CONFIG{escal/config/ville}, type=x_jours, nombre_jours=3, sous_modele=escal_previsions_24h})]
+    </div>
+</li>
+</ul>
+<div class="nettoyeur"></div>
+</div>

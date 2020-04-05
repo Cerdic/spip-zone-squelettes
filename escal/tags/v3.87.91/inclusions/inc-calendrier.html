@@ -1,0 +1,55 @@
+<h1 class="cadre calendrier">
+	[(#CONFIG{escal/config/titrecalendrier}|?{[(#CONFIG{escal/config/titrecalendrier}|propre|_T_ou_typo|PtoBR)],<:escal:calendrier:>})]
+	[(#CONFIG{escal/config/lienagenda}|=={oui}|oui)
+	<br />
+	<a class="calendrier" href="#URL_SITE_SPIP/spip.php?page=agenda" title="<:escal:lien_agenda:>">&#9658; voir en pleine page</a>
+	]			
+</h1>
+
+	<div class="texte calendrier [(#CONFIG{escal/config/togglecalendrier}|=={oui}|oui)toggle]" >
+
+<!-- on teste si le plugin Calendrier Mini est activé
+sinon, on renvoie une alerte -->
+[(#PLUGIN{CALENDRIERMINI}|oui)
+  [(#CONFIG{escal/config/donneescalendrier}|non)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-event}|parametre_url{lang,#ENV{lang}},#URL_PAGE{calendrier_quete.json}}
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={articles}|oui)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-art}|parametre_url{lang,#ENV{lang}},#URL_PAGE{calendrier_mini_escal.json}}
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={evenements}|oui)
+    #CALENDRIER_MINI{#ENV{date},date,#URL_PAGE{jour-event}|parametre_url{lang,#ENV{lang}},#URL_PAGE{calendrier_quete.json}}
+  ]
+]
+[(#PLUGIN{CALENDRIERMINI}|non)
+Le calendrier ne s'affichera que lorsque vous aurez activé le <a href="http://contrib.spip.net/Calendrier-Mini-2-0">plugin "Mini Calendrier"</a>
+]
+<div class="nettoyeur"></div> 
+[(#CONFIG{escal/config/listeeventscalendrier}|=={non}|non)
+  [(#CONFIG{escal/config/donneescalendrier}|non)
+    <INCLURE {fond=inclusions/inc-calendrier_art}{env}{lang}>
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={articles}|oui)
+    <INCLURE {fond=inclusions/inc-calendrier_art}{env}{lang}>
+  ]
+  [(#CONFIG{escal/config/donneescalendrier}|=={evenements}|oui)
+    <INCLURE {fond=inclusions/inc-calendrier_event}{env}{lang}>
+  ]
+]
+
+    <B_rubrique_agenda>
+    <div id="nouvel-evenement">
+    <BOUCLE_rubrique_agenda(RUBRIQUES){si #SESSION{id_auteur}|oui}{si #CONFIG{escal/config/liennouvelevent}|=={oui}|oui}{titre_mot=agenda}{0,1}>
+      <a href="ecrire/?exec=article_edit&amp;id_rubrique=#ID_RUBRIQUE&amp;new=oui" title="R&eacute;serv&eacute; aux r&eacute;dacteurs">
+      <:escal:evenements_ajouter:></a>
+    </BOUCLE_rubrique_agenda>
+    </div>
+    </B_rubrique_agenda>
+
+
+  </div><!-- fin texte -->
+
+
+
+
+

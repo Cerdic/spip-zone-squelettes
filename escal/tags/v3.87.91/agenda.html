@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
+  <head>
+    <title><:escal:agenda:> - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>
+    <INCLURE {fond=inclusions/inc-head, env}>
+    <meta name="robots" content="noindex, nofollow">
+
+      <link href="#CHEMIN{styles/agenda.css}"  rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}layer.js"> </script>
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}presentation.js"> </script>
+
+
+  </head>
+
+  <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-agenda">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
+          
+          <div id="entete">
+
+           <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace_self}{env}>
+          ]
+          <div class="nettoyeur"></div>
+          
+          <div id="page">
+            <div id="contenu">
+    
+    <B_test>
+    <div class="agenda-legende">Légende : 
+    <BOUCLE_test(EVENEMENTS){type_mot=Agenda_couleur}{0,1}>         
+    <BOUCLE_couleur(MOTS){type=Agenda_couleur}>                   
+        <BOUCLE_event(EVENEMENTS){id_mot}{0,1}> 
+            <span class="agenda-couleurs" style="background-color:#_couleur:DESCRIPTIF*">#_couleur:TEXTE*</span>                  
+        </BOUCLE_event>
+    </BOUCLE_couleur>      
+    </BOUCLE_test>
+    </div>
+    </B_test>
+    
+      [(#SPIP_VERSION|version_compare{3, >=}|non)
+        <INCLURE {fond=inclusions/inc-agenda}>
+      ]
+      [(#SPIP_VERSION|version_compare{3, >=}|oui)
+        <INCLURE{fond=contenu/calendrier,env}>
+      ]
+
+
+            </div><!-- fin contenu -->
+          </div><!-- fin page -->
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

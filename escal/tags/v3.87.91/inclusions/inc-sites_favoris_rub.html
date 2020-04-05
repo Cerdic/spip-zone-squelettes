@@ -1,0 +1,95 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des vignettes
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#sites-defilants",
+        element   : "div.un-site-defilant",
+        tempo     : [(#CONFIG{escal/config/tempophotos, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
+[(#REM)
+On n'oublie pas de créer les règles CSS correspondantes !
+#container {
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	height: égale au plus haut element affiché
+}
+.element{
+	position: absolute;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	top: au moins egal au height defini plus haut
+}
+]
+
+<BOUCLE_secteur(HIERARCHIE){0,1}{tout} >
+
+<BOUCLE_sites_favoris_test(SITES){branche}{titre_mot=favori}{0,1}>
+</BOUCLE_sites_favoris_test>
+
+	<h1 class="cadre sites-favoris">
+	[(#CONFIG{escal/config/titresitesfav}|oui)
+		[(#CONFIG{escal/config/titresitesfav}|propre|_T_ou_typo|PtoBR)]
+		]
+		[(#CONFIG{escal/config/titresitesfav}|non)
+		<:escal:sites_favoris:>
+	]
+	</h1>       
+
+	<div class="texte sites-favoris [(#CONFIG{escal/config/togglesitesfav}|=={oui}|oui)toggle]">
+#SET{nbrsitesfav,#CONFIG{escal/config/nombresitesfav,10}}
+  <div id="sites-defilants">
+ 
+<!-- affichage par défaut : par hasard -->
+      <BOUCLE_sites_favoris_defaut(SITES){si #CONFIG{escal/config/ordresitesfav}|non}{branche}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
+      <div class="un-site-defilant">
+        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris_defaut>  
+<!-- affichage par hasard -->
+      <BOUCLE_sites_favoris1(SITES){si #CONFIG{escal/config/ordresitesfav}|=={hasard}|oui}{branche}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par hasard}>
+      <div class="un-site-defilant">
+        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris1>
+<!-- affichage par date -->
+      <BOUCLE_sites_favoris2(SITES){si #CONFIG{escal/config/ordresitesfav}|=={date}|oui}{branche}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}>
+      <div class="un-site-defilant">
+        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris2>        
+<!-- affichage par date inverse -->      
+      <BOUCLE_sites_favoris3(SITES){si #CONFIG{escal/config/ordresitesfav}|=={dateinverse}|oui}{branche}{titre_mot=favori}{0,#GET{nbrsitesfav}}{par date}{inverse}>
+      <div class="un-site-defilant">
+        <a href="#URL_SITE" class="spip_out" [ title="Visiter (#NOM_SITE|couper{80}|attribut_html)"]>
+          <span class="titre-site">#NOM_SITE</span><br />
+          [(#LOGO_SITE||image_reduire{152}||sinon{<img src="https://www.easy-thumb.net/thumb?url=#URL_SITE&size=160x120" alt="vignette du site"/>})]
+        </a>
+      </div>
+      </BOUCLE_sites_favoris3>    
+
+	</div>
+  </div>
+  
+  </B_sites_favoris_test>
+  
+  </BOUCLE_secteur>

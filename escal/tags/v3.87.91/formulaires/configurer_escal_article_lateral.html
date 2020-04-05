@@ -1,0 +1,398 @@
+
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configarticle.png}|balise_img{'',cadre-icone})]<:escal:page_article:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+<legend><strong><:escal:choix_blocs_lateraux:></strong></legend>
+
+     <ul>
+
+	<div class="explication">
+            <strong><:escal:doc_acces_direct:></strong><:escal:doc_acces_direct2:><br />
+            <strong><:escal:doc_mot_cles_associes:></strong><:escal:doc_mot_cles_associes2:><br />
+            <strong><:escal:doc_navigation_mots_cles:></strong><:escal:doc_navigation_mots_cles2:><br />
+            <strong><:escal:doc_recherche_multi:></strong><:escal:doc_recherche_multi2:><br />
+            <strong><:escal:doc_meme_rubrique:></strong><:escal:doc_meme_rubrique2:><br />
+            <strong><:escal:doc_sites_favoris:></strong><:escal:doc_sites_favoris2:><br />
+            <strong><:escal:doc_mini_calendrier:></strong><:escal:doc_mini_calendrier2:><br />
+            <strong><:escal:doc_evenements_a_venir:></strong><:escal:doc_evenements_a_venir2:><br />
+            <strong><:escal:doc_sur_web:></strong><:escal:doc_sur_web2:><br />
+            <strong><:escal:doc_derniers_art_syndic:></strong><:escal:doc_derniers_art_syndic2:><br />
+            <strong><:escal:doc_telecharger_art_rub:></strong><:escal:doc_telecharger_art2:><br />
+            <strong><:escal:doc_article_libre:></strong><:escal:doc_article_libre2:><br />
+            <strong><:escal:doc_personnalise:></strong><:escal:doc_personnalise2:><br />                  
+	</div>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:colonne_nav:></strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_un:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>                             
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>                             
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_deux:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]  ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_trois:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_quatre:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+              <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_cinq:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocnavart6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_six:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="choixmenuV1" [(#ENV{#GET{name}}|=={choixmenuV1}|?{'selected="selected"',''})] ><:escal:menu_vertical_depliant:></option>
+                              <option value="choixmenuV2" [(#ENV{#GET{name}}|=={choixmenuV2}|?{'selected="selected"',''})] ><:escal:menu_vertical_deroulant:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+            <div class="nettoyeur"></div>
+            </div>
+            </li>
+
+
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label><strong><:escal:colonne_extra:></strong></label>
+                    <br />
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_un:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_deux:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_trois:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart4}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_quatre:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart5}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_cinq:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>
+             <div class="nettoyeur"></div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocextraart6}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_six:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                              <option value="acces_direct" [(#ENV{#GET{name}}|=={acces_direct}|?{'selected="selected"',''})] ><:escal:acces_direct:></option>
+                              <option value="actus" [(#ENV{#GET{name}}|=={actus}|?{'selected="selected"',''})] ><:escal:actus:></option>
+                              <option value="nav_mots" [(#ENV{#GET{name}}|=={nav_mots}|?{'selected="selected"',''})] ><:escal:mots_clefs_associes:></option>
+                              <option value="nav_mots2" [(#ENV{#GET{name}}|=={nav_mots2}|?{'selected="selected"',''})] ><:escal:nav_mot_cle:></option>
+                              <option value="recherche_multi" [(#ENV{#GET{name}}|=={recherche_multi}|?{'selected="selected"',''})] ><:escal:recherche_multi:></option>
+                              <option value="meme_rub" [(#ENV{#GET{name}}|=={meme_rub}|?{'selected="selected"',''})] ><:escal:meme_rub:></option>
+                              <option value="sites_favoris_rub" [(#ENV{#GET{name}}|=={sites_favoris_rub}|?{'selected="selected"',''})] ><:escal:sites_favoris:></option>
+                              <option value="calendrier" [(#ENV{#GET{name}}|=={calendrier}|?{'selected="selected"',''})] ><:escal:mini_calendrier:></option>
+                              <option value="evenements" [(#ENV{#GET{name}}|=={evenements}|?{'selected="selected"',''})] ><:escal:evenements:></option>
+                              <option value="sites" [(#ENV{#GET{name}}|=={sites}|?{'selected="selected"',''})] ><:escal:sur_web:></option>
+                              <option value="sites_recents" [(#ENV{#GET{name}}|=={sites_recents}|?{'selected="selected"',''})] ><:escal:derniers_articles_syndiques:></option>
+                              <option value="documents_article" [(#ENV{#GET{name}}|=={documents_article}|?{'selected="selected"',''})] ><:escal:a_telecharger:></option>
+                              <option value="article_libre1" [(#ENV{#GET{name}}|=={article_libre1}|?{'selected="selected"',''})] ><:escal:article_libre1:></option>
+                              <option value="article_libre2" [(#ENV{#GET{name}}|=={article_libre2}|?{'selected="selected"',''})] ><:escal:article_libre2:></option>
+                              <option value="article_libre3" [(#ENV{#GET{name}}|=={article_libre3}|?{'selected="selected"',''})] ><:escal:article_libre3:></option>
+                              <option value="article_libre4" [(#ENV{#GET{name}}|=={article_libre4}|?{'selected="selected"',''})] ><:escal:article_libre4:></option>
+                              <option value="article_libre5" [(#ENV{#GET{name}}|=={article_libre5}|?{'selected="selected"',''})] ><:escal:article_libre5:></option>
+                              <option value="perso" [(#ENV{#GET{name}}|=={perso}|?{'selected="selected"',''})] ><:escal:noisette_perso:></option>
+                            </select>
+                    </span>                    
+            <div class="nettoyeur"></div>
+            </div>
+            </li>
+
+     </ul>
+
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <div class="nettoyeur"></div>
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>  
