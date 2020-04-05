@@ -1,0 +1,108 @@
+[(#REM)
+
+ Ce squelette definit les styles du plugin ScolaSPIP
+
+ ATTENTION : il faut absolument le charset sinon Firefox croit que
+ c'est du text/html !
+]
+#CACHE{604800}
+#HTTP_HEADER{Content-Type:text/css;charset=utf-8}
+#HTTP_HEADER{Vary:Accept-Encoding}
+
+#nav {background-image : none;}
+
+
+[(#REM) Police du texte et des titres]
+body h1,body .h1,body h2,body .h2,body h3,body .h3,body .page .h3-like,body h4,body .h4,body #entete .accueil #nom_site_spip{
+[(#CONFIG{scolaspip_colorer/police_titres}|=={Verdana}|?{'font-family:Verdana,Geneva,Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={DejaVu}|?{'font-family:"DejaVu Sans","Lucida Grande","Bitstream Vera",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Arial}|?{'font-family:Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Trebuchet}|?{'font-family:"Trebuchet MS",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Futura}|?{'font-family:Futura, "Century Gothic", AppleGothic, sans-serif;'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Impact}|?{'font-family:Impact,Charcoal,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Times}|?{'font-family:Times,"Times New Roman",serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Georgia}|?{'font-family:Georgia,serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Baskerville}|?{'font-family:Baskerville,"Palatino Linotype",serif'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Andale}|?{'font-family:"Andale Mono","Courier New",monospace'})][
+(#CONFIG{scolaspip_colorer/police_titres}|=={Courier}|?{'font-family:"Courier New",Courier,mono,monospace'})];}
+body .page,.liste h3.h3{
+[(#CONFIG{scolaspip_colorer/police_contenu}|=={Verdana}|?{'font-family:Verdana,Geneva,Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={DejaVu}|?{'font-family:"DejaVu Sans","Lucida Grande","Bitstream Vera",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Arial}|?{'font-family:Arial,Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Trebuchet}|?{'font-family:"Trebuchet MS",Helvetica,sans-serif'})][
+(#CONFIG{scolaspip_colorer/police_contenu}|=={Futura}|?{'font-family:Futura, "Century Gothic", AppleGothic, sans-serif;'})];}
+
+[(#REM) Arrondis]
+[(#CONFIG{scolaspip_colorer/arrondi}|=={non}|?{'.well, #carousel,.navbar-inner,.breadcrumb{ -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
+',''})]
+[(#CONFIG{scolaspip_colorer/bandeau_large}|=={large}|?{'#nav{ -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}',''})]
+
+[(#REM) Degrades]
+[(#CONFIG{scolaspip_colorer/degrades}|=={oui}|?{'
+body #header,body #footer,body #nav {background-image:url('#CHEMIN{img/trans.png}');background-size :100% 100%;}
+','#nav {background-image : none;}' })]
+[(#CONFIG{scolaspip_colorer/fondcadre}|=={degrade}|?{'
+.page_sommaire .evenements,body #aside .rubriques,#formulaire_inscription, #carousel {background-image:url('#CHEMIN{img/trans2.png}');background-size :100% 100%;background-repeat :repeat-y;}
+','' })]
+[(#CONFIG{scolaspip_colorer/fondcadre}|=={hachure}|?{'
+.page_sommaire .evenements,body #aside .rubriques,#formulaire_inscription, #carousel {background-image:url('#CHEMIN{img/trans3.png}');}
+','' })]
+[(#CONFIG{scolaspip_colorer/ombres_polices_intertitres}|=={oui}|?{'
+body h1,body .h1,body h2, body .h2,body h3.spip,body .h2 a,body .h2 a:hover,body .h2 a:focus{text-shadow: 1px 1px 2px #666;}
+','' })]
+[(#CONFIG{scolaspip_colorer/ombres_blocs}|=={oui}|?{'
+body #aside .rubriques,#formulaire_inscription,.dynamic-tab-pane-control .tab-page{-moz-box-shadow:-2px 2px 2px #666;-webkit-box-shadow:-2px 2px 2px #ccc;-o-box-shadow:-2px 2px 2px #ccc;box-shadow:-2px 2px 2px #666;}
+','' })]
+[(#CONFIG{scolaspip_colorer/ombres_blocs}|=={oui}|?{'
+#carousel,.page_sommaire .evenements{-moz-box-shadow:2px 2px 5px #ccc inset;-webkit-box-shadow:2px 2px 5px #ccc inset;-o-box-shadow:2px 2px 5px #ccc inset;box-shadow:2px 2px 5px #ccc inset;}
+','' })]
+
+
+
+[(#REM) Changement des couleurs]
+
+/* backgrounds  */
+html body{background-color:[(#CONFIG{scolaspip_colorer/bodyfond})];}
+#header, thead th {background-color:[(#CONFIG{scolaspip_colorer/bandeau})];}
+#nav,.navbar-responsive.navbar-inverse .navbar-inner .nav-collapse,table.spip thead th,body .pagination ul > .active > span, div .forum .forum-fil .forum-chapo{background-color:[(#CONFIG{scolaspip_colorer/barre})];}
+body .navbar-inverse .btn-navbar{background-color: [(#CONFIG{scolaspip_colorer/barre})]; background-image : none;}
+body #footer {background-color:[(#CONFIG{scolaspip_colorer/couleurbordure})];}
+
+.dropdown-menu > li > a:hover {background-image : none; background-color : [(#CONFIG{scolaspip_colorer/barre})];}
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,.dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu > .active > a ,.navbar-inverse .nav .active > a:hover  ,.navbar-inverse .nav-collapse .nav > li > a:hover, body .navbar-inverse .nav .active > a{background-color:[(#CONFIG{scolaspip_colorer/barreover})];}
+body #aside .rubriques,#formulaire_inscription{background-color:[(#CONFIG{scolaspip_colorer/menufond})];}
+body .calendriermini .ui-state-highlight a {background-color:[(#CONFIG{scolaspip_colorer/calfond})];}
+body .liste-items .item:hover,.page_sites .liste.syndics .liste-items .item:hover {background-color:[(#CONFIG{scolaspip_colorer/liover})];}
+
+/* Couleurs des bordures */
+body #footer,.dynamic-tab-pane-control .tab-row .tab.selected {border-top:3px solid [(#CONFIG{scolaspip_colorer/barre})];}
+body #header .menu-items .item{border-right:1px groove [(#CONFIG{scolaspip_colorer/barre})];}
+body .documents_portfolio a:focus .spip_logos,body .documents_portfolio a:hover .spip_logos,body .documents_portfolio a:active .spip_logos {border-color:[(#CONFIG{scolaspip_colorer/couleurbordure})];}
+
+/* couleurs des titres  */
+#nom_site_spip a, #slogan_site_spip{color:[(#CONFIG{scolaspip_colorer/couleurs_bandeau})];}
+body h1,body .h1,body h2, body .h2,body h3, body h3.spip,body h2 a,body h2 a:hover,body h2 a:focus,body .h2 a,body .h2 a:hover,body .h2 a:focus{color:[(#CONFIG{scolaspip_colorer/couleurs_intertitres})];}
+
+/* couleurs des liens */
+body a,body a.spip_out,body a.spip_out h3,body a.spip_in,body a.spip_glossaire{color :[(#CONFIG{scolaspip_colorer/liens})];}
+body a:focus,body a:hover,body a:active  {color :[(#CONFIG{scolaspip_colorer/liensover})]; background-color : transparent;}
+body #aside .rubriques a,#formulaire_inscription legend,#formulaire_inscription label,#formulaire_inscription p{color :[(#CONFIG{scolaspip_colorer/liensmenugauche})];}
+body #aside .rubriques a:hover,body #aside .rubriques a:focus,body #aside .rubriques a:active {color :[(#CONFIG{scolaspip_colorer/liensmenugauchehover})];}
+.navbar-inverse .nav > li > a,body #pied,body #pied a,body .pagination .on, div .forum .forum-fil .forum-chapo, div .forum .forum-fil .forum-chapo a, .navbar-inverse .nav-collapse .nav > li > a{color:[(#CONFIG{scolaspip_colorer/liensmenuhorizontal})];}
+body #nav .item a:hover,body #nav .item.on>a,body #nav .item.on .on>a, .navbar-inverse .nav-collapse .nav li > a:hover,.navbar-inverse .nav-collapse .nav > li.open a:hover{color:[(#CONFIG{scolaspip_colorer/menurollover})];}
+.navbar-inverse .nav-collapse .nav > li.open >a{color:[(#CONFIG{scolaspip_colorer/menufond})] !important;}
+
+[(#REM) Mise en page - bandeau elargi - menu à droite]
+[(#CONFIG{scolaspip_colorer/bandeau_large}|=={large}|?{'body > .container{width :100%;} .navbar-inner{-moz-box-shadow: none;-webkit-box-shadow:none;-o-box-shadow:none;box-shadow:none;} '})]
+
+[(#CONFIG{scolaspip_colorer/position_menu}|=={gauche}|?{'body #aside {float:left; } @media (max-width: 767px){body #aside { margin-left:0px;}}@media (min-width: 768px) and (max-width: 1199px){body #aside { margin-left:20px;} }@media (min-width: 1200px) { body #aside { margin-left:30px;}} body #content {clear :right ;float:right;margin : 0px;}','#aside {margin : 0px; float : right;};' })]
+
+@media (max-width: 767px){
+	.well {background-color : transparent; border : none;}
+	#nav {background-color : transparent; background-image : none; border : none;}
+	#header {border-bottom:3px solid [(#CONFIG{scolaspip_colorer/barre})];}
+	}	
+	
+[(#REM) Personnalisation ultime du css via scolaspip]
+[(#CONFIG{scolaspip_colorer/persocss})]
+

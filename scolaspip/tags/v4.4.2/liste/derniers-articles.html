@@ -1,0 +1,14 @@
+[(#REM)
+  Listes d'article dans scolaspip
+  Distribue sous licence GPL
+]
+<B_articles>
+	#ANCRE_PAGINATION
+	<h2 class="h2">[(#ENV{titre,<:derniers_articles:>})]</h2>
+	<ul class="liste-items">
+		<BOUCLE_articles(ARTICLES){!par date} {!mots.titre IN Sélection , Éditorial}{pagination #CONFIG{scolaspip_accueil/pagination_articles},5}{scolaspip_nb_articles}{!mots.titre=Exclu}>
+		<li class="item">#INCLURE{fond=inclure/resume/article,id_article}</li>
+		</BOUCLE_articles>
+	</ul>
+	[<div class="pagination">(#PAGINATION)</div>]
+</B_articles>

@@ -1,0 +1,24 @@
+
+[(#REM) Sites avec flux RSS ]
+<B_sites>
+<div class="liste syndic_articles syndics">
+	<h2 class="h2"><a href="#URL_PAGE{sites}" title="<:scolaspip:sites_selectionnes:>" ><:nouveautes_web:></a></h2>
+	<ul class="liste-items">
+		<BOUCLE_sites(SITES) {tout}{syndication=oui}{mots.titre IN fluxrss_accueil,Flux RSS à la une}{par num nom_site,nom_site}>
+		<li class="item">
+			<a href="#URL_SITE"  class="spip_out"  title="<:scolaspip:lien_externe:> &mdash; [(#NOM_SITE|attribut_html)]">
+				[(#LOGO_SITE|left|image_reduire{100,50})]
+				<h3 class="h3">#NOM_SITE</h3>
+			</a>
+			<ul class="liste-items">
+				<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{age<180}{!par date}{0,3}>
+				<li class="item">[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr><span class="sep"> &ndash; </span>]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+				</BOUCLE_articles>
+			</ul>
+		</li>
+		</BOUCLE_sites>
+	</ul>
+</div>
+</B_sites>
+
+

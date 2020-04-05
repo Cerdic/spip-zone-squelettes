@@ -1,0 +1,45 @@
+#CACHE{0}
+<BOUCLE_evenement(EVENEMENTS ?){id_evenement}>
+<div class="liste evenements">
+    <ul class="liste-items">
+	<li class="item">
+	    #MODELE{evenement_vevent}
+	</li>
+    </ul>
+</div>
+<div class="inscription [(#INSCRIPTION|?{' ','invisible'})]">
+    
+    <B_personnes_inscrites>
+    <BOUCLE_personnes_inscrites(spip_auteurs spip_evenements_participants){id_evenement}{par nom}{reponse='oui'}>
+    [(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)<p class="success"><strong>#NOM</strong> : <:scolaspip:evenement_bien_inscrit:></p>]
+    </BOUCLE_personnes_inscrites>
+    [(#AUTORISER{modifier,evenement,#ID_EVENEMENT})<p><a href="ecrire/?exec=agenda_inscriptions&id_evenement=#ID_EVENEMENT" title="<:scolaspip:evenement_liste_inscrits:>"><:agenda:liste_inscrits:></a><p>]
+    <p class="info">
+	[(#NB_INSCRITS|singulier_ou_pluriel{scolaspip:evenement_un_inscrit, scolaspip:evenement_n_inscrits,nb})]
+	[(#PLACES|=={'0'}|?{'',' '})
+	[, <strong>(#PLACES|moins{#TOTAL_BOUCLE}|singulier_ou_pluriel{scolaspip:evenement_1_place_restante, scolaspip:evenement_n_places_restantes,nb})</strong>]
+	[(#PLACES|singulier_ou_pluriel{scolaspip:info_1_place,scolaspip:info_nb_places,nb})]
+	]
+    </p>
+    </B_personnes_inscrites>
+    <p class="info"><:scolaspip:evenement_aucun_inscrit:> [(#PLACES|singulier_ou_pluriel{scolaspip:info_1_place,scolaspip:info_nb_places,nb})]</p>
+    <//B_personnes_inscrites>
+    
+    <BOUCLE_evenement_futur(EVENEMENTS ?){id_evenement}{age_debut<0}>
+    [(#SESSION{id_auteur}|oui)
+	<div class="inscription">#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}</div>
+    ][(#SESSION{id_auteur}|non)
+	<p class="notice"><strong><:scolaspip:evenement_etre_identifie:></strong></p>
+	#LOGIN_PUBLIC
+    ]</BOUCLE_evenement_futur>
+    </B_evenement_futur>
+    <p class="notice"><strong><:scolaspip:evenement_inscription_terminee:></strong></p>
+    <//B_evenement_futur>
+	
+ </div>
+<a href="#URL_ARTICLE"><:scolaspip:voir_la_page:></a>
+</BOUCLE_evenement>
+</B_evenement>
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="sep"> &gt; </span><a href="[(#URL_PAGE{agenda}|parametre_url{date_debut,#DATE|affdate{Y-m-01}})]"><:agenda:agenda:></a></p>
+<p><:agenda:info_aucun_evenement:></p>
+<//B_evenement>

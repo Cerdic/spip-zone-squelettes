@@ -1,0 +1,76 @@
+[(#REM)
+
+ Ce squelette definit le javascript du plugin ScolaSPIP (page publique)
+ 
+]
+#CACHE{604800}
+#HTTP_HEADER{Content-Type:text/javascript;charset=utf-8}
+#HTTP_HEADER{Vary:Accept-Encoding}
+
+function activeToggleBreves() {    // on masque les contenus des breves, on mets les boutons + et on active l'action
+    if ($(".liste.breves li.item div.contenu_breve").css("display")!="none"){
+	$(".liste.breves li.item div.contenu_breve").css({display:'none'});
+	$(".liste.breves li.item h3.h3 a").removeClass("ouvert");
+	$(".liste.breves li.item h3.h3 a").addClass("ouvrable");
+	$(".liste.breves li.item h3.h3").click(function(){ // Affichage des breves
+	    $(this).next().slideToggle();
+	    $(this).children().toggleClass("ouvrable");
+	    $(this).children().toggleClass("ouvert");
+	    return false;
+	});
+    }
+}
+$.removeCookie = function (key, options) {
+	if ($.cookie(key) === undefined) {
+		return false;
+	}
+	// Must not alter options, thus extending a fresh object...
+	$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+	return !$.cookie(key);
+};
+$(function() {
+    // bouton retour haut de page
+    $( "body" ).append( '<div id="backtotop" title="<:scolaspip:haut_page:>"><span>▲</span></div>' );
+    $(window).scroll(function() {
+        if($('html').scrollTop() > 300 || $('body').scrollTop() > 300) { $('#backtotop').fadeIn();}
+        else { $('#backtotop').fadeOut(); }
+    });
+    $('#backtotop').on('click',function() {
+        $('html,body').animate({ scrollTop: 0 }, 900, function() {
+            $("html, body").off("scroll mousedown DOMMouseScroll mousewheel keyup");
+        });
+        return false;
+    });
+    
+    // liens externes : dans une nouvelle fenetre 
+    $('a.spip_out,.articles-virtuels a').attr("target", "_blank");
+
+    activeToggleBreves();
+    if (typeof onAjaxLoad == 'function') onAjaxLoad(activeToggleBreves); // callback pour les breves lors de pagination ajax (merci astuces spip)
+    
+    // carousel
+    if (!$.cookie('stop-carousel')) {
+        $('#carousel').carousel({interval:8000});
+        $('#carousel-pause-cancel').hide();
+    }
+    else{
+        $('#carousel-pause').hide();
+    }
+    //bouton arret temporaire du carousel
+    $('#carousel-pause').on('click',function(){
+        $('#carousel').carousel('pause');
+        $.cookie('stop-carousel', true, { expires: 7 });
+        $(this).hide();
+        $('#carousel-pause-cancel').show();
+        return false;
+    });
+    //bouton arret/reprise definitive du carousel
+    $('#carousel-pause-cancel').on('click',function() {
+        $.removeCookie('stop-carousel');
+        $('#carousel').carousel('next');
+        $('#carousel').carousel({interval:8000});
+        $(this).hide();
+        $('#carousel-pause').show();
+        return false;
+    });
+});
