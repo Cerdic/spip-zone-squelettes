@@ -29,6 +29,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	Vous pourrez ensuite filtrer les résultats par mots-clé.',
 	'explication_recherche_facette' => 'Vous pouvez maintenant affiner les résultats en filtrant par mot-clé.',
 
+	// F
+	'filtres' => 'Filtres :',
 	// G
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
