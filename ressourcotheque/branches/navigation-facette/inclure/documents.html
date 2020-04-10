@@ -11,25 +11,27 @@
 [(#SET{doc,#GET{doc}|push{#FICHIER|copie_locale}})]
 </BOUCLE_zipper>
 #SET{urlzip,#GET{doc}|zippeur{#GET{date},#CONFIG{zippeur/zippeur_cmd},#ID_ARTICLE}}
-#SET{taille,#GET{urlzip}|filesize}
-#SET{logo,#VAL{zip}|vignette|inserer_attribut{class,spip_logo spip_logos}}
 <B_documents_joints>
 	<div class="liste documents documents_joints">
 	<h2 class="h2"><:medias:titre_documents_joints:></h2>
 	<ul class="liste-items">
 		[(#TOTAL_BOUCLE|>{1}|oui)
-		<li class="item">
-			<INCLURE{fond=inclure/resume/zip_dynamique}
-			{extension=zip}
-			{url=#GET{urlzip}}
-			{mime_type=application/zip}
-			{type_document=ZIP}
-			{taille=#GET{taille}}
-			{logo=#GET{logo}}
-			{titre=<:ressourcotheque:zip:>}
-			{date=#GET{date}}
-			>
-		</li>
+			[(#GET{urlzip}|file_exists|oui)
+				#SET{taille,#GET{urlzip}|filesize}
+				#SET{logo,#VAL{zip}|vignette|inserer_attribut{class,spip_logo spip_logos}}
+			<li class="item">
+				<INCLURE{fond=inclure/resume/zip_dynamique}
+				{extension=zip}
+				{url=#GET{urlzip}}
+				{mime_type=application/zip}
+				{type_document=ZIP}
+				{taille=#GET{taille}}
+				{logo=#GET{logo}}
+				{titre=<:ressourcotheque:zip:>}
+				{date=#GET{date}}
+				>
+			</li>
+			]
 		]
 		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?}{objet?}{id_objet?}{par num titre, date}>
 		<li class="item">#INCLURE{fond=inclure/resume/document,id_document}</li>
