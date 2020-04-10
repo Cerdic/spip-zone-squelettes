@@ -45,6 +45,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	'par_auteur' => 'Mise en ligne par',
 
+	//S
+	'supprimer_filtre' => 'Supprimer le filtre @txt@',
+
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
 
