@@ -1,0 +1,44 @@
+<B_filtres>
+<div id="filtres">
+<h4>Filtres:</h4>
+<BOUCLE_filtres(DATA){source tableau, #ENV{tags}}{" <span class='sep'>|</span> "}>
+		#SET{c,#COMPTEUR_BOUCLE|moins{1}}
+		<a class="btn btn-mini" href="[(#SELF|parametre_url_supprimer_element_tableau{tags,#ENV{tags},#GET{c}})]"><i class="icon-remove"></i>#VALEUR</a>
+</BOUCLE_filtres>
+</div>
+</B_filtres>
+<B_sphinx>
+			<div class="pagination">
+				#PAGINATION
+			</div>
+		<BOUCLE_sphinx(SPHINX)
+		  {index #ENV{source,spip}}
+			{recherche #ENV*{recherche}}
+			{filtermultijson #ID_RUBRIQUE, properties.id_rubrique, #LISTE{#ID_RUBRIQUE}}
+			{filtermono article, properties.objet, article}
+			{filtermultijson #ENV{tags}, properties.tags, #ENV{tags}}
+			{pagination 10}
+		>
+		<li class='item'>
+			<article class='entry surlignable article hentry'>
+				[(#COMPTEUR_BOUCLE|=={1}|oui)#SET{max,#SCORE}]
+
+
+				<strong class='h3-like entry-title'>[(#SCORE|mult{100}|div{#GET{max}}|intval)%] <a href="#URI">#TITLE</a></strong>
+				<p class="publication">
+					[<time pubdate="pubdate" datetime="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</time>]
+						#NOTATION_ETOILE{#PROPERTIES{notes/note_ponderee}}
+				</p>
+
+				[<div class="introduction entry-content clear">(#SNIPPET|sinon{#SUMMARY}|replace{<b>,''}|replace{</b>,''}|propre)</div>]
+			</article>
+		</li>
+		</BOUCLE_sphinx>
+		<div class="pagination">
+			#PAGINATION
+		</div>
+</B_sphinx>
+<p class="reponse_formulaire reponse_formulaire_erreur">
+<:ressourcotheque:aucun_resultat:>
+</p>
+<//B_sphinx>
