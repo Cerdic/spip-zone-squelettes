@@ -26,7 +26,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 - <code>|</code> pour l’opérateur booléen OU ;
 - <code>()</code> pour combiner des termes et faire une recherche complexe.
 
-	Vous pourrez ensuite filtrer les résultats par mots-clé.',
+	Vous pourrez ensuite filtrer les résultats par mots-clé.
+
+	Vous pouvez également parcourir directement les ressources pour un mot-clé spécifique.
+',
 	'explication_recherche_facette' => 'Vous pouvez maintenant affiner les résultats en filtrant par mot-clé.',
 
 	// F
