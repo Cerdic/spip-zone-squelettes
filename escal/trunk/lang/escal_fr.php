@@ -885,6 +885,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
         - doivent être chacune dans un seul paragraphe<br />
         - ne doivent pas dépasser 200 caractères<br />
         - doivent être séparées par une ligne vide',
+     'pied_citations_titre' => 'Titre à afficher au-dessus (laisser vide pour ne pas avoir de titre)',
 	'pied_copyright' => 'Affichage du copyright',
 	'pied_hebergeur' => 'Affichage de l’hébergeur',
 	'pied_hebergeur_nom' => 'Nom de votre hébergeur',
