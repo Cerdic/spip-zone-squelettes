@@ -1,0 +1,102 @@
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configgalleria.png}|balise_img{'',cadre-icone})]<:escal:galleria_plugin:></h3>
+
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article177&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a>
+
+            <div class="explication">
+            <:escal:galleria_explication:>
+            </div>
+
+
+     <ul>
+            #SET{name,galleriafond}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coulfondgalleria="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FFFFFF})]";
+            if(isset($_POST["reinit0"])) { $coulfondgalleria="#FFFFFF"; }
+            ?>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:galleria_couleur_gallerie:>
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style=" background-color:<?php echo "$coulfondgalleria"; ?>">
+                             <input type="texte" class="palette" name="#GET{name}" id="#GET{name}_fond" value="<?php echo "$coulfondgalleria"; ?>"  />
+                             <input type="submit" name="reinit0" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            #SET{name,galleriaencarts}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coulencartsgalleria="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#336699})]";
+            if(isset($_POST["reinit1"])) { $coulencartsgalleria="#336699"; }
+            ?>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:galleria_couleur_encart:>
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style=" background-color:<?php echo "$coulencartsgalleria"; ?>">
+                             <input type="texte" class="palette" name="#GET{name}" id="#GET{name}_encarts" value="<?php echo "$coulencartsgalleria"; ?>"  />
+                             <input type="submit" name="reinit1" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            #SET{name,galleriacoulpolice}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <?php
+            $coulpolicegalleria="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},#FFFFFF})]";
+            if(isset($_POST["reinit2"])) { $coulpolicegalleria="#FFFFFF"; }
+            ?>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:galleria_couleur_texte:>
+                    </div>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<div class="choix" style=" background-color:<?php echo "$coulpolicegalleria"; ?>">
+                             <input type="texte" class="palette" name="#GET{name}" id="#GET{name}_police" value="<?php echo "$coulpolicegalleria"; ?>"  />
+                             <input type="submit" name="reinit2" class="submit" value="Réinitialiser" />
+                    </div>
+            </li>
+            
+            
+            #SET{name,galleriatailletitre}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:galleria_caracteres:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}_taille" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},14})]"  />
+                    </span>
+                    </div>
+            </li>
+            
+              #SET{name,metadonnees}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <div class="explication"><:escal:metadonnees_explication:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_metadonnees" value="metadonnees"
+                            [(#ENV{#GET{name}}|=={metadonnees}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_metadonnees"><:escal:metadonnees:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_titre" value="titre"
+                            [(#ENV{#GET{name}}|=={titre}|oui)checked="checked"] /><label for="#GET{name}_titre"><:escal:titre:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_meta_et_titre" value="meta_et_titre"
+                            [(#ENV{#GET{name}}|=={meta_et_titre}|oui)checked="checked"] /><label for="#GET{name}_meta_et_titre"><:escal:metadonnees_titre:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+                    </div>
+            </li>
+
+    </ul>
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage et reinitialisation des donnees  ----------------------------------->
+<!-------------------------------------------------------------------------------->
+  <input type="hidden" name="_meta_casier" value="escal/config" />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

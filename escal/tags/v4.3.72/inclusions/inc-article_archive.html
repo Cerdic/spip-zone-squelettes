@@ -1,0 +1,108 @@
+<article class="accueil">
+
+<BOUCLE_exclusion(ARTICLES){titre_mot  IN 'accueil','annonce','annonce-defilant'}{doublons}>
+</BOUCLE_exclusion>
+
+<BOUCLE_contexte(RUBRIQUES){titre_mot=archive}>
+<BOUCLE_aleatoire(ARTICLES){branche}{par hasard}{0,1}{doublons}>
+
+<aside role="complementary" class="cadre-chemin">
+<!-- affichage du chemin de l'article -->
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+	<BOUCLE_chemin_article(HIERARCHIE){id_article}{tout}>
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE)]</a>
+	</BOUCLE_chemin_article>
+</aside>
+
+[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{50})]
+
+[<div id="surtitre-article" class="#EDIT{surtitre}">(#SURTITRE)</div>]
+[<div id="titre-article" class="#EDIT{titre}">(#TITRE)</div>]
+[<div id="soustitre-article" class="#EDIT{soustitre}">(#SOUSTITRE)</div>]
+[<div id="descriptif-article">(#DESCRIPTIF)</div>]
+<div id="auteur-article">  [<:escal:article_mise_en_ligne:> (#DATE|affdate)]
+	<BOUCLE_test(AUTEURS){id_article}{lang_select}>
+	</BOUCLE_test>
+		<br />
+		[(#LANG|=={ja}|non)<:par_auteur:>]
+		<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+		<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+		[(#LANG|=={ja}|non)<:par_auteur:>]
+	</B_test>
+</div>
+
+<div class="texte-article">
+
+	[<div id="chapo" class="#EDIT{chapo}">(#CHAPO)</div>]
+	<hr />
+	
+<!--Affichage du texte de l'article -->
+	[<div class="#EDIT{texte}">(#TEXTE|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})</div>]
+	<div class="nettoyeur"></div>
+	
+<!--Affichage des notes de bas de page  -->
+	[<aside role="complementary" id="notes"><strong>Notes : </strong> <br />(#NOTES)</aside>]
+	<div class="nettoyeur"></div>
+	
+</div><!-- Fin texte-article -->
+
+<!--Affichage du post-sciptum  -->
+[<aside role="complementary" id="ps" class="#EDIT{ps}"><strong>P.S. : </strong>(#PS|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})</aside>]
+
+<!-- Ajout du site web associé s'il existe -->
+[<aside role="complementary" id="site" class="#EDIT{nom_site}"><br />
+	<div class="#EDIT{url_site} url_site">
+	<:escal:sur_web:> :
+	<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]> (#NOM_SITE) </a>
+	</div>
+</aside>]
+
+<!-- documents à telécharger -->
+<B_doc_joints>
+	<aside role="complementary" id="cadre-telechargement">
+		<img src="#CHEMIN{images/download.svg}" width="18" height="18" alt="<:escal:alt_telechargements:>" />
+		[(#TOTAL_BOUCLE|>{01}|oui) <:escal:telechargements:>]
+		[(#TOTAL_BOUCLE|>{01}|non) <:escal:telechargement:>]
+		<div class="texte-doc" >
+			<table>
+<BOUCLE_doc_joints(DOCUMENTS){id_article}{mode=document}{vu=non}>
+			[(#COMPTEUR_BOUCLE|alterner{'<tr>',''})]
+			<td>
+				<ul>
+					<li>
+					[(#SPIP_VERSION|version_compare{2.1, >=}|non)
+					<a href="#URL_DOCUMENT">#LOGO_DOCUMENT</a>
+					]
+					 [(#SPIP_VERSION|version_compare{2.1, >=}|oui)
+					#LOGO_DOCUMENT{#URL_DOCUMENT}
+					]
+					</li>
+					<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER|basename})]</div></li>
+					<li>[<:escal:taille_fichier:> (#TAILLE|taille_en_octets)]</li>
+					<li>[<:escal:format:> (#TYPE_DOCUMENT)]</li>
+				</ul>
+			</td>
+			[(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]
+</BOUCLE_doc_joints>
+			[(#TOTAL_BOUCLE|alterner{'<td></td></tr>',''})]
+			</table>
+		</div><!-- fin texte-doc -->
+
+	</aside><!-- Fin cadre-telechargements -->
+</B_doc_joints>
+
+<div class="nettoyeur"></div>
+	
+[(#CONFIG{escal/config/archiveforum}|=={oui}|oui)
+	<aside role="complementary" class="accueilforum">
+	<hr />
+	<INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	</aside>
+]
+      
+</BOUCLE_aleatoire>
+</BOUCLE_contexte>
+
+</article>
+
+

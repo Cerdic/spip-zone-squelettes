@@ -1,0 +1,114 @@
+<BOUCLE_vevent(EVENEMENTS){id_evenement=#ENV{id,#ENV{id_evenement}}}{tout}>
+
+<BOUCLE_artevent(ARTICLES){id_article}>
+<div class="cadre-chemin">
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_art}{id_article}>]
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_art_2eniveau}{id_article}>]
+
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]" >[(#TITRE)]</a> 	 
+</div>
+</BOUCLE_artevent>
+    
+<h1 id="cadre-titre-article">
+	<div id="titre-article" class="#EDIT{titre}">[(#TITRE)]</div>
+</h1> <!-- fin cadre-titre-article -->
+
+
+<div id="cadre-article">
+  
+  <div id="texte-article" class="surlignable">
+
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+#SET{couleur,#CONFIG{escal/config/couleureventscalendrier,#336699}}
+<//B_mot>
+
+	    
+		<div class="event-date" style="background-color:[(#GET{couleur}|PtoBR)];">
+		<span class="event-nomjour">[(#DATE_DEBUT|nom_jour)]</span>
+		<br />
+		<span class="event-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="event-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="event-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
+		</div>
+
+
+		[(#LOGO_EVENEMENT|oui)
+		<div class="event-logo">
+		[(#LOGO_EVENEMENT|image_reduire{150,100})]
+		</div>
+		]
+
+<div style="margin: 5px 0 5px 150px;">
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+		<div class="periode">
+		du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+            [(#HORAIRE|=={oui}|?{&agrave; partir de
+            [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+            <br />au
+            [(#DATE_FIN|nom_jour)]
+            <strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+            [(#DATE_FIN|heures)]h[(#DATE_FIN|minutes)],''})]
+          </div>
+	]
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
+		<div class="donnee-heure">
+		  [(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non)
+            [(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)] - 
+            [(#DATE_FIN|heures)]h[(#DATE_FIN|minutes)]
+            ]
+          </div>
+	]
+ </div>
+        [<div class="location" itemprop="location">
+        <img src="#CHEMIN{images/geoloc.svg}" alt="horaire"  />
+          <span class="lieu #EDIT{lieu}">(#LIEU)</span>
+          [<br /><br /><span class="adresse #EDIT{adresse}">(#ADRESSE|PtoBR)</span>]
+        </div>] 
+   
+      <meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
+      <meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
+
+        <span class="descriptif-event">[(#DESCRIPTIF|oui)#DESCRIPTIF]</span>
+            
+
+        <BOUCLE_art(ARTICLES){id_article}{si #DESCRIPTIF|non}>
+        <br />
+        [(#MODELE{choix_article_base})]
+        </BOUCLE_art>
+        
+	<div class="meta-publi">
+	[(#PLUGIN{RESERVATIONS_MULTIPLES}|non)     
+		[(#INSCRIPTION|?{' ',''})
+		<hr />
+		<span class="inscrits">#NB_INSCRITS</span> inscrits [pour <span class="inscrits">(#PLACES)</span> places]
+		<INCLURE {fond=inclusions/inc-evenements_inscription}{id_evenement=#ID_EVENEMENT}>
+	] 
+		#FORMULAIRE_PARTICIPER_EVENEMENT{#ID_EVENEMENT}
+	]
+	[(#PLUGIN{RESERVATIONS_MULTIPLES}|oui)     
+		#FORMULAIRE_RESERVATION{#ENV{id_evenement}, #ENV{#ARRAY{id_evenement_source,''}}
+	]
+	</div>
+
+<!-- affichage carte gis du lieu -->
+	[(#PLUGIN{GIS}|oui)
+	<INCLURE{fond=inclusions/inc-gis}{env}>
+	]
+<!-- fin affichage carte gis du lieu --> 
+
+	<div class="nettoyeur"></div>
+	 
+      
+  </div>
+
+</div>
+
+</BOUCLE_vevent>

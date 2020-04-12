@@ -1,0 +1,75 @@
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configcorps.png}|balise_img{'',cadre-icone})]<:escal:bloc_choix:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+  
+  
+     <ul>     
+
+
+            <div class="explication">
+            <strong><:escal:doc_annonce:></strong></a><:escal:doc_annonce2:><br />
+            <strong><:escal:doc_annonce_defil:></strong></a><:escal:doc_annonce_defil2:><br />
+            <strong><:escal:doc_une:></strong></a><:escal:doc_une2:><br /> 
+            </div>
+            
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+                    [<span class='erreur_message'>(#GET{erreurs})</span>]
+             #SET{name,blocune1}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_un:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  ><:escal:annonce:></option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] ><:escal:annonce_defil:></option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})] [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:une:></option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                            </select>
+                    </span>
+            <br /><div class="nettoyeur"></div>
+             #SET{name,blocune2}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_deux:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  ><:escal:annonce:></option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] ><:escal:annonce_defil:></option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})]><:escal:une:></option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]  [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                            </select>
+                    </span>
+            <br /><div class="nettoyeur"></div>
+             #SET{name,blocune3}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:bloc_trois:>
+                    <span class="choix droite">
+                            <select name="#GET{name}">
+                              <option value="annonce" [(#ENV{#GET{name}}|=={annonce}|?{'selected="selected"',''})]  ><:escal:annonce:></option>
+                              <option value="annonce_defilant" [(#ENV{#GET{name}}|=={annonce_defilant}|?{'selected="selected"',''})] ><:escal:annonce_defil:></option>
+                              <option value="a_la_une" [(#ENV{#GET{name}}|=={a_la_une}|?{'selected="selected"',''})] ><:escal:une:></option>
+                              <option value="rien" [(#ENV{#GET{name}}|=={rien}|?{'selected="selected"',''})]  [(#ENV{#GET{name}}|=={""}|?{'selected="selected"',''})] ><:escal:aucun:></option>
+                            </select>
+                    </span>
+            <div class="nettoyeur"></div>
+            </div>
+            </li>
+
+
+     </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

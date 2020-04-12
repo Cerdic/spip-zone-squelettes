@@ -1,0 +1,75 @@
+<BOUCLE_rubrique_trombino(RUBRIQUES){titre_mot=trombino}{lang=#ENV{lang}}>
+[<div id="descriptif-article">(#DESCRIPTIF)</div>]
+[<div id="texte-article">(#TEXTE|image_reduire{400})</div>]
+</BOUCLE_rubrique_trombino>
+
+  <BOUCLE_articles_mots(ARTICLES){id_rubrique}>
+    <BOUCLE_mots_rubrique(MOTS){type=trombino}{id_article}{doublons mots}>
+    </BOUCLE_mots_rubrique>
+  </BOUCLE_articles_mots>
+
+
+<form action="#SELF">
+[(#SELF|parametre_url{'debut_les_articles','0'}|form_hidden)]
+      <p><!-- juste pour la validation XHTML -->
+         <select name="id_mot" id="idselect" size="1">
+             <option value=""><:escal:collegues:></option>
+             
+             <BOUCLE_mot_critere1(MOTS){!doublons mots}{par titre}>
+                 [<option value="#ID_MOT" [(#ENV{id_mot}|=={#ID_MOT}|?{'selected="selected"',''})]>(#TITRE)</option>]
+             </BOUCLE_mot_critere1>
+       
+         </select>
+
+        <button type="submit" >Afficher</button>
+      </p>
+</form>
+
+
+	<B_les_articles>
+
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+
+	
+	<div class="trombino">
+	<table>
+		<BOUCLE_les_articles(ARTICLES){id_rubrique}{par titre}{id_mot?}{pagination 15} >
+			[(#COMPTEUR_BOUCLE|alterner{'<tr>','',''})]
+			<td>
+
+					<BOUCLE_docs(DOCUMENTS){id_article}{extension==jpg|png|gif}>
+
+         		<div class="centrage" style="width: [(#FICHIER|image_reduire{150,175}|largeur|plus{10})]px">
+							<div class="ombre">
+								<div class="boite">
+		           	<img src="[(#FICHIER|image_reduire{150,175}|extraire_attribut{src}|alterner{0,1})]"
+								 alt='[(#TITRE)]'
+								 title="[(#TITRE)]" />
+								</div>
+	         		</div>
+						</div>
+							
+					</BOUCLE_docs>
+
+                <div class="nom-photo">
+                #TITRE
+                </div>
+                <div class="adresse-photo">
+                #DESCRIPTIF
+                </div>
+                <div class="texte-photo">
+                #TEXTE
+                </div>
+				
+			</td>
+			[(#COMPTEUR_BOUCLE|alterner{'','','</tr>'})]
+			
+				</BOUCLE_les_articles>
+			[(#TOTAL_BOUCLE|alterner{'<td></td><td></td></tr>','<td></td></tr>',''})]
+	</table>
+	</div>
+
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>]  
+	</B_les_articles>
