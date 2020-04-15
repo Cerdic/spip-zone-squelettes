@@ -33,7 +33,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_recherche_facette' => 'Vous pouvez maintenant affiner les résultats en filtrant par mot-clé.',
 
 	// F
-	'filtres' => 'Filtres :',
+	'filtres' => 'Filtres :',
+
 	// G
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
@@ -45,7 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	'par_auteur' => 'Mise en ligne par',
 
-	//S
+	// S
 	'supprimer_filtre' => 'Supprimer le filtre @txt@',
 
 	// T
