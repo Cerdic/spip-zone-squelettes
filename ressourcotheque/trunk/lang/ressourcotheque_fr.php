@@ -26,9 +26,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 - <code>|</code> pour l’opérateur booléen OU ;
 - <code>()</code> pour combiner des termes et faire une recherche complexe.
 
-	Vous pourrez ensuite filtrer les résultats par mots-clé.',
+	Vous pourrez ensuite filtrer les résultats par mots-clé.
+
+	Vous pouvez également parcourir directement les ressources pour un mot-clé spécifique.
+',
 	'explication_recherche_facette' => 'Vous pouvez maintenant affiner les résultats en filtrant par mot-clé.',
 
+	// F
+	'filtres' => 'Filtres :',
 	// G
 	'guide_redaction' => 'Guide de rédaction',
 	'guide_redaction_explication' => 'Mettre ici un guide de rédaction pour ces ressources',
@@ -39,6 +44,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par_auteur' => 'Mise en ligne par',
+
+	//S
+	'supprimer_filtre' => 'Supprimer le filtre @txt@',
 
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
