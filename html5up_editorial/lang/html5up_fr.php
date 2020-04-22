@@ -9,8 +9,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'aide' => '<a href="https://contrib.spip.net/?article4947" class="spip_out">Consultez la documentation.</a>',
-    'article_nombre_colonnes_label' => 'Colonnes d\'article',
-    'article_nombre_colonnes_explications' => 'Indiquez le nombre de colonnes pour l\'affichage des articles.',
+	'article_nombre_colonnes_label' => 'Colonnes d\'article',
+	'article_nombre_colonnes_explications' => 'Indiquez le nombre de colonnes pour l\'affichage des articles.',
 	'article_suivants_titre' => 'Autres articles',
 	'article_suivants_titre_explications' => 'C\'est le titre au-dessus de la liste des articles en bas de la page d\'accueil.',
 	'articles_suivants_total' => 'Total d\'autres articles',
@@ -20,13 +20,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'cfg_titre_parametrages' => 'Paramétrages',
-    'choixnavigation_explications' => 'C\'est la navigation dans la colonne gauche, par rubriques ou par mots clés.',
-    'choixnavigation_label' => 'Navigation en colonne gauche',
-    'choixnavigation_mots' => 'Par mots clés',
-    'choixnavigation_rubriques' => 'Par rubriques',
-    'contact' => 'Restez en contact',
-    'content' => 'Colonne droite',
-    'couleur' => 'Couleur',
+	'choixnavigation_explications' => 'C\'est la navigation dans la colonne gauche, par rubriques ou par mots clés.',
+	'choixnavigation_label' => 'Navigation en colonne gauche',
+	'choixnavigation_mots' => 'Par mots clés',
+	'choixnavigation_rubriques' => 'Par rubriques',
+	'contact' => 'Restez en contact',
+	'content' => 'Colonne droite',
+	'couleur' => 'Couleur',
 	'couleur_accent' => 'Accent de couleur',
 	'couleur_accent_explications' => 'C\'est la couleur principale de votre site (par défaut #F56A6A)',
 	'contact_tel' => 'Téléphone',
@@ -56,6 +56,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'reseaux_sociaux' => 'Réseaux sociaux',
 	'reseaux_sociaux_activer' => 'Activer le plugin «Liens vers les réseaux sociaux» pour afficher de tels liens.',
 	'reseaux_sociaux_configurer' => 'Configurer le plugin : Liens sociaux',
+	'rubrique_accueil' => 'Rubrique accueil',
+	'rubrique_accueil_explications' => 'Sur la page d’accueil, limiter les autres articles à cette rubrique.',
 	
 	// S
 	'sidebar' => 'Colonne gauche',

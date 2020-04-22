@@ -25,9 +25,21 @@
 </BOUCLE_heroside>
 
 <section>
+<BOUCLE_rubaccueil(RUBRIQUES){id_rubrique IN #CONFIG{html5up/rubrique_accueil}|picker_selected{rubrique}}>[(#REM)sans boucle de rubrique, pas de tri_rubrique]
 	<INCLURE{fond=inclure/liste/articles,env,ajax,
 		parpage=#CONFIG{html5up/suivants_parpage,6},
 		exclus=#GET{exclus},
 		total=#CONFIG{html5up/suivants_total,12},
-		titre=#CONFIG{html5up/suivants_titre}} />
+		titre=#CONFIG{html5up/suivants_titre},
+		id_rubrique
+		} />
+</BOUCLE_rubaccueil>[(#REM)si aucune rubrique choisie, tri par date inverse]
+	<INCLURE{fond=inclure/liste/articles,env,ajax,
+		parpage=#CONFIG{html5up/suivants_parpage,6},
+		exclus=#GET{exclus},
+		total=#CONFIG{html5up/suivants_total,12},
+		titre=#CONFIG{html5up/suivants_titre},
+		par=date
+		} />
+<//B_rubaccueil>
 </section>
