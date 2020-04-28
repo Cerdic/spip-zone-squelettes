@@ -1,0 +1,38 @@
+#SET{mon_tableau,#ARRAY}
+#SET{largeur_image,#ENV{largeur_image_carousel,400}}
+#SET{hauteur_image,#ENV{hauteur_image_carousel,250}}
+[(#ID_RUBRIQUE|>{0}|oui)#SET{id_rubrique,#ID_RUBRIQUE}]
+[(#ID_RUBRIQUE|>{0}|non)#SET{id_rubrique,0}]
+<B_articles_selection>
+<div class="liste selection[ (#ENV{span, span8}) ]offset">
+<h2 class="h2"><:spipr_dane:a_la_une:> <span class="picto"><i class="fa fa-star"></i></span></h2>
+<div id="carousel" class="carousel slide">
+	<div class="carousel-inner">
+		<BOUCLE_articles_selection(ARTICLES pb_selection){par ordre}{spip_pb_selection.id_rubrique=#GET{id_rubrique}}{0,#ENV{nb,3}}>
+		<div class="item[ (#COMPTEUR_BOUCLE|=={1}|?{'active',''})] hentry dir_#LANG" >
+			<article class="entry hentry">
+				<strong class="h3-like entry-title">
+					<a href="#URL_ARTICLE" rel="bookmark">[(#LOGO_ARTICLE|image_reduire{#GET{largeur_image},#GET{hauteur_image}}|image_recadre{[(#GET{largeur_image}|plus{10})],[(#GET{hauteur_image}|plus{10})],right top,#ENV{couleur,#E0E2E4}}|responsive_logo)]<span class="titre">#TITRE</span></a>
+				</strong>
+				[<div class="introduction #EDIT{introduction}">(#INTRODUCTION)</div>]
+				<br class="clear"/>
+			</article>
+		</div>#SET{mon_tableau, #GET{mon_tableau}|push{#COMPTEUR_BOUCLE}}
+		</BOUCLE_articles_selection>
+	</div>	
+	<B_combien>
+	<ul class="carousel-stop">
+		<li id="carousel-pause-cancel" title="<:spipr_dane:pause_carousel_cancel:>" ><span class="picto"><i class="fa fa-play"></i></span></li>
+		<li id="carousel-pause" title="<:spipr_dane:pause_carousel:>"><span class="picto"><i class="fa fa-pause"></i></span></li>
+	</ul>
+	<ol class="carousel-indicators">
+		<BOUCLE_combien(DATA){si #GET{mon_tableau}|table_valeur{1}}{source tableau,#GET{mon_tableau}}>
+		<li data-target="#carousel" data-slide-to="[(#COMPTEUR_BOUCLE|moins{1})]" [class="(#COMPTEUR_BOUCLE|=={1}|?{'active',''})"] ><span class="picto"><i class="fa fa-circle"></i></span></li>
+		</BOUCLE_combien>
+	</ol>
+	<a class="left carousel-control" href="#carousel" data-slide="prev"><span class="picto"><i class="fa fa-chevron-left"></i></span></a>
+	<a class="right carousel-control" href="#carousel" data-slide="next"><span class="picto"><i class="fa fa-chevron-right"></i></span></a>
+	</B_combien>
+</div><!-- /.carousel -->
+</div>
+</B_articles_selection>
