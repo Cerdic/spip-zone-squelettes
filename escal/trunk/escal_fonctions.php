@@ -488,7 +488,7 @@ return inc_lien_dist($lien, $texte, $class, $title, $hlang, $rel, $connect);
 function vst_total_visites() {
 	$query = "SELECT SUM(visites) AS total_abs FROM spip_visites";
 	$result = spip_query($query);
-	if ($row = spip_fetch_array($result))
+	if ($row = mysqli_fetch_array($result))
 		{ return $row['total_abs']; }
 	else { return "0";}
 }
@@ -503,7 +503,7 @@ function balise_TOTAL_VISITES($p) {
 function vst_total_pages_visitees() {
 	$query = "SELECT SUM(visites) AS nbPages FROM spip_visites_articles";
 	$result = spip_query($query);
-	if ($row = spip_fetch_array($result))
+	if ($row = mysqli_fetch_array($result))
 		{ return $row['nbPages']; }
 	else { return "0";}
 }
@@ -527,7 +527,7 @@ $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
 	$result=spip_query($query);
         $i=0 ;
         $total_absolu=0;
-	while ($row = spip_fetch_array($result)) {
+	while ($row = mysqli_fetch_array($result)) {
                 $total_absolu = $total_absolu + $row['visites'];
                 $i++;
 	}
@@ -556,12 +556,12 @@ function escal_visiteurs_connectes_compter(){
 
   function generer_jour_val_max_visites($arg) {
 	$qv = spip_query("SELECT MAX(visites) as maxvi FROM spip_visites");
-	$rv = spip_fetch_array($qv);
+	$rv = mysqli_fetch_array($qv);
 	$valmaxi = $rv['maxvi'];
 
 	if($arg=="date") {
 		$qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
-		$rd = spip_fetch_array($qd);
+		$rd = mysqli_fetch_array($qd);
 		$jourmaxi = $rd['date'];
 	}
 	if($arg=="date") { $a = $jourmaxi; }
