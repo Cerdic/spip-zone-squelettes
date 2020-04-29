@@ -1,9 +1,26 @@
-[(#PLUGIN{menus}|oui)
-<nav class="menu">
-	<INCLURE{fond=inclure/menu,identifiant=footer,env}>
-</nav>
-]
+<div class="footer__inner">
 
-[(#PLUGIN{identite_extra}|oui)
-	#MODELE{identite_extra}
-]
+	[(#PLUGIN{identite_extra}|oui)
+	<div class="footer__item footer__item_identite">
+		#MODELE{identite_extra}
+	</div>
+	]
+
+	[(#PLUGIN{menus}|oui)
+	<nav class="footer__item footer__item_menu">
+		<INCLURE{fond=inclure/menu, identifiant=footer, env}>
+	</nav>
+	]
+
+	[(#REM) Copyright ]
+	<div class="footer__item footer__item_copyright">
+		#SET{annee,#ENV{date}|annee}
+		<BOUCLE_1er_article(ARTICLES){0,1}{par date}>#SET{annee_debut,#DATE|annee}</BOUCLE_1er_article>
+		[(#GET{annee}|!={#GET{annee_debut}}|oui)
+			<:integraal:texte_copyright_debut_fin{nom=#NOM_SITE_SPIP,annee_debut=#GET{annee_debut},annee=#GET{annee}}:>
+		][(#GET{annee}|!={#GET{annee_debut}}|non)
+			<:integraal:texte_copyright{nom=#NOM_SITE_SPIP,annee=#GET{annee}}:>
+		]
+	</div>
+
+</div>
