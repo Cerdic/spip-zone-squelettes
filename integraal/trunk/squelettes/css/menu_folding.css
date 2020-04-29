@@ -1,0 +1,77 @@
+/**
+ * Styles minimaux pour le mega supra hyper menu Adobe.
+ *
+ * Sur mobile = accordéon, au delà = dropdown
+ *
+ * FIXME : pas possible de faire d'animation de fermeture avec display:none
+ * Malheureusement il n'y a pas d'alternative vraiment fiable à display:none,
+ * les autres astuces foirent dès qu'il y a du padding, des bordure, etc.
+ * Il faudrait une classe temporaire .closing (pas ajoutée en js pour l'instant)
+ */
+
+/* Menu considéré comme étant dépliant */
+.menu-items_folding {}
+
+/* Entrées à la racine */
+.menu-items__topitem {}
+.menu-items__topitem > a {
+	padding: 0.25em 1em;
+}
+
+/* Panneau dépliant de chaque entrée racine */
+.menu-items__panel {
+	z-index: 10;
+	display: none;
+	padding: 1em;
+	transition: all 0.33s;
+	background-color: white;
+}
+.menu-items__panel.open {
+	display: block;
+}
+.menu-items__panel.open > * {
+	animation: menu-folding-in 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+.menu-items__panel.closing {
+	display: block;
+}
+.menu-items__panel.closing > * {
+	animation: menu-folding-out 0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+}
+
+/* Responsive */
+@media (min-width: 480px) {
+	.menu-items_folding {
+		display: flex;
+		flex-flow: row wrap;
+	}
+	.menu-items__panel {
+		position: absolute;
+	}
+}
+
+/* Animations */
+@keyframes menu-folding-in {
+  0% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+ @keyframes menu-folding-out {
+  0% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+}
