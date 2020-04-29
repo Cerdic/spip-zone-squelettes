@@ -27,14 +27,14 @@
 	[(#REM) La racine du site, toujours en 1er ]
 	<li class="breadcrumb__item breadcrumb__item_racine">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
-		<span class="breadcrumb__divider"> &gt; </span>
 	</li>
+	<li class="breadcrumb__divider"> &gt; </li>
 
 	[(#REM) La hiérarchie s'il s'agit d'une page d'objet éditorial ]
-	<BOUCLE_ariane(DATA) {source table, #GET{parents}} {"<span class='breadcrumb__divider'>&gt; </span>"}>
+	<BOUCLE_ariane(DATA) {source table, #GET{parents}} {'<li class="breadcrumb__divider"> &gt; </li>'}>
 	#SET{expose,#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}}
-	#SET{titre_fallback,#OBJET|ucfirst|concat{' ',#ID_OBJET}}
-	<li class="breadcrumb__item[ breadcrumb__item_(#GET{expose}|?{expose,parent}">
+	#SET{titre_fallback,#OBJET|objet_info{texte_objet}|_T|concat{' ',#ID_OBJET}}
+	<li class="breadcrumb__item[ breadcrumb__item_(#GET{expose}|?{expose,parent})]">
 		[(#ID_OBJET|generer_url_entite{#OBJET}|lien_ou_expose{#INFO_TITRE{#OBJET,#ID_OBJET}|sinon{#GET{titre_fallback}}|couper{80},#GET{expose}})]
 	</li>
 	</BOUCLE_ariane>
