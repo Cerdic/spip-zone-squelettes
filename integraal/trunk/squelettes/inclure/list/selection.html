@@ -1,0 +1,143 @@
+[(#REM)
+
+	Liste de contenus sélectionnés
+
+	On peut choisir la sélection d'après son n° ou d'après un rôle lié à un contenu
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- id_selection : n° d'une sélection
+	- objet        : type d'objet lié
+	- id_objet     : n° d'un objet lié
+	- role         : rôle de la sélection
+
+	- preview : fond à utiliser pour les résumés dans inclure/previews | défaut = selections_contenu
+
+	- titre : titre personnalisé | défaut = titre de la sélection
+
+	- voir_plus_titre : titre personnalisé du bouton voir plus | défaut = chaîne de langue
+	- voir_plus_url   : URL personnalisée | défaut = ''
+	- voir_plus_liste : « oui » pour insérer dans la liste plutôt qu'après
+
+	- par               : champ utilisé pour le tri | défaut = rang
+	- sens_tri          : pour imposer le sens du tri : 1 | -1
+	- inverser_tri      : « oui » pour inverser le sens du tri par défaut
+	- pagination        : nombre pour la pagination | défaut = 6
+	- modele_pagination : modèle de pagination | défaut = page_precedent_suivant
+	- label_precedent   : texte du lien précédent
+	- label_suivant     : texte du lien suivant
+
+	- masquer : Tableau d'éléments à masquer (ou texte si un seul)
+	  titre | pagination | message_aucun
+
+	- class           : classe ajoutée telle quelle
+	- variante        : classe ajoutée de façon normée
+	- class_preview    : classe ajoutée aux résumés telle quelle
+	- variante_preview : classe ajoutée aux résumés de façon normée
+
+	- + params de inclure/previews/selection/html
+
+]
+[(#REM) Mode et sens de tri ]
+#SET{tri_defaut,#ENV{recherche}|?{points,rang}}
+#SET{tri,#ENV{par,#GET{tri_defaut}}}
+#SET{sens_tri,#ENV{sens_tri}|is_null|?{'',#ENV{sens_tri}|intval}}
+#SET{sens_tris,#ARRAY{
+	rang,         #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	titre,        #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	num titre,    #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	sinum titre,  #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	id_selection, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	date,         #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	points,       #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+}}
+
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
+
+[(#REM) Bouton voir plus en bas ou dans la liste ]
+#SET{plus, #ARRAY{
+	url,   #ENV{voir_plus_url}|calculer_url{},
+	titre, #ENV{voir_plus_titre}|sinon{#VAL{aeromys:bouton_voir_plus}|_T},
+	liste, #ENV{voir_plus_liste}|?{oui},
+	bas,   #ENV{voir_plus_liste}|?{''},
+}}
+#SET{plus, #VAL{voir_plus}|in_array{#GET{masquer}}|?{
+	'',
+	#GET{plus/url}|?{#GET{plus}}
+}}
+
+[(#REM) Affichage de la liste ]
+<BOUCLE_selection(SELECTIONS)
+	{id_selection?}
+	{objet?}
+	{id_objet?}
+	{role?}
+	{id_mot?}
+	{0,1}
+	{si #ENV{id_selection}|ou{#ENV{objet}|et{#ENV{id_objet}}}}
+>
+<B_contenus>
+<div class="list list_selections[ list_selections_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	[(#PAGINATION|oui)
+	#ANCRE_PAGINATION
+	]
+
+	[(#VAL{titre}|in_array{#GET{masquer}}|non)
+	[<h2 class="list__title">
+		[<a href="(#GET{plus/url})">]
+			(#ENV*{titre}|sinon{#TITRE})
+		[(#GET{plus/url}|oui)</a>]
+	</h2>]
+	]
+
+	<ul class="list__items">
+
+		<BOUCLE_contenus(SELECTIONS_CONTENUS)
+			{id_selection}
+			{recherche?}
+			{tri #GET{tri},#GET{sens_tris}}
+			{pagination #ENV{pagination,6}}
+		>
+		<li class="list__item">
+			<INCLURE{fond=inclure/previews/#ENV{preview,selections_contenu},
+				id_selections_contenu,
+				variante=#ENV{variante_preview},
+				class=#ENV{class_preview},
+				env}
+			>
+		</li>
+		</BOUCLE_contenus>
+		[(#GET{plus/liste}|oui)
+		<li class="list__item list__item_plus">
+			<INCLURE{fond=inclure/previews/plus,
+				url=#GET{plus/url},
+				titre=#GET{plus/titre}}
+			>
+		</li>
+		]
+
+	</ul>
+
+	[(#VAL{pagination}|in_array{#GET{masquer}}|non)
+	[<div class="list__pagination pagination">
+		(#PAGINATION{
+			#ENV{modele_pagination,page_precedent_suivant},
+			label_precedent=#ENV{label_precedent},
+			label_suivant=#ENV{label_suivant}
+		})
+	</div>]
+	]
+
+	[(#GET{plus/bas}|oui)
+	<a class="list__plus button" href="[(#GET{plus/url})]">
+		[(#GET{plus/titre})]
+	</a>
+	]
+
+</div>
+</B_contenus>
+</BOUCLE_selection>

@@ -6,73 +6,166 @@
 	** obligatoire
 	* conseillé
 
-	- resume (string) : fond à utiliser pour les résumés dans inclure/resume | défaut = article
+	- id_article        : n° d'articles
+	- id_rubrique       : enfants directs d'une rubrique
+	- enfants           : enfants directs + indirects d'une rubrique
+	- enfants_directs   : enfants directs uniquement
+	- enfants_indirects : enfants indirects uniquement
+	- branche           : branche directe + indirecte 1er niveau
+	- branche_directe   : branche directe uniquement
+	- branche_indirecte : branche indirecte uniquement
+	- branche_complete  : branche directe + indirecte
+	- articles_exclus   : tableau d'articles à exclure
 
-	- titre (string) : titre personnalisé, '' pour ne pas afficher
-	- titre_singulier (string) : chaîne de langue pour le nombre de résultats au singulier
-	- titre_pluriel (string) : chaîne de langue pour le nombre de résultats au pluriel
-	- message_aucun (string) : message affiché si aucun item, '' pour ne pas afficher
+	- recherche : terme de recherche
+	- annee     : année
 
-	- id_article (int) : identifiant d'un article
-	- id_rubrique (int) : pour restreindre aux articles d'une rubrique
-	- branche (int) : pour restreindre aux articles d'une branche
-	- recherche (string) : pour restreindre aux articles correspondant à un terme de recherche
-	- articles_exclus (array) : exclure des articles
+	- preview : fond à utiliser pour les résumés dans inclure/previews | défaut = article
 
-	- par (string) : champ utilisé pour le tri | défaut = titre
-	- pagination (int) : nombre pour la pagination | défaut = 5
-	- masquer_pagination (string) : "oui" pour ne pas afficher la pagination
+	- titre           : titre personnalisé | défaut = nb de résultats
+	- titre_singulier : chaîne de langue pour nb au singulier
+	- titre_pluriel   : chaîne de langue pour nb au pluriel
+	- message_aucun   : message si aucun résultat | défaut = chaîne de langue
 
-	- hauteur_logo (int) : hauteur max du logo
-	- largeur_logo (int) : largeur max du logo
+	- voir_plus_titre : titre personnalisé du bouton voir plus | défaut = chaîne de langue
+	- voir_plus_url   : URL personnalisée | défaut = URL du parent
+	- voir_plus_liste : « oui » pour insérer dans la liste plutôt qu'après
+
+	- par               : champ utilisé pour le tri | défaut = num titre
+	- sens_tri          : pour imposer le sens du tri : 1 | -1
+	- inverser_tri      : « oui » pour inverser le sens du tri par défaut
+	- pagination        : nombre pour la pagination | défaut = 6
+	- modele_pagination : modèle de pagination | défaut = page_precedent_suivant
+	- label_precedent   : texte du lien précédent
+	- label_suivant     : texte du lien suivant
+
+	- masquer : Tableau d'éléments à masquer (ou texte si un seul)
+	  titre | pagination | message_aucun | voir_plus
+
+	- class           : classe ajoutée telle quelle
+	- variante        : classe ajoutée de façon normée
+	- class_preview    : classe ajoutée aux résumés telle quelle
+	- variante_preview : classe ajoutée aux résumés de façon normée
+
+	- + params de inclure/previews/article.html
 
 ]
-[(#SET{defaut_tri,#ARRAY{
-	titre,1,
-	num titre,1,
-	date,#ENV{date_sens,-1},
-	id_article,1,
-	points,-1
-}})
-]<B_articles>
-#ANCRE_PAGINATION
+[(#REM) Mode et sens de tri ]
+#SET{tri_defaut,#ENV{recherche}|?{points,num titre}}
+#SET{tri,#ENV{par,#GET{tri_defaut}}}
+#SET{sens_tri,#ENV{sens_tri}|is_null|?{'',#ENV{sens_tri}|intval}}
+#SET{sens_tris,#ARRAY{
+	titre,       #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	num titre,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	sinum titre, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	date,        #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	id_article,  #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	points,      #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+}}
 
-[<h2 class="titre-liste">
-	(#ENV{titre}|is_null|?{#GRAND_TOTAL|singulier_ou_pluriel{#ENV{titre_singulier,info_un_article},#ENV{titre_pluriel,info_nb_articles}},#ENV*{titre}})
-</h2>]
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
 
-<ul class="liste-items">
+[(#REM) Retrouver le parent ]
+#SET{type_parent,   rubrique}
+#SET{id_parent,     #ENV{enfants,#ENV{enfants_directs,#ENV{enfants_indirects,#ENV{branche,#ENV{branche_directe,#ENV{branche_indirecte,#ENV{branche_complete,#ENV{id_rubrique}}}}}}}}}
+#SET{parent_unique, #GET{id_parent}|is_numeric|ou{#GET{id_parent}|is_array|et{#GET{id_parent}|count|=={1}}}}
+#SET{id_parent,     #GET{parent_unique}|et{#GET{id_parent}|is_array}|?{#GET{id_parent/0}, #GET{id_parent}}}
+#SET{url_parent,    #GET{id_parent}|et{#GET{parent_unique}}|?{#GET{id_parent}|generer_url_entite{#GET{type_parent}}}}
 
-	<BOUCLE_articles(ARTICLES)
-		{id_article?}
-		{id_rubrique?}
-		{branche?}
-		{recherche?}
-		{tri #ENV{par,#ENV{recherche}|?{points,num titre}},#GET{defaut_tri}}
-		{!id_article IN #ENV{articles_exclus,#ARRAY}}
-		{pagination #ENV{pagination,5}}
-	>
-	<li class="item">
-		<INCLURE{fond=inclure/resume/#ENV{resume,article},
-			id_article,
-			largeur_logo,
-			hauteur_logo}>
-	</li>
-	</BOUCLE_articles>
+[(#REM)
+	Bouton voir plus.
+	Il faut soit l'url d'un parent *unique*, soit une url perso.
+]
+#SET{plus, #VAL{voir_plus}|in_array{#GET{masquer}}|non|et{#GET{url_parent}|ou{#ENV{voir_plus_url}}}|?{
+	#ARRAY{
+		url,   #ENV{voir_plus_url,#GET{url_parent}}|calculer_url{},
+		titre, #ENV{voir_plus_titre,#VAL{aeromys:bouton_voir_plus}|_T},
+		liste, #ENV{voir_plus_liste}|?{oui},
+		bas,   #ENV{voir_plus_liste}|?{'',oui},
+	}
+}}
 
-</ul>
+[(#REM) Affichage de la liste ]
+<B_liste_articles>
+#SET{total,#VAL{pagination}|in_array{#GET{masquer}}|?{#TOTAL_BOUCLE,#GRAND_TOTAL}}
 
-[(#ENV{masquer_pagination}|!={oui}|oui)
-	[<div class="pagination">
+<div class="list list_articles[ list_articles_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	[(#PAGINATION|oui)
+	#ANCRE_PAGINATION
+	]
+
+	[(#VAL{titre}|in_array{#GET{masquer}}|non)
+	[<h2 class="list__title">
+		[<a href="(#GET{plus/url})">]
+			(#ENV{titre}|sinon{#GET{total}|singulier_ou_pluriel{#ENV{titre_singulier,info_1_article},#ENV{titre_pluriel,info_nb_articles}}})
+		[(#GET{plus/url}|oui)</a>]
+	</h2>]
+	]
+
+	<ul class="list__items">
+
+		<BOUCLE_liste_articles(ARTICLES)
+			{id_article?}
+			{!id_article IN #ENV{articles_exclus,#ARRAY}}
+			{id_rubrique?}
+			{id_mot?}
+			{enfants?#ENV{enfants,0}}
+			{enfants_directs?#ENV{enfants_directs,0}}
+			{enfants_indirects?#ENV{enfants_indirects,0}}
+			{branche?#ENV{branche,0}}
+			{branche_directe?#ENV{branche_directe,0}}
+			{branche_indirecte?#ENV{branche_indirecte,0}}
+			{branche_complete?#ENV{branche_complete,0}}
+			{recherche?}
+			{annee?}
+			{tri #GET{tri},#GET{sens_tris}}
+			{pagination #ENV{pagination,6}}
+		>
+		<li class="list__item">
+			<INCLURE{fond=inclure/previews/#ENV{preview,article},
+				id_article,
+				variante=#ENV{variante_preview},
+				class=#ENV{class_preview},
+				env}
+			>
+		</li>
+		</BOUCLE_liste_articles>
+		[(#GET{plus/liste}|oui)
+		<li class="list__item">
+			<INCLURE{fond=inclure/previews/plus,
+				url=#GET{plus/url},
+				titre=#GET{plus/titre}}
+			>
+		</li>
+		]
+
+	</ul>
+
+	[(#VAL{pagination}|in_array{#GET{masquer}}|non)
+	[<p class="list__pagination pagination">
 		(#PAGINATION{
 			#ENV{modele_pagination,page_precedent_suivant},
 			label_precedent=#ENV{label_precedent},
 			label_suivant=#ENV{label_suivant}
 		})
-	</div>]
-]
-</B_articles>
+	</p>]
+	]
 
-[(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:info_aucun_article:>, #ENV{message_aucun}})]})]
-[<p class="aucun-resultat">(#GET{message_aucun})</p>]
-<//B_articles>
+	[(#GET{plus/bas}|oui)
+	<a class="list__plus button" href="[(#GET{plus/url})]">
+		[(#GET{plus/titre})]
+	</a>
+	]
+
+</div>
+</B_liste_articles>
+
+[(#VAL{message_aucun}|in_array{#GET{masquer}}|non)
+[(#SET{message_aucun, #ENV{message_aucun,<:info_aucun_article:>}})]
+[<p class="list__alternative">
+	(#GET{message_aucun})
+</p>]
+]
+<//B_liste_articles>

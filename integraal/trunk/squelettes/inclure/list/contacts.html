@@ -1,0 +1,152 @@
+[(#REM)
+
+	Liste de contacts
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- id_contact      : n° d'un contact
+	- id_annuaire     : n° d'un annuaire
+	- contacts_exclus : tableau de contacts à exclure
+
+	- recherche : terme de recherche
+
+	- preview : fond à utiliser pour les résumés dans inclure/previews | défaut = contact
+
+	- titre           : titre personnalisé | défaut = nb de résultats
+	- titre_singulier : chaîne de langue pour nb au singulier
+	- titre_pluriel   : chaîne de langue pour nb au pluriel
+	- message_aucun   : message si aucun résultat | défaut = chaîne de langue
+
+	- voir_plus_titre : titre personnalisé du bouton voir plus | défaut = chaîne de langue
+	- voir_plus_url   : URL personnalisée | défaut = URL du parent
+	- voir_plus_liste : « oui » pour insérer dans la liste plutôt qu'après
+
+	- par               : champ utilisé pour le tri | défaut = titre
+	- sens_tri          : pour imposer le sens du tri : 1 | -1
+	- inverser_tri      : « oui » pour inverser le sens du tri par défaut
+	- pagination        : nombre pour la pagination | défaut = 6
+	- modele_pagination : modèle de pagination | défaut = page_precedent_suivant
+	- label_precedent   : texte du lien précédent
+	- label_suivant     : texte du lien suivant
+
+	- masquer : Tableau d'éléments à masquer (ou texte si un seul)
+	  titre | pagination | message_aucun | voir_plus
+
+	- class           : classe ajoutée telle quelle
+	- variante        : classe ajoutée de façon normée
+	- class_preview    : classe ajoutée aux résumés telle quelle
+	- variante_preview : classe ajoutée aux résumés de façon normée
+
+	- + params de inclure/previews/contact/html
+
+]
+[(#REM) Mode et sens de tri ]
+#SET{tri_defaut,#ENV{recherche}|?{points,num nom}}
+#SET{tri,#ENV{par,#GET{tri_defaut}}}
+#SET{sens_tri,#ENV{sens_tri}|is_null|?{'',#ENV{sens_tri}|intval}}
+#SET{sens_tris,#ARRAY{
+	nom,        #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},,
+	num nom,    #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},,
+	date,       #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},,
+	id_contact, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},,
+	points,     #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},,
+}}
+
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
+
+[(#REM) Parent ]
+#SET{parent,     annuaire}
+#SET{id_parent,  #ENV{id_annuaire}}
+#SET{url_parent, #GET{id_parent}|?{#GET{id_parent}|generer_url_entite{#GET{parent}}}}
+
+[(#REM) Bouton voir plus en bas ou dans la liste ]
+#SET{plus, #ARRAY{
+	url,   #ENV{voir_plus_url,#GET{url_parent}}|calculer_url{},
+	titre, #ENV{voir_plus_titre}|sinon{#VAL{aeromys:bouton_voir_plus}|_T},
+	liste, #ENV{voir_plus_liste}|?{oui},
+	bas,   #ENV{voir_plus_liste}|?{'',oui},
+}}
+#SET{plus, #VAL{voir_plus}|in_array{#GET{masquer}}|?{
+	'',
+	#GET{plus/url}|?{#GET{plus}}
+}}
+
+<B_liste_contacts>
+#SET{total,#VAL{pagination}|in_array{#GET{masquer}}|?{#TOTAL_BOUCLE,#GRAND_TOTAL}}
+
+<div class="list list_contacts[ list_contacts_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	[(#PAGINATION|oui)
+	#ANCRE_PAGINATION
+	]
+
+	[(#VAL{titre}|in_array{#GET{masquer}}|non)
+	[<h2 class="list__title">
+		[<a href="(#GET{plus/url})">]
+			(#ENV{titre}|sinon{#GET{total}|singulier_ou_pluriel{#ENV{titre_singulier,contacts:contact_un},#ENV{titre_pluriel,contacts:contacts_nb}}})
+		[(#GET{plus/url}|oui)</a>]
+	</h2>]
+	]
+
+	<ul class="list__items">
+
+		<BOUCLE_liste_contacts(CONTACTS)
+			{id_contact?}
+			{id_organisation?}
+			{id_annuaire?}
+			{id_mot?}
+			{recherche?}
+			{tri #GET{tri},#GET{sens_tris}}
+			{!id_contact IN #ENV{contacts_exclus,#ARRAY}}
+			{pagination #ENV{pagination,6}}
+		>
+		<li class="list__item">
+			<INCLURE{fond=inclure/previews/#ENV{preview,contact},
+				id_contact,
+				variante=#ENV{variante_preview},
+				class=#ENV{class_preview},
+				url=#ENV{url_preview,#EVAL{null}},
+				env}
+			>
+		</li>
+		</BOUCLE_liste_contacts>
+		[(#GET{plus/liste}|oui)
+		<li class="list__item list__item_plus">
+			<INCLURE{fond=inclure/previews/plus,
+				url=#GET{plus/url},
+				titre=#GET{plus/titre}}
+			>
+		</li>
+		]
+
+	</ul>
+
+	[(#VAL{pagination}|in_array{#GET{masquer}}|non)
+	[<p class="list__pagination pagination">
+		(#PAGINATION{
+			#ENV{modele_pagination,page_precedent_suivant},
+			label_precedent=#ENV{label_precedent},
+			label_suivant=#ENV{label_suivant}
+		})
+	</p>]
+	]
+
+	[(#GET{plus/bas}|oui)
+	<a class="list__plus button" href="[(#GET{plus/url})]">
+		[(#GET{plus/titre})]
+	</a>
+	]
+
+</div>
+</B_liste_contacts>
+
+[(#VAL{message_aucun}|in_array{#GET{masquer}}|non)
+[(#SET{message_aucun, #ENV{message_aucun,<:contacts:info_aucun_contact:>}})]
+[<p class="list__alternative">
+	(#GET{message_aucun})
+</p>]
+]
+<//B_liste_contacts>

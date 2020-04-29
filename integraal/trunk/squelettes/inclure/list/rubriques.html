@@ -1,22 +1,26 @@
 [(#REM)
 
-	Liste d'évènements
+	Liste de rubriques
 
 	Paramètres :
 	** obligatoire
 	* conseillé
 
-	- relatif           : critère de date relative des évènements
-		tout | a_venir | en_cours | passe | en_cours_a_venir | passe_en_cours
-	- id_evenement      : n° d'évènements
-	- id_article        : n° d'articles
-	- id_rubrique       : n° de rubriques
-	- branche           : n° d'une branche
-	- evenements_exclus : tableau d'évènements à exclure
+	- id_rubrique       : n° d'une rubrique
+	- id_parent         : enfants directs d'une rubrique
+	- enfants           : enfants directs + indirects d'une rubrique
+	- enfants_directs   : enfants directs uniquement
+	- enfants_indirects : enfants indirects uniquement
+	- branche           : branche directe + indirecte 1er niveau
+	- branche_directe   : branche directe uniquement
+	- branche_indirecte : branche indirecte uniquement
+	- branche_complete  : branche directe + indirecte
+	- rubriques_exclues : tableau de rubriques à exclure
 
-	- recherche : terme de recherche
+	- recherche         : terme de recherche
+	- annee             : année
 
-	- preview : fond à utiliser pour les résumés dans inclure/previews | défaut = evenement
+	- preview : fond à utiliser pour les résumés dans inclure/previews | défaut = rubrique
 
 	- titre           : titre personnalisé | défaut = nb de résultats
 	- titre_singulier : chaîne de langue pour nb au singulier
@@ -30,8 +34,7 @@
 	- par               : champ utilisé pour le tri | défaut = titre
 	- sens_tri          : pour imposer le sens du tri : 1 | -1
 	- inverser_tri      : « oui » pour inverser le sens du tri par défaut
-	- pagination        : nombre pour la pagination | défaut = 5
-	- proche            : rempli si on veut commencer sur la page contenant l'événement le plus proche
+	- pagination        : nombre pour la pagination | défaut = 6
 	- modele_pagination : modèle de pagination | défaut = page_precedent_suivant
 	- label_precedent   : texte du lien précédent
 	- label_suivant     : texte du lien suivant
@@ -44,20 +47,19 @@
 	- class_preview    : classe ajoutée aux résumés telle quelle
 	- variante_preview : classe ajoutée aux résumés de façon normée
 
-	- params de inclure/previews/evenement.html
-
+	- + params de inclure/previews/rubrique.html
 ]
 [(#REM) Mode et sens de tri ]
-#SET{tri_defaut,#ENV{recherche}|?{points,date_debut}}
+#SET{tri_defaut,#ENV{recherche}|?{points,num titre}}
 #SET{tri,#ENV{par,#GET{tri_defaut}}}
 #SET{sens_tri,#ENV{sens_tri}|is_null|?{'',#ENV{sens_tri}|intval}}
 #SET{sens_tris,#ARRAY{
-	titre,        #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
-	num titre,    #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
-	sinum titre,  #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
-	date_debut,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
-	id_evenement, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
-	points,       #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	titre,       #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	num titre,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	sinum titre, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	id_rubrique, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	date,        #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	points,      #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
 }}
 
 [(#REM) Éléments à masquer ]
@@ -83,50 +85,12 @@
 	}
 }}
 
-[(#REM) Si demandé, calcul de l'événement le plus proche pour tomber sur la bonne page qui le contient ]
-<BOUCLE_prochain(EVENEMENTS)
-	{si #ENV{proche}|et{#ENV{debut_liste_evenements}|non}}
-	{id_evenement?}
-	{!id_evenement IN #ENV{evenements_exclus,#ARRAY}}
-	{id_article?}
-	{id_rubrique?}
-	{id_mot?}
-	{enfants?#ENV{enfants,0}}
-	{enfants_directs?#ENV{enfants_directs,0}}
-	{enfants_indirects?#ENV{enfants_indirects,0}}
-	{branche?#ENV{branche,0}}
-	{branche_directe?#ENV{branche_directe,0}}
-	{branche_indirecte?#ENV{branche_indirecte,0}}
-	{branche_complete?#ENV{branche_complete,0}}
-	{recherche?}
-	{!evenement_passe}{0,1}{par date_debut}
->
-	[(#VAL{@#ID_EVENEMENT}|setenv{debut_liste_evenements})]
-</BOUCLE_prochain>
-	<BOUCLE_dernier(EVENEMENTS)
-		{si #ENV{proche}|et{#ENV{debut_liste_evenements}|non}}
-		{id_evenement?}
-		{!id_evenement IN #ENV{evenements_exclus,#ARRAY}}
-		{id_article?}
-		{id_rubrique?}
-		{enfants?#ENV{enfants,0}}
-		{enfants_directs?#ENV{enfants_directs,0}}
-		{enfants_indirects?#ENV{enfants_indirects,0}}
-		{branche?#ENV{branche,0}}
-		{branche_directe?#ENV{branche_directe,0}}
-		{branche_indirecte?#ENV{branche_indirecte,0}}
-		{branche_complete?#ENV{branche_complete,0}}
-		{recherche?}
-		{evenement_passe}{0,1}{!par date_debut}
-	>
-		[(#VAL{@#ID_EVENEMENT}|setenv{debut_liste_evenements})]
-	</BOUCLE_dernier>
-<//B_prochain>
 
-<B_liste_evenements>
+[(#REM) Affichage de la liste ]
+<B_liste_rubriques>
 #SET{total,#VAL{pagination}|in_array{#GET{masquer}}|?{#TOTAL_BOUCLE,#GRAND_TOTAL}}
 
-<div class="list list_evenements[ list_evenements_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+<div class="list list_rubriques[ list_rubriques_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
 
 	[(#PAGINATION|oui)
 	#ANCRE_PAGINATION
@@ -135,19 +99,17 @@
 	[(#VAL{titre}|in_array{#GET{masquer}}|non)
 	[<h2 class="list__title">
 		[<a href="(#GET{plus/url})">]
-			(#ENV{titre}|sinon{#GET{total}|singulier_ou_pluriel{#ENV{titre_singulier,agenda:info_un_evenement},#ENV{titre_pluriel,agenda:info_nombre_evenements}}})
+		(#ENV{titre}|sinon{#GET{total}|singulier_ou_pluriel{#ENV{titre_singulier,info_1_rubrique},#ENV{titre_pluriel,info_nb_rubriques}}})
 		[(#GET{plus/url}|oui)</a>]
 	</h2>]
 	]
 
 	<ul class="list__items">
 
-		<BOUCLE_liste_evenements(EVENEMENTS)
-			{id_evenement?}
-			{!id_evenement IN #ENV{evenements_exclus,#ARRAY}}
-			{evenementrelatif #ENV{relatif,tout}}
-			{id_article?}
+		<BOUCLE_liste_rubriques(RUBRIQUES)
 			{id_rubrique?}
+			{!id_rubrique IN #ENV{rubriques_exclues,#ARRAY}}
+			{id_parent?}
 			{enfants?#ENV{enfants,0}}
 			{enfants_directs?#ENV{enfants_directs,0}}
 			{enfants_indirects?#ENV{enfants_indirects,0}}
@@ -155,19 +117,21 @@
 			{branche_directe?#ENV{branche_directe,0}}
 			{branche_indirecte?#ENV{branche_indirecte,0}}
 			{branche_complete?#ENV{branche_complete,0}}
+			{id_mot?}
 			{recherche?}
+			{annee?}
 			{tri #GET{tri},#GET{sens_tris}}
-			{pagination #ENV{pagination,5}}
+			{pagination #ENV{pagination,6}}
 		>
 		<li class="list__item">
-			<INCLURE{fond=inclure/previews/#ENV{preview,evenement},
-				id_evenement,
+			<INCLURE{fond=inclure/previews/#ENV{preview,rubrique},
+				id_rubrique,
 				variante=#ENV{variante_preview},
 				class=#ENV{class_preview},
 				env}
 			>
 		</li>
-		</BOUCLE_liste_evenements>
+		</BOUCLE_liste_rubriques>
 		[(#GET{plus/liste}|oui)
 		<li class="list__item list__item_plus">
 			<INCLURE{fond=inclure/previews/plus,
@@ -196,12 +160,12 @@
 	]
 
 </div>
-</B_liste_evenements>
+</B_liste_rubriques>
 
 [(#VAL{message_aucun}|in_array{#GET{masquer}}|non)
-[(#SET{message_aucun, #ENV{message_aucun,<:agenda:info_aucun_evenement:>}})]
+[(#SET{message_aucun, #ENV{message_aucun,<:info_aucun_rubrique:>}})]
 [<p class="list__alternative">
 	(#GET{message_aucun})
 </p>]
 ]
-<//B_liste_evenements>
+<//B_liste_rubriques>

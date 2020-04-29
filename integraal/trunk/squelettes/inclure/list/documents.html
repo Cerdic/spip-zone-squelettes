@@ -1,0 +1,86 @@
+[(#REM)
+
+	Liste des documents-joints.
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- id_document : n° de documents
+	- objet       : type d'objet
+	- id_objet    : n° d'objet
+
+	- vu     : oui | non
+	- role   : role du lien si objet et id_objet
+	- statut : 
+
+	- media              : tableau de medias à inclure
+	                       audio | file | video | image
+	- medias_exclus      : tableau de medias à exclure
+	- extension          : tableau d'extensions à inclure
+	- extensions_exclues : tableau d'extensions à exclure
+
+	- par          : champ utilisé pour le tri, défaut = titre
+	- sens_tri     : pour imposer le sens du tri : 1 | -1
+	- inverser_tri : « oui » pour inverser le sens du tri par défaut
+
+	- titre : titre de la liste, défaut = chaîne de langue
+
+	- class           : classes ajoutées telles quelles
+	- variante        : classe ajoutée de façon normée
+	- class_preview    : classes ajoutées aux résumés telles quelles
+	- variante_preview : classe ajoutée aux résumés de façon normée
+
+]
+[(#REM) Mode et sens de tri ]
+#SET{tri_defaut,#ENV{recherche}|?{points,#ENV{objet}|?{rang_lien,num titre}}}
+#SET{tri,#ENV{par,#GET{tri_defaut}}}
+#SET{sens_tri,#ENV{sens_tri}|is_null|?{'',#ENV{sens_tri}|intval}}
+#SET{sens_tris,#ARRAY{
+	titre,       #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	num titre,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	sinum titre, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	id_document, #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	date,        #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	points,      #GET{sens_tri,#ENV{inverser_tri}|?{1,-1}},
+	media,       #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	extension,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	taille,      #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+	rang_lien,   #GET{sens_tri,#ENV{inverser_tri}|?{-1,1}},
+}}
+
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
+
+<B_liste_documents>
+<div class="list list_documents list_documents_attached[ list_documents_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	[(#VAL{titre}|in_array{#GET{masquer}}|non)
+	[<h2 class="list__title">
+		(#ENV{titre}|sinon{<:medias:titre_documents_joints:>})
+	</h2>]
+	]
+
+	<ul class="list__items">
+		<BOUCLE_liste_documents(DOCUMENTS)
+			{id_document?}
+			{objet?}
+			{id_objet?}
+			{id_mot?}
+			{media?}
+			{media !IN #ENV{medias_exclus}}
+			{extension?}
+			{extension !IN #ENV{extensions_exclues}}
+			{vu?}
+			{role?}
+			{statut?}
+			{tri #GET{tri},#GET{sens_tris}}
+		>
+		<li class="list__item">
+			<INCLURE{fond=inclure/previews/document, id_document}>
+		</li>
+		</BOUCLE_liste_documents>
+	</ul>
+
+</div>
+</B_liste_documents>
