@@ -1,0 +1,50 @@
+[(#REM)
+
+	Présentation resumé d'un document
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- **id_document : n° du document
+
+	- largeur_logo  : largeur max du logo | défaut = x
+	- hauteur_logo  : hauteur max du logo | défaut = x
+
+	- class : classe ajoutée au conteneur
+	- variante : classe normée ajoutée au conteneur
+]
+<BOUCLE_resume_document(DOCUMENTS) {id_document} {statut?}>
+<article class="preview preview_document[ preview_document_media_(#MEDIA|attribut_html)][ preview_document_ext_(#EXTENSION|attribut_html)][ preview_document_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]" id="document#ID_DOCUMENT">
+
+	[<figure class="preview__media">
+		(#LOGO_DOCUMENT|image_reduire{#ENV{largeur_logo},#ENV{hauteur_logo}})
+	</figure>]
+
+	<div class="preview__body">
+
+		<strong class="preview__title">
+			<a href="#URL_DOCUMENT" rel="bookmark" type="#MIME_TYPE" title="<:bouton_download:> [(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]" >
+				[(#TITRE|sinon{#FICHIER|basename|couper{80}})]
+				<span class="read-more hide">
+					<i class="icon-chevron-right" title="<:bouton_download|attribut_html:>"></i>
+				</span>
+			</a>
+		</strong>
+
+		<p class="preview__publication">
+			[<time class="preview__date" pubdate="pubdate" datetime="[(#DATE|date_iso)]">
+				(#DATE|affdate_jourcourt)
+			</time>]
+			<span class="type">[(#TYPE_DOCUMENT)]</span>
+			<span class="poids">[(#TAILLE|taille_en_octets)]</span>
+		</p>
+
+		[<div class="preview__content #EDIT{descriptif}">
+			(#DESCRIPTIF|couper{#ENV{coupe,300}})
+		</div>]
+
+	</div>
+
+</article>
+</BOUCLE_resume_document>

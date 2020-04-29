@@ -1,6 +1,6 @@
 [(#REM)
 
-	Présentation resumée d'une rubrique
+	Présentation resumée d'un contenu sélectionné
 
 	Par défaut, l'image est recadrée avec un ratio de 16:9
 
@@ -8,33 +8,42 @@
 	** obligatoire
 	* conseillé
 
-	- ** id_rubrique : identifiant de la rubrique
+	- ** id_selections_contenu : identifiant du contenu sélectionné
 
 	- largeur_logo  : largeur max du logo | défaut = 1200
 	- hauteur_logo  : hauteur max du logo | défaut = 1200
 	- ratio_logo    : ratio pour recadrer | defaut = 16:9
 	                  pour désactiver l'éventuel recadrage par défaut, mettre autre chose qu'un ratio
 	- recadrer_sens : - pour rogner, + pour aggrandir | défaut = -
-	- logo_rubrique : « oui » pour prendre le logo de la rubrique
 	- masquer       : Tableau d'éléments à masquer (ou texte si un seul)
-	                  logo | introduction | publication
+	                  logo | introduction
 	- coupe : longueur de l'introduction | défaut = 200
 
+	- class : classe ajoutée au conteneur
+	- variante : classe normée ajoutée au conteneur
+
 ]
-<BOUCLE_resume_rubrique(RUBRIQUES) {id_rubrique} {statut?}>
+<BOUCLE_resume_contenu(SELECTIONS_CONTENUS) {id_selections_contenu}>
 
 [(#REM) Éléments à masquer ]
 #SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
 
 [(#REM) Choix de la vignette ]
-#SET{vignette, #VAL{logo}|in_array{#GET{masquer}}|?{'',#LOGO_RUBRIQUE}|trim}
+#SET{vignette, #VAL{logo}|in_array{#GET{masquer}}|?{
+	'',
+	#LOGO_SELECTIONS_CONTENU|sinon{#ID_OBJET|quete_logo_objet{#OBJET,on}|table_valeur{chemin}|balise_img}
+}|trim}
 
 [(#REM) Recadrer et retailler ]
 #SET{ratio,   #ENV{ratio_logo}|is_null|?{16:9,#ENV{ratio_logo}}}
 #SET{largeur, #ENV{largeur_logo}|intval|sinon{1200}}
 #SET{hauteur, #ENV{hauteur_logo}|intval|sinon{1200}}
 
-<div class="preview preview_rubrique[ preview_rubrique_(#ENV{variante}|attribut_html)][ (#GET{vignette}|non)preview_medialess][ (#ENV{class}|attribut_html)]" id="rubrique#ID_RUBRIQUE">
+[(#REM) Trouver le parent ]
+#SET{info_parent,#OBJET|appliquer_filtre{objet_trouver_parent,#ID_OBJET}}
+#SET{parent,#INFO_TITRE{#GET{info_parent/objet},#GET{info_parent/id_objet}}}
+
+<article class="preview preview_selections_contenu[ preview_selections_contenu_(#ENV{variante}|attribut_html)][ (#GET{vignette}|non)preview_medialess][ (#ENV{class}|attribut_html)]" id="selections_contenu#ID_SELECTIONS_CONTENU">
 
 	[<figure class="preview__media">
 		(#GET{vignette}
@@ -45,27 +54,35 @@
 
 	<div class="preview__body">
 
-		<h3 class="preview__title">
-			<a href="#URL_RUBRIQUE" rel="bookmark">
-				#TITRE
-			</a>
-		</h3>
+		[<h3 class="preview__title">
+			[<a href="(#URL)" rel="bookmark">]
+				(#TITRE|sinon{#INFO_TITRE{#OBJET,#ID_OBJET}})
+			[(#URL|oui)</a>]
+		</h3>]
 
 		[(#VAL{publication}|in_array{#GET{masquer}}|non)
 		<p class="preview__publication">
 			[<time class="preview__date" pubdate="pubdate" datetime="[(#DATE|date_iso)]">
-				(#DATE|affdate_jourcourt)
+				(#INFO_DATE{#OBJET,#ID_OBJET}|sinon{#DATE}|affdate_jourcourt)
 			</time>]
+			[<span class="preview__parent">
+				(#GET{parent})
+			</span>]
 		</p>
 		]
 
 		[(#VAL{introduction}|in_array{#GET{masquer}}|non)
 		[<div class="preview__content">
-			(#INTRODUCTION{#ENV{coupe,200}}|textebrut)
+			(#DESCRIPTIF|sinon{
+				#INFO_INTRODUCTION{#OBJET,#ID_OBJET}
+				|sinon{#INFO_DESCRIPTIF{#OBJET,#ID_OBJET}}
+				|sinon{#INFO_CHAPO{#OBJET,#ID_OBJET}}
+				|sinon{#INFO_TEXTE{#OBJET,#ID_OBJET}}
+			}|couper{#ENV{coupe,200}}|textebrut)
 		</div>]
 		]
 
 	</div>
 
-</div>
-</BOUCLE_resume_rubrique>
+</article>
+</BOUCLE_resume_contenu>

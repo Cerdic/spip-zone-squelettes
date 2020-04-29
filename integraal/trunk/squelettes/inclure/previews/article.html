@@ -1,82 +1,84 @@
 [(#REM)
 
-	Présentation resumée d'un article dans une liste
+	Présentation resumée d'un article
+
+	Par défaut, l'image est recadrée avec un ratio de 16:9
 
 	Paramètres :
 	** obligatoire
 	* conseillé
 
-	- **id_article (int) : identifiant de l'article
+	- ** id_article : identifiant de l'article
 
 	- largeur_logo  : largeur max du logo | défaut = 1200
 	- hauteur_logo  : hauteur max du logo | défaut = 1200
-	- ratio_logo    : ratio forcé du logo | défaut 16:9
-	- recadrer_logo : « non » pour ne pas recadrer le logo
+	- ratio_logo    : ratio pour recadrer | defaut = 16:9
+	                  pour désactiver l'éventuel recadrage par défaut, mettre autre chose qu'un ratio
+	- recadrer_sens : - pour rogner, + pour aggrandir | défaut = -
 	- logo_rubrique : « oui » pour prendre le logo de la rubrique
-	- masquer_logo  : « oui » si on ne veut pas de logo
-
+	- masquer       : Tableau d'éléments à masquer (ou texte si un seul)
+	                  logo | introduction | publication
 	- coupe : longueur de l'introduction | défaut = 200
+
+	- class : classe ajoutée au conteneur
+	- variante : classe normée ajoutée au conteneur
 
 ]
 <BOUCLE_resume_article(ARTICLES) {id_article} {statut?}>
-#SET{titre,#TITRE}
-#SET{url,#URL_ARTICLE}
 
-[(#REM) Si c'est l'article d'accueil d'une rubrique, on prend le texte de celle-ci ]
-<BOUCLE_resume_rubrique(RUBRIQUES){id_rubrique}{si #PLUGIN{article_accueil}}>
-[(#ID_ARTICLE_ACCUEIL|=={#_articles:ID_ARTICLE}|oui)
-	#SET{titre,#TITRE}
-	#SET{url,#URL_RUBRIQUE}
-]
-</BOUCLE_resume_rubrique>
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
 
-[(#REM) Choix de la vignette avec éventuellement les filtres d'images du thème ]
-#SET{vignette, #ENV{masquer_logo}|!={oui}|?{
+[(#REM) Choix de la vignette ]
+#SET{vignette, #VAL{logo}|in_array{#GET{masquer}}|?{
+	'',
 	#ENV{logo_rubrique}|=={oui}|?{
 		#LOGO_ARTICLE_RUBRIQUE,
 		#LOGO_ARTICLE
 	}
-}}
+}|trim}
 
-[(#REM) Définition du ratio de recadrage ]
-#SET{ratio_logo, #ENV{recadrer_logo}|!={non}|?{
-	#ENV{ratio_logo,16:9},
-	#GET{vignette}|largeur|concat{:,#GET{vignette}|hauteur}
-}}
+[(#REM) Recadrer et retailler ]
+#SET{ratio,   #ENV{ratio_logo}|is_null|?{16:9,#ENV{ratio_logo}}}
+#SET{largeur, #ENV{largeur_logo}|intval|sinon{1200}}
+#SET{hauteur, #ENV{hauteur_logo}|intval|sinon{1200}}
 
-<article class="entry article hentry">
+<article class="preview preview_article[ preview_article_(#ENV{variante}|attribut_html)][ (#GET{vignette}|non)preview_medialess][ (#ENV{class}|attribut_html)]" id="article#ID_ARTICLE">
 
-	<strong class="entry-title">
-		<a href="#GET{url}" rel="bookmark">
-			[(#GET{vignette}
-				|image_recadre{#GET{ratio_logo}, -, focus}
-				|adaptive_images{#ENV{largeur_logo,1200},#ENV{hauteur_logo,1200}})]
-			#GET{titre}
-		</a>
-	</strong>
+	[<figure class="preview__media">
+		(#GET{vignette}
+			|image_recadre{#GET{ratio}, #ENV{recadrer_sens,-}, focus}
+			|image_reduire{#GET{largeur}, #GET{hauteur}}
+			|adaptive_images{#GET{largeur}})
+	</figure>]
 
-	<p class="publication">
-		[<time pubdate="pubdate" datetime="[(#DATE|date_iso)]">
-			<i class="icon-calendar"></i>
-			(#DATE|affdate_jourcourt)
-		</time>]
-	</p>
+	<div class="preview__body">
 
-	[<div class="#EDIT{intro} introduction entry-content">
-		(#INTRODUCTION{#ENV{coupe,200}})
-	</div>]
-
-	<p class="postmeta">
-		<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />[(#TOTAL_BOUCLE|oui)
-		<span class="comments">
-			<span class="sep">|</span>
-			<a[ href="(#URL_ARTICLE|ancre_url{comments})"] class="nb_commentaires" [title="(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires}|attribut_html)"]>
-				[<i class="icon-comment"></i> (#TOTAL_BOUCLE)]
+		<h3 class="preview__title">
+			<a href="#URL_ARTICLE" rel="bookmark">
+				#TITRE
+				[<small class="preview__subtitle">(#SOUSTITRE)</small>]
 			</a>
-		</span>
+		</h3>
+
+		[(#VAL{publication}|in_array{#GET{masquer}}|non)
+		<p class="preview__publication">
+			[<time class="preview__date" pubdate="pubdate" datetime="[(#DATE|date_iso)]">
+				(#DATE|affdate_jourcourt)
+			</time>]
+			[<span class="preview__parent">
+				(#GET{parent}|sinon{#INFO_TITRE{rubrique,#ID_RUBRIQUE}})
+			</span>]
+		</p>
 		]
-		<//B_nb_commentaires>
-	</p>
+
+		[(#VAL{introduction}|in_array{#GET{masquer}}|non)
+		[<div class="preview__content">
+			(#INTRODUCTION{#ENV{coupe,200}}|textebrut)
+		</div>]
+		]
+
+	</div>
 
 </article>
 </BOUCLE_resume_article>

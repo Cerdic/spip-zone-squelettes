@@ -1,14 +1,15 @@
 [(#REM)
 
-	Présentation resumé d'une organisation dans une liste
+	Présentation resumée d'un contact dans une liste
 
-	Affiche les coordonnées de l'orga et celles de ses contacts.
+	Par défaut, l'image est recadrée avec un ratio de 1:1
+	Exceptionnellement, on met la vignette dans le title
 
 	Paramètres :
 	** obligatoire
 	* conseillé
 
-	- **id | id_organisation (int) : identifiant de l'organisation
+	- ** id_contact : identifiant du contact
 
 	- largeur_logo  : largeur max du logo | défaut = 1200
 	- hauteur_logo  : hauteur max du logo | défaut = 1200
@@ -17,41 +18,44 @@
 	- recadrer_sens : - pour rogner, + pour aggrandir | défaut = -
 	- masquer       : Tableau d'éléments à masquer (ou texte si un seul)
 	                  logo | introduction | coordonnees
+	- url           : URL personnalisée
+
 	- coupe : longueur de l'introduction | défaut = 200
 
-	- class : classe ajoutée au conteneur
-	- variante : classe normée ajoutée au conteneur
-
 ]
-<BOUCLE_organisation(ORGANISATIONS){id_organisation=#ENV{id,#ENV{id_organisation}}}>
+<BOUCLE_resume_contact(CONTACTS) {id_contact} {statut?}>
 
 [(#REM) Éléments à masquer ]
 #SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
 
 [(#REM) Choix de la vignette ]
-#SET{vignette, #VAL{logo}|in_array{#GET{masquer}}|?{'',#LOGO_ORGANISATION}|trim}
+#SET{vignette, #VAL{logo}|in_array{#GET{masquer}}|?{'',#LOGO_CONTACT}|trim}
 
 [(#REM) Recadrer et retailler ]
 #SET{ratio,   #ENV{ratio_logo}|is_null|?{16:9,#ENV{ratio_logo}}}
 #SET{largeur, #ENV{largeur_logo}|intval|sinon{1200}}
 #SET{hauteur, #ENV{hauteur_logo}|intval|sinon{1200}}
 
-<article class="preview preview_organisation[ preview_organisation_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]" itemscope itemtype="http://schema.org/Organization" id="organisation#ID_ORGANISATION">
+#SET{url,#ENV{url}|is_null|?{#URL_CONTACT,#ENV{url}}}
 
-	[<figure class="preview__media">
-		(#GET{vignette}
-			|image_recadre{#GET{ratio}, #ENV{recadrer_sens,-}, focus}
-			|image_reduire{#GET{largeur}, #GET{hauteur}}
-			|adaptive_images{#GET{largeur}})
-	</figure>]
+<article class="preview preview_contact[ preview_contact_(#ENV{variante})][ (#GET{vignette}|non)preview_medialess][ (#ENV{class}|attribut_html)]" id="contact#ID_CONTACT" itemscope itemtype="http://schema.org/Person">
 
 	<div class="preview__body">
 
-		<h3 class="preview__title" itemprop="name">
-			<a href="[(#ID_ORGANISATION|generer_url_entite{organisation})]" rel="bookmark" itemprop="url">
-				#NOM
-			</a>
-			[<small class="preview__subtitle" itemprop="url">(#URL_SITE)</small>]
+		<h3 class="preview__title">
+			[<figure class="preview__media">
+				(#GET{vignette}
+					|image_recadre{#GET{ratio}, #ENV{recadrer_sens,-}, focus}
+					|image_reduire{#GET{largeur}, #GET{hauteur}}
+					|adaptive_images{#GET{largeur}})
+			</figure>]
+			<span class="preview__title-content">
+				[<a href="(#GET{url})" rel="bookmark">]
+					<span class="civilite">#CIVILITE</span>
+					<span class="nom" itemprop="givenName">#NOM</span> <span class="prenom" itemprop="familyName">#PRENOM</span>
+					[<small class="preview__subtitle" itemprop="jobTitle">(#FONCTION)</small>]
+				[(#GET{url}|oui)</a>]
+			</span>
 		</h3>
 
 		[(#VAL{introduction}|in_array{#GET{masquer}}|non)
@@ -64,21 +68,10 @@
 		<BOUCLE_afficher_coordonnees(CONDITION){si #VAL{coordonnees}|in_array{#GET{masquer}}|non}>
 		<div class="preview__contact-info">
 
-			<B_adresses>
-			<div class="preview__adresses">
-				<BOUCLE_adresses(ADRESSES?)
-					{id_organisation}
-					{par sinum titre,titre}
-				>
-				<INCLURE{fond=inclure/adresse, id_adresse}>
-				</BOUCLE_adresses>
-			</div>
-			</B_adresses>
-
 			<B_numeros>
 			<div class="preview__phones">
 				<BOUCLE_numeros(NUMEROS?)
-					{id_organisation}
+					{id_contact}
 					{par sinum titre, numero}
 				>
 				[<span class="phone[ phone_(#TYPE)]" itemprop="[(#TYPE|=={fax}|?{faxNumber,phone})]">(#NUMERO)</span>]
@@ -89,7 +82,7 @@
 			<B_emails>
 			<div class="preview__emails">
 				<BOUCLE_emails(EMAILS?)
-					{id_organisation}
+					{id_contact}
 					{par sinum titre, email}
 				>
 				<span class="email[ email_(#TYPE)]">#EMAIL</span>
@@ -103,4 +96,4 @@
 	</div>
 
 </article>
-</BOUCLE_organisation>
+</BOUCLE_resume_contact>

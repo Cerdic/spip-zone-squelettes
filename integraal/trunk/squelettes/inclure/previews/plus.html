@@ -1,0 +1,35 @@
+[(#REM)
+
+	Pseudo présentation resumée d'un lien « voir plus »
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- ** url :
+	- titre :
+	- introduction :
+
+	- class : classe ajoutée au conteneur
+	- variante : classe normée ajoutée au conteneur
+
+]
+[(#ENV{url}|oui)
+<article class="preview preview_plus preview_medialess[ preview_plus_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	<div class="preview__body">
+
+		<h3 class="preview__title">
+			<a href="#ENV{url}" rel="bookmark">
+				[(#ENV*{titre}|typo|sinon{<:aeromys:bouton_voir_plus:>})]
+			</a>
+		</h3>
+
+		[<div class="preview__content">
+			(#ENV*{introduction}|propre)
+		</div>]
+
+	</div>
+
+</article>
+]
