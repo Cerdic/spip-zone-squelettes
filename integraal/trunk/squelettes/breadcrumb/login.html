@@ -1,18 +1,23 @@
 [(#REM)
+
+	Chemin hiérarchique : page de login
+
+]
+[(#REM)
 	Est-ce qu'on se connecte a l'espace prive ou pas ?
 ]#SET{prive,''}
 [(#ENV{url}|=={''}|?{#SET{prive,' '}})]
 [(#ENV{url}|match{^#EVAL{_DIR_RESTREINT_ABS}}|?{#SET{prive,' '}})]
 
 [(#REM) Fil d'Ariane ]
-<ul class="breadcrumb-items">
+<ul class="breadcrumb__items">
 
-	<li class="item">
+	<li class="breadcrumb__item breadcrumb__item_racine">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
-		<span class="divider"> &gt; </span>
+		<span class="breadcrumb__divider"> &gt; </span>
 	</li>
 
-	[<li class="item active">
+	[<li class="breadcrumb__item breadcrumb__item_expose">
 		<span>(#GET{prive}|?{<:login_acces_prive:>,<:lien_connecter:>})</span>
 	</li>]
 

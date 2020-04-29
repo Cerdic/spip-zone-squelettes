@@ -1,18 +1,48 @@
-<ul class="breadcrumb-items">
-	#SET{objet,''}#SET{id_objet,''}
+[(#REM)
 
-	[(#ENV{id_rubrique}|oui)#SET{objet,rubrique}#SET{id_objet,#ENV{id_rubrique}}]
-	[(#ENV{id_syndic}|oui)#SET{objet,site}#SET{id_objet,#ENV{id_syndic}}]
-	[(#ENV{id_breve}|oui)#SET{objet,breve}#SET{id_objet,#ENV{id_breve}}]
-	[(#ENV{id_article}|oui)#SET{objet,article}#SET{id_objet,#ENV{id_article}}]
-	[(#ENV{id_objet}|oui)#SET{objet,#ENV{objet}}#SET{id_objet,#ENV{id_objet}}]
+	Chemin hiérarchique : par défaut
 
-	[(#GET{objet}|oui)
-	#INCLURE{fond=breadcrumb/inc-objet,id_objet=#GET{id_objet},objet=#GET{objet}}
-	][(#GET{objet}|non)
-	<li class="item">
+	Retrouve automatiquement la hiérarchie de la plupart des objets
+	si ceux-ci déclarent correctement leurs parents.
+
+]
+<ul class="breadcrumb__items">
+
+	[(#REM) Si objet éditorial, trouver les ancêtres automatiquement ]
+	#SET{objet,#ENV{type-page}}
+	#SET{id_objet,#ENV{#GET{objet}|id_table_objet}}
+	#SET{parents,#ARRAY}
+	<BOUCLE_is_objet(CONDITION) {si #GET{objet}|et{#GET{id_objet}}}>
+	#SET{parents,#LISTE{#ARRAY{objet,#GET{objet},id_objet,#GET{id_objet}}}}
+	<BOUCLE_set_parents(DATA) {source table, #GET{parents}}>
+	#SET{parent,#GET{parents}|end|table_valeur{objet}|objet_trouver_parent{#GET{parents}|end|table_valeur{id_objet}}}
+	<BOUCLE_remonter(CONDITION) {si #GET{parent/id_objet}}>
+	#SET{parents,#GET{parents}|push{#GET{parent}}}
+	<BOUCLE_set_ancetres(BOUCLE_set_parents)></BOUCLE_set_ancetres>
+	</BOUCLE_remonter>
+	</BOUCLE_set_parents>
+	#SET{parents,#GET{parents}|array_reverse}
+	</BOUCLE_is_objet>
+
+	[(#REM) La racine du site, toujours en 1er ]
+	<li class="breadcrumb__item breadcrumb__item_racine">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
-		<span class="divider"> &gt; </span>
+		<span class="breadcrumb__divider"> &gt; </span>
 	</li>
-	]
+
+	[(#REM) La hiérarchie s'il s'agit d'une page d'objet éditorial ]
+	<BOUCLE_ariane(DATA) {source table, #GET{parents}} {"<span class='breadcrumb__divider'>&gt; </span>"}>
+	#SET{expose,#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}}
+	#SET{titre_fallback,#OBJET|ucfirst|concat{' ',#ID_OBJET}}
+	<li class="breadcrumb__item[ breadcrumb__item_(#GET{expose}|?{expose,parent}">
+		[(#ID_OBJET|generer_url_entite{#OBJET}|lien_ou_expose{#INFO_TITRE{#OBJET,#ID_OBJET}|sinon{#GET{titre_fallback}}|couper{80},#GET{expose}})]
+	</li>
+	</BOUCLE_ariane>
+
+	[(#REM) Fallback pour les pages lambda ]
+	<li class="breadcrumb__item breadcrumb__item_expose">
+		<span>[(#ENV{type-page}|ucfirst)]</span>
+	</li>
+	<//B_ariane>
+
 </ul>
