@@ -5,14 +5,32 @@
 	[(#REM) Cartouche : nom, date ]
 	<header class="cartouche">
 
-		<h1 class="#EDIT{titre} summary" itemprop="name">#TITRE</h1>
+		[<div class="cartouche__media">
+			(#LOGO_EVENEMENT
+				|image_reduire{#ENV{largeur_logo},#ENV{hauteur_logo}}
+				|adaptive_images{#ENV{largeur_logo,1200}})
+		</div>]
 
-		[<p class="date">
-			(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})
-		</p>]
-		<meta itemprop="startDate" content="[(#DATE_DEBUT|date_iso)]" />
-		<meta itemprop="endDate" content="[(#DATE_FIN|date_iso)]" />
+		<div class="cartouche__body">
 
+			<h1 class="cartouche__titre #EDIT{titre}" itemprop="name">#TITRE</h1>
+
+			<p class="cartouche__postmeta postmeta">
+				<BOUCLE_test_commentaires(CONDITION) {si #VAL{commentaires}|in_array{#GET{masquer}}|non}>
+				<BOUCLE_nb_commentaires(FORUMS) {id_evenement} {plat} />
+				[(#TOTAL_BOUCLE|oui)
+				<a href="#comments" class="postmeta__item postmeta__item_comments" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+					[(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]
+					<meta itemprop="interactionType" content="http://schema.org/CommentAction">
+					[<meta itemprop="userInteractionCount" content="(#TOTAL_BOUCLE)">]
+					[<meta itemprop="discussionUrl" content="(#SELF|url_absolue|ancre_url{comments})">]
+				</a>
+				]
+				<//B_nb_commentaires>
+				</BOUCLE_test_commentaires>
+			</p>
+
+		</div>
 	</header>
 
 

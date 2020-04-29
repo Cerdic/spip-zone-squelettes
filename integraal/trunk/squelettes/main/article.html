@@ -5,55 +5,77 @@
 	[(#REM) Cartouche : logo, titre, métas ]
 	<header class="cartouche">
 
-		[(#LOGO_ARTICLE|image_reduire{200,200}|inserer_attribut{itemprop,image})]
+		[<div class="cartouche__media" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+			(#LOGO_ARTICLE_RUBRIQUE
+				|image_reduire{1200}
+				|adaptive_images{1200}
+				|inserer_attribut{itemprop,contentUrl})
+		</div>]
 
-		[<p class="#EDIT{surtitre} surtitre">
-			(#SURTITRE)
-		</p>]
+		<div class="cartouche__body">
 
-		<h1>
-			<span class="#EDIT{titre}" itemprop="name">#TITRE</span>
-			[<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>]
-		</h1>
+			[<p class="cartouche__surtitre #EDIT{surtitre}">
+				(#SURTITRE)
+			</p>]
 
-		[(#REM) Inclure le modele des liens de traductions ]
-		<div class="postmeta">
+			<h1 class="cartouche__titre">
+				<span class="#EDIT{titre}" itemprop="headline">#TITRE</span>
+				[<small class="cartouche__soustitre #EDIT{soustitre}">(#SOUSTITRE)</small>]
+			</h1>
 
-			#MODELE{article_traductions}
+			[(#REM) Informations de publication : date, mots-clés, etc. ]
+			<p class="cartouche__postmeta postmeta">
 
-			<BOUCLE_nb_commentaires(FORUMS) {id_article}{plat} />
-			[(#TOTAL_BOUCLE|oui)
-			<span class="comments" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
-				<meta itemprop="interactionType" content="http://schema.org/CommentAction" />
-				<span class="sep">|</span>
-				<a href="#comments">
-					[<span itemprop="userInteractionCount">(#TOTAL_BOUCLE)</span>][ (#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]
+				<time class="postmeta__item postmeta__item_publication" pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">
+					[(#DATE|nom_jour) ][(#DATE|affdate)]
+				</time>
+				<meta name="datePublished" content="[(#DATE|date_iso)]">
+				<meta name="dateModified" content="[(#MAJ|date_iso)]">
+
+				[<span class="postmeta__item postmeta__item_auteurs" itemprop="author">
+					(#LESAUTEURS)
+				</span>]
+
+				[<span class="postmeta__item postmeta__item__trad">
+				(#MODELE{article_traductions})
+				</span>]
+
+				<BOUCLE_nb_commentaires(FORUMS) {id_article} {plat} />
+				[(#TOTAL_BOUCLE|oui)
+				<a href="#comments" class="postmeta__item postmeta__item_comments" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+					[(#TOTAL_BOUCLE|singulier_ou_pluriel{zcore:info_1_commentaire,zcore:info_nb_commentaires})]
+					<meta itemprop="interactionType" content="http://schema.org/CommentAction">
+					[<meta itemprop="userInteractionCount" content="(#TOTAL_BOUCLE)">]
+					[<meta itemprop="discussionUrl" content="(#SELF|url_absolue|ancre_url{comments})">]
 				</a>
-			</span>
-			[<meta itemprop="discussionUrl" content="(#SELF|url_absolue|ancre_url{comments})" />]
-			]
-			<//B_nb_commentaires>
+				]
+				<//B_nb_commentaires>
 
-			<B_tags>
-			<span class="tags">
-				<span class="sep">|</span>
-				<ul class="inline">
-					#SET{tags,#ARRAY}
-					<BOUCLE_tags(MOTS){id_article}>
-					#SET{tags,#GET{tags}|push{#TITRE}}
-					<li>
-						<a class="label" href="#URL_MOT">
-							<i class="icon-tag"></i> #TITRE
-						</a>
-					</li>
-					</BOUCLE_tags>
-					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
-				</ul>
-			</span>
-			</B_tags>
+				<B_tags>
+				<span class="tags">
+					<span class="sep">|</span>
+					<ul class="inline">
+						#SET{tags,#ARRAY}
+						<BOUCLE_tags(MOTS){id_article}>
+						#SET{tags,#GET{tags}|push{#TITRE}}
+						<li>
+							<a class="label" href="#URL_MOT">
+								<i class="icon-tag"></i> #TITRE
+							</a>
+						</li>
+						</BOUCLE_tags>
+						[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
+					</ul>
+				</span>
+				</B_tags>
+
+			</p>
+
+			[(#PLUGIN{socialtags}|oui)
+			<div class="cartouche__social" id="socialtags"></div>
+			]
 
 		</div>
-
 	</header>
 
 
