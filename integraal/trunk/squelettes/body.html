@@ -1,55 +1,50 @@
 <body>
-	<div class="page">
-		[(#REM) <!-- Navigation d'accès rapide : ancres, recherche, plan, contact, article d'accessibilité, etc --> ]
+	<div class="page" id="page">
+
+		[(#REM) <!-- Navigation d'accès rapide --> ]
 		[<nav class="access" id="access">
 			<div class="container">
 				(#INCLURE{fond=inclure/access,env})
 			</div>
 		</nav>]
-		
+
 		[(#REM) <!-- Entête général du site --> ]
 		<header class="header" id="header" role="banner">
 			<div class="container">
 				<INCLURE{fond=header/#ENV{type-page},env} />
 			</div>
 		</header>
-		
-		[(#REM) <!-- Navigation principale du site --> ]
-		[<nav class="firstnav" id="firstnav">
-			<div class="container">
-				(#INCLURE{fond=inclure/firstnav,env})
-			</div>
-		</nav>]
-		
+
 		[(#REM) <!-- Chemin hiérarchique --> ]
 		<nav class="breadcrumb" id="breadcrumb" role="navigation" aria-label="<:integraal:menu_breadcrumb|attribut_html:>">
 			<div class="container">
 				<INCLURE{fond=breadcrumb/#ENV{type-page},env} />
 			</div>
 		</nav>
-		
-		[(#REM) <!-- Contenu central du site = contenu principal + navigations secondaires --> ]
+
+		[(#REM) <!-- Contenu central du site --> ]
 		<div class="central">
 			<div class="container" id="container">
 				<div class="wrapper" id="wrapper">
-					<main class="content" id="content" role="main">
+					<main class="main" id="main" role="main">
 						<INCLURE{fond=main/#ENV{type-page},env} />
 					</main>
+					<aside class="aside secondary" id="aside" role="complementary">
+						<INCLURE{fond=aside/#ENV{type-page},env} />
+					</aside>
+					<aside class="extra secondary" id="extra" role="complementary">
+						<INCLURE{fond=extra/#ENV{type-page},env} />
+					</aside>
 				</div>
-				<aside class="aside secondary" id="aside" role="complementary">
-					<INCLURE{fond=aside/#ENV{type-page},env} />
-				</aside>
-				<aside class="extra secondary" id="extra" role="complementary">
-					<INCLURE{fond=extra/#ENV{type-page},env} />
-				</aside>
 			</div>
 		</div>
-		
+
 		[(#REM) <!-- Pied de page --> ]
 		<footer class="footer" id="footer" role="contentinfo">
 			<div class="container">
 				<INCLURE{fond=footer/#ENV{type-page},env} />
 			</div>
 		</footer>
+
 	</div>
 </body>

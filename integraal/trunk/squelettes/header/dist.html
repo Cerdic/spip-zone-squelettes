@@ -1,18 +1,36 @@
-<div class="accueil">
+[(#REM)
 
-	[(#SI_PAGE{sommaire}|non)
-		<a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">
-	]
-	<h2 id="nom_site_spip"[ class="(#EDIT{meta-nom_site})"]>
+	Entête principal du site : nom, logo, menus etc.
+
+]
+[(#REM) Nom du site, logo, etc. ]
+<div class="home">
+	[(#SI_PAGE{sommaire}|non)<a class="home__link" href="#URL_SITE_SPIP" rel="start home" title="<:accueil_site|attribut_html:>">]
+
+	[<div class="home__logo">(#LOGO_SITE_SPIP
+		|balise_img_svg{'',no-adapt-img}
+		|image_reduire{600,200}
+	)</div>]
+
+	<h2 class="home__sitename[ (#EDIT{meta-nom_site})]">
 		#NOM_SITE_SPIP
-		[<small id="slogan_site_spip"[ class="(#EDIT{meta-slogan_site})"]>
-			(#SLOGAN_SITE_SPIP)
-		</small>]
 	</h2>
-	[(#SI_PAGE{sommaire}|non)</a>]
+	[<small class="home__slogan[ (#EDIT{meta-slogan_site})]">(#SLOGAN_SITE_SPIP)</small>]
 
+	[(#SI_PAGE{sommaire}|non)</a>]
 </div>
 
-[<div class="menu">
-	(#MENU_LANG)
-</div>]
+<div class="menus">
+	[<nav class="menu menu_lang">
+		(#MENU_LANG)
+	</nav>]
+
+	[(#REM) Navigation principale ]
+	<BOUCLE_menu_firstnav(MENUS ?) {identifiant=firstnav} {si #PLUGIN{menus}}>
+	<nav id="#IDENTIFIANT" class="menu menu_firstnav menu_firstnav_main menu_folding" role="navigation"[ aria-label="(#TITRE|attribut_html)"]>
+		<INCLURE{fond=inclure/menu, identifiant, env} />
+	</nav>
+	</BOUCLE_menu_firstnav>
+
+	[(#REM) Insérer ici d'autres menus si nécessaire ]
+</div>
