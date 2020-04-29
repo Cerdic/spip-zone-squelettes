@@ -1,0 +1,93 @@
+[(#REM)
+
+	Diaporama d'images.
+
+	Dimensions max par défaut : 1200 x 800
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- id_document : n° de documents
+	- objet       : type d'objet
+	- id_objet    : n° d'objet
+
+	- vu   : oui | non
+	- role : role du lien si objet et id_objet
+	- statut
+
+	- extension          : tableau d'extensions à inclure
+	- extensions_exclues : tableau d'extensions à exclure
+
+	- par : champ utilisé pour le tri, défaut = titre
+
+	- titre   : titre personnalisé
+	- largeur : largeur max de l'image (défaut 1200)
+	- hauteur : hauteur max de l'image (défaut 800)
+	- ratio   : ratio pour recadrer
+	- recadrer_sens : - pour rogner, + pour aggrandir | défaut = -
+
+	- uniqid   : id du conteneur | défaut = automatique
+	- class    : classe ajoutée au conteneur telle quelle
+	- variante : classe ajoutée au conteneur de façon normée
+
+]
+[(#REM) Mise au point des paramètres ]
+#SET{sens_tri, #ARRAY{
+	titre,      1,
+	num titre,  1,
+	date,       #ENV{date_sens,-1},
+	id_document, 1,
+	points,     -1,
+	media,       1,
+	extension,   1,
+	taille,      1,
+	rang_lien,   1,
+}}
+#SET{uniqid,#ENV{uniqid}|is_null|?{#VAL{galerie}|concat{-#OBJET,#ID_OBJET},#ENV{uniqid}}}
+
+[(#REM) Tri par défaut selon le contexte ]
+#SET{defaut_tri,#ENV{objet}|?{rang_lien}}
+
+[(#REM) Paramètres slick ]
+#SET{slideshow_params, #ENV{slideshow_params,#ARRAY}}
+[(#SET{prevArrow, <button type="button" class="slick-nav slick-nav_prev"><span class="slick-nav__label"><:precedent|ucfirst:></span></button>})]
+[(#SET{nextArrow, <button type="button" class="slick-nav slick-nav_next"><span class="slick-nav__label"><:bouton_suivant:></span></button>})]
+#SET{slideshow_params, #GET{slideshow_params}|array_merge{#ARRAY{
+	prevArrow,#GET{prevArrow},
+	nextArrow,#GET{nextArrow},
+}}}
+#SET{slideshow_params, #GET{slideshow_params}|json_encode}
+
+<B_diaporama>
+<div class="slideshow slideshow_images[ slideshow_images_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]" id="#GET{uniqid}">
+
+	[<h2 class="slideshow__title">
+		(#ENV{titre}sinon{<:aeromys:titre_galerie:>})
+	</h2>]
+
+	<ul class="slideshow__items" data-slideshow="[(#GET{slideshow_params}|attribut_html{0})]">
+		<BOUCLE_diaporama(DOCUMENTS)
+			{id_document?}
+			{objet?}
+			{id_objet?}
+			{media = image}
+			{role?}
+			{extension?}
+			{extension !IN #ENV{extensions_exclues}}
+			{vu?}
+			{statut?}
+			{tri #ENV{par,#GET{defaut_tri}},#GET{sens_tri}}
+		>
+		[<li class="slideshow__item">
+			(#FICHIER
+				|balise_img{#TITRE|sinon{#FICHIER|basename}|couper{80},slideshow__img}
+				|image_recadre{#ENV*{ratio}, #ENV{recadrer_sens,-}, focus}
+				|image_reduire{#ENV{largeur,1200}, #ENV{hauteur,800}}
+				|adaptive_images{#ENV{largeur,1200}})
+		</li>]
+		</BOUCLE_diaporama>
+	</ul>
+
+</div>
+</B_diaporama>

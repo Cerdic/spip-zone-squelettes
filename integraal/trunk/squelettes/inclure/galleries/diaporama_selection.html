@@ -1,0 +1,94 @@
+[(#REM)
+
+	Diaporama basé sur une sélection éditoriale
+
+	On peut choisir la sélection d'après son n° ou d'après un rôle lié à un contenu
+
+	Paramètres :
+	** obligatoire
+	* conseillé
+
+	- id_selection : n° d'une sélection
+	- objet        : type d'objet lié
+	- id_objet     : n° d'un objet lié
+	- role         : rôle de la sélection
+
+	- resume : fond à utiliser pour les résumés dans inclure/previews | défaut = selections_contenu
+
+	- titre : titre personnalisé | défaut = titre de la sélection
+
+	- par               : champ utilisé pour le tri | défaut = rang
+	- pagination        : nombre pour la pagination | défaut = 6
+	- modele_pagination : modèle de pagination | défaut = page_precedent_suivant
+	- label_precedent   : texte du lien précédent
+	- label_suivant     : texte du lien suivant
+
+	- masquer : Tableau d'éléments à masquer (ou texte si un seul)
+	  titre | pagination | message_aucun
+
+	- class           : classe ajoutée telle quelle
+	- variante        : classe ajoutée de façon normée
+	- class_resume    : classe ajoutée aux résumés telle quelle
+	- variante_resume : classe ajoutée aux résumés de façon normée
+
+	- + params de inclure/previews/selection/html
+
+]
+[(#REM) Mise au point des paramètres ]
+#SET{sens_tri,#ARRAY{
+	rang,         1,
+	titre,        1,
+	num titre,    1,
+	date,         #ENV{date_sens,-1},
+	id_selection, 1,
+	points,      -1,
+}}
+
+[(#REM) Éléments à masquer ]
+#SET{masquer,#ENV{masquer}|is_array|?{#ENV{masquer},#LISTE{#ENV{masquer}}}}
+
+[(#REM) Affichage de la liste ]
+<BOUCLE_selection(SELECTIONS)
+	{id_selection?}
+	{objet?}
+	{id_objet?}
+	{role?}
+	{0,1}
+	{si #ENV{id_selection}|ou{#ENV{objet}|et{#ENV{id_objet}}}}
+>
+<B_contenus>
+<div class="slideshow slideshow_selections[ slideshow_selections_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]">
+
+	[(#VAL{titre}|in_array{#GET{masquer}}|non)
+	[<h2 class="slideshow__title">
+		(#ENV*{titre, #TITRE})
+	</h2>]
+	]
+	
+	#SET{slideshow_params, #ENV{slideshow_params,#ARRAY}}
+	[(#REM) On force les boutons avec les chaines de langue de SPIP ]
+	[(#SET{prevArrow, <button type="button" class="slick-nav slick-nav_prev"><span class="slick-nav__label"><:precedent|ucfirst:></span></button>})]
+	[(#SET{nextArrow, <button type="button" class="slick-nav slick-nav_next"><span class="slick-nav__label"><:bouton_suivant:></span></button>})]
+	#SET{slideshow_params, #GET{slideshow_params}|array_merge{#ARRAY{
+		prevArrow,#GET{prevArrow},
+		nextArrow,#GET{nextArrow},
+	}}}
+	#SET{slideshow_params, #GET{slideshow_params}|json_encode}
+	<ul class="slideshow__items" data-slideshow="[(#GET{slideshow_params}|attribut_html{0})]">
+		<BOUCLE_contenus(SELECTIONS_CONTENUS)
+			{id_selection}
+			{par rang}
+		>
+		<li class="slideshow__item">
+			<INCLURE{fond=inclure/previews/#ENV{resume,selections_contenu},
+				id_selections_contenu,
+				variante=#ENV{variante_resume},
+				class=#ENV{class_resume},
+				env}
+			>
+		</li>
+		</BOUCLE_contenus>
+	</ul>
+</div>
+</B_contenus>
+</BOUCLE_selection>

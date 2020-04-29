@@ -1,66 +1,148 @@
 [(#REM)
 
-	Portfolio : album d'images avec une mise en avant
+	Galerie d'images avec une mise en avant
 
+	Dimensions max par défaut : 1200 x 800
 	Par défaut, les miniatures ont toutes les même hauteur.
 
 	Paramètres :
 	** obligatoire
 	* conseillé
 
-	- titre (string) : titre personnalisé
-	- largeur (int) : largeur max des miniatures 
-	- hauteur (int) : hauteur max des miniatures
+	- id_document : n° de documents
+	- objet       : type d'objet
+	- id_objet    : n° d'objet
 
-	- id_article (int) : pour restreindre aux images d'un article
-	- id_rubrique (int) : pour restreindre aux images d'une rubrique
-	- objet (string) : pour restreindre aux images d'un type d'objet
-	- id_objet (int) : pour restreindre aux images à un numéro d'objet
+	- vu   : oui | non
+	- role : role du lien si objet et id_objet
+	- statut
+
+	- extension          : tableau d'extensions à inclure
+	- extensions_exclues : tableau d'extensions à exclure
+
+	- par : champ utilisé pour le tri, défaut = titre
+
+	- titre             : titre personnalisé
+	- largeur           : largeur max de l'image (défaut 1200)
+	- hauteur           : hauteur max de l'image (défaut 800)
+	- ratio             : ratio pour recadrer
+	- recadrer_sens     : - pour rogner, + pour aggrandir | défaut = -
+	- largeur_miniature : largeur max des miniatures
+	- hauteur_miniature : hauteur max des miniatures
+	- masquer_zoom      : « oui » pour masquer le zoom
+
+	- uniqid   : id du conteneur | défaut = automatique
+	- class    : classe ajoutée au conteneur telle quelle
+	- variante : classe ajoutée au conteneur de façon normée
 
 ]
-<B_documents_portfolio>
-<div class="liste images documents_portfolio" id="album[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)][-(#OBJET)#ID_OBJET]">
+[(#REM) Mise au point des paramètres ]
+#SET{sens_tri, #ARRAY{
+	titre,      1,
+	num titre,  1,
+	date,       #ENV{date_sens,-1},
+	id_document, 1,
+	points,     -1,
+	media,       1,
+	extension,   1,
+	taille,      1,
+	rang_lien,   1,
+}}
+#SET{uniqid,#ENV{uniqid}|is_null|?{#VAL{galerie}|concat{-#OBJET,#ID_OBJET},#ENV{uniqid}}}
+#SET{voir_zoom,#ENV{masquer_zoom}|=={oui}|?{'',oui}}
 
-	[<h2 class="h2">(#ENV{titre,Galerie})</h2>]
+[(#REM) Tri par défaut selon le contexte ]
+#SET{defaut_tri,#ENV{objet}|?{rang_lien}}
+
+[(#REM) Récupérer les ids ]
+#SET{ids_documents,#ARRAY}
+<BOUCLE_ids_documents(DOCUMENTS)
+	{id_document?}
+	{objet?}
+	{id_objet?}
+	{media = image}
+	{role?}
+	{extension?}
+	{extension !IN #ENV{extensions_exclues}}
+	{vu?}
+	{statut?}
+	{tri #ENV{par,#GET{defaut_tri}},#GET{sens_tri}}
+>
+#SET{ids_documents,#GET{ids_documents}|push{#ID_DOCUMENT}}
+</BOUCLE_ids_documents>
+
+[(#REM) Affichage ]
+<div class="gallery gallery_simple[ gallery_(#ENV{variante}|attribut_html)][ (#ENV{class}|attribut_html)]" id="#GET{uniqid}">
+
+	[<h2 class="gallery__title">
+		(#ENV{titre}sinon{<:aeromys:titre_galerie:>})
+	</h2>]
 
 	[(#REM) Image mise en avant ]
-	<div class="zoom">
+	<BOUCLE_afficher_zoom(CONDITION) {si #GET{voir_zoom}}>
+	<div class="gallery__zoom">
+
 		[(#REM) S'il y a une sélection explicite on zoom sur cette image ]
-		<BOUCLE_zoom_selection(DOCUMENTS){id_document}>
-		[(#URL_DOCUMENT|balise_img|inserer_attribut{alt,#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80}}|adaptive_images{640})]
-		</BOUCLE_zoom_selection>
-			[(#REM) S'il n'y a rien, on prend le premier élément de la liste ]
-			<BOUCLE_zoom_premier(DOCUMENTS){id_article?}{id_rubrique?}{objet?}{id_objet?}{extension IN png,jpg,gif}{par num titre, date}{vu=non}{0,1}>
-			[(#URL_DOCUMENT|balise_img|inserer_attribut{alt,#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80}}|adaptive_images{640})]
-			</BOUCLE_zoom_premier>
-		<//B_zoom_selection>
+		<BOUCLE_galerie_zoom(DOCUMENTS) {id_document = #ENV{id_zoom}}>
+		#SET{zoom,#ARRAY{id,#ID_DOCUMENT,src,#FICHIER,url,#URL_DOCUMENT,titre,#TITRE,mime,#MIME_TYPE}}
+		</BOUCLE_galerie_zoom>
+
+		[(#REM) S'il n'y a rien, on prend le premier élément de la gallerye ]
+		<BOUCLE_galerie_zoom_premier(DOCUMENTS) {id_document = #GET{ids_documents/0}}>
+		#SET{zoom,#ARRAY{id,#ID_DOCUMENT,src,#FICHIER,url,#URL_DOCUMENT,titre,#TITRE,mime,#MIME_TYPE}}
+		</BOUCLE_galerie_zoom_premier>
+		<//B_galerie_zoom>
+
+		[<a
+			href="#GET{zoom/url}"
+			class="gallery__link"
+			[type="(#GET{zoom/mime})"]
+			rel="#GET{uniqid}"
+			[title="(#GET{zoom/titre}|sinon{#GET{zoom/src}|basename}|couper{80}|attribut_html)"]
+		>
+			(#GET{zoom/src}
+				|balise_img{#GET{zoom/titre}|sinon{#GET{zoom/src}|basename}|couper{80},gallery__img}
+				|image_recadre{#ENV*{ratio}, #ENV{recadrer_sens,-}, focus}
+				|image_reduire{#ENV{largeur,1200},#ENV{hauteur,800}}
+				|adaptive_images{#ENV{largeur,1200}})
+		</a>]
+
+		[(#REM) Liens vers les autres images pour la mediabox ]
+		<BOUCLE_autres_zooms(DOCUMENTS){id_document IN #GET{ids_documents}|array_diff{#LISTE{#GET{zoom/id}}}}>
+		<a rel="#GET{uniqid}" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|sinon{#FICHIER|basename}|couper{80}|attribut_html)]"></a>
+		</BOUCLE_autres_zooms>
+
 	</div>
+	</BOUCLE_afficher_zoom>
 
 	[(#REM) Miniatures ]
-	<div class="liste-items">
-		<BOUCLE_documents_portfolio(DOCUMENTS)
-			{id_article?}
-			{id_rubrique?}
-			{objet?}
-			{id_objet?}
-			{extension IN png,jpg,gif}
-			{par num titre, date}
-			{vu=non}
-			{doublons documents}
+	<B_galerie_miniatures>
+	<ul class="gallery__items">
+		<BOUCLE_galerie_miniatures(DOCUMENTS)
+			{id_document IN #GET{ids_documents}}
+			{si #GET{ids_documents}|count|>{1}}
 		>
-		<a href="[(#SELF|parametre_url{id_document,#ID_DOCUMENT}|ancre_url{album[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)][-(#OBJET)#ID_OBJET]})]"
-			class="ajax"
-			rel="documents_portfolio[-a(#ID_ARTICLE)][-r(#ID_RUBRIQUE)]"
-			[title="(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})"]
-		>
-			[(#TOTAL_BOUCLE|>{1}|oui)
-				[(#FICHIER
-					|image_reduire{#ENV{largeur,0}, #ENV{hauteur,100}}
-					|inserer_attribut{class,spip_logos}
-					|inserer_attribut{alt,[(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})]})]
-			]
-		</a>
-		</BOUCLE_documents_portfolio>
-	</div>
+		#SET{expose,#ENV{id_document}|?{#ENV{id_document}|=={#ID_DOCUMENT},#COMPTEUR_BOUCLE|=={1}}}
+		#SET{lien,#GET{voir_zoom}|?{
+			#SELF|parametre_url{id_zoom,#ID_DOCUMENT}|ancre_url{#GET{uniqid}},
+			#URL_DOCUMENT
+		}}
+		[<li class="gallery__item[ (#GET{expose}|oui)gallery__item_expose]">
+			<a href="#GET{lien}"
+				class="gallery__link[ (#GET{voir_zoom}|?{ajax preload,''})]"
+				type="#MIME_TYPE"
+				[(#GET{voir_zoom}|non)rel="#GET{uniqid}"]
+				[title="(#TITRE|sinon{#FICHIER|basename}|attribut_html|couper{80})"]
+			>
+				(#FICHIER
+					|balise_img{#TITRE|sinon{#FICHIER|basename}|couper{80},gallery__thumbnail}
+					|image_recadre{#ENV*{recadrer}, #ENV{recadrer_sens,-}, focus}
+					|image_reduire{#ENV{largeur_miniature,0}, #ENV{hauteur_miniature,100}})
+			</a>
+		</li>]
+		</BOUCLE_galerie_miniatures>
+	</ul>
+	</B_galerie_miniatures>
+
 </div>
-</B_documents_portfolio>
+</B_ids_documents>
