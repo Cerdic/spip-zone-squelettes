@@ -11,7 +11,7 @@ $GLOBALS['meta']['version_html_max'] = 'html5';
 // Déclaration des blocs pour Z (plugin z-core)
 if (!isset($GLOBALS['z_blocs'])) {
 	$GLOBALS['z_blocs'] = array(
-		'content',
+		'main',
 		'aside',
 		'extra',
 		'head',
