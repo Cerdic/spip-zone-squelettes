@@ -94,14 +94,19 @@
 	[(#REM) Contenu lié : galerie, documents, forum ]
 	<aside>
 
-		[(#REM) Gestion du portfolio et des documents ]
+		[(#REM) Galerie d'images ]
 		<INCLURE{fond=inclure/galleries/simple,
-			id_article,
-			id_rubrique=#EVAL{null},
+			objet=article,
+			id_objet=#ID_ARTICLE,
 			env,
 			ajax}
-		/>
-		<INCLURE{fond=inclure/documents, id_article} />
+		>
+		[(#REM) Documents joints ]
+		<INCLURE{fond=inclure/list/documents,
+			objet=article,
+			id_objet=#ID_ARTICLE,
+			media=#LISTE{file,audio,video}}
+		>
 
 		[(#REM) Forum de l'article
 		NB : pour desactiver les forums de l'article, supprimez simplement la ligne ci-dessous ]
