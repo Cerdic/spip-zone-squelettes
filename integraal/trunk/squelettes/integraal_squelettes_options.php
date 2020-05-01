@@ -27,12 +27,3 @@ define('_ZENGARDEN_FILTRE_THEMES', 'integraal');
 
 // Ne pas insérer les CSS des albums sur les pages publiques (plugin albums)
 define('_ALBUMS_INSERT_HEAD_CSS',false);
-
-// Déclaration des menus utilisés (plugin menus)
-function integraal_squelettes_menus_utiles($menus) {
-	$menus['firstnav'] = 'Menu principal';
-	$menus['access'] = 'Accessibilité';
-	$menus['footer'] = 'Pied de page';
-	
-	return $menus;
-}

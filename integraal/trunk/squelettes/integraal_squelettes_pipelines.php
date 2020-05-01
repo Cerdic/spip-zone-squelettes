@@ -5,6 +5,15 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 	return;
 }
 
+// Déclaration des menus utilisés (plugin menus)
+function integraal_squelettes_menus_utiles($menus) {
+	$menus['firstnav'] = 'Menu principal';
+	$menus['access'] = 'Accessibilité';
+	$menus['footer'] = 'Pied de page';
+	
+	return $menus;
+}
+
 /**
  * Modifier le résultat de la compilation des squelettes des formulaires
  *
