@@ -16,7 +16,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
  * @param array $flux
  * @return array
  */
-function integraal_formulaire_fond($flux) {
+function integraal_squelettes_formulaire_fond($flux) {
 
 	// Login : enlever autofocus
 	if ($flux['args']['form'] == 'login'
@@ -52,7 +52,7 @@ function integraal_formulaire_fond($flux) {
  * @return array
  *     Description complétée des tables
  */
-function integraal_declarer_tables_objets_sql($tables) {
+function integraal_squelettes_declarer_tables_objets_sql($tables) {
 
 	// Rôles sur les documents
 	$roles_documents = array(
