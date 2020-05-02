@@ -45,6 +45,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par_auteur' => 'mise en ligne par',
+
+	// R
 	'repondre' => 'Commenter cette ressource',
 
 	// S
