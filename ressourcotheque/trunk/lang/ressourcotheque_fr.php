@@ -44,7 +44,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'modifier_profil' => 'Modifier le profil',
 
 	// P
-	'par_auteur' => 'Mise en ligne par',
+	'par_auteur' => 'mise en ligne par',
+	'repondre' => 'Commenter cette ressource',
 
 	// S
 	'supprimer_filtre' => 'Supprimer le filtre @txt@',
