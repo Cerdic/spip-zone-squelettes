@@ -7,6 +7,7 @@
 			<small class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</small>
 		]</h1>
 
+		<BOUCLE_pas_page(CONDITION){si #PAGE|non}>
 		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><i class="icon-calendar"></i> [(#DATE|nom_jour) ][(#DATE|affdate)]</time>[<span class="authors"><span class="sep">, </span><i class="icon-user"></i> <:ressourcotheque:par_auteur:> (#LESAUTEURS)</span>]</p>
 		[(#REM) Inclure le modele des liens de traductions ]
 		<div class="postmeta">
@@ -20,7 +21,7 @@
 			]
 		<//B_nb_commentaires>
 		</div>
-
+		</BOUCLE_pas_page>
 	</header>
 
 	<div class="main">
@@ -42,7 +43,10 @@
 		<INCLURE{fond=inclure/connexe,id_article,env,} />
 		[(#REM) Forum de l'article
 		NB : pour desactiver les forums de l'article, supprimez simplement la ligne ci-dessous ]
-		<INCLURE{fond=inclure/forum,id_article,repondre_url=(#PARAMETRES_FORUM|url_reponse_forum),repondre_titre=<:repondre_article:>} />
+		[(#PAGE|non)
+			#SET{repondre_url,#PARAMETRES_FORUM|url_reponse_forum}
+			<INCLURE{fond=inclure/forum,id_article,repondre_url=#GET{repondre_url},repondre_titre=<:repondre_article:>} />
+		]
 	</aside>
 
 </article>
