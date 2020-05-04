@@ -1,0 +1,98 @@
+/**
+ * Module : pagination
+ */
+
+.pagination {
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: spacing(2);
+	line-height: 1;
+
+	@include g-state(tablet) {
+		flex-direction: row;
+		.pages {
+			padding: 0 spacing();
+		}
+	}
+
+	> * {
+		padding: spacing(1/4) 0;
+	}
+
+	// Liens
+	a {
+		text-decoration: none;
+	}
+
+	// Page précédente / suivante
+	.prev,
+	.next {
+		> * {
+			@extend .icon;
+			display: flex;
+			align-items: center;
+		}
+	}
+	.prev {
+		.lien_pagination,
+		.on {
+			@extend .icon-left;
+			font-weight: normal;
+		}
+	}
+	.next {
+		> * {
+			@extend .icon-right;
+			&:before {
+				order: 2;
+			}
+		}
+	}
+
+	// Liste des pages
+	.pages {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		> * {
+			padding: spacing(1/8) spacing(1/4);
+		}
+		.on {
+			padding: spacing(1/4) spacing(1/2);
+			background-color: setting(color-link);
+			color: white;
+			border-radius: setting(radius);
+		}
+	}
+
+	// Item désactivé
+	.disabled {
+		opacity: 0.5;
+	}
+
+	// Séparateurs = pipe |
+	.sep {
+		display: none;
+	}
+
+	// Responsive
+	@include g-state( desktop ) {
+		.pages > * {
+			padding-left: spacing(1/2);
+			padding-right: spacing(1/2);
+		}
+	}
+
+	// Variante : pagination alphabétique
+	&.alpha {
+		display: flex;
+		flex-flow: row wrap;
+		text-transform: uppercase;
+		a, strong {
+			margin: 0 0.25em;
+		}
+	}
+}

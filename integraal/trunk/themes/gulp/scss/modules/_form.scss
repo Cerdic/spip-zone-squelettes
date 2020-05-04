@@ -1,0 +1,483 @@
+/**
+ * Modules : formulaires
+**/
+
+/**
+ * ==================================
+ * Tous les formulaires (SPIP ou pas)
+ * ==================================
+ */
+
+// Label
+label {
+	display: block;
+	margin-bottom: spacing(1/2);
+	font-family: setting(font-family-text);
+}
+
+// Tous les inputs (+chosen)
+input,
+textarea,
+select,
+.chosen-container {
+	margin: 0;
+	font-size: 1em;
+	font-family: setting(font-family-text);
+	line-height: spacing();
+	color: inherit;
+	transition: all 0.2s;
+}
+
+// Les inputs avec un cadre (+chosen)
+textarea,
+input[type=text],
+input[type=search],
+input[type=password],
+input[type=email],
+input[type=telephone],
+select,
+.chosen-container .chosen-single,
+.chosen-container .chosen-choices,
+.select2-container .select2-selection {
+	padding: spacing(1/2);
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	background:white;
+	border: 1px solid setting(color-border);
+	border-radius: setting(radius);
+
+	&:focus {
+		background: white;
+		border-color: setting(color-secondary);
+		box-shadow: 0 0 0 0.2em transparentize(change-color(setting(color-secondary), $saturation: 100%), 0.85);
+	}
+}
+
+// les inputs sur une seule ligne (+ chosen)
+input[type=text],
+input[type=search],
+input[type=password],
+input[type=email],
+input[type=telephone],
+select,
+.chosen-container .chosen-single {}
+
+// Les boutons
+button,
+input.submit,
+input[type=submit] {
+	@extend .button;
+}
+
+// Textareas
+textarea {}
+
+// Fieldsets
+fieldset {
+  legend {}
+}
+
+// Chosen
+.chosen-container {
+	padding-left: 0 !important; // cf. gridle [class*="container"]
+	padding-right: 0 !important; // cf. gridle [class*="container"]
+
+	// unique et multiple
+	.chosen-single,
+	.chosen-choices {
+		box-shadow: none;
+		padding-top: spacing(0.25);
+		padding-bottom: spacing(0.25);
+		font-size: inherit;
+	}
+	// unique
+	.chosen-single {
+		// flèche
+		div b {}
+	}
+	// multiple
+	.chosen-choices {
+		// placeholder
+		input[type="text"].chosen-search-input.default {
+			font-size: 0.8em;
+		}
+	}
+	// dropdown
+	.chosen-drop {
+		@extend select:focus;
+		padding-top: 0.2em; // = box-shadow
+		border-bottom-left-radius: setting(radius);
+		border-bottom-right-radius: setting(radius);
+		// background-color: change-color(setting(color-secondary), $saturation: 100%, $lightness: 98%);
+	}
+	// focus
+	&.chosen-container-active {
+		.chosen-single,
+		.chosen-choices {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		.chosen-search-input {
+			box-shadow: none;
+		}
+	}
+	// recherche
+	.chosen-search {
+		padding: spacing(0.5);
+	}
+}
+
+// Select2
+.select2-container {
+	padding-left: 0 !important; // cf. gridle [class*="container"]
+	padding-right: 0 !important; // cf. gridle [class*="container"]
+	width: 100% !important; // Bug bizarre lors de rechargement ajax
+
+	.select2-selection {
+		display: flex;
+		align-items: center;
+		padding-top: spacing(0.25);
+		padding-bottom: spacing(0.25);
+
+		// icône à droite sur les multiples
+		&--multiple {
+			@extend .icon;
+			@extend .icon-plus;
+			&:before {
+				order: 2;
+				margin-left: auto;
+				opacity: 0.5;
+			}
+		}
+
+		// conteneur intérieur
+		.select2-selection__rendered {
+			padding: 0;
+		}
+		// items sélectionnés
+		.select2-selection__choice {
+			margin: spacing(0.125) spacing(0.25) spacing(0.125) 0;
+		}
+	}
+
+	&.select2-container--focus {
+		.select2-selection {
+			@extend select:focus;
+		}
+	}
+}
+
+
+/**
+ * ===========================
+ * Formulaire fournis par SPIP
+ * ===========================
+ */
+.formulaire_spip {
+	clear: both;
+
+	// Message de retour
+	.reponse_formulaire {
+		padding: spacing();
+		margin-bottom: spacing(2);
+		color: white;
+		font-weight: bold;
+		font-family:setting(font-family-headings);
+		&_ok {
+			background-color:setting(color-success);
+		}
+		&_erreur {
+			background-color:setting(color-error);
+		}
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Tous les messages d'explication (en dehors et à l'intérieur des saisies)
+	.explication {}
+
+	// Conteneur des saisies
+	.editer-groupe {
+		@extend .list_none;
+	}
+
+	// Conteneur d'une saisie
+	.editer {
+		margin-bottom: spacing(1);
+
+		// Saisie obligatoire
+		&.obligatoire {}
+
+		// Saisie en erreur
+		&.erreur {
+			color:setting(color-error);
+			input,
+			textarea,
+			select,
+			label {
+				border-color:setting(color-error);
+				color: inherit;
+			}
+		}
+		.erreur_message {
+			padding: 0 0.5em;
+			background-color:setting(color-error);
+			color: white;
+			font-family:setting(font-family-headings);
+		}
+
+		// Explication dans une saisie
+		.explication {}
+
+		// Variante simple pour certains inputs
+		&_redux {
+			// Labels
+			label {
+				position: relative;
+				top: spacing(1/2);
+				height: 0;
+				overflow: visible;
+				margin: 0;
+				transition: top 0.2s, font-size 0.2s;
+
+				&.focused {
+					top: spacing(2)/3*-1;
+					font-size: 0.8em;
+				}
+			}
+			// Champs de texte
+			input.text,
+			input[type=text],
+			input[type=password],
+			input[type=email],
+			input[type=telephone] {
+				padding-left: 0;
+				padding-right: 0;
+				border-width: 0 0 3px;
+				border-radius: 0;
+				&:focus {
+					background-color: white;
+				}
+			}
+		}
+	}
+
+	// Indication d'obligation dans les labels
+	label .obligatoire {
+		font-style: italic;
+		font-size: 0.8em;
+		//color:setting(color-primary);
+	}
+
+	// Choix : radio, checkbox
+	.choix {
+		label {
+			display: inline;
+			font-weight: normal;
+		}
+	}
+
+	// Boutons du formulaire
+	.boutons{
+		text-align: center;
+	}
+
+	// Responsive
+	@include g-state( desktop ) {
+		.editer {
+			margin-bottom: spacing(1.5);
+		}
+	}
+
+
+	// =========
+	// Variantes
+	// =========
+
+
+	// Sur fond sombre
+	&_invert {
+
+		color: white;
+
+		label {
+			color:setting(color-text-light);
+		}
+
+		textarea,
+		input[type=text],
+		input[type=email],
+		input[type=telephone],
+		input.text,
+		select {
+			background-color: transparent;
+			&:focus {
+				background-color: inherit;
+				border-color: white;
+				color: white;
+			}
+		}
+
+		label .obligatoire {
+			//color: white;
+		}
+
+	}
+}
+
+
+/**
+ * ===========================
+ * Des formulaires SPIP précis
+ * ===========================
+ */
+
+/**
+ * Recherche globale
+ */
+.formulaire_recherche {
+
+	.editer-groupe {
+		position: relative;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+
+		// Pseudo-icône
+		@extend .icon;
+		@extend .icon-search;
+		&:before {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.2em;
+		}
+	}
+
+	label {
+		margin: 0 spacing() 0 0;
+	}
+
+	// On place le bouton submit et la pseudo icone au même endroit
+	.editer-groupe:before,
+	input[type=submit] {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: spacing(2);
+	}
+
+	input[type=search] {
+		padding-right: spacing(2);
+	}
+
+	input[type=submit] {
+		padding: 0;
+		background-color: transparent;
+		color: transparent;
+		border: 0;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	// Responsive
+	@include g-state( desktop ) {
+		.editer-groupe {
+			flex-flow: row nowrap;
+		}
+	}
+}
+
+/**
+ * Contact
+ */
+.formulaire_formidable_contact {
+	.editer-groupe {
+		display: flex;
+		flex-flow: row wrap;
+	}
+	.editer {
+		flex: 1 0 100%;
+		&.saisie_input,
+		&.saisie_email,
+		&.saisie_numero {
+			flex: 1 1 20em;
+			margin-right: spacing();
+		}
+	}
+	input[type=submit] {
+		@extend .button_secondary;
+		@extend .button_block;
+	}
+}
+
+/**
+ * Login
+ */
+.formulaire_login {
+	legend {
+		display: none; // "identifiants personnels" inutile
+	}
+	#pass_securise img {
+		display: none; // icône cadenas superflue (et chiante à positionner où on veut)
+	}
+	.details {
+		margin: spacing(1/4) 0 0;
+		text-align: right;
+	}
+	// Responsive
+	@include g-state( desktop ) {
+		.editer-groupe {
+			@include antigutter;
+			display: flex;
+			flex-flow: row wrap;
+		}
+		.editer {
+			@include gutter;
+		}
+		.editer_login,
+		.editer_password {
+			flex: 1 1 50%;
+		}
+		.editer_session {
+			flex: 1 1 100%;
+		}
+	}
+}
+
+/**
+ * Menu des langues
+ */
+.formulaire_menu_lang {
+	label {
+		@extend .icon;
+		@extend .icon-language;
+	}
+	select {
+		font-size: 0.8em;
+		padding: spacing(1/4);
+	}
+}
+
+/**
+ * Rechercher/filtrer mots
+ */
+.formulaire_rechercher_mots {
+	// background-color: setting(color-lightest);
+	// border-radius: setting(radius);
+	// padding: spacing();
+	// margin-bottom: spacing(2);
+
+	label {
+		font-weight: bold;
+		font-size: 0.9em;
+	}
+	.submit {
+		@extend .button_block;
+		@extend .button_secondary;
+	}
+}

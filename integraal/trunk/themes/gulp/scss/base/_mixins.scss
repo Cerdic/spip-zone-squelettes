@@ -1,43 +1,61 @@
 /**
- * Les mixins utilisées dans le projet
+ * Mixins ubër génériques
+ *
+ * Mixins simples et génériques qui ne portent aucun styles en eux-même.
+ * Voir dans modules/_mixins.scss pour les autres mixins
  */
 
-/**
- * Convertir des px en em
- *
- * @param int $pixels
- *     Taille en px
- * @param int $context
- *     Taille de police par défaut du navigateur
- * @return taille en em
-**/
-@function em($pixels, $context: 16) {
-  @if (unitless($pixels)) {
-    $pixels: $pixels * 1px;
-  }
-  @if (unitless($context)) {
-    $context: $context * 1px;
-  }
-  @return $pixels / $context * 1em;
+//
+// Link Bock Wrapper
+//
+// Liens qui couvrent tout leur conteneur.
+// Permet de rendre un bloc entier cliquable.
+//
+// $pseudo - {string} 'before' Type de pseudo-élément pour couvrir le parent : before | after
+//
+// Styleguide Mixins.Link-block-wrapper
+@mixin link-block-wrapper($pseudo: after) {
+	position: relative;
+
+	a {
+		position: inherit;
+
+		&:#{$pseudo} {
+			content: "";
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+}
+.link-block-wrapper {
+	@include link-block-wrapper;
 }
 
-/**
- * Retourner une couleur parmi le jeu de couleurs du projet
- *
- * @example
- * background-color: color(principale);
- *
- * @param string $couleur
- *     Nom de la couleur
- * @param sap $palette
-*      Nom de la map à utiliser
- * @return string
- *     Code de la couleur
- */
-@function color($couleur) {
-  @if map-has-key($couleurs, $couleur) {
-    @return map-get($couleurs, $couleur);
-  }
-  @warn "Pas de couleur `#{$couleur}` dans $couleurs.";
-  @return null;
+//
+// Forcer le ratio d'un block
+//
+// $x - {number} ''
+// $y - {number} ''
+//
+// Styleguide Mixins.Aspect-ratio
+@mixin aspect-ratio($x, $y) {
+	
+	&:before {
+		content: "";
+		width: 1px;
+		margin-left: -1px;
+		float: left;
+		height: 0;
+		padding-top: ($x*1px) / ($y*1px) * 100%;
+	}
+	/* to clear float */
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 }

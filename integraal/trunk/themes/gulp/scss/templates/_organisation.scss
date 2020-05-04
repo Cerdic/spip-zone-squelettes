@@ -1,0 +1,139 @@
+/**
+ * Template : organisation
+ */
+.page_organisation {
+
+	#content {
+		.container {
+			@extend .container_text;
+		}
+	}
+
+	.descriptif {
+		margin-bottom: spacing(2);
+	}
+
+	// Infos affichées sous forme de pseudo tableau
+	// Nb : on ne contrôle pas le markup de #VOIR_CHAMPS_EXTRAS
+	.identite {
+		font-family:setting(font-family-headings);
+		&__label, .label {
+			margin: 0 0 spacing(1/4);
+		}
+		&__valeur, .valeur {
+			margin: 0 0 spacing();
+		}
+		&__valeur {
+			&_numeros,
+			&_emails {
+				p {
+					margin-bottom: 0;
+				}
+			}
+			// Adresses côte à côte
+			&_adresses {
+				@include antigutter;
+				display: flex;
+				flex-flow: row wrap;
+				align-items: flex-start;
+			}
+			.adresse {
+				@include gutter;
+				flex: 1 1 10em;
+			}
+		}
+		&__label, .label {
+			color:setting(color-primary);
+			font-weight: normal;
+		}
+		p:last-child,
+		ul:last-child {
+			margin-bottom: 0;
+		}
+		.email,
+		.numero {
+			@extend .icon;
+		}
+		.email {
+			@extend .icon-mail;
+		}
+		.numero {
+			@extend .icon-phone;
+		}
+		// Ajustements champs extras
+		.champ.vide {
+			display: none; // champs extras « sans réponse »
+		}
+		.saisie_checkbox,
+		.saisie_radio {
+			ul {
+				margin-left: 0;
+				list-style: none;
+				display: flex;
+				flex-flow: row wrap;
+			}
+			li {
+				&:not(:first-child) {
+					&:before {
+						content: ", ";
+					}
+				}
+			}
+		}
+
+		// Responsive
+		@include g-state( desktop ) {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			.champ {
+				flex: 1 0 100%;
+				display: inherit;
+				flex-flow: inherit;
+				align-items: inherit;
+			}
+			&__label, .label {
+				flex: 0 1 25%;
+				margin-bottom: spacing();
+				position: relative;
+				text-decoration: underline solid white; // Fallback pour les champs extras
+				span {
+					padding-right: 0.5em;
+					background-color: white;
+				}
+				// Trait
+				&:after {
+					content: "";
+					z-index: -1;
+					position: absolute;
+					display: block;
+					left: 0;
+					right: 0;
+					bottom: 0.3em;
+					border-bottom: 1px dottedsetting(color-primary);
+				}
+			}
+			&__valeur, .valeur {
+				flex: 1 1 75%;
+				padding-left: spacing();
+			}
+		}
+	}
+
+	// Carte
+	.strate_carte {
+		@extend .full-width;
+	}
+
+	// Liste des contacts
+	.strate__contacts {
+		@extend .full-width;
+		margin: 0;
+		padding: spacing() 0;
+		background-color:setting(color-lightest);
+		.strate__inner {
+			@extend .container_text;
+		}
+	}
+
+}

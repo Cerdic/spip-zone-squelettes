@@ -1,11 +1,100 @@
-/**
- * Section : bandeau du site
- */
 
 .header {
-	@include g-state( tablet-up ){
-		.menus-toggle{
-			display:none;
+	z-index: 1000;
+	position: relative;
+	background-color: white;
+	transition: background 0.2s;
+
+	// Conteneur
+	.container {
+		@extend .container_fluid;
+		display: flex;
+		flex-direction: column;
+		transition: 0.5s;
+		transition-delay: 0.5s;
+	}
+
+	// Logo, nom du site etc
+	.home {
+		padding: spacing() 0;
+		transition: 0.5s;
+
+		&__link {
+			display: block;
+			width: 100%;
+			text-decoration: none;
+
+			&:focus {
+				background-color: transparent;
+			}
 		}
+
+		&__logo {
+			text-align: center;
+		}
+		img,
+		svg {
+			transition: 1s;
+		}
+		&__sitename {
+			@extend .visually-hidden;
+		}
+		&__slogan {
+			@extend .visually-hidden;
+		}
+	}
+
+	// Menus : voir aussi dans _menus.scss
+	.menus {
+		flex: 1;
+	}
+
+
+	// ==========
+	// Responsive
+	// ==========
+	// Bureaux : logo et menus sur la même ligne
+	@include g-state( desktop ) {
+		.container {
+			flex-flow: row nowrap;
+		}
+		.home {
+			flex: 0 1 auto;
+			min-width: 5em;
+			max-width: 25%;
+		}
+		.menus {
+			flex: 1 1 auto;
+			display: flex;
+			justify-content: flex-end;
+
+			.menu_firstnav_main {
+				flex: 1 0 auto;
+				justify-content: flex-end;
+			}
+		}
+	}
+
+
+	// =========
+	// Variantes
+	// =========
+
+	// Fixed : à mettre en JS seulement quand on a mis les bonnes marges en JS aussi
+	&_fixed {
+		position: absolute;
+		width: 100%;
+		top: 0.1px;
+
+		.home {
+			margin-right: 2em;
+		}
+	}
+
+	// Sticky : bandeau attaché en haut
+	&.is_stuck {
+		box-shadow:
+			0 0 1em hsla(0, 0%, 0%, 0.15),
+			0 0 0.15em hsla(0, 0%, 0%, 0.075);
 	}
 }

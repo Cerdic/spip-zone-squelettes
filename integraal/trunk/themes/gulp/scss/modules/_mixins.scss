@@ -1,0 +1,272 @@
+/**
+ * Mixins pour produire des composants.
+ *
+ * Mixins complets qui servent à produire des composants.
+ * Voir dans base/_mixins.scss pour les mixins génériques de base.
+ */
+
+// Blocs d'aperçus
+//
+// Mixin pour créer des blocs d'aperçus de contenus éditoriaux.
+// C'est l'équivalent des composants `media` de certains frameworks CSS.
+// Apparence par défaut : image en haut.
+//
+// $variante - {string} Type de preview '' :
+//   - left | right | bottom
+//   - overlay_image | overlay_text
+//   - box (cumulable avec left, right etc.)
+// $options - {map} Options [] :
+//   - block  : la classe du bloc parent | ```preview``` 
+//   - media  : classe de l'image        | ```preview__media```
+//   - body   : classe du corps          | ```preview__body```
+//   - title  : classe du titre          | ```preview__title```
+//   - common : (bool) false pour ne pas embarquer les styles communs à toutes les variantes
+//   - cancel : (bool) true pour annuler ces styles
+//
+// Styleguide Mixins.Card
+@mixin make-preview($variante: (), $options: ()) {
+
+	$radius: setting(radius);
+
+	// Définir les sélecteurs
+	$block: if(map-has-key($options, block), map-get($options, block), 'card');
+	@each $element in (media,body,title) {
+		@if map-has-key($options, $element) == false {
+			$options: map-merge((#{$element}: $block + '__' + $element), $options);
+		}
+	}
+	$body:   '.' + map-get($options, body);
+	$media:  '.' + map-get($options, media);
+	$title:  '.' + map-get($options, title);
+	$common: if(map-has-key($options, common), map-get($options, common), true);
+	$cancel: if(map-has-key($options, cancel), map-get($options, cancel), false);
+
+	// ====================
+	// Les choses en commun
+	// ====================
+	@if $common == true {
+		display: flex;
+		flex-flow: column;
+		margin-bottom: spacing();
+		transition: all 0.2s;
+
+		#{$media} {
+			display: flex; // Sus aux marges indésirables
+			overflow: hidden;
+			margin: 0;
+			border-radius: inherit;
+
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+				transition: all 0.5s ease-out;
+			}
+		}
+
+		#{$body} {
+			padding: spacing();
+			border-radius: inherit;
+
+			p:last-child {
+				margin-bottom: 0;
+			}
+			a {
+				text-decoration: none;
+				&:not(:hover):not(:focus) {
+					color: inherit;
+				}
+			}
+		}
+
+		#{$title} {
+			line-height: 1.2;
+		}
+
+	}
+
+	// =============
+	// Image en haut (défaut)
+	// =============
+	@if $variante == () or index($variante, top) != null {
+		#{$media} {
+			border-radius: $radius $radius 0 0;
+		}
+		#{$body} {
+			border-radius: 0 0 $radius $radius;
+		}
+	}
+
+	// =======================
+	// Image à gauche + droite
+	// =======================
+	@if index($variante, left) != null or index($variante, right) != null {
+		flex-flow: row;
+		align-items: flex-start; // ne pas déformer les images
+
+		#{$media} {
+			max-width: 25%;
+		}
+		#{$body} {
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+		}
+	}
+
+	// ==============
+	// Image à gauche
+	// ==============
+	@if index($variante, left) != null {
+
+		#{$media} {
+			border-radius: $radius 0 0 $radius;
+			margin-right: spacing();
+		}
+		#{$body} {
+			border-radius: 0 $radius $radius 0;
+		}
+	}
+
+	// ==============
+	// Image à droite
+	// ==============
+	@if index($variante, right) != null {
+
+		#{$media} {
+			order: 2;
+			border-radius: 0 $radius $radius 0;
+			margin-left: spacing();
+		}
+		#{$body} {
+			order: 1;
+			border-radius: $radius 0 0 $radius;
+		}
+	}
+
+	// ============
+	// Image en bas
+	// ============
+	@if index($variante, bottom) != null {
+		#{$media} {
+			order: 2;
+			border-radius: 0 0 $radius $radius;
+			margin-top: spacing();
+		}
+		#{$body} {
+			order: 1;
+			border-radius: $radius $radius 0 0;
+		}
+	}
+
+	// =============
+	// Overlay texte
+	// =============
+	// Taille définie par le texte (image plaquée en fond)
+	@if index($variante, overlay) != null or index($variante, overlay_text) != null {
+
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		color: white;
+		background: linear-gradient(
+			45deg,
+			setting(color-secondary) 0%,
+			lighten(setting(color-secondary), 10) 100%);
+
+		#{$media} {
+			@include absolute-fit;
+			picture {
+				width: 100%;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		#{$body} {
+			z-index: 1;
+		}
+	}
+
+	// =============
+	// Overlay image
+	// =============
+	// Taille définie par l'image (texte plaqué par dessus → possibilité qu'il dépasse)
+	@if index($variante, overlay_image) != null {
+
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		color: white;
+		background: linear-gradient(
+			45deg,
+			setting(color-secondary) 0%,
+			lighten(setting(color-secondary), 10) 100%);
+
+		#{$body} {
+			@include absolute-fit;
+		}
+	}
+
+	// ====================================
+	// Box = habillage un peu plus prononcé
+	// ====================================
+	@if index($variante, box) != null {
+		@if $cancel == false {
+			border: 1px solid setting(color-border);
+			border-radius: $radius;
+
+			#{$body} > *:last-child {
+				margin-bottom: 0;
+			}
+
+			#{$media} {
+				margin: -1px; // Passer par dessus la bordure
+			}
+
+			img {
+				transition-duration: 1.5s;
+			}
+
+			&:hover,
+			&:focus {
+				border-color: setting(color-link);
+				background-color: white;
+
+				a {
+					color: setting(color-link);
+				}
+			}
+		}
+		// Annuler
+		@else {
+			border: 0;
+			border-radius: 0;
+			#{$media} {
+				margin: initial;
+			}
+			#{$body},
+			#{$media} {
+				text-align: initial;
+				border-radius: 0;
+			}
+			&:hover,
+			&:focus {
+				box-shadow: none;
+				img {
+					transform: none;
+				}
+			}
+		}
+	}
+}
+
+// Blocs de type `card`
+//
+// Mixin pour créer de blocs de type `card`, avec header, media, contenu et footer dans n'importe quel ordre.
+// 
+// $variante - {string} Type de card '' :
+@mixin make-card($variante: '', $options: ()) {}

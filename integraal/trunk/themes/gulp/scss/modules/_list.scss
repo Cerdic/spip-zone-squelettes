@@ -1,0 +1,200 @@
+/**
+ * Module : Listes de contenus éditoriaux
+ *
+ * NB : Ne concerne *pas* tous les trucs avec un <ul>
+ * Il s'agit de listes avec un markup spécifique, contenant des .preview
+ */
+
+.list {
+
+	// Colonnage auto par défaut, à retirer si nécessaire
+	&:not(.list_documents) {
+		@extend .list_columns; 
+	}
+	display: flex;
+	flex-flow: column;
+	margin-bottom: spacing(4);
+
+	// Titre
+	&__title {
+		@extend .title_section;
+	}
+
+	// Le conteneur des items (<ul>)
+	&__items {
+		@extend .list_none;
+	}
+
+	// Chaque item (<li>)
+	&__item {}
+
+	// Pagination
+	&__pagination {}
+
+	// Bouton voir plus
+	&__plus {
+		@extend .button_secondary;
+		align-self: center;
+	}
+
+	// Message si aucun résultat
+	&__alternative {}
+
+	// Par défaut, tous les résumés en variante box
+	.preview {
+		@include make-preview((box), (block: preview, common: false));
+	}
+
+
+	// ====================
+	// Variantes génériques
+	// ====================
+
+
+	// Colonnage générique
+	&_columns {
+
+		// De base = largeur « moyenne » qui s'adpate
+		.list__items {
+			@include gridle( row );
+		}
+		.list__item {
+			@include gutter;
+			flex: 1 1 calc(14em + 4vw);
+			margin-bottom: spacing();
+		}
+		.preview {
+			height: 100%;
+			margin-bottom: 0;
+		}
+
+		// 2 colonnes
+		&_2 {
+			.list__items {
+				@include gridle( row );
+			}
+			.list__item {
+				@include gridle( 12 desktop 6 );
+				margin-bottom: spacing();
+			}
+			.preview {
+				height: 100%;
+				margin-bottom: 0;
+			}
+		}
+		// 3 colonnes
+		&_3 {
+			.list__items {
+				@include gridle( row );
+			}
+			.list__item {
+				@include gridle( 12 desktop 4 );
+				margin-bottom: spacing();
+			}
+			.preview {
+				height: 100%;
+				margin-bottom: 0;
+			}
+		}
+		// 4 colonnes
+		&_4 {
+			.list__items {
+				@include gridle( row );
+			}
+			.list__item {
+				@include gridle( 12 desktop 3 );
+				margin-bottom: spacing();
+			}
+			.preview {
+				height: 100%;
+				margin-bottom: 0;
+			}
+		}
+		// 6 colonnes
+		&_6 {
+			.list__items {
+				@include gridle( row );
+			}
+			.list__item {
+				@include gridle( 12 desktop 2 );
+				margin-bottom: spacing();
+			}
+			.preview {
+				height: 100%;
+				margin-bottom: 0;
+			}
+		}
+	
+
+	}
+
+	// Liste de « features »
+	&_features {
+		.list__items {
+			display: flex;
+			flex-flow: column;
+		}
+		.list__item {
+			padding: 0 spacing() spacing();
+			flex: 0 1 auto;
+			margin: 0;
+		}
+		@include g-state(tablet) {
+			.list__items {
+				flex-flow: row nowrap;
+				justify-content: space-around;
+			}
+			.list__item {
+				padding: 0 spacing();
+			}
+			// centrer les textes
+			.feature {
+				height: 100%;
+				&__content {
+					margin-top: auto;
+				}
+			}
+		}
+	}
+
+
+	// =====================================
+	// Variantes spécifiques aux objets SPIP
+	// =====================================
+
+
+	// Articles
+	&_articles {}
+
+	// Rubriques
+	&_rubriques {}
+
+	// Évènements
+	&_evenements {}
+
+	// Organisations
+	&_organisations {}
+
+	// Contacts
+	&_contacts {}
+
+	// Documents
+	&_documents {
+		// Annuler l'habillage box
+		.preview {
+			@include make-preview((box), (block: preview, cancel: true, common: false));
+			.preview__media {
+				margin-right: spacing(); // shame
+			}
+		}
+		// Traits de séparations
+		&:not(.list_images) {
+			.list__item:not(:last-child) {
+				padding-bottom: spacing(1);
+				margin-bottom: spacing(1);
+				border-bottom: 1px solid setting(color-border-light);
+			}
+		}
+	}
+
+}

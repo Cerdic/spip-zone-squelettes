@@ -1,0 +1,194 @@
+/**
+ * Module : menus
+ */
+
+// Menu items
+//
+// Markup:
+// <nav class="menu {{modifier_class}}">
+//   <ul class="menu-items menu-items_folding" data-depth="0">
+//     <li class="menu-items__item menu-items__topitem">
+//       <a class="menu-items__lien" href="#" aria-expanded="false">Aut possimus</a>
+//       <ul class="menu-items menu-items__panel" data-depth="1" aria-expanded="false" aria-hidden="true">
+//         <li class="menu-items__item">
+//           <a class="menu-items__lien" href="#">Possimus</a>
+//         </li>
+//         <li class="menu-items__item">
+//           <a class="menu-items__lien" href="#">Lorem ipsum</a>
+//         </li>
+//       </ul>
+//     </li>
+//     <li class="menu-items__item menu-items__topitem">
+//       <a class="menu-items__lien" href="#" aria-expanded="false">Rerum nostrum</a>
+//     </li>
+//     <li class="menu-items__item menu-items__topitem">
+//       <a class="menu-items__lien" href="#" aria-expanded="false">Omnis sit velit</a>
+//     </li>
+//   </ul>
+// </nav>
+//
+// .menu_firstnav - Menu principal
+// .menu_blocs    - Menu sous forme de blocs
+//
+// Styleguide Modules.menu
+
+// Conteneur des menus
+.menu {
+	// Menus en eux-mêmes <ul>
+	&-items {
+		@extend .list_none;
+
+		// Megamenu
+		// Liens ayant un sous-menu
+		a {
+			// Chevron
+			&[aria-expanded] {
+				display: flex;
+				align-items: center;
+
+				&:after {
+					font-family: 'icon';
+					order: 2; // à droite
+					margin-left: 0.66em;
+					margin-top: 0.2em;
+					font-size: 0.5em;
+				}
+			}
+			&[aria-expanded="false"]:after {
+				content: '\e80c'; // icon-down-open
+			}
+			&[aria-expanded="true"]:after {
+				content: '\e80d'; // icon-up-open
+			}
+		}
+
+		// Entrées de menu spéciales
+		&__item {
+			// Recherche
+			&.recherche > a {
+				@extend .icon;
+				@extend .icon-search;
+			}
+
+			// Rezosociaux
+			&_rezosocios {
+				display: inline-flex !important; // pas le choix
+
+				[class^=socicon] {
+					background: transparent !important; // ouais gros
+					color: inherit;
+					padding: 0;
+					font-size: inherit;
+				}
+				a[rel=external]:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+
+	// =========
+	// Variantes
+	// =========
+
+
+	// Principal
+	&_firstnav {
+		clear: both;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		// Choses communes menu normal + dropdown de priority nav
+		.menu-items,
+		.nav__dropdown {
+			// display: flex;
+			// width: 100%;
+			margin: 0;
+			text-align: center;
+
+			// Tous les items
+			.menu-items__item {}
+
+			// Tous les liens ou textes
+			.menu-items__lien,
+			.menu-items__texte {}
+
+			// Tous les liens
+			a {
+				display: flex;
+				padding: 0.5em 0;
+				margin: 0 0.5em;
+				font-family: setting(font-family-headings);
+				font-weight: bold;
+				text-decoration: none;
+		
+				&:not(:hover):not(:focus) {
+					color: inherit;
+				}
+			}
+		
+			// Par défaut on cache les sous-menu AVANT que le JS ajoute ses classes
+			.menu-items {
+				display: none;
+			}
+			
+			// Panel = sous-menu hover
+			.menu-items__panel {
+				box-shadow: 0 0.1em 0.2em hsla(0, 0%, 0%, 0.2);
+
+				&.open {
+					display: block;
+				}
+			}
+		
+			// RACINE
+			&[data-depth="0"] {
+				> .menu-items__item {
+					display: inline-block;
+
+					// Entrée active
+					&.active {
+						> .menu-items__lien:not(:hover):not(:focus),
+						> .menu-items__texte:not(:hover):not(:focus) {
+							color: setting(color-link);
+						}
+					}
+		
+					// Sous-menus
+					.menu-items {
+						text-align: left;
+					}
+				}
+			}
+		
+			// NIVEAU 1
+			&[data-depth="1"] {}
+		
+			// Recherche
+			.formulaire_recherche {
+				label {
+					@extend .visually-hidden;
+				}
+			}
+		}
+
+		// dropdown de priority nav
+		.nav__dropdown {
+			list-style: none;
+			background-color: white;
+			box-shadow: 0 0.1em 0.2em hsla(0, 0%, 0%, 0.2);
+			padding: 1em;
+			text-align: left;
+		}
+
+		// ==========
+		// Responsive
+		// ==========
+		@include g-state( tablet ) {
+			justify-content: flex-start;
+		}
+	}
+}
+

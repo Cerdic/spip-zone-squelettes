@@ -1,0 +1,92 @@
+/**
+ * Module : tabs
+ *
+ * Des onglets
+ */
+
+
+// Tab
+//
+// Markup:
+// <ul class="tabs {{modifier_class}}">
+//   <div class="card__body">
+//     <h3 class="card__title">Aut possimus eligendi</h3>
+//     <p>Lorem ipsum tempus fugit. Aut rerum nostrum qui adipisci est aut. Est error omnis sit velit. Aut possimus eligendi quia. Magnam sit aut et hic rerum cupiditate velit eveniet. Et consectetur omnis nulla voluptas nobis.</p>
+//   </div>
+// </ul>
+//
+// .card_left          - Image à gauche
+//
+// Styleguide Modules.Tab
+.tabs {
+
+  // Menu
+	&__menu {
+		@extend .list-none;
+		margin-bottom: $spacing*2;
+
+		a:not(:hover):not(:focus) {
+			color: inherit;
+		}
+	}
+	&__menu-item {
+		margin-bottom: -1px;
+		&:not(.tabs__menu-item_active) .tabs__menu-title:hover,
+		&:not(.tabs__menu-item_active) .tabs__menu-title:focus,
+		&_active .tabs__menu-title {
+			background-color: color(lightest);
+		}
+
+		// Iconettes
+		&_login .tabs__menu-title {
+			@extend .icon;
+			@extend .icon-lock;
+		}
+		&_signup .tabs__menu-title {
+			@extend .icon;
+			@extend .icon-edit;
+		}
+	}
+	&__menu-title {
+		padding: $spacing/2 $spacing;
+		border: 1px solid color(border);
+		border-width: 1px;
+		text-align: center;
+		display: block;
+		font-weight: normal;
+		font-weight: bold;
+		font-size: 0.9em;
+	}
+
+  // Contenu d'un onglet
+	&__tab {}
+
+	// Responsive
+	@include g-state( desktop ) {
+		&__menu {
+			display: flex;
+			justify-content: center;
+			border-bottom: 1px solid color(border);
+		}
+		&__menu-item {
+			margin-right: -1px;
+			&_active {
+				.tabs__menu-title {
+					border-bottom-color: white;
+					background-color: transparent;
+				}
+			}
+			&:not(.tabs__menu-item_active) {
+				.tabs__menu-title {
+					&:not(:hover):not(:focus) {
+						box-shadow: inset 0 -0.15em 0.15em hsla(0, 0%, 0%, 0.05);
+					}
+				}
+			}
+		}
+		&__menu-title {
+			border-width: 1px;
+		}
+	}
+
+}

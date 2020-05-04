@@ -1,0 +1,109 @@
+/**
+ * Modules : slick slider
+ *
+ * Styles en commun à tous les diaporamas slick
+ */
+
+.slick {
+
+	// Conteneur général
+	&-slider {
+		@extend .list_none;
+		margin: 0;
+		position: relative;
+
+		// Images
+		.adapt-img-wrapper,
+		img {
+			width: 100%;
+			display: block;
+		}
+
+		// Hover : dégradés latéraux pour mettre en avant les flèches de navigation
+		&:before,
+		&:after {
+			content: '';
+			z-index: 2;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 6vw; // Idem largeur flèches de nav
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+		&:before {
+			left: 0;
+			background: linear-gradient(90deg, hsla(0,0%, 0%, 0.25) 0%, hsla(0,0%, 0%, 0) 100%);
+		}
+		&:after {
+			right: 0;
+			background: linear-gradient(90deg, hsla(0, 0%, 0%, 0) 0%, hsla(0,0%, 0%, 0.25));
+		}
+		&:hover,
+		&:focus {
+			&:before,
+			&:after {
+				opacity: 1;
+			}
+		}
+
+	}
+
+	// Boutons précédent/suivant par dessus l'image
+	&-nav {
+		@extend .icon;
+		z-index: 10;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: transparent;
+		border: 0;
+		color: white;
+		font-size: calc(1em + 5vw);
+		padding: 0.25em 0;
+		line-height: 0;
+		font-weight: normal;
+
+		&:hover,
+		&:focus {
+			background-color: transparent;
+			color: setting(color-primary);
+		}
+
+		// Icône
+		&:before {
+			margin: 0;
+		}
+
+		// Fond
+		&:after {
+			display: none;
+		}
+
+		&_prev {
+			@extend .icon-left-open-big;
+			left: 0;
+		}
+		&_next {
+			@extend .icon-right-open-big;
+			right: 0;
+		}
+		&__label {
+			@extend .visually-hidden;
+		}
+	}
+	
+	// Liste des diapos
+	&-list {
+		z-index: 1;
+	}
+	&-track {}
+
+	// Diapo
+	&-slide {
+		&.slick-current {}
+		&.slick-active {}
+	}
+
+}
+

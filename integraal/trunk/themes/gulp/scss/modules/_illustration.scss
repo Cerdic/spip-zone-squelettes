@@ -1,0 +1,179 @@
+/**
+ * Module : illustrations
+ */
+
+// Toutes les images
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+// =================================
+// Documents insérés dans les textes
+// =================================
+
+// Documents SPIP
+//
+// Documents insérés dans des textes : `<doc>`
+//
+// Markup:
+// <div style="max-width:30em;margin: 0 auto;">
+// <figure class="spip_documents spip_document_image {{modifier_class}}" style="width:960px;">
+//   <a href="https://via.placeholder.com/960x540/4359ff/6a7bff" class="mediabox cboxElement hasbox" type="image/jpeg">
+//     <picture class="adapt-img-wrapper">
+//       <img src="https://via.placeholder.com/960x540/4359ff/6a7bff" width="960" height="540">
+//     </picture>
+//   </a>
+//   <figcaption class="spip_doc_legende">
+//     <div class="spip_doc_titre"><strong>Titre du document</strong></div>
+//     <div class="spip_doc_descriptif">Descriptif du document : Eaque suscipit et quam quia consequuntur ratione doloremque.</div>
+//     <div class="spip_doc_credits">Crédits</div>
+//   </figcaption>
+// </figure>
+// <p>Aut aut et eum aspernatur magni et. Reprehenderit sed odit eveniet ratione. Placeat dignissimos quis est reprehenderit.</p>
+// </div>
+//
+// .spip_documents_left   - Flottante à gauche
+// .spip_documents_right  - Flottante à droite
+//
+// Styleguide Modules.Documents
+.spip_documents {
+	position: relative;
+	margin-top: 0;
+	margin-bottom: spacing(2);
+	max-width: 100%;
+	text-align: center;
+	width: auto !important;
+
+	// Mettre une marge sous l'image
+	// (pb quand on cible directement <img>)
+	> *:first-child {
+		margin-bottom: spacing(1/2);
+	}
+
+	// Centrées
+	&_center {}
+
+	// Images cliquables
+	a[type*=image] {
+		display: flex; // pour virer la marge sous l'image
+		overflow: hidden;
+
+		> * {
+			flex: 1 1 auto;
+		}
+
+		img {
+			transition: all 0.2s;
+		}
+
+		// Signaler la cliquabilité au survol
+		// Icône loupe
+		@extend .icon;
+		@extend .icon-zoom-in;
+		position: relative;
+		&:before {
+			z-index: 2;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			color: white;
+			text-decoration: none;
+			font-size: 3em;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+		// Effet survol
+		&:hover,
+		&:focus {
+			img {
+				filter: brightness(0.75);
+			}
+			&:before {
+				opacity: 1;
+			}
+		}
+	}
+
+	@include g-state(desktop) {
+
+		// Images centrées
+		&_center {
+			max-width: initial;
+		}
+
+		// Images flottantes
+		&_left,
+		&_right {
+			max-width: 50%;
+		}
+		&_left {
+			float: left;
+			padding-right: spacing();
+		}
+		&_right {
+			float: right;
+			padding-left: spacing();
+		}
+		// côte à côte
+		&_left+.spip_documents_right {
+			padding-left: 0;
+		}
+		&_left+.spip_documents_left {
+			padding-right: 0;
+		}
+
+	}
+
+}
+
+// Textes
+.spip_doc_titre, 
+.spip_doc_descriptif,
+.spip_doc_credits {
+	// Annuler la taille en dur dans le HTML sauf pour la variante en ligne...
+	&:not(.spip_documents_ligne) & {
+		width: auto !important; 
+	}
+	margin-bottom: spacing(1/2);
+	margin-left: auto;
+	margin-right: auto;
+	font-size: .85em;
+	color: setting(color-text-lighter);
+}
+
+// À partir de SPIP 3.3, il y a un conteneur pour la légende
+.spip_doc_legende {}
+.spip_documents figcaption {
+	font-size: 100%;
+}
+
+// Titre
+.spip_doc_titre {}
+
+// Descriptif
+.spip_doc_descriptif {}
+
+// Crédits
+.spip_doc_credits {
+	font-style: italic;
+}
+
+// Types de documents (à partir de SPIP 3.3)
+.spip_document {
+	&_image {}
+	&_audio {}
+	&_video {}
+	&_file {}
+}
+
+// Fix temporaire adaptive images
+.adapt-img-wrapper.intrinsic {
+	&:before {
+		display: none;
+	}
+	img {
+		position: initial;
+	}
+}

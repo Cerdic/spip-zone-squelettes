@@ -1,23 +1,34 @@
 
 /**
- * Typographie et mises aux couleurs du thème pour les éléments de base
+ * Mises aux couleurs du thème pour les éléments de base
  */
 
-body {
-	color: color(texte);
-	font-family: $typo-font-text;
-	font-size: $typo-font-size-fluid;
+// Défilement doux
+* {
+	scroll-behavior: smooth;
 }
 
 // Titres
-@include headings; // font-size, line-height, margin-bottom
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-family: $typo-font-heading;
+	font-weight: bold;
+
+	// On considère que <small> est le sous-titre
+	small {
+		display: block;
+		margin-top: spacing(1/4);
+		font-size: 0.8em;
+		line-height: inherit; // Tiny-typo met line-height: 1
+	}
+
+	// Intertitres SPIP
+	&.spip {
+		clear: both;
+	}
 }
 .h1 { @extend h1; }
 .h2 { @extend h2; }
@@ -26,62 +37,127 @@ h6 {
 .h5 { @extend h5; }
 .h6 { @extend h6; }
 
-// Liens
-a {
-	color: color(lien);
-	text-decoration:none;
 
-	&:hover {
-		text-decoration:underline;
-	}
-	&:focus {
-		background-color: color(lien) !important;
-		color: white !important;
-		outline: 0;
-	}
-	&:visited {
-		color: color(lien);
+// Titre d'une section
+.title_section {
+	margin-bottom: spacing(2);
+
+	a:not(:hover):not(:focus) {
+		color: inherit;
 	}
 }
 
-// Rythme vertical
-p, dl, pre, ol, ul, figure, blockquote, table {
-	margin-bottom: $bs;
+// Choses cachées (étendues de Minitinytypo)
+.offscreen {
+	@extend .visually-hidden;
+}
+
+// Liens
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+	&:focus {
+		outline: 0;
+	}
 }
 
 // Listes
-ul, ol {
-	list-style: none;
-}
-
-ul.spip {
-  list-style: square;
-}
-ol.spip {
-	list-style: decimal;
-}
+ul.spip {}
+ol.spip {}
 
 // Trait de séparation
 hr {
-	border-style: dotted;
+	clear: both;
+	margin: spacing() 0;
+}
+
+// Abbrévation, acronymes
+abbr, acronym {
+	text-decoration: none; // Il y a déjà une bordure tiny typo
 }
 
 // Citations
+// Styles minimaux dans minitinytypo de base (à virer ?)
 blockquote {
+	border-color: lighten(setting(color-primary), 10);
+	color: setting(color-text-lighter);
+	font-weight: 600;
 }
 
-/* Cacher du texte de façon accessible */
-/* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
-.visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
+// Icones (cf. modules/_icons.scss, astuce pour simplifier les @extend)
+.icon {
+	@extend [class^="icon-"];
 }
-/* Afficher un texte précédemment caché */
-.visually-visible {
-  position: static !important;
-  height: initial; width: initial;
-  overflow: visible;
-  clip: initial;
+
+// Cartouches : voir dans modules/_cartouche.scss
+
+
+// Métas
+.postmeta {
+	position: relative;
+	margin-bottom: 0; // à fortiori dans un .cartouche qui a déjà des marges
+	font-family: setting(font-family-headings);
+	font-size: 0.9em;
+
+	&__item {
+
+		&:first-letter {
+			text-transform: uppercase;
+		}
+
+		// Séparations entre items
+		& ~ .postmeta__item:before {
+			content: '•';
+			padding: 0 0.5em;
+		}
+
+		&_publication {}
+		&_comments {}
+		&_tags {}
+		&_auteurs {
+			a {
+				color: inherit;
+				pointer-events: none; // Il n'y a pas de vraie page auteur pour l'instant
+			}
+		}
+	}
+}
+
+// Chapeaux
+.chapo {
+	font-size: 1.15em;
+	color: setting(color-text-light);
+	margin-bottom: spacing(2);
+	text-align: justify;
+	text-justify: inter-word;
+
+	// Responsive
+	@include g-state ( tablet ) {
+		margin-bottom: spacing(4);
+	}
+}
+
+// Textes
+.texte,
+.text {
+	p,
+	ul,
+	ol,
+	blockquote,
+	pre {
+		margin-bottom: spacing(1.5);
+	}
+	h3, h4, h5, h6 {
+		margin-top: spacing(3);
+	}
+}
+
+// Notes
+.notes {
+	margin-top: spacing(3);
+	margin-bottom: spacing(3);
+	clear: both;
 }

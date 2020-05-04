@@ -1,0 +1,459 @@
+/**
+ * Module : preview
+ *
+ * Résumés de contenus éditoriaux.
+ */
+
+// preview
+//
+// Résumés de contenus éditoriaux.
+//
+// Markup:
+// <div class="preview {{modifier_class}}">
+//   <figure class="preview__media">
+//     <img src="https://via.placeholder.com/960x540/4359ff/6a7bff" width="960" height="540">
+//   </figure>
+//   <div class="preview__body">
+//     <h3 class="preview__title"><a href="#">Aut possimus eligendi</a></h3>
+//     <p class="preview__publication">
+//       <time class="preview__date">11 Octembre</time>
+//       <span class="preview__parent">Lorem</span>
+//     </p>
+//     <div class="preview__content">
+//        <p>Lorem ipsum tempus fugit. Aut rerum nostrum qui adipisci est aut. Est error omnis sit velit. Aut possimus eligendi quia. Magnam sit aut et hic rerum cupiditate velit eveniet. Et consectetur omnis nulla voluptas nobis.</p>
+//     </div>
+//   </div>
+// </div>
+//
+// .preview_left          - Image à gauche
+// .preview_right         - Image à droite
+// .preview_bottom        - Image en bas
+// .preview_overlay_image - Image plaquée derrière le texte (taille définie par le texte)
+// .preview_overlay_text  - Texte plaqué sur l'image (taille définie par l'image, risque que le texte dépasse)
+//
+// Styleguide Modules.preview
+.preview {
+
+	@include make-preview((), (block: preview));
+	@include link-block-wrapper;
+
+	// Titre
+	&__title {
+		font-size: font-size-heading(5);
+		margin-bottom: spacing(0.5);
+	}
+
+	// Informations de publication
+	&__publication {
+		margin-bottom: spacing(0.5);
+		font-size: 0.9em;
+		opacity: 0.66;
+
+		// Séparations
+		> *:not(:last-child):after {
+			content: '|';
+			margin: 0 0.66em;
+		}
+	}
+	&__date {}
+	&__parent {}
+
+	&__body {
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	a:before {
+		opacity: 0.66; /* Fond animé du bouton */
+	}
+
+	// Texte d'introduction
+	&__content {}
+
+	// Métas
+	&__postmeta {}
+
+	// Commentaires
+	&__comments {}
+	.nb_commentaires {}
+
+
+	/**
+	 * ====================
+	 * Variantes génériques
+	 * ====================
+	 */
+
+
+	// Image à gauche
+	&_left {
+		@include make-preview(left, (block: preview, common: false));
+	}
+
+	// Image à droite
+	&_right {
+		@include make-preview(right, (block: preview, common: false));
+	}
+
+	// Image en bas
+	&_bottom {
+		@include make-preview(bottom, (block: preview, common: false));
+	}
+
+	// Habillage « boîte »
+	&_box {
+		@include make-preview(box, (block: preview, common: false));
+	}
+
+
+	// Overlay : image plaquée dans le fond
+	// 1) choses en commun
+	&_overlay_text,
+	&_overlay_image {
+		border: 0;
+
+		// Fond semi-transparent par dessus l'image
+		.preview__media {
+			&:after {
+				@include absolute-fit;
+				content: '';
+				background: hsla(0, 0%, 0%, 0.5);
+				transition: background 0.2s;
+			}
+		}
+		.preview__title {
+			text-transform: uppercase;
+			text-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.15);
+
+			a:hover,
+			a:focus {
+				color: inherit;
+			}
+		}
+		.preview__subtitle {
+			text-transform: none;
+		}
+		.preview__publication {
+			font-weight: bold;
+			opacity: 1;
+		}
+		.preview__body {
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+		}
+		.preview__content {
+			display: none;
+		}
+		
+
+		&:hover,
+		&:focus {
+			.preview__media:after {
+				background: transparentize(setting(color-secondary), 0.15);
+			}
+		}
+	}
+
+	// 2) Taille fixée par l'image
+	&_overlay_image {
+		@include make-preview(overlay_image, (block: preview, common: false));
+	}
+
+	// 3) Taille fixée par le texte
+	&_overlay_text {
+		@include make-preview(overlay_text, (block: preview, common: false));
+		min-height: 12em; // arbitraire
+
+		.preview__body {
+			padding: spacing(2) spacing();
+		}
+	}
+
+
+	// Mise en avant
+	&_article_hero {
+		@include make-preview(overlay_text, (block: preview, common: false));
+		margin-bottom: spacing(4);
+
+		// Léger dégradé par dessus l'image
+		.preview__media {
+			&:after {
+				@include absolute-fit;
+				content: '';
+				background: linear-gradient(180deg, hsla(0, 0%, 0%, 0.2) 0%, hsla(0, 0%, 0%, 0.66) 100%);
+				transition: background 0.2s;
+			}
+		}
+
+		.preview__body {
+			max-width: setting(container-text);
+			margin: 0 auto;
+			padding: 15vh spacing();
+			text-align: center;
+		}
+
+		.preview__title {
+			font-size: font-size-heading(1);
+			margin-bottom: spacing(2);
+		}
+
+		.preview__content {
+			position: relative;
+
+			// Trait de séparation
+			&:before {
+				content: "";
+				display: block;
+				width: 50%;
+				margin: 0 auto spacing(2);
+				border-top: 1px solid white;
+			}
+		}
+
+		.preview__publication {
+			display: none;
+		}
+
+		.preview__plus {}
+
+		// Hover
+		&:hover,
+		&:focus {
+			// aplat couleur
+			.preview__media:after {
+				background-color: transparentize(setting(color-primary), 0.5);
+			}
+			a {
+				color: inherit;
+			}
+			.preview__plus {
+				background: transparent; // obligé de répéter
+				border-color: white;
+			}
+		}
+	}
+
+
+	/**
+	 * =====================
+	 * Variantes objets SPIP
+	 * =====================
+	 */
+
+
+	// Article
+	&_article {}
+
+	// Rubrique
+	&_rubrique {}
+
+	// Évènement
+	&_evenement {
+
+		@include make-preview((box), (block: preview, cancel: true, common: false)); // annuler box
+		border: none;
+		box-shadow: none;
+
+		.preview__media {
+			display: none;
+		}
+
+		.preview__body {
+			padding: 0;
+		}
+
+		// La date simplifiée qui fait office de visuel
+		.preview__date_main {
+			width: 5em;
+			height: 5em;
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			float: left;
+			margin-right: spacing();
+			font-family:setting(font-family-headings);
+			background-color:setting(color-secondary);
+			color: white;
+			border-radius: 99em;
+			transition: all 0.2s;
+
+			> * {
+				font-weight: 400;
+				line-height: 1.1;
+			}
+		}
+		.preview__day {
+			font-size: 2em;
+		}
+		.preview__month {}
+		.preview__year {}
+
+		.preview__title {
+			grid-area: titre;
+			color: setting(color-secondary);
+		}
+
+		// Texte
+		.preview__content {}
+		.preview__postmeta {}
+		// Afficher les icônes
+		[class*=icon-] {
+			display: inline;
+		}
+
+		&:hover,
+		&:focus {
+			.preview__date_main {
+				background-color: setting(color-primary);
+			}
+			.preview__title a {
+				color: setting(color-primary);
+				border-color: setting(color-primary);
+				border-image: 
+					linear-gradient(
+						90deg, 
+						setting(color-primary), 
+						setting(color-primary)
+					) 1 100%;
+				border-image-slice: 1;
+			}
+		}
+
+		// Navs récents
+		@supports (display: grid) {
+			.preview__body {
+				display: grid;
+				grid-template-areas:
+					"date titre"
+					"publi publi"
+					"texte texte";
+				grid-template-columns: auto 1fr;
+				grid-gap: spacing() 0.25em;
+			}
+			.preview__date_main {
+				grid-area: date;
+				align-self: center;
+				margin: 0;
+				position: relative;
+
+				// Pseudo flèche
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					right: calc((0.25em + 1px) * -1);
+					top: 50%;
+					width: 0px;
+					height: 0px;
+					transform: translateY(-50%);
+				}
+				&:before {
+					border-top: calc(0.75em + 1px) solid transparent;
+					border-bottom: calc(0.75em + 1px) solid transparent;
+					border-right: calc(0.75em + 1px) solid setting(color-secondary);
+				}
+				&:after {
+					border-top: 0.75em solid transparent;
+					border-bottom: 0.75em solid transparent;
+					border-right: 0.75em solid white;
+				}
+			}
+			.preview__title {
+				margin: 0;
+				display: flex;
+				align-items: center;
+
+				a {
+					padding: spacing(0.5);
+					border: 1px solid lighten(setting(color-secondary), 10);
+					border-image: 
+						linear-gradient(
+							66deg, 
+							lighten(setting(color-secondary), 20), 
+							mix(lighten(setting(color-secondary), 20), lighten(setting(color-primary), 20))
+						) 1 100%;
+					border-image-slice: 1;
+					// border-radius: setting(radius)*2 0 ;
+				}
+			}
+			.preview__content {
+				grid-area: texte;
+			}
+			.preview__publication {
+				grid-area: publi;
+				margin: 0;
+			}
+		}
+
+		// Variante : évènement passé
+		&_passe {
+			.preview__date {
+				background-color:setting(color-text-light);
+			}
+		}
+	}
+
+	// Document
+	&_document {
+		@include make-preview((box), (block: preview, cancel: true, common: false)); // annuler box
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		margin: 0;
+
+		.preview__body {
+			padding: 0;
+
+			// rythme vertical
+			& > *:not(:last-child) {
+				margin-bottom: spacing(1/4);
+			}
+		}
+		.preview__media {
+			// Icône générique
+			@extend .icon;
+			@extend .icon-file;
+			flex: 0 0 auto;
+			margin-right: spacing();
+			margin-bottom: 0;
+			line-height: 1;
+			color: setting(color-secondary);
+			background: none !important; /* en dur dans le HTML */
+			font-size: 2.33em;
+			&:before {
+				margin: 0;
+			}
+
+			img {
+				display: none;
+			}
+		}
+		// variantes d'icônes : types de médias
+		&_media_audio .preview__media {
+			@extend .icon-file-audio;
+		}
+		&_media_video .preview__media {
+			@extend .icon-file-video;
+		}
+		&_media_image .preview__media {
+			@extend .icon-file-image;
+		}
+		// variantes d'icônes : extensions spécifiques
+		&_ext_pdf .preview__media {
+			@extend .icon-file-pdf;
+		}
+		&_ext_zip .preview__media {
+			@extend .icon-file-archive;
+		}
+	}
+
+	// Organisation
+	&_organisation {}
+
+	// Contact
+	&_contact {}
+
+}

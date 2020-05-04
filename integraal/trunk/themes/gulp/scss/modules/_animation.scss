@@ -1,0 +1,74 @@
+/**
+ * Des animations
+ * http://animista.net/
+ * https://cssfx.dev/
+ */
+
+// swing-in-top-fwd
+@keyframes animate_swing-in-top-fwd {
+	0% {
+		transform: rotateX(-100deg);
+		transform-origin: top;
+		opacity: 0;
+	}
+	100% {
+		transform: rotateX(0deg);
+		transform-origin: top;
+		opacity: 1;
+	}
+}
+.animate_swing-in-top-fwd {
+	animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+
+// bounce
+@keyframes bounce {
+	from,
+	20%,
+	53%,
+	80%,
+	to {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		transform: translate3d(0, 0, 0);
+	}
+	40%,
+	43% {
+		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+		transform: translate3d(0, -0.2em, 0);
+	}
+	70% {
+		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+		transform: translate3d(0, -0.1em, 0);
+	}
+	90% {
+		transform: translate3d(0, -0.066em, 0);
+	}
+}
+.animate_bounce {
+	transform-origin: center bottom;
+	animation: bounce 0.33s;
+}
+
+// Bitonio avec un fond qui bouge au survol
+// (que j'ai plus d'idée comment l'appeler)
+.animate_bitonio {
+	position: relative;
+
+	&:before {
+		@include absolute-fit;
+		content: "";
+		z-index: 1;
+		background-color: setting(color-secondary);
+		transform-origin: center right;
+		transform: scaleX(0);
+		transition: transform 0.33s ease-in-out;
+		border-radius: inherit;
+	}
+	&:hover,
+	&:focus {
+		&:before {
+			transform-origin: center left;
+			transform: scaleX(1);
+		}
+	}
+}

@@ -1,0 +1,270 @@
+// Boutons
+//
+// Styleguide Boutons
+
+// Boutons
+//
+// Use this class for the primary call to action button.
+// Typically you'll want to use either a `<button>` or an `<a>` element.
+//
+// Markup:
+// <button class="button {{modifier_class}}">Clique moi fort</button>
+// <a href="#" class="button {{modifier_class}}">Clique moi bien</a>
+//
+// .button_secondary - Bouton moins important
+// .button_disabled  - Bouton désactivé, non cliquable
+// .button_small     - Petit
+// .button_big       - Grand
+// .button_bigger    - Plus grand
+// .button_biggest   - Très grand
+//
+// Styleguide Modules.Buttons
+.button,
+a.button {
+	$padding_h: 1.5em;
+	$padding_v: spacing(1/4);
+
+	display: inline-block;
+	padding: $padding_v $padding_h;
+	background-color: setting(color-link);
+	border-radius: setting(radius);
+	border: 1px solid transparent;
+	color: white;
+	font-size: inherit;
+	font-weight: bold;
+	font-family: inherit;
+	line-height: inherit;
+	transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s, border-radius 0.2s;
+	text-decoration: none;
+	text-align: center;
+	overflow: hidden;
+
+	// HOVER
+	&:hover,
+	&:focus {
+		background-color: darken(setting(color-link), 5);
+		cursor: pointer;
+	}
+
+
+	// =========
+	// variantes
+	// =========
+
+
+	// Tailles : button_big, button_small etc.
+	$tailles_boutons: (
+		//smallest: -0.5,
+		//smaller:  -0.33,
+		small:    -0.25,
+		big:      0.25,
+		bigger:   0.66,
+		biggest:  1.5
+	);
+	@each $variante, $taille in $tailles_boutons {
+		$padding_h_plus: $padding_h;
+		$padding_v_plus: $padding_v * (1 + $taille);
+		&_#{$variante} {
+			padding: $padding_v_plus $padding_h_plus;
+			font-size: (1 + ($taille / 2)) * 100%;
+
+			// + icône
+			&.button_icon {
+				padding-left: calc(2em + #{$padding_h_plus});
+			}
+		}
+	}
+
+	// Couleurs : button_light, button_dark, etc.
+	$couleurs-boutons: (
+		light:     setting(color-light),
+		dark:      setting(color-dark)
+	);
+	@each $variante, $couleur in $couleurs-boutons {
+		&_#{$variante} {
+			&:not(:hover):not(:focus) {
+				background-color: $couleur;
+				@if lightness($couleur) < 50% {
+					color: white;
+				}
+				@else {
+					color: inherit;
+				}
+			}
+			// + Filaire
+			&.button_secondary {
+				&:not(:hover):not(:focus) {
+					background-color: transparent;
+					border-color: lighten($couleur, 10);
+					color: $couleur;
+				}
+				&:hover,
+				&:focus {
+					color:setting(color-primary);
+					border-color:setting(color-primary);
+				}
+			}
+		}
+	}
+
+	// Boutons secondaires = bordure ronde
+	&_secondary {
+		color: setting(color-link);
+		background-color: transparent;
+		border-color: setting(color-link);
+
+		&:hover,
+		&:focus {
+			border-color: setting(color-link-hover);
+			color: setting(color-link-hover);
+			background-color: transparent;
+		}
+
+		// + icône
+		&.button_icon {
+			[class^=icon] {
+				background-color: transparent;
+				border-width: 0;
+				border-style: solid;
+				border-color: inherit;
+				//border-right-width: inherit;
+				border-right-width: 0.05em;
+			}
+		}
+	}
+
+	// Bouton désactivé
+	&_disabled {
+		background-color: setting(color-lightest);
+		color: setting(color-text-lightest);
+		pointer-events: none;
+		cursor: default;
+	}
+
+	// Block
+	&_block {
+		display: block;
+		width: 100%;
+	}
+
+	// Bouton avec une icône mise en avant
+	&_icon {
+		padding-left: calc(2em + #{$padding_h});
+
+		[class^=icon] {
+			display: flex;
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 2em;
+			align-items: center;
+			justify-content: center;
+			border-radius: inherit;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			background-color: hsla(0, 0%,0%, 0.15);
+
+			&:before {
+				margin: 0;
+			}
+		}
+	}
+
+	// Inverse (sur fond sombre)
+	&_invert:not(.button_disabled) {
+		background-color: white;
+		&:not(:hover):not(:focus) {
+			color: setting(color-text);
+		}
+
+		&.button_secondary {
+			border-color: white;
+			&:not(:hover):not(:focus) {
+				color: white;
+			}
+		}
+	}
+}
+
+// Boutons avec icône
+//
+// Markup:
+// <button class="button button_icon {{modifier_class}}"><i class="icon-check"></i> Clique moi fort</button>
+// <a href="#" class="button button_icon {{modifier_class}}"><i class="icon-check"></i> Clique moi bien</a>
+//
+// .button_secondary - Bouton moins important
+// .button_disabled  - Bouton désactivé, non cliquable
+// .button_small     - Petit
+// .button_big       - Grand
+// .button_bigger    - Plus grand
+// .button_biggest   - Très grand
+//
+// Styleguide Modules.Buttons_icon
+
+// Boutons inversés (pour fond sombre)
+//
+// Markup:
+// <div class="background_dark padding">
+//   <button class="button button_invert {{modifier_class}}">Clique moi fort</button>
+//   <a href="#" class="button button_invert {{modifier_class}}">Clique moi bien</a>
+// </div>
+//
+// .button_secondary - Bouton moins important
+// .button_disabled  - Bouton désactivé, non cliquable
+//
+// Styleguide Modules.Buttons_invert
+
+// Groupe de boutons
+//
+// Des séries de boutons.
+//
+// Markup:
+// <div class="button-group {{modifier_class}}">
+//  <a href="#" class="button">Clique moi fort</a>
+//  <a href="#" class="button">Clique moi bien</a>
+//  <a href="#" class="button">Clique moi tendre</a>
+// </div>
+// <br>
+// <div class="button-group {{modifier_class}}">
+//  <a href="#" class="button button_secondary">Clique moi fort</a>
+//  <a href="#" class="button button_secondary">Clique moi bien</a>
+//  <a href="#" class="button button_secondary">Clique moi tendre</a>
+// </div>
+// <br>
+// <div class="button-group {{modifier_class}}">
+//  <a href="#" class="button button_disabled">Clique moi fort</a>
+//  <a href="#" class="button button_disabled">Clique moi bien</a>
+//  <a href="#" class="button button_disabled">Clique moi tendre</a>
+// </div>
+//
+// .button-group_rounded - Arrondi
+//
+// Styleguide Modules.Button-group
+.button-group {
+
+	display: flex;
+
+	.button {
+		&:not(:first-child) {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			&:not(.button_secondary) {
+				border-left-width: 0.05em;
+				border-left-color: hsla(0, 0%, 0%, 0.1);
+			}
+		}
+		&:not(:last-child) {
+			border-right-width: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	&_rounded {
+		.button {
+			border-radius: 99em;
+		}
+	}
+
+}

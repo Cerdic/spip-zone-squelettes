@@ -1,0 +1,157 @@
+////
+/// Définition des paramètres de configuration du projet.
+/// Ne pas utiliser directement, récupérer ces valeurs au moyen la fonction setting().
+/// @group paramètres
+////
+
+// Couleurs
+// 
+// Palette de couleurs
+// 
+// Colors:
+// primary:       hsl(150, 100%, 37%)
+// secondary:     hsl(224, 50%, 43%)
+// complementary: hsl( 35, 80%, 47%)
+// light:         hsl(0, 5%, 92%)
+// medium:        hsl(40, 2%, 49%)
+// dark:          hsl(345, 5%, 16%)
+//
+// Styleguide Parametres.Couleurs
+
+/// Variable principale remplie par la suite avec tous les paramètres de configuration.
+/// À ne pas utiliser directement, se servir de la fonction setting().
+/// Exception : pour les espacements, c'est spacing()
+///
+/// @example
+///   font-size:   setting(font-size);
+///   color:       setting(color-primary);
+///   font-family: setting(font-family-text);
+/// @access private
+/// @type map
+/// @see setting()
+$settings: ();
+
+/**
+ * ========
+ * Couleurs
+ * ========
+ */
+
+/// Palette brute.
+/// Un nombre restreint de couleurs tirées en principe de la maquette.
+/// @access private
+/// @type map
+$palette: (
+	vert:    hsl(150, 100%, 37%),
+	bleu:    hsl(224, 50%, 43%),
+	neutre:  hsl(40, 2%, 49%),
+	rouge:   hsl(357, 73%, 44%),
+	jaune:   hsl(49, 97%, 55%),
+);
+
+/// Palette fonctionnelle
+/// @access private
+/// @type map
+$settings-couleurs: (
+	color-primary:       map-get($palette, vert),
+	color-secondary:     map-get($palette, bleu),
+	color-text:          change-color(map-get($palette, neutre), $lightness: 25%),
+	color-text-light:    change-color(map-get($palette, neutre), $lightness: 40%),
+	color-text-lighter:  change-color(map-get($palette, neutre), $lightness: 50%),
+	color-text-lightest: change-color(map-get($palette, neutre), $lightness: 60%),
+	color-link:          map-get($palette, vert),
+	color-link-hover:    map-get($palette, bleu),
+	color-border:        transparentize(change-color(map-get($palette, neutre), $lightness: 10%), 0.85),
+	color-border-light:  transparentize(change-color(map-get($palette, neutre), $lightness: 10%), 0.9),
+	color-border-dark:   transparentize(change-color(map-get($palette, neutre), $lightness: 10%), 0.33),
+	color-medium:        map-get($palette, neutre),
+	color-light:         change-color(map-get($palette, neutre), $lightness: 92%),
+	color-lighter:       change-color(map-get($palette, neutre), $lightness: 94%),
+	color-lightest:      change-color(map-get($palette, neutre), $lightness: 96%),
+	color-dark:          change-color(map-get($palette, neutre), $lightness: 16%),
+	color-darker:        change-color(map-get($palette, neutre), $lightness: 12%),
+	color-darkest:       change-color(map-get($palette, neutre), $lightness: 8%),
+	color-success:       map-get($palette, vert),
+	color-error:         map-get($palette, rouge),
+	color-warning:       map-get($palette, jaune),
+	color-info:          change-color(map-get($palette, neutre), $lightness: 50%),
+);
+$settings: map-merge($settings-couleurs, $settings);
+
+
+/**
+ * ===========
+ * Typographie
+ * ===========
+ */
+
+/// Paramètres typographiques
+/// @access private
+/// @type map
+$settings-typo: (
+	font-size-base:       em(13px),
+	font-size-factor:     0.4,
+	line-height:          1.5,
+	font-scale:           5, // Facteur propre à Shevy dans Minitinytypo
+	proximity:            false, // Options propre à Shevy dans Minitinytypo
+	font-family-text:     #{"Source Sans Pro", sans-serif},
+	font-family-headings: #{"Source Sans Pro", sans-serif},
+	font-family-alt:      #{"Libre Baskerville", "Palatino Linotype", "Palatino LT STD", "Book Antiqua", "Georgia", serif},
+);
+$settings: map-merge($settings-typo, $settings);
+
+
+/**
+ * ===========
+ * Breakpoints et conteneurs
+ * ===========
+ */
+
+/// Définition des breakpoints
+/// @access private
+/// @type map
+$settings-breakpoints: (
+	media-small:  em(480px),
+	media-medium: em(640px),
+	media-normal: em(960px),
+	media-large:  em(1200px),
+	media-huge:   em(1440px),
+);
+$settings: map-merge($settings-breakpoints, $settings);
+
+/// Largeurs des conteneurs
+/// @access private
+/// @type map
+$settings-containers: (
+	container-base:  em(960px),
+	container-large: em(1200px),
+	container-text:  40em
+);
+$settings: map-merge($settings-containers, $settings);
+
+
+/**
+ * ======
+ * Divers
+ * ======
+ */
+
+/// Paramètres divers
+/// @access private
+/// @type map
+$settings-misc: (
+	spacing: setting(font-size-base) * setting(line-height) / 1em * 1rem, // Espacement vertical (hauteur d'une ligne)
+	gutter:  setting(font-size-base) * setting(line-height) / 1em * 1rem, // Espacement horizontal (gouttière)
+	radius:  0.2em // Arrondi des blocs
+);
+$settings: map-merge($settings-misc, $settings);
+
+/// États (pour les messages, les boutons, etc.)
+/// @access private
+/// @type list
+$etats: (
+	success,
+	error,
+	warning,
+	info
+);

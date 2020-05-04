@@ -1,0 +1,43 @@
+////
+/// Les fonctions utilisées dans le projet
+/// @group fonctions
+////
+
+/// Convertit des px en em
+/// @param {int} $pixels - Taille en px
+/// @param {int} $context [16] - Taille de police par défaut du navigateur
+/// @return {string} - Taille en em
+@function em($pixels, $context: 16) {
+	@if (unitless($pixels)) {
+		$pixels: $pixels * 1px;
+	}
+	@if (unitless($context)) {
+		$context: $context * 1px;
+	}
+	@return $pixels / $context * 1em;
+}
+
+/// Retourne la valeur d'un paramètre de configuration issu de la variable globale $setting.
+/// Utiliser cette fonction plutôt que directement la variable. 
+/// @example
+///   font-size:   setting(font-size);
+///   color:       setting(color-primary);
+///   font-family: setting(font-family-text);
+/// @param {string} $setting - Nom du paramètre
+/// @return {*}
+@function setting($setting) {
+	@if map-has-key($settings, $setting) {
+		@return map-get($settings, $setting);
+	}
+	@warn "Pas de paramètre `#{$setting}` dans $settings.";
+	@return null;
+}
+
+/// Retourne la taille d'un titre telle que configurée dans Shevy
+/// @param {int} $heading - Niveau du titre, entre 1 et 6
+/// @return {size}
+@function font-size-heading($heading: 1) {
+	$base-font-size: map-get($shevy, 'base-font-size');
+	$base-font-scale: map-get($shevy, 'base-font-scale');
+	@return nth($base-font-scale, $heading) * $base-font-size;
+}

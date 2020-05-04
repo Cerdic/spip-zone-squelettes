@@ -1,0 +1,62 @@
+////
+/// Configuration de la grille utilisée
+///
+/// http://gridle.org/
+/// http://gridle.org/demo/demo.html
+/// 
+/// Définition des breakpoints, des gouttières, etc.
+/// @group paramètres
+////
+
+/// Paramétrage général de la grille
+/// @access private
+/// @type map
+/// @see setting()
+$grid-settings: (
+	context :       12,
+	gutter-width :  spacing(2),
+	gutter-height : 0,
+	gutter-left :   spacing(),
+	gutter-right :  spacing(),
+	gutter-top :    0,
+	gutter-bottom : 0,
+	direction :     ltr,
+	states-classes: false
+);
+@include g-setup( $grid-settings );
+
+
+/**
+ * Paramétrage des breakpoints en mobile first
+ */
+@include g-register-state(tablet, (
+	min-width : setting(media-small)
+));
+@include g-register-state(desktop, (
+	min-width : setting(media-normal)
+));
+@include g-register-state(large, (
+	min-width : setting(media-large),
+));
+
+
+/**
+ * Génération des classes génériques : .row, .gr-8, gr-12@mobile etc.
+ */
+@include g-classes();
+
+
+/// Met une marge latérale négative en vue d'inclure des éléments/colonnes avec des  gouttière
+/// @example
+///   .row { @include antigutter; display: flex; }
+@mixin antigutter() {
+	margin-left: map-get($grid-settings, gutter-left) * -1;
+	margin-right: map-get($grid-settings, gutter-right) * -1;
+}
+/// Ajoute une gouttière interne
+/// @example
+///   .column { @include gutter; flex: 1 1 10em }
+@mixin gutter() {
+	padding-left: map-get($grid-settings, gutter-left);
+	padding-right: map-get($grid-settings, gutter-right);
+}
