@@ -27,7 +27,7 @@ var
   clean = require('gulp-clean'),
   dirSync = require('gulp-directory-sync'),
   replace = require('gulp-replace'),
-  shell = require('gulp-shell'),
+  shell = require('gulp-shell')
   //sassdoc = require('sassdoc')
 ;
 
