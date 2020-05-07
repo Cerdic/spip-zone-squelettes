@@ -101,7 +101,7 @@ dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez
 
 	// M
 	'memerubrique' => 'En hevelep bann...',
-	'mentions_legales_obligatoires' => 'Meneg lezennel diouzh ret ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] ha [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Pep tra[da c’houzout (e galleg)->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Disrinegañ ar redioù hervez al lezenn (e galleg ivez)->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Meneg lezennel diouzh ret ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] ha [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Pep tra[da c’houzout (e galleg)->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Disrinegañ ar redioù hervez al lezenn (e galleg ivez)->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Displegañ :',
 	'menu_picalt' => 'Klikañ evit',
 	'menu_replier' => 'asplegañ: ',

@@ -885,7 +885,7 @@ function soyezcreateurs_config_motsclefs() {
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', '', 'oui', 'non', 'non');
 
-	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->https://blog.html.it/layoutgala/index.html]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'articles,breves,rubriques,syndic', 'oui', 'non', 'non');
+	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->https://www.html.it/app/uploads/blog/layoutgala/index.html]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'articles,breves,rubriques,syndic', 'oui', 'non', 'non');
 		$id_mot = create_mot("_LayoutGala", "01. Three percentage columns", "", "");
 		$id_mot = create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
 		$id_mot = create_mot("_LayoutGala", "03. Three percentage columns (Right)", "", "");
@@ -935,7 +935,7 @@ function soyezcreateurs_config_motsclefs() {
 		} else {
 			$coordonneesgps = "";
 		}
-		$id_mot = create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 44.330445,-1.225561)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", $coordonneesgps);
+		$id_mot = create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XX.XXXXX,XX.XXXXX (ex: 44.330445,-1.225561)\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]", $coordonneesgps);
 		$id_mot = create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
 
 	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s'affichent sur la page d'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'articles,rubriques', 'oui', 'non', 'non');
@@ -957,7 +957,7 @@ function soyezcreateurs_config_motsclefs() {
 		$id_mot = create_mot("_Specialisation", "EDITO_Restreint", "Pour un article d'Edito ne s'affichant qu'en mode restreint", "Permet donc d'avoir un Edito pour le grand public et un Edito pour la zone restreinte.\n\nMieux encore, avec 2 EDITO_Restreint, un en libre accès et un en zone restreinte, on pourra avoir :\n-* un Edito d'accueil après inscription au site\n-* Un Edito d'accueil après rattachement à une zone restreinte.");
 		$id_mot = create_mot("_Specialisation", "GraverSonNom", "Un article avec ce mot clef permettra aux visiteurs de laisser leur nom sur le site en tant que bulle d'aide sur l'image (Logo du mot) et de faire parvenir un texte aux administrateurs", "Il faut pour que ça fonctionne:\n\n-* un article\n-* un forum modéré a posteriori\n-* ce mot mot clef attaché à cet article\n-* un logo à ce mot clef\n\nÀ partir de là, l'article permet aux visiteurs de «graver leur nom» dans le site. Leur nom aparaitra en bulle d'aide sur une image (le logo de ce mot clef).");
 		$id_mot = create_mot("_Specialisation", "Livre d'Or", "Pour empécher que l'on puisse répondre à un forum", "Ce mot clef appliqué à un article ayant un forum fait que ce forum n'a qu'un niveau (pas possible de répondre à une intervention, seulement d'en rajouter)");
-		$id_mot = create_mot("_Specialisation", "MentionsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu'[il faut savoir->https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228]. [Décryptage des obligations légales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].", "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
+		$id_mot = create_mot("_Specialisation", "MentionsLegales", "Mentions légales obligatoires ([CNIL|Commision Nationale Informatique et Liberté->https://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'économie Numérique->https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000801164&dateTexte=&categorieLien=id]). Tout ce qu'[il faut savoir->https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228]. [Décryptage des obligations légales->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].", "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
 		$id_mot = create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
 		$id_mot = create_mot("_Specialisation", "MENURACINE", "Doit s'afficher en dessous de Accueil", "Pour dire que l'article s'affiche en dessous de Accueil dans le menu de gauche avant les rubriques du site");
 		$id_mot = create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l'article s'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
@@ -990,7 +990,7 @@ function soyezcreateurs_config_motsclefs() {
 
 	create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'syndic', 'oui', 'non', 'non');
 		$id_mot = create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
-		$id_mot = create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
+		$id_mot = create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->https://support.google.com/webmasters/answer/79812?hl=en].");
 		$id_mot = create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
 		$id_mot = create_mot("_Specialisation_Sites", "ReseauxSociaux", "Mettre ce mot clef aux sites servant de liens vers les réseaux sociaux du site.\n\nMettre un texte dans ce mot clef pour qu'il soit affiché devant les icones des sites", "");
 		$id_mot = create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
@@ -1193,7 +1193,7 @@ function soyezcreateurs_config_motsclefs() {
 					create_site_mot($id_site, "ReseauxSociaux", "_Specialisation_Sites");
 				$sites = array();
 				$sites['nom_site'] = "30. Viadeo";
-				$sites['url_site'] = "http://www.viadeo.com/fr/";
+				$sites['url_site'] = "http://fr.viadeo.com/fr/";
 				$sites['descriptif'] = "Retrouvez-nous sur Viadeo";
 				$sites['url_syndic'] = "";
 				$sites['statut'] = 'prop';

@@ -80,7 +80,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'У цій же рубриці...',
-	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL|Національна комісія з інформатики і свободи->http://www.cnil.fr/] і [LCEN|Закон про впевненість в економіці Цифровий->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Все, що потрібно знати->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL|Національна комісія з інформатики і свободи->http://www.cnil.fr/] і [LCEN|Закон про впевненість в економіці Цифровий->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Все, що потрібно знати->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
 	'menu_replier' => 'знову скласти: ',

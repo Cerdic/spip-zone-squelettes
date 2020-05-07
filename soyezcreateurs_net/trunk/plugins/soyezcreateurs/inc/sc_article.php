@@ -15,9 +15,9 @@ function trouve_article_sc($article) {
 	$contenu = array();
 	// Les articles du site
 
-	/* 10. Premiers pas dans le squelette SoyezCreateurs */
-	if ($article == "10. Premiers pas dans le squelette SoyezCreateurs") {
-		$contenu['titre'] = "10. Premiers pas dans le squelette SoyezCreateurs";
+	/* 10. Premiers pas dans le squelette SoyezCréateurs */
+	if ($article == "10. Premiers pas dans le squelette SoyezCréateurs") {
+		$contenu['titre'] = "10. Premiers pas dans le squelette SoyezCréateurs";
 		$contenu['texte'] = <<<EOF
 Bravo !!!!
 
@@ -29,7 +29,7 @@ Ce squelette est entièrement personnalisable et il va vous permettre de changer
 -* Pour changer l'Édito, créer un article et lui affecter le mot clef <code>EDITO</code>
 -* Pour changer le nom du site et son logo : {URL de votre site}<code>/ecrire/?exec=configurer_identite</code>
 _ Le logo de survol s'il est présent est utilisé comme bannière en haut du site[[Lui donner précisément la taille voulue]]
--* Configuration du Squelette SoyezCreateurs {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs</code> (ex : position Logo) [[Attention, l'accès à cette configuration est réservée aux webmestres du site, par défaut, l'auteur n°1 avec ce squelette.]]
+-* Configuration du Squelette SoyezCréateurs {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs</code> (ex : position Logo) [[Attention, l'accès à cette configuration est réservée aux webmestres du site, par défaut, l'auteur n°1 avec ce squelette.]]
 -* Choisir la disposition des différents parties du site parmi 40 modèles disponibles {URL de votre site}<code>/ecrire/?exec=configurer_soyezcreateurs&cfg=soyezcreateurs_layout</code> (source: [LayoutGala->http://blog.html.it/layoutgala/index.html])
 
 Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessous : 
@@ -384,10 +384,10 @@ EOF;
 	if ($article == "Politique d'accessibilité du site") {
 		$contenu['titre'] = "Politique d'accessibilité du site";
 		$contenu['chapo'] = <<<EOF
-Le [squelette SPIP SoyezCreateurs->https://contrib.spip.net/SoyezCreateurs,1237] utilisé sur ce site est conçu pour faciliter la mise en œuvre des bonnes pratiques de l'accessibilité des sites pour tous.
+Le [squelette SPIP SoyezCréateurs->https://contrib.spip.net/SoyezCreateurs-1237] utilisé sur ce site est conçu pour faciliter la mise en œuvre des bonnes pratiques de l'accessibilité des sites pour tous.
 EOF;
 		$contenu['texte'] = <<<EOF
-SoyezCreateurs accorde un soin tout particulier à la qualité de réalisation de ses sites Internet. Il est ainsi engagée dans une démarche d’optimisation de l’accessibilité de ses contenus web. Cette démarche vise dans un premier temps à faciliter la consultation de nos sites par les personnes handicapées, non voyantes, malvoyantes ou malentendantes. Mais plus généralement, la démarche d’accessibilité est indispensable pour garantir le plus large accès à nos contenus par tous les internautes et tous les dispositifs de lecture.
+SoyezCréateurs accorde un soin tout particulier à la qualité de réalisation de ses sites Internet. Il est ainsi engagée dans une démarche d’optimisation de l’accessibilité de ses contenus web. Cette démarche vise dans un premier temps à faciliter la consultation de nos sites par les personnes handicapées, non voyantes, malvoyantes ou malentendantes. Mais plus généralement, la démarche d’accessibilité est indispensable pour garantir le plus large accès à nos contenus par tous les internautes et tous les dispositifs de lecture.
 
 {{{L’accessibilité des services de communication publique de l’État}}}
 
@@ -401,7 +401,7 @@ Un [décret en Conseil d’État->http://www.legifrance.gouv.fr/affichTexte.do?c
 
 Le [Référentiel général d’accessibilité pour les administrations->https://references.modernisation.gouv.fr/] (RGAA) est le guide de référence (compatible avec les recommandations du W3C) pour assurer la mise en conformité des sites Internet publics.
 
-SoyezCreateurs, respecte[[En ce qui concerne le contenant ; le contenu devant lui aussi être rendu accessible par les rédacteurs du site...]] l’intégralité des points de contrôle obligatoires et le plus grand nombre de points de contrôle recommandés.
+SoyezCréateurs, respecte[[En ce qui concerne le contenant ; le contenu devant lui aussi être rendu accessible par les rédacteurs du site...]] l’intégralité des points de contrôle obligatoires et le plus grand nombre de points de contrôle recommandés.
 
 Néanmoins, si vous rencontrez des difficultés techniques pour consulter notre site, merci de nous contacter.
 
@@ -425,11 +425,10 @@ Toutes les pages sont imprimables (Fichier > Impression ou touches <code>CTRL + 
 
 En mettant à jour gratuitement la version de votre navigateur, vous vous assurez une lecture la plus conforme aux standards et donc la plus accessible. Pour télécharger les dernières versions des principaux navigateurs :
 
--* [Mozilla FireFox->http://www.mozilla-europe.org/fr/firefox/]
--* [Apple Safari->http://www.apple.com/fr/safari/]
--* [Opera->http://www.opera.com/browser/]
--* [Google Chrome->http://www.google.com/chrome]
--* [Microsoft Internet Explorer->http://windows.microsoft.com/fr-FR/internet-explorer/products/ie/home]
+-* [Mozilla FireFox->https://www.mozilla.org/fr/firefox/]
+-* [Opera->https://www.opera.com/fr]
+-* [Google Chrome->https://www.google.com/chrome/]
+-* [Microsoft Edge->https://www.microsoft.com/fr-fr/edge]
 
 Nous vous invitons en particulier à ne plus utiliser les versions 6 et inférieures d’Internet Explorer, considérées aujourd’hui comme obsolètes en terme de sécurité et de conformité aux standards.
 
@@ -456,7 +455,7 @@ EOF;
 
 {{{Hébergeur}}}
 
-[Siegler informatique->http://www.siegler-informatique.fr/], hébergeur SPIP + SoyezCréateurs
+[Siegler informatique->https://siegler-informatique.fr/], hébergeur SPIP + SoyezCréateurs
 
 {{{Liens vers ce site}}}
 

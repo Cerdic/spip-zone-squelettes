@@ -95,7 +95,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'V rovnakej rubrike...',
-	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l’économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l’économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
 	'menu_replier' => 'Poskladať: ',
