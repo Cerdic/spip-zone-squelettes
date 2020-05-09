@@ -89,7 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'In der gleichen Rubrik...',
-	'mentions_legales_obligatoires' => 'Obligatorische rechtlicher Hinweis ([CNIL|Der Kommission Nationale Informatique et Liberté -&gt; http://www.cnil.fr/] und [LcEN|Recht auf Vertrauen in die digitale Wirtschaft -&gt; http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo ECOX0200175L]). Alles [Sie wissen müssen -&gt; http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Entschlüsselung der rechtlichen Verpflichtungen -&gt; https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Obligatorische rechtlicher Hinweis ([CNIL|Der Kommission Nationale Informatique et Liberté -&gt; http://www.cnil.fr/] und [LcEN|Recht auf Vertrauen in die digitale Wirtschaft -&gt; http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo ECOX0200175L]). Alles [Sie wissen müssen -&gt; http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Entschlüsselung der rechtlichen Verpflichtungen -&gt; http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'd\\351 entfalten:',
 	'menu_picalt' => 'Klicken Sie auf',
 	'menu_replier' => 'Falten:',

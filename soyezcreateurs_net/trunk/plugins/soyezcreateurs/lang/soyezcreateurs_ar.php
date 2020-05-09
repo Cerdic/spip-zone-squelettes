@@ -99,7 +99,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'في نفس القسم...',
-	'mentions_legales_obligatoires' => 'معلومات قانونية إلزامية',
+	'mentions_legales_obligatoires' => 'معلومات قانونية إلزامية', # MODIF
 	'menu_deplier' => 'اكشف: ',
 	'menu_picalt' => 'انقر لـ',
 	'menu_replier' => 'اطو :',

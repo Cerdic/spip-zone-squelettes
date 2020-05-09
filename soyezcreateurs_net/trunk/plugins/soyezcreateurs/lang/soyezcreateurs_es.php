@@ -59,7 +59,7 @@ Ir a la búsqueda',
 	'forum' => 'Forum',
 
 	// M
-	'mentions_legales_obligatoires' => 'Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu’[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Décryptage des obligations légales->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
+	'mentions_legales_obligatoires' => 'Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu’[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Décryptage des obligations légales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 
 	// Q
 	'quoideneuf' => 'Novedades',
