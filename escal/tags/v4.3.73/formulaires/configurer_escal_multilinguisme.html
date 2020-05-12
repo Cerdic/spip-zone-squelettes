@@ -1,0 +1,92 @@
+<!-- Multilinguisme -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmultilingue.png}|balise_img{'',cadre-icone})]<:escal:multilinguisme:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+
+<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article151&lang=fr" title="<:escal:documentation_voir:>"><strong><:escal:documentation:></strong></a><br /><br />
+
+<!-- Afficher les rubriques de 1er ou de 2eme niveau -->
+
+
+            <div class="explication">
+            <:escal:multilinguisme_explication1:>
+            </div>
+
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,rubniveaudeux}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:multilinguisme_niveau:> <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"]  /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <br /><br />
+            </div>
+            </li>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,arianeniveaudeux}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:multilinguisme_ariane:> <br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"]  /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+            <br /><br />
+            </div>
+             </li>
+    </ul>
+
+<!-- Affichage des langues -->
+    
+            <div class="explication">
+            <:escal:multilinguisme_explication2:>
+            </div>
+     <ul>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <div class="explication">
+              #SET{name,affichelangue}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+              <:escal:multilinguisme_affichage:><br />
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_code" value="code"
+                            [(#ENV{#GET{name}}|=={code}|oui)checked="checked"] [(#ENV{#GET{name}}|=={""}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:multilinguisme_code:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_code" value="nom"
+                            [(#ENV{#GET{name}}|=={nom}|oui)checked="checked"]  /><label for="#GET{name}_oui"><:escal:multilinguisme_nom:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_drapeau" value="drapeau"
+                            [(#ENV{#GET{name}}|=={drapeau}|oui)checked="checked"] /><label for="#GET{name}_non"><:escal:multilinguisme_drapeau:></label>
+                    </span>
+            <br /><br />
+            </div>
+             </li>
+    </ul>
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+
+  </div>
+  </form>
+  </div>

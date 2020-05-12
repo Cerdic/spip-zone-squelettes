@@ -1,0 +1,83 @@
+[(#REM)
+  D'après la noisette inc-annonce_defilant.html de J.-C. Villeneuve dans le squelette Escal
+
+  Nom de la noisette : inc-annonce_defilant.html
+  Auteur             : Patrice Guerlais
+  Licence            : BSD Licence
+  Date               : 08 Mai 2015
+
+  Paramètres de cette noisette : aucun
+
+  Exemple (remplacer les no_ par #, et <crochet ouvrant> et <crochet fermant> par... devinez !) :
+<crochet ouvrant>(no_INCLURE{fond=inclusions/inc-annonce_defilant})<crochet fermant>
+]
+
+<BOUCLE_test(ARTICLES){titre_mot=annonce-defilant}{lang}>
+  [(#REM) Rien à faire s'il n'y a pas d'article "annonce-defilant"]
+</BOUCLE_test>
+  [(#REM) Traitement des articles "annonce-defilant"]
+
+
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des articles
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#annonces-defilantes",
+        element   : "div.une-annonce-defilante",
+        tempo     : [(#CONFIG{escal/config/tempoannoncedefil, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
+[(#REM)
+On n'oublie pas de créer les règles CSS correspondantes !
+#container {
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	height: égale au plus haut element affiché
+}
+.element{
+	position: absolute;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	top: au moins egal au height defini plus haut
+}
+]
+
+
+<aside role="complementary" id="annonces-defilantes">
+<!-- affichage par défaut selon le numéro du titre -->
+  <BOUCLE_annoncedefaut1(ARTICLES){si #CONFIG{escal/config/ordreannonces}|non}{titre_mot=annonce-defilant}{lang}{par sinum titre, num titre, titre}{0,#CONFIG{escal/config/nbreannonces,10}}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  </BOUCLE_annoncedefaut1>
+
+<!-- affichage selon le numéro du titre -->
+  <BOUCLE_annonce(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={numtitre}|oui}{titre_mot=annonce-defilant}{lang}{par sinum titre, num titre, titre}{0,#CONFIG{escal/config/nbreannonces,10}}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  </BOUCLE_annonce>
+
+<!-- affichage selon la date -->  
+  <BOUCLE_annonce3(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={date}|oui}{titre_mot=annonce-defilant}{lang}{par date}{0,#CONFIG{escal/config/nbreannonces,10}}>
+  [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  </BOUCLE_annonce3>  
+
+<!-- affichage selon la date inverse -->
+  <BOUCLE_annonce5(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={dateinverse}|oui}{titre_mot=annonce-defilant}{lang}{par date}{inverse}{0,#CONFIG{escal/config/nbreannonces,10}}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  </BOUCLE_annonce5>     
+
+<!-- affichage par hasard -->  
+  <BOUCLE_annonce7(ARTICLES){si #CONFIG{escal/config/ordreannonces}|=={hasard}|oui}{titre_mot=annonce-defilant}{lang}{par hasard}{0,#CONFIG{escal/config/nbreannonces}}>
+    [(#INCLURE{fond=inclusions/inc-annonce_defilant_article}{id_article}{compteur=#COMPTEUR_BOUCLE}{total=#TOTAL_BOUCLE})]
+  </BOUCLE_annonce7>    
+</aside>
+
+</B_test>
