@@ -1,0 +1,753 @@
+<!-- titre de l'onglet  "Derniers articles" -->
+
+[(#CONFIG{escal/config/titreongletderniers}|oui)
+#SET{titrederniers,#CONFIG{escal/config/titreongletderniers}|propre|_T_ou_typo|PtoBR}
+]
+[(#CONFIG{escal/config/titreongletderniers}|non)
+[(#SET{titrederniers,#ENV{xxxx,<:escal:articles_derniers:>}})]
+]
+
+<!-- titre de l'onglet  "Articles avec mots-clés" -->
+
+#SET{titremotcle,#CONFIG{escal/config/titreongletmotcle}|propre|_T_ou_typo|PtoBR}
+
+<!-- titre de l'onglet  "Article d'accueil" -->
+<BOUCLE_titre(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
+#SET{titreart,#TITRE}
+[(#SET{titleart,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titre>
+<BOUCLE_titrealt(ARTICLES){lang}{par date}{inverse}{0,1}>
+#SET{titrealt,#TITRE}
+[(#SET{titlealt,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrealt>
+
+<!-- titre de l'onglet  "Mon article" -->
+<BOUCLE_titremonart(ARTICLES){lang}{si #CONFIG{escal/config/titremonart}|non}{titre_mot=mon-article}>
+#SET{titremonart,#TITRE}
+</BOUCLE_titremonart>
+[(#CONFIG{escal/config/titremonart}|oui)
+#SET{titremonart,#CONFIG{escal/config/titremonart}|propre|_T_ou_typo|PtoBR}
+]
+<!-- titre de l'onglet  "Mon article2" -->
+<BOUCLE_titremonart2(ARTICLES){lang}{si #CONFIG{escal/config/titremonart2}|non}{titre_mot=mon-article2}>
+#SET{titremonart2,#TITRE}
+</BOUCLE_titremonart2>
+[(#CONFIG{escal/config/titremonart2}|oui)
+#SET{titremonart2,#CONFIG{escal/config/titremonart2}|propre|_T_ou_typo|PtoBR}
+]
+<!-- titre de l'onglet  "Mon article3" -->
+<BOUCLE_titremonart3(ARTICLES){lang}{si #CONFIG{escal/config/titremonart3}|non}{titre_mot=mon-article3}>
+#SET{titremonart3,#TITRE}
+</BOUCLE_titremonart3>
+[(#CONFIG{escal/config/titremonart3}|oui)
+#SET{titremonart3,#CONFIG{escal/config/titremonart3}|propre|_T_ou_typo|PtoBR}
+]
+
+<!-- titre de l'onglet  "Rubrique" -->
+<BOUCLE_titrerub(RUBRIQUES){lang}{titre_mot=RubriqueOnglet}{0,1}>
+[(#SET{titrerub,<span class='entier'>#TITRE</span>})]
+[(#SET{titlerub,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrerub>
+<!-- titre de l'onglet  "Rubrique 2" -->
+<BOUCLE_titrerub2(RUBRIQUES){lang}{titre_mot=RubriqueOnglet2}{0,1}>
+[(#SET{titrerub2,<span class='entier'>#TITRE</span>})]
+[(#SET{titlerub2,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrerub2>
+<!-- titre de l'onglet  "Rubrique 3" -->
+<BOUCLE_titrerub3(RUBRIQUES){lang}{titre_mot=RubriqueOnglet3}{0,1}>
+[(#SET{titrerub3,<span class='entier'>#TITRE</span>})]
+[(#SET{titlerub3,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrerub3>
+<!-- titre de l'onglet  "Rubrique 4" -->
+<BOUCLE_titrerub4(RUBRIQUES){lang}{titre_mot=RubriqueOnglet4}{0,1}>
+[(#SET{titrerub4,<span class='entier'>#TITRE</span>})]
+[(#SET{titlerub4,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrerub4>
+<!-- titre de l'onglet  "Rubrique 5" -->
+<BOUCLE_titrerub5(RUBRIQUES){lang}{titre_mot=RubriqueOnglet5}{0,1}>
+[(#SET{titrerub5,<span class='entier'>#TITRE</span>})]
+[(#SET{titlerub5,[(#DESCRIPTIF|textebrut|entites_html)] })]
+</BOUCLE_titrerub5>
+
+<!-- titre de l'onglet  "Sur le web" -->
+#SET{titresitesaccueil,#CONFIG{escal/config/titresitesaccueil}|propre|_T_ou_typo|PtoBR}
+
+<!-- affichage des onglets -->
+<div class="cadre-une">
+[(#CONFIG{escal/config/ancreonglet}|=={non}|non)<a name="onglet"></a>]
+  <ul class="onglets">
+<!-- onglet 1 --> 
+    [(#CONFIG{escal/config/onglet1}|non)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticles}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticlesbis}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticlester}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={articlesmotcle}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={plansite}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="<:plan_site:>"><:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={articleaccueil}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titleart, #GET{titlealt}}">#GET{titreart, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={articlearchive}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titlerub}">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique2}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titlerub2}">#GET{titrerub2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique3}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titlerub3}">#GET{titrerub3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique4}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titlerub4}">#GET{titrerub4}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique5}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="#GET{titlerub5}">#GET{titrerub5}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article2}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="Article à voir">#GET{titremonart2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article3}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="Article à voir">#GET{titremonart3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={sites_accueil}|oui)
+    <li id="premier"><a href="#onglet" name="contenu_1" class="tab onglet_1 active" title="Sur le web">#GET{titresitesaccueil, Sur le web}</a></li>
+    ]
+<!-- onglet 2 -->
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticles}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticlesbis}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticlester}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ] 
+    [(#CONFIG{escal/config/onglet2}|=={articlesmotcle}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|non)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="<:plan_site:>"><:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={plansite}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="<:plan_site:>"><:plan_site:></a></li>
+    ]    
+    [(#CONFIG{escal/config/onglet2}|=={articleaccueil}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titleart, #GET{titlealt}}">#GET{titreart, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={articlearchive}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titlerub}">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique2}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titlerub2}">#GET{titrerub2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique3}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titlerub3}">#GET{titrerub3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique4}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titlerub4}">#GET{titrerub4}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique5}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="#GET{titlerub5}">#GET{titrerub5}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article2}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="Article à voir">#GET{titremonart2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article3}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="Article à voir">#GET{titremonart3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_2" class="tab onglet_2" title="Sur le web">#GET{titresitesaccueil, Sur le web}</a></li>
+    ]
+<!-- onglet 3 -->
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticles}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticlesbis}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticlester}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ] 
+    [(#CONFIG{escal/config/onglet3}|=={articlesmotcle}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={plansite}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="<:plan_site:>"><:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={articleaccueil}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titleart, #GET{titlealt}}">#GET{titreart, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={articlearchive}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titlerub}">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique2}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titlerub2}">#GET{titrerub2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique3}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titlerub3}">#GET{titrerub3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique4}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titlerub4}">#GET{titrerub4}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique5}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="#GET{titlerub5}">#GET{titrerub5}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article2}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="Article à voir">#GET{titremonart2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article3}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="Article à voir">#GET{titremonart3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_3" class="tab onglet_3" title="Sur le web">#GET{titresitesaccueil, Sur le web}</a></li>
+    ]
+<!-- onglet 4 -->
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticlesbis}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticlester}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ] 
+    [(#CONFIG{escal/config/onglet4}|=={articlesmotcle}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={plansite}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="<:plan_site:>"><:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={articleaccueil}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titleart, #GET{titlealt}}">#GET{titreart, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={articlearchive}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titlerub}">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique2}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titlerub2}">#GET{titrerub2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique3}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titlerub3}">#GET{titrerub3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique4}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titlerub4}">#GET{titrerub4}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique5}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="#GET{titlerub5}">#GET{titrerub5}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article2}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="Article à voir">#GET{titremonart2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article3}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="Article à voir">#GET{titremonart3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_4" class="tab onglet_4" title="Sur le web">#GET{titresitesaccueil, Sur le web}</a></li>
+    ]
+<!-- onglet 5 -->
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticlesbis}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticlester}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="<:escal:title_articles_derniers:>">#GET{titrederniers}</a></li>
+    ] 
+    [(#CONFIG{escal/config/onglet5}|=={articlesmotcle}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titremotcle}">#GET{titremotcle}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={plansite}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="<:plan_site:>"><:plan_site:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articleaccueil}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titleart, #GET{titlealt}}">#GET{titreart, #GET{titrealt}}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articlearchive}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="Article archive"><:escal:article_archive:></a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titlerub}">#GET{titrerub}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique2}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titlerub2}">#GET{titrerub2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique3}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titlerub3}">#GET{titrerub3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique4}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titlerub4}">#GET{titrerub4}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique5}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="#GET{titlerub5}">#GET{titrerub5}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="Article à voir">#GET{titremonart}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article2}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="Article à voir">#GET{titremonart2}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article3}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="Article à voir">#GET{titremonart3}</a></li>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={sites_accueil}|oui)
+    <li><a href="#onglet" name="contenu_5" class="tab onglet_5" title="Sur le web">#GET{titresitesaccueil, Sur le web}</a></li>
+    ]
+  </ul>
+
+<!-- affichage du contenu des onglets -->
+<!-- onglet 1 --> 
+    [(#CONFIG{escal/config/onglet1}|non)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticles}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticlesbis}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_bis}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={derniersarticlester}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_ter}{env}{lang}{ajax}>
+  </div>
+    ]
+     [(#CONFIG{escal/config/onglet1}|=={articlesmotcle}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-une_motcle}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={plansite}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={articleaccueil}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={articlearchive}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={rubrique2}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil2}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet1}|=={rubrique3}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil3}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet1}|=={rubrique4}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil4}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet1}|=={rubrique5}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil5}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article2}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-mon_article2}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={mon_article3}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-mon_article3}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet1}|=={sites_accueil}|oui)
+  <div class="contenu_1 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+<!-- onglet 2 -->
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticles}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticlesbis}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_bis}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={derniersarticlester}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_ter}{env}{lang}{ajax}>
+  </div>
+    ]
+     [(#CONFIG{escal/config/onglet2}|=={articlesmotcle}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-une_motcle}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|non)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={plansite}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={articleaccueil}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={articlearchive}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={rubrique2}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil2}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet2}|=={rubrique3}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil3}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet2}|=={rubrique4}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil4}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet2}|=={rubrique5}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil5}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article2}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-mon_article2}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={mon_article3}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-mon_article3}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet2}|=={sites_accueil}|oui)
+  <div class="contenu_2 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+<!-- onglet 3 -->
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticles}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticlesbis}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_bis}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={derniersarticlester}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_ter}{env}{lang}{ajax}>
+  </div>
+    ]
+     [(#CONFIG{escal/config/onglet3}|=={articlesmotcle}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-une_motcle}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={plansite}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|non)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={articleaccueil}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={articlearchive}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={rubrique2}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil2}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet3}|=={rubrique3}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil3}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet3}|=={rubrique4}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil4}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet3}|=={rubrique5}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil5}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article2}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-mon_article2}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={mon_article3}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-mon_article3}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet3}|=={sites_accueil}|oui)
+  <div class="contenu_3 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+<!-- onglet 4 -->
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticles}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticlesbis}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_bis}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={derniersarticlester}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_ter}{env}{lang}{ajax}>
+  </div>
+    ]
+     [(#CONFIG{escal/config/onglet4}|=={articlesmotcle}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-une_motcle}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={plansite}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={articleaccueil}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={articlearchive}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={rubrique2}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil2}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet4}|=={rubrique3}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil3}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet4}|=={rubrique4}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil4}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet4}|=={rubrique5}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil5}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article2}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-mon_article2}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={mon_article3}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-mon_article3}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet4}|=={sites_accueil}|oui)
+  <div class="contenu_4 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+<!-- onglet 5 -->
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticles}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-une_derniers}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticlesbis}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_bis}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={derniersarticlester}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-une_derniers_ter}{env}{lang}{ajax}>
+  </div>
+    ]
+     [(#CONFIG{escal/config/onglet5}|=={articlesmotcle}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-une_motcle}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={plansite}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-plan}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articleaccueil}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-article_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={articlearchive}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-article_archive}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={rubrique2}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil2}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet5}|=={rubrique3}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil3}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet5}|=={rubrique4}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil4}{env}{lang}{ajax}>
+  </div>
+    ]    
+    [(#CONFIG{escal/config/onglet5}|=={rubrique5}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-rubrique_accueil5}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-mon_article}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article2}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-mon_article2}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={mon_article3}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-mon_article3}{env}{lang}{ajax}>
+  </div>
+    ]
+    [(#CONFIG{escal/config/onglet5}|=={sites_accueil}|oui)
+  <div class="contenu_5 content">
+    <INCLURE {fond=inclusions/inc-sites_accueil}{env}{lang}{ajax}>
+  </div>
+    ]
+</div>  <!-- cadre-une -->

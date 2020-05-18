@@ -1,0 +1,151 @@
+<BOUCLE_article_principal(ARTICLES){id_article}>
+
+<!-- on teste si l'article a le mot-clé "pleinepage" et si oui, on affiche le squelette article_pleinepage.html -->
+<BOUCLE_testarticle(ARTICLES){id_article}{titre_mot=pleinepage}>
+<INCLURE {fond=article_pleinepage}{env}>
+</BOUCLE_testarticle>
+</B_testarticle>
+
+<!-- si l'article n'a pas le mot-clé "pleinepage", on teste s'il appartient à un secteur avec le mot-clé "forum" et si oui, on affiche le squelette forumSite-article.html -->
+<!-- bien laisser les boucles sur une ligne car sinon, ça ne fonctionne plus (la boucle ARTICLES n'est plus vide)
+et du coup la suite ne s'affiche pas si aucune des 2 conditions n'est remplie -->
+<BOUCLE_testarticle2(ARTICLES){id_article}><BOUCLE_testrub(RUBRIQUES){id_secteur}{titre_mot=forum}>
+<INCLURE {fond=forumSite-article}{env}>
+</BOUCLE_testrub></BOUCLE_testarticle2></B_testarticle2>
+
+<!-- si aucune des 2 conditions, on affiche le code de base -->
+<!DOCTYPE html>
+<html lang="#LANG" >
+  <head>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
+      <meta name="Description" content="[(#INTRODUCTION|couper{150}|textebrut)]" />
+      <meta name="author" content='<BOUCLE_author(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_author>' />
+      [<link rel="canonical" href="(#URL_ARTICLE|url_absolue)" />]
+      <INCLURE {fond=inclusions/inc-head, env}>
+      <BOUCLE_couleur_article(HIERARCHIE){id_rubrique}{id_article}{0,1}>
+      [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
+      </BOUCLE_couleur_article>
+      [(#REM) appel de la feuille de style pour l'impression ]
+      <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-article article#ID_ARTICLE rubrique#ID_RUBRIQUE">
+
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace_article}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}{env}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace_article}{env}>
+          ]
+          <div class="nettoyeur"></div>
+
+          <BOUCLE_article_central(ARTICLES){id_article}{doublons}>
+
+            <div id="page">
+              <main role="main" id="contenu" class="contenu-article">
+
+                <BOUCLE_type_article(MOTS){id_rubrique}{type=type_article}{0,1}>
+                  #SET{type, #TITRE}
+                </BOUCLE_type_article>
+                  <!-- on recupere le chemin de la noisette associee -->
+                #SET{inclusion, (#CHEMIN{inclusions/inc-article_(#GET{type}|concat{.html})})}
+                  <!-- s'il y a une noisette associee, on l'affiche -->
+                [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-article_#GET{type}}{env})]]
+                  <!-- s'il n'y a en a pas, on affiche la noisette normale -->
+                [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-article}{env})]]
+              </main>
+            </div>
+
+            [(#LANG_DIR|=={ltr}|oui)<section id="navigation">] [(#LANG_DIR|=={rtl}|oui)<section id="extra">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+            <!-- affichage des 2 menus verticaux par defaut ou si selectionnes dans la page de configuration -->
+
+
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavart1}|oui) [(#CONFIG{escal/config/blocnavart1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart1}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart1}|oui) [(#CONFIG{escal/config/blocnavart2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart2}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart3,acces_direct}}{id_rubrique}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavart4}|oui) [(#CONFIG{escal/config/blocnavart4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart4}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart5}|oui) [(#CONFIG{escal/config/blocnavart5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart5}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavart6}|oui) [(#CONFIG{escal/config/blocnavart6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavart6}}{id_rubrique}{env}{ajax}></div>
+         ]]
+
+            </section>
+
+            [(#LANG_DIR|=={ltr}|oui)<section id="extra">] [(#LANG_DIR|=={rtl}|oui)<section id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+              <BOUCLE_test2(RUBRIQUES){id_secteur}{titre_mot==^(trombino|forum)$} >
+              </BOUCLE_test2>
+              </B_test2>
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextraart1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart1,nav_mots}}{id_rubrique}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextraart2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart2,meme_rub}}{id_rubrique}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavart3}|oui) [(#CONFIG{escal/config/blocextraart3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart3}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextraart4}|oui) [(#CONFIG{escal/config/blocextraart4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart4}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextraart5}|oui) [(#CONFIG{escal/config/blocextraart5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart5}}{id_rubrique}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextraart6}|oui) [(#CONFIG{escal/config/blocextraart6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextraart6}}{id_rubrique}{env}{ajax}></div>
+         ]]
+              <//B_test2>
+
+            </section>
+
+          </BOUCLE_article_central>
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+            </div>
+        </div>
+        <!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+
+
+</html>
+ <//B_testarticle2>
+
+<//B_testarticle>
+
+
+</BOUCLE_article_principal>

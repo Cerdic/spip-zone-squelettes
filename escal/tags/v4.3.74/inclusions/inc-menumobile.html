@@ -1,0 +1,70 @@
+<nav role="navigation" class="main-nav">
+
+  <!-- Mobile menu toggle button (hamburger/x icon) -->
+  <input id="main-menu-state" type="checkbox" />
+  <label class="main-menu-btn" for="main-menu-state">
+    <span class="main-menu-btn-icon"></span>
+  </label>
+
+  <h2 class="nav-brand"><a href="#">MENU</a></h2>
+
+  
+<ul id="main-menu" class="sm sm-blue">
+
+[(#CONFIG{escal/config/taillelogorubmenu}|oui)
+#SET{taillelogo,#CONFIG{escal/config/taillelogorubmenu}}
+]
+[(#CONFIG{escal/config/taillelogorubmenu}|non)
+#SET{taillelogo,20}
+]
+
+	<li class="item-accueil">
+	 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>">
+    [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+    [(#CHEMIN{images/accueil2.png}|balise_img{accueil,spip_logos menutransparent}|image_reduire{0,#GET{taillelogo}})]
+    ]
+    [(#CONFIG{escal/config/texterubmenu}|=={non}|non)<:escal:accueil:>
+    ]
+    </a>
+	</li>
+
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" ou "invisible" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+
+
+ <!-- affichage des autres rubriques -->
+    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par sinum titre, num titre, titre}{doublons rubriques}>
+	   <li class="#EXPOSE rubrique rubrique#ID_RUBRIQUE secteur">
+     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+     [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+     [(#LOGO_RUBRIQUE|oui)[(#LOGO_RUBRIQUE|image_reduire{0,#GET{taillelogo}})]]
+     [(#LOGO_RUBRIQUE|non)[(#CHEMIN{images/transparent2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,#GET{taillelogo}})] ]
+     ]
+     [(#CONFIG{escal/config/texterubmenu}|=={non}|non)
+     #TITRE
+     ]
+     </a>
+
+
+
+  			<!-- affichage des sous-menus -->
+  			<B_rubriques>
+     <ul>
+				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}{doublons rubriques}>
+          <li class="#EXPOSE rubrique">
+				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+						</a>
+
+
+			    <BOUCLE_sousmenu(boucle_rubriques)></BOUCLE_sousmenu>
+			    </li>
+				</BOUCLE_rubriques>
+			  </ul>
+				</B_rubriques>
+
+     </li>
+	</BOUCLE_secteur>
+</ul><!-- fin menu -->
+</nav>

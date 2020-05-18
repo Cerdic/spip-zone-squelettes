@@ -1,0 +1,56 @@
+<!-- Noisettes  et layout -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configmetas.png}|balise_img{'',cadre-icone})]<:escal:balise_meta:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+            <div class="explication">
+            <:escal:balise_meta_explication:>
+            </div>
+
+     <ul>
+<!-- balise keyword -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,keyword}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <label for="#GET{name}"><:escal:balise_keyword:></label>
+                    <div class="explication"><:escal:balise_keyword_explication:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%">
+                             <input type="texte" style="width:98%" name="#GET{name}" id="#GET{name}_oui" value="#ENV{#GET{name}}"  />
+                    </span>
+                    </div>
+            </li>
+<!-- balise author -->
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            #SET{name,author}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <label for="#GET{name}"><:escal:balise_author:></label>
+                    <div class="explication"><:escal:balise_author_explication:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" style="width:100%" >
+                             <input type="texte"  style="width:98%" name="#GET{name}" id="#GET{name}_oui" value="#ENV{#GET{name}}"  />
+                    </span>
+                    </div>
+            </li>
+
+
+    </ul>
+
+
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
