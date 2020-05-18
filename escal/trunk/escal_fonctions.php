@@ -559,15 +559,19 @@ function escal_visiteurs_connectes_compter(){
 	$rv = mysqli_fetch_array($qv);
 	$valmaxi = $rv['maxvi'];
 
-	if($arg=="date") {
-		$qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
-		$rd = mysqli_fetch_array($qd);
-		$jourmaxi = $rd['date'];
-	}
-	if($arg=="date") { $a = $jourmaxi; }
-	if($arg=="val") { $a = $valmaxi; }
-	return $a;
-}
+
+if ($valmaxi !=0) {
+    if($arg=="date") {
+        $qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
+        $rd = mysqli_fetch_array($qd);
+        $jourmaxi = $rd['date'];
+    }
+    if($arg=="date") { $a = $jourmaxi; }
+    if($arg=="val") { $a = $valmaxi; }
+    return $a;
+    }
+ }
+ 
 function balise_JOUR_MAX_VISITES($p) {
 	$arg="'date'";
 	$p->code = "generer_jour_val_max_visites($arg)";
