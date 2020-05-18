@@ -48,9 +48,19 @@
            </li>
 
 <legend><strong><:escal:articles_les:></strong></legend>     
-<!-- Taille du logo -->
+
             <li class="editer [ (#GET{erreurs}|oui)erreur]">
             <div class="explication">
+<!-- Taille max des images -->
+            <:escal:articles_img_max:>
+            #SET{name,imgmax}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:40px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},2000})]" /> px
+                    </span>
+                    <br /><br />
+                    <div class="nettoyeur"></div>
+<!-- Taille du logo -->
             <:escal:articles_logo:>
             #SET{name,taillelogoart}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
                     [<span class='erreur_message'>(#GET{erreurs})</span>

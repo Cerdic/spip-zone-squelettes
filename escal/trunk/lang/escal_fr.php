@@ -119,6 +119,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br />
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page,
             ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page',
+	'articles_img_max' => '<strong>Taille maximum des images téléversées</strong> :
+						si l’image est trop grande et si l’option "Générer automatiquement les miniatures des images"
+						a été activée, SPIP recadrera l’image à la taille maximum autorisée. Sinon, SPIP refusera l’image.<br /> ',
 	'articles_largeur_image' => 'Largeur maximum de l’image : ',
 	'articles_largeur_images' => 'Largeur maximum des images : ',
 	'articles_largeur_images2' => 'Largeur maximum des images pour les articles en pleine page (articles avec le mot-clé "pleinepage" qui supprime les blocs latéraux) :',
@@ -983,9 +986,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'socialtags_explication' => 'Si vous avez activé le <a class="spip_out" href="http://contrib.spip.net/Social-tags" title="Documentation">plugin "Social tags"</a>,
             Escal vous propose 3 choix de sélecteurs que vous pouvez inscrire dans la configuration du plugin Social tags :<br />
             - <strong>#socialtags-outils</strong> pour afficher les icônes dans la barre d’outils d’Escal<br />
-            - <strong>#socialtags-article</strong> pour les afficher sous l’icône "Imprimer cet article" dans vos articles.<br />
+            - <strong>#socialtags-article</strong> pour les afficher à côté de l’icône "Imprimer cet article" dans vos articles.<br />
             - <strong>#contenu</strong> pour les afficher en bas de chaque article<br />
-            Mais ce ne sont que 3 possibiltés parmi plein d’autres.',
+            Mais ce ne sont que 3 possibilités parmi plein d’autres.',
 	'socialtags_plugin' => 'Plugin Social tags',
 	'sous_rubrique' => 'sous_rubrique',
 	'sous_rubriques' => 'sous_rubriques',
