@@ -119,7 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br />
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page,
             ce qui peut être trop restrictif si vous avez opté pour un layout en 2 colonnes ou en pleine page',
-	'articles_img_max' => '<strong>Taille maximum des images téléversées</strong> :
+	'articles_img_max' => '<strong>Taille maximum des images téléversées</strong> :
 						si l’image est trop grande et si l’option "Générer automatiquement les miniatures des images"
 						a été activée, SPIP recadrera l’image à la taille maximum autorisée. Sinon, SPIP refusera l’image.<br /> ',
 	'articles_largeur_image' => 'Largeur maximum de l’image : ',

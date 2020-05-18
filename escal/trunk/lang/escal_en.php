@@ -968,7 +968,7 @@ you can choose to display the metadata of your photos or their title or the 2',
             - <strong>#socialtags-tools</strong> to display the icons in Escal toolbar<br />
             - <strong>#socialtags-article</strong> to display the icons below the icon "Print this article" in your articles.<br />
             - <strong>#content</strong> to display the icons at the bottom of each article<br />
-            But they are only 3 opportunities amongst many others.',
+            But they are only 3 opportunities amongst many others.', # MODIF
 	'socialtags_plugin' => 'Plugin Social tags',
 	'sous_rubrique' => 'sub-section',
 	'sous_rubriques' => 'sub-sections',
