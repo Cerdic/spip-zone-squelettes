@@ -1,5 +1,8 @@
 <?php
 
+include_spip('inc/config');
+
+
 // Liste des pages de configuration dans l'ordre de presentation
 // Librement inspiré du squelette Sarkaspip
 if (!defined('_ESCAL_PAGES_CONFIG')) define('_ESCAL_PAGES_CONFIG',
@@ -31,8 +34,8 @@ if (isset($_REQUEST['recherche'])) {
 define('_SURLIGNE_RECHERCHE_REFERERS',true);
 
 // les images de plus de 2000 pixels de largeur ou de hauteur ne seront pas enregistrées
-define('_IMG_MAX_WIDTH', 1000);
-define('_IMG_MAX_HEIGHT', 1000);
+define('_IMG_MAX_WIDTH', lire_config('escal/config/imgmax',1000) );
+define('_IMG_MAX_HEIGHT', lire_config('escal/config/imgmax',1000) );
 
 // Et pour éviter de faire planter GD2 :
  define('_IMG_GD_MAX_PIXELS', 2000000);
