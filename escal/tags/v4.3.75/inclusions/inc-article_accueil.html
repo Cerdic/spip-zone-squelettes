@@ -1,0 +1,66 @@
+<article  class="texte-article accueil">
+
+	<BOUCLE_accueil(ARTICLES){lang}{titre_mot=accueil}{par date}{inverse}{0,1}>
+
+	      [<div class="texte #EDIT{texte}" id="accueil">
+			(#TEXTE
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info-escal">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<p style="text-align:center">}
+               |replace{</centrer>,</p>})
+	      </div>]
+        <div class="nettoyeur"></div>	      	      
+<!--Affichage des notes de bas de page  -->
+	[<aside role="complementary" id="notes"><strong>Notes : </strong> <br />(#NOTES)</aside>]
+	<div class="nettoyeur"></div>
+	[(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+	<!--Affichage éventuel du forum  -->
+		<aside role="complementary" class="accueilforum">
+			<hr />
+			<INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+		</aside>
+	]
+
+	</BOUCLE_accueil>
+	</B_accueil>
+
+	    <BOUCLE_alt(ARTICLES){lang}{par date}{inverse}{0,1}>
+<!-- si aucun article avec le mot-clé "accueil" on affiche le plus récent  -->
+	      [<div class="texte #EDIT{texte}" id="accueil">
+			(#TEXTE
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info-escal">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<p style="text-align:center">}
+               |replace{</centrer>,</p>})
+	      </div>]
+        <div class="nettoyeur"></div>
+<!--Affichage des notes de bas de page  -->
+	[<aside role="complementary" id="notes"><strong>Notes : </strong> <br />(#NOTES)</aside>]
+	<div class="nettoyeur"></div>
+<!--Affichage éventuel du forum  -->
+	[(#CONFIG{escal/config/accueilforum}|=={oui}|oui)
+		<aside role="complementary" class="accueilforum">
+			<hr />
+			<INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+		</aside>
+	]
+
+	    </BOUCLE_alt>
+
+	<//B_accueil>
+
+</article>

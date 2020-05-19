@@ -1,0 +1,28 @@
+#SET{start,#ENV{start}|strtotime}
+#SET{end,#ENV{end}|strtotime}
+
+#HTTP_HEADER{Content-type:text/javascript;}
+    [<BOUCLE_evenements(EVENEMENTS){', '}{par date_debut}{titre_mot?}>
+    <BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+      [(#ARRAY{
+      id,#ID_EVENEMENT,
+      title,[(#_evenements:TITRE|html2unicode|unicode2charset)],
+      allDay,[(#HORAIRE|=={non}|?{#EVAL{true},#EVAL{false}})],
+      start,#DATE_DEBUT,
+      end,#DATE_FIN,
+      url,#URL_EVENEMENT,
+      color,[(#DESCRIPTIF|PtoBR|html2unicode|unicode2charset)]
+      }|json_encode)]
+    </BOUCLE_mot>
+    </B_mot>
+      [(#ARRAY{
+      id,#ID_EVENEMENT,
+      title,[(#_evenements:TITRE|html2unicode|unicode2charset)],
+      allDay,[(#HORAIRE|=={non}|?{#EVAL{true},#EVAL{false}})],
+      start,#DATE_DEBUT,
+      end,#DATE_FIN,
+      url,#URL_EVENEMENT,
+      color,[(#CONFIG{escal/config/couleureventscalendrier,#336699}|PtoBR|html2unicode|unicode2charset)]
+      }|json_encode)]
+    <//B_mot>
+    </BOUCLE_evenements>]

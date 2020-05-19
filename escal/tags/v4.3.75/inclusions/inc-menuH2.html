@@ -1,0 +1,65 @@
+[(#REM) source : https://designmodo.com/create-css3-mega-menu/]
+
+<div class="menudesktop">
+<nav role="navigation" class="menuH2">
+<ul class="nav">
+
+
+#SET{taillelogo,#CONFIG{escal/config/taillelogorubmenu,20}}
+
+
+	<li class="item-accueil">
+	 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>">
+    [(#CONFIG{escal/config/logoaccueil}|=={oui}|oui)
+    [(#CHEMIN{images/accueil2.png}|balise_img{accueil,spip_logos}|image_reduire{0,#GET{taillelogo}})]
+    ]
+    [(#CONFIG{escal/config/texteaccueil}|=={non}|non)<:escal:accueil:>
+    ]
+    </a>
+	</li>
+
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" ou "invisible" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+
+
+ <!-- affichage des autres rubriques -->
+    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par sinum titre, num titre, titre}{doublons rubriques}>
+	   <li class="#EXPOSE rubrique rubrique#ID_RUBRIQUE secteur">
+     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+     [(#CONFIG{escal/config/logorubmenu}|=={oui}|oui)
+     [(#LOGO_RUBRIQUE|oui)[(#LOGO_RUBRIQUE|image_reduire{0,#GET{taillelogo}})]]
+     [(#LOGO_RUBRIQUE|non)[(#CHEMIN{images/transparent2.png}|balise_img{transparent,spip_logos menutransparent}|image_reduire{0,#GET{taillelogo}})] ]
+     ]
+     [(#CONFIG{escal/config/texterubmenu}|=={non}|non)
+     #TITRE
+     ]
+     </a>
+
+
+
+  			<!-- affichage des sous-menus -->
+  			<B_rubriques>
+<div>
+<div class="nav-column">  			
+     <ul>
+				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}{doublons rubriques}>
+          <li class="#EXPOSE rubriques">
+				<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"
+				[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[<h3>(#TITRE)</h3>]
+				</a>
+
+			    <BOUCLE_sousmenu(boucle_rubriques)></BOUCLE_sousmenu>
+		</li>
+				</BOUCLE_rubriques>
+			  </ul>
+</div>
+</div>			  
+				</B_rubriques>
+
+     </li>
+	</BOUCLE_secteur>
+</ul><!-- fin menu -->
+</nav>
+</div>

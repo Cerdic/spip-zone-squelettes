@@ -1,0 +1,66 @@
+<!-- Rainette -->
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configrainette.png}|balise_img{'',cadre-icone})]<:escal:rainette_plugin:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+    
+            <div class="explication">
+            <:escal:rainette_explication:>
+            </div>
+            
+    <ul>
+
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <label style="width:90%"><strong><:escal:rainette_service:></strong></label>
+            <br /><br />
+            <div class="explication">
+            #SET{name,service}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix" >
+                            <input type="radio" name="#GET{name}" id="#GET{name}_dark_sky" value="darksky"
+                            [(#ENV{#GET{name}}|=={darksky}|oui)checked="checked"] />
+                            <label for="#GET{name}_darksky">Dark Sky</label>
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_owm" value="owm"
+                            [(#ENV{#GET{name}}|=={owm}|oui)checked="checked"] />
+                            <label for="#GET{name}_owm">Open Weather Map</label>
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_weatherbit" value="weatherbit"
+                            [(#ENV{#GET{name}}|=={weatherbit}|oui)checked="checked"] />
+                            <label for="#GET{name}_weatherbit">Weatherbit.io</label>
+                            <br /> <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_wwo" value="wwo"
+                            [(#ENV{#GET{name}}|=={wwo}|oui)checked="checked"] />
+                            <label for="#GET{name}_wwo">World Weather Online</label>
+                    </span>
+            </div>
+            </li>
+            <li class="editer [ (#GET{erreurs}|oui)erreur]">
+            <label style="width:90%"><strong><:escal:rainette_code:></strong></label>
+            <br /><br />
+            <div class="explication">
+            #SET{name,ville}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                            <input type="text" name="#GET{name}"  value="#ENV{ville}" />
+                    </span>
+            </div>
+            </li>
+    </ul>
+    
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>
