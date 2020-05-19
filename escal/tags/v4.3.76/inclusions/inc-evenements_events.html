@@ -1,0 +1,100 @@
+<h1 class="cadre evenements">
+	[(#CONFIG{escal/config/titreevenements}|oui)
+	[(#CONFIG{escal/config/titreevenements}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titreevenements}|non)
+	<:escal:evenements_venir:>
+	]
+</h1>
+
+#SET{tableauprochainement,#ARRAY}
+<BOUCLE_prochainementselection(EVENEMENTS){!evenement_passe}{par date_debut}>
+[(#ID_EVENEMENT_SOURCE|=={0}|?{
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
+#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+})]
+</BOUCLE_prochainementselection>
+
+<div class="texte evenements [(#CONFIG{escal/config/toggleevenements}|=={oui}|oui)toggle]" >
+#SET{nbrpagevent,#CONFIG{escal/config/paginevenements,5}}
+<B_evenements_agenda>
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+<BOUCLE_evenements_agenda(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}{"<hr />"}{pagination #GET{nbrpagevent}}{lang}>
+
+<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{!evenement_passe}{doublons}>
+</BOUCLE_seul>
+
+<BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
+	<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=0}{doublons}>
+	</BOUCLE_futur>
+</BOUCLE_plusieurs>
+
+<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+	#SET{couleur,#DESCRIPTIF}
+</BOUCLE_mot>
+</B_mot>
+	#SET{couleur,#CONFIG{escal/config/couleureventscalendrier,#336699}
+<//B_mot>
+
+<BOUCLE_affiche(EVENEMENTS){!doublons}{0,1}{doublons affiche}{par date}>
+#SET{url,#CONFIG{escal/config/url_event,EVENEMENT}}    
+	<div class="evenement-date" style="background-color:[(#GET{couleur}|PtoBR)];">
+		<span class="evenement-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+		<br />
+		<span class="evenement-mois">[(#DATE_DEBUT|nom_mois)]</span>
+		<br />
+		<span class="evenement-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+		<br />
+	</div>
+
+	<div class="evenement-donnees">
+			<div class="donnee-titre">
+				[(#CONFIG{escal/config/url_event}|=={article}|non)		
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+				]
+				[(#CONFIG{escal/config/url_event}|=={article}|oui)		
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut)]">#TITRE</a>
+				]
+			</div>
+				[<div class="donnee-lieu">
+				(#LIEU)<br />
+				[(#ADRESSE|PtoBR)]
+				</div>]
+
+		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+			<div class="donnee-heure">
+				du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+				[(#HORAIRE|=={oui}|?{&agrave; partir de
+  				[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+				<br />au
+				[(#DATE_FIN|nom_jour)]
+            		<strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+				[(#DATE_FIN|heures)]h[(#DATE_FIN|minutes)],''})]
+          	</div>
+		]
+
+		[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
+			<div class="donnee-heure">
+				[(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non)
+				[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)] - 
+				[(#DATE_FIN|heures)]h[(#DATE_FIN|minutes)]
+			]
+          	</div>
+		]
+	</div>
+
+</BOUCLE_affiche>
+          <div class="evenement-donnees">
+          	<BOUCLE_autres(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{par date}{doublons affiche}>
+          		<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
+          	</BOUCLE_autres>
+          </div>
+          <div class="nettoyeur"></div>
+          
+		</BOUCLE_evenements_agenda>
+			<div class="liste-evenements">
+			<:escal:evenements_non:>
+			</div>
+		<//B_evenements_agenda>
+</div>

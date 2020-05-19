@@ -1,0 +1,28 @@
+<!-- on teste s'il y a un mot-cle associé à l'article 
+en excluant les mots des groupes de mot "techniques" utilises dans Escal-->
+<BOUCLE_test(MOTS){id_article}{type !IN 'affichage', 'trombino', 'type_rubrique', 'type_article','Agenda_couleur'}{id_mot?}{doublons}>
+</BOUCLE_test>
+<!-- si la boucle ne renvoie rien, rien ne s'affiche
+et si elle renvoie quelque chose, on affiche le cadre avec les groupes de mots et les mots -->
+<nav role="navigation">
+<h1 class="cadre nav-mots">
+	[(#CONFIG{escal/config/titrenavmot}|oui)
+	[(#CONFIG{escal/config/titrenavmot}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titrenavmot}|non)
+	<:escal:mots_clefs_associes:>
+	]
+</h1>
+
+<div class="texte nav-mots" >
+<BOUCLE_mots(MOTS){id_article}{!doublons}>
+	<BOUCLE_groupe(GROUPES_MOTS){id_groupe}{unique}>
+		[<div class="titre-groupe">(#TITRE) :</div>]
+		<BOUCLE_mots2(MOTS){id_groupe}{id_article}{par sinum titre, num titre, titre}>
+			[<a href="[(#URL_MOT|parametre_url{lang,#LANG})]" [title="<:escal:articles_associes:>(#TITRE)"]>(#TITRE)</a>]
+		</BOUCLE_mots2>
+	</BOUCLE_groupe>
+</BOUCLE_mots>		
+</div>
+</nav>
+</B_test>
