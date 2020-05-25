@@ -48,7 +48,7 @@ function sc_noizetier_vidercache() {
 		include_spip('ezcache/ezcache');
 		foreach ($plugins as $_plugin) {
 			if (defined('_DIR_PLUGIN_' . strtoupper($_plugin))) {
-				cache_cache_configurer($_plugin);
+				ezcache_cache_configurer($_plugin);
 			}
 		}
 	}
