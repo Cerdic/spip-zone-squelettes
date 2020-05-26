@@ -91,7 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'sendagi_type_rubrique' => 'Type de rubrique',
-'sendagi_type_rubrique_tri_date' => 'Articles listés par date (les articles les récents en premier)',
+'sendagi_type_rubrique_tri_date' => 'Articles listés par date (les articles les plus récents en premier)',
 'sendagi_type_rubrique_tri_num' => 'Articles listés par numéro (10. xxx, 20. yyy, ...)',
 'sendagi_type_rubrique_tri_equipe' => 'Affichage "équipe": articles listés par numéro avec un logo rond',
 'selections_editoriales_accueil_diaporama' => '10. Diaporama de la page d\'accueil',
