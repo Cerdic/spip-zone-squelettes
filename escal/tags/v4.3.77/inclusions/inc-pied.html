@@ -1,0 +1,143 @@
+<footer role="contentinfo">
+
+<div id="pied-gauche">
+
+<!-- citations -->
+<BOUCLE_citations(ARTICLES){titre_mot=citations}{0,1}{si #CONFIG{escal/config/citations}|=={oui}|oui}>
+<div class="titre-citations">[(#CONFIG{escal/config/titrecitations})]</div>
+[(#TEXTE|citations)]
+</BOUCLE_citations>
+
+
+			[(#PLUGIN{SOCIAUX}|oui)
+				[(#CONFIG{escal/config/sociaux_pied}|=={oui}|oui)
+				<br /><br />
+					<div class="texte-sociaux">
+					[(#CONFIG{escal/config/sociaux_texte}|?{[(#CONFIG{escal/config/sociaux_texte}|_T_ou_typo)],""})]
+               		</div>
+				<INCLURE{fond=inclure/sociaux}>
+				]
+			]
+
+
+[(#PLUGIN{FB_MODELES}|oui)
+<br /><br />
+    [(#MODELE{
+    fb_like,
+    send=#CONFIG{escal/config/sendfacebook,oui},
+    layout=#CONFIG{escal/config/boutonfacebook,button_count},
+    show_faces=non
+    })]
+]
+
+
+</div>
+
+<div id="liens">
+
+[(#CONFIG{escal/config/lienplan}|=={non}|non)
+<!-- un lien vers le plan du site -->
+<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_PAGE{plan}|parametre_url{lang,#ENV{lang}})],#URL_PAGE{plan}})]" title="<:plan_site:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/sitemap.svg}" alt="<:plan_site:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:plan_site:>]
+</a>
+]
+
+[(#CONFIG{escal/config/liencontact}|=={non}|non)
+<!-- un lien vers la page contact -->
+<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_PAGE{contact}|parametre_url{lang,#ENV{lang}})],#URL_PAGE{contact}})]" title="<:escal:title_contact:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/arobase.svg}" alt="<:escal:contact:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:escal:contact:>]
+</a>
+]
+
+[(#CONFIG{escal/config/lienmentions}|=={oui}|oui)
+
+	[(#CONFIG{escal/config/lienmentionschoix}|=={plugin}|oui)
+		[(#PLUGIN{SPIP_PROPRIO}|oui)
+			<!-- un lien vers la page des mentions legales -->
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_PAGE{mentions-legales}|parametre_url{lang,#ENV{lang}})],#URL_PAGE{mentions-legales}})]" title="<:escal:title_mentions:>">
+			[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/legal.svg}" alt="<:escal:mentions:>" />]
+			[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:escal:mentions:>]
+			</a>
+		]
+	]
+	[(#CONFIG{escal/config/lienmentionschoix}|=={article}|oui)
+		<!-- un lien vers la page des mentions legales -->
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE{#CONFIG{escal/config/lienmentionsarticle}}|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE{#CONFIG{escal/config/lienmentionsarticle}}})]" title="<:escal:title_mentions:>">
+		[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/legal.svg}" alt="<:escal:mentions:>" />]
+		[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:escal:mentions:>]
+		</a>
+	]
+]
+
+[(#CONFIG{escal/config/lienecrire}|=={non}|non)
+<!-- un lien vers l'espace privé de SPIP -->
+<a href="ecrire/" title="<:escal:title_espace_redacteurs:>">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/ecrire.svg}" alt="<:escal:espace_redacteurs:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:escal:espace_redacteurs:>]
+</a>
+]
+
+[(#CONFIG{escal/config/liensquelette}|=={non}|non)
+<a href="#ENV{skel}" title="<:voir_squelette:>" rel="nofollow">
+[(#CONFIG{escal/config/texteicone}|=={icone}|oui)<img class="icone-pied" src="#CHEMIN{images/code.svg}" alt="<:squelette:>" />]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" /><:squelette:>]
+</a>
+]
+[(#CONFIG{escal/config/texteicone}|=={icone}|non)
+<img class="puce-pied" src="#CHEMIN{images/pucebleue.svg}" alt="<:escal:puce:>" />
+]
+
+
+[(#CONFIG{escal/config/lienRSS}|=={non}|non)
+<!-- un lien vers la page de syndication -->
+<a href="#URL_PAGE{backend}">
+<img class="icone-pied" src="#CHEMIN{images/rss.svg}" alt="RSS" title="<:syndiquer_site:>" />
+</a>
+]
+
+
+<br /><br />
+
+<!-- Copyright -->
+
+<BOUCLE_copy(ARTICLES){par date}{0,1}{si #CONFIG{escal/config/copyright}|=={oui}|oui}>
+[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] &copy; [(#NOM_SITE_SPIP)] - 
+<BOUCLE_trad(ARTICLES){lang=#ENV{lang}}{0,1}><:escal:copyright:></BOUCLE_trad>
+</BOUCLE_copy>
+
+</div>
+
+
+<!-- affichage du retour vers le haut de la page -->
+	<div id="scrollHaut"><a href="#top"><img src="#CHEMIN{images/to_top.svg}" alt="<:escal:haut_page:>"/></a></div>
+
+<!-- realise avec -->
+<div id="credits">
+[(#LANG|=={ja}|oui)
+<a href="https://www.spip.net" title="<:version:> #SPIP_VERSION">
+<img src="#CHEMIN{images/spip.svg}" alt="SPIP" />
+</a>
+<:escal:site_realise_avec:> ]
+[(#LANG|=={ja}|non)
+<:escal:site_realise_avec:>
+<a href="https://www.spip.net" title="<:version:> #SPIP_VERSION">
+<img src="#CHEMIN{images/spip.svg}" alt="SPIP" />
+</a> ]
+<br /> 
+<:escal:avec_le_squelette:> <a href="http://escal.ac-lyon.fr/" title="<:escal:title_escal:>" >ESCAL</a>
+#PLUGIN{escal, version}<br />
+[(#CONFIG{escal/config/hebergeur}|=={oui}|oui)
+  <:escal:hebergeur:>
+  [(#CONFIG{escal/config/urlhebergeur}|oui)<a href="#CONFIG{escal/config/urlhebergeur}" title="site de l'hébergeur">]
+    #CONFIG{escal/config/nomhebergeur}
+  [(#CONFIG{escal/config/urlhebergeur}|oui)</a>]
+]
+</div>
+</footer>
+
+<div class="nettoyeur"></div>
+
+[(#REM) appel des javascripts ]
+<INCLURE {fond=inclusions/inc-javascripts}>

@@ -1,0 +1,28 @@
+[(#AUTORISER{configurer,escal}|sinon_interdire_acces))]
+
+<h1 class="grostitre"><:escal:configurer_escal:></h1>
+
+<h3><:escal:version_actuelle:> #PLUGIN{escal, version}</h3>
+
+<BOUCLE_version(spip_paquets){prefixe=ESCAL}{!par version}{0,1}>
+	[(#VERSION|replace{0}|>{#PLUGIN{escal, version}}|oui)
+		<h5><:escal:version_maj:> [(#VAL{/\.0*/}|preg_replace{'.',#VERSION}|ltrim{0})]</h5>
+	]
+	[(#VERSION|replace{0}|>{#PLUGIN{escal, version}}|non)
+		<h5><:escal:version_ok:></h5>
+	]
+</BOUCLE_version>
+
+
+
+
+[(#ENV{cfg, accueil}|=={accueil}|oui)
+#BOITE_OUVRIR{#CHEMIN_IMAGE{escal24.png}|balise_img{'',cadre-icone}, info}
+
+<:escal:texte_accueil:>	
+
+#BOITE_FERMER
+]
+
+[(#SET{configurer, [(#ENV{type-page})_[(#ENV{cfg, accueil})]]})]
+	[<div class='ajax'>(#FORMULAIRE_{#GET{configurer}})</div>]

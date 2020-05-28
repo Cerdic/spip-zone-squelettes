@@ -1,0 +1,29 @@
+<BOUCLE_select_video(ARTICLES){titre_mot=video-une}>
+<BOUCLE_video_select(DOCUMENTS){id_article}{extension IN mp4,ogv,mkv,m4v,webm,dist_daily,dist_youtu,dist_vimeo}{doublons}>
+</BOUCLE_video_select>
+</BOUCLE_select_video>
+
+
+	<B_video>
+		#ANCRE_PAGINATION
+	<BOUCLE_video(DOCUMENTS){!doublons}{par sinum titre, num titre, titre}{pagination 1}>
+		    #MODELE{video,document=#ID_DOCUMENT}
+	</BOUCLE_video>
+		[<p class="pagination">(#PAGINATION{page})</p>
+		<div class="nettoyeur"></div>]
+	</B_video>
+
+	<B_playliste>
+		<ol>
+	<BOUCLE_playliste(DOCUMENTS){mode=document}{!doublons}{par sinum titre, num titre, titre}>
+			<li>
+			<BOUCLE_lien(ARTICLES){id_document}{0,1}>
+			<a href="#URL_ARTICLE" >
+			[(#_playliste:TITRE|couper{25,''}|sinon{#_playliste:FICHIER|basename|couper{25,''}})]
+			</a>
+			</BOUCLE_lien>
+			</li>
+	</BOUCLE_playliste>
+		</ol>
+	</B_playliste>
+

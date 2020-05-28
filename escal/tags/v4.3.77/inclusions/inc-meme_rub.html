@@ -1,0 +1,88 @@
+<section>
+<!-- Affichage des articles de la même rubrique s'ils existent-->
+#SET{nombrememerub,#CONFIG{escal/config/nombrememerub,10}}
+#SET{nbrpagmemerub,#CONFIG{escal/config/paginmemerub,5}}
+
+  <B_meme_rubrique>
+
+<h1 class="cadre meme-rub" >
+	[(#CONFIG{escal/config/titrememerub}|oui)
+ 	[(#CONFIG{escal/config/titrememerub}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titrememerub}|non)
+	<:meme_rubrique:>
+	]
+</h1>
+
+<div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >   
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>]
+<BOUCLE_meme_rubrique(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|non}{id_rubrique}{exclus}{par date}{inverse}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
+	<!-- affichage du titre avec lien vers l'article
+	de la date de publication
+	et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+				[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[(#CONFIG{escal/config/datememerub}|=={non}|non)
+			[<:escal:le:> (#DATE|affdate) ]
+			<br />]
+			<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurmemerub}|=={non}|non}>
+			</BOUCLE_test>
+				[(#LANG|=={ja}|non)<:par_auteur:>]
+				<BOUCLE_auteurs(AUTEURS){id_article}{",<br />"}{lang_select}>
+					[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]
+				</BOUCLE_auteurs>
+				[(#LANG|=={ja}|oui)<:par_auteur:>]
+			</B_test>
+		</div>	 
+</BOUCLE_meme_rubrique>
+</div>
+</B_meme_rubrique>
+
+<B_meme_rubrique2>
+
+<h1 class="cadre meme-rub" >
+	[(#CONFIG{escal/config/titrememerub}|oui)
+	[(#CONFIG{escal/config/titrememerub}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titrememerub}|non)
+	<:meme_rubrique:>
+	]
+</h1>
+
+<div class="texte meme-rub [(#CONFIG{escal/config/togglememerubrique}|=={oui}|oui)toggle]" >  
+	[<p class="pagination">(#PAGINATION)</p>
+	<div class="nettoyeur"></div>] 
+<BOUCLE_meme_rubrique2(ARTICLES){si #CONFIG{escal/config/ordrememerub}|=={hasard}|oui}{id_rubrique}{exclus}{par hasard}{0,#GET{nombrememerub}}{pagination #GET{nbrpagmemerub}}>
+	<!-- affichage du titre avec lien vers l'article
+	de la date de publication
+	et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+				[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[(#CONFIG{escal/config/datememerub}|=={non}|non)
+			[<:escal:le:> (#DATE|affdate) ]
+			<br />]
+			<BOUCLE_test2(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurmemerub}|=={non}|non}>
+			</BOUCLE_test2>
+				[(#LANG|=={ja}|non)<:par_auteur:>]
+				<BOUCLE_auteurs2(AUTEURS){id_article}{",<br />"}{lang_select}>
+					[<a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">(#NOM)</a>]
+				</BOUCLE_auteurs2>
+				[(#LANG|=={ja}|oui)<:par_auteur:>]
+			</B_test2>
+		</div>
+</BOUCLE_meme_rubrique2>
+</div>
+
+</B_meme_rubrique2>
+</section>

@@ -1,0 +1,48 @@
+<meta charset="#CHARSET" />
+<meta name="generator" content="SPIP #SPIP_VERSION avec Escal #PLUGIN{escal, version}" />
+<meta name="author" content="#EMAIL_WEBMASTER" />
+<meta name="REVISIT-AFTER" content="7 days" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+#INSERT_HEAD_CSS
+#INSERT_HEAD
+
+[(#REM) appel des feuilles de style ]
+
+[<link href="(#CHEMIN{styles/general.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[<link href="(#CHEMIN{styles/menu.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[<link href="(#URL_PAGE{config.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[(#REM) pour passer le layout dans l'url ]
+    [(#SET{layout,#ENV{layout,#CONFIG{escal/config/layout,PMP}}})]
+    [<link href="(#URL_PAGE{layout#GET{layout}.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[<link href="(#CHEMIN{styles/perso.css}|direction_css)" rel="stylesheet" type="text/css" id="perso" />]
+[<link href="(#URL_PAGE{persoconfig.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[<link href="(#CHEMIN{styles/#LANG.css}|direction_css)" rel="stylesheet" type="text/css" />]
+[<link href="(#CHEMIN{styles/mobile.css}|direction_css)" rel="stylesheet" type="text/css"  media="screen and (max-width: 640px)"  />]
+[(#REM) feuille de style pour l'accessibilité ]
+[<link href="(#CHEMIN{styles/accessconfig.css}|direction_css)" rel="stylesheet" type="text/css" media="screen" />]
+
+<!--[if IE 7]>
+<link href="#CHEMIN{styles/ie.css}"  rel="stylesheet" type="text/css" media="projection, screen" />
+<![endif]-->
+
+[(#REM) Lien vers l'icone destinee a la barre de bookmarks, au format .ico ]
+[(#CONFIG{escal/config/favicon}|non)
+<link rel="shortcut icon" type="image/x-icon" href="#CHEMIN{favicon.ico}" />
+]
+[(#CONFIG{escal/config/favicon}|=={favicon}|oui)
+<link rel="shortcut icon" type="image/x-icon" href="#CHEMIN{favicon.ico}" />
+]
+[(#CONFIG{escal/config/favicon}|=={logosite}|oui)
+[<link rel="shortcut icon" type="image/x-icon" href="
+        (#LOGO_SITE_SPIP
+            |image_passe_partout{32,32}
+            |image_recadre{32,32,center}
+            |image_format{ico}|extraire_attribut{src} ) " /> ]
+]
+[(#CONFIG{escal/config/favicon}|=={faviconlibre}|oui)
+<link rel="shortcut icon" type="image/x-icon" href="#CHEMIN{#CONFIG{escal/config/titrefavicon}}" />
+]
+
+[(#REM) appel du fichier de syndication ]
+<link href="#URL_PAGE{backend}" rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>"  />
