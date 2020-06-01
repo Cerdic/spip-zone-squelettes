@@ -39,6 +39,7 @@ xmlns="http://www.w3.org/1999/xhtml">
       color: #fff;
       text-decoration: none;
     }
+	.logo { float: right; }
     #what {
       padding: 1em;
       background: #eee;
@@ -87,7 +88,7 @@ xmlns="http://www.w3.org/1999/xhtml">
   <body>
     <div id="page">
       <div id="top">
-        <h1><a href="{/rss/channel/link}"><xsl:value-of select="/rss/channel/title"/></a></h1>
+        <h1><a href="{/rss/channel/link}"><img class="logo" src="{/rss/channel/image/url}" /><xsl:value-of select="/rss/channel/title"/></a></h1>
         <p><xsl:value-of select="/rss/channel/description"/></p>
       </div>
       <div id="what">
