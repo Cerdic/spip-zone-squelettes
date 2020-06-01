@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0"
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0" encoding="UTF-8"?><xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns:content="http://purl.org/rss/1.0/modules/content/"
 xmlns="http://www.w3.org/1999/xhtml">
@@ -6,9 +6,9 @@ xmlns="http://www.w3.org/1999/xhtml">
 <xsl:output method="html"/>
 
 <xsl:template match="/">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#DIR_LANG">
   <head>
-    <title>S'abonner à / Subscribe to <xsl:value-of select="/rss/channel/title"/></title>
+    <title><:soyezcreateurs:rss_abonnement_titre_page:> <xsl:value-of select="/rss/channel/title"/></title>
     <style type="text/css">
     <![CDATA[
     body {
@@ -39,13 +39,14 @@ xmlns="http://www.w3.org/1999/xhtml">
       color: #fff;
       text-decoration: none;
     }
-	.logo { float: right; }
+	.logo { float: right; padding: 0.5em; background: #fff; }
     #what {
       padding: 1em;
       background: #eee;
       border-bottom: 1px solid #ddd;
       font-size: 80%;
     }
+	#top:after { content: ""; visibility: hidden; display: block; height: 0; clear: both; }
     #what p {
       margin: 0 0 0.5em 0;
     }
@@ -88,17 +89,14 @@ xmlns="http://www.w3.org/1999/xhtml">
   <body>
     <div id="page">
       <div id="top">
-        <h1><a href="{/rss/channel/link}"><img class="logo" src="{/rss/channel/image/url}" /><xsl:value-of select="/rss/channel/title"/></a></h1>
+        <h1><a href="{/rss/channel/link}">[<img class="logo" src="(#LOGO_SITE_SPIP|image_reduire{200,50}|extraire_attribut{src}|url_absolue|texte_backend)" height="[(#LOGO_SITE_SPIP|image_reduire{200,50}|hauteur)"] width="[(#LOGO_SITE_SPIP|image_reduire{200,50}|largeur)]" />]<xsl:value-of select="/rss/channel/title"/></a></h1>
         <p><xsl:value-of select="/rss/channel/description"/></p>
       </div>
       <div id="what">
-      <h2>Qu'est-ce qu'un flux RSS ?</h2>
-      <p>Un flux RSS est un résumé automatique et gratuit des actualités dun site. Il fournit le contenu ou un extrait du contenu, accompagné de liens vers le contenu complet. Les dernières actualités publiées peuvent être lues dans votre <a href="https://fr.wikipedia.org/wiki/Agr%C3%A9gateur">agrégateur RSS</a> de prédilection.</p>
-      <h2 lang="en">What is an RSS feed?</h2>
-      <p lang="en">RSS feed is a free blog summary. It provides content (either posts or comments) or summaries of content, together with links to the full versions, and other metadata. The last published items may then be read by your favorite RSS <a href="http://en.wikipedia.org/wiki/Aggregator">aggregator</a>.</p>
-      <h2 lang="fr">S'abonner / <span lang="en">Subscribe</span></h2>
-      <p lang="fr">Copiez l'URL suivante dans votre agrégateur / <span lang="en">Simply copy the following URL into your aggregator</span></p>
-      <p><input type="text" size="60" value="" id="feedurl" /></p>
+      <h2><:soyezcreateurs:rss_explication_titre:></h2>
+      <p><:soyezcreateurs:rss_explication:></p>
+      <h2><:soyezcreateurs:rss_abonnement_titre:></h2>
+      <p><:soyezcreateurs:rss_abonnement:> <input type="text" size="60" value="" id="feedurl" /></p>
       </div>
       <div id="items">
         <xsl:apply-templates select="//item"/>
