@@ -1,8 +1,12 @@
+#SET{defaut_tri,#ARRAY{
+	date,-1,
+	rang_lien,1,
+}}
 <B_dernieres>
 #ANCRE_PAGINATION
 <div class="photos-rows">
 	<div class="photos-rows-inner">
-		<BOUCLE_dernieres(DOCUMENTS){id_album?}{extension IN jpg,png,gif,svg}{!par date}{pagination #ENV{pagination,50}}>
+		<BOUCLE_dernieres(DOCUMENTS){id_album?}{extension IN jpg,png,gif,svg}{tri #ENV{par,date}, #GET{defaut_tri}}{pagination #ENV{pagination,50}}>
 		<a href="#URL_DOCUMENT">
 			[(#FICHIER|image_reduire{0,500}|inserer_attribut{class,no-adapt-img}|inserer_attribut{alt,#TITRE|sinon{#FICHIER|basename}|attribut_html})]
 		</a>

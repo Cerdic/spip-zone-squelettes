@@ -34,6 +34,18 @@ function formulaires_configurer_photographe_saisies_dist() {
 				'defaut' => 50,
 			),
 		),
+		array(
+			'saisie' => 'radio',
+			'options' => array(
+				'nom' => 'tri_album',
+				'label' => _T('photographe:configurer_tri_album_label'),
+				'data' => array(
+					'date' => _T('photographe:configurer_tri_album_date'),
+					'rang_lien' => _T('photographe:configurer_tri_album_rang_lien'),
+				),
+				'defaut' => 'date',
+			),
+		),
 	);
 	
 	return $saisies;
