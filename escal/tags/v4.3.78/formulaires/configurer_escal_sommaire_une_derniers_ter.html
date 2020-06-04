@@ -1,0 +1,358 @@
+<a name="derniers_articles_ter"></a>
+
+    <div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+
+    <h3 class="titrem">[(#CHEMIN_IMAGE{configune.png}|balise_img{'',cadre-icone})]<:escal:une_derniers_ter:></h3>
+    [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+    [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+    <form method="post" action="#ENV{action}">
+    <div>
+    #ACTION_FORMULAIRE{#ENV{action}}
+
+  
+     <ul>
+   <!-- presentation -->             
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">                    
+                    <label style="width: 500px"><strong><:escal:onglets_derniers_presentation:></strong></label>
+                    <div class=nettoyeur></div>
+              <div class="explication">
+              #SET{name,articleexergueter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:onglets_ter_mot_exergue:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,nbrecolter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:onglets_nombre_colonnes:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_un" value="1"
+                            [(#ENV{#GET{name}}|=={1}|oui)checked="checked"] /><label for="#GET{name}_date"><:escal:choix_une:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_deux" value="2"
+                            [(#ENV{#GET{name}}|=={2}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_hasard"><:escal:choix_deux:></label>
+                            <input type="radio" name="#GET{name}" id="#GET{name}_trois" value="3"
+                            [(#ENV{#GET{name}}|=={3}|oui)checked="checked"] /><label for="#GET{name}_date"><:escal:choix_trois:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,ordrealauneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_ordre:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_date" value="date"
+                            [(#ENV{#GET{name}}|=={date}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"] /><label for="#GET{name}_date"><:escal:affichage_ordre_dateinv:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}date_modif" value="date_modif"
+                            [(#ENV{#GET{name}}|=={date_modif}|oui)checked="checked"] /><label for="#GET{name}date_modif"><:escal:affichage_ordre_datemodif:></label>
+                            <br />
+                            <input type="radio" name="#GET{name}" id="#GET{name}_hasard" value="hasard"
+                            [(#ENV{#GET{name}}|=={hasard}|oui)checked="checked"] /><label for="#GET{name}_hasard"><:escal:affichage_ordre_hasard:></label>
+                    </span>
+                    <div class="nettoyeur"></div>
+              #SET{name,nombrearticlesuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:onglets_nombre_articles_exergue:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},50})]"  />
+                    </span>
+                    <br /><br />
+              #SET{name,modelepaginarticlesuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:onglets_bis_pagination:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">                     
+                            <input type="radio" name="#GET{name}" id="#GET{name}_defaut" value=""
+                            [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non"><:escal:onglets_bis_pagin_defaut:></label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_prive" value="prive"
+                            [(#ENV{#GET{name}}|=={prive}|oui)checked="checked"] [(#ENV{#GET{name}}|non)checked="checked"]/><label for="#GET{name}_non"><:escal:onglets_bis_pagin_prive:></label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_page" value="page"
+                            [(#ENV{#GET{name}}|=={page}|oui)checked="checked"] /><label for="#GET{name}_non"><:escal:onglets_bis_pagin_page:></label><br />
+                            
+                            <input type="radio" name="#GET{name}" id="#GET{name}_page_precedent_suivan" value="page_precedent_suivant"
+                            [(#ENV{#GET{name}}|=={page_precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_non"><:escal:onglets_bis_pagin_pps:></label><br />                            
+                                                 
+                            <input type="radio" name="#GET{name}" id="#GET{name}_precedent_suivant" value="precedent_suivant"
+                            [(#ENV{#GET{name}}|=={precedent_suivant}|oui)checked="checked"] /><label for="#GET{name}_oui"><:escal:onglets_bis_pagin_ps:></label><br />
+
+                    </span>
+                    </span>
+                    <div style="clear:both"></div>
+              #SET{name,paginarticlesuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:nombre_articles_pagination:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:30px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},5})]"  />
+                    </span>
+                    <br /><br />                                        
+             </div>
+             </li>            
+
+  <!-- article en exergue -->
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label style="width: 500px"><strong><:escal:onglets_derniers_exergue:></strong></label>
+                    <div class=nettoyeur></div>
+             <div class="explication">
+            #SET{name,taillelogoartexergueter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    <:escal:article_logo:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},100})]" /> px
+                    </span>
+                    <br /><br />                  
+             #SET{name,surtitreuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_surtitre:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+             #SET{name,soustitreuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_soustitre:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                   
+             #SET{name,auteuruneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_nom_auteur:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br /> 
+             #SET{name,datepubuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_date_pub:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br /> 
+             #SET{name,datemodifuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_date_modif:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                                                            
+             #SET{name,rubriqueuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_rubrique:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,descriptifuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	 	            <:escal:affichage_descriptif:>
+	 	            [<span class='erreur_message'>(#GET{erreurs})</span>
+	 	            ]<span class="choix droite">
+	 	                     <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+ 	                        [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+	 	                     <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+	 	                     [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+	 	            </span>
+	 	            <br /><br />
+	 	    #SET{name,chapeauuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_chapeau:>
+	 	            [<span class='erreur_message'>(#GET{erreurs})</span>
+	 	            ]<span class="choix droite">
+	 	                     <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+ 	                        [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+	 	                     <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+	 	                     [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+	 	            </span>
+	 	            <br /><br />
+             #SET{name,texteuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_debut:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br />
+             #SET{name,tailletexteuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:texte_coupe:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},300})]"  /><:escal:caracteres:>
+                    </span>
+                    <br /><br />                    
+              #SET{name,imageuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_image:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+             		<br /> <br />
+             #SET{name,taillelogoimgexergueter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    <:escal:articles_largeur_image:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]" /> px
+                    </span>
+                    <br /><br />
+             </div>
+             </li>
+
+  <!-- autres articles -->
+             <li class="editer [ (#GET{erreurs}|oui)erreur]">
+                    <label style="width: 500px"><strong><:escal:onglets_derniers_autres:></strong></label>
+                    <div class=nettoyeur></div>
+             <div class="explication">
+            #SET{name,taillelogoartuneter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}                   
+                    <:escal:articles_logo:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},40})]" /> px
+                    </span>
+                    <br /><br />                     
+            #SET{name,nbrecaracttitreter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:titre_coupe:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},27})]"  />
+                    </span>
+                    <br /><br />
+
+             #SET{name,dateuneautrester}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_date_pub_ou_modif:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
+             #SET{name,auteuruneautrester}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_nom_auteur:>
+                  [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
+            #SET{name,affichrubriqueter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_rubrique:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={non}|non)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={non}|oui)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />
+            #SET{name,affichdescriptifter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_descriptif:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />                    
+            #SET{name,affichtextederniersartter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_debut:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+                    <br /><br />  
+            #SET{name,nbrecaracttexteter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                   <:escal:texte_coupe:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix">
+                             <input type="texte" style="width:50px" name="#GET{name}" id="#GET{name}" value="[(#ENV{#GET{name}}|?{#ENV{#GET{name}},150})]"  />
+                    </span>
+                    <:escal:caracteres:>
+                    <br /><br />                                      
+            #SET{name,affichcommter}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_nombre_comments:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+             <br /><br />
+             #SET{name,affichvideo}#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+                    <:escal:affichage_video:>
+                    [<span class='erreur_message'>(#GET{erreurs})</span>
+                    ]<span class="choix droite">
+                            <input type="radio" name="#GET{name}" id="#GET{name}_oui" value="oui"
+                            [(#ENV{#GET{name}}|=={oui}|oui)checked="checked"] /><label for="#GET{name}_oui"><:item_oui:></label>
+
+                            <input type="radio" name="#GET{name}" id="#GET{name}_non" value="non"
+                            [(#ENV{#GET{name}}|=={oui}|non)checked="checked"] /><label for="#GET{name}_non"><:item_non:></label>
+                    </span>
+             <br /><br />
+             </div>
+             </li>
+
+
+                                     
+     </ul>
+
+
+<!-------------------------------------------------------------------------------->
+<!-- Stockage des donnees  ------------------------------------------------------->
+<!-------------------------------------------------------------------------------->
+
+    <input type="hidden" name="_meta_casier" value="escal/config" />
+    <br /><br />
+	<p class="boutons"><span class='image_loading'>&nbsp;</span>
+  <input type="submit" name="enregistrer" class="submit" value="<:bouton_valider:>" />
+	</p>
+  </div>
+    </form>
+    </div>

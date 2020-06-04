@@ -1,0 +1,189 @@
+<BOUCLE_exclure_art2(ARTICLES){titre_mot IN 'annonce', 'annonce-defilant'}{doublons exergue}>
+</BOUCLE_exclure_art2>
+
+<nav role="navigation" role="navigation" class="laune" >
+
+<BOUCLE_dernier_endate(ARTICLES){si #CONFIG{escal/config/articleexerguemotcle}|=={non}|non}{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
+	{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}{0,1}{doublons exergue}{doublons}{lang}>
+<div id="section-#ID_ARTICLE" class="fragment art-exergue">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+<!-- affichage logo -->
+	[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{#CONFIG{escal/config/taillelogoartexerguemotcle,50}})]
+<!-- affichage surtitre -->
+	[(#CONFIG{escal/config/surtitreunemotcle}|=={non}|non)
+		<div class="surtitre-article #EDIT{surtitre}">[(#SURTITRE)]</div>
+	]
+<!-- affichage titre -->
+	<div class="titre #EDIT{titre}">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" 
+			title="[(#LANG|=={ja}|non)<:par_auteur:>] <BOUCLE_auteurs(AUTEURS){id_article}{", "}{lang_select}>[(#NOM|textebrut)]</BOUCLE_auteurs> [(#LANG|=={ja}|oui)<:par_auteur:>] <:escal:le:> [(#DATE|affdate)]">
+			#TITRE
+		</a>
+	</div>
+<!-- affichage soustitre -->
+	[(#CONFIG{escal/config/soustitreunemotcle}|=={non}|non)
+		<div class="soustitre-article #EDIT{texte}">[(#SOUSTITRE)]</div>
+	]        
+<!-- affichage auteur -->
+	<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurunemotcle}|=={non}|non}>
+	</BOUCLE_test>
+		<div class="auteur-articles-rubrique">
+			[(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+				<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a>
+			</BOUCLE_auteurs_art>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+		</div>
+      </B_test>
+<!-- affichage date de publication -->
+	[(#CONFIG{escal/config/datepubunemotcle}|=={non}|non)
+		<div class="auteur-articles-rubrique">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+	]
+<!-- affichage date derniere modification -->
+	[(#CONFIG{escal/config/datemodifunemotcle}|=={non}|non)
+		<div class="auteur-articles-rubrique">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div> 
+	]        
+<!-- affichage rubrique -->
+	<BOUCLE_Rub(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/rubriqueunemotcle}|=={non}|non}>
+		<div class="rubrique #EDIT{titre}">
+			<:rubrique:> : [(#TITRE)]
+		</div>
+	</BOUCLE_Rub>
+<!-- affichage descriptif -->
+	[(#CONFIG{escal/config/descriptifunemotcle}|=={non}|non)
+		<div class="descriptif-article #EDIT{texte}">[(#DESCRIPTIF)]</div>
+	]
+<!-- affichage chapeau -->
+	[(#CONFIG{escal/config/chapeauunemotcle}|=={non}|non)
+		<div class="chapo #EDIT{texte}">[(#CHAPO)]</div>
+	]
+<!-- affichage premiere image -->
+	<div class="image-une" >
+		<BOUCLE_image(DOCUMENTS){si #CONFIG{escal/config/imageunemotcle}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}{titre==^[0-9]+\.}{par sinum titre, num titre, titre}>
+			<img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
+		</BOUCLE_image>
+		<BOUCLE_image_alt(DOCUMENTS){si #CONFIG{escal/config/imageunemotcle}|=={non}|non}{id_article}{extension==jpg|png|gif}{0,1}>
+			<img src="[(#FICHIER|image_reduire{150,0}|extraire_attribut{src})]" alt="[(#TITRE)]" title="[(#TITRE)]" />
+		</BOUCLE_image_alt>
+		<//B_image>
+	</div>
+<!-- affichage texte -->
+	[(#CONFIG{escal/config/texteunemotcle}|=={non}|non)
+		<div class="texte #EDIT{texte}">
+			[(#PLUGIN{COUTEAU_SUISSE}|non)
+				[(#TEXTE|couper{#CONFIG{escal/config/tailletexteunemotcle,300}}|propre)]
+			]
+			[(#PLUGIN{COUTEAU_SUISSE}|oui)
+				[(#TEXTE*|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}|couper{#CONFIG{escal/config/tailletexteunemotcle,300}}|propre)]
+			]
+		</div>
+	]
+
+	<div class="nettoyeur"></div>
+          
+	<div class="suite">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})] 
+		title="[(#DESCRIPTIF|textebrut|entites_html)]"
+		aria-label="<:escal:lire_tout:> '#TITRE'">
+			<strong>
+				[(#CONFIG{escal/config/texteunemotcle}|=={non}|non)<:escal:lire_suite:>]
+				[(#CONFIG{escal/config/texteunemotcle}|=={non}|oui)<:escal:lire_article:>]
+			</strong>
+		</a>
+	</div>
+      
+</div>
+</BOUCLE_dernier_endate>
+
+<B_articles_une>
+	#ANCRE_PAGINATION  
+	<div class="derniers-art-ter">
+	<ul class="anchors motcle">
+	<BOUCLE_articles_une(ARTICLES){lang}{doublons}
+		{titre_mot=#CONFIG{escal/config/titreongletmotcle}}
+		{tri #CONFIG{escal/config/ordrealaunemotcle,date}, inverse}
+		{0,#CONFIG{escal/config/nombrearticlesunemotcle,50}|moins{1}}
+		{pagination #CONFIG{escal/config/paginarticlesunemotcle,5}}>
+	<li class="rub#ID_RUBRIQUE secteur#ID_SECTEUR">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+
+<!-- affichage logo -->
+      [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{#CONFIG{escal/config/taillelogoartunemotcle,40}})]
+<!-- affichage titre -->
+			<span class="titre-autres">[(#TITRE|couper{#CONFIG{escal/config/nbrecaracttitremotcle,27}})]</span><br />
+<!-- affichage date de publication ou de derniere modification -->
+      [(#CONFIG{escal/config/dateuneautresmotcle}|=={non}|non)
+      <span class="rubrique-autres">
+      [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[(#DATE_MODIF|affdate)],[(#DATE|affdate)]})]
+      <br />
+      </span> 
+      ]
+<!-- affichage auteur -->
+      <BOUCLE_testauteur(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteuruneautresmotcle}|=={non}|non}>
+      </BOUCLE_testauteur>
+        <span class="rubrique-autres">
+          [(#LANG|=={ja}|non)<:par_auteur:>]
+          <BOUCLE_auteurs_art2(AUTEURS){id_article}{", "}{lang_select}>#NOM</BOUCLE_auteurs_art2>
+          [(#LANG|=={ja}|oui)<:par_auteur:>]
+          <br />
+        </span>
+      </B_testauteur>
+<!-- affichage rubrique -->
+			<BOUCLE_Rub_suite(RUBRIQUES){id_rubrique}{si #CONFIG{escal/config/affichrubriquemotcle}|=={non}|non}>
+			 <span class="rubrique-autres">
+			 <:rubrique:> : [(#TITRE|couper{30})]
+			 </span>
+			</BOUCLE_Rub_suite>
+			<br /><br />
+		<div class="nettoyeur"></div>
+<!-- affichage descriptif -->
+			<BOUCLE_descriptif_art(ARTICLES){id_article}{si #CONFIG{escal/config/affichdescriptifmotcle}|=={oui}|oui}>
+			 [<div class="descriptif-autres">
+			 (#DESCRIPTIF)
+			 </div>]
+			</BOUCLE_descriptif_art>
+			<br />			
+<!-- affichage texte article -->
+			<BOUCLE_texteart(ARTICLES){id_article}{si #CONFIG{escal/config/affichtextederniersartmotcle}|=={oui}|oui}>
+			     <div class="texte-autres">
+					[(#PLUGIN{COUTEAU_SUISSE}|oui)
+						[(#TEXTE*
+							|appliquer_filtre{cs_traitements, TEXTE, articles, sommaire_d_article}
+							|couper{#CONFIG{escal/config/nbrecaracttextemotcle,150}}
+					)]
+					]
+					[(#PLUGIN{COUTEAU_SUISSE}|non)
+						[(#TEXTE
+							|couper{#CONFIG{escal/config/nbrecaracttextemotcle,150}}
+						)]
+					]      
+			     </div>
+			</BOUCLE_texteart>
+			<br />
+<!-- affichage nombre de commentaires -->
+			<BOUCLE_comment(FORUMS){id_article}{0,1}{si #CONFIG{escal/config/affichcommmotcle}|=={oui}|oui}>
+      			<BOUCLE_nbre_comm(FORUMS){id_article}{tout}>
+				</BOUCLE_nbre_comm>
+					<span class="commentaires">
+						#TOTAL_BOUCLE <:escal:commentaires:>
+					</span>
+				</B_nbre_comm>
+			</BOUCLE_comment>
+	</a>
+	</li>
+</BOUCLE_articles_une>
+	</ul>
+	</div>
+	<div class="nettoyeur"></div>
+	[<p class="pagination pagination-une">(#PAGINATION{#CONFIG{escal/config/modelepaginarticlesunemotcle}})</p>
+	<div class="nettoyeur"></div>]  
+</B_articles_une>
+
+</nav><!-- fin laune -->

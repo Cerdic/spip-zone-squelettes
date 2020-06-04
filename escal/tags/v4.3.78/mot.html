@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="#LANG" >
+
+<BOUCLE_mot_principal(MOTS) {id_mot}>
+
+  <head>
+    <title>#TITRE - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>	[
+    <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    [<link rel="canonical" href="(#URL_MOT|url_absolue)" />]
+    <INCLURE {fond=inclusions/inc-head, env}>
+  </head>
+
+  <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-mot">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+          <div class="nettoyeur"></div>
+          
+          <div id="page">
+            <main role="main" id="contenu">
+            
+
+              <div id="cadre-article">
+                <div id="cadre-titre-article">
+                  <div id="titre-article">
+                    <:escal:articles_associes_mot:> "<strong>[(#TITRE)]</strong>"
+                  </div>
+			
+<B_compte>
+<!-- si au moins un article trouvé, on affiche le nombre trouvé -->
+	<div class="cadre-resultat">
+		#GRAND_TOTAL 
+		[(#GRAND_TOTAL|>{01}|oui) <:escal:articles_trouves:>]
+		[(#GRAND_TOTAL|>{01}|non) <:escal:article_trouve:>] 
+		<:escal:dans_site:>
+	</div>
+<BOUCLE_compte(ARTICLES){lang}{id_mot}>
+</BOUCLE_compte>
+
+                </div>
+                <div id="texte-article" >
+
+<BOUCLE_contexte_rubrique(RUBRIQUES){lang}>
+    <BOUCLE_articles_aumoinsun(ARTICLES){id_rubrique}{id_mot}{0,1}>
+    <div class="rubrique-mere #EDIT{titre}">
+	<BOUCLE_Rub(HIERARCHIE){id_article}{tout}{"-"}>		
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})],#URL_RUBRIQUE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+			[(#TITRE)]
+			</a>	
+	</BOUCLE_Rub>
+	</div>
+<B_articles>
+	<div class="liste-articles-rubrique" >
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+<BOUCLE_articles(ARTICLES){lang} {id_mot}{id_rubrique} {par date}{inverse}{pagination 10}>
+                    <!-- on affiche le ou les article(s) -->               
+    <div class="cadre-articles-rubrique">
+<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesune}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">       		  
+      <div class="titre-articles-rubrique">
+        <div class="logorub">
+        [(#LOGO_ARTICLE_RUBRIQUE|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
+        </div>
+        #TITRE
+      </div>
+      <div class="introduction-articles-rubrique">
+        [(#INTRODUCTION|supprimer_tags|couper{150})]
+      </div>
+      </a>
+      <div class="auteur-articles-rubrique">
+        [(#CONFIG{escal/config/daterub}|=={non}|non)
+            <div class="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+            <div class="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+        
+        ]
+          <BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurrub}|=={non}|non}>
+          </BOUCLE_test>
+            <br />[(#LANG|=={ja}|non)<:par_auteur:>]
+            <BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+              <a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+          [(#LANG|=={ja}|oui)<:par_auteur:>]
+          </B_test>
+      </div>
+      
+      <div class="nettoyeur"></div>
+    </div>
+
+</BOUCLE_articles>
+    </div>
+</B_articles>
+</BOUCLE_articles_aumoinsun>
+</BOUCLE_contexte_rubrique>
+
+                </div><!-- fin texte-article -->
+              </div><!-- fin cadre-article -->
+
+            </main>
+          </div>
+
+          [(#LANG_DIR|=={ltr}|oui)<section id="navigation">] [(#LANG_DIR|=={rtl}|oui)<section id="extra">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavpages1}|oui) [(#CONFIG{escal/config/blocnavpages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages1}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages2}|oui) [(#CONFIG{escal/config/blocnavpages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages2}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages3,edito}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages4,acces_direct}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages5}|oui) [(#CONFIG{escal/config/blocnavpages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages5}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages6}|oui) [(#CONFIG{escal/config/blocnavpages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages7}|oui) [(#CONFIG{escal/config/blocnavpages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages8}|oui) [(#CONFIG{escal/config/blocnavpages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages9}|oui) [(#CONFIG{escal/config/blocnavpages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages10}|oui) [(#CONFIG{escal/config/blocnavpages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages10}}{env}{ajax}></div>
+         ]]
+
+          </section> <!-- fin navigation -->
+
+          [(#LANG_DIR|=={ltr}|oui)<section id="extra">] [(#LANG_DIR|=={rtl}|oui)<section id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextrapages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages1,top}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages2}|oui) [(#CONFIG{escal/config/blocextrapages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages2}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages3}|oui) [(#CONFIG{escal/config/blocextrapages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages3}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages4}|oui) [(#CONFIG{escal/config/blocextrapages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages4}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages5}|oui) [(#CONFIG{escal/config/blocextrapages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages5}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages6}|oui) [(#CONFIG{escal/config/blocextrapages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages7}|oui) [(#CONFIG{escal/config/blocextrapages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages8}|oui) [(#CONFIG{escal/config/blocextrapages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages9}|oui) [(#CONFIG{escal/config/blocextrapages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages10}|oui) [(#CONFIG{escal/config/blocextrapages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages10}}{env}{ajax}></div>
+         ]]
+
+          </section> <!-- fin extra -->
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+
+</BOUCLE_mot_principal>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="#LANG" >
+
+  <!-- on se met dans le contexte de la rubrique appelée -->
+  <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+    <head>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]
+      </title>
+      [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+      [<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+      <meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_rubrique}{","}>#TITRE </BOUCLE_keywords>" />
+      <INCLURE {fond=inclusions/inc-head, env}>
+      <BOUCLE_couleur_rubrique(HIERARCHIE){id_rubrique}{id_article}{0,1}>
+      [<link href="(#CHEMIN{styles/secteur#ID_SECTEUR.css}|direction_css)" rel="stylesheet" type="text/css" />]
+      </BOUCLE_couleur_rubrique>
+    </head>
+
+    <body id="top" [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-rubrique-pleinepage rubrique#ID_RUBRIQUE">
+      <div id="ombre-gauche">
+        <div id="ombre-droite">
+          <div id="conteneur">
+
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+          <div class="nettoyeur"></div>
+          
+            <div id="page" style="width: 100%">
+              <main role="main" id="contenu" class="contenu-rubrique" style="margin:0 ; width: 98%">
+              
+                <!-- on cherches si la rubrique est rattachee a un mot clef du groupe type_rubrique-->
+                <!-- si oui, on stocke le mot-cle dans la variable "type" -->
+                <BOUCLE_type_rubrique(MOTS){id_rubrique}{type=type_rubrique}{0,1}>
+                  #SET{type, #TITRE}
+                </BOUCLE_type_rubrique>
+                  <!-- on recupere le chemin de la noisette associee -->
+                  #SET{inclusion, (#CHEMIN{inclusions/inc-rubrique_(#GET{type}|concat{.html})})}
+                  <!-- s'il y a une noisette associee, on l'affiche -->
+                  [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_#GET{type}}{env})]]
+                  <!-- s'il n'y a en a pas, on affiche la noisette normale -->
+                  [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
+              </main>
+            </div>
+
+
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+            </div>
+
+          </div>
+          <!-- fin conteneur -->
+        </div>
+      </div>
+    </body>
+    </BOUCLE_rubrique_principal>

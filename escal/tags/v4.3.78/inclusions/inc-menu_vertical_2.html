@@ -1,0 +1,47 @@
+<div class="menudesktop">
+<nav role="navigation" id="menuV2">
+
+<ul class="menulist">
+
+	<li class="item-accueil">
+	 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+	</li>
+
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu-vertical" ou "invisible" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu-vertical', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+
+
+
+ <!-- affichage des autres rubriques -->
+    <BOUCLE_secteur(RUBRIQUES){racine}{lang}{par sinum titre, num titre, titre}{doublons rubriques}>
+	   <li class="#EXPOSE">
+     <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+     [(#TITRE)]
+     <BOUCLE_test(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test>
+     </a>
+
+
+
+  			<!-- affichage des sous-menus -->
+  			<B_rubriques>
+     <ul>
+				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}{doublons rubriques}>
+          <li class="#EXPOSE">
+				  <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE)]
+						<BOUCLE_test2(RUBRIQUES){id_parent}{0,1}><img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" /></BOUCLE_test2>
+			    </a>
+
+
+			    <BOUCLE_sousmenu(boucle_rubriques)></BOUCLE_sousmenu>
+			    </li>
+				</BOUCLE_rubriques>
+			  </ul>
+				</B_rubriques>
+
+     </li>
+	</BOUCLE_secteur>
+</ul><!-- fin menu -->
+</nav>
+</div>
