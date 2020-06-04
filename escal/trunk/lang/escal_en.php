@@ -15,8 +15,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'acces_direct' => 'Direct access',
 	'accueil' => 'Home',
 	'actus' => 'News',
-	'adresse_non' => 'This author did not supply his e-mail address',
-	'affichage_auteur_articles' => 'Display of the author’s name of the articles',
+	'adresse_non' => 'This author did not supply his e-mail address', # MODIF
+	'affichage_auteur_articles' => 'Display of the author’s name of the articles', # MODIF
 	'affichage_chapeau' => 'Display of the preamble',
 	'affichage_choix' => 'Choice of the display',
 	'affichage_date_modif' => 'Display of the last updated date',
@@ -32,7 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_mots_cles_article' => 'For the article page',
 	'affichage_mots_cles_rubrique' => 'For the section page',
 	'affichage_mots_cles_une' => 'For the home page',
-	'affichage_nom_auteur' => 'Display of the the author’s name',
+	'affichage_nom_auteur' => 'Display of the the author’s name', # MODIF
 	'affichage_nombre_comments' => 'Display of the number of comments',
 	'affichage_ordre' => 'Display order',
 	'affichage_ordre_date' => 'Chronological order',
@@ -62,7 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - end of posting date  = earlier publishing date',
 	'annonces' => 'The announcements',
 	'annuaire' => 'Directory',
-	'annuaire_auteurs' => 'Directory of authors',
+	'annuaire_auteurs' => 'Directory of authors', # MODIF
 	'annuaire_invitation' => 'Do you also use ESCAL? <br /> So add your site on this page.',
 	'arrondis' => 'The fillets',
 	'arrondis_annonce' => 'Announcement',
@@ -111,7 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
 	'articles_associes' => 'See associated articles with ',
 	'articles_associes_mot' => 'Articles associated with the word',
-	'articles_auteur' => 'This author wrote:',
+	'articles_auteur' => 'This author wrote:', # MODIF
 	'articles_derniers' => 'The last articles',
 	'articles_explication' => 'You can define here the maximum width of the pictures in your articles. <br /> 
             This width is 400px by default for classical articles and 850px for full pages articles, 
@@ -132,7 +132,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_trouves' => 'articles found',
 	'aucun' => 'None',
 	'aujourdhui' => 'Today: ',
-	'auteurs' => 'authors',
+	'auteurs' => 'authors', # MODIF
 	'avec' => 'with',
 	'avec_le_squelette' => 'Template',
 
@@ -145,7 +145,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'balise_meta_explication' => 'To configure the meta tabs of the site (lastly, those which are not)<br />
             - "Keyword" tab:  this tag is hardly ever used by search engines to reference Internet sites <br />
             - "Author" tab: particularly useful if you want to recall to the bystanders who read the source code of the website pages that the website has an author <br />
-            Finally, a configuration page of little use ...',
+            Finally, a configuration page of little use ...', # MODIF
 	'bandeau' => 'Banner',
 	'bandeau_choix_explication' => ' If your banner picture does not occupy the entire width, you can choose its location.<br />
               However be careful to "edge effects" if you display the name of the website, its slogan or its description.
@@ -361,8 +361,8 @@ an image (example: url("squelette/images/mon_image.jpg") ',
 	'doc_annonce2' => ' : the most recent article with the keyword "annonce" in an insert.',
 	'doc_annonce_defil' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article179&lang=fr" title="To see the documentation">Drop-down announcements</a>',
 	'doc_annonce_defil2' => ' : all the articles with the keyword "annonce-defilant" roll over in an insert.',
-	'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="To see the documentation">Authors directory</a>',
-	'doc_annuaire_auteurs2' => ' : the list of authors and their status.',
+	'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="To see the documentation">Authors directory</a>', # MODIF
+	'doc_annuaire_auteurs2' => ' : the list of authors and their status.', # MODIF
 	'doc_article_libre' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article200&lang=fr" title="To see the documentation">Free article 1 to 5</a>',
 	'doc_article_libre2' => ' : article with a keyword "article-libreN" (N = 1 to 5) for what you want. The title of the block will be that of the article.',
 	'doc_articles_plus_vus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article78&lang=fr" title="To see the documentation">The most seen articles</a>',
@@ -437,7 +437,7 @@ an image (example: url("squelette/images/mon_image.jpg") ',
                     you can inform the webmaster 
                     by using the [Contact|Contact page->@url@] page of this site.',
 	'escal' => 'Escal',
-	'espace_redacteurs' => 'Editors area',
+	'espace_redacteurs' => 'Editors area', # MODIF
 	'evenements_ajouter' => 'Add an event<br />(Reserved access)',
 	'evenements_associes' => 'Related events:',
 	'evenements_non' => 'No events to come',
@@ -501,7 +501,7 @@ an image (example: url("squelette/images/mon_image.jpg") ',
                       A smart expandable background
                       </a>
                 <br /><br />
-                    Fit the background to the screen?',
+                    Fit the background to the screen?', # MODIF
 	'fonds_site_image' => 'Background picture',
 	'fonds_textes' => 'Other texts',
 	'fonds_textes_alerte' => 'The warnings of the contact page',
@@ -686,10 +686,10 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'noisettes_annuaire_admin' => 'Colour for the administrators',
 	'noisettes_annuaire_icones' => 'Display of the icons',
 	'noisettes_annuaire_lien' => 'Display of the link towards faces',
-	'noisettes_annuaire_pagination' => 'The number of authors by pagination page',
+	'noisettes_annuaire_pagination' => 'The number of authors by pagination page', # MODIF
 	'noisettes_annuaire_redacteur' => 'Colour for the writers',
-	'noisettes_annuaire_visiteur' => 'Colour for the visitors',
-	'noisettes_calendrier_ajouter' => 'Link "Add an event" if the visitor is authentificated',
+	'noisettes_annuaire_visiteur' => 'Colour for the visitors', # MODIF
+	'noisettes_calendrier_ajouter' => 'Link "Add an event" if the visitor is authentificated', # MODIF
 	'noisettes_calendrier_couleur' => 'Default color of events',
 	'noisettes_calendrier_events' => 'List of coming events below',
 	'noisettes_calendrier_explication' => 'Choice of the display:<br /> 
@@ -721,9 +721,9 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'noisettes_forum_explication' => 'Only one side column because the forum occupies the remaining space',
 	'noisettes_identification_explication' => 'The title of this block is not editable.',
 	'noisettes_identification_redacteur' => 'To display again the inscription form<strong>writers</strong><br />
-			("To accept the inscriptions" must have been checked in the private space: Configuration - Interactivity)',
+			("To accept the inscriptions" must have been checked in the private space: Configuration - Interactivity)', # MODIF
 	'noisettes_identification_visiteur' => 'To display the inscription form  of new <strong>visitors</strong><br />
-			("To accept the inscription of visitors of the public website" must have been checked in the private space: Configuration - Interactivity)',
+			("To accept the inscription of visitors of the public website" must have been checked in the private space: Configuration - Interactivity)', # MODIF
 	'noisettes_multi_choix' => '<strong>Choice of the groups of keywords</strong>',
 	'noisettes_multi_choix2' => 'Select a group',
 	'noisettes_multi_groupe1' => 'First group (mandatory)',
@@ -741,7 +741,7 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'noisettes_perso_choix2' => 'For the 2 last display choices: ',
 	'noisettes_perso_choix3' => 'For the 3 first display choices: ',
 	'noisettes_perso_choix4' => 'For the fourth display choice: ',
-	'noisettes_perso_liste1' => 'List with title (and link), publication date and author',
+	'noisettes_perso_liste1' => 'List with title (and link), publication date and author', # MODIF
 	'noisettes_perso_liste2' => 'List with title alone (and link)',
 	'noisettes_perso_liste3' => 'List with title (and link) and beginning of the text',
 	'noisettes_perso_liste4' => 'Drop-down list with title (and link) and beginning of the text',
@@ -752,13 +752,13 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'noisettes_sites_tempo' => 'Delay between each website logo (in seconds).<br />A cache clearing is necessary to apply a new delay.',
 	'noisettes_stats_affiche' => 'Display ...',
 	'noisettes_stats_articles' => 'The number of articles of the website',
-	'noisettes_stats_auteurs' => 'The number of authors',
+	'noisettes_stats_auteurs' => 'The number of authors', # MODIF
 	'noisettes_stats_choix' => 'Choice of the statistics to be presented:',
 	'noisettes_stats_dernier' => 'Last published article',
 	'noisettes_stats_et' => 'and from',
-	'noisettes_stats_jour' => 'Today’s number of visitors',
+	'noisettes_stats_jour' => 'Today’s number of visitors', # MODIF
 	'noisettes_stats_libelle' => ' of the wording "This website has"',
-	'noisettes_stats_ligne' => 'On line number of visitors',
+	'noisettes_stats_ligne' => 'On line number of visitors', # MODIF
 	'noisettes_stats_max' => 'The biggest day',
 	'noisettes_stats_mots' => 'The number of keywords',
 	'noisettes_stats_moyenne' => 'Average number of visits',
@@ -831,7 +831,7 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'onglets_rub3' => 'Section 3',
 	'onglets_rub4' => 'Section 4',
 	'onglets_rub5' => 'Section 5',
-	'onglets_rub_auteur' => 'display the author of the articles',
+	'onglets_rub_auteur' => 'display the author of the articles', # MODIF
 	'onglets_rub_descriptif' => 'display the description of the section',
 	'onglets_rub_explication' => 'allows to display the sections with the keyword "RubriqueOnglet" or "RubriqueOngletN" (N = 2 to 5).<br />
                     The title of the section is displayed in the tab and the articles of this section are displayed below.<br />
@@ -850,7 +850,7 @@ you can choose to display the metadata of your photos or their title or the 2',
 	// P
 	'page_accueil' => 'The home page',
 	'page_article' => 'The article page',
-	'page_auteur' => 'Author’s pages',
+	'page_auteur' => 'Author’s pages', # MODIF
 	'page_autres' => 'For the other pages : contact, 404, directory, author, search, ...',
 	'page_contact' => 'Contact page',
 	'page_contact2' => 'Contact page from',
@@ -1012,7 +1012,7 @@ you can choose to display the metadata of your photos or their title or the 2',
 	'title_articles_derniers' => 'Last articles',
 	'title_contact' => 'Contact the technical referent',
 	'title_escal' => 'Link to the official site of Escal',
-	'title_espace_redacteurs' => 'The private space for writers and administrators',
+	'title_espace_redacteurs' => 'The private space for writers and administrators', # MODIF
 	'title_mentions' => 'Legal notices of the site',
 	'titre' => 'Title',
 	'titre_coupe' => 'Number of characters displayed for the titles of articles',
@@ -1040,8 +1040,8 @@ you can choose to display the metadata of your photos or their title or the 2',
 	- associate the keyword "video-une" to articles containing your videos',
 	'visites' => 'Visits',
 	'visites_jour' => 'visits a day',
-	'visiteur' => 'visitor',
-	'visiteurs' => 'visitors',
+	'visiteur' => 'visitor', # MODIF
+	'visiteurs' => 'visitors', # MODIF
 	'vu' => 'seen',
 
 	// W
