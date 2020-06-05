@@ -16,8 +16,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_logo' => 'Choix de la couleur du logo',
 	'accueil' => 'Accueil',
 	'actus' => 'Actus',
-	'adresse_non' => 'Cet auteur.e n’a pas fourni son adresse e-mail',
-	'affichage_auteur_articles' => 'Affichage du nom de l’auteur.e des articles',
+	'adresse_non' => 'Cet·auteur·e n’a pas fourni son adresse e-mail',
+	'affichage_auteur_articles' => 'Affichage du nom de l’auteur·e des articles',
 	'affichage_chapeau' => 'Affichage du chapeau',
 	'affichage_choix' => 'Choix de l’affichage',
 	'affichage_date_modif' => 'Affichage de la date de mise à jour',
@@ -33,7 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'affichage_mots_cles_article' => 'Pour la page article',
 	'affichage_mots_cles_rubrique' => 'Pour la page rubrique',
 	'affichage_mots_cles_une' => 'Pour la page d’accueil',
-	'affichage_nom_auteur' => 'Affichage du nom de l’auteur.e',
+	'affichage_nom_auteur' => 'Affichage du nom de l’auteur·e',
 	'affichage_nombre_comments' => 'Affichage du nombre de commentaires',
 	'affichage_ordre' => 'Ordre d’affichage',
 	'affichage_ordre_date' => 'Ordre chronologique',
@@ -63,7 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                     - date de fin d’affichage = date de rédaction antérieure',
 	'annonces' => 'Les annonces',
 	'annuaire' => 'Annuaire',
-	'annuaire_auteurs' => 'Annuaire auteur.e.s',
+	'annuaire_auteurs' => 'Annuaire auteur·e·s',
 	'annuaire_invitation' => 'Vous aussi, vous utilisez ESCAL ?<br />Alors ajoutez votre site dans cette page.',
 	'arrondis' => 'Les arrondis',
 	'arrondis_annonce' => 'Annonce',
@@ -114,7 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articlepdf_plugin' => 'Plugin ArticlePDF',
 	'articles_associes' => 'Voir les articles associés à ',
 	'articles_associes_mot' => 'Articles associés au mot',
-	'articles_auteur' => 'Cet auteur.e a écrit :',
+	'articles_auteur' => 'Cet auteur·e a écrit :',
 	'articles_derniers' => 'Les derniers articles',
 	'articles_explication' => 'Vous pouvez définir ici la largeur maximum des images dans vos articles. <br />
             Celle-ci est par défaut de 400px dans les articles classiques et de 850px dans les articles en pleine page,
@@ -138,7 +138,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_trouves' => 'articles trouvés',
 	'aucun' => 'Aucun',
 	'aujourdhui' => 'Aujourd’hui : ',
-	'auteurs' => 'auteur.e.s',
+	'auteurs' => 'auteur·e·s',
 	'avec' => 'avec',
 	'avec_le_squelette' => 'Habillage',
 
@@ -150,7 +150,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'balise_meta' => 'Balises "meta"',
 	'balise_meta_explication' => 'Configurer les balises meta du site (enfin celles qui ne le sont pas déjà)<br />
             - Balise "Keyword" :  cette balise n’est quasiment plus utilisée par les moteurs de recherche pour référencer un site <br />
-            - Balise "Author" : utile surtout si vous voulez rappeler aux curieux qui lisent le code source des pages que le site a un.e auteur.e <br />
+            - Balise "Author" : utile surtout si vous voulez rappeler aux curieux qui lisent le code source des pages que le site a un·e auteur·e <br />
             Au final, une page de configuration sans grande utilité ...',
 	'bandeau' => 'Bandeau',
 	'bandeau_choix_explication' => ' Si votre image de bandeau n’occupe pas toute la largeur, vous pouvez choisir sa position.<br />
@@ -366,8 +366,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'doc_annonce2' => ' : l’article le plus récent avec le mot-clé "annonce" dans un encart.',
 	'doc_annonce_defil' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article179&lang=fr" title="Voir la documentation">Annonces défilantes</a>',
 	'doc_annonce_defil2' => ' : tous les articles avec le mot-clé "annonce-defilant" défilent dans un encart.',
-	'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="Voir la documentation">Annuaire auteur.e.s</a>',
-	'doc_annuaire_auteurs2' => ' : la liste des auteur.e.s et leur statut.',
+	'doc_annuaire_auteurs' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article201&lang=fr" title="Voir la documentation">Annuaire auteur·e·s</a>',
+	'doc_annuaire_auteurs2' => ' : la liste des auteur·e·s et leur statut.',
 	'doc_article_libre' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article200&lang=fr" title="Voir la documentation">Article libre 1 à 5</a>',
 	'doc_article_libre2' => ' : article avec mot-clé "article-libreN" (N = 1 à 5) pour ce que vous voulez. Le titre du bloc sera celui de l’article.',
 	'doc_articles_plus_vus' => '<a class="spip_out" href="http://escal.ac-lyon.fr/spip/spip.php?article78&lang=fr" title="Voir la documentation">Articles les plus vus</a>',
@@ -507,7 +507,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'fonds_site_explication3' => 'Par défaut, l’image de fond est répétée horizontalement et/ou verticalement,
                 ce qui est bien pour un fond dégradé par exemple.
                 Mais si vous avez une image qui ne doit pas se répéter, cocher "oui" en dessous
-                et votre image s’adaptera à l’écran du visiteur.euse et restera fixe. <br /><br />
+                et votre image s’adaptera à l’écran du visiteur·euse et restera fixe. <br /><br />
                 - Taille conseillée pour la plupart des écrans : 2000px par 1300px<br />
                 - Le poids de l’image doit être optimisé pour ne pas ralentir considérablement le chargement<br />
                 Voir <a href="http://www.alsacreations.com/astuce/lire/1216-arriere-plan-background-extensible.html" title="Plus d\'infos">
@@ -705,10 +705,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_annuaire_admin' => 'Couleur pour les admins',
 	'noisettes_annuaire_icones' => 'Affichage des icônes',
 	'noisettes_annuaire_lien' => 'Affichage du lien vers le trombinoscope',
-	'noisettes_annuaire_pagination' => 'Nombre d’auteur.e.s par page de pagination',
+	'noisettes_annuaire_pagination' => 'Nombre d’auteur·e·s par page de pagination',
 	'noisettes_annuaire_redacteur' => 'Couleur pour les redacteurs',
-	'noisettes_annuaire_visiteur' => 'Couleur pour les visiteur.euse.s',
-	'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur.euse est authentifié',
+	'noisettes_annuaire_visiteur' => 'Couleur pour les visiteur·euse·s',
+	'noisettes_calendrier_ajouter' => 'Lien "Ajouter un événement" si le visiteur·euse est authentifié',
 	'noisettes_calendrier_couleur' => 'Couleur par défaut des événements',
 	'noisettes_calendrier_events' => 'Liste des événement à venir en dessous',
 	'noisettes_calendrier_explication' => 'Choix de l’affichage :<br />
@@ -739,10 +739,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_forum_colonne' => 'Place de la colonne latérale',
 	'noisettes_forum_explication' => 'Une seule colonne latérale car le forum occupe le reste de l’espace',
 	'noisettes_identification_explication' => 'Le titre de ce bloc n’est pas modifiable.',
-	'noisettes_identification_redacteur' => 'Afficher le formulaire d’inscription de nouveaux <strong>rédacteur.rice.s</strong><br />
+	'noisettes_identification_redacteur' => 'Afficher le formulaire d’inscription de nouveaux <strong>rédacteur·rice·s</strong><br />
 			(Il faut avoir coché "Accepter les inscriptions" dans l’espace privé : Configuration - Interactivité)',
-	'noisettes_identification_visiteur' => 'Afficher le formulaire d’inscription de nouveaux <strong>visiteur.euse.s</strong><br />
-			(Il faut avoir coché "Accepter l’inscription de visiteur.euse.s du site public" dans l’espace privé : Configuration - Interactivité)',
+	'noisettes_identification_visiteur' => 'Afficher le formulaire d’inscription de nouveaux <strong>visiteur·euse·s</strong><br />
+			(Il faut avoir coché "Accepter l’inscription de visiteur·euse·s du site public" dans l’espace privé : Configuration - Interactivité)',
 	'noisettes_multi_choix' => '<strong>Choix des groupes de mots-clés</strong>',
 	'noisettes_multi_choix2' => 'Choisissez un groupe',
 	'noisettes_multi_groupe1' => 'Premier groupe (obligatoire)',
@@ -771,13 +771,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noisettes_sites_tempo' => 'Temporisation entre chaque logo de site (en secondes).<br />Un vidage de cache est nécessaire pour appliquer une nouvelle temporisation.',
 	'noisettes_stats_affiche' => 'Affichage ...',
 	'noisettes_stats_articles' => 'Nombre d’articles du site',
-	'noisettes_stats_auteurs' => 'Nombre d’auteur.e.s',
+	'noisettes_stats_auteurs' => 'Nombre d’auteur·e·s',
 	'noisettes_stats_choix' => 'Choix des statistiques à présenter :',
 	'noisettes_stats_dernier' => 'Dernier article paru',
 	'noisettes_stats_et' => 'et du',
-	'noisettes_stats_jour' => 'Nombre de visiteur.euse.s du jour',
+	'noisettes_stats_jour' => 'Nombre de visiteur·euse·s du jour',
 	'noisettes_stats_libelle' => ' du libellé "Ce site compte"',
-	'noisettes_stats_ligne' => 'Nombre de visiteur.euse.s en ligne',
+	'noisettes_stats_ligne' => 'Nombre de visiteur·euse·s en ligne',
 	'noisettes_stats_max' => 'Plus grosse journée',
 	'noisettes_stats_mots' => 'Nombre de mots-clés',
 	'noisettes_stats_moyenne' => 'Moyenne des visites',
@@ -850,7 +850,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'onglets_rub3' => 'Rubrique 3',
 	'onglets_rub4' => 'Rubrique 4',
 	'onglets_rub5' => 'Rubrique 5',
-	'onglets_rub_auteur' => 'afficher l’auteur.e des articles',
+	'onglets_rub_auteur' => 'afficher l’auteur·e des articles',
 	'onglets_rub_descriptif' => 'afficher le descriptif de la rubrique',
 	'onglets_rub_explication' => 'permettent d’afficher les rubriques qui ont le mot-clé "RubriqueOnglet" ou "RubriqueOngletN" (N = 2 à 5).<br />
                     Le titre de la rubrique est affiché dans l’onglet et les articles de cette rubrique sont affichés dessous.<br />
@@ -869,7 +869,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// P
 	'page_accueil' => 'La page d’accueil',
 	'page_article' => 'La page article',
-	'page_auteur' => 'page de l’auteur.e',
+	'page_auteur' => 'page de l’auteur·e',
 	'page_autres' => 'Pour les autres pages : contact, 404, annuaire, auteur, recherche, ...',
 	'page_contact' => 'Page contact',
 	'page_contact2' => 'Page contact de',
@@ -1032,7 +1032,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'title_articles_derniers' => 'Derniers articles',
 	'title_contact' => 'Contacter le référent technique',
 	'title_escal' => 'Lien vers le site officiel d’Escal',
-	'title_espace_redacteurs' => 'L’espace privé des auteur.e.s et administrateur.rice.s',
+	'title_espace_redacteurs' => 'L’espace privé des auteur·e·s et administrateur·rice·s',
 	'title_mentions' => 'Mentions légales du site',
 	'titre' => 'Titre',
 	'titre_coupe' => 'Nombre de caractères affichés pour le titre des articles',
@@ -1060,8 +1060,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	        - associer le mot-clé "video-une" aux articles contenant vos vidéos',
 	'visites' => 'Visites',
 	'visites_jour' => 'visites par jour',
-	'visiteur' => 'visiteur.euse',
-	'visiteurs' => 'visiteur.euse.s',
+	'visiteur' => 'visiteur·euse',
+	'visiteurs' => 'visiteur·euse·s',
 	'vu' => 'vu',
 
 	// W
