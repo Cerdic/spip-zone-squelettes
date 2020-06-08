@@ -24,14 +24,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'Eus @djour_l@ @djour@ @dmois_l@ @dannee@ da @dheure@<html>:</html>@dminutes@ da @fjour_l@ @fjour@ @fmois_l@ @fannee@ à @fheure@<html>:</html>@fminutes@',
 	'agenda_fsd_notime' => 'Eus @djour_l@ @djour@ @dmois_l@ @dannee@ da @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Kinnig un darvoud',
-	'agenda_proposer_evenement_explication' => 'Gall a rit kinnig un darvoud d’ an ardead load, a zibabo da embann pe nann. Ar resisañ darvoudoù a vo degemeret da gentañ penn.',
-	'agenda_proposer_evenement_title' => 'Gall a rit kinnig un darvoud d’ an ardead load.',
+	'agenda_proposer_evenement_explication' => 'Gall a rit kinnig un darvoud d’ an ardead load, a zibabo da embann pe nann. Ar resisañ darvoudoù a vo degemeret da gentañ penn.', # MODIF
+	'agenda_proposer_evenement_title' => 'Gall a rit kinnig un darvoud d’ an ardead load.', # MODIF
 	'agenda_sd' => 'D’an @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@<html>:</html>@dminutes@ da  @fheure@<html>:</html>@fminutes@',
 	'agenda_sd_h' => 'D’an @djour_l@ @djour@ @dmois_l@ @dannee@ da @dheure@<html>:</html>@dminutes@',
 	'agenda_sd_notime' => 'Ar @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Koumanantiñ d’an darvoud',
 	'agendamoisde' => 'Deiziataer miz ',
-	'aidesc' => 'Skoazell war BezitKrouerion',
 	'alaune' => 'Pajenn gentañ',
 	'annuaire' => 'Roll an anvioù',
 	'annuaire_consulter' => 'Sellout ouzh roll an anvioù',
@@ -40,9 +39,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Dielloù',
 	'archives_title' => 'Sellout ouzh ar pennadoù diellaouet',
 	'articlesconnexes' => 'Pennadoù liammet',
-	'auteur' => 'Skridaozer',
-	'auteurs_liste' => 'Roll oberourien',
-	'auteurs_site' => 'Oberourien al load',
+	'auteur' => 'Skridaozer', # MODIF
+	'auteurs_liste' => 'Roll oberourien', # MODIF
+	'auteurs_site' => 'Oberourien al load', # MODIF
 
 	// C
 	'carte_monde' => 'Kartenn ar bed',
@@ -51,8 +50,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Gant <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> klask war an Web!',
 	'clever_uns' => 'Dienskrivadur sevenet',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Da gregiñ mat',
-	'configurersc' => 'Kefluniañ SoyezCréateurs',
 	'connexion' => 'Kennaskañ',
 	'connexiontitle' => 'Tizhout an egor miret',
 	'copyright_cnil' => 'Disklêriadur CNIL niverenn ',
@@ -71,11 +68,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Teulioù da bellgargañ ',
 
 	// E
-	'ecoute' => 'Selaoù : :',
+	'ecoute' => 'Selaoù : :', # MODIF
 	'editos' => 'Pennadoù-stur',
 	'erreur' => 'Fazi !',
 	'erreur_documentexistepas' => 'Fazi : n’eus ket eus an teul-se !',
-	'erreur_excuses_404' => 'Glac’haret omp...',
+	'erreur_excuses_404' => 'Glac’haret omp...', # MODIF
 	'erreur_excuses_404_explications' => '<p>N’eo ket bet kavet ar bajenn a glaskit
 rak :</p><ol class="spip"><li>Diamzeriet eo,</li><li>-	Diamzeriet eo liamm ar bajenn,
 dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez da gregiñ ho furchadenn war ar  <a href="@urlsite@">bajenn degemer : @nomsite@</a>, pe da glask ur ger-alc’hwez gant ar skrid-stur amañ dindan.</p>',
@@ -92,15 +89,13 @@ dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez
 	'forum_votre_prenom' => 'Ho kentanv :',
 
 	// L
-	'layout_accueil_title' => 'Kenstummañ spesadel ar bajenn zegemer',
-	'layout_defaut_title' => 'Kenstummañ ampleg evit al lec’hienn (pennadoù-skrid ha rubrikoù) ',
 	'liresuitede' => 'Lenn heuliad :',
 	'liresuiteeditorial' => 'Lenn heuliad ar pennad-stur',
-	'liresuitesyndic' => 'Lenn an heuliad war al lec’hienn orin...',
+	'liresuitesyndic' => 'Lenn an heuliad war al lec’hienn orin...', # MODIF
 	'listezones' => 'Roll an takadoù da glikañ',
 
 	// M
-	'memerubrique' => 'En hevelep bann...',
+	'memerubrique' => 'En hevelep bann...', # MODIF
 	'mentions_legales_obligatoires' => 'Meneg lezennel diouzh ret ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] ha [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Pep tra[da c’houzout (e galleg)->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Disrinegañ ar redioù hervez al lezenn (e galleg ivez)->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'Displegañ :',
 	'menu_picalt' => 'Klikañ evit',
@@ -146,14 +141,10 @@ dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez
 	'rubrique_securisee' => 'Tremen-miret digor',
 
 	// S
-	'savoirplus' => 'Da cˈhouzout hirocˈh...',
+	'savoirplus' => 'Da cˈhouzout hirocˈh...', # MODIF
 	'savoirpluscritere' => 'Gouzout hirocˈh war an dezverk',
 	'sedna' => 'Sedna (Kenstroller al lanv RSS)',
 	'sommaire' => 'Taolenn',
-	'soyezcreateurs' => 'SoyezCréateurs',
-	'soyezcreateurs_couleurs' => 'Livioù',
-	'soyezcreateurs_google' => 'Daveenniñ',
-	'soyezcreateurs_layout' => 'Savlec’hiañ',
 	'syndiquer_agenda' => 'Sindikadañ an deiziataer',
 
 	// T
@@ -169,7 +160,7 @@ dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez
 	'voirimage' => 'Gwelout ar skeudenn hepken',
 	'voirle' => 'Gwelout',
 	'voirsitespar' => 'Gwelout ar loadoù gant',
-	'vous_souhaitez_etre_tenu_au_courant' => 'Plijout a rafe deoc’h bezañ kelaouet ?',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Plijout a rafe deoc’h bezañ kelaouet ?', # MODIF
 
 	// W
 	'wdcalendar_all_day' => 'A-hed an devezh',
@@ -187,7 +178,7 @@ dilec’hiet e ar bajenn,</li><li>Dilec’hiet e ar bajenn.</li></ol><p>Trugarez
 	'wdcalendar_jan' => 'Genver',
 	'wdcalendar_jul' => 'Gouere',
 	'wdcalendar_jun' => 'Even',
-	'wdcalendar_loading_data' => 'Kargañ ar roadennoù...',
+	'wdcalendar_loading_data' => 'Kargañ ar roadennoù...', # MODIF
 	'wdcalendar_loading_fail' => 'Hon digarezit, n’hallomp ket kargañ ho roadennoù, trugarez da adesaeañ diwezhatoc’h.',
 	'wdcalendar_location' => 'Lec’h',
 	'wdcalendar_mar' => 'Meurzh',

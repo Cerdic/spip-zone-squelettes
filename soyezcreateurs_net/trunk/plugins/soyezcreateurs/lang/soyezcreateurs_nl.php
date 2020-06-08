@@ -18,9 +18,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agendamoisde' => 'Agenda van de maand ... ',
 	'alaune' => 'Top info',
 	'articlesconnexes' => 'Samenhangende artikelen', # MODIF
-	'auteur' => 'Auteur',
-	'auteurs_liste' => 'Lijst van auteurs',
-	'auteurs_site' => 'Auteurs van website',
+	'auteur' => 'Auteur', # MODIF
+	'auteurs_liste' => 'Lijst van auteurs', # MODIF
+	'auteurs_site' => 'Auteurs van website', # MODIF
 
 	// C
 	'carte_monde' => 'Kaart van de wereld',
@@ -59,7 +59,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Uw voornaam :',
 
 	// M
-	'memerubrique' => 'In deze rubriek...',
+	'memerubrique' => 'In deze rubriek...', # MODIF
 	'menu_deplier' => 'ontvouwen: ',
 	'menu_picalt' => 'klikken voor ',
 	'menu_replier' => 'opvouwen: ',
@@ -100,7 +100,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourtop' => 'In top terugkomen',
 
 	// S
-	'savoirplus' => ' Meer weten...',
+	'savoirplus' => ' Meer weten...', # MODIF
 	'savoirpluscritere' => 'Meer op het criterium weten',
 	'sedna' => 'Sedna (RSS reader)',
 	'sommaire' => 'Overzicht',

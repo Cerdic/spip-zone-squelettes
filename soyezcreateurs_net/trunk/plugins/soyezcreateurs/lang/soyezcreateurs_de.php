@@ -19,11 +19,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda' => 'Kalendar',
 	'agenda_exporter_ical' => 'Exportieren ins iCal Format',
 	'agenda_proposer_evenement' => 'Ein Aenderung vorschlagen',
-	'agenda_proposer_evenement_explication' => 'Sie koennen einen Vorschlag an die Verwaltung hier machen. Um anerkannt zu sein sollen die Aenderungen so detailiert sein wie moeglich.',
-	'agenda_proposer_evenement_title' => 'Sie koennen ein Aenderung an die Verwaltung hier vorschlagen',
+	'agenda_proposer_evenement_explication' => 'Sie koennen einen Vorschlag an die Verwaltung hier machen. Um anerkannt zu sein sollen die Aenderungen so detailiert sein wie moeglich.', # MODIF
+	'agenda_proposer_evenement_title' => 'Sie koennen ein Aenderung an die Verwaltung hier vorschlagen', # MODIF
 	'agenda_sinscrire' => 'schreiben in Ereignisse',
 	'agendamoisde' => 'Monats Kalender von',
-	'aidesc' => 'Hilfe bei SoyezCréateurs',
 	'alaune' => 'Zum Anfang',
 	'annuaire' => 'Verzeichnis',
 	'annuaire_consulter' => 'Kalendar anschauen',
@@ -31,9 +30,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'annuaire_vide' => 'Verzeichnis ist leer',
 	'archives' => 'Archiven',
 	'archives_title' => 'Artikle Archiv anschauen',
-	'auteur' => 'Verfasser ',
-	'auteurs_liste' => 'Liste der Verfassers',
-	'auteurs_site' => 'Site Verfassers',
+	'auteur' => 'Verfasser ', # MODIF
+	'auteurs_liste' => 'Liste der Verfassers', # MODIF
+	'auteurs_site' => 'Site Verfassers', # MODIF
 
 	// C
 	'carte_monde' => 'Welt Karte',
@@ -42,8 +41,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'mit google suchen',
 	'clever_uns' => 'Abmeldung abgeschlossen',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Für einen guten start',
-	'configurersc' => 'Konfigurieren von Soyezcreateurs',
 	'connexion' => 'Verbindung',
 	'connexiontitle' => 'Zugang zum reservierten Bereich',
 	'copyright_cnil' => 'Erklärung CNIL Nr.',
@@ -62,11 +59,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Dokumente zum Herunterladen',
 
 	// E
-	'ecoute' => 'Anhören:',
+	'ecoute' => 'Anhören:', # MODIF
 	'editos' => 'Leitartikel',
 	'erreur' => 'Fehler!',
 	'erreur_documentexistepas' => 'Fehler: Dieser Dokument existiert nicht!',
-	'erreur_excuses_404' => 'Es tut uns leid...',
+	'erreur_excuses_404' => 'Es tut uns leid...', # MODIF
 	'erreur_excuses_404_explications' => '<p>Die Seite, die Sie suchen konnte gefunden werden, weil:</p><ol class="spip"><li>es war aktueller,</li> <li>der Link zu der Seite, die du suchst ist veraltet,</li> <li>die angeforderte Seite wurde verschoben.</li></ol><p>Wir danken Ihnen, beginnen Ihre Suche auf der <a href \'@urlsite@\'> Homepage: @nomsite @</a>, oder suchen Sie nach einem Stichwort mit dem Formular unten.</p>',
 
 	// F
@@ -80,15 +77,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Ihre Vorname:',
 
 	// L
-	'layout_accueil_title' => 'Speziell für das Homepage-layout',
-	'layout_defaut_title' => 'Standard-Layout für die Website (Artikel und Themen)',
 	'liresuitede' => 'Lesen Sie mehr von:',
 	'liresuiteeditorial' => 'Lesen Sie den Rest der Redaktion',
-	'liresuitesyndic' => 'Lesen Sie mehr auf der ursprünglichen Website...',
+	'liresuitesyndic' => 'Lesen Sie mehr auf der ursprünglichen Website...', # MODIF
 	'listezones' => 'Liste der klickbare Bereiche',
 
 	// M
-	'memerubrique' => 'In der gleichen Rubrik...',
+	'memerubrique' => 'In der gleichen Rubrik...', # MODIF
 	'mentions_legales_obligatoires' => 'Obligatorische rechtlicher Hinweis ([CNIL|Der Kommission Nationale Informatique et Liberté -&gt; http://www.cnil.fr/] und [LcEN|Recht auf Vertrauen in die digitale Wirtschaft -&gt; http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo ECOX0200175L]). Alles [Sie wissen müssen -&gt; http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Entschlüsselung der rechtlichen Verpflichtungen -&gt; http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'd\\351 entfalten:',
 	'menu_picalt' => 'Klicken Sie auf',
@@ -133,14 +128,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Zugang Geoeffnet',
 
 	// S
-	'savoirplus' => 'Um mehr zu erfahren...',
+	'savoirplus' => 'Um mehr zu erfahren...', # MODIF
 	'savoirpluscritere' => 'Erfahren Sie mehr über den test',
 	'sedna' => 'Sedna (RSS-feed Aggregator)',
 	'sommaire' => 'Zusammenfassung',
-	'soyezcreateurs' => 'SoyezCréateurs',
-	'soyezcreateurs_couleurs' => 'Farben',
-	'soyezcreateurs_google' => 'Suchmachine optimierung',
-	'soyezcreateurs_layout' => 'Positionierung',
 	'syndiquer_agenda' => 'Organisieren der Tagesordnung',
 
 	// T
@@ -156,7 +147,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'Das einzelne Bild sehen',
 	'voirle' => 'Finden Sie unter der',
 	'voirsitespar' => 'Finden Sie Websites mit',
-	'vous_souhaitez_etre_tenu_au_courant' => 'Möchten Sie auf dem Laufenden gehalten werden?',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Möchten Sie auf dem Laufenden gehalten werden?', # MODIF
 
 	// W
 	'wdcalendar_all_day' => 'Ganzen Tag',
@@ -174,7 +165,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'Jul',
 	'wdcalendar_jun' => 'Juni',
-	'wdcalendar_loading_data' => 'Daten werden geladen...',
+	'wdcalendar_loading_data' => 'Daten werden geladen...', # MODIF
 	'wdcalendar_loading_fail' => 'Tut mir leid, wir koennen Ihre Daten nicht laden, bitte versuchen Sie es später noch einmal',
 	'wdcalendar_location' => 'Ort',
 	'wdcalendar_mar' => 'Maer',

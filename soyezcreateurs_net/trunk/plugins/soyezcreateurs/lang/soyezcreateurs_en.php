@@ -24,14 +24,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'From @djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@ to the  @fjour_l@ @fjour@ @fmois_l@ @fannee@ at @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'From @djour_l@ @djour@ @dmois_l@ @dannee@ to the @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Submit an event',
-	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.',
-	'agenda_proposer_evenement_title' => 'You may suggest an event to the site’s administrator.',
+	'agenda_proposer_evenement_explication' => 'You may suggest an event to the site administrator who will decide whether or not to publish it. Your event has more chance of being published if it has as much detail as possible.', # MODIF
+	'agenda_proposer_evenement_title' => 'You may suggest an event to the site’s administrator.', # MODIF
 	'agenda_sd' => '@djour_l@ @djour@ @dmois_l@ @dannee@ from @dheure@:@dminutes@ to @fheure@:@fminutes@',
 	'agenda_sd_h' => '@djour_l@ @djour@ @dmois_l@ @dannee@ at @dheure@:@dminutes@',
 	'agenda_sd_notime' => '@djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agendamoisde' => 'Calendar for the month',
-	'aidesc' => 'Help about SoyezCréateurs',
 	'alaune' => 'Featured',
 	'annuaire' => 'Directory',
 	'annuaire_consulter' => 'Consult the directory',
@@ -40,9 +39,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archives',
 	'archives_title' => 'View the archived articles',
 	'articlesconnexes' => 'Related articles',
-	'auteur' => 'Author',
-	'auteurs_liste' => 'List of authors',
-	'auteurs_site' => 'Site authors',
+	'auteur' => 'Author', # MODIF
+	'auteurs_liste' => 'List of authors', # MODIF
+	'auteurs_site' => 'Site authors', # MODIF
 
 	// C
 	'carte_monde' => 'World map',
@@ -51,8 +50,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'To start',
-	'configurersc' => 'Set SoyezCréateurs',
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',
@@ -71,11 +68,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Document download',
 
 	// E
-	'ecoute' => 'Listen to :',
+	'ecoute' => 'Listen to :', # MODIF
 	'editos' => 'Editorials',
 	'erreur' => 'Error !',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
-	'erreur_excuses_404' => 'Sorry...',
+	'erreur_excuses_404' => 'Sorry...', # MODIF
 	'erreur_excuses_404_explications' => '<p>The page that you’re looking for couldn’t be located because :</p><ol class="spip"><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
@@ -90,15 +87,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Your firstname:',
 
 	// L
-	'layout_accueil_title' => 'Specific arrangement to home page',
-	'layout_defaut_title' => 'Default layout for the site (articles and sections) ',
 	'liresuitede' => 'More to read about :',
 	'liresuiteeditorial' => 'Read the end of the editorial',
-	'liresuitesyndic' => 'Read more on the original site ...',
+	'liresuitesyndic' => 'Read more on the original site ...', # MODIF
 	'listezones' => 'Hot spot’s list',
 
 	// M
-	'memerubrique' => 'In the same section...',
+	'memerubrique' => 'In the same section...', # MODIF
 	'mentions_legales_obligatoires' => 'French compulsory legal notices ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] and [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Everything that [you need to know->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Decrypting the legal obligations->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
@@ -149,14 +144,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Open reserved access',
 
 	// S
-	'savoirplus' => 'More...',
+	'savoirplus' => 'More...', # MODIF
 	'savoirpluscritere' => 'Learn more about the criterion',
 	'sedna' => 'Sedna (RSS aggregator)',
 	'sommaire' => 'Summary',
-	'soyezcreateurs' => 'SoyezCréateurs',
-	'soyezcreateurs_couleurs' => 'Colors',
-	'soyezcreateurs_google' => 'Referencing',
-	'soyezcreateurs_layout' => 'Localization',
 	'syndiquer_agenda' => 'Syndiquer l’agenda',
 
 	// T
@@ -172,7 +163,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'See the image on its own',
 	'voirle' => 'See the',
 	'voirsitespar' => 'See the sites with',
-	'vous_souhaitez_etre_tenu_au_courant' => 'You want to be kept informed?',
+	'vous_souhaitez_etre_tenu_au_courant' => 'You want to be kept informed?', # MODIF
 
 	// W
 	'wdcalendar_all_day' => 'All day',
@@ -190,7 +181,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'July',
 	'wdcalendar_jun' => 'June',
-	'wdcalendar_loading_data' => 'Loading data...',
+	'wdcalendar_loading_data' => 'Loading data...', # MODIF
 	'wdcalendar_loading_fail' => 'Sorry, we are unable to load your data, please try later ',
 	'wdcalendar_location' => 'Location',
 	'wdcalendar_mar' => 'Mar',

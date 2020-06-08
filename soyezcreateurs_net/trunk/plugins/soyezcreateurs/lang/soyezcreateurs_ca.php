@@ -22,13 +22,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd_notime' => 'Del @djour_l@ @djour@ @dmois_l@ @dannee@ al @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Proposar un esdeveniment',
 	'agenda_proposer_evenement_explication' => 'Podeu proposar un esdeveniment a l’administrador del lloc que serà qui decidirà si es publica o no. Com més detallats siguin els esdeveniments més possibilitats tenen de ser validats amb èxit.', # MODIF
-	'agenda_proposer_evenement_title' => 'Podeu proposar un esdeveniment a l’administrador del lloc',
+	'agenda_proposer_evenement_title' => 'Podeu proposar un esdeveniment a l’administrador del lloc', # MODIF
 	'agenda_sd' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@:@dminutes@ a @fheure@:@fminutes@', # MODIF
 	'agenda_sd_h' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@ a @dheure@:@dminutes@', # MODIF
 	'agenda_sd_notime' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Inscriure’s a l’esdeveniment',
 	'agendamoisde' => 'Agenda del mes de',
-	'aidesc' => 'Ajuda a SigueuCreatius', # MODIF
 	'alaune' => 'A la portada ',
 	'annuaire' => 'Anuari',
 	'annuaire_consulter' => 'Consultar l’anuari',
@@ -37,9 +36,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Arxius',
 	'archives_title' => 'Consultar els articles arxivats',
 	'articlesconnexes' => 'Articles connexes', # MODIF
-	'auteur' => 'Autor',
-	'auteurs_liste' => 'Llista d’autors',
-	'auteurs_site' => 'Autors del lloc',
+	'auteur' => 'Autor', # MODIF
+	'auteurs_liste' => 'Llista d’autors', # MODIF
+	'auteurs_site' => 'Autors del lloc', # MODIF
 
 	// C
 	'carte_monde' => 'Mapa del món',
@@ -48,8 +47,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Amb <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cercar a la Web!',
 	'clever_uns' => 'Anul·lació de la inscripció realitzada ',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Per començar bé',
-	'configurersc' => 'Configurar SigueuCreatius', # MODIF
 	'connexion' => 'Connexió',
 	'connexiontitle' => 'Accedir a l’espai reservat',
 	'copyright_cnil' => 'Declaració CNIL nº ',
@@ -67,11 +64,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Documents per descarregar',
 
 	// E
-	'ecoute' => 'Escoltar:',
+	'ecoute' => 'Escoltar:', # MODIF
 	'editos' => 'Editorials',
 	'erreur' => 'Error!',
 	'erreur_documentexistepas' => 'Error: aquest document no existeix!',
-	'erreur_excuses_404' => 'Ho sentim molt...',
+	'erreur_excuses_404' => 'Ho sentim molt...', # MODIF
 	'erreur_excuses_404_explications' => '<p>La pàgina que busqueu no s’ha trobat perquè:</p><ol class="spip"><li>ja no és actual,</li><li>l’enllaç cap a la pàgina que busqueu està obsoleta,</li><li>la pàgina cercada ha estat desplaçada.</li></ol><p>Gràcies per començar la vostra cerca a la <a href="@urlsite@">Pàgina d’inici: @nomsite@</a>, o cercar una paraula clau amb el formulari de més avall.</p>',
 
 	// F
@@ -85,15 +82,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'El vostre nom:',
 
 	// L
-	'layout_accueil_title' => 'Format d’acord a la pàgina d’inici',
-	'layout_defaut_title' => 'Format, per defecte, pel lloc (articles i seccions)',
 	'liresuitede' => 'Llegir la continuació de:',
 	'liresuiteeditorial' => 'Llegir la continuació de l’editorial',
-	'liresuitesyndic' => 'Llegir la continuació al lloc d’origen...',
+	'liresuitesyndic' => 'Llegir la continuació al lloc d’origen...', # MODIF
 	'listezones' => 'llista de les zones on es pot clicar',
 
 	// M
-	'memerubrique' => 'A la mateixa secció...',
+	'memerubrique' => 'A la mateixa secció...', # MODIF
 	'mentions_legales_obligatoires' => 'Menció legal obligatòria ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] i [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu’[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Décryptage des obligations légales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'Desplegar: ',
 	'menu_picalt' => 'Clicar per ',
@@ -137,14 +132,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Accés reservat obert',
 
 	// S
-	'savoirplus' => 'Per saber-ne més...',
+	'savoirplus' => 'Per saber-ne més...', # MODIF
 	'savoirpluscritere' => 'Saber més sobre el criteri',
 	'sedna' => 'Sedna (agredador de flux RSS)',
 	'sommaire' => 'Sumari',
-	'soyezcreateurs' => 'Sigueu Creatius', # MODIF
-	'soyezcreateurs_couleurs' => 'Colors',
-	'soyezcreateurs_google' => 'Referenciament',
-	'soyezcreateurs_layout' => 'Posicionament',
 	'syndiquer_agenda' => 'Sindicar l’agenda',
 
 	// T

@@ -24,14 +24,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'من @djour_l@ @djour@ @dmois_l@ @dannee@ الساعة @dheure@<html>:</html>@dminutes@ إلى @fjour_l@ @fjour@ @fmois_l@ @fannee@ الساعة @fheure@<html>:</html>@fminutes@',
 	'agenda_fsd_notime' => 'من @djour_l@ @djour@ @dmois_l@ @dannee@ إلى @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'اقترح حدث',
-	'agenda_proposer_evenement_explication' => 'بإمكانك اقتراح حدث على المشرف على الموقع الذي سيختار نشرها من عدمه. الأحداث التي تحتوي على أكثر تفاصيل لها فرص أكبر للموافقة عليها.',
-	'agenda_proposer_evenement_title' => 'بإمكانك أن تقترح حدثا على المشرف على الموقع',
+	'agenda_proposer_evenement_explication' => 'بإمكانك اقتراح حدث على المشرف على الموقع الذي سيختار نشرها من عدمه. الأحداث التي تحتوي على أكثر تفاصيل لها فرص أكبر للموافقة عليها.', # MODIF
+	'agenda_proposer_evenement_title' => 'بإمكانك أن تقترح حدثا على المشرف على الموقع', # MODIF
 	'agenda_sd' => '@djour_l@ @djour@ @dmois_l@ @dannee@ من @dheure@<html>:</html>@dminutes@ إلى @fheure@<html>:</html>@fminutes@',
 	'agenda_sd_h' => '@djour_l@ @djour@ @dmois_l@ @dannee@ الساعة @dheure@<html>:</html>@dminutes@',
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'التسجيل للحدث',
 	'agendamoisde' => 'مفكرة شهر',
-	'aidesc' => 'المساعدة',
 	'alaune' => 'أبرز الأحداث',
 	'annuaire' => 'الدليل',
 	'annuaire_consulter' => 'تصفح الدليل',
@@ -40,9 +39,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'أرشيف',
 	'archives_title' => 'عرض مقالات الأرشيف',
 	'articlesconnexes' => 'مقالات ذات صلة',
-	'auteur' => 'مؤلف',
-	'auteurs_liste' => 'قائمة المؤلفين',
-	'auteurs_site' => 'مؤلفو الموقع',
+	'auteur' => 'مؤلف', # MODIF
+	'auteurs_liste' => 'قائمة المؤلفين', # MODIF
+	'auteurs_site' => 'مؤلفو الموقع', # MODIF
 
 	// C
 	'carte_monde' => 'خريطة العالم',
@@ -51,8 +50,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'ابحث على Google.',
 	'clever_uns' => 'تم إلغاء الاشتراك',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'ابدا',
-	'configurersc' => 'تعديل SoyezCréateurs',
 	'connexion' => 'تسجيل الدخول',
 	'connexiontitle' => 'الولوج الى الفضاء المخصص',
 	'copyright_cnil' => 'تصريح CNIL رقم:',
@@ -71,11 +68,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'وثائق للتحميل',
 
 	// E
-	'ecoute' => 'الاستماع إلى :',
+	'ecoute' => 'الاستماع إلى :', # MODIF
 	'editos' => 'تحرير',
 	'erreur' => 'خطأ !',
 	'erreur_documentexistepas' => 'خطأ : هذا المستند غير موجود !',
-	'erreur_excuses_404' => 'نحن متأسفون...',
+	'erreur_excuses_404' => 'نحن متأسفون...', # MODIF
 	'erreur_excuses_404_explications' => '<p>لا يمكن العثور على الصفحة التي تبحث عنها لأن:</p><ol class="spip"><li>الصفحة لم تعد ذات صلة،</li><li>رابط الصفحة المطلوبة قديم،</li><li>تم نقل الصفحة المطلوبة.</li></ol><p>الرجاء البحث في <a href="@urlsite@">الصفحة الرئيسية : @nomsite@</a>, أو البحث عن إحدى الكلمات المفاتيح حسب الاستمارة أدناه.</p>',
 
 	// F
@@ -90,15 +87,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'إسمك :',
 
 	// L
-	'layout_accueil_title' => 'تصميم مخصَّص للصفحة الرئيسية',
-	'layout_defaut_title' => 'التصميم الافتراضي للموقع (المقالات و المواضيع)',
 	'liresuitede' => 'اقرأ المزيد عن :',
 	'liresuiteeditorial' => 'اتم القراءة',
-	'liresuitesyndic' => 'اقرأ المزيد على الموقع الأصلي...',
+	'liresuitesyndic' => 'اقرأ المزيد على الموقع الأصلي...', # MODIF
 	'listezones' => 'لائحة الروابط القابلة للنقر',
 
 	// M
-	'memerubrique' => 'في نفس القسم...',
+	'memerubrique' => 'في نفس القسم...', # MODIF
 	'mentions_legales_obligatoires' => 'معلومات قانونية إلزامية', # MODIF
 	'menu_deplier' => 'اكشف: ',
 	'menu_picalt' => 'انقر لـ',
@@ -144,14 +139,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Accés réservé ouvert',
 
 	// S
-	'savoirplus' => 'لمعرفة المزيد...',
+	'savoirplus' => 'لمعرفة المزيد...', # MODIF
 	'savoirpluscritere' => 'تعرف اكثر على المعيار:',
 	'sedna' => '(RSSبرنامج قراءة ال) Sedna ',
 	'sommaire' => 'فهرس',
-	'soyezcreateurs' => 'كونوا مبدعين',
-	'soyezcreateurs_couleurs' => 'ألوان',
-	'soyezcreateurs_google' => 'Référencement',
-	'soyezcreateurs_layout' => 'التموقع',
 	'syndiquer_agenda' => 'تنظيم جدول الأعمال',
 
 	// T
@@ -167,7 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => ' عرض الصورة فقط',
 	'voirle' => 'انظر الى',
 	'voirsitespar' => 'تصفح الموقع ب',
-	'vous_souhaitez_etre_tenu_au_courant' => 'هل تريد أن تبقى مواكبا لما هو جديد ؟',
+	'vous_souhaitez_etre_tenu_au_courant' => 'هل تريد أن تبقى مواكبا لما هو جديد ؟', # MODIF
 
 	// W
 	'wdcalendar_all_day' => 'كامل اليوم',
@@ -185,7 +176,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'يناير',
 	'wdcalendar_jul' => 'يوليو',
 	'wdcalendar_jun' => 'يونيو',
-	'wdcalendar_loading_data' => 'جار تحميل البيانات...',
+	'wdcalendar_loading_data' => 'جار تحميل البيانات...', # MODIF
 	'wdcalendar_loading_fail' => 'عذرًا ، لا يمكننا تحميل بياناتك ، يرجى المحاولة لاحقًا',
 	'wdcalendar_location' => 'مكان',
 	'wdcalendar_mar' => 'مارس',

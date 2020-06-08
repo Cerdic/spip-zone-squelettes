@@ -22,14 +22,13 @@ Ir a la búsqueda',
 	'agenda_fsd' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ à @dheure@<html>:</html>@dminutes@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@ à @fheure@<html>:</html>@fminutes@',
 	'agenda_fsd_notime' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Propon un evento',
-	'agenda_proposer_evenement_explication' => 'Puede sugerir un evento al administrador del sitio que considere necesario para publicar o no. Los eventos más detalladas pueden tener mayor probabilidad de ser validados.',
-	'agenda_proposer_evenement_title' => 'Puede sugerir un evento al administrador del sitio',
+	'agenda_proposer_evenement_explication' => 'Puede sugerir un evento al administrador del sitio que considere necesario para publicar o no. Los eventos más detalladas pueden tener mayor probabilidad de ser validados.', # MODIF
+	'agenda_proposer_evenement_title' => 'Puede sugerir un evento al administrador del sitio', # MODIF
 	'agenda_sd' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@<html>:</html>@dminutes@ à @fheure@<html>:</html>@fminutes@',
 	'agenda_sd_h' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ à @dheure@<html>:</html>@dminutes@',
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Registrarse para el evento',
 	'agendamoisde' => 'Agenda del mes',
-	'aidesc' => 'Ayuda para SoyezCréateurs',
 	'alaune' => 'À la Une',
 	'annuaire' => 'Anuario',
 	'annuaire_consulter' => 'Consulte el directorio',
@@ -38,9 +37,9 @@ Ir a la búsqueda',
 	'archives' => 'Archivos',
 	'archives_title' => 'Ver los artículos archivados',
 	'articlesconnexes' => 'Artículos relacionados',
-	'auteur' => 'Autor',
-	'auteurs_liste' => 'Lista de autores',
-	'auteurs_site' => 'Autor del sitio',
+	'auteur' => 'Autor', # MODIF
+	'auteurs_liste' => 'Lista de autores', # MODIF
+	'auteurs_site' => 'Autor del sitio', # MODIF
 
 	// C
 	'carte_monde' => 'Mapa del mundo',
@@ -49,7 +48,6 @@ Ir a la búsqueda',
 	'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web!',
 	'clever_uns' => 'Darse de baja logrado',
 	'clevermail' => 'CleverMail',
-	'configurersc' => 'Configurar SoyezCréateurs',
 	'connexion' => 'Connexion',
 	'copyright_cnil' => 'Declaración CNIL nº',
 	'copyright_realisation' => 'Réalisation : ',
@@ -70,8 +68,6 @@ Ir a la búsqueda',
 
 	// S
 	'sommaire' => 'Sumario',
-	'soyezcreateurs' => 'SoyezCréateurs',
-	'soyezcreateurs_couleurs' => 'Colores',
 
 	// T
 	'themes' => 'Temas',

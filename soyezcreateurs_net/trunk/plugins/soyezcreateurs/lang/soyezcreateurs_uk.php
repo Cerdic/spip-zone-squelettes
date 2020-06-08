@@ -20,14 +20,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd_notime' => 'З @dдня_l@ @dдня@ @dмісяця_l@ @dроку@ до @fдня_l@ @fдня@ @fмісяця_l@ @fроку@',
 	'agenda_sinscrire' => 'Зареєструватись на подію',
 	'agendamoisde' => 'Події місяця',
-	'aidesc' => 'Довідка SoyezCréateurs', # MODIF
 	'alaune' => 'На першій сторінці',
 	'archives' => 'Архів',
 	'archives_title' => 'Переглянути архів статей',
 	'articlesconnexes' => 'Відповідні статті ( за темою) ', # MODIF
-	'auteur' => 'Автор',
-	'auteurs_liste' => 'Список авторів',
-	'auteurs_site' => 'Автори сайту',
+	'auteur' => 'Автор', # MODIF
+	'auteurs_liste' => 'Список авторів', # MODIF
+	'auteurs_site' => 'Автори сайту', # MODIF
 
 	// C
 	'carte_monde' => 'Карта світу',
@@ -36,8 +35,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'З <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> пошук в Інтернеті!',
 	'clever_uns' => 'Відмова від підписки здійснена',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Для початку',
-	'configurersc' => 'Налаштувати ( конфігурувати) SoyezCréateurs', # MODIF
 	'connexion' => 'Підключення',
 	'connexiontitle' => 'Доступ до зарезервованого простору',
 	'copyright_cnil' => ' Декларація CNIL N º',
@@ -55,7 +52,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Документи для завантаження',
 
 	// E
-	'ecoute' => 'Прослуховування : ',
+	'ecoute' => 'Прослуховування : ', # MODIF
 	'editos' => 'Передові статті',
 	'erreur' => 'Помилка!',
 	'erreur_documentexistepas' => 'Помилка: цей документ не існує!',
@@ -71,15 +68,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Ваше ім’я :',
 
 	// L
-	'layout_accueil_title' => 'Специфічне розташування на головній сторінці',
-	'layout_defaut_title' => 'Розташування за замовчуванням  для сайту (статті та рубрики)',
 	'liresuitede' => 'Читати наступне:',
 	'liresuiteeditorial' => 'Читати продовження передової статті',
-	'liresuitesyndic' => 'Читати продовження на початковому сайті',
+	'liresuitesyndic' => 'Читати продовження на початковому сайті', # MODIF
 	'listezones' => 'Список інтерактивних зон',
 
 	// M
-	'memerubrique' => 'У цій же рубриці...',
+	'memerubrique' => 'У цій же рубриці...', # MODIF
 	'mentions_legales_obligatoires' => 'Юридичні вимоги обов’язкові ([CNIL|Національна комісія з інформатики і свободи->http://www.cnil.fr/] і [LCEN|Закон про впевненість в економіці Цифровий->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Все, що потрібно знати->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Розшифровка правових зобов’язань->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'розкрити ( розгорнути):',
 	'menu_picalt' => 'Натиснути ( "клікнути" ) , щоб ',
@@ -122,14 +117,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourtop' => 'Повернутися до початку',
 
 	// S
-	'savoirplus' => 'Дізнатися більше ...',
+	'savoirplus' => 'Дізнатися більше ...', # MODIF
 	'savoirpluscritere' => 'Детальніше про критерій',
 	'sedna' => 'Седна (RSS агрегатор)',
 	'sommaire' => 'зміст',
-	'soyezcreateurs' => 'Будьте творчими особистостями', # MODIF
-	'soyezcreateurs_couleurs' => 'Кольори',
-	'soyezcreateurs_google' => 'Забезпечення  списком літератури',
-	'soyezcreateurs_layout' => 'Позиціонування ( розміщення)',
 	'syndiquer_agenda' => 'Об’єднати щоденник ',
 
 	// T

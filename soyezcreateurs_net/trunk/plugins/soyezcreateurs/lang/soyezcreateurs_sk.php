@@ -21,14 +21,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@ do  @fjour_l@ @fjour@ @fmois_l@ @fannee@ o @fheure@:@fminutes@', # MODIF
 	'agenda_fsd_notime' => 'Od @djour_l@ @djour@ @dmois_l@ @dannee@ do @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Odoslať udalosť',
-	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je väčšia šanca, že bude publikovaná.',
-	'agenda_proposer_evenement_title' => 'Informácie o udalosti môžete poslať administrátorovi stránky',
+	'agenda_proposer_evenement_explication' => 'Informácie o udalosti môžete poslať administrátorovi stránky, ktorý posúdi, či je vhodné, aby ich publikoval, alebo nie. Čím podrobnejšie udalosť opíšete, tým je väčšia šanca, že bude publikovaná.', # MODIF
+	'agenda_proposer_evenement_title' => 'Informácie o udalosti môžete poslať administrátorovi stránky', # MODIF
 	'agenda_sd' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ od @dheure@:@dminutes@ do @fheure@:@fminutes@', # MODIF
 	'agenda_sd_h' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@ o @dheure@:@dminutes@', # MODIF
 	'agenda_sd_notime' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Prihlásiť sa na udalosť',
 	'agendamoisde' => 'Kalendár na',
-	'aidesc' => 'Pomocník modulu Buďte tvoriví',
 	'alaune' => 'V centre pozornosti',
 	'annuaire' => 'Adresár',
 	'annuaire_consulter' => 'Nahliadnuť do adresára',
@@ -37,9 +36,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archívy',
 	'archives_title' => 'Zobraziť archivované články',
 	'articlesconnexes' => 'Súvisiace články',
-	'auteur' => 'Autor',
-	'auteurs_liste' => 'Zoznam autorov',
-	'auteurs_site' => 'Autori stránky',
+	'auteur' => 'Autor', # MODIF
+	'auteurs_liste' => 'Zoznam autorov', # MODIF
+	'auteurs_site' => 'Autori stránky', # MODIF
 
 	// C
 	'carte_monde' => 'Mapa sveta',
@@ -48,8 +47,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Prehľadať web s <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a>!',
 	'clever_uns' => 'Odhlásenie vykonané',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Na začiatok',
-	'configurersc' => 'Nastaviť modul Buďte tvoriví',
 	'connexion' => 'Spojenie',
 	'connexiontitle' => 'Prístup do administračného rozhrania',
 	'copyright_cnil' => 'Č. deklarácie CNIL',
@@ -68,11 +65,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Stiahnuť dokumenty',
 
 	// E
-	'ecoute' => 'Vypočuť si:',
+	'ecoute' => 'Vypočuť si:', # MODIF
 	'editos' => 'Úvodníky',
 	'erreur' => 'Chyba!',
 	'erreur_documentexistepas' => 'Chyba: tento dokument neexistuje!',
-	'erreur_excuses_404' => 'Prepáčte...',
+	'erreur_excuses_404' => 'Prepáčte...', # MODIF
 	'erreur_excuses_404_explications' => '<p>Stránku, ktorú hľadáte, sa nepodarilo nájsť, lebo:</p><ol class="spip"><li>už nie je aktuálna,</li><li>odkaz na stránku je zastaralý,</li><li>alebo sa presunula referenčná stránka.</li></ol><p>Prosím, skúste nájsť informácie prostredníctvom <a href="@urlsite@">úvodnej stránky: @nomsite@</a> alebo tak, že vo formulári nižšie vyhľadáte podľa kľúčového slova.</p>',
 
 	// F
@@ -86,15 +83,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Vaše krstné meno:',
 
 	// L
-	'layout_accueil_title' => 'Špeciálny vzhľad úvodnej stránky',
-	'layout_defaut_title' => 'Predvolený vzhľad stránky (články a rubriky) ',
 	'liresuitede' => 'Prečítať si viac o:',
 	'liresuiteeditorial' => 'Prečítať si koniec úvodníka',
-	'liresuitesyndic' => 'Čítať ďalej na pôvodnej stránke...',
+	'liresuitesyndic' => 'Čítať ďalej na pôvodnej stránke...', # MODIF
 	'listezones' => 'Zoznam hotspotov',
 
 	// M
-	'memerubrique' => 'V rovnakej rubrike...',
+	'memerubrique' => 'V rovnakej rubrike...', # MODIF
 	'mentions_legales_obligatoires' => 'Povinné právne oznamy ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] a [LcEN|Loi sur la confiance en l’économie Numérique.->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]) Všetko, čo [potrebujete vedieť.->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/] [Vysvetlenie právnych záväzkov.->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # MODIF
 	'menu_deplier' => 'Rozložiť: ',
 	'menu_picalt' => 'Kliknite na',
@@ -139,14 +134,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Obmedzený prístup otvorený',
 
 	// S
-	'savoirplus' => 'Viac...',
+	'savoirplus' => 'Viac...', # MODIF
 	'savoirpluscritere' => 'Dozvedieť sa viac o kritériu',
 	'sedna' => 'Sedna (agregátor RSS)',
 	'sommaire' => 'Zhrnutie',
-	'soyezcreateurs' => 'Buďte tvoriví',
-	'soyezcreateurs_couleurs' => 'Farby',
-	'soyezcreateurs_google' => 'Odkazovanie',
-	'soyezcreateurs_layout' => 'Umiestnenie',
 	'syndiquer_agenda' => 'Syndikovať kalendár',
 
 	// T
@@ -162,7 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'Zobraziť obrázok samostatne',
 	'voirle' => 'Zobraziť',
 	'voirsitespar' => 'Zobraziť stránky s',
-	'vous_souhaitez_etre_tenu_au_courant' => 'Chcete ostať v obraze?',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Chcete ostať v obraze?', # MODIF
 
 	// W
 	'wdcalendar_all_day' => 'Celý deň',
@@ -180,7 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'Júl',
 	'wdcalendar_jun' => 'Jún',
-	'wdcalendar_loading_data' => 'Nahrávajú sa dáta...',
+	'wdcalendar_loading_data' => 'Nahrávajú sa dáta...', # MODIF
 	'wdcalendar_loading_fail' => 'Prepáčte, vaše údaje sa nedajú nahrať; ďakujeme, skúste to neskôr',
 	'wdcalendar_location' => 'Miesto',
 	'wdcalendar_mar' => 'Mar',
