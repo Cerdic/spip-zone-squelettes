@@ -29,7 +29,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'S’inscrire à l’événement',
 	'agendamoisde' => 'Agenda du mois de',
-	'aidesc' => 'Aide sur SoyezCréateurs',
 	'alaune' => 'À la Une',
 	'annuaire' => 'Annuaire',
 	'annuaire_consulter' => 'Consulter l’annuaire',
@@ -49,8 +48,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web !',
 	'clever_uns' => 'Desinscription accompli',
 	'clevermail' => 'CleverMail',
-	'commencer' => 'Pour bien commencer',
-	'configurersc' => 'Configurer SoyezCréateurs',
 	'connexion' => 'Connexion',
 	'connexiontitle' => 'Accéder à l’espace réservé',
 	'copyright_cnil' => 'Déclaration CNIL nº',
@@ -88,8 +85,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'forum_votre_prenom' => 'Votre prénom :',
 
 	// L
-	'layout_accueil_title' => 'Agencement spécifique à la page d’accueil',
-	'layout_defaut_title' => 'Agencement par défaut pour le site (articles et rubriques)',
 	'liresuitede' => 'Lire la suite de :',
 	'liresuiteeditorial' => 'Lire la suite de l’éditorial',
 	'liresuitesyndic' => 'Lire la suite sur le site d’origine…',
@@ -151,10 +146,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'En savoir plus sur le critère',
 	'sedna' => 'Sedna (Agrégateur de flux RSS)',
 	'sommaire' => 'Sommaire',
-	'soyezcreateurs' => 'SoyezCréateurs',
-	'soyezcreateurs_couleurs' => 'Couleurs',
-	'soyezcreateurs_google' => 'Référencement',
-	'soyezcreateurs_layout' => 'Positionnement',
 	'syndiquer_agenda' => 'Syndiquer l’agenda',
 
 	// T

@@ -5,6 +5,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	'aidesc' => 'Aide sur SoyezCréateurs',
+
 	'cfg_texte_actualite_toutes' => 'Lien vers tous les articles par ordre antichronologique',
 	'cfg_affiche_forum_sommaire' => 'Dernières contributions aux forum sur la page d’accueil',
 	'cfg_affichage_affiche' => 'Afficher',
@@ -373,8 +375,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_nombres_dessousbreves_label' => 'Nombre d’items affichés dans les DessousBreves',
 	'cfg_nombres_sitesaccueil_label' => 'Nombre de sites affichés en page d’accueil',
 	'cfg_nom_site' => 'Titre site',
+	'commencer' => 'Pour bien commencer',
+	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs',
+	'configurersc' => 'Configurer SoyezCréateurs',
 		
 	'ieconfig_import_spe' => 'Importation de configuration pré-enregistrés <i>(<strong>Attention</strong>, action immédiate !)</i> :',
-	'configurations_rapides_soyezcreateurs' => 'Configurations rapides de SoyezCréateurs',
+	
+	'layout_accueil_title' => 'Agencement spécifique à la page d’accueil',
+	'layout_defaut_title' => 'Agencement par défaut pour le site (articles et rubriques)',
+
+	'soyezcreateurs' => 'SoyezCréateurs',
+	'soyezcreateurs_couleurs' => 'Couleurs',
+	'soyezcreateurs_google' => 'Référencement',
+	'soyezcreateurs_layout' => 'Positionnement',
 	
 );
