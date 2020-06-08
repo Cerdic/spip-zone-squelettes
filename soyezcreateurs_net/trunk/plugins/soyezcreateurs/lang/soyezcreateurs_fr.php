@@ -22,8 +22,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ à @dheure@<html>:</html>@dminutes@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@ à @fheure@<html>:</html>@fminutes@',
 	'agenda_fsd_notime' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_proposer_evenement' => 'Proposer un événement',
-	'agenda_proposer_evenement_explication' => 'Vous pouvez proposer un événement à l’administrateur du site qui jugera bon de le publier ou non. Les événements les plus détaillés possible ont le plus de chances d’être validés.',
-	'agenda_proposer_evenement_title' => 'Vous pouvez proposer un événement à l’administrateur du site',
+	'agenda_proposer_evenement_explication' => 'Vous pouvez proposer un événement aux personnes chargées d’administrer le site qui jugera bon de le publier ou non. Les événements les plus détaillés possible ont le plus de chances d’être validés.',
+	'agenda_proposer_evenement_title' => 'Vous pouvez proposer un événement aux personnes chargées d’administrer le site',
 	'agenda_sd' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@<html>:</html>@dminutes@ à @fheure@<html>:</html>@fminutes@',
 	'agenda_sd_h' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ à @dheure@<html>:</html>@dminutes@',
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
@@ -38,9 +38,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archives',
 	'archives_title' => 'Consulter les articles archivés',
 	'articlesconnexes' => 'Articles liés',
-	'auteur' => 'Auteur',
-	'auteurs_liste' => 'Liste des auteurs',
-	'auteurs_site' => 'Auteurs du site',
+	'auteur' => 'Plume',
+	'auteurs_liste' => 'Liste des plumes',
+	'auteurs_site' => 'Plumes du site',
 
 	// C
 	'carte_monde' => 'Carte du monde',
@@ -69,11 +69,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Documents à télécharger',
 
 	// E
-	'ecoute' => 'Ecoute de :',
+	'ecoute' => 'Écoute de :',
 	'editos' => 'Éditos',
 	'erreur' => 'Erreur !',
 	'erreur_documentexistepas' => 'Erreur : ce document n’existe pas !',
-	'erreur_excuses_404' => 'Nous sommes désolés...',
+	'erreur_excuses_404' => 'Nous sommes désolés…',
 	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n’a pu être trouvée parce que :</p><ol class="spip"><li>elle n’était plus d’actualité,</li><li>le lien vers la page que vous cherchiez est obsolète,</li><li>la page recherchée a été déplacée.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d’accueil : @nomsite@</a>, ou de chercher un mot clé avec le formulaire ci-dessous.</p>',
 
 	// F
@@ -92,11 +92,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout_defaut_title' => 'Agencement par défaut pour le site (articles et rubriques)',
 	'liresuitede' => 'Lire la suite de :',
 	'liresuiteeditorial' => 'Lire la suite de l’éditorial',
-	'liresuitesyndic' => 'Lire la suite sur le site d’origine...',
+	'liresuitesyndic' => 'Lire la suite sur le site d’origine…',
 	'listezones' => 'liste des zones cliquables',
 
 	// M
-	'memerubrique' => 'Dans la même rubrique...',
+	'memerubrique' => 'Dans la même rubrique…',
 	'mentions_legales_obligatoires' => 'Mentions légales obligatoires ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l’économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu’[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [Décryptage des obligations légales->https://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'd\\351plier : ',
 	'menu_picalt' => 'Cliquer pour ',
@@ -147,7 +147,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'rubrique_securisee' => 'Accés réservé ouvert',
 
 	// S
-	'savoirplus' => 'Pour en savoir plus...',
+	'savoirplus' => 'Pour en savoir plus…',
 	'savoirpluscritere' => 'En savoir plus sur le critère',
 	'sedna' => 'Sedna (Agrégateur de flux RSS)',
 	'sommaire' => 'Sommaire',
@@ -170,7 +170,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirimage' => 'Voir l’image seule',
 	'voirle' => 'Voir le',
 	'voirsitespar' => 'Voir les sites avec',
-	'vous_souhaitez_etre_tenu_au_courant' => 'Vous souhaitez être tenu au courant ?',
+	'vous_souhaitez_etre_tenu_au_courant' => 'Vous souhaitez de nos nouvelles ?',
 
 	// W
 	'wdcalendar_all_day' => 'Toute la journée',
@@ -188,7 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'wdcalendar_jan' => 'Jan',
 	'wdcalendar_jul' => 'Juil',
 	'wdcalendar_jun' => 'Juin',
-	'wdcalendar_loading_data' => 'Chargement des données...',
+	'wdcalendar_loading_data' => 'Chargement des données…',
 	'wdcalendar_loading_fail' => 'Désolé, nous ne pouvons charger vos données, merci d’essayer plus tard',
 	'wdcalendar_location' => 'Lieu',
 	'wdcalendar_mar' => 'Mar',
