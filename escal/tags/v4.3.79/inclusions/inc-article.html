@@ -1,0 +1,357 @@
+<!-- affichage des blocs annonce -->
+[(#CONFIG{escal/config/annonceart}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+[(#CONFIG{escal/config/annoncedefilart}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
+
+
+<BOUCLE_contexte(ARTICLES){id_article}>
+<article>
+
+<aside role="complementary" class="cadre-chemin">
+<!-- affichage du chemin de l'article si aucune rubrique ou sous-rubrique du chemin n'a le mot-clé "pas-au-menu" -->	
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" class="ariane-accueil" title="<:escal:accueil:>"><:escal:accueil:></a>
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_art}{env}>]
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_art_2eniveau}{env}>]
+</aside>
+
+<div id="cadre-titre-article">
+<!-- affichage mots-clés associés -->
+	[(#CONFIG{escal/config/motsclesarticles}|=={oui}|oui)
+		<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+	]
+<!-- affichage du logo de l'article ou de sa rubrique avec lien vers cette rubrique -->
+	<div class="logorub">
+		[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{0,#CONFIG{escal/config/taillelogoart,150}})]
+	</div>
+
+<!-- affichage du titre de l'article, de son descriptif, de sa date de publication et de son auteur-->
+	[<div id="surtitre-article" class="#EDIT{surtitre}">(#SURTITRE)</div>]
+	[<div id="titre-article" class="#EDIT{titre}">(#TITRE)</div>]
+	[<div id="soustitre-article" class="#EDIT{soustitre}">(#SOUSTITRE)</div>]
+
+	[<div id="descriptif-article">(#DESCRIPTIF|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})</div>]
+	<div id="auteur-article">  
+		<BOUCLE_date(ARTICLES){id_article}{titre_mot=article-sans-date}>
+		</BOUCLE_date>
+			[(#CONFIG{escal/config/dateart}|=={non}|non)
+				<div class="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+				<div class="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+			]
+		<//B_date>
+	
+		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurart}|=={non}|non}>
+		</BOUCLE_test>
+			<br />[(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs_art(AUTEURS){id_article}{par nom}{", "}{lang_select}>
+			<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+		</B_test>      
+	</div>
+
+	[(#CONFIG{escal/config/visites}|=={oui}|oui)
+<!-- affichage des visites et de la popularité -->
+	<aside role="complementary" class="visites">
+		<span class="visites-nbr"><:escal:visites:> : <strong>#VISITES</strong></span>
+			[(#CONFIG{escal/config/visites-inter, - })]
+		<div class="visites-popularite">
+			<:escal:popularite:> :
+			[<div class="graph">
+				<strong class="bar" style="width: #POPULARITE%;">(#POPULARITE)%</strong>
+			</div>]
+		</div>
+	</aside>
+	]
+    
+<div class="nettoyeur"></div>    
+</div> <!-- fin cadre-titre-article -->
+
+<div id="cadre-article">
+
+<aside role="complementary">
+<div id="outils-article">
+<!-- affichage du bouton pour imprimer l'article -->
+	<div class="imprime-article outil">
+		<a href="#" onclick="javascript:window.print()" title="<:escal:article_imprimer:>">
+			<img src="#CHEMIN{images/imprimer.svg}" alt="logo imprimer" />
+		</a>
+	</div>
+<!-- affichage de l'icone pdf si plugin article_pdf activé -->
+	[(#PLUGIN{ARTICLE_PDF}|oui)
+	<div class="article-pdf outil">
+		#ARTICLE_PDF{id_article}
+	</div>
+	]
+<!-- affichage de l'icone pdf si plugin spipdf activé -->         
+	[(#PLUGIN{SPIPDF}|oui)
+	<div class="spipdf outil">
+		<a href="[(#URL_PAGE{spipdf}
+		|parametre_url{spipdf,spipdf_article}
+		|parametre_url{id_article,#ID_ARTICLE}
+		|parametre_url{nom_fichier,article_#ID_ARTICLE})]">
+		<img src="#CHEMIN{images/icone_pdf.svg}" alt="article au format PDF" title="Télécharger l'article au format PDF" />
+		</a>
+	</div>
+	]        
+<!-- affichage de l'icone de licence si plugin licence activé -->	
+	[(#PLUGIN{LICENCE}|oui)
+		[(#ID_LICENCE|=={0}|non)
+		<div class="licence outil">
+			[(#LICENCE|image_reduire{0, 32})]
+		</div>
+		]
+	]
+<!-- affichage des icones socialtags si plugin Socialtags activé -->
+	[(#PLUGIN{SOCIALTAGS}|oui)
+	<div id="socialtags-article" class="outil"></div>
+	]        
+<!-- affichage du bouton signalement si plugin activé -->
+	[(#PLUGIN{SIGNALEMENT}|oui)
+	<div class="signalement outil">        
+		#FORMULAIRE_SIGNALEMENT
+	</div>        
+	]
+</div>
+    
+<!-- affichage des images pour diminuer ou augmenter la taille des caractères -->
+	<div id="diminuer">
+		<a href="javascript:changestyle(-1)" title="<:escal:taille_diminuer:>">
+			<img src="#CHEMIN{images/fontsizedown.svg}" alt="<:escal:taille_diminuer:>" />
+		</a>
+	</div>
+	<div id="augmenter">
+		<a href="javascript:changestyle(1)" title="<:escal:taille_augmenter:>">
+			<img src="#CHEMIN{images/fontsizeup.svg}" alt="<:escal:taille_augmenter:>" />
+		</a>
+	</div>
+
+<!-- affichage des traductions de l'article -->
+	<div id="traductions-article">
+		<B_traductions>
+			<ul>
+				<hr /><:escal:traductions_article:>
+		<BOUCLE_traductions(ARTICLES){traduction}{par lang}{exclus}{"/"}>
+				<li><a href="[(#URL_ARTICLE|parametre_url{lang,#LANG})]">[(#LANG|traduire_nom_langue)]</a></li>
+		</BOUCLE_traductions>
+				<hr />
+      		</ul>
+		</B_traductions>
+	</div>
+
+<div class="nettoyeur"></div>   
+</aside>
+
+<div id="texte-article" class="surlignable">
+
+	[(#PLUGIN{NOTATION}|oui)
+		<div class="notation">
+			<span style="float:left;padding-right:5px;">Noter cet article : </span>#FORMULAIRE_NOTATION
+		</div>
+	]
+
+	[<div id="chapo" class="#EDIT{chapo}">(#CHAPO)</div>]
+
+<!--Affichage du texte de l'article -->
+
+		<BOUCLE_2colonnes(ARTICLES){id_article}{titre_mot="texte2colonnes"}>
+		<div class="container-colonnes">
+			<div id="colonne1" >
+			[<div class="#EDIT{texte}">
+			(#TEXTE*
+			|decouper_en_XD_parties{2,1}|propre
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info-escal">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<p style="text-align:center">}
+               |replace{</centrer>,</p>})
+               </div>]
+			</div>
+
+			<div id="colonne2">
+			[<div class="#EDIT{texte}">
+			(#TEXTE*
+			|decouper_en_XD_parties{2,2}|propre
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info-escal">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<p style="text-align:center">}
+               |replace{</centrer>,</p>})
+               </div>]
+			</div>
+		</div>
+		</BOUCLE_2colonnes>
+
+		</B_2colonnes>	
+			[<div class="#EDIT{texte}">
+			(#TEXTE
+			|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0}
+			|replace{<aide>,<div class="aide">}
+               |replace{</aide>,</div>}
+               |replace{<important>,<div class="important">}
+               |replace{</important>,</div>}
+               |replace{<avertissement>,<div class="avertissement">}
+               |replace{</avertissement>,</div>}
+               |replace{<info>,<div class="info-escal">}
+               |replace{</info>,</div>}
+               |replace{<centrer>,<p style="text-align:center">}
+               |replace{</centrer>,</p>})
+                </div>]
+           <//B_2colonnes>
+                
+<div class="nettoyeur"></div>
+
+<!--Affichage des notes de bas de page  -->
+	[<aside role="complementary" id="notes"><strong>Notes : </strong> <br />(#NOTES)</aside>]
+
+<!-- affichage carte gis du lieu -->
+	[(#PLUGIN{GIS}|oui)
+		<INCLURE{fond=inclusions/inc-gis}{env}>
+	]
+
+<!-- affichage des événements -->
+	#SET{tableauprochainement,#ARRAY}
+	<BOUCLE_prochainementselection(EVENEMENTS){id_article}{!evenement_passe}{par date_debut}>
+	[(#ID_EVENEMENT_SOURCE|=={0}|?{
+	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT}},
+	#SET{tableauprochainement,#GET{tableauprochainement}|push{#ID_EVENEMENT_SOURCE}}
+	})]
+	</BOUCLE_prochainementselection>
+
+<B_select>
+	<aside role="complementary" class="events-associes">
+	<hr />
+	<strong><:escal:evenements_associes:></strong>
+
+	<div class="container-choix">
+<BOUCLE_select(EVENEMENTS){id_evenement IN #GET{tableauprochainement}}>
+
+	<BOUCLE_seul(EVENEMENTS){id_evenement=#ID_EVENEMENT}{par date}{!evenement_passe}{doublons}>
+	</BOUCLE_seul>
+	<BOUCLE_plusieurs(EVENEMENTS){id_evenement_source=#ID_EVENEMENT}{par date}>
+		<BOUCLE_futur(EVENEMENTS){id_evenement}{age<=0}{doublons}>
+		</BOUCLE_futur>
+	</BOUCLE_plusieurs>
+
+	<BOUCLE_mot(MOTS){id_evenement}{type=Agenda_couleur}{0,1}>
+	#SET{couleur,#DESCRIPTIF}
+	</BOUCLE_mot>
+	</B_mot>
+	#SET{couleur,#CONFIG{escal/config/couleureventscalendrier,#336699}
+	<//B_mot>
+
+	<B_affiche>
+		<div class="choix-article" style="width:40%;">
+		<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_EVENEMENT|parametre_url{lang,#ENV{lang}})],#URL_EVENEMENT})]" title="[(#DESCRIPTIF|textebrut)]">
+	<BOUCLE_affiche(EVENEMENTS){!doublons}{0,1}{doublons affiche}{par date}>
+
+		<div class="evenement-date" style="background-color:[(#GET{"couleur"}|PtoBR)];">
+			<span class="evenement-jour">[(#DATE_DEBUT|affdate{'d'})]</span>
+			<br />
+			<span class="evenement-mois">[(#DATE_DEBUT|nom_mois)]</span>
+			<br />
+			<span class="evenement-annee">[(#DATE_DEBUT|affdate{'Y'})]</span>
+			<br />
+		</div>
+
+		<div class="evenement-donnees">
+				<div class="donnee-titre">		
+				#TITRE
+				</div>
+				[<div class="donnee-lieu">
+				(#LIEU)<br />
+				[(#ADRESSE|PtoBR)]
+				</div>]
+
+			[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|non)
+				<div class="donnee-heure">
+					du [(#DATE_DEBUT|nom_jour)] <strong>[(#DATE_DEBUT|affdate)]</strong>
+					[(#HORAIRE|=={oui}|?{&agrave; partir de
+	  				[(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})]
+					<br />au
+					[(#DATE_FIN|nom_jour)]
+	            		<strong>[(#DATE_FIN|affdate)]</strong> [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+					[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]
+	          	</div>
+			]
+
+			[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|oui)
+				<div class="donnee-heure">
+					[(#DATE_DEBUT|heures|=={[(#DATE_FIN|heures)]}|non)
+					[(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)] - 
+					[(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
+					]
+	          	</div>
+			]
+		</div>
+
+	</BOUCLE_affiche>
+		<div class="evenement-donnees">
+		<BOUCLE_autres2(EVENEMENTS){!doublons}{id_evenement_source=#ID_EVENEMENT}{age<=1}{age>=-365}{doublons affiche}{par date}>
+			<br />&nbsp;&nbsp;+ [(#DATE_DEBUT|affdate_jourcourt)]
+		</BOUCLE_autres2>
+		</div>
+		</a>
+		</div><!--choix-article-->
+	</B_affiche>
+
+	</BOUCLE_select>
+
+	</div><!--container-choix-->
+
+		<hr />
+	</aside>
+</B_select>
+	
+</div><!-- Fin texte-article -->
+
+<!--Affichage du post-sciptum  -->
+	[<aside role="complementary" id="ps" class="#EDIT{ps}"><strong>P.S. : </strong>(#PS|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})</aside>]
+
+<!-- Ajout du site web associé s'il existe -->
+	[<aside role="complementary" id="site" class="#EDIT{nom_site}"><br />
+		 <div class="#EDIT{url_site} url_site" >
+			<:escal:sur_web:> :
+			<a href="#URL_SITE" class="spip_out" [ title="(#NOM_SITE|couper{80}|attribut_html)"]> (#NOM_SITE) </a>
+		</div>
+	</aside>]
+	
+<span class="qrcode">
+	[(#PLUGIN{qrcode}|oui)
+	[(#MODELE{qrcode_impression})]
+	]
+</span>
+[(#PLUGIN{RECOMMANDER}|oui)
+  	#RECOMMANDER{#TITRE,#URL_ARTICLE,#INTRODUCTION}
+]
+
+</div><!-- Fin cadre-article-->
+</article>
+
+<br />
+
+<!-- affichage des blocs annonce -->
+[(#CONFIG{escal/config/annonceart}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+[(#CONFIG{escal/config/annoncedefilart}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
+
+[(#CONFIG{escal/config/portfolio}|=={non}|non)
+	<INCLURE {fond=inclusions/inc-portfolio}{env}>
+]
+
+<div class="nettoyeur"></div>
+
+<!-- Affichage des messages du forum associé à l'article -->
+	[(#ACCEPTER_FORUM|=={non}|non)
+	<INCLURE {fond=inclusions/inc-forum_article}{id_article}{self=#SELF}>
+	]
+
+</BOUCLE_contexte>

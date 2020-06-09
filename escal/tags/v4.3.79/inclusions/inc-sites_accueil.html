@@ -1,0 +1,27 @@
+<div class="accueil">
+#SET{nombreartsyndic,#CONFIG{escal/config/nombreartsyndic,20}}
+#SET{paginsitesaccueil,#CONFIG{escal/config/paginsitesaccueil,5}}
+
+<B_articles_syndic>
+	[<p class="pagination pagination-une">(#PAGINATION{#CONFIG{escal/config/modelepaginarticlesune}})</p>
+	<div class="nettoyeur"></div>]     
+<BOUCLE_articles_syndic(SYNDIC_ARTICLES){0,#GET{nombreartsyndic}}{par date}{inverse}{pagination #GET{paginsitesaccueil}}>  
+	<div class="cadre-rubrique-accueil">
+		<div class="titre-articles-rubrique">
+			<a href="#URL_ARTICLE" class="spip_out" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+				[(#TITRE*)]
+			</a>
+		</div>
+		<div class="introduction-articles-rubrique">
+			[(#DESCRIPTIF|supprimer_tags|couper{150})]
+			<br/>
+			<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" class="spip_out" title="[(#DESCRIPTIF|textebrut|entites_html)]"><strong><:escal:lire_article:></strong></a>
+			<br/>
+		</div> 
+		<div class="auteur-articles-rubrique">
+	 		[(#NOM_SITE|couper{50})] - [(#DATE|affdate)]  
+		</div>
+	</div>
+	<div class="nettoyeur"></div>  
+</BOUCLE_articles_syndic>
+</div>

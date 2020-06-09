@@ -1,0 +1,72 @@
+<script>
+
+// Il faut instancier un objet Rotative pour assurer la rotation des photos
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#photos-defilantes",
+        element   : "div.une-photo-defilante",
+        tempo     : [(#CONFIG{escal/config/tempophotos, 8})]
+      }
+    )
+  }
+) ;
+</script>
+
+[(#REM)
+On n'oublie pas de créer les règles CSS correspondantes !
+#container {
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	height: égale au plus haut element affiché
+}
+.element{
+	position: absolute;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	top: au moins egal au height defini plus haut
+}
+]
+
+<!-- on selectionne les articles avec le mot-cle photo-une et on stocke dans doublons photos -->
+	<BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}{par hasard}{0,10}>
+		<BOUCLE_selection_docs2(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{par hasard}{doublons photos}>
+		</BOUCLE_selection_docs2>
+	</BOUCLE_selection_articles2>
+
+<aside role="complementary">
+<h1 class="cadre photos">
+	[(#CONFIG{escal/config/titrephotos}|oui)
+	[(#CONFIG{escal/config/titrephotos}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titrephotos}|non)
+	<:escal:photos_hasard:>
+	]
+</h1>
+
+<div class="texte photos [(#CONFIG{escal/config/togglephotos}|=={oui}|oui)toggle]">
+#SET{nombrephotos,#CONFIG{escal/config/nombrephotos,5}}
+	<div id="photos-defilantes">
+	<BOUCLE_photo_une(DOCUMENTS){!doublons photos}{par hasard}{0,#GET{nombrephotos}}>
+		<div class="une-photo-defilante"> 
+		<BOUCLE_titre_article(ARTICLES){id_document}{0,1}> 
+			#SET{lien,#URL_ARTICLE}
+		</BOUCLE_titre_article>      
+      	[(#CONFIG{escal/config/lienphotos}|=={non}|non)      
+			<a href="[(#GET{lien}|parametre_url{lang,#ENV{lang}})]">      
+		]
+			<img src="[(#FICHIER|image_reduire{[(#CONFIG{escal/config/largeurimagenoisettes,170})]}|extraire_attribut{src})]"
+				alt='[(#TITRE)]' />
+		[(#CONFIG{escal/config/lienphotos}|=={non}|non)
+			</a>
+		]
+		</div>
+	</BOUCLE_photo_une>
+	</div>
+</div>
+</aside>

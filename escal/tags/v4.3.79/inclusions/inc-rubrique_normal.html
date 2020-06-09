@@ -1,0 +1,259 @@
+<!-- affichage des blocs annonce -->
+	[(#CONFIG{escal/config/annoncerub}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+	[(#CONFIG{escal/config/annoncedefilrub}|=={haut}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
+<!-- exclusion des rubriques avec le mot-clé "pas-au-menu" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+	
+<div class="cadre-chemin">
+<!-- affichage du chemin de la rubrique -->
+	<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" class="ariane-accueil" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><:escal:accueil:></a>
+<!-- affichage du fil d'Ariane -->
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|non)<INCLURE {fond=inclusions/inc-hierarchie_rub}{env}>]
+	[(#CONFIG{escal/config/arianeniveaudeux}|=={oui}|oui)<INCLURE {fond=inclusions/inc-hierarchie_rub_2eniveau}{env}>]
+</div>
+
+<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
+<!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelee -->
+	<div id="cadre-rubrique">
+		<div class="logorub">
+			[(#LOGO_RUBRIQUE|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+		</div>
+	  	<div id="titre-rubrique">
+               [(#CONFIG{escal/config/fluxrssrub}|=={oui}|oui)
+               <div class="fluxrss-rubrique">
+                	<a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
+                		<img src="#CHEMIN{images/rss.svg}" alt="RSS" title="<:syndiquer_rubrique:>" />
+                	</a>
+               </div>
+               ]
+			<div class="#EDIT{titre} titre-rub">[(#TITRE)]</div>
+			<div id="descriptif-rubrique" class="#EDIT{descriptif}">
+               	[(#DESCRIPTIF|image_reduire{[(#CONFIG{escal/config/largeurimage,400})],0})]
+               </div>
+			<div id="texte-rubrique" class="#EDIT{texte}">[(#TEXTE)]</div>
+			[<div id="notes"><strong>Notes : </strong> <br />(#NOTES)</div>]			  						  			
+<!-- affichage de l'icone pdf si plugin article_pdf activé -->
+	      [(#PLUGIN{ARTICLE_PDF}|oui)
+		      [(#CONFIG{escal/config/rubpdf}|=={oui}|oui)
+		      	#RUBRIQUE_PDF{id_rubrique}
+		      ]
+	      ]
+	  	</div>
+		<div class="nettoyeur"></div>        
+	</div>
+
+<nav role="navigation">   
+#SET{nbrpag,#CONFIG{escal/config/nombreart,5}}
+
+#SET{par,date}
+#SET{sens,-1}
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{si #PLUGIN{tri_par_rubrique}|oui}>
+   #SET{par,#TRIRUB_ARTICLES}
+   #SET{sens,#TRIRUB_ARTICLES_INVERSE|?{-1,1}}
+</BOUCLE_rubrique>
+
+<B_articles_rubs>
+<!-- affichage des articles de la rubrique -->
+	<div class="texte-insert">
+	<:escal:rubrique_articles:>
+	</div>
+<!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
+
+<div class="liste-articles-rubrique">
+<BOUCLE_articles_rubs(ARTICLES){id_rubrique}{tri #GET{par},#GET{sens}}{pagination #GET{nbrpag}}> 
+	<div class="cadre-articles-rubrique">
+			<!-- affichage mots-clés associés -->
+			[(#CONFIG{escal/config/motsclesrubrique}|=={oui}|oui)
+				<INCLURE{fond=inclusions/inc-mots_cles}{id_article=#ID_ARTICLE}>
+			]
+		<a class="articles-rubrique" href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+			<div class="titre-articles-rubrique">
+				<div class="logorub">
+					[(#LOGO_ARTICLE_RUBRIQUE|image_reduire{#CONFIG{escal/config/taillelogorub,150}})]
+				</div>
+				<div class="titre-articles-rubrique2">[(#TITRE)]</div>
+	
+			</div>
+	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui)<div class="nettoyeur"></div>]
+			<div class="introduction-articles-rubrique">
+				[(#INTRODUCTION{#CONFIG{escal/config/nbrecaracttexterub,150}}|supprimer_tags)]
+			</div>
+		</a>
+		<div class="auteur-articles-rubrique">
+			[(#CONFIG{escal/config/daterub}|=={non}|non)
+				<div class="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+				<div class="date-modif-article">[(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[<:escal:article_modifie:> (#DATE_MODIF|affdate)],''})]</div>
+			]
+		<BOUCLE_test(AUTEURS){id_article}{lang_select}{si #CONFIG{escal/config/auteurrub}|=={non}|non}>
+          </BOUCLE_test>
+			<br />[(#LANG|=={ja}|non)<:par_auteur:>]
+			<BOUCLE_auteurs_art(AUTEURS){id_article}{", "}{lang_select}>
+			<a class="auteur" href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{lang,#ENV{lang}})]" title="<:escal:page_auteur:>">#NOM</a></BOUCLE_auteurs_art>
+			[(#LANG|=={ja}|oui)<:par_auteur:>]
+		</B_test>
+		</div>
+	</div>
+	[(#CONFIG{escal/config/nbrecolrub}|=={2}|oui)
+		[(#COMPTEUR_BOUCLE|alterner{'','<div class="nettoyeur"></div>'})]
+	]
+	[(#CONFIG{escal/config/nbrecolrub}|=={3}|oui)
+		[(#COMPTEUR_BOUCLE|alterner{'','','<div class="nettoyeur"></div>'})]
+	]
+      
+</BOUCLE_articles_rubs>
+</div>
+<div class="nettoyeur"></div> 
+<!-- si plus de x articles, on pagine (x est defini plus haut avec {pagination x} ) -->
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) --> ]
+</B_articles_rubs>
+
+<B_SsRubriques>
+<!-- Afficher les sous-rubriques associées à cette rubrique -->
+	
+<div class="texte-insert">
+<:escal:rubrique_sous_rubriques:>
+</div>
+
+<BOUCLE_SsRubriques(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}{doublons rubriques}>
+	<div class="cadre-sous-rubrique">
+		[(#CONFIG{escal/config/fluxrsssousrub}|=={oui}|oui)
+		<div class="fluxrss-rubrique">
+			<a href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
+				<img src="#CHEMIN{images/rss.svg}" alt="RSS" title="<:syndiquer_rubrique:>" />
+			</a>
+		</div>
+		]
+		<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}{env}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+			[(#LOGO_RUBRIQUE|image_reduire{80})]
+			<span class="titre-sous-rubrique">
+				[(#TITRE)]
+			</span>
+		</a>
+		<div class="descriptif-sous-rubrique">[(#INTRODUCTION|supprimer_tags|couper{150})]</div>
+<!-- on compte et on affiche le nombre d'articles dans cette sous-rubrique -->
+			<B_ss_rub_art>
+			<BOUCLE_ss_rub_art(ARTICLES){id_rubrique}>
+			</BOUCLE_ss_rub_art>
+				<div class="nombre-articles-rubrique">
+					<:escal:rubrique_contenu:> #TOTAL_BOUCLE
+					[(#TOTAL_BOUCLE|>{1}|oui) <:escal:articles_min:>]
+					[(#TOTAL_BOUCLE|>{1}|non) <:escal:article:>]
+				</div>
+			</B_ss_rub_art>
+<!-- on compte et on affiche le nombre de rubriques dans cette sous-rubrique -->
+			<B_ss_rub_rub>
+			<BOUCLE_ss_rub_rub(RUBRIQUES){id_parent}>
+			</BOUCLE_ss_rub_rub>
+				<div class="nombre-articles-rubrique">
+					<:escal:rubrique_contenu:> #TOTAL_BOUCLE
+					[(#TOTAL_BOUCLE|>{1}|oui) <:escal:sous_rubriques:>]
+					[(#TOTAL_BOUCLE|>{1}|non) <:escal:sous_rubrique:>]
+				</div>
+			</B_ss_rub_rub>
+<!-- on compte et on affiche le nombre de sites references dans cette sous-rubrique -->
+			<BOUCLE_sites_ref(SITES){id_rubrique}>
+			</BOUCLE_sites_ref>
+				<div class="nombre-articles-rubrique">
+					<:escal:rubrique_contenu:> #TOTAL_BOUCLE
+					[(#TOTAL_BOUCLE|>{1}|oui) <:escal:sites_references:>]
+					[(#TOTAL_BOUCLE|>{1}|non) <:escal:site_reference:>]
+				</div>
+			</B_sites_ref>
+
+	</div>
+</BOUCLE_SsRubriques>
+
+#SET{nbrpagsites,#CONFIG{escal/config/nombresites,5}}
+
+<B_test_sites>
+<!-- si plusieurs sites -->
+	<B_derniers_sites>
+		<hr />
+ 		<div class="texte-insert">
+			<:escal:rubrique_sites_references:>
+		</div>
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	<BOUCLE_derniers_sites(SITES){id_rubrique}{par nom_site}{pagination #GET{nbrpagsites}} >
+		<div class="cadre-sous-rubrique">
+ 			<div class="titre-sous-rubrique">
+				<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
+					[(#LOGO_SITE|image_reduire{80}|sinon{<img style="float:right;" src="https://api.miniature.io/?width=160&height=120&url=#URL_SITE" alt="vignette du site"/>})]
+				</a>
+				<a href="#URL_PAGE{site,id_syndic=#ID_SYNDIC}" title="<:escal:articles_site:>">
+					#NOM_SITE
+				</a>
+			</div>
+			<div class="descriptif-sous-rubrique"> [(#DESCRIPTIF)]</div>
+			<div class="nettoyeur"></div>
+		</div>
+	</BOUCLE_derniers_sites>
+	</B_derniers_sites>
+<BOUCLE_test_sites(SITES){id_rubrique}{1,n}>
+</BOUCLE_test_sites>
+<!-- si un seul site -->
+<BOUCLE_un_site(SITES){id_rubrique}>
+	<hr />
+	<div class="texte-insert">
+		<:escal:rubrique_site_reference:>
+	</div>
+	<div id="cadre-titre-article">
+		<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>
+			<div class="logorub">
+				[(#LOGO_SITE|image_reduire{80}|sinon{<img style="float:right;" src="https://api.miniature.io/?width=160&height=120&url=#URL_SITE" alt="vignette du site"/>})]
+			</div>
+			<div id="titre-article" class="#EDIT{titre}">#NOM_SITE<br / >#URL_SITE</div>
+			<div id="descriptif-article">[(#DESCRIPTIF)]</div>       
+		</a>
+		<div class="nettoyeur"></div>
+	</div><!-- fin cadre-titre-article -->
+
+[(#REM) Articles issus de la syndication ]
+#SET{nbrpag,#CONFIG{escal/config/nombreart,5}}
+<B_articles>
+<!-- si plus de x articles, on pagine -->
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginhaut}|=={non}|oui) -->]
+	<div class="liste-articles-rubrique">
+		<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {!par date} {pagination #GET{nbrpag}}>
+			<div class="cadre-articles-rubrique">
+				<a class="articles-rubrique" href="#URL_ARTICLE" class="spip_out" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+					<div class="titre-articles-rubrique">[(#TITRE)]</div>
+					<div class="introduction-articles-rubrique">[(#DESCRIPTIF)]</div>
+				</a>
+	     	<div class="auteur-articles-rubrique">
+				<div class="date-article">[<:escal:article_mise_en_ligne:> <span class="majuscules">(#DATE|affdate)</span>] </div>
+			</div>
+	    </div>      
+	  </BOUCLE_articles>
+	</div>
+	<div class="nettoyeur"></div> 
+<!-- si plus de x articles, on pagine -->
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) <!-- ]
+		[<p class="pagination">(#PAGINATION)</p>
+		<div class="nettoyeur"></div>]
+	[(#CONFIG{escal/config/paginbas}|=={non}|oui) --> ]
+</B_articles>
+
+</BOUCLE_un_site>
+
+<//B_test_sites>
+</nav>
+</BOUCLE_contexte>
+
+<!-- affichage des blocs annonce -->
+[(#CONFIG{escal/config/annoncerub}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce}{env}>]
+[(#CONFIG{escal/config/annoncedefilrub}|=={bas}|oui)<INCLURE {fond=inclusions/inc-annonce_defilant}{env}>]
+

@@ -1,0 +1,101 @@
+<div class="menudesktop">
+	<h1 class="cadre">
+    <:escal:menu:>
+    </h1>
+
+<div class="texte" >
+
+
+<nav role="navigation" id="menuV">
+
+<ul id="accueilmenu">
+  <li class="item-accueil">
+	 <a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_SITE_SPIP|parametre_url{lang,#ENV{lang}})],#URL_SITE_SPIP})]" title="<:escal:accueil:>"><:escal:accueil:></a>
+	</li>
+</ul>
+
+	<!-- exclusion des rubriques avec le mot-clé "pas-au-menu-vertical" ou "invisible" et de ses sous-rubriques -->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){titre_mot IN 'pas-au-menu-vertical', 'invisible'}{doublons rubriques}>
+	<BOUCLE_exclure_ssrub_menu(RUBRIQUES){id_parent}{doublons rubriques}></BOUCLE_exclure_ssrub_menu>
+	</BOUCLE_exclure_rub_menu>
+
+	<!-- exclusion des articles avec le mot-clé "pas-au-menu-vertical" ou "invisible" -->
+	<BOUCLE_exclure_art_menu(ARTICLES){titre_mot IN 'pas-au-menu-vertical', 'invisible'}{doublons articles}>
+	</BOUCLE_exclure_art_menu>
+
+<!-- on affiche les secteurs -->
+    <B_secteurs>
+    <ul class="rubriques">
+  <BOUCLE_secteurs(RUBRIQUES){profondeur=1}{lang}{par sinum titre, num titre, titre}{doublons rubriques}>
+      <li class="#EXPOSE">
+      <a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+
+<!-- affichage des articles des secteurs s'il y en a -->
+      <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+			<B_articles_racine1>
+				<ul class="articles">
+					<BOUCLE_articles_racine1(ARTICLES){si #CONFIG{escal/config/articlesmenuV1}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+					<li class="#EXPOSE">
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine1>
+				</ul>
+			</B_articles_racine1>
+    </BOUCLE_test>
+    </B_test>
+			<B_articles_racine2>
+				<ul class="articles">
+					<BOUCLE_articles_racine2(ARTICLES){si #CONFIG{escal/config/articlesmenuV1}|=={oui}|oui}{id_rubrique} {par sinum titre, num titre, titre}{doublons articles}>
+					<li class="#EXPOSE">
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine2>
+				</ul>
+			</B_articles_racine2>
+    <//B_test>
+
+			<!-- affichage des sous-rubriques -->
+			<B_rubriques>
+				<ul class="rubriques">
+					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par sinum titre, num titre, titre} {doublons rubriques}>
+					<li class="#EXPOSE">
+	    		<a href="<INCLURE{fond=inclusions/inc-triurlrubrique}{id_rubrique}>" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+
+<!-- affichage des articles des sous-rubriques s'il y en a -->
+    <BOUCLE_test2(RUBRIQUES){id_rubrique}{titre_mot=chrono}>
+			<B_articles_racine3>
+				<ul class="articles">
+					<BOUCLE_articles_racine3(ARTICLES){si #CONFIG{escal/config/articlesmenuV1}|=={oui}|oui}{id_rubrique} {par date}{inverse}{doublons articles}>
+					<li class="#EXPOSE">
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine3>
+				</ul>
+			</B_articles_racine3>
+    </BOUCLE_test2>
+    </B_test2>
+			<B_articles_racine4>
+				<ul class="articles">
+					<BOUCLE_articles_racine4(ARTICLES){si #CONFIG{escal/config/articlesmenuV1}|=={oui}|oui}{id_rubrique} {par sinum titre, num titre, titre}{doublons articles}>
+					<li class="#EXPOSE">
+					<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE)]</a>
+					</li>
+					</BOUCLE_articles_racine4>
+				</ul>
+			</B_articles_racine4>
+    <//B_test2>
+
+					<!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+					</li>
+					</BOUCLE_rubriques>
+				</ul>
+			</B_rubriques>
+</li>
+		</BOUCLE_secteurs>
+		</ul>
+		</B_secteurs>
+</nav>
+
+</div>
+</div>

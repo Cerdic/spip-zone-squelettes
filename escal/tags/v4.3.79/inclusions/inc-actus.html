@@ -1,0 +1,78 @@
+<script>
+// Il faut instancier un objet Rotative pour assurer la rotation des actus
+$(document).ready(
+  function()
+  {
+    new Rotative
+    (
+      {
+        container : "#actus-defilantes",
+        element   : "div.une-actu-defilante",
+        tempo     : [(#CONFIG{escal/config/tempoactus, 5})]
+      }
+    )
+  }
+) ;
+</script>
+
+[(#REM)
+On n'oublie pas de créer les règles CSS correspondantes !
+#container {
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+	height: égale au plus haut element affiché
+}
+.element{
+	position: absolute;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	top: au moins egal au height defini plus haut
+}
+]
+
+<BOUCLE_selection(ARTICLES){titre_mot=actus}{lang}{date_redac=0000-00-00 00:00:00}{doublons actus}>
+</BOUCLE_selection>
+<BOUCLE_selection2(ARTICLES){titre_mot=actus}{lang}{age_redac<=0}{doublons actus}>
+</BOUCLE_selection2>
+
+<BOUCLE_test1(ARTICLES){!doublons actus}>
+</BOUCLE_test1>
+#SET{test1,1}
+<//B_test1>
+<BOUCLE_test2(ARTICLES){si #CONFIG{escal/config/testactus}|=={oui}|non}>
+</BOUCLE_test2>
+#SET{test2,1}
+<//B_test2>
+
+<aside role="complementary">
+<BOUCLE_affiche(ARTICLES){0,1}{si #GET{test1}|plus{#GET{test2}}|!={2}|oui}>
+<h1 class="cadre actus" >
+	[(#CONFIG{escal/config/titreactus}|oui)
+		[(#CONFIG{escal/config/titreactus}|propre|_T_ou_typo|PtoBR)]
+	]
+	[(#CONFIG{escal/config/titreactus}|non)
+		<:escal:actus:>
+	]
+</h1>
+
+<div class="texte actus [(#CONFIG{escal/config/toggleactus}|=={oui}|oui)toggle]" >
+	<div id="actus-defilantes">
+		<BOUCLE_actus(ARTICLES){!doublons actus}{par date}{inverse}{0,#CONFIG{escal/config/nbractus,5}}>
+			<div class="une-actu-defilante" >
+				<a href="[(#CONFIG{gerer_trad}=={oui}|?{[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})],#URL_ARTICLE})]">#TITRE</a>
+				<div class="intro">
+					[(#INTRODUCTION|couper{80}|propre)]
+				</div>
+			</div>
+		</BOUCLE_actus>
+		</B_actus>
+			Ici vous pouvez afficher le titre (avec lien) et le début du texte des articles avec le mot-clé "actus".<br /><br />
+			Et les actus défilent !
+		<//B_actus>
+	</div>
+</div>
+</BOUCLE_affiche>
+</aside>
+<div class="nettoyeur"></div>

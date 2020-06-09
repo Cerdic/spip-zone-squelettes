@@ -1,0 +1,144 @@
+#HTTP_HEADER{#VAL{"HTTP/1.0 "}|concat{#ENV{code,"401 Unauthorized"}}}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+
+<!DOCTYPE html>
+<html lang="#LANG" >
+
+  <head>
+    <title><:pass_erreur:> [(#ENV{status,401}) ]- [(#NOM_SITE_SPIP|textebrut)]</title>
+    <meta name="robots" content="none" />
+    <INCLURE {fond=inclusions/inc-head, env}>
+  </head>
+
+  <body [(#CONFIG{escal/config/menuH}|=={non}|non) onload="setHover('menu')"] class="page-404">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+        
+          [(#CONFIG{escal/config/espace}|=={haut}|oui)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+          [(#CONFIG{escal/config/espace}|=={haut}|non)
+              <INCLURE {fond=inclusions/inc-espace}{env}>
+          ]
+          <div class="nettoyeur"></div>
+          
+          <div id="page">
+            <main role="main" id="contenu">
+              <div id="cadre-rubrique">
+                <div id="titre-rubrique" style="margin:20px 0 20px 20px;">
+                <:escal:erreur401:>
+                </div>
+              </div>
+
+              [(#PLUGIN{SPIP_400}|non)                            
+              <div class="texte">
+              [(#SET{url, #URL_PAGE{contact}|parametre_url{lang, #ENV{lang,fr}}})]
+              <:escal:erreur401_message{url=#GET{url}}|propre:>  
+              </div>
+              ]
+              
+              [(#PLUGIN{SPIP_400}|oui)
+              <INCLURE{fond=inclure/inc-erreur}{env}{status=#ENV{status,401}}>
+              ]
+              
+            </main>
+          </div>
+
+          [(#LANG_DIR|=={ltr}|oui)<section id="navigation">] [(#LANG_DIR|=={rtl}|oui)<section id="extra">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={colgauche}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocnavpages1}|oui) [(#CONFIG{escal/config/blocnavpages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages1}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages2}|oui) [(#CONFIG{escal/config/blocnavpages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages2}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages3,edito}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages4,acces_direct}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocnavpages5}|oui) [(#CONFIG{escal/config/blocnavpages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages5}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages6}|oui) [(#CONFIG{escal/config/blocnavpages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages7}|oui) [(#CONFIG{escal/config/blocnavpages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages8}|oui) [(#CONFIG{escal/config/blocnavpages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages9}|oui) [(#CONFIG{escal/config/blocnavpages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocnavpages10}|oui) [(#CONFIG{escal/config/blocnavpages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocnavpages10}}{env}{ajax}></div>
+         ]]
+
+          </section> <!-- fin navigation -->
+
+          [(#LANG_DIR|=={ltr}|oui)<section id="extra">] [(#LANG_DIR|=={rtl}|oui)<section id="navigation">]
+
+          <!-- affichage du formulaire de recherche-->
+            [(#CONFIG{escal/config/formrecherche}|=={coldroite}|oui)#FORMULAIRE_RECHERCHE<br />]
+
+         <!-- affichage des noisettes selectionnees dans la page de configuration -->
+         [(#CONFIG{escal/config/blocextrapages1}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages1,top}}{env}{ajax}></div>
+         ]
+         [(#CONFIG{escal/config/blocextrapages2}|oui) [(#CONFIG{escal/config/blocextrapages2}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages2}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages3}|oui) [(#CONFIG{escal/config/blocextrapages3}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages3}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages4}|oui) [(#CONFIG{escal/config/blocextrapages4}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages4}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages5}|oui) [(#CONFIG{escal/config/blocextrapages5}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages5}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages6}|oui) [(#CONFIG{escal/config/blocextrapages6}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages6}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages7}|oui) [(#CONFIG{escal/config/blocextrapages7}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages7}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages8}|oui) [(#CONFIG{escal/config/blocextrapages8}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages8}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages9}|oui) [(#CONFIG{escal/config/blocextrapages9}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages9}}{env}{ajax}></div>
+         ]]
+         [(#CONFIG{escal/config/blocextrapages10}|oui) [(#CONFIG{escal/config/blocextrapages10}|=={rien}|non)
+           <div class="cadre-couleur"><INCLURE {fond=inclusions/inc-#CONFIG{escal/config/blocextrapages10}}{env}{ajax}></div>
+         ]]
+
+          </section> <!-- fin extra -->
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

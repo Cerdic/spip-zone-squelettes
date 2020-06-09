@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="#LANG" >
+
+    <head>
+    <link rel="stylesheet" href="[(#VAL{minipres.css}|find_in_theme|direction_css)]" type="text/css" />
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]</title>
+      <INCLURE {fond=inclusions/inc-head, env}>
+    </head>
+
+    <body id="page_login">
+
+        <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+
+            <INCLURE {fond=inclusions/inc-entete}>
+
+          </div>
+
+
+
+            <div id="page">
+              <main role="main" id="contenu">
+              
+<div id="minipres">
+
+
+	<h1>#NOM_SITE_SPIP</h1>
+	[(#REM)
+		Est-ce qu'on se connecte a l'espace prive ou pas ?
+	][
+	(#ENV**{url}|non
+	|ou{[(#ENV**{url}|match{^/?(.*/)?#EVAL{_DIR_RESTREINT_ABS}})]})
+	<h3 class="spip"><:login_acces_prive:></h3>
+	]
+
+	[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
+	<p class="retour">
+		[<a href="#URL_PAGE{identifiants,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{1comite})"><:login_sinscrire:></a> | ]
+		<a href="#URL_SITE_SPIP/"><:login_retoursitepublic:></a>
+	</p>
+	[<p class="generator">
+		<a href="https://www.spip.net/" title="<:site_realise_avec_spip:>">(#CHEMIN_IMAGE{spip.png}|balise_img)</a>
+	</p>]
+
+</div><!--#minipres-->
+
+              </main>
+            </div>
+
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}{env}>
+            </div>
+        </div>
+        <!-- fin conteneur -->
+      </div>
+    </div>
+
+
+    </body>
+</html>
