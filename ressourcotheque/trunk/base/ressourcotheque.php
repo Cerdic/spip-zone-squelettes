@@ -28,6 +28,18 @@ function ressourcotheque_declarer_champs_extras($champs = array()) {
 						'rechercher' => true,
 						'traitements' => '_TRAITEMENT_RACCOURCIS',
       ),
+	);
+  $champs['spip_documents']['source'] = array(
+      'saisie' => 'case',//Type du champ (voir plugin Saisies)
+      'options' => array(
+            'nom' => 'source',
+						'label_case' => _T('ressourcotheque:source'),
+						'conteneur_class'=>'pleine_largeur',
+						'explication' => _T('ressourcotheque:source_explication'),
+            'sql' => "varchar(3) DEFAULT '' NOT NULL",
+						'versionner' => true,
+						'defaut' => '',// Valeur par défaut
+      ),
   );
   return $champs;
 }

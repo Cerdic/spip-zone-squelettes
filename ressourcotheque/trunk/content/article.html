@@ -38,8 +38,10 @@
 
 	<aside>
 		[(#REM) Gestion du portfolio et des documents ]
-		[(#INCLURE{fond=inclure/documents,id_article})]
-
+		[(#INCLURE{fond=inclure/documents,id_article,singulier=<:ressourcotheque:document:>,pluriel=<:ressourcotheque:documents:>,source=''})]
+		#_AUTORISER_SI{modifier,article,#ID_ARTICLE}
+		<INCLURE{fond=inclure/documents,id_article,singulier=<:ressourcotheque:source_document:>,pluriel=<:ressourcotheque:sources_documents:>,source='on'} />
+		#_AUTORISER_FIN
 		<INCLURE{fond=inclure/connexe,id_article,env,} />
 		[(#REM) Forum de l'article
 		NB : pour desactiver les forums de l'article, supprimez simplement la ligne ci-dessous ]

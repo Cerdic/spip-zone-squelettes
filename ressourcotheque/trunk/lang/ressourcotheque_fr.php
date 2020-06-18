@@ -18,6 +18,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'contenu_documents_explication' => 'Mettez ici le contenu des documents liés si votre serveur ne dispose pas de la fonction d’indexation des documents.
 	Ce contenu apparaîtra dans les recherches, mais pas sur la fiche.',
 
+	// D
+	'documents' => 'Documents',
+	'document' => 'Document',
+
 	// E
 	'explication_recherche' => 'Commençez par une recherche libre à travers le formulaire.
 
@@ -51,6 +55,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// S
 	'supprimer_filtre' => 'Supprimer le filtre @txt@',
+	'source' => 'Source',
+	'source_explication' => 'Les documents marqués comme source ne sont pas visibles côté public, sauf pour les personnes ayant accès à l\'espace privé.',
+	'document_source' => 'Ce document est une source',
+	'document_non_source' => 'Ce document n\'est pas une source',
+	'source_document' => 'Source du document',
+	'sources_documents' => 'Sources des documents',
+
 
 	// T
 	'types_ressources' => 'Types de ressources disponibles',
