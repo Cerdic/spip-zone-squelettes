@@ -8,9 +8,21 @@
 	qu'ils soient de type graphique ou non
 	(on veut pas de portfolio)
 ]
+[(#ID_ARTICLE|oui)
+	#SET{nom_doc,ressource#ID_ARTICLE}
+]
+[(#ID_RUBRIQUE|oui)
+	#SET{nom_doc,rubrique#ID_RUBRIQUE}
+]
+[(#OBJET|oui)
+	#SET{nom_doc,#OBJET#ID_OBJET}
+]
+[(#ENV{source}|=={on}|oui)
+	#SET{nom_doc,#GET{nom-doc}-sources}
+]
 [(#SET{doc,#GET{doc}|push{#FICHIER|copie_locale}})]
 </BOUCLE_zipper>
-#SET{urlzip,#GET{doc}|zippeur{#GET{date},#CONFIG{zippeur/zippeur_cmd},#ID_ARTICLE}}
+#SET{urlzip,#GET{doc}|zippeur{#GET{date},#CONFIG{zippeur/zippeur_cmd},#GET{nom_doc}}}
 <B_documents_joints>
 	<div class="liste documents documents_joints">
 	<h2 class="h2">[(#TOTAL_BOUCLE|singulier_ou_pluriel{#ENV{singulier},#ENV{pluriel}})]</h2>
@@ -27,7 +39,7 @@
 				{type_document=ZIP}
 				{taille=#GET{taille}}
 				{logo=#GET{logo}}
-				{titre=<:ressourcotheque:zip:>}
+				{titre=#ENV{titre_zip}}
 				{date=#GET{date}}
 				>
 			</li>
