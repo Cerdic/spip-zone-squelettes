@@ -1,0 +1,34 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+
+	<header class="cartouche">
+		[(#LOGO_RUBRIQUE|image_reduire{200,200})]
+		<h1 class="#EDIT{titre}">#TITRE</h1>
+		[<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</time></p>]
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+
+		#FORMULAIRE_RECHERCHE{#URL_RUBRIQUE}
+		[(#ENV{recherche}|oui)
+		  <INCLURE{fond=inclure/sphinx_rubrique}{env} />
+		]
+		[(#ENV{recherche}|non)
+			[(#ENV{id_mot}|non)
+				<INCLURE{fond=inclure/groupes_mots_rubrique}{env} />
+			]
+			[(#ENV{id_mot}|oui)
+				<INCLURE{fond=inclure/resultats_mots_rubrique}{env} />
+			]
+		]
+
+	</div>
+
+
+	<footer>
+		[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+	</footer>
+
+</section>
+</BOUCLE_content>
