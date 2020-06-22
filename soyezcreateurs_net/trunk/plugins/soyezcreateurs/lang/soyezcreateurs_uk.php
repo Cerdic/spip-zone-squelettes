@@ -20,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_fsd_notime' => 'З @dдня_l@ @dдня@ @dмісяця_l@ @dроку@ до @fдня_l@ @fдня@ @fмісяця_l@ @fроку@',
 	'agenda_sinscrire' => 'Зареєструватись на подію',
 	'agendamoisde' => 'Події місяця',
+	'aidesc' => 'Довідка SoyezCréateurs', # MODIF
 	'alaune' => 'На першій сторінці',
 	'archives' => 'Архів',
 	'archives_title' => 'Переглянути архів статей',
@@ -35,6 +36,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'З <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> пошук в Інтернеті!',
 	'clever_uns' => 'Відмова від підписки здійснена',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'Для початку', # MODIF
+	'configurersc' => 'Налаштувати ( конфігурувати) SoyezCréateurs', # MODIF
 	'connexion' => 'Підключення',
 	'connexiontitle' => 'Доступ до зарезервованого простору',
 	'copyright_cnil' => ' Декларація CNIL N º',

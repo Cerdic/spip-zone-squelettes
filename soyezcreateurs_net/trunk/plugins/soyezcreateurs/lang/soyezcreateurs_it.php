@@ -9,6 +9,13 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+	// A
+	'aidesc' => 'Aide sur SoyezCréateurs', # MODIF
+
+	// C
+	'commencer' => 'Pour bien commencer', # MODIF
+	'configurersc' => 'Configurer SoyezCréateurs', # MODIF
+
 	// R
 	'recherche_value' => 'Ricerca ?'
 );

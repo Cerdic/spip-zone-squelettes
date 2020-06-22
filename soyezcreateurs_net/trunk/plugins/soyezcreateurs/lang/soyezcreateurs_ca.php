@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Inscriure’s a l’esdeveniment',
 	'agendamoisde' => 'Agenda del mes de',
+	'aidesc' => 'Ajuda a SigueuCreatius', # MODIF
 	'alaune' => 'A la portada ',
 	'annuaire' => 'Anuari',
 	'annuaire_consulter' => 'Consultar l’anuari',
@@ -47,6 +48,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Amb <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cercar a la Web!',
 	'clever_uns' => 'Anul·lació de la inscripció realitzada ',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'Per començar bé', # MODIF
+	'configurersc' => 'Configurar SigueuCreatius', # MODIF
 	'connexion' => 'Connexió',
 	'connexiontitle' => 'Accedir a l’espai reservat',
 	'copyright_cnil' => 'Declaració CNIL nº ',

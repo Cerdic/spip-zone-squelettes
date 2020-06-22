@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'Dňa @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Prihlásiť sa na udalosť',
 	'agendamoisde' => 'Kalendár na',
+	'aidesc' => 'Pomocník modulu Buďte tvoriví', # MODIF
 	'alaune' => 'V centre pozornosti',
 	'annuaire' => 'Adresár',
 	'annuaire_consulter' => 'Nahliadnuť do adresára',
@@ -47,6 +48,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Prehľadať web s <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a>!',
 	'clever_uns' => 'Odhlásenie vykonané',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'Na začiatok', # MODIF
+	'configurersc' => 'Nastaviť modul Buďte tvoriví', # MODIF
 	'connexion' => 'Spojenie',
 	'connexiontitle' => 'Prístup do administračného rozhrania',
 	'copyright_cnil' => 'Č. deklarácie CNIL',

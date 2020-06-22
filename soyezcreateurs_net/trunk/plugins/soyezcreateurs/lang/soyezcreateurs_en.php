@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => '@djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Subscribe to the event',
 	'agendamoisde' => 'Calendar for the month',
+	'aidesc' => 'Help about SoyezCréateurs', # MODIF
 	'alaune' => 'Featured',
 	'annuaire' => 'Directory',
 	'annuaire_consulter' => 'Consult the directory',
@@ -50,6 +51,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'To start', # MODIF
+	'configurersc' => 'Set SoyezCréateurs', # MODIF
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration nº',

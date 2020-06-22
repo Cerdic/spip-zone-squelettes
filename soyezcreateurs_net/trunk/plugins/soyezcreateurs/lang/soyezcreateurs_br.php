@@ -31,6 +31,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'Ar @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Koumanantiñ d’an darvoud',
 	'agendamoisde' => 'Deiziataer miz ',
+	'aidesc' => 'Skoazell war BezitKrouerion', # MODIF
 	'alaune' => 'Pajenn gentañ',
 	'annuaire' => 'Roll an anvioù',
 	'annuaire_consulter' => 'Sellout ouzh roll an anvioù',
@@ -50,6 +51,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chercheravecgoogle' => 'Gant <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> klask war an Web!',
 	'clever_uns' => 'Dienskrivadur sevenet',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'Da gregiñ mat', # MODIF
+	'configurersc' => 'Kefluniañ SoyezCréateurs', # MODIF
 	'connexion' => 'Kennaskañ',
 	'connexiontitle' => 'Tizhout an egor miret',
 	'copyright_cnil' => 'Disklêriadur CNIL niverenn ',

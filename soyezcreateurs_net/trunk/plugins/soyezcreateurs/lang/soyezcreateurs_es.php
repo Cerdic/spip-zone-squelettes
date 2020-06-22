@@ -29,6 +29,7 @@ Ir a la búsqueda',
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_sinscrire' => 'Registrarse para el evento',
 	'agendamoisde' => 'Agenda del mes',
+	'aidesc' => 'Ayuda para SoyezCréateurs', # MODIF
 	'alaune' => 'À la Une',
 	'annuaire' => 'Anuario',
 	'annuaire_consulter' => 'Consulte el directorio',
@@ -48,6 +49,8 @@ Ir a la búsqueda',
 	'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web!',
 	'clever_uns' => 'Darse de baja logrado',
 	'clevermail' => 'CleverMail',
+	'commencer' => 'Pour bien commencer', # MODIF
+	'configurersc' => 'Configurar SoyezCréateurs', # MODIF
 	'connexion' => 'Connexion',
 	'copyright_cnil' => 'Declaración CNIL nº',
 	'copyright_realisation' => 'Réalisation : ',

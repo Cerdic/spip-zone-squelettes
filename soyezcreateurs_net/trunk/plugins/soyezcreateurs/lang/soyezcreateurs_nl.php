@@ -16,6 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accueil' => 'Welkom',
 	'agenda' => 'Agenda',
 	'agendamoisde' => 'Agenda van de maand ... ',
+	'aidesc' => 'Aide sur SoyezCréateurs', # MODIF
 	'alaune' => 'Top info',
 	'articlesconnexes' => 'Samenhangende artikelen', # MODIF
 	'auteur' => 'Auteur', # MODIF
@@ -27,6 +28,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'chapitre_complet' => 'Volledig hoofdstuk voor printen',
 	'chapitre_complet_title' => 'In geheel de inhoud van de rubriek aangeven ',
 	'chercheravecgoogle' => 'Met <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> zoekt op het Web!',
+	'commencer' => 'Pour bien commencer', # MODIF
+	'configurersc' => 'Configurer SoyezCréateurs', # MODIF
 	'connexion' => 'Aansluiten',
 	'connexiontitle' => 'De gereserveerde ruimte bereiken',
 	'copyright_cnil' => 'Copyright CNIL nº',
