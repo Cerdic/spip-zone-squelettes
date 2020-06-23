@@ -540,16 +540,23 @@ function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $
 
 
 function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt) {
-	list($sansduree, $evenements, $premier_jour, $dernier_jour) = $evt;
+	if (count($evt)<4) {
+		$fullofevts = false;
+	} else {
+		list($sansduree, $evenements, $premier_jour, $dernier_jour) = $evt;
+		$fullofevts = true;
+	}
 
-	if ($sansduree)
-		foreach($sansduree as $d => $r) {
-			$evenements[$d] = !$evenements[$d] ? $r : 
-				 array_merge($evenements[$d], $r);
-			 }
+	if ($fullofevts) {
+		if ($sansduree)
+			foreach($sansduree as $d => $r) {
+				$evenements[$d] = !$evenements[$d] ? $r : 
+					 array_merge($evenements[$d], $r);
+				 }
+	}
 
-	if (!$premier_jour) $premier_jour = '01';
-	if (!$dernier_jour) {
+	if (!isset($premier_jour)) $premier_jour = '01';
+	if (!isset($dernier_jour)) {
 		$dernier_jour = 31;
 		while (!(checkdate($mois,$dernier_jour,$annee))) $dernier_jour--;
 	}
@@ -563,7 +570,11 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 		$mois_precedent = date("m",$mois_t_precedent);
 		$annee_en_cours = date("Y",$nom);
 		$amj = date("Y",$mois_t_precedent) . $mois_precedent . $jour_mois_precedent;
-		$evts = $evenements[$amj];
+		if ($fullofevts) {
+			$evts = $evenements[$amj];
+		} else {
+			$evts = array();
+		}
 		$aff = sc_generer_ligne_agenda($jour_mois_precedent, $amj, $evts, 'agendanotthismonth', 'mini');
 		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
@@ -582,7 +593,11 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 			$ligne = '';
 		}
 
-		$evts = $evenements[$amj];
+		if ($fullofevts) {
+			$evts = $evenements[$amj];
+		} else {
+			$evts = array();
+		}
 		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'mini');
 		$ligne .= '<td class="'.$aff['class'].($amj == date('Ymd')?' agendathisday':'').'">' . $aff['ligne'] . '</td>';
 	}
@@ -595,7 +610,11 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 		$mois_suivant = date("m",$nom);
 		$annee_en_cours = date("Y",$nom);
 		$amj = date("Y",$nom) . $mois_suivant . '0'.$jour_mois_suivant;
-		$evts = $evenements[$amj];
+		if ($fullofevts) {
+			$evts = $evenements[$amj];
+		} else {
+			$evts = array();
+		}
 		$aff = sc_generer_ligne_agenda($jour_mois_suivant++, $amj, $evts, 'agendanotthismonth', 'mini');
 		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
